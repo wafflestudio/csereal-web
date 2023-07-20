@@ -1,3 +1,5 @@
+'use client';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './Title.css';
 
 interface TitleProps {
@@ -6,13 +8,30 @@ interface TitleProps {
 }
 
 export default function Title({ location, title }: TitleProps) {
+  const [newWidth, setNewWidth] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const titleRef = useCallback((node: HTMLDivElement) => {
+    if (node !== null) {
+      setNewWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (newWidth && containerRef.current) {
+      containerRef.current.style.width = `${newWidth + 51}px`;
+    }
+  }, [newWidth]);
+
   return (
-    <div className="p-4 w-fit flex flex-col">
-      <div className="flex gap-2">
+    <div ref={containerRef} className="w-fit min-w-[350px] max-w-[600px]">
+      <div className="flex gap-2 mb-2">
         <div className="w-fit text-sm">{location}</div>
         <Node />
       </div>
-      <h3 className="text-xl font-bold w-fit min-w-[350px] mt-1.5 pr-[51px]">{title}</h3>
+      <h3 ref={titleRef} className="text-xl inline font-bold mr-[51px] break-keep bg-orange-dark">
+        {title}
+      </h3>
     </div>
   );
 }
