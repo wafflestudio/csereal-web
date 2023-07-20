@@ -1,8 +1,8 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { CurvedNode } from './Node';
 import { LuChevronRight } from 'react-icons/lu';
-import './Title.css';
+
+import { CurvedNode } from './Node';
 
 interface TitleProps {
   location: string[];

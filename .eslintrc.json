@@ -1,3 +1,40 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "plugins": ["import"],
+  "extends": ["next/core-web-vitals", "prettier", "plugin:import/recommended"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["sibling", "parent", "index"], "unknown"],
+        "pathGroups": [
+          { "pattern": "react*", "group": "external", "position": "before" },
+          {
+            "pattern": "@/apis/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/app/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/components/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/types/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
