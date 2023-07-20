@@ -19,19 +19,21 @@ export default function Title({ location, title }: TitleProps) {
 
   useEffect(() => {
     if (newWidth && containerRef.current) {
-      containerRef.current.style.width = `${newWidth + 51}px`;
+      containerRef.current.style.width = `${newWidth}px`;
     }
   }, [newWidth]);
 
   return (
-    <div ref={containerRef} className="w-fit min-w-[350px] max-w-[600px]">
+    <div className="w-fit min-w-[350px]">
       <div className="flex gap-2 mb-2">
         <div className="w-fit text-sm">{location}</div>
         <Node />
       </div>
-      <h3 ref={titleRef} className="text-xl inline font-bold mr-[51px] break-keep bg-orange-dark">
-        {title}
-      </h3>
+      <div ref={containerRef} className="max-w-[550px] mr-[51px]">
+        <h3 ref={titleRef} className="text-xl inline font-bold break-keep bg-orange-dark">
+          {title}
+        </h3>
+      </div>
     </div>
   );
 }

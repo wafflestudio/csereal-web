@@ -2,11 +2,12 @@ import Title from '@/components/Title';
 
 export default function Notice() {
   return (
-    <div>
+    <>
       <Title
         location="소식 > 공지사항"
-        title="푸른등대 기부 장학사업 안내 푸른등 대기 안내정 장학사업 모임이다 모임이다 모임이다 모임이다 모임이다 모임이다 모임이다"
+        title="푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 (2년) "
       />
-    </div>
+      <div className="w-[600px] h-[30px] border"></div>
+    </>
   );
 }
