@@ -11,6 +11,11 @@
 }
 
 @layer base {
+  html,
+  body {
+    @apply h-full;
+  }
+
   button {
     @apply border border-gray-dark rounded hover:bg-gray-dark; /* 디자인 제대로 나오면 수정 */
   }
