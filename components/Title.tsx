@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { CurvedNode } from './Node';
 import { LuChevronRight } from 'react-icons/lu';
 import './Title.css';
 
@@ -28,9 +29,9 @@ export default function Title({ location, title }: TitleProps) {
     <div className="w-fit min-w-[350px]">
       <div className="flex gap-2 mb-2">
         <Location location={location} />
-        <Node />
+        <CurvedNode />
       </div>
-      <div ref={containerRef} className="max-w-[550px] mr-[51px]">
+      <div ref={containerRef} className="max-w-[550px] mr-[55px]">
         <h3 ref={titleRef} className="text-xl inline font-bold break-keep">
           {title}
         </h3>
@@ -50,16 +51,6 @@ function Location({ location }: { location: string[] }) {
           </span>
         );
       })}
-    </div>
-  );
-}
-
-function Node() {
-  return (
-    <div className="flex grow items-center node">
-      <div className="border border-orange rounded-full w-2.5 h-2.5" />
-      <div className="grow h-0 border-t border-orange" />
-      <div className="diag w-[52px] h-0 rotate-45 translate-y-[18.3px] -translate-x-[7.8px] border-t border-orange"></div>
     </div>
   );
 }
