@@ -1,9 +1,9 @@
 interface NodeProps {
-  grow?: boolean; // flex-grow (if true, parent node should be 'display: flex')
-  width?: string; // tailwind width class
+  grow?: boolean; // flex-grow 속성 (true일 때는 부모 element가 'display: flex'여야 함)
+  width?: string; // tailwind width class 그대로 쓰면 됨
 }
 
-// the width of a straight node should be at least 10px (b/c circle at the front)
+// straight node width 최소 10px (원 크기)
 export function StraightNode({ grow = false, width = 'w-auto' }: NodeProps) {
   return (
     <div className={`flex ${grow ? 'grow' : ''} ${width} items-center`}>
@@ -13,7 +13,7 @@ export function StraightNode({ grow = false, width = 'w-auto' }: NodeProps) {
   );
 }
 
-// the width of a curved node should be at least 65px (b/c circle 10px + diagonal part 55px)
+// curved node width 최소 65px (원 10px + 대각선 꼬리 55px)
 export function CurvedNode({ grow = false, width = 'w-auto' }: NodeProps) {
   return (
     <div className={`flex ${grow ? 'grow' : ''} ${width} items-center`}>
