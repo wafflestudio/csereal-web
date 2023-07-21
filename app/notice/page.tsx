@@ -1,11 +1,16 @@
-import Title from '@/components/Title';
+import PageTitle from '@/components/PageTitle';
 
-export default function Notice() {
-  const location = ['소식', '공지사항'];
+import { Location } from '@/types/common';
+
+export default function NoticePage() {
+  const locationLog: Location[] = [
+    { name: '소식', path: '' },
+    { name: '공지', path: '/notice' },
+  ];
 
   return (
-    <Title
-      location={location}
+    <PageTitle
+      locationLog={locationLog}
       title="푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 학위논문제출기한"
     />
   );
