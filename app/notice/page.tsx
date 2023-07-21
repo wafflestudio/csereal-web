@@ -1,12 +1,9 @@
 import PageTitle from '@/components/PageTitle';
 
-import { Location } from '@/types/common';
+import { Location, PAGES } from '@/types/common';
 
 export default function NoticePage() {
-  const locationLog: Location[] = [
-    { name: '소식', path: '' },
-    { name: '공지', path: '/notice' },
-  ];
+  const locationLog: Location[] = [PAGES.communication, PAGES.notice];
 
   return (
     <PageTitle
