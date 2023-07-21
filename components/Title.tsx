@@ -29,7 +29,7 @@ export default function Title({ location, title }: TitleProps) {
     <div className="w-fit min-w-[350px]">
       <div className="flex gap-2 mb-2">
         <Location location={location} />
-        <CurvedNode />
+        <CurvedNode grow={true} />
       </div>
       <div ref={containerRef} className="max-w-[550px] mr-[55px]">
         <h3 ref={titleRef} className="text-xl inline font-bold break-keep">
