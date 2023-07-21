@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
+root {
   --main-orange: #f98438;
   --dark-orange: #cf5c10;
   --gray0: #f4f4f4;

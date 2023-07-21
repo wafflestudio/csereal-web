@@ -1,5 +1,3 @@
-import { LuChevronRight } from 'react-icons/lu';
-
 import { CurvedNode } from './Node';
 
 interface TitleProps {
@@ -21,12 +19,14 @@ export default function Title({ location, title }: TitleProps) {
 
 function Location({ location }: { location: string[] }) {
   return (
-    <div className="flex items-center w-fit text-sm">
+    <div className="flex items-center w-fit text-sm gap-0.5">
       {location.map((loca, i) => {
         return (
-          <span key={loca} className="flex items-center">
+          <span key={loca} className="flex items-center gap-0.5">
             {loca}
-            {i === location.length - 1 ? null : <LuChevronRight />}
+            {i === location.length - 1 ? null : (
+              <span className="material-icons text-sm">arrow_forward_ios</span>
+            )}
           </span>
         );
       })}
