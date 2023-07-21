@@ -1,5 +1,3 @@
-'use client';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { LuChevronRight } from 'react-icons/lu';
 
 import { CurvedNode } from './Node';
@@ -10,32 +8,13 @@ interface TitleProps {
 }
 
 export default function Title({ location, title }: TitleProps) {
-  const [newWidth, setNewWidth] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const titleRef = useCallback((node: HTMLDivElement) => {
-    if (node !== null) {
-      setNewWidth(node.getBoundingClientRect().width);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (newWidth && containerRef.current) {
-      containerRef.current.style.width = `${newWidth}px`;
-    }
-  }, [newWidth]);
-
   return (
-    <div className="w-fit min-w-[350px]">
+    <div className="w-fit min-w-[350px] max-w-[600px]">
       <div className="flex gap-2 mb-2">
         <Location location={location} />
         <CurvedNode grow={true} />
       </div>
-      <div ref={containerRef} className="max-w-[550px] mr-[55px]">
-        <h3 ref={titleRef} className="text-xl inline font-bold break-keep">
-          {title}
-        </h3>
-      </div>
+      <h3 className="text-xl font-bold break-keep mr-[55px]">{title}</h3>
     </div>
   );
 }

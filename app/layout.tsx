@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className="grid grid-rows-[80px_auto_80px] grid-cols-[172px_auto]">
         <Navbar />
         <Header />

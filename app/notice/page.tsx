@@ -6,7 +6,7 @@ export default function Notice() {
   return (
     <Title
       location={location}
-      title="푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 (2년) "
+      title="푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 학위논문제출기한"
     />
   );
 }
