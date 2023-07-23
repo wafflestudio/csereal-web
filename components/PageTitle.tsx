@@ -16,7 +16,7 @@ export default function PageTitle({ locationLog, title }: PageTitleProps) {
         <LocationLog locations={locationLog} />
         <CurvedNode grow={true} />
       </div>
-      <h3 className="text-xl font-bold break-keep mr-[55px]">{title}</h3>
+      <h3 className="text-lg font-bold break-keep mr-[55px] font-yoon">{title}</h3>
     </div>
   );
 }
