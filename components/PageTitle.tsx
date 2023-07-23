@@ -7,13 +7,13 @@ import { CurvedNode } from './Node';
 
 interface PageTitleProps {
   locationLog: Location[];
-  className?: string;
+  margin?: string;
   children: ReactNode;
 }
 
-export default function PageTitle({ locationLog, className, children }: PageTitleProps) {
+export default function PageTitle({ locationLog, margin = '', children }: PageTitleProps) {
   return (
-    <div className={`w-fit min-w-[350px] max-w-[600px] ${className ?? ''}`}>
+    <div className={`w-fit min-w-[350px] max-w-[600px] ${margin}`}>
       <div className="flex gap-2 mb-2">
         <LocationLog locations={locationLog} />
         <CurvedNode grow={true} />
