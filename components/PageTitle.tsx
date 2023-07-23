@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Fragment, ReactNode } from 'react';
 
 import { Location } from '@/types/common';
 
@@ -6,40 +7,47 @@ import { CurvedNode } from './Node';
 
 interface PageTitleProps {
   locationLog: Location[];
-  title: string;
+  margin?: string;
+  children: ReactNode;
 }
 
-export default function PageTitle({ locationLog, title }: PageTitleProps) {
+export default function PageTitle({ locationLog, margin = '', children }: PageTitleProps) {
   return (
-    <div className="w-fit min-w-[350px] max-w-[600px]">
+    <div className={`w-fit min-w-[350px] max-w-[600px] ${margin}`}>
       <div className="flex gap-2 mb-2">
         <LocationLog locations={locationLog} />
         <CurvedNode grow={true} />
       </div>
-      <h3 className="text-xl font-bold break-keep mr-[55px]">{title}</h3>
+      <div className="mr-[55px]">{children}</div>
     </div>
   );
 }
 
 function LocationLog({ locations }: { locations: Location[] }) {
   return (
-    <div className="flex items-center w-fit text-sm gap-0.5">
+    <div className="flex items-center gap-0.5">
       {locations.map((loca, i) => {
         return (
-          <span key={loca.name} className="flex items-center gap-0.5">
-            {loca.path ? (
-              <Link href={loca.path} className="hover:underline">
-                {loca.name}
-              </Link>
-            ) : (
-              <span>{loca.name}</span>
+          <Fragment key={loca.name}>
+            <LocationText path={loca.path} name={loca.name} />
+            {i !== locations.length - 1 && (
+              <span className="material-icons text-xs">arrow_forward_ios</span>
             )}
-            {i === locations.length - 1 ? null : (
-              <span className="material-icons text-sm">arrow_forward_ios</span>
-            )}
-          </span>
+          </Fragment>
         );
       })}
     </div>
   );
+}
+
+function LocationText({ path, name }: { path?: string; name: string }) {
+  if (path) {
+    return (
+      <Link href={path} className="text-xs font-yoon font-normal tracking-[.015em] hover:underline">
+        {name}
+      </Link>
+    );
+  } else {
+    return <span className="text-xs font-yoon font-normal tracking-[.015em]">{name}</span>;
+  }
 }

@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 
 import '@/styles/globals.css';
+import { noto, yoonGothic } from './font';
 
 export const metadata = {
   title: 'Next.js',
@@ -15,7 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="grid grid-rows-[80px_auto_80px] grid-cols-[172px_auto]">
         <Navbar />
         <Header />
-        <main className="row-start-2 row-end-3 col-start-2 col-end-3">{children}</main>
+        <main
+          className={`row-start-2 row-end-3 col-start-2 col-end-3 ${yoonGothic.variable} ${noto.variable}`}
+        >
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
