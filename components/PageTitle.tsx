@@ -17,7 +17,7 @@ export default function PageTitle({ locationLog, children }: PageTitleProps) {
         <LocationLog locations={locationLog} />
         <CurvedNode grow={true} />
       </div>
-      {children}
+      <div className="mr-[55px]">{children}</div>
     </div>
   );
 }
