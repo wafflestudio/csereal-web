@@ -15,7 +15,7 @@ export type PageNames =
 
 export type PagesAcceptingTagQuery = 'notice' | 'news';
 
-type TabsNames =
+type TabNames =
   | 'about'
   | 'community'
   | 'people'
@@ -36,7 +36,7 @@ export const PAGES: { [key in PageNames]: Location } = {
   international: { name: '국제(International)', path: '/international' },
 };
 
-export const TABS: { [key in TabsNames]: Location[] } = {
+export const TABS: { [key in TabNames]: Location[] } = {
   about: [],
   community: [
     PAGES.news,

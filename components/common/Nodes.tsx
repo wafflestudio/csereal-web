@@ -9,6 +9,7 @@ interface StraightProps {
   translateX?: string;
   translateY?: string;
 }
+
 function Straight({ direction = 'row', translateX = '', translateY = '' }: StraightProps) {
   return (
     <div
