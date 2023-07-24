@@ -5,7 +5,7 @@ export interface Location {
 
 export type PageNames = 'main' | 'community' | 'notice' | 'news';
 
-export type PagesUsingTag = 'notice' | 'news';
+export type PagesAcceptingTagQuery = 'notice' | 'news';
 
 // constants.ts를 따로 만들까 하다가 일단 여기에 넣어둡니다
 // 사실 '소식' 같은 건 페이지라기보단 탭인데 PAGES말고 TABS로 이름을 바꿔야 하나

@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import { PagesUsingTag } from '@/types/common';
+import { PagesAcceptingTagQuery } from '@/types/common';
 
 interface TagsProp {
   tags: string[];
-  page: PagesUsingTag;
+  page: PagesAcceptingTagQuery;
 }
 
 export default function Tags({ tags, page }: TagsProp) {
@@ -19,7 +19,7 @@ export default function Tags({ tags, page }: TagsProp) {
 
 interface TagProp {
   tag: string;
-  page: PagesUsingTag;
+  page: PagesAcceptingTagQuery;
 }
 
 function Tag({ tag, page }: TagProp) {
