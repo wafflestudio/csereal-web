@@ -36,7 +36,7 @@ function SubTabs({ subTabs, currentTab }: SubTabsProps) {
         <li
           key={tab.name}
           className={`text-xs font-yoon tracking-[.015em] mb-[14px] ${
-            tab.name === currentTab.name && 'font-bold text-orange'
+            tab.name === currentTab.name && 'font-bold text-main-orange'
           }`}
         >
           <Link href={tab.path}>{tab.name}</Link>
