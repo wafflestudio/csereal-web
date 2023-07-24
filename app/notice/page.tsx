@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle';
+import PageTitle from '@/components/common/PageTitle';
 
 import { Location, PAGES } from '@/types/common';
 
 export default function NoticePage() {
-  const locationLog: Location[] = [PAGES.communication, PAGES.notice];
+  const locationLog: Location[] = [PAGES.community, PAGES.notice];
 
   return (
     <PageTitle locationLog={locationLog}>
