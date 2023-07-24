@@ -3,7 +3,7 @@ import { Fragment, ReactNode } from 'react';
 
 import { Location } from '@/types/common';
 
-import { CurvedHorizontalNode } from './Node';
+import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
   locationLog: Location[];

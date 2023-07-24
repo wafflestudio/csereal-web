@@ -1,4 +1,4 @@
-import { CurvedHorizontalNode, CurvedVerticalNode, StraightNode } from '@/components/common/Node';
+import { CurvedHorizontalNode, CurvedVerticalNode, StraightNode } from '@/components/common/Nodes';
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 

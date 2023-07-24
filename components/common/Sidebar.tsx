@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Location } from '@/types/common';
 
-import { CurvedVerticalNode } from './Node';
+import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
   mainTab: Location;
