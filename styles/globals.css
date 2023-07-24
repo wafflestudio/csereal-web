@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
