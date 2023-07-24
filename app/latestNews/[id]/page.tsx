@@ -1,12 +1,12 @@
-import HTMLViewer from '@/components/HTMLViewer';
-import { StraightNode } from '@/components/Node';
-import PageTitle from '@/components/PageTitle';
+import HTMLViewer from '@/components/common/HTMLViewer';
+import { StraightNode } from '@/components/common/Node';
+import PageTitle from '@/components/common/PageTitle';
 
 import { Location, PAGES } from '@/types/common';
 
 import latestNewsNetwork from './network';
 
-const locationLog: Location[] = [PAGES.communication, PAGES.latestNews];
+const locationLog: Location[] = [PAGES.community, PAGES.news];
 
 export default function NoticePage({ params }: { params: { id: string } }) {
   // 에러 처리 필요 id가 없으면?

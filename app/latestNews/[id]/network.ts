@@ -1,4 +1,4 @@
-import { mock4 } from '@/components/HTMLViewer';
+import { mock4 } from '@/components/common/HTMLViewer';
 
 interface NoticePageProps {
   title: string;
