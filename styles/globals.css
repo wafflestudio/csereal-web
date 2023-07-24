@@ -3,14 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --main-orange: #f98438;
-  --dark-orange: #cf5c10;
-  --gray0: #f4f4f4;
-  --gray1: #dddddd;
-  --gray2: #bebebe;
-}
-
 @layer base {
   html,
   body {
@@ -18,6 +10,6 @@
   }
 
   button {
-    @apply border border-gray-dark rounded hover:bg-gray-dark; /* 디자인 제대로 나오면 수정 */
+    @apply border border-neutral-500 rounded hover:bg-neutral-500; /* 디자인 제대로 나오면 수정 */
   }
 }
