@@ -1,23 +1,23 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --main-orange: #f98438;
+  --dark-orange: #cf5c10;
+  --gray0: #f4f4f4;
+  --gray1: #dddddd;
+  --gray2: #bebebe;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  html,
+  body {
+    @apply h-full;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
+  button {
+    @apply border border-gray-dark rounded hover:bg-gray-dark; /* 디자인 제대로 나오면 수정 */
+  }
 }
