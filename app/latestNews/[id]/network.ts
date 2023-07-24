@@ -10,8 +10,26 @@ export default function latestNewsNetwork(id: number): NoticePageProps {
   return {
     title: '김선 교수 연구진이 네트워크 사이언스와 머신러닝을 결합하여 약물에 적합한 질병을 예측',
     mainImageURL: '',
-    htmlContent: `
-      <ul>
+    htmlContent: mock2,
+    postDate: new Date(),
+  };
+}
+
+const mock1 = `
+<p class="0">■ 효율적으로 최첨단 생성 모델의 이상 행동을 탐지하는 알고리즘 개발</p>
+<p>■ 인공신경망의 깊이를 압축하여 성능을 유지하면서 추론 속도를 가속화</p>
+<p class="0"><a href="https://mllab.snu.ac.kr/">송현오 교수 연구진</a>이 생성 모델의 이상 행동 패턴을 사전에 파악하는 레드 팀 알고리즘 및 인공 신경망 깊이 압축 알고리즘을 개발하였다.</p>
+<p class="0">레드 팀 [1]: 대화 인공지능의 공격적인 답변과 같은 이상 행동을 이끌어내는 적대적 테스트 예시들을 구성하는 레드팀 알고리즘(BRT)를 개발하였다. BRT는 베이지안 최적화를 활용하여 주어진 유저 입력 집합에서 유저 입력을 선택 및 편집하여 효율적으로 적대적 테스트 예시들을 구성한다. 대화 인공지능, 텍스트 기반 이미지 생성 모델 등 다양한 생성 모델들에 대해 적은 비용으로 기존 연구보다 더 많고, 다양한 이상 행동을 탐지하는데 성공하였다. 본 연구 결과는 최첨단 생성 모델들의 이상 행동 패턴을 사전에 파악하고, 수정하는데 활용될 수 있다.</p>
+<p class="0">인공신경망 깊이 압축 [2]: 본 연구진은 인공신경망에서 불필요한 활성화 함수를 제거하고 인접한 합성곱 레이어들을 병합하여 인공신경망을 가속하는 새로운 깊이 압축 알고리즘을 제안하였다. 특히, 신경망을 최적으로 병합하는 부분 집합 선택 문제의 대리 최적화 문제를 제안하고 이를 동적 프로그래밍을 이용하여 해결하여 기존 연구보다 성능이 높고 추론 속도가 빠른 신경망을 얻어내는 데 성공하였다. 압축된 인공신경망은 정확도가 높고 빠른 추론 속도를 요구하는 환경에서 효과적으로 사용될 수 있다.</p>
+<p class="0">&nbsp;해당 연구는 자연어처리 최우수 학회인 <a href="https://2023.aclweb.org/">ACL</a>과 머신러닝 최우수 학회인 <a href="https://icml.cc/">ICML</a>에 올해 7월 발표될 예정이다.</p>
+<div class="hwp_editor_board_content" data-hjsonver="1.0" data-jsonlen="8464"><br />
+<p class="0">[1] <a href="https://arxiv.org/abs/2305.17444"><em>"Query-Efficient Black-Box Red Teaming via Bayesian Optimization"</em></a>, Deokjae Lee, JunYeong Lee, Jung-Woo Ha, Jin-Hwa Kim, Sang-Woo Lee, Hwaran Lee, Hyun Oh Song<span>, ACL 2023</span></p>
+<p class="0">[2] <a href="https://arxiv.org/abs/2301.12187"><em>"Efficient Latency-Aware CNN Depth Compression via Two-Stage Dynamic Programming"</em></a>, Jinuk Kim*, Yeonwoo Jeong*, Deokjae Lee, Hyun Oh Song, ICML 2023</p>
+</div>
+`;
+
+const mock2 = `
+ <ul>
 <li>소셜 네트워크에서 활용되는 네트워크 알고리즘을 생물학적 네트워크에 적합하도록 변형</li>
 <li>머신러닝 기술을 접목시켜 약물과 질병의 치료 관계를 높은 정확도로 예측</li>
 <li>인공지능 신약개발 분야에 기존 약학, 병리학적 정보를 십분 활용하는 머신러닝 방법론의 가능성 제시</li>
@@ -22,7 +40,23 @@ export default function latestNewsNetwork(id: number): NoticePageProps {
 <p>인공지능과 약학 분야의 융합의 산물인 본 연구는 기존에 컴퓨터 과학 분야에서 발전된 네트워크 과학 기술이 인공지능 신약개발 분야에 알맞게 변형되고, 또한 알려진 도메인의 지식을 잘 활용할 수 있도록 변형될 수 있다는 새로운 연구 패러다임의 실질적인 예를 제시하였다. 구축된 모델은 알츠하이머와 유방암에 대해 높은 신뢰도의 치료 약물을 발굴해주었으며, 이후에도 새로운 질병에 적용 가능한 약물들을 제시하도록 활용이 가능할 것으로 보인다.</p>
 <p>&nbsp;</p>
 <p><a href="https://www.nature.com/articles/s41467-023-39301-y"><em>"Biomedical knowledge graph learning for drug repurposing by extending guilt-by-association to multiple layers"</em></a>, Dongmin Bang, Sangsoo Lim, Sangseon Lee &amp; Sun Kim, Nature Communications 14.1 (2023): 3570</p>
-`,
-    postDate: new Date(),
-  };
-}
+`;
+
+const mock3 = `
+<p><span style="font-size: small;">박사과정 대학원생 분들께,</span></p>
+<div><span style="font-size: small;">안녕하세요.&nbsp;</span><span style="font-size: small;">&nbsp;</span></div>
+<div><span style="font-size: small;">본교 국제협력본부의 <strong><span style="text-decoration: underline;">대학원생(박사과정 재학생 및 연구생등록 수료자)</span></strong> 대상 2023학년도 2학기 장기해외연수 지원 계획 안내 드립니다.</span></div>
+<div><span style="font-size: small;">자세한 내용은 붙임1 문서로 확인하여 주시고, 지원을 희망하시면 붙임2 구비서류를 갖추어 구글폼으로 신청하시기 바랍니다.</span></div>
+<div><span style="font-size: small;">&nbsp;</span></div>
+<div><span style="font-size: small;">&nbsp;</span></div>
+<p><span style="font-size: medium;">2023학년도 2학기 대학원생(박사과정) 장기해외연수 지원계획</span></p>
+<p><span style="font-size: medium;">&nbsp; 1. 서류 접수</span></p>
+<p><span style="font-size: medium;">&nbsp; &nbsp; 가. 신청서 제출:&nbsp;<span style="text-decoration: underline;"><strong>2023.7.20.(목)~7.31.(월)까지</strong></span>&nbsp; &lt;지원자 → 국제협력본부&gt;</span></p>
+<p><span style="font-size: medium;">&nbsp; &nbsp; 나. 면접대상자 발표:<strong>&nbsp;</strong><span style="text-decoration: underline;"><strong>2023.8.2.(수)&nbsp;</strong></span>예정</span></p>
+<p><span style="font-size: medium;">&nbsp; 2. 서류 제출 방법: <strong>구글폼(<a href="https://forms.gle/urTcfUbH32MEm7seA" rel="noopener noreferrer" target="_blank">https://forms.gle/urTcfUbH32MEm7seA</a>) 제출</strong></span></p>
+<p><span style="font-size: medium;">&nbsp; 3. 선발 예정 인원: ○명</span></p>
+<p><span style="font-size: medium;">&nbsp;</span></p>
+<p><span style="font-size: medium;">붙임 &nbsp;1. 2023학년도 2학기 장기해외연수 지원계획 1부.</span></p>
+<p><span style="font-size: medium;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2. 장기해외연수 서식 각 1부. &nbsp;끝.</span></p>
+<p><span style="font-size: medium;"><br /></span></p>
+`;
