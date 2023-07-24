@@ -3,7 +3,7 @@ import { Fragment, ReactNode } from 'react';
 
 import { Location } from '@/types/common';
 
-import { CurvedNode } from './Node';
+import { CurvedHorizontalNode } from './Node';
 
 interface PageTitleProps {
   locationLog: Location[];
@@ -16,7 +16,7 @@ export default function PageTitle({ locationLog, margin = '', children }: PageTi
     <div className={`w-fit min-w-[350px] max-w-[600px] ${margin}`}>
       <div className="flex gap-2 mb-2">
         <LocationLog locations={locationLog} />
-        <CurvedNode grow={true} />
+        <CurvedHorizontalNode grow={true} />
       </div>
       <div className="mr-[55px]">{children}</div>
     </div>
