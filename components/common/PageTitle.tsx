@@ -25,18 +25,22 @@ export default function PageTitle({ locationLog, margin = '', children }: PageTi
 
 function LocationLog({ locations }: { locations: Location[] }) {
   return (
-    <div className="flex items-center gap-0.5">
+    <ol className="flex items-center gap-0.5">
       {locations.map((loca, i) => {
         return (
-          <Fragment key={loca.name}>
-            <LocationText path={loca.path} name={loca.name} />
+          <>
+            <li key={loca.name} className="flex">
+              <LocationText path={loca.path} name={loca.name} />
+            </li>
             {i !== locations.length - 1 && (
-              <span className="material-icons text-xs">arrow_forward_ios</span>
+              <li className="material-symbols-outlined text-xs font-extralight">
+                arrow_forward_ios
+              </li>
             )}
-          </Fragment>
+          </>
         );
       })}
-    </div>
+    </ol>
   );
 }
 

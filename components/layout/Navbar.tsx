@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="row-start-1 row-end-4 col-start-1 col-end-2 bg-orange">
+    <nav className="row-start-1 row-end-4 col-start-1 col-end-2 bg-main-orange">
       <ul>
         <li>소개</li>
         <li>소식</li>
