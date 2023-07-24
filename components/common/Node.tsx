@@ -41,6 +41,7 @@ interface NodeProps {
   direction?: 'row' | 'col'; // 가로 노드: row, 세로 노드: col
   width?: string; // tailwind width class 그대로 쓰면 됨
   height?: string; // ditto
+  double?: boolean;
 }
 
 // straight node width, height 최소 10px (원 크기)
@@ -50,6 +51,7 @@ export function StraightNode({
   direction = 'row',
   width = '',
   height = '',
+  double = false,
 }: NodeProps) {
   const sizeClass =
     direction === 'row' ? `${width || 'w-auto'} h-auto` : `w-fit ${height || 'h-full'}`;
@@ -58,6 +60,7 @@ export function StraightNode({
     <div className={`flex flex-${direction} ${grow ? 'grow' : ''} ${sizeClass} items-center`}>
       <Circle />
       <Straight direction={direction} />
+      {double && <Circle />}
     </div>
   );
 }

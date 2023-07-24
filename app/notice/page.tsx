@@ -16,6 +16,7 @@ export default function NoticePage() {
       <StraightNode direction="row" />
       <CurvedHorizontalNode />
       <CurvedVerticalNode />
+      <StraightNode direction="row" double={true} width="w-[100px]" />
     </>
   );
 }
