@@ -16,6 +16,13 @@ module.exports = {
         DEFAULT: '#dddddd',
         dark: '#bebebe',
       },
+      link: {
+        DEFAULT: '#3c7be4',
+      },
+      visited: {
+        // TBD
+        DEFAULT: '#ff0000',
+      },
     },
     extend: {
       backgroundImage: {
