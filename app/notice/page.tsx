@@ -1,4 +1,3 @@
-import { CurvedHorizontalNode, CurvedVerticalNode, StraightNode } from '@/components/common/Nodes';
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 
@@ -15,7 +14,10 @@ export default function NoticePage() {
           푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 학위논문제출기한
         </h3>
       </PageTitle>
-      <Sidebar mainTab={PAGES.community} currentTab={PAGES.notice} subTabs={subTabs} />
+      <div className="flex">
+        <div className="border w-[500px] h-[300px] mr-[30px]"></div>
+        <Sidebar mainTab={PAGES.community} currentTab={PAGES.notice} subTabs={subTabs} />
+      </div>
     </>
   );
 }

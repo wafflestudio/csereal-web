@@ -16,7 +16,7 @@ export default function Sidebar({ mainTab, currentTab, subTabs }: SidebarProps) 
   return (
     <div className={`flex h-[${height}]`}>
       <CurvedVerticalNode grow={false} />
-      <div className="h-fit pt-[11px]">
+      <div className="pt-[11px]">
         <h3 className="font-yoon tracking-[.015em] font-bold text-[13px]">{mainTab.name}</h3>
         <SubTabs subTabs={subTabs} currentTab={currentTab} />
       </div>

@@ -51,7 +51,7 @@ export function StraightNode({
   direction = 'row',
   width = '',
   height = '',
-  double = false,
+  double = false, // 양쪽 노드
 }: NodeProps) {
   const sizeClass =
     direction === 'row' ? `${width || 'w-auto'} h-auto` : `w-fit ${height || 'h-full'}`;
