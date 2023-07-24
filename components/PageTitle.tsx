@@ -25,7 +25,7 @@ export default function PageTitle({ locationLog, margin = '', children }: PageTi
 
 function LocationLog({ locations }: { locations: Location[] }) {
   return (
-    <div className="flex items-center gap-0.5">
+    <nav className="flex items-center gap-0.5">
       {locations.map((loca, i) => {
         return (
           <Fragment key={loca.name}>
@@ -36,7 +36,7 @@ function LocationLog({ locations }: { locations: Location[] }) {
           </Fragment>
         );
       })}
-    </div>
+    </nav>
   );
 }
 
