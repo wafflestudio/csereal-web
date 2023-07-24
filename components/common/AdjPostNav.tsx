@@ -37,7 +37,7 @@ function Row({ post, type }: { post?: AdjPostInfo; type: RowType }) {
       <div className="group flex items-center">
         <RowIcon type={type} />
         <RowDescription type={type} />
-        <RowPostTitleEmpty />
+        <RowPostTitle />
       </div>
     );
   }
@@ -61,16 +61,17 @@ function RowDescription({ type }: { type: RowType }) {
   );
 }
 
-function RowPostTitle({ title }: { title: string }) {
+function RowPostTitle({ title }: { title?: string }) {
   return (
-    <p className="group-hover:underline font-yoon text-xs font-normal line-clamp-1 text-neutral-700">
-      {title}
+    <p
+      className={`
+      ${title ? 'group-hover:underline' : ''} 
+      font-yoon text-xs font-normal line-clamp-1 text-neutral-700
+      `}
+    >
+      {title ?? '(없음)'}
     </p>
   );
-}
-
-function RowPostTitleEmpty() {
-  return <p className="font-yoon text-xs font-normal">(없음)</p>;
 }
 
 function PostListLink() {
