@@ -18,3 +18,5 @@ export const PAGES: { [key in PageNames]: Location } = {
   [PageNames.notice]: { name: '공지', path: '/notice' },
   [PageNames.news]: { name: '새소식', path: '/news' },
 };
+
+export type PagesUsingTag = PageNames.notice | PageNames.news;

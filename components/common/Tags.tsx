@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-import { PageNames } from '@/types/common';
-
-type PagesUsingTag = PageNames.notice | PageNames.news;
+import { PagesUsingTag } from '@/types/common';
 
 interface TagsProp {
   tags: string[];
