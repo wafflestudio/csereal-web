@@ -1,4 +1,4 @@
-import { mock4 } from '@/components/common/HTMLViewer';
+import { mock1 } from '@/components/common/HTMLViewer';
 
 interface NoticePageProps {
   title: string;
@@ -12,7 +12,7 @@ export default function latestNewsNetwork(id: number): NoticePageProps {
   return {
     title: '김선 교수 연구진이 네트워크 사이언스와 머신러닝을 결합하여 약물에 적합한 질병을 예측',
     mainImageURL: '',
-    htmlContent: mock4,
+    htmlContent: mock1,
     postDate: new Date(),
   };
 }
