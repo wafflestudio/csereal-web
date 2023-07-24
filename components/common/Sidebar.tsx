@@ -11,10 +11,10 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ mainTab, currentTab, subTabs }: SidebarProps) {
-  const height = `${(subTabs.length + 1) * 30}px`;
+  const height = (subTabs.length + 1) * 30;
 
   return (
-    <div className={`flex h-[${height}]`}>
+    <div className={`flex h-[${height}px]`}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px]">
         <h3 className="font-yoon tracking-[.015em] font-bold text-[13px]">{mainTab.name}</h3>
