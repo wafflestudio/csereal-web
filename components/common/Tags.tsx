@@ -1,8 +1,12 @@
 import Link from 'next/link';
 
+import { PageNames } from '@/types/common';
+
+type PagesUsingTag = PageNames.notice | PageNames.news;
+
 interface TagsProp {
   tags: string[];
-  page: 'notice' | 'news';
+  page: PagesUsingTag;
 }
 
 export default function Tags({ tags, page }: TagsProp) {
@@ -17,7 +21,7 @@ export default function Tags({ tags, page }: TagsProp) {
 
 interface TagProp {
   tag: string;
-  page: 'notice' | 'news';
+  page: PagesUsingTag;
 }
 
 function Tag({ tag, page }: TagProp) {
