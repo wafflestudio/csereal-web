@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Fragment, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { Location } from '@/types/common';
 

@@ -1,5 +1,5 @@
 function Circle() {
-  return <div className="border border-orange rounded-full w-2.5 h-2.5" />;
+  return <div className="border border-main-orange rounded-full w-2.5 h-2.5" />;
 }
 
 // 수평선을 원하면 부모 요소 flex-direction: row
@@ -13,7 +13,7 @@ interface StraightProps {
 function Straight({ direction = 'row', translateX = '', translateY = '' }: StraightProps) {
   return (
     <div
-      className={`grow border-orange ${
+      className={`grow border-main-orange ${
         direction === 'row' ? 'border-t' : 'border-r'
       } ${translateX} ${translateY}`}
     />
@@ -32,7 +32,7 @@ interface DiagonalProps {
 function Diagonal({ width, translateX = '', translateY = '', other = '' }: DiagonalProps) {
   return (
     <div
-      className={`rotate-45 border-t border-orange h-0 ${width} ${translateX} ${translateY} ${other}`}
+      className={`rotate-45 border-t border-main-orange h-0 ${width} ${translateX} ${translateY} ${other}`}
     />
   );
 }
