@@ -6,7 +6,7 @@ interface CheckboxProps {
 export default function Checkbox({ tag }: CheckboxProps) {
   return (
     <div className="flex items-center gap-1">
-      <span className="material-symbols-rounded text-lg">check_box</span>
+      <span className="material-symbols-rounded text-lg font-light">check_box</span>
       <label htmlFor={tag} className="font-yoon text-xs">
         {tag}
       </label>
