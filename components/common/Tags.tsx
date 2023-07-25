@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PagesAcceptingTagQuery } from '@/types/common';
+import { PagesAcceptingTagQuery } from '@/types/page';
 
 interface TagsProp {
   tags: string[];

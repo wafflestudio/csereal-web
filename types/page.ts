@@ -564,6 +564,7 @@ export const bldg302room209: Location2 = {
   children: null,
 };
 
+main.children = [about, community, people, research, admissions, academics, reservations];
 about.children = [
   overview,
   greetings,

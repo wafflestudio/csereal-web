@@ -1,11 +1,9 @@
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 
-import { Location, PAGES, TABS, notice } from '@/types/common';
+import { notice } from '@/types/page';
 
 export default function NoticePage() {
-  const subTabs: Location[] = TABS.community;
-
   return (
     <>
       <PageTitle currentPage={notice}>
@@ -15,7 +13,7 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="border w-[500px] h-[300px] mr-[30px]"></div>
-        <Sidebar mainTab={PAGES.community} currentTab={PAGES.notice} subTabs={subTabs} />
+        <Sidebar currentTab={notice} />
       </div>
     </>
   );

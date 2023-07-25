@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import { Location2 } from '@/types/common';
+import { getFullPath, getLog } from '@/utils/page';
+
+import { Location2 } from '@/types/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
@@ -23,28 +25,8 @@ export default function PageTitle({ currentPage, margin = '', children }: PageTi
   );
 }
 
-const calculateLog = (location: Location2) => {
-  const log: Location2[] = [location];
-  let curr = location;
-  while (curr.parent !== null) {
-    log.push(curr.parent);
-    curr = curr.parent;
-  }
-  return log.reverse();
-};
-
-const getFullPath = (location: Location2) => {
-  let fullPath = '/';
-  let curr = location;
-  while (curr.parent !== null) {
-    fullPath = '/' + curr.path + fullPath;
-    curr = curr.parent;
-  }
-  return fullPath;
-};
-
 function LocationLog({ currentPage }: { currentPage: Location2 }) {
-  const log: Location2[] = calculateLog(currentPage);
+  const log: Location2[] = getLog(currentPage);
 
   return (
     <ol className="flex items-center gap-0.5">

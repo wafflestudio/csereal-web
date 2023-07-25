@@ -1,24 +1,26 @@
 import Link from 'next/link';
 
-import { Location } from '@/types/common';
+import { Location2 } from '@/types/page';
+
+import { getAllSubTabs, getFullPath, getRootTab } from '@/utils/page';
 
 import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
-  mainTab: Location;
-  currentTab: Location;
-  subTabs: Location[];
+  currentTab: Location2;
   margin?: string;
 }
 
-export default function Sidebar({ mainTab, currentTab, subTabs, margin = '' }: SidebarProps) {
+export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
+  const rootTab = getRootTab(currentTab);
+  const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30}px`;
 
   return (
     <div className={`flex ${margin}`} style={{ height: height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px]">
-        <h3 className="font-yoon font-bold text-[13px]">{mainTab.name}</h3>
+        <h3 className="font-yoon font-bold text-[13px]">{rootTab.name}</h3>
         <SubTabs subTabs={subTabs} currentTab={currentTab} />
       </div>
     </div>
@@ -26,8 +28,8 @@ export default function Sidebar({ mainTab, currentTab, subTabs, margin = '' }: S
 }
 
 interface SubTabsProps {
-  currentTab: Location;
-  subTabs: Location[];
+  currentTab: Location2;
+  subTabs: Location2[];
 }
 
 function SubTabs({ subTabs, currentTab }: SubTabsProps) {
@@ -40,7 +42,7 @@ function SubTabs({ subTabs, currentTab }: SubTabsProps) {
             tab.name === currentTab.name && 'font-bold text-main-orange'
           }`}
         >
-          <Link href={tab.path}>{tab.name}</Link>
+          <Link href={getFullPath(tab)}>{tab.name}</Link>
         </li>
       ))}
     </ul>
