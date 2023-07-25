@@ -1,15 +1,14 @@
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 
-import { Location, PAGES, TABS } from '@/types/common';
+import { Location, PAGES, TABS, notice } from '@/types/common';
 
 export default function NoticePage() {
-  const locationLog: Location[] = [PAGES.community, PAGES.notice];
   const subTabs: Location[] = TABS.community;
 
   return (
     <>
-      <PageTitle locationLog={locationLog}>
+      <PageTitle currentPage={notice}>
         <h3 className="text-lg font-bold break-keep font-yoon">
           푸른등대 2023gkrsuseh 2학기 학위논문제출기한 단순연장 학위논문제출기한
         </h3>
