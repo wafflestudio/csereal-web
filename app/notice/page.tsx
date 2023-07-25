@@ -17,7 +17,6 @@ export default function NoticePage() {
       <div className="flex">
         <div>
           <Filter />
-          <SearchBar />
         </div>
         <Sidebar mainTab={PAGES.community} currentTab={PAGES.notice} subTabs={subTabs} />
       </div>
