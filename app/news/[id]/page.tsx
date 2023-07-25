@@ -9,7 +9,7 @@ import latestNewsNetwork from './network';
 
 const locationLog: Location[] = [PAGES.community, PAGES.news];
 
-export default function NoticePage({ params }: { params: { id: string } }) {
+export default function NewsPostPage({ params }: { params: { id: string } }) {
   // 에러 처리 필요 id가 없으면?
   const { title, mainImageURL, htmlContent, postDate } = latestNewsNetwork(+params.id);
 

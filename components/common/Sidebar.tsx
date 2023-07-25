@@ -18,7 +18,7 @@ export default function Sidebar({ mainTab, currentTab, subTabs, margin = '' }: S
     <div className={`flex ${margin}`} style={{ height: height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px]">
-        <h3 className="font-yoon tracking-[.015em] font-bold text-[13px]">{mainTab.name}</h3>
+        <h3 className="font-yoon font-bold text-[13px]">{mainTab.name}</h3>
         <SubTabs subTabs={subTabs} currentTab={currentTab} />
       </div>
     </div>

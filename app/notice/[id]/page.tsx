@@ -1,6 +1,6 @@
 import Tags from '@/components/common/Tags';
 
-export default function NoticePost() {
+export default function NoticePostPage() {
   const tags = ['연구', '장학'];
 
   const filterByTag = (tag: string) => {};
