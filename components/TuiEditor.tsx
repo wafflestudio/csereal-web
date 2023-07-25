@@ -34,7 +34,6 @@ const TuiEditor = ({ content, editorRef }: Props) => {
           toolbarItems={toolbarItems}
           useCommandShortcut={true}
           plugins={[colorSyntax]}
-          extendedAutolinks={true}
         />
       )}
     </>
