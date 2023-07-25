@@ -1,24 +1,23 @@
-interface NodeProps {
+interface CurvedNodeProps {
   grow?: boolean; // flex-grow 속성 (true일 때는 부모 element가 'display: flex'여야 함)
   direction?: 'row' | 'col'; // 가로 노드: row, 세로 노드: col
-  width?: string; // tailwind width class 그대로 쓰면 됨
-  height?: string; // ditto
+  length?: string; // tailwind width class 그대로 쓰면 됨
   double?: boolean;
 }
 
 // curved node width 최소 65px (원 10px + 대각선 꼬리 55px)
-export function CurvedHorizontalNode({ grow = false, width = 'w-auto' }: NodeProps) {
+export function CurvedHorizontalNode({ grow = false, length = 'w-auto' }: CurvedNodeProps) {
   return (
-    <div className={`flex ${grow ? 'grow' : ''} ${width} items-center`}>
+    <div className={`flex ${grow ? 'grow' : ''} ${length} items-center`}>
       <StraightNode grow={true} direction="row" />
       <Diagonal width="w-[55px]" />
     </div>
   );
 }
 
-export function CurvedVerticalNode({ grow = false, height = 'h-full' }: NodeProps) {
+export function CurvedVerticalNode({ grow = false, length = 'h-full' }: CurvedNodeProps) {
   return (
-    <div className={`flex flex-col ${grow ? 'grow' : ''} ${height} w-[25px]`}>
+    <div className={`flex flex-col ${grow ? 'grow' : ''} ${length} w-[25px]`}>
       <StraightNode grow={false} direction="col" length="h-[32px]" />
       <Diagonal
         width="w-[25px]"
