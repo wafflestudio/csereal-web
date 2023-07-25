@@ -8,13 +8,14 @@ interface SidebarProps {
   mainTab: Location;
   currentTab: Location;
   subTabs: Location[];
+  margin?: string;
 }
 
-export default function Sidebar({ mainTab, currentTab, subTabs }: SidebarProps) {
+export default function Sidebar({ mainTab, currentTab, subTabs, margin = '' }: SidebarProps) {
   const height = (subTabs.length + 1) * 30;
 
   return (
-    <div className={`flex h-[${height}px]`}>
+    <div className={`flex h-[${height}px] ${margin}`}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px]">
         <h3 className="font-yoon tracking-[.015em] font-bold text-[13px]">{mainTab.name}</h3>
