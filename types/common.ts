@@ -3,8 +3,6 @@ export interface Location {
   path: string;
 }
 
-const Routes = {};
-
 export type PageNames =
   | 'main'
   | 'community'
