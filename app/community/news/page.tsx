@@ -5,11 +5,11 @@ import PageTitle from '@/components/common/PageTitle';
 
 import { Location, PAGES } from '@/types/common';
 
-import latestNewsNetwork from './network';
+import latestNewsNetwork from './[id]/network';
 
 const locationLog: Location[] = [PAGES.community, PAGES.news];
 
-export default function NewsPostPage({ params }: { params: { id: string } }) {
+export default function NewsPage({ params }: { params: { id: string } }) {
   // 에러 처리 필요 id가 없으면?
   const { title, mainImageURL, htmlContent, postDate } = latestNewsNetwork(+params.id);
 
