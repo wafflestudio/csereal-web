@@ -1,6 +1,6 @@
 import { Location, main } from '@/types/page';
 
-export const getLog = (location: Location) => {
+export const getLog = (location: Location): Location[] => {
   const log: Location[] = [];
   let curr = location;
   while (curr.parent !== null) {
@@ -10,7 +10,7 @@ export const getLog = (location: Location) => {
   return log.reverse();
 };
 
-export const getFullPath = (location: Location) => {
+export const getFullPath = (location: Location): string => {
   let fullPath = '/';
   let curr = location;
   while (curr.parent !== null) {
@@ -20,7 +20,7 @@ export const getFullPath = (location: Location) => {
   return fullPath;
 };
 
-export const getRootTab = (location: Location) => {
+export const getRootTab = (location: Location): Location => {
   if (location === main) return main;
 
   let root = location;
@@ -39,4 +39,14 @@ export const getAllSubTabs = (location: Location): Location[] => {
     subtabs.push(...getAllSubTabs(subtab));
   }
   return subtabs;
+};
+
+export const getDepth = (location: Location): number => {
+  let depth = 0;
+  let curr = location;
+  while (curr.parent !== null) {
+    depth += 1;
+    curr = curr.parent;
+  }
+  return depth;
 };

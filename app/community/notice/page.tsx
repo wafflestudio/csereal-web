@@ -1,7 +1,7 @@
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 
-import { notice } from '@/types/page';
+import { academics, notice } from '@/types/page';
 
 export default function NoticePage() {
   return (

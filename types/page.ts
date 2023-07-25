@@ -311,7 +311,7 @@ export const undergraduateScholarship: Location = {
 };
 
 export const graduate: Location = {
-  name: '학부',
+  name: '대학원',
   path: 'graduate',
   isPage: false,
   parent: academics,

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import { getFullPath, getLog } from '@/utils/page';
-
 import { Location } from '@/types/page';
+
+import { getFullPath, getLog } from '@/utils/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
