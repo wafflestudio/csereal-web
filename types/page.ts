@@ -1,66 +1,12 @@
 export interface Location {
   name: string;
   path: string;
-}
-
-export type PageNames =
-  | 'main'
-  | 'community'
-  | 'notice'
-  | 'news'
-  | 'seminar'
-  | 'facultyRecruitment'
-  | 'scholarship'
-  | 'international';
-
-export type PagesAcceptingTagQuery = 'notice' | 'news';
-
-type TabNames =
-  | 'about'
-  | 'community'
-  | 'people'
-  | 'research'
-  | 'admissions'
-  | 'academies'
-  | 'reservation';
-
-// constants.ts를 따로 만들까 하다가 일단 여기에 넣어둡니다
-export const PAGES: { [key in PageNames]: Location } = {
-  main: { name: '메인', path: '/' },
-  community: { name: '소식', path: '' },
-  news: { name: '새 소식', path: '/news' },
-  notice: { name: '공지', path: '/notice' },
-  scholarship: { name: '장학', path: '/scholarship' },
-  seminar: { name: '세미나', path: '/seminar' },
-  facultyRecruitment: { name: '신임교수초빙', path: '/faculty-recruitment' },
-  international: { name: '국제(International)', path: '/international' },
-};
-
-export const TABS: { [key in TabNames]: Location[] } = {
-  about: [],
-  community: [
-    PAGES.news,
-    PAGES.notice,
-    PAGES.scholarship,
-    PAGES.facultyRecruitment,
-    PAGES.international,
-  ],
-  people: [],
-  research: [],
-  admissions: [],
-  academies: [],
-  reservation: [],
-};
-
-export interface Location2 {
-  name: string;
-  path: string;
   isPage: boolean;
-  children: Location2[] | null;
-  parent: Location2 | null;
+  children: Location[] | null;
+  parent: Location | null;
 }
 
-export const main: Location2 = {
+export const main: Location = {
   name: '홈',
   path: '',
   isPage: true,
@@ -68,7 +14,7 @@ export const main: Location2 = {
   children: [],
 };
 
-export const about: Location2 = {
+export const about: Location = {
   name: '소개',
   path: 'overview',
   isPage: false,
@@ -76,7 +22,7 @@ export const about: Location2 = {
   children: [],
 };
 
-export const overview: Location2 = {
+export const overview: Location = {
   name: '학부 소개',
   path: 'overview',
   isPage: true,
@@ -84,7 +30,7 @@ export const overview: Location2 = {
   children: null,
 };
 
-export const greetings: Location2 = {
+export const greetings: Location = {
   name: '학부장 인사말',
   path: 'greetings',
   isPage: true,
@@ -92,7 +38,7 @@ export const greetings: Location2 = {
   children: null,
 };
 
-export const futureCareers: Location2 = {
+export const futureCareers: Location = {
   name: '졸업생 진로',
   path: 'future-careers',
   isPage: true,
@@ -100,7 +46,7 @@ export const futureCareers: Location2 = {
   children: null,
 };
 
-export const studentClubs: Location2 = {
+export const studentClubs: Location = {
   name: '동아리 소개',
   path: 'student-clubs',
   isPage: true,
@@ -108,7 +54,7 @@ export const studentClubs: Location2 = {
   children: null,
 };
 
-export const facilities: Location2 = {
+export const facilities: Location = {
   name: '시설 안내',
   path: 'facilities',
   isPage: true,
@@ -116,7 +62,7 @@ export const facilities: Location2 = {
   children: null,
 };
 
-export const contact: Location2 = {
+export const contact: Location = {
   name: '연락처',
   path: 'contact',
   isPage: true,
@@ -124,7 +70,7 @@ export const contact: Location2 = {
   children: null,
 };
 
-export const directions: Location2 = {
+export const directions: Location = {
   name: '찾아오는 길',
   path: 'directions',
   isPage: true,
@@ -132,7 +78,7 @@ export const directions: Location2 = {
   children: null,
 };
 
-export const community: Location2 = {
+export const community: Location = {
   name: '소식',
   path: 'community',
   isPage: false,
@@ -140,7 +86,7 @@ export const community: Location2 = {
   children: [],
 };
 
-export const news: Location2 = {
+export const news: Location = {
   name: '새소식',
   path: 'news',
   isPage: true,
@@ -148,7 +94,7 @@ export const news: Location2 = {
   children: null,
 };
 
-export const notice: Location2 = {
+export const notice: Location = {
   name: '공지사항',
   path: 'notice',
   isPage: true,
@@ -156,7 +102,7 @@ export const notice: Location2 = {
   children: null,
 };
 
-export const seminar: Location2 = {
+export const seminar: Location = {
   name: '세미나',
   path: 'seminar',
   isPage: true,
@@ -164,7 +110,7 @@ export const seminar: Location2 = {
   children: null,
 };
 
-export const facultyRecruitment: Location2 = {
+export const facultyRecruitment: Location = {
   name: '신임교수초빙',
   path: 'faculty-recruitment',
   isPage: true,
@@ -172,7 +118,7 @@ export const facultyRecruitment: Location2 = {
   children: null,
 };
 
-export const international: Location2 = {
+export const international: Location = {
   name: '국제',
   path: 'international',
   isPage: true,
@@ -180,7 +126,7 @@ export const international: Location2 = {
   children: null,
 };
 
-export const people: Location2 = {
+export const people: Location = {
   name: '구성원',
   path: 'people',
   isPage: false,
@@ -188,7 +134,7 @@ export const people: Location2 = {
   children: [],
 };
 
-export const faculty: Location2 = {
+export const faculty: Location = {
   name: '교수진',
   path: 'faculty',
   isPage: true,
@@ -196,7 +142,7 @@ export const faculty: Location2 = {
   children: null,
 };
 
-export const emeritusFaculty: Location2 = {
+export const emeritusFaculty: Location = {
   name: '역대 교수진',
   path: 'emeritus-faculty',
   isPage: true,
@@ -204,7 +150,7 @@ export const emeritusFaculty: Location2 = {
   children: null,
 };
 
-export const staff: Location2 = {
+export const staff: Location = {
   name: '행정직원',
   path: 'staff',
   isPage: true,
@@ -212,7 +158,7 @@ export const staff: Location2 = {
   children: null,
 };
 
-export const research: Location2 = {
+export const research: Location = {
   name: '연구',
   path: 'research',
   isPage: false,
@@ -220,7 +166,7 @@ export const research: Location2 = {
   children: [],
 };
 
-export const researchGroups: Location2 = {
+export const researchGroups: Location = {
   name: '연구 그룹',
   path: 'research-groups',
   isPage: true,
@@ -228,7 +174,7 @@ export const researchGroups: Location2 = {
   children: null,
 };
 
-export const researchCenters: Location2 = {
+export const researchCenters: Location = {
   name: '연구 센터',
   path: 'research-centers',
   isPage: true,
@@ -236,7 +182,7 @@ export const researchCenters: Location2 = {
   children: null,
 };
 
-export const laboratories: Location2 = {
+export const laboratories: Location = {
   name: '연구실',
   path: 'laboratories',
   isPage: true,
@@ -244,7 +190,7 @@ export const laboratories: Location2 = {
   children: null,
 };
 
-export const topConferenceList: Location2 = {
+export const topConferenceList: Location = {
   name: 'Top Conference List',
   path: 'top-conference-list',
   isPage: true,
@@ -252,7 +198,7 @@ export const topConferenceList: Location2 = {
   children: null,
 };
 
-export const admissions: Location2 = {
+export const admissions: Location = {
   name: '입학',
   path: 'admissions',
   isPage: false,
@@ -260,7 +206,7 @@ export const admissions: Location2 = {
   children: [],
 };
 
-export const undergraduateAdmission: Location2 = {
+export const undergraduateAdmission: Location = {
   name: '학부',
   path: 'undergraduate',
   isPage: true,
@@ -268,7 +214,7 @@ export const undergraduateAdmission: Location2 = {
   children: [],
 };
 
-export const earlyAmission: Location2 = {
+export const earlyAmission: Location = {
   name: '수시',
   path: 'early-amission',
   isPage: true,
@@ -276,7 +222,7 @@ export const earlyAmission: Location2 = {
   children: null,
 };
 
-export const regularAmission: Location2 = {
+export const regularAmission: Location = {
   name: '정시',
   path: 'regular-amission',
   isPage: true,
@@ -284,7 +230,7 @@ export const regularAmission: Location2 = {
   children: null,
 };
 
-export const graduateAdmission: Location2 = {
+export const graduateAdmission: Location = {
   name: '대학원',
   path: 'graduate',
   isPage: true,
@@ -292,7 +238,7 @@ export const graduateAdmission: Location2 = {
   children: null,
 };
 
-export const academics: Location2 = {
+export const academics: Location = {
   name: '학사 및 교과',
   path: 'academics',
   isPage: false,
@@ -300,7 +246,7 @@ export const academics: Location2 = {
   children: [],
 };
 
-export const undergraduate: Location2 = {
+export const undergraduate: Location = {
   name: '학부',
   path: 'undergraduate',
   isPage: false,
@@ -308,7 +254,7 @@ export const undergraduate: Location2 = {
   children: [],
 };
 
-export const undergraduateGuide: Location2 = {
+export const undergraduateGuide: Location = {
   name: '학부 안내',
   path: 'guide',
   isPage: true,
@@ -316,7 +262,7 @@ export const undergraduateGuide: Location2 = {
   children: null,
 };
 
-export const undergraduateCourses: Location2 = {
+export const undergraduateCourses: Location = {
   name: '교과목 정보',
   path: 'courses',
   isPage: true,
@@ -324,7 +270,7 @@ export const undergraduateCourses: Location2 = {
   children: null,
 };
 
-export const curriculum: Location2 = {
+export const curriculum: Location = {
   name: '전공 이수 표준 형태',
   path: 'curriculum',
   isPage: true,
@@ -332,7 +278,7 @@ export const curriculum: Location2 = {
   children: null,
 };
 
-export const generalStudies: Location2 = {
+export const generalStudies: Location = {
   name: '필수 교양 과목',
   path: 'general-studies-requirements',
   isPage: true,
@@ -340,7 +286,7 @@ export const generalStudies: Location2 = {
   children: null,
 };
 
-export const degree: Location2 = {
+export const degree: Location = {
   name: '졸업 규정',
   path: 'degree-requirements',
   isPage: true,
@@ -348,7 +294,7 @@ export const degree: Location2 = {
   children: null,
 };
 
-export const undergraduateCourseChanges: Location2 = {
+export const undergraduateCourseChanges: Location = {
   name: '교과목 변경 내역',
   path: 'course-changes',
   isPage: true,
@@ -356,7 +302,7 @@ export const undergraduateCourseChanges: Location2 = {
   children: null,
 };
 
-export const undergraduateScholarship: Location2 = {
+export const undergraduateScholarship: Location = {
   name: '장학 제도',
   path: 'scholarship',
   isPage: true,
@@ -364,7 +310,7 @@ export const undergraduateScholarship: Location2 = {
   children: null,
 };
 
-export const graduate: Location2 = {
+export const graduate: Location = {
   name: '학부',
   path: 'graduate',
   isPage: false,
@@ -372,7 +318,7 @@ export const graduate: Location2 = {
   children: [],
 };
 
-export const graduateGuide: Location2 = {
+export const graduateGuide: Location = {
   name: '대학원 안내',
   path: 'courses',
   isPage: true,
@@ -380,7 +326,7 @@ export const graduateGuide: Location2 = {
   children: null,
 };
 
-export const graduateCourses: Location2 = {
+export const graduateCourses: Location = {
   name: '교과목 정보',
   path: 'courses',
   isPage: true,
@@ -388,7 +334,7 @@ export const graduateCourses: Location2 = {
   children: null,
 };
 
-export const graduateCourseChanges: Location2 = {
+export const graduateCourseChanges: Location = {
   name: '교과목 변경 내역',
   path: 'course-changes',
   isPage: true,
@@ -396,7 +342,7 @@ export const graduateCourseChanges: Location2 = {
   children: null,
 };
 
-export const graduateScholarship: Location2 = {
+export const graduateScholarship: Location = {
   name: '장학 제도',
   path: 'scholarship',
   isPage: true,
@@ -404,7 +350,7 @@ export const graduateScholarship: Location2 = {
   children: null,
 };
 
-export const reservations: Location2 = {
+export const reservations: Location = {
   name: '시설 예약',
   path: 'reservations',
   isPage: false,
@@ -412,7 +358,7 @@ export const reservations: Location2 = {
   children: [],
 };
 
-export const seminarRoom: Location2 = {
+export const seminarRoom: Location = {
   name: '세미나실',
   path: 'seminar-room',
   isPage: true,
@@ -420,7 +366,7 @@ export const seminarRoom: Location2 = {
   children: [],
 };
 
-export const bldg301room417: Location2 = {
+export const bldg301room417: Location = {
   name: '301-417 (20석)',
   path: '301-417',
   isPage: true,
@@ -428,7 +374,7 @@ export const bldg301room417: Location2 = {
   children: null,
 };
 
-export const bldg301Maldives: Location2 = {
+export const bldg301Maldives: Location = {
   name: '301-MALDIVES (11석)',
   path: '301-521',
   isPage: true,
@@ -436,7 +382,7 @@ export const bldg301Maldives: Location2 = {
   children: null,
 };
 
-export const bldg301Hawaii: Location2 = {
+export const bldg301Hawaii: Location = {
   name: '301-HAWAII (20석)',
   path: '301-551-4',
   isPage: true,
@@ -444,7 +390,7 @@ export const bldg301Hawaii: Location2 = {
   children: null,
 };
 
-export const bldg301Baekdu: Location2 = {
+export const bldg301Baekdu: Location = {
   name: '301-BAEKDU (4석)',
   path: '301-552-1',
   isPage: true,
@@ -452,7 +398,7 @@ export const bldg301Baekdu: Location2 = {
   children: null,
 };
 
-export const bldg301Alps: Location2 = {
+export const bldg301Alps: Location = {
   name: '301-ALPS (5석)',
   path: '301-552-2',
   isPage: true,
@@ -460,7 +406,7 @@ export const bldg301Alps: Location2 = {
   children: null,
 };
 
-export const bldg301Santorini: Location2 = {
+export const bldg301Santorini: Location = {
   name: '301-SANTORINI (4석)',
   path: '301-552-3',
   isPage: true,
@@ -468,7 +414,7 @@ export const bldg301Santorini: Location2 = {
   children: null,
 };
 
-export const bldg301Jeju: Location2 = {
+export const bldg301Jeju: Location = {
   name: '301-JEJU (6석)',
   path: '301-553-6',
   isPage: true,
@@ -476,7 +422,7 @@ export const bldg301Jeju: Location2 = {
   children: null,
 };
 
-export const bldg301ProfMeeting: Location2 = {
+export const bldg301ProfMeeting: Location = {
   name: '301-교수회의실 (20석)',
   path: '301-317',
   isPage: true,
@@ -484,7 +430,7 @@ export const bldg301ProfMeeting: Location2 = {
   children: null,
 };
 
-export const bldg302room308: Location2 = {
+export const bldg302room308: Location = {
   name: '302-308 (46석)',
   path: '302-308',
   isPage: true,
@@ -492,7 +438,7 @@ export const bldg302room308: Location2 = {
   children: null,
 };
 
-export const buld302room309first: Location2 = {
+export const buld302room309first: Location = {
   name: '302-309-1 (48석)',
   path: '302-309-1',
   isPage: true,
@@ -500,7 +446,7 @@ export const buld302room309first: Location2 = {
   children: null,
 };
 
-export const buld302room309second: Location2 = {
+export const buld302room309second: Location = {
   name: '302-309-2 (8석)',
   path: '302-309-2',
   isPage: true,
@@ -508,7 +454,7 @@ export const buld302room309second: Location2 = {
   children: null,
 };
 
-export const buld302room309third: Location2 = {
+export const buld302room309third: Location = {
   name: '302-309-3 (8석)',
   path: '302-309-3',
   isPage: true,
@@ -516,7 +462,7 @@ export const buld302room309third: Location2 = {
   children: null,
 };
 
-export const lab: Location2 = {
+export const lab: Location = {
   name: '실습실 예약',
   path: 'lab',
   isPage: true,
@@ -524,7 +470,7 @@ export const lab: Location2 = {
   children: [],
 };
 
-export const softwareLab: Location2 = {
+export const softwareLab: Location = {
   name: '소프트웨어 실습실 (102석)',
   path: '302-311-1',
   isPage: true,
@@ -532,7 +478,7 @@ export const softwareLab: Location2 = {
   children: null,
 };
 
-export const hardwareLab: Location2 = {
+export const hardwareLab: Location = {
   name: '하드웨어 실습실 (30석)',
   path: '302-310-2',
   isPage: true,
@@ -540,7 +486,7 @@ export const hardwareLab: Location2 = {
   children: null,
 };
 
-export const classroom: Location2 = {
+export const classroom: Location = {
   name: '공과대학 강의실 예약',
   path: 'classroom',
   isPage: true,
@@ -548,7 +494,7 @@ export const classroom: Location2 = {
   children: [],
 };
 
-export const bldg302room208: Location2 = {
+export const bldg302room208: Location = {
   name: '302-208 (116석)',
   path: '302-208',
   isPage: true,
@@ -556,7 +502,7 @@ export const bldg302room208: Location2 = {
   children: null,
 };
 
-export const bldg302room209: Location2 = {
+export const bldg302room209: Location = {
   name: '302-209 (90석)',
   path: '302-209',
   isPage: true,

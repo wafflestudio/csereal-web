@@ -3,12 +3,12 @@ import { ReactNode } from 'react';
 
 import { getFullPath, getLog } from '@/utils/page';
 
-import { Location2 } from '@/types/page';
+import { Location } from '@/types/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
-  currentPage: Location2;
+  currentPage: Location;
   margin?: string;
   children: ReactNode;
 }
@@ -25,8 +25,8 @@ export default function PageTitle({ currentPage, margin = '', children }: PageTi
   );
 }
 
-function LocationLog({ currentPage }: { currentPage: Location2 }) {
-  const log: Location2[] = getLog(currentPage);
+function LocationLog({ currentPage }: { currentPage: Location }) {
+  const log: Location[] = getLog(currentPage);
 
   return (
     <ol className="flex items-center gap-0.5">

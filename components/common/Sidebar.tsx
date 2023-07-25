@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import { Location2 } from '@/types/page';
+import { Location } from '@/types/page';
 
 import { getAllSubTabs, getFullPath, getRootTab } from '@/utils/page';
 
 import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
-  currentTab: Location2;
+  currentTab: Location;
   margin?: string;
 }
 
@@ -28,8 +28,8 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
 }
 
 interface SubTabsProps {
-  currentTab: Location2;
-  subTabs: Location2[];
+  currentTab: Location;
+  subTabs: Location[];
 }
 
 function SubTabs({ subTabs, currentTab }: SubTabsProps) {

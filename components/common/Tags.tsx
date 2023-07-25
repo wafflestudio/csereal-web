@@ -1,10 +1,12 @@
 import Link from 'next/link';
 
-import { PagesAcceptingTagQuery } from '@/types/page';
+import { Location } from '@/types/page';
+
+import { getFullPath } from '@/utils/page';
 
 interface TagsProp {
   tags: string[];
-  page: PagesAcceptingTagQuery;
+  page: Location;
 }
 
 export default function Tags({ tags, page }: TagsProp) {
@@ -19,14 +21,14 @@ export default function Tags({ tags, page }: TagsProp) {
 
 interface TagProp {
   tag: string;
-  page: PagesAcceptingTagQuery;
+  page: Location;
 }
 
 function Tag({ tag, page }: TagProp) {
   return (
     <Link
-      href={{ pathname: `/${page}`, query: { tag: tag } }}
-      className="border rounded-[30px] border-orange text-orange px-2.5 py-0.5 h-[22px] text-xs"
+      href={{ pathname: getFullPath(page), query: { tag: tag } }}
+      className="border rounded-[30px] border-main-orange text-main-orange px-2.5 py-0.5 h-[22px] text-xs"
     >
       {tag}
     </Link>
