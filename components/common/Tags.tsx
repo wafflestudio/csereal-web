@@ -9,9 +9,9 @@ interface TagsProp {
   page: SegmentNode;
 }
 
-export default function Tags({ tags, page }: TagsProp) {
+export default function Tags({ tags, page, margin = '' }: TagsProp) {
   return (
-    <div className="flex items-center gap-2">
+    <div className={`flex items-center gap-2 ${margin}`}>
       {tags.map((tag) => (
         <Tag key={tag} tag={tag} page={page} />
       ))}
