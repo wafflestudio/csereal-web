@@ -15,14 +15,12 @@ export default function TagCheckbox({ tag, isChecked, setSearchParams }: TagChec
   };
 
   return (
-    <div className="h-[18px]">
-      <label
-        htmlFor={tag}
-        className="flex items-center gap-1 font-yoon text-xs whitespace-nowrap cursor-pointer"
-      >
-        <span className="material-symbols-rounded text-lg font-light">{iconName}</span>
-        <span>{tag}</span>
-      </label>
+    <label
+      htmlFor={tag}
+      className="flex items-center gap-1 font-yoon text-xs whitespace-nowrap cursor-pointer w-fit h-5"
+    >
+      <span className="material-symbols-rounded text-lg font-light">{iconName}</span>
+      <span>{tag}</span>
       <input
         type="checkbox"
         id={tag}
@@ -32,6 +30,6 @@ export default function TagCheckbox({ tag, isChecked, setSearchParams }: TagChec
         checked={isChecked}
         onChange={toggleCheck}
       />
-    </div>
+    </label>
   );
 }

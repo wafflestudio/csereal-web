@@ -27,7 +27,7 @@ export default function NoticePage() {
         <h3 className="text-2xl font-bold break-keep font-yoon">공지사항</h3>
       </PageTitle>
       <div className="flex">
-        <div className="w-[850px]">
+        <div className="w-[70vw]">
           <TagCategory
             category={NoticeTags}
             selectedTags={tags}

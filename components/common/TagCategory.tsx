@@ -6,6 +6,7 @@ import { QueryBehavior, QueryName } from '@/utils/search';
 
 import TagCheckbox from './TagCheckbox';
 
+
 interface TagCategoryProps {
   category: string[];
   selectedTags: string[]; // useMyURLSearchParams에 있는 tags
@@ -21,16 +22,13 @@ export default function TagCategory({ category, selectedTags, setSearchParams }:
   };
 
   return (
-    <div className="mb-[24px]">
-      <h4
-        className="flex items-center gap-1 mb-[8px] cursor-pointer w-fit"
-        onClick={toggleCategory}
-      >
+    <div className="mb-3">
+      <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleCategory}>
         <span className="text-sm font-bold font-yoon">분류</span>
         <span className="material-symbols-outlined font-semibold">{iconName}</span>
       </h4>
       {isOpen && (
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] gap-x-4 gap-y-2 pl-[10px]">
+        <div className="grid grid-cols-[repeat(auto-fill,_minmax(100px,_max-content))] gap-x-3.5 gap-y-2.5 pl-[10px] mt-3 mb-6">
           {category.map((tag) => (
             <TagCheckbox
               key={tag}
