@@ -38,7 +38,7 @@ function NavbarExpanded({ close }: { close: () => void }) {
           <NavbarExpandedRow key={i} segmentNode={child} />
         ))}
       </ul>
-      <button onClick={close} className="mt-[9.75rem]">
+      <button onClick={close} className="mt-8">
         <Image
           src={naviBarClose}
           alt="네비게이션 닫기 버튼"
