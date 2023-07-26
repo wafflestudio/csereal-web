@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { ChangeEvent } from 'react';
+
+import { QueryKey as QueryName } from '@/utils/search';
 
 interface CheckboxProps {
-  isChecked?: boolean;
-  setIsChecked?: React.Dispatch<React.SetStateAction<boolean>>;
   tag: string;
+  isChecked: boolean;
+  setSearchParams(key: QueryName, value: string, replace?: boolean): void;
+  deleteSearchParams(key: QueryName, value?: string): void;
 }
 
-export default function Checkbox({ tag }: CheckboxProps) {
-  // const [isChecked, setIsChecked] = useState<boolean>(false);
-  const isChecked = false;
+export default function Checkbox({
+  tag,
+  isChecked,
+  setSearchParams,
+  deleteSearchParams,
+}: CheckboxProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
+  const NAME: QueryName = 'tag';
 
-  const toggleCheck = () => {
-    // setIsChecked(!isChecked);
+  const toggleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(tag);
+    if (isChecked) {
+      deleteSearchParams(NAME, tag);
+    } else {
+      setSearchParams(NAME, tag, false);
+    }
   };
 
   return (
@@ -29,8 +41,8 @@ export default function Checkbox({ tag }: CheckboxProps) {
         id={tag}
         name="tag"
         value={tag}
-        // checked={isChecked}
-        // className="appearance-none"
+        checked={isChecked}
+        className="appearance-none"
         onChange={toggleCheck}
       />
     </div>

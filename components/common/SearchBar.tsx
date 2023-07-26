@@ -1,8 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-
-import { QueryKey, useMyURLSearchParams, useSyncedState } from '@/utils/search';
+import { QueryKey, useSyncedState } from '@/utils/search';
 
 interface SearchBarProps {
   keyword: string;
@@ -14,13 +12,14 @@ export default function SearchBar({ keyword, setSearchParams, margin = '' }: Sea
   const [input, setInput] = useSyncedState<string>(keyword);
   const KEY: QueryKey = 'keyword';
 
-  const searchByKeyword = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSearchParams(KEY, input);
-  };
-
   return (
-    <form className={`flex items-center gap-2.5 ${margin}`} onSubmit={searchByKeyword}>
+    <form
+      className={`flex items-center gap-2.5 ${margin}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSearchParams(KEY, input);
+      }}
+    >
       <label htmlFor="search" className="text-sm font-yoon font-bold">
         검색
       </label>

@@ -5,18 +5,17 @@
 import { useEffect } from 'react';
 
 import Category from '@/components/common/Category';
-import Filter from '@/components/common/Filter';
 import PageTitle from '@/components/common/PageTitle';
 import SearchBar from '@/components/common/SearchBar';
 import Sidebar from '@/components/common/Sidebar';
 
-import { academics, notice } from '@/types/page';
-import { tagCategory } from '@/types/tag';
+import { notice } from '@/types/page';
+import { NoticeTags } from '@/types/tag';
 
 import { useMyURLSearchParams } from '@/utils/search';
 
 export default function NoticePage() {
-  const { getSearchParams, setSearchParams } = useMyURLSearchParams();
+  const { getSearchParams, setSearchParams, deleteSearchParams } = useMyURLSearchParams();
   const { keyword, tags } = getSearchParams();
 
   const searchPosts = () => {};
@@ -32,7 +31,12 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="w-[850px]">
-          <Category category={tagCategory} selectedTags={tags} />
+          <Category
+            category={NoticeTags}
+            selectedTags={tags}
+            setSearchParams={setSearchParams}
+            deleteSearchParams={deleteSearchParams}
+          />
           <SearchBar keyword={keyword ?? ''} setSearchParams={setSearchParams} />
         </div>
         <Sidebar currentTab={notice} />

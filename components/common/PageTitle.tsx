@@ -33,7 +33,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
       {log.map((location, i) => {
         return (
           <>
-            <li key={location.name} className="flex">
+            <li key={`log_${location.name}`} className="flex">
               <LocationText
                 path={location.isPage ? getPath(location) : null}
                 name={location.name}

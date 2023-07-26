@@ -1,4 +1,4 @@
-export const tagCategory = [
+export const NoticeTags = [
   '입학',
   '등록/복학/휴학/재입학',
   '졸업',
@@ -15,4 +15,4 @@ export const tagCategory = [
   '미분류',
 ];
 
-export const TAG = {};
+export const NewsTags = [];
