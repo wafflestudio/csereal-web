@@ -33,9 +33,9 @@ export default function Navbar() {
   return (
     <nav className="relative row-span-full bg-main-orange flex" onMouseLeave={handleMouseLeave}>
       <NavbarRoot state={state} setState={setState} />
-      {/* {state.type === 'hovered' && <NavbarDetail segmentNode={state.segmentNode} />} */}
+      {state.type === 'hovered' && <NavbarDetail segmentNode={state.segmentNode} />}
       {/* @ts-expect-error */}
-      <NavbarDetail segmentNode={main.children[1]} />
+      {/* <NavbarDetail segmentNode={main.children[1]} /> */}
     </nav>
   );
 }
