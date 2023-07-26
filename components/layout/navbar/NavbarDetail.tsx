@@ -24,7 +24,7 @@ interface NavTreeProps {
 function NavTree({ node: segmentNode, isRoot = false, currentNode }: NavTreeProps) {
   return (
     <>
-      {!isRoot && <NavTreeText segmentNode={segmentNode} highlight={currentNode === segmentNode} />}
+      {!isRoot && <NavTreeRow segmentNode={segmentNode} highlight={currentNode === segmentNode} />}
       <div className="ml-5">
         {segmentNode.children?.map((child) => <NavTree node={child} currentNode={currentNode} />)}
       </div>
@@ -32,7 +32,7 @@ function NavTree({ node: segmentNode, isRoot = false, currentNode }: NavTreeProp
   );
 }
 
-function NavTreeText({ segmentNode, highlight }: { segmentNode: SegmentNode; highlight: boolean }) {
+function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; highlight: boolean }) {
   const href = getPath(segmentNode);
   if (highlight) {
     return (
@@ -47,10 +47,18 @@ function NavTreeText({ segmentNode, highlight }: { segmentNode: SegmentNode; hig
       </div>
     );
   } else {
-    return (
-      <a href={href} className="block font-yoon text-[.875rem] font-medium mb-6 text-white">
-        {segmentNode.name}
-      </a>
-    );
+    if (segmentNode.isPage) {
+      return (
+        <a href={href} className="block font-yoon text-[.875rem] font-medium mb-6 text-white">
+          {segmentNode.name}
+        </a>
+      );
+    } else {
+      return (
+        <p className="block font-yoon text-[.875rem] font-medium mb-6 text-white">
+          {segmentNode.name}
+        </p>
+      );
+    }
   }
 }
