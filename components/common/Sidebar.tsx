@@ -1,48 +1,46 @@
 import Link from 'next/link';
 
-import { Location } from '@/types/common';
+import { SegmentNode } from '@/types/page';
+
+import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 
 import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
-  mainTab: Location;
-  currentTab: Location;
-  subTabs: Location[];
+  currentTab: SegmentNode;
   margin?: string;
 }
 
-export default function Sidebar({ mainTab, currentTab, subTabs, margin = '' }: SidebarProps) {
+export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
+  const rootTab = getRootTab(currentTab);
+  const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30}px`;
 
   return (
     <div className={`flex ${margin}`} style={{ height: height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px]">
-        <h3 className="font-yoon tracking-[.015em] font-bold text-[13px]">{mainTab.name}</h3>
-        <SubTabs subTabs={subTabs} currentTab={currentTab} />
+        <h3 className="font-yoon font-bold text-[13px]">{rootTab.name}</h3>
+        <ul className="mt-[16px]">
+          {subTabs.map((tab) => (
+            <SubTab tab={tab} isCurrent={tab.name === currentTab.name} key={tab.name} />
+          ))}
+        </ul>
       </div>
     </div>
   );
 }
 
-interface SubTabsProps {
-  currentTab: Location;
-  subTabs: Location[];
-}
+function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
+  const paddingLeft = `${(getDepth(tab) - 1) * 15}px`;
 
-function SubTabs({ subTabs, currentTab }: SubTabsProps) {
   return (
-    <ul className="mt-[16px] pl-[20px]">
-      {subTabs.map((tab) => (
-        <li
-          key={tab.name}
-          className={`text-xs font-yoon tracking-[.015em] mb-[14px] ${
-            tab.name === currentTab.name && 'font-bold text-main-orange'
-          }`}
-        >
-          <Link href={tab.path}>{tab.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <li
+      key={tab.name}
+      className={`text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
+      style={{ paddingLeft }}
+    >
+      {tab.isPage ? <Link href={getPath(tab)}>{tab.name}</Link> : <span>{tab.name}</span>}
+    </li>
   );
 }

@@ -1,21 +1,23 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import { Location } from '@/types/common';
+import { SegmentNode } from '@/types/page';
+
+import { getLocationLog, getPath } from '@/utils/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
-  locationLog: Location[];
+  currentPage: SegmentNode;
   margin?: string;
   children: ReactNode;
 }
 
-export default function PageTitle({ locationLog, margin = '', children }: PageTitleProps) {
+export default function PageTitle({ currentPage, margin = '', children }: PageTitleProps) {
   return (
     <div className={`w-fit min-w-[350px] max-w-[600px] ${margin}`}>
       <div className="flex gap-2 mb-2">
-        <LocationLog locations={locationLog} />
+        <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />
       </div>
       <div className="mr-[55px]">{children}</div>
@@ -23,16 +25,21 @@ export default function PageTitle({ locationLog, margin = '', children }: PageTi
   );
 }
 
-function LocationLog({ locations }: { locations: Location[] }) {
+function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
+  const log: SegmentNode[] = getLocationLog(currentPage);
+
   return (
     <ol className="flex items-center gap-0.5">
-      {locations.map((loca, i) => {
+      {log.map((location, i) => {
         return (
           <>
-            <li key={loca.name} className="flex">
-              <LocationText path={loca.path} name={loca.name} />
+            <li key={location.name} className="flex">
+              <LocationText
+                path={location.isPage ? getPath(location) : null}
+                name={location.name}
+              />
             </li>
-            {i !== locations.length - 1 && (
+            {i !== log.length - 1 && (
               <li className="material-symbols-outlined text-xs font-extralight">
                 arrow_forward_ios
               </li>
@@ -44,14 +51,12 @@ function LocationLog({ locations }: { locations: Location[] }) {
   );
 }
 
-function LocationText({ path, name }: { path?: string; name: string }) {
-  if (path) {
-    return (
-      <Link href={path} className="text-xs font-yoon font-normal tracking-[.015em] hover:underline">
-        {name}
-      </Link>
-    );
-  } else {
-    return <span className="text-xs font-yoon font-normal tracking-[.015em]">{name}</span>;
-  }
+function LocationText({ path, name }: { path: string | null; name: string }) {
+  return path ? (
+    <Link href={path} className="text-xs font-yoon font-normal tracking-[.015em] hover:underline">
+      {name}
+    </Link>
+  ) : (
+    <span className="text-xs font-yoon font-normal tracking-[.015em]">{name}</span>
+  );
 }
