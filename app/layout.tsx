@@ -13,14 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="grid grid-rows-[80px_auto_80px] grid-cols-[172px_auto]">
+      <body className="grid grid-rows-[8.75rem_auto_12.5rem] grid-cols-[auto_1fr]">
         <Navbar />
         <Header />
-        <main
-          className={`row-start-2 row-end-3 col-start-2 col-end-3 ${yoonGothic.variable} ${noto.variable}`}
-        >
-          {children}
-        </main>
+        <main className={`${yoonGothic.variable} ${noto.variable}`}>{children}</main>
         <Footer />
       </body>
     </html>

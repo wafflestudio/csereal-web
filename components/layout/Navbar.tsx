@@ -1,6 +1,18 @@
+import Image from 'next/image';
+
+import naviBarMenu from '@/public/image/NaviBar_Menu.svg';
+import snuLogo from '@/public/image/SNU_Logo.svg';
+
 export default function Navbar() {
   return (
-    <nav className="row-start-1 row-end-4 col-start-1 col-end-2 bg-main-orange">
+    <nav className="row-span-full bg-main-orange">
+      <Image src={snuLogo} alt="서울대 로고" priority />
+      <Image src={naviBarMenu} alt="서울대 로고" />
+    </nav>
+  );
+}
+
+/*
       <ul>
         <li>소개</li>
         <li>소식</li>
@@ -10,6 +22,4 @@ export default function Navbar() {
         <li>학사 및 교과</li>
         <li>시설 예약</li>
       </ul>
-    </nav>
-  );
-}
+*/
