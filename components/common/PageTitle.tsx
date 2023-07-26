@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import { SegmentNode } from '@/types/page';
 
-import { getFullPath, getLocationLog } from '@/utils/page';
+import { getLocationLog, getPath } from '@/utils/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
@@ -35,7 +35,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
           <>
             <li key={location.name} className="flex">
               <LocationText
-                path={location.isPage ? getFullPath(location) : null}
+                path={location.isPage ? getPath(location) : null}
                 name={location.name}
               />
             </li>

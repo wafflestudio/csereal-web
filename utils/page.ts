@@ -10,7 +10,7 @@ export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
   return log.reverse();
 };
 
-export const getFullPath = (location: SegmentNode): string => {
+export const getPath = (location: SegmentNode): string => {
   let fullPath = '/';
   let curr = location;
   while (curr.parent !== null) {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { SegmentNode } from '@/types/page';
 
-import { getFullPath } from '@/utils/page';
+import { getPath } from '@/utils/page';
 
 interface TagsProp {
   tags: string[];
@@ -27,7 +27,7 @@ interface TagProp {
 function Tag({ tag, page }: TagProp) {
   return (
     <Link
-      href={{ pathname: getFullPath(page), query: { tag: tag } }}
+      href={{ pathname: getPath(page), query: { tag: tag } }}
       className="border rounded-[30px] border-main-orange text-main-orange px-2.5 py-0.5 h-[22px] text-xs"
     >
       {tag}

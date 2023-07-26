@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { SegmentNode } from '@/types/page';
 
-import { getAllSubTabs, getDepth, getFullPath, getRootTab } from '@/utils/page';
+import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 
 import { CurvedVerticalNode } from './Nodes';
 
@@ -38,9 +38,9 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     <li
       key={tab.name}
       className={`text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
-      style={{ paddingLeft: paddingLeft }}
+      style={{ paddingLeft }}
     >
-      {tab.isPage ? <Link href={getFullPath(tab)}>{tab.name}</Link> : <span>{tab.name}</span>}
+      {tab.isPage ? <Link href={getPath(tab)}>{tab.name}</Link> : <span>{tab.name}</span>}
     </li>
   );
 }
