@@ -1,510 +1,510 @@
-export interface Location {
+export interface SegmentNode {
   name: string;
-  path: string;
+  segment: string;
   isPage: boolean;
-  children: Location[] | null;
-  parent: Location | null;
+  children: SegmentNode[] | null;
+  parent: SegmentNode | null;
 }
 
-export const main: Location = {
+export const main: SegmentNode = {
   name: '홈',
-  path: '',
+  segment: '',
   isPage: true,
   parent: null,
   children: [],
 };
 
-export const about: Location = {
+export const about: SegmentNode = {
   name: '소개',
-  path: 'overview',
+  segment: 'overview',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const overview: Location = {
+export const overview: SegmentNode = {
   name: '학부 소개',
-  path: 'overview',
+  segment: 'overview',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const greetings: Location = {
+export const greetings: SegmentNode = {
   name: '학부장 인사말',
-  path: 'greetings',
+  segment: 'greetings',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const futureCareers: Location = {
+export const futureCareers: SegmentNode = {
   name: '졸업생 진로',
-  path: 'future-careers',
+  segment: 'future-careers',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const studentClubs: Location = {
+export const studentClubs: SegmentNode = {
   name: '동아리 소개',
-  path: 'student-clubs',
+  segment: 'student-clubs',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const facilities: Location = {
+export const facilities: SegmentNode = {
   name: '시설 안내',
-  path: 'facilities',
+  segment: 'facilities',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const contact: Location = {
+export const contact: SegmentNode = {
   name: '연락처',
-  path: 'contact',
+  segment: 'contact',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const directions: Location = {
+export const directions: SegmentNode = {
   name: '찾아오는 길',
-  path: 'directions',
+  segment: 'directions',
   isPage: true,
   parent: about,
   children: null,
 };
 
-export const community: Location = {
+export const community: SegmentNode = {
   name: '소식',
-  path: 'community',
+  segment: 'community',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const news: Location = {
+export const news: SegmentNode = {
   name: '새소식',
-  path: 'news',
+  segment: 'news',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const notice: Location = {
+export const notice: SegmentNode = {
   name: '공지사항',
-  path: 'notice',
+  segment: 'notice',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const seminar: Location = {
+export const seminar: SegmentNode = {
   name: '세미나',
-  path: 'seminar',
+  segment: 'seminar',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const facultyRecruitment: Location = {
+export const facultyRecruitment: SegmentNode = {
   name: '신임교수초빙',
-  path: 'faculty-recruitment',
+  segment: 'faculty-recruitment',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const international: Location = {
+export const international: SegmentNode = {
   name: '국제',
-  path: 'international',
+  segment: 'international',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const people: Location = {
+export const people: SegmentNode = {
   name: '구성원',
-  path: 'people',
+  segment: 'people',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const faculty: Location = {
+export const faculty: SegmentNode = {
   name: '교수진',
-  path: 'faculty',
+  segment: 'faculty',
   isPage: true,
   parent: people,
   children: null,
 };
 
-export const emeritusFaculty: Location = {
+export const emeritusFaculty: SegmentNode = {
   name: '역대 교수진',
-  path: 'emeritus-faculty',
+  segment: 'emeritus-faculty',
   isPage: true,
   parent: people,
   children: null,
 };
 
-export const staff: Location = {
+export const staff: SegmentNode = {
   name: '행정직원',
-  path: 'staff',
+  segment: 'staff',
   isPage: true,
   parent: people,
   children: null,
 };
 
-export const research: Location = {
+export const research: SegmentNode = {
   name: '연구',
-  path: 'research',
+  segment: 'research',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const researchGroups: Location = {
+export const researchGroups: SegmentNode = {
   name: '연구 그룹',
-  path: 'research-groups',
+  segment: 'research-groups',
   isPage: true,
   parent: research,
   children: null,
 };
 
-export const researchCenters: Location = {
+export const researchCenters: SegmentNode = {
   name: '연구 센터',
-  path: 'research-centers',
+  segment: 'research-centers',
   isPage: true,
   parent: research,
   children: null,
 };
 
-export const laboratories: Location = {
+export const laboratories: SegmentNode = {
   name: '연구실',
-  path: 'laboratories',
+  segment: 'laboratories',
   isPage: true,
   parent: research,
   children: null,
 };
 
-export const topConferenceList: Location = {
+export const topConferenceList: SegmentNode = {
   name: 'Top Conference List',
-  path: 'top-conference-list',
+  segment: 'top-conference-list',
   isPage: true,
   parent: research,
   children: null,
 };
 
-export const admissions: Location = {
+export const admissions: SegmentNode = {
   name: '입학',
-  path: 'admissions',
+  segment: 'admissions',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const undergraduateAdmission: Location = {
+export const undergraduateAdmission: SegmentNode = {
   name: '학부',
-  path: 'undergraduate',
+  segment: 'undergraduate',
   isPage: true,
   parent: admissions,
   children: [],
 };
 
-export const earlyAmission: Location = {
+export const earlyAdmission: SegmentNode = {
   name: '수시',
-  path: 'early-amission',
+  segment: 'early-admission',
   isPage: true,
   parent: undergraduateAdmission,
   children: null,
 };
 
-export const regularAmission: Location = {
+export const regularAdmission: SegmentNode = {
   name: '정시',
-  path: 'regular-amission',
+  segment: 'regular-admission',
   isPage: true,
   parent: undergraduateAdmission,
   children: null,
 };
 
-export const graduateAdmission: Location = {
+export const graduateAdmission: SegmentNode = {
   name: '대학원',
-  path: 'graduate',
+  segment: 'graduate',
   isPage: true,
   parent: admissions,
   children: null,
 };
 
-export const academics: Location = {
+export const academics: SegmentNode = {
   name: '학사 및 교과',
-  path: 'academics',
+  segment: 'academics',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const undergraduate: Location = {
+export const undergraduateAcademics: SegmentNode = {
   name: '학부',
-  path: 'undergraduate',
+  segment: 'undergraduate',
   isPage: false,
   parent: academics,
   children: [],
 };
 
-export const undergraduateGuide: Location = {
+export const undergraduateGuide: SegmentNode = {
   name: '학부 안내',
-  path: 'guide',
+  segment: 'guide',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const undergraduateCourses: Location = {
+export const undergraduateCourses: SegmentNode = {
   name: '교과목 정보',
-  path: 'courses',
+  segment: 'courses',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const curriculum: Location = {
+export const curriculum: SegmentNode = {
   name: '전공 이수 표준 형태',
-  path: 'curriculum',
+  segment: 'curriculum',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const generalStudies: Location = {
+export const generalStudies: SegmentNode = {
   name: '필수 교양 과목',
-  path: 'general-studies-requirements',
+  segment: 'general-studies-requirements',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const degree: Location = {
+export const degree: SegmentNode = {
   name: '졸업 규정',
-  path: 'degree-requirements',
+  segment: 'degree-requirements',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const undergraduateCourseChanges: Location = {
+export const undergraduateCourseChanges: SegmentNode = {
   name: '교과목 변경 내역',
-  path: 'course-changes',
+  segment: 'course-changes',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const undergraduateScholarship: Location = {
+export const undergraduateScholarship: SegmentNode = {
   name: '장학 제도',
-  path: 'scholarship',
+  segment: 'scholarship',
   isPage: true,
-  parent: undergraduate,
+  parent: undergraduateAcademics,
   children: null,
 };
 
-export const graduate: Location = {
+export const graduateAcademics: SegmentNode = {
   name: '대학원',
-  path: 'graduate',
+  segment: 'graduate',
   isPage: false,
   parent: academics,
   children: [],
 };
 
-export const graduateGuide: Location = {
+export const graduateGuide: SegmentNode = {
   name: '대학원 안내',
-  path: 'courses',
+  segment: 'courses',
   isPage: true,
-  parent: graduate,
+  parent: graduateAcademics,
   children: null,
 };
 
-export const graduateCourses: Location = {
+export const graduateCourses: SegmentNode = {
   name: '교과목 정보',
-  path: 'courses',
+  segment: 'courses',
   isPage: true,
-  parent: graduate,
+  parent: graduateAcademics,
   children: null,
 };
 
-export const graduateCourseChanges: Location = {
+export const graduateCourseChanges: SegmentNode = {
   name: '교과목 변경 내역',
-  path: 'course-changes',
+  segment: 'course-changes',
   isPage: true,
-  parent: graduate,
+  parent: graduateAcademics,
   children: null,
 };
 
-export const graduateScholarship: Location = {
+export const graduateScholarship: SegmentNode = {
   name: '장학 제도',
-  path: 'scholarship',
+  segment: 'scholarship',
   isPage: true,
-  parent: graduate,
+  parent: graduateAcademics,
   children: null,
 };
 
-export const reservations: Location = {
+export const reservations: SegmentNode = {
   name: '시설 예약',
-  path: 'reservations',
+  segment: 'reservations',
   isPage: false,
   parent: main,
   children: [],
 };
 
-export const seminarRoom: Location = {
+export const seminarRoom: SegmentNode = {
   name: '세미나실',
-  path: 'seminar-room',
+  segment: 'seminar-room',
   isPage: true,
   parent: reservations,
   children: [],
 };
 
-export const bldg301room417: Location = {
+export const bldg301room417: SegmentNode = {
   name: '301-417 (20석)',
-  path: '301-417',
+  segment: '301-417',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Maldives: Location = {
+export const bldg301Maldives: SegmentNode = {
   name: '301-MALDIVES (11석)',
-  path: '301-521',
+  segment: '301-521',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Hawaii: Location = {
+export const bldg301Hawaii: SegmentNode = {
   name: '301-HAWAII (20석)',
-  path: '301-551-4',
+  segment: '301-551-4',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Baekdu: Location = {
+export const bldg301Baekdu: SegmentNode = {
   name: '301-BAEKDU (4석)',
-  path: '301-552-1',
+  segment: '301-552-1',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Alps: Location = {
+export const bldg301Alps: SegmentNode = {
   name: '301-ALPS (5석)',
-  path: '301-552-2',
+  segment: '301-552-2',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Santorini: Location = {
+export const bldg301Santorini: SegmentNode = {
   name: '301-SANTORINI (4석)',
-  path: '301-552-3',
+  segment: '301-552-3',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301Jeju: Location = {
+export const bldg301Jeju: SegmentNode = {
   name: '301-JEJU (6석)',
-  path: '301-553-6',
+  segment: '301-553-6',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg301ProfMeeting: Location = {
+export const bldg301ProfMeeting: SegmentNode = {
   name: '301-교수회의실 (20석)',
-  path: '301-317',
+  segment: '301-317',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const bldg302room308: Location = {
+export const bldg302room308: SegmentNode = {
   name: '302-308 (46석)',
-  path: '302-308',
+  segment: '302-308',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const buld302room309first: Location = {
+export const buld302room309first: SegmentNode = {
   name: '302-309-1 (48석)',
-  path: '302-309-1',
+  segment: '302-309-1',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const buld302room309second: Location = {
+export const buld302room309second: SegmentNode = {
   name: '302-309-2 (8석)',
-  path: '302-309-2',
+  segment: '302-309-2',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const buld302room309third: Location = {
+export const buld302room309third: SegmentNode = {
   name: '302-309-3 (8석)',
-  path: '302-309-3',
+  segment: '302-309-3',
   isPage: true,
   parent: seminarRoom,
   children: null,
 };
 
-export const lab: Location = {
+export const labRoom: SegmentNode = {
   name: '실습실 예약',
-  path: 'lab',
+  segment: 'lab',
   isPage: true,
   parent: reservations,
   children: [],
 };
 
-export const softwareLab: Location = {
+export const softwareLab: SegmentNode = {
   name: '소프트웨어 실습실 (102석)',
-  path: '302-311-1',
+  segment: '302-311-1',
   isPage: true,
-  parent: lab,
+  parent: labRoom,
   children: null,
 };
 
-export const hardwareLab: Location = {
+export const hardwareLab: SegmentNode = {
   name: '하드웨어 실습실 (30석)',
-  path: '302-310-2',
+  segment: '302-310-2',
   isPage: true,
-  parent: lab,
+  parent: labRoom,
   children: null,
 };
 
-export const classroom: Location = {
+export const classroom: SegmentNode = {
   name: '공과대학 강의실 예약',
-  path: 'classroom',
+  segment: 'classroom',
   isPage: true,
   parent: reservations,
   children: [],
 };
 
-export const bldg302room208: Location = {
+export const bldg302room208: SegmentNode = {
   name: '302-208 (116석)',
-  path: '302-208',
+  segment: '302-208',
   isPage: true,
   parent: classroom,
   children: null,
 };
 
-export const bldg302room209: Location = {
+export const bldg302room209: SegmentNode = {
   name: '302-209 (90석)',
-  path: '302-209',
+  segment: '302-209',
   isPage: true,
   parent: classroom,
   children: null,
@@ -524,9 +524,9 @@ community.children = [news, notice, seminar, facultyRecruitment, international];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, laboratories, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission];
-undergraduateAdmission.children = [earlyAmission, regularAmission];
-academics.children = [undergraduate, graduate];
-undergraduate.children = [
+undergraduateAdmission.children = [earlyAdmission, regularAdmission];
+academics.children = [undergraduateAcademics, graduateAcademics];
+undergraduateAcademics.children = [
   undergraduateGuide,
   undergraduateCourses,
   curriculum,
@@ -535,8 +535,13 @@ undergraduate.children = [
   undergraduateCourseChanges,
   undergraduateScholarship,
 ];
-graduate.children = [graduateGuide, graduateCourses, graduateCourseChanges, graduateScholarship];
-reservations.children = [seminarRoom, lab, classroom];
+graduateAcademics.children = [
+  graduateGuide,
+  graduateCourses,
+  graduateCourseChanges,
+  graduateScholarship,
+];
+reservations.children = [seminarRoom, labRoom, classroom];
 seminarRoom.children = [
   bldg301room417,
   bldg301Maldives,
@@ -551,5 +556,5 @@ seminarRoom.children = [
   buld302room309second,
   buld302room309third,
 ];
-lab.children = [softwareLab, hardwareLab];
+labRoom.children = [softwareLab, hardwareLab];
 classroom.children = [bldg302room208, bldg302room209];

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import { Location } from '@/types/page';
+import { SegmentNode } from '@/types/page';
 
 import { getAllSubTabs, getDepth, getFullPath, getRootTab } from '@/utils/page';
 
 import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
-  currentTab: Location;
+  currentTab: SegmentNode;
   margin?: string;
 }
 
@@ -31,7 +31,7 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
   );
 }
 
-function SubTab({ tab, isCurrent }: { tab: Location; isCurrent: boolean }) {
+function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
   const paddingLeft = `${(getDepth(tab) - 1) * 15}px`;
 
   return (

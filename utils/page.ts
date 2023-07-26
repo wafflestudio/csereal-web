@@ -1,7 +1,7 @@
-import { Location, main } from '@/types/page';
+import { SegmentNode, main } from '@/types/page';
 
-export const getLog = (location: Location): Location[] => {
-  const log: Location[] = [];
+export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
+  const log: SegmentNode[] = [];
   let curr = location;
   while (curr.parent !== null) {
     log.push(curr);
@@ -10,40 +10,40 @@ export const getLog = (location: Location): Location[] => {
   return log.reverse();
 };
 
-export const getFullPath = (location: Location): string => {
+export const getFullPath = (location: SegmentNode): string => {
   let fullPath = '/';
   let curr = location;
   while (curr.parent !== null) {
-    fullPath = '/' + curr.path + fullPath;
+    fullPath = '/' + curr.segment + fullPath;
     curr = curr.parent;
   }
   return fullPath;
 };
 
-export const getRootTab = (location: Location): Location => {
-  if (location === main) return main;
+export const getRootTab = (currTab: SegmentNode): SegmentNode => {
+  if (currTab === main) return main;
 
-  let root = location;
+  let root = currTab;
   while (root.parent !== main) {
-    root = location.parent!; // main 제외한 탭은 전부 parent가 있음
+    root = currTab.parent!; // main 제외한 탭은 전부 parent가 있음
   }
   return root;
 };
 
-export const getAllSubTabs = (location: Location): Location[] => {
-  if (!location.children) return [];
+export const getAllSubTabs = (rootTab: SegmentNode): SegmentNode[] => {
+  if (!rootTab.children) return [];
 
-  const subtabs: Location[] = [];
-  for (const subtab of location.children) {
+  const subtabs: SegmentNode[] = [];
+  for (const subtab of rootTab.children) {
     subtabs.push(subtab);
     subtabs.push(...getAllSubTabs(subtab));
   }
   return subtabs;
 };
 
-export const getDepth = (location: Location): number => {
+export const getDepth = (tab: SegmentNode): number => {
   let depth = 0;
-  let curr = location;
+  let curr = tab;
   while (curr.parent !== null) {
     depth += 1;
     curr = curr.parent;

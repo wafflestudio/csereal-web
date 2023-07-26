@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import { Location } from '@/types/page';
+import { SegmentNode } from '@/types/page';
 
-import { getFullPath, getLog } from '@/utils/page';
+import { getFullPath, getLocationLog } from '@/utils/page';
 
 import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
-  currentPage: Location;
+  currentPage: SegmentNode;
   margin?: string;
   children: ReactNode;
 }
@@ -25,8 +25,8 @@ export default function PageTitle({ currentPage, margin = '', children }: PageTi
   );
 }
 
-function LocationLog({ currentPage }: { currentPage: Location }) {
-  const log: Location[] = getLog(currentPage);
+function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
+  const log: SegmentNode[] = getLocationLog(currentPage);
 
   return (
     <ol className="flex items-center gap-0.5">

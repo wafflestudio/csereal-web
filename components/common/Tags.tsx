@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import { Location } from '@/types/page';
+import { SegmentNode } from '@/types/page';
 
 import { getFullPath } from '@/utils/page';
 
 interface TagsProp {
   tags: string[];
-  page: Location;
+  page: SegmentNode;
 }
 
 export default function Tags({ tags, page }: TagsProp) {
@@ -21,7 +21,7 @@ export default function Tags({ tags, page }: TagsProp) {
 
 interface TagProp {
   tag: string;
-  page: Location;
+  page: SegmentNode;
 }
 
 function Tag({ tag, page }: TagProp) {
