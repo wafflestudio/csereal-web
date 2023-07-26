@@ -6,7 +6,7 @@ import { getPath } from '@/utils/page';
 
 interface TagsProp {
   tags: string[];
-  page: SegmentNode;
+  page: SegmentNode; // page using tag search (notice, news)
   margin?: string;
 }
 

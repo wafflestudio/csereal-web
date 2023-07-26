@@ -9,8 +9,4 @@
   body {
     @apply h-full;
   }
-
-  button {
-    @apply border border-neutral-500 rounded hover:bg-neutral-500; /* 디자인 제대로 나오면 수정 */
-  }
 }

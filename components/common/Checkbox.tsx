@@ -29,8 +29,8 @@ export default function Checkbox({ tag }: CheckboxProps) {
         id={tag}
         name="tag"
         value={tag}
-        checked={isChecked}
-        className="appearance-none"
+        // checked={isChecked}
+        // className="appearance-none"
         onChange={toggleCheck}
       />
     </div>
