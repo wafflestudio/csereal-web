@@ -1,3 +1,7 @@
 export default function NavbarDetail() {
-  return <p>ASD</p>;
+  return (
+    <div className="bg-neutral-700">
+      <p>DETAIL</p>
+    </div>
+  );
 }
