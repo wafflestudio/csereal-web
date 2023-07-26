@@ -1,6 +1,6 @@
 import AdjPostNav from '@/components/common/AdjPostNav';
 import HTMLViewer from '@/components/common/HTMLViewer';
-import { StraightNode } from '@/components/common/Node';
+import { StraightNode } from '@/components/common/Nodes';
 import PageTitle from '@/components/common/PageTitle';
 
 import { Location, PAGES } from '@/types/common';
