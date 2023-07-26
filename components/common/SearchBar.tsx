@@ -27,7 +27,7 @@ export default function SearchBar({ keyword, setSearchParams, margin = '' }: Sea
         <input
           type="text"
           id="search"
-          className="outline-none"
+          className="outline-none font-yoon text-xs"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
