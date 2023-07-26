@@ -5,7 +5,7 @@ interface CurvedNodeProps {
   double?: boolean;
 }
 
-// curved node width 최소 65px (원 10px + 대각선 꼬리 55px)
+// width 최소 65px (원 10px + 대각선 꼬리 55px)
 export function CurvedHorizontalNode({ grow = false, length = 'w-auto' }: CurvedNodeProps) {
   return (
     <div className={`flex ${grow ? 'grow' : ''} ${length} items-center`}>
