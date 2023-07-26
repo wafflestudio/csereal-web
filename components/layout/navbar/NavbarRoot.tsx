@@ -38,7 +38,7 @@ export default function NavbarRoot({
 
 function SNULogo() {
   return (
-    <Link href="/" className="mb-12">
+    <Link href="/">
       <Image src={snuLogo} alt="서울대 로고" priority className="w-14" />
     </Link>
   );
@@ -46,7 +46,7 @@ function SNULogo() {
 
 function ExpandButton({ expand }: { expand: () => void }) {
   return (
-    <button onClick={expand}>
+    <button onClick={expand} className="mt-10">
       <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" />
     </button>
   );
@@ -70,7 +70,7 @@ function NavList({ state, setState }: { state: State; setState: (state: State) =
   };
 
   return (
-    <ul className="mx-12 flex flex-col text-center gap-9">
+    <ul className="mx-12 mt-12 flex flex-col text-center gap-9">
       {mainSegmentNode.children?.map((child, i) => (
         <NavListRow
           key={i}

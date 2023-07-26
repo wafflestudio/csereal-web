@@ -9,7 +9,6 @@ export default function useCurrentSegmentNode(): SegmentNode {
 
   for (const segment of segments) {
     let child = findChildWithName(node, segment);
-    console.log(child);
     if (!child) break;
     node = child;
   }
