@@ -1,4 +1,5 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export type QueryKey = 'keyword' | 'tag';
 
@@ -37,4 +38,14 @@ export function useMyURLSearchParams() {
   };
 
   return { getSearchParams, setSearchParams, deleteSearchParams } as const;
+}
+
+export function useSyncedState<T>(initState: T) {
+  const [state, setState] = useState<T>(initState);
+
+  useEffect(() => {
+    setState(initState);
+  }, [initState]);
+
+  return [state, setState] as const;
 }

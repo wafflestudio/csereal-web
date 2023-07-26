@@ -6,9 +6,10 @@ import Checkbox from './Checkbox';
 
 interface CategoryProps {
   category: string[];
+  selectedTags: string[];
 }
 
-export default function Category({ category }: CategoryProps) {
+export default function Category({ category, selectedTags }: CategoryProps) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const iconName = isOpen ? 'expand_less' : 'expand_more';
 

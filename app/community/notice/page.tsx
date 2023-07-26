@@ -17,13 +17,12 @@ import { useMyURLSearchParams } from '@/utils/search';
 
 export default function NoticePage() {
   const { getSearchParams, setSearchParams } = useMyURLSearchParams();
+  const { keyword, tags } = getSearchParams();
 
   const searchPosts = () => {};
 
   useEffect(() => {
     // 새로 랜더링 될 때마다 서버에 공지 목록 GET 요청 보내기
-    const queries = getSearchParams();
-    const { keyword, tags } = queries;
   }, []);
 
   return (
@@ -33,8 +32,8 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="w-[850px]">
-          <Category category={tagCategory} />
-          <SearchBar setSearchParams={setSearchParams} />
+          <Category category={tagCategory} selectedTags={tags} />
+          <SearchBar keyword={keyword ?? ''} setSearchParams={setSearchParams} />
         </div>
         <Sidebar currentTab={notice} />
       </div>

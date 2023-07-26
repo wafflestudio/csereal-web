@@ -2,20 +2,21 @@
 
 import { useState } from 'react';
 
-import { QueryKey, useMyURLSearchParams } from '@/utils/search';
+import { QueryKey, useMyURLSearchParams, useSyncedState } from '@/utils/search';
 
 interface SearchBarProps {
-  margin?: string;
+  keyword: string;
   setSearchParams(key: QueryKey, value: string, replace?: boolean): void;
+  margin?: string;
 }
 
-export default function SearchBar({ margin = '', setSearchParams }: SearchBarProps) {
-  const [keyword, setKeyword] = useState<string>('');
+export default function SearchBar({ keyword, setSearchParams, margin = '' }: SearchBarProps) {
+  const [input, setInput] = useSyncedState<string>(keyword);
   const KEY: QueryKey = 'keyword';
 
   const searchByKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchParams(KEY, keyword);
+    setSearchParams(KEY, input);
   };
 
   return (
@@ -28,8 +29,8 @@ export default function SearchBar({ margin = '', setSearchParams }: SearchBarPro
           type="text"
           id="search"
           className="outline-none"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         />
         <button>
           <span className="material-symbols-rounded text-xl mr-1.5">search</span>
