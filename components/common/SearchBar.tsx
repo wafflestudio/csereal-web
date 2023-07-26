@@ -1,16 +1,16 @@
 'use client';
 
-import { QueryKey, useSyncedState } from '@/utils/search';
+import { QueryName, useSyncedState } from '@/utils/search';
 
 interface SearchBarProps {
   keyword: string;
-  setSearchParams(key: QueryKey, value: string, replace?: boolean): void;
+  setSearchParams(key: QueryName, value: string, replace?: boolean): void;
   margin?: string;
 }
 
 export default function SearchBar({ keyword, setSearchParams, margin = '' }: SearchBarProps) {
   const [input, setInput] = useSyncedState<string>(keyword);
-  const KEY: QueryKey = 'keyword';
+  const KEY: QueryName = 'keyword';
 
   return (
     <form

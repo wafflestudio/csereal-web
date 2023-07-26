@@ -1,7 +1,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export type QueryKey = 'keyword' | 'tag';
+export type QueryName = 'keyword' | 'tag';
 
 export function useMyURLSearchParams() {
   const searchParams = useSearchParams();
@@ -9,18 +9,17 @@ export function useMyURLSearchParams() {
   const router = useRouter();
   const params = new URLSearchParams(Array.from(searchParams.entries()));
 
-  const getSearchParams = () => {
-    return { keyword: searchParams.get('keyword'), tags: searchParams.getAll('tag') };
-  };
+  const keyword = searchParams.get('keyword');
+  const tags = searchParams.getAll('tag');
 
-  const setSearchParams = (name: QueryKey, value: string, replace: boolean = true) => {
+  const setSearchParams = (name: QueryName, value: string, replace: boolean = true) => {
     if (!value) deleteSearchParams(name);
     else if (replace) params.set(name, value);
     else params.append(name, value);
     moveToNewPathWithQuery();
   };
 
-  const deleteSearchParams = (name: QueryKey, value?: string) => {
+  const deleteSearchParams = (name: QueryName, value?: string) => {
     if (!value) {
       params.delete(name);
     } else {
@@ -39,7 +38,7 @@ export function useMyURLSearchParams() {
     router.push(pathWithQuery);
   };
 
-  return { getSearchParams, setSearchParams, deleteSearchParams } as const;
+  return { keyword, tags, setSearchParams, deleteSearchParams } as const;
 }
 
 export function useSyncedState<T>(initState: T) {

@@ -1,25 +1,22 @@
-import { ChangeEvent } from 'react';
+import { QueryName } from '@/utils/search';
 
-import { QueryKey as QueryName } from '@/utils/search';
-
-interface CheckboxProps {
+interface TagCheckboxProps {
   tag: string;
   isChecked: boolean;
-  setSearchParams(key: QueryName, value: string, replace?: boolean): void;
-  deleteSearchParams(key: QueryName, value?: string): void;
+  setSearchParams(name: QueryName, value: string, replace?: boolean): void;
+  deleteSearchParams(name: QueryName, value?: string): void;
 }
 
-export default function Checkbox({
+export default function TagCheckbox({
   tag,
   isChecked,
   setSearchParams,
   deleteSearchParams,
-}: CheckboxProps) {
+}: TagCheckboxProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
   const NAME: QueryName = 'tag';
 
-  const toggleCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(tag);
+  const toggleCheck = () => {
     if (isChecked) {
       deleteSearchParams(NAME, tag);
     } else {
@@ -40,9 +37,9 @@ export default function Checkbox({
         type="checkbox"
         id={tag}
         name="tag"
+        className="appearance-none"
         value={tag}
         checked={isChecked}
-        className="appearance-none"
         onChange={toggleCheck}
       />
     </div>

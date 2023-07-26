@@ -1,13 +1,11 @@
 'use client';
 
-// import { useSearchParams } from 'next/navigation';
-
 import { useEffect } from 'react';
 
-import Category from '@/components/common/Category';
 import PageTitle from '@/components/common/PageTitle';
 import SearchBar from '@/components/common/SearchBar';
 import Sidebar from '@/components/common/Sidebar';
+import TagCategory from '@/components/common/TagCategory';
 
 import { notice } from '@/types/page';
 import { NoticeTags } from '@/types/tag';
@@ -15,8 +13,7 @@ import { NoticeTags } from '@/types/tag';
 import { useMyURLSearchParams } from '@/utils/search';
 
 export default function NoticePage() {
-  const { getSearchParams, setSearchParams, deleteSearchParams } = useMyURLSearchParams();
-  const { keyword, tags } = getSearchParams();
+  const { keyword, tags, setSearchParams, deleteSearchParams } = useMyURLSearchParams();
 
   const searchPosts = () => {};
 
@@ -31,7 +28,7 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="w-[850px]">
-          <Category
+          <TagCategory
             category={NoticeTags}
             selectedTags={tags}
             setSearchParams={setSearchParams}

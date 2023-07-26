@@ -2,23 +2,23 @@
 
 import { useState } from 'react';
 
-import { QueryKey } from '@/utils/search';
+import { QueryName } from '@/utils/search';
 
-import Checkbox from './Checkbox';
+import TagCheckbox from './TagCheckbox';
 
-interface CategoryProps {
+interface TagCategoryProps {
   category: string[];
-  selectedTags: string[];
-  setSearchParams(key: QueryKey, value: string, replace?: boolean): void;
-  deleteSearchParams(key: QueryKey, value?: string): void;
+  selectedTags: string[]; //
+  setSearchParams(name: QueryName, value: string, replace?: boolean): void;
+  deleteSearchParams(name: QueryName, value?: string): void;
 }
 
-export default function Category({
+export default function TagCategory({
   category,
   selectedTags,
   setSearchParams,
   deleteSearchParams,
-}: CategoryProps) {
+}: TagCategoryProps) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const iconName = isOpen ? 'expand_less' : 'expand_more';
 
@@ -38,7 +38,7 @@ export default function Category({
       {isOpen && (
         <div className="grid grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] gap-x-4 gap-y-2 pl-[10px]">
           {category.map((tag) => (
-            <Checkbox
+            <TagCheckbox
               key={tag}
               tag={tag}
               isChecked={selectedTags.includes(tag)}

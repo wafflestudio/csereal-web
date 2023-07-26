@@ -4,13 +4,13 @@ import { SegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-interface TagsProp {
+interface TagsProps {
   tags: string[];
   page: SegmentNode; // page using tag search (notice, news)
   margin?: string;
 }
 
-export default function Tags({ tags, page, margin = '' }: TagsProp) {
+export default function Tags({ tags, page, margin = '' }: TagsProps) {
   return (
     <div className={`flex items-center gap-2 ${margin}`}>
       {tags.map((tag) => (
@@ -20,12 +20,12 @@ export default function Tags({ tags, page, margin = '' }: TagsProp) {
   );
 }
 
-interface TagProp {
+interface TagProps {
   tag: string;
   page: SegmentNode;
 }
 
-function Tag({ tag, page }: TagProp) {
+function Tag({ tag, page }: TagProps) {
   return (
     <Link
       href={{ pathname: getPath(page), query: { tag: tag } }}
