@@ -1,7 +1,6 @@
 import { getPath } from '@/utils/page';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { State } from './Navbar';
 
 import naviBarClose from '@/public/image/NaviBar_Close.svg';
 import naviBarMenu from '@/public/image/NaviBar_Menu.svg';
@@ -9,6 +8,7 @@ import snuLogo from '@/public/image/SNU_Logo.svg';
 import Image from 'next/image';
 
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
+import { State } from './useNavbar';
 
 export default function NavbarRoot({
   state,
@@ -47,7 +47,7 @@ function SNULogo() {
 function ExpandButton({ expand }: { expand: () => void }) {
   return (
     <button onClick={expand} className="mt-10">
-      <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" />
+      <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" priority />
     </button>
   );
 }
@@ -109,6 +109,7 @@ function CloseButton({ close }: { close: () => void }) {
         src={naviBarClose}
         alt="네비게이션 닫기 버튼"
         className="text-[.875rem] fill-white font-medium"
+        priority
       />
     </button>
   );
