@@ -7,6 +7,7 @@ import { getPath } from '@/utils/page';
 interface TagsProp {
   tags: string[];
   page: SegmentNode;
+  margin?: string;
 }
 
 export default function Tags({ tags, page, margin = '' }: TagsProp) {
