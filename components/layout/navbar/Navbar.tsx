@@ -15,14 +15,22 @@ import { getPath } from '@/utils/page';
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState<SegmentNode | undefined>();
 
   return (
-    <nav className="row-span-full bg-main-orange pt-12 flex flex-col items-center">
+    <nav
+      className="row-span-full bg-main-orange pt-12 flex flex-col items-center"
+      onMouseLeave={() => setHovered(undefined)}
+    >
       <Link href="/" className="mb-10">
         <Image src={snuLogo} alt="서울대 로고" priority />
       </Link>
       {expanded ? (
-        <NavbarExpanded close={() => setExpanded(false)} />
+        <NavbarExpanded
+          close={() => setExpanded(false)}
+          hovered={hovered}
+          setHovered={setHovered}
+        />
       ) : (
         <NavbarClosed expand={() => setExpanded(true)} />
       )}
@@ -30,12 +38,32 @@ export default function Navbar() {
   );
 }
 
-function NavbarExpanded({ close }: { close: () => void }) {
+interface NavbarExpandedProps {
+  close: () => void;
+  hovered?: SegmentNode;
+  setHovered: (node: SegmentNode) => void;
+}
+
+function NavbarExpanded({ close, hovered, setHovered }: NavbarExpandedProps) {
+  const pathName = usePathname();
+  const shouldHighlight = (child: SegmentNode) => {
+    if (hovered) {
+      return child === hovered;
+    } else {
+      return pathName.startsWith(getPath(child));
+    }
+  };
+
   return (
     <>
       <ul className="mx-12 flex flex-col text-center gap-9">
         {mainSegmentNode.children?.map((child, i) => (
-          <NavbarExpandedRow key={i} segmentNode={child} />
+          <NavbarExpandedRow
+            key={i}
+            highlight={shouldHighlight(child)}
+            name={child.name}
+            onMouseEnter={() => setHovered(child)}
+          />
         ))}
       </ul>
       <button onClick={close} className="mt-8">
@@ -49,20 +77,29 @@ function NavbarExpanded({ close }: { close: () => void }) {
   );
 }
 
-function NavbarExpandedRow({ segmentNode }: { segmentNode: SegmentNode }) {
-  const pathName = usePathname();
-  const isHere = pathName.startsWith(getPath(segmentNode));
+function NavbarExpandedRow({
+  name,
+  highlight,
+  onMouseEnter,
+}: {
+  name: string;
+  highlight: boolean;
+  onMouseEnter: () => void;
+}) {
   return (
-    <li className={`text-white font-yoon text-[.875rem] font-medium ${isHere ? '' : 'opacity-60'}`}>
-      {segmentNode.name}
+    <li
+      className={`text-white font-yoon text-[.875rem] font-medium ${highlight ? '' : 'opacity-60'}`}
+      onMouseEnter={onMouseEnter}
+    >
+      {name}
     </li>
   );
 }
 
 function NavbarClosed({ expand }: { expand: () => void }) {
   return (
-    <button onClick={expand} className="mx-5">
-      <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" />
+    <button onClick={expand} className="mx-7">
+      <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" />
     </button>
   );
 }
