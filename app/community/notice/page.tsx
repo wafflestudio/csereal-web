@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import PageTitle from '@/components/common/PageTitle';
 import SearchBar from '@/components/common/SearchBar';
 import Sidebar from '@/components/common/Sidebar';
-import TagCategory from '@/components/common/TagCategory';
+import TagFilter from '@/components/common/TagFilter';
 
 import { notice } from '@/types/page';
 import { NoticeTags } from '@/types/tag';
@@ -28,11 +28,7 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="w-[70vw]">
-          <TagCategory
-            category={NoticeTags}
-            selectedTags={tags}
-            setSearchParams={setSearchParams}
-          />
+          <TagFilter category={NoticeTags} selectedTags={tags} setSearchParams={setSearchParams} />
           <SearchBar keyword={keyword ?? ''} setSearchParams={setSearchParams} />
         </div>
         <Sidebar currentTab={notice} />

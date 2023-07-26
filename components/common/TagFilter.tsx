@@ -6,14 +6,13 @@ import { QueryBehavior, QueryName } from '@/utils/search';
 
 import TagCheckbox from './TagCheckbox';
 
-
-interface TagCategoryProps {
+interface TagFilterProps {
   category: string[];
   selectedTags: string[]; // useMyURLSearchParams에 있는 tags
   setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // 마찬가지
 }
 
-export default function TagCategory({ category, selectedTags, setSearchParams }: TagCategoryProps) {
+export default function TagFilter({ category, selectedTags, setSearchParams }: TagFilterProps) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const iconName = isOpen ? 'expand_less' : 'expand_more';
 
