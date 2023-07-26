@@ -8,37 +8,33 @@ export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode
 
   return (
     <div className="bg-neutral-700 pt-[9.63rem] pl-[3.75rem] w-[22rem] overflow-scroll absolute left-44 top-0 bottom-0">
-      <NavTree segmentNode={segmentNode} isRoot currentSegmentNode={currentSegmentNode} />
+      <NavTree node={segmentNode} currentNode={currentSegmentNode} isRoot />
     </div>
   );
 }
 
 interface NavTreeProps {
-  segmentNode: SegmentNode;
+  // 순회중인 트리의 루트 노드
+  node: SegmentNode;
+  // 현재 URL로부터 얻어낸 노드
+  currentNode: SegmentNode;
   isRoot?: boolean;
-  currentSegmentNode: SegmentNode;
 }
 
-function NavTree({ segmentNode, isRoot = false, currentSegmentNode }: NavTreeProps) {
-  const isCurrentNode = currentSegmentNode === segmentNode;
-
+function NavTree({ node: segmentNode, isRoot = false, currentNode }: NavTreeProps) {
   return (
     <>
-      {!isRoot && (
-        <NavTreeText segmentNode={segmentNode} isCurrent={currentSegmentNode === segmentNode} />
-      )}
+      {!isRoot && <NavTreeText segmentNode={segmentNode} highlight={currentNode === segmentNode} />}
       <div className="ml-5">
-        {segmentNode.children?.map((child) => (
-          <NavTree segmentNode={child} currentSegmentNode={currentSegmentNode} />
-        ))}
+        {segmentNode.children?.map((child) => <NavTree node={child} currentNode={currentNode} />)}
       </div>
     </>
   );
 }
 
-function NavTreeText({ segmentNode, isCurrent }: { segmentNode: SegmentNode; isCurrent: boolean }) {
+function NavTreeText({ segmentNode, highlight }: { segmentNode: SegmentNode; highlight: boolean }) {
   const href = getPath(segmentNode);
-  if (isCurrent) {
+  if (highlight) {
     return (
       <div className="flex items-center mb-6">
         <a

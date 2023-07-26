@@ -55,12 +55,13 @@ function ExpandButton({ expand }: { expand: () => void }) {
 function NavList({ state, setState }: { state: State; setState: (state: State) => void }) {
   const pathName = usePathname();
 
+  // 노드별 강조 처리 여부
   const shouldHighlight = (child: SegmentNode) => {
     if (state.type === 'hovered') {
-      // 이미 선택된 노드가 있으면 그것과 같으면 true,
+      // 이전에 마우스로 선택된 노드가 있으면 그것과 같아야 함,
       return child === state.segmentNode;
     } else {
-      // 이외의 경우 현재 경로와 매칭되면 true
+      // 이외의 경우 현재 url 경로와 매칭되면 true
       return pathName.startsWith(getPath(child));
     }
   };
@@ -70,16 +71,18 @@ function NavList({ state, setState }: { state: State; setState: (state: State) =
   };
 
   return (
-    <ul className="mx-12 mt-12 flex flex-col text-center gap-9">
-      {mainSegmentNode.children?.map((child, i) => (
-        <NavListRow
-          key={i}
-          highlight={shouldHighlight(child)}
-          name={child.name}
-          onMouseEnter={makeMouseEnterHandler(child)}
-        />
-      ))}
-    </ul>
+    <nav>
+      <ul className="mx-12 mt-12 flex flex-col text-center gap-9">
+        {mainSegmentNode.children?.map((child, i) => (
+          <NavListRow
+            key={i}
+            highlight={shouldHighlight(child)}
+            name={child.name}
+            onMouseEnter={makeMouseEnterHandler(child)}
+          />
+        ))}
+      </ul>
+    </nav>
   );
 }
 
