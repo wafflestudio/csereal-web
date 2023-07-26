@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { SegmentNode } from '@/types/page';
+import { SegmentNode, main } from '@/types/page';
 
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
@@ -31,9 +31,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="row-span-full bg-main-orange flex" onMouseLeave={handleMouseLeave}>
+    <nav className="relative row-span-full bg-main-orange flex" onMouseLeave={handleMouseLeave}>
       <NavbarRoot state={state} setState={setState} />
-      {state.type === 'hovered' && <NavbarDetail />}
+      {/* {state.type === 'hovered' && <NavbarDetail segmentNode={state.segmentNode} />} */}
+      {/* @ts-expect-error */}
+      <NavbarDetail segmentNode={main.children[1]} />
     </nav>
   );
 }
