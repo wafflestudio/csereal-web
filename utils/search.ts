@@ -2,8 +2,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export type QueryName = 'keyword' | 'tag';
+export type QueryBehavior = 'add' | 'delete';
 
-export function useMyURLSearchParams() {
+export function useCustomSearchParams() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -12,7 +13,13 @@ export function useMyURLSearchParams() {
   const keyword = searchParams.get('keyword');
   const tags = searchParams.getAll('tag');
 
-  const setSearchParams = (name: QueryName, value: string, replace: boolean = true) => {
+  const moveToNewPathWithQuery = () => {
+    const query = params.toString();
+    const pathWithQuery = query ? `${pathname}?${query}` : pathname;
+    router.push(pathWithQuery);
+  };
+
+  const addSearchParams = (name: QueryName, value: string, replace: boolean = true) => {
     if (!value) deleteSearchParams(name);
     else if (replace) params.set(name, value);
     else params.append(name, value);
@@ -32,13 +39,20 @@ export function useMyURLSearchParams() {
     moveToNewPathWithQuery();
   };
 
-  const moveToNewPathWithQuery = () => {
-    const query = params.toString();
-    const pathWithQuery = query ? `${pathname}?${query}` : pathname;
-    router.push(pathWithQuery);
+  const setSearchParams = (
+    type: QueryBehavior,
+    name: QueryName,
+    value: string = '',
+    replace: boolean = true,
+  ) => {
+    if (type === 'add') {
+      addSearchParams(name, value, replace);
+    } else {
+      deleteSearchParams(name, value);
+    }
   };
 
-  return { keyword, tags, setSearchParams, deleteSearchParams } as const;
+  return { keyword, tags, setSearchParams } as const;
 }
 
 export function useSyncedState<T>(initState: T) {

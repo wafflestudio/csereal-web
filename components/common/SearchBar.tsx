@@ -1,10 +1,10 @@
 'use client';
 
-import { QueryName, useSyncedState } from '@/utils/search';
+import { QueryBehavior, QueryName, useSyncedState } from '@/utils/search';
 
 interface SearchBarProps {
-  keyword: string;
-  setSearchParams(key: QueryName, value: string, replace?: boolean): void;
+  keyword: string; // useMyURLSearchParams에 있는 keyword
+  setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // 마찬가지
   margin?: string;
 }
 
@@ -17,7 +17,7 @@ export default function SearchBar({ keyword, setSearchParams, margin = '' }: Sea
       className={`flex items-center gap-2.5 ${margin}`}
       onSubmit={(e) => {
         e.preventDefault();
-        setSearchParams(KEY, input);
+        setSearchParams('add', KEY, input);
       }}
     >
       <label htmlFor="search" className="text-sm font-yoon font-bold">

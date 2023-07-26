@@ -1,27 +1,17 @@
-import { QueryName } from '@/utils/search';
+import { QueryBehavior, QueryName } from '@/utils/search';
 
 interface TagCheckboxProps {
   tag: string;
   isChecked: boolean;
-  setSearchParams(name: QueryName, value: string, replace?: boolean): void;
-  deleteSearchParams(name: QueryName, value?: string): void;
+  setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // useMyURLSearchParams에 있는 setSearchParams
 }
 
-export default function TagCheckbox({
-  tag,
-  isChecked,
-  setSearchParams,
-  deleteSearchParams,
-}: TagCheckboxProps) {
+export default function TagCheckbox({ tag, isChecked, setSearchParams }: TagCheckboxProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
   const NAME: QueryName = 'tag';
 
   const toggleCheck = () => {
-    if (isChecked) {
-      deleteSearchParams(NAME, tag);
-    } else {
-      setSearchParams(NAME, tag, false);
-    }
+    setSearchParams(isChecked ? 'delete' : 'add', NAME, tag, false);
   };
 
   return (

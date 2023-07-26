@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 
 import { SegmentNode } from '@/types/page';
 
@@ -32,8 +32,8 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
     <ol className="flex items-center gap-0.5">
       {log.map((location, i) => {
         return (
-          <>
-            <li key={`log_${location.name}`} className="flex">
+          <Fragment key={location.name}>
+            <li className="flex">
               <LocationText
                 path={location.isPage ? getPath(location) : null}
                 name={location.name}
@@ -44,7 +44,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
                 arrow_forward_ios
               </li>
             )}
-          </>
+          </Fragment>
         );
       })}
     </ol>

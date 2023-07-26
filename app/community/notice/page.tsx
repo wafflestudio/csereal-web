@@ -10,10 +10,10 @@ import TagCategory from '@/components/common/TagCategory';
 import { notice } from '@/types/page';
 import { NoticeTags } from '@/types/tag';
 
-import { useMyURLSearchParams } from '@/utils/search';
+import { useCustomSearchParams } from '@/utils/search';
 
 export default function NoticePage() {
-  const { keyword, tags, setSearchParams, deleteSearchParams } = useMyURLSearchParams();
+  const { keyword, tags, setSearchParams } = useCustomSearchParams();
 
   const searchPosts = () => {};
 
@@ -32,7 +32,6 @@ export default function NoticePage() {
             category={NoticeTags}
             selectedTags={tags}
             setSearchParams={setSearchParams}
-            deleteSearchParams={deleteSearchParams}
           />
           <SearchBar keyword={keyword ?? ''} setSearchParams={setSearchParams} />
         </div>
