@@ -13,7 +13,7 @@ export default function NoticePage() {
       </PageTitle>
       <div className="flex">
         <div className="border w-[500px] h-[300px] mr-[30px]"></div>
-        <Sidebar currentTab={academics} />
+        <Sidebar currentTab={notice} />
       </div>
     </>
   );

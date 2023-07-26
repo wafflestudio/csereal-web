@@ -23,7 +23,11 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
         <h3 className="font-yoon font-bold text-[13px]">{rootTab.name}</h3>
         <ul className="mt-[16px]">
           {subTabs.map((tab) => (
-            <SubTab tab={tab} isCurrent={tab.name === currentTab.name} key={tab.name} />
+            <SubTab
+              tab={tab}
+              isCurrent={tab.name === currentTab.name}
+              key={`${tab.parent?.name}_${tab.name}`}
+            />
           ))}
         </ul>
       </div>
@@ -36,7 +40,6 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
 
   return (
     <li
-      key={tab.name}
       className={`w-fit text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
       style={{ marginLeft }}
     >
