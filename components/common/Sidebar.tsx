@@ -17,9 +17,9 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
   const height = `${(subTabs.length + 1) * 30}px`;
 
   return (
-    <div className={`flex ${margin}`} style={{ height: height }}>
+    <div className={`flex ${margin}`} style={{ height }}>
       <CurvedVerticalNode grow={false} />
-      <div className="pt-[11px]">
+      <div className="pt-[11px] pl-1.5">
         <h3 className="font-yoon font-bold text-[13px]">{rootTab.name}</h3>
         <ul className="mt-[16px]">
           {subTabs.map((tab) => (
@@ -32,15 +32,21 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
 }
 
 function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
-  const paddingLeft = `${(getDepth(tab) - 1) * 15}px`;
+  const marginLeft = `${(getDepth(tab) - 1) * 12}px`;
 
   return (
     <li
       key={tab.name}
-      className={`text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
-      style={{ paddingLeft }}
+      className={`w-fit text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
+      style={{ marginLeft }}
     >
-      {tab.isPage ? <Link href={getPath(tab)}>{tab.name}</Link> : <span>{tab.name}</span>}
+      {tab.isPage ? (
+        <Link href={getPath(tab)} className="hover:text-main-orange">
+          {tab.name}
+        </Link>
+      ) : (
+        <span>{tab.name}</span>
+      )}
     </li>
   );
 }

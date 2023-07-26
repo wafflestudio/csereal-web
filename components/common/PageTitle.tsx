@@ -53,7 +53,10 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
 
 function LocationText({ path, name }: { path: string | null; name: string }) {
   return path ? (
-    <Link href={path} className="text-xs font-yoon font-normal tracking-[.015em] hover:underline">
+    <Link
+      href={path}
+      className="text-xs font-yoon font-normal tracking-[.015em] hover:text-main-orange"
+    >
       {name}
     </Link>
   ) : (
