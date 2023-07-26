@@ -2,19 +2,20 @@
 
 import { useState } from 'react';
 
-import { useMyURLSearchParams } from '@/utils/search';
+import { QueryKey, useMyURLSearchParams } from '@/utils/search';
 
 interface SearchBarProps {
   margin?: string;
+  setSearchParams(key: QueryKey, value: string, replace?: boolean): void;
 }
 
-export default function SearchBar({ margin = '' }: SearchBarProps) {
+export default function SearchBar({ margin = '', setSearchParams }: SearchBarProps) {
   const [keyword, setKeyword] = useState<string>('');
-  const { setSearchParams } = useMyURLSearchParams();
+  const KEY: QueryKey = 'keyword';
 
   const searchByKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchParams('keyword', keyword);
+    setSearchParams(KEY, keyword);
   };
 
   return (

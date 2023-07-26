@@ -1,11 +1,15 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-type QueryKey = 'keyword' | 'tag';
+export type QueryKey = 'keyword' | 'tag';
 
 export function useMyURLSearchParams() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+
+  const getSearchParams = () => {
+    return { keyword: searchParams.get('keyword'), tags: searchParams.getAll('tag') };
+  };
 
   const setSearchParams = (key: QueryKey, value: string, replace: boolean = true) => {
     const params = new URLSearchParams(Array.from(searchParams.entries()));
@@ -32,5 +36,5 @@ export function useMyURLSearchParams() {
     }
   };
 
-  return { setSearchParams, deleteSearchParams } as const;
+  return { getSearchParams, setSearchParams, deleteSearchParams } as const;
 }
