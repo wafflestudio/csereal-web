@@ -30,9 +30,7 @@ function MainColumn({
 }) {
   return (
     <div className="">
-      <PageTitle currentPage={news} margin="mb-[3.25rem]">
-        <h3 className="text-lg font-bold break-keep font-yoon">{title}</h3>
-      </PageTitle>
+      <PageTitle currentPage={news} title={title} />
       <HTMLViewer htmlContent={htmlContent} />
       <StraightNode />
       <AdjPostNav
