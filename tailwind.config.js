@@ -29,6 +29,16 @@ module.exports = {
       yoon: ['var(--font-yoon)'],
       noto: ['var(--font-noto)'],
     },
+    fontSize: {
+      xs: '0.75rem',
+      sm: '0.8125rem',
+      md: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.375rem',
+      '2xl': '1.5rem',
+    },
+
     extend: {},
   },
   plugins: [],
