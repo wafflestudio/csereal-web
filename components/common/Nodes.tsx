@@ -10,7 +10,7 @@ export function CurvedHorizontalNode({ grow = false, length = 'w-auto' }: Curved
   return (
     <div className={`flex ${grow ? 'grow' : ''} ${length} items-center`}>
       <StraightNode grow={true} direction="row" />
-      <Diagonal width="w-[55px]" />
+      <Diagonal width="w-[70px]" />
     </div>
   );
 }

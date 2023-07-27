@@ -1,66 +1,35 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
-export type QueryName = 'keyword' | 'tag';
-export type QueryBehavior = 'add' | 'delete';
+export type QueryParams = { keyword?: string; tag?: string[] };
 
-export function useCustomSearchParams() {
+export function useCustomSearchParams(initPath?: string) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const params = new URLSearchParams(Array.from(searchParams.entries()));
 
   const keyword = searchParams.get('keyword');
   const tags = searchParams.getAll('tag');
 
-  const moveToNewPathWithQuery = () => {
+  const moveToNewPathWithQuery = (params: URLSearchParams) => {
     const query = params.toString();
-    const pathWithQuery = query ? `${pathname}?${query}` : pathname;
+    const pathWithQuery = query ? `${initPath || pathname}?${query}` : pathname;
     router.push(pathWithQuery);
   };
 
-  const addSearchParams = (name: QueryName, value: string, replace: boolean = true) => {
-    if (!value) deleteSearchParams(name);
-    else if (replace) params.set(name, value);
-    else params.append(name, value);
-    moveToNewPathWithQuery();
+  const transformObj2PairArr = (params: QueryParams) => {
+    const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
+      Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]],
+    );
+    return flattenedArray;
   };
 
-  const deleteSearchParams = (name: QueryName, value?: string) => {
-    if (!value) {
-      params.delete(name);
-    } else {
-      const newParams = searchParams.getAll(name).filter((v) => v !== value);
-      params.delete(name);
-      for (const v of newParams) {
-        params.append(name, v);
-      }
-    }
-    moveToNewPathWithQuery();
-  };
+  const setSearchParams = (newParams: QueryParams) => {
+    if (!newParams.keyword) delete newParams.keyword;
 
-  const setSearchParams = (
-    type: QueryBehavior,
-    name: QueryName,
-    value: string = '',
-    replace: boolean = true,
-  ) => {
-    if (type === 'add') {
-      addSearchParams(name, value, replace);
-    } else {
-      deleteSearchParams(name, value);
-    }
+    const pairs = transformObj2PairArr(newParams);
+    const newSearchParams = new URLSearchParams(pairs);
+    moveToNewPathWithQuery(newSearchParams);
   };
 
   return { keyword, tags, setSearchParams } as const;
-}
-
-export function useSyncedState<T>(initState: T) {
-  const [state, setState] = useState<T>(initState);
-
-  useEffect(() => {
-    setState(initState);
-  }, [initState]);
-
-  return [state, setState] as const;
 }

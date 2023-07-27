@@ -10,7 +10,9 @@ export default function NoticePostPage() {
   return (
     <>
       <PageTitle currentPage={notice}>
-        <h3 className="text-lg font-bold break-keep font-yoon">공지사항</h3>
+        <h3 className="text-lg font-bold break-keep font-yoon">
+          공지사항 적당한 길이 제목을 테스트해보겠습니다.
+        </h3>
       </PageTitle>
       <div>
         <div className="border w-[500px] h-[300px] mr-[30px]"></div>
