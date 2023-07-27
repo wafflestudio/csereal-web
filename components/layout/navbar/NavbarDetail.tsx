@@ -10,7 +10,7 @@ export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode
   const currentSegmentNode = useCurrentSegmentNode();
 
   return (
-    <div className="bg-neutral-700 pt-[9.63rem] pl-[3.75rem] w-[22rem] overflow-scroll absolute left-44 top-0 bottom-0">
+    <div className="bg-neutral-700 pt-[9.63rem] pl-[3.75rem] w-[22rem] overflow-x-hidden overflow-y-scroll no-scrollbar absolute left-44 top-0 bottom-0 z-50 ">
       <NavTree node={segmentNode} currentNode={currentSegmentNode} isRoot />
     </div>
   );
@@ -29,7 +29,9 @@ function NavTree({ node: segmentNode, isRoot = false, currentNode }: NavTreeProp
     <>
       {!isRoot && <NavTreeRow segmentNode={segmentNode} highlight={currentNode === segmentNode} />}
       <div className="ml-5">
-        {segmentNode.children?.map((child) => <NavTree node={child} currentNode={currentNode} />)}
+        {segmentNode.children?.map((child, i) => (
+          <NavTree key={i} node={child} currentNode={currentNode} />
+        ))}
       </div>
     </>
   );

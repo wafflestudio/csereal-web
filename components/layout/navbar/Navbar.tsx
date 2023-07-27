@@ -7,7 +7,7 @@ import { SegmentNode } from '@/types/page';
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
-export type State =
+export type NavbarState =
   | {
       // 접힌 상태
       type: 'closed';
@@ -23,7 +23,7 @@ export type State =
     };
 
 export default function Navbar() {
-  const [state, setState] = useState<State>({ type: 'closed' });
+  const [state, setState] = useState<NavbarState>({ type: 'closed' });
 
   const handleMouseLeave = () => {
     // 세부 페이지가 보이고 있다면 닫기

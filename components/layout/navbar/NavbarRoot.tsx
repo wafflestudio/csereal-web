@@ -10,21 +10,21 @@ import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-import { State } from './Navbar';
+import { NavbarState } from './Navbar';
 
 export default function NavbarRoot({
   state,
   setState,
 }: {
-  state: State;
-  setState: (state: State) => void;
+  state: NavbarState;
+  setState: (state: NavbarState) => void;
 }) {
   const expand = () => setState({ type: 'expanded' });
   const close = () => setState({ type: 'closed' });
   const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
 
   return (
-    <div className={`flex flex-col items-center pt-12 ${width}`}>
+    <div className={`flex flex-col items-center pt-12 ${width} overflow-y-scroll no-scrollbar`}>
       <SNULogo />
       {state.type === 'closed' ? (
         <ExpandButton expand={expand} />
@@ -54,7 +54,13 @@ function ExpandButton({ expand }: { expand: () => void }) {
   );
 }
 
-function NavList({ state, setState }: { state: State; setState: (state: State) => void }) {
+function NavList({
+  state,
+  setState,
+}: {
+  state: NavbarState;
+  setState: (state: NavbarState) => void;
+}) {
   const pathName = usePathname();
 
   // 노드별 강조 처리 여부
@@ -109,7 +115,7 @@ function NavListRow({
 
 function CloseButton({ close }: { close: () => void }) {
   return (
-    <button onClick={close} className="mt-8">
+    <button onClick={close} className="my-8">
       <Image
         src={naviBarClose}
         alt="네비게이션 닫기 버튼"
