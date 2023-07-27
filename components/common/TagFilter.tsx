@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import { QueryBehavior, QueryName } from '@/utils/search';
 
@@ -13,11 +13,12 @@ interface TagFilterProps {
 }
 
 export default function TagFilter({ category, selectedTags, setSearchParams }: TagFilterProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, toggleCategory] = useReducer((x) => !x, true);
   const iconName = isOpen ? 'expand_less' : 'expand_more';
 
-  const toggleCategory = () => {
-    setIsOpen(!isOpen);
+  const toggleCheck = (tag: string) => {
+    const isChecked = selectedTags.includes(tag);
+    setSearchParams(isChecked ? 'delete' : 'add', 'tag', tag, false);
   };
 
   return (
@@ -33,7 +34,7 @@ export default function TagFilter({ category, selectedTags, setSearchParams }: T
               key={tag}
               tag={tag}
               isChecked={selectedTags.includes(tag)}
-              setSearchParams={setSearchParams}
+              toggleCheck={() => toggleCheck(tag)}
             />
           ))}
         </div>
