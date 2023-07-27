@@ -3,7 +3,7 @@ import { QueryBehavior, QueryName } from '@/utils/search';
 interface TagCheckboxProps {
   tag: string;
   isChecked: boolean;
-  setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // useMyURLSearchParams에 있는 setSearchParams
+  setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // useCustomSearchParams에 있는 setSearchParams
 }
 
 export default function TagCheckbox({ tag, isChecked, setSearchParams }: TagCheckboxProps) {

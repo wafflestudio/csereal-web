@@ -8,7 +8,7 @@ import TagCheckbox from './TagCheckbox';
 
 interface TagFilterProps {
   category: string[];
-  selectedTags: string[]; // useMyURLSearchParams에 있는 tags
+  selectedTags: string[]; // useCustomSearchParams에 있는 tags
   setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // 마찬가지
 }
 

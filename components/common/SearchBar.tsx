@@ -3,7 +3,7 @@
 import { QueryBehavior, QueryName, useSyncedState } from '@/utils/search';
 
 interface SearchBarProps {
-  keyword: string; // useMyURLSearchParams에 있는 keyword
+  keyword: string; // useCustomSearchParams에 있는 keyword
   setSearchParams(type: QueryBehavior, name: QueryName, value: string, replace?: boolean): void; // 마찬가지
   margin?: string;
 }
