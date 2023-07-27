@@ -1,6 +1,6 @@
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-import Navbar from '@/components/layout/Navbar';
+import Navbar from '@/components/layout/navbar/Navbar';
 
 import '@/styles/globals.css';
 import { noto, yoonGothic } from './font';
@@ -13,15 +13,13 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="grid grid-rows-[80px_auto_80px] grid-cols-[172px_auto]">
+      <body className="grid grid-rows-[auto_1fr] grid-cols-[auto_1fr]">
         <Navbar />
-        <Header />
-        <main
-          className={`row-start-2 row-end-3 col-start-2 col-end-3 ${yoonGothic.variable} ${noto.variable}`}
-        >
-          {children}
-        </main>
-        <Footer />
+        <div className="overflow-scroll">
+          <Header />
+          <main className={` ${yoonGothic.variable} ${noto.variable}`}>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

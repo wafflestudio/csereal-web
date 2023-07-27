@@ -11,7 +11,9 @@ export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
 };
 
 export const getPath = (location: SegmentNode): string => {
-  let fullPath = '/';
+  if (location.parent === null) return '/';
+
+  let fullPath = '';
   let curr = location;
   while (curr.parent !== null) {
     fullPath = '/' + curr.segment + fullPath;
