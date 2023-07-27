@@ -30,7 +30,7 @@ function MainColumn({
 }) {
   return (
     <div className="">
-      <PageTitle currentPage={news} title={title} />
+      <PageTitle currentPage={news} title={title} textSize="text-lg" />
       <HTMLViewer htmlContent={htmlContent} />
       <StraightNode />
       <AdjPostNav
