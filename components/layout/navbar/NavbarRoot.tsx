@@ -1,14 +1,16 @@
-import { getPath } from '@/utils/page';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import naviBarClose from '@/public/image/NaviBar_Close.svg';
 import naviBarMenu from '@/public/image/NaviBar_Menu.svg';
 import snuLogo from '@/public/image/SNU_Logo.svg';
-import Image from 'next/image';
 
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
-import { State } from './useNavbar';
+
+import { getPath } from '@/utils/page';
+
+import { State } from './Navbar';
 
 export default function NavbarRoot({
   state,

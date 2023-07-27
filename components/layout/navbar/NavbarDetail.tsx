@@ -1,7 +1,10 @@
-import { SegmentNode } from '@/types/page';
-import useCurrentSegmentNode from './useCurrentSegmentNode';
 import { StraightNode } from '@/components/common/Nodes';
+
+import { SegmentNode } from '@/types/page';
+
 import { getPath } from '@/utils/page';
+
+import useCurrentSegmentNode from './useCurrentSegmentNode';
 
 export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode }) {
   const currentSegmentNode = useCurrentSegmentNode();
@@ -49,7 +52,10 @@ function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; high
   } else {
     if (segmentNode.isPage) {
       return (
-        <a href={href} className="block font-yoon text-[.875rem] font-medium mb-6 text-white">
+        <a
+          href={href}
+          className="block font-yoon text-[.875rem] font-medium mb-6 text-white hover:text-main-orange "
+        >
           {segmentNode.name}
         </a>
       );

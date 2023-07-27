@@ -1,9 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+
 import { SegmentNode } from '@/types/page';
+
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
-import { useState } from 'react';
 
 export type State =
   | {
@@ -21,7 +23,7 @@ export type State =
     };
 
 export default function Navbar() {
-  const [state, setState] = useState({ type: 'closed' });
+  const [state, setState] = useState<State>({ type: 'closed' });
 
   const handleMouseLeave = () => {
     // 세부 페이지가 보이고 있다면 닫기
