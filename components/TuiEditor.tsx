@@ -10,6 +10,13 @@ interface Props {
   editorRef: React.MutableRefObject<any>;
 }
 
+type HookCallback = (url: string, text?: string) => void;
+
+interface ImageBlobProps {
+  blob: Blob | File;
+  callback: HookCallback;
+}
+
 const TuiEditor = ({ content, editorRef }: Props) => {
   const toolbarItems = [
     ['heading', 'bold', 'italic', 'strike'],
@@ -19,6 +26,12 @@ const TuiEditor = ({ content, editorRef }: Props) => {
     ['code', 'codeblock'],
   ];
 
+  const onUploadImage = async ({ blob, callback }: ImageBlobProps) => {
+    // uploadImage api 연결시 작동 가능
+    // const url = await uploadImage(blob);
+    // callback(url, 'alt text');
+    return false;
+  };
   return (
     <>
       {editorRef && (
@@ -34,6 +47,9 @@ const TuiEditor = ({ content, editorRef }: Props) => {
           toolbarItems={toolbarItems}
           useCommandShortcut={true}
           plugins={[colorSyntax]}
+          // hooks={{
+          //   addImageBlobHook: onUploadImage
+          // }}
         />
       )}
     </>
