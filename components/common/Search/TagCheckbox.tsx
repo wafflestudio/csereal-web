@@ -1,7 +1,7 @@
 interface TagCheckboxProps {
   tag: string;
   isChecked: boolean;
-  toggleCheck(): void;
+  toggleCheck(tag: string, isChecked: boolean): void;
 }
 
 export default function TagCheckbox({ tag, isChecked, toggleCheck }: TagCheckboxProps) {
@@ -21,7 +21,7 @@ export default function TagCheckbox({ tag, isChecked, toggleCheck }: TagCheckbox
         className="appearance-none"
         value={tag}
         checked={isChecked}
-        onChange={toggleCheck}
+        onChange={() => toggleCheck(tag, isChecked)}
       />
     </label>
   );

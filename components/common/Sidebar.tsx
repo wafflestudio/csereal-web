@@ -44,11 +44,11 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
       style={{ marginLeft }}
     >
       {tab.isPage ? (
-        <Link href={getPath(tab)} className="hover:text-main-orange">
+        <Link href={getPath(tab)} className="hover:text-main-orange whitespace-nowrap">
           {tab.name}
         </Link>
       ) : (
-        <span>{tab.name}</span>
+        <span className="whitespace-nowrap">{tab.name}</span>
       )}
     </li>
   );

@@ -33,7 +33,7 @@ export default function NoticePage() {
       <div className="flex">
         <SearchForm
           tags={NoticeTags}
-          initTags={tags}
+          initTags={tags ?? []}
           initKeyword={keyword ?? ''}
           setSearchParams={setSearchParams}
         />

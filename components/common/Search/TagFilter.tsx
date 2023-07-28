@@ -9,9 +9,7 @@ interface TagFilterProps {
 }
 
 export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFilterProps) {
-  const toggleCheck = (tag: string) => {
-    const isChecked = selectedTags.includes(tag);
-
+  const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
       ? setSelectedTags(selectedTags.filter((t) => t !== tag))
       : setSelectedTags((prev) => [...prev, tag]);
@@ -26,7 +24,7 @@ export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFi
             key={tag}
             tag={tag}
             isChecked={selectedTags.includes(tag)}
-            toggleCheck={() => toggleCheck(tag)}
+            toggleCheck={toggleCheck}
           />
         ))}
       </div>

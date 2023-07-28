@@ -6,10 +6,10 @@ import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';
 
 interface SearchProps {
-  tags: string[];
-  initTags: string[];
-  initKeyword: string;
-  setSearchParams(params: QueryParams): void;
+  tags: string[]; // 전체 태그(선택지) 목록
+  initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
+  initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
+  setSearchParams(params: QueryParams): void; // useCustomSearchParams의 setSearchParams
 }
 
 export default function SearchForm({ tags, initTags, initKeyword, setSearchParams }: SearchProps) {
