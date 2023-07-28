@@ -7,7 +7,7 @@ import SearchForm from '@/components/common/Search/SearchForm';
 import Sidebar from '@/components/common/Sidebar';
 
 import { notice } from '@/types/page';
-import { NoticeTags } from '@/types/tag';
+import { NoticeTags, NewsTags } from '@/types/tag';
 
 import { useCustomSearchParams } from '@/utils/search';
 
@@ -31,12 +31,14 @@ export default function NoticePage() {
         <h3 className="text-2xl font-bold break-keep font-yoon">공지사항</h3>
       </PageTitle>
       <div className="flex">
-        <SearchForm
-          tags={NoticeTags}
-          initTags={tags ?? []}
-          initKeyword={keyword ?? ''}
-          setSearchParams={setSearchParams}
-        />
+        <div className="w-[840px]">
+          <SearchForm
+            tags={NoticeTags}
+            initTags={tags ?? []}
+            initKeyword={keyword ?? ''}
+            setSearchParams={setSearchParams}
+          />
+        </div>
         <Sidebar currentTab={notice} />
       </div>
     </>
