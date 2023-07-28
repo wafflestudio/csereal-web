@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
+import { ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
 
 export default function Header() {
   return (
@@ -29,16 +29,27 @@ function HeaderTitle() {
 }
 
 function HeaderRight() {
-  //   const handleKeyDown = (event) => {
-
-  //   }
+  const lang = 'ENG';
+  const handleLogin = () => {
+    //
+  };
+  const handleLangChange = () => {
+    //
+  };
 
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
       <div>
-        <button className="font-yoon text-xs font-normal text-neutral-700">로그인</button>
+        <button className="font-yoon text-xs font-normal text-neutral-700" onClick={handleLogin}>
+          로그인
+        </button>
         <span className="font-yoon text-xs font-normal text-neutral-700 mx-[.62rem]">|</span>
-        <button className="font-yoon text-xs font-normal text-neutral-700">ENG</button>
+        <button
+          className="font-yoon text-xs font-normal text-neutral-700"
+          onClick={handleLangChange}
+        >
+          {lang}
+        </button>
       </div>
       <HeaderSearchBar />
     </div>
@@ -49,6 +60,7 @@ function HeaderSearchBar() {
   const [text, setText] = useState('');
 
   const searchText = () => {
+    if (!text) return;
     console.log(text + ' 검색');
   };
 
