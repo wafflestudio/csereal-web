@@ -27,7 +27,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
   return (
     <div className="mb-6 w-[840px]">
       <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleExpanded}>
-        <span className="text-sm font-bold font-yoon">검색</span>
+        <span className="text-md font-bold font-yoon">검색</span>
         <span className="material-symbols-outlined font-semibold">{iconName}</span>
       </h4>
       {expanded && (

@@ -10,10 +10,10 @@ export default function TagCheckbox({ tag, isChecked, toggleCheck }: TagCheckbox
   return (
     <label
       htmlFor={tag}
-      className="flex items-center gap-1 font-yoon text-xs whitespace-nowrap cursor-pointer w-fit h-5"
+      className="flex items-center gap-1 whitespace-nowrap cursor-pointer w-fit h-5"
     >
       <span className="material-symbols-rounded text-lg font-light">{iconName}</span>
-      <span>{tag}</span>
+      <span className="font-yoon text-xs">{tag}</span>
       <input
         type="checkbox"
         id={tag}

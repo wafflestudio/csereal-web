@@ -78,7 +78,7 @@ function PostListLink() {
   return (
     <Link
       href="/news"
-      className="self-end text-white mt-6 text-[.8125rem] font-noto bg-neutral-600 px-5 py-2 rounded-[.0625rem] font-bold leading-5"
+      className="self-end text-white mt-6 text-sm font-noto bg-neutral-600 px-5 py-2 rounded-[.0625rem] font-bold leading-5"
     >
       목록
     </Link>

@@ -20,7 +20,7 @@ export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
     <div className={`flex ${margin}`} style={{ height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px] pl-1.5">
-        <h3 className="font-yoon font-bold text-[13px]">{rootTab.name}</h3>
+        <h3 className="font-yoon font-bold text-sm">{rootTab.name}</h3>
         <ul className="mt-[16px]">
           {subTabs.map((tab) => (
             <SubTab
