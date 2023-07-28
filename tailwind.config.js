@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,26 +9,27 @@ module.exports = {
   ],
   theme: {
     colors: {
-      orange: {
-        DEFAULT: '#f98438',
+      neutral: colors.neutral,
+      white: {
+        DEFAULT: '#ffffff',
+      },
+      'main-orange': {
+        DEFAULT: '#ff6914',
         dark: '#cf5c10',
       },
-      gray: {
-        light: '#f4f4f4',
-        DEFAULT: '#dddddd',
-        dark: '#bebebe',
+      link: {
+        DEFAULT: '#3c7be4',
+      },
+      visited: {
+        // TBD
+        DEFAULT: '#ff0000',
       },
     },
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-      fontFamily: {
-        yoon: ['var(--font-yoon)'],
-        noto: ['var(--font-noto)'],
-      },
+    fontFamily: {
+      yoon: ['var(--font-yoon)'],
+      noto: ['var(--font-noto)'],
     },
+    extend: {},
   },
   plugins: [],
 };
