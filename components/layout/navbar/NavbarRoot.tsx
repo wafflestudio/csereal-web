@@ -105,7 +105,7 @@ function NavListRow({
 }) {
   return (
     <li
-      className={`text-white font-yoon text-[.875rem] font-medium ${highlight ? '' : 'opacity-60'}`}
+      className={`text-white font-yoon text-md font-medium ${highlight ? '' : 'opacity-60'}`}
       onMouseEnter={onMouseEnter}
     >
       {name}
@@ -119,7 +119,7 @@ function CloseButton({ close }: { close: () => void }) {
       <Image
         src={naviBarClose}
         alt="네비게이션 닫기 버튼"
-        className="text-[.875rem] fill-white font-medium"
+        className="text-md fill-white font-medium"
         priority
       />
     </button>

@@ -8,7 +8,7 @@ interface SearchBarProps {
 export default function KeywordInput({ keyword, setKeyword }: SearchBarProps) {
   return (
     <div className="col-start-1 flex items-center">
-      <h5 className="font-yoon text-[14px] font-bold mr-3 whitespace-nowrap">검색어</h5>
+      <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap">검색어</h5>
       <input
         type="text"
         id="search"
