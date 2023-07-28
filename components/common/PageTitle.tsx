@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 
 import { SegmentNode } from '@/types/page';
 
@@ -15,12 +15,12 @@ interface PageTitleProps {
 
 export default function PageTitle({ currentPage, margin = '', children }: PageTitleProps) {
   return (
-    <div className={`w-fit min-w-[350px] max-w-[600px] ${margin}`}>
+    <div className={`w-fit min-w-[250px] max-w-[830px] ${margin}`}>
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />
       </div>
-      <div className="mr-[55px]">{children}</div>
+      <div className="mr-[65px]">{children}</div>
     </div>
   );
 }
@@ -32,8 +32,8 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
     <ol className="flex items-center gap-0.5">
       {log.map((location, i) => {
         return (
-          <>
-            <li key={location.name} className="flex">
+          <Fragment key={location.name}>
+            <li className="flex">
               <LocationText
                 path={location.isPage ? getPath(location) : null}
                 name={location.name}
@@ -44,7 +44,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
                 arrow_forward_ios
               </li>
             )}
-          </>
+          </Fragment>
         );
       })}
     </ol>
@@ -53,7 +53,10 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
 
 function LocationText({ path, name }: { path: string | null; name: string }) {
   return path ? (
-    <Link href={path} className="text-xs font-yoon font-normal tracking-[.015em] hover:underline">
+    <Link
+      href={path}
+      className="text-xs font-yoon font-normal tracking-[.015em] hover:text-main-orange"
+    >
       {name}
     </Link>
   ) : (

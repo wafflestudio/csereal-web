@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body className="grid grid-rows-[auto_1fr] grid-cols-[auto_1fr]">
         <Navbar />
-        <div className="overflow-scroll">
+        <div className="overflow-auto">
           <Header />
           <main className={` ${yoonGothic.variable} ${noto.variable}`}>{children}</main>
           <Footer />
