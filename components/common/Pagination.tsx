@@ -2,15 +2,17 @@ import { QueryParams } from '@/utils/search';
 
 interface PaginationProps {
   total: number;
-  limit: number;
+  postLimit: number; // 한번에 보여줄 글 개수
   current: number;
   setCurrent(newParams: QueryParams, purpose: 'search' | 'pagination'): void;
 }
 
-const PAGE_LIMIT = 10;
+const PAGE_LIMIT = 3; // 페이지네이션 바에 한번에 보여줄 페이지 개수
 
-export default function Pagination({ total, limit, current, setCurrent }: PaginationProps) {
-  const NUM_PAGES = Math.ceil(total / limit);
+export default function Pagination({ total, postLimit, current, setCurrent }: PaginationProps) {
+  const NUM_PAGES = Math.ceil(total / postLimit);
+  console.log('total:', total);
+  console.log('num pages:', NUM_PAGES);
   const firstNum = current - ((current - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
 
   const movePageNumber = (num: number) => {
@@ -28,11 +30,11 @@ export default function Pagination({ total, limit, current, setCurrent }: Pagina
         />
         <PaginationArrow
           iconName="navigate_before"
-          num={current - 1}
+          num={firstNum - PAGE_LIMIT}
           disabled={firstNum === 1}
           movePageNumber={movePageNumber}
         />
-        {Array(Math.min(limit, NUM_PAGES - firstNum + 1))
+        {Array(Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1))
           .fill(firstNum)
           .map((num, i) => (
             <PaginationNumber
@@ -44,7 +46,7 @@ export default function Pagination({ total, limit, current, setCurrent }: Pagina
           ))}
         <PaginationArrow
           iconName="navigate_next"
-          num={current + 1}
+          num={firstNum + PAGE_LIMIT}
           disabled={firstNum + PAGE_LIMIT > NUM_PAGES}
           movePageNumber={movePageNumber}
         />
