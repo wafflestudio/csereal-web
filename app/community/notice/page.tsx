@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect } from 'react';
 
-import SearchForm from '@/components/common/Search/SearchForm';
+import { StraightNode } from '@/components/common/Nodes';
+import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
+import NoticeList from '@/components/notice/NoticeList';
 
 import { notice } from '@/types/page';
 import { NoticeTags, NewsTags } from '@/types/tag';
@@ -38,6 +40,8 @@ export default function NoticePage() {
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
+      <StraightNode double={true} />
+      <NoticeList />
     </PageLayout>
   );
 }
