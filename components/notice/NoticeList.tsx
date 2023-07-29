@@ -11,12 +11,12 @@ interface NoticeListProps {
 
 export default function NoticeList({ pinnedPosts, normalPosts }: NoticeListProps) {
   return (
-    <div className="mt-3 mx-2.5 text-xs">
+    <div className="mt-3 mb-8 mx-2.5 text-xs">
       <h5 className="h-[40px] pl-[50px] flex font-yoon border-b border-neutral-300 items-center">
         <span className="w-[570px] pl-3">제목</span>
         <span className="w-[200px] pl-3">날짜</span>
       </h5>
-      <ul className="">
+      <ul>
         {pinnedPosts.map((post, i) => (
           <NoticeListRow post={post} isPinned={true} idx={i} key={i} />
         ))}

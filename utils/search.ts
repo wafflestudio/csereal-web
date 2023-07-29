@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export type QueryParams = { keyword?: string; tag?: string[] };
+export type QueryParams = { page?: string; keyword?: string; tag?: string[] };
 
 // 검색 결과를 현재 페이지가 아니라 다른 페이지에서 보여줘야 할 때는 initPath 따로 설정
 export function useCustomSearchParams(initPath?: string) {
@@ -8,6 +8,7 @@ export function useCustomSearchParams(initPath?: string) {
   const pathname = usePathname();
   const router = useRouter();
 
+  const page = searchParams.get('page');
   const keyword = searchParams.get('keyword');
   const tags = searchParams.getAll('tag');
 
@@ -24,13 +25,24 @@ export function useCustomSearchParams(initPath?: string) {
     return flattenedArray;
   };
 
-  const setSearchParams = (newParams: QueryParams) => {
-    if (!newParams.keyword) delete newParams.keyword;
+  const setSearchParams = (newParams: QueryParams, purpose: 'search' | 'pagination' = 'search') => {
+    let newSearchParams: URLSearchParams;
 
-    const pairs = convertObjToPairArr(newParams);
-    const newSearchParams = new URLSearchParams(pairs);
+    if (purpose == 'search') {
+      if (!newParams.keyword) delete newParams.keyword;
+      const pairs = convertObjToPairArr(newParams);
+      newSearchParams = new URLSearchParams(pairs);
+    } else {
+      newSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
+      if (!newParams.page || newParams.page === '1') {
+        newSearchParams.delete('page');
+      } else {
+        newSearchParams.set('page', newParams.page);
+      }
+    }
+
     moveToNewPathWithQuery(newSearchParams);
   };
 
-  return { keyword, tags, setSearchParams } as const;
+  return { page, keyword, tags, setSearchParams } as const;
 }

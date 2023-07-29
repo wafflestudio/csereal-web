@@ -1,8 +1,10 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
+import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
@@ -37,11 +39,24 @@ const noticeListMock = {
     NoticeMock,
     NoticeMock,
     NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
   ],
 };
 
+const POSTS_LIMIT = 20;
+
 export default function NoticePage() {
-  const { keyword, tags, setSearchParams } = useCustomSearchParams();
+  const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const currentPage = parseInt(page ?? '1');
+  const offset = (currentPage - 1) * POSTS_LIMIT;
 
   const searchPosts = useCallback(() => {
     () => {
@@ -70,6 +85,12 @@ export default function NoticePage() {
       />
       <StraightNode double={true} />
       <NoticeList pinnedPosts={noticeListMock.pin} normalPosts={noticeListMock.normal} />
+      <Pagination
+        total={noticeListMock.normal.length + noticeListMock.pin.length}
+        limit={POSTS_LIMIT}
+        current={currentPage}
+        setCurrent={setSearchParams}
+      />
     </PageLayout>
   );
 }
