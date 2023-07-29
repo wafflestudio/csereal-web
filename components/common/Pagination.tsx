@@ -7,7 +7,7 @@ interface PaginationProps {
   setCurrent(newParams: QueryParams, purpose: 'search' | 'pagination'): void;
 }
 
-const PAGE_LIMIT = 3; // 페이지네이션 바에 한번에 보여줄 페이지 개수
+const PAGE_LIMIT = 10; // 페이지네이션 바에 한번에 보여줄 페이지 개수
 
 export default function Pagination({ total, postLimit, current, setCurrent }: PaginationProps) {
   const NUM_PAGES = Math.ceil(total / postLimit);

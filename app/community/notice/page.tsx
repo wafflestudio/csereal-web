@@ -53,7 +53,7 @@ const noticeListMock = {
   ],
 };
 
-const POST_LIMIT = 4;
+const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
