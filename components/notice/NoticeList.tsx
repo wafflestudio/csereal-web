@@ -1,8 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import pinIcon from '@/public/image/pin_icon.svg';
 
 import { Post } from '@/types/notice';
+import { notice } from '@/types/page';
+
+import { getPath } from '@/utils/page';
 
 interface NoticeListProps {
   pinnedPosts: Post[];
@@ -34,7 +38,7 @@ export default function NoticeList({ pinnedPosts, normalPosts }: NoticeListProps
 }
 
 interface NoticeListRowProps {
-  post: { title: string; date: string };
+  post: Post;
   isPinned: boolean;
   idx: number;
 }
@@ -48,7 +52,9 @@ function NoticeListRow({ post, isPinned, idx }: NoticeListRowProps) {
       <span className="w-[50px] px-[13px]">
         {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
-      <span className="w-[570px] pl-3">{post.title}</span>
+      <span className="w-[570px] pl-3">
+        <Link href={`${getPath(notice)}/${post.id}`}>{post.title}</Link>
+      </span>
       <span className="w-[200px] pl-3">{post.date}</span>
     </li>
   );

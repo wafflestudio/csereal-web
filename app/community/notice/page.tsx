@@ -16,12 +16,14 @@ import { NoticeTags, NewsTags } from '@/types/tag';
 import { useCustomSearchParams } from '@/utils/search';
 
 const NoticeMock: Post = {
+  id: 1,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   date: '2023/07/11',
   isPinned: false,
 };
 
 const NoticeMockPin: Post = {
+  id: 2,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   date: '2023/07/11',
   isPinned: false,

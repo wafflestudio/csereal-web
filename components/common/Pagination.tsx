@@ -86,16 +86,12 @@ interface PaginationNumberProps {
 function PaginationNumber({ num, isSelected, paginate }: PaginationNumberProps) {
   return (
     <li
-      className="flex items-center justify-center w-[22px] cursor-pointer"
+      className={`flex items-center justify-center w-[22px] ${
+        isSelected ? 'cursor-auto text-main-orange' : 'cursor-pointer'
+      } hover:text-main-orange`}
       onClick={() => paginate(num)}
     >
-      <span
-        className={`text-xs ${
-          isSelected && 'font-bold underline text-main-orange'
-        } hover:text-main-orange`}
-      >
-        {num}
-      </span>
+      <span className={`text-xs ${isSelected && 'font-bold underline'}`}>{num}</span>
     </li>
   );
 }
