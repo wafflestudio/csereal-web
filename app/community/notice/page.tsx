@@ -51,12 +51,12 @@ const noticeListMock = {
   ],
 };
 
-const POSTS_LIMIT = 20;
+const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const currentPage = parseInt(page ?? '1');
-  const offset = (currentPage - 1) * POSTS_LIMIT;
+  const offset = (currentPage - 1) * POST_LIMIT;
 
   const searchPosts = useCallback(() => {
     () => {
@@ -87,7 +87,7 @@ export default function NoticePage() {
       <NoticeList pinnedPosts={noticeListMock.pin} normalPosts={noticeListMock.normal} />
       <Pagination
         total={noticeListMock.normal.length + noticeListMock.pin.length}
-        limit={POSTS_LIMIT}
+        limit={POST_LIMIT}
         current={currentPage}
         setCurrent={setSearchParams}
       />
