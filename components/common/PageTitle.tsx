@@ -8,19 +8,20 @@ import { getLocationLog, getPath } from '@/utils/page';
 import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
+  title: string;
   currentPage: SegmentNode;
   margin?: string;
-  children: ReactNode;
+  textSize?: 'text-lg' | 'text-2xl';
 }
 
-export default function PageTitle({ currentPage, margin = '', children }: PageTitleProps) {
+export default function PageTitle({ title, currentPage, margin = '', textSize }: PageTitleProps) {
   return (
     <div className={`w-fit min-w-[250px] max-w-[830px] ${margin}`}>
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />
       </div>
-      <div className="mr-[65px]">{children}</div>
+      <h3 className={`mr-[65px] ${textSize} font-bold break-keep font-yoon`}>{title}</h3>
     </div>
   );
 }

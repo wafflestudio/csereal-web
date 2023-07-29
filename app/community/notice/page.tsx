@@ -2,9 +2,8 @@
 
 import { useCallback, useEffect } from 'react';
 
-import PageTitle from '@/components/common/PageTitle';
 import SearchForm from '@/components/common/Search/SearchForm';
-import Sidebar from '@/components/common/Sidebar';
+import PageLayout from '@/components/layout/PageLayout';
 
 import { notice } from '@/types/page';
 import { NoticeTags, NewsTags } from '@/types/tag';
@@ -26,21 +25,19 @@ export default function NoticePage() {
   }, [searchPosts]);
 
   return (
-    <>
-      <PageTitle currentPage={notice}>
-        <h3 className="text-2xl font-bold break-keep font-yoon">공지사항</h3>
-      </PageTitle>
-      <div className="flex">
-        <div className="w-[840px]">
-          <SearchForm
-            tags={NoticeTags}
-            initTags={tags ?? []}
-            initKeyword={keyword ?? ''}
-            setSearchParams={setSearchParams}
-          />
-        </div>
-        <Sidebar currentTab={notice} />
-      </div>
-    </>
+    <PageLayout
+      currentPage={notice}
+      title="공지사항"
+      titleSize="text-2xl"
+      titleContentGap=""
+      titleGrid="row-start-1 col-start-1"
+    >
+      <SearchForm
+        tags={NoticeTags}
+        initTags={tags ?? []}
+        initKeyword={keyword ?? ''}
+        setSearchParams={setSearchParams}
+      />
+    </PageLayout>
   );
 }
