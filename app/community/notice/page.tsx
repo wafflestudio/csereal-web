@@ -1,7 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -57,6 +56,8 @@ const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const [pinnedPosts, setPinnedPosts] = useState<Post[]>([]);
+  const [normalPosts, setNormalPosts] = useState<Post[]>([]);
   const currentPage = parseInt(page ?? '1');
   const offset = (currentPage - 1) * POST_LIMIT;
 
@@ -68,7 +69,7 @@ export default function NoticePage() {
 
   useEffect(() => {
     searchPosts();
-    // 새로 랜더링 될 때마다 서버에 공지 목록 GET 요청 보내기
+    // 새로 랜더링 될 때마다 서버에 공지 목록 GET 요청 보내기 (태그, 검색어, 페이지네이션 정보 담아서)
   }, [searchPosts]);
 
   return (
