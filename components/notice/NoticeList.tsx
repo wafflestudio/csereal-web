@@ -2,29 +2,14 @@ import Image from 'next/image';
 
 import pinIcon from '@/public/image/pin_icon.svg';
 
-interface NoticeListProps {}
+import { Post } from '@/types/notice';
 
-const NoticeMock = {
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
-  date: '2023/07/11',
-};
+interface NoticeListProps {
+  pinnedPosts: Post[];
+  normalPosts: Post[];
+}
 
-const noticeListMock = {
-  pin: [NoticeMock, NoticeMock, NoticeMock, NoticeMock, NoticeMock, NoticeMock],
-  general: [
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-  ],
-};
-
-export default function NoticeList({}: NoticeListProps) {
+export default function NoticeList({ pinnedPosts, normalPosts }: NoticeListProps) {
   return (
     <div className="mt-3 mx-2.5 text-xs">
       <h5 className="h-[40px] pl-[50px] flex font-yoon border-b border-neutral-300 items-center">
@@ -32,15 +17,15 @@ export default function NoticeList({}: NoticeListProps) {
         <span className="w-[200px] pl-3">날짜</span>
       </h5>
       <ul className="">
-        {noticeListMock.pin.map((notice, i) => (
-          <NoticeListRow notice={notice} isPinned={true} idx={i} key={i} />
+        {pinnedPosts.map((post, i) => (
+          <NoticeListRow post={post} isPinned={true} idx={i} key={i} />
         ))}
-        {noticeListMock.general.map((notice, i) => (
+        {normalPosts.map((notice, i) => (
           <NoticeListRow
-            notice={notice}
+            post={notice}
             isPinned={false}
-            idx={noticeListMock.pin.length + i}
-            key={noticeListMock.pin.length + i}
+            idx={pinnedPosts.length + i}
+            key={pinnedPosts.length + i}
           />
         ))}
       </ul>
@@ -49,12 +34,12 @@ export default function NoticeList({}: NoticeListProps) {
 }
 
 interface NoticeListRowProps {
-  notice: { title: string; date: string };
+  post: { title: string; date: string };
   isPinned: boolean;
   idx: number;
 }
 
-function NoticeListRow({ notice, isPinned, idx }: NoticeListRowProps) {
+function NoticeListRow({ post, isPinned, idx }: NoticeListRowProps) {
   const bgColor = idx % 2 ? 'bg-white' : 'bg-neutral-100';
   const fontWeight = isPinned ? 'font-bold' : 'font-normal';
 
@@ -63,8 +48,8 @@ function NoticeListRow({ notice, isPinned, idx }: NoticeListRowProps) {
       <span className="w-[50px] px-[13px]">
         {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
-      <span className="w-[570px] pl-3">{notice.title}</span>
-      <span className="w-[200px] pl-3">{notice.date}</span>
+      <span className="w-[570px] pl-3">{post.title}</span>
+      <span className="w-[200px] pl-3">{post.date}</span>
     </li>
   );
 }

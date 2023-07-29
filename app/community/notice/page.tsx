@@ -7,10 +7,38 @@ import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
+import { Post } from '@/types/notice';
 import { notice } from '@/types/page';
 import { NoticeTags, NewsTags } from '@/types/tag';
 
 import { useCustomSearchParams } from '@/utils/search';
+
+const NoticeMock: Post = {
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
+  date: '2023/07/11',
+  isPinned: false,
+};
+
+const NoticeMockPin: Post = {
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
+  date: '2023/07/11',
+  isPinned: false,
+};
+
+const noticeListMock = {
+  pin: [NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin],
+  normal: [
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+    NoticeMock,
+  ],
+};
 
 export default function NoticePage() {
   const { keyword, tags, setSearchParams } = useCustomSearchParams();
@@ -41,7 +69,7 @@ export default function NoticePage() {
         setSearchParams={setSearchParams}
       />
       <StraightNode double={true} />
-      <NoticeList />
+      <NoticeList pinnedPosts={noticeListMock.pin} normalPosts={noticeListMock.normal} />
     </PageLayout>
   );
 }
