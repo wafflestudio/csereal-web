@@ -11,8 +11,6 @@ export default function NoticePostPage() {
       currentPage={notice}
       title="2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내"
       titleSize="text-lg"
-      titleContentGap=""
-      titleGrid="row-start-1 col-start-1"
     >
       <div className="border w-[500px] h-[300px] mr-[30px]"></div>
       <Tags tags={tags} page={notice} />

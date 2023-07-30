@@ -93,8 +93,6 @@ export default function NoticePage() {
       currentPage={notice}
       title="공지사항"
       titleSize="text-2xl"
-      titleContentGap=""
-      titleGrid="row-start-1 col-start-1"
     >
       <SearchForm
         tags={NoticeTags}

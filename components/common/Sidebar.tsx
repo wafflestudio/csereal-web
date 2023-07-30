@@ -8,16 +8,18 @@ import { CurvedVerticalNode } from './Nodes';
 
 interface SidebarProps {
   currentTab: SegmentNode;
-  margin?: string;
 }
 
-export default function Sidebar({ currentTab, margin = '' }: SidebarProps) {
+export default function Sidebar({ currentTab }: SidebarProps) {
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30}px`;
 
   return (
-    <div className={`flex ${margin}`} style={{ height }}>
+    <div
+      className="flex row-span-full col-start-2 mt-[52px] ml-[40px] sticky top-[212px]"
+      style={{ height }}
+    >
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px] pl-1.5">
         <h3 className="font-yoon font-bold text-sm">{rootTab.name}</h3>
