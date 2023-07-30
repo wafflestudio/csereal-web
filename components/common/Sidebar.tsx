@@ -13,7 +13,7 @@ interface SidebarProps {
 export default function Sidebar({ currentTab }: SidebarProps) {
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab);
-  const height = `${(subTabs.length + 1) * 30}px`;
+  const height = `${(subTabs.length + 1) * 30 + 10}px`;
 
   return (
     <div
