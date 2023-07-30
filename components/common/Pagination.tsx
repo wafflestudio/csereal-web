@@ -1,15 +1,20 @@
 interface PaginationProps {
-  total: number;
-  postLimit: number; // 한번에 보여줄 글 개수
-  current: number;
-  setCurrent(pageNum: number): void;
+  totalPostsCount: number;
+  postsCountPerPage: number; // 한번에 보여줄 글 개수
+  currentPage: number;
+  setCurrentPage(pageNum: number): void;
 }
 
 const PAGE_LIMIT = 10; // 페이지네이션 바에 한번에 보여줄 페이지 개수
 
-export default function Pagination({ total, postLimit, current, setCurrent }: PaginationProps) {
-  const NUM_PAGES = Math.ceil(total / postLimit); // 전체 페이지 개수
-  const firstNum = current - ((current - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
+export default function Pagination({
+  totalPostsCount,
+  postsCountPerPage,
+  currentPage,
+  setCurrentPage,
+}: PaginationProps) {
+  const NUM_PAGES = Math.ceil(totalPostsCount / postsCountPerPage); // 전체 페이지 개수
+  const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
 
   return (
     <div className="flex justify-center">
@@ -17,22 +22,22 @@ export default function Pagination({ total, postLimit, current, setCurrent }: Pa
         <PaginationArrow
           iconName="keyboard_double_arrow_left"
           num={1}
-          disabled={current === 1}
-          movePageNumber={setCurrent}
+          disabled={currentPage === 1}
+          movePageNumber={setCurrentPage}
         />
         <PaginationArrow
           iconName="navigate_before"
           num={firstNum - PAGE_LIMIT}
           disabled={firstNum === 1}
-          movePageNumber={setCurrent}
+          movePageNumber={setCurrentPage}
         />
         {Array(Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1))
           .fill(firstNum)
           .map((num, i) => (
             <PaginationNumber
               num={num + i}
-              isSelected={current === num + i}
-              movePageNumber={setCurrent}
+              isSelected={currentPage === num + i}
+              movePageNumber={setCurrentPage}
               key={i}
             />
           ))}
@@ -40,13 +45,13 @@ export default function Pagination({ total, postLimit, current, setCurrent }: Pa
           iconName="navigate_next"
           num={firstNum + PAGE_LIMIT}
           disabled={firstNum + PAGE_LIMIT > NUM_PAGES}
-          movePageNumber={setCurrent}
+          movePageNumber={setCurrentPage}
         />
         <PaginationArrow
           iconName="keyboard_double_arrow_right"
           num={NUM_PAGES}
-          disabled={current === NUM_PAGES}
-          movePageNumber={setCurrent}
+          disabled={currentPage === NUM_PAGES}
+          movePageNumber={setCurrentPage}
         />
       </ul>
     </div>

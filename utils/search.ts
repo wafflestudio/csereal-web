@@ -47,5 +47,5 @@ export function useCustomSearchParams(initPath?: string) {
     moveToNewPathWithQuery(newSearchParams);
   };
 
-  return { page, keyword, tags, setSearchParams } as const;
+  return { page, keyword, tags, searchParams, setSearchParams } as const;
 }

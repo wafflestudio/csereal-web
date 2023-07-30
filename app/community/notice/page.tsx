@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
+import { getNoticePostsAPI } from '@/apis/notice';
+
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
@@ -25,7 +27,7 @@ const NoticeMockPin: Post = {
   id: 2,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   date: '2023/07/11',
-  isPinned: false,
+  isPinned: true,
 };
 
 const noticeListMock = [
@@ -59,31 +61,31 @@ const noticeListMock = [
 const POST_LIMIT = 20;
 
 export default function NoticePage() {
-  const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const [posts, setPosts] = useState<Post[]>(noticeListMock);
+  const { page, keyword, tags, searchParams, setSearchParams } = useCustomSearchParams();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
   const currentPage = parseInt(page ?? '1');
 
-  const setCurrentPageNumber = (pageNum: number) => {
+  const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const searchPosts = useCallback(() => {
-    () => {
-      console.log('congratulations! successful search!');
-    };
-  }, []);
+  // api 테스트 가능해지면 정확히 수정
+  const getPosts = async () => {
+    try {
+      const res = await getNoticePostsAPI(searchParams);
+      setTotalPostsCount(res.data.total);
+      setPosts(res.data.posts);
+    } catch (error) {
+      console.log('error');
+    }
+  };
 
   useEffect(() => {
-    searchPosts();
-    // 새로 랜더링 될 때마다 서버에 공지 목록 GET 요청 보내기 (태그, 검색어, 페이지네이션 정보 담아서)
-  }, [searchPosts]);
-
-  useEffect(() => {
-    console.log('first');
-  }, []);
-
-  useEffect(() => {
-    console.log('curenAGe: ', currentPage);
+    // getPosts();
+    setTotalPostsCount(noticeListMock.length);
+    setPosts(noticeListMock);
+    console.log(currentPage);
   }, [currentPage]);
 
   return (
@@ -103,10 +105,10 @@ export default function NoticePage() {
       <StraightNode double={true} />
       <NoticeList posts={posts} />
       <Pagination
-        total={noticeListMock.length}
-        postLimit={POST_LIMIT}
-        current={currentPage}
-        setCurrent={setCurrentPageNumber}
+        totalPostsCount={totalPostsCount}
+        postsCountPerPage={POST_LIMIT}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
     </PageLayout>
   );
