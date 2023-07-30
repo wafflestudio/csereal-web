@@ -28,39 +28,44 @@ const NoticeMockPin: Post = {
   isPinned: false,
 };
 
-const noticeListMock = {
-  pin: [NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin, NoticeMockPin],
-  normal: [
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-    NoticeMock,
-  ],
-};
+const noticeListMock = [
+  NoticeMockPin,
+  NoticeMockPin,
+  NoticeMockPin,
+  NoticeMockPin,
+  NoticeMockPin,
+  NoticeMockPin,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+  NoticeMock,
+];
 
 const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const [pinnedPosts, setPinnedPosts] = useState<Post[]>([]);
-  const [normalPosts, setNormalPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>(noticeListMock);
   const currentPage = parseInt(page ?? '1');
-  const offset = (currentPage - 1) * POST_LIMIT;
+
+  const setCurrentPageNumber = (pageNum: number) => {
+    setSearchParams({ purpose: 'navigation', page: pageNum });
+  };
 
   const searchPosts = useCallback(() => {
     () => {
@@ -72,6 +77,14 @@ export default function NoticePage() {
     searchPosts();
     // 새로 랜더링 될 때마다 서버에 공지 목록 GET 요청 보내기 (태그, 검색어, 페이지네이션 정보 담아서)
   }, [searchPosts]);
+
+  useEffect(() => {
+    console.log('first');
+  }, []);
+
+  useEffect(() => {
+    console.log('curenAGe: ', currentPage);
+  }, [currentPage]);
 
   return (
     <PageLayout
@@ -88,12 +101,12 @@ export default function NoticePage() {
         setSearchParams={setSearchParams}
       />
       <StraightNode double={true} />
-      <NoticeList pinnedPosts={noticeListMock.pin} normalPosts={noticeListMock.normal} />
+      <NoticeList posts={posts} />
       <Pagination
-        total={noticeListMock.normal.length + noticeListMock.pin.length}
+        total={noticeListMock.length}
         postLimit={POST_LIMIT}
         current={currentPage}
-        setCurrent={setSearchParams}
+        setCurrent={setCurrentPageNumber}
       />
     </PageLayout>
   );

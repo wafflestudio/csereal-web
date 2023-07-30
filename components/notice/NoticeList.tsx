@@ -9,11 +9,12 @@ import { notice } from '@/types/page';
 import { getPath } from '@/utils/page';
 
 interface NoticeListProps {
-  pinnedPosts: Post[];
-  normalPosts: Post[];
+  posts: Post[];
 }
 
-export default function NoticeList({ pinnedPosts, normalPosts }: NoticeListProps) {
+const noticePath = getPath(notice);
+
+export default function NoticeList({ posts }: NoticeListProps) {
   return (
     <div className="mt-3 mb-8 mx-2.5 text-xs">
       <h5 className="h-[40px] pl-[50px] flex font-yoon border-b border-neutral-300 items-center">
@@ -21,16 +22,8 @@ export default function NoticeList({ pinnedPosts, normalPosts }: NoticeListProps
         <span className="w-[200px] pl-3">날짜</span>
       </h5>
       <ul>
-        {pinnedPosts.map((post, i) => (
-          <NoticeListRow post={post} isPinned={true} idx={i} key={i} />
-        ))}
-        {normalPosts.map((notice, i) => (
-          <NoticeListRow
-            post={notice}
-            isPinned={false}
-            idx={pinnedPosts.length + i}
-            key={pinnedPosts.length + i}
-          />
+        {posts.map((post, i) => (
+          <NoticeListRow post={post} isPinned={post.isPinned} idx={i} key={i} />
         ))}
       </ul>
     </div>
@@ -53,7 +46,7 @@ function NoticeListRow({ post, isPinned, idx }: NoticeListRowProps) {
         {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
       <span className="w-[570px] pl-3">
-        <Link href={`${getPath(notice)}/${post.id}`}>{post.title}</Link>
+        <Link href={`${noticePath}/${post.id}`}>{post.title}</Link>
       </span>
       <span className="w-[200px] pl-3">{post.date}</span>
     </li>
