@@ -86,7 +86,7 @@ export default function NoticePage() {
       setTotalPostsCount(res.data.total);
       setPosts(res.data.posts);
     } catch (error) {
-      console.log('error');
+      console.log('error!');
     }
   };
 
