@@ -13,7 +13,7 @@ export default function Pagination({
   currentPage,
   setCurrentPage,
 }: PaginationProps) {
-  const NUM_PAGES = Math.ceil(totalPostsCount / postsCountPerPage); // 전체 페이지 개수
+  const NUM_PAGES = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
   const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
 
   return (
@@ -69,6 +69,7 @@ function PaginationArrow({ iconName, num, disabled, movePageNumber }: Pagination
   const arrowStyle = disabled
     ? 'cursor-default text-neutral-400'
     : 'cursor-pointer hover:text-main-orange';
+
   return (
     <li className={arrowStyle} onClick={() => disabled || movePageNumber(num)}>
       <span className="material-symbols-rounded font-light text-xl">{iconName}</span>

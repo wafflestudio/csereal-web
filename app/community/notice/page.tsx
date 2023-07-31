@@ -16,21 +16,30 @@ import { NoticeTags, NewsTags } from '@/types/tag';
 
 import { useCustomSearchParams } from '@/utils/search';
 
+const NoticeMockLong: Post = {
+  id: 1,
+  title:
+    '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
+  date: '2023-07-11T09:29:13',
+  isPinned: true,
+};
+
 const NoticeMock: Post = {
   id: 1,
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
-  date: '2023/07/11',
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
+  date: '2023-07-11T09:29:13',
   isPinned: false,
 };
 
 const NoticeMockPin: Post = {
   id: 2,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
-  date: '2023/07/11',
+  date: '2023-07-11T09:29:13',
   isPinned: true,
 };
 
 const noticeListMock = [
+  NoticeMockLong,
   NoticeMockPin,
   NoticeMockPin,
   NoticeMockPin,
@@ -71,7 +80,7 @@ export default function NoticePage() {
   };
 
   // api 테스트 가능해지면 정확히 수정
-  const getPosts = async () => {
+  const searchPosts = async () => {
     try {
       const res = await getNoticePostsAPI(searchParams);
       setTotalPostsCount(res.data.total);
@@ -85,15 +94,10 @@ export default function NoticePage() {
     // getPosts();
     setTotalPostsCount(noticeListMock.length);
     setPosts(noticeListMock);
-    console.log(currentPage);
   }, [currentPage]);
 
   return (
-    <PageLayout
-      currentPage={notice}
-      title="공지사항"
-      titleSize="text-2xl"
-    >
+    <PageLayout currentPage={notice} title="공지사항" titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
         initTags={tags ?? []}
