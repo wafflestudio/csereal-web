@@ -27,8 +27,8 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
   return (
     <div className="mb-6 pr-2.5 w-full">
       <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleExpanded}>
-        <span className="text-md font-bold font-yoon">검색</span>
-        <span className="material-symbols-outlined font-semibold">{iconName}</span>
+        <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
+        <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
       </h4>
       {expanded && (
         <form
@@ -46,7 +46,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
 
 function SearchButton() {
   return (
-    <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs">
+    <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs tracking-[0.02em]">
       결과 보기
     </button>
   );

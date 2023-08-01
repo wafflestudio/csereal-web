@@ -19,7 +19,7 @@ export default function Sidebar({ currentTab }: SidebarProps) {
     <div className="flex row-span-full col-start-2 mt-[52px] sticky top-[212px]" style={{ height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px] pl-1.5">
-        <h3 className="font-yoon font-bold text-sm">{rootTab.name}</h3>
+        <h3 className="font-yoon font-bold text-sm text-neutral-600">{rootTab.name}</h3>
         <ul className="mt-[16px]">
           {subTabs.map((tab) => (
             <SubTab
@@ -39,7 +39,9 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
 
   return (
     <li
-      className={`w-fit text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
+      className={`w-fit text-xs font-yoon mb-[14px] ${
+        isCurrent ? 'font-bold text-main-orange tracking-wider' : 'text-neutral-600'
+      }`}
       style={{ marginLeft }}
     >
       {tab.isPage ? (
