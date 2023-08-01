@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 import pinIcon from '@/public/image/pin_icon.svg';
 
-import { Post } from '@/types/notice';
+import { NoticePostSimple } from '@/types/notice';
 import { notice } from '@/types/page';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
 interface NoticeListProps {
-  posts: Post[];
+  posts: NoticePostSimple[];
 }
 
 const noticePath = getPath(notice);
@@ -32,7 +32,7 @@ export default function NoticeList({ posts }: NoticeListProps) {
 }
 
 interface NoticeListRowProps {
-  post: Post;
+  post: NoticePostSimple;
   isPinned: boolean;
   idx: number;
 }
@@ -49,7 +49,7 @@ function NoticeListRow({ post, isPinned, idx }: NoticeListRowProps) {
       <span className="py-[3px] pl-3 grow">
         <Link href={`${noticePath}/${post.id}`}>{post.title}</Link>
       </span>
-      <span className="w-[200px] pl-3 shrink-0">{formatDate(new Date(post.date))}</span>
+      <span className="w-[200px] pl-3 shrink-0">{formatDate(new Date(post.createdAt))}</span>
     </li>
   );
 }
