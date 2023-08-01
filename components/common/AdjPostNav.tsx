@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-interface AdjPostInfo {
+export interface AdjPostInfo {
   title: string;
   href: string;
 }
