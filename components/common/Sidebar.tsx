@@ -16,10 +16,7 @@ export default function Sidebar({ currentTab }: SidebarProps) {
   const height = `${(subTabs.length + 1) * 30 + 10}px`;
 
   return (
-    <div
-      className="flex row-span-full col-start-2 mt-[52px] ml-[40px] sticky top-[212px]"
-      style={{ height }}
-    >
+    <div className="flex row-span-full col-start-2 mt-[52px] sticky top-[212px]" style={{ height }}>
       <CurvedVerticalNode grow={false} />
       <div className="pt-[11px] pl-1.5">
         <h3 className="font-yoon font-bold text-sm">{rootTab.name}</h3>

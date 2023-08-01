@@ -14,7 +14,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ currentPage, title, titleSize, children }: PageLayoutProps) {
   return (
-    <div className="grid grid-rows-[auto_1fr] grid-cols-[1fr_auto] px-[60px]">
+    <div className="grid grid-rows-[auto_1fr] grid-cols-[840px_180px] mx-[60px] gap-x-10">
       <PageTitle title={title} currentPage={currentPage} textSize={titleSize} />
       <div className="w-auto row-start-2 col-start-1">{children}</div>
       <Sidebar currentTab={currentPage} />
