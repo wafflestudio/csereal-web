@@ -1,9 +1,9 @@
 'use client';
 
 import { useParams, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { getNoticePostDetail } from '@/apis/notice';
+import { getNoticePostDetailAPI } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import { StraightNode } from '@/components/common/Nodes';
@@ -15,6 +15,7 @@ import { notice } from '@/types/page';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
+import { paramsToString } from '@/utils/search';
 
 const PrevPostMock = {
   title:
@@ -43,15 +44,16 @@ export default function NoticePostPage() {
   const [post, setPost] = useState<NoticePostFull>(NoticeDetailMock);
   const { id } = useParams();
   const params = useSearchParams();
-  const tags = ['입학', '졸업'];
+  const tags = ['입학', '졸업']; // post.tags 정상 작동하면 이거 지우고 그걸로 변경
 
-  const getPost = async () => {
-    await getNoticePostDetail(parseInt(id), params);
-  };
+  const getPost = useCallback(async () => {
+    const data = await getNoticePostDetailAPI(parseInt(id), params);
+    if (data) setPost(data);
+  }, [id, params]);
 
   useEffect(() => {
     // getPost();
-  }, []);
+  }, [getPost]);
 
   return (
     <PageLayout
@@ -69,7 +71,7 @@ export default function NoticePostPage() {
       <AdjPostNav
         prevPost={PrevPostMock}
         nextPost={NextPostMock}
-        href={noticePath}
+        href={`${noticePath}${paramsToString(params)}`}
         margin="mt-[48px]"
       />
     </PageLayout>

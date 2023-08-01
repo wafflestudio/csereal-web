@@ -19,6 +19,7 @@ const noticePath = getPath(notice);
 
 export default function NoticeList({ posts }: NoticeListProps) {
   const queryString = paramsToString(useSearchParams());
+
   return (
     <div className="mt-3 mb-8 mx-2.5 text-xs">
       <h5 className="h-[40px] pl-[50px] flex font-yoon items-center">

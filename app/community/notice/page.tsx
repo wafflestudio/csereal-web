@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { getNoticePosts } from '@/apis/notice';
+import { getNoticePostsAPI } from '@/apis/notice';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -79,22 +79,19 @@ export default function NoticePage() {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  // api 테스트 가능해지면 정확히 수정
-  const searchPosts = async () => {
-    try {
-      const res = await getNoticePosts(searchParams);
-      setTotalPostsCount(res.data.total);
-      setPosts(res.data.posts);
-    } catch (error) {
-      console.log('error!');
+  const searchPosts = useCallback(async () => {
+    const data = await getNoticePostsAPI(searchParams);
+    if (data) {
+      setTotalPostsCount(data.total);
+      setPosts(data.searchList);
     }
-  };
+  }, [searchParams]);
 
   useEffect(() => {
-    // getPosts();
+    // searchPosts();
     setTotalPostsCount(noticeListMock.length);
     setPosts(noticeListMock);
-  }, [currentPage]);
+  }, [currentPage, searchPosts]);
 
   return (
     <PageLayout currentPage={notice} title="공지사항" titleSize="text-2xl">

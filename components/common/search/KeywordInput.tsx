@@ -14,7 +14,7 @@ export default function KeywordInput({ keyword, setKeyword }: SearchBarProps) {
       <input
         type="text"
         id="search"
-        className="px-1.5 h-[1.875rem] w-[13.5rem] border rounded outline-none font-yoon text-xs text-neutral-700"
+        className="px-1.5 h-[1.875rem] w-[13.5rem] border rounded outline-none font-yoon text-xs text-neutral-700 tracking-wide"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
