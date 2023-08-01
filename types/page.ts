@@ -16,7 +16,7 @@ export const main: SegmentNode = {
 
 export const about: SegmentNode = {
   name: '소개',
-  segment: 'overview',
+  segment: 'about',
   isPage: false,
   parent: main,
   children: [],

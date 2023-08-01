@@ -9,8 +9,6 @@ interface Props {
   content: string;
 }
 
-const TuiViewer = ({ content }: Props) => {
+export default function TuiViewer({ content }: Props) {
   return <>{content && <Viewer initialValue={content} usageStatistics={false} />}</>;
-};
-
-export default TuiViewer;
+}

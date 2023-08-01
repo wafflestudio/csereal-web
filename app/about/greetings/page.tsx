@@ -8,14 +8,11 @@ import Sidebar from '@/components/common/Sidebar';
 
 import { greetings } from '@/types/page';
 
-const NoSsrViewer = dynamic(() => import('../../../components/TuiViewer'), {
+const NoSsrViewer = dynamic(() => import('@/components/common/Editor/TuiViewer'), {
   ssr: false,
 });
 
-export default function GreetingsPage() {
-  //   const [isAdmin, setIsAdmin] = useState(false);
-
-  const content = `<img src="https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--greetings/%EC%9D%B4%EA%B4%91%EA%B7%BC%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=PxtBa8Du" alt="main image" class="main-image" />컴퓨터 분야(컴퓨터과학/컴퓨터공학)는 이미 모든게 이루어진 성숙한 기술이 아닙니다. 아직 넓고 깊고 다양한 기회를 미래에 가지고 있고, 우리나라 미래 먹거리의 중요한 한 기둥이 될 수 있는 분야입니다. 미래에 이루어질 거대한 변화에 비하면 지금까지의 컴퓨터기술의 성과는 매우 미미한 시작일 뿐입니다. 탄생이후 겨우 약 70-80년인 이 분야는 미숙하기 때문에 많은 기회를 가지고 있습니다. 비유하자면, 지금은 뉴턴과 갈릴레오와 큐리와 동시대에 살아가는 초창기일 뿐입니다. 
+const content = `<img src="https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--greetings/%EC%9D%B4%EA%B4%91%EA%B7%BC%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=PxtBa8Du" alt="main image" class="main-image" />컴퓨터 분야(컴퓨터과학/컴퓨터공학)는 이미 모든게 이루어진 성숙한 기술이 아닙니다. 아직 넓고 깊고 다양한 기회를 미래에 가지고 있고, 우리나라 미래 먹거리의 중요한 한 기둥이 될 수 있는 분야입니다. 미래에 이루어질 거대한 변화에 비하면 지금까지의 컴퓨터기술의 성과는 매우 미미한 시작일 뿐입니다. 탄생이후 겨우 약 70-80년인 이 분야는 미숙하기 때문에 많은 기회를 가지고 있습니다. 비유하자면, 지금은 뉴턴과 갈릴레오와 큐리와 동시대에 살아가는 초창기일 뿐입니다. 
 
 그러므로, 컴퓨터 기술이 어떻게 펼쳐질 지를 예측하거나, 특정분야의 선택과 집중을 논의하는 것은 의미없을 수 있습니다. 모든 미래예측이 늘 그렇듯이 사실을 빗겨가는 비생산적인 정치적 소모가 되기 쉽습니다. 
  
@@ -30,6 +27,10 @@ export default function GreetingsPage() {
 이러한 서울대학교 컴퓨터공학부의 비전에 함께하는 여러분 모두의 응원과 동참에 감사드립니다.
  
 감사합니다.`;
+
+export default function GreetingsPage() {
+  //   const [isAdmin, setIsAdmin] = useState(false);
+
   return (
     <div className="mx-10 mt-5 mb-20">
       <PageTitle currentPage={greetings}>
