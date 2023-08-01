@@ -8,6 +8,9 @@ interface TagFilterProps {
   setSelectedTags: React.Dispatch<SetStateAction<string[]>>;
 }
 
+// 나중에 태그 확정되면 반응형 추가해서 수정
+const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
+
 export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
@@ -16,9 +19,9 @@ export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFi
   };
 
   return (
-    <div className="flex w-[800px] row-span-1 col-span-full">
-      <h5 className="text-sm font-bold font-yoon mr-6">태그</h5>
-      <div className="grow grid grid-cols-[repeat(auto-fill,_minmax(100px,_max-content))] gap-x-3.5 gap-y-2.5">
+    <div className="flex row-span-1 col-span-full mr-2.5">
+      <h5 className="text-md font-bold font-yoon whitespace-nowrap mr-6">태그</h5>
+      <div className={`grow grid ${gridStyle} gap-x-6 gap-y-2.5`}>
         {tags.map((tag) => (
           <TagCheckbox
             key={tag}

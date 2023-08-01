@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react';
 
-import { QueryParams } from '@/utils/search';
+import { SearchInfo } from '@/utils/search';
 
 import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';
@@ -9,7 +9,7 @@ interface SearchProps {
   tags: string[]; // 전체 태그(선택지) 목록
   initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
   initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
-  setSearchParams(params: QueryParams): void; // useCustomSearchParams의 setSearchParams
+  setSearchParams(searchInfo: SearchInfo): void; // useCustomSearchParams의 setSearchParams
 }
 
 export default function SearchForm({ tags, initTags, initKeyword, setSearchParams }: SearchProps) {
@@ -20,19 +20,19 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
 
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const params: QueryParams = { keyword, tag: selectedTags };
-    setSearchParams(params);
+    const info: SearchInfo = { purpose: 'search', keyword, tag: selectedTags };
+    setSearchParams(info);
   };
 
   return (
-    <div className="mb-6 w-[840px]">
+    <div className="mb-6 pr-2.5 w-full">
       <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleExpanded}>
-        <span className="text-sm font-bold font-yoon">검색</span>
+        <span className="text-md font-bold font-yoon">검색</span>
         <span className="material-symbols-outlined font-semibold">{iconName}</span>
       </h4>
       {expanded && (
         <form
-          className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_30px] gap-y-7 pt-4 pl-3"
+          className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_30px] gap-y-7 pt-4 pl-3 min-w-max"
           onSubmit={search}
         >
           <TagFilter tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
@@ -46,7 +46,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
 
 function SearchButton() {
   return (
-    <button className="col-start-3 mr-2.5 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs">
+    <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs">
       결과 보기
     </button>
   );

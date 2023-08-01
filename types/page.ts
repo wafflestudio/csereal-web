@@ -119,7 +119,7 @@ export const facultyRecruitment: SegmentNode = {
 };
 
 export const international: SegmentNode = {
-  name: '국제',
+  name: '국제(International)',
   segment: 'international',
   isPage: true,
   parent: community,

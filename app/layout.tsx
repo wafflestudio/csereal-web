@@ -13,11 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="grid grid-rows-[auto_1fr] grid-cols-[auto_1fr]">
+      <body className="grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ">
         <Navbar />
         <div className="overflow-auto">
           <Header />
-          <main className={` ${yoonGothic.variable} ${noto.variable}`}>{children}</main>
+          <main className={`${yoonGothic.variable} ${noto.variable}`}>{children}</main>
           <Footer />
         </div>
       </body>

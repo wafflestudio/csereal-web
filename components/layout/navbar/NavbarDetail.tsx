@@ -42,10 +42,7 @@ function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; high
   if (highlight) {
     return (
       <div className="flex items-center mb-6">
-        <a
-          href={href}
-          className="font-yoon text-[.875rem] mr-4 font-medium text-main-orange shrink-0"
-        >
+        <a href={href} className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0">
           {segmentNode.name}
         </a>
         <StraightNode />
@@ -56,16 +53,14 @@ function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; high
       return (
         <a
           href={href}
-          className="block font-yoon text-[.875rem] font-medium mb-6 text-white hover:text-main-orange "
+          className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
         >
           {segmentNode.name}
         </a>
       );
     } else {
       return (
-        <p className="block font-yoon text-[.875rem] font-medium mb-6 text-white">
-          {segmentNode.name}
-        </p>
+        <p className="block font-yoon text-md font-medium mb-6 text-white">{segmentNode.name}</p>
       );
     }
   }
