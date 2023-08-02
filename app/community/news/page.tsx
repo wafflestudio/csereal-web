@@ -39,6 +39,7 @@ function MainColumn({
             '송현오 교수 연구진, 생성 모델의 이상 행동 탐지 기술 및 인공 신경망 깊이 압축 기술로 세계 선도',
           href: './',
         }}
+        href="/community/news"
       />
     </div>
   );

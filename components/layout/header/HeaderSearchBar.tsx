@@ -2,7 +2,7 @@
 
 import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
 
-import { useCustomSearchParams } from '@/utils/search';
+import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 export default function HeaderSearchBar() {
   const [text, setText] = useState('');
