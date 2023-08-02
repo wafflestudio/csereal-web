@@ -66,18 +66,18 @@ export default function NoticePostPage() {
       title="2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내"
       titleSize="text-lg"
     >
-      <div className="mb-[24px] text-xs font-yoon text-neutral-400 ml-[10px]">
+      <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
         {formatDate(new Date(post.createdAt), { includeDay: true, includeTime: true })}
       </div>
-      <div className="border w-[830px] h-[300px] mb-[40px] ml-[10px]"></div>
+      <div className="border w-auto h-[300px] mb-10 ml-2.5"></div>
       <StraightNode />
-      <Tags tags={post.tags} page={notice} margin="mt-[12px] ml-[24px]" />
+      <Tags tags={post.tags} page={notice} margin="mt-3 ml-6" />
       <AdjPostNav
         prevPost={prevPost}
         nextPost={nextPost}
         href={`${noticePath}${paramsToString(params)}`}
-        margin="mt-[48px]"
+        margin="mt-12"
       />
     </PageLayout>
   );

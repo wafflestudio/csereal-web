@@ -32,7 +32,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
       </h4>
       {expanded && (
         <form
-          className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_30px] gap-y-7 pt-4 pl-3 min-w-max"
+          className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-y-7 pt-4 pl-3 min-w-max"
           onSubmit={search}
         >
           <TagFilter tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />

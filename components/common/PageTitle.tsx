@@ -15,7 +15,7 @@ interface PageTitleProps {
 
 export default function PageTitle({ title, currentPage, textSize }: PageTitleProps) {
   return (
-    <div className="w-fit min-w-[250px] max-w-[830px] row-start-1 col-start-1 mb-[36px]">
+    <div className="w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mb-9">
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />

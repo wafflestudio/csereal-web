@@ -22,9 +22,9 @@ export default function NoticeList({ posts }: NoticeListProps) {
 
   return (
     <div className="mt-3 mb-8 mx-2.5 text-xs">
-      <h5 className="h-[40px] pl-[50px] flex font-yoon items-center">
+      <h5 className="h-10 pl-[3.125rem] flex font-yoon items-center">
         <span className="grow pl-3 text-neutral-700 tracking-wide">제목</span>
-        <span className="w-[200px] pl-3 text-neutral-700 tracking-wide">날짜</span>
+        <span className="w-[12.5rem] pl-3 text-neutral-700 tracking-wide">날짜</span>
       </h5>
       <ul className="border-y border-neutral-300">
         {posts.map((post, i) => (
@@ -53,14 +53,14 @@ function NoticeListRow({ post, isPinned, idx, href }: NoticeListRowProps) {
   const fontWeight = isPinned ? 'font-bold' : 'font-normal';
 
   return (
-    <li className={`flex items-center py-[8px] ${bgColor} ${fontWeight}`}>
-      <span className="w-[50px] px-[13px] shrink-0">
+    <li className={`flex items-center py-2 ${bgColor} ${fontWeight}`}>
+      <span className="w-[3.125rem] px-[0.8125rem] shrink-0">
         {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
-      <span className="py-[3px] pl-3 grow text-neutral-700 tracking-wide">
+      <span className="py-[0.1875rem] pl-3 grow text-neutral-700 tracking-wide">
         <Link href={href}>{post.title}</Link>
       </span>
-      <span className="w-[200px] pl-3 shrink-0 text-neutral-700 tracking-wide">
+      <span className="w-[12.5rem] pl-3 shrink-0 text-neutral-700 tracking-wide">
         {formatDate(new Date(post.createdAt))}
       </span>
     </li>
