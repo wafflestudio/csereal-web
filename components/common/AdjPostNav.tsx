@@ -1,9 +1,6 @@
 import Link from 'next/link';
 
-export interface AdjPostInfo {
-  title: string;
-  href: string;
-}
+import { AdjPostInfo } from '@/types/post';
 
 interface AdjPostNavProps {
   prevPost?: AdjPostInfo;

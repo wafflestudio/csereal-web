@@ -22,3 +22,8 @@ export interface NoticePostFull extends NoticePost, FullPost {}
 
 export interface NoticePostSimple
   extends Pick<NoticePostFull, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
+
+export interface AdjPostInfo {
+  title: string;
+  href: string;
+}

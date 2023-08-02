@@ -1,4 +1,4 @@
-import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export type QueryParams = { page?: string; keyword?: string; tag?: string[] };
 export type SearchInfo =
@@ -49,5 +49,3 @@ export function useCustomSearchParams(initPath?: string) {
 
   return { page, keyword, tags, searchParams, setSearchParams } as const;
 }
-
-export const paramsToString = (params: ReadonlyURLSearchParams) => (params ? `?${params}` : '');

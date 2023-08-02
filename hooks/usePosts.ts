@@ -1,49 +1,39 @@
 import { ReadonlyURLSearchParams, useParams, useSearchParams } from 'next/navigation';
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { getNoticePostDetailAPI } from '@/apis/notice';
+import { AdjPostInfo, FullPost } from '@/types/post';
 
-import { AdjPostInfo } from '@/components/common/AdjPostNav';
-
-import { paramsToString } from '@/hooks/useCustomSearchParams';
-
-import { FullPost } from '@/types/post';
+import { useQueryString } from './useQueryString';
 
 export function usePosts<T extends FullPost>(
-  initPath: string,
-  initPost: T,
-  getPostDetailAPI: (id: number, params: ReadonlyURLSearchParams) => Promise<T | undefined>,
+  listPath: string,
+  getPostDetail: (id: number, params: ReadonlyURLSearchParams) => Promise<unknown>,
 ) {
-  const [post, setPost] = useState<T>(initPost);
-  const [prev, setPrev] = useState<AdjPostInfo>();
-  const [next, setNext] = useState<AdjPostInfo>();
+  const [posts, setPosts] = useState<{ curr?: T; prev?: AdjPostInfo; next?: AdjPostInfo }>({});
   const { id } = useParams();
   const params = useSearchParams();
-  const queryString = paramsToString(params);
-  const listPath = `${initPath}${queryString}`;
+  const queryString = useQueryString();
+  const listPathWithQuery = `${listPath}${queryString}`;
 
   const getAdjPost = useCallback(
-    async (id: number, setAdjPost: Dispatch<SetStateAction<AdjPostInfo | undefined>>) => {
-      const adjPost = await getPostDetailAPI(id, params);
+    async (id: number, type: 'prev' | 'next') => {
+      const adjPost = (await getPostDetail(id, params)) as T;
       const adjPostInfo = adjPost
-        ? { title: adjPost.title, href: `${initPath}/${adjPost.id}${queryString}` }
+        ? { title: adjPost.title, href: `${listPath}/${adjPost.id}${queryString}` }
         : undefined;
-      setAdjPost(adjPostInfo);
+      setPosts((p) => ({ ...p, [type]: adjPostInfo }));
     },
-    [initPath, params, queryString],
+    [listPath, params, queryString, getPostDetail],
   );
 
-  const getCurrPost = useCallback(async () => {
-    const currPost = await getPostDetailAPI(parseInt(id), params);
-    if (!currPost) return;
-    setPost(currPost);
-    if (currPost.prevId) getAdjPost(currPost.prevId, setPrev);
-    if (currPost.nextId) getAdjPost(currPost.nextId, setNext);
-  }, [id, params, getAdjPost]);
-
   useEffect(() => {
-    // getCurrPost();
-  }, [getCurrPost]);
+    (async () => {
+      const curr = (await getPostDetail(parseInt(id), params)) as T;
+      setPosts((p) => ({ ...p, curr: curr }));
+      if (curr.prevId) getAdjPost(curr.prevId, 'prev');
+      if (curr.nextId) getAdjPost(curr.nextId, 'next');
+    })();
+  }, [id, params, getAdjPost, getPostDetail]);
 
-  return { post, prev, next, listPath } as const;
+  return { posts, listPathWithQuery } as const;
 }

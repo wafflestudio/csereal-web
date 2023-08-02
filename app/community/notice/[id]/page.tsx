@@ -1,6 +1,6 @@
 'use client';
 
-import { getNoticePostDetailAPI } from '@/apis/notice';
+import { getNoticePostDetail } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import { StraightNode } from '@/components/common/Nodes';
@@ -34,11 +34,9 @@ const NoticeDetailMock: NoticePostFull = {
 const noticePath = getPath(notice);
 
 export default function NoticePostPage() {
-  const { post, prev, next, listPath } = usePosts<NoticePostFull>(
-    noticePath,
-    NoticeDetailMock,
-    getNoticePostDetailAPI,
-  );
+  const { posts, listPathWithQuery } = usePosts<NoticePostFull>(noticePath, getNoticePostDetail);
+  const { curr, prev, next } = posts;
+  const currPost = curr || NoticeDetailMock;
 
   return (
     <PageLayout
@@ -48,12 +46,12 @@ export default function NoticePostPage() {
     >
       <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
-        {formatDate(new Date(post.createdAt), { includeDay: true, includeTime: true })}
+        {formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
       </div>
       <div className="border w-auto h-[300px] mb-10 ml-2.5"></div>
       <StraightNode />
-      <Tags tags={post.tags} page={notice} margin="mt-3 ml-6" />
-      <AdjPostNav prevPost={prev} nextPost={next} href={listPath} margin="mt-12" />
+      <Tags tags={currPost.tags} page={notice} margin="mt-3 ml-6" />
+      <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
     </PageLayout>
   );
 }

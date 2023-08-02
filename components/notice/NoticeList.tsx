@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 
 import pinIcon from '@/public/image/pin_icon.svg';
 
-import { paramsToString } from '@/hooks/useCustomSearchParams';
+import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
 import { NoticePostSimple } from '@/types/post';
@@ -19,7 +18,7 @@ interface NoticeListProps {
 const noticePath = getPath(notice);
 
 export default function NoticeList({ posts }: NoticeListProps) {
-  const queryString = paramsToString(useSearchParams());
+  const queryString = useQueryString();
 
   return (
     <div className="mt-3 mb-8 mx-2.5 text-xs">

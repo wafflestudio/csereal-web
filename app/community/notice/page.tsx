@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { getNoticePostsAPI } from '@/apis/notice';
+import { getNoticePosts } from '@/apis/notice';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -14,7 +14,7 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
 import { NoticePostSimple } from '@/types/post';
-import { NoticeTags, NewsTags } from '@/types/tag';
+import { NoticeTags } from '@/types/tag';
 
 const NoticeMockLong: NoticePostSimple = {
   id: 1,
@@ -80,11 +80,12 @@ export default function NoticePage() {
   };
 
   const searchPosts = useCallback(async () => {
-    const data = await getNoticePostsAPI(searchParams);
-    if (data) {
-      setTotalPostsCount(data.total);
-      setPosts(data.searchList);
-    }
+    const data = (await getNoticePosts(searchParams)) as {
+      total: number;
+      searchList: NoticePostSimple[];
+    };
+    setTotalPostsCount(data.total);
+    setPosts(data.searchList);
   }, [searchParams]);
 
   useEffect(() => {
