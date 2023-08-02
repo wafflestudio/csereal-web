@@ -1,5 +1,5 @@
 import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
+import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 
 import '@/styles/globals.css';

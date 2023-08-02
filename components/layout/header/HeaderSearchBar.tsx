@@ -2,16 +2,21 @@
 
 import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
 
+import { useCustomSearchParams } from '@/utils/search';
+
 export default function HeaderSearchBar() {
   const [text, setText] = useState('');
 
-  const searchText = () => {
-    if (!text) return;
-    console.log(text + ' 검색');
-  };
+  // TODO: /search 페이지 구현
+  const { setSearchParams } = useCustomSearchParams('/search');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
+  };
+
+  const searchText = () => {
+    const trimmedText = text.trim();
+    if (trimmedText) setSearchParams({ keyword: trimmedText, purpose: 'search' });
   };
 
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
@@ -19,17 +24,22 @@ export default function HeaderSearchBar() {
   };
 
   return (
-    <div className="flex items-center py-1 px-1.5 h-[30px] border rounded-[3px] max-w-[13.5rem] w-full">
+    <div className="flex justify-center outline outline-1 outline-neutral-700 rounded-[.1875rem] max-w-[13.5rem] w-full">
       <input
         type="text"
         id="search"
-        className="outline-none font-yoon text-xs w-full"
+        className="outline-none font-yoon text-xs w-full pl-2"
         value={text}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={searchText}>
-        <span className="material-symbols-rounded text-xl mr-1.5">search</span>
+      <button
+        onClick={searchText}
+        className="flex justify-center items-center py-[.31rem] pr-[.81rem]"
+      >
+        <span className="material-symbols-rounded text-xl font-normal text-neutral-700">
+          search
+        </span>
       </button>
     </div>
   );

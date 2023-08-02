@@ -13,12 +13,12 @@ export default function Header() {
 
 function HeaderTitle() {
   return (
-    <div>
+    <div className="font-yoon font-bold text-neutral-700">
       <a href="/">
-        <h2 className="font-yoon text-[1.375rem] font-bold tracking-[.03438rem] mb-[0.31rem] line-clamp-1">
+        <h2 className="text-xl tracking-[.03438rem] line-clamp-1 mb-[0.31rem]">
           서울대학교 컴퓨터공학부
         </h2>
-        <h3 className="font-yoon text-[.875rem] font-bold tracking-[-0.04375rem] line-clamp-2">
+        <h3 className="text-md tracking-[-0.04375rem] line-clamp-2">
           Seoul National University
           <br />
           Dept. of Computer Science and Engineering
@@ -29,27 +29,22 @@ function HeaderTitle() {
 }
 
 function HeaderRight() {
+  // TODO
   const lang = 'ENG';
+
   const handleLogin = () => {
-    //
+    // TODO
   };
   const handleLangChange = () => {
-    //
+    // TODO
   };
 
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
-      <div>
-        <button className="font-yoon text-xs font-normal text-neutral-700" onClick={handleLogin}>
-          로그인
-        </button>
-        <span className="font-yoon text-xs font-normal text-neutral-700 mx-[.62rem]">|</span>
-        <button
-          className="font-yoon text-xs font-normal text-neutral-700"
-          onClick={handleLangChange}
-        >
-          {lang}
-        </button>
+      <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
+        <button onClick={handleLogin}>로그인</button>
+        <span>|</span>
+        <button onClick={handleLangChange}>{lang}</button>
       </div>
       <HeaderSearchBar />
     </div>
