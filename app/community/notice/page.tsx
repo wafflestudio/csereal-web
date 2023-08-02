@@ -11,6 +11,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
 import { NoticePostSimple } from '@/types/post';
@@ -70,29 +71,29 @@ const noticeListMock = [
 const POST_LIMIT = 20;
 
 export default function NoticePage() {
-  const { page, keyword, tags, searchParams, setSearchParams } = useCustomSearchParams();
+  const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [posts, setPosts] = useState<NoticePostSimple[]>([]);
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
-  const currentPage = parseInt(page ?? '1');
+  const queryString = useQueryString();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
   const searchPosts = useCallback(async () => {
-    const data = (await getNoticePosts(searchParams)) as {
+    const data = (await getNoticePosts(queryString)) as {
       total: number;
       searchList: NoticePostSimple[];
     };
     setTotalPostsCount(data.total);
     setPosts(data.searchList);
-  }, [searchParams]);
+  }, [queryString]);
 
   useEffect(() => {
     // searchPosts();
     setTotalPostsCount(noticeListMock.length);
     setPosts(noticeListMock);
-  }, [currentPage, searchPosts]);
+  }, [page, searchPosts]);
 
   return (
     <PageLayout currentPage={notice} title="공지사항" titleSize="text-2xl">
@@ -107,7 +108,7 @@ export default function NoticePage() {
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
-        currentPage={currentPage}
+        currentPage={page}
         setCurrentPage={setCurrentPage}
       />
     </PageLayout>
