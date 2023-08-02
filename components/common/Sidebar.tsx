@@ -17,13 +17,13 @@ export default function Sidebar({ currentTab }: SidebarProps) {
 
   return (
     <div
-      className="flex row-span-full col-start-2 mt-[52px] ml-[40px] sticky top-[212px]"
+      className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-[13.25rem]"
       style={{ height }}
     >
       <CurvedVerticalNode grow={false} />
-      <div className="pt-[11px] pl-1.5">
-        <h3 className="font-yoon font-bold text-sm">{rootTab.name}</h3>
-        <ul className="mt-[16px]">
+      <div className="pt-[0.6875rem] pl-1.5">
+        <h3 className="font-yoon font-bold text-sm text-neutral-600">{rootTab.name}</h3>
+        <ul className="mt-4">
           {subTabs.map((tab) => (
             <SubTab
               tab={tab}
@@ -42,7 +42,9 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
 
   return (
     <li
-      className={`w-fit text-xs font-yoon mb-[14px] ${isCurrent && 'font-bold text-main-orange'}`}
+      className={`w-fit text-xs font-yoon mb-3.5 ${
+        isCurrent ? 'font-bold text-main-orange tracking-wider' : 'text-neutral-600'
+      }`}
       style={{ marginLeft }}
     >
       {tab.isPage ? (

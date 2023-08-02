@@ -1,22 +1,20 @@
 import Link from 'next/link';
 
-interface AdjPostInfo {
-  title: string;
-  href: string;
-}
+import { AdjPostInfo } from '@/types/post';
 
 interface AdjPostNavProps {
   prevPost?: AdjPostInfo;
   nextPost?: AdjPostInfo;
+  href: string;
   margin?: string;
 }
 
-export default function AdjPostNav({ prevPost, nextPost, margin = '' }: AdjPostNavProps) {
+export default function AdjPostNav({ prevPost, nextPost, margin = '', href }: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
       <Row post={prevPost} type="next" />
       <Row post={nextPost} type="prev" />
-      <PostListLink />
+      <PostListLink href={href} />
     </div>
   );
 }
@@ -74,10 +72,10 @@ function RowPostTitle({ title }: { title?: string }) {
   );
 }
 
-function PostListLink() {
+function PostListLink({ href }: { href: string }) {
   return (
     <Link
-      href="/news"
+      href={href}
       className="self-end text-white mt-6 text-sm font-noto bg-neutral-600 px-5 py-2 rounded-[.0625rem] font-bold leading-5"
     >
       목록

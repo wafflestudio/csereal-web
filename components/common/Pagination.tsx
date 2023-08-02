@@ -18,7 +18,7 @@ export default function Pagination({
 
   return (
     <div className="flex justify-center">
-      <ul className="flex gap-x-[0.3125rem] font-yoon h-[22px] mx-auto">
+      <ul className="flex gap-x-[0.3125rem] font-yoon h-[1.375rem] mx-auto text-neutral-700 tracking-wide">
         <PaginationArrow
           iconName="keyboard_double_arrow_left"
           num={1}
@@ -89,7 +89,7 @@ function PaginationNumber({ num, isSelected, movePageNumber }: PaginationNumberP
       className={`flex items-center justify-center w-[22px] ${
         isSelected ? 'cursor-auto text-main-orange' : 'cursor-pointer'
       } hover:text-main-orange`}
-      onClick={() => movePageNumber(num)}
+      onClick={() => isSelected || movePageNumber(num)}
     >
       <span className={`text-xs ${isSelected && 'font-bold underline'}`}>{num}</span>
     </li>
