@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react';
 
-import { SearchInfo } from '@/utils/search';
+import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
 import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';

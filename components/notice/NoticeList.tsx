@@ -4,12 +4,13 @@ import { useSearchParams } from 'next/navigation';
 
 import pinIcon from '@/public/image/pin_icon.svg';
 
-import { NoticePostSimple } from '@/types/notice';
+import { paramsToString } from '@/hooks/useCustomSearchParams';
+
 import { notice } from '@/types/page';
+import { NoticePostSimple } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
-import { paramsToString } from '@/utils/search';
 
 interface NoticeListProps {
   posts: NoticePostSimple[];

@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
-import { NoticePost, NoticePostFull, NoticePostSimple } from '@/types/notice';
+import { NoticePost, NoticePostFull, NoticePostSimple } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 

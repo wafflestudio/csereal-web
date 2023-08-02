@@ -1,28 +1,19 @@
 'use client';
 
-import { useParams, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-
 import { getNoticePostDetailAPI } from '@/apis/notice';
 
-import AdjPostNav, { AdjPostInfo } from '@/components/common/AdjPostNav';
+import AdjPostNav from '@/components/common/AdjPostNav';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import PageLayout from '@/components/layout/PageLayout';
 
-import { NoticePostFull } from '@/types/notice';
+import { usePosts } from '@/hooks/usePosts';
+
 import { notice } from '@/types/page';
+import { NoticePostFull } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
-import { paramsToString } from '@/utils/search';
-
-const PrevPostMock = {
-  title:
-    '송현오 교수 연구진, 생성 모델의 이상 행동 탐지 기술 및 인공 신경망 깊이 압축 기술로 세계 선도',
-  href: '',
-};
-const NextPostMock = { title: '(없음)', href: '' };
 
 const writer = '박지혜';
 
@@ -36,29 +27,18 @@ const NoticeDetailMock: NoticePostFull = {
   isPinned: false,
   description: '',
   tags: ['입학', '기타'],
+  prevId: null,
+  nextId: 2,
 };
 
 const noticePath = getPath(notice);
 
 export default function NoticePostPage() {
-  const [post, setPost] = useState<NoticePostFull>(NoticeDetailMock);
-  const [prevPost, setPrevPost] = useState<AdjPostInfo>(PrevPostMock);
-  const [nextPost, setNextPost] = useState<AdjPostInfo>(NextPostMock);
-  const { id } = useParams();
-  const params = useSearchParams();
-
-  const getPost = useCallback(async () => {
-    const data = await getNoticePostDetailAPI(parseInt(id), params);
-    if (data) {
-      setPost(data);
-      // setPrevPost(PrevPostMock);
-      // setNextPost(NextPostMock);
-    }
-  }, [id, params]);
-
-  useEffect(() => {
-    // getPost();
-  }, [getPost]);
+  const { post, prev, next, listPath } = usePosts<NoticePostFull>(
+    noticePath,
+    NoticeDetailMock,
+    getNoticePostDetailAPI,
+  );
 
   return (
     <PageLayout
@@ -73,12 +53,7 @@ export default function NoticePostPage() {
       <div className="border w-auto h-[300px] mb-10 ml-2.5"></div>
       <StraightNode />
       <Tags tags={post.tags} page={notice} margin="mt-3 ml-6" />
-      <AdjPostNav
-        prevPost={prevPost}
-        nextPost={nextPost}
-        href={`${noticePath}${paramsToString(params)}`}
-        margin="mt-12"
-      />
+      <AdjPostNav prevPost={prev} nextPost={next} href={listPath} margin="mt-12" />
     </PageLayout>
   );
 }
