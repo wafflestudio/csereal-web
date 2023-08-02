@@ -1,11 +1,17 @@
-import axios from 'axios';
-import { ReadonlyURLSearchParams } from 'next/navigation';
+import { NoticePost } from '@/types/post';
 
-import { BASE_URL } from './baseURL';
+import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
-const NoticeAPI = axios.create({
-  baseURL: `${BASE_URL}/notice`,
-});
+const noticePath = '/notice';
 
-export const getNoticePostsAPI = (searchParams: ReadonlyURLSearchParams) =>
-  NoticeAPI.get('/', { params: searchParams });
+export const getNoticePosts = (query: string) => getRequest(`${noticePath}${query}`);
+
+export const getNoticePostDetail = (id: number, query: string) =>
+  getRequest(`${noticePath}/${id}${query}`);
+
+export const postNotice = (newPost: NoticePost) => postRequest(noticePath, newPost);
+
+export const patchNotice = (id: number, newPost: Partial<NoticePost>) =>
+  patchRequest(`${noticePath}/${id}`, newPost);
+
+export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
