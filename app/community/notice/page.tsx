@@ -14,10 +14,10 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
-import { NoticePostSimple } from '@/types/post';
+import { SimpleNoticePost } from '@/types/post';
 import { NoticeTags } from '@/types/tag';
 
-const NoticeMockLong: NoticePostSimple = {
+const NoticeMockLong: SimpleNoticePost = {
   id: 1,
   title:
     '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
@@ -25,14 +25,14 @@ const NoticeMockLong: NoticePostSimple = {
   isPinned: true,
 };
 
-const NoticeMock: NoticePostSimple = {
+const NoticeMock: SimpleNoticePost = {
   id: 1,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: false,
 };
 
-const NoticeMockPin: NoticePostSimple = {
+const NoticeMockPin: SimpleNoticePost = {
   id: 2,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   createdAt: '2023-07-11T09:29:13',
@@ -72,7 +72,7 @@ const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const [posts, setPosts] = useState<NoticePostSimple[]>([]);
+  const [posts, setPosts] = useState<SimpleNoticePost[]>([]);
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
   const queryString = useQueryString();
 
@@ -83,7 +83,7 @@ export default function NoticePage() {
   const searchPosts = useCallback(async () => {
     const data = (await getNoticePosts(queryString)) as {
       total: number;
-      searchList: NoticePostSimple[];
+      searchList: SimpleNoticePost[];
     };
     setTotalPostsCount(data.total);
     setPosts(data.searchList);

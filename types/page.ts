@@ -87,7 +87,7 @@ export const community: SegmentNode = {
 };
 
 export const news: SegmentNode = {
-  name: '새소식',
+  name: '새 소식',
   segment: 'news',
   isPage: true,
   parent: community,

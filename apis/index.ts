@@ -6,9 +6,9 @@ const client = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getRequest = async (url: string, headers: object = {}) => {
+export const getRequest = async (url: string, params: object = {}, headers: object = {}) => {
   try {
-    const response = await client.get<unknown>(url, { headers });
+    const response = await client.get<unknown>(url, { headers, params });
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
