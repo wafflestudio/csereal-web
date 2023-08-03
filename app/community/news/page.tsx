@@ -33,9 +33,11 @@ export default function NewsPage({ params }: { params: { id: string } }) {
         setSearchParams={setSearchParams}
       />
       <StraightNode double={true} />
-      {<NewsRow {...makeMockNews()} />}
-      {<NewsRow {...makeMockNews()} />}
-      {<NewsRow {...makeMockNews()} />}
+      <div className="flex flex-col gap-4 mt-10 mb-8">
+        {<NewsRow {...makeMockNews()} />}
+        {<NewsRow {...makeMockNews()} />}
+        {<NewsRow {...makeMockNews()} />}
+      </div>
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}

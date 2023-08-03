@@ -20,14 +20,14 @@ export default function NewsRow({ title, description, tags, date, imageURL }: Ne
     weekday: 'long',
   });
   return (
-    <article className="text-neutral-700 font-noto flex mb-4 pb-4 border-b-2 border-neutral-300">
+    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-300">
       <div className="flex flex-col flex-1 mr-[3.75rem]">
-        <h3 className="text-md font-bold mb-[.69rem]">{title}</h3>
-        <p className="text-xs font-normal mb-[.69rem] break-keep">{description}</p>
+        <h3 className="text-md font-bold mb-[.69rem] break-keep">{title}</h3>
+        <p className="text-xs font-normal mb-[.69rem] break-keep line-clamp-3">{description}</p>
         <Tags margin="mb-[.69rem]" tags={tags} page={news} />
         <time className="self-end text-xs font-normal">{dateStr}</time>
       </div>
-      <div className="w-[12.5rem] aspect-[4/3] relative">
+      <div className="h-[9.375rem] aspect-[4/3] relative">
         <Image alt="포스트 대표 이미지" src={imageURL} fill className="object-fill" />
       </div>
     </article>
