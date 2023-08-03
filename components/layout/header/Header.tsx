@@ -4,7 +4,7 @@ import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
   return (
-    <header className="h-[8.75rem] bg-white sticky top-0 z-40 pt-12 px-[3.75rem] pb-[1.19rem] flex justify-between">
+    <header className="bg-white sticky top-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between">
       <HeaderTitle />
       <HeaderRight />
     </header>
