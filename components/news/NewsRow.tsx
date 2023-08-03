@@ -24,7 +24,7 @@ export default function NewsRow({ title, description, tags, date, imageURL }: Ne
   });
 
   return (
-    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-300 items-center">
+    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-200 items-center">
       <div className="flex flex-col items-start flex-1 mr-[3.75rem] break-keep">
         <Link href="" className="hover:underline">
           <h3 className="text-md font-bold mb-[.69rem]">{title}</h3>
