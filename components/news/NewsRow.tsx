@@ -15,12 +15,14 @@ export interface NewsRowProps {
 
 export default function NewsRow({ title, description, tags, date, imageURL }: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
+
   const dateStr = date.toLocaleDateString('ko', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     weekday: 'long',
   });
+
   return (
     <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-300 items-center">
       <div className="flex flex-col items-start flex-1 mr-[3.75rem] break-keep">
