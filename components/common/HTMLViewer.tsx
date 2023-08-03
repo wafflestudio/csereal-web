@@ -26,7 +26,14 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
             height: mainImage.height,
           }}
         >
-          <Image src={mainImage.url} alt="대표 이미지" priority fill className="object-cover" />
+          <Image
+            src={mainImage.url}
+            alt="대표 이미지"
+            priority
+            fill
+            className="object-cover"
+            sizes={`${mainImage.width}px`}
+          />
         </div>
       )}
       <div
