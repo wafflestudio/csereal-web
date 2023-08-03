@@ -20,10 +20,12 @@ export default function NewsRow({ title, description, tags, date, imageURL }: Ne
     weekday: 'long',
   });
   return (
-    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-300">
-      <div className="flex flex-col flex-1 mr-[3.75rem]">
-        <h3 className="text-md font-bold mb-[.69rem] break-keep">{title}</h3>
-        <p className="text-xs font-normal mb-[.69rem] break-keep line-clamp-3">{description}</p>
+    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-300 items-center">
+      <div className="flex flex-col flex-1 mr-[3.75rem] break-keep">
+        <a href="">
+          <h3 className="text-md font-bold mb-[.69rem] hover:underline">{title}</h3>
+        </a>
+        <p className="text-xs font-normal mb-[.69rem] line-clamp-3">{description}</p>
         <Tags margin="mb-[.69rem]" tags={tags} page={news} />
         <time className="self-end text-xs font-normal">{dateStr}</time>
       </div>
