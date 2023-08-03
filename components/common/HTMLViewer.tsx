@@ -1,3 +1,4 @@
+import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 
 interface HTMLViewerProps {
@@ -13,6 +14,8 @@ interface HTMLViewerProps {
 }
 
 export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTMLViewerProps) {
+  const sanitizedHTML = DOMPurify.sanitize(htmlContent);
+
   return (
     <div className="flow-root">
       {mainImage && (
@@ -34,7 +37,7 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
         [&_li]:list-disc [&_li]:list-inside 
         [&_p]:my-4
         `}
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
+        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       />
     </div>
   );
