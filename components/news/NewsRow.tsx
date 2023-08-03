@@ -36,7 +36,14 @@ export default function NewsRow({ title, description, tags, date, imageURL }: Ne
         <time className="self-end text-xs font-normal">{dateStr}</time>
       </div>
       <Link href="" className="h-[9.375rem] aspect-[4/3] relative">
-        <Image alt="포스트 대표 이미지" src={imageURL} fill className="object-fill" />
+        <Image
+          alt="포스트 대표 이미지"
+          src={imageURL}
+          fill
+          className="object-fill"
+          sizes="12.5rem"
+          priority
+        />
       </Link>
     </article>
   );

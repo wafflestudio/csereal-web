@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { GETNewsPostsResponse, getMockNewsPosts, getNewsPosts } from '@/apis/news';
+import { GETNewsPostsResponse, getMockNewsPosts } from '@/apis/news';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
-import NewsRow, { NewsRowProps } from '@/components/news/NewsRow';
+import NewsRow from '@/components/news/NewsRow';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
@@ -17,7 +17,7 @@ import { NewsTags } from '@/types/tag';
 
 const POST_LIMIT = 10;
 
-export default function NewsPage({ params }: { params: { id: string } }) {
+export default function NewsPage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
   const [posts, setPosts] = useState<GETNewsPostsResponse['searchList']>([]);
