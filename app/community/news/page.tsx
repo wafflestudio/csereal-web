@@ -30,9 +30,7 @@ function MainColumn({
 }) {
   return (
     <div className="">
-      <PageTitle currentPage={news} margin="mb-[3.25rem]">
-        <h3 className="text-lg font-bold break-keep font-yoon">{title}</h3>
-      </PageTitle>
+      <PageTitle currentPage={news} title={title} textSize="text-lg" />
       <HTMLViewer htmlContent={htmlContent} />
       <StraightNode />
       <AdjPostNav
@@ -41,6 +39,7 @@ function MainColumn({
             '송현오 교수 연구진, 생성 모델의 이상 행동 탐지 기술 및 인공 신경망 깊이 압축 기술로 세계 선도',
           href: './',
         }}
+        href="/community/news"
       />
     </div>
   );
