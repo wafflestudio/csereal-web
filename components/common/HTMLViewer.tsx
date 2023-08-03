@@ -1,23 +1,56 @@
+import DOMPurify from 'isomorphic-dompurify';
+import Image from 'next/image';
+
 interface HTMLViewerProps {
   htmlContent: string;
+  mainImage?: {
+    url: string;
+    // px 단위
+    width: number;
+    // px 단위
+    height: number;
+  };
   margin?: string;
 }
 
-export default function HTMLViewer({ htmlContent, margin = '' }: HTMLViewerProps) {
+export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTMLViewerProps) {
+  const sanitizedHTML = DOMPurify.sanitize(htmlContent);
+
   return (
-    <div
-      className={`
-        text-sm font-noto font-regular leading-8 ${margin}
+    <div className="flow-root">
+      {mainImage && (
+        <div
+          className="relative float-right ml-[28px] mb-[28px]"
+          style={{
+            width: mainImage.width,
+            height: mainImage.height,
+          }}
+        >
+          <Image
+            src={mainImage.url}
+            alt="대표 이미지"
+            priority
+            fill
+            className="object-cover"
+            sizes={`${mainImage.width}px`}
+          />
+        </div>
+      )}
+      <div
+        className={`
+        text-sm font-noto font-regular leading-loose 
+        ${margin}
         [&_a]:text-link [&_a]:underline 
-        [&_li]:list-disc [&_li]:list-inside
+        [&_li]:list-disc [&_li]:list-inside 
         [&_p]:my-4
         `}
-      dangerouslySetInnerHTML={{ __html: htmlContent }}
-    />
+        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
+      />
+    </div>
   );
 }
 
-export const mock1 = `
+export const htmlMock1 = `
 <p class="0">■ 효율적으로 최첨단 생성 모델의 이상 행동을 탐지하는 알고리즘 개발</p>
 <p>■ 인공신경망의 깊이를 압축하여 성능을 유지하면서 추론 속도를 가속화</p>
 <p class="0"><a href="https://mllab.snu.ac.kr/">송현오 교수 연구진</a>이 생성 모델의 이상 행동 패턴을 사전에 파악하는 레드 팀 알고리즘 및 인공 신경망 깊이 압축 알고리즘을 개발하였다.</p>
@@ -30,8 +63,8 @@ export const mock1 = `
 </div>
 `;
 
-export const mock2 = `
- <ul>
+export const htmlMock2 = `
+<ul>
 <li>소셜 네트워크에서 활용되는 네트워크 알고리즘을 생물학적 네트워크에 적합하도록 변형</li>
 <li>머신러닝 기술을 접목시켜 약물과 질병의 치료 관계를 높은 정확도로 예측</li>
 <li>인공지능 신약개발 분야에 기존 약학, 병리학적 정보를 십분 활용하는 머신러닝 방법론의 가능성 제시</li>
@@ -44,7 +77,7 @@ export const mock2 = `
 <p><a href="https://www.nature.com/articles/s41467-023-39301-y"><em>"Biomedical knowledge graph learning for drug repurposing by extending guilt-by-association to multiple layers"</em></a>, Dongmin Bang, Sangsoo Lim, Sangseon Lee &amp; Sun Kim, Nature Communications 14.1 (2023): 3570</p>
 `;
 
-export const mock3 = `
+export const htmlMock3 = `
 <p><span style="font-size: small;">박사과정 대학원생 분들께,</span></p>
 <div><span style="font-size: small;">안녕하세요.&nbsp;</span><span style="font-size: small;">&nbsp;</span></div>
 <div><span style="font-size: small;">본교 국제협력본부의 <strong><span style="text-decoration: underline;">대학원생(박사과정 재학생 및 연구생등록 수료자)</span></strong> 대상 2023학년도 2학기 장기해외연수 지원 계획 안내 드립니다.</span></div>
@@ -63,7 +96,7 @@ export const mock3 = `
 <p><span style="font-size: medium;"><br /></span></p>
 `;
 
-export const mock4 = `
+export const htmlMock4 = `
 <p><span>제2회 &lt;Research Fair&gt;, 우리 학부 대학원생 (석사·박사) 졸업연구논문 포스터 발표회가 2023년 6월 15일 오후 12시부터 2시까지 컴퓨터연구소 민상렬홀(서울대 138동)에서 개최되었습니다. </span></p>
 <p><span>리서치 페어 (Research Fair)는 컴퓨터공학부 SNU 10-10 프로젝트 사업의 일환으로 2022년에 신설되었으며, 대학원 졸업 예정자들이 졸업연구논문을 포스터 발표하고 현장 피드백을 받을 수 있도록 기획된 행사입니다. 이번 행사는 2023년 8월 졸업예정자 34명(석사 15명, 박사 19명)의 자유로운 졸업연구논문 포스터 Q&amp;A 시간을 기본으로, 조상연 삼성전자 부사장님의 키노트 강연과 케이터링 뷔페로 알차게 구성되었습니다. 포스터 발표한 졸업 예정자에게는, 학부 교수님 10분 및 외부 심사위원 2분의 심사 결과를 반영하여 우수포스터발표상 (석사 및 박사 각 1, 2, 3등)을 시상하였습니다. </span></p>
 <p><span>이 날 참가한 100여 명의 주전공생, 자유전공학부생, 다전공생들에게는 우리 학부 대학원 연구자들의 다양하고 혁신적인 연구를 살펴보고 대학원 진학의 긍정적인 의미를 찾아가는 기회가 제공되었습니다.</span></p>
