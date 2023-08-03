@@ -1,43 +1,17 @@
+import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
+
+import { GETNewsPostResponse, GETNewsPostsResponse } from '@/types/post';
+
 import { getRequest } from '.';
 
-// 새 소식 목록 GET
-// TODO: 이러면 페이지당 몇 개 보내주는지는 백에서 알아서 하나?
-export interface GETNewsPostParams {
-  tags?: string[];
-  keyword?: string;
-  page?: number;
-}
-
-export interface GETNewsPostsResponse {
-  total: number;
-  searchList: {
-    id: number;
-    title: string;
-    tags: string[];
-    description: string;
-    createdAt: string;
-    imageURL: string;
-  }[];
-}
-
-export const getNewsPosts = (params: GETNewsPostParams) =>
+export const getNewsPosts = (params: PostSearchQueryParams) =>
   getRequest('/news', params) as Promise<GETNewsPostsResponse>;
 
-// 새소식 글 내용 GET
-interface GETNewsPostResponse {
-  id: number;
-  title: string;
-  description: string;
-  createdAt: string;
-  modifiedAt: string;
-  prevId: number | null;
-  nextId: number | null;
-}
+export const getNewsPost = (id: number, params: PostSearchQueryParams) =>
+  getRequest(`/news/${id}`, params) as Promise<GETNewsPostResponse>;
 
-export const getNewsPost = (id: number) => getRequest(`news/${id}`) as Promise<GETNewsPostResponse>;
-
-// MOCKs
-export const getMockNewsPosts: typeof getNewsPosts = async (params: GETNewsPostParams) => {
+// mock
+export const getMockNewsPosts: typeof getNewsPosts = async (params: PostSearchQueryParams) => {
   const searchList = Array(10)
     .fill(0)
     .map((_, id) => ({

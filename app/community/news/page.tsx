@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { GETNewsPostsResponse, getMockNewsPosts } from '@/apis/news';
+import { getMockNewsPosts } from '@/apis/news';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -13,6 +13,7 @@ import NewsRow from '@/components/news/NewsRow';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { news } from '@/types/page';
+import { GETNewsPostsResponse } from '@/types/post';
 import { NewsTags } from '@/types/tag';
 
 const POST_LIMIT = 10;
@@ -28,9 +29,9 @@ export default function NewsPage() {
 
   const fetchPost = useCallback(async () => {
     const resp = await getMockNewsPosts({
-      tags,
+      tag: tags,
       keyword: keyword === null ? undefined : keyword,
-      page,
+      page: page + '',
     });
     setTotalPostsCount(resp.total);
     setPosts(resp.searchList);

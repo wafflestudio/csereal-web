@@ -1,6 +1,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export type QueryParams = { page?: string; keyword?: string; tag?: string[] };
+export type PostSearchQueryParams = { page?: string; keyword?: string; tag?: string[] };
+
 export type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }
   | { purpose: 'navigation'; page: number };
@@ -21,7 +22,7 @@ export function useCustomSearchParams(initPath?: string) {
     router.push(pathWithQuery);
   };
 
-  const convertObjToPairArr = (params: QueryParams) => {
+  const convertObjToPairArr = (params: PostSearchQueryParams) => {
     const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
       Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]],
     );
@@ -32,7 +33,7 @@ export function useCustomSearchParams(initPath?: string) {
     let newSearchParams: URLSearchParams;
 
     if (searchInfo.purpose == 'search') {
-      const newParams: QueryParams = { page: '1' };
+      const newParams: PostSearchQueryParams = { page: '1' };
       if (searchInfo.keyword) newParams.keyword = searchInfo.keyword;
       if (searchInfo.tag) newParams.tag = searchInfo.tag;
       const pairs = convertObjToPairArr(newParams);

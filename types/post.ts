@@ -18,12 +18,34 @@ export interface NoticePost extends Post {
   isPinned: boolean;
 }
 
-export interface NoticePostFull extends NoticePost, FullPost {}
+export interface FullNoticePost extends NoticePost, FullPost {}
 
-export interface NoticePostSimple
-  extends Pick<NoticePostFull, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
+export interface SimpleNoticePost
+  extends Pick<FullNoticePost, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
 
 export interface AdjPostInfo {
   title: string;
   href: string;
+}
+
+export interface GETNewsPostsResponse {
+  total: number;
+  searchList: {
+    id: number;
+    title: string;
+    tags: string[];
+    description: string;
+    createdAt: string;
+    imageURL: string;
+  }[];
+}
+
+export interface GETNewsPostResponse {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+  modifiedAt: string;
+  prevId: number | null;
+  nextId: number | null;
 }
