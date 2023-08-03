@@ -8,15 +8,15 @@ import SearchForm from '@/components/common/search/SearchForm';
 import Tags from '@/components/common/Tags';
 import PageLayout from '@/components/layout/PageLayout';
 
+import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+
 import { news } from '@/types/page';
 import { NewsTags } from '@/types/tag';
-
-import { useCustomSearchParams } from '@/utils/search';
 
 const POST_LIMIT = 20;
 
 export default function NewsPage({ params }: { params: { id: string } }) {
-  const { page, keyword, tags, searchParams, setSearchParams } = useCustomSearchParams();
+  const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
   const pageTemp = page ? +page : 0;
 

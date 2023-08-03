@@ -11,7 +11,7 @@ export function useCustomSearchParams(initPath?: string) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const page = searchParams.get('page');
+  const page = parseInt(searchParams.get('page') ?? '1');
   const keyword = searchParams.get('keyword');
   const tags = searchParams.getAll('tag');
 
@@ -47,5 +47,5 @@ export function useCustomSearchParams(initPath?: string) {
     moveToNewPathWithQuery(newSearchParams);
   };
 
-  return { page, keyword, tags, searchParams, setSearchParams } as const;
+  return { page, keyword, tags, setSearchParams } as const;
 }
