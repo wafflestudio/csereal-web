@@ -1,4 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
+
+import facebookIcon from '@/public/image/Facebook_icon.svg';
+import snuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
+import snuLogoWithText from '@/public/image/SNU_Logo_With_Text.svg';
+import snucomIcon from '@/public/image/SNUCOM.svg';
 
 import { aboutLinks, resourcesLinks, researchLinks, moreLinks, FooterLink } from './footerLinks';
 
@@ -44,5 +50,12 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
 }
 
 function FooterBottom() {
-  return <div className="bg-neutral-100"></div>;
+  return (
+    <div className="bg-neutral-100 px-8 py-15">
+      <Image src={facebookIcon} alt="페이스북 로고" />
+      <Image src={snucomIcon} alt="서울대 컴퓨터공학 동문회 로고" />
+      <Image src={snuEngineeringIcon} alt="서울대 공과대학 로고" />
+      <Image src={snuLogoWithText} alt="서울대 로고" />
+    </div>
+  );
 }
