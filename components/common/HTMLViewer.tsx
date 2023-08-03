@@ -28,9 +28,10 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
       )}
       <div
         className={`
-        text-sm font-noto font-regular leading-8 ${margin}
+        text-sm font-noto font-regular leading-loose 
+        ${margin}
         [&_a]:text-link [&_a]:underline 
-        [&_li]:list-disc [&_li]:list-inside
+        [&_li]:list-disc [&_li]:list-inside 
         [&_p]:my-4
         `}
         dangerouslySetInnerHTML={{ __html: htmlContent }}
@@ -53,7 +54,7 @@ export const htmlMock1 = `
 `;
 
 export const htmlMock2 = `
- <ul>
+<ul>
 <li>소셜 네트워크에서 활용되는 네트워크 알고리즘을 생물학적 네트워크에 적합하도록 변형</li>
 <li>머신러닝 기술을 접목시켜 약물과 질병의 치료 관계를 높은 정확도로 예측</li>
 <li>인공지능 신약개발 분야에 기존 약학, 병리학적 정보를 십분 활용하는 머신러닝 방법론의 가능성 제시</li>

@@ -5,9 +5,9 @@ export default function NewsPostPage() {
     <HTMLViewer
       htmlContent={htmlMock1}
       mainImage={{
-        url: 'https://picsum.photos/800',
+        url: 'https://picsum.photos/801',
         width: 320,
-        height: 200,
+        height: 240,
       }}
     />
   );
