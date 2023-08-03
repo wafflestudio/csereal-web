@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import facebookIcon from '@/public/image/Facebook_icon.svg';
 import snuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
-import snuLogoWithText from '@/public/image/SNU_Logo_With_Text.svg';
+import snuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import snucomIcon from '@/public/image/SNUCOM.svg';
 
 import { aboutLinks, resourcesLinks, researchLinks, moreLinks, FooterLink } from './footerLinks';
