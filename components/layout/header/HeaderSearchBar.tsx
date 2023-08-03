@@ -19,28 +19,23 @@ export default function HeaderSearchBar() {
     if (trimmedText) setSearchParams({ keyword: trimmedText, purpose: 'search' });
   };
 
-  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') searchText();
-  };
-
   return (
-    <div className="flex justify-center outline outline-1 outline-neutral-700 rounded-[.1875rem] max-w-[13.5rem] w-full">
+    <form
+      className="flex justify-center outline outline-1 outline-neutral-700 rounded-[.1875rem] max-w-[13.5rem] w-full"
+      onSubmit={searchText}
+    >
       <input
         type="text"
         id="search"
         className="outline-none font-yoon text-xs w-full pl-2"
         value={text}
         onChange={handleChange}
-        onKeyDown={handleKeyDown}
       />
-      <button
-        onClick={searchText}
-        className="flex justify-center items-center py-[.31rem] pr-[.81rem]"
-      >
+      <button className="flex justify-center items-center py-[.31rem] pr-[.81rem]">
         <span className="material-symbols-rounded text-xl font-normal text-neutral-700">
           search
         </span>
       </button>
-    </div>
+    </form>
   );
 }

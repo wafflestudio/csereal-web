@@ -18,7 +18,7 @@ function HeaderTitle() {
         <h2 className="text-xl tracking-[.03438rem] line-clamp-1 mb-[0.31rem]">
           서울대학교 컴퓨터공학부
         </h2>
-        <h3 className="text-md tracking-[-0.04375rem] line-clamp-2">
+        <h3 className="text-md tracking-[-0.04375rem] line-clamp-2 leading-tight">
           Seoul National University
           <br />
           Dept. of Computer Science and Engineering

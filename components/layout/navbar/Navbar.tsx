@@ -31,7 +31,10 @@ export default function Navbar() {
   };
 
   return (
-    <div className="relative row-span-full bg-main-orange flex" onMouseLeave={handleMouseLeave}>
+    <div
+      className="relative row-span-full bg-main-orange flex z-50"
+      onMouseLeave={handleMouseLeave}
+    >
       <NavbarRoot state={state} setState={setState} />
       {state.type === 'hovered' && <NavbarDetail segmentNode={state.segmentNode} />}
     </div>

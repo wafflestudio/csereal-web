@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <div className="overflow-auto">
           <Header />
-          <main>{children}</main>
+          <main className="min-w-fit">{children}</main>
           <Footer />
         </div>
       </body>
