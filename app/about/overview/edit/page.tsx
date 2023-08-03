@@ -11,7 +11,7 @@ import {
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
 
-import { greetings } from '@/types/page';
+import { overview } from '@/types/page';
 
 export default function EditorPage() {
   const ref = useRef<Editor>(null);
@@ -33,13 +33,10 @@ export default function EditorPage() {
 
   return (
     <div className="mx-10 mt-5 mb-40 h-screen">
-      <PageTitle currentPage={greetings}>
-        <h3 className="text-2xl font-bold break-keep font-yoon">학부 소개</h3>
-      </PageTitle>
+      <PageTitle title="학부 소개" currentPage={overview} textSize="text-lg" />
       <div className="flex w-full h-full my-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full mt-5 mr-10">
           <LanguageSelect language={language} setLanguage={setLanguage} />
-          <TitleInput title={title} setTitle={setTitle} />
           <ContentEditor content={content} editorRef={ref} />
           <ProfilePictureUpload onImageSelect={handleImageSelect} />
           <div className="flex flex-row-reverse">
@@ -51,7 +48,7 @@ export default function EditorPage() {
             </button>
           </div>
         </form>
-        <Sidebar currentTab={greetings} />
+        <Sidebar currentTab={overview} />
       </div>
     </div>
   );

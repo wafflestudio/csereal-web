@@ -33,13 +33,10 @@ export default function EditorPage() {
 
   return (
     <div className="mx-10 mt-5 mb-40 h-screen">
-      <PageTitle currentPage={greetings}>
-        <h3 className="text-2xl font-bold break-keep font-yoon">학부장 인사말</h3>
-      </PageTitle>
+      <PageTitle title="학부장 인사말" currentPage={greetings} textSize="text-lg" />
       <div className="flex w-full h-full my-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full mt-5 mr-10">
           <LanguageSelect language={language} setLanguage={setLanguage} />
-          <TitleInput title={title} setTitle={setTitle} />
           <ContentEditor content={content} editorRef={ref} />
           <ProfilePictureUpload onImageSelect={handleImageSelect} />
           <div className="flex flex-row-reverse">
