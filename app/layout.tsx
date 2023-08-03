@@ -1,5 +1,5 @@
 import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
+import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 
 import '@/styles/globals.css';
@@ -13,11 +13,13 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="grid grid-rows-[auto_1fr] grid-cols-[auto_1fr]">
+      <body
+        className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
+      >
         <Navbar />
         <div className="overflow-auto">
           <Header />
-          <main className={`${yoonGothic.variable} ${noto.variable}`}>{children}</main>
+          <main className="min-w-fit">{children}</main>
           <Footer />
         </div>
       </body>

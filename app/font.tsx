@@ -21,6 +21,11 @@ export const yoonGothic = localFont({
       weight: '500',
       style: 'normal',
     },
+    {
+      path: '../public/font/YoonGothicPro775.ttf',
+      weight: '700',
+      style: 'normal',
+    },
   ],
   display: 'swap',
   variable: '--font-yoon',
