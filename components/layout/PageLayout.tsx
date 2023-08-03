@@ -16,7 +16,7 @@ export default function PageLayout({ currentPage, title, titleSize, children }: 
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageTitle title={title} currentPage={currentPage} textSize={titleSize} />
-      <div className="row-start-2 col-start-1">{children}</div>
+      <div className="w-[52.5rem] row-start-2 col-start-1">{children}</div>
       <Sidebar currentTab={currentPage} />
     </div>
   );
