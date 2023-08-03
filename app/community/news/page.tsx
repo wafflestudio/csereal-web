@@ -27,6 +27,7 @@ export default function NewsPage({ params }: { params: { id: string } }) {
   return (
     <PageLayout currentPage={news} title="새 소식" titleSize="text-2xl">
       <SearchForm
+        key={tags + ''}
         tags={NewsTags}
         initTags={tags}
         initKeyword={keyword ?? ''}

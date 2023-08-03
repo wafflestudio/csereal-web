@@ -1,4 +1,5 @@
-import { useReducer, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useReducer, useState } from 'react';
 
 import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
