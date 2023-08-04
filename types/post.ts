@@ -5,7 +5,7 @@ export interface Post {
   isSlide: boolean;
 }
 
-export interface FullPost extends Post {
+export interface PostResponse extends Post {
   readonly id: number;
   readonly createdAt: string;
   readonly modifiedAt: string;
@@ -18,10 +18,15 @@ export interface NoticePost extends Post {
   isPinned: boolean;
 }
 
-export interface FullNoticePost extends NoticePost, FullPost {}
+export interface NoticePostResponse extends NoticePost, PostResponse {}
 
 export interface SimpleNoticePost
-  extends Pick<FullNoticePost, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
+  extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
+
+export interface GETNoticePostsResponse {
+  total: number;
+  searchList: SimpleNoticePost[];
+}
 
 export interface AdjPostInfo {
   title: string;

@@ -81,13 +81,10 @@ export default function NoticePage() {
   };
 
   const searchPosts = useCallback(async () => {
-    const data = (await getNoticePosts(queryString)) as {
-      total: number;
-      searchList: SimpleNoticePost[];
-    };
+    const data = await getNoticePosts({ page, keyword, tag: tags });
     setTotalPostsCount(data.total);
     setPosts(data.searchList);
-  }, [queryString]);
+  }, [page, keyword, tags]);
 
   useEffect(() => {
     // searchPosts();
