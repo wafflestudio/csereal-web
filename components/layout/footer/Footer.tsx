@@ -12,21 +12,22 @@ import { getPath } from '@/utils/page';
 
 import { aboutLinks, resourcesLinks, researchLinks, moreLinks, FooterLink } from './footerLinks';
 
+const privacyPath = '/404';
 const contactPath = getPath(contact);
 const directionsPath = getPath(directions);
 
 export default function Footer() {
   return (
-    <>
+    <div className="min-w-[1280px] border-t-2 border-neutral-100">
       <FooterTop />
       <FooterBottom />
-    </>
+    </div>
   );
 }
 
 function FooterTop() {
   return (
-    <div className="bg-white px-[3.75rem] py-8 flex border-t-2 border-neutral-100">
+    <div className="bg-white px-[3.75rem] py-8 flex">
       <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" />
       <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" />
       <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" />
@@ -64,7 +65,7 @@ function FooterBottom() {
     <div className="bg-neutral-100 px-[3.75rem] py-8 flex justify-between items-center">
       <div className="text-neutral-500 font-noto text-[.5625rem] tracking-[.01125rem]">
         <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1 tracking-[10%]">
-          <Link href="https://cse.snu.ac.kr/privacy-policy">개인정보처리방침</Link>
+          <Link href={privacyPath}>개인정보처리방침</Link>
           <span>|</span>
           <Link href={contactPath}>학부 연락처</Link>
           <span>|</span>
