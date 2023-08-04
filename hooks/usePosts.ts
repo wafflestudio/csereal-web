@@ -1,38 +1,41 @@
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { AdjPostInfo, FullPost } from '@/types/post';
+import { AdjPostInfo, PostResponse } from '@/types/post';
 
+import { PostSearchQueryParams, useCustomSearchParams } from './useCustomSearchParams';
 import { useQueryString } from './useQueryString';
 
-export function usePosts<T extends FullPost>(
+export function usePosts<T extends PostResponse>(
   listPath: string,
-  getPostDetail: (id: number, query: string) => Promise<unknown>,
+  getPostDetail: (id: number, params: PostSearchQueryParams) => Promise<T>,
 ) {
   const [posts, setPosts] = useState<{ curr?: T; prev?: AdjPostInfo; next?: AdjPostInfo }>({});
-  const { id } = useParams();
+  const { page, keyword, tags } = useCustomSearchParams();
+  const searchParams = useMemo(() => ({ page, keyword, tag: tags }), [page, keyword, tags]);
+  const id = parseInt(useParams().id);
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
   const getAdjPost = useCallback(
     async (id: number, type: 'prev' | 'next') => {
-      const adjPost = (await getPostDetail(id, queryString)) as T;
+      const adjPost = await getPostDetail(id, searchParams);
       const adjPostInfo = adjPost
         ? { title: adjPost.title, href: `${listPath}/${adjPost.id}${queryString}` }
         : undefined;
       setPosts((p) => ({ ...p, [type]: adjPostInfo }));
     },
-    [listPath, queryString, getPostDetail],
+    [searchParams, listPath, queryString, getPostDetail],
   );
 
   useEffect(() => {
-    // (async () => {
-    //   const curr = (await getPostDetail(parseInt(id), queryString)) as T;
-    //   setPosts((p) => ({ ...p, curr: curr }));
-    //   if (curr.prevId) getAdjPost(curr.prevId, 'prev');
-    //   if (curr.nextId) getAdjPost(curr.nextId, 'next');
-    // })();
-  }, [id, queryString, getAdjPost, getPostDetail]);
+    (async () => {
+      const curr = await getPostDetail(id, searchParams);
+      setPosts((p) => ({ ...p, curr: curr }));
+      if (curr.prevId) getAdjPost(curr.prevId, 'prev');
+      if (curr.nextId) getAdjPost(curr.nextId, 'next');
+    })();
+  }, [id, searchParams, getAdjPost, getPostDetail]);
 
   return { posts, listPathWithQuery } as const;
 }

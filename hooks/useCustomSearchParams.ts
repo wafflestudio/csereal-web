@@ -1,10 +1,17 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export type PostSearchQueryParams = { page?: string; keyword?: string; tag?: string[] };
+export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] };
 
 export type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }
   | { purpose: 'navigation'; page: number };
+
+export const convertObjToURLSearchParams = (params: PostSearchQueryParams) => {
+  const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
+    Array.isArray(value) ? value.map((v) => [key, v.toString()]) : [[key, value.toString()]],
+  );
+  return new URLSearchParams(flattenedArray);
+};
 
 // 검색 결과를 현재 페이지가 아니라 다른 페이지에서 보여줘야 할 때는 initPath 따로 설정
 export function useCustomSearchParams(initPath?: string) {
@@ -13,7 +20,7 @@ export function useCustomSearchParams(initPath?: string) {
   const router = useRouter();
 
   const page = parseInt(searchParams.get('page') ?? '1');
-  const keyword = searchParams.get('keyword');
+  const keyword = searchParams.get('keyword') ?? undefined;
   const tags = searchParams.getAll('tag');
 
   const moveToNewPathWithQuery = (params: URLSearchParams) => {
@@ -22,27 +29,17 @@ export function useCustomSearchParams(initPath?: string) {
     router.push(pathWithQuery);
   };
 
-  const convertObjToPairArr = (params: PostSearchQueryParams) => {
-    const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
-      Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]],
-    );
-    return flattenedArray;
-  };
-
   const setSearchParams = (searchInfo: SearchInfo) => {
     let newSearchParams: URLSearchParams;
 
     if (searchInfo.purpose == 'search') {
-      const newParams: PostSearchQueryParams = { page: '1' };
+      const newParams: PostSearchQueryParams = {};
       if (searchInfo.keyword) newParams.keyword = searchInfo.keyword;
       if (searchInfo.tag) newParams.tag = searchInfo.tag;
-      const pairs = convertObjToPairArr(newParams);
-      newSearchParams = new URLSearchParams(pairs);
+      newSearchParams = convertObjToURLSearchParams(newParams);
     } else {
       newSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
-      searchInfo.page
-        ? newSearchParams.set('page', searchInfo.page.toString())
-        : newSearchParams.delete('page');
+      newSearchParams.set('page', searchInfo.page.toString());
     }
 
     moveToNewPathWithQuery(newSearchParams);
