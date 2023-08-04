@@ -36,12 +36,12 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   );
 
   useEffect(() => {
-    (async () => {
-      const curr = await getPostDetail(id, searchParams);
-      setPosts((p) => ({ ...p, curr: curr }));
-      if (curr.prevId) getAdjPost(curr.prevId, 'prev');
-      if (curr.nextId) getAdjPost(curr.nextId, 'next');
-    })();
+    // (async () => {
+    //   const curr = await getPostDetail(id, searchParams);
+    //   setPosts((p) => ({ ...p, curr: curr }));
+    //   if (curr.prevId) getAdjPost(curr.prevId, 'prev');
+    //   if (curr.nextId) getAdjPost(curr.nextId, 'next');
+    // })();
   }, [id, searchParams, getAdjPost, getPostDetail]);
 
   return { posts, listPathWithQuery } as const;
