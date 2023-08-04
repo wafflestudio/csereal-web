@@ -4,7 +4,7 @@ import { SegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-import useCurrentSegmentNode from './useCurrentSegmentNode';
+import useCurrentSegmentNode from '../../../hooks/useCurrentSegmentNode';
 
 export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode }) {
   const currentSegmentNode = useCurrentSegmentNode();

@@ -6,13 +6,13 @@ import pinIcon from '@/public/image/pin_icon.svg';
 import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
-import { NoticePostSimple } from '@/types/post';
+import { SimpleNoticePost } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
 interface NoticeListProps {
-  posts: NoticePostSimple[];
+  posts: SimpleNoticePost[];
 }
 
 const noticePath = getPath(notice);
@@ -42,7 +42,7 @@ export default function NoticeList({ posts }: NoticeListProps) {
 }
 
 interface NoticeListRowProps {
-  post: NoticePostSimple;
+  post: SimpleNoticePost;
   isPinned: boolean;
   idx: number;
   href: string;
