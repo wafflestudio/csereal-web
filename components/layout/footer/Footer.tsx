@@ -46,12 +46,9 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
   return (
     <section className={`${width}`}>
       <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
-      <ul>
+      <ul className="text-neutral-500 text-[.625rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (
-          <li
-            key={i}
-            className="text-neutral-500 text-[.625rem] font-normal mb-2 tracking-[.0125rem]"
-          >
+          <li key={i} className="mb-2">
             <Link href={link.href}>{link.title}</Link>
           </li>
         ))}
@@ -63,37 +60,48 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
 function FooterBottom() {
   return (
     <div className="bg-neutral-100 px-[3.75rem] py-8 flex justify-between items-center">
-      <div className="text-neutral-500 font-noto text-[.5625rem] tracking-[.01125rem]">
-        <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1 tracking-[10%]">
-          <Link href={privacyPath}>개인정보처리방침</Link>
-          <span>|</span>
-          <Link href={contactPath}>학부 연락처</Link>
-          <span>|</span>
-          <Link href={directionsPath}>찾아오시는 길</Link>
-        </div>
-        <address className="not-italic mb-4">
-          8826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)
-        </address>
-        <p className="font-normal">
-          Powered by CSEREAL <br />
-          Copyright © Department of CSE, SNU. All Rights Reserved.
-        </p>
-      </div>
+      <FooterBottomLeft />
+      <FooterBottomRight />
+    </div>
+  );
+}
 
-      <div className="flex gap-7">
-        <Link href="https://www.facebook.com/groups/snucsegroup/">
-          <Image src={facebookIcon} alt="페이스북 로고" />
-        </Link>
-        <Link href="http://www.snucom.org/">
-          <Image src={snucomIcon} alt="서울대 컴퓨터공학 동문회 로고" />
-        </Link>
-        <Link href="http://eng.snu.ac.kr/">
-          <Image src={snuEngineeringIcon} alt="서울대 공과대학 로고" />
-        </Link>
-        <Link href="https://www.snu.ac.kr/snunow/pr/videos">
-          <Image src={snuLogoWithText} alt="서울대 로고" />
-        </Link>
+function FooterBottomLeft() {
+  return (
+    <div className="text-neutral-500 font-noto text-[.5625rem] tracking-[.01125rem]">
+      <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
+        <Link href={privacyPath}>개인정보처리방침</Link>
+        <span>|</span>
+        <Link href={contactPath}>학부 연락처</Link>
+        <span>|</span>
+        <Link href={directionsPath}>찾아오시는 길</Link>
       </div>
+      <address className="not-italic mb-4">
+        8826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)
+      </address>
+      <p className="font-normal">
+        Powered by CSEREAL <br />
+        Copyright © Department of CSE, SNU. All Rights Reserved.
+      </p>
+    </div>
+  );
+}
+
+function FooterBottomRight() {
+  return (
+    <div className="flex gap-7">
+      <Link href="https://www.facebook.com/groups/snucsegroup/">
+        <Image src={facebookIcon} alt="페이스북 로고" />
+      </Link>
+      <Link href="http://www.snucom.org/">
+        <Image src={snucomIcon} alt="서울대 컴퓨터공학 동문회 로고" />
+      </Link>
+      <Link href="http://eng.snu.ac.kr/">
+        <Image src={snuEngineeringIcon} alt="서울대 공과대학 로고" />
+      </Link>
+      <Link href="https://www.snu.ac.kr/snunow/pr/videos">
+        <Image src={snuLogoWithText} alt="서울대 로고" />
+      </Link>
     </div>
   );
 }
