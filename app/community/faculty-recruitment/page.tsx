@@ -1,3 +1,7 @@
+import Image from 'next/image';
+
+import bannerRectangle from '@/public/image/BannerRectangle.svg';
+
 import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/PageLayout';
 
@@ -5,7 +9,7 @@ import { facultyRecruitment } from '@/types/page';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 
 // TODO
-const BASE_URL = '';
+// const BASE_URL = '';
 
 export default async function FacultyRecruitment() {
   //   const res = await fetch(BASE_URL) as GETFacultyRecruitmentResponse;
@@ -26,13 +30,17 @@ function LatestRecruitmentBanner({
   return (
     <>
       <a
-        className="block w-[25rem] h-[4.5rem] bg-neutral-700 rounded-[.3125rem]"
+        className="block relative w-[25rem] h-[4.5rem] bg-neutral-700 rounded-[.3125rem] text-white font-yoon"
         href={latestRecruitmentPostHref}
       >
-        <p className="text-white font-yoon text-base font-bold tracking-[.025rem] pt-5 pl-6">
+        <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
           최근 채용 바로가기
         </p>
-        <p>{latestRecruitmentPostTitle}</p>
+        <div className="flex items-center absolute right-5 bottom-[.87rem]">
+          <p className="text-xs font-medium tracking-[.001875rem] ">{latestRecruitmentPostTitle}</p>
+          <span className="material-symbols-outlined text-base">navigate_next</span>
+        </div>
+        <Image src={bannerRectangle} alt="" className="absolute right-0" />
       </a>
       <HTMLViewer htmlContent={htmlContent} />
     </>
