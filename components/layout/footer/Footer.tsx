@@ -18,10 +18,10 @@ const directionsPath = getPath(directions);
 
 export default function Footer() {
   return (
-    <div className="min-w-[1280px] border-t-2 border-neutral-100">
+    <footer className="border-t-2 border-neutral-100 mt-20">
       <FooterTop />
       <FooterBottom />
-    </div>
+    </footer>
   );
 }
 
