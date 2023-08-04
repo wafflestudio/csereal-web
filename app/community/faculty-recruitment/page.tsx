@@ -18,6 +18,7 @@ export default async function FacultyRecruitment() {
   return (
     <PageLayout currentPage={facultyRecruitment} title="신임교수초빙" titleSize="text-2xl">
       <LatestRecruitmentBanner {...res} />
+      <HTMLViewer htmlContent={res.htmlContent} />
     </PageLayout>
   );
 }
@@ -25,25 +26,21 @@ export default async function FacultyRecruitment() {
 function LatestRecruitmentBanner({
   latestRecruitmentPostTitle,
   latestRecruitmentPostHref,
-  htmlContent,
 }: GETFacultyRecruitmentResponse) {
   return (
-    <>
-      <a
-        className="block relative w-[25rem] h-[4.5rem] bg-neutral-700 rounded-[.3125rem] text-white font-yoon"
-        href={latestRecruitmentPostHref}
-      >
-        <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
-          최근 채용 바로가기
-        </p>
-        <div className="flex items-center absolute right-5 bottom-[.87rem]">
-          <p className="text-xs font-medium tracking-[.001875rem] ">{latestRecruitmentPostTitle}</p>
-          <span className="material-symbols-outlined text-base">navigate_next</span>
-        </div>
-        <Image src={bannerRectangle} alt="" className="absolute right-0" />
-      </a>
-      <HTMLViewer htmlContent={htmlContent} />
-    </>
+    <a
+      className="block relative w-[25rem] h-[4.5rem] bg-neutral-700 rounded-[.3125rem] text-white font-yoon mb-8"
+      href={latestRecruitmentPostHref}
+    >
+      <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
+        최근 채용 바로가기
+      </p>
+      <div className="flex items-center absolute right-5 bottom-[.87rem]">
+        <p className="text-xs font-medium tracking-[.001875rem] ">{latestRecruitmentPostTitle}</p>
+        <span className="material-symbols-outlined text-base">navigate_next</span>
+      </div>
+      <Image src={bannerRectangle} alt="" className="absolute right-0" />
+    </a>
   );
 }
 
