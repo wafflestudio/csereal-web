@@ -31,7 +31,7 @@ export default function NewsPage() {
     const resp = await getMockNewsPosts({
       tag: tags,
       keyword: keyword === null ? undefined : keyword,
-      page: page + '',
+      page: page,
     });
     setTotalPostsCount(resp.total);
     setPosts(resp.searchList);

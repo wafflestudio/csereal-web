@@ -29,7 +29,7 @@ function Tag({ tag, page }: TagProps) {
   return (
     <Link
       href={{ pathname: getPath(page), query: { tag: tag } }}
-      className="border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-[1.4375rem] text-xs"
+      className="border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-6 text-xs"
     >
       {tag}
     </Link>
