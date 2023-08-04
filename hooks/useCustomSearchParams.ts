@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { convertObjToURLSearchParams } from '@/utils/objectToURLParams';
+import { convertObjToURLSearchParams } from '@/utils/convert';
 
 export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] };
 

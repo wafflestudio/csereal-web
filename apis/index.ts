@@ -1,6 +1,6 @@
 import axios, { isAxiosError } from 'axios';
 
-import { convertObjToURLSearchParams } from '@/utils/objectToURLParams';
+import { convertObjToURLSearchParams } from '@/utils/convert';
 
 const BASE_URL = '';
 
