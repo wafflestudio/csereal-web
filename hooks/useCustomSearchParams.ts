@@ -1,17 +1,12 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import { convertObjToURLSearchParams } from '@/utils/objectToURLParams';
+
 export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] };
 
 export type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }
   | { purpose: 'navigation'; page: number };
-
-export const convertObjToURLSearchParams = (params: PostSearchQueryParams) => {
-  const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
-    Array.isArray(value) ? value.map((v) => [key, v.toString()]) : [[key, value.toString()]],
-  );
-  return new URLSearchParams(flattenedArray);
-};
 
 // 검색 결과를 현재 페이지가 아니라 다른 페이지에서 보여줘야 할 때는 initPath 따로 설정
 export function useCustomSearchParams(initPath?: string) {

@@ -6,14 +6,14 @@ import { AdjPostInfo } from '@/types/post';
 import { PostSearchQueryParams, useCustomSearchParams } from './useCustomSearchParams';
 import { useQueryString } from './useQueryString';
 
-interface PostInfo {
+interface PostWithAdjIdInfo {
   id: number;
   title: string;
   nextId: number | null;
   prevId: number | null;
 }
 
-export function usePosts<T extends PostInfo>(
+export function usePosts<T extends PostWithAdjIdInfo>(
   listPath: string,
   getPostDetail: (id: number, params: PostSearchQueryParams) => Promise<T>,
 ) {
