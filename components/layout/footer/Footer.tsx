@@ -43,11 +43,14 @@ interface LinkGroupProps {
 
 function LinkGroup({ groupName, links, width }: LinkGroupProps) {
   return (
-    <section>
-      <h3 className={`text-neutral-600 text-xs font-medium mb-2 ${width}`}>{groupName}</h3>
+    <section className={`${width}`}>
+      <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
       <ul>
         {links.map((link, i) => (
-          <li key={i} className="text-neutral-500 text-[.625rem] font-normal mb-2">
+          <li
+            key={i}
+            className="text-neutral-500 text-[.625rem] font-normal mb-2 tracking-[.0125rem]"
+          >
             <Link href={link.href}>{link.title}</Link>
           </li>
         ))}
@@ -59,8 +62,8 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
 function FooterBottom() {
   return (
     <div className="bg-neutral-100 px-[3.75rem] py-8 flex justify-between items-center">
-      <div className="text-neutral-500 font-noto text-[.5625rem]">
-        <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
+      <div className="text-neutral-500 font-noto text-[.5625rem] tracking-[.01125rem]">
+        <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1 tracking-[10%]">
           <Link href="https://cse.snu.ac.kr/privacy-policy">개인정보처리방침</Link>
           <span>|</span>
           <Link href={contactPath}>학부 연락처</Link>
