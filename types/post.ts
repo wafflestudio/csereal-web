@@ -13,6 +13,8 @@ export interface FullPost extends Post {
   readonly nextId: number | null;
 }
 
+// 공지사항
+
 export interface NoticePost extends Post {
   tags: string[];
   isPinned: boolean;
@@ -27,6 +29,8 @@ export interface AdjPostInfo {
   title: string;
   href: string;
 }
+
+// 새소식
 
 export interface GETNewsPostsResponse {
   total: number;
@@ -48,4 +52,12 @@ export interface GETNewsPostResponse {
   modifiedAt: string;
   prevId: number | null;
   nextId: number | null;
+}
+
+// 신임교수초빙
+
+export interface GETFacultyRecruitmentResponse {
+  latestRecruitmentPostTitle: string;
+  latestRecruitmentPostHref: string;
+  htmlContent: string;
 }
