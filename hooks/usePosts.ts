@@ -1,12 +1,19 @@
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { AdjPostInfo, PostResponse } from '@/types/post';
+import { AdjPostInfo } from '@/types/post';
 
 import { PostSearchQueryParams, useCustomSearchParams } from './useCustomSearchParams';
 import { useQueryString } from './useQueryString';
 
-export function usePosts<T extends PostResponse>(
+interface PostInfo {
+  id: number;
+  title: string;
+  nextId: number | null;
+  prevId: number | null;
+}
+
+export function usePosts<T extends PostInfo>(
   listPath: string,
   getPostDetail: (id: number, params: PostSearchQueryParams) => Promise<T>,
 ) {
