@@ -74,20 +74,16 @@ export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [posts, setPosts] = useState<SimpleNoticePost[]>([]);
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
-  const queryString = useQueryString();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
   const searchPosts = useCallback(async () => {
-    const data = (await getNoticePosts(queryString)) as {
-      total: number;
-      searchList: SimpleNoticePost[];
-    };
+    const data = await getNoticePosts({ page, keyword, tag: tags });
     setTotalPostsCount(data.total);
     setPosts(data.searchList);
-  }, [queryString]);
+  }, [page, keyword, tags]);
 
   useEffect(() => {
     // searchPosts();

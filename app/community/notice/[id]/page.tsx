@@ -10,14 +10,14 @@ import PageLayout from '@/components/layout/PageLayout';
 import { usePosts } from '@/hooks/usePosts';
 
 import { notice } from '@/types/page';
-import { FullNoticePost } from '@/types/post';
+import { NoticePostResponse } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
 const writer = '박지혜';
 
-const NoticeDetailMock: FullNoticePost = {
+const NoticeDetailMock: NoticePostResponse = {
   id: 1,
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
@@ -34,7 +34,10 @@ const NoticeDetailMock: FullNoticePost = {
 const noticePath = getPath(notice);
 
 export default function NoticePostPage() {
-  const { posts, listPathWithQuery } = usePosts<FullNoticePost>(noticePath, getNoticePostDetail);
+  const { posts, listPathWithQuery } = usePosts<NoticePostResponse>(
+    noticePath,
+    getNoticePostDetail,
+  );
   const { curr, prev, next } = posts;
   const currPost = curr || NoticeDetailMock;
 
