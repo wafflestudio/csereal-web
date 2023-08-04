@@ -61,3 +61,11 @@ export const moreLinks: FooterLink[] = [
     href: 'http://haedong.snu.ac.kr/',
   },
 ];
+
+export const snucseFacebookLink = 'https://www.facebook.com/groups/snucsegroup/';
+
+export const snucomLink = 'http://www.snucom.org/';
+
+export const snuEngLink = 'http://eng.snu.ac.kr/';
+
+export const snuLink = 'https://www.snu.ac.kr/snunow/pr/videos';

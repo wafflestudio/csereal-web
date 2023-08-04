@@ -6,12 +6,23 @@ import snuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import snuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import snucomIcon from '@/public/image/SNUCOM.svg';
 
+import {
+  aboutLinks,
+  resourcesLinks,
+  researchLinks,
+  moreLinks,
+  FooterLink,
+  snucseFacebookLink,
+  snucomLink,
+  snuEngLink,
+  snuLink,
+} from '@/constants/footer';
+
 import { contact, directions } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-import { aboutLinks, resourcesLinks, researchLinks, moreLinks, FooterLink } from './footerLinks';
-
+// TODO: 개인정보처리방침 링크
 const privacyPath = '/404';
 const contactPath = getPath(contact);
 const directionsPath = getPath(directions);
@@ -90,16 +101,16 @@ function FooterBottomLeft() {
 function FooterBottomRight() {
   return (
     <div className="flex gap-7">
-      <Link href="https://www.facebook.com/groups/snucsegroup/">
+      <Link href={snucseFacebookLink}>
         <Image src={facebookIcon} alt="페이스북 로고" />
       </Link>
-      <Link href="http://www.snucom.org/">
+      <Link href={snucomLink}>
         <Image src={snucomIcon} alt="서울대 컴퓨터공학 동문회 로고" />
       </Link>
-      <Link href="http://eng.snu.ac.kr/">
+      <Link href={snuEngLink}>
         <Image src={snuEngineeringIcon} alt="서울대 공과대학 로고" />
       </Link>
-      <Link href="https://www.snu.ac.kr/snunow/pr/videos">
+      <Link href={snuLink}>
         <Image src={snuLogoWithText} alt="서울대 로고" />
       </Link>
     </div>
