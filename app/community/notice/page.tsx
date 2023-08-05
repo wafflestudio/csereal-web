@@ -11,7 +11,6 @@ import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
@@ -92,7 +91,7 @@ export default function NoticePage() {
   }, [page, searchPosts]);
 
   return (
-    <PageLayout currentPage={notice} title="공지사항" titleSize="text-2xl">
+    <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
         initTags={tags ?? []}
