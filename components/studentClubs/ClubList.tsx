@@ -1,31 +1,32 @@
-'use client';
-
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-
-import PageLayout from '@/components/layout/PageLayout';
 
 import { studentClubs } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-export default function StudentClubPage() {
-  const { name } = useParams();
-  console.log(name);
-  // 존재하지 않는 동아리일 경우 404페이지
-
-  return (
-    <PageLayout currentPage={studentClubs} title={studentClubs.name} titleSize="text-2xl">
-      <ul className="grid grid-cols-4 gap-3">
-        {CLUBS.map((club) => (
-          <ClubItem key={club} name={club} isSelected={decodeURI(name) === club} />
-        ))}
-      </ul>
-    </PageLayout>
-  );
+interface Club {
+  name: string;
+  eng: string;
 }
 
-const CLUBS = ['와플스튜디오', 'baccus', '사커301', '슈타인', '스눕스', '유피넬'];
+const CLUBS: Club[] = [
+  { name: '와플스튜디오', eng: 'Waffle Studio' },
+  { name: '바쿠스', eng: 'Baccus' },
+  { name: '사커301', eng: 'Soccer 301' },
+  { name: '슈타인', eng: 'Stein' },
+  { name: '스눕스', eng: 'Snups' },
+  { name: '유피넬', eng: 'UPNL' },
+];
+
+export default function ClubList({ currentClubName }: { currentClubName?: string }) {
+  return (
+    <ul className="grid grid-cols-4 gap-3 mb-8">
+      {CLUBS.map((club) => (
+        <ClubItem key={club.name} name={club.name} isSelected={currentClubName === club.name} />
+      ))}
+    </ul>
+  );
+}
 
 const clubsPath = getPath(studentClubs);
 
