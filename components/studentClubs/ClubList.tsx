@@ -1,48 +1,45 @@
-import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 
-import { studentClubs } from '@/types/page';
+import { Club } from '@/types/club';
 
-import { getPath } from '@/utils/page';
-
-interface Club {
-  name: string;
-  eng: string;
+interface ClubListProps {
+  clubs: Club[];
+  selectedClub: Club | null;
+  setSelectedClub: Dispatch<SetStateAction<Club | null>>;
 }
 
-const CLUBS: Club[] = [
-  { name: '와플스튜디오', eng: 'Waffle Studio' },
-  { name: '바쿠스', eng: 'Baccus' },
-  { name: '사커301', eng: 'Soccer 301' },
-  { name: '슈타인', eng: 'Stein' },
-  { name: '스눕스', eng: 'Snups' },
-  { name: '유피넬', eng: 'UPNL' },
-];
-
-export default function ClubList({ currentClubName }: { currentClubName?: string }) {
+export default function ClubList({ clubs, selectedClub, setSelectedClub }: ClubListProps) {
   return (
     <ul className="grid grid-cols-4 gap-3 mb-8">
-      {CLUBS.map((club) => (
-        <ClubItem key={club.name} name={club.name} isSelected={currentClubName === club.name} />
+      {clubs.map((club) => (
+        <ClubItem
+          key={club.name}
+          name={club.name}
+          isSelected={selectedClub?.name === club.name}
+          selectClub={() => setSelectedClub(club)}
+        />
       ))}
     </ul>
   );
 }
 
-const clubsPath = getPath(studentClubs);
+interface ClubItemProps {
+  name: string;
+  isSelected: boolean;
+  selectClub(): void;
+}
 
-function ClubItem({ name, isSelected }: { name: string; isSelected: boolean }) {
+function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
   const itemStyle = isSelected
     ? 'bg-[linear-gradient(-135deg,_transparent_13px,_#ff6914_0)] text-white'
-    : 'bg-neutral-100 text-neutral-500';
+    : 'bg-neutral-100 text-neutral-500 cursor-pointer';
 
   return (
-    <li className="relative">
-      <Link
-        href={`${clubsPath}/${name}`}
-        className={`inline-block w-[201px] h-[40px] py-3 rounded-sm text-center text-sm tracking-wide font-yoon ${itemStyle}`}
-      >
-        {name}
-      </Link>
+    <li
+      className={`relative w-[201px] h-[40px] py-3 rounded-sm text-center text-sm tracking-wide font-yoon ${itemStyle}`}
+      onClick={isSelected ? () => {} : selectClub}
+    >
+      {name}
       {isSelected && (
         <svg
           className="triangle absolute top-0 right-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.2)]"
