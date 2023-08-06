@@ -1,4 +1,5 @@
-// 공통
+// 공통 - - - - - - - - - - - - - - - - - - - -
+
 // 유저가 포스트 작성할 때 직접 입력하는 것들
 export interface Post {
   title: string;
@@ -16,14 +17,41 @@ export interface PostResponse extends Post {
   readonly nextId: number | null;
 }
 
-// mainImage가 있으며 그 크기가 고정된 간단한 페이지용 (학과 소개, 학부장 인사말 등)
+export interface AdjPostInfo {
+  title: string;
+  href: string;
+}
+
+// **아래부터는 page.ts에 정의된 순서대로 정렬**
+
+// 학부 소개, 학부장 인사말 등 - - - - - - - - - - - - - - - - - - - -
 
 export interface SimpleHTMLPageResponse {
   mainImageURL: string;
   htmlContent: string;
 }
 
-// 공지사항
+// 새소식 - - - - - - - - - - - - - - - - - - - -
+
+export interface NewsPost extends Post {
+  tags: string[];
+  imageURL: string;
+}
+
+export interface NewsPostResponse extends NewsPost, PostResponse {}
+
+export interface SimpleNewsPost
+  extends Pick<
+    NewsPostResponse,
+    'id' | 'title' | 'description' | 'tags' | 'createdAt' | 'imageURL'
+  > {}
+
+export interface GETNewsPostsResponse {
+  total: number;
+  searchList: SimpleNewsPost[];
+}
+
+// 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
   tags: string[];
@@ -40,36 +68,7 @@ export interface GETNoticePostsResponse {
   searchList: SimpleNoticePost[];
 }
 
-export interface AdjPostInfo {
-  title: string;
-  href: string;
-}
-
-// 새소식
-
-export interface GETNewsPostsResponse {
-  total: number;
-  searchList: {
-    id: number;
-    title: string;
-    tags: string[];
-    description: string;
-    createdAt: string;
-    imageURL: string;
-  }[];
-}
-
-export interface GETNewsPostResponse {
-  id: number;
-  title: string;
-  description: string;
-  createdAt: string;
-  modifiedAt: string;
-  prevId: number | null;
-  nextId: number | null;
-}
-
-// 신임교수초빙
+// 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacultyRecruitmentResponse {
   latestRecruitmentPostTitle: string;

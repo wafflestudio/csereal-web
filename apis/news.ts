@@ -1,6 +1,6 @@
 import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
-import { GETNewsPostResponse, GETNewsPostsResponse } from '@/types/post';
+import { NewsPostResponse, GETNewsPostsResponse } from '@/types/post';
 
 import { getRequest } from '.';
 
@@ -8,7 +8,7 @@ export const getNewsPosts = (params: PostSearchQueryParams) =>
   getRequest('/news', params) as Promise<GETNewsPostsResponse>;
 
 export const getNewsPost = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`/news/${id}`, params) as Promise<GETNewsPostResponse>;
+  getRequest(`/news/${id}`, params) as Promise<NewsPostResponse>;
 
 // mock
 export const getMockNewsPosts: typeof getNewsPosts = async (params: PostSearchQueryParams) => {
