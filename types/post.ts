@@ -1,3 +1,5 @@
+// 공통
+// 유저가 포스트 작성할 때 직접 입력하는 것들
 export interface Post {
   title: string;
   description: string;
@@ -5,12 +7,20 @@ export interface Post {
   isSlide: boolean;
 }
 
+// 서버에서 만드는 속성들이 포함됨
 export interface PostResponse extends Post {
   readonly id: number;
   readonly createdAt: string;
   readonly modifiedAt: string;
   readonly prevId: number | null;
   readonly nextId: number | null;
+}
+
+// 학부 소개
+
+export interface OverviewResponse {
+  mainImageURL: string;
+  htmlContent: string;
 }
 
 // 공지사항
