@@ -78,7 +78,7 @@ export default function NoticePage() {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const searchPosts = useCallback(async () => {
+  const fetchPosts = useCallback(async () => {
     const data = await getNoticePosts({ page, keyword, tag: tags });
     setTotalPostsCount(data.total);
     setPosts(data.searchList);
@@ -88,7 +88,7 @@ export default function NoticePage() {
     // searchPosts();
     setTotalPostsCount(noticeListMock.length);
     setPosts(noticeListMock);
-  }, [page, searchPosts]);
+  }, [page, fetchPosts]);
 
   return (
     <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
