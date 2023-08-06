@@ -2,7 +2,7 @@ import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/PageLayout';
 
 import { overview } from '@/types/page';
-import { OverviewResponse } from '@/types/post';
+import { SimpleHTMLPageResponse } from '@/types/post';
 
 export default async function OverviewPage() {
   const response = await mockNetwork();
@@ -19,7 +19,7 @@ export default async function OverviewPage() {
 
 const mockNetwork = async () => mockResponse;
 
-const mockResponse: OverviewResponse = {
+const mockResponse: SimpleHTMLPageResponse = {
   mainImageURL: 'https://picsum.photos/id/237/320/240',
   htmlContent: `
   <p>컴퓨터공학은 정보화 사회로의 이행에 있어 필수적이고 핵심적인 학문으로서, 성능이 우수한 컴퓨터를 설계 제작하고 운영 및 응용에 필요한 소프트웨어를 개발하여, 산업 전반에서 이를 활용할 수 있게 하는 학문이다. 컴퓨터공학은 이론적인 측면에서의 기반 기술 연구와 이를 실생활에 직접 응용할 수 있는 응용 연구를 추구하고 있다. 현대의 모든 산업들은 점차 그 복잡도가 증가함에 따라 컴퓨터를 통한 문제 해결을 시도하고 있다. 컴퓨터공학은 이러한 융합적, 통섭적 사고와 연구를 주도하고 있으며, 이를 통해 산업 전반에 걸쳐 영향력을 확대하고 있다.

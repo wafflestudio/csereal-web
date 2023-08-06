@@ -16,9 +16,9 @@ export interface PostResponse extends Post {
   readonly nextId: number | null;
 }
 
-// 학부 소개
+// mainImage가 있으며 그 크기가 고정된 간단한 페이지용 (학과 소개, 학부장 인사말 등)
 
-export interface OverviewResponse {
+export interface SimpleHTMLPageResponse {
   mainImageURL: string;
   htmlContent: string;
 }
