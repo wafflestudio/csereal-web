@@ -1,25 +1,32 @@
-import { writer } from 'repl';
+'use client';
 
-import next from 'next';
+import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
-import HTMLViewer, { htmlMock1 } from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import PageLayout from '@/components/layout/PageLayout';
 
+import { usePosts } from '@/hooks/usePosts';
+
 import { news } from '@/types/page';
 
-import { formatDate } from '@/utils/formatting';
+import { getPath } from '@/utils/page';
 
-export default function NewsPostPage() {
+const newsPath = getPath(news);
+
+export default function NewsPostPage({ params }: { params: { id: number } }) {
+  const { posts, listPathWithQuery } = usePosts(newsPath, getNewsPostDetail);
+  let { curr, prev, next } = posts;
+  curr = curr || getMockNewsPostDetail(params.id);
+
   return (
-    <PageLayout
-      currentPage={news}
-      title="2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내"
-      titleSize="text-lg"
-    >
-      {/* <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" /> */}
+    <PageLayout currentPage={news} title={curr?.title ?? ''} titleSize="text-lg">
+      <HTMLViewer htmlContent={curr.description} />
+      <StraightNode />
+      <Tags tags={curr.tags} page={news} margin="mt-3 ml-6" />
+      <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
     </PageLayout>
   );
 }

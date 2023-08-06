@@ -10,7 +10,7 @@ export default async function GreetingsPage() {
   return (
     <PageLayout currentPage={greetings} title="학부장 인사말" titleSize="text-2xl">
       <HTMLViewer
-        htmlContent={response.htmlContent}
+        htmlContent={response.description}
         mainImage={{ width: 212, height: 280, url: response.mainImageURL }}
       />
     </PageLayout>
@@ -21,7 +21,7 @@ const mockNetwork = async () => mockResponse;
 
 const mockResponse: SimpleHTMLPageResponse = {
   mainImageURL: 'https://picsum.photos/id/237/320/240',
-  htmlContent: `
+  description: `
   <p>컴퓨터 분야(컴퓨터과학/컴퓨터공학)는 이미 모든게 이루어진 성숙한&nbsp;기술이 아닙니다. 아직 넓고 깊고 다양한 기회를 미래에 가지고 있고,&nbsp;우리나라 미래 먹거리의 중요한 한 기둥이 될 수 있는 분야입니다. 미래에&nbsp;이루어질 거대한 변화에 비하면 지금까지의 컴퓨터기술의 성과는 매우&nbsp;미미한 시작일 뿐입니다. 탄생이후 겨우 약 70-80년인 이 분야는 미숙하기 때문에 많은 기회를 가지고 있습니다. 비유하자면, 지금은 뉴턴과 갈릴레오와 큐리와 동시대에 살아가는 초창기일 뿐입니다.&nbsp;</p>
 <div>그러므로, 컴퓨터 기술이 어떻게 펼쳐질 지를 예측하거나, 특정분야의 선택과 집중을 논의하는 것은 의미없을 수 있습니다. 모든 미래예측이 늘 그렇듯이 사실을 빗겨가는 비생산적인 정치적 소모가 되기 쉽습니다.&nbsp;</div>
 <div>&nbsp;</div>

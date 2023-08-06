@@ -3,6 +3,7 @@
 // 유저가 포스트 작성할 때 직접 입력하는 것들
 export interface Post {
   title: string;
+  // html 내용
   description: string;
   isPublic: boolean;
   isSlide: boolean;
@@ -28,7 +29,7 @@ export interface AdjPostInfo {
 
 export interface SimpleHTMLPageResponse {
   mainImageURL: string;
-  htmlContent: string;
+  description: string;
 }
 
 // 새소식 - - - - - - - - - - - - - - - - - - - -
@@ -73,5 +74,5 @@ export interface GETNoticePostsResponse {
 export interface GETFacultyRecruitmentResponse {
   latestRecruitmentPostTitle: string;
   latestRecruitmentPostHref: string;
-  htmlContent: string;
+  description: string;
 }
