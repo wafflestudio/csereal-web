@@ -1,7 +1,3 @@
-import Image from 'next/image';
-
-import bannerRectangle from '@/public/image/BannerRectangle.svg';
-
 import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/PageLayout';
 
@@ -39,7 +35,6 @@ function LatestRecruitmentBanner({
         <p className="text-xs font-medium tracking-[.001875rem] ">{latestRecruitmentPostTitle}</p>
         <span className="material-symbols-outlined text-base">navigate_next</span>
       </div>
-      <Image src={bannerRectangle} alt="" className="absolute right-0" />
     </a>
   );
 }
