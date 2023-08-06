@@ -41,7 +41,11 @@ const clubsMock: Club[] = [
     name: '와플스튜디오',
     eng: 'Waffle Studio',
     description: '맛있는 서비스가 탄생하는 곳',
-    href: 'https://wafflestudio.com',
+    image: {
+      url: 'https://picsum.photos/801',
+      width: 320,
+      height: 190,
+    },
   },
   {
     name: '유피넬',

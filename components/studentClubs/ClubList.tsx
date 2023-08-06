@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { Club } from '@/types/club';
 
+import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
+
 interface ClubListProps {
   clubs: Club[];
   selectedClub: Club | null;
@@ -30,26 +32,25 @@ interface ClubItemProps {
 }
 
 function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
-  const itemStyle = isSelected
-    ? 'bg-[linear-gradient(-135deg,_transparent_13px,_#ff6914_0)] text-white'
-    : 'bg-neutral-100 text-neutral-500 cursor-pointer';
+  const itemCommonStyle = 'w-[201px] h-10 py-3 text-center text-sm tracking-wide font-yoon';
 
-  return (
+  return isSelected ? (
+    <li>
+      <CornerFoldedRectangle
+        rectBgColor="#ff6914"
+        rectClassName={`${itemCommonStyle} rounded-sm`}
+        triangleColor="#f5f5f5"
+        triangleLength={18}
+      >
+        {name}
+      </CornerFoldedRectangle>
+    </li>
+  ) : (
     <li
-      className={`relative w-[201px] h-[40px] py-3 rounded-sm text-center text-sm tracking-wide font-yoon ${itemStyle}`}
-      onClick={isSelected ? () => {} : selectClub}
+      className={`${itemCommonStyle} bg-neutral-100 text-neutral-500 cursor-pointer`}
+      onClick={selectClub}
     >
       {name}
-      {isSelected && (
-        <svg
-          className="triangle absolute top-0 right-0 drop-shadow-[0_2px_2px_rgba(0,0,0,0.2)]"
-          viewBox="0 0 100 100"
-          width="18"
-          height="18"
-        >
-          <polygon points="0, 100 0 0, 100 100" fill="#f5f5f5" />
-        </svg>
-      )}
     </li>
   );
 }

@@ -3,5 +3,4 @@ export interface Club {
   eng: string;
   description: string;
   image?: { url: string; width: number; height: number };
-  href?: string;
 }
