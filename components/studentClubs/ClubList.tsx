@@ -39,9 +39,9 @@ function ClubItem({ name, isSelected }: ClubItemProps) {
     <li>
       <CornerFoldedRectangle
         colorTheme={COLOR_THEME.orange}
-        rectClassName={`${itemCommonStyle} rounded-sm text-white`}
-        triangleLength={20}
-        radius={2}
+        rectClassName={`${itemCommonStyle} text-white`}
+        triangleLength={1.25}
+        radius={0.125}
         triangleDropShadow={dropShadow}
       >
         {name}

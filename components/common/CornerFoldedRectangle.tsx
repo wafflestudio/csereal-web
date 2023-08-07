@@ -4,10 +4,10 @@ import { ColorTheme } from '@/constants/color';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
-  radius: number; // px 단위
+  radius: number; // rem 단위
   rectClassName?: string; // 직사각형 width, height, radius, padding, margin, text 등등 정보
   triangleDropShadow: string;
-  triangleLength: number; // px 단위
+  triangleLength: number; // rem 단위
   children: ReactNode;
 }
 
@@ -29,9 +29,9 @@ export default function CornerFoldedRectangle({
     width: 0,
     height: 0,
     borderStyle: 'solid',
-    borderWidth: `${triangleLength}px 0 0 ${triangleLength}px`,
+    borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
     borderColor: `transparent transparent transparent ${colorTheme.triangleColor}`,
-    borderBottomLeftRadius: `${radius}px`,
+    borderBottomLeftRadius: `${radius}rem`,
     filter: triangleDropShadow,
   };
 
@@ -39,9 +39,10 @@ export default function CornerFoldedRectangle({
     <div
       className={`relative ${rectClassName}`}
       style={{
-        background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}px, ${
+        background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
           colorTheme.bgColor
         } 0)`,
+        borderRadius: `${radius}rem`,
       }}
     >
       <div style={triangleStyle} />
