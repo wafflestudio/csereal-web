@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { MAIN_ORANGE, NEUTRAL_100 } from '@/constants/color';
+
 import { Club } from '@/types/club';
 
 import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
@@ -32,14 +34,14 @@ interface ClubItemProps {
 }
 
 function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
-  const itemCommonStyle = 'w-[201px] h-10 py-3 text-center text-sm tracking-wide font-yoon';
+  const itemCommonStyle = 'w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
 
   return isSelected ? (
     <li>
       <CornerFoldedRectangle
-        rectBgColor="#ff6914"
+        rectBgColor={MAIN_ORANGE}
         rectClassName={`${itemCommonStyle} rounded-sm`}
-        triangleColor="#f5f5f5"
+        triangleColor={NEUTRAL_100}
         triangleLength={18}
       >
         {name}

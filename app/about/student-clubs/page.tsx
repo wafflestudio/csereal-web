@@ -11,7 +11,7 @@ import ClubList from '@/components/studentClubs/ClubList';
 import { Club } from '@/types/club';
 import { studentClubs } from '@/types/page';
 
-const clubsMock: Club[] = [
+const CLUBS_MOCK: Club[] = [
   {
     name: '가디언',
     eng: 'Guardian',
@@ -61,9 +61,9 @@ export default function StudentClubsPage() {
 
   const fetchClubs = useCallback(async () => {
     // const data = await getClubs();
-    const data = clubsMock;
+    const data = CLUBS_MOCK;
     setClubs(data);
-    setSelectedClub(data.find((club) => club.name === '와플스튜디오') ?? null);
+    setSelectedClub(data.find((club) => club.name === '와플스튜디오') ?? null); // 기본값 와플로 두기
   }, []);
 
   useEffect(() => {
