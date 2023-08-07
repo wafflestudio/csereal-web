@@ -1,6 +1,4 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { COLOR_THEME } from '@/constants/color';
 
@@ -13,23 +11,16 @@ import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
 
 interface ClubListProps {
   clubs: Club[];
-  selectedClub: Club | undefined;
+  selectedClub?: Club;
 }
 
 const clubPath = getPath(studentClubs);
 
 export default function ClubList({ clubs, selectedClub }: ClubListProps) {
-  const router = useRouter();
-
   return (
     <ul className="grid grid-cols-4 gap-3 mb-8">
       {clubs.map((club) => (
-        <ClubItem
-          key={club.name}
-          name={club.name}
-          isSelected={selectedClub?.name === club.name}
-          selectClub={() => router.push(`${clubPath}?selected=${club.name}`)}
-        />
+        <ClubItem key={club.name} name={club.name} isSelected={selectedClub?.name === club.name} />
       ))}
     </ul>
   );
@@ -38,10 +29,9 @@ export default function ClubList({ clubs, selectedClub }: ClubListProps) {
 interface ClubItemProps {
   name: string;
   isSelected: boolean;
-  selectClub(): void;
 }
 
-function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
+function ClubItem({ name, isSelected }: ClubItemProps) {
   const itemCommonStyle = 'w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
   const dropShadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.25)';
 
@@ -58,11 +48,13 @@ function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
       </CornerFoldedRectangle>
     </li>
   ) : (
-    <li
-      className={`${itemCommonStyle} bg-neutral-100 text-neutral-500 cursor-pointer`}
-      onClick={selectClub}
-    >
-      {name}
+    <li>
+      <Link
+        href={`${clubPath}?selected=${name}`}
+        className={`${itemCommonStyle} block bg-neutral-100 text-neutral-500`}
+      >
+        {name}
+      </Link>
     </li>
   );
 }

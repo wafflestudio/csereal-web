@@ -94,7 +94,7 @@ export default function NoticePage() {
     <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
-        initTags={tags ?? []}
+        initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
