@@ -2,7 +2,7 @@ import axios, { isAxiosError } from 'axios';
 
 import { convertObjToURLSearchParams } from '@/utils/convert';
 
-const BASE_URL = '';
+const BASE_URL = 'http://cse-dev-waffle.bacchus.io';
 
 const client = axios.create({
   baseURL: BASE_URL,

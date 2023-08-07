@@ -7,7 +7,7 @@ import { Club } from '@/types/club';
 import { StraightNode } from '../common/Nodes';
 
 export default function ClubDetails({ club }: { club: Club }) {
-  const len = `${club.image?.width ? club.image.width + 28 : 0}px`;
+  const len = `${club.image ? club.image.width + 28 : 0}px`;
   const nodeWidth: CSSProperties = {
     width: `calc(100% - ${len})`,
   };

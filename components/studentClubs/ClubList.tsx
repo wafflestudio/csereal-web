@@ -1,18 +1,26 @@
-import { Dispatch, SetStateAction } from 'react';
+'use client';
+
+import { useRouter } from 'next/navigation';
 
 import { COLOR_THEME } from '@/constants/color';
 
 import { Club } from '@/types/club';
+import { studentClubs } from '@/types/page';
+
+import { getPath } from '@/utils/page';
 
 import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
 
 interface ClubListProps {
   clubs: Club[];
   selectedClub: Club | undefined;
-  setSelectedClub: Dispatch<SetStateAction<Club | undefined>>;
 }
 
-export default function ClubList({ clubs, selectedClub, setSelectedClub }: ClubListProps) {
+const clubPath = getPath(studentClubs);
+
+export default function ClubList({ clubs, selectedClub }: ClubListProps) {
+  const router = useRouter();
+
   return (
     <ul className="grid grid-cols-4 gap-3 mb-8">
       {clubs.map((club) => (
@@ -20,7 +28,7 @@ export default function ClubList({ clubs, selectedClub, setSelectedClub }: ClubL
           key={club.name}
           name={club.name}
           isSelected={selectedClub?.name === club.name}
-          selectClub={() => setSelectedClub(club)}
+          selectClub={() => router.push(`${clubPath}?selected=${club.name}`)}
         />
       ))}
     </ul>
