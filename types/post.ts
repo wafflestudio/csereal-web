@@ -70,3 +70,12 @@ export interface GETSeminarPostsResponse {
     }[];
   }[];
 }
+
+export interface GETFacilitiesResponse {
+  facilitiesList: {
+    name: string;
+    description: string;
+    location: string;
+    imageURL: string;
+  }[];
+}

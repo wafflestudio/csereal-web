@@ -6,6 +6,7 @@ import { getMockSeminarPosts } from '@/apis/seminar';
 
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/PageLayout';
+import SeminarSearchBar from '@/components/seminar/SearchBar';
 import SeminarList from '@/components/seminar/SeminarList';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
@@ -27,7 +28,7 @@ export default function SeminarPage() {
   const fetchPost = useCallback(async () => {
     const res = await getMockSeminarPosts({
       keyword: keyword === null ? undefined : keyword,
-      page: page + '',
+      page: page,
     });
     setTotalPostsCount(res.total);
     setPosts(res.searchList);
@@ -39,11 +40,20 @@ export default function SeminarPage() {
 
   return (
     <PageLayout currentPage={seminar} title="세미나" titleSize="text-2xl">
-      {/* <SearchForm key={tags + ''} initKeyword={keyword ?? ''} setSearchParams={setSearchParams} /> */}
-      <div className="flex flex-col gap-4 mt-10 mb-8">
+      <div className="flex flex-row items-center gap-6">
+        <h3 className="text-neutral-700 font-yoon text-md font-bold w-7 text-center leading-[1.2rem]">
+          검색
+        </h3>
+        <SeminarSearchBar setSearchParams={setSearchParams} />
+      </div>
+      <div className="flex flex-col gap-12 mt-10 mb-8">
         {posts.map((post) => (
           <div key={post.year}>
-            <h3>{post.year}</h3>
+            <div className="border-b-[1px] border-neutral-500">
+              <h3 className="text-neutral-700 font-noto text-[1.25rem] font-bold pb-[.69rem] w-[4.5rem] text-center leading-7">
+                {post.year}
+              </h3>
+            </div>
             <div>
               {post.seminarList.map((seminar) => (
                 <SeminarList

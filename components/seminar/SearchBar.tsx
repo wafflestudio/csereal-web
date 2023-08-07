@@ -2,12 +2,8 @@
 
 import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
 
-import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-
-export default function HeaderSearchBar() {
+export default function SeminarSearchBar({ setSearchParams }: any) {
   const [text, setText] = useState('');
-
-  const { setSearchParams } = useCustomSearchParams('/search');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);

@@ -33,7 +33,7 @@ export const getMockSeminarPosts: typeof getSeminarPosts = async () => {
   });
 
   return {
-    total: 110,
+    total: 50,
     searchList,
   };
 };
