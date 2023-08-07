@@ -32,7 +32,7 @@ function LatestRecruitmentBanner({
         최근 채용 바로가기
       </p>
       <div className="flex items-center absolute right-5 bottom-[.87rem]">
-        <p className="text-xs font-medium tracking-[.001875rem] ">{latestRecruitmentPostTitle}</p>
+        <p className="text-xs font-medium tracking-wide">{latestRecruitmentPostTitle}</p>
         <span className="material-symbols-outlined text-base">navigate_next</span>
       </div>
     </a>

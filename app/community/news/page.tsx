@@ -58,7 +58,7 @@ export default function NewsPage() {
         {posts.map((post) => (
           <NewsRow
             key={post.id}
-            href={newsPath + '/' + post.id + '/' + queryString}
+            href={`${newsPath}/${post.id}/${queryString}`}
             title={post.title}
             description={post.description}
             tags={post.tags}
