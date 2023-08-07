@@ -62,7 +62,7 @@ export interface GETSeminarPostsResponse {
     seminarList: {
       id: number;
       title: string;
-      author: string;
+      host: string;
       company: string;
       date: string;
       location: string;
@@ -71,7 +71,22 @@ export interface GETSeminarPostsResponse {
   }[];
 }
 
-export interface GETFacilitiesResponse {
+export interface SeminarPostResponse {
+  id: number;
+  title: string;
+  host: string;
+  company: string;
+  professor: string;
+  date: string;
+  location: string;
+  abstract: string;
+  hostDescription: string;
+  imageURL: string;
+  prevId: number | null;
+  nextId: number | null;
+}
+
+export interface GETFacilitiesPostsResponse {
   facilitiesList: {
     name: string;
     description: string;

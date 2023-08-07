@@ -15,8 +15,8 @@ export default function FacilitiesList({
   imageURL,
 }: FacilitiesListProps) {
   return (
-    <article className="text-neutral-700 font-noto flex py-[1.2rem] flex-row items-start justify-between break-all">
-      <div className="flex flex-col w-[35.5rem]">
+    <article className="text-neutral-700 font-noto flex my-[1.2rem] flex-row items-start justify-between break-all h-40">
+      <div className="flex flex-col w-[35.5rem] h-auto">
         <Link href="" className="hover:underline">
           <h3 className="text-neutral-800 text-md font-bold mb-[.69rem] leading-5">{name}</h3>
         </Link>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export interface SeminarListProps {
   title: string;
-  author: string;
+  host: string;
   company: string;
   date: Date;
   location: string;
@@ -14,7 +14,7 @@ const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
 export default function SeminarList({
   title,
-  author,
+  host,
   company,
   date,
   location,
@@ -44,7 +44,7 @@ export default function SeminarList({
           <span className="material-symbols-rounded font-light text-[1.25rem] cursor-default text-neutral-400">
             person
           </span>
-          <p className="text-xs font-normal ">{author}</p>
+          <p className="text-xs font-normal ">{host}</p>
           <p className="text-xs font-normal text-neutral-400 w-4 text-center">|</p>
           <p className="text-xs font-normal ">{company}</p>
         </Link>

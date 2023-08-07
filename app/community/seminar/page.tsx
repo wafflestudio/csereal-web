@@ -59,7 +59,7 @@ export default function SeminarPage() {
                 <SeminarList
                   key={seminar.id}
                   title={seminar.title}
-                  author={seminar.author}
+                  host={seminar.host}
                   company={seminar.company}
                   date={new Date(seminar.date)}
                   location={seminar.location}

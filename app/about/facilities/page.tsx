@@ -2,19 +2,19 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { getMockFacilities } from '@/apis/facilities';
+import { getMockFacilitiesPosts } from '@/apis/facilities';
 
 import FacilitiesList from '@/components/facilities/FacilitiesList';
 import PageLayout from '@/components/layout/PageLayout';
 
 import { facilities } from '@/types/page';
-import { GETFacilitiesResponse } from '@/types/post';
+import { GETFacilitiesPostsResponse } from '@/types/post';
 
 export default function FacilitiesPage() {
-  const [posts, setPosts] = useState<GETFacilitiesResponse['facilitiesList']>([]);
+  const [posts, setPosts] = useState<GETFacilitiesPostsResponse['facilitiesList']>([]);
 
   const fetchPost = useCallback(async () => {
-    const res = await getMockFacilities();
+    const res = await getMockFacilitiesPosts();
     setPosts(res.facilitiesList);
   }, []);
 
