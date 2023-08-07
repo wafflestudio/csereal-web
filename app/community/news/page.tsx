@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { getMockNewsPosts } from '@/apis/news';
 
@@ -11,31 +11,34 @@ import PageLayout from '@/components/layout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+import { useQueryString } from '@/hooks/useQueryString';
 
 import { news } from '@/types/page';
 import { GETNewsPostsResponse } from '@/types/post';
 import { NewsTags } from '@/types/tag';
 
+import { getPath } from '@/utils/page';
+
 const POST_LIMIT = 10;
+const newsPath = getPath(news);
 
 export default function NewsPage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
   const [posts, setPosts] = useState<GETNewsPostsResponse['searchList']>([]);
+  const queryString = useQueryString();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
   const fetchPost = useCallback(async () => {
-    const resp = await getMockNewsPosts({
-      tag: tags,
-      keyword: keyword === null ? undefined : keyword,
-      page: page,
-    });
+    // const resp = await getMockNewsPosts(queryParams);
+    // TODO: tags 처리
+    const resp = await getMockNewsPosts({ page, keyword });
     setTotalPostsCount(resp.total);
     setPosts(resp.searchList);
-  }, [keyword, page, tags]);
+  }, [keyword, page]);
 
   useEffect(() => {
     fetchPost();
@@ -55,6 +58,7 @@ export default function NewsPage() {
         {posts.map((post) => (
           <NewsRow
             key={post.id}
+            href={`${newsPath}/${post.id}/${queryString}`}
             title={post.title}
             description={post.description}
             tags={post.tags}
