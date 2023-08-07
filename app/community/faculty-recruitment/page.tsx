@@ -1,5 +1,8 @@
+import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/PageLayout';
+
+import { COLOR_THEME } from '@/constants/color';
 
 import { facultyRecruitment } from '@/types/page';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
@@ -13,7 +16,15 @@ export default async function FacultyRecruitment() {
 
   return (
     <PageLayout currentPage={facultyRecruitment} title="신임교수초빙" titleSize="text-2xl">
-      <LatestRecruitmentBanner {...res} />
+      <CornerFoldedRectangle
+        radius={0.3125}
+        colorTheme={COLOR_THEME.darkGray}
+        triangleLength={1.75}
+        triangleDropShadow="drop-shadow(0px 4px 7px rgba(0,0,0,0.7)"
+        rectClassName="w-fit mb-8"
+      >
+        <LatestRecruitmentBanner {...res} />
+      </CornerFoldedRectangle>
       <HTMLViewer htmlContent={res.description} />
     </PageLayout>
   );
@@ -25,7 +36,7 @@ function LatestRecruitmentBanner({
 }: GETFacultyRecruitmentResponse) {
   return (
     <a
-      className="block relative w-[25rem] h-[4.5rem] bg-neutral-700 rounded-[.3125rem] text-white font-yoon mb-8"
+      className="block relative w-[25rem] h-[4.5rem] text-white font-yoon"
       href={latestRecruitmentPostHref}
     >
       <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">

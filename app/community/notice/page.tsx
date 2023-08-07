@@ -11,11 +11,10 @@ import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-import { useQueryString } from '@/hooks/useQueryString';
 
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
-import { NoticeTags } from '@/types/tag';
+import { NoticeTags } from '@/constants/tag';
 
 const NoticeMockLong: SimpleNoticePost = {
   id: 1,
@@ -79,7 +78,7 @@ export default function NoticePage() {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const searchPosts = useCallback(async () => {
+  const fetchPosts = useCallback(async () => {
     const data = await getNoticePosts({ page, keyword, tag: tags });
     setTotalPostsCount(data.total);
     setPosts(data.searchList);
@@ -89,13 +88,13 @@ export default function NoticePage() {
     // searchPosts();
     setTotalPostsCount(noticeListMock.length);
     setPosts(noticeListMock);
-  }, [page, searchPosts]);
+  }, [page, fetchPosts]);
 
   return (
-    <PageLayout currentPage={notice} title="공지사항" titleSize="text-2xl">
+    <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
-        initTags={tags ?? []}
+        initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />

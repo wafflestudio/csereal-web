@@ -15,7 +15,7 @@ import { useQueryString } from '@/hooks/useQueryString';
 
 import { news } from '@/types/page';
 import { GETNewsPostsResponse } from '@/types/post';
-import { NewsTags } from '@/types/tag';
+import { NewsTags } from '@/constants/tag';
 
 import { getPath } from '@/utils/page';
 
