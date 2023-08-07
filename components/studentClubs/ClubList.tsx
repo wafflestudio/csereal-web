@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { MAIN_ORANGE, NEUTRAL_100 } from '@/constants/color';
+import { COLOR_THEME, MAIN_ORANGE, NEUTRAL_100 } from '@/constants/color';
 
 import { Club } from '@/types/club';
 
@@ -8,8 +8,8 @@ import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
 
 interface ClubListProps {
   clubs: Club[];
-  selectedClub: Club | null;
-  setSelectedClub: Dispatch<SetStateAction<Club | null>>;
+  selectedClub: Club | undefined;
+  setSelectedClub: Dispatch<SetStateAction<Club | undefined>>;
 }
 
 export default function ClubList({ clubs, selectedClub, setSelectedClub }: ClubListProps) {
@@ -39,9 +39,8 @@ function ClubItem({ name, isSelected, selectClub }: ClubItemProps) {
   return isSelected ? (
     <li>
       <CornerFoldedRectangle
-        rectBgColor={MAIN_ORANGE}
+        colorTheme={COLOR_THEME.orange}
         rectClassName={`${itemCommonStyle} rounded-sm`}
-        triangleColor={NEUTRAL_100}
         triangleLength={18}
       >
         {name}
