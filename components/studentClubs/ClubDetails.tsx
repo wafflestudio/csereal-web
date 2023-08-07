@@ -4,7 +4,6 @@ import HTMLViewer from '@/components/common/HTMLViewer';
 
 import { Club } from '@/types/club';
 
-import './tri.css';
 import { StraightNode } from '../common/Nodes';
 
 export default function ClubDetails({ club }: { club: Club }) {

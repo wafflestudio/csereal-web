@@ -1,11 +1,12 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { ColorTheme } from '@/constants/color';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
+  radius: number; // px 단위
   rectClassName?: string; // 직사각형 width, height, radius, padding, margin, text 등등 정보
-  triangleDropShadow?: string;
+  triangleDropShadow: string;
   triangleLength: number; // px 단위
   children: ReactNode;
 }
@@ -14,31 +15,37 @@ interface CornerFoldedRectangleProps {
 const FOLD_RATIO = 0.714;
 
 export default function CornerFoldedRectangle({
+  radius,
   colorTheme,
-  rectClassName,
-  triangleDropShadow,
   triangleLength,
+  triangleDropShadow,
+  rectClassName,
   children,
 }: CornerFoldedRectangleProps) {
-  const dropShadow = triangleDropShadow || 'drop-shadow-[1px_2px_2px_rgba(0,0,0,0.25)]';
+  const triangleStyle: CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+    borderStyle: 'solid',
+    borderWidth: `${triangleLength}px 0 0 ${triangleLength}px`,
+    borderColor: `transparent transparent transparent ${colorTheme.triangleColor}`,
+    borderBottomLeftRadius: `${radius}px`,
+    filter: triangleDropShadow,
+  };
 
   return (
     <div
-      className={`relative font-yoon text-white ${rectClassName}`}
+      className={`relative ${rectClassName}`}
       style={{
         background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}px, ${
           colorTheme.bgColor
         } 0)`,
       }}
     >
+      <div style={triangleStyle} />
       {children}
-      <svg
-        className={`triangle absolute top-0 right-0 ${dropShadow}`}
-        width={triangleLength}
-        height={triangleLength}
-      >
-        <polygon points="0, 100 0 0, 100 100" fill={colorTheme.triangleColor} />
-      </svg>
     </div>
   );
 }
