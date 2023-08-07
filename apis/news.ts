@@ -1,17 +1,19 @@
+import { htmlMock1 } from '@/components/common/HTMLViewer';
+
 import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
-import { GETNewsPostResponse, GETNewsPostsResponse } from '@/types/post';
+import { NewsPostResponse, GETNewsPostsResponse } from '@/types/post';
 
 import { getRequest } from '.';
 
 export const getNewsPosts = (params: PostSearchQueryParams) =>
   getRequest('/news', params) as Promise<GETNewsPostsResponse>;
 
-export const getNewsPost = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`/news/${id}`, params) as Promise<GETNewsPostResponse>;
+export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
+  getRequest(`/news/${id}`, params) as Promise<NewsPostResponse>;
 
 // mock
-export const getMockNewsPosts: typeof getNewsPosts = async (params: PostSearchQueryParams) => {
+export const getMockNewsPosts: typeof getNewsPosts = async (params) => {
   const searchList = Array(10)
     .fill(0)
     .map((_, id) => ({
@@ -27,5 +29,21 @@ export const getMockNewsPosts: typeof getNewsPosts = async (params: PostSearchQu
   return {
     total: 1232,
     searchList,
+  };
+};
+
+export const getMockNewsPostDetail = (id: number) => {
+  return {
+    id,
+    title: `id가 ${id}인 글`,
+    description: htmlMock1,
+    tags: ['연구', '테스트'],
+    isPublic: true,
+    isSlide: true,
+    imageURL: 'https://picsum.photos/id/237/320/240',
+    createdAt: new Date().toISOString(),
+    modifiedAt: new Date().toISOString(),
+    prevId: 1,
+    nextId: 2,
   };
 };

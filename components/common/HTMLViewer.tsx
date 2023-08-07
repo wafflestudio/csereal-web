@@ -42,7 +42,9 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
         ${margin}
         [&_a]:text-link [&_a]:underline 
         [&_li]:list-disc [&_li]:list-inside 
-        [&_p]:my-4
+        [&_p]:mb-4
+        [&_td]:border-[1px] [&_td]:border-neutral-300
+        [&_img]:inline
         `}
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       />
