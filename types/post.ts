@@ -49,3 +49,19 @@ export interface GETNewsPostResponse {
   prevId: number | null;
   nextId: number | null;
 }
+
+export interface GETSeminarPostsResponse {
+  total: number;
+  searchList: {
+    year: number;
+    seminarList: {
+      id: number;
+      title: string;
+      author: string;
+      company: string;
+      date: string;
+      location: string;
+      imageURL: string;
+    }[];
+  }[];
+}
