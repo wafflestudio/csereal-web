@@ -23,12 +23,6 @@ export default function CornerFoldedRectangle({
   children,
 }: CornerFoldedRectangleProps) {
   const triangleStyle: CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 0,
-    height: 0,
-    borderStyle: 'solid',
     borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
     borderColor: `transparent transparent transparent ${colorTheme.triangleColor}`,
     borderBottomLeftRadius: `${radius}rem`,
@@ -45,7 +39,7 @@ export default function CornerFoldedRectangle({
         borderRadius: `${radius}rem`,
       }}
     >
-      <div style={triangleStyle} />
+      <div className="absolute top-0 right-0 w-0 h-0 border-solid" style={triangleStyle} />
       {children}
     </div>
   );

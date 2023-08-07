@@ -14,7 +14,7 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
-import { NoticeTags } from '@/types/tag';
+import { NoticeTags } from '@/constants/tag';
 
 const NoticeMockLong: SimpleNoticePost = {
   id: 1,
