@@ -7,7 +7,7 @@ import { getMockSeminarPosts } from '@/apis/seminar';
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/PageLayout';
 import SeminarSearchBar from '@/components/seminar/SearchBar';
-import SeminarList from '@/components/seminar/SeminarList';
+import SeminarRow from '@/components/seminar/SeminarRow';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
@@ -54,19 +54,17 @@ export default function SeminarPage() {
                 {post.year}
               </h3>
             </div>
-            <div>
-              {post.seminarList.map((seminar) => (
-                <SeminarList
-                  key={seminar.id}
-                  title={seminar.title}
-                  host={seminar.host}
-                  company={seminar.company}
-                  date={new Date(seminar.date)}
-                  location={seminar.location}
-                  imageURL={seminar.imageURL}
-                />
-              ))}
-            </div>
+            {post.seminarList.map((seminar) => (
+              <SeminarRow
+                key={seminar.id}
+                title={seminar.title}
+                host={seminar.host}
+                company={seminar.company}
+                date={new Date(seminar.date)}
+                location={seminar.location}
+                imageURL={seminar.imageURL}
+              />
+            ))}
           </div>
         ))}
       </div>

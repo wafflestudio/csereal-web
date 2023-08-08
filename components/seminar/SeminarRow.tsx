@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export interface SeminarListProps {
+import { formatDateWithDays } from '@/utils/formatting';
+
+export interface SeminarRowProps {
   title: string;
   host: string;
   company: string;
@@ -10,26 +12,14 @@ export interface SeminarListProps {
   imageURL: string;
 }
 
-const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-
-export default function SeminarList({
+export default function SeminarRow({
   title,
   host,
   company,
   date,
   location,
   imageURL,
-}: SeminarListProps) {
-  const dateStr = date.toLocaleDateString('ko', {
-    month: 'numeric',
-    day: 'numeric',
-    weekday: 'short',
-  });
-
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dayOfWeek = date.getDay();
-
+}: SeminarRowProps) {
   return (
     <article className="text-neutral-700 font-noto flex py-[1.2rem] border-b-[1px] border-neutral-200 ">
       <Link href="" className="h-[6.25rem] w-[6.25rem] relative">
@@ -55,9 +45,7 @@ export default function SeminarList({
           <span className="material-symbols-rounded font-light text-lg cursor-default text-neutral-400">
             calendar_month
           </span>
-          <p className="text-xs font-normal ">
-            {month}/{day} ({daysOfWeek[dayOfWeek]})
-          </p>
+          <p className="text-xs font-normal ">{formatDateWithDays(date)}</p>
           <span className="material-symbols-rounded font-light text-lg cursor-default text-neutral-400">
             distance
           </span>

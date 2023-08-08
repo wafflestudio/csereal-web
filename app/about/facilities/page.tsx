@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { getMockFacilitiesPosts } from '@/apis/facilities';
 
-import FacilitiesList from '@/components/facilities/FacilitiesList';
+import FacilitiesRow from '@/components/facilities/FacilitiesRow';
 import PageLayout from '@/components/layout/PageLayout';
 
 import { facilities } from '@/types/page';
@@ -30,7 +30,7 @@ export default function FacilitiesPage() {
             key={index}
             className={index !== 0 ? 'border-t-[1px] border-neutral-200' : undefined}
           >
-            <FacilitiesList
+            <FacilitiesRow
               name={post.name}
               description={post.description}
               location={post.location}
