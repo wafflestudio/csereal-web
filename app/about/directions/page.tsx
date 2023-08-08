@@ -2,7 +2,8 @@ import { getDirections, getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
 import DirectionsList from '@/components/directions/DirectionList';
-import LocationInformation from '@/components/directions/LocationInformation';
+import LocationGuide from '@/components/directions/LocationGuide';
+import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/PageLayout';
 
 import { directions } from '@/types/page';
@@ -19,7 +20,10 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
 
   return (
     <PageLayout currentPage={directions} title={directions.name} titleSize="text-2xl">
-      <LocationInformation />
+      <div className="mb-[3.25rem]">
+        <LocationGuide />
+        <LocationMap />
+      </div>
       <div>
         <DirectionsList directionsList={directionList} selectedDirections={selectedDirection} />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
