@@ -2,7 +2,13 @@
 
 import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
 
-export default function SeminarSearchBar({ setSearchParams }: any) {
+import { SearchInfo } from '@/hooks/useCustomSearchParams';
+
+interface SeminarSearchBarProps {
+  setSearchParams: (searchInfo: SearchInfo) => void;
+}
+
+export default function SeminarSearchBar({ setSearchParams }: SeminarSearchBarProps) {
   const [text, setText] = useState('');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
