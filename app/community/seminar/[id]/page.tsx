@@ -61,7 +61,7 @@ export default function SeminarPostPage() {
           <div>장소: {currPost.location}</div>
 
           <div className="font-bold  mt-12">요약</div>
-          <div>{currPost.abstract}</div>
+          <div>{currPost.description}</div>
           <div className="font-bold  mt-12">연사 소개</div>
           <div>{currPost.hostDescription}</div>
         </div>

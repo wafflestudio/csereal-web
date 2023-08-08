@@ -12,15 +12,19 @@ import SeminarRow from '@/components/seminar/SeminarRow';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { seminar } from '@/types/page';
-import { GETSeminarPostsResponse } from '@/types/post';
+import { GETSeminarPostsResponse, SimpleSeminarPost } from '@/types/post';
 
 const postsCountPerPage = 10;
+
+interface SeminarListWithYear extends SimpleSeminarPost {
+  year?: number;
+  showYear?: boolean;
+}
 
 export default function SeminarPage() {
   const { page, keyword, setSearchParams } = useCustomSearchParams();
   const [totalPostsCount, setTotalPostsCount] = useState(0);
-  const [posts, setPosts] = useState<GETSeminarPostsResponse['searchList']>([]);
-
+  const [posts, setPosts] = useState<SeminarListWithYear[]>([]);
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
@@ -30,8 +34,25 @@ export default function SeminarPage() {
       keyword: keyword === null ? undefined : keyword,
       page: page,
     });
+
+    const postsWithYear: SeminarListWithYear[] = [];
+    let currentYear = 0;
+
+    res.seminarList.forEach((post) => {
+      const postYear = new Date(post.date).getFullYear();
+
+      if (postYear !== currentYear) {
+        currentYear = postYear;
+        postsWithYear.push({
+          ...post,
+          year: postYear,
+          showYear: true,
+        });
+      }
+    });
+
     setTotalPostsCount(res.total);
-    setPosts(res.searchList);
+    setPosts(postsWithYear);
   }, [keyword, page]);
 
   useEffect(() => {
@@ -46,25 +67,24 @@ export default function SeminarPage() {
         </h3>
         <SeminarSearchBar setSearchParams={setSearchParams} />
       </div>
-      <div className="flex flex-col gap-12 mt-10 mb-8">
-        {posts.map((post) => (
+      <div className="flex flex-col mt-10 mb-8">
+        {posts.map((post, i) => (
           <div key={post.year}>
-            <div className="border-b-[1px] border-neutral-500">
-              <h3 className="text-neutral-700 font-noto text-[1.25rem] font-bold pb-[.69rem] w-[4.5rem] text-center leading-7">
-                {post.year}
-              </h3>
-            </div>
-            {post.seminarList.map((seminar) => (
-              <SeminarRow
-                key={seminar.id}
-                title={seminar.title}
-                host={seminar.host}
-                company={seminar.company}
-                date={new Date(seminar.date)}
-                location={seminar.location}
-                imageURL={seminar.imageURL}
-              />
-            ))}
+            {post.showYear && (
+              <div className={`border-b-[1px] border-neutral-500 ${i !== 0 ? 'mt-12' : null}`}>
+                <h3 className="text-neutral-700 font-noto text-[1.25rem] font-bold pb-[.69rem] w-[4.5rem] text-center leading-7">
+                  {post.year}
+                </h3>
+              </div>
+            )}
+            <SeminarRow
+              title={post.title}
+              host={post.host}
+              company={post.company}
+              date={new Date(post.date)}
+              location={post.location}
+              imageURL={post.imageURL}
+            />
           </div>
         ))}
       </div>

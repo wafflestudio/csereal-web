@@ -57,33 +57,24 @@ export interface GETNewsPostResponse {
 
 export interface GETSeminarPostsResponse {
   total: number;
-  searchList: {
-    year: number;
-    seminarList: {
-      id: number;
-      title: string;
-      host: string;
-      company: string;
-      date: string;
-      location: string;
-      imageURL: string;
-    }[];
-  }[];
+  seminarList: SimpleSeminarPost[];
 }
 
-export interface SeminarPostResponse {
-  id: number;
-  title: string;
+export interface SimpleSeminarPost
+  extends Pick<
+    SeminarPostResponse,
+    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL'
+  > {}
+
+export interface SeminarPostResponse extends PostResponse {
   host: string;
   company: string;
   professor: string;
   date: string;
   location: string;
-  abstract: string;
+  description: string;
   hostDescription: string;
   imageURL: string;
-  prevId: number | null;
-  nextId: number | null;
 }
 
 export interface GETFacilitiesPostsResponse {

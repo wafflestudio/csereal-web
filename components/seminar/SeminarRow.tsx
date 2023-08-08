@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import snuLogo from '@/public/image/SNU_Logo.svg';
+
 import { formatDateWithDays } from '@/utils/formatting';
 
 export interface SeminarRowProps {
@@ -9,7 +11,7 @@ export interface SeminarRowProps {
   company: string;
   date: Date;
   location: string;
-  imageURL: string;
+  imageURL?: string;
 }
 
 export default function SeminarRow({
@@ -23,7 +25,11 @@ export default function SeminarRow({
   return (
     <article className="text-neutral-700 font-noto flex py-[1.2rem] border-b-[1px] border-neutral-200 ">
       <Link href="" className="h-[6.25rem] w-[6.25rem] relative">
-        <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
+        {imageURL ? (
+          <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
+        ) : (
+          <Image alt="서울대 이미지" src={snuLogo} fill sizes="10rem" priority />
+        )}
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
         <Link href="" className="hover:underline">
