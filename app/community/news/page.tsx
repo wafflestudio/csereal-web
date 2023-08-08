@@ -10,12 +10,13 @@ import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
+import { NewsTags } from '@/constants/tag';
+
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import { useQueryString } from '@/hooks/useQueryString';
 
 import { news } from '@/types/page';
 import { GETNewsPostsResponse } from '@/types/post';
-import { NewsTags } from '@/constants/tag';
 
 import { getPath } from '@/utils/page';
 
