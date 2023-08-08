@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { getDirections, getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';

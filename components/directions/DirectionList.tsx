@@ -61,6 +61,7 @@ function DirectionsItem({ name, engName, isSelected }: DirectionsItemProps) {
       <Link
         href={`${directionsPath}?selected=${engName}`}
         className={`${itemCommonStyle} block bg-neutral-100 text-neutral-500`}
+        scroll={false} // 안 먹힘
       >
         {name}
       </Link>
