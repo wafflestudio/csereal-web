@@ -23,7 +23,7 @@ export default function CornerFoldedRectangle({
   triangleDropShadow,
   rectangleMargin,
   radius,
-  isAnimated,
+  isAnimated, // 선택형 기본 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
