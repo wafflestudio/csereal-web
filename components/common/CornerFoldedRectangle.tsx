@@ -2,14 +2,15 @@ import { CSSProperties, ReactNode } from 'react';
 
 import { ColorTheme } from '@/constants/color';
 
-import './Corner.css';
+import './CornerFoldedRectangle.css';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
   radius: number; // rem 단위
-  rectClassName?: string; // 직사각형 width, height, radius, padding, margin, text 등등 정보
-  triangleDropShadow: string;
+  rectangleMargin?: string; // tailwind 형식
+  triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   triangleLength: number; // rem 단위
+  isAnimated?: boolean;
   children: ReactNode;
 }
 
@@ -17,13 +18,24 @@ interface CornerFoldedRectangleProps {
 const FOLD_RATIO = 0.714;
 
 export default function CornerFoldedRectangle({
-  radius,
   colorTheme,
+  radius,
   triangleLength,
   triangleDropShadow,
-  rectClassName,
+  rectangleMargin,
+  isAnimated,
   children,
 }: CornerFoldedRectangleProps) {
+  const rectangleStyle: CSSProperties = {
+    borderRadius: `${radius}rem`,
+    backgroundColor: colorTheme.bgColor,
+    background: isAnimated
+      ? colorTheme.bgColor
+      : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
+          colorTheme.bgColor
+        } 0)`,
+  };
+
   const triangleStyle: CSSProperties = {
     borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
     borderColor: `transparent transparent transparent ${colorTheme.triangleColor}`,
@@ -31,9 +43,13 @@ export default function CornerFoldedRectangle({
     filter: triangleDropShadow,
   };
 
-  return (
-    <div className={`relative folding`}>
-      {/* <div className="triangle absolute top-0 right-0 w-0 h-0 border-solid" /> */}
+  return isAnimated ? (
+    <div className={`relative w-fit ${rectangleMargin} folding`} style={rectangleStyle}>
+      {children}
+    </div>
+  ) : (
+    <div className={`relative w-fit ${rectangleMargin}`} style={rectangleStyle}>
+      <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
       {children}
     </div>
   );

@@ -32,34 +32,30 @@ interface ClubItemProps {
 }
 
 function ClubItem({ name, isSelected }: ClubItemProps) {
-  const itemCommonStyle = 'w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
+  const itemCommonStyle =
+    'block w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
   const dropShadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.25)';
 
-  return isSelected ? (
+  return (
     <li>
       <CornerFoldedRectangle
-        colorTheme={COLOR_THEME.orange}
-        rectClassName={`${itemCommonStyle} text-white`}
+        colorTheme={isSelected ? COLOR_THEME.orange : COLOR_THEME.lightGray}
         triangleLength={1.25}
         radius={0.125}
         triangleDropShadow={dropShadow}
+        isAnimated={!isSelected}
       >
-        {name}
+        {isSelected ? (
+          <span className={`${itemCommonStyle} text-white`}>{name}</span>
+        ) : (
+          <Link
+            href={`${clubPath}?selected=${name}`}
+            className={`${itemCommonStyle} text-neutral-500`}
+          >
+            {name}
+          </Link>
+        )}
       </CornerFoldedRectangle>
-    </li>
-  ) : (
-    <li>
-      <Link href={`${clubPath}?selected=${name}`}>
-        <CornerFoldedRectangle
-          colorTheme={COLOR_THEME.lightGray}
-          rectClassName={`${itemCommonStyle} text-neutral-500`}
-          triangleLength={1.25}
-          radius={0.125}
-          triangleDropShadow={dropShadow}
-        >
-          {name}
-        </CornerFoldedRectangle>
-      </Link>
     </li>
   );
 }
