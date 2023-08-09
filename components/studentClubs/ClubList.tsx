@@ -53,7 +53,7 @@ function ClubItem({ name, isSelected }: ClubItemProps) {
         <CornerFoldedRectangle
           colorTheme={COLOR_THEME.lightGray}
           triangleLength={triangleLength}
-          radius={0.125}
+          radius={radius}
           triangleDropShadow={dropShadow}
           isAnimated={true}
         >
