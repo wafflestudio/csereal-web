@@ -6,10 +6,10 @@ import './CornerFoldedRectangle.css';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
-  radius: number; // rem 단위
-  rectangleMargin?: string; // tailwind 형식
-  triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   triangleLength: number; // rem 단위
+  triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
+  rectangleMargin?: string; // tailwind 형식
+  radius: number; // rem 단위
   isAnimated?: boolean;
   children: ReactNode;
 }
@@ -19,10 +19,10 @@ const FOLD_RATIO = 0.714;
 
 export default function CornerFoldedRectangle({
   colorTheme,
-  radius,
   triangleLength,
   triangleDropShadow,
   rectangleMargin,
+  radius,
   isAnimated,
   children,
 }: CornerFoldedRectangleProps) {

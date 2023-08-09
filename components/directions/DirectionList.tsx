@@ -41,30 +41,40 @@ interface DirectionsItemProps {
 const directionsPath = getPath(directions);
 
 function DirectionsItem({ name, engName, isSelected }: DirectionsItemProps) {
-  const itemCommonStyle = 'w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
+  const itemCommonStyle =
+    'block w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
+  const triangleLength = 1.25; // 20px
+  const radius = 0.125; // 2px
   const dropShadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.25)';
 
-  return isSelected ? (
+  return (
     <li>
-      <CornerFoldedRectangle
-        colorTheme={COLOR_THEME.orange}
-        rectClassName={`${itemCommonStyle} text-white`}
-        triangleLength={1.25}
-        radius={0.125}
-        triangleDropShadow={dropShadow}
-      >
-        {name}
-      </CornerFoldedRectangle>
-    </li>
-  ) : (
-    <li>
-      <Link
-        href={`${directionsPath}?selected=${engName}`}
-        className={`${itemCommonStyle} block bg-neutral-100 text-neutral-500`}
-        scroll={false} // 안 먹힘
-      >
-        {name}
-      </Link>
+      {isSelected ? (
+        <CornerFoldedRectangle
+          colorTheme={COLOR_THEME.orange}
+          triangleLength={triangleLength}
+          radius={radius}
+          triangleDropShadow={dropShadow}
+        >
+          <span className={`${itemCommonStyle} text-white`}>{name}</span>
+        </CornerFoldedRectangle>
+      ) : (
+        <CornerFoldedRectangle
+          colorTheme={COLOR_THEME.lightGray}
+          triangleLength={triangleLength}
+          radius={radius}
+          triangleDropShadow={dropShadow}
+          isAnimated={true}
+        >
+          <Link
+            href={`${directionsPath}?selected=${engName}`}
+            className={`${itemCommonStyle} text-neutral-500`}
+            scroll={false} // 안 먹힘
+          >
+            {name}
+          </Link>
+        </CornerFoldedRectangle>
+      )}
     </li>
   );
 }
