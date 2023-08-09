@@ -11,12 +11,12 @@ import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
 
 interface DirectionsListProps {
   directionsList: Direction[];
-  selectedDirections?: Direction;
+  selectedDirection?: Direction;
 }
 
 export default function DirectionsList({
   directionsList,
-  selectedDirections,
+  selectedDirection: selectedDirection,
 }: DirectionsListProps) {
   return (
     <ul className="flex gap-3 mb-8">
@@ -25,7 +25,7 @@ export default function DirectionsList({
           key={d.name}
           name={d.name}
           engName={d.engName}
-          isSelected={selectedDirections?.name === d.name}
+          isSelected={selectedDirection?.name === d.name}
         />
       ))}
     </ul>

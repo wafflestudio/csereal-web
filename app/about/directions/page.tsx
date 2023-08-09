@@ -25,7 +25,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
         <LocationMap />
       </div>
       <div>
-        <DirectionsList directionsList={directionList} selectedDirections={selectedDirection} />
+        <DirectionsList directionsList={directionList} selectedDirection={selectedDirection} />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
       </div>
     </PageLayout>
