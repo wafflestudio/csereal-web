@@ -5,6 +5,7 @@ export const NEUTRAL_700 = '#404040';
 
 export const COLOR_THEME = {
   orange: { bgColor: MAIN_ORANGE, triangleColor: NEUTRAL_100 },
+  lightGray: { bgColor: NEUTRAL_100, triangleColor: NEUTRAL_100 },
   darkGray: { bgColor: NEUTRAL_700, triangleColor: NEUTRAL_200 },
 } as const;
 

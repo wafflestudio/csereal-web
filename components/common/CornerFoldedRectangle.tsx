@@ -2,6 +2,8 @@ import { CSSProperties, ReactNode } from 'react';
 
 import { ColorTheme } from '@/constants/color';
 
+import './Corner.css';
+
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
   radius: number; // rem 단위
@@ -30,16 +32,8 @@ export default function CornerFoldedRectangle({
   };
 
   return (
-    <div
-      className={`relative ${rectClassName}`}
-      style={{
-        background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
-          colorTheme.bgColor
-        } 0)`,
-        borderRadius: `${radius}rem`,
-      }}
-    >
-      <div className="absolute top-0 right-0 w-0 h-0 border-solid" style={triangleStyle} />
+    <div className={`relative folding`}>
+      {/* <div className="triangle absolute top-0 right-0 w-0 h-0 border-solid" /> */}
       {children}
     </div>
   );

@@ -49,11 +49,16 @@ function ClubItem({ name, isSelected }: ClubItemProps) {
     </li>
   ) : (
     <li>
-      <Link
-        href={`${clubPath}?selected=${name}`}
-        className={`${itemCommonStyle} block bg-neutral-100 text-neutral-500`}
-      >
-        {name}
+      <Link href={`${clubPath}?selected=${name}`}>
+        <CornerFoldedRectangle
+          colorTheme={COLOR_THEME.lightGray}
+          rectClassName={`${itemCommonStyle} text-neutral-500`}
+          triangleLength={1.25}
+          radius={0.125}
+          triangleDropShadow={dropShadow}
+        >
+          {name}
+        </CornerFoldedRectangle>
       </Link>
     </li>
   );
