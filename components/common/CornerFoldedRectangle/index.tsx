@@ -38,7 +38,7 @@ export default function CornerFoldedRectangle({
 
   const triangleStyle: CSSProperties = {
     borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
-    borderColor: `transparent transparent transparent ${colorTheme.triangleColor}`,
+    borderColor: `transparent transparent ${colorTheme.triangleColor} ${colorTheme.triangleColor}`,
     borderBottomLeftRadius: `${radius}rem`,
     filter: triangleDropShadow,
   };
