@@ -2,7 +2,7 @@ import { CSSProperties, ReactNode } from 'react';
 
 import { ColorTheme } from '@/constants/color';
 
-import './CornerFoldedRectangle.css';
+import styles from './style.module.css';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;
@@ -44,7 +44,7 @@ export default function CornerFoldedRectangle({
   };
 
   return isAnimated ? (
-    <div className={`relative w-fit ${rectangleMargin} folding`} style={rectangleStyle}>
+    <div className={`relative w-fit ${rectangleMargin} ${styles.folding}`} style={rectangleStyle}>
       {children}
     </div>
   ) : (
