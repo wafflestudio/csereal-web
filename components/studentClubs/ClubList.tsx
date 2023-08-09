@@ -14,8 +14,6 @@ interface ClubListProps {
   selectedClub?: Club;
 }
 
-const clubPath = getPath(studentClubs);
-
 export default function ClubList({ clubs, selectedClub }: ClubListProps) {
   return (
     <ul className="grid grid-cols-4 gap-3 mb-8">
@@ -30,6 +28,8 @@ interface ClubItemProps {
   name: string;
   isSelected: boolean;
 }
+
+const clubPath = getPath(studentClubs);
 
 function ClubItem({ name, isSelected }: ClubItemProps) {
   const itemCommonStyle =
