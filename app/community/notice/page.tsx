@@ -10,11 +10,12 @@ import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
+import { NoticeTags } from '@/constants/tag';
+
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
-import { NoticeTags } from '@/constants/tag';
 
 const NoticeMockLong: SimpleNoticePost = {
   id: 1,

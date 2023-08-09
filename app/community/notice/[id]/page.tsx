@@ -38,8 +38,7 @@ export default function NoticePostPage() {
     noticePath,
     getNoticePostDetail,
   );
-  const { curr, prev, next } = posts;
-  const currPost = curr || NoticeDetailMock;
+  const { curr = NoticeDetailMock, prev, next } = posts;
 
   return (
     <PageLayout
@@ -49,11 +48,11 @@ export default function NoticePostPage() {
     >
       <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
-        {formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
+        {formatDate(new Date(curr.createdAt), { includeDay: true, includeTime: true })}
       </div>
       <div className="border w-auto h-[300px] mb-10 ml-2.5"></div>
       <StraightNode />
-      <Tags tags={currPost.tags} page={notice} margin="mt-3 ml-6" />
+      <Tags tags={curr.tags} page={notice} margin="mt-3 ml-6" />
       <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
     </PageLayout>
   );

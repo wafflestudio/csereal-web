@@ -7,11 +7,13 @@ import ClubList from '@/components/studentClubs/ClubList';
 import { studentClubs } from '@/types/page';
 
 interface StudentClubsPageProps {
-  searchParams: { selected: string | undefined };
+  searchParams: { selected?: string };
 }
 
+const DEFAULT_CLUB = '와플스튜디오';
+
 export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
-  const selected = searchParams.selected ? decodeURI(searchParams.selected) : '와플스튜디오';
+  const selected = searchParams.selected ? decodeURI(searchParams.selected) : DEFAULT_CLUB;
   const { clubs, selectedClub } = await getData(selected);
 
   return (
