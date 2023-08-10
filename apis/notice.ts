@@ -33,6 +33,27 @@ export const getNoticePostsMock: typeof getNoticePosts = async (params) => {
   };
 };
 
+export const getNoticePostDetailMock: typeof getNoticePostDetail = async (id, params) => {
+  console.log('getnotice detial1');
+  return NoticeDetailMock;
+};
+
+const NoticeDetailMock: NoticePostResponse = {
+  id: 3,
+  title: 'What is Lorem Ipsum?',
+  nextId: 4,
+  nextTitle: 'Why do we use it?',
+  prevId: null,
+  prevTitle: null,
+  tags: ['장학', '다전공'],
+  isPinned: false,
+  isPublic: true,
+  isSlide: false,
+  description: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>`,
+  createdAt: '2023-08-10 19:42',
+  modifiedAt: '2023-08-10 19:42',
+};
+
 const NoticeMockLong: SimpleNoticePost = {
   id: 1,
   title:

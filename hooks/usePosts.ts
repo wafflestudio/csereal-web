@@ -1,5 +1,6 @@
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
+import useSwr from 'swr';
 
 import { AdjPostInfo } from '@/types/post';
 
@@ -19,12 +20,18 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   listPath: string,
   getPostDetail: (id: number, params: PostSearchQueryParams) => Promise<T>,
 ) {
-  const [posts, setPosts] = useState<{ curr?: T; prev?: AdjPostInfo; next?: AdjPostInfo }>({});
   const { page, keyword, tags } = useCustomSearchParams();
-  const searchParams = useMemo(() => ({ page, keyword, tag: tags }), [page, keyword, tags]);
+  const searchParams = { page, keyword, tag: tags };
   const id = parseInt(useParams().id);
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
+
+  const { data: posts } = useSwr([id, searchParams], async () => {
+    const curr = await getPostDetail(id, searchParams);
+    const prev = getAdjPostInfo(curr.prevId, curr.prevTitle);
+    const next = getAdjPostInfo(curr.nextId, curr.nextTitle);
+    return { curr, prev, next };
+  });
 
   const getAdjPostInfo = useCallback(
     (id: number | null, title: string | null) => {
@@ -34,16 +41,6 @@ export function usePosts<T extends PostWithAdjIdInfo>(
     },
     [listPath, queryString],
   );
-
-  useEffect(() => {
-    console.log('useposts!');
-    // (async () => {
-    //   const curr = await getPostDetail(id, searchParams);
-    //   const prev = getAdjPostInfo(curr.prevId, curr.prevTitle);
-    //   const next = getAdjPostInfo(curr.nextId, curr.nextTitle);
-    //   setPosts({ curr, prev, next });
-    // })();
-  }, [id, searchParams, getAdjPostInfo, getPostDetail]);
 
   return { posts, listPathWithQuery } as const;
 }
