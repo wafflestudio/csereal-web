@@ -18,7 +18,6 @@ const postsCountPerPage = 10;
 
 interface SeminarListWithYear extends SimpleSeminarPost {
   year?: number;
-  showYear?: boolean;
 }
 
 export default function SeminarPage() {
@@ -36,17 +35,18 @@ export default function SeminarPage() {
     });
 
     const postsWithYear: SeminarListWithYear[] = [];
-    let currentYear = 0;
 
     res.seminarList.forEach((post) => {
       const postYear = new Date(post.date).getFullYear();
 
-      if (postYear !== currentYear) {
-        currentYear = postYear;
+      if (post.isLast) {
         postsWithYear.push({
           ...post,
           year: postYear,
-          showYear: true,
+        });
+      } else {
+        postsWithYear.push({
+          ...post,
         });
       }
     });
@@ -70,7 +70,7 @@ export default function SeminarPage() {
       <div className="flex flex-col mt-10 mb-8">
         {posts.map((post, i) => (
           <div key={post.year}>
-            {post.showYear && (
+            {post.isLast && (
               <div className={`border-b-[1px] border-neutral-500 ${i !== 0 ? 'mt-12' : null}`}>
                 <h3 className="text-neutral-700 font-noto text-[1.25rem] font-bold pb-[.69rem] w-[4.5rem] text-center leading-7">
                   {post.year}

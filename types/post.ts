@@ -63,7 +63,7 @@ export interface GETSeminarPostsResponse {
 export interface SimpleSeminarPost
   extends Pick<
     SeminarPostResponse,
-    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL'
+    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL' | 'isLast'
   > {}
 
 export interface SeminarPostResponse extends PostResponse {
@@ -75,6 +75,7 @@ export interface SeminarPostResponse extends PostResponse {
   description: string;
   hostDescription: string;
   imageURL: string;
+  isLast?: boolean;
 }
 
 export interface GETFacilitiesPostsResponse {

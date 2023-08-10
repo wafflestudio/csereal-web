@@ -20,6 +20,7 @@ export const getMockSeminarPosts: typeof getSeminarPosts = async (
   const seminarList = Array.from({ length: 16 }, (_, index) => {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() - index);
+    const isLast = index === 0 || index === 10;
 
     return {
       id: index + 1,
@@ -30,6 +31,7 @@ export const getMockSeminarPosts: typeof getSeminarPosts = async (
       location: `302동 209호`,
       imageURL:
         'https://cse.snu.ac.kr/sites/default/files/styles/medium-small-focus/public/node--seminar/%EB%B0%95%EC%88%9C%EC%9D%BC%20%EB%B0%95%EC%82%AC%20%EC%82%AC%EC%A7%84.jpg?itok=n-iHZlh9',
+      isLast: isLast,
     };
   });
 
@@ -58,5 +60,6 @@ export const getMockSeminarPost: typeof getSeminarPost = async (id: number) => {
     modifiedAt: new Date().toISOString(),
     isPublic: true,
     isSlide: true,
+    isLast: false,
   };
 };
