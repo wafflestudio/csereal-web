@@ -9,6 +9,7 @@
         "pathGroups": [
           { "pattern": "react*", "group": "external", "position": "before" },
           { "pattern": "next*", "group": "external", "position": "before" },
+          { "pattern": "swr*", "group": "external", "position": "before" },
           {
             "pattern": "@/apis/**",
             "group": "internal",

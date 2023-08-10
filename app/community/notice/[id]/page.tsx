@@ -28,7 +28,9 @@ const NoticeDetailMock: NoticePostResponse = {
   description: '',
   tags: ['입학', '기타'],
   prevId: null,
+  prevTitle: null,
   nextId: 2,
+  nextTitle: '다음글입니다',
 };
 
 const noticePath = getPath(notice);
