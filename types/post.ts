@@ -78,3 +78,35 @@ export interface GETFacultyRecruitmentResponse {
   latestRecruitmentPostHref: string;
   description: string;
 }
+
+export interface GETSeminarPostsResponse {
+  total: number;
+  seminarList: SimpleSeminarPost[];
+}
+
+export interface SimpleSeminarPost
+  extends Pick<
+    SeminarPostResponse,
+    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL' | 'isLast'
+  > {}
+
+export interface SeminarPostResponse extends PostResponse {
+  host: string;
+  company: string;
+  professor: string;
+  date: string;
+  location: string;
+  description: string;
+  hostDescription: string;
+  imageURL: string;
+  isLast?: boolean;
+}
+
+export interface GETFacilitiesPostsResponse {
+  facilitiesList: {
+    name: string;
+    description: string;
+    location: string;
+    imageURL: string;
+  }[];
+}

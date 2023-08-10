@@ -30,3 +30,11 @@ export const formatTime = (date: Date) => {
 
   return `${half} ${hour}:${minute}`; // e.g. 오후 4:01
 };
+
+export const formatDateWithDays = (date: Date) => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = date.getDay();
+
+  return `${month}/${day} (${DAYS[dayOfWeek]})`;
+};

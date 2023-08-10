@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: 'picsum.photos',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cse.snu.ac.kr',
+        pathname: '/**',
+      },
     ],
   },
 };
