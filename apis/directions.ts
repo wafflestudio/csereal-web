@@ -1,6 +1,6 @@
 import { Direction } from '@/types/directions';
 
-import { getRequest } from '.';
+import { getRequest } from './fetchAPI';
 
 const directionsPath = '/directions';
 

@@ -7,7 +7,7 @@ import {
   SimpleNoticePost,
 } from '@/types/post';
 
-import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
+import { deleteRequest, getRequest, patchRequest, postRequest } from './fetchAPI';
 
 const noticePath = '/notice';
 
@@ -25,18 +25,13 @@ export const patchNotice = (id: number, newPost: Partial<NoticePost>) =>
 
 export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
 
-export const getNoticePostsMock: typeof getNoticePosts = async (params) => {
-  console.log('getnotice lists!!');
-  return {
-    searchList: noticeListMock,
-    total: noticeListMock.length,
-  };
-};
+export const getNoticePostsMock: typeof getNoticePosts = async (params) => ({
+  searchList: noticeListMock,
+  total: noticeListMock.length,
+});
 
-export const getNoticePostDetailMock: typeof getNoticePostDetail = async (id, params) => {
-  console.log('getnotice detial1');
-  return NoticeDetailMock;
-};
+export const getNoticePostDetailMock: typeof getNoticePostDetail = async (id, params) =>
+  NoticeDetailMock;
 
 const NoticeDetailMock: NoticePostResponse = {
   id: 3,
