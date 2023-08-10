@@ -1,5 +1,5 @@
 import { useParams } from 'next/navigation';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import useSwr from 'swr';
 
 import { AdjPostInfo } from '@/types/post';
@@ -26,11 +26,11 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
-  const { data: posts } = useSwr([id, searchParams], async () => {
-    const curr = await getPostDetail(id, searchParams);
-    const prev = getAdjPostInfo(curr.prevId, curr.prevTitle);
-    const next = getAdjPostInfo(curr.nextId, curr.nextTitle);
-    return { curr, prev, next };
+  const { data: { currPost, prevPost, nextPost } = {} } = useSwr([id, searchParams], async () => {
+    const currPost = await getPostDetail(id, searchParams);
+    const prevPost = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
+    const nextPost = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
+    return { currPost, prevPost, nextPost };
   });
 
   const getAdjPostInfo = useCallback(
@@ -42,5 +42,5 @@ export function usePosts<T extends PostWithAdjIdInfo>(
     [listPath, queryString],
   );
 
-  return { posts, listPathWithQuery } as const;
+  return { currPost, prevPost, nextPost, listPathWithQuery } as const;
 }
