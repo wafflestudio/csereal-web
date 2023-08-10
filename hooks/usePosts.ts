@@ -10,7 +10,9 @@ interface PostWithAdjIdInfo {
   id: number;
   title: string;
   nextId: number | null;
+  nextTitle: string | null;
   prevId: number | null;
+  prevTitle: string | null;
 }
 
 export function usePosts<T extends PostWithAdjIdInfo>(
@@ -24,25 +26,23 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
-  const getAdjPost = useCallback(
-    async (id: number, type: 'prev' | 'next') => {
-      const adjPost = await getPostDetail(id, searchParams);
-      const adjPostInfo = adjPost
-        ? { title: adjPost.title, href: `${listPath}/${adjPost.id}${queryString}` }
-        : undefined;
-      setPosts((p) => ({ ...p, [type]: adjPostInfo }));
+  const getAdjPostInfo = useCallback(
+    (id: number | null, title: string | null) => {
+      if (!id || !title) return;
+      const adjPost: AdjPostInfo = { title, href: `${listPath}/${id}${queryString}` };
+      return adjPost;
     },
-    [searchParams, listPath, queryString, getPostDetail],
+    [listPath, queryString],
   );
 
   useEffect(() => {
-    // (async () => {
-    //   const curr = await getPostDetail(id, searchParams);
-    //   setPosts((p) => ({ ...p, curr: curr }));
-    //   if (curr.prevId) getAdjPost(curr.prevId, 'prev');
-    //   if (curr.nextId) getAdjPost(curr.nextId, 'next');
-    // })();
-  }, [id, searchParams, getAdjPost, getPostDetail]);
+    (async () => {
+      const curr = await getPostDetail(id, searchParams);
+      const prev = getAdjPostInfo(curr.prevId, curr.prevTitle);
+      const next = getAdjPostInfo(curr.nextId, curr.nextTitle);
+      setPosts({ curr, prev, next });
+    })();
+  }, [id, searchParams, getAdjPostInfo, getPostDetail]);
 
   return { posts, listPathWithQuery } as const;
 }
