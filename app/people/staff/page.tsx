@@ -9,7 +9,7 @@ export default async function StaffPage() {
   const { staffList } = await getStaffData();
   return (
     <PageLayout currentPage={staff} title="행정직원" titleSize="text-2xl">
-      <div className="grid grid-cols-4 gap-14">
+      <div className="grid grid-cols-4 gap-14 mb-10">
         {staffList.map((staff, index) => (
           <PeopleRow
             key={index}
