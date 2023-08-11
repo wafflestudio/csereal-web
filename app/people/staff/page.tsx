@@ -8,7 +8,7 @@ import { staff } from '@/types/page';
 export default async function StaffPage() {
   const { staffList } = await getStaffData();
   return (
-    <PageLayout currentPage={staff} title="역대 교수진" titleSize="text-2xl">
+    <PageLayout currentPage={staff} title="행정직원" titleSize="text-2xl">
       <div className="grid grid-cols-4 gap-14">
         {staffList.map((staff, index) => (
           <PeopleRow
