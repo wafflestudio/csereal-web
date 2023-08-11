@@ -15,7 +15,9 @@ export interface PostResponse extends Post {
   readonly createdAt: string;
   readonly modifiedAt: string;
   readonly prevId: number | null;
+  readonly prevTitle: string | null;
   readonly nextId: number | null;
+  readonly nextTitle: string | null;
 }
 
 export interface AdjPostInfo {

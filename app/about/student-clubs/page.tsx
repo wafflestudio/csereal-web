@@ -26,7 +26,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
 
 export async function getData(selectedClubName: string) {
   // const clubs = await getClubs();
-  const clubs = getClubsMock();
+  const clubs = await getClubsMock();
   const selectedClub = clubs.find((club) => club.name === selectedClubName);
   return { clubs, selectedClub };
 }

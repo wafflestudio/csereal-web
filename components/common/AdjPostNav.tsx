@@ -12,8 +12,8 @@ interface AdjPostNavProps {
 export default function AdjPostNav({ prevPost, nextPost, margin = '', href }: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
-      <Row post={prevPost} type="next" />
-      <Row post={nextPost} type="prev" />
+      <Row post={nextPost} type="next" />
+      <Row post={prevPost} type="prev" />
       <PostListLink href={href} />
     </div>
   );

@@ -2,8 +2,10 @@ import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 
+import { noto, yoonGothic } from '@/styles/font';
 import '@/styles/globals.css';
-import { noto, yoonGothic } from './font';
+
+import { SWRProvider } from './swr-provider';
 
 export const metadata = {
   title: 'Next.js',
@@ -16,12 +18,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
       >
-        <Navbar />
-        <div className="overflow-auto">
-          <Header />
-          <main className="min-w-fit">{children}</main>
-          <Footer />
-        </div>
+        <SWRProvider>
+          <Navbar />
+          <div className="overflow-auto">
+            <Header />
+            <main className="min-w-fit">{children}</main>
+            <Footer />
+          </div>
+        </SWRProvider>
       </body>
     </html>
   );

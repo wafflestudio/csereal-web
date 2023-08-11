@@ -1,8 +1,9 @@
 'use client';
 
-import { getNoticePostDetail } from '@/apis/notice';
+import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import PageLayout from '@/components/layout/PageLayout';
@@ -17,43 +18,31 @@ import { getPath } from '@/utils/page';
 
 const writer = '박지혜';
 
-const NoticeDetailMock: NoticePostResponse = {
-  id: 1,
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
-  createdAt: '2023-07-11T09:29:13',
-  modifiedAt: '',
-  isPublic: true,
-  isSlide: false,
-  isPinned: false,
-  description: '',
-  tags: ['입학', '기타'],
-  prevId: null,
-  nextId: 2,
-};
-
 const noticePath = getPath(notice);
 
 export default function NoticePostPage() {
-  const { posts, listPathWithQuery } = usePosts<NoticePostResponse>(
-    noticePath,
-    getNoticePostDetail,
-  );
-  const { curr = NoticeDetailMock, prev, next } = posts;
+  const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
+    usePosts<NoticePostResponse>(
+      noticePath,
+      getNoticePostDetailMock, // 추후에 getNoticePostDetail로 변경
+    );
 
   return (
-    <PageLayout
-      currentPage={notice}
-      title="2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내"
-      titleSize="text-lg"
-    >
+    <PageLayout currentPage={notice} title={currPost?.title || ''} titleSize="text-lg">
       <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
-        {formatDate(new Date(curr.createdAt), { includeDay: true, includeTime: true })}
+        {currPost &&
+          formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
       </div>
-      <div className="border w-auto h-[300px] mb-10 ml-2.5"></div>
+      <HTMLViewer htmlContent={currPost?.description || ''} margin="mb-10 ml-2.5" />
       <StraightNode />
-      <Tags tags={curr.tags} page={notice} margin="mt-3 ml-6" />
-      <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
+      <Tags tags={currPost?.tags || []} page={notice} margin="mt-3 ml-6" />
+      <AdjPostNav
+        prevPost={prevPostPreview}
+        nextPost={nextPostPreview}
+        href={listPathWithQuery}
+        margin="mt-12"
+      />
     </PageLayout>
   );
 }

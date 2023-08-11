@@ -1,6 +1,12 @@
 export const convertObjToURLSearchParams = (params: object) => {
-  const flattenedArray = Object.entries(params).flatMap(([key, value]) =>
-    Array.isArray(value) ? value.map((v) => [key, v.toString()]) : [[key, value.toString()]],
-  );
+  const flattenedArray: string[][] = [];
+  for (const [key, value] of Object.entries(params)) {
+    if (!value) continue;
+    if (Array.isArray(value)) {
+      for (const v of value) flattenedArray.push([key, v]);
+    } else {
+      flattenedArray.push([key, value]);
+    }
+  }
   return new URLSearchParams(flattenedArray);
 };

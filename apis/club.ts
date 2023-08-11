@@ -8,7 +8,7 @@ const clubPath = '/club';
 
 export const getClubs = () => getRequest(clubPath) as Promise<Club[]>;
 
-export const getClubsMock = () => CLUBS_MOCK;
+export const getClubsMock: typeof getClubs = async () => CLUBS_MOCK;
 
 export const postClub = (newClub: Club) => postRequest(clubPath, newClub) as Promise<Club>;
 
