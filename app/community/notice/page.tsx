@@ -25,7 +25,7 @@ export default function NoticePage() {
     data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
     isLoading, // TODO: 로딩 컴포넌트
     error, // TODO: 에러 컴포넌트?
-  } = useSwr<GETNoticePostsResponse>([{ page, keyword, tag: tags }], getNoticePostsMock); // 추후 getNoticePosts로 변경
+  } = useSwr<GETNoticePostsResponse>([{ page, keyword, tag: tags }], getNoticePostsMock); // 추후 fetcher 삭제하고 url 추가
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });

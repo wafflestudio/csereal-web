@@ -26,12 +26,15 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
-  const { data: { currPost, prevPost, nextPost } = {} } = useSwr([id, searchParams], async () => {
-    const currPost = await getPostDetail(id, searchParams);
-    const prevPost = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
-    const nextPost = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
-    return { currPost, prevPost, nextPost };
-  });
+  const { data: { currPost, prevPostPreview, nextPost: nextPostPreview } = {} } = useSwr(
+    [id, searchParams],
+    async (id: number, searchParams: PostSearchQueryParams) => {
+      const currPost = await getPostDetail(id, searchParams);
+      const prevPostPreview = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
+      const nextPostPreview = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
+      return { currPost, prevPostPreview, nextPost: nextPostPreview };
+    },
+  );
 
   const getAdjPostInfo = useCallback(
     (id: number | null, title: string | null) => {
@@ -42,5 +45,10 @@ export function usePosts<T extends PostWithAdjIdInfo>(
     [listPath, queryString],
   );
 
-  return { currPost, prevPost, nextPost, listPathWithQuery } as const;
+  return {
+    currPost,
+    prevPostPreview,
+    nextPostPreview,
+    listPathWithQuery,
+  } as const;
 }
