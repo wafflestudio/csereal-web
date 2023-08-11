@@ -44,6 +44,11 @@
             "pattern": "@/utils/**",
             "group": "internal",
             "position": "after"
+          },
+          {
+            "pattern": "@/styles/**",
+            "group": "internal",
+            "position": "after"
           }
         ],
         "alphabetize": {
