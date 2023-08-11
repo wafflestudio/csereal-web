@@ -9,7 +9,7 @@ export const SWRProvider = ({ children }: { children: React.ReactNode }) => {
     <SWRConfig
       value={{
         revalidateOnFocus: false,
-        fetcher: getRequest,
+        fetcher: ({ url, params, headers }) => getRequest(url, params, headers),
       }}
     >
       {children}
