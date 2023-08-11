@@ -1,6 +1,6 @@
 import { Club } from '@/types/club';
 
-import { deleteRequest, getRequest, patchRequest, postRequest } from './fetchAPI';
+import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
 // 아직 미확정
 

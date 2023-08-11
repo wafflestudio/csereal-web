@@ -7,7 +7,7 @@ import {
   SimpleNoticePost,
 } from '@/types/post';
 
-import { deleteRequest, getRequest, patchRequest, postRequest } from './fetchAPI';
+import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
 const noticePath = '/notice';
 

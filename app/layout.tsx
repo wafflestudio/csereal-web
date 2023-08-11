@@ -1,6 +1,6 @@
 import { SWRConfig } from 'swr';
 
-import { getRequest } from '@/apis/fetchAPI';
+import { getRequest } from '@/apis';
 
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
