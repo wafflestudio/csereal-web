@@ -77,6 +77,7 @@ export interface GETFacultyRecruitmentResponse {
   description: string;
 }
 
+// 세미나 - - - - - - - - - - - - - - - - - - - -
 export interface GETSeminarPostsResponse {
   total: number;
   seminarList: SimpleSeminarPost[];
@@ -99,6 +100,8 @@ export interface SeminarPostResponse extends PostResponse {
   imageURL: string;
   isLast?: boolean;
 }
+
+// 시설 안내 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacilitiesPostsResponse {
   facilitiesList: {
