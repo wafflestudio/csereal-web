@@ -1,3 +1,7 @@
+import { SWRConfig } from 'swr';
+
+import { getRequest } from '@/apis/fetchAPI';
+
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
@@ -16,12 +20,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
       >
-        <Navbar />
-        <div className="overflow-auto">
-          <Header />
-          <main className="min-w-fit">{children}</main>
-          <Footer />
-        </div>
+        <SWRConfig
+          value={{
+            revalidateOnFocus: false,
+            fetcher: getRequest,
+          }}
+        >
+          <Navbar />
+          <div className="overflow-auto">
+            <Header />
+            <main className="min-w-fit">{children}</main>
+            <Footer />
+          </div>
+        </SWRConfig>
       </body>
     </html>
   );
