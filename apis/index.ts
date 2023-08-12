@@ -1,79 +1,66 @@
-import axios, { isAxiosError } from 'axios';
-
 import { convertObjToURLSearchParams } from '@/utils/convert';
 
 const BASE_URL = 'http://cse-dev-waffle.bacchus.io';
 
-const client = axios.create({
-  baseURL: BASE_URL,
-});
+const paramsToString = (params: URLSearchParams) => (params.size ? `?${params}` : '');
 
-axios.defaults.paramsSerializer = (params: object) =>
-  convertObjToURLSearchParams(params).toString();
-
-export const getRequest = async (url: string, params: object = {}, headers: object = {}) => {
+export const getRequest = async <T = unknown>(
+  url: string,
+  params: object = {},
+  headers: HeadersInit = {},
+) => {
+  const urlSearchParams = convertObjToURLSearchParams(params);
+  const fetchUrl = `${BASE_URL}${url}${paramsToString(urlSearchParams)}`;
   try {
-    const response = await client.get<unknown>(url, { headers, params });
-    return response.data;
+    const response = await fetch(fetchUrl, { method: 'GET', headers });
+    const responseData = await response.json();
+    return responseData as T;
   } catch (error) {
-    if (isAxiosError(error)) {
-      console.log(error.response);
-    } else {
-      console.log('unknown error');
-    }
+    console.log('error on get request');
   }
 };
 
-export const postRequest = async (url: string, data: object, headers: object = {}) => {
+export const postRequest = async <T = unknown>(
+  url: string,
+  data: object,
+  headers: HeadersInit = {},
+) => {
+  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await client.post<unknown>(url, data, { headers });
-    return response.data;
+    const response = await fetch(fetchUrl, { method: 'POST', headers, body: JSON.stringify(data) });
+    const responseData = await response.json();
+    return responseData as T;
   } catch (error) {
-    if (isAxiosError(error)) {
-      console.log(error.response);
-    } else {
-      console.log('unknown error');
-    }
+    console.log('error on post request');
   }
 };
 
-// 필요할지 모르겠으나 혹시 몰라서 일단 만들어놓음
-export const putRequest = async (url: string, data: object, headers: object = {}) => {
+export const patchRequest = async <T = unknown>(
+  url: string,
+  data: object,
+  headers: HeadersInit = {},
+) => {
+  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await client.put<unknown>(url, data, { headers });
-    return response.data;
+    const response = await fetch(fetchUrl, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify(data),
+    });
+    const responseData = await response.json();
+    return responseData as T;
   } catch (error) {
-    if (isAxiosError(error)) {
-      console.log(error.response);
-    } else {
-      console.log('unknown error');
-    }
+    console.log('error on patch request');
   }
 };
 
-export const patchRequest = async (url: string, data: object, headers: object = {}) => {
+export const deleteRequest = async <T = unknown>(url: string, headers: HeadersInit = {}) => {
+  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await client.patch<unknown>(url, data, { headers });
-    return response.data;
+    const response = await fetch(fetchUrl, { method: 'DELETE', headers });
+    const responseData = await response.json();
+    return responseData as T;
   } catch (error) {
-    if (isAxiosError(error)) {
-      console.log(error.response);
-      return error.response;
-    } else {
-      console.log('unknown error');
-    }
-  }
-};
-
-export const deleteRequest = async (url: string, headers: object = {}) => {
-  try {
-    const response = await client.delete<unknown>(url, { headers });
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      console.log(error.response);
-    } else {
-      console.log('unknown error');
-    }
+    console.log('error on delete request');
   }
 };

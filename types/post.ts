@@ -15,7 +15,9 @@ export interface PostResponse extends Post {
   readonly createdAt: string;
   readonly modifiedAt: string;
   readonly prevId: number | null;
+  readonly prevTitle: string | null;
   readonly nextId: number | null;
+  readonly nextTitle: string | null;
 }
 
 export interface AdjPostInfo {
@@ -75,4 +77,36 @@ export interface GETFacultyRecruitmentResponse {
   latestRecruitmentPostTitle: string;
   latestRecruitmentPostHref: string;
   description: string;
+}
+
+export interface GETSeminarPostsResponse {
+  total: number;
+  seminarList: SimpleSeminarPost[];
+}
+
+export interface SimpleSeminarPost
+  extends Pick<
+    SeminarPostResponse,
+    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL' | 'isLast'
+  > {}
+
+export interface SeminarPostResponse extends PostResponse {
+  host: string;
+  company: string;
+  professor: string;
+  date: string;
+  location: string;
+  description: string;
+  hostDescription: string;
+  imageURL: string;
+  isLast?: boolean;
+}
+
+export interface GETFacilitiesPostsResponse {
+  facilitiesList: {
+    name: string;
+    description: string;
+    location: string;
+    imageURL: string;
+  }[];
 }

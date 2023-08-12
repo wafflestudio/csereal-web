@@ -9,6 +9,7 @@
         "pathGroups": [
           { "pattern": "react*", "group": "external", "position": "before" },
           { "pattern": "next*", "group": "external", "position": "before" },
+          { "pattern": "swr*", "group": "external", "position": "before" },
           {
             "pattern": "@/apis/**",
             "group": "internal",
@@ -41,6 +42,11 @@
           },
           {
             "pattern": "@/utils/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/styles/**",
             "group": "internal",
             "position": "after"
           }
