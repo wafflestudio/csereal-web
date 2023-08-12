@@ -9,7 +9,7 @@ import {
   TitleInput,
 } from '@/components/common/Editor/EditorOptions';
 import PageTitle from '@/components/common/PageTitle';
-import Sidebar from '@/components/common/Sidebar';
+import SubNavbar from '@/components/layout/SubNavbar';
 
 import { greetings } from '@/types/page';
 
@@ -48,7 +48,7 @@ export default function EditorPage() {
             </button>
           </div>
         </form>
-        <Sidebar currentTab={greetings} />
+        <SubNavbar currentTab={greetings} />
       </div>
     </div>
   );
