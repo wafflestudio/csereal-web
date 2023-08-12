@@ -6,14 +6,16 @@ import { NewsPostResponse, GETNewsPostsResponse } from '@/types/post';
 
 import { getRequest } from '.';
 
-export const getNewsPosts = (params: PostSearchQueryParams) =>
-  getRequest('/news', params) as Promise<GETNewsPostsResponse>;
+const newsPath = '/news';
+
+export const getNewsPosts = ({ params }: { params: PostSearchQueryParams }) =>
+  getRequest(newsPath, params) as Promise<GETNewsPostsResponse>;
 
 export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`/news/${id}`, params) as Promise<NewsPostResponse>;
+  getRequest(`${newsPath}/${id}`, params) as Promise<NewsPostResponse>;
 
 // mock
-export const getMockNewsPosts: typeof getNewsPosts = async (params) => {
+export const getMockNewsPosts: typeof getNewsPosts = async ({ params }) => {
   const searchList = Array(10)
     .fill(0)
     .map((_, id) => ({
