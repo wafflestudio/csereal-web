@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
+import { CurvedVerticalNode } from '@/components/common/Nodes';
+
 import { SegmentNode } from '@/types/page';
 
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
-
-import { CurvedVerticalNode } from '../common/Nodes';
 
 interface SubNavbarProps {
   currentTab: SegmentNode;

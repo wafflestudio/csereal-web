@@ -1,6 +1,6 @@
 import { getClubs, getClubsMock } from '@/apis/club';
 
-import { SelectionList } from '@/components/common/SelectionList';
+import SelectionList from '@/components/common/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
 
@@ -23,7 +23,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
     <PageLayout currentPage={studentClubs} title={studentClubs.name} titleSize="text-2xl">
       <SelectionList
         names={clubs.map((club) => club.name)}
-        selectedItemName={selectedClub ? selectedClub.name : ''}
+        selectedItemName={selectedClub?.name ?? ''}
         path={clubPath}
       />
       {selectedClub && <ClubDetails club={selectedClub} />}
@@ -31,7 +31,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   );
 }
 
-export async function getData(selectedClubName: string) {
+async function getData(selectedClubName: string) {
   // const clubs = await getClubs();
   const clubs = await getClubsMock();
   const selectedClub = clubs.find((club) => club.name === selectedClubName);
