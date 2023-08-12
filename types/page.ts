@@ -168,7 +168,7 @@ export const research: SegmentNode = {
 
 export const researchGroups: SegmentNode = {
   name: '연구 그룹',
-  segment: 'research-groups',
+  segment: 'groups',
   isPage: true,
   parent: research,
   children: null,
@@ -176,7 +176,7 @@ export const researchGroups: SegmentNode = {
 
 export const researchCenters: SegmentNode = {
   name: '연구 센터',
-  segment: 'research-centers',
+  segment: 'centers',
   isPage: true,
   parent: research,
   children: null,
