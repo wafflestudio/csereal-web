@@ -1,7 +1,7 @@
 import { getDirections, getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import { SelectionList } from '@/components/common/SelectionList';
+import SelectionList from '@/components/common/SelectionList';
 import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/PageLayout';
@@ -30,7 +30,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
       <div>
         <SelectionList
           names={directionList.map((d) => d.name)}
-          selectedItemName={selectedDirection ? selectedDirection.name : ''}
+          selectedItemName={selectedDirection?.name ?? ''}
           path={directionsPath}
         />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
@@ -39,7 +39,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
   );
 }
 
-export async function getData(selectedDirectionName: string) {
+async function getData(selectedDirectionName: string) {
   // const directions = await getDirections();
   const directionList = getDirectionsMock();
   const selectedDirection = directionList.find((dir) => dir.name === selectedDirectionName);

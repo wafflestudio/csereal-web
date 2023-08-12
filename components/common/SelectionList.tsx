@@ -4,15 +4,15 @@ import { COLOR_THEME } from '@/constants/color';
 
 import CornerFoldedRectangle from './CornerFoldedRectangle';
 
-interface SelectiveListProps {
+interface SelectionListProps {
   names: string[];
   selectedItemName: string;
   path: string;
 }
 
-export function SelectionList({ names, selectedItemName, path }: SelectiveListProps) {
+export default function SelectionList({ names, selectedItemName, path }: SelectionListProps) {
   return (
-    <ul className="grid grid-cols-4 gap-3 mb-8">
+    <ul className="grid grid-cols-4 gap-3 mb-9">
       {names.map((name) => (
         <SelectionItem key={name} path={path} name={name} isSelected={name === selectedItemName} />
       ))}
@@ -20,13 +20,13 @@ export function SelectionList({ names, selectedItemName, path }: SelectiveListPr
   );
 }
 
-interface SelectiveItemProps {
+interface SelectionItemProps {
   name: string;
   isSelected: boolean;
   path: string;
 }
 
-function SelectionItem({ name, isSelected, path }: SelectiveItemProps) {
+function SelectionItem({ name, isSelected, path }: SelectionItemProps) {
   const itemCommonStyle = 'block w-[12.5rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
