@@ -21,7 +21,7 @@ export default async function FacultyRecruitment() {
         colorTheme={COLOR_THEME.darkGray}
         triangleLength={1.75}
         triangleDropShadow="drop-shadow(0px 4px 7px rgba(0,0,0,0.7)"
-        rectClassName="w-fit mb-8"
+        rectangleMargin="mb-8"
       >
         <LatestRecruitmentBanner {...res} />
       </CornerFoldedRectangle>
