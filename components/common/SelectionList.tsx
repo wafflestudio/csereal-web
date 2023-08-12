@@ -2,36 +2,31 @@ import Link from 'next/link';
 
 import { COLOR_THEME } from '@/constants/color';
 
-import { Club } from '@/types/club';
-import { studentClubs } from '@/types/page';
+import CornerFoldedRectangle from './CornerFoldedRectangle';
 
-import { getPath } from '@/utils/page';
-
-import CornerFoldedRectangle from '../common/CornerFoldedRectangle';
-
-interface ClubListProps {
-  clubs: Club[];
-  selectedClub?: Club;
+interface SelectiveListProps {
+  names: string[];
+  selectedItemName: string;
+  path: string;
 }
 
-export default function ClubList({ clubs, selectedClub }: ClubListProps) {
+export function SelectionList({ names, selectedItemName, path }: SelectiveListProps) {
   return (
     <ul className="grid grid-cols-4 gap-3 mb-8">
-      {clubs.map((club) => (
-        <ClubItem key={club.name} name={club.name} isSelected={selectedClub?.name === club.name} />
+      {names.map((name) => (
+        <SelectionItem key={name} path={path} name={name} isSelected={name === selectedItemName} />
       ))}
     </ul>
   );
 }
 
-interface ClubItemProps {
+interface SelectiveItemProps {
   name: string;
   isSelected: boolean;
+  path: string;
 }
 
-const clubPath = getPath(studentClubs);
-
-function ClubItem({ name, isSelected }: ClubItemProps) {
+function SelectionItem({ name, isSelected, path }: SelectiveItemProps) {
   const itemCommonStyle = 'block w-[12.5rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
@@ -57,8 +52,9 @@ function ClubItem({ name, isSelected }: ClubItemProps) {
           isAnimated={true}
         >
           <Link
-            href={`${clubPath}?selected=${name}`}
+            href={`${path}?selected=${name}`}
             className={`${itemCommonStyle} text-neutral-500`}
+            scroll={false}
           >
             {name}
           </Link>
