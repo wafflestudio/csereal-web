@@ -11,7 +11,7 @@ import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
 const noticePath = '/notice';
 
-export const getNoticePosts = (url: string, params: PostSearchQueryParams) =>
+export const getNoticePosts = (params: PostSearchQueryParams) =>
   getRequest(noticePath, params) as Promise<GETNoticePostsResponse>;
 
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
@@ -25,11 +25,13 @@ export const patchNotice = (id: number, newPost: Partial<NoticePost>) =>
 
 export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
 
-export const getNoticePostsMock: typeof getNoticePosts = async (url, params) => ({
+// 추후 삭제
+export const getNoticePostsMock: typeof getNoticePosts = async (params) => ({
   searchList: noticeListMock,
   total: noticeListMock.length,
 });
 
+// 추후 삭제
 export const getNoticePostDetailMock: typeof getNoticePostDetail = async (id, params) =>
   NoticeDetailMock;
 
