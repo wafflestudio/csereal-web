@@ -1,39 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext } from 'react';
 
-import { SegmentNode } from '@/types/page';
+import { NavbarContext } from '@/contexts/NavbarContext';
 
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
-export type NavbarState =
-  | {
-      // 접힌 상태
-      type: 'closed';
-    }
-  | {
-      // 펼쳐진 상태
-      type: 'expanded';
-    }
-  | {
-      // 세부 페이지 보이는 상태
-      type: 'hovered';
-      segmentNode: SegmentNode;
-    };
-
 export default function Navbar() {
-  const [state, setState] = useState<NavbarState>({ type: 'closed' });
+  const { navbarState, setNavbarState } = useContext(NavbarContext);
 
   const handleMouseLeave = () => {
     // 세부 페이지가 보이고 있다면 닫기
-    state.type === 'hovered' && setState({ type: 'expanded' });
+    navbarState.type === 'hovered' && setNavbarState({ type: 'expanded' });
   };
 
   return (
     <div className="relative row-span-full bg-main-orange flex" onMouseLeave={handleMouseLeave}>
-      <NavbarRoot state={state} setState={setState} />
-      {state.type === 'hovered' && <NavbarDetail segmentNode={state.segmentNode} />}
+      <NavbarRoot state={navbarState} setState={setNavbarState} />
+      {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
     </div>
   );
 }

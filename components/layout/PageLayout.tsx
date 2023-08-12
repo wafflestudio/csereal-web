@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
+
+import { NavbarContext } from '@/contexts/NavbarContext';
 
 import PageTitle from '@/components/common/PageTitle';
 import Sidebar from '@/components/common/Sidebar';
@@ -13,11 +15,13 @@ interface PageLayoutProps {
 }
 
 export default function PageLayout({ currentPage, title, titleSize, children }: PageLayoutProps) {
+  const { navbarState } = useContext(NavbarContext);
+
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageTitle title={title} currentPage={currentPage} textSize={titleSize} />
       <div className="w-[52.5rem] row-start-2 col-start-1">{children}</div>
-      <Sidebar currentTab={currentPage} />
+      {navbarState.type === 'closed' && <Sidebar currentTab={currentPage} />}
     </div>
   );
 }

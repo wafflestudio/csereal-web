@@ -1,3 +1,5 @@
+import { NavbarContextProvider } from '@/contexts/NavbarContext';
+
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
@@ -19,12 +21,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
       >
         <SWRProvider>
-          <Navbar />
-          <div className="overflow-auto">
-            <Header />
-            <main className="min-w-fit">{children}</main>
-            <Footer />
-          </div>
+          <NavbarContextProvider>
+            <Navbar />
+            <div className="overflow-auto">
+              <Header />
+              <main className="min-w-fit">{children}</main>
+              <Footer />
+            </div>
+          </NavbarContextProvider>
         </SWRProvider>
       </body>
     </html>
