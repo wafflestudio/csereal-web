@@ -47,7 +47,7 @@ export default function CornerFoldedRectangle({
       {children}
     </div>
   ) : (
-    <div className={`relative w-fit ${rectangleMargin} border-none`} style={rectangleStyle}>
+    <div className={`relative w-fit ${rectangleMargin}`} style={rectangleStyle}>
       <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
       {children}
     </div>
