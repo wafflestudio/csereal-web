@@ -17,16 +17,23 @@ import { getPath } from '@/utils/page';
 const newsPath = getPath(news);
 
 export default function NewsPostPage({ params }: { params: { id: number } }) {
-  const { posts, listPathWithQuery } = usePosts(newsPath, getNewsPostDetail);
-  let { curr, prev, next } = posts;
-  curr = curr || getMockNewsPostDetail(params.id);
+  let { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } = usePosts(
+    newsPath,
+    getNewsPostDetail,
+  );
+  currPost ||= getMockNewsPostDetail(params.id);
 
   return (
-    <PageLayout currentPage={news} title={curr?.title ?? ''} titleSize="text-lg">
-      <HTMLViewer htmlContent={curr.description} />
+    <PageLayout currentPage={news} title={currPost?.title ?? ''} titleSize="text-lg">
+      <HTMLViewer htmlContent={currPost.description} />
       <StraightNode />
-      <Tags tags={curr.tags} page={news} margin="mt-3 ml-6" />
-      <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
+      <Tags tags={currPost.tags} page={news} margin="mt-3 ml-6" />
+      <AdjPostNav
+        prevPost={prevPostPreview}
+        nextPost={nextPostPreview}
+        href={listPathWithQuery}
+        margin="mt-12"
+      />
     </PageLayout>
   );
 }

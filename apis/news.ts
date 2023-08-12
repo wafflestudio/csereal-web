@@ -32,7 +32,9 @@ export const getMockNewsPosts: typeof getNewsPosts = async (params) => {
   };
 };
 
-export const getMockNewsPostDetail = (id: number) => {
+export const getMockNewsPostDetail = (
+  id: number,
+): Awaited<ReturnType<typeof getNewsPostDetail>> => {
   return {
     id,
     title: `id가 ${id}인 글`,
@@ -45,5 +47,7 @@ export const getMockNewsPostDetail = (id: number) => {
     modifiedAt: new Date().toISOString(),
     prevId: 1,
     nextId: 2,
+    prevTitle: 'PREVTITLE',
+    nextTitle: 'NEXTTITLE',
   };
 };
