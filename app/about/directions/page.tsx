@@ -1,7 +1,7 @@
 import { getDirections, getDirectionsMock } from '@/apis/directions';
 
-import { SelectionList } from '@/components/common/SelectionList';
 import HTMLViewer from '@/components/common/HTMLViewer';
+import { SelectionList } from '@/components/common/SelectionList';
 import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/PageLayout';
