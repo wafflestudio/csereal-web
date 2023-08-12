@@ -32,11 +32,10 @@ interface ClubItemProps {
 const clubPath = getPath(studentClubs);
 
 function ClubItem({ name, isSelected }: ClubItemProps) {
-  const itemCommonStyle =
-    'block w-[12.5625rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
+  const itemCommonStyle = 'block w-[12.5rem] h-10 py-3 text-center text-sm tracking-wide font-yoon';
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
-  const dropShadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.25)';
+  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
 
   return (
     <li>

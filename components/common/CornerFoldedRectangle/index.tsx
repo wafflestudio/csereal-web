@@ -28,7 +28,6 @@ export default function CornerFoldedRectangle({
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
     borderRadius: `${radius}rem`,
-    backgroundColor: colorTheme.bgColor,
     background: isAnimated
       ? colorTheme.bgColor
       : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
