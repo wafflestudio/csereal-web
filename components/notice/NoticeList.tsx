@@ -30,7 +30,6 @@ export default function NoticeList({ posts }: NoticeListProps) {
         {posts.map((post, i) => (
           <NoticeListRow
             post={post}
-            isPinned={post.isPinned}
             idx={i}
             href={`${noticePath}/${post.id}${queryString}`}
             key={i}
@@ -43,19 +42,18 @@ export default function NoticeList({ posts }: NoticeListProps) {
 
 interface NoticeListRowProps {
   post: SimpleNoticePost;
-  isPinned: boolean;
   idx: number;
   href: string;
 }
 
-function NoticeListRow({ post, isPinned, idx, href }: NoticeListRowProps) {
+function NoticeListRow({ post, idx, href }: NoticeListRowProps) {
   const bgColor = idx % 2 ? 'bg-white' : 'bg-neutral-100';
-  const fontWeight = isPinned ? 'font-bold' : 'font-normal';
+  const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
 
   return (
     <li className={`flex items-center py-2 ${bgColor} ${fontWeight}`}>
       <span className="w-[3.125rem] px-[0.8125rem] shrink-0">
-        {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
+        {post.isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
       <span className="py-[0.1875rem] pl-3 grow text-neutral-700 tracking-wide">
         <Link href={href}>{post.title}</Link>

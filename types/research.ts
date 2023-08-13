@@ -16,3 +16,12 @@ export interface ResearchCenter {
   imageURL: string;
   link: string;
 }
+
+export interface ResearchLabInfo {
+  name: string;
+  professors: string[];
+  location: string;
+  tel: string;
+  acronym: string;
+  introductionMaterials: { attachment?: string; youtube?: string };
+}

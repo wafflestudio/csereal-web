@@ -1,4 +1,22 @@
-import { ResearchCenter, ResearchGroups } from '@/types/research';
+import { ResearchCenter, ResearchGroups, ResearchLabInfo } from '@/types/research';
+
+import { getRequest } from '.';
+
+export const getResearchLabs = () => getRequest('/research/labs') as Promise<ResearchLabInfo[]>;
+
+export const getResearchLabsMock: typeof getResearchLabs = async () =>
+  Array(20)
+    .fill(0)
+    .map(() => lab);
+
+const lab: ResearchLabInfo = {
+  name: '컴퓨터 그래픽스 및 이미지 처리 연구실',
+  professors: ['신영길', '김보형'],
+  location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
+  tel: '(02) 880-1860',
+  acronym: 'QUIQCL',
+  introductionMaterials: { attachment: 'a', youtube: 'youtubelink' },
+};
 
 const groupMock = {
   name: '그래픽스 및 사람 중심 컴퓨팅',

@@ -28,7 +28,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
   );
 
   return (
-    <PageLayout currentPage={researchCenters} title={researchCenters.name} titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <SelectionList
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}

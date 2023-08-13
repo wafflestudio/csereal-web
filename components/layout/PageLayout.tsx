@@ -17,12 +17,11 @@ interface PageLayoutProps {
 
 export default function PageLayout({ title, titleSize, children }: PageLayoutProps) {
   const currentPage = useCurrentSegmentNode();
-  title ||= currentPage.name;
   const { navbarState } = useNavbarContext();
 
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
-      <PageTitle title={title} currentPage={currentPage} textSize={titleSize} />
+      <PageTitle title={title ?? currentPage.name} currentPage={currentPage} textSize={titleSize} />
       <div className="w-[52.5rem] row-start-2 col-start-1">{children}</div>
       {navbarState.type === 'closed' && <SubNavbar currentTab={currentPage} />}
     </div>
