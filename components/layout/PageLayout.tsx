@@ -1,24 +1,30 @@
+'use client';
+
 import React, { ReactNode } from 'react';
+
+import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import PageTitle from '@/components/common/PageTitle';
 import SubNavbar from '@/components/layout/SubNavbar';
 
-import { SegmentNode } from '@/types/page';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 interface PageLayoutProps {
-  currentPage: SegmentNode;
-  title: string;
+  title?: string;
   titleSize: 'text-lg' | 'text-2xl';
   children: ReactNode;
 }
 
-export default function PageLayout({ currentPage, title, titleSize, children }: PageLayoutProps) {
+export default function PageLayout({ title, titleSize, children }: PageLayoutProps) {
+  const currentPage = useCurrentSegmentNode();
+  title ||= currentPage.name;
+  const { navbarState } = useNavbarContext();
+
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageTitle title={title} currentPage={currentPage} textSize={titleSize} />
       <div className="w-[52.5rem] row-start-2 col-start-1">{children}</div>
-      {/* TODO: 메인 내비 펼주내로 바뀌면 서브내비는 랜더링 X */}
-      <SubNavbar currentTab={currentPage} />
+      {navbarState.type === 'closed' && <SubNavbar currentTab={currentPage} />}
     </div>
   );
 }

@@ -27,8 +27,8 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   const listPathWithQuery = `${listPath}${queryString}`;
 
   const { data: { currPost, prevPostPreview, nextPost: nextPostPreview } = {} } = useSwr(
-    {id, searchParams},
-    async ({id, searchParams}) => {
+    { id, searchParams },
+    async ({ id, searchParams }) => {
       const currPost = await getPostDetail(id, searchParams);
       const prevPostPreview = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
       const nextPostPreview = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
