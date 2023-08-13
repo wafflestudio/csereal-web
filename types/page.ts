@@ -38,6 +38,14 @@ export const greetings: SegmentNode = {
   children: null,
 };
 
+export const history: SegmentNode = {
+  name: '연혁',
+  segment: 'history',
+  isPage: true,
+  parent: about,
+  children: null,
+};
+
 export const futureCareers: SegmentNode = {
   name: '졸업생 진로',
   segment: 'future-careers',
@@ -514,6 +522,7 @@ main.children = [about, community, people, research, admissions, academics, rese
 about.children = [
   overview,
   greetings,
+  history,
   futureCareers,
   studentClubs,
   facilities,

@@ -30,7 +30,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   );
 
   return (
-    <PageLayout currentPage={directions} title={directions.name} titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <div className="mb-[3.25rem]">
         <LocationGuide />
         <LocationMap />

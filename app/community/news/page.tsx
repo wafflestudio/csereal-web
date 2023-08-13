@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import useSWR from 'swr';
 
 import { getMockNewsPosts } from '@/apis/news';
 
@@ -16,7 +16,6 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import { useQueryString } from '@/hooks/useQueryString';
 
 import { news } from '@/types/page';
-import { GETNewsPostsResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
@@ -25,28 +24,19 @@ const newsPath = getPath(news);
 
 export default function NewsPage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
-  const [posts, setPosts] = useState<GETNewsPostsResponse['searchList']>([]);
   const queryString = useQueryString();
+  const {
+    data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
+    isLoading, // TODO: 로딩 컴포넌트
+    error, // TODO: 에러 컴포넌트?
+  } = useSWR({ url: '/news', params: { page, keyword, tag: tags } }, getMockNewsPosts); // 추후 fetcher 삭제
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const fetchPost = useCallback(async () => {
-    // const resp = await getMockNewsPosts(queryParams);
-    // TODO: tags 처리
-    const resp = await getMockNewsPosts({ page, keyword });
-    setTotalPostsCount(resp.total);
-    setPosts(resp.searchList);
-  }, [keyword, page]);
-
-  useEffect(() => {
-    fetchPost();
-  }, [fetchPost]);
-
   return (
-    <PageLayout currentPage={news} title="새 소식" titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <SearchForm
         key={tags + ''}
         tags={NewsTags}
@@ -59,7 +49,7 @@ export default function NewsPage() {
         {posts.map((post) => (
           <NewsRow
             key={post.id}
-            href={`${newsPath}/${post.id}/${queryString}`}
+            href={`${newsPath}/${post.id}${queryString}`}
             title={post.title}
             description={post.description}
             tags={post.tags}

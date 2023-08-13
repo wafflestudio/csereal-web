@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { NavbarState } from '@/contexts/NavbarContext';
 import naviBarClose from '@/public/image/NaviBar_Close.svg';
 import naviBarMenu from '@/public/image/NaviBar_Menu.svg';
 import snuLogo from '@/public/image/SNU_Logo.svg';
@@ -9,8 +10,6 @@ import snuLogo from '@/public/image/SNU_Logo.svg';
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
-
-import { NavbarState } from './Navbar';
 
 export default function NavbarRoot({
   state,
@@ -24,9 +23,7 @@ export default function NavbarRoot({
   const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
 
   return (
-    <div
-      className={`flex flex-col items-center pt-12 ${width} overflow-y-scroll no-scrollbar`}
-    >
+    <div className={`flex flex-col items-center pt-12 ${width} overflow-y-scroll no-scrollbar`}>
       <SNULogo />
       {state.type === 'closed' ? (
         <ExpandButton expand={expand} />

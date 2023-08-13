@@ -30,7 +30,7 @@ export default function StudentClubsPage({ searchParams }: StudentClubsPageProps
   );
 
   return (
-    <PageLayout currentPage={studentClubs} title={studentClubs.name} titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <SelectionList
         names={clubs.map((club) => club.name)}
         selectedItemName={selectedClub?.name ?? ''}

@@ -4,7 +4,6 @@ import PageLayout from '@/components/layout/PageLayout';
 
 import { COLOR_THEME } from '@/constants/color';
 
-import { facultyRecruitment } from '@/types/page';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 
 // TODO
@@ -15,7 +14,7 @@ export default async function FacultyRecruitment() {
   const res = await mockNetwork();
 
   return (
-    <PageLayout currentPage={facultyRecruitment} title="신임교수초빙" titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <CornerFoldedRectangle
         radius={0.3125}
         colorTheme={COLOR_THEME.darkGray}
