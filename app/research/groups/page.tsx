@@ -29,7 +29,6 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
     groups,
     decodeURI(searchParams.selected ?? ''),
   );
-  console.log('ren');
 
   return (
     <PageLayout currentPage={researchGroups} title={researchGroups.name} titleSize="text-2xl">
@@ -38,6 +37,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
         names={groups.map((group) => group.name)}
         selectedItemName={selectedGroup?.name ?? ''}
         path={researchGroupsPath}
+        gridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
       />
       {selectedGroup && <ResearchGroupDetails group={selectedGroup} />}
     </PageLayout>

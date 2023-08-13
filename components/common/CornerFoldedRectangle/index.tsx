@@ -11,6 +11,7 @@ interface CornerFoldedRectangleProps {
   rectangleMargin?: string; // tailwind 형식
   radius: number; // rem 단위
   isAnimated?: boolean;
+  isSelection?: boolean;
   children: ReactNode;
 }
 
@@ -24,6 +25,7 @@ export default function CornerFoldedRectangle({
   rectangleMargin,
   radius,
   isAnimated, // 선택형 기본 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
+  isSelection,
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
@@ -43,11 +45,19 @@ export default function CornerFoldedRectangle({
   };
 
   return isAnimated ? (
-    <div className={`relative w-fit ${rectangleMargin} ${styles.folding}`} style={rectangleStyle}>
+    <div
+      className={`relative ${isSelection ? 'w-full' : 'w-fit'} ${rectangleMargin} ${
+        styles.folding
+      }`}
+      style={rectangleStyle}
+    >
       {children}
     </div>
   ) : (
-    <div className={`relative w-fit ${rectangleMargin}`} style={rectangleStyle}>
+    <div
+      className={`relative ${isSelection ? 'w-full' : 'w-fit'} ${rectangleMargin}`}
+      style={rectangleStyle}
+    >
       <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
       {children}
     </div>

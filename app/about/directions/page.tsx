@@ -40,6 +40,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
           names={directionList.map((d) => d.name)}
           selectedItemName={selectedDirection?.name ?? ''}
           path={directionsPath}
+          gridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
         />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
       </div>
