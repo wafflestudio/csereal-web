@@ -13,6 +13,7 @@ export default async function History() {
         htmlContent={resp.description}
         mainImage={{ width: 320, height: 213, url: resp.mainImageURL }}
       />
+      <div className="h-12" />
     </PageLayout>
   );
 }
