@@ -1,7 +1,7 @@
-import { ResearchGroup } from '@/apis/research';
-
 import HTMLViewer from '@/components/common/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
+
+import { ResearchGroup } from '@/types/research';
 
 import ResearchGroupLabs from './ResearchGroupLabs';
 
@@ -18,7 +18,7 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
         mainImage={{ url: group.imageURL, width: 320, height: 160 }}
         margin="mt-3 mb-9 ml-2.5"
       />
-      <ResearchGroupLabs labs={group.laboratories} />
+      <ResearchGroupLabs labNames={group.laboratories} />
     </div>
   );
 }

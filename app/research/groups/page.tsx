@@ -2,14 +2,16 @@
 
 import useSWR from 'swr';
 
-import { ResearchGroup, getResearchGroupsMock } from '@/apis/research';
+import { getResearchGroupsMock } from '@/apis/research';
 
 import SelectionList from '@/components/common/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import ResearchGroupDetails from '@/components/research/ResearchGroupDetails';
 
 import { researchGroups } from '@/types/page';
+import { ResearchGroup } from '@/types/research';
 
+import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
 
 interface ResearchGroupsPageProps {
@@ -17,15 +19,6 @@ interface ResearchGroupsPageProps {
 }
 
 const researchGroupsPath = getPath(researchGroups);
-
-const findSelectedItem = <T extends { name: string }>(
-  items: T[],
-  selectedItemName: string,
-  defaultItemName?: string,
-) => {
-  const selectedName = selectedItemName || defaultItemName || items[0]?.name;
-  return items.find((item) => item.name === selectedName);
-};
 
 export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
   const { data: { description = '', groups = [] } = {} } = useSWR(
@@ -52,7 +45,5 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
 }
 
 function ResearchDescription({ description }: { description: string }) {
-  return (
-    <p className="mb-9 font-noto text-sm tracking-wide leading-[1.625rem]">{description}</p>
-  );
+  return <p className="mb-9 font-noto text-sm tracking-wide leading-[1.625rem]">{description}</p>;
 }
