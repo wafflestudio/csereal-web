@@ -54,7 +54,7 @@ function LaboratoryListRow({ lab }: { lab: ResearchLabInfo }) {
             >
               {prof}
             </Link>
-            {i !== lab.professors.length - 1 && <span>,</span>}
+            {i !== lab.professors.length - 1 && <span>, </span>}
           </Fragment>
         ))}
       </span>
