@@ -14,7 +14,7 @@ export default async function FacultyRecruitment() {
   const res = await mockNetwork();
 
   return (
-    <PageLayout title="신임교수초빙" titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <CornerFoldedRectangle
         radius={0.3125}
         colorTheme={COLOR_THEME.darkGray}

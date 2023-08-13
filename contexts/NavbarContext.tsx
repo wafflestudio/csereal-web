@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { SegmentNode } from '@/types/page';
 
@@ -24,7 +24,7 @@ interface NavbarContextContent {
   setNavbarState: (state: NavbarState) => void;
 }
 
-export const NavbarContext = createContext<NavbarContextContent>({
+const NavbarContext = createContext<NavbarContextContent>({
   navbarState: { type: 'closed' },
   setNavbarState: () => {},
 });
@@ -37,3 +37,5 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
     </NavbarContext.Provider>
   );
 }
+
+export const useNavbarContext = () => useContext(NavbarContext);

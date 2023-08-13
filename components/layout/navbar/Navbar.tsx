@@ -1,14 +1,12 @@
 'use client';
 
-import { useContext } from 'react';
-
-import { NavbarContext } from '@/contexts/NavbarContext';
+import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
 export default function Navbar() {
-  const { navbarState, setNavbarState } = useContext(NavbarContext);
+  const { navbarState, setNavbarState } = useNavbarContext();
 
   const handleMouseLeave = () => {
     // 세부 페이지가 보이고 있다면 닫기

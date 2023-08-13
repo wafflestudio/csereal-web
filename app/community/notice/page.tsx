@@ -14,7 +14,6 @@ import { NoticeTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
-import { notice } from '@/types/page';
 import { GETNoticePostsResponse } from '@/types/post';
 
 const POST_LIMIT = 20;
@@ -35,7 +34,7 @@ export default function NoticePage() {
   };
 
   return (
-    <PageLayout title={notice.name} titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}

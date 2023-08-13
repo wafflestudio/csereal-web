@@ -7,7 +7,7 @@ export default async function GreetingsPage() {
   const response = await mockNetwork();
 
   return (
-    <PageLayout title="학부장 인사말" titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <HTMLViewer
         htmlContent={response.description}
         mainImage={{ width: 212, height: 280, url: response.mainImageURL }}

@@ -40,7 +40,7 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
         className={`
         text-sm font-noto font-regular leading-loose 
         ${margin}
-        [&_a]:text-link [&_a]:no-underline [&_a]:hover:underline
+        [&_a]:text-link [&_a]:underline 
         [&_li]:list-disc [&_li]:list-inside 
         [&_p]:mb-4 
         [&_td]:border-[1px] [&_td]:border-neutral-300

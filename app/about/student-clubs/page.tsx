@@ -20,7 +20,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   const { clubs, selectedClub } = await getData(selected);
 
   return (
-    <PageLayout title={studentClubs.name} titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl">
       <SelectionList
         names={clubs.map((club) => club.name)}
         selectedItemName={selectedClub?.name ?? ''}
