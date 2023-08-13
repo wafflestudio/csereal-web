@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { COLOR_THEME } from '@/constants/color';
 
-import CornerFoldedRectangle from './CornerFoldedRectangle';
+import CornerFoldedRectangle from './CornerFoldedRectangle/index';
 
 interface SelectionListProps {
   names: string[];
@@ -53,7 +53,7 @@ function SelectionItem({ name, isSelected, path }: SelectionItemProps) {
         >
           <Link
             href={`${path}?selected=${name}`}
-            className={`${itemCommonStyle} text-neutral-500`}
+            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700`}
             scroll={false}
           >
             {name}

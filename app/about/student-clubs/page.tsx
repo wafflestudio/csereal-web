@@ -1,11 +1,17 @@
-import { getClubs, getClubsMock } from '@/apis/club';
+'use client';
+
+import useSWR from 'swr';
+
+import { getClubsMock } from '@/apis/club';
 
 import SelectionList from '@/components/common/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
 
+import { Club } from '@/types/club';
 import { studentClubs } from '@/types/page';
 
+import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
 
 interface StudentClubsPageProps {
@@ -15,9 +21,13 @@ interface StudentClubsPageProps {
 const DEFAULT_CLUB = '와플스튜디오';
 const clubPath = getPath(studentClubs);
 
-export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
-  const selected = searchParams.selected ? decodeURI(searchParams.selected) : DEFAULT_CLUB;
-  const { clubs, selectedClub } = await getData(selected);
+export default function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
+  const { data: clubs = [] } = useSWR({ url: '/clubs' }, getClubsMock);
+  const selectedClub = findSelectedItem<Club>(
+    clubs,
+    decodeURI(searchParams.selected ?? ''),
+    DEFAULT_CLUB,
+  );
 
   return (
     <PageLayout currentPage={studentClubs} title={studentClubs.name} titleSize="text-2xl">
@@ -29,11 +39,4 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
       {selectedClub && <ClubDetails club={selectedClub} />}
     </PageLayout>
   );
-}
-
-async function getData(selectedClubName: string) {
-  // const clubs = await getClubs();
-  const clubs = await getClubsMock();
-  const selectedClub = clubs.find((club) => club.name === selectedClubName);
-  return { clubs, selectedClub };
 }

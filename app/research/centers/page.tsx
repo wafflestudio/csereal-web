@@ -21,15 +21,11 @@ interface ResearchCentersPageProps {
 const researchCentersPath = getPath(researchCenters);
 
 export default function ResearchGroupsPage({ searchParams }: ResearchCentersPageProps) {
-  const { data: { centers = [] } = {} } = useSWR(
-    { url: '/research/centers' },
-    getResearchCentersMock,
-  );
+  const { data: centers = [] } = useSWR({ url: '/research/centers' }, getResearchCentersMock);
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
     decodeURI(searchParams.selected ?? ''),
   );
-  console.log('ren cener');
 
   return (
     <PageLayout currentPage={researchCenters} title={researchCenters.name} titleSize="text-2xl">

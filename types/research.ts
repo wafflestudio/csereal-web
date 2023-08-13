@@ -16,7 +16,3 @@ export interface ResearchCenter {
   imageURL: string;
   link: string;
 }
-
-export interface ResearchCenters {
-  centers: ResearchCenter[];
-}
