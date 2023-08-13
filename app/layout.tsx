@@ -20,16 +20,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
       >
-        <SWRProvider>
-          <NavbarContextProvider>
-            <Navbar />
-            <div className="overflow-auto">
-              <Header />
-              <main className="min-w-fit">{children}</main>
-              <Footer />
-            </div>
-          </NavbarContextProvider>
-        </SWRProvider>
+        <NavbarContextProvider>
+          <Navbar />
+          <div className="overflow-auto">
+            <Header />
+            <main className="min-w-fit">
+              <SWRProvider>{children}</SWRProvider>
+            </main>
+            <Footer />
+          </div>
+        </NavbarContextProvider>
       </body>
     </html>
   );

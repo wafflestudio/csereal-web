@@ -28,7 +28,7 @@ export default function NoticePostPage() {
     );
 
   return (
-    <PageLayout currentPage={notice} title={currPost?.title || ''} titleSize="text-lg">
+    <PageLayout title={currPost?.title || ''} titleSize="text-lg">
       <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
         {currPost &&

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useContext } from 'react';
 
 import { NavbarContext } from '@/contexts/NavbarContext';
@@ -5,16 +7,16 @@ import { NavbarContext } from '@/contexts/NavbarContext';
 import PageTitle from '@/components/common/PageTitle';
 import SubNavbar from '@/components/layout/SubNavbar';
 
-import { SegmentNode } from '@/types/page';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 interface PageLayoutProps {
-  currentPage: SegmentNode;
   title: string;
   titleSize: 'text-lg' | 'text-2xl';
   children: ReactNode;
 }
 
-export default function PageLayout({ currentPage, title, titleSize, children }: PageLayoutProps) {
+export default function PageLayout({ title, titleSize, children }: PageLayoutProps) {
+  const currentPage = useCurrentSegmentNode();
   const { navbarState } = useContext(NavbarContext);
 
   return (

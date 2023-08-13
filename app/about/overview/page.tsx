@@ -1,14 +1,13 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/PageLayout';
 
-import { overview } from '@/types/page';
 import { SimpleHTMLPageResponse } from '@/types/post';
 
 export default async function OverviewPage() {
   const response = await mockNetwork();
 
   return (
-    <PageLayout currentPage={overview} title="학부 소개" titleSize="text-2xl">
+    <PageLayout title="학부 소개" titleSize="text-2xl">
       <HTMLViewer
         htmlContent={response.description}
         mainImage={{ width: 320, height: 213, url: response.mainImageURL }}

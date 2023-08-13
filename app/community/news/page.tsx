@@ -36,7 +36,7 @@ export default function NewsPage() {
   };
 
   return (
-    <PageLayout currentPage={news} title="새 소식" titleSize="text-2xl">
+    <PageLayout title="새 소식" titleSize="text-2xl">
       <SearchForm
         key={tags + ''}
         tags={NewsTags}

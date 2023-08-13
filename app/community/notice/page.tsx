@@ -35,7 +35,7 @@ export default function NoticePage() {
   };
 
   return (
-    <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
+    <PageLayout title={notice.name} titleSize="text-2xl">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}

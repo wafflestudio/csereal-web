@@ -24,7 +24,7 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
   currPost ||= getMockNewsPostDetail(params.id);
 
   return (
-    <PageLayout currentPage={news} title={currPost?.title ?? ''} titleSize="text-lg">
+    <PageLayout title={currPost?.title ?? ''} titleSize="text-lg">
       <HTMLViewer htmlContent={currPost.description} />
       <StraightNode />
       <Tags tags={currPost.tags} page={news} margin="mt-3 ml-6" />
