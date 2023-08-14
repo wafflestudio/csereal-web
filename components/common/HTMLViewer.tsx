@@ -17,7 +17,7 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
 
   return (
-    <div className="flow-root">
+    <div className={`flow-root ${margin}`}>
       {mainImage && (
         <div
           className="relative float-right ml-[28px] mb-[28px]"
@@ -39,7 +39,6 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
       <div
         className={`
         text-sm font-noto font-regular leading-loose 
-        ${margin}
         [&_a]:text-link [&_a]:underline 
         [&_li]:list-disc [&_li]:list-inside 
         [&_p]:mb-4 
