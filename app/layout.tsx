@@ -17,17 +17,17 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body
-        className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
-      >
+      <body className={`flex ${yoonGothic.variable} ${noto.variable}`}>
         <NavbarContextProvider>
           <Navbar />
-          <div className="overflow-auto">
+          <div className="overflow-auto flex flex-col flex-1">
             <Header />
-            <main className="min-w-fit">
-              <SWRProvider>{children}</SWRProvider>
+            <main className="min-w-fit flex flex-col flex-1">
+              <SWRProvider>
+                <div className="flex-1">{children}</div>
+              </SWRProvider>
+              <Footer />
             </main>
-            <Footer />
           </div>
         </NavbarContextProvider>
       </body>
