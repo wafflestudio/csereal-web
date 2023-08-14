@@ -21,12 +21,12 @@ export default function NoticeList({ posts }: NoticeListProps) {
   const queryString = useQueryString();
 
   return (
-    <div className="mt-3 mb-8 mx-2.5 text-xs">
-      <h5 className="h-10 pl-[3.125rem] flex font-yoon items-center">
+    <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-300">
+      <h5 className="h-10 pl-[3.125rem] flex font-yoon items-center border-b border-neutral-300">
         <span className="grow pl-3 text-neutral-700 tracking-wide">제목</span>
         <span className="w-[12.5rem] pl-8 text-neutral-700 tracking-wide">날짜</span>
       </h5>
-      <ul className="border-y border-neutral-300 font-noto">
+      <ul className="font-noto">
         {posts.map((post, i) => (
           <NoticeListRow
             post={post}

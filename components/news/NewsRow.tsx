@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import Tags from '@/components/common/Tags';
+
 import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
-
-import Tags from '../common/Tags';
 
 export interface NewsRowProps {
   href: string;
@@ -15,6 +15,8 @@ export interface NewsRowProps {
   date: Date;
   imageURL: string;
 }
+
+const newsPath = getPath(news);
 
 export default function NewsRow({ href, title, description, tags, date, imageURL }: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
@@ -35,7 +37,7 @@ export default function NewsRow({ href, title, description, tags, date, imageURL
         <Link href={href} className="hover:cursor-pointer">
           <p className="text-xs font-normal mb-[.69rem] line-clamp-3">{description}</p>
         </Link>
-        <Tags margin="mb-[.69rem]" tags={tags} page={news} />
+        <Tags margin="mb-[.69rem]" tags={tags} searchPath={newsPath} />
         <time className="self-end text-xs font-normal">{dateStr}</time>
       </div>
       <Link href={href} className="h-[9.375rem] aspect-[4/3] relative">

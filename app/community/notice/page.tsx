@@ -7,6 +7,7 @@ import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
+import Tags from '@/components/common/Tags';
 import PageLayout from '@/components/layout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
@@ -42,6 +43,7 @@ export default function NoticePage() {
         setSearchParams={setSearchParams}
       />
       <StraightNode double={true} />
+      <Tags tags={tags.length ? tags : ['전체']} margin="mt-3 ml-2.5" />
       <NoticeList posts={posts} />
       <Pagination
         totalPostsCount={totalPostsCount}

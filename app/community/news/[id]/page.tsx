@@ -27,7 +27,7 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
     <PageLayout title={currPost?.title ?? ''} titleSize="text-lg">
       <HTMLViewer htmlContent={currPost.description} />
       <StraightNode />
-      <Tags tags={currPost.tags} page={news} margin="mt-3 ml-6" />
+      <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}

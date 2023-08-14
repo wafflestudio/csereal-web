@@ -36,7 +36,7 @@ export default function NoticePostPage() {
       </div>
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mb-10 ml-2.5" />
       <StraightNode />
-      <Tags tags={currPost?.tags || []} page={notice} margin="mt-3 ml-6" />
+      <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
