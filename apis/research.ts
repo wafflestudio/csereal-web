@@ -4,10 +4,14 @@ import { getRequest } from '.';
 
 export const getResearchLabs = () => getRequest('/research/labs') as Promise<ResearchLabInfo[]>;
 
-export const getResearchLabsMock: typeof getResearchLabs = async () =>
-  Array(20)
+export const getResearchLabsMock: typeof getResearchLabs = async () => [
+  ...Array(10)
     .fill(0)
-    .map(() => lab);
+    .map(() => lab),
+  ...Array(10)
+    .fill(0)
+    .map(() => lab2),
+];
 
 const lab: ResearchLabInfo = {
   name: '컴퓨터 그래픽스 및 이미지 처리 연구실',
@@ -15,7 +19,16 @@ const lab: ResearchLabInfo = {
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
   tel: '(02) 880-1860',
   acronym: 'QUIQCL',
-  introductionMaterials: { attachment: 'a', youtube: 'youtubelink' },
+  introductionMaterials: { pdf: '', youtube: 'youtubelink' },
+};
+
+const lab2: ResearchLabInfo = {
+  name: '데이터 마이닝 연구실',
+  professors: ['강유'],
+  location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
+  tel: '(02) 880-1860',
+  acronym: 'QUIQCL',
+  introductionMaterials: { pdf: '/', youtube: 'youtubelink' },
 };
 
 const groupMock = {

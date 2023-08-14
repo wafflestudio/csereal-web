@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { laboratories } from '@/types/page';
+import { researchLabs } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
@@ -18,14 +18,16 @@ export default function ResearchGroupLabs({ labNames }: { labNames: string[] }) 
   );
 }
 
-const labPath = getPath(laboratories);
+const labPath = getPath(researchLabs);
 
 function ResearchGroupLab({ labName }: { labName: string }) {
   return (
     <li className="mb-[0.125rem] w-fit">
       <Link href={`${labPath}/${labName}`} className="flex h-7 gap-2.5 px-3 items-center group">
-        <div className="border border-main-orange rounded-full w-2.5 h-2.5 group-hover:bg-main-orange" />
-        <span className="font-medium text-sm group-hover:text-main-orange">{labName}</span>
+        <div className="border border-main-orange rounded-full w-2.5 h-2.5 group-hover:bg-main-orange duration-300" />
+        <span className="font-medium text-sm group-hover:text-main-orange duration-300">
+          {labName}
+        </span>
       </Link>
     </li>
   );

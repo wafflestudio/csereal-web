@@ -23,5 +23,5 @@ export interface ResearchLabInfo {
   location: string;
   tel: string;
   acronym: string;
-  introductionMaterials: { attachment?: string; youtube?: string };
+  introductionMaterials: { pdf?: string; youtube?: string };
 }

@@ -190,9 +190,9 @@ export const researchCenters: SegmentNode = {
   children: null,
 };
 
-export const laboratories: SegmentNode = {
+export const researchLabs: SegmentNode = {
   name: '연구실',
-  segment: 'laboratories',
+  segment: 'labs',
   isPage: true,
   parent: research,
   children: null,
@@ -383,7 +383,7 @@ export const bldg301room417: SegmentNode = {
 };
 
 export const bldg301Maldives: SegmentNode = {
-  name: '301-MALDIVES (11석)',
+  name: '301-MALDIVES (301-521, 11석)',
   segment: '301-521',
   isPage: true,
   parent: seminarRoom,
@@ -391,7 +391,7 @@ export const bldg301Maldives: SegmentNode = {
 };
 
 export const bldg301Hawaii: SegmentNode = {
-  name: '301-HAWAII (20석)',
+  name: '301-HAWAII (301-551-4, 20석)',
   segment: '301-551-4',
   isPage: true,
   parent: seminarRoom,
@@ -399,7 +399,7 @@ export const bldg301Hawaii: SegmentNode = {
 };
 
 export const bldg301Baekdu: SegmentNode = {
-  name: '301-BAEKDU (4석)',
+  name: '301-BAEKDU (301-552-1, 4석)',
   segment: '301-552-1',
   isPage: true,
   parent: seminarRoom,
@@ -407,7 +407,7 @@ export const bldg301Baekdu: SegmentNode = {
 };
 
 export const bldg301Alps: SegmentNode = {
-  name: '301-ALPS (5석)',
+  name: '301-ALPS (301-552-2, 5석)',
   segment: '301-552-2',
   isPage: true,
   parent: seminarRoom,
@@ -415,7 +415,7 @@ export const bldg301Alps: SegmentNode = {
 };
 
 export const bldg301Santorini: SegmentNode = {
-  name: '301-SANTORINI (4석)',
+  name: '301-SANTORINI (301-552-3, 4석)',
   segment: '301-552-3',
   isPage: true,
   parent: seminarRoom,
@@ -423,7 +423,7 @@ export const bldg301Santorini: SegmentNode = {
 };
 
 export const bldg301Jeju: SegmentNode = {
-  name: '301-JEJU (6석)',
+  name: '301-JEJU (301-553-6, 6석)',
   segment: '301-553-6',
   isPage: true,
   parent: seminarRoom,
@@ -431,7 +431,7 @@ export const bldg301Jeju: SegmentNode = {
 };
 
 export const bldg301ProfMeeting: SegmentNode = {
-  name: '301-교수회의실 (20석)',
+  name: '301-교수회의실 (301-317, 20석)',
   segment: '301-317',
   isPage: true,
   parent: seminarRoom,
@@ -479,7 +479,7 @@ export const labRoom: SegmentNode = {
 };
 
 export const softwareLab: SegmentNode = {
-  name: '소프트웨어 실습실 (102석)',
+  name: '소프트웨어 실습실 (302-311-1, 102석)',
   segment: '302-311-1',
   isPage: true,
   parent: labRoom,
@@ -487,7 +487,7 @@ export const softwareLab: SegmentNode = {
 };
 
 export const hardwareLab: SegmentNode = {
-  name: '하드웨어 실습실 (30석)',
+  name: '하드웨어 실습실 (302-310-2, 30석)',
   segment: '302-310-2',
   isPage: true,
   parent: labRoom,
@@ -531,7 +531,7 @@ about.children = [
 ];
 community.children = [news, notice, seminar, facultyRecruitment, international];
 people.children = [faculty, emeritusFaculty, staff];
-research.children = [researchGroups, researchCenters, laboratories, topConferenceList];
+research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission];
 undergraduateAdmission.children = [earlyAdmission, regularAdmission];
 academics.children = [undergraduateAcademics, graduateAcademics];

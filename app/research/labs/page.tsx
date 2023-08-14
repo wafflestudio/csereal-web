@@ -1,7 +1,7 @@
 import { getResearchLabs, getResearchLabsMock } from '@/apis/research';
 
 import PageLayout from '@/components/layout/PageLayout';
-import ResearchLaboratoryList from '@/components/research/ResearchLaboratoryList';
+import ResearchLabList from '@/components/research/ResearchLabList';
 
 export default async function ResearchLaboratoriesPage() {
   // const labInformations = await getResearchLabs()
@@ -9,7 +9,7 @@ export default async function ResearchLaboratoriesPage() {
 
   return (
     <PageLayout titleSize="text-2xl">
-      <ResearchLaboratoryList labInfos={labInformations} />
+      <ResearchLabList labInfos={labInformations} />
     </PageLayout>
   );
 }
