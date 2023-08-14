@@ -13,8 +13,8 @@
   display: inline-block;
   content: '';
   position: absolute;
-  top: -0.667px;
-  right: -0.667px;
+  top: -1px;
+  right: -1px;
   width: 0;
   height: 0;
   transition: 0.3s;
