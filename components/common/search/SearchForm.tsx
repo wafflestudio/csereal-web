@@ -46,7 +46,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
 
 function SearchButton() {
   return (
-    <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs tracking-[0.02em]">
+    <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs tracking-[0.02em] hover:bg-neutral-500">
       결과 보기
     </button>
   );
