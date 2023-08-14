@@ -26,7 +26,7 @@ export default function NoticeList({ posts }: NoticeListProps) {
         <span className="grow pl-3 text-neutral-700 tracking-wide">제목</span>
         <span className="w-[12.5rem] pl-8 text-neutral-700 tracking-wide">날짜</span>
       </h5>
-      <ul className="border-y border-neutral-300">
+      <ul className="border-y border-neutral-300 font-noto">
         {posts.map((post, i) => (
           <NoticeListRow
             post={post}
