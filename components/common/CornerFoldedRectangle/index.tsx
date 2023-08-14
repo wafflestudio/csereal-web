@@ -25,7 +25,7 @@ export default function CornerFoldedRectangle({
   rectangleMargin,
   radius,
   isAnimated, // 선택형 기본 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
-  isSelection,
+  isSelection, // true: 선택형 컴포넌트, false: 단순히 접힌 것
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {

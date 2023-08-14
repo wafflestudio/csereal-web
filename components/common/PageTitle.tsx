@@ -11,9 +11,10 @@ interface PageTitleProps {
   title: string;
   currentPage: SegmentNode;
   textSize: 'text-lg' | 'text-2xl';
+  fontWeight?: 'font-bold' | 'font-medium';
 }
 
-export default function PageTitle({ title, currentPage, textSize }: PageTitleProps) {
+export default function PageTitle({ title, currentPage, textSize, fontWeight }: PageTitleProps) {
   return (
     <div className="w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mb-9">
       <div className="flex gap-2 mb-2">
@@ -21,7 +22,7 @@ export default function PageTitle({ title, currentPage, textSize }: PageTitlePro
         <CurvedHorizontalNode grow={true} />
       </div>
       <h3
-        className={`mr-[65px] ${textSize} font-bold break-keep font-yoon text-neutral-800 tracking-wide`}
+        className={`mr-[65px] ${textSize} ${fontWeight} break-keep font-yoon text-neutral-800 tracking-wide`}
       >
         {title}
       </h3>

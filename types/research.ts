@@ -25,3 +25,9 @@ export interface ResearchLabInfo {
   acronym: string;
   introductionMaterials: { pdf?: string; youtube?: string };
 }
+
+export interface ResearchLab extends ResearchLabInfo {
+  description: string;
+  websiteURL: string;
+  group: string;
+}

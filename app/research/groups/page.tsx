@@ -31,7 +31,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
   );
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleSize="text-2xl" titleWeight="font-bold">
       <ResearchDescription description={description} />
       <SelectionList
         names={groups.map((group) => group.name)}
