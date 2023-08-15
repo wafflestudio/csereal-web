@@ -33,7 +33,7 @@ export default function EditorPage() {
 
   return (
     <div className="mx-10 mt-5 mb-40 h-screen">
-      <PageTitle title="학부 소개" currentPage={overview} textSize="text-lg" />
+      <PageTitle title="학부 소개" currentPage={overview} titleType="big" />
       <div className="flex w-full h-full my-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full mt-5 mr-10">
           <LanguageSelect language={language} setLanguage={setLanguage} />

@@ -22,7 +22,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
   const { directionList, selectedDirection } = await getData(selected);
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big">
       <div className="mb-[3.25rem]">
         <LocationGuide />
         <LocationMap />
