@@ -11,9 +11,8 @@ export default async function History() {
     <PageLayout titleSize="text-2xl">
       <HTMLViewer
         htmlContent={resp.description}
-        mainImage={{ width: 320, height: 213, url: resp.mainImageURL }}
+        topRightContent={{ type: 'image', width: 320, height: 213, url: resp.mainImageURL }}
       />
-      <div className="h-12" />
     </PageLayout>
   );
 }
