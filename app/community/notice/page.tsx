@@ -30,8 +30,8 @@ export default function NoticePage() {
     { url: '/notice', params: { page, keyword, tag: tags } },
     getNoticePostsMock,
   ); // 추후 fetcher 삭제
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [selectedPosts, setSelectedPosts] = useState<number[]>([]);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false); // 편집 다른 pr에서 구현
+  const [selectedPosts, setSelectedPosts] = useState<number[]>([]); // 마찬가지
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -45,8 +45,6 @@ export default function NoticePage() {
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <StraightNode double={true} />
-      <Tags tags={tags.length ? tags : ['전체']} margin="mt-3 ml-2.5" />
       <NoticeList posts={posts} isEditMode={isEditMode} />
       <Pagination
         totalPostsCount={totalPostsCount}

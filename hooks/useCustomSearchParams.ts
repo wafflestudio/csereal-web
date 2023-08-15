@@ -30,7 +30,7 @@ export function useCustomSearchParams(initPath?: string) {
     if (searchInfo.purpose == 'search') {
       const newParams: PostSearchQueryParams = {};
       if (searchInfo.keyword) newParams.keyword = searchInfo.keyword;
-      if (searchInfo.tag) newParams.tag = searchInfo.tag;
+      if (searchInfo.tag?.length) newParams.tag = searchInfo.tag;
       newSearchParams = convertObjToURLSearchParams(newParams);
     } else {
       newSearchParams = new URLSearchParams(Array.from(searchParams.entries()));

@@ -4,6 +4,8 @@ import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
 import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';
+import { StraightNode } from '@/components/common/Nodes';
+import Tags from '@/components/common/Tags';
 
 interface SearchProps {
   tags: string[]; // 전체 태그(선택지) 목록
@@ -24,6 +26,11 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
     setSearchParams(info);
   };
 
+  const resetTags = () => {
+    setSelectedTags([]);
+    setSearchParams({ purpose: 'search', keyword });
+  };
+
   return (
     <div className="mb-6 pr-2.5 w-full">
       <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleExpanded}>
@@ -40,6 +47,11 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
           <SearchButton />
         </form>
       )}
+      <StraightNode double={true} margin="mt-6 mb-3" />
+      <div className="flex justify-between items-start gap-3 px-2.5">
+        <Tags tags={initTags.length ? initTags : ['전체']} />
+        {Boolean(initTags.length) && <TagResetButton onClickReset={resetTags} />}
+      </div>
     </div>
   );
 }
@@ -48,6 +60,18 @@ function SearchButton() {
   return (
     <button className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 font-yoon font-bold text-white text-xs tracking-[0.02em] hover:bg-neutral-500">
       결과 보기
+    </button>
+  );
+}
+
+function TagResetButton({ onClickReset }: { onClickReset: () => void }) {
+  return (
+    <button
+      onClick={onClickReset}
+      className="flex items-center gap-[0.125rem] text-main-orange hover:text-neutral-400 text-xs whitespace-nowrap"
+    >
+      <span className="material-symbols-outlined scale-x-[-1] font-light text-base">refresh</span>
+      <span>태그 초기화</span>
     </button>
   );
 }
