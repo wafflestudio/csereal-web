@@ -26,8 +26,8 @@ export default function CornerFoldedRectangle({
   rectangleDropShadow,
   rectangleMargin,
   radius,
-  isAnimated, 
-  isSelection, 
+  isAnimated,
+  isSelection,
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
@@ -37,7 +37,7 @@ export default function CornerFoldedRectangle({
       : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
           colorTheme.bgColor
         } 0)`,
-      filter: rectangleDropShadow
+    filter: rectangleDropShadow,
   };
 
   const triangleStyle: CSSProperties = {

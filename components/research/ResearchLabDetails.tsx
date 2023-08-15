@@ -27,10 +27,8 @@ const researchGroupsPath = getPath(researchGroups);
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   return (
     <div className="m-5 test font-yoon text-sm h-10 w-fit py-2.5 px-4 border-main-orange rounded-sm">
-        <Link href={`${researchGroupsPath}?selected=${groupName} w-fit`}>
-        {groupName} 연구 그룹
-    </Link>
-      </div>
+      <Link href={`${researchGroupsPath}?selected=${groupName} w-fit`}>{groupName} 연구 그룹</Link>
+    </div>
   );
 }
 
@@ -45,8 +43,8 @@ function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
       rectangleDropShadow={dropShadow}
       radius={radius}
       triangleLength={triangleLength}
-      colorTheme={COLOR_THEME.lightGray}
->
+      colorTheme={COLOR_THEME.white}
+    >
       <div className="w-60 py-6 px-7">
         <ul className="[&>li]:mb-1 font-noto">
           <li className="text-sm flex gap-1">
