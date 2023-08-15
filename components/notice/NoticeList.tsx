@@ -13,11 +13,12 @@ import { getPath } from '@/utils/page';
 
 interface NoticeListProps {
   posts: SimpleNoticePost[];
+  isEditMode: boolean;
 }
 
 const noticePath = getPath(notice);
 
-export default function NoticeList({ posts }: NoticeListProps) {
+export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
   const queryString = useQueryString();
 
   return (

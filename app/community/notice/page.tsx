@@ -16,6 +16,7 @@ import { NoticeTags } from '@/constants/tag';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { GETNoticePostsResponse } from '@/types/post';
+import { useState } from 'react';
 
 const POST_LIMIT = 20;
 
@@ -29,6 +30,8 @@ export default function NoticePage() {
     { url: '/notice', params: { page, keyword, tag: tags } },
     getNoticePostsMock,
   ); // 추후 fetcher 삭제
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [selectedPosts, setSelectedPosts] = useState<number[]>([]);
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -44,7 +47,7 @@ export default function NoticePage() {
       />
       <StraightNode double={true} />
       <Tags tags={tags.length ? tags : ['전체']} margin="mt-3 ml-2.5" />
-      <NoticeList posts={posts} />
+      <NoticeList posts={posts} isEditMode={isEditMode} />
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
