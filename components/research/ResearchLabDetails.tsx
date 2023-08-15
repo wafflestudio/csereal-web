@@ -9,8 +9,9 @@ import { researchGroups } from '@/types/page';
 import { ResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
+import { ReactNode } from 'react';
 
-import './test.css';
+// import './test.css';
 
 export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   return (
@@ -22,13 +23,77 @@ export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   );
 }
 
+function Pentagon({ children }: { children?: ReactNode }) {
+  const clipPath = 'polygon(0% 0%, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0% 100%)';
+
+  return (
+    <div style={{ filter: 'url(#round)' }}>
+      <div className="bg-white font-yoon text-sm h-10 w-fit py-2.5 px-4" style={{ clipPath }}>
+        {children}
+      </div>
+
+      <svg className="invisible absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="round">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+              result="round"
+            />
+            <feComposite in="SourceGraphic" in2="round" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+function Pentagon2({ children }: { children?: ReactNode }) {
+  const clipPath = 'polygon(0% 0%, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0% 100%)';
+
+  return (
+    <div style={{ filter: 'url(#round)' }}>
+      <div className="bg-main-orange font-yoon text-sm w-fit p-px" style={{ clipPath }}>
+        {children}
+      </div>
+
+      <svg className="invisible absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="round">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+              result="round"
+            />
+            <feComposite in="SourceGraphic" in2="round" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+function PentagonBorder({ children }: { children: ReactNode }) {
+  return (
+    <div>
+      <Pentagon2>
+        <Pentagon>{children}</Pentagon>
+      </Pentagon2>
+    </div>
+  );
+}
+
 const researchGroupsPath = getPath(researchGroups);
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   return (
-    <div className="m-5 test font-yoon text-sm h-10 w-fit py-2.5 px-4 border-main-orange rounded-sm">
+    <PentagonBorder>
       <Link href={`${researchGroupsPath}?selected=${groupName} w-fit`}>{groupName} 연구 그룹</Link>
-    </div>
+    </PentagonBorder>
   );
 }
 
