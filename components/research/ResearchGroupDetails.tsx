@@ -1,5 +1,5 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
-import { StraightNode } from '@/components/common/Nodes';
+import SelectionTitle from '@/components/common/selection/SelectionTitle';
 
 import { ResearchGroup } from '@/types/research';
 
@@ -12,22 +12,13 @@ interface ResearchGroupDetailProps {
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
     <div>
-      <ResearchGroupTitle name={group.name} />
+      <SelectionTitle key={group.name}>{group.name} 연구 그룹</SelectionTitle>
       <HTMLViewer
         htmlContent={group.description}
         topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
         margin="mb-9 ml-2.5"
       />
       <ResearchGroupLabs labNames={group.laboratories} />
-    </div>
-  );
-}
-
-function ResearchGroupTitle({ name }: { name: string }) {
-  return (
-    <div className="w-fit mb-5">
-      <h4 className="px-2.5 mb-1 font-bold text-[1.25rem]">{name} 연구 그룹</h4>
-      <StraightNode />
     </div>
   );
 }
