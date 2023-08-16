@@ -7,7 +7,11 @@ export default function ClubDetails({ club }: { club: Club }) {
   return (
     <div>
       <ClubTitle name={club.name} engName={club.engName} />
-      <HTMLViewer htmlContent={club.description} mainImage={club.image} margin="ml-2.5 mt-5" />
+      <HTMLViewer
+        htmlContent={club.description}
+        topRightContent={{ type: 'image', width: 320, height: 200, url: club.imageURL }}
+        margin="ml-2.5 mt-5"
+      />
     </div>
   );
 }

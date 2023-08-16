@@ -15,7 +15,7 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
       <ResearchGroupTitle name={group.name} />
       <HTMLViewer
         htmlContent={group.description}
-        mainImage={{ url: group.imageURL, width: 320, height: 160 }}
+        topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
         margin="mt-3 mb-9 ml-2.5"
       />
       <ResearchGroupLabs labNames={group.laboratories} />

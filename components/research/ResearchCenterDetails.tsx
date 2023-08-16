@@ -15,7 +15,7 @@ export default function ResearchCenterDetails({ center }: ResearchCenterDetailPr
       <ResearchCenterTitle name={center.name} link={center.link} />
       <HTMLViewer
         htmlContent={center.description}
-        mainImage={{ url: center.imageURL, width: 320, height: 190 }}
+        topRightContent={{ type: 'image', width: 320, height: 160, url: center.imageURL }}
         margin="mt-3 ml-2.5"
       />
     </div>
