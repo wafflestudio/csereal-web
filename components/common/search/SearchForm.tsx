@@ -32,14 +32,14 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
   };
 
   return (
-    <div className="mb-6 pr-2.5 w-full">
+    <div className="mb-6 w-full">
       <h4 className="flex items-center gap-1 cursor-pointer w-fit" onClick={toggleExpanded}>
         <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
         <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
       </h4>
       {expanded && (
         <form
-          className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-y-7 pt-4 pl-3 min-w-max"
+          className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-y-7 pt-4 pl-3 pr-2.5 min-w-max"
           onSubmit={search}
         >
           <TagFilter tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
