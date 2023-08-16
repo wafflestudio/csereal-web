@@ -28,13 +28,13 @@ export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
 
 function LabListTitle() {
   return (
-    <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-300">
-      <span className="px-3 w-56">연구실</span>
-      <span className="px-3 w-[6.75rem]">지도교수</span>
-      <span className="px-3 w-64">연구실 위치</span>
-      <span className="px-3 w-[6.5rem]">전화</span>
-      <span className="px-3 w-[4.5rem]">약자</span>
-      <span className="px-3 w-[4.75rem]">소개 자료</span>
+    <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-300 [&>span]:px-3">
+      <span className="w-56">연구실</span>
+      <span className="w-[6.75rem]">지도교수</span>
+      <span className="w-[11.75rem]">연구실 위치</span>
+      <span className="w-28">전화</span>
+      <span className="w-[4.5rem]">약자</span>
+      <span className="w-[4.75rem]">소개 자료</span>
     </h5>
   );
 }
@@ -49,11 +49,11 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
     'hover:invert-[.21] hover:sepia-[.16] hover:saturate-0 hover:hue-rotate-[286deg] hover:brightness-[.101] hover:contrast-[.90]';
 
   return (
-    <li className="flex items-center h-14 text-xs">
-      <span className="px-3 w-56 hover:text-main-orange">
+    <li className="flex items-center h-14 text-xs [&>span]:px-3">
+      <span className="w-56 hover:text-main-orange">
         <Link href={`${laboratoriesPath}/${lab.name}`}>{lab.name}</Link>
       </span>
-      <span className="px-3 w-[6.75rem] text-neutral-400">
+      <span className="w-[6.75rem] text-neutral-400">
         {lab.professors.map((prof, i) => (
           <Fragment key={prof}>
             <Link href={`${facultyPath}/${prof}`} className="hover:text-neutral-700">
@@ -63,10 +63,10 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
           </Fragment>
         ))}
       </span>
-      <span className="px-3 w-64 text-neutral-400">{lab.location}</span>
-      <span className="px-3 w-[6.5rem] text-neutral-400">{lab.tel}</span>
-      <span className="px-3 w-[4.5rem] text-neutral-400">{lab.acronym}</span>
-      <span className="px-3 w-[4.75rem] flex items-center gap-3">
+      <span className="w-[11.75rem] text-neutral-400">{lab.location}</span>
+      <span className="w-28 text-neutral-400">{lab.tel}</span>
+      <span className="w-[4.5rem] text-neutral-400">{lab.acronym}</span>
+      <span className="w-[4.75rem] flex items-center gap-3">
         {lab.introductionMaterials.pdf && (
           <Link
             href={lab.introductionMaterials.pdf}
