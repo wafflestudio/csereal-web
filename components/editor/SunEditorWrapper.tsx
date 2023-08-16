@@ -8,7 +8,7 @@ import SunEditor from 'suneditor-react';
 
 import 'suneditor/dist/css/suneditor.min.css';
 
-export default function Editor({
+export default function SunEditorWrapper({
   editorRef,
 }: {
   editorRef: MutableRefObject<SunEditorCore | undefined>;
