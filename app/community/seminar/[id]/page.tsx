@@ -38,7 +38,7 @@ export default function SeminarPostPage() {
 
   return (
     currPost && (
-      <PageLayout title={currPost.title} titleSize="text-lg">
+      <PageLayout title={currPost.title} titleType="small">
         <div className="mb-9 text-sm font-yoon text-neutral-700 leading-[1.63rem] flow-root break-all">
           <div className="relative float-right ml-7 mb-7 w-60 h-60">
             <Image

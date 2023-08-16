@@ -1,10 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import useSwr from 'swr';
 
 import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
 
-import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/PageLayout';
@@ -28,21 +28,22 @@ export default function NoticePage() {
     { url: '/notice', params: { page, keyword, tag: tags } },
     getNoticePostsMock,
   ); // 추후 fetcher 삭제
+  const [isEditMode, setIsEditMode] = useState<boolean>(false); // 편집 다른 pr에서 구현
+  const [selectedPosts, setSelectedPosts] = useState<number[]>([]); // 마찬가지
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <StraightNode double={true} />
-      <NoticeList posts={posts} />
+      <NoticeList posts={posts} isEditMode={isEditMode} />
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}

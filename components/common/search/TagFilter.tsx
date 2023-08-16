@@ -19,7 +19,7 @@ export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFi
   };
 
   return (
-    <div className="flex row-span-1 col-span-full mr-2.5">
+    <div className="flex row-span-1 col-span-full">
       <h5 className="text-md font-bold font-yoon whitespace-nowrap mr-6 text-neutral-700 tracking-wide">
         태그
       </h5>

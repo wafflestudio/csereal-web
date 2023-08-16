@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/PageLayout';
 export default async function FacilitiesPage() {
   const { facilitiesList } = await getFacilitiesData();
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big">
       <div className="flex flex-col">
         {facilitiesList.map((post, index) => (
           <div
