@@ -45,10 +45,6 @@ interface NoticeListRowProps {
 
 function NoticeListRow({ post, href }: NoticeListRowProps) {
   const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
-  const iconFilter =
-    'invert-[.79] sepia-0 saturate-[.399] hue-rotate-[227deg] brightness-[.85] contrast-[.81]';
-  const iconHoverFilter =
-    'group-hover:invert-[.20] group-hover:sepia-0 saturate-[.12] group-hover:hue-rotate-[152deg] group-hover:brightness-100 group-hover:contrast-[.84]';
 
   return (
     <li
@@ -60,11 +56,7 @@ function NoticeListRow({ post, href }: NoticeListRowProps) {
       <span className="pl-3 grow text-neutral-700 tracking-wide">
         <Link href={href} className="group">
           <span className="group-hover:text-main-orange">{post.title}</span>
-          <Image
-            src={clipIcon}
-            alt="has_attachment"
-            className={`inline align-middle ml-1 mb-px ${iconFilter} ${iconHoverFilter}`}
-          />
+          <Image src={clipIcon} alt="has_attachment" className={`inline align-middle ml-1 mb-px`} />
         </Link>
       </span>
       <span className="w-[12.5rem] pl-8 shrink-0 text-neutral-700 tracking-wide">
