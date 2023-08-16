@@ -4,8 +4,8 @@ import useSWR from 'swr';
 
 import { getClubsMock } from '@/apis/club';
 
-import SelectionList from '@/components/common/SelectionList';
-import PageLayout from '@/components/layout/PageLayout';
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
 
 import { Club } from '@/types/club';

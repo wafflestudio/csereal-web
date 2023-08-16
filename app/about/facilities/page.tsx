@@ -1,7 +1,7 @@
 import { getMockFacilitiesPosts } from '@/apis/facilities';
 
 import FacilitiesRow from '@/components/facilities/FacilitiesRow';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function FacilitiesPage() {
   const { facilitiesList } = await getFacilitiesData();

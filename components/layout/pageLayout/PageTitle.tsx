@@ -5,7 +5,7 @@ import { SegmentNode } from '@/types/page';
 
 import { getLocationLog, getPath } from '@/utils/page';
 
-import { CurvedHorizontalNode } from './Nodes';
+import { CurvedHorizontalNode } from '../../common/Nodes';
 
 interface PageTitleProps {
   title: string;

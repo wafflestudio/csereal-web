@@ -7,8 +7,8 @@ import {
   ProfilePictureUpload,
   TitleInput,
 } from '@/components/common/Editor/EditorOptions';
-import PageTitle from '@/components/common/PageTitle';
-import SubNavbar from '@/components/layout/SubNavbar';
+import PageTitle from '@/components/layout/pageLayout/PageTitle';
+import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
 import { greetings } from '@/types/page';
 

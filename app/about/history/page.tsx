@@ -1,5 +1,5 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { SimpleHTMLPageResponse } from '@/types/post';
 

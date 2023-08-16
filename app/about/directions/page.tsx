@@ -5,10 +5,10 @@ import useSWR from 'swr';
 import { getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import SelectionList from '@/components/common/SelectionList';
+import SelectionList from '@/components/common/selection/SelectionList';
 import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';

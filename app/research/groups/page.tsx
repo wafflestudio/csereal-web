@@ -4,8 +4,8 @@ import useSWR from 'swr';
 
 import { getResearchGroupsMock } from '@/apis/research';
 
-import SelectionList from '@/components/common/SelectionList';
-import PageLayout from '@/components/layout/PageLayout';
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ResearchGroupDetails from '@/components/research/ResearchGroupDetails';
 
 import { researchGroups } from '@/types/page';
