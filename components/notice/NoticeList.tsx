@@ -11,6 +11,9 @@ import { SimpleNoticePost } from '@/types/post';
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
+import clipIcon from '@/public/image/clip_icon.svg';
+import { FILTER } from '@/constants/color';
+
 interface NoticeListProps {
   posts: SimpleNoticePost[];
   isEditMode: boolean;
@@ -27,15 +30,9 @@ export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
         <span className="grow pl-3 text-neutral-700 tracking-wide">제목</span>
         <span className="w-[12.5rem] pl-8 text-neutral-700 tracking-wide">날짜</span>
       </h5>
-      <ul className="font-noto">
+      <ul className="font-noto ">
         {posts.map((post, i) => (
-          <NoticeListRow
-            post={post}
-            isPinned={post.isPinned}
-            idx={i}
-            href={`${noticePath}/${post.id}${queryString}`}
-            key={i}
-          />
+          <NoticeListRow post={post} href={`${noticePath}/${post.id}${queryString}`} key={i} />
         ))}
       </ul>
     </div>
@@ -44,23 +41,27 @@ export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
 
 interface NoticeListRowProps {
   post: SimpleNoticePost;
-  isPinned: boolean;
-  idx: number;
   href: string;
 }
 
-function NoticeListRow({ post, isPinned, idx, href }: NoticeListRowProps) {
-  const bgColor = idx % 2 ? 'bg-white' : 'bg-neutral-50';
-  const fontWeight = isPinned ? 'font-bold' : 'font-normal';
+function NoticeListRow({ post, href }: NoticeListRowProps) {
+  const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
+  const iconFilter = FILTER.NEUTRAL_400.join(' ');
+  const iconHoverFilter = FILTER.NEUTRAL_700.map((property) => `group-hover:${property}`).join(' ');
 
   return (
-    <li className={`flex items-center py-2 ${bgColor} ${fontWeight}`}>
+    <li className={`flex items-center py-2 odd:bg-neutral-50 even:bg-white ${fontWeight}`}>
       <span className="w-[3.125rem] px-[0.8125rem] shrink-0">
-        {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
+        {post.isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
-      <span className="py-[0.1875rem] pl-3 grow text-neutral-700 tracking-wide">
-        <Link href={href} className="hover:text-main-orange">
-          {post.title}
+      <span className=" pl-3 grow text-neutral-700 tracking-wide">
+        <Link href={href} className="group">
+          <span className="group-hover:text-main-orange">{post.title}</span>
+          <Image
+            src={clipIcon}
+            alt="has_attachment"
+            className={`inline align-middle ml-1 mb-px ${iconFilter} ${iconHoverFilter}`}
+          />
         </Link>
       </span>
       <span className="w-[12.5rem] pl-8 shrink-0 text-neutral-700 tracking-wide">

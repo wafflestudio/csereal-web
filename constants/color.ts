@@ -11,3 +11,22 @@ export const COLOR_THEME = {
 } as const;
 
 export type ColorTheme = (typeof COLOR_THEME)[keyof typeof COLOR_THEME];
+
+export const FILTER = {
+  NEUTRAL_400: [
+    'invert-[.79]',
+    'sepia-0',
+    'saturate-[.399]',
+    'hue-rotate-[227deg]',
+    'brightness-[.85]',
+    'contrast-[.81]',
+  ],
+  NEUTRAL_700: [
+    'invert-[.20]',
+    'sepia-0',
+    'saturate-[.12]',
+    'hue-rotate-[152deg]',
+    'brightness-100',
+    'contrast-[.84]',
+  ],
+};

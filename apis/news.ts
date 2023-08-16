@@ -51,5 +51,6 @@ export const getMockNewsPostDetail = (
     nextId: 2,
     prevTitle: 'PREVTITLE',
     nextTitle: 'NEXTTITLE',
+    attachment: null,
   };
 };
