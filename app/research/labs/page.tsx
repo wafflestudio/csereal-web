@@ -8,7 +8,7 @@ export default async function ResearchLabsPage() {
   const labInformations = await getResearchLabsMock();
 
   return (
-    <PageLayout titleSize="text-2xl" titleWeight="font-bold">
+    <PageLayout titleType="big">
       <ResearchLabList labInfos={labInformations} />
     </PageLayout>
   );

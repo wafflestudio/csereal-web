@@ -12,7 +12,7 @@ export default async function ResearchLabDetailPage({ params }: LabDetailPagePro
   const lab = await getResearchLabMock(decodeURI(params.name));
 
   return (
-    <PageLayout title={lab.name} titleSize="text-lg" titleWeight="font-medium">
+    <PageLayout titleType="small">
       <ResearchLabDetails lab={lab} />
     </PageLayout>
   );
