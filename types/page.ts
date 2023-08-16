@@ -217,7 +217,7 @@ export const admissions: SegmentNode = {
 export const undergraduateAdmission: SegmentNode = {
   name: '학부',
   segment: 'undergraduate',
-  isPage: true,
+  isPage: false,
   parent: admissions,
   children: [],
 };
@@ -328,7 +328,7 @@ export const graduateAcademics: SegmentNode = {
 
 export const graduateGuide: SegmentNode = {
   name: '대학원 안내',
-  segment: 'courses',
+  segment: 'guide',
   isPage: true,
   parent: graduateAcademics,
   children: null,
