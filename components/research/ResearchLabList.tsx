@@ -13,6 +13,18 @@ interface ResearchLabListProps {
   labInfos: ResearchLabInfo[];
 }
 
+const LAB_ROW_ITEM_WIDTH = {
+  name: 'w-56',
+  professor: 'w-[6.75rem]',
+  location: 'w-[11.75rem]',
+  tel: 'w-28',
+  acronym: 'w-[4.5rem]',
+  introMaterial: 'w-[4.75rem]',
+} as const;
+
+const laboratoriesPath = getPath(researchLabs);
+const facultyPath = getPath(faculty);
+
 export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   return (
     <div>
@@ -29,18 +41,15 @@ export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
 function LabListTitle() {
   return (
     <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-300 [&>span]:px-3">
-      <span className="w-56">연구실</span>
-      <span className="w-[6.75rem]">지도교수</span>
-      <span className="w-[11.75rem]">연구실 위치</span>
-      <span className="w-28">전화</span>
-      <span className="w-[4.5rem]">약자</span>
-      <span className="w-[4.75rem]">소개 자료</span>
+      <span className={LAB_ROW_ITEM_WIDTH.name}>연구실</span>
+      <span className={LAB_ROW_ITEM_WIDTH.professor}>지도교수</span>
+      <span className={LAB_ROW_ITEM_WIDTH.location}>연구실 위치</span>
+      <span className={LAB_ROW_ITEM_WIDTH.tel}>전화</span>
+      <span className={LAB_ROW_ITEM_WIDTH.acronym}>약자</span>
+      <span className={LAB_ROW_ITEM_WIDTH.professor}>소개 자료</span>
     </h5>
   );
 }
-
-const laboratoriesPath = getPath(researchLabs);
-const facultyPath = getPath(faculty);
 
 function LabListRow({ lab }: { lab: ResearchLabInfo }) {
   const imageColorFilter =
@@ -50,10 +59,10 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
 
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
-      <span className="w-56 hover:text-main-orange">
+      <span className={`${LAB_ROW_ITEM_WIDTH.name} hover:text-main-orange`}>
         <Link href={`${laboratoriesPath}/${lab.name}`}>{lab.name}</Link>
       </span>
-      <span className="w-[6.75rem] text-neutral-400">
+      <span className={`${LAB_ROW_ITEM_WIDTH.professor} text-neutral-400`}>
         {lab.professors.map((prof, i) => (
           <Fragment key={prof}>
             <Link href={`${facultyPath}/${prof}`} className="hover:text-neutral-700">
@@ -63,10 +72,10 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
           </Fragment>
         ))}
       </span>
-      <span className="w-[11.75rem] text-neutral-400">{lab.location}</span>
-      <span className="w-28 text-neutral-400">{lab.tel}</span>
-      <span className="w-[4.5rem] text-neutral-400">{lab.acronym}</span>
-      <span className="w-[4.75rem] flex items-center gap-3">
+      <span className={`${LAB_ROW_ITEM_WIDTH.location} text-neutral-400`}>{lab.location}</span>
+      <span className={`${LAB_ROW_ITEM_WIDTH.tel} text-neutral-400`}>{lab.tel}</span>
+      <span className={`${LAB_ROW_ITEM_WIDTH.acronym} text-neutral-400"`}>{lab.acronym}</span>
+      <span className={`${LAB_ROW_ITEM_WIDTH.introMaterial} flex items-center gap-3`}>
         {lab.introductionMaterials.pdf && (
           <Link
             href={lab.introductionMaterials.pdf}
