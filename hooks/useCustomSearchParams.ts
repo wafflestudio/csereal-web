@@ -21,7 +21,7 @@ export function useCustomSearchParams(initPath?: string) {
   const moveToNewPathWithQuery = (params: URLSearchParams) => {
     const query = params.toString();
     const pathWithQuery = query ? `${initPath || pathname}?${query}` : pathname;
-    router.push(pathWithQuery);
+    router.push(pathWithQuery, { scroll: true });
   };
 
   const setSearchParams = (searchInfo: SearchInfo) => {
