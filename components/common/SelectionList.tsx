@@ -18,7 +18,7 @@ export default function SelectionList({
   gridColumnClass,
 }: SelectionListProps) {
   return (
-    <ul className={`grid ${gridColumnClass} gap-3 mb-9`}>
+    <ul className={`grid ${gridColumnClass} gap-3 mb-11`}>
       {names.map((name) => (
         <SelectionItem key={name} path={path} name={name} isSelected={name === selectedItemName} />
       ))}

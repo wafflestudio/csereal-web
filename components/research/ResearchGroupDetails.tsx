@@ -16,7 +16,7 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
       <HTMLViewer
         htmlContent={group.description}
         topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
-        margin="mt-3 mb-9 ml-2.5"
+        margin="mb-9 ml-2.5"
       />
       <ResearchGroupLabs labNames={group.laboratories} />
     </div>
@@ -25,8 +25,8 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
 
 function ResearchGroupTitle({ name }: { name: string }) {
   return (
-    <div className="w-fit">
-      <h4 className="px-2.5 h-10 font-bold text-[1.25rem] leading-10">{name}</h4>
+    <div className="w-fit mb-5">
+      <h4 className="px-2.5 mb-1 font-bold text-[1.25rem]">{name} 연구 그룹</h4>
       <StraightNode />
     </div>
   );

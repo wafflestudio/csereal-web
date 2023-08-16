@@ -57,11 +57,6 @@ const NEUTRAL_700_HOVER_FILTER =
   'hover:invert-[.21] hover:sepia-[.16] hover:saturate-0 hover:hue-rotate-[286deg] hover:brightness-[.101] hover:contrast-[.90]';
 
 function LabListRow({ lab }: { lab: ResearchLabInfo }) {
-  const imageColorFilter =
-    'invert-[.64] sepia-0 saturate-0 hue-rotate-[142deg] brightness-100 contrast-[.98]';
-  const imageHoverColorFilter =
-    'hover:invert-[.21] hover:sepia-[.16] hover:saturate-0 hover:hue-rotate-[286deg] hover:brightness-[.101] hover:contrast-[.90]';
-
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
       <span className={`${LAB_ROW_ITEM_WIDTH.name} hover:text-main-orange`}>
