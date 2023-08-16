@@ -10,20 +10,19 @@ import { CurvedHorizontalNode } from './Nodes';
 interface PageTitleProps {
   title: string;
   currentPage: SegmentNode;
-  textSize: 'text-lg' | 'text-2xl';
-  fontWeight?: 'font-bold' | 'font-medium';
+  titleType: 'big' | 'small';
 }
 
-export default function PageTitle({ title, currentPage, textSize, fontWeight }: PageTitleProps) {
+export default function PageTitle({ title, currentPage, titleType }: PageTitleProps) {
+  const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
+
   return (
     <div className="w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mb-9">
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />
       </div>
-      <h3
-        className={`mr-[65px] ${textSize} ${fontWeight} break-keep font-yoon text-neutral-800 tracking-wide`}
-      >
+      <h3 className={`mr-[65px] ${titleStyle} break-keep font-yoon text-neutral-800 tracking-wide`}>
         {title}
       </h3>
     </div>

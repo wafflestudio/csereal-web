@@ -28,7 +28,7 @@ export default function NoticePostPage() {
     );
 
   return (
-    <PageLayout title={currPost?.title || ''} titleSize="text-lg">
+    <PageLayout title={currPost?.title ?? ''} titleType="small">
       <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
         글쓴이: {writer}, 작성시각:{' '}
         {currPost &&
@@ -36,7 +36,7 @@ export default function NoticePostPage() {
       </div>
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mb-10 ml-2.5" />
       <StraightNode />
-      <Tags tags={currPost?.tags || []} page={notice} margin="mt-3 ml-6" />
+      <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}

@@ -1,5 +1,4 @@
 'use client';
-import { Editor } from '@toast-ui/react-editor';
 import { useRef, useState } from 'react';
 
 import {
@@ -14,17 +13,12 @@ import SubNavbar from '@/components/layout/SubNavbar';
 import { overview } from '@/types/page';
 
 export default function EditorPage() {
-  const ref = useRef<Editor>(null);
-
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [language, setLanguage] = useState<'korean' | 'english'>('korean');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const markdownContent = ref.current?.getInstance().getMarkdown();
-    console.log(title);
-    console.log(markdownContent);
   };
 
   const handleImageSelect = (file: File | null) => {
@@ -33,11 +27,10 @@ export default function EditorPage() {
 
   return (
     <div className="mx-10 mt-5 mb-40 h-screen">
-      <PageTitle title="학부 소개" currentPage={overview} textSize="text-lg" />
+      <PageTitle title="학부 소개" currentPage={overview} titleType="big" />
       <div className="flex w-full h-full my-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full mt-5 mr-10">
           <LanguageSelect language={language} setLanguage={setLanguage} />
-          <ContentEditor content={content} editorRef={ref} />
           <ProfilePictureUpload onImageSelect={handleImageSelect} />
           <div className="flex flex-row-reverse">
             <button
