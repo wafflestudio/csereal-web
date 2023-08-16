@@ -20,11 +20,8 @@ import { getPath } from '@/utils/page';
 const seminarPath = getPath(seminar);
 
 export default function SeminarPostPage() {
-  const { posts, listPathWithQuery } = usePosts<SeminarPostResponse>(
-    seminarPath,
-    getMockSeminarPost,
-  );
-  const { curr, prev, next } = posts;
+  let { currPost, nextPostPreview, prevPostPreview, listPathWithQuery } =
+    usePosts<SeminarPostResponse>(seminarPath, getMockSeminarPost);
 
   const id = parseInt(useParams().id);
   const [mockdata, setMockdata] = useState<SeminarPostResponse>();
@@ -37,7 +34,7 @@ export default function SeminarPostPage() {
     fetchSeminarPost();
   }, [fetchSeminarPost]);
 
-  const currPost = curr || mockdata;
+  currPost ||= mockdata;
 
   return (
     currPost && (
@@ -66,7 +63,12 @@ export default function SeminarPostPage() {
           <div>{currPost.hostDescription}</div>
         </div>
         <StraightNode />
-        <AdjPostNav prevPost={prev} nextPost={next} href={listPathWithQuery} margin="mt-12" />
+        <AdjPostNav
+          prevPost={prevPostPreview}
+          nextPost={nextPostPreview}
+          href={listPathWithQuery}
+          margin="mt-12"
+        />
       </PageLayout>
     )
   );

@@ -10,7 +10,7 @@ export default async function GreetingsPage() {
     <PageLayout titleSize="text-2xl">
       <HTMLViewer
         htmlContent={response.description}
-        mainImage={{ width: 212, height: 280, url: response.mainImageURL }}
+        topRightContent={{ type: 'image', width: 212, height: 280, url: response.mainImageURL }}
       />
     </PageLayout>
   );
