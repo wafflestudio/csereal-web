@@ -14,8 +14,8 @@ export default function ClubDetails({ club }: { club: Club }) {
   return (
     <div>
       <ClubTitle name={club.name} engName={club.engName} />
-      <StraightNode style={nodeWidth} />
-      <HTMLViewer htmlContent={club.description} mainImage={club.image} margin="ml-2.5 mt-2" />
+      <StraightNode />
+      <HTMLViewer htmlContent={club.description} margin="ml-2.5 mt-2" />
     </div>
   );
 }
