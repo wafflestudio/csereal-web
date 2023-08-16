@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import clipIcon from '@/public/image/clip_icon.svg';
 import pinIcon from '@/public/image/pin_icon.svg';
 
 import { useQueryString } from '@/hooks/useQueryString';
@@ -10,8 +11,6 @@ import { SimpleNoticePost } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
-
-import clipIcon from '@/public/image/clip_icon.svg';
 
 interface NoticeListProps {
   posts: SimpleNoticePost[];

@@ -26,7 +26,7 @@ function Tag({ tag, searchPath }: TagProps) {
     'border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-6 text-xs whitespace-nowrap';
 
   return searchPath ? (
-    <Link className={tagStyle} href={`${searchPath}?${tag}`}>
+    <Link className={tagStyle} href={`${searchPath}?tag=${tag}`}>
       {tag}
     </Link>
   ) : (

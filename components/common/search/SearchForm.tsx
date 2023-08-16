@@ -50,7 +50,7 @@ export default function SearchForm({ tags, initTags, initKeyword, setSearchParam
       <StraightNode double={true} margin="mt-6 mb-3" />
       <div className="flex justify-between items-start gap-3 px-2.5">
         <Tags tags={initTags.length ? initTags : ['전체']} />
-        {Boolean(initTags.length) && <TagResetButton onClickReset={resetTags} />}
+        {initTags.length > 0 && <TagResetButton onClickReset={resetTags} />}
       </div>
     </div>
   );

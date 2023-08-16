@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import useSwr from 'swr';
 
 import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
@@ -14,7 +15,6 @@ import { NoticeTags } from '@/constants/tag';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { GETNoticePostsResponse } from '@/types/post';
-import { useState } from 'react';
 
 const POST_LIMIT = 20;
 
