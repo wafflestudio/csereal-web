@@ -13,15 +13,6 @@ interface ResearchLabListProps {
   labInfos: ResearchLabInfo[];
 }
 
-const LAB_ROW_ITEM_WIDTH = {
-  name: 'w-56',
-  professor: 'w-[6.75rem]',
-  location: 'w-[11.75rem]',
-  tel: 'w-28',
-  acronym: 'w-[4.5rem]',
-  introMaterial: 'w-[4.75rem]',
-} as const;
-
 const laboratoriesPath = getPath(researchLabs);
 const facultyPath = getPath(faculty);
 
@@ -38,6 +29,15 @@ export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   );
 }
 
+const LAB_ROW_ITEM_WIDTH = {
+  name: 'w-56',
+  professor: 'w-[6.75rem]',
+  location: 'w-[11.75rem]',
+  tel: 'w-28',
+  acronym: 'w-[4.5rem]',
+  introMaterial: 'w-[4.75rem]',
+} as const;
+
 function LabListTitle() {
   return (
     <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-300 [&>span]:px-3">
@@ -50,6 +50,11 @@ function LabListTitle() {
     </h5>
   );
 }
+
+const NEUTRAL_400_FILTER =
+  'invert-[.64] sepia-0 saturate-0 hue-rotate-[142deg] brightness-100 contrast-[.98]';
+const NEUTRAL_700_HOVER_FILTER =
+  'hover:invert-[.21] hover:sepia-[.16] hover:saturate-0 hover:hue-rotate-[286deg] hover:brightness-[.101] hover:contrast-[.90]';
 
 function LabListRow({ lab }: { lab: ResearchLabInfo }) {
   const imageColorFilter =
@@ -74,7 +79,7 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
       </span>
       <span className={`${LAB_ROW_ITEM_WIDTH.location} text-neutral-400`}>{lab.location}</span>
       <span className={`${LAB_ROW_ITEM_WIDTH.tel} text-neutral-400`}>{lab.tel}</span>
-      <span className={`${LAB_ROW_ITEM_WIDTH.acronym} text-neutral-400"`}>{lab.acronym}</span>
+      <span className={`${LAB_ROW_ITEM_WIDTH.acronym} text-neutral-400`}>{lab.acronym}</span>
       <span className={`${LAB_ROW_ITEM_WIDTH.introMaterial} flex items-center gap-3`}>
         {lab.introductionMaterials.pdf && (
           <Link
@@ -99,7 +104,7 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
               src={youtubeIcon}
               width={20}
               alt="youtube_link"
-              className={`${imageColorFilter} ${imageHoverColorFilter}`}
+              className={`${NEUTRAL_400_FILTER} ${NEUTRAL_700_HOVER_FILTER}`}
             />
           </Link>
         )}
