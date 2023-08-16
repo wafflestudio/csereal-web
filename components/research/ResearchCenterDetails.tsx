@@ -26,7 +26,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
     <div className="w-fit">
       <h4 className="px-2.5 font-bold text-[1.25rem] leading-10">
-        <Link href={link} className="group flex items-center gap-1 h-10">
+        <Link href={link} target="_blank" className="group flex items-center gap-1 h-10">
           <span>{name}</span>
           <span className="material-symbols-rounded rotate-[-45deg] font-medium text-neutral-400 group-hover:text-main-orange">
             link

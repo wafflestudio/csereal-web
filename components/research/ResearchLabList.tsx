@@ -68,7 +68,13 @@ function LabListRow({ lab }: { lab: ResearchLabInfo }) {
       <span className="px-3 w-[4.5rem] text-neutral-400">{lab.acronym}</span>
       <span className="px-3 w-[4.75rem] flex items-center gap-3">
         {lab.introductionMaterials.pdf && (
-          <Link href={lab.introductionMaterials.pdf} className="h-5" title="PDF">
+          <Link
+            href={lab.introductionMaterials.pdf}
+            download={`${lab.name} 소개자료`}
+            className="h-5"
+            title="PDF"
+            target="_blank"
+          >
             <span className="material-symbols-outlined text-[1.25rem] text-neutral-400  hover:text-neutral-700">
               draft
             </span>
