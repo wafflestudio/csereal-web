@@ -47,16 +47,14 @@ function NoticeListRow({ post, href }: NoticeListRowProps) {
   const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
 
   return (
-    <li
-      className={`flex items-center min-h-[2.5rem] py-2.5 odd:bg-neutral-50 even:bg-white ${fontWeight}`}
-    >
+    <li className={`flex items-center h-10 py-2.5 odd:bg-neutral-50 even:bg-white ${fontWeight}`}>
       <span className="w-[3.125rem] px-[0.8125rem] shrink-0">
         {post.isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
       </span>
-      <span className="pl-3 grow text-neutral-700 tracking-wide">
-        <Link href={href} className="group">
-          <span className="group-hover:text-main-orange">{post.title}</span>
-          <Image src={clipIcon} alt="has_attachment" className={`inline align-middle ml-1 mb-px`} />
+      <span className="pl-3 w-[35.625rem] text-neutral-700 tracking-wide">
+        <Link href={href} className="flex items-center gap-1.5 hover:text-main-orange">
+          <span className="whitespace-nowrap text-ellipsis overflow-hidden">{post.title}</span>
+          <Image src={clipIcon} alt="has_attachment" />
         </Link>
       </span>
       <span className="w-[12.5rem] pl-8 shrink-0 text-neutral-700 tracking-wide">
