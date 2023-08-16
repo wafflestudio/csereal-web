@@ -48,7 +48,7 @@ export const CLUBS_MOCK: Club[] = [
     engName: 'Waffle Studio',
     description:
       '맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳  맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳 맛있는 서비스가 탄생하는 곳',
-    image: {
+    imageURL: {
       url: 'https://picsum.photos/801',
       width: 320,
       height: 190,
