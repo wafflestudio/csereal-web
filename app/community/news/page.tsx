@@ -6,7 +6,7 @@ import { getMockNewsPosts } from '@/apis/news';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
 import { NewsTags } from '@/constants/tag';

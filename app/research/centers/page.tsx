@@ -4,9 +4,9 @@ import useSWR from 'swr';
 
 import { getResearchCentersMock } from '@/apis/research';
 
-import SelectionList from '@/components/common/SelectionList';
-import PageLayout from '@/components/layout/PageLayout';
-import ResearchCenterDetails from '@/components/research/ResearchCenterDetails';
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import ResearchCenterDetails from '@/components/research/centers/ResearchCenterDetails';
 
 import { researchCenters } from '@/types/page';
 import { ResearchCenter } from '@/types/research';
@@ -25,6 +25,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
     decodeURI(searchParams.selected ?? ''),
+    centers[0].name,
   );
 
   return (
@@ -33,7 +34,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}
         path={researchCentersPath}
-        gridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
+        listGridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
       />
       {selectedCenter && <ResearchCenterDetails center={selectedCenter} />}
     </PageLayout>

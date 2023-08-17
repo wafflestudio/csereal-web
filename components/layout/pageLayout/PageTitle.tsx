@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 
+import { CurvedHorizontalNode } from '@/components/common/Nodes';
+
 import { SegmentNode } from '@/types/page';
 
 import { getLocationLog, getPath } from '@/utils/page';
-
-import { CurvedHorizontalNode } from './Nodes';
 
 interface PageTitleProps {
   title: string;

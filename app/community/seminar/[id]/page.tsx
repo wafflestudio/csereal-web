@@ -8,7 +8,7 @@ import { getMockSeminarPost } from '@/apis/seminar';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import { StraightNode } from '@/components/common/Nodes';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';
 
