@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import useSwr from 'swr';
 
-import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
+import { deleteNotice, getNoticePosts, getNoticePostsMock, patchNotice } from '@/apis/notice';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
@@ -16,7 +16,7 @@ import { NoticeTags } from '@/constants/tag';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
-import { GETNoticePostsResponse } from '@/types/post';
+import { GETNoticePostsResponse, NoticePost } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
@@ -25,24 +25,45 @@ const noticePath = getPath(notice);
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const {
-    data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
-    isLoading, // TODO: 로딩 컴포넌트
-    error, // TODO: 에러 컴포넌트?
-  } = useSwr<GETNoticePostsResponse>(
-    { url: '/notice', params: { page, keyword, tag: tags } },
-    getNoticePostsMock,
-  ); // 추후 fetcher 삭제
+  const { data: { searchList: posts = [], total: totalPostsCount = 0 } = {}, mutate } =
+    useSwr<GETNoticePostsResponse>(
+      { url: '/notice', params: { page, keyword, tag: tags } },
+      getNoticePostsMock,
+    ); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [selectedPosts, setSelectedPosts] = useState<number[]>([]);
+  const [selectedPostIds, setSelectedPostIds] = useState<number[]>([]);
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const batchDelete = () => {};
+  const resetSelectedPosts = () => {
+    setSelectedPostIds([]);
+  };
 
-  const batchPin = () => {};
+  const batchDelete = async () => {
+    for (const id of selectedPostIds) {
+      // CORS 에러 해결되면 주석 해제
+      // await deleteNotice(id);
+    }
+    // await mutate();
+    resetSelectedPosts();
+  };
+
+  const batchUnpin = async () => {
+    for (const id of selectedPostIds) {
+      const unpinnedPost: Partial<NoticePost> = {
+        isPinned: false,
+      };
+      // CORS 에러 해결되면 주석 해제
+      // await patchNotice(id, unpinnedPost);
+      for (const p of posts) {
+        if (p.id === id) p.isPinned = false;
+      }
+    }
+    // await mutate();
+    resetSelectedPosts();
+  };
 
   return (
     <PageLayout titleType="big">
@@ -56,8 +77,8 @@ export default function NoticePage() {
       <NoticeList
         posts={posts}
         isEditMode={isEditMode}
-        selectedPosts={selectedPosts}
-        setSelectedPosts={setSelectedPosts}
+        selectedPostIds={selectedPostIds}
+        setSelectedPostIds={setSelectedPostIds}
       />
       <Pagination
         totalPostsCount={totalPostsCount}
@@ -68,11 +89,11 @@ export default function NoticePage() {
       <div className="flex mt-12 mx-2.5">
         {isEditMode && (
           <div className="flex items-center gap-3">
-            <SelectedCountStatus count={selectedPosts.length} />
-            <BatchButton isDisabled={selectedPosts.length === 0} onClickButton={batchDelete}>
+            <SelectedCountStatus count={selectedPostIds.length} />
+            <BatchButton isDisabled={selectedPostIds.length === 0} onClickButton={batchDelete}>
               일괄 삭제
             </BatchButton>
-            <BatchButton isDisabled={selectedPosts.length === 0} onClickButton={batchPin}>
+            <BatchButton isDisabled={selectedPostIds.length === 0} onClickButton={batchUnpin}>
               일괄 고정 해제
             </BatchButton>
           </div>

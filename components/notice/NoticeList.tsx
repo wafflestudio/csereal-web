@@ -10,24 +10,24 @@ import NoticeListRow from './NoticeListRow';
 interface NoticeListProps {
   posts: SimpleNoticePost[];
   isEditMode: boolean;
-  selectedPosts: number[];
-  setSelectedPosts: Dispatch<SetStateAction<number[]>>;
+  selectedPostIds: number[];
+  setSelectedPostIds: Dispatch<SetStateAction<number[]>>;
 }
 
 export default function NoticeList({
   posts,
   isEditMode,
-  selectedPosts,
-  setSelectedPosts,
+  selectedPostIds,
+  setSelectedPostIds,
 }: NoticeListProps) {
   const queryString = useQueryString();
 
   const selectPost = (id: number) => {
-    setSelectedPosts((prev) => [...prev, id]);
+    setSelectedPostIds((prev) => [...prev, id]);
   };
 
   const deselectPost = (id: number) => {
-    setSelectedPosts((prev) => prev.filter((pId) => pId !== id));
+    setSelectedPostIds((prev) => prev.filter((pId) => pId !== id));
   };
 
   const toggleSelected = (id: number, isSelected: boolean) => {
@@ -44,7 +44,7 @@ export default function NoticeList({
             post={post}
             queryString={queryString}
             isEditMode={isEditMode}
-            isSelected={selectedPosts.includes(post.id)}
+            isSelected={selectedPostIds.includes(post.id)}
             toggleSelected={toggleSelected}
           />
         ))}

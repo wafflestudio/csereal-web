@@ -84,3 +84,11 @@ const noticeListMock = [
     .fill(0)
     .map((_, i) => ({ ...NoticeMock, id: i + 10 })),
 ];
+
+// export const deleteNoticeMock: typeof deleteNotice = async (id) => {
+//   return noticeListMock.filter((post) => post.id !== id);
+// };
+
+// export const patchNoticeMock: typeof patchNotice = async (id, newPost) => {
+//   return
+// }

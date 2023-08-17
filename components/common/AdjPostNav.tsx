@@ -68,7 +68,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="self-end text-white mt-6 text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-5 py-2 rounded-sm font-bold"
+      className="self-end text-white mt-6 text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-5 py-2 rounded-[0.0625] font-bold"
     >
       목록
     </Link>

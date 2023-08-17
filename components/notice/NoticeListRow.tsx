@@ -49,7 +49,11 @@ export default function NoticeListRow({
         />
       )}
       <PinCell isPinned={post.isPinned} />
-      <TitleCell title={post.title} href={`${noticePath}/${post.id}${queryString}`} />
+      <TitleCell
+        title={post.title}
+        href={`${noticePath}/${post.id}${queryString}`}
+        isEditMode={isEditMode}
+      />
       <DateCell date={post.createdAt} />
     </li>
   );
@@ -81,11 +85,24 @@ function PinCell({ isPinned }: { isPinned: boolean }) {
   );
 }
 
-function TitleCell({ title, href }: { title: string; href: string }) {
-  return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 tracking-wide`}>
+interface TitleCellProps {
+  title: string;
+  href: string;
+  isEditMode: boolean;
+}
+
+function TitleCell({ title, href, isEditMode }: TitleCellProps) {
+  return isEditMode ? (
+    <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
+      <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">{title}</span>
+      <Image src={clipIcon} alt="has_attachment" />
+    </span>
+  ) : (
+    <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
       <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
-        <span className="whitespace-nowrap text-ellipsis overflow-hidden">{title}</span>
+        <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
+          {title}
+        </span>
         <Image src={clipIcon} alt="has_attachment" />
       </Link>
     </span>
