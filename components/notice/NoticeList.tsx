@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { useQueryString } from '@/hooks/useQueryString';
 
 import { SimpleNoticePost } from '@/types/post';
@@ -8,10 +10,29 @@ import NoticeListRow from './NoticeListRow';
 interface NoticeListProps {
   posts: SimpleNoticePost[];
   isEditMode: boolean;
+  selectedPosts: number[];
+  setSelectedPosts: Dispatch<SetStateAction<number[]>>;
 }
 
-export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
+export default function NoticeList({
+  posts,
+  isEditMode,
+  selectedPosts,
+  setSelectedPosts,
+}: NoticeListProps) {
   const queryString = useQueryString();
+
+  const selectPost = (id: number) => {
+    setSelectedPosts((prev) => [...prev, id]);
+  };
+
+  const deselectPost = (id: number) => {
+    setSelectedPosts((prev) => prev.filter((pId) => pId !== id));
+  };
+
+  const toggleSelected = (id: number, isSelected: boolean) => {
+    isSelected ? deselectPost(id) : selectPost(id);
+  };
 
   return (
     <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-300">
@@ -23,7 +44,8 @@ export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
             post={post}
             queryString={queryString}
             isEditMode={isEditMode}
-            isSelected={true}
+            isSelected={selectedPosts.includes(post.id)}
+            toggleSelected={toggleSelected}
           />
         ))}
       </ul>

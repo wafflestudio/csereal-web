@@ -15,6 +15,7 @@ interface NoticeListRowProps {
   queryString: string;
   isEditMode: boolean;
   isSelected: boolean;
+  toggleSelected: (id: number, isSelected: boolean) => void;
 }
 
 export const NOTICE_ROW_CELL_WIDTH = {
@@ -31,6 +32,7 @@ export default function NoticeListRow({
   queryString,
   isEditMode,
   isSelected,
+  toggleSelected,
 }: NoticeListRowProps) {
   const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
 
@@ -38,9 +40,14 @@ export default function NoticeListRow({
     <li
       className={`flex items-center h-10 py-2.5 ${fontWeight} ${
         !isEditMode && 'odd:bg-neutral-50'
-      }`}
+      } ${isSelected && 'bg-neutral-100'}`}
     >
-      {isEditMode && <CheckboxCell isChecked={isSelected} />}
+      {isEditMode && (
+        <CheckboxCell
+          isChecked={isSelected}
+          toggleCheck={() => toggleSelected(post.id, isSelected)}
+        />
+      )}
       <PinCell isPinned={post.isPinned} />
       <TitleCell title={post.title} href={`${noticePath}/${post.id}${queryString}`} />
       <DateCell date={post.createdAt} />
@@ -48,11 +55,19 @@ export default function NoticeListRow({
   );
 }
 
-function CheckboxCell({ isChecked }: { isChecked: boolean }) {
+interface CheckboxCellProps {
+  isChecked: boolean;
+  toggleCheck: () => void;
+}
+
+function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
 
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.check} px-[0.8125rem]`}>
+    <span
+      className={`${NOTICE_ROW_CELL_WIDTH.check} px-[0.8125rem] cursor-pointer`}
+      onClick={toggleCheck}
+    >
       <span className="material-symbols-rounded text-[1.25rem] font-light">{iconName}</span>
     </span>
   );

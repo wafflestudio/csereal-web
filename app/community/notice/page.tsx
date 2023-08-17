@@ -1,6 +1,6 @@
 'use client';
 
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import useSwr from 'swr';
 
 import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
@@ -8,8 +8,7 @@ import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import BatchEditButtons from '@/components/notice/BatchEditButtons';
-import { CreateButton, EditButton } from '@/components/notice/NoticeButtons';
+import { BatchButton, CreateButton, EditButton } from '@/components/notice/NoticeButtons';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { NoticeTags } from '@/constants/tag';
@@ -54,7 +53,12 @@ export default function NoticePage() {
         isDisabled={isEditMode}
         setSearchParams={setSearchParams}
       />
-      <NoticeList posts={posts} isEditMode={isEditMode} />
+      <NoticeList
+        posts={posts}
+        isEditMode={isEditMode}
+        selectedPosts={selectedPosts}
+        setSelectedPosts={setSelectedPosts}
+      />
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
@@ -63,11 +67,15 @@ export default function NoticePage() {
       />
       <div className="flex mt-12 mx-2.5">
         {isEditMode && (
-          <BatchEditButtons
-            selectedPostCount={0}
-            onClickBatchDelete={batchDelete}
-            onClickBatchPin={batchPin}
-          />
+          <div className="flex items-center gap-3">
+            <SelectedCountStatus count={selectedPosts.length} />
+            <BatchButton isDisabled={selectedPosts.length === 0} onClickButton={batchDelete}>
+              일괄 삭제
+            </BatchButton>
+            <BatchButton isDisabled={selectedPosts.length === 0} onClickButton={batchPin}>
+              일괄 고정 해제
+            </BatchButton>
+          </div>
         )}
         <div className="ml-auto">
           <EditButton isEditMode={isEditMode} toggleEditMode={() => setIsEditMode(!isEditMode)} />
@@ -75,5 +83,16 @@ export default function NoticePage() {
         </div>
       </div>
     </PageLayout>
+  );
+}
+
+function SelectedCountStatus({ count }: { count: number }) {
+  return (
+    <div className="flex items-center gap-1 mr-3">
+      <span className="material-symbols-rounded text-neutral-500 text-lg font-extralight">
+        check_box
+      </span>
+      <span className="text-neutral-500 text-xs tracking-wide">{count}개 게시물 선택</span>
+    </div>
   );
 }
