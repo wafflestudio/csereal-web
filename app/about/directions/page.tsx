@@ -5,10 +5,10 @@ import useSWR from 'swr';
 import { getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import SelectionList from '@/components/common/SelectionList';
+import SelectionList from '@/components/common/selection/SelectionList';
 import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';
@@ -27,6 +27,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const selectedDirection = findSelectedItem<Direction>(
     directionList,
     decodeURI(searchParams.selected ?? ''),
+    directionList[0].name,
   );
 
   return (
@@ -40,7 +41,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
           names={directionList.map((d) => d.name)}
           selectedItemName={selectedDirection?.name ?? ''}
           path={directionsPath}
-          gridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
+          listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
         />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
       </div>

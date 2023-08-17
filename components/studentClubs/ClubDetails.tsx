@@ -1,5 +1,5 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
-import { StraightNode } from '@/components/common/Nodes';
+import SelectionTitle from '@/components/common/selection/SelectionTitle';
 
 import { Club } from '@/types/club';
 
@@ -10,7 +10,7 @@ export default function ClubDetails({ club }: { club: Club }) {
       <HTMLViewer
         htmlContent={club.description}
         topRightContent={{ type: 'image', width: 320, height: 200, url: club.imageURL }}
-        margin="ml-2.5 mt-5"
+        margin="ml-2.5"
       />
     </div>
   );
@@ -18,12 +18,11 @@ export default function ClubDetails({ club }: { club: Club }) {
 
 function ClubTitle({ name, engName }: { name: string; engName: string }) {
   return (
-    <div className="w-fit">
-      <h4 className="flex items-center gap-2 px-2.5 mb-1 h-10 font-noto text-neutral-700">
+    <SelectionTitle animationKey={name}>
+      <div className="flex items-center gap-2">
         <span className="text-[1.25rem] font-bold">{name}</span>
         <span className="text-md font-medium tracking-[0.02rem] pt-[0.1875rem]">{engName}</span>
-      </h4>
-      <StraightNode />
-    </div>
+      </div>
+    </SelectionTitle>
   );
 }

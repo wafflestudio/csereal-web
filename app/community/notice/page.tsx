@@ -7,7 +7,7 @@ import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import BatchEditButtons from '@/components/notice/BatchEditButtons';
 import { CreateButton, EditButton } from '@/components/notice/NoticeButtons';
 import NoticeList from '@/components/notice/NoticeList';

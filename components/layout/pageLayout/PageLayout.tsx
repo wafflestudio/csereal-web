@@ -4,8 +4,8 @@ import React, { ReactNode } from 'react';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
-import PageTitle from '@/components/common/PageTitle';
-import SubNavbar from '@/components/layout/SubNavbar';
+import PageTitle from '@/components/layout/pageLayout/PageTitle';
+import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 

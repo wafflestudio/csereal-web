@@ -10,8 +10,6 @@ import { ResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
 
-import './test.css';
-
 export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   return (
     <div>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import { StraightNode } from '@/components/common/Nodes';
+import SelectionTitle from '@/components/common/selection/SelectionTitle';
 
 import { ResearchCenter } from '@/types/research';
 
@@ -24,16 +24,13 @@ export default function ResearchCenterDetails({ center }: ResearchCenterDetailPr
 
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
-    <div className="w-fit">
-      <h4 className="px-2.5 font-bold text-[1.25rem] leading-10">
-        <Link href={link} target="_blank" className="group flex items-center gap-1 h-10">
-          <span>{name}</span>
-          <span className="material-symbols-rounded rotate-[-45deg] font-medium text-neutral-400 group-hover:text-main-orange">
-            link
-          </span>
-        </Link>
-      </h4>
-      <StraightNode />
-    </div>
+    <SelectionTitle animationKey={name}>
+      <Link href={link} target="_blank" className="group flex items-center gap-0.5 h-10">
+        <span>{name}</span>
+        <span className="material-symbols-rounded rotate-[-45deg] pt-1 text-neutral-400 group-hover:text-main-orange">
+          link
+        </span>
+      </Link>
+    </SelectionTitle>
   );
 }
