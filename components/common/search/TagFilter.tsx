@@ -8,7 +8,7 @@ interface TagFilterProps {
   setSelectedTags: React.Dispatch<SetStateAction<string[]>>;
 }
 
-// 나중에 태그 확정되면 반응형 추가해서 수정
+// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
 export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFilterProps) {

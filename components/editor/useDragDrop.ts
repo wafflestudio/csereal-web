@@ -2,6 +2,11 @@ import type { Identifier, XYCoord } from 'dnd-core';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
+export interface FilePickerItem {
+  url: string;
+  blob: Blob;
+}
+
 interface DragItem {
   index: number;
   id: string;

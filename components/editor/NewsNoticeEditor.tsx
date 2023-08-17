@@ -1,20 +1,18 @@
 'use client';
 
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  HTMLInputTypeAttribute,
-  useRef,
-  useState,
-} from 'react';
+import { useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 import PageLayout from '@/components/layout/PageLayout';
 
+import { NewsTags } from '@/constants/tag';
+
 import Fieldset from './Fieldset';
 import FilePicker from './FilePicker';
 import ImagePicker from './ImagePicker';
+import { FilePickerItem } from './useDragDrop';
+import TagCheckbox from '../common/search/TagCheckbox';
 
 type EditorProps =
   | {
@@ -30,11 +28,14 @@ type EditorProps =
       type: 'NOTICE_EDIT';
     };
 
+// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
+const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
+
 export default function NewsNoticeEditor({}: EditorProps) {
   const editorRef = useRef<SunEditorCore>();
   const [blob, setBlob] = useState<Blob>();
-
-  console.log('NewsNoticeEditor');
+  const [fileItems, setFileItems] = useState<FilePickerItem[]>([]);
+  const tags = NewsTags;
 
   return (
     <PageLayout title="새소식 쓰기" titleType="small">
@@ -55,15 +56,23 @@ export default function NewsNoticeEditor({}: EditorProps) {
         </Fieldset>
 
         <Fieldset title="첨부파일" mb="mb-6" titleMb="mb-3">
-          <FilePicker />
+          <FilePicker fileItems={fileItems} setFileItems={setFileItems} />
         </Fieldset>
 
         <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
-          ㅁ
+          <div className={`grow grid  gap-x-6 gap-y-2.5 ${gridStyle}`}>
+            {tags.map((tag) => (
+              <TagCheckbox key={tag} tag={tag} isChecked={false} toggleCheck={() => {}} />
+            ))}
+          </div>
         </Fieldset>
 
         <Fieldset title="게시 설정" mb="mb-6" titleMb="mb-3">
-          ㅁ
+          <div className="flex flex-col gap-2">
+            <TagCheckbox tag="비공개 글" isChecked={false} toggleCheck={() => {}} />
+            <TagCheckbox tag="목록 상단에 고정" isChecked={false} toggleCheck={() => {}} />
+            <TagCheckbox tag="슬라이드 쇼에 표시" isChecked={false} toggleCheck={() => {}} />
+          </div>
         </Fieldset>
       </form>
     </PageLayout>
