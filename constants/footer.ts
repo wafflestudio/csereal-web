@@ -8,7 +8,7 @@ import {
   seminar,
   reservations,
   facultyRecruitment,
-  laboratories,
+  researchLabs,
   topConferenceList,
 } from '@/types/page';
 
@@ -33,7 +33,7 @@ export const resourcesLinks = [notice, seminar, reservations].map(segmentNodeToL
 export const researchLinks = [
   segmentNodeToLink(facultyRecruitment),
   {
-    href: getPath(laboratories),
+    href: getPath(researchLabs),
     title: '연구실 목록',
   },
   segmentNodeToLink(topConferenceList),

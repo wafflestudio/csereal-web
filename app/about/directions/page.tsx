@@ -1,4 +1,8 @@
-import { getDirections, getDirectionsMock } from '@/apis/directions';
+'use client';
+
+import useSWR from 'swr';
+
+import { getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
 import SelectionList from '@/components/common/SelectionList';
@@ -6,20 +10,24 @@ import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/PageLayout';
 
+import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';
 
+import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
 
 interface DirectionsPageProps {
   searchParams: { selected?: string };
 }
 
-const DEFAULT_DIRECITON = '대중교통';
 const directionsPath = getPath(directions);
 
-export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
-  const selected = searchParams.selected ? decodeURI(searchParams.selected) : DEFAULT_DIRECITON;
-  const { directionList, selectedDirection } = await getData(selected);
+export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
+  const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
+  const selectedDirection = findSelectedItem<Direction>(
+    directionList,
+    decodeURI(searchParams.selected ?? ''),
+  );
 
   return (
     <PageLayout titleType="big">
@@ -32,16 +40,10 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
           names={directionList.map((d) => d.name)}
           selectedItemName={selectedDirection?.name ?? ''}
           path={directionsPath}
+          gridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
         />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
       </div>
     </PageLayout>
   );
-}
-
-async function getData(selectedDirectionName: string) {
-  // const directions = await getDirections();
-  const directionList = getDirectionsMock();
-  const selectedDirection = directionList.find((dir) => dir.name === selectedDirectionName);
-  return { directionList, selectedDirection };
 }
