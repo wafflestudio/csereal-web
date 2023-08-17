@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { MouseEventHandler, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
@@ -8,11 +9,15 @@ import PageLayout from '@/components/layout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
+import { NewsPost, NoticePost } from '@/types/post';
+
 import Fieldset from './Fieldset';
 import FilePicker from './FilePicker';
 import ImagePicker from './ImagePicker';
 import { FilePickerItem } from './useDragDrop';
 import TagCheckbox from '../common/search/TagCheckbox';
+
+type NewsEditorContent = NewsPost & { type: 'NEWS' };
 
 type EditorProps =
   | {
@@ -32,6 +37,7 @@ type EditorProps =
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
 export default function NewsNoticeEditor({}: EditorProps) {
+  const router = useRouter();
   const editorRef = useRef<SunEditorCore>();
   const [blob, setBlob] = useState<Blob>();
   const [fileItems, setFileItems] = useState<FilePickerItem[]>([]);
@@ -74,6 +80,18 @@ export default function NewsNoticeEditor({}: EditorProps) {
             <TagCheckbox tag="슬라이드 쇼에 표시" isChecked={false} toggleCheck={() => {}} />
           </div>
         </Fieldset>
+
+        <div className="self-end flex gap-3">
+          {/* TODO: 취소 다시 물어보기? */}
+          <GrayButton title="취소하기" onClick={router.back} />
+          <BlackButton
+            title="게시하기"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(editorRef.current?.getContents(true));
+            }}
+          />
+        </div>
       </form>
     </PageLayout>
   );
@@ -86,4 +104,42 @@ const TitleTextInput = () => (
             outline-none font-noto text-xs pl-2 font-normal `}
     placeholder="제목을 입력하세요."
   />
+);
+
+const GrayButton = ({
+  title,
+  onClick,
+}: {
+  title: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}) => (
+  <button
+    className={`
+              px-[.875rem] py-[.1875rem] rounded-[.0625rem] border-neutral-200 border-[1px]
+              bg-neutral-100 hover:bg-neutral-200
+              font-noto text-xs font-medium leading-8 text-neutral-500
+            `}
+    onClick={onClick}
+  >
+    {title}
+  </button>
+);
+
+const BlackButton = ({
+  title,
+  onClick,
+}: {
+  title: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}) => (
+  <button
+    className={`
+              px-[.875rem] py-[.1875rem] rounded-[.0625rem] -neutral-200 border-[1px]
+              bg-neutral-700 hover:bg-neutral-500
+              font-noto text-xs font-medium leading-8 text-white
+            `}
+    onClick={onClick}
+  >
+    {title}
+  </button>
 );
