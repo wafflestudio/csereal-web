@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - feat/github-action
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.8.0
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container Registry
+        uses: docker/login-action@v2.2.0
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v4.1.1
+        with:
+          push: true
+          tags: |
+            ghcr.io/wafflestudio/csereal-front/server_image:latest
+            ghcr.io/wafflestudio/csereal-front/server_image:${{github.sha}}
+
+      - name: Deploy Docker Image via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+
+          script: |
+            #
