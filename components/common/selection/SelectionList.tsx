@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { COLOR_THEME } from '@/constants/color';
+import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
 
-import CornerFoldedRectangle from '../CornerFoldedRectangle/index';
+import { COLOR_THEME } from '@/constants/color';
 
 interface SelectionListProps {
   names: string[];
