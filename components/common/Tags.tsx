@@ -23,7 +23,7 @@ interface TagProps {
 
 function Tag({ tag, searchPath }: TagProps) {
   const tagStyle =
-    'border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-6 text-xs whitespace-nowrap';
+    'px-2.5 py-0.5 h-6 border rounded-[1.875rem] border-main-orange text-main-orange hover:bg-main-orange hover:text-white text-xs whitespace-nowrap duration-200';
 
   return searchPath ? (
     <Link className={tagStyle} href={`${searchPath}?tag=${tag}`}>

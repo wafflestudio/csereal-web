@@ -25,7 +25,7 @@ export default function BatchEditButtons({
         일괄 삭제
       </BatchButton>
       <BatchButton isDisabled={isDisabled} onClickButton={onClickBatchPin}>
-        일괄 고정
+        일괄 고정 해제
       </BatchButton>
     </div>
   );
@@ -40,9 +40,9 @@ interface BatchButtonProps {
 export function BatchButton({ isDisabled, onClickButton, children }: BatchButtonProps) {
   return (
     <button
-      className="w-[4.5rem] h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium disabled:bg-neutral-50 disabled:text-neutral-300"
+      className="px-3 h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium disabled:bg-neutral-50 disabled:text-neutral-300"
       onClick={onClickButton}
-      //   disabled={isDisabled}
+      disabled={isDisabled}
     >
       {children}
     </button>

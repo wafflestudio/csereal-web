@@ -4,13 +4,15 @@ import Link from 'next/link';
 import clipIcon from '@/public/image/clip_icon.svg';
 import pinIcon from '@/public/image/pin_icon.svg';
 
+import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
 
 import { formatDate } from '@/utils/formatting';
+import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
   post: SimpleNoticePost;
-  href: string;
+  queryString: string;
   isEditMode: boolean;
   isSelected: boolean;
 }
@@ -22,7 +24,14 @@ export const NOTICE_ROW_CELL_WIDTH = {
   date: 'w-auto',
 } as const;
 
-export default function NoticeListRow({ post, href, isEditMode, isSelected }: NoticeListRowProps) {
+const noticePath = getPath(notice);
+
+export default function NoticeListRow({
+  post,
+  queryString,
+  isEditMode,
+  isSelected,
+}: NoticeListRowProps) {
   const fontWeight = post.isPinned ? 'font-bold' : 'font-normal';
 
   return (
@@ -33,7 +42,7 @@ export default function NoticeListRow({ post, href, isEditMode, isSelected }: No
     >
       {isEditMode && <CheckboxCell isChecked={isSelected} />}
       <PinCell isPinned={post.isPinned} />
-      <TitleCell title={post.title} href={href} />
+      <TitleCell title={post.title} href={`${noticePath}/${post.id}${queryString}`} />
       <DateCell date={post.createdAt} />
     </li>
   );
