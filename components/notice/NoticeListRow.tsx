@@ -84,7 +84,7 @@ function PinCell({ isPinned }: { isPinned: boolean }) {
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 tracking-wide`}>
-      <Link href={href} className="flex items-center gap-1.5 hover:text-main-orange">
+      <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
         <span className="whitespace-nowrap text-ellipsis overflow-hidden">{title}</span>
         <Image src={clipIcon} alt="has_attachment" />
       </Link>

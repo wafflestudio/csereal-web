@@ -40,8 +40,10 @@ export default function ResearchLabListRow({ lab }: { lab: ResearchLabInfo }) {
 
 function NameCell({ name }: { name: string }) {
   return (
-    <span className={`${LAB_ROW_ITEM_WIDTH.name} hover:text-main-orange`}>
-      <Link href={`${laboratoriesPath}/${name}`}>{name}</Link>
+    <span className={`${LAB_ROW_ITEM_WIDTH.name}`}>
+      <Link className="hover:text-main-orange" href={`${laboratoriesPath}/${name}`}>
+        {name}
+      </Link>
     </span>
   );
 }
