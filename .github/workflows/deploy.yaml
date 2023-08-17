@@ -28,8 +28,8 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/wafflestudio/csereal-front/server_image:latest
-            ghcr.io/wafflestudio/csereal-front/server_image:${{github.sha}}
+            ghcr.io/wafflestudio/csereal-front/nextjs_image:latest
+            ghcr.io/wafflestudio/csereal-front/nextjs_image:${{github.sha}}
 
       - name: Deploy Docker Image via SSH
         uses: appleboy/ssh-action@master
@@ -37,7 +37,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
 
           script: |
             #
