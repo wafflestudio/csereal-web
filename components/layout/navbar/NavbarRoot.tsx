@@ -104,7 +104,9 @@ function NavListRow({
 }) {
   return (
     <li
-      className={`text-white font-yoon text-md font-medium ${highlight ? '' : 'opacity-60'}`}
+      className={`text-white font-yoon text-md font-medium ${
+        highlight ? '' : 'opacity-60'
+      } cursor-pointer`}
       onMouseEnter={onMouseEnter}
     >
       {name}
