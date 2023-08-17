@@ -7,11 +7,10 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function EarlyAdmission() {
   const { data } = useSWR({ url: '/admissions' }, getEarlyAdmissionMock);
-  if (data === undefined) return <></>;
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data.description} />
+      <HTMLViewer htmlContent={data?.description ?? ''} />
     </PageLayout>
   );
 }
