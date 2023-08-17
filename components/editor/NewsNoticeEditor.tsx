@@ -5,7 +5,7 @@ import { MouseEventHandler, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
