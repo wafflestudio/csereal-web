@@ -2,15 +2,15 @@ import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
 interface ImagePickerProps {
-  blob?: Blob;
-  setBlob: (blob?: Blob) => void;
+  file?: File;
+  setFile: (file?: File) => void;
 }
 
-export default function ImagePicker({ blob, setBlob }: ImagePickerProps) {
+export default function ImagePicker({ file, setFile }: ImagePickerProps) {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
     if (!e.target.files || e.target.files.length === 0) return;
-    setBlob(e.target.files[0]);
+    setFile(e.target.files[0]);
   };
 
   return (
@@ -22,33 +22,33 @@ export default function ImagePicker({ blob, setBlob }: ImagePickerProps) {
             font-noto text-xs font-normal self-start 
             hover:bg-neutral-100`}
       >
-        {`이미지 ${blob ? '변경' : '업로드'}`}
-        {/* svg 처리가 애매해서 image/png 사용 안함 */}
+        {`이미지 ${file ? '변경' : '업로드'}`}
+        {/* SelectedImageViewer쪽 svg 처리가 애매해서(귀찮아서) accept=image/* 사용 안함 */}
         <input type="file" accept=".png, .jpg, .jpeg" className="hidden" onChange={handleChange} />
       </label>
-      {blob && <SelectedImageViewer blob={blob} setBlob={setBlob} />}
+      {file && <SelectedImageViewer file={file} setFile={setFile} />}
     </>
   );
 }
 
 const IMAGE_WIDTH = 100;
 
-const SelectedImageViewer = ({ blob, setBlob }: { blob: Blob; setBlob: (blob?: Blob) => void }) => {
+const SelectedImageViewer = ({ file, setFile }: { file: Blob; setFile: (file?: File) => void }) => {
   const [imageHeight, setImageHeight] = useState(45);
 
-  const imageURL = URL.createObjectURL(blob);
-  const blobSizeRounded = Math.floor(blob.size / 100) / 10;
+  const imageURL = URL.createObjectURL(file);
+  const fileSizeRounded = Math.floor(file.size / 100) / 10;
   const handleDeleteBlob: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    setBlob(undefined);
+    setFile(undefined);
   };
 
   useEffect(() => {
     (async () => {
-      const bmp = await createImageBitmap(blob);
+      const bmp = await createImageBitmap(file);
       setImageHeight(Math.round((IMAGE_WIDTH / bmp.width) * bmp.height));
     })();
-  }, [blob]);
+  }, [file]);
 
   return (
     <div
@@ -67,7 +67,7 @@ const SelectedImageViewer = ({ blob, setBlob }: { blob: Blob; setBlob: (blob?: B
         style={{ width: IMAGE_WIDTH, height: imageHeight }}
       />
       <div className="flex flex-col justify-between items-start">
-        <p className="font-noto text-xs font-normal">{`${blob.name}(${blobSizeRounded}KB)`}</p>
+        <p className="font-noto text-xs font-normal">{`${file.name}(${fileSizeRounded}KB)`}</p>
         <button className="font-noto text-xs font-normal underline" onClick={handleDeleteBlob}>
           삭제
         </button>

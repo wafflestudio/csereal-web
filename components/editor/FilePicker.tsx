@@ -3,14 +3,15 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import FilePickerRow from './FilePickerRow';
-import { FilePickerItem } from './useDragDrop';
 
 interface FilePickerProps {
-  fileItems: FilePickerItem[];
-  setFileItems: Dispatch<SetStateAction<FilePickerItem[]>>;
+  files: File[];
+  setFiles: Dispatch<SetStateAction<File[]>>;
 }
 
-export default function FilePicker({ fileItems, setFileItems }: FilePickerProps) {
+export default function FilePicker({ files, setFiles }: FilePickerProps) {
+  // 성능 확인 필요
+  const filesWithURL = files.map((file) => ({ file, url: URL.createObjectURL(file) }));
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
     if (!e.target.files || e.target.files.length === 0) return;
@@ -18,33 +19,33 @@ export default function FilePicker({ fileItems, setFileItems }: FilePickerProps)
     const file = e.target.files[0];
     const fileURL = URL.createObjectURL(file);
 
-    if (fileItems.find((x) => x.url === fileURL) !== undefined) {
-      // 직접 해보니 URL이 겹치지는 않는데 혹시 모르니 처리
+    // 직접 해보니 URL이 겹치지는 않는데 혹시 모르니 중복 처리
+    if (filesWithURL.find((x) => x.url === fileURL) !== undefined) {
       // TODO: toast 같은걸로 대체
       alert('이미 추가된 파일입니다.');
       return;
     }
 
-    setFileItems((fileItems) => [...fileItems, { blob: file, url: fileURL }]);
+    setFiles((files) => [...files, file]);
 
     // stackoverflow.com/questions/12030686/html-input-file-selection-event-not-firing-upon-selecting-the-same-file
     e.target.value = '';
   };
 
   const moveFile = (dragIndex: number, hoverIndex: number) => {
-    setFileItems((prevFileItems) => {
-      const nextFileItems = [...prevFileItems];
-      nextFileItems.splice(dragIndex, 1);
-      nextFileItems.splice(hoverIndex, 0, prevFileItems[dragIndex]);
-      return nextFileItems;
+    setFiles((prevFiles) => {
+      const nextFiles = [...prevFiles];
+      nextFiles.splice(dragIndex, 1);
+      nextFiles.splice(hoverIndex, 0, prevFiles[dragIndex]);
+      return nextFiles;
     });
   };
 
   const deleteFileAtIndex = (index: number) => {
-    setFileItems((prevFileItems) => {
-      const nextFileItems = [...prevFileItems];
-      nextFileItems.splice(index, 1);
-      return nextFileItems;
+    setFiles((prevFiles) => {
+      const nextFiles = [...prevFiles];
+      nextFiles.splice(index, 1);
+      return nextFiles;
     });
   };
 
@@ -57,12 +58,12 @@ export default function FilePicker({ fileItems, setFileItems }: FilePickerProps)
         bg-neutral-50 rounded-sm border-[1px] border-neutral-200
       `}
       >
-        {fileItems.map((file, index) => (
+        {filesWithURL.map((item, index) => (
           <FilePickerRow
-            key={file.url}
+            key={item.url}
             index={index}
-            url={file.url}
-            blob={file.blob}
+            url={item.url}
+            file={item.file}
             moveFile={moveFile}
             deleteFile={() => deleteFileAtIndex(index)}
           />

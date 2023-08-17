@@ -2,18 +2,13 @@ import type { Identifier, XYCoord } from 'dnd-core';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
-export interface FilePickerItem {
-  url: string;
-  blob: Blob;
-}
-
 interface DragItem {
   index: number;
   id: string;
   type: string;
 }
 
-// https://react-dnd.github.io/react-dnd/examples/sortable/simple
+// https://react-dnd.github.io/react-dnd/examples/sortable/simple 복붙 후 사소한 수정
 export default function useDragDrop(
   url: string,
   index: number,
