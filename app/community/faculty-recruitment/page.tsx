@@ -6,9 +6,6 @@ import { COLOR_THEME } from '@/constants/color';
 
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 
-// TODO
-// const BASE_URL = '';
-
 export default async function FacultyRecruitment() {
   //   const res = await fetch(BASE_URL) as GETFacultyRecruitmentResponse;
   const res = await mockNetwork();
@@ -19,8 +16,10 @@ export default async function FacultyRecruitment() {
         radius={0.3125}
         colorTheme={COLOR_THEME.darkGray}
         triangleLength={1.75}
-        triangleDropShadow="drop-shadow(0px 4px 7px rgba(0,0,0,0.7)"
+        triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
         rectangleMargin="mb-8"
+        isAnimated={true}
+        isUnfolding={true}
       >
         <LatestRecruitmentBanner {...res} />
       </CornerFoldedRectangle>

@@ -55,7 +55,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleLength={triangleLength}
           radius={radius}
           triangleDropShadow={dropShadow}
-          isSelection={true}
+          width="w-full"
         >
           <span className={`${itemCommonStyle} text-white`}>{name}</span>
         </CornerFoldedRectangle>
@@ -66,7 +66,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           radius={radius}
           triangleDropShadow={dropShadow}
           isAnimated={true}
-          isSelection={true}
+          width="w-full"
         >
           <Link
             href={`${path}?selected=${name}`}
