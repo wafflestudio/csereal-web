@@ -33,7 +33,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}
         path={researchCentersPath}
-        gridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
+        listGridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
       />
       {selectedCenter && <ResearchCenterDetails center={selectedCenter} />}
     </PageLayout>

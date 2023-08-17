@@ -37,7 +37,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
         names={groups.map((group) => group.name)}
         selectedItemName={selectedGroup?.name ?? ''}
         path={researchGroupsPath}
-        gridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
+        listGridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
       />
       {selectedGroup && <ResearchGroupDetails group={selectedGroup} />}
     </PageLayout>
