@@ -18,9 +18,9 @@ const facultyPath = getPath(faculty);
 
 export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   return (
-    <div>
+    <div className="w-[48.75rem] border-y border-neutral-200">
       <LabListTitle />
-      <ul className="divide-y divide-neutral-200 divide-dashed font-noto border-b border-neutral-200">
+      <ul className="divide-y divide-neutral-200 divide-dashed font-noto ">
         {labInfos.map((lab) => (
           <LabListRow lab={lab} key={lab.name} />
         ))}
@@ -40,13 +40,13 @@ const LAB_ROW_ITEM_WIDTH = {
 
 function LabListTitle() {
   return (
-    <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-300 [&>span]:px-3">
+    <h5 className="flex font-yoon items-center h-10 text-xs border-b border-neutral-200 bg-neutral-50 [&>span]:px-3">
       <span className={LAB_ROW_ITEM_WIDTH.name}>연구실</span>
       <span className={LAB_ROW_ITEM_WIDTH.professor}>지도교수</span>
       <span className={LAB_ROW_ITEM_WIDTH.location}>연구실 위치</span>
       <span className={LAB_ROW_ITEM_WIDTH.tel}>전화</span>
       <span className={LAB_ROW_ITEM_WIDTH.acronym}>약자</span>
-      <span className={LAB_ROW_ITEM_WIDTH.professor}>소개 자료</span>
+      <span className={LAB_ROW_ITEM_WIDTH.introMaterial}>소개 자료</span>
     </h5>
   );
 }
