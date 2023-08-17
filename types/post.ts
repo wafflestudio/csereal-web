@@ -101,12 +101,3 @@ export interface SeminarPostResponse extends PostResponse {
   imageURL: string;
   isLast?: boolean;
 }
-
-export interface GETFacilitiesPostsResponse {
-  facilitiesList: {
-    name: string;
-    description: string;
-    location: string;
-    imageURL: string;
-  }[];
-}
