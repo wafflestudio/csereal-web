@@ -13,6 +13,7 @@ import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 import PageLayout from '@/components/layout/PageLayout';
 
 import Fieldset from './Fieldset';
+import FilePicker from './FilePicker';
 import ImagePicker from './ImagePicker';
 
 type EditorProps =
@@ -54,7 +55,7 @@ export default function NewsNoticeEditor({}: EditorProps) {
         </Fieldset>
 
         <Fieldset title="첨부파일" mb="mb-6" titleMb="mb-3">
-          a
+          <FilePicker />
         </Fieldset>
 
         <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
