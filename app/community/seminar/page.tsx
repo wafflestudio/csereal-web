@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { getMockSeminarPosts } from '@/apis/seminar';
 
 import Pagination from '@/components/common/Pagination';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import SeminarSearchBar from '@/components/seminar/SearchBar';
 import SeminarRow from '@/components/seminar/SeminarRow';
 

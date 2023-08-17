@@ -1,26 +1,34 @@
 import Link from 'next/link';
 
-import { COLOR_THEME } from '@/constants/color';
+import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
 
-import CornerFoldedRectangle from './CornerFoldedRectangle/index';
+import { COLOR_THEME } from '@/constants/color';
 
 interface SelectionListProps {
   names: string[];
   selectedItemName: string;
   path: string;
-  gridColumnClass: string; // tailwind class
+  listGridColumnClass?: string; // tailwind class
+  listItemPadding?: string; // tailwlind class
 }
 
 export default function SelectionList({
   names,
   selectedItemName,
   path,
-  gridColumnClass,
+  listGridColumnClass = 'grid-cols-[repeat(4,_max-content)]',
+  listItemPadding = '',
 }: SelectionListProps) {
   return (
-    <ul className={`grid ${gridColumnClass} gap-3 mb-9`}>
+    <ul className={`grid ${listGridColumnClass} gap-3 mb-11`}>
       {names.map((name) => (
-        <SelectionItem key={name} path={path} name={name} isSelected={name === selectedItemName} />
+        <SelectionItem
+          key={name}
+          path={path}
+          name={name}
+          isSelected={name === selectedItemName}
+          padding={listItemPadding}
+        />
       ))}
     </ul>
   );
@@ -30,10 +38,11 @@ interface SelectionItemProps {
   name: string;
   isSelected: boolean;
   path: string;
+  padding: string;
 }
 
-function SelectionItem({ name, isSelected, path }: SelectionItemProps) {
-  const itemCommonStyle = 'block w-full h-10 py-3 text-center text-sm tracking-wide font-yoon';
+function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) {
+  const itemCommonStyle = `block w-full h-10 py-3 text-center text-sm tracking-wide font-yoon ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';

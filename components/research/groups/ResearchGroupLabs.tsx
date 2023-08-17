@@ -7,9 +7,9 @@ import { getPath } from '@/utils/page';
 export default function ResearchGroupLabs({ labNames }: { labNames: string[] }) {
   return (
     <div>
-      <h5 className="font-noto font-bold text-base ml-2.5 py-1">연구실</h5>
-      <div className="border border-neutral-200 my-3" />
-      <ul className="">
+      <h5 className="font-noto font-bold pl-2.5 py-1">연구실</h5>
+      <div className="h-px bg-neutral-200 my-3" />
+      <ul>
         {labNames.map((name) => (
           <ResearchGroupLab labName={name} key={name} />
         ))}
