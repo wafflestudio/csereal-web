@@ -25,7 +25,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
     decodeURI(searchParams.selected ?? ''),
-    centers[0].name,
+    centers[0]?.name,
   );
 
   return (

@@ -84,7 +84,7 @@ interface LabIntroMaterialsProps {
 const NEUTRAL_400_FILTER =
   'invert-[.64] sepia-0 saturate-0 hue-rotate-[142deg] brightness-100 contrast-[.98]';
 const NEUTRAL_700_HOVER_FILTER =
-  'hover:invert-[.21] hover:sepia-[.16] hover:saturate-0 hover:hue-rotate-[286deg] hover:brightness-[.101] hover:contrast-[.90]';
+  'hover:invert-[.17] hover:sepia-0 hover:saturate-[18.75] hover:hue-rotate-[146deg] hover:brightness-[1.06] hover:contrast-[.79]';
 
 function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
   return (

@@ -28,7 +28,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,
     decodeURI(searchParams.selected ?? ''),
-    groups[0].name,
+    groups[0]?.name,
   );
 
   return (
