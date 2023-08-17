@@ -25,14 +25,18 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Create .env file
+        run: |
+          echo "NEXT_PUBLIC_KAKAO_MAP_API_KEY=${{secrets.KAKAO_MAP_API_KEY}}" > .env.local
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v4.1.1
         with:
           context: '.'
           push: true
           tags: |
-            ghcr.io/wafflestudio/csereal-front/nextjs_image:latest
-            ghcr.io/wafflestudio/csereal-front/nextjs_image:${{github.sha}}
+            ghcr.io/wafflestudio/csereal_nextjs_image:latest
+            ghcr.io/wafflestudio/csereal_nextjs_image:${{github.sha}}
 
       - name: Deploy Docker Image via SSH
         uses: appleboy/ssh-action@master
@@ -42,4 +46,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
 
           script: |
-            #
+            docker pull ghcr.io/wafflestudio/csereal-front/nextjs_image:latest
+            docker container rm nextjs_image
+            docker run -d -p 3000:3000 --name nextjs_image ghcr.io/wafflestudio/csereal-front/nextjs_image
