@@ -1,6 +1,7 @@
 import { StraightNode } from '@/components/common/Nodes';
 
-// 보통은 children 프롭으로 그냥 제목 문자열만 넣으면 됨!
+// 컴포넌트 사용할 때 key prop 넣어야 애니메이션 지속적으로 작동 가능
+// children 프롭으로는 보통 제목 문자열만 넣으면 됨!
 // 연구 센터처럼 제목에 문자열 말고 다른 것(e.g. 링크 아이콘)도 들어가는 경우 때문에 리액트 노드 타입으로 받고 있음
 export default function SelectionTitle({ children }: { children: React.ReactNode }) {
   return (
