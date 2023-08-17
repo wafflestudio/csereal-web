@@ -27,6 +27,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const selectedDirection = findSelectedItem<Direction>(
     directionList,
     decodeURI(searchParams.selected ?? ''),
+    directionList[0].name,
   );
 
   return (
