@@ -1,7 +1,7 @@
 import { getResearchLab, getResearchLabMock } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ResearchLabDetails from '@/components/research/ResearchLabDetails';
+import ResearchLabDetails from '@/components/research/labs/ResearchLabDetails';
 
 interface LabDetailPageProps {
   params: { name: string };

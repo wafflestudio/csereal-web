@@ -6,7 +6,7 @@ import { getResearchGroupsMock } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ResearchGroupDetails from '@/components/research/ResearchGroupDetails';
+import ResearchGroupDetails from '@/components/research/groups/ResearchGroupDetails';
 
 import { researchGroups } from '@/types/page';
 import { ResearchGroup } from '@/types/research';

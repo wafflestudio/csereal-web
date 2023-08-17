@@ -6,7 +6,7 @@ import { getResearchCentersMock } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ResearchCenterDetails from '@/components/research/ResearchCenterDetails';
+import ResearchCenterDetails from '@/components/research/centers/ResearchCenterDetails';
 
 import { researchCenters } from '@/types/page';
 import { ResearchCenter } from '@/types/research';

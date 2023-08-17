@@ -23,7 +23,7 @@ export interface ResearchLabInfo {
   location: string;
   tel: string;
   acronym: string;
-  introductionMaterials: { pdf?: string; youtube?: string };
+  introductionMaterials: { pdf: string | null; youtube: string | null };
 }
 
 export interface ResearchLab extends ResearchLabInfo {

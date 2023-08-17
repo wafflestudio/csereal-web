@@ -12,7 +12,7 @@ interface ResearchGroupDetailProps {
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
     <div>
-      <SelectionTitle key={group.name}>{group.name} 연구 그룹</SelectionTitle>
+      <SelectionTitle animationKey={group.name}>{group.name} 연구 그룹</SelectionTitle>
       <HTMLViewer
         htmlContent={group.description}
         topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
