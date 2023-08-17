@@ -27,7 +27,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
     <SelectionTitle key={name}>
       <Link href={link} target="_blank" className="group flex items-center gap-1 h-10">
         <span>{name}</span>
-        <span className="material-symbols-rounded rotate-[-45deg] font-medium text-neutral-400 group-hover:text-main-orange">
+        <span className="material-symbols-rounded rotate-[-45deg] pt-1 text-neutral-400 group-hover:text-main-orange">
           link
         </span>
       </Link>
