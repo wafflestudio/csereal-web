@@ -1,11 +1,12 @@
 import { useReducer, useState } from 'react';
 
+import { StraightNode } from '@/components/common/Nodes';
+import Tags from '@/components/common/Tags';
+
 import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
 import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';
-import { StraightNode } from '@/components/common/Nodes';
-import Tags from '@/components/common/Tags';
 
 interface SearchProps {
   tags: string[]; // 전체 태그(선택지) 목록

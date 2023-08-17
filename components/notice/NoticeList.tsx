@@ -28,7 +28,7 @@ export default function NoticeList({ posts, isEditMode }: NoticeListProps) {
         <span className="grow pl-3 text-neutral-700 tracking-wide">제목</span>
         <span className="w-[12.5rem] pl-8 text-neutral-700 tracking-wide">날짜</span>
       </h5>
-      <ul className="font-noto ">
+      <ul className="font-noto">
         {posts.map((post, i) => (
           <NoticeListRow post={post} href={`${noticePath}/${post.id}${queryString}`} key={i} />
         ))}
