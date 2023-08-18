@@ -2,8 +2,6 @@
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
-import { main } from '@/types/page';
-
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
