@@ -20,7 +20,7 @@ export default function SelectionList({
   listItemPadding = '',
 }: SelectionListProps) {
   return (
-    <ul className={`grid ${listGridColumnClass} gap-3 mb-11`}>
+    <ul className={`grid ${listGridColumnClass} gap-3 mb-9`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
