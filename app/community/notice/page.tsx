@@ -41,6 +41,11 @@ export default function NoticePage() {
     setSelectedPostIds([]);
   };
 
+  const toggleEditMode = () => {
+    resetSelectedPosts();
+    setIsEditMode(!isEditMode);
+  };
+
   const batchDelete = async () => {
     for (const id of selectedPostIds) {
       // CORS 에러 해결되면 주석 해제
@@ -99,7 +104,7 @@ export default function NoticePage() {
           </div>
         )}
         <div className="ml-auto">
-          <EditButton isEditMode={isEditMode} toggleEditMode={() => setIsEditMode(!isEditMode)} />
+          <EditButton isEditMode={isEditMode} toggleEditMode={toggleEditMode} />
           <CreateButton mainPath={noticePath} isDisabled={isEditMode} />
         </div>
       </div>

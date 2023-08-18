@@ -27,7 +27,7 @@ export default function SearchForm({
   const iconName = expanded ? 'expand_less' : 'expand_more';
   const [keyword, setKeyword] = useState<string>(initKeyword);
   const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
-
+  console.log(isDisabled);
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info: SearchInfo = { purpose: 'search', keyword, tag: selectedTags };
@@ -45,7 +45,7 @@ export default function SearchForm({
         className={`flex items-center gap-1 ${
           isDisabled ? 'cursor-default' : 'cursor-pointer'
         } w-fit`}
-        onClick={() => !isDisabled && toggleExpanded}
+        onClick={() => !isDisabled && toggleExpanded()}
       >
         <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
         <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
