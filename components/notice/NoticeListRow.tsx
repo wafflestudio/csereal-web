@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import clipIcon from '@/public/image/clip_icon.svg';
-import pinIcon from '@/public/image/pin_icon.svg';
+import ClipIcon from '@/public/image/clip_icon.svg';
+import PinIcon from '@/public/image/pin_icon.svg';
 
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
@@ -80,7 +79,7 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
 function PinCell({ isPinned }: { isPinned: boolean }) {
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.pin} px-[0.8125rem] shrink-0`}>
-      {isPinned && <Image src={pinIcon} alt="고정글" width={24} />}
+      {isPinned && <PinIcon viewBox="0 0 48 48" />}
     </span>
   );
 }
@@ -95,7 +94,7 @@ function TitleCell({ title, href, isEditMode }: TitleCellProps) {
   return isEditMode ? (
     <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
       <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">{title}</span>
-      <Image src={clipIcon} alt="has_attachment" />
+      <ClipIcon className="shrink-0" />
     </span>
   ) : (
     <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
@@ -103,7 +102,7 @@ function TitleCell({ title, href, isEditMode }: TitleCellProps) {
         <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
           {title}
         </span>
-        <Image src={clipIcon} alt="has_attachment" />
+        <ClipIcon className="shrink-0" />
       </Link>
     </span>
   );

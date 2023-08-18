@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import youtubeIcon from '@/public/image/youtube_icon.svg';
+import YoutubeIcon from '@/public/image/youtube_icon.svg';
 
 import { faculty, researchLabs } from '@/types/page';
 import { ResearchLabInfo } from '@/types/research';
@@ -81,11 +80,6 @@ interface LabIntroMaterialsProps {
   youtube: string | null;
 }
 
-const NEUTRAL_400_FILTER =
-  'invert-[.64] sepia-0 saturate-0 hue-rotate-[142deg] brightness-100 contrast-[.98]';
-const NEUTRAL_700_HOVER_FILTER =
-  'hover:invert-[.17] hover:sepia-0 hover:saturate-[18.75] hover:hue-rotate-[146deg] hover:brightness-[1.06] hover:contrast-[.79]';
-
 function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
   return (
     <span className={`${LAB_ROW_ITEM_WIDTH.introMaterial} flex items-center gap-3`}>
@@ -104,12 +98,7 @@ function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
       )}
       {youtube && (
         <Link href={youtube} className="h-5 py-[0.1875rem]" title="YOUTUBE">
-          <Image
-            src={youtubeIcon}
-            width={20}
-            alt="youtube_link"
-            className={`${NEUTRAL_400_FILTER} ${NEUTRAL_700_HOVER_FILTER}`}
-          />
+          <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-700" />
         </Link>
       )}
     </span>
