@@ -43,7 +43,7 @@ export default function NewsPage() {
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-4 mt-10 mb-8">
+      <div className="flex flex-col gap-4 mt-10 mb-8 mx-[10px]">
         {posts.map((post) => (
           <NewsRow
             key={post.id}
