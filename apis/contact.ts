@@ -6,7 +6,7 @@ const contactPath = '/contact';
 export const getContact = () => getRequest(contactPath) as Promise<ContactResponse>;
 
 export const getMockContact: typeof getContact = async () => {
-  const contact = {
+  return {
     mainImage:
       'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
     address: '08826 서울특별시 관악구 관악로 1 (301동 316호)',
@@ -20,5 +20,4 @@ export const getMockContact: typeof getContact = async () => {
       { name: '채용정보 게시요청', email: 'bulletin@cse.snu.ac.kr' },
     ],
   };
-  return contact;
 };
