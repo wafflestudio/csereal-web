@@ -222,7 +222,7 @@ export const undergraduateAdmission: SegmentNode = {
   children: [],
 };
 
-export const earlyAdmission: SegmentNode = {
+export const undergraduateEarlyAdmission: SegmentNode = {
   name: '수시 모집',
   segment: 'early-admission',
   isPage: true,
@@ -230,7 +230,7 @@ export const earlyAdmission: SegmentNode = {
   children: null,
 };
 
-export const regularAdmission: SegmentNode = {
+export const undergraduateRegularAdmission: SegmentNode = {
   name: '정시 모집',
   segment: 'regular-admission',
   isPage: true,
@@ -541,7 +541,7 @@ community.children = [news, notice, seminar, facultyRecruitment, international];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission];
-undergraduateAdmission.children = [earlyAdmission, regularAdmission];
+undergraduateAdmission.children = [undergraduateEarlyAdmission, undergraduateRegularAdmission];
 graduateAdmission.children = [graduateRegularAdmission];
 academics.children = [undergraduateAcademics, graduateAcademics];
 undergraduateAcademics.children = [
