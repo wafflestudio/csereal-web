@@ -31,11 +31,11 @@ function AffiliatedGroup({ groupName }: { groupName: string }) {
     <div className="relative w-fit">
       <Link
         href={`${researchGroupsPath}?selected=${groupName}`}
-        className="absolute inline-block w-full h-[42px] font-yoon text-sm text-center py-2.5 px-4 whitespace-nowrap peer hover:text-white duration-300"
+        className="absolute inline-block w-64 h-[42px] font-yoon text-sm text-center py-2.5 peer hover:text-white duration-300"
       >
-        <span className="font-yoon tracking-[-0.019em] text-center">{groupName} 연구 그룹</span>
+        <span className="font-yoon tracking-[-0.019em] text-center">{groupName} 연구그룹</span>
       </Link>
-      <div className="peer-hover:text-main-orange text-white">
+      <div className="text-white peer-hover:text-main-orange">
         <Pentagon className="duration-300" />
       </div>
     </div>
