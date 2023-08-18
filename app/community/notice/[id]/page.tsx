@@ -29,14 +29,14 @@ export default function NoticePostPage() {
     );
 
   return (
-    <PageLayout title={currPost?.title ?? ''} titleType="small">
-      <div className="mt-5 mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
+    <PageLayout title={currPost?.title ?? ''} titleType="small" marginBottom="mb-5">
+      <div className="mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
         글쓴이: {writer}, 작성시각:{' '}
         {currPost &&
           formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
       </div>
       <Attachment />
-      <HTMLViewer htmlContent={currPost?.description || ''} margin="mb-10 ml-2.5" />
+      <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10 ml-2.5" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
       <AdjPostNav

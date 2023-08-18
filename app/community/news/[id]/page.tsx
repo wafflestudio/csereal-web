@@ -26,11 +26,8 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small">
-      {/* TODO: 첨부파일 여부에 따라 제목노드 margin bottom 바꿔줘야 함 (혹은 본문 margin top으로 해도 상관없음)
-                첨부파일 있음 -> 제목노드 margin X  (첨부파일에 마진이 들어가있음)
-                첨부파일 없음 -> 제목노드 marginBottom mb-9 (36px) */}
       <Attachment />
-      <HTMLViewer htmlContent={currPost.description} />
+      <HTMLViewer htmlContent={currPost.description} margin="mt-4" />
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
       <AdjPostNav
