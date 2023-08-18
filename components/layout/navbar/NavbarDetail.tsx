@@ -14,7 +14,7 @@ export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode
       className={`
       bg-neutral-700 pl-[3.75rem] overflow-x-hidden overflow-y-scroll no-scrollbar absolute top-0 left-44 bottom-0 right-0 z-50
         pt-16
-        sm:pt-[9.63rem]
+        sm:pt-[9.63rem] sm:w-[22rem] sm:right-auto
       `}
     >
       <NavTree node={segmentNode} currentNode={currentSegmentNode} isRoot />

@@ -17,11 +17,14 @@ export default function Navbar() {
 
   return (
     <div
-      className="relative flex overflow-y-hidden overflow-x-scroll"
+      className={`
+        relative flex overflow-y-hidden overflow-x-scroll
+        sm:overflow-visible
+      `}
       onMouseLeave={handleMouseLeave}
     >
       <NavbarRoot state={navbarState} setState={setNavbarState} />
-      <NavbarDetail segmentNode={main.children[0]} />
+      {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
     </div>
   );
 }

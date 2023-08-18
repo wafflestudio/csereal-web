@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NavbarContextProvider>
           <Navbar />
           <div className="overflow-auto flex-1">
-            <div className="min-w-fit flex flex-col flex-1">
+            <div className="min-w-fit min-h-screen flex flex-col flex-1">
               <Header />
               <main className="flex-1">
                 <SWRProvider>
