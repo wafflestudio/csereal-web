@@ -4,7 +4,7 @@ import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
   return (
-    <header className="bg-white sticky top-0 left-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between">
+    <header className="bg-white sticky top-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between">
       <HeaderTitle />
       <HeaderRight />
     </header>
@@ -13,7 +13,7 @@ export default function Header() {
 
 function HeaderTitle() {
   return (
-    <div className="font-yoon font-bold text-neutral-700">
+    <div className="font-yoon font-bold text-neutral-700 mr-16">
       <a href="/">
         <h2 className="text-xl tracking-[.03438rem] line-clamp-1 mb-[0.31rem]">
           서울대학교 컴퓨터공학부

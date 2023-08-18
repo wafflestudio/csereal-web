@@ -20,13 +20,14 @@ export default function NavbarRoot({
 }) {
   const expand = () => setState({ type: 'expanded' });
   const close = () => setState({ type: 'closed' });
-  const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
+  const width = state.type === 'closed' ? 'sm:w-[6.25rem]' : 'sm:w-[11rem]';
 
   return (
     <div
-      className={`flex flex-col items-center py-4 overflow-y-scroll no-scrollbar ${
-        state.type !== 'closed' && 'h-screen'
-      }
+      className={`bg-main-orange flex items-center py-4 overflow-y-scroll no-scrollbar 
+      ${state.type === 'closed' && 'w-screen'}
+      ${state.type !== 'closed' && 'h-screen flex-col w-[11rem]'}
+      sm:flex-col sm:h-auto sm:pt-12 ${width} 
       `}
     >
       <SNULogo />
@@ -44,7 +45,7 @@ export default function NavbarRoot({
 
 function SNULogo() {
   return (
-    <Link href="/" className="hidden">
+    <Link href="/" className="hidden sm:block">
       <Image src={snuLogo} alt="서울대 로고" priority className="w-14" />
     </Link>
   );
@@ -52,7 +53,7 @@ function SNULogo() {
 
 function ExpandButton({ expand }: { expand: () => void }) {
   return (
-    <button onClick={expand} className="pl-4">
+    <button onClick={expand} className="pl-4 sm:pl-0 sm:mt-10">
       <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" priority />
     </button>
   );

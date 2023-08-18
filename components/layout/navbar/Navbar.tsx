@@ -2,6 +2,8 @@
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
+import { main } from '@/types/page';
+
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
@@ -14,9 +16,12 @@ export default function Navbar() {
   };
 
   return (
-    <div className="relative bg-main-orange flex" onMouseLeave={handleMouseLeave}>
+    <div
+      className="relative flex overflow-y-hidden overflow-x-scroll"
+      onMouseLeave={handleMouseLeave}
+    >
       <NavbarRoot state={navbarState} setState={setNavbarState} />
-      {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
+      <NavbarDetail segmentNode={main.children[0]} />
     </div>
   );
 }

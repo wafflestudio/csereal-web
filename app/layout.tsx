@@ -18,11 +18,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body
-        className={`flex flex-col ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal `}
+        className={`
+            flex flex-col ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal
+            sm:flex-row
+        `}
       >
         <NavbarContextProvider>
           <Navbar />
-          <div className="overflow-auto flex flex-col flex-1">
+          <div className="overflow-auto flex-1">
             <div className="min-w-fit flex flex-col flex-1">
               <Header />
               <main className="flex-1">
