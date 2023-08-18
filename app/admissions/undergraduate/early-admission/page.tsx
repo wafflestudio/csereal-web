@@ -9,7 +9,7 @@ export default function EarlyAdmission() {
   const { data } = useSWR({ url: '/admissions' }, getEarlyAdmissionMock);
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" marginBottom="mb-9">
       <HTMLViewer htmlContent={data?.description ?? ''} />
     </PageLayout>
   );
