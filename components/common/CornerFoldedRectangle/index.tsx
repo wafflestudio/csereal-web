@@ -9,7 +9,7 @@ interface CornerFoldedRectangleProps {
   triangleLength: number; // rem 단위
   triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   rectangleDropShadow?: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
-  rectangleMargin?: string; // tailwind 형식
+  margin?: string; // tailwind 형식
   radius: number; // rem 단위
   isAnimated?: boolean; // 선택형 리스트 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
   isUnfolding?: boolean;
@@ -25,7 +25,7 @@ export default function CornerFoldedRectangle({
   triangleLength,
   triangleDropShadow,
   rectangleDropShadow,
-  rectangleMargin,
+  margin,
   radius,
   isAnimated,
   isUnfolding,
@@ -51,15 +51,13 @@ export default function CornerFoldedRectangle({
 
   return isAnimated ? (
     <div
-      className={`relative ${width} ${rectangleMargin} ${
-        isUnfolding ? styles.unfolding : styles.folding
-      }`}
+      className={`relative ${width} ${margin} ${isUnfolding ? styles.unfolding : styles.folding}`}
       style={rectangleStyle}
     >
       {children}
     </div>
   ) : (
-    <div className={`relative ${width} ${rectangleMargin}`} style={rectangleStyle}>
+    <div className={`relative ${width} ${margin}`} style={rectangleStyle}>
       <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
       {children}
     </div>

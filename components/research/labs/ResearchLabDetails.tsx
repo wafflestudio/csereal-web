@@ -14,8 +14,11 @@ export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   return (
     <div>
       <AffiliatedGroup groupName={lab.group} />
-      <ResearchLabInfo lab={lab} />
-      <HTMLViewer htmlContent={lab.description} />
+      {/* <ResearchLabInfo lab={lab} /> */}
+      <HTMLViewer
+        htmlContent={lab.description}
+        topRightContent={{ type: 'component', content: <ResearchLabInfo lab={lab} /> }}
+      />
     </div>
   );
 }
@@ -47,8 +50,9 @@ function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
       radius={radius}
       triangleLength={triangleLength}
       colorTheme={COLOR_THEME.white}
+      margin="mt-[-64px] mb-11 ml-11"
     >
-      <div className="w-60 py-6 px-7">
+      <div className="w-60 h-40 py-5 px-6 flex flex-col justify-between">
         <ul className="[&>li]:mb-1 font-noto">
           <li className="text-sm flex gap-1">
             <span className="whitespace-nowrap">교수: </span>
@@ -60,12 +64,10 @@ function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
           <li className="text-sm flex gap-1">
             <span className="whitespace-nowrap">전화: </span> <span>{lab.tel}</span>
           </li>
-          <li className="mt-[1.625rem]">
-            <Link href={lab.websiteURL} className="underline text-sm">
-              Website
-            </Link>
-          </li>
         </ul>
+        <Link href={lab.websiteURL} className="w-fit underline text-sm hover:text-main-orange">
+          Website
+        </Link>
       </div>
     </CornerFoldedRectangle>
   );
