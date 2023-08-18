@@ -3,6 +3,7 @@
 import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
+import Attachment from '@/components/common/Attachment';
 import HTMLViewer from '@/components/common/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -29,11 +30,12 @@ export default function NoticePostPage() {
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small">
-      <div className="mb-6 text-xs font-yoon text-neutral-400 ml-2.5">
+      <div className="mt-5 mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
         글쓴이: {writer}, 작성시각:{' '}
         {currPost &&
           formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
       </div>
+      <Attachment />
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mb-10 ml-2.5" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />

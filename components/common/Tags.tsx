@@ -8,7 +8,7 @@ interface TagsProps {
 
 export default function Tags({ tags, margin = '', searchPath }: TagsProps) {
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${margin}`}>
+    <div className={`flex flex-wrap items-center gap-2.5 ${margin}`}>
       {tags.map((tag) => (
         <Tag key={tag} tag={tag} searchPath={searchPath} />
       ))}
