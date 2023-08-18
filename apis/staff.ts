@@ -28,7 +28,7 @@ export const getMockStaffList: typeof getStaffList = async () => {
 export const getMockStaff: typeof getStaff = async (id: number) => {
   return {
     id: id,
-    name: `교수 ${id}`,
+    name: `직원 ${id}`,
     role: '교원인사.일반서무',
     phone: '(02) 880-7254',
     email: `ukang@snu.ac.kr`,

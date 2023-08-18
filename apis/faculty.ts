@@ -45,13 +45,13 @@ export const getMockFaculty: typeof getFaculty = async (id: number) => {
     labId: id,
     labName: `데이터 마이닝 연구실`,
     imageURL:
-      'https://cse.snu.ac.kr/sites/default/files/styles/thumbnail-focus/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=SczmkhCW',
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
     isActive: true,
     startDate: new Date(),
     endDate: new Date(),
     office: '301동 502호',
     fax: '(02) 872-2045',
-    website: 'http://mmlab.snu.ac.kr/~tk/',
+    website: 'http://mmlab.snu.ac.kr/~tksdcasdcacsdcadscasdcdscaasdc/',
     educations: [
       '서울대학교 컴퓨터공학 박사 (2000)',
       '서울대학교 컴퓨터공학 석사 (1995)',
@@ -95,5 +95,33 @@ export const getMockEmeritusFacultyList: typeof getEmeritusFacultyList = async (
 
   return {
     facultyList,
+  };
+};
+
+export const getMockEmeritusFaculty: typeof getFaculty = async (id: number) => {
+  return {
+    id: id,
+    name: `명예교수 ${id}`,
+    academicRank: '명예교수',
+    office: '301동 502호',
+    phone: '(02) 880-7254',
+    email: `ukang@snu.ac.kr`,
+    website: 'http://mmlab.snu.ac.kr/~tksdcasdcacsdcadscasdcdscaasdc/',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
+    isActive: false,
+    startDate: new Date(),
+    endDate: new Date(),
+
+    educations: [
+      '서울대학교 컴퓨터공학 박사 (2000)',
+      '서울대학교 컴퓨터공학 석사 (1995)',
+      '서울대학교 컴퓨터공학 학사 (1993)',
+    ],
+    researchAreas: [
+      'Wireless networks: ad-hoc network, sensor network, multimedia streaming',
+      'Wireless technologies convergence',
+      'Mobile networks: mobility management, peer-to-peer mobility',
+    ],
   };
 };

@@ -23,7 +23,7 @@ export interface FacultyResponse extends SimpleFacultyResponse {
   endDate: Date;
   office: string;
   fax?: string;
-  website: string;
+  website?: string;
   educations: string[];
   researchAreas: string[];
   careers?: string[];
