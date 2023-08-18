@@ -8,7 +8,7 @@ export default async function History() {
   const resp = await mockHistory();
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" marginBottom="mb-9">
       <HTMLViewer
         htmlContent={resp.description}
         topRightContent={{ type: 'image', width: 320, height: 213, url: resp.mainImageURL }}

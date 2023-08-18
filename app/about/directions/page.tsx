@@ -31,8 +31,8 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   );
 
   return (
-    <PageLayout titleType="big">
-      <div className="mb-[3.25rem]">
+    <PageLayout titleType="big" marginBottom="mb-[3.25rem]">
+      <div className="mb-12">
         <LocationGuide />
         <LocationMap />
       </div>

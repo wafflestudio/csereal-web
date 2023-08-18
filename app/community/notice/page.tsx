@@ -66,7 +66,7 @@ export default function NoticePage() {
   };
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" marginBottom="mb-6">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}

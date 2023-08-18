@@ -60,7 +60,7 @@ export default function SeminarPage() {
   }, [fetchPost]);
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" marginBottom="mb-6">
       <div className="flex flex-row items-center gap-6">
         <h3 className="text-neutral-700 font-yoon text-md font-bold w-7 text-center leading-[1.2rem]">
           검색

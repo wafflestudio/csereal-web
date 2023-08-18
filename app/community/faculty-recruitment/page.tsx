@@ -11,7 +11,7 @@ export default async function FacultyRecruitment() {
   const res = await mockNetwork();
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" marginBottom="mb-9">
       <CornerFoldedRectangle
         radius={0.3125}
         colorTheme={COLOR_THEME.darkGray}
