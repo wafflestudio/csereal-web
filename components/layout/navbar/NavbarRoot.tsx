@@ -23,7 +23,12 @@ export default function NavbarRoot({
   const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
 
   return (
-    <div className={`flex flex-col items-center pt-12 ${width} overflow-y-scroll no-scrollbar`}>
+    <div
+      className={`flex flex-col items-center py-4 overflow-y-scroll no-scrollbar ${
+        state.type !== 'closed' && 'h-screen'
+      }
+      `}
+    >
       <SNULogo />
       {state.type === 'closed' ? (
         <ExpandButton expand={expand} />
@@ -39,7 +44,7 @@ export default function NavbarRoot({
 
 function SNULogo() {
   return (
-    <Link href="/">
+    <Link href="/" className="hidden">
       <Image src={snuLogo} alt="서울대 로고" priority className="w-14" />
     </Link>
   );
@@ -47,7 +52,7 @@ function SNULogo() {
 
 function ExpandButton({ expand }: { expand: () => void }) {
   return (
-    <button onClick={expand} className="mt-10">
+    <button onClick={expand} className="pl-4">
       <Image src={naviBarMenu} alt="네비게이션 펼치기 버튼" className="w-10 h-10" priority />
     </button>
   );

@@ -17,7 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal`}>
+      <body
+        className={`flex flex-col ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal `}
+      >
         <NavbarContextProvider>
           <Navbar />
           <div className="overflow-auto flex flex-col flex-1">
