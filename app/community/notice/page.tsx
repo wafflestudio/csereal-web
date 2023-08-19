@@ -31,14 +31,14 @@ export default function NoticePage() {
       getNoticePostsMock,
     ); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [selectedPostIds, setSelectedPostIds] = useState<number[]>([]);
+  const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
   const resetSelectedPosts = () => {
-    setSelectedPostIds([]);
+    setSelectedPostIds(new Set());
   };
 
   const toggleEditMode = () => {
@@ -47,7 +47,7 @@ export default function NoticePage() {
   };
 
   const batchDelete = async () => {
-    for (const id of selectedPostIds) {
+    for (const id of Array.from(selectedPostIds)) {
       // CORS 에러 해결되면 주석 해제
       // await deleteNotice(id);
     }
@@ -56,7 +56,7 @@ export default function NoticePage() {
   };
 
   const batchUnpin = async () => {
-    for (const id of selectedPostIds) {
+    for (const id of Array.from(selectedPostIds)) {
       const unpinnedPost: Partial<NoticePost> = {
         isPinned: false,
       };
@@ -71,7 +71,7 @@ export default function NoticePage() {
   };
 
   return (
-    <PageLayout titleType="big" marginBottom="mb-6">
+    <PageLayout titleType="big" titleMargin="mb-6">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}
@@ -90,15 +90,16 @@ export default function NoticePage() {
         postsCountPerPage={POST_LIMIT}
         currentPage={page}
         setCurrentPage={setCurrentPage}
+        isDisabled={isEditMode}
       />
       <div className="flex mt-12 mx-2.5">
         {isEditMode && (
           <div className="flex items-center gap-3">
-            <SelectedCountStatus count={selectedPostIds.length} />
-            <BatchButton isDisabled={selectedPostIds.length === 0} onClickButton={batchDelete}>
+            <SelectedCountStatus count={selectedPostIds.size} />
+            <BatchButton isDisabled={selectedPostIds.size === 0} onClick={batchDelete}>
               일괄 삭제
             </BatchButton>
-            <BatchButton isDisabled={selectedPostIds.length === 0} onClickButton={batchUnpin}>
+            <BatchButton isDisabled={selectedPostIds.size === 0} onClick={batchUnpin}>
               일괄 고정 해제
             </BatchButton>
           </div>

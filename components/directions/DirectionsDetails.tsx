@@ -17,8 +17,11 @@ const getDirectionsPostposition = (directionName: string) => {
     return '으로';
   } else if (directionName === '승용차') {
     return '로';
-  } else {
+  } else if (directionName === '지방 및 해외') {
     return '에서';
+  } else {
+    console.error('값이 올바르지 않습니다.');
+    return '';
   }
 };
 

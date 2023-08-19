@@ -2,15 +2,15 @@ import Link from 'next/link';
 
 interface BatchButtonProps {
   isDisabled: boolean;
-  onClickButton: () => void;
+  onClick: () => void;
   children: React.ReactNode;
 }
 
-export function BatchButton({ isDisabled, onClickButton, children }: BatchButtonProps) {
+export function BatchButton({ isDisabled, onClick, children }: BatchButtonProps) {
   return (
     <button
       className="px-3 h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium disabled:bg-neutral-50 disabled:text-neutral-300"
-      onClick={onClickButton}
+      onClick={onClick}
       disabled={isDisabled}
     >
       {children}

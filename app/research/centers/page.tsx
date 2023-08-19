@@ -29,7 +29,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
   );
 
   return (
-    <PageLayout titleType="big" marginBottom="mb-9">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <SelectionList
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}

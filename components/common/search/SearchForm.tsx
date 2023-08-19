@@ -27,7 +27,7 @@ export default function SearchForm({
   const iconName = expanded ? 'expand_less' : 'expand_more';
   const [keyword, setKeyword] = useState<string>(initKeyword);
   const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
-  console.log(isDisabled);
+
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info: SearchInfo = { purpose: 'search', keyword, tag: selectedTags };
