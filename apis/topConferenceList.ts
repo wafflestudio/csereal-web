@@ -11,7 +11,11 @@ export const getMockTopConferenceList: typeof getTopConferenceList = async () =>
       id: index + 1,
       code: 'AAAA001',
       abbreviation: 'AAAA',
-      name: `컨퍼런스 ${index + 1}`,
+      name: `컨퍼런스 ${index + 1}컨퍼런스 ${index + 1}컨퍼런스 ${index + 1}컨퍼런스 ${
+        index + 1
+      }컨퍼런스 ${index + 1}컨퍼런스 ${index + 1}컨퍼런스 ${index + 1}컨퍼런스 ${
+        index + 1
+      }컨퍼런스 ${index + 1}`,
     };
   });
   return {

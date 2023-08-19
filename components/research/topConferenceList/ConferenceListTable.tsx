@@ -40,17 +40,7 @@ function ConferenceRow({ conference, index }: ConferenceRowProps) {
       <div className="flex px-3 py-2 w-12 h-10 items-center">{conference.id}</div>
       <div className="flex px-3 py-2 w-20 items-center">{conference.code}</div>
       <div className="flex px-3 py-2 w-28 items-center">{conference.abbreviation}</div>
-      <div className="flex px-3 py-2 w-[540px] items-center">
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-        {conference.name}
-      </div>
+      <div className="flex px-3 py-2 w-[540px] items-center">{conference.name}</div>
     </div>
   );
 }
