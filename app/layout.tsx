@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="overflow-auto flex flex-col flex-1">
             <Header />
             <div className="min-w-fit flex flex-col flex-1">
-              <main className="flex-1">
+              <main className="flex-1 pt-[9.25rem]">
                 <SWRProvider>
                   <div className="flex-1 font-noto">{children}</div>
                 </SWRProvider>

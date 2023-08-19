@@ -2,17 +2,22 @@ interface TagCheckboxProps {
   tag: string;
   isChecked: boolean;
   toggleCheck(tag: string, isChecked: boolean): void;
-  isDisabled: boolean;
+  disabled?: boolean;
 }
 
-export default function TagCheckbox({ tag, isChecked, toggleCheck, isDisabled }: TagCheckboxProps) {
+export default function TagCheckbox({
+  tag,
+  isChecked,
+  toggleCheck,
+  disabled = false,
+}: TagCheckboxProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
 
   return (
     <label
       htmlFor={tag}
       className={`flex items-center gap-1 whitespace-nowrap w-fit h-5 ${
-        !isDisabled && 'cursor-pointer'
+        !disabled && 'cursor-pointer'
       }`}
     >
       <span className="material-symbols-rounded text-neutral-700 text-lg font-light">
@@ -26,7 +31,7 @@ export default function TagCheckbox({ tag, isChecked, toggleCheck, isDisabled }:
         className="appearance-none"
         value={tag}
         checked={isChecked}
-        disabled={isDisabled}
+        disabled={disabled}
         onChange={() => toggleCheck(tag, isChecked)}
       />
     </label>

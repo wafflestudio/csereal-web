@@ -76,7 +76,7 @@ export default function NoticePage() {
         tags={NoticeTags}
         initTags={tags}
         initKeyword={keyword ?? ''}
-        isDisabled={isEditMode}
+        disabled={isEditMode}
         setSearchParams={setSearchParams}
       />
       <NoticeList
@@ -90,23 +90,23 @@ export default function NoticePage() {
         postsCountPerPage={POST_LIMIT}
         currentPage={page}
         setCurrentPage={setCurrentPage}
-        isDisabled={isEditMode}
+        disabled={isEditMode}
       />
       <div className="flex mt-12 mx-2.5">
         {isEditMode && (
           <div className="flex items-center gap-3">
             <SelectedCountStatus count={selectedPostIds.size} />
-            <BatchButton isDisabled={selectedPostIds.size === 0} onClick={batchDelete}>
+            <BatchButton disabled={selectedPostIds.size === 0} onClick={batchDelete}>
               일괄 삭제
             </BatchButton>
-            <BatchButton isDisabled={selectedPostIds.size === 0} onClick={batchUnpin}>
+            <BatchButton disabled={selectedPostIds.size === 0} onClick={batchUnpin}>
               일괄 고정 해제
             </BatchButton>
           </div>
         )}
         <div className="ml-auto">
           <EditButton isEditMode={isEditMode} toggleEditMode={toggleEditMode} />
-          <CreateButton mainPath={noticePath} isDisabled={isEditMode} />
+          <CreateButton mainPath={noticePath} disabled={isEditMode} />
         </div>
       </div>
     </PageLayout>
