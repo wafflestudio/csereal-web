@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import facebookIcon from '@/public/image/Facebook_icon.svg';
-import snuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
-import snuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
-import snucomIcon from '@/public/image/SNUCOM.svg';
+import FacebookIcon from '@/public/image/Facebook_icon.svg';
+import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
+import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
+import SnucomIcon from '@/public/image/SNUCOM.svg';
 
 import {
   aboutLinks,
@@ -100,18 +99,18 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="flex gap-7">
+    <div className="flex items-end gap-7">
       <Link href={snucseFacebookLink}>
-        <Image src={facebookIcon} alt="페이스북 로고" />
+        <FacebookIcon />
       </Link>
       <Link href={snucomLink}>
-        <Image src={snucomIcon} alt="서울대 컴퓨터공학 동문회 로고" />
+        <SnucomIcon />
       </Link>
       <Link href={snuEngLink}>
-        <Image src={snuEngineeringIcon} alt="서울대 공과대학 로고" />
+        <SnuEngineeringIcon />
       </Link>
       <Link href={snuLink}>
-        <Image src={snuLogoWithText} alt="서울대 로고" />
+        <SnuLogoWithText />
       </Link>
     </div>
   );

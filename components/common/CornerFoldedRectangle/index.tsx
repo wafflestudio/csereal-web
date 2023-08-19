@@ -9,9 +9,9 @@ interface CornerFoldedRectangleProps {
   triangleLength: number; // rem 단위
   triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   rectangleDropShadow?: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
-  rectangleMargin?: string; // tailwind 형식
+  margin?: string; // tailwind 형식
   radius: number; // rem 단위
-  animtaionType?: 'folding' | 'unfolding';
+  animationType?: 'folding' | 'unfolding';
   width?: string;
   children: ReactNode;
 }
@@ -24,19 +24,14 @@ export default function CornerFoldedRectangle({
   triangleLength,
   triangleDropShadow,
   rectangleDropShadow,
-  rectangleMargin,
+  margin,
   radius,
-  animtaionType,
+  animationType,
   width = 'w-fit',
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
     borderRadius: `${radius}rem`,
-    background: animtaionType
-      ? colorTheme.bgColor
-      : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
-          colorTheme.bgColor
-        } 0)`,
     filter: rectangleDropShadow,
   };
 
@@ -47,17 +42,29 @@ export default function CornerFoldedRectangle({
     filter: triangleDropShadow,
   };
 
-  return animtaionType ? (
-    <div
-      className={`relative ${width} ${rectangleMargin} ${styles[animtaionType]}`}
-      style={rectangleStyle}
-    >
-      {children}
-    </div>
-  ) : (
-    <div className={`relative ${width} ${rectangleMargin}`} style={rectangleStyle}>
-      <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
-      {children}
-    </div>
-  );
+  if (animationType) {
+    return (
+      <div
+        className={`relative ${width} ${margin} ${styles[animationType]}`}
+        style={{ ...rectangleStyle, backgroundColor: colorTheme.bgColor }}
+      >
+        {children}
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={`relative ${width} ${margin}`}
+        style={{
+          ...rectangleStyle,
+          background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
+            colorTheme.bgColor
+          } 0)`,
+        }}
+      >
+        <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
+        {children}
+      </div>
+    );
+  }
 }

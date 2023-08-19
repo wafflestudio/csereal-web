@@ -11,7 +11,6 @@ export default function DirectionsDetails({ direction }: { direction: Direction 
   );
 }
 
-// 생각하기 너무 귀찮았음...
 const getDirectionsPostposition = (directionName: string) => {
   if (directionName === '대중교통') {
     return '으로';
