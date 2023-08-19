@@ -16,7 +16,7 @@ export default function ConferenceListTable({
   conferenceList: ConferenceListTableProps[];
 }) {
   return (
-    <div className="w-[780px] flex flex-col text-xs mt-10">
+    <div className="w-[780px] flex flex-col text-xs mt-8">
       <div className="flex flex-row w-full h-10 border-y-[1px] border-y-neutral-200">
         <div className="flex items-center px-3 w-12">연번</div>
         <div className="flex items-center px-3 w-20">코드</div>
@@ -37,7 +37,7 @@ function ConferenceRow({ conference, index }: ConferenceRowProps) {
         index % 2 === 1 ? 'bg-neutral-50' : null
       }`}
     >
-      <div className="flex px-3 py-2 w-12 h-10 items-center">{conference.id}</div>
+      <div className="flex px-3 py-2 w-12 h-10 items-center justify-center">{conference.id}</div>
       <div className="flex px-3 py-2 w-20 items-center">{conference.code}</div>
       <div className="flex px-3 py-2 w-28 items-center">{conference.abbreviation}</div>
       <div className="flex px-3 py-2 w-[540px] items-center">{conference.name}</div>
