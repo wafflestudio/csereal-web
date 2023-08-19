@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { careerCompanies, careerDescription, careerStat } from '@/apis/futureCareers';
+import { careerCompanies, careerDescription, careerStat } from '@/data/futureCareers';
 
 import Dropdown from '@/components/common/Dropdown';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -83,7 +83,7 @@ function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
     <li className={`flex pt-[.63rem] pb-3 ${index % 2 && 'bg-neutral-50'}`}>
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
-      <a className={'text-link pl-3 ' + TABLE_COLUMN_SIZE[2]} href={url}>
+      <a className={'text-link pl-3 ' + TABLE_COLUMN_SIZE[2]} href={url} target="_blank">
         {url}
       </a>
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[3]}>{year}</p>
