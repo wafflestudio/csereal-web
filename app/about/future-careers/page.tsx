@@ -7,17 +7,28 @@ import { careerCompanies, careerDescription, careerStat } from '@/apis/futureCar
 import Dropdown from '@/components/common/Dropdown';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-const TABLE_COLUMN_SIZE = ['w-12', 'w-[12.5rem]', 'w-80', 'w-20'];
-
 export default function GreetingsPage() {
-  const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);
-
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
-      <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
-        {careerDescription}
-      </p>
+      <Description />
+      <CareerStat />
+      <CareerCompanies />
+    </PageLayout>
+  );
+}
 
+function Description() {
+  return (
+    <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
+      {careerDescription}
+    </p>
+  );
+}
+
+function CareerStat() {
+  const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);
+  return (
+    <div>
       <div className="flex gap-2 items-center mb-[0.8rem]">
         <h3 className="text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
         <Dropdown
@@ -26,7 +37,14 @@ export default function GreetingsPage() {
           onClick={setSelectedCareerStatIndex}
         />
       </div>
+      {/* 디자인 확정 후 표 추가 예정 */}
+    </div>
+  );
+}
 
+function CareerCompanies() {
+  return (
+    <div>
       <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 창업 기업</h3>
       <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
@@ -36,9 +54,11 @@ export default function GreetingsPage() {
           ))}
         </ol>
       </div>
-    </PageLayout>
+    </div>
   );
 }
+
+const TABLE_COLUMN_SIZE = ['w-12', 'w-[12.5rem]', 'w-80', 'w-20'];
 
 function CompanyTableHeader() {
   return (
@@ -60,13 +80,13 @@ interface CompanyTableRowProps {
 
 function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
   return (
-    <div className={`flex pt-[.63rem] pb-3 ${index % 2 && 'bg-neutral-50'}`}>
+    <li className={`flex pt-[.63rem] pb-3 ${index % 2 && 'bg-neutral-50'}`}>
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
       <a className={'text-link pl-3 ' + TABLE_COLUMN_SIZE[2]} href={url}>
         {url}
       </a>
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[3]}>{year}</p>
-    </div>
+    </li>
   );
 }
