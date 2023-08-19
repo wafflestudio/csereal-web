@@ -80,7 +80,7 @@ interface CompanyTableRowProps {
 
 function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
   return (
-    <li className={`flex pt-[.63rem] pb-3 ${index % 2 && 'bg-neutral-50'}`}>
+    <li className="flex pt-[.63rem] pb-3 odd:bg-neutral-50">
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
       <a className={'text-link pl-3 ' + TABLE_COLUMN_SIZE[2]} href={url} target="_blank">

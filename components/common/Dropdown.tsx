@@ -14,20 +14,18 @@ export default function Dropdown({ contents, selectedIndex, onClick }: DropdownP
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="relative">
-        <DropdownButton
-          expanded={expanded}
-          toggleExpanded={toggleExpanded}
-          contents={contents}
-          selectedIndex={selectedIndex}
-        />
-        {expanded && (
-          <div className="relative">
-            <DropdownList contents={contents} handleClick={handleClick} />
-          </div>
-        )}
-      </div>
+    <div className="relative">
+      <DropdownButton
+        expanded={expanded}
+        toggleExpanded={toggleExpanded}
+        contents={contents}
+        selectedIndex={selectedIndex}
+      />
+      {expanded && (
+        <div className="relative">
+          <DropdownList contents={contents} handleClick={handleClick} />
+        </div>
+      )}
     </div>
   );
 }
@@ -47,7 +45,7 @@ function DropdownButton({
     <button
       className={`
             flex items-center gap-4 py-[.3125rem] pr-[.3125rem] pl-[.625rem] border-neutral-300 border
-            ${expanded ? 'rounded-tl-sm rounded-tr-sm ' : 'rounded-sm'}
+            ${expanded ? 'rounded-t-sm' : 'rounded-sm'}
         `}
       onClick={toggleExpanded}
     >
@@ -69,7 +67,7 @@ function DropdownList({
   handleClick: (index: number) => void;
 }) {
   return (
-    <div className="absolute top-0 left-0 right-0 border-l border-r border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white">
+    <div className="absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white">
       {contents.map((content, index) => (
         <button
           key={index}

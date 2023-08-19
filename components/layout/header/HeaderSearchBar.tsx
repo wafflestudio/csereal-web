@@ -21,7 +21,7 @@ export default function HeaderSearchBar() {
 
   return (
     <form
-      className="flex justify-center outline outline-1 outline-neutral-700 rounded-[.1875rem] max-w-[13.5rem] w-full"
+      className="flex justify-center outline outline-1 outline-neutral-700 rounded-[.1875rem] min-w-[8rem] max-w-[13.5rem] w-full"
       onSubmit={searchText}
     >
       <input

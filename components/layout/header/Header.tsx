@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between
+        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
@@ -21,12 +21,10 @@ export default function Header() {
 
 function HeaderTitle() {
   return (
-    <div className="font-yoon font-bold text-neutral-700 mr-8">
+    <div className="font-yoon font-bold text-neutral-700 mr-8 whitespace-nowrap">
       <a href="/">
-        <h2 className="text-xl tracking-[.03438rem] line-clamp-1 mb-[0.31rem]">
-          서울대학교 컴퓨터공학부
-        </h2>
-        <h3 className="text-md tracking-[-0.04375rem] line-clamp-2 leading-tight">
+        <h2 className="text-xl tracking-[.03438rem] mb-[0.31rem]">서울대학교 컴퓨터공학부</h2>
+        <h3 className="text-md tracking-[-0.04375rem] leading-tight">
           Seoul National University
           <br />
           Dept. of Computer Science and Engineering
