@@ -1,10 +1,18 @@
 'use client';
 
+import { useNavbarContext } from '@/contexts/NavbarContext';
+
 import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
+  const { navbarState } = useNavbarContext();
   return (
-    <header className="bg-white sticky top-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between">
+    <header
+      className={`
+        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between
+        ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
+      `}
+    >
       <HeaderTitle />
       <HeaderRight />
     </header>
