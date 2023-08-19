@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="min-w-fit flex flex-col flex-1">
               <main className="flex-1">
                 <SWRProvider>
-                  <div className="flex-1">{children}</div>
+                  <div className="flex-1 font-noto">{children}</div>
                 </SWRProvider>
               </main>
               <Footer />

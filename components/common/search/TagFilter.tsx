@@ -6,12 +6,18 @@ interface TagFilterProps {
   tags: string[];
   selectedTags: string[];
   setSelectedTags: React.Dispatch<SetStateAction<string[]>>;
+  isDisabled: boolean;
 }
 
-// 나중에 태그 확정되면 반응형 추가해서 수정
+// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
-export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFilterProps) {
+export default function TagFilter({
+  tags,
+  selectedTags,
+  setSelectedTags,
+  isDisabled,
+}: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
       ? setSelectedTags(selectedTags.filter((t) => t !== tag))
@@ -30,6 +36,7 @@ export default function TagFilter({ tags, selectedTags, setSelectedTags }: TagFi
             tag={tag}
             isChecked={selectedTags.includes(tag)}
             toggleCheck={toggleCheck}
+            isDisabled={isDisabled}
           />
         ))}
       </div>

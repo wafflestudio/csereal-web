@@ -63,5 +63,6 @@ export const getMockSeminarPost: typeof getSeminarPost = async (id: number) => {
     isPublic: true,
     isSlide: true,
     isLast: false,
+    attachment: '',
   };
 };

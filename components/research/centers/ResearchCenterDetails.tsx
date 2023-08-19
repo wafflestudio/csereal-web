@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
+
+import linkIcon from '@/public/image/link_icon.svg';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
@@ -22,14 +25,21 @@ export default function ResearchCenterDetails({ center }: ResearchCenterDetailPr
   );
 }
 
+const NEUTRAL_400_FILTER =
+  'invert-[.64] sepia-0 saturate-0 hue-rotate-[142deg] brightness-100 contrast-[.98]';
+const MAIN_ORANGE_HOVER_FILTER =
+  'hover:invert-[.54] hover:sepia-[.77] hover:saturate-[34.83] hover:hue-rotate-[350deg] hover:brightness-100 hover:contrast-[1.03]';
+
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
     <SelectionTitle animationKey={name}>
       <Link href={link} target="_blank" className="group flex items-center gap-0.5 h-10">
         <span>{name}</span>
-        <span className="material-symbols-rounded rotate-[-45deg] pt-1 text-neutral-400 group-hover:text-main-orange">
-          link
-        </span>
+        <Image
+          src={linkIcon}
+          alt="center_link_icon"
+          className={`${NEUTRAL_400_FILTER} ${MAIN_ORANGE_HOVER_FILTER}`}
+        />
       </Link>
     </SelectionTitle>
   );
