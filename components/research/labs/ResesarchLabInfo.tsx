@@ -33,8 +33,7 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
 function ProfessorsInfo({ professors }: { professors: string[] }) {
   return (
     <li className="text-sm flex gap-1">
-      <span className="whitespace-nowrap">교수: </span>
-      <span> {professors.join(', ')}</span>
+      <span className="whitespace-nowrap">교수: {professors.join(', ')}</span>
     </li>
   );
 }
@@ -50,7 +49,7 @@ function LocationInfo({ location }: { location: string }) {
 function TelephoneInfo({ tel }: { tel: string }) {
   return (
     <li className="text-sm flex gap-1 grow">
-      <span className="whitespace-nowrap">전화: </span> <span>{tel}</span>
+      <span className="whitespace-nowrap">전화: {tel}</span>
     </li>
   );
 }
