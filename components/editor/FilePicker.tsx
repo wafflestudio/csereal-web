@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import FilePickerRow from './FilePickerRow';
 
-interface FilePickerProps {
+export interface FilePickerProps {
   files: File[];
   setFiles: Dispatch<SetStateAction<File[]>>;
 }
@@ -13,7 +13,6 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
   // 성능 확인 필요
   const filesWithURL = files.map((file) => ({ file, url: URL.createObjectURL(file) }));
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
     if (!e.target.files || e.target.files.length === 0) return;
 
     const file = e.target.files[0];

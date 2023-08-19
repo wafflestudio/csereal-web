@@ -21,7 +21,6 @@ export interface CreateAction {
 }
 
 export interface EditorProps {
-  title: string;
   tags: string[];
   showMainImage?: boolean;
   showIsPinned?: boolean;

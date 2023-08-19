@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
-interface ImagePickerProps {
+export interface ImagePickerProps {
   file?: File;
   setFile: (file?: File) => void;
 }
@@ -33,7 +33,7 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
 
 const IMAGE_WIDTH = 100;
 
-const SelectedImageViewer = ({ file, setFile }: { file: Blob; setFile: (file?: File) => void }) => {
+const SelectedImageViewer = ({ file, setFile }: { file: File; setFile: (file?: File) => void }) => {
   const [imageHeight, setImageHeight] = useState(45);
 
   const imageURL = URL.createObjectURL(file);
