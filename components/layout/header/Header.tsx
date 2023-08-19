@@ -21,7 +21,7 @@ export default function Header() {
 
 function HeaderTitle() {
   return (
-    <div className="font-yoon font-bold text-neutral-700">
+    <div className="font-yoon font-bold text-neutral-700 mr-8">
       <a href="/">
         <h2 className="text-xl tracking-[.03438rem] line-clamp-1 mb-[0.31rem]">
           서울대학교 컴퓨터공학부
