@@ -41,7 +41,8 @@ function ProfessorsInfo({ professors }: { professors: string[] }) {
 function LocationInfo({ location }: { location: string }) {
   return (
     <li className="text-sm flex gap-1">
-      <span className="whitespace-nowrap">랩실: </span> <span>{location}</span>
+      <span className="whitespace-nowrap">랩실: </span>
+      <span>{location}</span>
     </li>
   );
 }
