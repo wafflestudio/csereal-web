@@ -47,11 +47,13 @@ function DropdownButton({
     <button
       className={`
             flex items-center gap-4 py-[.3125rem] pr-[.3125rem] pl-[.625rem] border-neutral-300 border
-            ${expanded ? 'rounded-tl-sm rounded-tr-sm' : 'rounded-sm'}
+            ${expanded ? 'rounded-tl-sm rounded-tr-sm ' : 'rounded-sm'}
         `}
       onClick={toggleExpanded}
     >
-      <p className="text-sm font-normal">{contents[selectedIndex]}</p>
+      <p className={`text-sm font-normal ${expanded && 'text-main-orange'}`}>
+        {contents[selectedIndex]}
+      </p>
       <span className="material-symbols-rounded text-base">
         {expanded ? 'expand_less' : 'expand_more'}
       </span>
