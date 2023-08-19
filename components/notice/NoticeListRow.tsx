@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
@@ -64,16 +65,18 @@ interface CheckboxCellProps {
 }
 
 function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
-  const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
-
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.check} px-[0.8125rem]`}>
-      <span
-        className="material-symbols-rounded cursor-pointer text-[1.25rem] font-light"
-        onClick={toggleCheck}
-      >
-        {iconName}
-      </span>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.check} flex justify-center`}>
+      {isChecked ? (
+        <CheckboxOrange className="cursor-pointer" onClick={toggleCheck} />
+      ) : (
+        <span
+          className="material-symbols-rounded cursor-pointer text-[1.25rem] font-light"
+          onClick={toggleCheck}
+        >
+          check_box_outline_blank
+        </span>
+      )}
     </span>
   );
 }
