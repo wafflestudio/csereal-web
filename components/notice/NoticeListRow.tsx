@@ -93,21 +93,27 @@ interface TitleCellProps {
 }
 
 function TitleCell({ title, href, isEditMode }: TitleCellProps) {
-  return isEditMode ? (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
-      <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">{title}</span>
-      <ClipIcon className="shrink-0" />
-    </span>
-  ) : (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
-      <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
+  if (isEditMode) {
+    return (
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
         <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
           {title}
         </span>
         <ClipIcon className="shrink-0" />
-      </Link>
-    </span>
-  );
+      </span>
+    );
+  } else {
+    return (
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
+        <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
+          <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
+            {title}
+          </span>
+          <ClipIcon className="shrink-0" />
+        </Link>
+      </span>
+    );
+  }
 }
 
 function DateCell({ date }: { date: string }) {
