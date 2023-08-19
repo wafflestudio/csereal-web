@@ -1,11 +1,17 @@
+'use client';
+
+import { useState } from 'react';
+
+import Dropdown from '@/components/common/Dropdown';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 const TABLE_COLUMN_SIZE = ['w-12', 'w-[12.5rem]', 'w-80', 'w-20'];
 
-export default async function GreetingsPage() {
+export default function GreetingsPage() {
+  const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);
+
   return (
-    // TODO: 이전 PR 적용 필요 (marginBottom)
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
       <p className="text-sm font-normal leading-[1.625rem] mb-9">
         컴퓨터공학을 전공함으로써 벤처기업을 창업할 수 있을 뿐 아니라 시스템엔지니어, 보안전문가,
         소프트웨어개발자, 데이터베이스관리자 등 많은 IT 전문 분야로의 진출이 가능하다. 또한
@@ -19,10 +25,18 @@ export default async function GreetingsPage() {
         되며 그 이후로는 국내외 관련 산업계, 학계에 주로 진출하고 있고, 새로운 아이디어로 벤처기업을
         창업하기도 한다.
       </p>
-      <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 진로 현황</h3>
-      <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 창업 기업</h3>
 
-      <div className="text-xs font-normal border-y-[1px] border-neutral-200">
+      <div className="flex gap-2 items-center mb-[0.8rem]">
+        <h3 className="text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
+        <Dropdown
+          contents={Object.keys(careerStat).reverse()}
+          selectedIndex={selectedCareerStatIndex}
+          onClick={setSelectedCareerStatIndex}
+        />
+      </div>
+
+      <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 창업 기업</h3>
+      <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
         <ol>
           {companies.map((company, index) => (
@@ -64,6 +78,33 @@ function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
     </div>
   );
 }
+
+const careerStat = {
+  2023: [
+    [0, 5, 6],
+    [2, 1, 0],
+    [6, 4, 1],
+    [22, 16, 8],
+    [16, 8, 1],
+    [16, 20, 2],
+  ],
+  2022: [
+    [0, 5, 6],
+    [2, 1, 0],
+    [6, 4, 1],
+    [22, 16, 8],
+    [16, 8, 1],
+    [16, 20, 2],
+  ],
+  2021: [
+    [0, 5, 6],
+    [2, 1, 0],
+    [6, 4, 1],
+    [22, 16, 8],
+    [16, 8, 1],
+    [16, 20, 2],
+  ],
+};
 
 const companies = [
   {
