@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { getMockEmeritusFaculty } from '@/apis/faculty';
 
 import PageLayout from '@/components/layout/PageLayout';
+import PeopleImageWithHover from '@/components/people/PeopleImageWithHover';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 import { emeritusFaculty } from '@/types/page';
@@ -44,41 +45,12 @@ export default function EmeritusFacultyMemberPage() {
     posts && (
       <PageLayout currentPage={emeritusFaculty} title={posts.name} titleSize="text-2xl">
         <div className="flow-root relative mb-10">
-          <div
-            className="w-[186px] h-[248px] absolute top-0 right-0 "
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div
-              className="absolute w-full h-full z-20"
-              style={{
-                filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
-              }}
-            >
-              <Image
-                alt="대표 이미지"
-                src={posts.imageURL}
-                fill
-                className="w-full h-full object-cover "
-                sizes="186px, 248px"
-                style={{
-                  clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-                }}
-              />
-            </div>
-            {isHovered && (
-              <div className="relative h-full w-full">
-                <div
-                  className="h-full w-full absolute bottom-[-17px] left-[-17px] "
-                  style={{
-                    background:
-                      'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
-                    clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-                  }}
-                />
-              </div>
-            )}
-          </div>
+          <PeopleImageWithHover
+            isHovered={isHovered}
+            handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
+            imageURL={posts.imageURL}
+          />
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">연락처 정보</h3>

@@ -8,8 +8,8 @@ import { getMockFaculty } from '@/apis/faculty';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/PageLayout';
+import FacultyInfoWithImage from '@/components/people/FacultyInfoWithImage';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
-import FacultyInfoWithImage from '@/components/people/PeopleInfoWithImage';
 
 import { faculty, laboratories } from '@/types/page';
 import { FacultyResponse } from '@/types/people';
