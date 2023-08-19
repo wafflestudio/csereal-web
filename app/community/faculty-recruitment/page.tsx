@@ -18,7 +18,7 @@ export default async function FacultyRecruitment() {
         triangleLength={1.75}
         triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
         margin="mb-8"
-        animtaionType="unfolding"
+        animationType="unfolding"
       >
         <LatestRecruitmentBanner {...res} />
       </CornerFoldedRectangle>

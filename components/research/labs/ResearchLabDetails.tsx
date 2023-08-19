@@ -30,11 +30,12 @@ const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
+  const affiliatedGroupPath = `${researchGroupsPath}?selected=${groupName}`;
 
   return (
     <div className="relative w-fit">
       <Link
-        href={`${researchGroupsPath}?selected=${groupName}`}
+        href={affiliatedGroupPath}
         className={`absolute inline-block ${width} h-10 text-sm text-center py-2.5 peer hover:text-white duration-300`}
       >
         <span className="font-yoon tracking-[-0.019em]">{groupName} 연구그룹</span>
