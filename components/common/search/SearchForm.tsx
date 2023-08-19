@@ -12,7 +12,7 @@ interface SearchProps {
   tags: string[]; // 전체 태그(선택지) 목록
   initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
   initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
-  isDisabled?: boolean;
+  disabled?: boolean;
   setSearchParams(searchInfo: SearchInfo): void; // useCustomSearchParams의 setSearchParams
 }
 
@@ -20,7 +20,7 @@ export default function SearchForm({
   tags,
   initTags,
   initKeyword,
-  isDisabled = false,
+  disabled = false,
   setSearchParams,
 }: SearchProps) {
   const [expanded, toggleExpanded] = useReducer((x) => !x, true);
@@ -40,12 +40,12 @@ export default function SearchForm({
   };
 
   return (
-    <div className={`mb-6 w-full ${isDisabled && 'opacity-30'}`}>
+    <div className={`mb-6 w-full ${disabled && 'opacity-30'}`}>
       <h4
         className={`flex items-center gap-1 ${
-          isDisabled ? 'cursor-default' : 'cursor-pointer'
+          disabled ? 'cursor-default' : 'cursor-pointer'
         } w-fit`}
-        onClick={() => !isDisabled && toggleExpanded()}
+        onClick={() => !disabled && toggleExpanded()}
       >
         <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
         <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
@@ -59,26 +59,26 @@ export default function SearchForm({
             tags={tags}
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
-            isDisabled={isDisabled}
+            disabled={disabled}
           />
-          <KeywordInput keyword={keyword} setKeyword={setKeyword} isDisabled={isDisabled} />
-          <SearchButton isDisabled={isDisabled} />
+          <KeywordInput keyword={keyword} setKeyword={setKeyword} disabled={disabled} />
+          <SearchButton disabled={disabled} />
         </form>
       )}
       <StraightNode double={true} margin="mt-6 mb-3" />
       <div className="flex justify-between items-start gap-3 px-2.5">
         <Tags tags={initTags.length ? initTags : ['전체']} />
-        {initTags.length > 0 && <TagResetButton onClickReset={resetTags} isDisabled={isDisabled} />}
+        {initTags.length > 0 && <TagResetButton onClickReset={resetTags} disabled={disabled} />}
       </div>
     </div>
   );
 }
 
-function SearchButton({ isDisabled }: { isDisabled: boolean }) {
+function SearchButton({ disabled }: { disabled: boolean }) {
   return (
     <button
       className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 enabled:hover:bg-neutral-500 font-yoon font-bold text-white text-xs tracking-[0.02em]"
-      disabled={isDisabled}
+      disabled={disabled}
     >
       결과 보기
     </button>
@@ -86,16 +86,16 @@ function SearchButton({ isDisabled }: { isDisabled: boolean }) {
 }
 
 interface TagResetButtonProps {
-  isDisabled: boolean;
+  disabled: boolean;
   onClickReset: () => void;
 }
 
-function TagResetButton({ isDisabled, onClickReset }: TagResetButtonProps) {
+function TagResetButton({ disabled, onClickReset }: TagResetButtonProps) {
   return (
     <button
       onClick={onClickReset}
       className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-xs whitespace-nowrap"
-      disabled={isDisabled}
+      disabled={disabled}
     >
       <span className="material-symbols-outlined scale-x-[-1] font-light text-base">refresh</span>
       <span>태그 초기화</span>

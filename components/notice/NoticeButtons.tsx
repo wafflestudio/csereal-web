@@ -1,17 +1,17 @@
 import Link from 'next/link';
 
 interface BatchButtonProps {
-  isDisabled: boolean;
+  disabled: boolean;
   onClick: () => void;
   children: React.ReactNode;
 }
 
-export function BatchButton({ isDisabled, onClick, children }: BatchButtonProps) {
+export function BatchButton({ disabled, onClick, children }: BatchButtonProps) {
   return (
     <button
       className="px-3 h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium disabled:bg-neutral-50 disabled:text-neutral-300"
       onClick={onClick}
-      disabled={isDisabled}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -37,16 +37,16 @@ export function EditButton({ isEditMode, toggleEditMode }: EditButtonProps) {
 
 interface CreateButtonProps {
   mainPath: string;
-  isDisabled: boolean;
+  disabled: boolean;
 }
 
-export function CreateButton({ mainPath, isDisabled }: CreateButtonProps) {
+export function CreateButton({ mainPath, disabled }: CreateButtonProps) {
   return (
     <Link href={`${mainPath}/create`}>
       <button
         type="button"
         className="ml-4 px-[0.875rem] h-[2.1875rem] rounded-[0.0625rem] bg-neutral-700 enabled:hover:bg-neutral-500 text-white text-xs tracking-[0.02em] font-bold disabled:opacity-30"
-        disabled={isDisabled}
+        disabled={disabled}
       >
         새 게시글
       </button>

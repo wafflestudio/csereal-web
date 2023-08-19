@@ -6,7 +6,7 @@ interface TagFilterProps {
   tags: string[];
   selectedTags: string[];
   setSelectedTags: React.Dispatch<SetStateAction<string[]>>;
-  isDisabled: boolean;
+  disabled: boolean;
 }
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
@@ -16,7 +16,7 @@ export default function TagFilter({
   tags,
   selectedTags,
   setSelectedTags,
-  isDisabled,
+  disabled,
 }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
@@ -36,7 +36,7 @@ export default function TagFilter({
             tag={tag}
             isChecked={selectedTags.includes(tag)}
             toggleCheck={toggleCheck}
-            isDisabled={isDisabled}
+            disabled={disabled}
           />
         ))}
       </div>
