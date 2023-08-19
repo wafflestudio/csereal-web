@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import LinkIcon from '@/public/image/link_icon.svg';

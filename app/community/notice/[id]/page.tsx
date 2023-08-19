@@ -29,7 +29,7 @@ export default function NoticePostPage() {
     );
 
   return (
-    <PageLayout title={currPost?.title ?? ''} titleType="small" marginBottom="mb-5">
+    <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
       <div className="mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
         글쓴이: {writer}, 작성시각:{' '}
         {currPost &&

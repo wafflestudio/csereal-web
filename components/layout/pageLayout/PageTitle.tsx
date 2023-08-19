@@ -11,15 +11,15 @@ interface PageTitleProps {
   title: string;
   currentPage: SegmentNode;
   titleType: 'big' | 'small';
-  marginBottom: string;
+  margin: string;
 }
 
-export default function PageTitle({ title, currentPage, titleType, marginBottom }: PageTitleProps) {
+export default function PageTitle({ title, currentPage, titleType, margin }: PageTitleProps) {
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
     <div
-      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${marginBottom} mt-3`}
+      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-3`}
     >
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />

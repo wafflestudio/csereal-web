@@ -11,8 +11,7 @@ interface CornerFoldedRectangleProps {
   rectangleDropShadow?: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   margin?: string; // tailwind 형식
   radius: number; // rem 단위
-  isAnimated?: boolean; // 선택형 리스트 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
-  isUnfolding?: boolean;
+  animtaionType?: 'folding' | 'unfolding';
   width?: string;
   children: ReactNode;
 }
@@ -27,14 +26,13 @@ export default function CornerFoldedRectangle({
   rectangleDropShadow,
   margin,
   radius,
-  isAnimated,
-  isUnfolding,
+  animtaionType,
   width = 'w-fit',
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
     borderRadius: `${radius}rem`,
-    background: isAnimated
+    background: animtaionType
       ? colorTheme.bgColor
       : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
           colorTheme.bgColor
@@ -49,11 +47,8 @@ export default function CornerFoldedRectangle({
     filter: triangleDropShadow,
   };
 
-  return isAnimated ? (
-    <div
-      className={`relative ${width} ${margin} ${isUnfolding ? styles.unfolding : styles.folding}`}
-      style={rectangleStyle}
-    >
+  return animtaionType ? (
+    <div className={`relative ${width} ${margin} ${styles[animtaionType]}`} style={rectangleStyle}>
       {children}
     </div>
   ) : (

@@ -67,11 +67,13 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
 
   return (
-    <span
-      className={`${NOTICE_ROW_CELL_WIDTH.check} px-[0.8125rem] cursor-pointer`}
-      onClick={toggleCheck}
-    >
-      <span className="material-symbols-rounded text-[1.25rem] font-light">{iconName}</span>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.check} px-[0.8125rem]`}>
+      <span
+        className="material-symbols-rounded cursor-pointer text-[1.25rem] font-light"
+        onClick={toggleCheck}
+      >
+        {iconName}
+      </span>
     </span>
   );
 }

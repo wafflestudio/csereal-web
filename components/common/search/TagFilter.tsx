@@ -9,7 +9,7 @@ interface TagFilterProps {
   isDisabled: boolean;
 }
 
-// 나중에 태그 확정되면 반응형 추가해서 수정
+// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
 export default function TagFilter({

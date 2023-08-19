@@ -65,7 +65,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleLength={triangleLength}
           radius={radius}
           triangleDropShadow={dropShadow}
-          isAnimated={true}
+          animtaionType="folding"
           width="w-full"
         >
           <Link

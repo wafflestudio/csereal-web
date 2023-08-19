@@ -12,11 +12,11 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 interface PageLayoutProps {
   title?: string;
   titleType: 'big' | 'small';
-  marginBottom?: string; // tailwind class
+  titleMargin?: string; // tailwind class
   children: ReactNode;
 }
 
-export default function PageLayout({ title, titleType, marginBottom, children }: PageLayoutProps) {
+export default function PageLayout({ title, titleType, titleMargin, children }: PageLayoutProps) {
   const currentPage = useCurrentSegmentNode();
   title ||= currentPage.name;
   const { navbarState } = useNavbarContext();
@@ -27,7 +27,7 @@ export default function PageLayout({ title, titleType, marginBottom, children }:
         title={title}
         currentPage={currentPage}
         titleType={titleType}
-        marginBottom={marginBottom ?? ''}
+        margin={titleMargin ?? ''}
       />
       <div className="w-[52.5rem] row-start-2 col-start-1">{children}</div>
       {navbarState.type === 'closed' && <SubNavbar currentTab={currentPage} />}

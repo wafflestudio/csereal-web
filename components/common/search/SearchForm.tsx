@@ -45,7 +45,7 @@ export default function SearchForm({
         className={`flex items-center gap-1 ${
           isDisabled ? 'cursor-default' : 'cursor-pointer'
         } w-fit`}
-        onClick={() => !isDisabled && toggleExpanded}
+        onClick={() => !isDisabled && toggleExpanded()}
       >
         <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
         <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
