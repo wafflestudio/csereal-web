@@ -60,47 +60,34 @@ const NoticeMockLong: SimpleNoticePost = {
   hasAttachment: true,
 };
 
-const NoticeMock: SimpleNoticePost = {
-  id: 1,
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
-  createdAt: '2023-07-11T09:29:13',
-  isPinned: false,
-  hasAttachment: true,
-};
-
-const NoticeMockPin: SimpleNoticePost = {
-  id: 2,
+const NoticeMockPin = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
 };
 
+const NoticeMock = {
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
+  createdAt: '2023-07-11T09:29:13',
+  isPinned: false,
+  hasAttachment: true,
+};
+
 const noticeListMock = [
   NoticeMockLong,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
+  ...Array(6)
+    .fill(0)
+    .map((_, i) => ({ ...NoticeMockPin, id: i + 2 })),
+  ...Array(20)
+    .fill(0)
+    .map((_, i) => ({ ...NoticeMock, id: i + 10 })),
 ];
+
+// export const deleteNoticeMock: typeof deleteNotice = async (id) => {
+//   return noticeListMock.filter((post) => post.id !== id);
+// };
+
+// export const patchNoticeMock: typeof patchNotice = async (id, newPost) => {
+//   return
+// }
