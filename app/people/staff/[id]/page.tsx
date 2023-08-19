@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { getMockStaff } from '@/apis/staff';
 
 import PageLayout from '@/components/layout/PageLayout';
-import PeopleImageWithHover from '@/components/people/PeopleImageWithHover';
+import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 import { staff } from '@/types/page';
@@ -27,26 +27,21 @@ export default function StaffMemberPage() {
     fetchData();
   }, [id]);
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(true);
 
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAnimation(false);
+    }, 1000);
 
-  const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
     posts && (
       <PageLayout currentPage={staff} title={posts.name} titleSize="text-2xl">
         <div className="flow-root relative mb-32">
-          <PeopleImageWithHover
-            isHovered={isHovered}
-            handleMouseEnter={handleMouseEnter}
-            handleMouseLeave={handleMouseLeave}
-            imageURL={posts.imageURL}
-          />
+          <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={posts.imageURL} />
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">주요 업무</h3>

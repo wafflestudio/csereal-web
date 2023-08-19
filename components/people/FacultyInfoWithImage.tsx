@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
+import './FadeInOut.css';
+import { useEffect, useState } from 'react';
 
-import PeopleImageWithHover from './PeopleImageWithHover';
+import PeopleImageWithAnimation from './PeopleImageWithAnimation';
 
 export interface FacultyInfoWithImageProps {
   office?: string;
@@ -20,31 +21,24 @@ export default function FacultyInfoWithImage({
   website,
   imageURL,
 }: FacultyInfoWithImageProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(true);
 
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAnimation(false);
+    }, 1000);
 
-  const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
+    return () => clearTimeout(timeout);
   }, []);
   return (
     <div className="relative float-right w-[348px] h-[374px]">
-      <PeopleImageWithHover
-        isHovered={isHovered}
-        handleMouseEnter={handleMouseEnter}
-        handleMouseLeave={handleMouseLeave}
-        imageURL={imageURL}
-      />
+      <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={imageURL} />
       <div className="w-64 h-[196px] absolute bottom-0 left-0 z-10">
         <div
           style={{
             filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
           }}
           className="w-full h-full absolute"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <div className="flex flex-col text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
@@ -54,13 +48,14 @@ export default function FacultyInfoWithImage({
             {website && <FacultyInfoWithSymbols symbol="captive_portal" content={website} />}
           </div>
         </div>
-        {isHovered && (
+        {showAnimation && (
           <div className="relative h-full w-full z-[-1]">
             <div
               className="h-full w-full absolute bottom-[-17px] right-[-17px] "
               style={{
                 background:
                   'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+                animation: 'fadeInOut 1s ease-out',
               }}
             />
           </div>

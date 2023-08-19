@@ -1,14 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getMockEmeritusFaculty } from '@/apis/faculty';
 
 import PageLayout from '@/components/layout/PageLayout';
-import PeopleImageWithHover from '@/components/people/PeopleImageWithHover';
+import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 import { emeritusFaculty } from '@/types/page';
@@ -31,26 +30,21 @@ export default function EmeritusFacultyMemberPage() {
     fetchData();
   }, [id]);
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(true);
 
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAnimation(false);
+    }, 1000);
 
-  const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
     posts && (
       <PageLayout currentPage={emeritusFaculty} title={posts.name} titleSize="text-2xl">
         <div className="flow-root relative mb-10">
-          <PeopleImageWithHover
-            isHovered={isHovered}
-            handleMouseEnter={handleMouseEnter}
-            handleMouseLeave={handleMouseLeave}
-            imageURL={posts.imageURL}
-          />
+          <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={posts.imageURL} />
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">연락처 정보</h3>
