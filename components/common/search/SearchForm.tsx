@@ -8,7 +8,7 @@ import { SearchInfo } from '@/hooks/useCustomSearchParams';
 import KeywordInput from './KeywordInput';
 import TagFilter from './TagFilter';
 
-interface SearchProps {
+interface SearchFormProps {
   tags: string[]; // 전체 태그(선택지) 목록
   initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
   initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
@@ -22,7 +22,7 @@ export default function SearchForm({
   initKeyword,
   disabled = false,
   setSearchParams,
-}: SearchProps) {
+}: SearchFormProps) {
   const [expanded, toggleExpanded] = useReducer((x) => !x, true);
   const iconName = expanded ? 'expand_less' : 'expand_more';
   const [keyword, setKeyword] = useState<string>(initKeyword);

@@ -1,12 +1,12 @@
 import React, { SetStateAction } from 'react';
 
-interface SearchBarProps {
+interface KeywordInputProps {
   keyword: string;
   setKeyword: React.Dispatch<SetStateAction<string>>;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
-export default function KeywordInput({ keyword, setKeyword, disabled }: SearchBarProps) {
+export default function KeywordInput({ keyword, setKeyword, disabled = false }: KeywordInputProps) {
   return (
     <div className="col-start-1 flex items-center">
       <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap text-neutral-700 tracking-wide">
