@@ -81,7 +81,7 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
 function PinCell({ isPinned }: { isPinned: boolean }) {
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.pin} px-[0.8125rem] shrink-0`}>
-      {isPinned && <PinIcon viewBox="0 0 48 48" />}
+      {isPinned && <PinIcon />}
     </span>
   );
 }

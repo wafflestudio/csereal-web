@@ -39,7 +39,7 @@ export default function NavbarRoot({
 function SNULogo() {
   return (
     <Link href="/">
-      <SnuLogo className="fill-white scale-x-[1.244] scale-y-[1.234]" />
+      <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
     </Link>
   );
 }
