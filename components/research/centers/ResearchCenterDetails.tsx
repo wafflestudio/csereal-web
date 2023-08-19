@@ -30,11 +30,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
     <SelectionTitle animationKey={name}>
       <Link href={link} target="_blank" className="group flex items-center gap-1 h-10">
         <span>{name}</span>
-        <LinkIcon
-          width="24"
-          height="24"
-          className="mt-1 fill-neutral-400 group-hover:fill-main-orange"
-        />
+        <LinkIcon className="mt-1 fill-neutral-400 group-hover:fill-main-orange" />
       </Link>
     </SelectionTitle>
   );

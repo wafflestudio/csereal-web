@@ -20,23 +20,47 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
       colorTheme={COLOR_THEME.white}
       margin="mt-[-64px] mb-11 ml-11"
     >
-      <div className="w-60 h-40 py-5 px-6 flex flex-col justify-between">
-        <ul className="[&>li]:mb-1 font-noto">
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">교수: </span>
-            <span> {lab.professors.join(', ')}</span>
-          </li>
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">랩실: </span> <span>{lab.location}</span>
-          </li>
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">전화: </span> <span>{lab.tel}</span>
-          </li>
-        </ul>
-        <Link href={lab.websiteURL} className="w-fit underline text-sm hover:text-main-orange">
-          Website
-        </Link>
-      </div>
+      <ul className="w-60 h-40 py-5 px-6 flex flex-col gap-1 font-noto">
+        <ProfessorsInfo professors={lab.professors} />
+        <LocationInfo location={lab.location} />
+        <TelephoneInfo tel={lab.tel} />
+        <WebsiteInfo url={lab.websiteURL} />
+      </ul>
     </CornerFoldedRectangle>
+  );
+}
+
+function ProfessorsInfo({ professors }: { professors: string[] }) {
+  return (
+    <li className="text-sm flex gap-1">
+      <span className="whitespace-nowrap">교수: </span>
+      <span> {professors.join(', ')}</span>
+    </li>
+  );
+}
+
+function LocationInfo({ location }: { location: string }) {
+  return (
+    <li className="text-sm flex gap-1">
+      <span className="whitespace-nowrap">랩실: </span> <span>{location}</span>
+    </li>
+  );
+}
+
+function TelephoneInfo({ tel }: { tel: string }) {
+  return (
+    <li className="text-sm flex gap-1 grow">
+      <span className="whitespace-nowrap">전화: </span> <span>{tel}</span>
+    </li>
+  );
+}
+
+function WebsiteInfo({ url }: { url: string }) {
+  return (
+    <li>
+      <Link href={url} className="mt-auto w-fit underline text-sm hover:text-main-orange">
+        Website
+      </Link>
+    </li>
   );
 }

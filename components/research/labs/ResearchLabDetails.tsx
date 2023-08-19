@@ -35,19 +35,17 @@ function AffiliatedGroup({ groupName }: { groupName: string }) {
     <div className="relative w-fit">
       <Link
         href={`${researchGroupsPath}?selected=${groupName}`}
-        className={`absolute inline-block ${width} h-[42px] font-yoon text-sm text-center py-2.5 peer hover:text-white duration-300`}
+        className={`absolute inline-block ${width} h-10 font-yoon text-sm text-center py-2.5 peer hover:text-white duration-300`}
       >
         <span className="font-yoon tracking-[-0.019em] text-center">{groupName} 연구그룹</span>
       </Link>
-      {groupName.length < LENGTH_BOUNDARY ? (
-        <div className="text-white peer-hover:text-main-orange">
+      <div className="text-white peer-hover:text-main-orange">
+        {groupName.length < LENGTH_BOUNDARY ? (
           <PentagonShort className="duration-300" />
-        </div>
-      ) : (
-        <div className="text-white peer-hover:text-main-orange">
+        ) : (
           <PentagonLong className="duration-300" />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
