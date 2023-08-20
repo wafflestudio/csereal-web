@@ -6,6 +6,7 @@ interface FieldsetProps {
   children: ReactNode;
   mb?: string;
   required?: boolean;
+  grow?: boolean;
 }
 
 export default function Fieldset({
@@ -14,9 +15,10 @@ export default function Fieldset({
   children,
   mb,
   required = false,
+  grow = true,
 }: FieldsetProps) {
   return (
-    <fieldset className={`flex flex-col ${mb ?? ''} flex-1`}>
+    <fieldset className={`flex flex-col ${mb ?? ''} ${grow && 'flex-1'}`}>
       <legend className={`font-yoon text-sm font-medium tracking-wide ${titleMb}`}>
         {title}
         {required && <span className="text-main-orange">*</span>}

@@ -7,6 +7,7 @@ import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './ActionButtons';
 import BasicTextInput from './BasicTextInput';
+import DateSelector from './DateSelector';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
@@ -158,7 +159,7 @@ function ScheduleFieldset({
   setValues: <T extends keyof SeminarSchedule>(key: T) => (value: SeminarSchedule[T]) => void;
 }) {
   return (
-    <>
+    <div>
       <div className="flex gap-2 mt-4 mb-2">
         <TagCheckbox
           tag="하루 종일"
@@ -172,18 +173,14 @@ function ScheduleFieldset({
         />
       </div>
       <div className="flex mb-4 gap-8">
-        <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            {values.startDate.toISOString()}
-          </button>
+        <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required grow={false}>
+          <DateSelector date={values.startDate} setDate={setValues('startDate')} />
         </Fieldset>
-        <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required></Fieldset>
+        <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
+          <DateSelector date={values.endDate} setDate={setValues('endDate')} />
+        </Fieldset>
       </div>
-    </>
+    </div>
   );
 }
 

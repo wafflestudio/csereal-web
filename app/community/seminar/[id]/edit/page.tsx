@@ -16,7 +16,7 @@ export default function SeminarEditPage() {
       allDay: true,
       showEndDate: true,
       startDate: new Date(0),
-      endDate: new Date(100000),
+      endDate: new Date(1000000000),
     },
     host: '주최자 이름',
     speaker: {
