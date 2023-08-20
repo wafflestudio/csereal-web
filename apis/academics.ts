@@ -2,10 +2,12 @@ import { Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
-export const getUndergraduateGuide = () =>
-  getRequest('/academics/undergraduate/guide') as Promise<Guide>;
+export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
+  getRequest(`/guide/${type}`) as Promise<Guide>;
 
-export const getUndergraduateGuideMock: typeof getUndergraduateGuide = async () => ({
+export const getAcademicsGuideMock: typeof getAcademicsGuide = async (
+  type: 'undergraduate' | 'graduate',
+) => ({
   description: mock,
 });
 
