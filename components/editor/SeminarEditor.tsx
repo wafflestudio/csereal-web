@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
+import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
@@ -10,6 +10,7 @@ import BasicTextInput from './BasicTextInput';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
+  SeminarSchedule,
   SeminarSpeaker,
   seminarEditorPlaceholder,
 } from './EditorProps';
@@ -21,6 +22,7 @@ import TagCheckbox from '../common/search/TagCheckbox';
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();
   const speakerIntroductionEditorRef = useRef<SunEditorCore>();
+
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<SeminarEditorContent>({
     ...seminarEditorPlaceholder,
@@ -42,11 +44,28 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       setContent((content) => ({ ...content, [key]: value }));
     };
 
+  const setScheduleContentByKey =
+    <T extends keyof SeminarEditorContent['schedule']>(key: T) =>
+    (value: SeminarEditorContent['schedule'][T]) => {
+      setContent((content) => ({ ...content, schedule: { ...content.schedule, [key]: value } }));
+    };
+
   const setSpeakerContentByKey =
     <T extends keyof SeminarEditorContent['speaker']>(key: T) =>
     (value: SeminarEditorContent['speaker'][T]) => {
       setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
     };
+
+  const setFiles: Dispatch<SetStateAction<File[]>> = (dispatch) => {
+    if (typeof dispatch === 'function') {
+      setContent((content) => ({
+        ...content,
+        attachments: dispatch(content.attachments),
+      }));
+    } else {
+      setContentByKey('attachments')(dispatch);
+    }
+  };
 
   return (
     <form className="flex flex-col">
@@ -56,32 +75,15 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         initialContent={content.description}
       />
       <LocationFieldset value={content.location} onChange={setContentByKey('location')} />
-      <ScheduleFieldset />
+      <ScheduleFieldset values={content.schedule} setValues={setScheduleContentByKey} />
       <HostFieldset value={content.host} onChange={setContentByKey('host')} />
       <SpeakerFieldsetGroup values={content.speaker} setValues={setSpeakerContentByKey} />
       <SpeakerIntroductionEditorFieldset
         speakerIntroductionEditorRef={speakerIntroductionEditorRef}
         initialContent={content.speaker.description}
       />
-      <ImageFieldset
-        file={content.speaker.imageURL}
-        setFile={setSpeakerContentByKey('imageURL')}
-      />
-
-      <FileFieldset
-        files={content.attachments}
-        setFiles={(dispatch) => {
-          if (typeof dispatch === 'function') {
-            setContent((content) => ({
-              ...content,
-              attachments: dispatch(content.attachments),
-            }));
-          } else {
-            setContentByKey('attachments')(dispatch);
-          }
-        }}
-      />
-
+      <ImageFieldset file={content.speaker.imageURL} setFile={setSpeakerContentByKey('imageURL')} />
+      <FileFieldset files={content.attachments} setFiles={setFiles} />
       <Fieldset title="게시 설정" titleMb="mb-3" mb="mb-11">
         <TagCheckbox
           tag="비공개 글"
@@ -148,15 +150,37 @@ function LocationFieldset({
   );
 }
 
-function ScheduleFieldset() {
+function ScheduleFieldset({
+  values,
+  setValues,
+}: {
+  values: SeminarSchedule;
+  setValues: <T extends keyof SeminarSchedule>(key: T) => (value: SeminarSchedule[T]) => void;
+}) {
   return (
     <>
       <div className="flex gap-2 mt-4 mb-2">
-        <TagCheckbox tag="하루 종일" />
-        <TagCheckbox tag="종료 일시 표시" />
+        <TagCheckbox
+          tag="하루 종일"
+          isChecked={values.allDay}
+          toggleCheck={(tag, isChecked) => setValues('allDay')(!isChecked)}
+        />
+        <TagCheckbox
+          tag="종료 일시 표시"
+          isChecked={values.showEndDate}
+          toggleCheck={(tag, isChecked) => setValues('showEndDate')(!isChecked)}
+        />
       </div>
       <div className="flex mb-4 gap-8">
-        <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required></Fieldset>
+        <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            {values.startDate.toISOString()}
+          </button>
+        </Fieldset>
         <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required></Fieldset>
       </div>
     </>
