@@ -13,28 +13,6 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.8.0
 
-      - name: 'Prepare deploy key'
-        run: |
-          echo "${{secrets.SSH_KEY}}" > deploy_key
-          chmod 600 ./deploy_key
-
-      - name: 'Remote server commands - before upload'
-        uses: 'nick-fields/retry@v2'
-        with:
-          timeout_minutes: 1
-          max_attempts: 5
-          retry_wait_seconds: 1
-          retry_on: 'error'
-          command: |
-            ssh -T -i ./deploy_key -o StrictHostKeyChecking=no -p \
-              22 \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}<<EOF
-            docker stop csereal_nextjs_image
-            docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
-            docker container rm nextjs_image
-            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal-front/nextjs_image
-            EOF
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -57,3 +35,23 @@ jobs:
           tags: |
             ghcr.io/wafflestudio/csereal_nextjs_image:latest
             ghcr.io/wafflestudio/csereal_nextjs_image:${{github.sha}}
+
+      - name: 'Prepare deploy key'
+        run: |
+          echo "${{secrets.SSH_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+
+      - name: 'Remote server commands'
+        uses: 'nick-fields/retry@v2'
+        with:
+          timeout_minutes: 1
+          max_attempts: 5
+          retry_wait_seconds: 1
+          retry_on: 'error'
+          command: |
+            ssh -T -i ./deploy_key -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+            docker stop csereal_nextjs_image
+            docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
+            docker container rm nextjs_image
+            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal-front/nextjs_image
+            EOF
