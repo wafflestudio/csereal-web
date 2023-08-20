@@ -1,32 +1,43 @@
-import { getClubs, getClubsMock } from '@/apis/club';
+'use client';
 
-import PageLayout from '@/components/layout/PageLayout';
+import useSWR from 'swr';
+
+import { getClubsMock } from '@/apis/club';
+
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
-import ClubList from '@/components/studentClubs/ClubList';
 
+import { Club } from '@/types/club';
 import { studentClubs } from '@/types/page';
+
+import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getPath } from '@/utils/page';
 
 interface StudentClubsPageProps {
   searchParams: { selected?: string };
 }
 
 const DEFAULT_CLUB = '와플스튜디오';
+const clubPath = getPath(studentClubs);
 
-export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
-  const selected = searchParams.selected ? decodeURI(searchParams.selected) : DEFAULT_CLUB;
-  const { clubs, selectedClub } = await getData(selected);
+export default function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
+  const { data: clubs = [] } = useSWR({ url: '/clubs' }, getClubsMock);
+  const selectedClub = findSelectedItem<Club>(
+    clubs,
+    decodeURI(searchParams.selected ?? ''),
+    DEFAULT_CLUB,
+  );
 
   return (
-    <PageLayout currentPage={studentClubs} title={studentClubs.name} titleSize="text-2xl">
-      <ClubList clubs={clubs} selectedClub={selectedClub} />
+    <PageLayout titleType="big">
+      <SelectionList
+        names={clubs.map((club) => club.name)}
+        selectedItemName={selectedClub?.name ?? ''}
+        path={clubPath}
+        listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
+      />
       {selectedClub && <ClubDetails club={selectedClub} />}
     </PageLayout>
   );
-}
-
-export async function getData(selectedClubName: string) {
-  // const clubs = await getClubs();
-  const clubs = getClubsMock();
-  const selectedClub = clubs.find((club) => club.name === selectedClubName);
-  return { clubs, selectedClub };
 }

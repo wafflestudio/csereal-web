@@ -1,106 +1,49 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
+import useSwr from 'swr';
 
-import { getNoticePosts } from '@/apis/notice';
+import { getNoticePosts, getNoticePostsMock } from '@/apis/notice';
 
-import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { NoticeTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
-import { notice } from '@/types/page';
-import { SimpleNoticePost } from '@/types/post';
-
-const NoticeMockLong: SimpleNoticePost = {
-  id: 1,
-  title:
-    '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
-  createdAt: '2023-07-11T09:29:13',
-  isPinned: true,
-};
-
-const NoticeMock: SimpleNoticePost = {
-  id: 1,
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
-  createdAt: '2023-07-11T09:29:13',
-  isPinned: false,
-};
-
-const NoticeMockPin: SimpleNoticePost = {
-  id: 2,
-  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
-  createdAt: '2023-07-11T09:29:13',
-  isPinned: true,
-};
-
-const noticeListMock = [
-  NoticeMockLong,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMockPin,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-  NoticeMock,
-];
+import { GETNoticePostsResponse } from '@/types/post';
 
 const POST_LIMIT = 20;
 
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const [posts, setPosts] = useState<SimpleNoticePost[]>([]);
-  const [totalPostsCount, setTotalPostsCount] = useState<number>(0);
+  const {
+    data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
+    isLoading, // TODO: 로딩 컴포넌트
+    error, // TODO: 에러 컴포넌트?
+  } = useSwr<GETNoticePostsResponse>(
+    { url: '/notice', params: { page, keyword, tag: tags } },
+    getNoticePostsMock,
+  ); // 추후 fetcher 삭제
+  const [isEditMode, setIsEditMode] = useState<boolean>(false); // 편집 다른 pr에서 구현
+  const [selectedPosts, setSelectedPosts] = useState<number[]>([]); // 마찬가지
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const fetchPosts = useCallback(async () => {
-    const data = await getNoticePosts({ page, keyword, tag: tags });
-    setTotalPostsCount(data.total);
-    setPosts(data.searchList);
-  }, [page, keyword, tags]);
-
-  useEffect(() => {
-    // searchPosts();
-    setTotalPostsCount(noticeListMock.length);
-    setPosts(noticeListMock);
-  }, [page, fetchPosts]);
-
   return (
-    <PageLayout currentPage={notice} title={notice.name} titleSize="text-2xl">
+    <PageLayout titleType="big">
       <SearchForm
         tags={NoticeTags}
         initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <StraightNode double={true} />
-      <NoticeList posts={posts} />
+      <NoticeList posts={posts} isEditMode={isEditMode} />
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}

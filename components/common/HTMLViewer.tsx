@@ -1,48 +1,41 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
+import { ReactNode } from 'react';
+
+interface TopRightImage {
+  type: 'image';
+  url: string;
+  // px 단위
+  width: number;
+  // px 단위
+  height: number;
+}
+
+interface TopRightComponent {
+  type: 'component';
+  content: ReactNode;
+}
 
 interface HTMLViewerProps {
   htmlContent: string;
-  mainImage?: {
-    url: string;
-    // px 단위
-    width: number;
-    // px 단위
-    height: number;
-  };
+  // 우측 상단 표시될 요소
+  topRightContent?: TopRightImage | TopRightComponent;
   margin?: string;
 }
 
-export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTMLViewerProps) {
+export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }: HTMLViewerProps) {
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
 
   return (
-    <div className="flow-root">
-      {mainImage && (
-        <div
-          className="relative float-right ml-[28px] mb-[28px]"
-          style={{
-            width: mainImage.width,
-            height: mainImage.height,
-          }}
-        >
-          <Image
-            src={mainImage.url}
-            alt="대표 이미지"
-            priority
-            fill
-            className="object-cover"
-            sizes={`${mainImage.width}px`}
-          />
-        </div>
-      )}
+    <div className={`flow-root ${margin}`}>
+      {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
+      {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
       <div
         className={`
         text-sm font-noto font-regular leading-loose 
-        ${margin}
         [&_a]:text-link [&_a]:underline 
         [&_li]:list-disc [&_li]:list-inside 
-        [&_p]:mb-4
+        [&_p]:mb-4 
         [&_td]:border-[1px] [&_td]:border-neutral-300
         [&_img]:inline
         `}
@@ -50,6 +43,25 @@ export default function HTMLViewer({ htmlContent, mainImage, margin = '' }: HTML
       />
     </div>
   );
+}
+
+function TopRightImageContent({ width, height, url }: TopRightImage) {
+  return (
+    <div className="relative float-right ml-[28px] mb-[28px]" style={{ width, height }}>
+      <Image
+        src={url}
+        alt="대표 이미지"
+        priority
+        fill
+        className="object-cover"
+        sizes={`${width}px`}
+      />
+    </div>
+  );
+}
+
+function TopRightComponent({ content }: TopRightComponent) {
+  return <div className="relative float-right">{content}</div>;
 }
 
 export const htmlMock1 = `

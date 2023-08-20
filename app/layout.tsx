@@ -1,9 +1,13 @@
+import { NavbarContextProvider } from '@/contexts/NavbarContext';
+
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 
+import { noto, yoonGothic } from '@/styles/font';
 import '@/styles/globals.css';
-import { noto, yoonGothic } from './font';
+
+import { SWRProvider } from './swr-provider';
 
 export const metadata = {
   title: 'Next.js',
@@ -13,15 +17,21 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body
-        className={`grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] ${yoonGothic.variable} ${noto.variable}`}
-      >
-        <Navbar />
-        <div className="overflow-auto">
-          <Header />
-          <main className="min-w-fit">{children}</main>
-          <Footer />
-        </div>
+      <body className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal`}>
+        <NavbarContextProvider>
+          <Navbar />
+          <div className="overflow-auto flex flex-col flex-1">
+            <Header />
+            <div className="min-w-fit flex flex-col flex-1">
+              <main className="flex-1">
+                <SWRProvider>
+                  <div className="flex-1">{children}</div>
+                </SWRProvider>
+              </main>
+              <Footer />
+            </div>
+          </div>
+        </NavbarContextProvider>
       </body>
     </html>
   );

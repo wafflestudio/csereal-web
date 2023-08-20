@@ -1,40 +1,50 @@
-import { getDirections, getDirectionsMock } from '@/apis/directions';
+'use client';
+
+import useSWR from 'swr';
+
+import { getDirectionsMock } from '@/apis/directions';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import DirectionsList from '@/components/directions/DirectionList';
+import SelectionList from '@/components/common/selection/SelectionList';
 import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';
+
+import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getPath } from '@/utils/page';
 
 interface DirectionsPageProps {
   searchParams: { selected?: string };
 }
 
-const DEFAULT_DIRECITON = 'public-transit';
+const directionsPath = getPath(directions);
 
-export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
-  const selected = searchParams.selected ? decodeURI(searchParams.selected) : DEFAULT_DIRECITON;
-  const { directionList, selectedDirection } = await getData(selected);
+export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
+  const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
+  const selectedDirection = findSelectedItem<Direction>(
+    directionList,
+    decodeURI(searchParams.selected ?? ''),
+    directionList[0].name,
+  );
 
   return (
-    <PageLayout currentPage={directions} title={directions.name} titleSize="text-2xl">
+    <PageLayout titleType="big">
       <div className="mb-[3.25rem]">
         <LocationGuide />
         <LocationMap />
       </div>
       <div>
-        <DirectionsList directionsList={directionList} selectedDirection={selectedDirection} />
+        <SelectionList
+          names={directionList.map((d) => d.name)}
+          selectedItemName={selectedDirection?.name ?? ''}
+          path={directionsPath}
+          listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
+        />
         {selectedDirection && <HTMLViewer htmlContent={selectedDirection.description} />}
       </div>
     </PageLayout>
   );
-}
-
-export async function getData(selectedDirectionEngName: string) {
-  // const directions = await getDirections();
-  const directionList = getDirectionsMock();
-  const selectedDirection = directionList.find((dir) => dir.engName === selectedDirectionEngName);
-  return { directionList, selectedDirection };
 }

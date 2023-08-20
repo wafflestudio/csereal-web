@@ -1,5 +1,6 @@
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback } from 'react';
+import useSwr from 'swr';
 
 import { AdjPostInfo } from '@/types/post';
 
@@ -10,39 +11,44 @@ interface PostWithAdjIdInfo {
   id: number;
   title: string;
   nextId: number | null;
+  nextTitle: string | null;
   prevId: number | null;
+  prevTitle: string | null;
 }
 
 export function usePosts<T extends PostWithAdjIdInfo>(
   listPath: string,
   getPostDetail: (id: number, params: PostSearchQueryParams) => Promise<T>,
 ) {
-  const [posts, setPosts] = useState<{ curr?: T; prev?: AdjPostInfo; next?: AdjPostInfo }>({});
   const { page, keyword, tags } = useCustomSearchParams();
-  const searchParams = useMemo(() => ({ page, keyword, tag: tags }), [page, keyword, tags]);
+  const searchParams = { page, keyword, tag: tags };
   const id = parseInt(useParams().id);
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
-  const getAdjPost = useCallback(
-    async (id: number, type: 'prev' | 'next') => {
-      const adjPost = await getPostDetail(id, searchParams);
-      const adjPostInfo = adjPost
-        ? { title: adjPost.title, href: `${listPath}/${adjPost.id}${queryString}` }
-        : undefined;
-      setPosts((p) => ({ ...p, [type]: adjPostInfo }));
+  const { data: { currPost, prevPostPreview, nextPost: nextPostPreview } = {} } = useSwr(
+    { id, searchParams },
+    async ({ id, searchParams }) => {
+      const currPost = await getPostDetail(id, searchParams);
+      const prevPostPreview = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
+      const nextPostPreview = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
+      return { currPost, prevPostPreview, nextPost: nextPostPreview };
     },
-    [searchParams, listPath, queryString, getPostDetail],
   );
 
-  useEffect(() => {
-    // (async () => {
-    //   const curr = await getPostDetail(id, searchParams);
-    //   setPosts((p) => ({ ...p, curr: curr }));
-    //   if (curr.prevId) getAdjPost(curr.prevId, 'prev');
-    //   if (curr.nextId) getAdjPost(curr.nextId, 'next');
-    // })();
-  }, [id, searchParams, getAdjPost, getPostDetail]);
+  const getAdjPostInfo = useCallback(
+    (id: number | null, title: string | null) => {
+      if (!id || !title) return;
+      const adjPost: AdjPostInfo = { title, href: `${listPath}/${id}${queryString}` };
+      return adjPost;
+    },
+    [listPath, queryString],
+  );
 
-  return { posts, listPathWithQuery } as const;
+  return {
+    currPost,
+    prevPostPreview,
+    nextPostPreview,
+    listPathWithQuery,
+  } as const;
 }

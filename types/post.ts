@@ -7,15 +7,19 @@ export interface Post {
   description: string;
   isPublic: boolean;
   isSlide: boolean;
+  attachment: FormData;
 }
 
 // 서버에서 만드는 속성들이 포함됨
-export interface PostResponse extends Post {
+export interface PostResponse extends Omit<Post, 'attachment'> {
   readonly id: number;
   readonly createdAt: string;
   readonly modifiedAt: string;
   readonly prevId: number | null;
+  readonly prevTitle: string | null;
   readonly nextId: number | null;
+  readonly nextTitle: string | null;
+  readonly attachment: string | null;
 }
 
 export interface AdjPostInfo {
@@ -39,7 +43,7 @@ export interface NewsPost extends Post {
   imageURL: string;
 }
 
-export interface NewsPostResponse extends NewsPost, PostResponse {}
+export interface NewsPostResponse extends Omit<NewsPost, 'attachment'>, PostResponse {}
 
 export interface SimpleNewsPost
   extends Pick<
@@ -59,10 +63,12 @@ export interface NoticePost extends Post {
   isPinned: boolean;
 }
 
-export interface NoticePostResponse extends NoticePost, PostResponse {}
+export interface NoticePostResponse extends Omit<NoticePost, 'attachment'>, PostResponse {}
 
 export interface SimpleNoticePost
-  extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {}
+  extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
+  hasAttachment: boolean;
+}
 
 export interface GETNoticePostsResponse {
   total: number;
@@ -86,8 +92,10 @@ export interface GETSeminarPostsResponse {
 export interface SimpleSeminarPost
   extends Pick<
     SeminarPostResponse,
-    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL' | 'isLast'
-  > {}
+    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL'
+  > {
+  isLast: boolean;
+}
 
 export interface SeminarPostResponse extends PostResponse {
   host: string;
@@ -98,7 +106,6 @@ export interface SeminarPostResponse extends PostResponse {
   description: string;
   hostDescription: string;
   imageURL: string;
-  isLast?: boolean;
 }
 
 // 시설 안내 - - - - - - - - - - - - - - - - - - - -

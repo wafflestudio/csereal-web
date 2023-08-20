@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
+import { CurvedVerticalNode } from '@/components/common/Nodes';
+
 import { SegmentNode } from '@/types/page';
 
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 
-import { CurvedVerticalNode } from './Nodes';
-
-interface SidebarProps {
+interface SubNavbarProps {
   currentTab: SegmentNode;
 }
 
-export default function Sidebar({ currentTab }: SidebarProps) {
+export default function SubNavbar({ currentTab }: SubNavbarProps) {
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30 + 10}px`;
