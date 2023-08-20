@@ -13,16 +13,26 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.8.0
 
-      - name: Deploy Docker Image via SSH
-        uses: appleboy/ssh-action@v0.1.4
+      - name: 'Prepare deploy key'
+        run: |
+          echo "${{secrets.SSH_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+
+      - name: 'Remote server commands - before upload'
+        uses: 'nick-fields/retry@v2'
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
+          timeout_minutes: 1
+          max_attempts: 5
+          retry_wait_seconds: 1
+          retry_on: 'error'
+          command: |
+            ssh -T -i ./deploy_key -o StrictHostKeyChecking=no -p \
+              22 \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}<<EOF
             docker pull ghcr.io/wafflestudio/csereat_nextjs_image:latest
             docker container rm nextjs_image
             docker run -d -p 3000:3000 --name nextjs_image ghcr.io/wafflestudio/csereal-front/nextjs_image
+            EOF
 
       - name: Checkout
         uses: actions/checkout@v3
