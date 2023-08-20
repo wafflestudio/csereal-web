@@ -19,7 +19,7 @@ export default function SeminarCreatePage() {
   const handleDelete = async () => {};
 
   return (
-    <PageLayout title={'세미나 쓰기'} titleType="small">
+    <PageLayout title={'세미나 쓰기'} titleType="small" titleMargin="mb-3">
       <SeminarEditor
         tags={NewsTags}
         showMainImage

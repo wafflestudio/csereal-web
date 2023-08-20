@@ -6,6 +6,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
+import BasicTextInput from './BasicTextInput';
 import Fieldset from './Fieldset';
 import FilePicker, { FilePickerProps } from './FilePicker';
 import ImagePicker, { ImagePickerProps } from './ImagePicker';
@@ -145,14 +146,7 @@ function TitleFieldset({
 }) {
   return (
     <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
-      <input
-        type="text"
-        className={`mw-[40rem] rounded-sm border border-neutral-700 h-[1.875rem] 
-            outline-none font-noto text-xs pl-2 font-normal`}
-        placeholder="제목을 입력하세요."
-        value={value}
-        onChange={onChange}
-      />
+      <BasicTextInput placeholder="제목을 입력하세요." value={value} onChange={onChange} />
     </Fieldset>
   );
 }

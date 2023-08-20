@@ -6,6 +6,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
+import BasicTextInput from './BasicTextInput';
 import Fieldset from './Fieldset';
 import FilePicker, { FilePickerProps } from './FilePicker';
 import ImagePicker, { ImagePickerProps } from './ImagePicker';
@@ -14,6 +15,12 @@ import TagCheckbox from '../common/search/TagCheckbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
+
+interface SeminarEditorContent {
+  title: string;
+  summary: string;
+  location: string;
+}
 
 const placeholderContent: EditorContent = {
   title: '',
@@ -33,7 +40,9 @@ export default function SeminarEditor({
   actions,
   initialContent,
 }: EditorProps) {
-  const editorRef = useRef<SunEditorCore>();
+  const summaryEditorRef = useRef<SunEditorCore>();
+  const speakerIntroductionEditorRef = useRef<SunEditorCore>();
+
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<EditorContent>({
     ...placeholderContent,
@@ -42,7 +51,7 @@ export default function SeminarEditor({
 
   const getContentWithDescription = (): EditorContent => ({
     ...content,
-    description: editorRef.current?.getContents(false) ?? '',
+    description: summaryEditorRef.current?.getContents(false) ?? '',
   });
 
   const setContentByKey = <T extends keyof EditorContent>(key: T, value: EditorContent[T]) => {
@@ -63,14 +72,12 @@ export default function SeminarEditor({
         onChange={(e) => setContentByKey('title', e.target.value)}
       />
 
-      <EditorFieldset editorRef={editorRef} />
+      <SummaryEditorFieldset summaryEditorRef={summaryEditorRef} />
 
-      {showMainImage && (
-        <ImageFieldset
-          file={content.mainImage}
-          setFile={(file) => setContentByKey('mainImage', file)}
-        />
-      )}
+      <ImageFieldset
+        file={content.mainImage}
+        setFile={(file) => setContentByKey('mainImage', file)}
+      />
 
       <FileFieldset
         files={content.attachments}
@@ -144,22 +151,19 @@ function TitleFieldset({
 }) {
   return (
     <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
-      <input
-        type="text"
-        className={`mw-[40rem] rounded-sm border border-neutral-700 h-[1.875rem] 
-            outline-none font-noto text-xs pl-2 font-normal`}
-        placeholder="제목을 입력하세요."
-        value={value}
-        onChange={onChange}
-      />
+      <BasicTextInput placeholder="제목을 입력하세요." value={value} onChange={onChange} />
     </Fieldset>
   );
 }
 
-function EditorFieldset({ editorRef }: { editorRef: MutableRefObject<SunEditorCore | undefined> }) {
+function SummaryEditorFieldset({
+  summaryEditorRef,
+}: {
+  summaryEditorRef: MutableRefObject<SunEditorCore | undefined>;
+}) {
   return (
-    <Fieldset title="내용" mb="mb-6" titleMb="mb-2">
-      <SunEditorWrapper editorRef={editorRef} />
+    <Fieldset title="요약" mb="mb-6" titleMb="mb-2">
+      <SunEditorWrapper editorRef={summaryEditorRef} />
     </Fieldset>
   );
 }
