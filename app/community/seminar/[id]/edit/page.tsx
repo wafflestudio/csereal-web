@@ -8,10 +8,27 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function SeminarEditPage() {
   //   const { data: currentSeminar } = useSWR('/');
-  const currentSeminar: SeminarEditorContent = {
-    ...seminarEditorPlaceholder,
+  const mockSeminarContent: SeminarEditorContent = {
     title: '기존 글',
     description: '<b>기존 글 내용</b>',
+    location: '위치',
+    schedule: {
+      allDay: true,
+      showEndDate: true,
+      startDate: new Date(0),
+      endDate: new Date(100000),
+    },
+    host: '주최자 이름',
+    speaker: {
+      name: '연설자 이름',
+      nameURL: '연설자 URL',
+      title: '직함',
+      organization: '소속',
+      organizationURL: '소속 URL',
+      description: '연사 소개개개개개',
+    },
+    attachments: [],
+    isPublic: false,
   };
 
   const handleComplete = async (content: SeminarEditorContent) => {
@@ -31,7 +48,7 @@ export default function SeminarEditPage() {
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}
-        initialContent={currentSeminar}
+        initialContent={mockSeminarContent}
       />
     </PageLayout>
   );
