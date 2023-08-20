@@ -9,22 +9,33 @@ export interface EditorContent {
   isSlide: boolean;
 }
 
-export interface EditAction {
+export interface SeminarEditorContent {
+  title: string;
+  description: string;
+  location: string;
+
+  host: string;
+  speaker: {
+    name: string;
+    nameURL: string;
+    // 직함
+    title: string;
+    organization: string;
+    organizationURL: string;
+    description: string;
+    imageURL?: File;
+  };
+  attachments: File[];
+  isPublic: boolean;
+}
+
+export interface EditAction<T> {
   type: 'EDIT';
   onDelete: () => Promise<void>;
-  onComplete: (content: EditorContent) => Promise<void>;
+  onComplete: (content: T) => Promise<void>;
 }
 
-export interface CreateAction {
+export interface CreateAction<T> {
   type: 'CREATE';
-  onComplete: (content: EditorContent) => Promise<void>;
-}
-
-export interface EditorProps {
-  tags: string[];
-  showMainImage?: boolean;
-  showIsPinned?: boolean;
-  showIsSlide?: boolean;
-  actions: EditAction | CreateAction;
-  initialContent?: EditorContent;
+  onComplete: (content: T) => Promise<void>;
 }
