@@ -150,7 +150,7 @@ function TitleFieldset({
   onChange: ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
-    <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
+    <Fieldset title="제목" mb="mb-6" titleMb="mb-2" required>
       <BasicTextInput placeholder="제목을 입력하세요." value={value} onChange={onChange} />
     </Fieldset>
   );
