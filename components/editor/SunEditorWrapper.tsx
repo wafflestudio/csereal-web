@@ -1,6 +1,6 @@
 'use client';
 
-import { MutableRefObject } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
 import plugins from 'suneditor/src/plugins';
@@ -10,14 +10,17 @@ import 'suneditor/dist/css/suneditor.min.css';
 
 export default function SunEditorWrapper({
   editorRef,
+  initialContent,
 }: {
   editorRef: MutableRefObject<SunEditorCore | undefined>;
+  initialContent?: string;
 }) {
   return (
     <SunEditor
       getSunEditorInstance={(x) => (editorRef.current = x)}
       height="400px"
       lang={ko}
+      defaultValue={initialContent}
       setOptions={{
         plugins,
         buttonList: [

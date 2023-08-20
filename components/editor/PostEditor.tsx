@@ -7,33 +7,14 @@ import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './ActionButtons';
 import BasicTextInput from './BasicTextInput';
+import { PostEditorContent, PostEditorProps, postEditorPlaceholder } from './EditorProps';
 import Fieldset from './Fieldset';
 import FilePicker, { FilePickerProps } from './FilePicker';
 import ImagePicker, { ImagePickerProps } from './ImagePicker';
-import { CreateAction, EditAction, EditorContent } from './PostEditorProp';
 import TagCheckbox from '../common/search/TagCheckbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
-
-const placeholderContent: EditorContent = {
-  title: '',
-  description: '',
-  attachments: [],
-  tags: [],
-  isPublic: true,
-  isPinned: false,
-  isSlide: false,
-};
-
-export interface EditorProps {
-  tags: string[];
-  showMainImage?: boolean;
-  showIsPinned?: boolean;
-  showIsSlide?: boolean;
-  actions: EditAction<EditorContent> | CreateAction<EditorContent>;
-  initialContent?: EditorContent;
-}
 
 // TODO: 네트워크 에러 처리
 export default function PostEditor({
@@ -43,20 +24,23 @@ export default function PostEditor({
   showIsSlide = false,
   actions,
   initialContent,
-}: EditorProps) {
+}: PostEditorProps) {
   const editorRef = useRef<SunEditorCore>();
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
-  const [content, setContent] = useState<EditorContent>({
-    ...placeholderContent,
+  const [content, setContent] = useState<PostEditorContent>({
+    ...postEditorPlaceholder,
     ...initialContent,
   });
 
-  const getContentWithDescription = (): EditorContent => ({
+  const getContentWithDescription = (): PostEditorContent => ({
     ...content,
     description: editorRef.current?.getContents(false) ?? '',
   });
 
-  const setContentByKey = <T extends keyof EditorContent>(key: T, value: EditorContent[T]) => {
+  const setContentByKey = <T extends keyof PostEditorContent>(
+    key: T,
+    value: PostEditorContent[T],
+  ) => {
     setContent((content) => ({ ...content, [key]: value }));
   };
 

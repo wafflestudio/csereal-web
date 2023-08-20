@@ -2,14 +2,14 @@
 
 import { getMockNewsPostDetail } from '@/apis/news';
 
+import { PostEditorContent } from '@/components/editor/EditorProps';
 import PostEditor from '@/components/editor/PostEditor';
-import { EditorContent } from '@/components/editor/PostEditorProp';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
 export default function NewsEditPage() {
-  const handleComplete = async (content: EditorContent) => {
+  const handleComplete = async (content: PostEditorContent) => {
     console.log(content);
     // throw new Error();
   };

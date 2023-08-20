@@ -1,48 +1,24 @@
 'use client';
 
 import { ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
-import Calendar from 'react-calendar';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './ActionButtons';
 import BasicTextInput from './BasicTextInput';
+import { SeminarEditorContent, SeminarEditorProps, seminarEditorPlaceholder } from './EditorProps';
 import Fieldset from './Fieldset';
 import FilePicker, { FilePickerProps } from './FilePicker';
 import ImagePicker, { ImagePickerProps } from './ImagePicker';
-import { CreateAction, EditAction, SeminarEditorContent } from './PostEditorProp';
 import TagCheckbox from '../common/search/TagCheckbox';
-
-interface SeminarEditorProps {
-  actions: EditAction<SeminarEditorContent> | CreateAction<SeminarEditorContent>;
-  initialContent?: SeminarEditorContent;
-}
-
-const placeholderContent: SeminarEditorContent = {
-  title: '',
-  description: '',
-  location: '',
-  host: '',
-  speaker: {
-    name: '',
-    nameURL: '',
-    title: '',
-    organization: '',
-    organizationURL: '',
-    description: '',
-  },
-  attachments: [],
-  isPublic: true,
-};
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();
   const speakerIntroductionEditorRef = useRef<SunEditorCore>();
-
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<SeminarEditorContent>({
-    ...placeholderContent,
+    ...seminarEditorPlaceholder,
     ...initialContent,
   });
 
@@ -75,13 +51,17 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         value={content.title}
         onChange={(e) => setContentByKey('title', e.target.value)}
       />
-      <SummaryEditorFieldset summaryEditorRef={summaryEditorRef} />
+      <SummaryEditorFieldset
+        summaryEditorRef={summaryEditorRef}
+        initialContent={content.description}
+      />
       <LocationFieldset />
       <ScheduleFieldset />
       <HostFieldset />
       <SpeakerFieldsetGroup />
       <SpeakerIntroductionEditorFieldset
         speakerIntroductionEditorRef={speakerIntroductionEditorRef}
+        initialContent={content.speaker.description}
       />
       <ImageFieldset
         file={content.speaker.imageURL}
@@ -143,12 +123,14 @@ function TitleFieldset({
 
 function SummaryEditorFieldset({
   summaryEditorRef,
+  initialContent,
 }: {
   summaryEditorRef: MutableRefObject<SunEditorCore | undefined>;
+  initialContent?: string;
 }) {
   return (
     <Fieldset title="요약" mb="mb-10" titleMb="mb-2">
-      <SunEditorWrapper editorRef={summaryEditorRef} />
+      <SunEditorWrapper editorRef={summaryEditorRef} initialContent={initialContent} />
     </Fieldset>
   );
 }
@@ -175,7 +157,6 @@ function LocationFieldset({
 function ScheduleFieldset() {
   return (
     <>
-      <Calendar />
       <div className="flex gap-2 mt-4 mb-2">
         <TagCheckbox tag="하루 종일" />
         <TagCheckbox tag="종료 일시 표시" />
@@ -233,12 +214,14 @@ function SpeakerFieldsetGroup() {
 
 function SpeakerIntroductionEditorFieldset({
   speakerIntroductionEditorRef,
+  initialContent,
 }: {
   speakerIntroductionEditorRef: MutableRefObject<SunEditorCore | undefined>;
+  initialContent?: string;
 }) {
   return (
     <Fieldset title="연사 소개" mb="mb-10" titleMb="mb-2">
-      <SunEditorWrapper editorRef={speakerIntroductionEditorRef} />
+      <SunEditorWrapper editorRef={speakerIntroductionEditorRef} initialContent={initialContent} />
     </Fieldset>
   );
 }

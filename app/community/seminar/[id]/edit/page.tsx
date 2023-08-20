@@ -1,34 +1,37 @@
-import { getMockNewsPostDetail } from '@/apis/news';
+'use client';
 
-import PostEditor from '@/components/editor/PostEditor';
-import { EditorContent } from '@/components/editor/PostEditorProp';
+import useSWR from 'swr';
+
+import { SeminarEditorContent, seminarEditorPlaceholder } from '@/components/editor/EditorProps';
+import SeminarEditor from '@/components/editor/SeminarEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NewsTags } from '@/constants/tag';
+export default function SeminarEditPage() {
+  //   const { data: currentSeminar } = useSWR('/');
+  const currentSeminar: SeminarEditorContent = {
+    ...seminarEditorPlaceholder,
+    title: '기존 글',
+    description: '<b>기존 글 내용</b>',
+  };
 
-export default function NewsEditPage() {
-  const handleComplete = async (content: EditorContent) => {
+  const handleComplete = async (content: SeminarEditorContent) => {
     console.log(content);
     // throw new Error();
   };
 
-  const initialContent = getMockNewsPostDetail(1);
-
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    //
+  };
 
   return (
-    <PageLayout title={'새 소식 편집'} titleType="small">
-      <PostEditor
-        tags={NewsTags}
-        showMainImage
-        showIsSlide
+    <PageLayout title={'세미나 쓰기'} titleType="small" titleMargin="mb-3">
+      <SeminarEditor
         actions={{
           type: 'EDIT',
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}
-        // 첨부파일 관련 확정되면 적용
-        // initialContent={initialContent}
+        initialContent={currentSeminar}
       />
     </PageLayout>
   );
