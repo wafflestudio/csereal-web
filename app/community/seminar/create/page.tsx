@@ -2,7 +2,6 @@
 
 import { getMockNewsPostDetail } from '@/apis/news';
 
-import PostEditor from '@/components/editor/PostEditor';
 import { EditorContent } from '@/components/editor/PostEditorProp';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
