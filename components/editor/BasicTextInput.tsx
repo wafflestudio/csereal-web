@@ -1,8 +1,6 @@
-import { ChangeEventHandler } from 'react';
-
 export interface BasicTextInputProps {
   value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: (text: string) => void;
   maxWidth: string;
   placeholder?: string;
 }
@@ -20,7 +18,7 @@ export default function BasicTextInput({
             outline-none font-noto text-xs pl-2 font-normal`}
       placeholder={placeholder}
       value={value}
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 }

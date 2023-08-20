@@ -7,7 +7,12 @@ import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './ActionButtons';
 import BasicTextInput from './BasicTextInput';
-import { SeminarEditorContent, SeminarEditorProps, seminarEditorPlaceholder } from './EditorProps';
+import {
+  SeminarEditorContent,
+  SeminarEditorProps,
+  SeminarSpeaker,
+  seminarEditorPlaceholder,
+} from './EditorProps';
 import Fieldset from './Fieldset';
 import FilePicker, { FilePickerProps } from './FilePicker';
 import ImagePicker, { ImagePickerProps } from './ImagePicker';
@@ -31,41 +36,36 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
     },
   });
 
-  const setContentByKey = <T extends keyof SeminarEditorContent>(
-    key: T,
-    value: SeminarEditorContent[T],
-  ) => {
-    setContent((content) => ({ ...content, [key]: value }));
-  };
+  const setContentByKey =
+    <T extends keyof SeminarEditorContent>(key: T) =>
+    (value: SeminarEditorContent[T]) => {
+      setContent((content) => ({ ...content, [key]: value }));
+    };
 
-  const setSpeakerContentByKey = <T extends keyof SeminarEditorContent['speaker']>(
-    key: T,
-    value: SeminarEditorContent['speaker'][T],
-  ) => {
-    setContent((content) => ({ ...content, [key]: value }));
-  };
+  const setSpeakerContentByKey =
+    <T extends keyof SeminarEditorContent['speaker']>(key: T) =>
+    (value: SeminarEditorContent['speaker'][T]) => {
+      setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
+    };
 
   return (
     <form className="flex flex-col">
-      <TitleFieldset
-        value={content.title}
-        onChange={(e) => setContentByKey('title', e.target.value)}
-      />
+      <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
       <SummaryEditorFieldset
         summaryEditorRef={summaryEditorRef}
         initialContent={content.description}
       />
-      <LocationFieldset />
+      <LocationFieldset value={content.location} onChange={setContentByKey('location')} />
       <ScheduleFieldset />
-      <HostFieldset />
-      <SpeakerFieldsetGroup />
+      <HostFieldset value={content.host} onChange={setContentByKey('host')} />
+      <SpeakerFieldsetGroup values={content.speaker} setValues={setSpeakerContentByKey} />
       <SpeakerIntroductionEditorFieldset
         speakerIntroductionEditorRef={speakerIntroductionEditorRef}
         initialContent={content.speaker.description}
       />
       <ImageFieldset
         file={content.speaker.imageURL}
-        setFile={(file) => setSpeakerContentByKey('imageURL', file)}
+        setFile={setSpeakerContentByKey('imageURL')}
       />
 
       <FileFieldset
@@ -77,7 +77,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
               attachments: dispatch(content.attachments),
             }));
           } else {
-            setContentByKey('attachments', dispatch);
+            setContentByKey('attachments')(dispatch);
           }
         }}
       />
@@ -86,7 +86,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         <TagCheckbox
           tag="비공개 글"
           isChecked={!content.isPublic}
-          toggleCheck={(tag, isChecked) => setContentByKey('isPublic', isChecked)}
+          toggleCheck={(tag, isChecked) => setContentByKey('isPublic')(isChecked)}
         />
       </Fieldset>
 
@@ -102,13 +102,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
   );
 }
 
-function TitleFieldset({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-}) {
+function TitleFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
     <Fieldset title="제목" mb="mb-10" titleMb="mb-2" required>
       <BasicTextInput
@@ -140,7 +134,7 @@ function LocationFieldset({
   onChange,
 }: {
   value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: (text: string) => void;
 }) {
   return (
     <Fieldset title="장소" mb="mb-4" titleMb="mb-2" required>
@@ -169,13 +163,7 @@ function ScheduleFieldset() {
   );
 }
 
-function HostFieldset({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-}) {
+function HostFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
     <Fieldset title="주최" mb="mb-10" titleMb="mb-2">
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[24.625rem]" />
@@ -183,28 +171,54 @@ function HostFieldset({
   );
 }
 
-function SpeakerFieldsetGroup() {
+function SpeakerFieldsetGroup({
+  values,
+  setValues,
+}: {
+  values: SeminarSpeaker;
+  setValues: <T extends keyof SeminarSpeaker>(key: T) => (value: SeminarSpeaker[T]) => void;
+}) {
   return (
     <div className="mb-10">
       <legend className="font-yoon text-sm font-medium tracking-wide mb-3">연사 정보</legend>
       <div className="flex flex-col gap-4">
         <div className="flex gap-5">
           <Fieldset title="이름" titleMb="mb-2" required>
-            <BasicTextInput maxWidth="max-w-[24.625rem]" />
+            <BasicTextInput
+              maxWidth="max-w-[24.625rem]"
+              value={values.name}
+              onChange={setValues('name')}
+            />
           </Fieldset>
           <Fieldset title="이름 링크(url)" titleMb="mb-2">
-            <BasicTextInput maxWidth="max-w-[24.625rem]" />
+            <BasicTextInput
+              maxWidth="max-w-[24.625rem]"
+              value={values.nameURL}
+              onChange={setValues('nameURL')}
+            />
           </Fieldset>
         </div>
         <Fieldset title="직함" titleMb="mb-2">
-          <BasicTextInput maxWidth="max-w-[24.625rem]" />
+          <BasicTextInput
+            maxWidth="max-w-[24.625rem]"
+            value={values.title}
+            onChange={setValues('title')}
+          />
         </Fieldset>
         <div className="flex gap-5">
           <Fieldset title="소속" titleMb="mb-2" required>
-            <BasicTextInput maxWidth="max-w-[24.625rem]" />
+            <BasicTextInput
+              maxWidth="max-w-[24.625rem]"
+              value={values.organization}
+              onChange={setValues('organization')}
+            />
           </Fieldset>
           <Fieldset title="소속 링크(url)" titleMb="mb-2">
-            <BasicTextInput maxWidth="max-w-[24.625rem]" />
+            <BasicTextInput
+              maxWidth="max-w-[24.625rem]"
+              value={values.organizationURL}
+              onChange={setValues('organizationURL')}
+            />
           </Fieldset>
         </div>
       </div>

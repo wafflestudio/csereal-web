@@ -37,34 +37,27 @@ export default function PostEditor({
     description: editorRef.current?.getContents(false) ?? '',
   });
 
-  const setContentByKey = <T extends keyof PostEditorContent>(
-    key: T,
-    value: PostEditorContent[T],
-  ) => {
-    setContent((content) => ({ ...content, [key]: value }));
-  };
+  const setContentByKey =
+    <T extends keyof PostEditorContent>(key: T) =>
+    (value: PostEditorContent[T]) => {
+      setContent((content) => ({ ...content, [key]: value }));
+    };
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
     let nextTags = [...content.tags];
     if (isChecked) nextTags = nextTags.filter((x) => x !== tag);
     else nextTags.push(tag);
-    setContentByKey('tags', nextTags);
+    setContentByKey('tags')(nextTags);
   };
 
   return (
     <form className="flex flex-col">
-      <TitleFieldset
-        value={content.title}
-        onChange={(e) => setContentByKey('title', e.target.value)}
-      />
+      <TitleFieldset value={content.title} onChange={(e) => setContentByKey('title')} />
 
       <EditorFieldset editorRef={editorRef} />
 
       {showMainImage && (
-        <ImageFieldset
-          file={content.mainImage}
-          setFile={(file) => setContentByKey('mainImage', file)}
-        />
+        <ImageFieldset file={content.mainImage} setFile={setContentByKey('mainImage')} />
       )}
 
       <FileFieldset
@@ -76,7 +69,7 @@ export default function PostEditor({
               attachments: dispatch(content.attachments),
             }));
           } else {
-            setContentByKey('attachments', dispatch);
+            setContentByKey('attachments')(dispatch);
           }
         }}
       />
@@ -99,20 +92,20 @@ export default function PostEditor({
           <TagCheckbox
             tag="비공개 글"
             isChecked={!content.isPublic}
-            toggleCheck={() => setContentByKey('isPublic', !content.isPublic)}
+            toggleCheck={() => setContentByKey('isPublic')(!content.isPublic)}
           />
           {showIsPinned && (
             <TagCheckbox
               tag="목록 상단에 고정"
               isChecked={content.isPinned}
-              toggleCheck={() => setContentByKey('isPinned', !content.isPinned)}
+              toggleCheck={() => setContentByKey('isPinned')(!content.isPinned)}
             />
           )}
           {showIsSlide && (
             <TagCheckbox
               tag="슬라이드 쇼에 표시"
               isChecked={content.isSlide}
-              toggleCheck={() => setContentByKey('isSlide', !content.isSlide)}
+              toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
             />
           )}
         </div>
@@ -130,13 +123,7 @@ export default function PostEditor({
   );
 }
 
-function TitleFieldset({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-}) {
+function TitleFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
     <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
       <BasicTextInput
