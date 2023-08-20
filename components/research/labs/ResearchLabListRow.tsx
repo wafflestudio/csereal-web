@@ -84,22 +84,29 @@ function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
   return (
     <span className={`${LAB_ROW_ITEM_WIDTH.introMaterial} flex items-center gap-3`}>
       {pdf && (
-        <Link
+        <a
           href={pdf}
           download={`${labName} 소개자료`}
           className="h-5"
           title="PDF"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <span className="material-symbols-outlined text-[1.25rem] text-neutral-400  hover:text-neutral-700">
             draft
           </span>
-        </Link>
+        </a>
       )}
       {youtube && (
-        <Link href={youtube} className="h-5 py-[0.1875rem]" title="YOUTUBE">
+        <a
+          href={youtube}
+          className="h-5 py-[0.1875rem]"
+          title="YOUTUBE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-700" />
-        </Link>
+        </a>
       )}
     </span>
   );
