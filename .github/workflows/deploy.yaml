@@ -41,7 +41,7 @@ jobs:
           echo "${{secrets.SSH_KEY}}" > deploy_key
           chmod 600 ./deploy_key
 
-      - name: ''
+      - name: 'Remote server commands'
         uses: 'nick-fields/retry@v2'
         with:
           timeout_minutes: 1
@@ -50,8 +50,7 @@ jobs:
           retry_on: 'error'
           command: |
             ssh -T -i ./deploy_key -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-            docker stop csereal_nextjs_image 
+            docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
             docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
-            docker container rm nextjs_image
-            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal-front/nextjs_image
+            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image
