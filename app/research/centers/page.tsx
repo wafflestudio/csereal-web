@@ -25,11 +25,11 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
     decodeURI(searchParams.selected ?? ''),
-    centers[0].name,
+    centers[0]?.name,
   );
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <SelectionList
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}

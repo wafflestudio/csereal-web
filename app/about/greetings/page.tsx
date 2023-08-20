@@ -7,7 +7,7 @@ export default async function GreetingsPage() {
   const response = await mockNetwork();
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <HTMLViewer
         htmlContent={response.description}
         topRightContent={{ type: 'image', width: 212, height: 280, url: response.mainImageURL }}

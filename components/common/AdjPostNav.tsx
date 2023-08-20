@@ -22,23 +22,15 @@ export default function AdjPostNav({ prevPost, nextPost, margin = '', href }: Ad
 type RowType = 'next' | 'prev';
 
 function Row({ post, type }: { post?: AdjPostInfo; type: RowType }) {
-  if (post) {
-    return (
+  return (
+    post && (
       <Link className="group flex items-center" href={post.href}>
         <RowIcon type={type} />
         <RowDescription type={type} />
         <RowPostTitle title={post.title} />
       </Link>
-    );
-  } else {
-    return (
-      <div className="group flex items-center">
-        <RowIcon type={type} />
-        <RowDescription type={type} />
-        <RowPostTitle />
-      </div>
-    );
-  }
+    )
+  );
 }
 
 function RowIcon({ type }: { type: RowType }) {
@@ -76,7 +68,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="self-end text-white mt-6 text-sm font-noto bg-neutral-600 px-5 py-2 rounded-[.0625rem] font-bold leading-5"
+      className="self-end text-white mt-6 text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-5 py-2 rounded-[0.0625] font-bold"
     >
       목록
     </Link>
