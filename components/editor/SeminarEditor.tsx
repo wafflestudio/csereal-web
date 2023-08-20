@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
+import Calendar from 'react-calendar';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
@@ -30,7 +31,6 @@ const placeholderContent: SeminarEditorContent = {
     organization: '',
     organizationURL: '',
     description: '',
-    imageURL: '',
   },
   attachments: [],
   isPublic: true,
@@ -175,6 +175,7 @@ function LocationFieldset({
 function ScheduleFieldset() {
   return (
     <>
+      <Calendar />
       <div className="flex gap-2 mt-4 mb-2">
         <TagCheckbox tag="하루 종일" />
         <TagCheckbox tag="종료 일시 표시" />
