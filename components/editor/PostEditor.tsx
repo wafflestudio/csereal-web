@@ -146,7 +146,12 @@ function TitleFieldset({
 }) {
   return (
     <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
-      <BasicTextInput placeholder="제목을 입력하세요." value={value} onChange={onChange} />
+      <BasicTextInput
+        placeholder="제목을 입력하세요."
+        value={value}
+        onChange={onChange}
+        maxWidth="max-w-[40rem]"
+      />
     </Fieldset>
   );
 }

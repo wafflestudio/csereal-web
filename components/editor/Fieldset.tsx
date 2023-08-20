@@ -2,21 +2,21 @@ import { ReactNode } from 'react';
 
 interface FieldsetProps {
   title: string;
-  mb: 'mb-6' | 'mb-9';
-  titleMb: 'mb-2' | 'mb-3';
+  titleMb: string;
   children: ReactNode;
+  mb?: string;
   required?: boolean;
 }
 
 export default function Fieldset({
   title,
-  mb,
   titleMb,
-  required = false,
   children,
+  mb,
+  required = false,
 }: FieldsetProps) {
   return (
-    <fieldset className={`flex flex-col ${mb}`}>
+    <fieldset className={`flex flex-col ${mb ?? ''} flex-1`}>
       <legend className={`font-yoon text-sm font-medium tracking-wide ${titleMb}`}>
         {title}
         {required && <span className="text-main-orange">*</span>}
