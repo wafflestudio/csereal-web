@@ -1,31 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import { getMockStaff } from '@/apis/staff';
 
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
-
-import { staff } from '@/types/page';
-import { StaffReponse } from '@/types/people';
 
 export default function StaffMemberPage() {
   const id = parseInt(useParams().id);
 
-  const [posts, setPosts] = useState<StaffReponse>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getMockStaff(id);
-      setPosts(response);
-    };
-    fetchData();
-  }, [id]);
+  const { data, isLoading, error } = useSWR([id], getMockStaff);
 
   const [showAnimation, setShowAnimation] = useState(true);
 
@@ -36,45 +25,44 @@ export default function StaffMemberPage() {
 
     return () => clearTimeout(timeout);
   }, []);
-
   return (
-    posts && (
-      <PageLayout currentPage={staff} title={posts.name} titleSize="text-2xl">
+    data && (
+      <PageLayout title={data.name} titleType="big">
         <div className="flow-root relative mb-32">
-          <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={posts.imageURL} />
+          <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={data.imageURL} />
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">주요 업무</h3>
               <ul className="list-inside list-disc">
-                {posts.office && (
+                {data.office && (
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
-                    <p>위치: {posts.office}</p>
+                    <p>위치: {data.office}</p>
                   </li>
                 )}
-                {posts.phone && (
+                {data.phone && (
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
-                    <p>전화: {posts.phone}</p>
+                    <p>전화: {data.phone}</p>
                   </li>
                 )}
-                {posts.email && (
+                {data.email && (
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                     <p>
                       이메일:
                       <Link
                         className="ml-1 text-link hover:underline"
-                        href={`mailto:${posts.email}`}
+                        href={`mailto:${data.email}`}
                       >
-                        {posts.email}
+                        {data.email}
                       </Link>
                     </p>
                   </li>
                 )}
               </ul>
             </article>
-            <PeopleInfoList title="학력" infoList={posts.tasks} />
+            <PeopleInfoList title="학력" infoList={data.tasks} />
           </div>
         </div>
       </PageLayout>

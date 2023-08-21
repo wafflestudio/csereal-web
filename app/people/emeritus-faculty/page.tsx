@@ -1,14 +1,12 @@
 import { getMockEmeritusFacultyList } from '@/apis/faculty';
 
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';
 
-import { emeritusFaculty } from '@/types/page';
-
 export default async function EmeritusFacultyPage() {
-  const { facultyList } = await getEmeritusFacultyData();
+  const { facultyList } = await getMockEmeritusFacultyList();
   return (
-    <PageLayout currentPage={emeritusFaculty} title="역대 교수진" titleSize="text-2xl">
+    <PageLayout title="역대 교수진" titleType="big">
       <div className="grid grid-cols-4 gap-14">
         {facultyList.map((emeritusFaculty, index) => (
           <PeopleRow
@@ -26,9 +24,4 @@ export default async function EmeritusFacultyPage() {
       </div>
     </PageLayout>
   );
-}
-
-async function getEmeritusFacultyData() {
-  const posts = getMockEmeritusFacultyList();
-  return posts;
 }

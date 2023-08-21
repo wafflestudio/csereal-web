@@ -1,15 +1,13 @@
 import { getMockFacultyList } from '@/apis/faculty';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';
 
-import { faculty } from '@/types/page';
-
 export default async function FacultyPage() {
-  const { description, facultyList } = await getFacultyData();
+  const { description, facultyList } = await getMockFacultyList();
   return (
-    <PageLayout currentPage={faculty} title="교수진" titleSize="text-2xl">
+    <PageLayout title="교수진" titleType="big">
       <div className="flex flex-col">
         {description ? (
           <div>
@@ -34,9 +32,4 @@ export default async function FacultyPage() {
       </div>
     </PageLayout>
   );
-}
-
-async function getFacultyData() {
-  const posts = getMockFacultyList();
-  return posts;
 }

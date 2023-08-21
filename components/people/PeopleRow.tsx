@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { faculty, laboratories, staff } from '@/types/page';
+import { faculty, researchLabs, staff } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
@@ -32,7 +32,7 @@ export default function PeopleRow({
 }: PeopleRowProps) {
   const professorLink = getPath(faculty);
   const staffLink = getPath(staff);
-  const labLink = getPath(laboratories);
+  const labLink = getPath(researchLabs);
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
       <Link

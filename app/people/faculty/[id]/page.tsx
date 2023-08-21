@@ -2,64 +2,53 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import { getMockFaculty } from '@/apis/faculty';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import FacultyInfoWithImage from '@/components/people/FacultyInfoWithImage';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-import { faculty, laboratories } from '@/types/page';
-import { FacultyResponse } from '@/types/people';
+import { researchLabs } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-const labUrl = getPath(laboratories);
+const labUrl = getPath(researchLabs);
 
 export default function FacultyMemberPage() {
   const id = parseInt(useParams().id);
 
-  const [posts, setPosts] = useState<FacultyResponse>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getMockFaculty(id);
-      setPosts(response);
-    };
-    fetchData();
-  }, [id]);
-
-  console.log(posts);
+  const { data, isLoading, error } = useSWR([id], getMockFaculty);
 
   return (
-    posts && (
-      <PageLayout currentPage={faculty} title={posts.name} titleSize="text-2xl">
+    data && (
+      <PageLayout title={data.name} titleType="big">
         <div className="flow-root relative mb-10">
           <FacultyInfoWithImage
-            office={posts.office}
-            phone={posts.phone}
-            fax={posts.fax}
-            email={posts.email}
-            website={posts.website}
-            imageURL={posts.imageURL}
+            office={data.office}
+            phone={data.phone}
+            fax={data.fax}
+            email={data.email}
+            website={data.website}
+            imageURL={data.imageURL}
           />
           <div className="flex flex-row">
             <CurvedHorizontalSmallNode />
             <div className=" border-b-[1px] pb-[5px] pr-2 border-b-main-orange -translate-x-[7.15px] translate-y-[1.5px]">
               <Link
-                href={`${labUrl}/${posts?.labId}`}
+                href={`${labUrl}/${data?.labId}`}
                 className="font-noto font-medium text-sm leading-5 hover:text-main-orange hover:cursor-pointer"
               >
-                {posts?.labName}
+                {data?.labName}
               </Link>
             </div>
           </div>
           <div className="mt-8 break-all">
-            <PeopleInfoList title="학력" infoList={posts.educations} />
-            <PeopleInfoList title="연구 분야" infoList={posts.researchAreas} />
-            {posts.careers && <PeopleInfoList title="경력" infoList={posts.careers} />}
+            <PeopleInfoList title="학력" infoList={data.educations} />
+            <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            {data.careers && <PeopleInfoList title="경력" infoList={data.careers} />}
           </div>
         </div>
       </PageLayout>

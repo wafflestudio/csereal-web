@@ -1,14 +1,12 @@
 import { getMockStaffList } from '@/apis/staff';
 
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';
 
-import { staff } from '@/types/page';
-
 export default async function StaffPage() {
-  const { staffList } = await getStaffData();
+  const { staffList } = await getMockStaffList();
   return (
-    <PageLayout currentPage={staff} title="행정직원" titleSize="text-2xl">
+    <PageLayout title="행정직원" titleType="big">
       <div className="grid grid-cols-4 gap-14 mb-10">
         {staffList.map((staff, index) => (
           <PeopleRow
@@ -25,9 +23,4 @@ export default async function StaffPage() {
       </div>
     </PageLayout>
   );
-}
-
-async function getStaffData() {
-  const posts = getMockStaffList();
-  return posts;
 }
