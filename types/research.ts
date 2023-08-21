@@ -31,3 +31,14 @@ export interface ResearchLab extends ResearchLabInfo {
   websiteURL: string;
   group: string;
 }
+
+export interface TopConferenceList {
+  modifiedAt: Date;
+  author: string;
+  conferenceList: {
+    id: number;
+    code: string;
+    abbreviation: string;
+    name: string;
+  }[];
+}
