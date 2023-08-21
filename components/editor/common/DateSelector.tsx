@@ -1,5 +1,3 @@
-import './Calendar.css';
-
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { koKR } from '@mui/x-date-pickers/locales';

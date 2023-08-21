@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react';
 
 import ClearIcon from '@/public/image/clear_icon.svg';
 
-import useDragDrop from '../../hooks/useDragDrop';
+import useDragDrop from '../../../hooks/useDragDrop';
 
 interface FileRowProps {
   index: number;

@@ -3,11 +3,11 @@
 import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
-import SunEditorWrapper from '@/components/editor/SunEditorWrapper';
+import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './ActionButtons';
-import BasicTextInput from './BasicTextInput';
-import DateSelector from './DateSelector';
+import BasicTextInput from './common/BasicTextInput';
+import DateSelector from './common/DateSelector';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
@@ -15,9 +15,9 @@ import {
   SeminarSpeaker,
   seminarEditorPlaceholder,
 } from './EditorProps';
-import Fieldset from './Fieldset';
-import FilePicker, { FilePickerProps } from './FilePicker';
-import ImagePicker, { ImagePickerProps } from './ImagePicker';
+import Fieldset from './common/Fieldset';
+import FilePicker, { FilePickerProps } from './common/FilePicker';
+import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import TagCheckbox from '../common/search/TagCheckbox';
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
