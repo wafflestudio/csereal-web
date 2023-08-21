@@ -151,6 +151,14 @@ function LocationFieldset({
   );
 }
 
+const setYearMonthDay = (date: Date, setDate: (date: Date) => void) => {
+  const newDate = new Date(date);
+  newDate.setFullYear(newDate.getFullYear());
+  newDate.setMonth(newDate.getMonth());
+  newDate.setDate(newDate.getDate());
+  setDate(newDate);
+};
+
 function ScheduleFieldset({
   values,
   setValues,
@@ -174,10 +182,20 @@ function ScheduleFieldset({
       </div>
       <div className="flex mb-4 gap-8">
         <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required grow={false}>
-          <DateSelector date={values.startDate} setDate={setValues('startDate')} />
+          <DateSelector
+            date={values.startDate}
+            setDate={(value) => {
+              setYearMonthDay(value, setValues('startDate'));
+            }}
+          />
         </Fieldset>
         <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
-          <DateSelector date={values.endDate} setDate={setValues('endDate')} />
+          <DateSelector
+            date={values.endDate}
+            setDate={(value) => {
+              setYearMonthDay(value, setValues('endDate'));
+            }}
+          />
         </Fieldset>
       </div>
     </div>
