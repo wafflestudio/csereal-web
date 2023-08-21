@@ -1,5 +1,5 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { SimpleHTMLPageResponse } from '@/types/post';
 
@@ -8,12 +8,11 @@ export default async function History() {
   const resp = await mockHistory();
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <HTMLViewer
         htmlContent={resp.description}
-        mainImage={{ width: 320, height: 213, url: resp.mainImageURL }}
+        topRightContent={{ type: 'image', width: 320, height: 213, url: resp.mainImageURL }}
       />
-      <div className="h-12" />
     </PageLayout>
   );
 }

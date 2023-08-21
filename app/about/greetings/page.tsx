@@ -1,5 +1,5 @@
 import HTMLViewer from '@/components/common/HTMLViewer';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { SimpleHTMLPageResponse } from '@/types/post';
 
@@ -7,10 +7,10 @@ export default async function GreetingsPage() {
   const response = await mockNetwork();
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <HTMLViewer
         htmlContent={response.description}
-        mainImage={{ width: 212, height: 280, url: response.mainImageURL }}
+        topRightContent={{ type: 'image', width: 212, height: 280, url: response.mainImageURL }}
       />
     </PageLayout>
   );

@@ -58,10 +58,13 @@ export const getMockSeminarPost: typeof getSeminarPost = async (id: number) => {
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-small-focus/public/node--seminar/%EB%B0%95%EC%88%9C%EC%9D%BC%20%EB%B0%95%EC%82%AC%20%EC%82%AC%EC%A7%84.jpg?itok=n-iHZlh9',
     prevId: id - 1,
     nextId: id + 1,
+    prevTitle: 'PREVTITLE',
+    nextTitle: 'NEXTTITLE',
     createdAt: new Date().toISOString(),
     modifiedAt: new Date().toISOString(),
     isPublic: true,
     isSlide: true,
     isLast: false,
+    attachment: '',
   };
 };

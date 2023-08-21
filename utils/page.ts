@@ -27,7 +27,7 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
 
   let root = currTab;
   while (root.parent !== main) {
-    root = currTab.parent!; // main 제외한 탭은 전부 parent가 있음
+    root = root.parent!; // main 제외한 탭은 전부 parent가 있음
   }
   return root;
 };

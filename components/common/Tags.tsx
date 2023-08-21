@@ -1,20 +1,16 @@
 import Link from 'next/link';
 
-import { SegmentNode } from '@/types/page';
-
-import { getPath } from '@/utils/page';
-
 interface TagsProps {
   tags: string[];
-  page: SegmentNode; // page using tag search (notice, news)
   margin?: string;
+  searchPath?: string;
 }
 
-export default function Tags({ tags, page, margin = '' }: TagsProps) {
+export default function Tags({ tags, margin = '', searchPath }: TagsProps) {
   return (
-    <div className={`flex items-center gap-2 ${margin}`}>
+    <div className={`flex flex-wrap items-center gap-2.5 ${margin}`}>
       {tags.map((tag) => (
-        <Tag key={tag} tag={tag} page={page} />
+        <Tag key={tag} tag={tag} searchPath={searchPath} />
       ))}
     </div>
   );
@@ -22,16 +18,21 @@ export default function Tags({ tags, page, margin = '' }: TagsProps) {
 
 interface TagProps {
   tag: string;
-  page: SegmentNode;
+  searchPath?: string;
 }
 
-function Tag({ tag, page }: TagProps) {
-  return (
+function Tag({ tag, searchPath }: TagProps) {
+  const tagStyle =
+    'px-2.5 py-0.5 h-6 border rounded-[1.875rem] border-main-orange text-main-orange  text-xs whitespace-nowrap';
+
+  return searchPath ? (
     <Link
-      href={{ pathname: getPath(page), query: { tag: tag } }}
-      className="border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-6 text-xs"
+      className={`${tagStyle} hover:bg-main-orange hover:text-white duration-200`}
+      href={`${searchPath}?tag=${tag}`}
     >
       {tag}
     </Link>
+  ) : (
+    <span className={tagStyle}>{tag}</span>
   );
 }

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import snuLogo from '@/public/image/SNU_Logo.svg';
+import SnuLogo from '@/public/image/SNU_Logo.svg';
 
 import { formatDateWithDays } from '@/utils/formatting';
 
@@ -24,11 +24,16 @@ export default function SeminarRow({
 }: SeminarRowProps) {
   return (
     <article className="text-neutral-700 font-noto flex py-[1.2rem] border-b-[1px] border-neutral-200 ">
-      <Link href="" className="h-[6.25rem] w-[6.25rem] relative">
+      <Link
+        href=""
+        className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
+          !imageURL && 'bg-neutral-100'
+        }`}
+      >
         {imageURL ? (
           <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
         ) : (
-          <Image alt="서울대 이미지" src={snuLogo} fill sizes="10rem" priority />
+          <SnuLogo className="fill-neutral-300" />
         )}
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">

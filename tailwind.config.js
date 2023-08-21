@@ -39,7 +39,17 @@ module.exports = {
       '2xl': '1.5rem', // 24px
     },
 
-    extend: {},
+    extend: {
+      keyframes: {
+        stretch: {
+          '0%': { width: '10px' },
+          '100%': { width: '100%' },
+        },
+      },
+      animation: {
+        stretch: 'stretch 0.7s ease-out',
+      },
+    },
   },
   plugins: [],
 };

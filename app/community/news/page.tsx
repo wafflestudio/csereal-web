@@ -4,10 +4,9 @@ import useSWR from 'swr';
 
 import { getMockNewsPosts } from '@/apis/news';
 
-import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
 import { NewsTags } from '@/constants/tag';
@@ -36,7 +35,7 @@ export default function NewsPage() {
   };
 
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big" titleMargin="mb-6">
       <SearchForm
         key={tags + ''}
         tags={NewsTags}
@@ -44,7 +43,6 @@ export default function NewsPage() {
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <StraightNode double={true} />
       <div className="flex flex-col gap-4 mt-10 mb-8">
         {posts.map((post) => (
           <NewsRow
