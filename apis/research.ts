@@ -2,12 +2,17 @@ import { ResearchCenter, ResearchGroups, ResearchLab, ResearchLabInfo } from '@/
 
 import { getRequest } from '.';
 
-export const getResearchLabs = () => getRequest('/research/labs') as Promise<ResearchLabInfo[]>;
+// export const getResearchLabs = () => getRequest('/research/labs') as Promise<ResearchLabInfo[]>;
 
-export const getResearchLab = (labName: string) =>
-  getRequest(`/research/lab/${labName}`) as Promise<ResearchLab>;
+// export const getResearchLab = (labName: string) =>
+//   getRequest(`/research/lab/${labName}`) as Promise<ResearchLab>;
 
-export const getResearchLabsMock: typeof getResearchLabs = async () => [
+// export const getResearchCenters = () =>
+//   getRequest('/research/centers') as Promise<ResearchCenter[]>;
+
+// export const getResearchGroups = () => getRequest('/research/groups') as Promise<ResearchGroups>;
+
+export const getResearchLabs = async () => [
   ...Array(10)
     .fill(0)
     .map(() => lab),
@@ -16,7 +21,7 @@ export const getResearchLabsMock: typeof getResearchLabs = async () => [
     .map(() => lab2),
 ];
 
-export const getResearchLabMock: typeof getResearchLab = async () => ({
+export const getResearchLab = async (labName: string) => ({
   name: '데이터 마이닝 연구실',
   professors: ['강유'],
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
@@ -64,7 +69,7 @@ const groupMock = {
   ],
 };
 
-export const getResearchGroupsMock = async (): Promise<ResearchGroups> => {
+export const getResearchGroups = async (): Promise<ResearchGroups> => {
   console.log('api call');
   return {
     description:
@@ -82,7 +87,7 @@ export const getResearchGroupsMock = async (): Promise<ResearchGroups> => {
   };
 };
 
-export const getResearchCentersMock = async (): Promise<ResearchCenter[]> => {
+export const getResearchCenters = async (): Promise<ResearchCenter[]> => {
   return [
     {
       name: '컴퓨터 연구소',

@@ -4,6 +4,8 @@ import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/ind
 
 import { COLOR_THEME } from '@/constants/color';
 
+import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+
 interface SelectionListProps {
   names: string[];
   selectedItemName: string;
@@ -69,7 +71,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           width="w-full"
         >
           <Link
-            href={`${path}?selected=${name}`}
+            href={`${path}?selected=${replaceSpaceWithDash(name)}`}
             className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700`}
             scroll={false}
           >

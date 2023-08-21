@@ -26,7 +26,7 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
   const selectedDirection = findSelectedItem<Direction>(
     directionList,
-    decodeURI(searchParams.selected ?? ''),
+    searchParams.selected ?? '',
     directionList[0]?.name,
   );
 

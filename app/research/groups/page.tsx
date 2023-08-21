@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { getResearchGroupsMock } from '@/apis/research';
+import { getResearchGroups } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -23,7 +23,7 @@ const researchGroupsPath = getPath(researchGroups);
 export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
   const { data: { description = '', groups = [] } = {} } = useSWR(
     { url: '/research/groups' },
-    getResearchGroupsMock,
+    getResearchGroups,
   );
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,

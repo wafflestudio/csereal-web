@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { getResearchCentersMock } from '@/apis/research';
+import { getResearchCenters } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -21,10 +21,10 @@ interface ResearchCentersPageProps {
 const researchCentersPath = getPath(researchCenters);
 
 export default function ResearchGroupsPage({ searchParams }: ResearchCentersPageProps) {
-  const { data: centers = [] } = useSWR({ url: '/research/centers' }, getResearchCentersMock);
+  const { data: centers = [] } = useSWR({ url: '/research/centers' }, getResearchCenters);
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
-    decodeURI(searchParams.selected ?? ''),
+    searchParams.selected ?? '',
     centers[0]?.name,
   );
 
