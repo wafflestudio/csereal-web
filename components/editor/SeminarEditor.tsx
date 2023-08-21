@@ -145,14 +145,6 @@ function LocationFieldset({
   );
 }
 
-const setYearMonthDay = (date: Date, setDate: (date: Date) => void) => {
-  const newDate = new Date(date);
-  newDate.setFullYear(newDate.getFullYear());
-  newDate.setMonth(newDate.getMonth());
-  newDate.setDate(newDate.getDate());
-  setDate(newDate);
-};
-
 function ScheduleFieldset({
   values,
   setValues,
@@ -178,19 +170,19 @@ function ScheduleFieldset({
         <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required grow={false}>
           <DateSelector
             date={values.startDate}
-            setDate={(value) => {
-              setYearMonthDay(value, setValues('startDate'));
-            }}
+            setDate={setValues('startDate')}
+            hideTime={values.allDay}
           />
         </Fieldset>
-        <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
-          <DateSelector
-            date={values.endDate}
-            setDate={(value) => {
-              setYearMonthDay(value, setValues('endDate'));
-            }}
-          />
-        </Fieldset>
+        {values.showEndDate && (
+          <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
+            <DateSelector
+              date={values.endDate}
+              setDate={setValues('endDate')}
+              hideTime={values.allDay}
+            />
+          </Fieldset>
+        )}
       </div>
     </div>
   );
