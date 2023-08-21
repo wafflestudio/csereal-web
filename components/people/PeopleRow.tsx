@@ -45,6 +45,7 @@ export default function PeopleRow({
         <Image
           alt="대표 이미지"
           src={imageURL}
+          priority={true}
           fill
           className="object-cover"
           sizes="144px, 192px"

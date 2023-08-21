@@ -27,7 +27,15 @@ export default function StaffMemberPage() {
   }, []);
   return (
     data && (
-      <PageLayout title={data.name} titleType="big">
+      <PageLayout
+        title={
+          <div className="flex flex-row items-end">
+            <p>{data.name}</p>
+            <p className="text-neutral-500 text-md font-normal ml-2 leading-7">{data.role}</p>
+          </div>
+        }
+        titleType="big"
+      >
         <div className="flow-root relative mb-32">
           <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={data.imageURL} />
           <div className="break-all">

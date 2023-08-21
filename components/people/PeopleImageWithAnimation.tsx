@@ -21,8 +21,9 @@ export default function PeopleImageWithAnimation({
         <Image
           alt="대표 이미지"
           src={imageURL}
+          priority={true}
           fill
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover"
           sizes="186px, 248px"
           style={{
             clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',

@@ -25,7 +25,7 @@ export const getMockFacultyList: typeof getFacultyList = async () => {
       labId: index + 1,
       labName: `시스템 소프트웨어 및 구조 연구실`,
       imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%98%95%EC%A3%BC%EA%B5%90%EC%88%98%EB%8B%98_20210208.jpg?itok=VWpdCb2h',
     };
   });
 
