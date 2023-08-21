@@ -105,8 +105,4 @@ export interface SeminarPostResponse extends PostResponse {
   description: string;
   hostDescription: string;
   imageURL: string;
-<<<<<<< HEAD
-  isLast?: boolean;
-=======
->>>>>>> origin
 }
