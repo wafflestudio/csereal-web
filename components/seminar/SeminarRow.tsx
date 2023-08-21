@@ -3,9 +3,13 @@ import Link from 'next/link';
 
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
+import { seminar } from '@/types/page';
+
 import { formatDateWithDays } from '@/utils/formatting';
+import { getPath } from '@/utils/page';
 
 export interface SeminarRowProps {
+  id: number;
   title: string;
   host: string;
   company: string;
@@ -15,7 +19,10 @@ export interface SeminarRowProps {
   isYearLast: boolean;
 }
 
+const seminarPath = getPath(seminar);
+
 export default function SeminarRow({
+  id,
   title,
   host,
   company,
@@ -31,7 +38,7 @@ export default function SeminarRow({
       }`}
     >
       <Link
-        href=""
+        href={`${seminarPath}/${id}`}
         className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
           !imageURL && 'bg-neutral-100'
         }`}
@@ -43,11 +50,14 @@ export default function SeminarRow({
         )}
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
-        <Link href="" className="hover:underline">
+        <Link href={`${seminarPath}/${id}`} className="hover:underline">
           <h3 className="text-md font-bold mb-[.63rem] leading-5">{title}</h3>
         </Link>
 
-        <Link href="" className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
+        <Link
+          href={`${seminarPath}/${id}`}
+          className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center"
+        >
           <span className="material-symbols-rounded font-light text-[1.25rem] cursor-default text-neutral-400">
             person
           </span>
@@ -55,7 +65,10 @@ export default function SeminarRow({
           <p className="text-xs font-normal text-neutral-400 w-4 text-center">|</p>
           <p className="text-xs font-normal ">{company}</p>
         </Link>
-        <Link href="" className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
+        <Link
+          href={`${seminarPath}/${id}`}
+          className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center"
+        >
           <span className="material-symbols-rounded font-light text-lg cursor-default text-neutral-400">
             calendar_month
           </span>

@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
 import { getMockSeminarPost } from '@/apis/seminar';
 
@@ -21,7 +20,7 @@ import { getPath } from '@/utils/page';
 const seminarPath = getPath(seminar);
 
 export default function SeminarPostPage() {
-  let { currPost, nextPostPreview, prevPostPreview, listPathWithQuery } =
+  const { currPost, nextPostPreview, prevPostPreview, listPathWithQuery } =
     usePosts<SeminarPostResponse>(seminarPath, getMockSeminarPost);
 
   return (

@@ -8,6 +8,7 @@ import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import SeminarSearchBar from '@/components/seminar/SearchBar';
 import SeminarRow from '@/components/seminar/SeminarRow';
+import SeminarYear from '@/components/seminar/SeminarYear';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
@@ -32,16 +33,11 @@ export default function SeminarPage() {
           <SeminarSearchBar setSearchParams={setSearchParams} />
         </div>
         <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
-          {data.searchList.map((post, i) => (
-            <div key={i}>
-              {post.isYearLast && (
-                <div className={`border-b-[1px] border-neutral-500 ${i !== 0 ? 'mt-12' : null}`}>
-                  <h3 className="text-neutral-700 font-noto text-[1.25rem] font-bold pb-[.69rem] w-[4.5rem] text-center leading-7">
-                    {new Date(post.startDate).getFullYear()}
-                  </h3>
-                </div>
-              )}
+          {data.searchList.map((post, index) => (
+            <div key={post.id}>
+              {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
               <SeminarRow
+                id={post.id}
                 title={post.title}
                 host={post.name}
                 company={post.affiliation}
