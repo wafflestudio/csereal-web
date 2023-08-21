@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
 
 import { getMockSeminarPost } from '@/apis/seminar';
 
@@ -24,23 +24,10 @@ export default function SeminarPostPage() {
   let { currPost, nextPostPreview, prevPostPreview, listPathWithQuery } =
     usePosts<SeminarPostResponse>(seminarPath, getMockSeminarPost);
 
-  const id = parseInt(useParams().id);
-  const [mockdata, setMockdata] = useState<SeminarPostResponse>();
-  const fetchSeminarPost = useCallback(async () => {
-    const res = await getMockSeminarPost(id);
-    setMockdata(res);
-  }, [id]);
-
-  useEffect(() => {
-    fetchSeminarPost();
-  }, [fetchSeminarPost]);
-
-  currPost ||= mockdata;
-
   return (
     currPost && (
       <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
-        <div className="mb-9 text-sm font-yoon text-neutral-700 leading-[1.63rem] flow-root break-all">
+        <div className="mb-9 text-sm font-noto text-neutral-700 leading-[1.63rem] flow-root break-all">
           <Attachment />
           <div className="relative float-right ml-7 mt-4 mb-7 w-60 h-60">
             <Image
@@ -52,17 +39,40 @@ export default function SeminarPostPage() {
               sizes="240px"
             />
           </div>
-          <div>이름: {currPost.host}</div>
-          <div>소속: {currPost.company}</div>
+          <div>
+            이름:{' '}
+            {currPost.speakerUrl ? (
+              <Link className="text-link hover:underline" href={currPost.speakerUrl}>
+                {currPost.name}
+              </Link>
+            ) : (
+              <p>{currPost.name}</p>
+            )}
+          </div>
 
-          <div className="mt-12">주최: {currPost.professor}</div>
-          <div>일시: {currPost.date}</div>
+          {currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}
+
+          <div>
+            소속:{' '}
+            {currPost.affiliationUrl ? (
+              <Link className="text-link hover:underline" href={currPost.affiliationUrl}>
+                {currPost.affiliation}
+              </Link>
+            ) : (
+              <p>{currPost.affiliation}</p>
+            )}
+          </div>
+
+          <div className="mt-10">주최: {currPost.host}</div>
+          <div>
+            일시: {currPost.startDate} {currPost.startTime} - {currPost.endDate} {currPost.endTime}
+          </div>
           <div>장소: {currPost.location}</div>
 
           <div className="font-bold  mt-12">요약</div>
           <div>{currPost.description}</div>
           <div className="font-bold  mt-12">연사 소개</div>
-          <div>{currPost.hostDescription}</div>
+          <div>{currPost.introduction}</div>
         </div>
         <StraightNode />
         <AdjPostNav

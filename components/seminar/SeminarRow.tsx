@@ -12,6 +12,7 @@ export interface SeminarRowProps {
   date: Date;
   location: string;
   imageURL?: string;
+  isYearLast: boolean;
 }
 
 export default function SeminarRow({
@@ -21,9 +22,14 @@ export default function SeminarRow({
   date,
   location,
   imageURL,
+  isYearLast,
 }: SeminarRowProps) {
   return (
-    <article className="text-neutral-700 font-noto flex py-[1.2rem] border-b-[1px] border-neutral-200 ">
+    <article
+      className={`text-neutral-700 font-noto flex py-[1.2rem] border-neutral-200 ${
+        !isYearLast ? 'border-t-[1px]' : null
+      }`}
+    >
       <Link
         href=""
         className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
@@ -49,18 +55,15 @@ export default function SeminarRow({
           <p className="text-xs font-normal text-neutral-400 w-4 text-center">|</p>
           <p className="text-xs font-normal ">{company}</p>
         </Link>
-        <Link
-          href=""
-          className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center gap-x-1"
-        >
+        <Link href="" className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
           <span className="material-symbols-rounded font-light text-lg cursor-default text-neutral-400">
             calendar_month
           </span>
-          <p className="text-xs font-normal ">{formatDateWithDays(date)}</p>
+          <p className="text-xs font-normal mx-1">{formatDateWithDays(date)}</p>
           <span className="material-symbols-rounded font-light text-lg cursor-default text-neutral-400">
             distance
           </span>
-          <p className="text-xs font-normal ">{location}</p>
+          <p className="text-xs font-normal ml-[1.5px]">{location}</p>
         </Link>
       </div>
     </article>
