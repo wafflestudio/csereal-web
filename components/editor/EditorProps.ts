@@ -1,3 +1,5 @@
+import { CreateAction, EditAction } from './common/ActionButtons';
+
 export interface PostEditorContent {
   title: string;
   description: string;
@@ -36,17 +38,6 @@ export interface SeminarSpeaker {
   organizationURL: string;
   description: string;
   imageURL?: File;
-}
-
-export interface EditAction<T> {
-  type: 'EDIT';
-  onDelete: () => Promise<void>;
-  onComplete: (content: T) => Promise<void>;
-}
-
-export interface CreateAction<T> {
-  type: 'CREATE';
-  onComplete: (content: T) => Promise<void>;
 }
 
 export interface PostEditorProps {

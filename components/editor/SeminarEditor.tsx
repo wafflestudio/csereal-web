@@ -5,7 +5,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 
-import { CreateActionButtons, EditActionButtons } from './ActionButtons';
+import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
 import {

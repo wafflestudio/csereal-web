@@ -1,7 +1,16 @@
 import { useRouter } from 'next/navigation';
 import { useRef, MouseEventHandler } from 'react';
 
-import { EditAction, PostEditorContent, CreateAction } from './EditorProps';
+export interface EditAction<T> {
+  type: 'EDIT';
+  onDelete: () => Promise<void>;
+  onComplete: (content: T) => Promise<void>;
+}
+
+export interface CreateAction<T> {
+  type: 'CREATE';
+  onComplete: (content: T) => Promise<void>;
+}
 
 export function EditActionButtons<T>({
   onDelete,
