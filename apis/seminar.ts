@@ -4,11 +4,13 @@ import { GETSeminarPostsResponse, SeminarPostResponse } from '@/types/post';
 
 import { getRequest } from '.';
 
+const seminarPath = '/seminar';
+
 export const getSeminarPosts = (params: PostSearchQueryParams) =>
-  getRequest('/seminar', params) as Promise<GETSeminarPostsResponse>;
+  getRequest(seminarPath, params) as Promise<GETSeminarPostsResponse>;
 
 export const getSeminarPost = (id: number) =>
-  getRequest(`/seminar/${id}`) as Promise<SeminarPostResponse>;
+  getRequest(`/${seminarPath}/${id}`) as Promise<SeminarPostResponse>;
 
 export const getMockSeminarPosts: typeof getSeminarPosts = async (
   params: PostSearchQueryParams,
