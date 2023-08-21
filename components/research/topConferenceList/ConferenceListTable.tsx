@@ -33,9 +33,7 @@ export default function ConferenceListTable({
 function ConferenceRow({ conference, index }: ConferenceRowProps) {
   return (
     <div
-      className={`flex flex-row w-full h-auto break-words items-center leading-[18px] ${
-        index % 2 === 1 ? 'bg-neutral-50' : null
-      }`}
+      className={`flex flex-row w-full h-auto break-words items-center leading-[18px] even:bg-neutral-50`}
     >
       <div className="flex px-3 py-2 w-12 h-10 items-center justify-center">{conference.id}</div>
       <div className="flex px-3 py-2 w-20 items-center">{conference.code}</div>
