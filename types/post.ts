@@ -106,12 +106,3 @@ export interface SeminarPostResponse extends PostResponse {
   hostDescription: string;
   imageURL: string;
 }
-
-export interface GETFacilitiesPostsResponse {
-  facilitiesList: {
-    name: string;
-    description: string;
-    location: string;
-    imageURL: string;
-  }[];
-}
