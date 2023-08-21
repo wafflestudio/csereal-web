@@ -1,9 +1,9 @@
-import { FacilitiesResponse } from '@/types/facilities';
+import { GETFacilitiesPostsResponse } from '@/types/post';
 
 import { getRequest } from '.';
 
-const facilitiesPath = '/facilities';
-export const getFacilitiesPosts = () => getRequest(facilitiesPath) as Promise<FacilitiesResponse>;
+export const getFacilitiesPosts = () =>
+  getRequest('/facilities') as Promise<GETFacilitiesPostsResponse>;
 
 export const getMockFacilitiesPosts: typeof getFacilitiesPosts = async () => {
   const facilitiesList = Array.from({ length: 8 }, (_, index) => ({
