@@ -2,7 +2,10 @@
 
 import useSWR from 'swr';
 
-import { SeminarEditorContent, seminarEditorPlaceholder } from '@/components/editor/EditorProps';
+import {
+  SeminarEditorContent,
+  seminarEditorPlaceholder,
+} from '@/components/editor/SeminarEditorProps';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

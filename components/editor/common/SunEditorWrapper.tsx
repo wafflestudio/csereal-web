@@ -1,6 +1,6 @@
 'use client';
 
-import { MutableRefObject, useEffect } from 'react';
+import { MutableRefObject } from 'react';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
 import plugins from 'suneditor/src/plugins';

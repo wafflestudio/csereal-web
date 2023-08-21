@@ -1,6 +1,6 @@
 'use client';
 
-import { SeminarEditorContent } from '@/components/editor/EditorProps';
+import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

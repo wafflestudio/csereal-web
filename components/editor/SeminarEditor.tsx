@@ -8,16 +8,16 @@ import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
+import Fieldset from './common/Fieldset';
+import FilePicker, { FilePickerProps } from './common/FilePicker';
+import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
   SeminarSchedule,
   SeminarSpeaker,
   seminarEditorPlaceholder,
-} from './EditorProps';
-import Fieldset from './common/Fieldset';
-import FilePicker, { FilePickerProps } from './common/FilePicker';
-import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+} from './SeminarEditorProps';
 import TagCheckbox from '../common/search/TagCheckbox';
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
@@ -85,13 +85,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       />
       <ImageFieldset file={content.speaker.imageURL} setFile={setSpeakerContentByKey('imageURL')} />
       <FileFieldset files={content.attachments} setFiles={setFiles} />
-      <Fieldset title="게시 설정" titleMb="mb-3" mb="mb-11">
-        <TagCheckbox
-          tag="비공개 글"
-          isChecked={!content.isPublic}
-          toggleCheck={(tag, isChecked) => setContentByKey('isPublic')(isChecked)}
-        />
-      </Fieldset>
+      <IsPublicFieldset isPublic={content.isPublic} setIsPublic={setContentByKey('isPublic')} />
 
       <div className="self-end flex gap-3">
         {actions.type === 'CREATE' && (
@@ -295,6 +289,24 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
   return (
     <Fieldset title="첨부파일" mb="mb-6" titleMb="mb-3">
       <FilePicker files={files} setFiles={setFiles} />
+    </Fieldset>
+  );
+}
+
+function IsPublicFieldset({
+  isPublic,
+  setIsPublic,
+}: {
+  isPublic: boolean;
+  setIsPublic: (value: boolean) => void;
+}) {
+  return (
+    <Fieldset title="게시 설정" titleMb="mb-3" mb="mb-11">
+      <TagCheckbox
+        tag="비공개 글"
+        isChecked={isPublic}
+        toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
+      />
     </Fieldset>
   );
 }

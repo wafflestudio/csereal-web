@@ -1,16 +1,16 @@
 'use client';
 
-import { ChangeEventHandler, MutableRefObject, useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
-import { PostEditorContent, PostEditorProps, postEditorPlaceholder } from './EditorProps';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+import { PostEditorContent, PostEditorProps, postEditorPlaceholder } from './PostEditorProps';
 import TagCheckbox from '../common/search/TagCheckbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정

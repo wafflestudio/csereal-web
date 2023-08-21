@@ -24,31 +24,7 @@ export default function DateSelector({
         <BorderButton text={formatTime(date)} onClick={toggleExpanded} />
       </div>
       <div className="relative">
-        {expanded && (
-          <LocalizationProvider
-            adapterLocale="ko"
-            dateAdapter={AdapterDayjs}
-            localeText={koKR.components.MuiLocalizationProvider.defaultProps.localeText}
-          >
-            <div className="flex flex-col absolute top-1 left-0 z-10 border border-neutral-700 bg-white">
-              <StaticDateTimePicker
-                value={dayjs(date)}
-                onChange={(value) => {
-                  const date = value?.toDate();
-                  date && setDate(date);
-                }}
-                slotProps={{
-                  actionBar: {
-                    actions: [],
-                  },
-                }}
-              />
-              <button className="self-end p-4" onClick={toggleExpanded}>
-                완료
-              </button>
-            </div>
-          </LocalizationProvider>
-        )}
+        {expanded && <DateTimePicker date={date} setDate={setDate} close={toggleExpanded} />}
       </div>
     </div>
   );
@@ -66,6 +42,42 @@ const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) 
     >
       {text}
     </button>
+  );
+};
+
+const DateTimePicker = ({
+  date,
+  setDate,
+  close,
+}: {
+  date: Date;
+  setDate: (date: Date) => void;
+  close: () => void;
+}) => {
+  return (
+    <LocalizationProvider
+      adapterLocale="ko"
+      dateAdapter={AdapterDayjs}
+      localeText={koKR.components.MuiLocalizationProvider.defaultProps.localeText}
+    >
+      <div className="flex flex-col absolute top-1 left-0 z-10 border border-neutral-700 bg-white">
+        <StaticDateTimePicker
+          value={dayjs(date)}
+          onChange={(value) => {
+            const date = value?.toDate();
+            date && setDate(date);
+          }}
+          slotProps={{
+            actionBar: {
+              actions: [],
+            },
+          }}
+        />
+        <button className="self-end p-4" onClick={close}>
+          완료
+        </button>
+      </div>
+    </LocalizationProvider>
   );
 };
 

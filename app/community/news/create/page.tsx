@@ -1,6 +1,6 @@
 'use client';
 
-import { PostEditorContent } from '@/components/editor/EditorProps';
+import { PostEditorContent } from '@/components/editor/SeminarEditorProps';
 import PostEditor from '@/components/editor/PostEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
