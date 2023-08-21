@@ -20,7 +20,7 @@ export default function SelectionList({
   listItemPadding = '',
 }: SelectionListProps) {
   return (
-    <ul className={`grid ${listGridColumnClass} gap-3 mb-11`}>
+    <ul className={`grid ${listGridColumnClass} gap-3 mb-9`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
@@ -55,7 +55,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleLength={triangleLength}
           radius={radius}
           triangleDropShadow={dropShadow}
-          isSelection={true}
+          width="w-full"
         >
           <span className={`${itemCommonStyle} text-white`}>{name}</span>
         </CornerFoldedRectangle>
@@ -65,8 +65,8 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleLength={triangleLength}
           radius={radius}
           triangleDropShadow={dropShadow}
-          isAnimated={true}
-          isSelection={true}
+          animationType="folding"
+          width="w-full"
         >
           <Link
             href={`${path}?selected=${name}`}

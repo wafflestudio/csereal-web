@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import LinkIcon from '@/public/image/link_icon.svg';
 
 import HTMLViewer from '@/components/common/HTMLViewer';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
@@ -25,12 +25,15 @@ export default function ResearchCenterDetails({ center }: ResearchCenterDetailPr
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
     <SelectionTitle animationKey={name}>
-      <Link href={link} target="_blank" className="group flex items-center gap-0.5 h-10">
+      <a
+        href={link}
+        target="_blank"
+        className="group flex items-center gap-1 h-10"
+        rel="noopener noreferrer"
+      >
         <span>{name}</span>
-        <span className="material-symbols-rounded rotate-[-45deg] pt-1 text-neutral-400 group-hover:text-main-orange">
-          link
-        </span>
-      </Link>
+        <LinkIcon className="mt-1 fill-neutral-400 group-hover:fill-main-orange" />
+      </a>
     </SelectionTitle>
   );
 }

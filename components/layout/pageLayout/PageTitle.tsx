@@ -11,13 +11,16 @@ interface PageTitleProps {
   title: string | JSX.Element;
   currentPage: SegmentNode;
   titleType: 'big' | 'small';
+  margin: string;
 }
 
-export default function PageTitle({ title, currentPage, titleType }: PageTitleProps) {
+export default function PageTitle({ title, currentPage, titleType, margin }: PageTitleProps) {
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div className="w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mb-9">
+    <div
+      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-3`}
+    >
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />
         <CurvedHorizontalNode grow={true} />
