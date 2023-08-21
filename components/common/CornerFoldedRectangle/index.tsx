@@ -9,10 +9,10 @@ interface CornerFoldedRectangleProps {
   triangleLength: number; // rem 단위
   triangleDropShadow: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
   rectangleDropShadow?: string; // 기본 css `filter` 속성에 들어가는 형식 (tailwind X)
-  rectangleMargin?: string; // tailwind 형식
+  margin?: string; // tailwind 형식
   radius: number; // rem 단위
-  isAnimated?: boolean; // 선택형 리스트 컴포넌트(동아리, 찾아오는 길 등; triangleLength 1.25rem, radius 0.125rem)일 때만 스타일 정상 적용
-  isSelection?: boolean; // true: 선택형 컴포넌트, false: 단순히 접힌 것
+  animationType?: 'folding' | 'unfolding';
+  width?: string;
   children: ReactNode;
 }
 
@@ -24,19 +24,14 @@ export default function CornerFoldedRectangle({
   triangleLength,
   triangleDropShadow,
   rectangleDropShadow,
-  rectangleMargin,
+  margin,
   radius,
-  isAnimated,
-  isSelection,
+  animationType,
+  width = 'w-fit',
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
     borderRadius: `${radius}rem`,
-    background: isAnimated
-      ? colorTheme.bgColor
-      : `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
-          colorTheme.bgColor
-        } 0)`,
     filter: rectangleDropShadow,
   };
 
@@ -47,22 +42,29 @@ export default function CornerFoldedRectangle({
     filter: triangleDropShadow,
   };
 
-  return isAnimated ? (
-    <div
-      className={`relative ${isSelection ? 'w-full' : 'w-fit'} ${rectangleMargin} ${
-        styles.folding
-      }`}
-      style={rectangleStyle}
-    >
-      {children}
-    </div>
-  ) : (
-    <div
-      className={`relative ${isSelection ? 'w-full' : 'w-fit'} ${rectangleMargin}`}
-      style={rectangleStyle}
-    >
-      <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
-      {children}
-    </div>
-  );
+  if (animationType) {
+    return (
+      <div
+        className={`relative ${width} ${margin} ${styles[animationType]}`}
+        style={{ ...rectangleStyle, backgroundColor: colorTheme.bgColor }}
+      >
+        {children}
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={`relative ${width} ${margin}`}
+        style={{
+          ...rectangleStyle,
+          background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
+            colorTheme.bgColor
+          } 0)`,
+        }}
+      >
+        <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
+        {children}
+      </div>
+    );
+  }
 }

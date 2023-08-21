@@ -6,7 +6,6 @@ export interface Post {
   // html 내용
   description: string;
   isPublic: boolean;
-  isSlide: boolean;
   attachment: FormData;
 }
 
@@ -41,6 +40,7 @@ export interface SimpleHTMLPageResponse {
 export interface NewsPost extends Post {
   tags: string[];
   imageURL: string;
+  isSlide: boolean;
 }
 
 export interface NewsPostResponse extends Omit<NewsPost, 'attachment'>, PostResponse {}
@@ -105,13 +105,4 @@ export interface SeminarPostResponse extends PostResponse {
   description: string;
   hostDescription: string;
   imageURL: string;
-}
-
-export interface GETFacilitiesPostsResponse {
-  facilitiesList: {
-    name: string;
-    description: string;
-    location: string;
-    imageURL: string;
-  }[];
 }

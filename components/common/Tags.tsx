@@ -8,7 +8,7 @@ interface TagsProps {
 
 export default function Tags({ tags, margin = '', searchPath }: TagsProps) {
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${margin}`}>
+    <div className={`flex flex-wrap items-center gap-2.5 ${margin}`}>
       {tags.map((tag) => (
         <Tag key={tag} tag={tag} searchPath={searchPath} />
       ))}
@@ -23,10 +23,13 @@ interface TagProps {
 
 function Tag({ tag, searchPath }: TagProps) {
   const tagStyle =
-    'border rounded-[1.875rem] border-main-orange text-main-orange px-2.5 py-0.5 h-6 text-xs whitespace-nowrap';
+    'px-2.5 py-0.5 h-6 border rounded-[1.875rem] border-main-orange text-main-orange  text-xs whitespace-nowrap';
 
   return searchPath ? (
-    <Link className={tagStyle} href={`${searchPath}?tag=${tag}`}>
+    <Link
+      className={`${tagStyle} hover:bg-main-orange hover:text-white duration-200`}
+      href={`${searchPath}?tag=${tag}`}
+    >
       {tag}
     </Link>
   ) : (

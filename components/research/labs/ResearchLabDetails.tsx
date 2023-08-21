@@ -1,72 +1,52 @@
 import Link from 'next/link';
 
-import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import PentagonLong from '@/public/image/pentagon_long.svg';
+import PentagonShort from '@/public/image/pentagon_short.svg';
 
-import { COLOR_THEME } from '@/constants/color';
+import HTMLViewer from '@/components/common/HTMLViewer';
 
 import { researchGroups } from '@/types/page';
 import { ResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
 
+import ResearchLabInfo from './ResesarchLabInfo';
+
 export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   return (
     <div>
       <AffiliatedGroup groupName={lab.group} />
-      <ResearchLabInfo lab={lab} />
-      <HTMLViewer htmlContent={lab.description} />
+      <HTMLViewer
+        htmlContent={lab.description}
+        topRightContent={{ type: 'component', content: <ResearchLabInfo lab={lab} /> }}
+        margin="mt-6"
+      />
     </div>
   );
 }
 
 const researchGroupsPath = getPath(researchGroups);
+const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
+  const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
+  const affiliatedGroupPath = `${researchGroupsPath}?selected=${groupName}`;
+
   return (
-    <div className={`test relative w-fit`}>
+    <div className="relative w-fit">
       <Link
-        href={`${researchGroupsPath}?selected=${groupName}`}
-        className="inline-block w-fit h-[42px] font-yoon text-sm py-2.5 px-4 whitespace-nowrap"
+        href={affiliatedGroupPath}
+        className={`absolute inline-block ${width} h-10 text-sm text-center py-2.5 peer hover:text-white duration-300`}
       >
-        <span>{groupName} 연구 그룹</span>
+        <span className="font-yoon tracking-[-0.019em]">{groupName} 연구그룹</span>
       </Link>
-    </div>
-  );
-}
-
-function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
-  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
-  const triangleLength = 2.5; // 20px
-  const radius = 0.125; // 2px
-
-  return (
-    <CornerFoldedRectangle
-      triangleDropShadow={dropShadow}
-      rectangleDropShadow={dropShadow}
-      radius={radius}
-      triangleLength={triangleLength}
-      colorTheme={COLOR_THEME.white}
-    >
-      <div className="w-60 py-6 px-7">
-        <ul className="[&>li]:mb-1 font-noto">
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">교수: </span>
-            <span> {lab.professors.join(', ')}</span>
-          </li>
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">랩실: </span> <span>{lab.location}</span>
-          </li>
-          <li className="text-sm flex gap-1">
-            <span className="whitespace-nowrap">전화: </span> <span>{lab.tel}</span>
-          </li>
-          <li className="mt-[1.625rem]">
-            <Link href={lab.websiteURL} className="underline text-sm">
-              Website
-            </Link>
-          </li>
-        </ul>
+      <div className="text-white peer-hover:text-main-orange">
+        {groupName.length < LENGTH_BOUNDARY ? (
+          <PentagonShort className="duration-300" />
+        ) : (
+          <PentagonLong className="duration-300" />
+        )}
       </div>
-    </CornerFoldedRectangle>
+    </div>
   );
 }
