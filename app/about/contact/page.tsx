@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function ContactPage() {
   const { mainImage, address, location, staffUrl, fax, time, emailList } = await getMockContact();
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <div className="flow-root break-all font-noto text-neutral-700">
         <div className="relative float-right w-60 h-[360px] ml-5">
           <Image

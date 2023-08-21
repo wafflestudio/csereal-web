@@ -3,14 +3,23 @@ import { getMockTopConferenceList, getTopConferenceList } from '@/apis/topConfer
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ConferenceListTable from '@/components/research/topConferenceList/ConferenceListTable';
 
-import { formatDateWithDot } from '@/utils/formatting';
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+const formatDateWithDot = (date: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = date.getDay();
+
+  return `${year}.${month}.${day}(${DAYS[dayOfWeek]})`;
+};
 
 export default async function TopConferenceListPage() {
   const { modifiedAt, author, conferenceList } = await getMockTopConferenceList();
 
   const modifiedDate = formatDateWithDot(modifiedAt);
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <div className="flex flex-col font-noto font-normal text-neutral-700">
         <h3 className="font-bold text-base leading-8 mb-5">
           서울대학교 공과대학 컴퓨터공학부 Top Conference List

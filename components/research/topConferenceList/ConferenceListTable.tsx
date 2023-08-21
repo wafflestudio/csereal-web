@@ -7,7 +7,6 @@ export interface ConferenceListTableProps {
 
 export interface ConferenceRowProps {
   conference: ConferenceListTableProps;
-  index: number;
 }
 
 export default function ConferenceListTable({
@@ -23,14 +22,14 @@ export default function ConferenceListTable({
         <div className="flex items-center px-3 w-28">약칭</div>
         <div className="flex items-center px-3 w-[540px]">학술대회명칭</div>
       </div>
-      {conferenceList.map((conference, index) => (
-        <ConferenceRow conference={conference} key={index} index={index} />
+      {conferenceList.map((conference) => (
+        <ConferenceRow conference={conference} key={conference.id} />
       ))}
     </div>
   );
 }
 
-function ConferenceRow({ conference, index }: ConferenceRowProps) {
+function ConferenceRow({ conference }: ConferenceRowProps) {
   return (
     <div
       className={`flex flex-row w-full h-auto break-words items-center leading-[18px] even:bg-neutral-50`}
