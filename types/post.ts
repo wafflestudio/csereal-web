@@ -116,12 +116,3 @@ export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
   imageURL: string;
   additionalNote?: string;
 }
-
-export interface GETFacilitiesPostsResponse {
-  facilitiesList: {
-    name: string;
-    description: string;
-    location: string;
-    imageURL: string;
-  }[];
-}
