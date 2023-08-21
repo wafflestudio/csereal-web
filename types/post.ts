@@ -107,17 +107,3 @@ export interface SeminarPostResponse extends PostResponse {
   hostDescription: string;
   imageURL: string;
 }
-<<<<<<< HEAD
-
-// 시설 안내 - - - - - - - - - - - - - - - - - - - -
-
-export interface GETFacilitiesPostsResponse {
-  facilitiesList: {
-    name: string;
-    description: string;
-    location: string;
-    imageURL: string;
-  }[];
-}
-=======
->>>>>>> origin
