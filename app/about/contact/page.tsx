@@ -3,12 +3,12 @@ import Link from 'next/link';
 
 import { getMockContact } from '@/apis/contact';
 
-import PageLayout from '@/components/layout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function ContactPage() {
   const { mainImage, address, location, staffUrl, fax, time, emailList } = await getMockContact();
   return (
-    <PageLayout titleSize="text-2xl">
+    <PageLayout titleType="big">
       <div className="flow-root break-all font-noto text-neutral-700">
         <div className="relative float-right w-60 h-[360px] ml-5">
           <Image
