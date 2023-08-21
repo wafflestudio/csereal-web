@@ -33,7 +33,7 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
       <div
         className={`
         text-sm font-noto font-regular leading-loose 
-        [&_a]:text-link [&_a]:underline 
+        [&_a]:text-link hover:[&_a]:underline
         [&_li]:list-disc [&_li]:list-inside 
         [&_p]:mb-4 
         [&_td]:border-[1px] [&_td]:border-neutral-300

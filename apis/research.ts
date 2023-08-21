@@ -35,7 +35,10 @@ const lab: ResearchLabInfo = {
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
   tel: '(02) 880-1860',
   acronym: 'QUIQCL',
-  introductionMaterials: { pdf: '', youtube: 'youtubelink' },
+  introductionMaterials: {
+    pdf: 'https://picsum.photos/801',
+    youtube: 'https://youtu.be/LCQrNawLymE',
+  },
 };
 
 const lab2: ResearchLabInfo = {
@@ -44,7 +47,7 @@ const lab2: ResearchLabInfo = {
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
   tel: '(02) 880-1860',
   acronym: 'QUIQCL',
-  introductionMaterials: { pdf: '/', youtube: 'youtubelink' },
+  introductionMaterials: { pdf: '/', youtube: 'https://youtu.be/3B2msqtwfCc' },
 };
 
 const groupMock = {
