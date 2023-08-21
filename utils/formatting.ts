@@ -38,12 +38,3 @@ export const formatDateWithDays = (date: Date) => {
 
   return `${month}/${day} (${DAYS[dayOfWeek]})`;
 };
-
-export const formatDateWithDot = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dayOfWeek = date.getDay();
-
-  return `${year}.${month}.${day}(${DAYS[dayOfWeek]})`;
-};
