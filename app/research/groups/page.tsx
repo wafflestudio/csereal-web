@@ -28,11 +28,11 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,
     decodeURI(searchParams.selected ?? ''),
-    groups[0].name,
+    groups[0]?.name,
   );
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" titleMargin="mb-9">
       <ResearchDescription description={description} />
       <SelectionList
         names={groups.map((group) => group.name)}
