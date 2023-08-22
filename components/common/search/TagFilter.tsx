@@ -10,7 +10,7 @@ interface TagFilterProps {
 }
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
-const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
+const gridStyle = 'grid-cols-[repeat(6,_max-content)]';
 
 export default function TagFilter({
   tags,
@@ -29,7 +29,7 @@ export default function TagFilter({
       <h5 className="text-md font-bold font-yoon whitespace-nowrap mr-6 text-neutral-700 tracking-wide">
         태그
       </h5>
-      <div className={`grow grid ${gridStyle} gap-x-6 gap-y-2.5`}>
+      <div className={`grow grid ${gridStyle} gap-x-7 gap-y-2.5`}>
         {tags.map((tag) => (
           <TagCheckbox
             key={tag}
