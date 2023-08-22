@@ -2,6 +2,8 @@
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
+import { logOut, login } from '@/apis/auth';
+
 import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
@@ -39,7 +41,10 @@ function HeaderRight() {
   const lang = 'ENG';
 
   const handleLogin = () => {
-    // TODO
+    login();
+  };
+  const handleLogOut = () => {
+    logOut();
   };
   const handleLangChange = () => {
     // TODO
@@ -49,6 +54,8 @@ function HeaderRight() {
     <div className="flex flex-col justify-between items-end flex-grow">
       <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
         <button onClick={handleLogin}>로그인</button>
+        <span>|</span>
+        <button onClick={handleLogOut}>로그아웃</button>
         <span>|</span>
         <button onClick={handleLangChange}>{lang}</button>
       </div>
