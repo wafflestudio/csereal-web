@@ -7,7 +7,7 @@ import PeopleRow from '@/components/people/PeopleRow';
 export default async function FacultyPage() {
   const { description, facultyList } = await getMockFacultyList();
   return (
-    <PageLayout title="교수진" titleType="big">
+    <PageLayout title="교수진" titleType="big" titleMargin="mb-9">
       <div className="flex flex-col">
         {description ? (
           <div>

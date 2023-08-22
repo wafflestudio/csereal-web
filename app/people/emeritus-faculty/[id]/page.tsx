@@ -16,7 +16,7 @@ export default function EmeritusFacultyMemberPage() {
 
   const [careerTime, setCareerTime] = useState({ startTime: '', endTime: '' });
 
-  const { data, isLoading, error } = useSWR([id], getMockEmeritusFaculty);
+  const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockEmeritusFaculty);
 
   const [showAnimation, setShowAnimation] = useState(true);
 
@@ -35,7 +35,6 @@ export default function EmeritusFacultyMemberPage() {
 
     return () => clearTimeout(timeout);
   }, []);
-  console.log(showAnimation);
 
   return (
     data && (
@@ -49,6 +48,7 @@ export default function EmeritusFacultyMemberPage() {
           </div>
         }
         titleType="big"
+        titleMargin="mb-9"
       >
         <div className="flow-root relative mb-10">
           <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={data.imageURL} />

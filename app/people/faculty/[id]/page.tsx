@@ -20,7 +20,7 @@ const labUrl = getPath(researchLabs);
 export default function FacultyMemberPage() {
   const id = parseInt(useParams().id);
 
-  const { data, isLoading, error } = useSWR([id], getMockFaculty);
+  const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockFaculty);
 
   return (
     data && (
@@ -34,6 +34,7 @@ export default function FacultyMemberPage() {
           </div>
         }
         titleType="big"
+        titleMargin="mb-9"
       >
         <div className="flow-root relative mb-10">
           <FacultyInfoWithImage
@@ -48,7 +49,7 @@ export default function FacultyMemberPage() {
             <CurvedHorizontalSmallNode />
             <div className=" border-b-[1px] pb-[5px] pr-2 border-b-main-orange -translate-x-[7.15px] translate-y-[1.5px]">
               <Link
-                href={`${labUrl}/${data?.labId}`}
+                href={`${labUrl}`}
                 className="font-noto font-medium text-sm leading-5 hover:text-main-orange hover:cursor-pointer"
               >
                 {data?.labName}

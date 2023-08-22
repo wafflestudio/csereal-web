@@ -35,14 +35,14 @@ export const getMockFacultyList: typeof getFacultyList = async () => {
   };
 };
 
-export const getMockFaculty: typeof getFaculty = async (id: number) => {
+export const getMockFaculty: typeof getFaculty = async () => {
   return {
-    id: id,
-    name: `교수 ${id}`,
+    id: 1,
+    name: `교수 1`,
     academicRank: '교수',
     phone: '(02) 880-7254',
     email: `ukang@snu.ac.kr`,
-    labId: id,
+    labId: 1,
     labName: `데이터 마이닝 연구실`,
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
@@ -98,10 +98,10 @@ export const getMockEmeritusFacultyList: typeof getEmeritusFacultyList = async (
   };
 };
 
-export const getMockEmeritusFaculty: typeof getFaculty = async (id: number) => {
+export const getMockEmeritusFaculty: typeof getFaculty = async () => {
   return {
-    id: id,
-    name: `명예교수 ${id}`,
+    id: 1,
+    name: `명예교수 1`,
     academicRank: '명예교수',
     office: '301동 502호',
     phone: '(02) 880-7254',

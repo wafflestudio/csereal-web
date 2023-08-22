@@ -14,7 +14,7 @@ import PeopleInfoList from '@/components/people/PeopleInfoList';
 export default function StaffMemberPage() {
   const id = parseInt(useParams().id);
 
-  const { data, isLoading, error } = useSWR([id], getMockStaff);
+  const { data, isLoading, error } = useSWR({ url: `/staff/${id}` }, getMockStaff);
 
   const [showAnimation, setShowAnimation] = useState(true);
 
@@ -35,6 +35,7 @@ export default function StaffMemberPage() {
           </div>
         }
         titleType="big"
+        titleMargin="mb-9"
       >
         <div className="flow-root relative mb-32">
           <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={data.imageURL} />

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import './FadeInOut.css';
 
 export interface PeopleImageWithAnimationProps {
   showAnimation: boolean;
@@ -33,12 +32,11 @@ export default function PeopleImageWithAnimation({
       {showAnimation && (
         <div className="relative h-full w-full">
           <div
-            className="h-full w-full absolute bottom-[-17px] left-[-17px] "
+            className="h-full w-full absolute bottom-[-17px] left-[-17px] animate-fadeInOut"
             style={{
               background:
                 'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
               clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-              animation: 'fadeInOut 1s ease-out',
             }}
           />
         </div>

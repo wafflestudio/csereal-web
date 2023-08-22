@@ -25,10 +25,10 @@ export const getMockStaffList: typeof getStaffList = async () => {
   };
 };
 
-export const getMockStaff: typeof getStaff = async (id: number) => {
+export const getMockStaff: typeof getStaff = async () => {
   return {
-    id: id,
-    name: `직원 ${id}`,
+    id: 1,
+    name: `직원 1`,
     role: '교원인사.일반서무',
     phone: '(02) 880-7254',
     email: `ukang@snu.ac.kr`,

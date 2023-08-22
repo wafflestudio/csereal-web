@@ -45,9 +45,15 @@ module.exports = {
           '0%': { width: '10px' },
           '100%': { width: '100%' },
         },
+        fadeInOut: {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
       },
       animation: {
         stretch: 'stretch 0.7s ease-out',
+        fadeInOut: 'fadeInOut 1s ease-out',
       },
     },
   },
