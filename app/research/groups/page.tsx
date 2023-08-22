@@ -40,7 +40,13 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
         path={researchGroupsPath}
         listGridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
       />
-      {selectedGroup && <ResearchGroupDetails group={selectedGroup} />}
+      {selectedGroup ? (
+        <ResearchGroupDetails group={selectedGroup} />
+      ) : (
+        <p>
+          <b>{`'${searchParams.selected}'`}</b> 연구그룹은 존재하지 않습니다.
+        </p>
+      )}
     </PageLayout>
   );
 }

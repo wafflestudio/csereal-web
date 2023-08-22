@@ -36,7 +36,13 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
         path={researchCentersPath}
         listGridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
       />
-      {selectedCenter && <ResearchCenterDetails center={selectedCenter} />}
+      {selectedCenter ? (
+        <ResearchCenterDetails center={selectedCenter} />
+      ) : (
+        <p>
+          <b>id가 {`'${searchParams.selected}'`}</b>인 연구센터는 존재하지 않습니다.
+        </p>
+      )}
     </PageLayout>
   );
 }

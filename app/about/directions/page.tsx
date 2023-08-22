@@ -21,6 +21,8 @@ interface DirectionsPageProps {
 }
 
 const directionsPath = getPath(directions);
+const FIND_PATH_URL =
+  'https://map.naver.com/v5/directions/-/14132304.586627584,4502018.066849938,%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90%EA%B4%80%EC%95%85%EC%BA%A0%ED%8D%BC%EC%8A%A4%EC%A0%9C1%EA%B3%B5%ED%95%99%EA%B4%80,18721800,PLACE_POI/-/transit?c=15,0,0,0,dh';
 
 export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
@@ -43,7 +45,17 @@ export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
           path={directionsPath}
           listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
         />
-        {selectedDirection && <DirectionsDetails direction={selectedDirection} />}
+        {selectedDirection ? (
+          <DirectionsDetails direction={selectedDirection} />
+        ) : (
+          <p>
+            <b>{`'${searchParams.selected}'`}</b>은/는{' '}
+            <a href={FIND_PATH_URL} className="text-link hover:underline">
+              길찾기
+            </a>
+            를 활용해주세요.
+          </p>
+        )}
       </div>
     </PageLayout>
   );
