@@ -1,12 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import useSWR from 'swr';
+
+import { getCourses } from '@/apis/academics';
 
 import { Tag } from '@/components/common/Tags';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Course } from '@/types/academics';
+
 export default function UndergraduateCoursePage() {
   const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
+  const { data } = useSWR<Course[]>(`/courses/undergraduate`, getCourses);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
@@ -20,9 +26,9 @@ export default function UndergraduateCoursePage() {
   );
 }
 
-const SORT_OPTIOINS = { year: '학년', courseType: '교과목 구분', credit: '학점' } as const;
+const SORT_OPTIOINS = { grade: '학년', courseType: '교과목 구분', credit: '학점' } as const;
 type SortOption =
-  | typeof SORT_OPTIOINS.year
+  | typeof SORT_OPTIOINS.grade
   | typeof SORT_OPTIOINS.courseType
   | typeof SORT_OPTIOINS.credit;
 
@@ -50,3 +56,20 @@ function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
     </div>
   );
 }
+
+const sortCourses = (courses: Course[], sortOption: SortOption) => {
+  const sortedCourses: Course[][] = [];
+
+  if (sortOption === SORT_OPTIOINS.grade) {
+    sortedCourses.push([], [], [], []);
+    courses.forEach((course) => sortedCourses[course.grade - 1].push(course));
+  } else if (sortOption === SORT_OPTIOINS.courseType) {
+    sortedCourses.push([], [], []);
+    courses.forEach((course) => sortedCourses[course.courseType - 1].push(course));
+  } else {
+    sortedCourses.push([], [], []);
+    courses.forEach((course) => sortedCourses[course.credit - 2].push(course));
+  }
+
+  return sortedCourses;
+};
