@@ -102,11 +102,16 @@ export default function PostEditor({
             />
           )}
           {showIsSlide && (
-            <TagCheckbox
-              tag="슬라이드 쇼에 표시"
-              isChecked={content.isSlide}
-              toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
-            />
+            <>
+              <TagCheckbox
+                tag="슬라이드 쇼에 표시"
+                isChecked={content.isSlide}
+                toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
+              />
+              <p className="font-yoon text-xs text-neutral-700 font-light tracking-wide">
+                * ‘슬라이드쇼에 표시’ 글은 대표이미지가 첨부되어있는지 확인 바랍니다.
+              </p>
+            </>
           )}
         </div>
       </Fieldset>
