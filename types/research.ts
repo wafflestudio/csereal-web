@@ -1,8 +1,9 @@
 export interface ResearchGroup {
+  id: number;
   name: string;
   description: string;
   imageURL: string;
-  laboratories: string[];
+  labs: { id: number; name: string }[];
 }
 
 export interface ResearchGroups {
@@ -11,15 +12,17 @@ export interface ResearchGroups {
 }
 
 export interface ResearchCenter {
+  id: number;
   name: string;
   description: string;
   imageURL: string;
-  link: string;
+  websiteURL: string;
 }
 
 export interface ResearchLabInfo {
+  id: number;
   name: string;
-  professors: string[];
+  professors: { id: number; name: string }[];
   location: string;
   tel: string;
   acronym: string;
