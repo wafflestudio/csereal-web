@@ -36,15 +36,15 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
 
 const facultyPath = getPath(faculty);
 
-function ProfessorsInfo({ professors }: { professors: string[] }) {
+function ProfessorsInfo({ professors }: { professors: { id: number; name: string }[] }) {
   return (
     <li className="text-sm flex gap-1">
       <span className="whitespace-nowrap">
         교수:{' '}
-        {professors.map((name, i) => (
-          <Fragment key={name}>
-            <Link href={`${facultyPath}/${name}`} className="hover:text-main-orange">
-              {name}
+        {professors.map((info, i) => (
+          <Fragment key={info.id}>
+            <Link href={`${facultyPath}/${info.id}`} className="hover:text-main-orange">
+              {info.name}
             </Link>
             {i !== professors.length - 1 && ', '}
           </Fragment>

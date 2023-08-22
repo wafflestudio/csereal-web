@@ -25,7 +25,7 @@ export default function ResearchLabListRow({ lab }: { lab: ResearchLabInfo }) {
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
       <NameCell name={lab.name} />
-      <ProfessorsCell professorNames={lab.professors} />
+      <ProfessorsCell professors={lab.professors} />
       <LocationCell location={lab.location} />
       <TelephoneCell tel={lab.tel} />
       <AcronymCell acronym={lab.acronym} />
@@ -51,15 +51,15 @@ function NameCell({ name }: { name: string }) {
   );
 }
 
-function ProfessorsCell({ professorNames }: { professorNames: string[] }) {
+function ProfessorsCell({ professors }: { professors: { id: number; name: string }[] }) {
   return (
     <span className={`${LAB_ROW_ITEM_WIDTH.professor} text-neutral-400`}>
-      {professorNames.map((name, i) => (
-        <Fragment key={name}>
-          <Link href={`${facultyPath}/${name}`} className="hover:text-neutral-700">
-            {name}
+      {professors.map((info, i) => (
+        <Fragment key={info.id}>
+          <Link href={`${facultyPath}/${info.id}`} className="hover:text-neutral-700">
+            {info.name}
           </Link>
-          {i !== professorNames.length - 1 && ', '}
+          {i !== professors.length - 1 && ', '}
         </Fragment>
       ))}
     </span>
