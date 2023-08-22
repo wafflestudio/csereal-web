@@ -21,7 +21,10 @@ export default function SeminarPage() {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const { data, isLoading, error } = useSWR([keyword, page], getMockSeminarPosts);
+  const { data, isLoading, error } = useSWR(
+    { url: '/seminar', params: { keyword, page } },
+    getMockSeminarPosts,
+  );
 
   return (
     data && (
