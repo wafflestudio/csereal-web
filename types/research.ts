@@ -20,6 +20,7 @@ export interface ResearchCenter {
 }
 
 export interface ResearchLabInfo {
+  id: number;
   name: string;
   professors: { id: number; name: string }[];
   location: string;

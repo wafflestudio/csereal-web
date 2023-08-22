@@ -7,7 +7,6 @@ import { faculty, researchLabs } from '@/types/page';
 import { ResearchLabInfo } from '@/types/research';
 
 import { getPath } from '@/utils/page';
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 export const LAB_ROW_ITEM_WIDTH = {
   name: 'w-56',
@@ -24,7 +23,7 @@ const facultyPath = getPath(faculty);
 export default function ResearchLabListRow({ lab }: { lab: ResearchLabInfo }) {
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
-      <NameCell name={lab.name} />
+      <NameCell name={lab.name} id={lab.id} />
       <ProfessorsCell professors={lab.professors} />
       <LocationCell location={lab.location} />
       <TelephoneCell tel={lab.tel} />
@@ -38,13 +37,10 @@ export default function ResearchLabListRow({ lab }: { lab: ResearchLabInfo }) {
   );
 }
 
-function NameCell({ name }: { name: string }) {
+function NameCell({ name, id }: { name: string; id: number }) {
   return (
     <span className={`${LAB_ROW_ITEM_WIDTH.name}`}>
-      <Link
-        className="hover:text-main-orange"
-        href={`${laboratoriesPath}/${replaceSpaceWithDash(name)}`}
-      >
+      <Link className="hover:text-main-orange" href={`${laboratoriesPath}/${id}`}>
         {name}
       </Link>
     </span>

@@ -24,6 +24,7 @@ export const getResearchLabs = async () => [
 ];
 
 export const getResearchLab = async (labId: number): Promise<ResearchLab> => ({
+  id: 5,
   name: '데이터 마이닝 연구실',
   professors: [{ id: 1, name: '강유' }],
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',

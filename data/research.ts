@@ -1,6 +1,7 @@
 import { ResearchLabInfo } from '@/types/research';
 
 export const lab: ResearchLabInfo = {
+  id: 1,
   name: '컴퓨터 그래픽스 및 이미지 처리 연구실',
   professors: [
     { id: 1, name: '신영길' },
@@ -16,6 +17,7 @@ export const lab: ResearchLabInfo = {
 };
 
 export const lab2: ResearchLabInfo = {
+  id: 4,
   name: '데이터 마이닝 연구실',
   professors: [{ id: 3, name: '강유' }],
   location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
