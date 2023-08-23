@@ -35,19 +35,14 @@ const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
   fill: 'bg-main-orange border-main-orange text-white',
 };
 
-interface TagProps<T> {
-  tag: T;
+interface TagProps {
+  tag: string;
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
-  onClick?: (tag: T) => void;
+  onClick?: (tag: string) => any;
 }
 
-export function Tag<T extends ReactNode = string>({
-  tag,
-  hoverStyle,
-  defaultStyle = 'orange',
-  onClick,
-}: TagProps<T>) {
+export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick }: TagProps) {
   const tagClass =
     'px-2.5 py-0.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap cursor-default duration-200';
   const defaultClass = DEFAULT_STYLE[defaultStyle];

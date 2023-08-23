@@ -316,40 +316,40 @@ export const undergraduateGuideData = `<div>
 
 export const courseData1: Course = {
   name: '소프트웨어 개발의 원리와 실습',
-  courseType: 1,
+  classification: '교양',
   code: 'M2177.004300',
   credit: 4,
-  grade: 3,
+  year: '1학년',
   description:
     '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
 };
 
 export const courseData2: Course = {
   name: '소프트웨어 개발의 원리와 실습',
-  courseType: 2,
+  classification: '전공선택',
   code: 'M2177.004300',
   credit: 4,
-  grade: 2,
+  year: '2학년',
   description:
     '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
 };
 
 export const courseData3: Course = {
   name: '소프트웨어 개발의 원리와 실습',
-  courseType: 3,
+  classification: '교양',
   code: 'M2177.004300',
   credit: 3,
-  grade: 1,
+  year: '3학년',
   description:
     '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
 };
 
 export const courseData4: Course = {
   name: '소프트웨',
-  courseType: 1,
+  classification: '전공필수',
   code: 'M2177.004300',
   credit: 2,
-  grade: 4,
+  year: '4학년',
   description:
     '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
 };
