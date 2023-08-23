@@ -1,44 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import { getCourses } from '@/apis/academics';
 
-import CourseCard from '@/components/academics/CourseCard';
+import CourseRow from '@/components/academics/CourseRow';
 import { Tag } from '@/components/common/Tags';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Classification, Course, SortOption } from '@/types/academics';
 
-const courseData: Course = {
-  name: '소프트웨어 개발의 원리와 실습',
-  classification: '전공선택',
-  code: 'M2177.004300',
-  credit: 4,
-  year: '3학년',
-  description:
-    '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다. 개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다. 개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
-};
-
 export default function UndergraduateCoursePage() {
   const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
   const { data } = useSWR<Course[]>(`/courses/undergraduate`, getCourses);
-  const [sortedCourses, setSortedCourses] = useState<Course[][]>(
-    data ? sortCourses(data, selectedOption) : [],
-  );
+  const [sortedCourses, setSortedCourses] = useState<Course[][]>([]);
+
+  const changeOption = (newOption: SortOption) => {
+    if (!data) return;
+    setSelectedOption(newOption);
+  };
+
+  useEffect(() => {
+    if (data) {
+      setSortedCourses(sortCourses(data, selectedOption));
+    }
+  }, [data, selectedOption]);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
-      <SortOptions
-        selectedOption={selectedOption}
-        changeOption={(newOption) => {
-          setSelectedOption(newOption);
-        }}
-      />
-      <div className="mt-6">
-        <CourseCard course={courseData} selectedOption={selectedOption} />
-      </div>
+      <SortOptions selectedOption={selectedOption} changeOption={changeOption} />
+      {sortedCourses.length > 0 && (
+        <div className="mt-6 flex flex-col gap-8">
+          {sortedCourses.map((courses, i) => (
+            <CourseRow courses={courses} selectedOption={selectedOption} key={i} />
+          ))}
+        </div>
+      )}
     </PageLayout>
   );
 }

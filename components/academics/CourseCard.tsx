@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
 
@@ -31,6 +31,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
 
+  // resize card width
   if (backRef.current) {
     const back = backRef.current;
     if (back.scrollHeight > CARD_HEIGHT) {
@@ -62,27 +63,6 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
       </div>
     </div>
   );
-
-  //   return isFlipped ? (
-  //     <div
-  //       className="inline-block bg-neutral-100 h-44 px-[1.125rem] py-5 rounded shadow-[0_2px_4px_0_rgba(0,0,0,0.2)] cursor-pointer overflow-hidden "
-  //       onClick={flipCard}
-  //     >
-  //       <CardTitle name={course.name} code={course.code} />
-  //       <CardContent description={course.description} />
-  //     </div>
-  //   ) : (
-  //     <div
-  //       className="inline-block p-[1.125rem] h-44 rounded shadow-[0_2px_4px_0_rgba(0,0,0,0.2)] cursor-pointer"
-  //       onClick={flipCard}
-  //     >
-  //       <CardHeader sortedProperties={sortedProperties} />
-  //       <div className="inline-block">
-  //         <CardTitle name={course.name} code={course.code} />
-  //         <CardContentPreview description={course.description} />
-  //       </div>
-  //     </div>
-  //   );
 }
 
 function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
