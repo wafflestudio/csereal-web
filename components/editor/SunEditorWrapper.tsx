@@ -26,9 +26,12 @@ export default function SunEditorWrapper({
           ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
           '/', // Line break
           ['fontColor', 'hiliteColor'],
-          ['align', 'horizontalRule', 'list'],
-          ['table', 'link', 'image'],
+          ['lineHeight', 'align', 'horizontalRule', 'list'],
+          ['table', 'link', 'image', 'preview'],
         ],
+        attributesWhitelist: {
+          all: 'style',
+        },
       }}
     />
   );

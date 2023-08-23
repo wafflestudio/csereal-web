@@ -1,6 +1,6 @@
 import { readFile } from 'fs/promises';
 
-import { Overview } from '@/types/about';
+import { Greetings, Overview } from '@/types/about';
 
 export const getMockOverview = async (): Promise<Overview> => {
   return {
@@ -12,5 +12,13 @@ export const getMockOverview = async (): Promise<Overview> => {
       url: 'https://cse.snu.ac.kr/sites/default/files/node--page/CSE_Brochure.pdf',
       bytes: 281500000,
     },
+  };
+};
+
+export const getMockGreetings = async (): Promise<Greetings> => {
+  return {
+    description: await readFile('data/htmls/greetingsDescription.txt', { encoding: 'utf-8' }),
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--greetings/이광근교수님.jpg?itok=PxtBa8Du',
   };
 };

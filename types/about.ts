@@ -7,3 +7,8 @@ export interface Overview {
     bytes: number;
   };
 }
+
+export interface Greetings {
+  description: string;
+  imageURL: string;
+}
