@@ -8,7 +8,7 @@ import { NewsTags } from '@/constants/tag';
 
 export default function NewsCreatePage() {
   const handleComplete = async (content: EditorContent) => {
-    console.log(content);
+    console.log(content.description);
     // throw new Error();
   };
 

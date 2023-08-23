@@ -1,4 +1,4 @@
-/* .sun-editor-editable의 line-height 2로 수정  */
+/* .sun-editor-editable의 line-height 2로 수정, padding 제거  */
 
 .sun-editor {
   width: auto;
@@ -2036,7 +2036,6 @@ textarea.se-error:focus {
   line-height: 2;
   word-break: normal;
   word-wrap: break-word;
-  padding: 16px;
   margin: 0;
 }
 .sun-editor-editable * {
