@@ -6,7 +6,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 import plugins from 'suneditor/src/plugins';
 import SunEditor from 'suneditor-react';
 
-import 'suneditor/dist/css/suneditor.min.css';
+import './suneditor.custom.css';
 
 export default function SunEditorWrapper({
   editorRef,
