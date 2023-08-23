@@ -1,0 +1,43 @@
+.card {
+  display: inline-block;
+  cursor: pointer;
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all ease-in-out 0.5s;
+  transform: rotateY(0deg);
+}
+
+.card.flip {
+  transform: rotateY(-180deg);
+}
+
+.front,
+.back {
+  border-radius: 4px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: all ease-in-out 0.5s;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  position: absolute;
+  transform: rotateY(180deg);
+  top: 0;
+  left: 0;
+}
+
+.flip .back {
+  transform: rotateY(180deg);
+  position: relative;
+}
+
+.flip .front {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
