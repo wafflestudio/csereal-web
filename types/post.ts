@@ -83,26 +83,36 @@ export interface GETFacultyRecruitmentResponse {
   description: string;
 }
 
+// 세미나 - - - - - - - - - - - - - - - - - - - - - -
+
 export interface GETSeminarPostsResponse {
   total: number;
-  seminarList: SimpleSeminarPost[];
+  searchList: SimpleSeminarPost[];
 }
 
 export interface SimpleSeminarPost
   extends Pick<
     SeminarPostResponse,
-    'id' | 'title' | 'host' | 'company' | 'date' | 'location' | 'imageURL'
+    'id' | 'title' | 'name' | 'affiliation' | 'startDate' | 'location' | 'imageURL'
   > {
-  isLast: boolean;
+  isYearLast: boolean;
 }
 
-export interface SeminarPostResponse extends PostResponse {
-  host: string;
-  company: string;
-  professor: string;
-  date: string;
+export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
+  introduction: string;
+  category: string;
+  name: string;
+  speakerUrl?: string;
+  speakerTitle?: string;
+  affiliation: string;
+  affiliationUrl?: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
   location: string;
-  description: string;
-  hostDescription: string;
+  host: string;
+  isSlide: boolean;
   imageURL: string;
+  additionalNote?: string;
 }
