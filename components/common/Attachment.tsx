@@ -14,9 +14,9 @@ export default function Attachment({ files }: AttachmentProps) {
       {files.map((file, index) => {
         const kilobyte = Math.round(file.bytes / 100);
         return (
-          <p key={index} className="text-xs font-normal">
+          <a key={index} className="text-xs font-normal" href={file.url} download>
             {file.name}({kilobyte / 10}KB)
-          </p>
+          </a>
         );
       })}
       <Clip className="absolute top-[-1.5rem] right-3" />
