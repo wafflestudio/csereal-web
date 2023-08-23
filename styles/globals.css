@@ -8,6 +8,7 @@
   html,
   body {
     @apply h-full;
+    -webkit-font-smoothing: antialias;
   }
 }
 

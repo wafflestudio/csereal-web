@@ -50,6 +50,7 @@ jobs:
           retry_on: 'error'
           command: |
             ssh -T -i ./deploy_key -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+            docker ps
             docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
             docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest

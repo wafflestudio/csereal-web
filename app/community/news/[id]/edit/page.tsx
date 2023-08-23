@@ -19,7 +19,7 @@ export default function NewsEditPage() {
   const handleDelete = async () => {};
 
   return (
-    <PageLayout title={'새 소식 편집'} titleType="small">
+    <PageLayout title={'새 소식 편집'} titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NewsTags}
         showMainImage
