@@ -12,3 +12,8 @@ export interface Greetings {
   description: string;
   imageURL: string;
 }
+
+export interface History {
+  description: string;
+  imageURL: string;
+}
