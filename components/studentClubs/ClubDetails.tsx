@@ -1,7 +1,7 @@
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import { Club } from '@/types/club';
+import { Club } from '@/types/about';
 
 export default function ClubDetails({ club }: { club: Club }) {
   return (
