@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { StraightNode } from '@/components/common/Nodes';
 
 import { SegmentNode } from '@/types/page';
@@ -42,21 +44,21 @@ function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; high
   if (highlight) {
     return (
       <div className="flex items-center mb-6">
-        <a href={href} className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0">
+        <Link href={href} className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0">
           {segmentNode.name}
-        </a>
+        </Link>
         <StraightNode />
       </div>
     );
   } else {
     if (segmentNode.isPage) {
       return (
-        <a
+        <Link
           href={href}
           className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
         >
           {segmentNode.name}
-        </a>
+        </Link>
       );
     } else {
       return (
