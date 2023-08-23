@@ -1,4 +1,4 @@
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { Direction } from '@/types/directions';
 

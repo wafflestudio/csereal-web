@@ -1,4 +1,4 @@
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 
 import { ResearchGroup } from '@/types/research';

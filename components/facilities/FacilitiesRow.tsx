@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import HTMLViewer from '../common/HTMLViewer';
+import HTMLViewer from '../editor/HTMLViewer';
 
 export interface FacilitiesRowProps {
   name: string;
