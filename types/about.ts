@@ -26,7 +26,7 @@ export interface FutureCareers {
   stat: { [year: number]: number[][] };
   companies: {
     name: string;
-    url: string;
+    url?: string;
     year: number;
   }[];
 }

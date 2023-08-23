@@ -50,7 +50,7 @@ function CompanyTableHeader() {
 interface CompanyTableRowProps {
   index: number;
   name: string;
-  url: string;
+  url?: string;
   year: number;
 }
 
