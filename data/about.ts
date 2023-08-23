@@ -10,7 +10,7 @@ export const getMockOverview = async (): Promise<Overview> => {
     attachment: {
       name: 'CSE_Brochure.pdf',
       url: 'https://cse.snu.ac.kr/sites/default/files/node--page/CSE_Brochure.pdf',
-      byte: 2815000000000,
+      bytes: 281500000,
     },
   };
 };

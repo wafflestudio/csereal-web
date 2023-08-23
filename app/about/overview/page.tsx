@@ -13,7 +13,7 @@ export default async function OverviewPage() {
         htmlContent={response.description}
         topRightContent={{ type: 'image', width: 320, height: 213, url: response.imageURL }}
       />
-      <Attachment />
+      <Attachment files={[response.attachment]} />
     </PageLayout>
   );
 }

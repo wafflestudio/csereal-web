@@ -4,6 +4,6 @@ export interface Overview {
   attachment: {
     name: string;
     url: string;
-    byte: number;
+    bytes: number;
   };
 }
