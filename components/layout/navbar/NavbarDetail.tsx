@@ -6,6 +6,7 @@ import { SegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+import NavTreeRow from './NavtreeRow';
 import useCurrentSegmentNode from '../../../hooks/useCurrentSegmentNode';
 
 export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode }) {
@@ -37,33 +38,4 @@ function NavTree({ node: segmentNode, isRoot = false, currentNode }: NavTreeProp
       </div>
     </>
   );
-}
-
-function NavTreeRow({ segmentNode, highlight }: { segmentNode: SegmentNode; highlight: boolean }) {
-  const href = getPath(segmentNode);
-  if (highlight) {
-    return (
-      <div className="flex items-center mb-6">
-        <Link href={href} className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0">
-          {segmentNode.name}
-        </Link>
-        <StraightNode />
-      </div>
-    );
-  } else {
-    if (segmentNode.isPage) {
-      return (
-        <Link
-          href={href}
-          className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
-        >
-          {segmentNode.name}
-        </Link>
-      );
-    } else {
-      return (
-        <p className="block font-yoon text-md font-medium mb-6 text-white">{segmentNode.name}</p>
-      );
-    }
-  }
 }
