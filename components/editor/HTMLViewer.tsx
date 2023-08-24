@@ -44,7 +44,7 @@ function TopRightImageContent({ width, height, url }: TopRightImage) {
         alt="대표 이미지"
         priority
         fill
-        className="object-cover"
+        className="object-contain"
         sizes={`${width}px`}
       />
     </div>
