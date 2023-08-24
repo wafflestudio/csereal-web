@@ -1,8 +1,8 @@
 import { readFile } from 'fs/promises';
 
-import { Club, FutureCareers, Greetings, History, Overview } from '@/types/about';
+import { Club, Facilities, FutureCareers, Greetings, History, Overview } from '@/types/about';
 
-import { careerStat, clubs, futureCompanies } from './objects';
+import { careerStat, clubs, facilities, futureCompanies } from './objects';
 
 export const getMockOverview = async (): Promise<Overview> => {
   return {
@@ -44,4 +44,8 @@ export const getMockFutureCareers = async (): Promise<FutureCareers> => {
 
 export const getMockClubs = async (): Promise<Club[]> => {
   return clubs;
+};
+
+export const getMockFacilities = async (): Promise<Facilities> => {
+  return facilities;
 };

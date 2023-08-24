@@ -40,6 +40,7 @@ export interface Club {
 
 export interface Facilities {
   facilitiesList: {
+    id: number;
     name: string;
     description: string;
     location: string;
