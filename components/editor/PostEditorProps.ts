@@ -20,7 +20,7 @@ export interface PostEditorProps {
   initialContent?: PostEditorContent;
 }
 
-export const postEditorPlaceholder: PostEditorContent = {
+export const postEditorDefaultValue: PostEditorContent = {
   title: '',
   description: '',
   attachments: [],

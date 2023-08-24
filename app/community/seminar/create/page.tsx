@@ -1,7 +1,7 @@
 'use client';
 
-import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import SeminarEditor from '@/components/editor/SeminarEditor';
+import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function SeminarCreatePage() {

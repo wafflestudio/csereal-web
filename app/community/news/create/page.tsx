@@ -1,7 +1,7 @@
 'use client';
 
-import { PostEditorContent } from '@/components/editor/SeminarEditorProps';
 import PostEditor from '@/components/editor/PostEditor';
+import { PostEditorContent } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';

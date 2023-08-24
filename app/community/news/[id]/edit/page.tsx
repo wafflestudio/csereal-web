@@ -2,8 +2,8 @@
 
 import { getMockNewsPostDetail } from '@/apis/news';
 
-import { PostEditorContent } from '@/components/editor/SeminarEditorProps';
 import PostEditor from '@/components/editor/PostEditor';
+import { PostEditorContent } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
@@ -19,7 +19,7 @@ export default function NewsEditPage() {
   const handleDelete = async () => {};
 
   return (
-    <PageLayout title={'새 소식 편집'} titleType="small">
+    <PageLayout title={'새 소식 편집'} titleType="small" titleMargin="mb-6">
       <PostEditor
         tags={NewsTags}
         showMainImage

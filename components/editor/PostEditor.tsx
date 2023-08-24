@@ -10,7 +10,7 @@ import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import { PostEditorContent, PostEditorProps, postEditorPlaceholder } from './PostEditorProps';
+import { PostEditorContent, PostEditorProps, postEditorDefaultValue } from './PostEditorProps';
 import TagCheckbox from '../common/search/TagCheckbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
@@ -28,7 +28,7 @@ export default function PostEditor({
   const editorRef = useRef<SunEditorCore>();
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<PostEditorContent>({
-    ...postEditorPlaceholder,
+    ...postEditorDefaultValue,
     ...initialContent,
   });
 
