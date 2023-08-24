@@ -47,3 +47,8 @@ export interface Facilities {
     imageURL: string;
   }[];
 }
+
+export interface Contact {
+  description: string;
+  imageURL: string;
+}

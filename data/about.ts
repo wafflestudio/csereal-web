@@ -1,6 +1,14 @@
 import { readFile } from 'fs/promises';
 
-import { Club, Facilities, FutureCareers, Greetings, History, Overview } from '@/types/about';
+import {
+  Club,
+  Contact,
+  Facilities,
+  FutureCareers,
+  Greetings,
+  History,
+  Overview,
+} from '@/types/about';
 
 import { careerStat, clubs, facilities, futureCompanies } from './objects';
 
@@ -48,4 +56,13 @@ export const getMockClubs = async (): Promise<Club[]> => {
 
 export const getMockFacilities = async (): Promise<Facilities> => {
   return facilities;
+};
+
+export const getMockContact = async (): Promise<Contact> => {
+  return {
+    description:
+      '<h2 style="line-height: 1;"><strong>서울대학교 공과대학 컴퓨터공학부</strong></h2><p style="line-height: 1;">08826 서울특별시 관악구 관악로 1 (301동 316호)</p><p><br></p><h3><strong>학부 행정실</strong></h3><hr class="__se__solid"><p>위치: 서울대학교 관악 301동[신공학관1]</p><p>전화: <a href="http://localhost:3001/people/staff">행정직원</a>에 문의</p><p>팩스: (02) 886-7589</p><p>근무 시간: 평일 9:00 ~ 18:00 / 휴게시간: 12:00 ~ 13:00</p><p><br></p><h3><strong>이메일</strong></h3><hr class="__se__solid"><p><strong>학부/대학원 입학 문의: </strong><a href="mailto:ipsi@cse.snu.ac.kr">ipsi@cse.snu.ac.kr</a></p><p><strong>외국인(글로벌전형) 입학 문의: </strong><a href="mailto:admission@cse.snu.ac.kr">admission@cse.snu.ac.kr</a></p><p><strong>채용정보</strong><strong>게시요청</strong><strong>: </strong><a href="mailto:bulletin@cse.snu.ac.kr">bulletin@cse.snu.ac.kr</a></p>',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
+  };
 };
