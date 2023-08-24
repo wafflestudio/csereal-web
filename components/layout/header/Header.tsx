@@ -63,8 +63,6 @@ function HeaderRight() {
           <button onClick={handleLogOut}>로그아웃</button>
         </Link>
         <span>|</span>
-        <button onClick={handleLogOut}>로그아웃</button>
-        <span>|</span>
         <button onClick={handleLangChange}>{lang}</button>
       </div>
       <HeaderSearchBar />
