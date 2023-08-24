@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { MouseEventHandler } from 'react';
 
-import clearIcon from '@/public/image/clear_icon.svg';
+import ClearIcon from '@/public/image/clear_icon.svg';
 
-import useDragDrop from '../../hooks/useDragDrop';
+import useDragDrop from '../../../hooks/useDragDrop';
 
 interface FileRowProps {
   index: number;
@@ -26,7 +26,7 @@ export default function FilePickerRow({ index, url, file, moveFile, deleteFile }
       <span className="material-symbols-rounded text-lg text-neutral-400 mr-2">drag_pan</span>
       <p className="font-noto text-xs font-normal mr-4">{file.name}</p>
       <button className="ml-auto" onClick={deleteFile}>
-        <Image src={clearIcon} alt="삭제 버튼" />
+        <ClearIcon />
       </button>
     </li>
   );

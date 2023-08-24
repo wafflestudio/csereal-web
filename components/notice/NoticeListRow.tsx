@@ -7,7 +7,6 @@ import PinIcon from '@/public/image/pin_icon.svg';
 import { notice } from '@/types/page';
 import { SimpleNoticePost } from '@/types/post';
 
-import { formatDate } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
@@ -126,3 +125,11 @@ function DateCell({ date }: { date: string }) {
     </span>
   );
 }
+
+const formatDate = (date: Date) => {
+  const yyyy = String(date.getFullYear()).padStart(4, '0');
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+
+  return `${yyyy}/${mm}/${dd}`; // e.g. 2023/08/01
+};
