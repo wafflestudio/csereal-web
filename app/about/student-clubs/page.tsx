@@ -32,7 +32,13 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
         path={clubPath}
         listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
       />
-      {selectedClub && <ClubDetails club={selectedClub} />}
+      {selectedClub ? (
+        <ClubDetails club={selectedClub} />
+      ) : (
+        <p>
+          <b>{`'${searchParams.selected}'`}</b>은/는 존재하지 않는 동아리입니다.
+        </p>
+      )}
     </PageLayout>
   );
 }

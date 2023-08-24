@@ -18,7 +18,7 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
         topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
         margin="mb-9 ml-2.5"
       />
-      <ResearchGroupLabs labNames={group.laboratories} />
+      <ResearchGroupLabs labs={group.labs} />
     </div>
   );
 }

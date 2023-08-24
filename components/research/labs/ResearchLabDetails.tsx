@@ -9,6 +9,7 @@ import { researchGroups } from '@/types/page';
 import { ResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
+import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 
@@ -30,7 +31,7 @@ const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
-  const affiliatedGroupPath = `${researchGroupsPath}?selected=${groupName}`;
+  const affiliatedGroupPath = `${researchGroupsPath}?selected=${replaceSpaceWithDash(groupName)}`;
 
   return (
     <div className="relative w-fit">
