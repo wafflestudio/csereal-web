@@ -315,6 +315,7 @@ export const undergraduateGuideData = `<div>
 </div>`;
 
 export const courseData1: Course = {
+  id: 0,
   name: '소프트웨어 개발의 원리와 실습',
   classification: '교양',
   code: 'M2177.004300',
@@ -325,6 +326,7 @@ export const courseData1: Course = {
 };
 
 export const courseData2: Course = {
+  id: 0,
   name: '소프트웨어 개발의 원리와 실습',
   classification: '전공선택',
   code: 'M2177.004300',
@@ -335,6 +337,7 @@ export const courseData2: Course = {
 };
 
 export const courseData3: Course = {
+  id: 0,
   name: '소프트웨어 개발의 원리와 실습',
   classification: '교양',
   code: 'M2177.004300',
@@ -345,6 +348,7 @@ export const courseData3: Course = {
 };
 
 export const courseData4: Course = {
+  id: 0,
   name: '소프트웨',
   classification: '전공필수',
   code: 'M2177.004300',

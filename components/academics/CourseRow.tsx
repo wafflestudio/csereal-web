@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import useHorizontalScroll from '@/hooks/useHorizontalScroll';
 
 import { Course, SortOption } from '@/types/academics';
 
@@ -10,31 +10,32 @@ interface CourseRowProps {
 }
 
 export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const coruseCount = courses.length;
+  const { scrollRef: screenRef } = useHorizontalScroll();
+
+  // useEffect(() => {
+  //   const rowDiv = rootRef.current;
+
+  //   if (rowDiv) {
+  //     const onWheel = (e: WheelEvent) => {
+  //       // if (e.deltaY == 0) return;
+  //       // e.preventDefault();
+  //       rowDiv.scrollTo({
+  //         left: rowDiv.scrollLeft + e.deltaY,
+  //         behavior: 'smooth',
+  //       });
+  //     };
+
+  //     rowDiv.addEventListener('wheel', onWheel);
+
+  //     return () => rowDiv.removeEventListener('wheel', onWheel);
+  //   }
+  // }, []);
 
   return (
-    <div
-      className="no-scrollbar overflow-auto p-1.5"
-      ref={rootRef}
-      onWheel={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (rootRef.current) {
-          rootRef.current.scrollLeft += e.deltaY;
-        }
-      }}
-    >
-      <div className="flex gap-5" ref={contentRef}>
-        {courses.map((course, i) => (
-          <CourseCard
-            course={course}
-            selectedOption={selectedOption}
-            zIndex={coruseCount - i}
-            key={course.code}
-          />
+    <div className="no-scrollbar overflow-y-hidden overflow-x-auto p-1.5" ref={screenRef}>
+      <div className="flex gap-5">
+        {courses.map((course) => (
+          <CourseCard course={course} selectedOption={selectedOption} key={course.id} />
         ))}
       </div>
     </div>

@@ -26,14 +26,14 @@ export const getAcademicsGuide = async (type: 'undergraduate' | 'graduate') => {
 export const getCourses = async (type: StudentType): Promise<Course[]> => [
   ...Array(10)
     .fill(0)
-    .map((_, i) => courseData1),
+    .map((_, i) => ({ ...courseData1, id: i })),
   ...Array(10)
     .fill(0)
-    .map((_, i) => courseData2),
+    .map((_, i) => ({ ...courseData2, id: i + 10 })),
   ...Array(10)
     .fill(0)
-    .map((_, i) => courseData3),
+    .map((_, i) => ({ ...courseData3, id: i + 20 })),
   ...Array(10)
     .fill(0)
-    .map((_, i) => courseData4),
+    .map((_, i) => ({ ...courseData4, id: i + 30 })),
 ];

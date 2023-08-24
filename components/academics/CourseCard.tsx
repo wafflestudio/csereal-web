@@ -7,7 +7,6 @@ import { Course, SortOption } from '@/types/academics';
 interface CourseCardProps {
   course: Course;
   selectedOption: SortOption;
-  zIndex: number;
 }
 
 const getSortedProperties = (course: Course, selectedOption: SortOption) => {
@@ -24,7 +23,7 @@ const CARD_HEIGHT = 176; // px
 const LINE_LIMIT = 6;
 const TEXT_SIZE = 11; // px
 
-export default function CourseCard({ course, selectedOption, zIndex }: CourseCardProps) {
+export default function CourseCard({ course, selectedOption }: CourseCardProps) {
   const sortedProperties = getSortedProperties(course, selectedOption);
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
   const backRef = useRef<HTMLDivElement>(null);
@@ -45,7 +44,6 @@ export default function CourseCard({ course, selectedOption, zIndex }: CourseCar
     transformStyle: 'preserve-3d',
     perspective: '1000px',
     cursor: 'pointer',
-    zIndex: zIndex,
   };
 
   const faceStyle: CSSProperties = {
@@ -63,14 +61,14 @@ export default function CourseCard({ course, selectedOption, zIndex }: CourseCar
     padding: '1.125rem',
     backgroundColor: 'white',
     position: isFlipped ? 'absolute' : 'relative',
-    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+    transform: isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)',
   };
 
   const backStyle: CSSProperties = {
     padding: '1.25rem 1.125rem',
     backgroundColor: '#f5f5f5',
     position: isFlipped ? 'relative' : 'absolute',
-    transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+    transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)',
   };
 
   return (
