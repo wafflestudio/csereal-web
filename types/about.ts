@@ -52,3 +52,9 @@ export interface Contact {
   description: string;
   imageURL: string;
 }
+
+export interface Direction {
+  name: string;
+  engName: string;
+  description: string;
+}

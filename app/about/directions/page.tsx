@@ -1,8 +1,4 @@
-'use client';
-
-import useSWR from 'swr';
-
-import { getDirectionsMock } from '@/apis/directions';
+import { getDirections } from '@/apis/about';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import DirectionsDetails from '@/components/directions/DirectionsDetails';
@@ -10,7 +6,6 @@ import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
@@ -22,9 +17,9 @@ interface DirectionsPageProps {
 
 const directionsPath = getPath(directions);
 
-export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
-  const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
-  const selectedDirection = findSelectedItem<Direction>(
+export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
+  const directionList = await getDirections();
+  const selectedDirection = findSelectedItem(
     directionList,
     decodeURI(searchParams.selected ?? ''),
     directionList[0]?.name,

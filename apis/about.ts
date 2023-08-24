@@ -1,6 +1,7 @@
 import {
   getMockClubs,
   getMockContact,
+  getMockDirections,
   getMockFacilities,
   getMockFutureCareers,
   getMockGreetings,
@@ -32,3 +33,7 @@ export const getClubs = getMockClubs;
 export const getFacilities = getMockFacilities;
 
 export const getContact = getMockContact;
+
+// const directionsPath = '/directions';
+
+export const getDirections = getMockDirections;
