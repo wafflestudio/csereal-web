@@ -50,7 +50,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   const cardStyle: CSSProperties = {
     position: 'relative',
-    padding: '0 2px',
+    paddingRight: '3px',
     transformStyle: 'preserve-3d',
     perspective: '1000px',
     cursor: 'pointer',
@@ -82,13 +82,13 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   };
 
   return (
-    <div style={cardStyle} onClick={flipCard}>
-      <div style={{ ...faceStyle, ...frontStyle }} ref={frontRef}>
+    <div className="card" style={cardStyle} onClick={flipCard}>
+      <div className="front" style={{ ...faceStyle, ...frontStyle }} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
         <CardTitle name={course.name} code={course.code} />
         <CardContentPreview description={course.description} />
       </div>
-      <div style={{ ...faceStyle, ...backStyle }} ref={backRef}>
+      <div className="back" style={{ ...faceStyle, ...backStyle }} ref={backRef}>
         <CardTitle name={course.name} code={course.code} />
         <CardContent description={course.description} />
       </div>

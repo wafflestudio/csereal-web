@@ -14,7 +14,7 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
 
   return (
     <div className="no-scrollbar overflow-y-hidden overflow-x-auto p-1.5" ref={screenRef}>
-      <div className="flex gap-4">
+      <div className="flex gap-5">
         {courses.map((course) => (
           <CourseCard course={course} selectedOption={selectedOption} key={course.id} />
         ))}

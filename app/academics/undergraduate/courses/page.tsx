@@ -13,7 +13,7 @@ import { Classification, Course, SortOption } from '@/types/academics';
 
 export default function UndergraduateCoursePage() {
   const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
-  const { data } = useSWR<Course[]>(`/courses/undergraduate`, getCourses);
+  const { data } = useSWR<Course[]>(`/academics/undergraduate/courses`, getCourses);
   const [sortedCourses, setSortedCourses] = useState<Course[][]>([]);
 
   const changeOption = (newOption: SortOption) => {
