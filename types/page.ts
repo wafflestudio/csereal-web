@@ -191,7 +191,7 @@ export const researchCenters: SegmentNode = {
 };
 
 export const researchLabs: SegmentNode = {
-  name: '연구실',
+  name: '연구실 목록',
   segment: 'labs',
   isPage: true,
   parent: research,

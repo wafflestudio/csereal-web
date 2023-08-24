@@ -1,6 +1,7 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
+import 'suneditor/dist/css/suneditor.min.css';
 
 interface TopRightImage {
   type: 'image';
@@ -30,17 +31,7 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
     <div className={`flow-root ${margin}`}>
       {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
-      <div
-        className={`
-        text-sm font-noto font-regular leading-loose 
-        [&_a]:text-link hover:[&_a]:underline
-        [&_li]:list-disc [&_li]:list-inside 
-        [&_p]:mb-4 
-        [&_td]:border-[1px] [&_td]:border-neutral-300
-        [&_img]:inline
-        `}
-        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
-      />
+      <div className="sun-editor-editable" dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
     </div>
   );
 }

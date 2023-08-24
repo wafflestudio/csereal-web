@@ -1,6 +1,10 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useNavbarContext } from '@/contexts/NavbarContext';
+
+import { logOut, login } from '@/apis/auth';
 
 import HeaderSearchBar from './HeaderSearchBar';
 
@@ -39,7 +43,10 @@ function HeaderRight() {
   const lang = 'ENG';
 
   const handleLogin = () => {
-    // TODO
+    console.log('로그인 버튼 클릭');
+  };
+  const handleLogOut = () => {
+    console.log('로그아웃 버튼 클릭');
   };
   const handleLangChange = () => {
     // TODO
@@ -48,7 +55,13 @@ function HeaderRight() {
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
       <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
-        <button onClick={handleLogin}>로그인</button>
+        <Link href="http://cse-dev-waffle.bacchus.io/login">
+          <button onClick={handleLogin}>로그인</button>
+        </Link>
+        <span>|</span>
+        <Link href="http://cse-dev-waffle.bacchus.io/logout">
+          <button onClick={handleLogOut}>로그아웃</button>
+        </Link>
         <span>|</span>
         <button onClick={handleLangChange}>{lang}</button>
       </div>
