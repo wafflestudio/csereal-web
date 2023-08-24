@@ -4,13 +4,13 @@ line-height 2로 수정, padding 제거
 hr 색 수정
 h3 상하 마진 수정
 링크 색 수정
+font-familiy 설정 제거
 */
 
 .sun-editor {
   width: auto;
   height: auto;
   box-sizing: border-box;
-  font-family: Helvetica Neue;
   border: 1px solid #dadada;
   background-color: #fff;
   color: #000;
@@ -2035,7 +2035,6 @@ textarea.se-error:focus {
   }
 }
 .sun-editor-editable {
-  font-family: Helvetica Neue;
   font-size: 13px;
   color: #333;
   background-color: #fff;
