@@ -8,15 +8,34 @@ import { getCourseChanges } from '@/apis/academics';
 import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { CourseChange } from '@/types/academics';
+
+const YEAR_LIMIT = 2010;
+const NO_CHANGE = (year: number): CourseChange => ({
+  year,
+  description: `${year}학년도 교과과정 변경 내역은 없습니다.`,
+});
+
+const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
+  if (selectedYear <= YEAR_LIMIT) return data.filter((d) => d.year <= YEAR_LIMIT);
+
+  const change = data.find((d) => d.year === selectedYear);
+  return change ? [change] : [NO_CHANGE(selectedYear)];
+};
+
+// TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
 export default function UndergraduateCourseChanges() {
   const { data } = useSWR('/academics/undergraduate/course-changes', getCourseChanges);
   const [selectedYear, setSelectedYear] = useState<number>(2020);
-  const selectedChange = data?.find((d) => d.year === selectedYear);
+  const selectedChanges = getSelectedChanges(selectedYear, data ?? []);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-14">
       <TimeLine selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
-      {selectedChange && <HTMLViewer htmlContent={selectedChange.description} />}
+      {selectedChanges &&
+        selectedChanges.map((change) => (
+          <HTMLViewer htmlContent={change.description} margin="mt-12" key={change.year} />
+        ))}
     </PageLayout>
   );
 }
@@ -39,7 +58,7 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
 
 function TimeLine({ selectedYear, setSelectedYear }: TimeLineProps) {
   return (
-    <div className="relative h-[38px] w-[48.75rem] mb-12 flex">
+    <div className="relative h-[38px] w-[48.75rem] flex">
       <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px] bg-gradient-to-r from-main-orange from-90% to-white" />
       {TIME_SPOTS.map((spot) => (
         <TimeSpot

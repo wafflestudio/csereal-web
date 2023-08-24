@@ -17,7 +17,7 @@ export interface Course {
 
 export type SortOption = '학년' | '교과목 구분' | '학점';
 
-export interface CourseChanges {
+export interface CourseChange {
   year: number;
   description: string;
 }

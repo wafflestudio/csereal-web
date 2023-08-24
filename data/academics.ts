@@ -1,4 +1,4 @@
-import { Course, CourseChanges as CourseChange } from '@/types/academics';
+import { Course, CourseChange } from '@/types/academics';
 
 export const graduateGuideData = `<div className="mw-parser-output">
 
