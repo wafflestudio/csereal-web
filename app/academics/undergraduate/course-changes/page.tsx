@@ -21,8 +21,8 @@ interface TimeLineProps {
 
 function TimeLine({ selectedYear, setSelectedYear }: TimeLineProps) {
   return (
-    <div className="relative border border-neutral-700 h-[38px]">
-      <div className="h-px mt-[7px] bg-main-orange" />
+    <div className="relative h-[38px] ">
+      <div className="border-b border-main-orange pt-[7px] " />
       <TimeSection
         year={2020}
         selectedYear={selectedYear}
@@ -33,19 +33,19 @@ function TimeLine({ selectedYear, setSelectedYear }: TimeLineProps) {
         year={2018}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
-        left="left-[50px]"
+        left="left-[58px]"
       />
       <TimeSection
         year={2015}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
-        left="left-[100px]"
+        left="left-[116px]"
       />
       <TimeSection
         year={2012}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
-        left="left-[150px]"
+        left="left-[174px]"
       />
       <TimeSection
         year={2010}
@@ -67,7 +67,7 @@ interface TimeSectionProps {
 function TimeSection({ year, selectedYear, setSelectedYear, left }: TimeSectionProps) {
   return (
     <div
-      className={`absolute group top-0 h-full flex flex-col justify-between w-fit items-center cursor-pointer ${left}`}
+      className={`absolute group top-0 w-[38px] h-full flex flex-col justify-between items-center cursor-pointer ${left}`}
       onClick={() => setSelectedYear(year)}
     >
       <Circle highlight={year === selectedYear} />
