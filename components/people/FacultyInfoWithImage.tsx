@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import './FadeInOut.css';
 import { useEffect, useState } from 'react';
 
 import PeopleImageWithAnimation from './PeopleImageWithAnimation';
@@ -21,18 +20,9 @@ export default function FacultyInfoWithImage({
   website,
   imageURL,
 }: FacultyInfoWithImageProps) {
-  const [showAnimation, setShowAnimation] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowAnimation(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
   return (
     <div className="relative float-right w-[348px] h-[374px]">
-      <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={imageURL} />
+      <PeopleImageWithAnimation imageURL={imageURL} />
       <div className="w-64 h-[196px] absolute bottom-0 left-0 z-10">
         <div
           style={{
@@ -48,18 +38,15 @@ export default function FacultyInfoWithImage({
             {website && <FacultyInfoWithSymbols symbol="captive_portal" content={website} />}
           </div>
         </div>
-        {showAnimation && (
-          <div className="relative h-full w-full z-[-1]">
-            <div
-              className="h-full w-full absolute bottom-[-17px] right-[-17px] "
-              style={{
-                background:
-                  'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
-                animation: 'fadeInOut 1s ease-out',
-              }}
-            />
-          </div>
-        )}
+        <div className="relative h-full w-full z-[-1]">
+          <div
+            className="h-full w-full absolute bottom-[-17px] right-[-17px] animate-fadeIn"
+            style={{
+              background:
+                'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+            }}
+          />
+        </div>
       </div>
     </div>
   );

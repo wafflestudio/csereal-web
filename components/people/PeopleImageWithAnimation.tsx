@@ -1,14 +1,10 @@
 import Image from 'next/image';
 
 export interface PeopleImageWithAnimationProps {
-  showAnimation: boolean;
   imageURL: string;
 }
 
-export default function PeopleImageWithAnimation({
-  imageURL,
-  showAnimation,
-}: PeopleImageWithAnimationProps) {
+export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAnimationProps) {
   return (
     <div className="w-[186px] h-[248px] absolute top-0 right-0 ">
       <div
@@ -29,18 +25,16 @@ export default function PeopleImageWithAnimation({
           }}
         />
       </div>
-      {showAnimation && (
-        <div className="relative h-full w-full">
-          <div
-            className="h-full w-full absolute bottom-[-17px] left-[-17px] animate-fadeInOut"
-            style={{
-              background:
-                'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
-              clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-            }}
-          />
-        </div>
-      )}
+      <div className="relative h-full w-full">
+        <div
+          className="h-full w-full absolute bottom-[-17px] left-[-17px] animate-fadeIn"
+          style={{
+            background:
+              'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+            clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
+          }}
+        />
+      </div>
     </div>
   );
 }
