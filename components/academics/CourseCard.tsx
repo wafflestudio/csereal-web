@@ -1,4 +1,4 @@
-import { CSSProperties, useReducer, useRef } from 'react';
+import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
 
@@ -26,18 +26,27 @@ const TEXT_SIZE = 11; // px
 export default function CourseCard({ course, selectedOption }: CourseCardProps) {
   const sortedProperties = getSortedProperties(course, selectedOption);
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
+  const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
 
   // resize card width
-  if (backRef.current) {
-    const back = backRef.current;
-    if (back.scrollHeight > CARD_HEIGHT) {
-      const textCount = back.innerText.split('\n')[2].length;
-      const letterPerLine = textCount / LINE_LIMIT;
-      const expectedWidth = letterPerLine * TEXT_SIZE;
-      back.style.width = expectedWidth + 'px';
+  useEffect(() => {
+    if (frontRef.current && backRef.current) {
+      const back = backRef.current;
+      const front = frontRef.current;
+
+      if (isFlipped) {
+        if (back.scrollHeight > CARD_HEIGHT) {
+          const textCount = back.innerText.split('\n')[2].length;
+          const letterPerLine = textCount / LINE_LIMIT;
+          const expectedWidth = letterPerLine * TEXT_SIZE;
+          back.style.width = expectedWidth + 'px';
+        }
+      } else {
+        back.style.width = front.offsetWidth + 'px';
+      }
     }
-  }
+  }, [isFlipped]);
 
   const cardStyle: CSSProperties = {
     position: 'relative',
@@ -73,7 +82,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   return (
     <div style={cardStyle} onClick={flipCard}>
-      <div style={{ ...faceStyle, ...frontStyle }}>
+      <div style={{ ...faceStyle, ...frontStyle }} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
         <CardTitle name={course.name} code={course.code} />
         <CardContentPreview description={course.description} />
