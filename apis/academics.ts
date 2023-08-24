@@ -14,14 +14,14 @@ import { getRequest } from '.';
 type StudentType = 'undergraduate' | 'graduate';
 
 // export const getAcademicsGuide = (type: StudentType) =>
-//   getRequest(`/guide/${type}`) as Promise<Guide>;
+//   getRequest(`/academics/${type}/guide`) as Promise<Guide>;
 
 export const getAcademicsGuide = async (type: 'undergraduate' | 'graduate') => {
   return { description: type === 'undergraduate' ? undergraduateGuideData : graduateGuideData };
 };
 
 // export const getCourses = async (type: StudentType) =>
-//   getRequest(`/courses/${type}`) as Promise<Course[]>;
+//   getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
 
 export const getCourses = async (type: StudentType): Promise<Course[]> => [
   ...Array(10)

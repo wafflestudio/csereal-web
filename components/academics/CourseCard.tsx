@@ -49,7 +49,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   const cardStyle: CSSProperties = {
     position: 'relative',
-    paddingRight: '3px',
+    paddingRight: '0.1875rem', // 3px
     transformStyle: 'preserve-3d',
     perspective: '1000px',
     cursor: 'pointer',
@@ -58,8 +58,8 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   const faceStyle: CSSProperties = {
     top: 0,
     left: 0,
-    height: '11rem',
-    borderRadius: '0.25rem',
+    height: '11rem', // 176px
+    borderRadius: '0.25rem', // 4px
     boxShadow: '0 2px 4px 0 rgba(0,0,0,0.2)',
     WebkitBackfaceVisibility: 'hidden',
     backfaceVisibility: 'hidden',
@@ -67,16 +67,15 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   };
 
   const frontStyle: CSSProperties = {
-    padding: '1.125rem',
+    position: 'absolute',
+    padding: '1.125rem', // 18px
     backgroundColor: 'white',
-    position: isFlipped ? 'absolute' : 'relative',
     transform: isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)',
   };
 
   const backStyle: CSSProperties = {
-    padding: '1.25rem 1.125rem',
-    backgroundColor: '#f5f5f5',
-    position: isFlipped ? 'relative' : 'absolute',
+    padding: '1.25rem 1.125rem', // 20px 18px
+    backgroundColor: '#f5f5f5', // bg-neutral-100
     transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)',
   };
 

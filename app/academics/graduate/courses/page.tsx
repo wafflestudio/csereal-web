@@ -1,7 +1,3 @@
-'use client';
-
-import useSWR from 'swr';
-
 import { getCourses } from '@/apis/academics';
 
 import CourseRow from '@/components/academics/CourseRow';
@@ -9,8 +5,9 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Course } from '@/types/academics';
 
-export default function UndergraduateCoursePage() {
-  const { data } = useSWR<Course[]>(`/academics/graduate/courses`, getCourses);
+export default async function GraduateCoursePage() {
+  const data = await getCourses('graduate');
+  console.log('Asdf');
   const chunckedCourses = data ? chunkCourse(data) : [];
 
   return (

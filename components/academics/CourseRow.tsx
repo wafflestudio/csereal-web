@@ -1,3 +1,5 @@
+'use client';
+
 import useHorizontalScroll from '@/hooks/useHorizontalScroll';
 
 import { Course, SortOption } from '@/types/academics';
