@@ -1,14 +1,13 @@
-import { useReducer, useRef } from 'react';
+import { CSSProperties, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
 
 import { Course, SortOption } from '@/types/academics';
 
-import './CourseCard.css';
-
 interface CourseCardProps {
   course: Course;
   selectedOption: SortOption;
+  zIndex: number;
 }
 
 const getSortedProperties = (course: Course, selectedOption: SortOption) => {
@@ -21,14 +20,13 @@ const getSortedProperties = (course: Course, selectedOption: SortOption) => {
   }
 };
 
-const CARD_HEIGHT = 176;
+const CARD_HEIGHT = 176; // px
 const LINE_LIMIT = 6;
-const TEXT_SIZE = 11;
+const TEXT_SIZE = 11; // px
 
-export default function CourseCard({ course, selectedOption }: CourseCardProps) {
+export default function CourseCard({ course, selectedOption, zIndex }: CourseCardProps) {
   const sortedProperties = getSortedProperties(course, selectedOption);
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
-  const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
 
   // resize card width
@@ -42,22 +40,49 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     }
   }
 
+  const cardStyle: CSSProperties = {
+    position: 'relative',
+    transformStyle: 'preserve-3d',
+    perspective: '1000px',
+    cursor: 'pointer',
+    zIndex: zIndex,
+  };
+
+  const faceStyle: CSSProperties = {
+    top: 0,
+    left: 0,
+    height: '11rem',
+    borderRadius: '0.25rem',
+    boxShadow: '0 2px 4px 0 rgba(0,0,0,0.2)',
+    WebkitBackfaceVisibility: 'hidden',
+    backfaceVisibility: 'hidden',
+    transition: 'all ease-in-out 0.5s',
+  };
+
+  const frontStyle: CSSProperties = {
+    padding: '1.125rem',
+    backgroundColor: 'white',
+    position: isFlipped ? 'absolute' : 'relative',
+    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+  };
+
+  const backStyle: CSSProperties = {
+    padding: '1.25rem 1.125rem',
+    backgroundColor: '#f5f5f5',
+    position: isFlipped ? 'relative' : 'absolute',
+    transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+  };
+
   return (
-    <div className={`card ${isFlipped && 'flip'}`} onClick={flipCard}>
-      <div
-        className="front inline-block p-[1.125rem] h-44 rounded shadow-[0_2px_4px_0_rgba(0,0,0,0.2)] cursor-pointer"
-        ref={frontRef}
-      >
+    <div style={cardStyle} onClick={flipCard}>
+      <div style={{ ...faceStyle, ...frontStyle }}>
         <CardHeader sortedProperties={sortedProperties} />
         <div className="inline-block">
           <CardTitle name={course.name} code={course.code} />
           <CardContentPreview description={course.description} />
         </div>
       </div>
-      <div
-        className="back inline-block bg-neutral-100 h-44 px-[1.125rem] py-5 rounded shadow-[0_2px_4px_0_rgba(0,0,0,0.2)] cursor-pointer"
-        ref={backRef}
-      >
+      <div style={{ ...faceStyle, ...backStyle }} ref={backRef}>
         <CardTitle name={course.name} code={course.code} />
         <CardContent description={course.description} />
       </div>

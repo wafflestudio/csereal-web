@@ -12,6 +12,7 @@ interface CourseRowProps {
 export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const coruseCount = courses.length;
 
   return (
     <div
@@ -27,8 +28,13 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
       }}
     >
       <div className="flex gap-5" ref={contentRef}>
-        {courses.map((course) => (
-          <CourseCard course={course} selectedOption={selectedOption} key={course.code} />
+        {courses.map((course, i) => (
+          <CourseCard
+            course={course}
+            selectedOption={selectedOption}
+            zIndex={coruseCount - i}
+            key={course.code}
+          />
         ))}
       </div>
     </div>
