@@ -1,10 +1,10 @@
-import { getMockFacilitiesPosts } from '@/apis/facilities';
+import { getFacilitiesPosts } from '@/apis/about';
 
 import FacilitiesRow from '@/components/facilities/FacilitiesRow';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function FacilitiesPage() {
-  const { facilitiesList } = await getFacilitiesData();
+  const { facilitiesList } = await getFacilitiesPosts();
   return (
     <PageLayout titleType="big" titleMargin="mb-[1.125rem]">
       <div className="flex flex-col">
@@ -24,9 +24,4 @@ export default async function FacilitiesPage() {
       </div>
     </PageLayout>
   );
-}
-
-async function getFacilitiesData() {
-  const posts = getMockFacilitiesPosts();
-  return posts;
 }

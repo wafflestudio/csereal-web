@@ -37,3 +37,12 @@ export interface Club {
   description: string;
   imageURL?: string;
 }
+
+export interface Facilities {
+  facilitiesList: {
+    name: string;
+    description: string;
+    location: string;
+    imageURL: string;
+  }[];
+}
