@@ -19,59 +19,59 @@ interface TimeLineProps {
   setSelectedYear: Dispatch<SetStateAction<number>>;
 }
 
+const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
+  { year: 2019 },
+  { year: 2018, margin: 'ml-5' },
+  { year: 2017, margin: 'ml-5' },
+  { year: 2015, margin: 'ml-[4.875rem]' },
+  { year: 2013, margin: 'ml-[4.875rem]' },
+  { year: 2012, margin: 'ml-5' },
+  { year: 2010, margin: 'ml-[4.875rem]', isLast: true },
+];
+
 function TimeLine({ selectedYear, setSelectedYear }: TimeLineProps) {
   return (
-    <div className="relative h-[38px] ">
-      <div className="border-b border-main-orange pt-[7px] " />
-      <TimeSection
-        year={2020}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        left="left-0"
-      />
-      <TimeSection
-        year={2018}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        left="left-[58px]"
-      />
-      <TimeSection
-        year={2015}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        left="left-[116px]"
-      />
-      <TimeSection
-        year={2012}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        left="left-[174px]"
-      />
-      <TimeSection
-        year={2010}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        left="left-[200px]"
-      />
+    <div className="relative h-[38px] w-[48.75rem] flex">
+      <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px] bg-gradient-to-r from-main-orange from-90% to-white" />
+      {TIME_SPOTS.map((spot) => (
+        <TimeSpot
+          year={spot.year}
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+          margin={spot.margin}
+          isLast={spot.isLast}
+          key={spot.year}
+        />
+      ))}
     </div>
   );
 }
 
-interface TimeSectionProps {
+interface TimeSpotProps {
   year: number;
   selectedYear: number;
   setSelectedYear: Dispatch<SetStateAction<number>>;
-  left: string;
+  margin?: string;
+  isLast?: boolean;
 }
 
-function TimeSection({ year, selectedYear, setSelectedYear, left }: TimeSectionProps) {
+function TimeSpot({ year, selectedYear, setSelectedYear, margin, isLast }: TimeSpotProps) {
+  const isSelected = year === selectedYear;
+
   return (
     <div
-      className={`absolute group top-0 w-[38px] h-full flex flex-col justify-between items-center cursor-pointer ${left}`}
+      className={`z-10 group top-0 w-[38px] h-full flex flex-col justify-between items-center ${margin} ${
+        isSelected ? 'cursor-default' : 'cursor-pointer'
+      }`}
       onClick={() => setSelectedYear(year)}
     >
-      <Circle highlight={year === selectedYear} />
-      <span className="text-main-orange text-sm tracking-[0.02em]">{year}</span>
+      <Circle highlight={isSelected} />
+      <span className="flex items-center font-yoon text-main-orange text-sm tracking-[0.02em]">
+        {year}
+        {isLast && (
+          <span className="material-symbols-rounded font-light text-base">arrow_downward</span>
+        )}
+      </span>
     </div>
   );
 }

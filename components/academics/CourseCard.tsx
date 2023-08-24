@@ -81,7 +81,11 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   return (
     <div className="card" style={cardStyle} onClick={flipCard}>
-      <div className="front" style={{ ...faceStyle, ...frontStyle }} ref={frontRef}>
+      <div
+        className="front hover:bg-neutral-50"
+        style={{ ...faceStyle, ...frontStyle }}
+        ref={frontRef}
+      >
         <CardHeader sortedProperties={sortedProperties} />
         <CardTitle name={course.name} code={course.code} />
         <CardContentPreview description={course.description} />
