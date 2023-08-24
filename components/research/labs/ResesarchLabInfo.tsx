@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 
 import { COLOR_THEME } from '@/constants/color';
 
+import { faculty } from '@/types/page';
 import { ResearchLab } from '@/types/research';
+
+import { getPath } from '@/utils/page';
 
 export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
@@ -30,10 +34,22 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
   );
 }
 
-function ProfessorsInfo({ professors }: { professors: string[] }) {
+const facultyPath = getPath(faculty);
+
+function ProfessorsInfo({ professors }: { professors: { id: number; name: string }[] }) {
   return (
     <li className="text-sm flex gap-1">
-      <span className="whitespace-nowrap">교수: {professors.join(', ')}</span>
+      <span className="whitespace-nowrap">
+        교수:{' '}
+        {professors.map((info, i) => (
+          <Fragment key={info.id}>
+            <Link href={`${facultyPath}/${info.id}`} className="hover:text-main-orange">
+              {info.name}
+            </Link>
+            {i !== professors.length - 1 && ', '}
+          </Fragment>
+        ))}
+      </span>
     </li>
   );
 }
