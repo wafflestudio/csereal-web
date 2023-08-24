@@ -24,7 +24,7 @@ type RowType = 'next' | 'prev';
 function Row({ post, type }: { post?: AdjPostInfo; type: RowType }) {
   return (
     post && (
-      <Link className="group flex items-center" href={post.href}>
+      <Link className="group flex items-center w-fit" href={post.href}>
         <RowIcon type={type} />
         <RowDescription type={type} />
         <RowPostTitle title={post.title} />
