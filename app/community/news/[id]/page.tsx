@@ -4,9 +4,9 @@ import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachment from '@/components/common/Attachment';
-import HTMLViewer from '@/components/editor/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';

@@ -1,7 +1,7 @@
 import LinkIcon from '@/public/image/link_icon.svg';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { ResearchCenter } from '@/types/research';
 

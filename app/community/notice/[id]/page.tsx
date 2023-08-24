@@ -4,9 +4,9 @@ import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachment from '@/components/common/Attachment';
-import HTMLViewer from '@/components/editor/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';
@@ -35,7 +35,7 @@ export default function NoticePostPage() {
         {currPost &&
           formatDate(new Date(currPost.createdAt), { includeDay: true, includeTime: true })}
       </div>
-      <Attachment files={[]}/>
+      <Attachment files={[]} />
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10 ml-2.5" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />

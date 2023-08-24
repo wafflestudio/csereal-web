@@ -1,7 +1,7 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
-import './suneditor.custom.css';
+import './common/suneditor.custom.css';
 
 interface TopRightImage {
   type: 'image';
