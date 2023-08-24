@@ -1,4 +1,4 @@
-import { Course } from '@/types/academics';
+import { Course, CourseChanges as CourseChange } from '@/types/academics';
 
 export const graduateGuideData = `<div className="mw-parser-output">
 
@@ -357,3 +357,10 @@ export const courseData4: Course = {
   description:
     '개발자를 꿈꾼다면 한번쯤은 들어보아야 할 수업! 올해 소개원실은 안드로이드이기 때문에 와플의 안드로이드 세미나 신청 인원이 눈에 띄게 증가한 것이 아닐지 추측해봅니다.',
 };
+
+export const courseChangesData = [2020, 2019, 2018, 2017, 2015, 2013, 2012, 2010, 2009, 2008].map(
+  (year) => ({
+    year,
+    description: `${year}학년도 1학기 시행 교과과정 변경`,
+  }),
+);

@@ -1,15 +1,22 @@
 'use client';
 
 import { Dispatch, SetStateAction, useState } from 'react';
+import useSWR from 'swr';
 
+import { getCourseChanges } from '@/apis/academics';
+
+import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function UndergraduateCourseChanges() {
+  const { data } = useSWR('/academics/undergraduate/course-changes', getCourseChanges);
   const [selectedYear, setSelectedYear] = useState<number>(2020);
+  const selectedChange = data?.find((d) => d.year === selectedYear);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-14">
       <TimeLine selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
+      {selectedChange && <HTMLViewer htmlContent={selectedChange.description} />}
     </PageLayout>
   );
 }
@@ -20,7 +27,8 @@ interface TimeLineProps {
 }
 
 const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
-  { year: 2019 },
+  { year: 2020 },
+  { year: 2019, margin: 'ml-5' },
   { year: 2018, margin: 'ml-5' },
   { year: 2017, margin: 'ml-5' },
   { year: 2015, margin: 'ml-[4.875rem]' },
@@ -31,7 +39,7 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
 
 function TimeLine({ selectedYear, setSelectedYear }: TimeLineProps) {
   return (
-    <div className="relative h-[38px] w-[48.75rem] flex">
+    <div className="relative h-[38px] w-[48.75rem] mb-12 flex">
       <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px] bg-gradient-to-r from-main-orange from-90% to-white" />
       {TIME_SPOTS.map((spot) => (
         <TimeSpot

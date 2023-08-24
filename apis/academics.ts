@@ -1,4 +1,5 @@
 import {
+  courseChangesData,
   courseData1,
   courseData2,
   courseData3,
@@ -7,7 +8,7 @@ import {
   undergraduateGuideData,
 } from '@/data/academics';
 
-import { Course, Guide } from '@/types/academics';
+import { Course, CourseChanges, Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
@@ -37,3 +38,5 @@ export const getCourses = async (type: StudentType): Promise<Course[]> => [
     .fill(0)
     .map((_, i) => ({ ...courseData4, id: i + 30 })),
 ];
+
+export const getCourseChanges = async (): Promise<CourseChanges[]> => courseChangesData;
