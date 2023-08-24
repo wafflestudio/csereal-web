@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
 
 interface TagsProps {
   tags: string[];
@@ -39,7 +38,7 @@ interface TagProps {
   tag: string;
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
-  onClick?: (tag: string) => any;
+  onClick?: (tag: string) => void;
 }
 
 export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick }: TagProps) {

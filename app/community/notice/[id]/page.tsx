@@ -54,17 +54,12 @@ const formatFullDate = (date: Date) => {
   const dd = String(date.getDate()).padStart(2, '0');
   const day = DAYS[date.getDay()];
 
-  let half;
-  let hour = date.getHours();
-  const minute = String(date.getMinutes()).padStart(2, '0');
-  if (hour < 12) {
-    if (hour === 0) hour = 12;
-    half = '오전';
-  } else {
-    if (hour !== 12) hour -= 12;
-    half = '오후';
-  }
-  const time = `${half} ${hour}:${minute}`;
+  const hour24 = date.getHours();
+  const isAM = hour24 < 12;
+  const half = isAM ? '오전' : '오후';
+  const hour12 = [0, 12].includes(hour24) ? 12 : isAM ? hour24 : hour24 - 12;
+  const minute = `${date.getMinutes()}`.padStart(2, '0');
+  const time = `${half} ${hour12}:${minute}`;
 
   return `${yyyy}/${mm}/${dd} (${day}) ${time}`; // e.g. 2023/08/01 (화) 오후 5:09
 };

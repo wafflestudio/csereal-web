@@ -31,20 +31,19 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   // resize card width
   useEffect(() => {
-    if (frontRef.current && backRef.current) {
-      const back = backRef.current;
-      const front = frontRef.current;
+    const front = frontRef.current;
+    const back = backRef.current;
+    if (!front || !back) return;
 
-      if (isFlipped) {
-        if (back.scrollHeight > CARD_HEIGHT) {
-          const textCount = back.innerText.split('\n')[2].length;
-          const letterPerLine = textCount / LINE_LIMIT;
-          const expectedWidth = letterPerLine * TEXT_SIZE;
-          back.style.width = expectedWidth + 'px';
-        }
-      } else {
-        back.style.width = front.offsetWidth + 'px';
+    if (isFlipped) {
+      if (back.scrollHeight > CARD_HEIGHT) {
+        const textCount = back.innerText.split('\n')[2].length;
+        const letterPerLine = textCount / LINE_LIMIT;
+        const expectedWidth = letterPerLine * TEXT_SIZE;
+        back.style.width = expectedWidth + 'px';
       }
+    } else {
+      back.style.width = front.offsetWidth + 'px';
     }
   }, [isFlipped]);
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import useSWR from 'swr';
 
 import { getCourses } from '@/apis/academics';
@@ -14,22 +14,11 @@ import { Classification, Course, SortOption } from '@/types/academics';
 export default function UndergraduateCoursePage() {
   const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
   const { data } = useSWR<Course[]>(`/academics/undergraduate/courses`, getCourses);
-  const [sortedCourses, setSortedCourses] = useState<Course[][]>([]);
-
-  const changeOption = (newOption: SortOption) => {
-    if (!data) return;
-    setSelectedOption(newOption);
-  };
-
-  useEffect(() => {
-    if (data) {
-      setSortedCourses(sortCourses(data, selectedOption));
-    }
-  }, [data, selectedOption]);
+  const sortedCourses = sortCourses(data ?? [], selectedOption);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
-      <SortOptions selectedOption={selectedOption} changeOption={changeOption} />
+      <SortOptions selectedOption={selectedOption} changeOption={setSelectedOption} />
       {sortedCourses.length > 0 && (
         <div className="mt-6 flex flex-col gap-8">
           {sortedCourses.map((courses, i) => (
@@ -43,7 +32,7 @@ export default function UndergraduateCoursePage() {
 
 interface SortOptionsProps {
   selectedOption: SortOption;
-  changeOption: (newOption: SortOption) => void;
+  changeOption: Dispatch<SetStateAction<SortOption>>;
 }
 
 const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
