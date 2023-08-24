@@ -50,6 +50,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   const cardStyle: CSSProperties = {
     position: 'relative',
+    padding: '0 2px',
     transformStyle: 'preserve-3d',
     perspective: '1000px',
     cursor: 'pointer',
