@@ -77,10 +77,8 @@ export default function CourseCard({ course, selectedOption, zIndex }: CourseCar
     <div style={cardStyle} onClick={flipCard}>
       <div style={{ ...faceStyle, ...frontStyle }}>
         <CardHeader sortedProperties={sortedProperties} />
-        <div className="inline-block">
-          <CardTitle name={course.name} code={course.code} />
-          <CardContentPreview description={course.description} />
-        </div>
+        <CardTitle name={course.name} code={course.code} />
+        <CardContentPreview description={course.description} />
       </div>
       <div style={{ ...faceStyle, ...backStyle }} ref={backRef}>
         <CardTitle name={course.name} code={course.code} />

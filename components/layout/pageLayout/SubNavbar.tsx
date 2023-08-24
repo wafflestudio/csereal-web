@@ -27,7 +27,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
           {subTabs.map((tab) => (
             <SubTab
               tab={tab}
-              isCurrent={tab.name === currentTab.name}
+              isCurrent={tab === currentTab}
               key={`${tab.parent?.name}_${tab.name}`}
             />
           ))}
