@@ -20,7 +20,7 @@ export default function SunEditorWrapper({
       getSunEditorInstance={(x) => (editorRef.current = x)}
       height="400px"
       lang={ko}
-      defaultValue={initialContent}
+      defaultValue={''}
       setOptions={{
         plugins,
         buttonList: [
