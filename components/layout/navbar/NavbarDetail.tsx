@@ -1,13 +1,8 @@
-import Link from 'next/link';
-
-import { StraightNode } from '@/components/common/Nodes';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import { SegmentNode } from '@/types/page';
 
-import { getPath } from '@/utils/page';
-
 import NavTreeRow from './NavtreeRow';
-import useCurrentSegmentNode from '../../../hooks/useCurrentSegmentNode';
 
 export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode }) {
   const currentSegmentNode = useCurrentSegmentNode();
