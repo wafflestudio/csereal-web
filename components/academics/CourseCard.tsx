@@ -63,34 +63,25 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     boxShadow: '0 2px 4px 0 rgba(0,0,0,0.2)',
     WebkitBackfaceVisibility: 'hidden',
     backfaceVisibility: 'hidden',
-    transition: 'all ease-in-out 0.5s',
+    transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
   };
 
-  const frontStyle: CSSProperties = {
-    position: 'absolute',
-    padding: '1.125rem', // 18px
-    backgroundColor: 'white',
-    transform: isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)',
-  };
+  const frontStyle = `absolute p-[1.125rem] bg-white hover:bg-neutral-50 ${
+    isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
+  }`;
 
-  const backStyle: CSSProperties = {
-    padding: '1.25rem 1.125rem', // 20px 18px
-    backgroundColor: '#f5f5f5', // bg-neutral-100
-    transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)',
-  };
+  const backStyle = `py-5 px-[1.125rem] bg-neutral-100 ${
+    isFlipped ? '[transform:rotateY(0deg)]' : '[transform:rotateY(180deg)]'
+  }`;
 
   return (
-    <div className="card" style={cardStyle} onClick={flipCard}>
-      <div
-        className="front hover:bg-neutral-50"
-        style={{ ...faceStyle, ...frontStyle }}
-        ref={frontRef}
-      >
+    <div style={cardStyle} onClick={flipCard}>
+      <div className={frontStyle} style={{ ...faceStyle }} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
         <CardTitle name={course.name} code={course.code} />
         <CardContentPreview description={course.description} />
       </div>
-      <div className="back" style={{ ...faceStyle, ...backStyle }} ref={backRef}>
+      <div className={backStyle} style={{ ...faceStyle }} ref={backRef}>
         <CardTitle name={course.name} code={course.code} />
         <CardContent description={course.description} />
       </div>
