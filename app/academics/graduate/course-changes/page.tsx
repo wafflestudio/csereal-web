@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';
 
-const YEAR_LIMIT = 2010;
+const YEAR_LIMIT = 2011;
 const NO_CHANGE = (year: number): CourseChange => ({
   year,
   description: `${year}학년도 교과과정 변경 내역은 없습니다.`,
@@ -22,10 +22,9 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
   { year: 2019, margin: 'ml-5' },
   { year: 2018, margin: 'ml-5' },
   { year: 2017, margin: 'ml-5' },
-  { year: 2015, margin: 'ml-[4.875rem]' },
-  { year: 2013, margin: 'ml-[4.875rem]' },
-  { year: 2012, margin: 'ml-5' },
-  { year: 2010, margin: 'ml-[4.875rem]', isLast: true },
+  { year: 2016, margin: 'ml-5' },
+  { year: 2015, margin: 'ml-5' },
+  { year: 2011, margin: 'ml-[194px]', isLast: true },
 ];
 
 const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
@@ -36,8 +35,8 @@ const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
 };
 
 // TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
-export default function UndergraduateCourseChanges() {
-  const { data } = useSWR('/academics/undergraduate/course-changes', getCourseChanges);
+export default function GraduateCourseChanges() {
+  const { data } = useSWR('/academics/graduate/course-changes', getCourseChanges);
   const [selectedYear, setSelectedYear] = useState<number>(2020);
   const selectedChanges = getSelectedChanges(selectedYear, data ?? []);
 
