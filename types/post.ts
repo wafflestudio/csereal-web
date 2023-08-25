@@ -83,12 +83,8 @@ export interface GETFacultyRecruitmentResponse {
   description: string;
 }
 
-<<<<<<< HEAD
-// 세미나 - - - - - - - - - - - - - - - - - - - -
-=======
 // 세미나 - - - - - - - - - - - - - - - - - - - - - -
 
->>>>>>> origin
 export interface GETSeminarPostsResponse {
   total: number;
   searchList: SimpleSeminarPost[];
