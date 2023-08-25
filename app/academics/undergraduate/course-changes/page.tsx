@@ -19,13 +19,13 @@ const NO_CHANGE = (year: number): CourseChange => ({
 
 const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
   { year: 2020 },
-  { year: 2019, margin: 'ml-5' },
-  { year: 2018, margin: 'ml-5' },
-  { year: 2017, margin: 'ml-5' },
-  { year: 2015, margin: 'ml-[4.875rem]' },
-  { year: 2013, margin: 'ml-[4.875rem]' },
-  { year: 2012, margin: 'ml-5' },
-  { year: 2010, margin: 'ml-[4.875rem]', isLast: true },
+  { year: 2019, margin: 'ml-7' },
+  { year: 2018, margin: 'ml-7' },
+  { year: 2017, margin: 'ml-7' },
+  { year: 2015, margin: 'ml-[5.375rem]' },
+  { year: 2013, margin: 'ml-[5.375rem]' },
+  { year: 2012, margin: 'ml-7' },
+  { year: 2010, margin: 'ml-[5.375rem]', isLast: true },
 ];
 
 const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {

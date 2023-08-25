@@ -37,7 +37,7 @@ function TimeSpot({ year, selectedYear, setSelectedYear, margin, isLast }: TimeS
 
   return (
     <div
-      className={`z-10 group top-0 w-[38px] h-full flex flex-col justify-between items-center ${margin} ${
+      className={`z-10 group top-0 w-[30px] h-full flex flex-col justify-between items-center ${margin} ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
       onClick={() => setSelectedYear(year)}
