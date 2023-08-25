@@ -23,7 +23,11 @@ export default function Dropdown({ contents, selectedIndex, onClick }: DropdownP
       />
       {expanded && (
         <div className="relative">
-          <DropdownList contents={contents} handleClick={handleClick} />
+          <DropdownList
+            contents={contents}
+            handleClick={handleClick}
+            selectedIndex={selectedIndex}
+          />
         </div>
       )}
     </div>
@@ -49,9 +53,7 @@ function DropdownButton({
         `}
       onClick={toggleExpanded}
     >
-      <p className={`text-sm font-normal ${expanded && 'text-main-orange'}`}>
-        {contents[selectedIndex]}
-      </p>
+      <p className="text-sm font-normal">{contents[selectedIndex]}</p>
       <span className="material-symbols-rounded text-base">
         {expanded ? 'expand_less' : 'expand_more'}
       </span>
@@ -62,16 +64,20 @@ function DropdownButton({
 function DropdownList({
   contents,
   handleClick,
+  selectedIndex,
 }: {
   contents: string[];
   handleClick: (index: number) => void;
+  selectedIndex: number;
 }) {
   return (
     <div className="absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white">
       {contents.map((content, index) => (
         <button
           key={index}
-          className="w-full text-left text-sm font-normal py-[.28rem] pl-[.62rem] hover:bg-neutral-100"
+          className={`w-full text-left text-sm font-normal py-[.28rem] pl-[.62rem] hover:bg-neutral-100 ${
+            selectedIndex === index && 'text-main-orange'
+          }`}
           onClick={() => handleClick(index)}
         >
           {content}

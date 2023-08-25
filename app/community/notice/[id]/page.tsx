@@ -3,10 +3,10 @@
 import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
-import Attachment from '@/components/common/Attachment';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';
@@ -32,7 +32,7 @@ export default function NoticePostPage() {
       <div className="mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
         글쓴이: {writer}, 작성시각: {currPost && formatFullDate(new Date(currPost.createdAt))}
       </div>
-      <Attachment />
+      <Attachments files={[]} />
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10 ml-2.5" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />

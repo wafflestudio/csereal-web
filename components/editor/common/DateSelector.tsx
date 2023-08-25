@@ -5,8 +5,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { useReducer } from 'react';
 
-import { DAYS } from '@/utils/formatting';
-
 export default function DateSelector({
   date,
   setDate,
@@ -108,6 +106,7 @@ const DateTimePicker = ({
 };
 
 const formatDate = (date: Date) => {
+  const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${
     DAYS[date.getDay()]
   }요일`;

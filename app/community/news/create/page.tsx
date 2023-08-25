@@ -8,12 +8,12 @@ import { NewsTags } from '@/constants/tag';
 
 export default function NewsCreatePage() {
   const handleComplete = async (content: PostEditorContent) => {
-    console.log(content);
+    console.log(content.description);
     // throw new Error();
   };
 
   return (
-    <PageLayout title="새 소식 쓰기" titleType="small">
+    <PageLayout title="새 소식 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NewsTags}
         showMainImage

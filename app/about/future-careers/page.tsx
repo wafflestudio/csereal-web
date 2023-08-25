@@ -1,55 +1,31 @@
-'use client';
+import { getFutureCareeres } from '@/apis/about';
 
-import { useState } from 'react';
-
-import { careerCompanies, careerDescription, careerStat } from '@/data/futureCareers';
-
-import Dropdown from '@/components/common/Dropdown';
+import CareerStat from '@/components/futureCareers/CareerStat';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default function GreetingsPage() {
+import { FutureCareers } from '@/types/about';
+
+export default async function GreetingsPage() {
+  const { description, stat, companies } = await getFutureCareeres();
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
-      <Description />
-      <CareerStat />
-      <CareerCompanies />
+      <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
+        {description}
+      </p>
+      <CareerStat stat={stat} />
+      <CareerCompanies companies={companies} />
     </PageLayout>
   );
 }
 
-function Description() {
-  return (
-    <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
-      {careerDescription}
-    </p>
-  );
-}
-
-function CareerStat() {
-  const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);
-  return (
-    <div>
-      <div className="flex gap-2 items-center mb-[0.8rem]">
-        <h3 className="text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
-        <Dropdown
-          contents={Object.keys(careerStat).reverse()}
-          selectedIndex={selectedCareerStatIndex}
-          onClick={setSelectedCareerStatIndex}
-        />
-      </div>
-      {/* 디자인 확정 후 표 추가 예정 */}
-    </div>
-  );
-}
-
-function CareerCompanies() {
+function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
   return (
     <div>
       <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 창업 기업</h3>
       <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
         <ol>
-          {careerCompanies.map((company, index) => (
+          {companies.map((company, index) => (
             <CompanyTableRow key={index} index={index + 1} {...company} />
           ))}
         </ol>
@@ -74,7 +50,7 @@ function CompanyTableHeader() {
 interface CompanyTableRowProps {
   index: number;
   name: string;
-  url: string;
+  url?: string;
   year: number;
 }
 
@@ -83,7 +59,11 @@ function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
     <li className="flex pt-[.63rem] pb-3 odd:bg-neutral-50">
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
-      <a className={'text-link pl-3 ' + TABLE_COLUMN_SIZE[2]} href={url} target="_blank">
+      <a
+        className={'text-link pl-3 hover:underline ' + TABLE_COLUMN_SIZE[2]}
+        href={url}
+        target="_blank"
+      >
         {url}
       </a>
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[3]}>{year}</p>

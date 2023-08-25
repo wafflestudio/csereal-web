@@ -3,10 +3,10 @@
 import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
-import Attachment from '@/components/common/Attachment';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';
@@ -26,7 +26,8 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
-      <Attachment />
+      {/* TODO: API 반영 */}
+      <Attachments files={mockFiles} />
       <HTMLViewer htmlContent={currPost.description} margin="mt-4" />
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
@@ -39,3 +40,21 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
     </PageLayout>
   );
 }
+
+const mockFiles = [
+  {
+    name: 'FILE1',
+    url: 'www.google.com',
+    bytes: 123123,
+  },
+  {
+    name: 'FILE2',
+    url: 'www.apple.com',
+    bytes: 123123,
+  },
+  {
+    name: 'FILE1',
+    url: 'www.instagram.com',
+    bytes: 123123,
+  },
+];
