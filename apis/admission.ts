@@ -1,3 +1,11 @@
-import { getEarlySubmissionsMock } from '@/data/admission';
+import {
+  getGraduateRegularAdmissionMock,
+  getUndergraduateEarlyAdmissionMock,
+  getUndergraduateRegularAdmissionMock,
+} from '@/data/admission';
 
-export const getEarlySubmission = getEarlySubmissionsMock;
+export const getUndergraduateEarlyAdmission = getUndergraduateEarlyAdmissionMock;
+
+export const getUndergraduateRegularAdmission = getUndergraduateRegularAdmissionMock;
+
+export const getGraduateRegularAdmission = getGraduateRegularAdmissionMock;
