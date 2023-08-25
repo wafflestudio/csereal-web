@@ -38,10 +38,10 @@ export default function Footer() {
 function FooterTop() {
   return (
     <div className="bg-white px-[3.75rem] py-8 flex">
-      <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" />
-      <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" />
-      <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" />
-      <LinkGroup groupName="More" links={moreLinks} width="w-[6.5rem]" />
+      <LinkGroup groupName="About" links={aboutLinks} width="w-[7.8rem]" />
+      <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.55rem]" />
+      <LinkGroup groupName="Research" links={researchLinks} width="w-[9.3rem]" />
+      <LinkGroup groupName="More" links={moreLinks} width="w-[6.9rem]" />
     </div>
   );
 }
@@ -56,7 +56,7 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
   return (
     <section className={`${width}`}>
       <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
-      <ul className="text-neutral-500 text-[.625rem] font-normal tracking-[.0125rem]">
+      <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (
           <li key={i} className="mb-2">
             <Link href={link.href}>{link.title}</Link>
@@ -78,7 +78,7 @@ function FooterBottom() {
 
 function FooterBottomLeft() {
   return (
-    <div className="text-neutral-500 font-noto text-[.5625rem] tracking-[.01125rem]">
+    <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
       <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
         <Link href={privacyPath}>개인정보처리방침</Link>
         <span>|</span>
@@ -100,9 +100,6 @@ function FooterBottomLeft() {
 function FooterBottomRight() {
   return (
     <div className="flex items-end gap-7">
-      <Link href={snucseFacebookLink}>
-        <FacebookIcon />
-      </Link>
       <Link href={snucomLink}>
         <SnucomIcon />
       </Link>

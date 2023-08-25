@@ -1,6 +1,6 @@
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import { Direction } from '@/types/directions';
+import { Direction } from '@/types/about';
 
 export default function DirectionsDetails({ direction }: { direction: Direction }) {
   return (

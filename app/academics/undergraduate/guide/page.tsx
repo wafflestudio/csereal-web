@@ -2,7 +2,7 @@ import GuideContent from '@/public/image/undergraduate_guide_contents.svg';
 
 import { getAcademicsGuide } from '@/apis/academics';
 
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function UndergraduateGuidePage() {

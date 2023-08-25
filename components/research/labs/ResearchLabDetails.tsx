@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
 
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { researchGroups } from '@/types/page';
 import { ResearchLab } from '@/types/research';

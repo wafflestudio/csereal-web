@@ -1,7 +1,8 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
-import 'suneditor/dist/css/suneditor.min.css';
+
+import './common/suneditor.custom.css';
 
 interface TopRightImage {
   type: 'image';
@@ -44,7 +45,7 @@ function TopRightImageContent({ width, height, url }: TopRightImage) {
         alt="대표 이미지"
         priority
         fill
-        className="object-cover"
+        className="object-contain"
         sizes={`${width}px`}
       />
     </div>

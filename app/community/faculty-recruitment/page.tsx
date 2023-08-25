@@ -1,5 +1,5 @@
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { COLOR_THEME } from '@/constants/color';

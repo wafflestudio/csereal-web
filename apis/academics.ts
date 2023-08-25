@@ -1,12 +1,21 @@
-import { graduateGuideData, undergraduateGuideData } from '@/data/academics';
+import { getMockAcademicsGuide, getMockCourseChanges, getMockCourses } from '@/data/academics';
 
-import { Guide } from '@/types/academics';
+import { Course, CourseChange, Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
-// export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
-//   getRequest(`/guide/${type}`) as Promise<Guide>;
+type StudentType = 'undergraduate' | 'graduate';
 
-export const getAcademicsGuide = async (type: 'undergraduate' | 'graduate') => {
-  return { description: type === 'undergraduate' ? undergraduateGuideData : graduateGuideData };
-};
+export const getAcademicsGuide = getMockAcademicsGuide;
+
+export const getCourses = getMockCourses;
+
+export const getCourseChanges = getMockCourseChanges;
+
+// export const getAcademicsGuide = (type: StudentType) =>
+//   getRequest(`/academics/${type}/guide`) as Promise<Guide>;
+
+// export const getCourses = (type: StudentType) =>
+//   getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
+
+// export const getCourseChanges = (): Promise<CourseChange[]> => courseChangesData;

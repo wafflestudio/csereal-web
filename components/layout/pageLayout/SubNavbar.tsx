@@ -17,7 +17,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
 
   return (
     <div
-      className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-[13.25rem]"
+      className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-16"
       style={{ height }}
     >
       <CurvedVerticalNode grow={false} />
@@ -27,7 +27,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
           {subTabs.map((tab) => (
             <SubTab
               tab={tab}
-              isCurrent={tab.name === currentTab.name}
+              isCurrent={tab === currentTab}
               key={`${tab.parent?.name}_${tab.name}`}
             />
           ))}

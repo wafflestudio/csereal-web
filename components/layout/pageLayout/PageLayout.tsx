@@ -12,7 +12,7 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 interface PageLayoutProps {
   title?: string | JSX.Element;
   titleType: 'big' | 'small';
-  titleMargin?: string; // tailwind class
+  titleMargin: string; // tailwind class
   children: ReactNode;
 }
 

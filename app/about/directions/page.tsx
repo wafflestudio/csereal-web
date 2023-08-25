@@ -1,8 +1,4 @@
-'use client';
-
-import useSWR from 'swr';
-
-import { getDirectionsMock } from '@/apis/directions';
+import { getDirections } from '@/apis/about';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import DirectionsDetails from '@/components/directions/DirectionsDetails';
@@ -10,7 +6,6 @@ import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Direction } from '@/types/directions';
 import { directions } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
@@ -24,9 +19,9 @@ const directionsPath = getPath(directions);
 const FIND_PATH_URL =
   'https://map.naver.com/v5/directions/-/14132304.586627584,4502018.066849938,%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90%EA%B4%80%EC%95%85%EC%BA%A0%ED%8D%BC%EC%8A%A4%EC%A0%9C1%EA%B3%B5%ED%95%99%EA%B4%80,18721800,PLACE_POI/-/transit?c=15,0,0,0,dh';
 
-export default function DirectionsPage({ searchParams }: DirectionsPageProps) {
-  const { data: directionList = [] } = useSWR({ url: '/clubs' }, getDirectionsMock);
-  const selectedDirection = findSelectedItem<Direction>(
+export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
+  const directionList = await getDirections();
+  const selectedDirection = findSelectedItem(
     directionList,
     searchParams.selected ?? '',
     directionList[0]?.name,
