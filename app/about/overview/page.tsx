@@ -1,6 +1,6 @@
 import { getOverview } from '@/apis/about';
 
-import Attachment from '@/components/common/Attachment';
+import Attachment from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

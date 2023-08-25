@@ -8,11 +8,11 @@ interface AttachmentProps {
   }[];
 }
 
-export default function Attachment({ files }: AttachmentProps) {
+export default function Attachments({ files }: AttachmentProps) {
   return (
     <div className="relative flex flex-col gap-2 w-[40rem] mt-5 mb-6 px-4 py-3 bg-neutral-50 rounded-sm border border-neutral-200">
       {files.map((file, index) => {
-        const kilobyte = Math.round(file.bytes / 100000);
+        const kilobyte = Math.round(file.bytes / 100);
         return (
           <a key={index} className="text-xs font-normal" href={file.url} download>
             {file.name}({kilobyte / 10}KB)
