@@ -12,7 +12,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { CourseChange } from '@/types/academics';
 
 const YEAR_LIMIT = 2010;
-const NO_CHANGE = (year: number): CourseChange => ({
+const noChange = (year: number): CourseChange => ({
   year,
   description: `${year}학년도 교과과정 변경 내역은 없습니다.`,
 });
@@ -32,7 +32,7 @@ const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
   if (selectedYear <= YEAR_LIMIT) return data.filter((d) => d.year <= YEAR_LIMIT);
 
   const change = data.find((d) => d.year === selectedYear);
-  return change ? [change] : [NO_CHANGE(selectedYear)];
+  return change ? [change] : [noChange(selectedYear)];
 };
 
 // TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링

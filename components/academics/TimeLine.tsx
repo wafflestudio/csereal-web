@@ -36,7 +36,7 @@ function TimeSpot({ year, selectedYear, setSelectedYear, margin, isLast }: TimeS
   const isSelected = year === selectedYear;
 
   return (
-    <div
+    <button
       className={`z-10 group top-0 w-[1.875rem] h-full flex flex-col justify-between items-center ${margin} ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
@@ -49,7 +49,7 @@ function TimeSpot({ year, selectedYear, setSelectedYear, margin, isLast }: TimeS
           <span className="material-symbols-rounded font-light text-base">arrow_downward</span>
         )}
       </span>
-    </div>
+    </button>
   );
 }
 
