@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { getResearchGroupsMock } from '@/apis/research';
+import { getResearchGroups } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -23,7 +23,7 @@ const researchGroupsPath = getPath(researchGroups);
 export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
   const { data: { description = '', groups = [] } = {} } = useSWR(
     { url: '/research/groups' },
-    getResearchGroupsMock,
+    getResearchGroups,
   );
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,
@@ -40,7 +40,13 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
         path={researchGroupsPath}
         listGridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
       />
-      {selectedGroup && <ResearchGroupDetails group={selectedGroup} />}
+      {selectedGroup ? (
+        <ResearchGroupDetails group={selectedGroup} />
+      ) : (
+        <p>
+          <b>{`'${searchParams.selected}'`}</b> 연구그룹은 존재하지 않습니다.
+        </p>
+      )}
     </PageLayout>
   );
 }
