@@ -260,7 +260,7 @@ export const facilities: Facilities = {
     {
       id: 0,
       name: `학부 행정실`,
-      description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="https://cse.snu.ac.kr/sites/all/libraries/mediawiki/index.php?title=/people/staff_%ED%96%89%EC%A0%95%EC%8B%A4&action=edit&redlink=1">직원 목록</a>을 참조.</p>`,
+      description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="/people/staff">직원 목록</a>을 참조.</p>`,
       location: `301동 316호`,
       imageURL:
         'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/admin.JPG?itok=-ilXd4wR',
