@@ -100,9 +100,6 @@ function FooterBottomLeft() {
 function FooterBottomRight() {
   return (
     <div className="flex items-end gap-7">
-      <Link href={snucseFacebookLink}>
-        <FacebookIcon />
-      </Link>
       <Link href={snucomLink}>
         <SnucomIcon />
       </Link>

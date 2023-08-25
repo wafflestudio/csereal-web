@@ -1,14 +1,9 @@
-'use client';
-
-import useSWR from 'swr';
-
-import { getClubsMock } from '@/apis/club';
+import { getClubs } from '@/apis/about';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
 
-import { Club } from '@/types/club';
 import { studentClubs } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
@@ -21,9 +16,13 @@ interface StudentClubsPageProps {
 const DEFAULT_CLUB = '와플스튜디오';
 const clubPath = getPath(studentClubs);
 
-export default function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
-  const { data: clubs = [] } = useSWR({ url: '/clubs' }, getClubsMock);
-  const selectedClub = findSelectedItem<Club>(clubs, searchParams.selected ?? '', DEFAULT_CLUB);
+export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
+  const clubs = await getClubs();
+  const selectedClub = findSelectedItem(
+    clubs,
+    decodeURI(searchParams.selected ?? ''),
+    DEFAULT_CLUB,
+  );
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">

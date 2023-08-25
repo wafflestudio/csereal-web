@@ -1,4 +1,4 @@
-import { htmlMock1 } from '@/components/common/HTMLViewer';
+import { htmlMock1 } from '@/components/editor/HTMLViewer';
 
 import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 

@@ -3,10 +3,10 @@
 import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
-import Attachments from '@/components/common/Attachment';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { usePosts } from '@/hooks/usePosts';
