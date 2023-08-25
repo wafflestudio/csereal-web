@@ -1,8 +1,12 @@
-import { centersMock, getMockResearchGroups, groupMock, lab, lab2 } from '@/data/research';
+import { getMockResearchCenters, getMockResearchGroups, lab, lab2 } from '@/data/research';
 
 import { ResearchCenter, ResearchGroups, ResearchLab, ResearchLabInfo } from '@/types/research';
 
 import { getRequest } from '.';
+
+export const getResearchGroups = getMockResearchGroups;
+
+export const getResearchCenters = getMockResearchCenters;
 
 // export const getResearchGroups = () => getRequest('/research/groups') as Promise<ResearchGroups>;
 
@@ -36,9 +40,3 @@ export const getResearchLab = async (labId: number): Promise<ResearchLab> => ({
   websiteURL: '/',
   group: '그래픽스 및 사람 중심 컴퓨팅',
 });
-
-export const getResearchGroups = getMockResearchGroups;
-
-export const getResearchCenters = async (): Promise<ResearchCenter[]> => {
-  return centersMock;
-};
