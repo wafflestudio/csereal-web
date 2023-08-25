@@ -12,8 +12,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Classification, Course, SortOption } from '@/types/academics';
 
 export default function UndergraduateCoursePage() {
-  const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
   const { data } = useSWR<Course[]>(`/academics/undergraduate/courses`, getCourses);
+  const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
   const sortedCourses = sortCourses(data ?? [], selectedOption);
 
   return (

@@ -7,7 +7,6 @@ import { Course } from '@/types/academics';
 
 export default async function GraduateCoursePage() {
   const data = await getCourses('graduate');
-  console.log('Asdf');
   const chunckedCourses = data ? chunkCourse(data) : [];
 
   return (

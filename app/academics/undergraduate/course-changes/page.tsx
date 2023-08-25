@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import { getCourseChanges } from '@/apis/academics';
 
 import TimeLine from '@/components/academics/TimeLine';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';

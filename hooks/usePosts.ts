@@ -26,13 +26,13 @@ export function usePosts<T extends PostWithAdjIdInfo>(
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
-  const { data: { currPost, prevPostPreview, nextPost: nextPostPreview } = {} } = useSwr(
+  const { data: { currPost, prevPostPreview, nextPostPreview } = {} } = useSwr(
     { id, searchParams },
     async ({ id, searchParams }) => {
       const currPost = await getPostDetail(id, searchParams);
       const prevPostPreview = getAdjPostInfo(currPost.prevId, currPost.prevTitle);
       const nextPostPreview = getAdjPostInfo(currPost.nextId, currPost.nextTitle);
-      return { currPost, prevPostPreview, nextPost: nextPostPreview };
+      return { currPost, prevPostPreview, nextPostPreview };
     },
   );
 
