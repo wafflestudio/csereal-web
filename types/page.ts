@@ -126,14 +126,6 @@ export const facultyRecruitment: SegmentNode = {
   children: null,
 };
 
-export const international: SegmentNode = {
-  name: '국제(International)',
-  segment: 'international',
-  isPage: true,
-  parent: community,
-  children: null,
-};
-
 export const people: SegmentNode = {
   name: '구성원',
   segment: 'people',
@@ -537,7 +529,7 @@ about.children = [
   contact,
   directions,
 ];
-community.children = [news, notice, seminar, facultyRecruitment, international];
+community.children = [news, notice, seminar, facultyRecruitment];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission];

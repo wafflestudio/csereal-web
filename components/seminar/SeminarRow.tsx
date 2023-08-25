@@ -92,5 +92,9 @@ const formatDateWithDays = (date: Date) => {
   const day = date.getDate();
   const dayOfWeek = date.getDay();
 
-  return `${month}/${day} (${DAYS[dayOfWeek]})`;
+  return `${month}/${day} (${DAYS[dayOfWeek]}) ${padZero(date.getHours())}:${padZero(
+    date.getMinutes(),
+  )}`;
 };
+
+const padZero = (str: number) => (str + '').padStart(2, '0');

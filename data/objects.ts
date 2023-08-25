@@ -197,7 +197,7 @@ export const futureCompanies = [
   { name: '(주)브랜치앤바운드', url: 'https://www.codetree.ai/landing', year: 2021 },
   { name: '블록누커', url: 'https://www.etheruko.com/', year: 2022 },
   { name: '주식회사 쿳션', year: 2022 },
-];
+].sort((a, b) => b.year - a.year);
 
 export const clubs: Club[] = [
   {
