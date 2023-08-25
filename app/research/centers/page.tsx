@@ -40,7 +40,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchCentersPage
         <ResearchCenterDetails center={selectedCenter} />
       ) : (
         <p>
-          <b>id가 {`'${searchParams.selected}'`}</b>인 연구센터는 존재하지 않습니다.
+          <b>{`'${searchParams.selected}'`}</b> 연구센터는 존재하지 않습니다.
         </p>
       )}
     </PageLayout>

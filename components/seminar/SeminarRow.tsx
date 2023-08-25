@@ -7,7 +7,6 @@ import { useQueryString } from '@/hooks/useQueryString';
 
 import { seminar } from '@/types/page';
 
-import { formatDateWithDays } from '@/utils/formatting';
 import { getPath } from '@/utils/page';
 
 export interface SeminarRowProps {
@@ -85,3 +84,13 @@ export default function SeminarRow({
     </article>
   );
 }
+
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+const formatDateWithDays = (date: Date) => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = date.getDay();
+
+  return `${month}/${day} (${DAYS[dayOfWeek]})`;
+};
