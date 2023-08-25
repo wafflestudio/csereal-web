@@ -17,9 +17,17 @@ export const getHistory = getMockHistory;
 
 export const getFutureCareeres = getMockFutureCareers;
 
-// const clubPath = '/club';
-
 export const getClubs = getMockClubs;
+
+export const getFacilities = getMockFacilities;
+
+export const getContact = getMockContact;
+
+export const getDirections = getMockDirections;
+
+// const clubPath = '/about/student-clubs';
+
+// export const getClubs = () => getRequest<Club[]>(clubPath);
 
 // export const postClub = (newClub: Club) => postRequest(clubPath, newClub) as Promise<Club>;
 
@@ -30,10 +38,4 @@ export const getClubs = getMockClubs;
 
 // const facilitiesPath = '/facilities';
 
-export const getFacilities = getMockFacilities;
-
-export const getContact = getMockContact;
-
-// const directionsPath = '/directions';
-
-export const getDirections = getMockDirections;
+// export const getDirections = () => getRequest<Direction[]>(/about/directions);
