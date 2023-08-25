@@ -13,8 +13,8 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
       {timeSpots.map((spot) => (
         <TimeSpot
           year={spot.year}
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
+          isSelected={spot.year === selectedYear}
+          onClick={() => setSelectedYear(spot.year)}
           margin={spot.margin}
           isLast={spot.isLast}
           key={spot.year}
@@ -26,21 +26,19 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
 
 interface TimeSpotProps {
   year: number;
-  selectedYear: number;
-  setSelectedYear: Dispatch<SetStateAction<number>>;
+  isSelected: boolean;
+  onClick: () => void;
   margin?: string;
   isLast?: boolean;
 }
 
-function TimeSpot({ year, selectedYear, setSelectedYear, margin, isLast }: TimeSpotProps) {
-  const isSelected = year === selectedYear;
-
+function TimeSpot({ year, isSelected, onClick, margin, isLast }: TimeSpotProps) {
   return (
     <button
       className={`z-10 group top-0 w-[1.875rem] h-full flex flex-col justify-between items-center ${margin} ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
-      onClick={() => setSelectedYear(year)}
+      onClick={onClick}
     >
       <Circle highlight={isSelected} />
       <span className="flex items-center font-yoon text-main-orange text-sm tracking-[0.02em]">
