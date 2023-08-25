@@ -17,19 +17,19 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal`}>
+      <body
+        className={`overscroll-none flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal;`}
+      >
         <NavbarContextProvider>
+          <Header />
           <Navbar />
-          <div className="flex flex-col flex-1">
-            <Header />
-            <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
-              <main className="flex-1">
-                <SWRProvider>
-                  <div className="font-noto">{children}</div>
-                </SWRProvider>
-              </main>
-              <Footer />
-            </div>
+          <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
+            <main className="flex-1">
+              <SWRProvider>
+                <div className="font-noto">{children}</div>
+              </SWRProvider>
+            </main>
+            <Footer />
           </div>
         </NavbarContextProvider>
       </body>
