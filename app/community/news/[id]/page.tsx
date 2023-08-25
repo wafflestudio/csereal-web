@@ -3,7 +3,7 @@
 import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
-import Attachment from '@/components/common/Attachment';
+import Attachments from '@/components/common/Attachment';
 import HTMLViewer from '@/components/common/HTMLViewer';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -27,7 +27,7 @@ export default function NewsPostPage({ params }: { params: { id: number } }) {
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
       {/* TODO: API 반영 */}
-      <Attachment files={mockFiles} />
+      <Attachments files={mockFiles} />
       <HTMLViewer htmlContent={currPost.description} margin="mt-4" />
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
