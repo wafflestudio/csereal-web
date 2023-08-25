@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import { logOut, login } from '@/apis/auth';
@@ -11,7 +13,7 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll
+        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll no-scrollbar
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
@@ -41,10 +43,10 @@ function HeaderRight() {
   const lang = 'ENG';
 
   const handleLogin = () => {
-    login();
+    console.log('로그인 버튼 클릭');
   };
   const handleLogOut = () => {
-    logOut();
+    console.log('로그아웃 버튼 클릭');
   };
   const handleLangChange = () => {
     // TODO
@@ -53,9 +55,13 @@ function HeaderRight() {
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
       <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
-        <button onClick={handleLogin}>로그인</button>
+        <Link href="http://cse-dev-waffle.bacchus.io/login">
+          <button onClick={handleLogin}>로그인</button>
+        </Link>
         <span>|</span>
-        <button onClick={handleLogOut}>로그아웃</button>
+        <Link href="http://cse-dev-waffle.bacchus.io/logout">
+          <button onClick={handleLogOut}>로그아웃</button>
+        </Link>
         <span>|</span>
         <button onClick={handleLangChange}>{lang}</button>
       </div>

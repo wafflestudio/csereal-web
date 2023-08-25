@@ -1,13 +1,13 @@
 'use client';
 
 import PostEditor from '@/components/editor/PostEditor';
-import { EditorContent } from '@/components/editor/PostEditorProp';
+import { PostEditorContent } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
 export default function NewsCreatePage() {
-  const handleComplete = async (content: EditorContent) => {
+  const handleComplete = async (content: PostEditorContent) => {
     console.log(content);
     // throw new Error();
   };

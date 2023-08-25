@@ -23,11 +23,7 @@ const clubPath = getPath(studentClubs);
 
 export default function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
   const { data: clubs = [] } = useSWR({ url: '/clubs' }, getClubsMock);
-  const selectedClub = findSelectedItem<Club>(
-    clubs,
-    decodeURI(searchParams.selected ?? ''),
-    DEFAULT_CLUB,
-  );
+  const selectedClub = findSelectedItem<Club>(clubs, searchParams.selected ?? '', DEFAULT_CLUB);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
@@ -37,7 +33,13 @@ export default function StudentClubsPage({ searchParams }: StudentClubsPageProps
         path={clubPath}
         listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
       />
-      {selectedClub && <ClubDetails club={selectedClub} />}
+      {selectedClub ? (
+        <ClubDetails club={selectedClub} />
+      ) : (
+        <p>
+          <b>{`'${searchParams.selected}'`}</b>은/는 존재하지 않는 동아리입니다.
+        </p>
+      )}
     </PageLayout>
   );
 }

@@ -12,7 +12,7 @@ interface ResearchCenterDetailProps {
 export default function ResearchCenterDetails({ center }: ResearchCenterDetailProps) {
   return (
     <div>
-      <ResearchCenterTitle name={center.name} link={center.link} />
+      <ResearchCenterTitle name={center.name} link={center.websiteURL} />
       <HTMLViewer
         htmlContent={center.description}
         topRightContent={{ type: 'image', width: 320, height: 160, url: center.imageURL }}
