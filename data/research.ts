@@ -1,4 +1,8 @@
-import { ResearchLabInfo } from '@/types/research';
+import { ResearchGroups, ResearchLabInfo } from '@/types/research';
+
+import { researchGroupsData } from './objects';
+
+export const getMockResearchGroups = async (): Promise<ResearchGroups> => researchGroupsData;
 
 export const lab: ResearchLabInfo = {
   id: 1,

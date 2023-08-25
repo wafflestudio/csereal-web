@@ -1,5 +1,6 @@
 import { Club, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
+import { ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const careerStatCols = ['학부', '석사', '박사'];
@@ -699,3 +700,124 @@ export const courseChangesData = [
   year,
   description: `${year}학년도 1학기 시행 교과과정 변경`,
 }));
+
+/* 연구 */
+export const researchGroupsData: ResearchGroups = {
+  description:
+    '세계가 주목하는 컴퓨터공학부의 많은 교수들은 ACM, IEEE 등 세계적인 컴퓨터관련 주요 학회에서 국제학술지 편집위원, 국제학술회의 위원장, 기조연설자 등으로 활발하게 활동하고 있습니다. 정부 지원과제, 민간 산업체 지원 연구과제 등도 성공적으로 수행, 우수한 성과들을 내놓고 있으며, 오늘도 인류가 꿈꾸는 행복하고 편리한 세상을 위해 변화와 혁신, 연구와 도전을 계속하고 있습니다.',
+  groups: [
+    {
+      name: '그래픽스 및 사람 중심 컴퓨팅',
+      id: 0,
+      description:
+        '<div><span style="font-size: 14px;"><strong>사람 중심의 시각기반 컴퓨팅 기술</strong></span><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">​<span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px;">컴퓨터 그래픽스와 HCI 기술은 사람과 컴퓨터 간의 원활한 소통을 추구한다. 현대 사회의 수많은 복잡한 문제들이 적절한 시각화와 사람의 뛰어난 시각 인지 능력에 기대어 그 해결에 실마리를 찾아낼 수 있다. 사람 중심의 시각기반 컴퓨터 기술은 사람에게 편리한 컴퓨터, 컴퓨터 계산에 있어서 사람의 능력 활용, 궁극적으로는 사람과 컴퓨터의 협력을 추구한다. 보다 구체적으로는 형상 모델링, 다차원 정보 가시화, 영상처리/분석, 동작분석 및 합성, 대화형 아바타 제어, 지능형 가상 캐릭터, 사용자 인터페이스 디자인 및 정보시각화 연구를 수행하고 있다.</span>​</div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/EditingDynamicMotions.png?itok=Rnzfu9LI',
+      labs: [
+        { id: 17, name: '운동 연구실' },
+        { id: 19, name: '인간 중심 컴퓨터 시스템 연구실' },
+        { id: 23, name: '지능형 동작 연구실' },
+        { id: 26, name: '컴퓨터 그래픽스 및 이미지 처리 연구실' },
+        { id: 32, name: '휴먼-컴퓨터 인터액션 연구실' },
+      ],
+    },
+    {
+      name: '네트워크',
+      id: 1,
+      description:
+        '<div><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px;"><strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">미래 인터넷이 열어갈 소통과 교류의 미래 세상</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><span style="font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;">인터넷, 무선 네트워크, 데이터 센터 네트워크, 온라인 소셜 네트워크를 포함한 모든 네트워크의 프로토콜과 알고리즘을 연구 개발하고 있다. 또한 인터넷 보안과 프라이버시 주제도 최근 연구하고 있다. 구체적으로, 인터넷의 구조 설계, 인공지능 기술의 네트워킹 최적화 적용, 네트워크 가상화 기술 개발, 이동/무선통신의 자원관리, IoT 통신 프로토콜 및 IoT 시스템 개발, 통신 트래픽 분석, 블록체인, 인터넷 인증, 프라이버시 보호 기술, 실내 측위 등 미래의 통신과 인터넷 서비스를 선도할 핵심기술 개발에 집중하고 있다.</span>있다.</span>​</div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/7528792_s.jpg?itok=yMuzuuyF',
+      labs: [
+        { id: 14, name: '암호 및 프라이버시 연구실' },
+        { id: 18, name: '이동 컴퓨팅 및 통신 연구실' },
+        { id: 20, name: '인터넷 융합 및 보안 연구실' },
+      ],
+    },
+    {
+      name: '데이터베이스 및 빅데이터',
+      id: 2,
+      description:
+        '<div><strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">빅데이터에서 가치를 추출하는 연구</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">​<span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">본 연구 그룹은 빅데이터, 데이터베이스, 데이터 마이닝, 기계 학습 및 딥러닝에 관한 연구를 수행하고 있다. 주요 연구 주제로 기계 학습 성능 향상을 위한 DBMS Support, 다양한 데이터베이스 응용을 위한 데이터 관리 기법 및 저장 기법, 데이터 마이닝, 정보 검색, 추천 시스템, 자연어 처리, 딥러닝, 웹/소셜네트워크 등의 그래프 분석, 경량 및 자동 기계 학습, 금융 AI 등이 있다.</span>​<br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/5648183_s.jpg?itok=w6kQFKfj',
+      labs: [
+        { id: 0, name: '데이터 마이닝 연구실' },
+        { id: 1, name: '데이터베이스 시스템 연구실' },
+        { id: 6, name: '빅데이터 분석 연구실' },
+        { id: 22, name: '지능형 데이터 시스템 연구실' },
+      ],
+    },
+    {
+      name: '시스템 소프트웨어 및 분산시스템',
+      id: 3,
+      description:
+        '<div><span style="font-weight: 400;">​<strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">전 지구적인 서비스를 가능하게 하는 핵심 소프트웨어</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;">페이스북, 인스타그램, 유튜브, 카카오톡, 네이버 등 적게는 수천만명에서 많게는 수억명 이상이 사용하는 서비스를 가능하게 하는 핵심 경쟁력은 시스템 소프트웨어 기술이다. 시스템 소프트웨어는 최신의 하드웨어 상에서 각종 서비스들이 더 빠르고, 에너지를 덜 소모하며, 예상치 못한 오류나 외부로부터의 침입, 공격으로부터 더 신뢰성있고 안전하게 수행되도록 지원한다. 구체적으로는 단일 시스템의 하드웨어 자원 관리를 담당하는 운영체제 기술과 각종 서비스들을 손쉽게 개발할 수 있도록 지원해 주는 컴파일러 및 소프트웨어 플랫폼 기술, 사용자 수의 증가에 따른 확장성 문제를 해결하기 위한 분산/병렬시스템 기술, 인공지능 및 빅데이터 시스템 등에 관한 연구를 포함한다.</span></span><br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/898646_s.jpg?itok=Kuw3oZgk',
+      labs: [
+        { id: 4, name: '분산시스템 연구실' },
+        { id: 9, name: '소프트웨어 플랫폼 연구실' },
+        { id: 11, name: '시스템 소프트웨어 및 구조 연구실' },
+        { id: 24, name: '천둥 연구실' },
+        { id: 27, name: '컴퓨터 시스템 및 플랫폼 연구실' },
+      ],
+    },
+    {
+      name: '이론 및 금융공학',
+      id: 4,
+      description:
+        '<div>​<strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">이론과 실제가 만나는 연구</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">​<span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">컴퓨터이론은 컴퓨터공학의 기초학문으로서 효율적인 알고리즘 개발, NP완전 개념, 현대 암호학 이론 등으로 컴퓨터공학 발전에 근본적인 기여를 하여 왔다. 우리 연구그룹에서는 기본적으로 효율적인 알고리즘 개발에 대해 연구한다. 특히, 빅데이터 분석 알고리즘, 멀티코어와 캐시 구조에 적합한 실용적인 알고리즘, 유전 알고리즘에 대한 연구를 수행하고 있고, 보안 및 금융공학 등 응용분야에 활용되는 연구를 하고 있다.</span>​<br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/20080224114352%21Euclidean_algorithm_running_time_X_Y.png?itok=p4IqJvwi',
+      labs: [
+        { id: 25, name: '최적화 및 금융공학 연구실' },
+        { id: 28, name: '컴퓨터이론 및 응용 연구실' },
+      ],
+    },
+    {
+      name: '인공지능',
+      id: 5,
+      description:
+        '<div><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">인간처럼 학습하는 컴퓨터</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">인공지능은 사람의 인지, 사고, 기억, 학습을 모사함으로써 효율적으로 문제를 해결하는 방식을 연구하는 컴퓨터공학의 한 분야이다. 현재 머신러닝이론, 컴퓨터 시각, 텍스트마이닝, 비디오분석, 추천 에이전트, 뇌신경망 분석, 생태계 모델링 등 다양한 이론 및 응용 연구를 수행하고 있다..</span>​<br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/3d-robots-by-franz-steiner%20%2810%29.jpg?itok=fZljbcZq',
+      labs: [
+        { id: 2, name: '머신러닝 연구실' },
+        { id: 3, name: '바이오지능 연구실' },
+        { id: 5, name: '비주얼 컴퓨팅 연구실' },
+        { id: 7, name: '생물정보 및 생명정보 연구실' },
+        { id: 10, name: '시각 및 학습 연구실' },
+        { id: 16, name: '언어 및 데이터지능 연구실' },
+      ],
+    },
+    {
+      name: '컴퓨터구조 및 임베디드 시스템',
+      id: 6,
+      description:
+        '<div><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">인간처럼 학습하는 컴퓨터</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">인공지능은 사람의 인지, 사고, 기억, 학습을 모사함으로써 효율적으로 문제를 해결하는 방식을 연구하는 컴퓨터공학의 한 분야이다. 현재 머신러닝이론, 컴퓨터 시각, 텍스트마이닝, 비디오분석, 추천 에이전트, 뇌신경망 분석, 생<strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">스마트 임베디드 시스템이 지배하는 미래</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">앞으로의 컴퓨팅은 책상위에 놓여 있는 PC에 그치지 않고, 스마트폰, 자동차, 항공기, 도로, 건물, 교량 등 우리 생활 곳곳에 내재되어 편리함과 안전함을 제공하게 된다. 이를 위해서는 컴퓨팅, 메모리, 배터리 용량이 제한되어 있는 임베디드 컴퓨터에 지능형 서비스를 최적화하여 구현하는 것이 핵심 기술이 된다. 임베디드 시스템 연구그룹은 컴퓨터 SW 뿐아니라, CPU 구조, 메모리 구조, 멀티코어 등의 컴퓨터 HW적 특성을 고려하여 최적화된 시스템 설계를 하는 다양한 연구를 진행하고 있다. 이러한 연구는 앞으로 더욱 각광 받게될 인공지능 기술이 우리 일상 생활 곳곳으로 내재화되는 것을 가능하게 할 것이다.모델링 등 다양한 이론 및 응용 연구를 수행하고 있다..</span>​<br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/6686919_s.jpg?itok=o5-MFisf',
+      labs: [
+        { id: 12, name: '실시간 유비쿼터스 시스템 연구실' },
+        { id: 13, name: '아키텍처 및 코드 최적화 연구실' },
+        { id: 15, name: '양자정보 및 양자컴퓨팅 연구실' },
+        { id: 21, name: '임베디드 시스템 연구실' },
+        { id: 29, name: '컴퓨팅 메모리 구조 연구실' },
+        { id: 30, name: '통합설계 및 병렬 처리 연구실' },
+      ],
+    },
+    {
+      name: '프로그래밍 시스템 및 SW공학',
+      id: 7,
+      description:
+        '<div><strong style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">SW 원천기술, 즐거운 프로그래밍 신세계를 여는 핵심 엔진</strong><br style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">​<span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">소프트웨어의 현재 기술은 미개하다. 미래에는 지금과 같은 수준으로 소프트웨어가 만들어지지 않을 것이다. 소프트웨어 개발에 사용하는 언어는 나날이 상위의 수준으로 올라 갈 것이고, 소프트웨어 개발을 돕는 도구들은 엄밀한 논리의 정교한 지능을 가지고 프로그래머들을 편하게 할 것이다. 따라서 오류 없이 작동할 소프트웨어를 개발하는 비용은 나날이 줄어들 것이고, 소프트웨어 개발자는 밤샘하는 손기술의 고역에서 벗어나 크고 높은 논리의 기획자로 변모할 것이다. 우리는 이러한 미래를 가능하게 하는 연구를 진행한다. 프로그래밍 언어 이론 및 시스템 기술, 정적 분석 이론 및 응용 기술, 소프트웨어 개발 도구 기술, 자동 검증 기술 등을 연구한다.</span>​<br></div>',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--research_group/caml_0.png?itok=i0epDoxv',
+      labs: [
+        { id: 8, name: '소프트웨어 원리 연구실' },
+        { id: 31, name: '프로그래밍 연구실' },
+      ],
+    },
+  ],
+};
