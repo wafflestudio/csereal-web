@@ -1,6 +1,6 @@
 import { AdjPostInfo, PostSearchQueryParams } from '@/types/post';
 
-import { objToQueryString } from './convert';
+import { objToQueryString } from './convertParams';
 
 interface PostWithAdjInfo {
   nextId: number | null;

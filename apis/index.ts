@@ -1,4 +1,4 @@
-import { objToQueryString } from '@/utils/convert';
+import { objToQueryString } from '@/utils/convertParams';
 
 const BASE_URL = 'http://cse-dev-waffle.bacchus.io';
 

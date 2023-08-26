@@ -1,4 +1,4 @@
-export const convertObjToURLSearchParams = (params: object) => {
+export const objToURLSearchParams = (params: object) => {
   const flattenedArray: string[][] = [];
   for (const [key, value] of Object.entries(params)) {
     if (!value) continue;
@@ -11,10 +11,11 @@ export const convertObjToURLSearchParams = (params: object) => {
   return new URLSearchParams(flattenedArray);
 };
 
-const paramsToString = (params: URLSearchParams) => (params.size ? `?${params}` : '');
+export const urlSearchParamsToString = (params: URLSearchParams) =>
+  params.size ? `?${params}` : '';
 
 export const objToQueryString = (params: object) => {
-  const urlSearchParams = convertObjToURLSearchParams(params);
-  const queryString = urlSearchParams.size ? `?${urlSearchParams}` : '';
+  const urlSearchParams = objToURLSearchParams(params);
+  const queryString = urlSearchParamsToString(urlSearchParams);
   return queryString;
 };
