@@ -1,5 +1,4 @@
 import { getNewsPostDetail } from '@/apis/news';
-import { getPostWithAdjInfo } from '@/apis/post';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -12,6 +11,7 @@ import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
 import { news } from '@/types/page';
 
+import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
 
 interface NewsPostPageProps {
@@ -22,8 +22,12 @@ interface NewsPostPageProps {
 const newsPath = getPath(news);
 
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
-  const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
-    await getPostWithAdjInfo(parseInt(params.id), searchParams, getNewsPostDetail, newsPath);
+  const currPost = await getNewsPostDetail(parseInt(params.id), searchParams);
+  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
+    currPost,
+    searchParams,
+    newsPath,
+  );
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
