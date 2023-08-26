@@ -1,7 +1,3 @@
-'use client';
-
-import useSWR from 'swr';
-
 import { getResearchGroups } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -20,11 +16,8 @@ interface ResearchGroupsPageProps {
 
 const researchGroupsPath = getPath(researchGroups);
 
-export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
-  const { data: { description = '', groups = [] } = {} } = useSWR(
-    { url: '/research/groups' },
-    getResearchGroups,
-  );
+export default async function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
+  const { description, groups } = await getResearchGroups();
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,
     decodeURI(searchParams.selected ?? ''),
@@ -38,7 +31,7 @@ export default function ResearchGroupsPage({ searchParams }: ResearchGroupsPageP
         names={groups.map((group) => group.name)}
         selectedItemName={selectedGroup?.name ?? ''}
         path={researchGroupsPath}
-        listGridColumnClass="grid-cols-[13.5rem_10.75rem_14.25rem_11.75rem]"
+        listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
       />
       {selectedGroup ? (
         <ResearchGroupDetails group={selectedGroup} />

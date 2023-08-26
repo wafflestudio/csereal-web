@@ -1,7 +1,3 @@
-'use client';
-
-import useSWR from 'swr';
-
 import { getResearchCenters } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -20,11 +16,11 @@ interface ResearchCentersPageProps {
 
 const researchCentersPath = getPath(researchCenters);
 
-export default function ResearchGroupsPage({ searchParams }: ResearchCentersPageProps) {
-  const { data: centers = [] } = useSWR({ url: '/research/centers' }, getResearchCenters);
+export default async function ResearchCentersPage({ searchParams }: ResearchCentersPageProps) {
+  const centers = await getResearchCenters();
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
-    searchParams.selected ?? '',
+    decodeURI(searchParams.selected ?? ''),
     centers[0]?.name,
   );
 

@@ -6,6 +6,6 @@ export const findSelectedItem = <T extends { name: string }>(
   selectedItemName: string,
   defaultItemName: string,
 ) => {
-  const selectedName = replaceDashWithSpace(decodeURI(selectedItemName)) || defaultItemName;
+  const selectedName = replaceDashWithSpace(selectedItemName) || defaultItemName;
   return items.find((item) => item.name === selectedName);
 };
