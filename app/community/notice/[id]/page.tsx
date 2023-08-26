@@ -1,4 +1,4 @@
-import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
+import { getNoticePostDetail } from '@/apis/notice';
 import { getPostWithAdjInfo } from '@/apis/post';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
@@ -29,7 +29,7 @@ export default async function NoticePostPage({ params, searchParams }: NoticePos
     await getPostWithAdjInfo<NoticePostResponse>(
       parseInt(params.id),
       searchParams,
-      getNoticePostDetailMock,
+      getNoticePostDetail,
       noticePath,
     );
 

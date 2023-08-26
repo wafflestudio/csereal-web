@@ -15,6 +15,6 @@ const paramsToString = (params: URLSearchParams) => (params.size ? `?${params}` 
 
 export const objToQueryString = (params: object) => {
   const urlSearchParams = convertObjToURLSearchParams(params);
-  const queryString = urlSearchParams.size ? `?${params}` : '';
+  const queryString = urlSearchParams.size ? `?${urlSearchParams}` : '';
   return queryString;
 };

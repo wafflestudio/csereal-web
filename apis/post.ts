@@ -33,6 +33,7 @@ export const getPostWithAdjInfo = async <T extends PostWithAdjInfo>(
   listPath: string,
 ) => {
   const queryString = objToQueryString(params);
+  console.log(queryString);
   const currPost = await getPostDetail(id, params);
   const prevPostPreview = getAdjPostInfo(
     currPost.prevId,
