@@ -10,7 +10,7 @@ import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 interface PageLayoutProps {
-  title?: string;
+  title?: string | JSX.Element;
   titleType: 'big' | 'small';
   titleMargin: string; // tailwind class
   children: ReactNode;
