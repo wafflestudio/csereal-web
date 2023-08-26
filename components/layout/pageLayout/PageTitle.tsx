@@ -8,7 +8,7 @@ import { SegmentNode } from '@/types/page';
 import { getLocationLog, getPath } from '@/utils/page';
 
 interface PageTitleProps {
-  title: string;
+  title: string | JSX.Element;
   currentPage: SegmentNode;
   titleType: 'big' | 'small';
   margin: string;
