@@ -35,6 +35,19 @@ export function CurvedVerticalNode({ grow = false, length = 'h-full' }: CurvedNo
   );
 }
 
+export function CurvedHorizontalSmallNode() {
+  return (
+    <div className={`flex items-center`}>
+      <Circle />
+      <Diagonal
+        width="w-[18.81px]"
+        translateX="-translate-x-[1px]"
+        translateY="translate-y-[3px]"
+      />
+    </div>
+  );
+}
+
 interface StraightNodeProps {
   grow?: boolean; // flex-grow 속성 (true일 때는 부모 element가 'display: flex'여야 함)
   direction?: 'row' | 'col'; // 가로 노드: row, 세로 노드: col
