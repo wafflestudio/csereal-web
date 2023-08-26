@@ -4,8 +4,6 @@ import { AdjPostInfo } from '@/types/post';
 
 import { objToQueryString } from '@/utils/convert';
 
-import { getRequest } from '.';
-
 interface PostWithAdjInfo {
   id: number;
   title: string;

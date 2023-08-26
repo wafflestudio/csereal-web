@@ -11,27 +11,21 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
-import { NoticePostResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
 const writer = '박지혜';
-
-const noticePath = getPath(notice);
 
 interface NoticePostPageProps {
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }
 
+const noticePath = getPath(notice);
+
 export default async function NoticePostPage({ params, searchParams }: NoticePostPageProps) {
   const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
-    await getPostWithAdjInfo<NoticePostResponse>(
-      parseInt(params.id),
-      searchParams,
-      getNoticePostDetail,
-      noticePath,
-    );
+    await getPostWithAdjInfo(parseInt(params.id), searchParams, getNoticePostDetail, noticePath);
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">

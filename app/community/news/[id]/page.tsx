@@ -1,6 +1,5 @@
-'use client';
-
-import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
+import { getNewsPostDetail } from '@/apis/news';
+import { getPostWithAdjInfo } from '@/apis/post';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -9,20 +8,22 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { usePosts } from '@/hooks/usePosts';
+import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
 import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+interface NewsPostPageProps {
+  params: { id: string };
+  searchParams: PostSearchQueryParams;
+}
+
 const newsPath = getPath(news);
 
-export default function NewsPostPage({ params }: { params: { id: number } }) {
-  let { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } = usePosts(
-    newsPath,
-    getNewsPostDetail,
-  );
-  currPost ||= getMockNewsPostDetail(params.id);
+export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
+  const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
+    await getPostWithAdjInfo(parseInt(params.id), searchParams, getNewsPostDetail, newsPath);
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">

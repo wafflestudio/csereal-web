@@ -7,7 +7,6 @@ export const getMockNoticePosts = async (params: PostSearchQueryParams) => ({
   total: noticeListMock.length,
 });
 
-// 추후 삭제
 export const getMockNoticePostDetail = async (id: number, params: PostSearchQueryParams) =>
   NoticeDetailMock;
 
