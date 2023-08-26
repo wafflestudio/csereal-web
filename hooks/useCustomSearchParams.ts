@@ -2,7 +2,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { convertObjToURLSearchParams } from '@/utils/convert';
 
-export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] | string };
+import { PostSearchQueryParams } from '@/types/post';
 
 export type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }

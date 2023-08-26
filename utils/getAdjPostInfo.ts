@@ -1,6 +1,4 @@
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
-import { AdjPostInfo } from '@/types/post';
+import { AdjPostInfo, PostSearchQueryParams } from '@/types/post';
 
 import { objToQueryString } from './convert';
 

@@ -1,6 +1,4 @@
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
-import { NoticePostResponse, SimpleNoticePost } from '@/types/post';
+import { NoticePostResponse, PostSearchQueryParams, SimpleNoticePost } from '@/types/post';
 
 export const getMockNoticePosts = async (params: PostSearchQueryParams) => ({
   searchList: noticeListMock,

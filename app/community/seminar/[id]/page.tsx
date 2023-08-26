@@ -8,9 +8,8 @@ import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
 import { seminar } from '@/types/page';
+import { PostSearchQueryParams } from '@/types/post';
 
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';

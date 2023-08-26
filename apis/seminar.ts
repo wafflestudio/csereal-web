@@ -1,8 +1,6 @@
 import { getMockSeminarPost, getMockSeminarPosts } from '@/data/seminar';
 
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
-import { GETSeminarPostsResponse, SeminarPostResponse } from '@/types/post';
+import { GETSeminarPostsResponse, SeminarPostResponse, PostSearchQueryParams } from '@/types/post';
 
 import { getRequest } from '.';
 

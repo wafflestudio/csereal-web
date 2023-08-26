@@ -1,12 +1,11 @@
 import { getMockNoticePostDetail, getMockNoticePosts } from '@/data/notice';
 
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
 import {
   NoticePostResponse,
   GETNoticePostsResponse,
   NoticePost,
   SimpleNoticePost,
+  PostSearchQueryParams,
 } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from '.';

@@ -1,8 +1,6 @@
 import { getMockNewsPostDetail, getMockNewsPosts } from '@/data/news';
 
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
-
-import { NewsPostResponse, GETNewsPostsResponse } from '@/types/post';
+import { NewsPostResponse, GETNewsPostsResponse, PostSearchQueryParams } from '@/types/post';
 
 import { getRequest } from '.';
 

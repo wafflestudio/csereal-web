@@ -1,6 +1,6 @@
 import { htmlMock1 } from '@/components/editor/HTMLViewer';
 
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
+import { PostSearchQueryParams } from '@/types/post';
 
 export const getMockNewsPosts = async ({ params }: { params: PostSearchQueryParams }) => {
   const searchList = Array(10)

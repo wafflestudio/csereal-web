@@ -1,4 +1,4 @@
-import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
+import { PostSearchQueryParams } from '@/types/post';
 
 export const getMockSeminarPosts = async (params: PostSearchQueryParams) => {
   //임의 날짜 생성
