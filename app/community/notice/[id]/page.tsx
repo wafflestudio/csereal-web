@@ -1,6 +1,5 @@
-'use client';
-
 import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
+import { getPostWithAdjInfo } from '@/apis/post';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -9,7 +8,7 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { usePosts } from '@/hooks/usePosts';
+import { PostSearchQueryParams } from '@/hooks/useCustomSearchParams';
 
 import { notice } from '@/types/page';
 import { NoticePostResponse } from '@/types/post';
@@ -20,11 +19,18 @@ const writer = '박지혜';
 
 const noticePath = getPath(notice);
 
-export default function NoticePostPage() {
+interface NoticePostPageProps {
+  params: { id: string };
+  searchParams: PostSearchQueryParams;
+}
+
+export default async function NoticePostPage({ params, searchParams }: NoticePostPageProps) {
   const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
-    usePosts<NoticePostResponse>(
+    await getPostWithAdjInfo<NoticePostResponse>(
+      parseInt(params.id),
+      searchParams,
+      getNoticePostDetailMock,
       noticePath,
-      getNoticePostDetailMock, // 추후에 getNoticePostDetail로 변경
     );
 
   return (

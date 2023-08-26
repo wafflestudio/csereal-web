@@ -1,16 +1,14 @@
-import { convertObjToURLSearchParams } from '@/utils/convert';
+import { objToQueryString } from '@/utils/convert';
 
 const BASE_URL = 'http://cse-dev-waffle.bacchus.io';
-
-const paramsToString = (params: URLSearchParams) => (params.size ? `?${params}` : '');
 
 export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
   headers: HeadersInit = {},
 ) => {
-  const urlSearchParams = convertObjToURLSearchParams(params);
-  const fetchUrl = `${BASE_URL}${url}${paramsToString(urlSearchParams)}`;
+  const queryString = objToQueryString(params);
+  const fetchUrl = `${BASE_URL}${url}${queryString}`;
   try {
     const response = await fetch(fetchUrl, { method: 'GET', headers });
     const responseData = await response.json();

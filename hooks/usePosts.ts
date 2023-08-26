@@ -22,7 +22,7 @@ export function usePosts<T extends PostWithAdjIdInfo>(
 ) {
   const { page, keyword, tags } = useCustomSearchParams();
   const searchParams = { page, keyword, tag: tags };
-  const id = parseInt(useParams().id);
+  const id = parseInt(useParams().id as string);
   const queryString = useQueryString();
   const listPathWithQuery = `${listPath}${queryString}`;
 
