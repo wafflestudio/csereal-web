@@ -19,7 +19,7 @@ export function useCustomSearchParams(initPath?: string) {
   const tags = searchParams.getAll('tag');
 
   const moveToNewPathWithQuery = (queryString: string) => {
-    const pathWithQuery = `${initPath || pathname}?${queryString}`;
+    const pathWithQuery = `${initPath || pathname}${queryString}`;
     router.push(pathWithQuery);
   };
 
