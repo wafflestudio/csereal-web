@@ -18,7 +18,8 @@ import { getPath } from '@/utils/page';
 const labUrl = getPath(researchLabs);
 
 export default function FacultyMemberPage() {
-  const id = parseInt(useParams().id);
+  const idInParam = useParams().id;
+  const id = parseInt(typeof idInParam === 'string' ? idInParam : idInParam[0]);
 
   const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockFaculty);
 

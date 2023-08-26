@@ -12,7 +12,8 @@ import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimati
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 export default function StaffMemberPage() {
-  const id = parseInt(useParams().id);
+  const idInParam = useParams().id;
+  const id = parseInt(typeof idInParam === 'string' ? idInParam : idInParam[0]);
 
   const { data, isLoading, error } = useSWR({ url: `/staff/${id}` }, getMockStaff);
 
