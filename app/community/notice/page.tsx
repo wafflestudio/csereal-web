@@ -26,10 +26,7 @@ const noticePath = getPath(notice);
 export default function NoticePage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const { data: { searchList: posts = [], total: totalPostsCount = 0 } = {}, mutate } =
-    useSwr<GETNoticePostsResponse>(
-      { url: '/notice', params: { page, keyword, tag: tags } },
-      getNoticePostsMock,
-    ); // 추후 fetcher 삭제
+    useSwr<GETNoticePostsResponse>({ url: '/notice', params: { page, keyword, tag: tags } }); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
 

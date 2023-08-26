@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // reference: https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
@@ -26,6 +27,15 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `http://cse-dev-waffle.bacchus.io/:path*`,
+      },
+    ];
   },
 
   images: {

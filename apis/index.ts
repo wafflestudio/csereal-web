@@ -10,10 +10,11 @@ export const getRequest = async <T = unknown>(
   headers: HeadersInit = {},
 ) => {
   const urlSearchParams = convertObjToURLSearchParams(params);
-  const fetchUrl = `${BASE_URL}${url}${paramsToString(urlSearchParams)}`;
+  const fetchUrl = `${url}${paramsToString(urlSearchParams)}`;
   try {
     const response = await fetch(fetchUrl, { method: 'GET', headers });
     const responseData = await response.json();
+    console.log(responseData);
     return responseData as T;
   } catch (error) {
     console.log('error on get request');
@@ -25,9 +26,8 @@ export const postRequest = async <T = unknown>(
   data: object,
   headers: HeadersInit = {},
 ) => {
-  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await fetch(fetchUrl, { method: 'POST', headers, body: JSON.stringify(data) });
+    const response = await fetch(url, { method: 'POST', headers, body: JSON.stringify(data) });
     const responseData = await response.json();
     return responseData as T;
   } catch (error) {
@@ -40,9 +40,8 @@ export const patchRequest = async <T = unknown>(
   data: object,
   headers: HeadersInit = {},
 ) => {
-  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await fetch(fetchUrl, {
+    const response = await fetch(url, {
       method: 'PATCH',
       headers,
       body: JSON.stringify(data),
@@ -55,9 +54,8 @@ export const patchRequest = async <T = unknown>(
 };
 
 export const deleteRequest = async <T = unknown>(url: string, headers: HeadersInit = {}) => {
-  const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await fetch(fetchUrl, { method: 'DELETE', headers });
+    const response = await fetch(url, { method: 'DELETE', headers });
     const responseData = await response.json();
     return responseData as T;
   } catch (error) {
