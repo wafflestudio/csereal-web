@@ -94,17 +94,17 @@ export const community: SegmentNode = {
   children: [],
 };
 
-export const news: SegmentNode = {
-  name: '새 소식',
-  segment: 'news',
+export const notice: SegmentNode = {
+  name: '공지사항',
+  segment: 'notice',
   isPage: true,
   parent: community,
   children: null,
 };
 
-export const notice: SegmentNode = {
-  name: '공지사항',
-  segment: 'notice',
+export const news: SegmentNode = {
+  name: '새 소식',
+  segment: 'news',
   isPage: true,
   parent: community,
   children: null,
@@ -529,7 +529,7 @@ about.children = [
   contact,
   directions,
 ];
-community.children = [news, notice, seminar, facultyRecruitment];
+community.children = [notice, news, seminar, facultyRecruitment];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission];

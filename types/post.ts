@@ -26,7 +26,11 @@ export interface AdjPostInfo {
   href: string;
 }
 
-export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] | string };
+export interface PostSearchQueryParams {
+  page?: number;
+  keyword?: string;
+  tag?: string[] | string;
+}
 
 // **아래부터는 page.ts에 정의된 순서대로 정렬**
 
