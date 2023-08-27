@@ -1,27 +1,33 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { getMockSeminarPost } from '@/apis/seminar';
+import { getSeminarPost } from '@/apis/seminar';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { usePosts } from '@/hooks/usePosts';
-
 import { seminar } from '@/types/page';
-import { SeminarPostResponse } from '@/types/post';
+import { PostSearchQueryParams } from '@/types/post';
 
+import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+
+interface SeminarPostPageProps {
+  params: { id: string };
+  searchParams: PostSearchQueryParams;
+}
 
 const seminarPath = getPath(seminar);
 
-export default function SeminarPostPage() {
-  const { currPost, nextPostPreview, prevPostPreview, listPathWithQuery } =
-    usePosts<SeminarPostResponse>(seminarPath, getMockSeminarPost);
+export default async function SeminarPostPage({ params, searchParams }: SeminarPostPageProps) {
+  const currPost = await getSeminarPost(parseInt(params.id));
+  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
+    currPost,
+    searchParams,
+    seminarPath,
+  );
 
   return (
     currPost && (

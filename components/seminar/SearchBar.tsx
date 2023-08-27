@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
+import { useState, ChangeEventHandler, FormEvent } from 'react';
 
 import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
@@ -15,7 +15,8 @@ export default function SeminarSearchBar({ setSearchParams }: SeminarSearchBarPr
     setText(e.target.value);
   };
 
-  const searchText = () => {
+  const searchText = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const trimmedText = text.trim();
     if (trimmedText) setSearchParams({ keyword: trimmedText, purpose: 'search' });
   };

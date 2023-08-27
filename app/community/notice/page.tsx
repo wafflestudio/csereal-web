@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import useSwr from 'swr';
 
-import { deleteNotice, getNoticePosts, getNoticePostsMock, patchNotice } from '@/apis/notice';
+import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
@@ -28,7 +28,7 @@ export default function NoticePage() {
   const { data: { searchList: posts = [], total: totalPostsCount = 0 } = {}, mutate } =
     useSwr<GETNoticePostsResponse>(
       { url: '/notice', params: { page, keyword, tag: tags } },
-      getNoticePostsMock,
+      getNoticePosts,
     ); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
@@ -69,6 +69,8 @@ export default function NoticePage() {
     // await mutate();
     resetSelectedPosts();
   };
+
+  // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
   return (
     <PageLayout titleType="big" titleMargin="mb-6">

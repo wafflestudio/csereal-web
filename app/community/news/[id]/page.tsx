@@ -1,6 +1,4 @@
-'use client';
-
-import { getMockNewsPostDetail, getNewsPostDetail } from '@/apis/news';
+import { getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -9,20 +7,26 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { usePosts } from '@/hooks/usePosts';
-
 import { news } from '@/types/page';
+import { PostSearchQueryParams } from '@/types/post';
 
+import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+
+interface NewsPostPageProps {
+  params: { id: string };
+  searchParams: PostSearchQueryParams;
+}
 
 const newsPath = getPath(news);
 
-export default function NewsPostPage({ params }: { params: { id: number } }) {
-  let { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } = usePosts(
+export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
+  const currPost = await getNewsPostDetail(parseInt(params.id), searchParams);
+  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
+    currPost,
+    searchParams,
     newsPath,
-    getNewsPostDetail,
   );
-  currPost ||= getMockNewsPostDetail(params.id);
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">

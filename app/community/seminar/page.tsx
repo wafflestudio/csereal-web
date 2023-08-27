@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { getMockSeminarPosts } from '@/apis/seminar';
+import { getSeminarPosts } from '@/apis/seminar';
 
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -23,7 +23,7 @@ export default function SeminarPage() {
 
   const { data, isLoading, error } = useSWR(
     { url: '/seminar', params: { keyword, page } },
-    getMockSeminarPosts,
+    getSeminarPosts, // 추후 fetcher 삭제
   );
 
   return (
