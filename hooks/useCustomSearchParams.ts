@@ -1,8 +1,8 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { convertObjToURLSearchParams } from '@/utils/convert';
+import { PostSearchQueryParams } from '@/types/post';
 
-export type PostSearchQueryParams = { page?: number; keyword?: string; tag?: string[] };
+import { objToQueryString, urlSearchParamsToString } from '@/utils/convertParams';
 
 export type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }
@@ -18,26 +18,26 @@ export function useCustomSearchParams(initPath?: string) {
   const keyword = searchParams.get('keyword') ?? undefined;
   const tags = searchParams.getAll('tag');
 
-  const moveToNewPathWithQuery = (params: URLSearchParams) => {
-    const query = params.toString();
-    const pathWithQuery = query ? `${initPath || pathname}?${query}` : pathname;
+  const moveToNewPathWithQuery = (queryString: string) => {
+    const pathWithQuery = `${initPath || pathname}${queryString}`;
     router.push(pathWithQuery);
   };
 
   const setSearchParams = (searchInfo: SearchInfo) => {
-    let newSearchParams: URLSearchParams;
+    let queryString: string;
 
     if (searchInfo.purpose == 'search') {
       const newParams: PostSearchQueryParams = {};
       if (searchInfo.keyword) newParams.keyword = searchInfo.keyword;
       if (searchInfo.tag?.length) newParams.tag = searchInfo.tag;
-      newSearchParams = convertObjToURLSearchParams(newParams);
+      queryString = objToQueryString(newParams);
     } else {
-      newSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
+      const newSearchParams = new URLSearchParams(Array.from(searchParams.entries()));
       newSearchParams.set('page', searchInfo.page.toString());
+      queryString = urlSearchParamsToString(newSearchParams);
     }
 
-    moveToNewPathWithQuery(newSearchParams);
+    moveToNewPathWithQuery(queryString);
   };
 
   return { page, keyword, tags, setSearchParams } as const;

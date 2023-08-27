@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { FormEvent, useReducer, useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -28,7 +28,7 @@ export default function SearchForm({
   const [keyword, setKeyword] = useState<string>(initKeyword);
   const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
 
-  const search = (e: React.FormEvent<HTMLFormElement>) => {
+  const search = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info: SearchInfo = { purpose: 'search', keyword, tag: selectedTags };
     setSearchParams(info);

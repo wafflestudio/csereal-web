@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 interface TagsProps {
@@ -43,7 +45,7 @@ interface TagProps {
 
 export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick }: TagProps) {
   const tagClass =
-    'px-2.5 py-0.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap cursor-default duration-200';
+    'flex items-center px-2.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap cursor-default duration-200';
   const defaultClass = DEFAULT_STYLE[defaultStyle];
   const hoverClass = hoverStyle ? `${HOVER_STYLE[hoverStyle]} cursor-pointer` : '';
 
