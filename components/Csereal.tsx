@@ -1,8 +1,17 @@
 import Link from 'next/link';
 
+const MEMBERS = [
+  { part: 'Designer', members: ['유채원', '최유진'] },
+  { part: 'Frontend Developer', members: ['이성열', '임찬솔', '한우현'] },
+  { part: 'Backend Developer', members: ['김준형', '우혁준', '조성규'] },
+];
+
+// TODO: 시리얼 메일 파기
+const MAIL = '';
+
 export default function Csereal() {
   return (
-    <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
+    <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
       <TeamName />
       <Members />
       <Contact />
@@ -18,12 +27,6 @@ function TeamName() {
     </h1>
   );
 }
-
-const MEMBERS = [
-  { part: 'Designer', members: ['유채원', '최유진'] },
-  { part: 'Frontend Developer', members: ['이성열', '임찬솔', '한우현'] },
-  { part: 'Backend Developer', members: ['김준형', '우혁준', '조성규'] },
-];
 
 function Members() {
   return (
@@ -50,13 +53,10 @@ function Part({ part, members }: { part: string; members: string[] }) {
   );
 }
 
-// TODO: 시리얼 메일 파기
-const CSEREAL_MAIL = '';
-
 function Contact() {
   return (
     <Link
-      href={`mailto:${CSEREAL_MAIL}`}
+      href={`mailto:${MAIL}`}
       className="font-light text-main-orange text-base text-center tracking-[0.02em]"
     >
       Contact
