@@ -1,9 +1,13 @@
-import Link from 'next/link';
+'use client';
 
-import FacebookIcon from '@/public/image/Facebook_icon.svg';
+import Link from 'next/link';
+import { useState } from 'react';
+
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/SNUCOM.svg';
+
+import Csereal from '@/components/Csereal';
 
 import {
   aboutLinks,
@@ -11,7 +15,6 @@ import {
   researchLinks,
   moreLinks,
   FooterLink,
-  snucseFacebookLink,
   snucomLink,
   snuEngLink,
   snuLink,
@@ -77,6 +80,8 @@ function FooterBottom() {
 }
 
 function FooterBottomLeft() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
       <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
@@ -90,9 +95,14 @@ function FooterBottomLeft() {
         8826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)
       </address>
       <p className="font-normal">
-        Powered by CSEREAL <br />
+        Powered by{' '}
+        <span className="cursor-pointer" onClick={() => setIsOpen(true)}>
+          CSEREAL
+        </span>
+        <br />
         Copyright © Department of CSE, SNU. All Rights Reserved.
       </p>
+      <Csereal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }
