@@ -5,6 +5,7 @@ import useSwr from 'swr';
 
 import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 
+import AlertModal from '@/components/common/AlertModal';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -32,6 +33,7 @@ export default function NoticePage() {
     ); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -70,6 +72,14 @@ export default function NoticePage() {
     resetSelectedPosts();
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
   return (
@@ -98,7 +108,7 @@ export default function NoticePage() {
         {isEditMode && (
           <div className="flex items-center gap-3">
             <SelectedCountStatus count={selectedPostIds.size} />
-            <BatchButton disabled={selectedPostIds.size === 0} onClick={batchDelete}>
+            <BatchButton disabled={selectedPostIds.size === 0} onClick={openModal}>
               일괄 삭제
             </BatchButton>
             <BatchButton disabled={selectedPostIds.size === 0} onClick={batchUnpin}>
@@ -111,6 +121,13 @@ export default function NoticePage() {
           <CreateButton mainPath={noticePath} disabled={isEditMode} />
         </div>
       </div>
+      <AlertModal
+        message="선택한 게시글을 모두 삭제하시겠습니까?"
+        confirmText="삭제"
+        onConfirm={batchDelete}
+        onClose={closeModal}
+        isOpen={isModalOpen}
+      />
     </PageLayout>
   );
 }
