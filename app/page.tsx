@@ -1,3 +1,9 @@
+import Csereal from '@/components/Csereal';
+
 export default function MainPage() {
-  return <div>main page</div>;
+  return (
+    <div>
+      <Csereal />
+    </div>
+  );
 }
