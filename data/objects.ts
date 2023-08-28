@@ -6,6 +6,7 @@ import {
   SimpleEmiritusFaculty,
   SimpleFaculty,
   SimpleStaff,
+  Staff,
   StaffList,
 } from '@/types/people';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
@@ -2152,3 +2153,70 @@ export const staffList: StaffList = {
     },
   ],
 };
+
+export const staff: Staff[] = [
+  {
+    ...staffList.staffList[0],
+    tasks: `학점인정인턴 프로그램(주전공/다전공 2Track)
+연구처 업무
+세미나실 예약
+대학원 전문연구요원
+동문회`.split('\n'),
+  },
+  {
+    ...staffList.staffList[1],
+    tasks: `교과과정 변경 (교과목 폐지 및 신설, 변경)
+수업편성(교육과정, 수업시간 편성, 변경, 취소 등)
+수강신청(변경, 취소, 확정, 재수강 등)
+수업관리(분반, 합반, 폐강, 교수 책임시간, 타교출강 등)
+성적관리(평가, 처리, 정정 등), 강의평가
+학사경고, 학사제명, 학사유급, 유급제명`.split('\n'),
+  },
+  {
+    ...staffList.staffList[2],
+    tasks: `학부 업무 총괄
+법인회계
+자체직원 인사
+교수회의
+각종 위원회
+시설관리`.split('\n'),
+  },
+  {
+    ...staffList.staffList[3],
+    tasks: `학부생 지도교수 배정
+다전공(복수전공/부전공) 및 학사편입학, 전과
+학적(등록/휴학/복학/퇴학/제적/복적/재입학)
+학생회 및 동아리 관리
+S-Card 발급 및 사용등록, 사물함 관리
+학부 입시
+학부 신입생 O/T
+학부생 수료, 졸업사정 및 논문 관리`.split('\n'),
+  },
+  {
+    ...staffList.staffList[4],
+    tasks: `대학원 논문제출자격시험
+대학원 논문심사
+대학원 교과학점 통산인정
+대학원 수료 사정
+대학원 입시
+대학원 신입생 O/T
+대학원 연구실 현황 관리
+전문연구요원`.split('\n'),
+  },
+  {
+    ...staffList.staffList[5],
+    tasks: `외국인 교수 및 학생 지원
+국제협력(MOU, 학생교류프로그램-유학, 교환학생, 방문학생)
+외국인 입시 및 장학금
+10-10프로젝트
+[세미나] DLS, Industry Seminar, Lunch Talk, 교수후보탐색세미나
+교원 외부강의 관리 및 보고`.split('\n'),
+  },
+  {
+    ...staffList.staffList[6],
+    tasks: `일반 서무
+네트워크(도메인, IP, 포트 관리 등)
+교원 인사(신규채용, 연구년, 겸직, 승진, 겸무 등)
+학부 홈페이지 및 메일링 운영`.split('\n'),
+  },
+];
