@@ -3,6 +3,7 @@ import {
   Faculty,
   FacultyList,
   SimpleEmiritusFaculty,
+  Staff,
   StaffList,
 } from '@/types/people';
 
@@ -11,6 +12,7 @@ import {
   emeritusFacultyList,
   faculties,
   facultyList,
+  staff,
   staffList,
 } from './objects';
 
@@ -37,4 +39,8 @@ export const getMockEmeritusFaculty = async (id: number): Promise<EmiritusFacult
 
 export const getMockStaffList = async (): Promise<StaffList> => {
   return staffList;
+};
+
+export const getMockStaff = async (id: number): Promise<Staff> => {
+  return staff[id];
 };

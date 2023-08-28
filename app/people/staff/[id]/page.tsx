@@ -1,31 +1,14 @@
-'use client';
-
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
 
-import { getMockStaff } from '@/apis/people';
+import { getStaff } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-export default function StaffMemberPage() {
-  const idInParam = useParams().id;
-  const id = parseInt(typeof idInParam === 'string' ? idInParam : idInParam[0]);
+export default async function StaffMemberPage({ params }: { params: { id: number } }) {
+  const data = await getStaff(params.id);
 
-  const { data, isLoading, error } = useSWR({ url: `/staff/${id}` }, getMockStaff);
-
-  const [showAnimation, setShowAnimation] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowAnimation(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
   return (
     data && (
       <PageLayout
