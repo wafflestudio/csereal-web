@@ -1924,9 +1924,150 @@ export const emeritusFacultyList: SimpleEmiritusFaculty[] = [
 export const emeritusFaculties: EmiritusFaculty[] = [
   {
     ...emeritusFacultyList[0],
-    startDate: '1983년 3월',
-    endDate: '2011년 8월',
     educations: `버지니아대학교 컴퓨터과학과 박사
 서울대학교 응용물리학과 학사`.split('\n'),
+    startDate: '1983년 3월',
+    endDate: '2011년 8월',
+  },
+  {
+    ...emeritusFacultyList[1],
+    website: ' http://3map.snu.ac.kr',
+    educations: `퍼듀 대학교 컴퓨터공학 박사 (1988)
+퍼듀 대학교 컴퓨터공학 석사 (1987)
+퍼듀 대학교 응용수학 석사 (1985)
+서울대학교 수학 석사 (1982)
+서울대학교 수학교육 학사 (1980)`.split('\n'),
+    researchAreas: `자유형상 기하학 모델을 위한 실시간 알고리즘
+인체 모델링, 형상변형`.split('\n'),
+    startDate: '1999년 3월',
+    endDate: '2022년 8월',
+  },
+  {
+    ...emeritusFacultyList[2],
+    startDate: '1971년 5월',
+    endDate: '2001년 2월',
+    educations: `유타대학교 전자공학과 박사
+콜로라도 주립대학교 전자공학과 석사
+육군사관학교 응용화학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[3],
+    startDate: '1991년 2월',
+    endDate: '2021년 6월',
+    educations: `일리노이 대학교 어배너-섐페인 컴퓨터공학 박사
+조지아 공과대학교 Operation Research 석사
+서울대학교 산업공학 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[4],
+    startDate: '1968년 5월',
+    endDate: '2003년 2월',
+    educations: `서울대학교 전자공학과 박사
+서울대학교 전자공학과 석사
+서울대학교 전자공학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[5],
+    startDate: '2005년 9월',
+    endDate: '2015년 2월',
+    educations: `브리스틀 대학교 컴퓨터공학 박사 (1976)
+오스트레일리아 국립 대학교 순수수학 학사 (1971)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[6],
+    startDate: '1992년 2월',
+    endDate: '2020년 2월',
+    educations: `워싱턴 대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[7],
+    startDate: '2009년 3월',
+    endDate: '2021년 2월',
+    educations: `첸나이 수리과학원 (IMSc) 이론 컴퓨터 과학 박사 (2002)
+첸나이 수리과학원 (IMSc) 이론 컴퓨터 과학 석사 (1997)
+와랑갈 이공대학교 (NITW) 컴퓨터공학 학사 (1995)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[8],
+    startDate: '1986년 3월',
+    endDate: '2016년 8월',
+    educations: `텍사스 대학교 오스틴 컴퓨터공학 박사 (1985)
+텍사스 대학교 오스틴 생체의학 석사
+서울대학교 응용 물리학 학사
+서던 일리노이 대학교 카본데일 생명과학 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[9],
+    startDate: '1982년 9월',
+    endDate: '2012년 2월',
+    educations: `서울대학교 계산통계학과 박사
+서울대학교 계산통계학과 석사
+서울대학교 계산통계학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[10],
+    startDate: '1985년 12월',
+    endDate: '2017년 2월',
+    educations: `미시간 대학교 전기·컴퓨터공학 박사 (1985)
+리하이 대학교 전자공학 석사 (1980)
+서울대학교 전자공학 학사 (1977)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[11],
+    startDate: '1982년 3월',
+    endDate: '2009년 2월',
+    educations: `텍사스대학교 전산학과 박사
+텍사스대학교 전산학과 석사
+연세대 정치외교학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[12],
+    startDate: '1997년 3월',
+    endDate: '2014년 6월',
+    educations: `서울대학교 제어계측공학 박사 (1996)
+서울대학교 제어계측공학 석사 (1992)
+서울대학교 제어계측공학 학사 (1989)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[13],
+    startDate: '1985년 3월',
+    endDate: '2015년 8월',
+    educations: `유타 대학교 전자계산학 박사 (1982)
+한국과학기술원 전자계산학 석사 (1976)
+서울대학교 응용수학 학사 (1974)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[14],
+    startDate: '1979년 4월',
+    endDate: '2014년 8월',
+    educations: `미네소타 대학교 컴퓨터공학 박사 (1978)
+서울대학교 건축학 석사 (1973)
+서울대학교 건축학 학사 (1971)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[15],
+    startDate: '1991년 7월',
+    endDate: '2020년 8월',
+    educations: `ENST Paris 전산공학 박사 (1984)
+한국과학기술원 전기공학부 석사 (1977)
+서울대학교 전기공학부 학사 (1975)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[16],
+    startDate: '1984년 3월',
+    endDate: '2013년 8월',
+    educations: `텍사스대학교 계산통계학과 박사
+서울대학교 계산통계학과 석사
+서울대학교 응용수학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[17],
+    startDate: '1968년 2월',
+    endDate: '1993년 3월',
+    educations: `서울대학교 전기공학과 박사
+서울대학교 전기공학과 석사
+서울대학교 전기공학과 학사`.split('\n'),
   },
 ];
