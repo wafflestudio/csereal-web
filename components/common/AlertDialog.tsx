@@ -1,4 +1,4 @@
-import { Dialog } from '@mui/material';
+import CustomDialog from "./CustomDialog";
 
 interface AlertDialogProps {
   message: string;
@@ -18,7 +18,7 @@ export default function AlertDialog({
   onClose,
 }: AlertDialogProps) {
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <CustomDialog isOpen={isOpen} onClose={onClose}>
       <div className="px-10 py-6">
         <DialogMessage message={message} />
         <div className="text-right">
@@ -32,7 +32,7 @@ export default function AlertDialog({
           />
         </div>
       </div>
-    </Dialog>
+    </CustomDialog>
   );
 }
 

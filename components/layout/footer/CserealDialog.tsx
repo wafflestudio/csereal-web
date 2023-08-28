@@ -1,5 +1,6 @@
-import { Dialog } from '@mui/material';
 import Link from 'next/link';
+
+import CustomDialog from '@/components/common/CustomDialog';
 
 const MEMBERS = [
   { part: 'Designer', members: ['유채원', '최유진'] },
@@ -18,13 +19,13 @@ export default function CserealDialog({
   onClose: () => void;
 }) {
   return (
-    <Dialog open={isOpen} onClose={onClose} PaperProps={{ sx: { maxWidth: '100%' } }}>
+    <CustomDialog isOpen={isOpen} onClose={onClose}>
       <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] font-noto bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
         <TeamName />
         <Members />
         <Contact />
       </div>
-    </Dialog>
+    </CustomDialog>
   );
 }
 
