@@ -12,7 +12,7 @@ import {
   faculties,
   facultyList,
   staffList,
-} from './objects';
+} from './objects.js';
 
 // TODO: labId 연결
 export const getMockFacultyList = async (): Promise<FacultyList> => {

@@ -36,7 +36,7 @@ export interface ResearchLab extends ResearchLabInfo {
 }
 
 export interface TopConferenceList {
-  modifiedAt: Date;
+  modifiedAt: string;
   author: string;
   conferenceList: {
     id: number;
