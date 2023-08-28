@@ -21,7 +21,7 @@ export interface PeopleRowProps {
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
-const staffLink = getPath(staff);
+const staffPath = getPath(staff);
 const labLink = getPath(researchLabs);
 
 export default function PeopleRow({
@@ -37,7 +37,20 @@ export default function PeopleRow({
   office,
   imageURL,
 }: PeopleRowProps) {
-  const href = type === 'FACULTY' ? `${facultyPath}/${id}` : `${emeritusFacultyPath}/${id}`;
+  let href: string;
+  switch (type) {
+    case 'EMIRITUS FACULTY':
+      href = emeritusFacultyPath;
+      break;
+    case 'FACULTY':
+      href = facultyPath;
+      break;
+    case 'STAFF':
+      href = staffPath;
+      break;
+  }
+  href += `/${id}`;
+
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
       <Link
@@ -62,7 +75,7 @@ export default function PeopleRow({
       <div className="flex flex-col items-start break-keep">
         {academicRank && (
           <div className="flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
-            <Link href={`${staffLink}/${id}`} className="hover:cursor-pointer ">
+            <Link href={href} className="hover:cursor-pointer ">
               <p className="text-md font-bold">{name}</p>
             </Link>
             <p className="text-neutral-500">{academicRank}</p>
