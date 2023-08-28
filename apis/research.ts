@@ -1,9 +1,8 @@
 import {
   getMockResearchCenters,
   getMockResearchGroups,
+  getMockResearchLabs,
   getMockTopConferenceList,
-  lab,
-  lab2,
 } from '@/data/research';
 
 import {
@@ -30,14 +29,7 @@ export const getResearchCenters = getMockResearchCenters;
 // export const getResearchLab = (labId: number) =>
 //   getRequest(`/research/lab/${labId}`) as Promise<ResearchLab>;
 
-export const getResearchLabs = async () => [
-  ...Array(10)
-    .fill(0)
-    .map(() => lab),
-  ...Array(10)
-    .fill(0)
-    .map(() => lab2),
-];
+export const getResearchLabs = getMockResearchLabs;
 
 export const getResearchLab = async (labId: number): Promise<ResearchLab> => ({
   id: 5,

@@ -9,7 +9,13 @@ import {
   Staff,
   StaffList,
 } from '@/types/people';
-import { ResearchCenter, ResearchGroups, TopConferenceList } from '@/types/research';
+import {
+  ResearchCenter,
+  ResearchGroups,
+  ResearchLab,
+  ResearchLabInfo,
+  TopConferenceList,
+} from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const careerStatCols = ['학부', '석사', '박사'];
@@ -2737,3 +2743,18 @@ export const tcl: TopConferenceList = {
     },
   ],
 };
+
+export const researchLabInfos: ResearchLabInfo[] = [
+  {
+    id: 0,
+    name: '',
+    professors: [],
+    location: '',
+    tel: '',
+    acronym: '',
+    introductionMaterials: {
+      pdf: null,
+      youtube: null,
+    },
+  },
+];
