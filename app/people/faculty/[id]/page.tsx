@@ -53,7 +53,9 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
           </div>
           <div className="mt-8 break-all">
             <PeopleInfoList title="학력" infoList={data.educations} />
-            <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            {data.researchAreas !== undefined && (
+              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            )}
             {data.careers && <PeopleInfoList title="경력" infoList={data.careers} />}
           </div>
         </div>

@@ -1250,10 +1250,12 @@ export const facultyList: SimpleFaculty[] = [
   },
 ];
 
+// 팩스 넣어야되나싶어서 중간부터 안넣음 ^^,,,
 export const faculties: Faculty[] = [
   {
     ...facultyList[0],
     office: '301동 502호',
+    website: 'http://datalab.snu.ac.kr/~ukang',
     educations: `카네기멜론대학교 Computer Science Department 박사 (2012)
 카네기멜론대학교 Information Technology 석사 (2009)
 서울대학교 컴퓨터공학과 학사 (2003)`.split('\n'),
@@ -1265,6 +1267,521 @@ export const faculties: Faculty[] = [
 2013 – 2015.08.: 조교수, KAIST 전산학부
 2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
 2004 – 2007: Researcher, Korea Telecom`.split('\n'),
-    website: 'http://datalab.snu.ac.kr/~ukang',
+  },
+  {
+    ...facultyList[1],
+    office: '301동 503호',
+    fax: '(02) 872-2045',
+    website: 'http://mmlab.snu.ac.kr/~tk/',
+    educations: `서울대학교 컴퓨터공학 박사 (2000)
+서울대학교 컴퓨터공학 석사 (1995)
+서울대학교 컴퓨터공학 학사 (1993)`.split('\n'),
+    researchAreas: `Wireless networks: ad-hoc network, sensor network, multimedia streaming
+Wireless technologies convergence
+Mobile networks: mobility management, peer-to-peer mobility
+Ubiquitous/mobile computing
+Internet: active queue management, peer-to-peer`.split('\n'),
+  },
+  {
+    ...facultyList[2],
+    office: '302동 327호',
+    website: 'http://vision.snu.ac.kr/',
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2013)
+카네기멜론대학교 The Robotics Institute 석사 (2008)
+한국과학기술원 기계공학 석사 (2001)
+한국과학기술원 기계공학 학사 (1999)`.split('\n'),
+    researchAreas: `Computer Vision, Machine Learning, Natural Language Processing`.split('\n'),
+    careers: `2019.03. – 현재: 부교수, 서울대학교 컴퓨터공학부
+2015 – 2019.02.: 조교수, 서울대학교 컴퓨터공학부
+2013 – 2014: Disney Research, Postdoctoral Researcher
+2011: Visiting Student, Computer Science Department, Stanford University
+2009: Visiting Student, CSAIL, MIT
+2008 – 2009: Research Intern, Honda Research Institute
+2008: Intel/CMU Summer Fellow, Intel Research
+2005 – 2006: Visiting Researcher, The Robotics Institute, Carnegie Mellon University
+2001 – 2006: 연구원, 한국과학기술연구원 지능로봇연구센터`.split('\n'),
+  },
+  {
+    ...facultyList[3],
+    office: '301동 421호',
+    website: 'http://biohealth.snu.ac.kr',
+    educations: `아이오와대학교 컴퓨터과학 박사 (1997)
+한국과학기술원 컴퓨터과학 석사 (1987)
+서울대학교 계산통계학 학사 (1985)`.split('\n'),
+    careers: `2014.09. – 현재: 교수, 서울대학교 컴퓨터공학부
+2011 – 2014.08.: 부교수, 서울대학교 컴퓨터공학부
+2011 – 현재: 서울대학교 생물정보연구소 소장
+2009 – 2011: 미국 인디애나대학교 School of Informatics and Computing 학과장
+2001 – 2011: 미국 인디애나대학교 School of Informatics and Computing 조교수, 부교수
+1998 – 2001: 미국 듀퐁중앙연구소 선임 연구원`.split('\n'),
+  },
+  {
+    ...facultyList[4],
+    office: '302동 328호',
+    website: 'http://cares.snu.ac.kr',
+    educations: `워싱턴 대학교 전산과학 및 공학 박사 (1995)
+워싱턴 대학교 전산과학 석사 (1988)
+서울대학교 계산통계학과 학사(1986)`.split('\n'),
+    researchAreas: `플래시 메모리 시스템/소프트웨어 최적화
+스마트 디바이스 최적화
+멀티프로세서 시스템/소프트웨어 최적화`.split('\n'),
+    careers: `1995 – 1997: 선임연구원, Texas Instruments DSP R&D 연구소`.split('\n'),
+  },
+  {
+    ...facultyList[5],
+    office: '301동 504호',
+    website: 'http://csl.snu.ac.kr/',
+    educations: `서울대학교 컴퓨터공학 박사 (1999)
+서울대학교 컴퓨터공학 석사 (1993)
+서울대학교 컴퓨터공학 학사 (1991)`.split('\n'),
+    researchAreas: `운영체제
+스토리지 시스템
+병렬 및 분산 컴퓨팅
+내장형 시스템`.split('\n'),
+    careers: `2018. 3. – 현재: 서울대학교 컴퓨터공학부 교수
+2008. 9. – 2018. 2.:성균관대학교 컴퓨터공학과 교수
+2002. 3. – 2008. 8.: KAIST 전산학부 부교수
+1999. 9. – 2002. 2.: 한국전자통신연구원 (ETRI), 선임연구원`.split('\n'),
+  },
+  {
+    ...facultyList[6],
+    office: '301동 407호',
+    fax: '(02) 886-7589',
+    educations: `Massachusetts Institute of Technology (MIT) 물리학 박사 (2008)
+서울대학교 제어계측 석사 (1997)
+서울대학교 컴퓨터공학 학사 (1995)`.split('\n'),
+    researchAreas: `Quantum cryptography
+Quantum algorithms
+Development of quantum computer system`.split('\n'),
+    careers: `2018. 9. – 현재: 부교수, 서울대학교 컴퓨터공학부
+2011 – 2018: Project Leader, SK텔레콤 Quantum Tech. Lab
+2008 – 2011: Postdoctoral Researcher, Duke University Electrical and Computer Engineering
+1997 – 2000: 강사 및 전임강사, 공군사관학교 전산통계학과`.split('\n'),
+  },
+  {
+    ...facultyList[7],
+    office: '301동 406호',
+    fax: '(02) 882-0269',
+    educations: `텍사스 대학교 오스틴 컴퓨터공학 박사 (1988)
+텍사스 대학교 오스틴 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1982)`.split('\n'),
+    researchAreas: `온톨로지 변경 관리
+태그 시각화
+태그 추천`.split('\n'),
+  },
+  {
+    ...facultyList[8],
+    office: '302동 430호',
+    fax: '(02) 871-4912',
+    website: 'http://soar.snu.ac.kr/~moon/',
+    educations: `펜실베이니아 주립 대학교 컴퓨터공학 박사 (1994)
+한국과학기술원 컴퓨터공학부 석사 (1987)
+서울대학교 컴퓨터공학 학사 (1985)`.split('\n'),
+    researchAreas: `최적화 이론 및 응용
+유전 알고리즘
+금융 공학`.split('\n'),
+  },
+  {
+    ...facultyList[9],
+    office: '301동 402호',
+    fax: '(02) 886-7589',
+    website: 'http://dbs.snu.ac.kr/',
+    educations: `메릴랜드대학교 칼리지 파크 컴퓨터과학 박사 (1996)
+서울대학교 전자계산기공학과 석사 (1985)
+서울대학교 전자계산기공학과 학사 (1983)`.split('\n'),
+    researchAreas: `High performance database systems
+Parallel and distributed databases
+XML indexing and streaming
+Spatio-temporal databases
+`.split('\n'),
+    careers: `2013 – 현재: 교수, 서울대학교 컴퓨터공학부
+1997 – 2013: 조교수/부교수/정교수, University of Arizona, U.S.A.
+2005 – 2010: 편집위원, IEEE Transactions on Knowledge and Data Engineering
+1999 – 2003: CAREER Award, U.S. National Science Foundation
+1985 – 1990: 연구원, 삼성전자 및 삼성종합기술원`.split('\n'),
+  },
+  {
+    ...facultyList[10],
+    office: '301동 405호',
+    fax: '(02) 886-7589',
+    website: 'http://theory.snu.ac.kr/~kpark/',
+    educations: `컬럼비아 대학교 컴퓨터공학 박사 (1992)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+    researchAreas: `바이오 알고리즘
+암호학
+웹 검색엔진`.split('\n'),
+    careers: `2005: 프랑스 Marne-la-Vallee 대학교 방문교수
+1995: 호주 Curtin 대학교 방문연구원
+1991 – 1993: 영국 런던대학교 King's College 조교수`.split('\n'),
+  },
+  {
+    ...facultyList[11],
+    office: '302동 431호',
+    website: 'http://hcil.snu.ac.kr/people/jinwook-seo',
+    educations: `메릴랜드 대학교 컴퓨터공학 박사 (2005)
+서울대학교 컴퓨터공학 석사 (1997)
+서울대학교 계산통계학과 전산과학전공 학사 (1995)`.split('\n'),
+    researchAreas: `Human-Computer Interaction, Interaction Design, User Interface Design
+Information Visualization, Visual Analytics
+Biomedical Informatics`.split('\n'),
+    careers: `2009 – 현재: 전임교수, 서울대 컴퓨터공학부
+2006 – 2008: 조교수, Children's Research Institute & George Washington University School of Medicine
+2005 – 2006: 연구원, Children's Research Institute
+1997 – 2000: 교관/전임강사, 공군사관학교, 전산통계학과`.split('\n'),
+  },
+  {
+    ...facultyList[12],
+    office: '301동 501호',
+    website: 'https://yongsoosong.github.io/',
+    educations: `서울대학교 수리과학부 박사 (2018)
+서울대학교 수리과학부 학사 (2012)`.split('\n'),
+    researchAreas: `Cryptography
+Privacy
+Security`.split('\n'),
+    careers: `2021. 03. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019. 01. – 2021. 02.: Senior Researcher, Cryptography and Privacy Research Group, Microsoft Research Redmond
+2018. 01. – 2018. 12.: Postdoctoral Researcher, Dept. of Computer Science and Engineering, UC San Diego`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyList[13],
+    office: '302동 326호',
+    website: 'https://mllab.snu.ac.kr/hyunoh/',
+    educations: `University of California, Berkeley, Computer Science 박사 (2014)
+University of California, Berkeley, Computer Science 석사 (2013)
+Stanford University, Mechanical engineering 석사 (2008)
+한양대학교 기계공학 학사 (2006)`.split('\n'),
+    researchAreas: `Machine learning
+Optimization
+Robotics
+Artificial intelligence`.split('\n'),
+    careers: `2017.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2016.07. – 2017.08.: Google Research (Research Scientist)
+2014.11. – 2016.07.: Stanford University (Postdoctoral fellow)
+2013: INRIA Grenoble (Visiting researcher)
+2013: IBM Research (Research intern)`.split('\n'),
+  },
+  {
+    ...facultyList[14],
+    office: '302동 329호',
+    educations: `서던 캘리포니아 대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1984)
+서울대학교 컴퓨터공학 학사 (1981)`.split('\n'),
+    researchAreas: `의료영상처리
+3차원 모델링
+증강현실
+볼륨 가시화`.split('\n'),
+    careers: `1992.03 – 현재: 서울대학교 컴퓨터공학부 교수
+1990.03 – 1992.02: 경북대학교 전자계산학과 조교수`.split('\n'),
+  },
+  {
+    ...facultyList[15],
+    office: '302동 324호',
+    website: 'http://meslab.snu.ac.kr/~hseom/',
+    educations: `메릴랜드 대학교 전산 박사 (2003)
+메릴랜드 대학교 전산 석사 (1996)
+서울대학교 계산통계학과 학사 (1992)
+`.split('\n'),
+    researchAreas: `운영체제 소프트웨어 스택과 스토리지 디바이스 간의 정보 차이 메우기
+분산 데이터 처리 프레임웍에서 중복되는 계산이나 데이터 제거하기
+데이터 손실을 방지할 수 있는 결함 내성 소프트웨어 디자인 및 구현하기`.split('\n'),
+    careers: `2017.3. – 현재: 서울대학교 교수
+2012 – 2017.2.: 서울대학교 부교수
+2005 – 2005 – 2011: 서울대학교 조교수
+2005 – 2003 – 2005: 삼성전자 정보통신총괄 책임연구원`.split('\n'),
+  },
+  {
+    ...facultyList[16],
+    office: '301동 403호',
+    website: 'http://csap.snu.ac.kr/bernhard',
+    educations: `서울대학교 박사 (2008)
+스위스 연방 공과대학교 (ETH Zürich) 석사 (2002)
+스위스 연방 공과대학교 (ETH Zürich) 학사`.split('\n'),
+    researchAreas: `Architecture, operating system and compiler interaction for embedded systems
+OS/Compiler-issues for portable heterogeneous multi-core architectures
+Coarse-grained reconfigurable architectures and compilers
+Virtualization techniques for multicores/manycores
+GPU performance estimation`.split('\n'),
+  },
+  {
+    ...facultyList[17],
+    office: '302동 321호',
+    website: 'http://arirang.snu.ac.kr/~yeom/',
+    educations: `텍사스 A&M 대학교 전산 박사 (1992)
+텍사스 A&M 대학교 전산 석사 (1986)
+서울대학교 계산통계학과 학사 (1984)`.split('\n'),
+    researchAreas: `운영체제 소프트웨어 스택과 스토리지 디바이스 간의 정보 차이 메우기
+분산 데이터 처리 프레임웍에서 중복되는 계산이나 데이터 제거하기
+데이터 손실을 방지할 수 있는 결함 내성 소프트웨어 디자인 및 구현하기
+`.split('\n'),
+    careers: `2004 – 현재: 서울대학교 교수
+1993 – 2003: 서울대학교 조교수.부교수`.split('\n'),
+  },
+  {
+    ...facultyList[18],
+    office: '302동 330호',
+    website: 'https://sites.google.com/view/jungdam',
+    educations: `서울대학교 컴퓨터공학 박사 (2017)
+서울대학교 컴퓨터공학 학사 (2011)`.split('\n'),
+    researchAreas: `Computer Graphics
+Machine Learning
+Biomechnics
+Robotics
+Animation
+Motion Analysis and Synthesis
+Motion Simulation and Control
+Simulated-based Creature Modeling`.split('\n'),
+    careers: `2023. 03. - 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019 - 2023.02: Research Scientist, Meta (Facebook) AI, Pittsburgh
+2017.09 - 2019: 연수 연구원, 서울대학교 컴퓨터 연구소
+2013: Research Intern, Disney Research Los Angeles`.split('\n'),
+  },
+  {
+    ...facultyList[19],
+    office: '302동 427호',
+    website: 'http://cmalab.snu.ac.kr/',
+    educations: `서울대학교 전기공학부 박사 (2000)
+서울대학교 전자공학과 석사 (1995)
+서울대학교 전자공학과 학사 (1992)`.split('\n'),
+    researchAreas:
+      `Memory subsystem architectures and software/hardware design optimization methods for mobile and server systems`.split(
+        '\n',
+      ),
+    careers: `2015 – 현재: 서울대학교 컴퓨터공학부 교수
+2012 – 2015: 포항공과대학교 부교수
+2008 – 2012: 포항공과대학교 조교수
+2004 – 2008: 삼성전자 S.LSI 수석연구원
+2002 – 2004: TIMA 연구소 연구원
+2001 – 2002: 서울대학교 반도체공동연구소 연구원
+2000 – 2001: TIMA 연구소 연구원`.split('\n'),
+  },
+  {
+    ...facultyList[20],
+    office: '302동 428호',
+    website: 'http://ropas.snu.ac.kr/~kwang/',
+    educations: `University of Illinois at Urbana-Champaign 컴퓨터과학 박사 (1993)
+University of Illinois at Urbana-Champaign 컴퓨터과학 석사 (1990)
+서울대학교 계산통계학 학사 (1987)`.split('\n'),
+    researchAreas: `Static program analysis
+Static analysis for safe softwares
+Programming systems application of static analysis technology
+HOT (higher-order & typed) programming system`.split('\n'),
+    careers: `2008 – 2015: 센터장, 소프트웨어무결점 연구센터 (교과부/한국연구재단 선도연구센터)
+1998 – 2003: 단장, 프로그램분석시스템 연구단 (과기부/과학재단 창의연구단)
+1995 – 2003: 조교수/부교수, KAIST 전산학과
+1993 – 1995: 정규연구원, SW Principles Research Dept, Bell Labs.
+2016: Research Scientist, Facebook
+방문교수, Stanford (2017), MIT(2012,2008), CMU(2008), 파리고등사범학교(ENS Paris)(2016, 2002)`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyList[21],
+    office: '301동 404호',
+    website: 'http://ids.snu.ac.kr/site/members/M_Sang-goo_Lee.html',
+    educations: `노스웨스턴 대학교 컴퓨터과학 박사 (1990)
+노스웨스턴 대학교 컴퓨터과학 석사 (1987)
+서울대학교 계산통계학과 학사 (1985)`.split('\n'),
+    researchAreas: `Exploiting Concept Networks for Personalized Information Retrieval
+uKnow: Product Review Summarization
+KKMA: Korean Morpheme Analyzer
+LifeLogOn: Lifelog Ontology
+User Context Aggregation for Context-Aware Recommendation`.split('\n'),
+    careers: `1990 – 1992: 선임연구원,EDS Research & Dev.
+1989 – 1990: 전임강사,Univ. of Minnesota
+2002 – 현재: 회장,한국전자거래학회`.split('\n'),
+  },
+  {
+    ...facultyList[22],
+    office: '301동 413호',
+    website: 'http://youngkilee.blogspot.com/',
+    educations: `KAIST Computer Science 박사 (2012)
+KAIST Computer Science 학사 (2004)`.split('\n'),
+    researchAreas: `Mobile and Ubiquitous Computing
+Human Behavior and Context Sensing
+Embedded Machine Learning & Deep Learning Systems
+Computational Social Science`.split('\n'),
+    careers: `2018. 9. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2013. 3. – 2018. 8.: Assistant Professor, Singapore Management University
+2015. 6. – 현재: 겸직교수, KAIST 전산학과
+2007. 4. – 2007. 6.: Research Intern, Microsoft Research Redmond
+2006. 9. – 2007. 3.: Research Intern, Microsoft Research Asia`.split('\n'),
+  },
+  {
+    ...facultyList[23],
+    office: '301동 506호',
+    website: 'https://iamjaelee.github.io/www/',
+    educations: `MIT EECS (CS Division) 박사 (2009)
+Stanford University EE 석사 (2002)
+서울대학교 전기공학부 학사 (1999)`.split('\n'),
+    researchAreas: `Computer Architecture and Systems
+Parallel Programming
+Compilers
+Security`.split('\n'),
+    careers: `2016.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2011 – 2016.08.: 조교수, 성균관대학교 반도체시스템공학과
+2011: Postdoctoral Research Associate, CS Department, Princeton University
+2009 – 2011: Researcher and Engineer, Parakinetics, Inc. (Princeton, USA)
+2002 – 2009: Research Assistant, MIT CSAIL
+2008: Graduate Exchange Scholar, EECS Department, UC Berkeley
+2006, 2007: Research Intern, Nokia Research Lab in Cambridge (NRCC)
+2002: Engineering Intern, Nvidia Corp.`.split('\n'),
+  },
+  {
+    ...facultyList[24],
+    office: '301동 505호',
+    website: 'https://sites.google.com/view/jaejinlee',
+    educations: `일리노이 대학교 어배너-섐페인 컴퓨터공학 박사 (1999)
+스탠퍼드 대학교 컴퓨터공학 석사 (1995)
+서울대학교 물리학 학사 (1991)`.split('\n'),
+    researchAreas: `Programming systems of heterogeneous machines (GPUs and FPGAs)
+Parallelization and optimization of deep learning models (e.g., GPT-3) and frameworks (e.g., PyTorch)
+Programming and simulation environments of quantum computers`.split('\n'),
+    careers: `2010 – 현재: 교수, 서울대학교 컴퓨터공학부
+2004 – 2010: 부교수, 서울대학교 컴퓨터공학부
+2002 – 2004: 조교수, 서울대학교 컴퓨터공학부
+2000 – 2002: 조교수, 미시간 주립대학교 컴퓨터공학과
+1999 – 1999: 객원 강사, 일리노이 대학교 어배너-섐페인 컴퓨터과학과`.split('\n'),
+  },
+  {
+    ...facultyList[25],
+    office: '301동 325호',
+    website: 'http://mrl.snu.ac.kr/~jehee/',
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2013)
+카네기멜론대학교 The Robotics Institute 석사 (2008)
+한국과학기술원 기계공학 석사 (2001)
+한국과학기술원 기계공학 학사 (1999)`.split('\n'),
+    researchAreas: `물리 기반 동작 제어
+데이터 기반 동작 학습 및 생성
+사실적인 인체 모델링
+다양한 생물체 제어`.split('\n'),
+    careers: `한국과학기술원 전산학 박사 (2000)
+한국과학기술원 전산학 석사 (1995)
+한국과학기술원 전산학 학사 (1993)`.split('\n'),
+  },
+  {
+    ...facultyList[26],
+    office: '301동 409호',
+    website: 'http://rubis.snu.ac.kr/~cglee',
+    educations: `서울대학교 컴퓨터공학 박사 (1998)
+서울대학교 컴퓨터공학 석사 (1993)
+서울대학교 컴퓨터공학 학사 (1991)`.split('\n'),
+    researchAreas: `Real-Time and Embedded System Architecture
+Real-Time Communications
+QoS Management in Control Applications, Multimedia Systems, and Web Servers
+Satellite and Mobile Communications
+Wireless Sensor Networks
+Real-Time Ubiquitous Systems`.split('\n'),
+    careers:
+      `During his study as a Ph.D. candidate, he was a member of the Real-Time research group at Seoul National University. He was also a visiting student to the University of Virginia from Jan. to Mar. 1996 to work with Prof. Son in the Computer Science Department. From March 1998 to Feburary 2000, we worked for LG Information & Communications Ltd. developing real-time software platform and UMTS signaling protocols for IMT-2000 mobile terminals. From March 2000 to July 2002, he was a Post Doctoral Research Associate in the Department of Computer Science at University of Illinois working with Prof. Sha. From August 2002 to August 2006, he was an assistant professor in the Department of Electrical and Computer Engineering, Ohio State University , Columbus, Ohio. He joined the School of Computer Science and Engineering, Seoul National University from September 2006.`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyList[27],
+    office: '302동 323호',
+    website: 'http://bi.snu.ac.kr/~btzhang/',
+    educations: `본 라인 프리드리히 빌헬름 대학교 컴퓨터공학 (Informatik) 박사 (1992)
+서울대학교 컴퓨터공학 석사 (1988)
+서울대학교 컴퓨터공학 학사 (1986)`.split('\n'),
+    researchAreas: `Computer Vision, Machine Learning, Natural Language Processing`.split('\n'),
+    careers: `뇌정보처리 모델링에 의한 기계학습 기반 사용자 의도 예측기술
+지능형 추천 서비스를 위한 인지기반 기계학습 및 추론 기술
+기계학습 기반 멀티모달 복합 정보 추출 및 추천기술
+모바일 라이프로그를 이용한 상황 문맥 상에서의 행동 파악 기술`.split('\n'),
+  },
+  {
+    ...facultyList[28],
+    office: '302동 322호',
+    website: 'https://bgchun.github.io/',
+    educations: `University of California, Berkeley, Computer Science 박사 (2007)
+Stanford University, Computer Science 석사 (2002)
+서울대학교 전자공학과 석사 (1996)
+서울대학교 전자공학과 학사 (1994)`.split('\n'),
+    researchAreas: `Machine learning systems
+Big data analytics
+Datacenter infrastructure / cloud computing
+Operating systems`.split('\n'),
+    careers: `2016: Facebook (Research Scientist)
+2012 – 2013: Microsoft (Principal Scientist)
+2011 – 2012: Yahoo!Research (Research Scientist)
+2008 – 2011: Intel Labs Berkeley (Research Scientist)
+2007 – 2008: International Computer Science Institute (Post-doctoral Researcher)`.split('\n'),
+  },
+  {
+    ...facultyList[29],
+    office: '302동 429호',
+    website: 'http://mccl.snu.ac.kr/Members01.htm',
+    educations: `서울대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+    researchAreas: `Resource management for wireless and mobile networks
+Mobile networks including 3G/4G cellular systems, wireless PAN/LAN, MBWA
+Mobile Internet over cellular systems
+Network performance evaluation
+Cognitive radio`.split('\n'),
+  },
+  {
+    ...facultyList[30],
+    office: '302동 324호',
+    website: 'https://jhugestar.github.io/',
+    educations: `카네기멜론대학교 The Robotics Institute 박사 (2018)
+KAIST 전기 및 전자공학 석사 (2009)
+KAIST 전산학 학사 (2007)`.split('\n'),
+    researchAreas: `Computer Vision
+Machine Learning
+Graphics
+Artificial intelligence`.split('\n'),
+    careers: `2022. 03. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019 – 2022. 02.: Research Scientist, Facebook AI Research (FAIR), Menlo Park
+2017: Research Intern, Facebook Reality Labs, Pittsburgh
+2015: Research Intern, Disney Research Zurich
+2009 – 2012: 연구원, ETRI`.split('\n'),
+  },
+  {
+    ...facultyList[31],
+    office: '301동 408호',
+    website: 'http://peace.snu.ac.kr/sha/',
+    educations: `캘리포니아 대학교 버클리 전기·컴퓨터공학 박사 (1992)
+서울대학교 전자공학 석사 (1987)
+서울대학교 전자공학 학사 (1985)`.split('\n'),
+    researchAreas: `하드웨어-소프트웨어 통합설계 방법론
+병렬 임베디드 시스템 설계
+임베디드 시스템의 성능 측정 및 검증
+임베디드 시스템 구조 최적화`.split('\n'),
+  },
+  {
+    ...facultyList[32],
+    office: '302동 426호',
+    website: 'http://sf.snu.ac.kr/gil.hur',
+    educations: `영국 케임브리지 대학교, 컴퓨터 과학 박사 (2010)
+KAIST, 전산학 및 수학 학사 (2000)`.split('\n'),
+    researchAreas: `Software Verification
+Relaxed Memory Concurrency
+Low-level Language Semantics
+Automated & Interactive Theorem Proving`.split('\n'),
+    careers: `2013 – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2012 – 2013: 박사후 연구원, Microsoft Research Cambridge, UK
+2010 – 2012: 박사후 연구원, Max Planck Institute for Software Systems (MPI-SWS), Germany
+2009 – 2010: 박사후 연구원, Laboratoire Preuves, Programmes et Systèmes (PPS), France`.split('\n'),
+  },
+  {
+    ...facultyList[33],
+    office: '301동 520호',
+    website: 'https://seungwonh.github.io/',
+    educations: `University of Illinois at Urbana-Champaign 컴퓨터과학 박사 (2005)
+University of Illinois at Urbana-Champaign 컴퓨터과학 석사 (2000)
+KAIST 전산학 학사 (1998)`.split('\n'),
+    researchAreas: `Natural language understanding
+Knowledge and data intelligence
+Information retrieval and search engines`.split('\n'),
+    careers: `2021.03. – 현재: 정교수, 서울대학교, 컴퓨터공학부
+2015 – 2021.02.: 정교수, 연세대학교, 컴퓨터과학과
+2005 – 2015: 조교수/영년직 부교수, 포스텍 컴퓨터공학과
+2012 – 2013: 방문연구원, 마이크로소프트 연구소
+2003, 2004: 연구인턴, 마이크로소프트 연구소
+2000, 2002: 연구인턴, 버클리 국립 연구소`.split('\n'),
   },
 ];
