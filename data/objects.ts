@@ -1,5 +1,6 @@
 import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
+import { SimpleFaculty } from '@/types/people';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
@@ -869,5 +870,382 @@ export const researchCentersData: ResearchCenter[] = [
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--research_center/20210824_100327_0.png?itok=-wn7SKLk',
     websiteURL: 'https://aiis.snu.ac.kr:55568/',
+  },
+];
+
+export const facultyList: SimpleFaculty[] = [
+  {
+    id: 0,
+    name: '강유',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'ukang@snu.ac.kr',
+    labId: 0,
+    labName: '데이터 마이닝 연구실',
+  },
+  {
+    id: 1,
+    name: '권태경',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_image001_jpg_01D35F87_52DDAF00_CID_image001.jpg?itok=EqJJj0NN',
+    academicRank: '교수',
+    phone: '(02) 880-9105',
+    email: 'tk@mmlab.snu.ac.kr',
+    labId: 0,
+    labName: '인터넷 융합 및 보안 연구실',
+  },
+  {
+    id: 2,
+    name: '김건희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/GunheeKim-20150115.jpg?itok=mfClJ_bq',
+    academicRank: '부교수',
+    phone: '(02) 880-7300',
+    email: 'gunhee@snu.ac.kr',
+    labId: 0,
+    labName: '시각 및 학습 연구실',
+  },
+  {
+    id: 3,
+    name: '김선',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%84%A0%EA%B5%90%EC%88%98%EB%8B%98_20171102.jpg?itok=v2fmuFHJ',
+    academicRank: '교수',
+    phone: '(02) 880-7280',
+    email: 'sunkim.bioinfo@snu.ac.kr',
+    labId: 0,
+    labName: '생물정보 및 생명정보 연구실',
+  },
+  {
+    id: 4,
+    name: '김지홍',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A7%80%ED%99%8D%20%EA%B5%90%EC%88%98%EB%8B%98_30_0.jpg?itok=J28d1qPE',
+    academicRank: '교수',
+    phone: '(02) 880-8792',
+    email: 'kjihong@snu.ac.kr',
+    labId: 0,
+    labName: '임베디드 시스템 연구실',
+  },
+  {
+    id: 5,
+    name: '김진수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%EC%A7%84-%EB%B0%98%EB%AA%85%ED%95%A8.jpg?itok=beFMQWAP',
+    academicRank: '교수(교무부학부장)',
+    phone: '(02) 880-7302',
+    email: 'jinsoo.kim@snu.ac.kr',
+    labId: 0,
+    labName: '시스템 소프트웨어 및 구조 연구실',
+  },
+  {
+    id: 6,
+    name: '김태현',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%83%9C%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=KcXndMTI',
+    academicRank: '부교수',
+    phone: '(02) 880-1725',
+    email: 'taehyun@snu.ac.kr',
+    labId: 0,
+    labName: '양자정보 및 양자컴퓨팅 연구실',
+  },
+  {
+    id: 7,
+    name: '김형주',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%98%95%EC%A3%BC%EA%B5%90%EC%88%98%EB%8B%98_20210208.jpg?itok=VWpdCb2h',
+    academicRank: '교수',
+    phone: '(02) 880-1826',
+    email: 'hjk@snu.ac.kr',
+    labId: 0,
+    labName: '빅데이터 분석 연구실',
+  },
+  {
+    id: 8,
+    name: '문병로',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AC%B8%EB%B3%91%EB%A1%9C%20%EA%B5%90%EC%88%98%EB%8B%98_17_0.jpg?itok=Hdk36H05',
+    academicRank: '교수',
+    phone: '(02) 880-8793',
+    email: 'moon@snu.ac.kr',
+    labId: 0,
+    labName: '최적화 및 금융공학 연구실',
+  },
+  {
+    id: 9,
+    name: '문봉기',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/PROF.BONGKIMOON2.jpg?itok=irM2dneh',
+    academicRank: '교수',
+    phone: '(02) 880-1842',
+    email: 'bkmoon@snu.ac.kr',
+    labId: 0,
+    labName: '데이터베이스 시스템 연구실',
+  },
+  {
+    id: 10,
+    name: '박근수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/thumb_kpark.jpg?itok=hI49Mbtk',
+    academicRank: '교수',
+    phone: '(02) 880-8381',
+    email: 'kpark@thoery.snu.ac.kr',
+    labId: 0,
+    labName: '컴퓨터이론 및 응용 연구실',
+  },
+  {
+    id: 11,
+    name: '서진욱',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_ii_k0rwf03i0_CID_profile-fig-1.png?itok=Wl_uJGVz',
+    academicRank: '교수',
+    phone: '(02) 880-1761',
+    email: 'jseo@snu.ac.kr',
+    labId: 0,
+    labName: '휴먼-컴퓨터 인터액션 연구실',
+  },
+  {
+    id: 12,
+    name: '송용수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/profile.jpeg?itok=fdlAU2Px',
+    academicRank: '조교수',
+    phone: '(02) 880-7314',
+    email: 'y.song@snu.ac.kr',
+    labId: 0,
+    labName: '암호 및 프라이버시 연구실',
+  },
+  {
+    id: 13,
+    name: '송현오',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%86%A1%ED%98%84%EC%98%A4%20%EA%B5%90%EC%88%98.png?itok=BpERbaxx',
+    academicRank: '부교수',
+    phone: '(02) 880-7272',
+    email: 'hyunoh@snu.ac.kr',
+    labId: 0,
+    labName: '머신러닝 연구실',
+  },
+  {
+    id: 14,
+    name: '신영길',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%EC%98%81%EA%B8%B8.jpg?itok=3gQ19Ca6',
+    academicRank: '교수',
+    phone: '(02) 880-6757',
+    email: 'yshin@snu.ac.kr',
+    labId: 0,
+    labName: '컴퓨터 그래픽스 및 이미지 처리 연구실',
+  },
+  {
+    id: 15,
+    name: '엄현상',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%84%ED%98%84%EC%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=38GFePpq',
+    academicRank: '교수',
+    phone: '(02) 880-6755',
+    email: 'hseom@snu.ac.kr',
+    labId: 0,
+    labName: '분산시스템 연구실',
+  },
+  {
+    id: 16,
+    name: '버나드 에거',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%B2%84%EB%82%98%EB%93%9C%EC%97%90%EA%B1%B0_0.jpg?itok=GJRQE_dL',
+    academicRank: '교수',
+    phone: '(02) 880-1843',
+    email: 'bernhard@snu.ac.kr',
+    labId: 0,
+    labName: '컴퓨터 시스템 및 플랫폼 연구실',
+  },
+  {
+    id: 17,
+    name: '엄헌영',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%BC%ED%97%8C%EC%98%81%20%20%EA%B5%90%EC%88%98%EB%8B%98_28%20%2811%29_0.jpg?itok=ENsd23cC',
+    academicRank: '교수',
+    phone: '(02) 880-5583',
+    email: 'yeom@snu.ac.kr',
+    labId: 0,
+    labName: '분산시스템 연구실',
+  },
+  {
+    id: 18,
+    name: '원정담',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9B%90%EC%A0%95%EB%8B%B4%203x4_0.jpg?itok=V-QZUyQs',
+    academicRank: '조교수',
+    phone: '(02) 880-1846',
+    email: 'nonaxis@snu.ac.kr',
+    labId: 0,
+    labName: '지능형 동작 연구실',
+  },
+  {
+    id: 19,
+    name: '유승주',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9C%A0%EC%8A%B9%EC%A3%BC_%EA%B3%A0%ED%95%B4%EC%83%81%EB%8F%84_small.jpg?itok=WJvfYfE6',
+    academicRank: '교수',
+    phone: '(02) 880-9392',
+    email: 'sungjoo.yoo@gmail.com',
+    labId: 0,
+    labName: '컴퓨팅 메모리 구조 연구실',
+  },
+  {
+    id: 20,
+    name: '이광근',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/________-______.jpg?itok=3OAJgzKL',
+    academicRank: '교수(학부장)',
+    phone: '(02) 880-1857',
+    email: 'kwang@ropas.snu.ac.kr',
+    labId: 0,
+    labName: '프로그래밍 연구실',
+  },
+  {
+    id: 21,
+    name: '이상구',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/SGLee.jpg?itok=U1SZGpDF',
+    academicRank: '교수',
+    phone: '(02) 880-5357',
+    email: 'sglee@snu.ac.kr',
+    labId: 0,
+    labName: '지능형 데이터 시스템 연구실',
+  },
+  {
+    id: 22,
+    name: '이영기',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/yk-photo.jpg?itok=RjHbuOmx',
+    academicRank: '부교수',
+    phone: '(02) 880-1726',
+    email: 'youngkilee@snu.ac.kr',
+    labId: 0,
+    labName: '인간 중심 컴퓨터 시스템 연구실',
+  },
+  {
+    id: 23,
+    name: '이재욱',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%9A%B1%20%EA%B5%90%EC%88%98%EB%8B%98.png?itok=Xf6pr9GB',
+    academicRank: '교수',
+    phone: '(02) 880-1834',
+    email: 'jaewlee@snu.ac.kr',
+    labId: 0,
+    labName: '아키텍처 및 코드 최적화 연구실',
+  },
+  {
+    id: 24,
+    name: '이재진',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%A7%84_0.jpg?itok=XzA58-Gw',
+    academicRank: '교수',
+    phone: '(02) 880-1863',
+    email: 'jaejin@snu.ac.kr',
+    labId: 0,
+    labName: '천둥 연구실',
+  },
+  {
+    id: 25,
+    name: '이제희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/jehee20210813.jpg?itok=VsuQmNU3',
+    academicRank: '교수',
+    phone: '(02) 880-1845',
+    email: 'jaewlee@mrl.snu.ac.kr',
+    labId: 0,
+    labName: '운동 연구실',
+  },
+  {
+    id: 26,
+    name: '이창건',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%B0%BD%EA%B1%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=fPUQShUX',
+    academicRank: '교수',
+    phone: '(02) 880-1862',
+    email: 'cglee@snu.ac.kr',
+    labId: 0,
+    labName: '실시간 유비쿼터스 시스템 연구실',
+  },
+  {
+    id: 27,
+    name: '장병탁',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%B3%91%ED%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_22.jpg?itok=zR9V6Z7Z',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'btzhang@bi.snu.ac.kr',
+    labId: 0,
+    labName: '바이오지능 연구실',
+  },
+  {
+    id: 28,
+    name: '전병곤',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/bgchun_2021.jpg?itok=RbQi0Qx0',
+    academicRank: '교수(학생.연구부학부장)',
+    phone: '(02) 880-1928',
+    email: 'bgchun@snu.ac.kr',
+    labId: 0,
+    labName: '소프트웨어 플랫폼 연구실',
+  },
+  {
+    id: 29,
+    name: '전화숙',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%ED%99%94%EC%88%99_0.jpg?itok=ATbB8R7d',
+    academicRank: '교수',
+    phone: '(02) 880-1839',
+    email: 'wsjeon@snu.ac.kr',
+    labId: 0,
+    labName: '이동 컴퓨팅 및 통신 연구실',
+  },
+  {
+    id: 30,
+    name: '주한별',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A3%BC%ED%95%9C%EB%B3%84%EA%B5%90%EC%88%98%EB%8B%98.jpeg?itok=2SIfQOB0',
+    academicRank: '조교수',
+    phone: '(02) 880-7293',
+    email: 'hbjoo@snu.ac.kr',
+    labId: 0,
+    labName: '비주얼 컴퓨팅 연구실',
+  },
+  {
+    id: 31,
+    name: '하순회',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%98%EC%88%9C%ED%9A%8C%20%EA%B5%90%EC%88%98%EB%8B%98%20%283%29_0.jpg?itok=_gzD3jsT',
+    academicRank: '교수',
+    phone: '(02) 880-8382',
+    email: 'sha@iris.snu.ac.kr',
+    labId: 0,
+    labName: '통합설계 및 병렬 처리 연구실',
+  },
+  {
+    id: 32,
+    name: '허충길',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/1.%20%ED%97%88%EC%B6%A9%EA%B8%B8%EA%B5%90%EC%88%98%EB%8B%9820191206.png?itok=V0Ictg_k',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'gil.hur@sf.snu.ac.kr',
+    labId: 0,
+    labName: '소프트웨어 원리 연구실',
+  },
+  {
+    id: 33,
+    name: '황승원',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/2021.3%EC%9B%94%20%EB%B6%80%EC%9E%84%EC%98%88%EC%A0%95_%ED%99%A9%EC%8A%B9%EC%9B%90%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=V1eW61q1',
+    academicRank: '교수',
+    phone: '(02) 880-7316',
+    email: 'seungwonh@snu.ac.kr',
+    labId: 0,
+    labName: '언어 및 데이터지능 연구실',
   },
 ];

@@ -72,7 +72,7 @@ export default function PeopleRow({
           </div>
         )}
         <div className="flex flex-col gap-[0.37rem] mt-1 items-start break-keep">
-          {labId && labName && (
+          {labId !== undefined && labName !== undefined && (
             <Link
               href={`${labLink}/${labId}`}
               className="hover:underline leading-[1.1rem] items-center"
