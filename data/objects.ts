@@ -13,7 +13,7 @@ import {
   ResearchCenter,
   ResearchGroups,
   ResearchLab,
-  ResearchLabInfo,
+  SimpleResearchLab,
   TopConferenceList,
 } from '@/types/research';
 
@@ -2743,7 +2743,7 @@ export const tcl: TopConferenceList = {
   ],
 };
 
-export const researchLabInfos: ResearchLabInfo[] = [
+export const simpleResearchLabs: SimpleResearchLab[] = [
   {
     id: 0,
     name: '데이터 마이닝 연구실',
@@ -3308,5 +3308,206 @@ export const researchLabInfos: ResearchLabInfo[] = [
       pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_jseo_%EC%84%9C%EC%A7%84%EC%9A%B1%EA%B5%90%EC%88%98%EB%8B%98.pdf',
       youtube: null,
     },
+  },
+];
+
+export const researchLabs: ResearchLab[] = [
+  {
+    ...simpleResearchLabs[0],
+    description: '',
+    websiteURL: 'http://datalab.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[1],
+    description: '',
+    websiteURL: 'http://dbs.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[2],
+    description: '',
+    websiteURL: 'http://mllab.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[3],
+    description: '',
+    websiteURL: 'http://bi.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[4],
+    description: '',
+    websiteURL: 'http://dcslab.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[5],
+    description: '',
+    websiteURL: 'https://jhugestar.github.io/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[6],
+    description: '',
+    websiteURL: 'https://bda.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[7],
+    description: '',
+    websiteURL: 'http://biohealth.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[8],
+    description: '',
+    websiteURL: 'http://sf.snu.ac.kr/',
+    group: '프로그래밍 시스템 및 SW공학',
+  },
+  {
+    ...simpleResearchLabs[9],
+    description: '',
+    websiteURL: 'http://spl.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[10],
+    description: '',
+    websiteURL: 'http://vision.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[11],
+    description: '',
+    websiteURL: 'http://csl.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[12],
+    description: '',
+    websiteURL: 'http://rubis.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[13],
+    description: '',
+    websiteURL: 'http://arc.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[14],
+    description: '',
+    websiteURL: 'https://yongsoosong.github.io/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[15],
+    description: '',
+    websiteURL: 'https://quiqcl.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[16],
+    description: '',
+    websiteURL: 'https://seungwonh.github.io/ldi.html',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[17],
+    description: '',
+    websiteURL: 'http://mrl.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[18],
+    description: '',
+    websiteURL: 'http://mccl.snu.ac.kr/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[19],
+    description: '',
+    websiteURL: 'https://hcs.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[20],
+    description: '',
+    websiteURL: 'http://mmlab.snu.ac.kr/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[21],
+    description: '',
+    websiteURL: 'http://davinci.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[22],
+    description: '',
+    websiteURL: 'http://ids.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[23],
+    description: '',
+    websiteURL: 'http://imo.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[24],
+    description: '',
+    websiteURL: 'http://aces.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[25],
+    description: '',
+    websiteURL: 'http://soar.snu.ac.kr/',
+    group: '이론 및 금융공학',
+  },
+  {
+    ...simpleResearchLabs[26],
+    description: '',
+    websiteURL: 'http://cglab.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[27],
+    description: '',
+    websiteURL: 'http://csap.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[28],
+    description: '',
+    websiteURL: 'http://theory.snu.ac.kr/',
+    group: '이론 및 금융공학',
+  },
+  {
+    ...simpleResearchLabs[29],
+    description: '',
+    websiteURL: 'http://cmalab.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드 시스템',
+  },
+  {
+    ...simpleResearchLabs[30],
+    description: '',
+    websiteURL: 'http://iris.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드 시스템',
+  },
+  {
+    ...simpleResearchLabs[31],
+    description: '',
+    websiteURL: 'http://ropas.snu.ac.kr/',
+    group: '프로그래밍 시스템 및 SW공학',
+  },
+  {
+    ...simpleResearchLabs[32],
+    description: '',
+    websiteURL: 'http://hcil.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
   },
 ];
