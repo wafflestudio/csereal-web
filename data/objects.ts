@@ -1,6 +1,6 @@
 import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
-import { SimpleFaculty } from '@/types/people';
+import { Faculty, SimpleFaculty } from '@/types/people';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
@@ -1247,5 +1247,13 @@ export const facultyList: SimpleFaculty[] = [
     email: 'seungwonh@snu.ac.kr',
     labId: 0,
     labName: '언어 및 데이터지능 연구실',
+  },
+];
+
+const faculties: Faculty[] = [
+  {
+    ...facultyList[0],
+    office: '301동 502호',
+    
   },
 ];

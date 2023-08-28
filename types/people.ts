@@ -16,12 +16,26 @@ export interface FacultyList {
 
 export interface Faculty extends SimpleFaculty {
   office: string;
-  endDate: Date;
   isActive: boolean;
-  startDate: Date;
   educations: string[];
+  careers?: string[];
   researchAreas: string[];
+  website?: string;
   fax?: string;
+}
+
+export interface SimpleEmiritusFaculty {
+  id: number;
+  name: string;
+  imageURL: string;
+  academicRank: string;
+  email?: string;
+}
+
+export interface EmiritusFaculty extends SimpleEmiritusFaculty {
+  startDate: Date;
+  endDate: Date;
+  researchAreas: string[];
   website?: string;
   careers?: string[];
 }
