@@ -8,9 +8,11 @@ import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
   const data = await getEmeritusFaculty(params.id);
-  const startTime = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
-  const endTime = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
-  const careerTime = { startTime, endTime };
+
+  //   const startTime = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
+  //   const endTime = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
+  //   const careerTime = { startTime, endTime };
+  const careerTime = { startTime: data.startDate, endTime: data.endDate };
 
   return (
     data && (
@@ -29,44 +31,50 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
         <div className="flow-root relative mb-10">
           <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
-            <article className="text-neutral-700 font-noto flex flex-col mb-7">
-              <h3 className="text-base font-bold leading-8">연락처 정보</h3>
-              <ul className="list-inside list-disc">
-                {data.office && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
-                    <p>교수실: {data.office}</p>
-                  </li>
-                )}
-                {data.email && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
-                    <p>
-                      이메일:
-                      <Link
-                        className="ml-1 text-link hover:underline"
-                        href={`mailto:${data.email}`}
-                      >
-                        {data.email}
-                      </Link>
-                    </p>
-                  </li>
-                )}
-                {data.website && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
-                    <p>
-                      웹사이트:
-                      <Link className="ml-1 text-link hover:underline" href={`${data.website}`}>
-                        {data.website}
-                      </Link>
-                    </p>
-                  </li>
-                )}
-              </ul>
-            </article>
+            {(data.office || data.email || data.website) && (
+              <article className="text-neutral-700 font-noto flex flex-col mb-7">
+                <>
+                  <h3 className="text-base font-bold leading-8">연락처 정보</h3>
+                  <ul className="list-inside list-disc">
+                    {data.office && (
+                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
+                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                        <p>교수실: {data.office}</p>
+                      </li>
+                    )}
+                    {data.email && (
+                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
+                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                        <p>
+                          이메일:
+                          <Link
+                            className="ml-1 text-link hover:underline"
+                            href={`mailto:${data.email}`}
+                          >
+                            {data.email}
+                          </Link>
+                        </p>
+                      </li>
+                    )}
+                    {data.website && (
+                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
+                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                        <p>
+                          웹사이트:
+                          <Link className="ml-1 text-link hover:underline" href={`${data.website}`}>
+                            {data.website}
+                          </Link>
+                        </p>
+                      </li>
+                    )}
+                  </ul>
+                </>
+              </article>
+            )}
             <PeopleInfoList title="학력" infoList={data.educations} />
-            <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            {data.researchAreas && (
+              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            )}
             <div className="mb-7 font-noto font-medium text-sm text-neutral-700">
               재직 기간: {careerTime.startTime} - {careerTime.endTime}
             </div>

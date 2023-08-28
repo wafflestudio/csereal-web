@@ -32,9 +32,9 @@ export interface SimpleEmiritusFaculty {
 }
 
 export interface EmiritusFaculty extends SimpleEmiritusFaculty {
-  startDate: Date;
-  endDate: Date;
-  researchAreas: string[];
+  startDate: string;
+  endDate: string;
+  researchAreas?: string[];
   website?: string;
   careers?: string[];
   office?: string;

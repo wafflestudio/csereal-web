@@ -1921,4 +1921,12 @@ export const emeritusFacultyList: SimpleEmiritusFaculty[] = [
   },
 ];
 
-export const emeritusFaculties: EmiritusFaculty[] = [];
+export const emeritusFaculties: EmiritusFaculty[] = [
+  {
+    ...emeritusFacultyList[0],
+    startDate: '1983년 3월',
+    endDate: '2011년 8월',
+    educations: `버지니아대학교 컴퓨터과학과 박사
+서울대학교 응용물리학과 학사`.split('\n'),
+  },
+];
