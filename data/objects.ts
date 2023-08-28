@@ -907,7 +907,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-9105',
     email: 'tk@mmlab.snu.ac.kr',
-    labId: 0,
+    labId: 20,
     labName: '인터넷 융합 및 보안 연구실',
   },
   {
@@ -918,7 +918,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '부교수',
     phone: '(02) 880-7300',
     email: 'gunhee@snu.ac.kr',
-    labId: 0,
+    labId: 10,
     labName: '시각 및 학습 연구실',
   },
   {
@@ -929,7 +929,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-7280',
     email: 'sunkim.bioinfo@snu.ac.kr',
-    labId: 0,
+    labId: 7,
     labName: '생물정보 및 생명정보 연구실',
   },
   {
@@ -940,7 +940,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-8792',
     email: 'kjihong@snu.ac.kr',
-    labId: 0,
+    labId: 21,
     labName: '임베디드 시스템 연구실',
   },
   {
@@ -951,7 +951,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수(교무부학부장)',
     phone: '(02) 880-7302',
     email: 'jinsoo.kim@snu.ac.kr',
-    labId: 0,
+    labId: 11,
     labName: '시스템 소프트웨어 및 구조 연구실',
   },
   {
@@ -962,7 +962,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '부교수',
     phone: '(02) 880-1725',
     email: 'taehyun@snu.ac.kr',
-    labId: 0,
+    labId: 15,
     labName: '양자정보 및 양자컴퓨팅 연구실',
   },
   {
@@ -973,7 +973,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1826',
     email: 'hjk@snu.ac.kr',
-    labId: 0,
+    labId: 6,
     labName: '빅데이터 분석 연구실',
   },
   {
@@ -984,7 +984,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-8793',
     email: 'moon@snu.ac.kr',
-    labId: 0,
+    labId: 25,
     labName: '최적화 및 금융공학 연구실',
   },
   {
@@ -995,7 +995,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1842',
     email: 'bkmoon@snu.ac.kr',
-    labId: 0,
+    labId: 1,
     labName: '데이터베이스 시스템 연구실',
   },
   {
@@ -1006,7 +1006,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-8381',
     email: 'kpark@thoery.snu.ac.kr',
-    labId: 0,
+    labId: 28,
     labName: '컴퓨터이론 및 응용 연구실',
   },
   {
@@ -1017,7 +1017,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1761',
     email: 'jseo@snu.ac.kr',
-    labId: 0,
+    labId: 32,
     labName: '휴먼-컴퓨터 인터액션 연구실',
   },
   {
@@ -1028,7 +1028,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '조교수',
     phone: '(02) 880-7314',
     email: 'y.song@snu.ac.kr',
-    labId: 0,
+    labId: 14,
     labName: '암호 및 프라이버시 연구실',
   },
   {
@@ -1039,7 +1039,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '부교수',
     phone: '(02) 880-7272',
     email: 'hyunoh@snu.ac.kr',
-    labId: 0,
+    labId: 2,
     labName: '머신러닝 연구실',
   },
   {
@@ -1050,7 +1050,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-6757',
     email: 'yshin@snu.ac.kr',
-    labId: 0,
+    labId: 26,
     labName: '컴퓨터 그래픽스 및 이미지 처리 연구실',
   },
   {
@@ -1061,7 +1061,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-6755',
     email: 'hseom@snu.ac.kr',
-    labId: 0,
+    labId: 4,
     labName: '분산시스템 연구실',
   },
   {
@@ -1072,7 +1072,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1843',
     email: 'bernhard@snu.ac.kr',
-    labId: 0,
+    labId: 27,
     labName: '컴퓨터 시스템 및 플랫폼 연구실',
   },
   {
@@ -1083,7 +1083,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-5583',
     email: 'yeom@snu.ac.kr',
-    labId: 0,
+    labId: 4,
     labName: '분산시스템 연구실',
   },
   {
@@ -1094,7 +1094,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '조교수',
     phone: '(02) 880-1846',
     email: 'nonaxis@snu.ac.kr',
-    labId: 0,
+    labId: 23,
     labName: '지능형 동작 연구실',
   },
   {
@@ -1105,7 +1105,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-9392',
     email: 'sungjoo.yoo@gmail.com',
-    labId: 0,
+    labId: 29,
     labName: '컴퓨팅 메모리 구조 연구실',
   },
   {
@@ -1116,7 +1116,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수(학부장)',
     phone: '(02) 880-1857',
     email: 'kwang@ropas.snu.ac.kr',
-    labId: 0,
+    labId: 31,
     labName: '프로그래밍 연구실',
   },
   {
@@ -1127,7 +1127,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-5357',
     email: 'sglee@snu.ac.kr',
-    labId: 0,
+    labId: 22,
     labName: '지능형 데이터 시스템 연구실',
   },
   {
@@ -1138,7 +1138,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '부교수',
     phone: '(02) 880-1726',
     email: 'youngkilee@snu.ac.kr',
-    labId: 0,
+    labId: 19,
     labName: '인간 중심 컴퓨터 시스템 연구실',
   },
   {
@@ -1149,7 +1149,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1834',
     email: 'jaewlee@snu.ac.kr',
-    labId: 0,
+    labId: 13,
     labName: '아키텍처 및 코드 최적화 연구실',
   },
   {
@@ -1160,7 +1160,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1863',
     email: 'jaejin@snu.ac.kr',
-    labId: 0,
+    labId: 24,
     labName: '천둥 연구실',
   },
   {
@@ -1171,7 +1171,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1845',
     email: 'jaewlee@mrl.snu.ac.kr',
-    labId: 0,
+    labId: 17,
     labName: '운동 연구실',
   },
   {
@@ -1182,7 +1182,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1862',
     email: 'cglee@snu.ac.kr',
-    labId: 0,
+    labId: 12,
     labName: '실시간 유비쿼터스 시스템 연구실',
   },
   {
@@ -1193,7 +1193,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-7254',
     email: 'btzhang@bi.snu.ac.kr',
-    labId: 0,
+    labId: 3,
     labName: '바이오지능 연구실',
   },
   {
@@ -1204,7 +1204,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수(학생.연구부학부장)',
     phone: '(02) 880-1928',
     email: 'bgchun@snu.ac.kr',
-    labId: 0,
+    labId: 9,
     labName: '소프트웨어 플랫폼 연구실',
   },
   {
@@ -1215,7 +1215,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-1839',
     email: 'wsjeon@snu.ac.kr',
-    labId: 0,
+    labId: 18,
     labName: '이동 컴퓨팅 및 통신 연구실',
   },
   {
@@ -1226,7 +1226,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '조교수',
     phone: '(02) 880-7293',
     email: 'hbjoo@snu.ac.kr',
-    labId: 0,
+    labId: 5,
     labName: '비주얼 컴퓨팅 연구실',
   },
   {
@@ -1237,7 +1237,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-8382',
     email: 'sha@iris.snu.ac.kr',
-    labId: 0,
+    labId: 30,
     labName: '통합설계 및 병렬 처리 연구실',
   },
   {
@@ -1248,7 +1248,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-7254',
     email: 'gil.hur@sf.snu.ac.kr',
-    labId: 0,
+    labId: 8,
     labName: '소프트웨어 원리 연구실',
   },
   {
@@ -1259,7 +1259,7 @@ export const facultyList: SimpleFaculty[] = [
     academicRank: '교수',
     phone: '(02) 880-7316',
     email: 'seungwonh@snu.ac.kr',
-    labId: 0,
+    labId: 16,
     labName: '언어 및 데이터지능 연구실',
   },
 ];
