@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import CustomDialog from '@/components/common/CustomDialog';
+import ModalFrame from './ModalFrame';
 
 const MEMBERS = [
   { part: 'Designer', members: ['유채원', '최유진'] },
@@ -11,21 +11,15 @@ const MEMBERS = [
 // TODO: 시리얼 메일 파기
 const MAIL = '';
 
-export default function CserealDialog({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
+export default function CserealModal({ onClose }: { onClose: () => void }) {
   return (
-    <CustomDialog isOpen={isOpen} onClose={onClose}>
+    <ModalFrame onClose={onClose}>
       <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] font-noto bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
         <TeamName />
         <Members />
         <Contact />
       </div>
-    </CustomDialog>
+    </ModalFrame>
   );
 }
 

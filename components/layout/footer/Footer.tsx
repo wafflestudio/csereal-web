@@ -7,6 +7,8 @@ import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/SNUCOM.svg';
 
+import { MODALS } from '@/components/modal/ModalContainer';
+
 import {
   aboutLinks,
   resourcesLinks,
@@ -18,11 +20,11 @@ import {
   snuLink,
 } from '@/constants/footer';
 
+import useModal from '@/hooks/useModal';
+
 import { contact, directions } from '@/types/page';
 
 import { getPath } from '@/utils/page';
-
-import CserealDialog from './CserealDialog';
 
 // TODO: 개인정보처리방침 링크
 const privacyPath = '/404';
@@ -80,7 +82,7 @@ function FooterBottom() {
 }
 
 function FooterBottomLeft() {
-  const [isOpen, toggleDialog] = useReducer((x) => !x, false);
+  const { openModal, closeModal } = useModal();
 
   return (
     <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
@@ -96,13 +98,15 @@ function FooterBottomLeft() {
       </address>
       <p className="font-normal">
         Powered by{' '}
-        <span className="cursor-pointer hover:underline" onClick={toggleDialog}>
+        <span
+          className="cursor-pointer hover:underline"
+          onClick={() => openModal(MODALS.csereal, { onClose: closeModal })}
+        >
           CSEREAL
         </span>
         <br />
         Copyright © Department of CSE, SNU. All Rights Reserved.
       </p>
-      <CserealDialog isOpen={isOpen} onClose={toggleDialog} />
     </div>
   );
 }

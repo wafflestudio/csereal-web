@@ -1,24 +1,22 @@
-import CustomDialog from "./CustomDialog";
+import ModalFrame from './ModalFrame';
 
-interface AlertDialogProps {
+interface AlertModalProps {
   message: string;
   cancelText?: string;
   confirmText?: string;
   onConfirm: () => void;
-  isOpen: boolean;
   onClose: () => void;
 }
 
-export default function AlertDialog({
+export default function AlertModal({
   message,
   cancelText = '취소',
   confirmText = '확인',
   onConfirm,
-  isOpen,
   onClose,
-}: AlertDialogProps) {
+}: AlertModalProps) {
   return (
-    <CustomDialog isOpen={isOpen} onClose={onClose}>
+    <ModalFrame onClose={onClose}>
       <div className="px-10 py-6">
         <DialogMessage message={message} />
         <div className="text-right">
@@ -32,7 +30,7 @@ export default function AlertDialog({
           />
         </div>
       </div>
-    </CustomDialog>
+    </ModalFrame>
   );
 }
 
