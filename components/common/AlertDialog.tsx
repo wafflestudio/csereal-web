@@ -1,6 +1,6 @@
 import { Dialog } from '@mui/material';
 
-interface AlertModalProps {
+interface AlertDialogProps {
   message: string;
   cancelText?: string;
   confirmText?: string;
@@ -9,18 +9,18 @@ interface AlertModalProps {
   onClose: () => void;
 }
 
-export default function AlertModal({
+export default function AlertDialog({
   message,
   cancelText = '취소',
   confirmText = '확인',
   onConfirm,
   isOpen,
   onClose,
-}: AlertModalProps) {
+}: AlertDialogProps) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="px-10 py-6">
-        <p className="mt-1 mb-6">{message}</p>
+        <DialogMessage message={message} />
         <div className="text-right">
           <CancelButton text={cancelText} onClick={onClose} />
           <ConfirmButton
@@ -34,6 +34,10 @@ export default function AlertModal({
       </div>
     </Dialog>
   );
+}
+
+function DialogMessage({ message }: { message: string }) {
+  return <p className="mt-1 mb-6">{message}</p>;
 }
 
 function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {

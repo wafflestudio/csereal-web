@@ -1,13 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/SNUCOM.svg';
-
-import Csereal from '@/components/Csereal';
 
 import {
   aboutLinks,
@@ -23,6 +21,8 @@ import {
 import { contact, directions } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+
+import CserealDialog from './CserealDialog';
 
 // TODO: 개인정보처리방침 링크
 const privacyPath = '/404';
@@ -80,7 +80,7 @@ function FooterBottom() {
 }
 
 function FooterBottomLeft() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, toggleDialog] = useReducer((x) => !x, false);
 
   return (
     <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
@@ -96,13 +96,13 @@ function FooterBottomLeft() {
       </address>
       <p className="font-normal">
         Powered by{' '}
-        <span className="cursor-pointer" onClick={() => setIsOpen(true)}>
+        <span className="cursor-pointer hover:underline" onClick={toggleDialog}>
           CSEREAL
         </span>
         <br />
         Copyright © Department of CSE, SNU. All Rights Reserved.
       </p>
-      <Csereal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <CserealDialog isOpen={isOpen} onClose={toggleDialog} />
     </div>
   );
 }

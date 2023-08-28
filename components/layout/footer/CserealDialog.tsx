@@ -1,4 +1,4 @@
-import { Modal } from '@mui/material';
+import { Dialog } from '@mui/material';
 import Link from 'next/link';
 
 const MEMBERS = [
@@ -10,15 +10,21 @@ const MEMBERS = [
 // TODO: 시리얼 메일 파기
 const MAIL = '';
 
-export default function Csereal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function CserealDialog({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   return (
-    <Modal open={isOpen} onClose={onClose}>
-      <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
+    <Dialog open={isOpen} onClose={onClose} PaperProps={{ sx: { maxWidth: '100%' } }}>
+      <div className="flex flex-col items-center pt-20 pb-[7.25rem] w-[53.25rem] font-noto bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
         <TeamName />
         <Members />
         <Contact />
       </div>
-    </Modal>
+    </Dialog>
   );
 }
 
@@ -62,7 +68,7 @@ function Contact() {
       href={`mailto:${MAIL}`}
       className="font-light text-main-orange text-base text-center tracking-[0.02em]"
     >
-      Contact
+      Contact Us
     </Link>
   );
 }

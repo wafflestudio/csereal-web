@@ -5,7 +5,7 @@ import useSwr from 'swr';
 
 import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 
-import AlertModal from '@/components/common/AlertModal';
+import AlertDialog from '@/components/common/AlertDialog';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -72,10 +72,6 @@ export default function NoticePage() {
     resetSelectedPosts();
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -108,7 +104,7 @@ export default function NoticePage() {
         {isEditMode && (
           <div className="flex items-center gap-3">
             <SelectedCountStatus count={selectedPostIds.size} />
-            <BatchButton disabled={selectedPostIds.size === 0} onClick={openModal}>
+            <BatchButton disabled={selectedPostIds.size === 0} onClick={() => setIsModalOpen(true)}>
               일괄 삭제
             </BatchButton>
             <BatchButton disabled={selectedPostIds.size === 0} onClick={batchUnpin}>
@@ -121,7 +117,7 @@ export default function NoticePage() {
           <CreateButton mainPath={noticePath} disabled={isEditMode} />
         </div>
       </div>
-      <AlertModal
+      <AlertDialog
         message="선택한 게시글을 모두 삭제하시겠습니까?"
         confirmText="삭제"
         onConfirm={batchDelete}
