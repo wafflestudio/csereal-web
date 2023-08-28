@@ -41,20 +41,20 @@ export interface EmiritusFaculty extends SimpleEmiritusFaculty {
   educations: string[];
 }
 
-export interface SimpleStaffResponse {
+export interface SimpleStaff {
   id: number;
   name: string;
   imageURL: string;
   role: string;
   office: string;
-  phone?: string;
-  email?: string;
+  phone: string;
+  email: string;
 }
 
-export interface StaffListResponse {
-  staffList: SimpleStaffResponse[];
+export interface StaffList {
+  staffList: SimpleStaff[];
 }
 
-export interface StaffReponse extends SimpleStaffResponse {
+export interface Staff extends SimpleStaff {
   tasks: string[];
 }

@@ -1,6 +1,13 @@
 import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
-import { EmiritusFaculty, Faculty, SimpleEmiritusFaculty, SimpleFaculty } from '@/types/people';
+import {
+  EmiritusFaculty,
+  Faculty,
+  SimpleEmiritusFaculty,
+  SimpleFaculty,
+  SimpleStaff,
+  StaffList,
+} from '@/types/people';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
@@ -2071,3 +2078,71 @@ export const emeritusFaculties: EmiritusFaculty[] = [
 서울대학교 전기공학과 학사`.split('\n'),
   },
 ];
+
+export const staffList: StaffList = {
+  staffList: [
+    {
+      id: 0,
+      name: '박지혜',
+      imageURL: '',
+      role: '장학.전문연구요원',
+      office: '301동 316호',
+      phone: '(02) 880-7288',
+      email: 'paji52@snu.ac.kr',
+    },
+    {
+      id: 1,
+      name: '손소연',
+      imageURL: '',
+      role: '학부생 학사.수업.교과과정',
+      office: '301동 316호',
+      phone: '(02) 880-1850',
+      email: 'soyeoun7@snu.ac.kr',
+    },
+    {
+      id: 2,
+      name: '',
+      imageURL: '',
+      role: '',
+      office: '',
+      phone: '',
+      email: '',
+    },
+    {
+      id: 3,
+      name: '',
+      imageURL: '',
+      role: '',
+      office: '',
+      phone: '',
+      email: '',
+    },
+    {
+      id: 4,
+      name: '',
+      imageURL: '',
+      role: '',
+      office: '',
+      phone: '',
+      email: '',
+    },
+    {
+      id: 5,
+      name: '',
+      imageURL: '',
+      role: '',
+      office: '',
+      phone: '',
+      email: '',
+    },
+    {
+      id: 6,
+      name: '',
+      imageURL: '',
+      role: '',
+      office: '',
+      phone: '',
+      email: '',
+    },
+  ],
+};

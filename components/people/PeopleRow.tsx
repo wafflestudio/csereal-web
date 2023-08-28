@@ -6,7 +6,7 @@ import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
 import { getPath } from '@/utils/page';
 
 export interface PeopleRowProps {
-  type: 'FACULTY' | 'EMIRITUS FACULTY';
+  type: 'FACULTY' | 'EMIRITUS FACULTY' | 'STAFF';
   id: number;
   name: string;
   academicRank?: string;

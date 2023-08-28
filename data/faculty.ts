@@ -1,6 +1,18 @@
-import { EmiritusFaculty, Faculty, FacultyList, SimpleEmiritusFaculty } from '@/types/people';
+import {
+  EmiritusFaculty,
+  Faculty,
+  FacultyList,
+  SimpleEmiritusFaculty,
+  StaffList,
+} from '@/types/people';
 
-import { emeritusFaculties, emeritusFacultyList, faculties, facultyList } from './objects';
+import {
+  emeritusFaculties,
+  emeritusFacultyList,
+  faculties,
+  facultyList,
+  staffList,
+} from './objects';
 
 // TODO: labId 연결
 export const getMockFacultyList = async (): Promise<FacultyList> => {
@@ -21,4 +33,8 @@ export const getMockEmeritusFacultyList = async (): Promise<SimpleEmiritusFacult
 
 export const getMockEmeritusFaculty = async (id: number): Promise<EmiritusFaculty> => {
   return emeritusFaculties[id];
+};
+
+export const getMockStaffList = async (): Promise<StaffList> => {
+  return staffList;
 };
