@@ -1786,6 +1786,139 @@ Information retrieval and search engines`.split('\n'),
   },
 ];
 
-export const emeritusFacultyList: SimpleEmiritusFaculty[] = [];
+export const emeritusFacultyList: SimpleEmiritusFaculty[] = [
+  {
+    id: 0,
+    name: '고건',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B3%A0%EA%B1%B4%EA%B5%90%EC%88%98%EB%8B%98_0.JPG?itok=ViFOQxpn',
+    academicRank: '명예교수',
+  },
+  {
+    id: 1,
+    name: '김명수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EB%AA%85%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_7_0.jpg?itok=cenRhzgQ',
+    academicRank: '명예교수',
+    email: 'mskim@snu.ac.kr',
+  },
+  {
+    id: 2,
+    name: '김영택',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%98%81%ED%83%9D.JPG?itok=iZj0e4na',
+    academicRank: '명예교수',
+  },
+  {
+    id: 3,
+    name: '김종권',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A2%85%EA%B6%8C%20%EA%B5%90%EC%88%98%EB%8B%98_3_0.jpg?itok=5VRTyj8Q',
+    academicRank: '전직교수',
+  },
+  {
+    id: 4,
+    name: '김종상',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%A2%85%EC%83%81.JPG?itok=qEJ4RkAA',
+    academicRank: '명예교수',
+  },
+  {
+    id: 5,
+    name: '러브트 이안 믁카이',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%81%EC%B9%B4%EC%9D%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=YF7t3o3w',
+    academicRank: '전직교수',
+  },
+  {
+    id: 6,
+    name: '민상렬',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%BC%EC%83%81%EB%A0%AC%20%EC%82%AC%EC%A7%84.jpg?itok=tP7iNY6c',
+    academicRank: '전직교수',
+  },
+  {
+    id: 7,
+    name: '스리니바사 라오 사티',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%ED%8B%B0%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=G4lPjZGI',
+    academicRank: '전직교수',
+  },
+  {
+    id: 8,
+    name: '신현식',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%ED%98%84%EC%8B%9D%20%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=xBTNvrUM',
+    academicRank: '명예교수',
+    email: 'shinhs@snu.ac.kr',
+  },
+  {
+    id: 9,
+    name: '우치수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9A%B0%EC%B9%98%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_2_0.jpg?itok=0gA50NU3',
+    academicRank: '명예교수',
+  },
+  {
+    id: 10,
+    name: '유석인',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EB%B6%80_%EC%9C%A0%EC%84%9D%EC%9D%B8%EA%B5%90%EC%88%98%EB%8B%98%28%ED%95%99%EB%B6%80%ED%99%88%ED%94%BC%EB%8F%84%20%EA%B5%90%EC%B2%B4%29.jpg?itok=EOqPZkqo',
+    academicRank: '명예교수',
+    email: 'sukinyoo@snu.ac.kr',
+  },
+  {
+    id: 11,
+    name: '이석호',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EC%9D%B4%EC%84%9D%ED%98%B8_0.JPG?itok=xK9OUlQH',
+    academicRank: '명예교수',
+    email: 'shlee@snu.ac.kr',
+  },
+  {
+    id: 12,
+    name: '장래혁',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%9E%98%ED%98%81_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=wr2Otbqp',
+    academicRank: '전직교수',
+  },
+  {
+    id: 13,
+    name: '전주식',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%EC%A3%BC%EC%8B%9D%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=BhXk9ZZJ',
+    academicRank: '전직교수',
+  },
+  {
+    id: 14,
+    name: '조유근',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A1%B0%EC%9C%A0%EA%B7%BC%20%20%EA%B5%90%EC%88%98%EB%8B%98_3.jpg?itok=SbQwYiiE',
+    academicRank: '명예교수',
+    email: 'ykcho@snu.ac.kr',
+  },
+  {
+    id: 15,
+    name: '최양희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%B5%9C%EC%96%91%ED%9D%AC%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=_Cx5BW6V',
+    academicRank: '명예교수',
+    email: 'yhchoi@snu.ac.kr',
+  },
+  {
+    id: 16,
+    name: '한상영',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%9C%EC%83%81%EC%98%81%20%EA%B5%90%EC%88%98%EB%8B%98_21_0.jpg?itok=oAU3XgvE',
+    academicRank: '명예교수',
+  },
+  {
+    id: 17,
+    name: '황희융',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%ED%99%A9%ED%9D%AC%EC%9C%B5_0.JPG?itok=4SRtsnwG',
+    academicRank: '명예교수',
+  },
+];
 
 export const emeritusFaculties: EmiritusFaculty[] = [];
