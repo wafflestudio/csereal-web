@@ -1496,8 +1496,7 @@ Artificial intelligence`.split('\n'),
     website: 'http://meslab.snu.ac.kr/~hseom/',
     educations: `메릴랜드 대학교 전산 박사 (2003)
 메릴랜드 대학교 전산 석사 (1996)
-서울대학교 계산통계학과 학사 (1992)
-`.split('\n'),
+서울대학교 계산통계학과 학사 (1992)`.split('\n'),
     researchAreas: `운영체제 소프트웨어 스택과 스토리지 디바이스 간의 정보 차이 메우기
 분산 데이터 처리 프레임웍에서 중복되는 계산이나 데이터 제거하기
 데이터 손실을 방지할 수 있는 결함 내성 소프트웨어 디자인 및 구현하기`.split('\n'),
@@ -2748,7 +2747,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 0,
     name: '데이터 마이닝 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 0,
+        name: '강유',
+      },
+    ],
     location: '301동 515호 / 518호 / 551-1호 / 551-3호',
     tel: '(02) 880-7263',
     acronym: 'DM',
@@ -2760,7 +2764,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 1,
     name: '데이터베이스 시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 9,
+        name: '문봉기',
+      },
+    ],
     location: '301동 418호 / 452-2호',
     tel: '(02) 880-6575',
     acronym: 'DBS',
@@ -2772,7 +2781,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 2,
     name: '머신러닝 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 13,
+        name: '송현오',
+      },
+    ],
     location: '302동 319호',
     tel: '',
     acronym: 'ML',
@@ -2784,7 +2798,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 3,
     name: '바이오지능 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 27,
+        name: '장병탁',
+      },
+    ],
     location: '302동 314-1호',
     tel: '(02) 880-1835',
     acronym: 'BI',
@@ -2796,7 +2815,16 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 4,
     name: '분산시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 17,
+        name: '염헌영',
+      },
+      {
+        id: 15,
+        name: '엄현상',
+      },
+    ],
     location: '302동 319호',
     tel: '(02) 880-9330',
     acronym: 'DCS',
@@ -2808,7 +2836,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 5,
     name: '비주얼 컴퓨팅 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 30,
+        name: '주한별',
+      },
+    ],
     location: '302동 310-1호',
     tel: '',
     acronym: 'VC',
@@ -2820,7 +2853,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 6,
     name: '빅데이터 분석 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 7,
+        name: '김형주',
+      },
+    ],
     location: '301동 453호',
     tel: '(02) 880-1830',
     acronym: 'BDA',
@@ -2832,7 +2870,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 7,
     name: '생물정보 및 생명정보 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 3,
+        name: '김선',
+      },
+    ],
     location: '301동 551-3호 / 554-2호 / 554-3호',
     tel: '',
     acronym: 'BHI',
@@ -2844,7 +2887,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 8,
     name: '소프트웨어 원리 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 32,
+        name: '허충길',
+      },
+    ],
     location: '302동 312-2호',
     tel: '(02) 880-1865',
     acronym: 'SF',
@@ -2856,7 +2904,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 9,
     name: '소프트웨어 플랫폼 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 28,
+        name: '전병곤',
+      },
+    ],
     location: '302동 420호',
     tel: '02) 880-1611',
     acronym: 'SPL',
@@ -2868,7 +2921,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 10,
     name: '시각 및 학습 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 2,
+        name: '김건희',
+      },
+    ],
     location: '302동 319호',
     tel: '(02) 880-7289',
     acronym: 'VL',
@@ -2880,7 +2938,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 11,
     name: '시스템 소프트웨어 및 구조 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 5,
+        name: '김진수',
+      },
+    ],
     location: '301동 515호 / 516호 / 517호',
     tel: '(02) 880-7296',
     acronym: 'CSL',
@@ -2892,7 +2955,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 12,
     name: '실시간 유비쿼터스 시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 26,
+        name: '이창건',
+      },
+    ],
     location: '301동 415호',
     tel: '(02) 880-2562',
     acronym: 'RUBIS',
@@ -2904,7 +2972,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 13,
     name: '아키텍처 및 코드 최적화 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 23,
+        name: '이재욱',
+      },
+    ],
     location: '301동 554-1호',
     tel: '(02) 880-1836',
     acronym: 'ARC',
@@ -2916,7 +2989,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 14,
     name: '암호 및 프라이버시 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 12,
+        name: '송용수',
+      },
+    ],
     location: '301동 451-1호',
     tel: '',
     acronym: 'CNP',
@@ -2928,7 +3006,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 15,
     name: '양자정보 및 양자컴퓨팅 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 6,
+        name: '김태현',
+      },
+    ],
     location: '301동 416호',
     tel: '(02) 880-4165',
     acronym: 'QUIQCL',
@@ -2940,7 +3023,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 16,
     name: '언어 및 데이터지능 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 33,
+        name: '황승원',
+      },
+    ],
     location: '301동 516호 / 551-2호 / 554-1호',
     tel: '',
     acronym: 'LDI',
@@ -2952,7 +3040,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 17,
     name: '운동 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 25,
+        name: '이제희',
+      },
+    ],
     location: '302동 312-1호',
     tel: '(02) 880-1864',
     acronym: 'MRL',
@@ -2964,7 +3057,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 18,
     name: '이동 컴퓨팅 및 통신 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 29,
+        name: '전화숙',
+      },
+    ],
     location: '302동 313-1호',
     tel: '(02) 880-1841',
     acronym: 'MCCL',
@@ -2976,7 +3074,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 19,
     name: '인간 중심 컴퓨터 시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 22,
+        name: '이영기',
+      },
+    ],
     location: '301동 412호',
     tel: '(02) 880-4165',
     acronym: 'HCS',
@@ -2988,7 +3091,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 20,
     name: '인터넷 융합 및 보안 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 1,
+        name: '권태경',
+      },
+    ],
     location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
     tel: '',
     acronym: 'NCSL',
@@ -3000,7 +3108,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 21,
     name: '임베디드 시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 4,
+        name: '김지홍',
+      },
+    ],
     location: '302동 315-2호',
     tel: '(02) 880-1861',
     acronym: 'CARES',
@@ -3012,7 +3125,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 22,
     name: '지능형 데이터 시스템 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 21,
+        name: '이상구',
+      },
+    ],
     location: '301동 420호',
     tel: '(02) 880-1859',
     acronym: 'IDS',
@@ -3024,7 +3142,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 23,
     name: '지능형 동작 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 18,
+        name: '원정담',
+      },
+    ],
     location: '302동 312-1호',
     tel: '(02) 880-1864',
     acronym: '',
@@ -3036,7 +3159,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 24,
     name: '천둥 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 24,
+        name: '이재진',
+      },
+    ],
     location: '301동 515호',
     tel: '(02) 880-1837',
     acronym: 'TRG',
@@ -3048,7 +3176,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 25,
     name: '최적화 및 금융공학 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 8,
+        name: '문병로',
+      },
+    ],
     location: '302동 313-2호',
     tel: '(02) 880-1851',
     acronym: 'OPT',
@@ -3060,7 +3193,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 26,
     name: '컴퓨터 그래픽스 및 이미지 처리 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 14,
+        name: '신영길',
+      },
+    ],
     location: '302동 320호',
     tel: '(02) 880-1860',
     acronym: 'CGIP',
@@ -3072,7 +3210,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 27,
     name: '컴퓨터 시스템 및 플랫폼 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 16,
+        name: '버나드 에거',
+      },
+    ],
     location: '301동 419호',
     tel: '(02) 880-1819',
     acronym: 'CSAP',
@@ -3084,7 +3227,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 28,
     name: '컴퓨터 이론 및 응용 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 10,
+        name: '박근수',
+      },
+    ],
     location: '301동 414호',
     tel: '(02) 880-1828',
     acronym: 'CTA',
@@ -3096,7 +3244,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 29,
     name: '컴퓨팅 메모리 구조 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 19,
+        name: '유승주',
+      },
+    ],
     location: '138동 313호',
     tel: '(02) 874-5296',
     acronym: 'CMA',
@@ -3108,7 +3261,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 30,
     name: '통합설계 및 병렬 처리 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 31,
+        name: '하순회',
+      },
+    ],
     location: '301동 455-1호',
     tel: '(02) 880-7292',
     acronym: 'CAP',
@@ -3120,7 +3278,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 31,
     name: '프로그래밍 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 20,
+        name: '이광근',
+      },
+    ],
     location: '302동 312-2호',
     tel: '(02) 880-1865',
     acronym: 'ROPAS',
@@ -3132,7 +3295,12 @@ export const researchLabInfos: ResearchLabInfo[] = [
   {
     id: 32,
     name: '휴먼-컴퓨터 인터액션 연구실',
-    professors: [],
+    professors: [
+      {
+        id: 11,
+        name: '서진욱',
+      },
+    ],
     location: '302동 314-2호',
     tel: '(02) 880-7044',
     acronym: 'HCI',
