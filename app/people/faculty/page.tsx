@@ -17,6 +17,7 @@ export default async function FacultyPage() {
         <div className="grid grid-cols-4 gap-14 mt-12">
           {facultyList.map((faculty, index) => (
             <PeopleRow
+              type="FACULTY"
               key={index}
               id={faculty.id}
               name={faculty.name}
