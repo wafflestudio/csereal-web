@@ -1,41 +1,16 @@
-'use client';
-
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
 
-import { getMockEmeritusFaculty } from '@/apis/people';
+import { getEmeritusFaculty } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-export default function EmeritusFacultyMemberPage() {
-  const idInParam = useParams().id;
-  const id = parseInt(typeof idInParam === 'string' ? idInParam : idInParam[0]);
-
-  const [careerTime, setCareerTime] = useState({ startTime: '', endTime: '' });
-
-  const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockEmeritusFaculty);
-
-  const [showAnimation, setShowAnimation] = useState(true);
-
-  useEffect(() => {
-    if (data) {
-      const start = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
-      const end = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
-      setCareerTime({ startTime: start, endTime: end });
-    }
-  }, [data]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowAnimation(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
+  const data = await getEmeritusFaculty(params.id);
+  const startTime = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
+  const endTime = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
+  const careerTime = { startTime, endTime };
 
   return (
     data && (

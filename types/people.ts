@@ -37,6 +37,8 @@ export interface EmiritusFaculty extends SimpleEmiritusFaculty {
   researchAreas: string[];
   website?: string;
   careers?: string[];
+  office?: string;
+  educations: string[];
 }
 
 export interface SimpleStaffResponse {

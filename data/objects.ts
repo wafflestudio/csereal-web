@@ -1,6 +1,6 @@
 import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
-import { Faculty, SimpleFaculty } from '@/types/people';
+import { EmiritusFaculty, Faculty, SimpleEmiritusFaculty, SimpleFaculty } from '@/types/people';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
@@ -1785,3 +1785,7 @@ Information retrieval and search engines`.split('\n'),
 2000, 2002: 연구인턴, 버클리 국립 연구소`.split('\n'),
   },
 ];
+
+export const emeritusFacultyList: SimpleEmiritusFaculty[] = [];
+
+export const emeritusFaculties: EmiritusFaculty[] = [];
