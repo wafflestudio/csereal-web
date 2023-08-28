@@ -1,10 +1,7 @@
-'use client';
-
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import useSWR from 'swr';
 
-import { getMockFaculty } from '@/apis/people';
+import { getFaculty } from '@/apis/people';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -17,11 +14,8 @@ import { getPath } from '@/utils/page';
 
 const labUrl = getPath(researchLabs);
 
-export default function FacultyMemberPage() {
-  const idInParam = useParams().id;
-  const id = parseInt(typeof idInParam === 'string' ? idInParam : idInParam[0]);
-
-  const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockFaculty);
+export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
+  const data = await getFaculty(params.id);
 
   return (
     data && (

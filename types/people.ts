@@ -16,10 +16,9 @@ export interface FacultyList {
 
 export interface Faculty extends SimpleFaculty {
   office: string;
-  isActive: boolean;
   educations: string[];
-  careers?: string[];
   researchAreas: string[];
+  careers?: string[];
   website?: string;
   fax?: string;
 }

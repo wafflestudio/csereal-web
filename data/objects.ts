@@ -1250,10 +1250,21 @@ export const facultyList: SimpleFaculty[] = [
   },
 ];
 
-const faculties: Faculty[] = [
+export const faculties: Faculty[] = [
   {
     ...facultyList[0],
     office: '301동 502호',
-    
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2012)
+카네기멜론대학교 Information Technology 석사 (2009)
+서울대학교 컴퓨터공학과 학사 (2003)`.split('\n'),
+    researchAreas: `딥러닝, 기계 학습
+그래프/텐서 분석
+추천 시스템
+금융 인공 지능`.split('\n'),
+    careers: `2015.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2013 – 2015.08.: 조교수, KAIST 전산학부
+2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
+2004 – 2007: Researcher, Korea Telecom`.split('\n'),
+    website: 'http://datalab.snu.ac.kr/~ukang',
   },
 ];
