@@ -1,4 +1,4 @@
-import { getMockStaffList } from '@/apis/staff';
+import { getMockStaffList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';

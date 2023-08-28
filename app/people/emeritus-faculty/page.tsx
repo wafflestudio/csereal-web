@@ -1,4 +1,4 @@
-import { getMockEmeritusFacultyList } from '@/apis/faculty';
+import { getMockEmeritusFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';

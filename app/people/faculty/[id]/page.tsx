@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import useSWR from 'swr';
 
-import { getMockFaculty } from '@/apis/faculty';
+import { getMockFaculty } from '@/apis/people';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

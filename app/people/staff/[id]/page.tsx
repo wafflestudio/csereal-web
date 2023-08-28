@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-import { getMockStaff } from '@/apis/staff';
+import { getMockStaff } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
@@ -39,7 +39,7 @@ export default function StaffMemberPage() {
         titleMargin="mb-9"
       >
         <div className="flow-root relative mb-32">
-          <PeopleImageWithAnimation showAnimation={showAnimation} imageURL={data.imageURL} />
+          <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">주요 업무</h3>

@@ -1,11 +1,11 @@
-import { getMockFacultyList } from '@/apis/faculty';
+import { getFacultyList } from '@/apis/people';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleRow from '@/components/people/PeopleRow';
 
 export default async function FacultyPage() {
-  const { description, facultyList } = await getMockFacultyList();
+  const { description, facultyList } = await getFacultyList();
   return (
     <PageLayout title="교수진" titleType="big" titleMargin="mb-9">
       <div className="flex flex-col">
