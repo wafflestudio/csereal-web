@@ -1,6 +1,6 @@
 'use client';
 
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import useSwr from 'swr';
 
 import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
@@ -56,7 +56,6 @@ export default function NoticePage() {
     }
     // await mutate();
     resetSelectedPosts();
-    closeModal();
   };
 
   const batchUnpin = async () => {
