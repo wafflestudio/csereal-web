@@ -8,12 +8,14 @@ import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { modals } from '@/components/modal/ModalContainer';
 import { BatchButton, CreateButton, EditButton } from '@/components/notice/NoticeButtons';
 import NoticeList from '@/components/notice/NoticeList';
 
 import { NoticeTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+import useModal from '@/hooks/useModal';
 
 import { notice } from '@/types/page';
 import { GETNoticePostsResponse, NoticePost } from '@/types/post';
@@ -32,6 +34,7 @@ export default function NoticePage() {
     ); // 추후 fetcher 삭제
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const { openModal, closeModal } = useModal();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -68,6 +71,7 @@ export default function NoticePage() {
     }
     // await mutate();
     resetSelectedPosts();
+    closeModal();
   };
 
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
@@ -98,10 +102,34 @@ export default function NoticePage() {
         {isEditMode && (
           <div className="flex items-center gap-3">
             <SelectedCountStatus count={selectedPostIds.size} />
-            <BatchButton disabled={selectedPostIds.size === 0} onClick={batchDelete}>
+            <BatchButton
+              disabled={selectedPostIds.size === 0}
+              onClick={() =>
+                openModal(
+                  modals.getAlert({
+                    message: '선택한 게시글을 모두 삭제하시겠습니까?',
+                    confirmText: '삭제',
+                    onConfirm: batchDelete,
+                    onClose: closeModal,
+                  }),
+                )
+              }
+            >
               일괄 삭제
             </BatchButton>
-            <BatchButton disabled={selectedPostIds.size === 0} onClick={batchUnpin}>
+            <BatchButton
+              disabled={selectedPostIds.size === 0}
+              onClick={() =>
+                openModal(
+                  modals.getAlert({
+                    message: '선택한 게시글을 모두 고정 해제하시겠습니까?',
+                    confirmText: '고정 해제',
+                    onConfirm: batchUnpin,
+                    onClose: closeModal,
+                  }),
+                )
+              }
+            >
               일괄 고정 해제
             </BatchButton>
           </div>
