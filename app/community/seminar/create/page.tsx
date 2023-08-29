@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function SeminarCreatePage() {
   const handleComplete = async (content: SeminarEditorContent) => {
-    console.log(content);
+    console.log(content.description);
     // throw new Error();
   };
 

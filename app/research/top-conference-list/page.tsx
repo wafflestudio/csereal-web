@@ -1,23 +1,25 @@
-import { getMockTopConferenceList, getTopConferenceList } from '@/apis/topConferenceList';
+import { getTopConferenceList } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ConferenceListTable from '@/components/research/topConferenceList/ConferenceListTable';
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-const formatDateWithDot = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dayOfWeek = date.getDay();
+// const formatDateWithDot = (date: Date) => {
+//   const year = date.getFullYear();
+//   const month = date.getMonth() + 1;
+//   const day = date.getDate();
+//   const dayOfWeek = date.getDay();
 
-  return `${year}.${month}.${day}(${DAYS[dayOfWeek]})`;
-};
+//   return `${year}.${month}.${day}(${DAYS[dayOfWeek]})`;
+// };
 
 export default async function TopConferenceListPage() {
-  const { modifiedAt, author, conferenceList } = await getMockTopConferenceList();
+  const { modifiedAt, author, conferenceList } = await getTopConferenceList();
 
-  const modifiedDate = formatDateWithDot(modifiedAt);
+  //   const modifiedDate = formatDateWithDot(modifiedAt);
+  const modifiedDate = modifiedAt;
+
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <div className="flex flex-col font-noto font-normal text-neutral-700">

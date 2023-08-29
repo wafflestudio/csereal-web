@@ -16,24 +16,27 @@ export default function FacilitiesRow({
   imageURL,
 }: FacilitiesRowProps) {
   return (
-    <article className="text-neutral-700 font-noto flex my-[1.2rem] flex-row items-start justify-between break-all h-40">
-      <div className="flex flex-col w-[35.5rem] h-auto">
+    <article className="text-neutral-700 font-noto flex my-[1.2rem] flex-row items-start justify-between break-all">
+      <div className="flex flex-col w-[35.5rem]">
         <h3 className="text-neutral-800 text-md font-bold mb-[.69rem] leading-5">{name}</h3>
-        <div className="flex flex-col gap-1">
-          <div className="text-sm font-normal leading-[1.63rem]">
-            <HTMLViewer htmlContent={description} />
-          </div>
-          <div className="flex flex-row items-center gap-[0.12rem]">
-            <span className="material-symbols-rounded font-light text-lg cursor-default">
-              distance
-            </span>
-            <p className="text-sm font-normal leading-[1.63rem]">{location}</p>
-          </div>
+        <HTMLViewer htmlContent={description} />
+        <div className="flex gap-[0.12rem]">
+          <span className="material-symbols-rounded font-light text-lg leading-[1.63rem]">
+            distance
+          </span>
+          <p className="text-sm font-normal leading-[1.63rem]">{location}</p>
         </div>
       </div>
-      <div className="w-60 h-40 relative">
-        <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
-      </div>
+
+      <FacilitiesRowImage imageURL={imageURL} />
     </article>
+  );
+}
+
+function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
+  return (
+    <div className="w-60 h-40 relative">
+      <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
+    </div>
   );
 }

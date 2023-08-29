@@ -2,24 +2,19 @@
 
 import React, {
   createContext,
-  ElementType,
   PropsWithChildren,
+  ReactNode,
   useContext,
   useMemo,
   useState,
 } from 'react';
 
-interface Modal {
-  Component: ElementType;
-  props?: object;
-}
-
 interface ModalSetterContextData {
-  open: (Component: ElementType, props?: object) => void;
+  open: (Component: ReactNode) => void;
   close: () => void;
 }
 
-const ModalStateContext = createContext<Modal[]>([]);
+const ModalStateContext = createContext<ReactNode[]>([]);
 const ModalSetterContext = createContext<ModalSetterContextData>({
   open: () => {
     throw new Error('ModalContext not provided');
@@ -33,10 +28,10 @@ export const useModalStateContext = () => useContext(ModalStateContext);
 export const useModalSetterContext = () => useContext(ModalSetterContext);
 
 export default function ModalContextProvider({ children }: PropsWithChildren) {
-  const [openedModals, setOpenedModals] = useState<Modal[]>([]);
+  const [openedModals, setOpenedModals] = useState<ReactNode[]>([]);
 
-  const open = (Component: ElementType, props?: object) => {
-    setOpenedModals((modals) => [...modals, { Component, props }]);
+  const open = (Component: ReactNode) => {
+    setOpenedModals((modals) => [...modals, Component]);
   };
 
   const close = () => {

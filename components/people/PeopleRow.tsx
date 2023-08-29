@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { faculty, researchLabs, staff } from '@/types/page';
+import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
 export interface PeopleRowProps {
+  type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
   id: number;
   name: string;
   academicRank?: string;
@@ -18,7 +19,13 @@ export interface PeopleRowProps {
   imageURL: string;
 }
 
+const facultyPath = getPath(faculty);
+const emeritusFacultyPath = getPath(emeritusFaculty);
+const staffPath = getPath(staff);
+const labLink = getPath(researchLabs);
+
 export default function PeopleRow({
+  type,
   id,
   name,
   academicRank,
@@ -30,13 +37,17 @@ export default function PeopleRow({
   office,
   imageURL,
 }: PeopleRowProps) {
-  const professorLink = getPath(faculty);
-  const staffLink = getPath(staff);
-  const labLink = getPath(researchLabs);
+  const hrefList = {
+    'EMIRITUS_FACULTY': emeritusFacultyPath,
+    FACULTY: facultyPath,
+    STAFF: staffPath,
+  };
+  const href = `${hrefList[type]}/${id}`;
+
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
       <Link
-        href={`${professorLink}/${id}`}
+        href={href}
         className="w-36 h-48 relative"
         style={{
           filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
@@ -57,7 +68,7 @@ export default function PeopleRow({
       <div className="flex flex-col items-start break-keep">
         {academicRank && (
           <div className="flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
-            <Link href={`${staffLink}/${id}`} className="hover:cursor-pointer ">
+            <Link href={href} className="hover:cursor-pointer ">
               <p className="text-md font-bold">{name}</p>
             </Link>
             <p className="text-neutral-500">{academicRank}</p>
@@ -65,14 +76,14 @@ export default function PeopleRow({
         )}
         {role && (
           <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
-            <Link href={`${professorLink}/${id}`} className="hover:cursor-pointer ">
+            <Link href={href} className="hover:cursor-pointer ">
               <p className="text-md font-bold leading-5">{name}</p>
             </Link>
             <p className="text-neutral-500 leading-6">{role}</p>
           </div>
         )}
         <div className="flex flex-col gap-[0.37rem] mt-1 items-start break-keep">
-          {labId && labName && (
+          {labId !== undefined && labName !== undefined && (
             <Link
               href={`${labLink}/${labId}`}
               className="hover:underline leading-[1.1rem] items-center"

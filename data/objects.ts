@@ -1,6 +1,22 @@
-import { Club, Facilities } from '@/types/about';
+import { readFileSync } from 'fs';
+
+import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
-import { ResearchCenter, ResearchGroups } from '@/types/research';
+import {
+  EmiritusFaculty,
+  Faculty,
+  SimpleEmiritusFaculty,
+  SimpleFaculty,
+  Staff,
+  StaffList,
+} from '@/types/people';
+import {
+  ResearchCenter,
+  ResearchGroups,
+  ResearchLab,
+  SimpleResearchLab,
+  TopConferenceList,
+} from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const careerStatCols = ['학부', '석사', '박사'];
@@ -206,7 +222,7 @@ export const clubs: Club[] = [
     name: '가디언',
     engName: 'Guardian',
     description:
-      '<p>​<a href="http://guardian.snucse.org">가디언</a>은 1999년 4월 30일에 창립된 서울대학교 보안 연구 동아리입니다.<br></p><p>가디언에서는 시스템, 웹, 네트워크, 모바일 등 다양한 분야에서 취약점을 찾고 공격과 방어 기법을 연구하며 해킹에 대한 열정을 펼치고 있습니다. 보안 분야의 진입장벽을 낮추기 위해 신입회원을 위한 교육을 진행하며, 개강총회와 종강총회에서 그동안 연구한 내용들을 발표하기도 합니다.<br>또한 DEF CON 등 다양한 보안 대회에 출전하는 등 활발한 활동을 진행하고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월에 신입회원을 모집하고 9월에도 비정기적으로 모집합니다.</p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>가디언은 전 세계의 내로라하는 해킹/보안 팀이 참가하는 해킹/보안 대회에서 꾸준히 좋은 성적을 내고 있다.<br>특히 2013년에는 전년보다 대회 참여 인원이 대폭 늘어 4월에 열린 PlaidCTF에서는 17위, 6월 예선과 8월 본선이 열린 DEFCON CTF에서는 보안 팀 Alternatives와 연합 참가하여 각각 17위(본선 진출), 8위를 차지했다.<br>이 밖에도 CodeGate, SECUINSIDE CTF, Ghost In The Shellcode 등 다양한 대회에 출전하여 실력을 쌓고 있다.</p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>이메일: snucsguard@gmail.com<br>홈페이지:&nbsp;<a href="http://guardian.snucse.org/">http://guardian.snucse.org</a></p>',
+      '<p>​<a href="http://guardian.snucse.org">가디언</a>은 1999년 4월 30일에 창립된 서울대학교 보안 연구 동아리입니다.<br></p><p>가디언에서는 시스템, 웹, 네트워크, 모바일 등 다양한 분야에서 취약점을 찾고 공격과 방어 기법을 연구하며 해킹에 대한 열정을 펼치고 있습니다. 보안 분야의 진입장벽을 낮추기 위해 신입회원을 위한 교육을 진행하며, 개강총회와 종강총회에서 그동안 연구한 내용들을 발표하기도 합니다.<br>또한 DEF CON 등 다양한 보안 대회에 출전하는 등 활발한 활동을 진행하고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월에 신입회원을 모집하고 9월에도 비정기적으로 모집합니다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>가디언은 전 세계의 내로라하는 해킹/보안 팀이 참가하는 해킹/보안 대회에서 꾸준히 좋은 성적을 내고 있다.<br>특히 2013년에는 전년보다 대회 참여 인원이 대폭 늘어 4월에 열린 PlaidCTF에서는 17위, 6월 예선과 8월 본선이 열린 DEFCON CTF에서는 보안 팀 Alternatives와 연합 참가하여 각각 17위(본선 진출), 8위를 차지했다.<br>이 밖에도 CodeGate, SECUINSIDE CTF, Ghost In The Shellcode 등 다양한 대회에 출전하여 실력을 쌓고 있다.</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>이메일: snucsguard@gmail.com<br>홈페이지:&nbsp;<a href="http://guardian.snucse.org/">http://guardian.snucse.org</a></p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/%EA%B0%80%EB%94%94%EC%96%B8_%EB%A1%9C%EA%B3%A0.jpg?itok=Jk3PN69X',
   },
@@ -214,7 +230,7 @@ export const clubs: Club[] = [
     name: '바쿠스',
     engName: 'Bacchus',
     description:
-      '<p><a href="http://bacchus.snucse.org/">바쿠스</a>는 서울대학교 컴퓨터공학부의 시스템 관리자 모임입니다.<br></p><p>바쿠스는 실습실 및 PC, 서버관리를 비롯해 다양한 서비스를 컴퓨터공학부 구성원에게 제공하는 일을 하고 있으며 이와 같은 일을 전문적이고 체계적으로 하기 위한 시스템 및 소프트웨어 연구 동아리입니다.<br>하나의 계정으로 실습실 PC 사용, 리눅스 서버 사용, 학부 커뮤니티 사이트 이용을 가능케 하는 통합 계정 서비스를 제공하고 있으며,&nbsp;<a href="http://www.snucse.org/">컴퓨터공학부 커뮤니티 사이트</a>를 개발, 관리 및 유지 보수하는 일도 담당하고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월, 9월에 신입회원을 모집하며, 신입회원은 수습기간 후 정회원으로 활동하게 됩니다.</p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>깃헙(<a href="https://github.com/bacchus-snu/">https://github.com/bacchus-snu/</a>) 에서 확인할 수 있습니다.</p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>이메일: contact@bacchus.snucse.org<br>홈페이지:&nbsp;<a href="https://bacchus.snucse.org/">https://bacchus.snucse.org</a></p>',
+      '<p><a href="http://bacchus.snucse.org/">바쿠스</a>는 서울대학교 컴퓨터공학부의 시스템 관리자 모임입니다.<br></p><p>바쿠스는 실습실 및 PC, 서버관리를 비롯해 다양한 서비스를 컴퓨터공학부 구성원에게 제공하는 일을 하고 있으며 이와 같은 일을 전문적이고 체계적으로 하기 위한 시스템 및 소프트웨어 연구 동아리입니다.<br>하나의 계정으로 실습실 PC 사용, 리눅스 서버 사용, 학부 커뮤니티 사이트 이용을 가능케 하는 통합 계정 서비스를 제공하고 있으며,&nbsp;<a href="http://www.snucse.org/">컴퓨터공학부 커뮤니티 사이트</a>를 개발, 관리 및 유지 보수하는 일도 담당하고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월, 9월에 신입회원을 모집하며, 신입회원은 수습기간 후 정회원으로 활동하게 됩니다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>깃헙(<a href="https://github.com/bacchus-snu/">https://github.com/bacchus-snu/</a>) 에서 확인할 수 있습니다.</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>이메일: contact@bacchus.snucse.org<br>홈페이지:&nbsp;<a href="https://bacchus.snucse.org/">https://bacchus.snucse.org</a></p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/bacchus_0.png?itok=1o1B-7or',
   },
@@ -222,7 +238,7 @@ export const clubs: Club[] = [
     name: '사커301',
     engName: 'Soccer301',
     description:
-      '<p>2008년 결성된 학부 내 축구를 좋아하고 즐기는 학생들로 구성된 축구 동아리이다. 축구를 통한 체력 향상 및 친목 도모를 목표로 한다. 매주 주말 모여 훈련 및 친선경기를 하고 있으며 서울대 학내에서 열리는 총장배 구기대회, 공대 학장배 축구대회, 공대축제 축구대회 등 여러 대회에 꾸준히 참가해 좋은 성적을 내고 있다.<br></p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>상시 모집</p><h3><strong>대회 성적</strong></h3><hr class="__se__solid"><p>2009년 공대 학장배 3위<br>2013년 공대 축제 3위<br>2014년 공대 학장배 1위<br>2014년 공대 축제 1위</p>',
+      '<p>2008년 결성된 학부 내 축구를 좋아하고 즐기는 학생들로 구성된 축구 동아리이다. 축구를 통한 체력 향상 및 친목 도모를 목표로 한다. 매주 주말 모여 훈련 및 친선경기를 하고 있으며 서울대 학내에서 열리는 총장배 구기대회, 공대 학장배 축구대회, 공대축제 축구대회 등 여러 대회에 꾸준히 참가해 좋은 성적을 내고 있다.<br></p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>상시 모집</p><p><br></p><h3><strong>대회 성적</strong></h3><hr class="__se__solid"><p>2009년 공대 학장배 3위<br>2013년 공대 축제 3위<br>2014년 공대 학장배 1위<br>2014년 공대 축제 1위</p><p><br></p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/Soccer301_%EB%A1%9C%EA%B3%A0.jpg?itok=_wtIa-xW',
   },
@@ -230,7 +246,7 @@ export const clubs: Club[] = [
     name: '슈타인',
     engName: 'Stein',
     description:
-      '<p>슈타인은 2012년 결성된 학부 내 경음악에 흥미와 소질이 있는 학생들로 구성된 밴드 동아리이다. 매년 신입 회원을 영입하여 기 단위로 운영되는 슈타인은 연중 수시로 합주를 하며 친목을 다지는 것을 목표로 한다.<br></p><p>주요 활동으로는 정기 공연 및 타 학교의 밴드들과의 교류 등이 있다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>매년 3월 중순경 가입신청을 받은 후, 오디션을 통해 선발한다.</p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>■ 17,18,19학번 활동중<br>■ 19학번 주1회 정기 연습<br>■ 3월 22일 타 동아리와 합동 공연<br>■ 신입들과의 회식</p><h3><strong>동아리 활동 계획</strong></h3><hr class="__se__solid"><p>■ 6월 28일 타 동아리와 합동 공연 예정<br>■ 7월 정기공연, 컴밤 공연 예정</p>',
+      '<p>슈타인은 2012년 결성된 학부 내 경음악에 흥미와 소질이 있는 학생들로 구성된 밴드 동아리이다. 매년 신입 회원을 영입하여 기 단위로 운영되는 슈타인은 연중 수시로 합주를 하며 친목을 다지는 것을 목표로 한다.<br></p><p>주요 활동으로는 정기 공연 및 타 학교의 밴드들과의 교류 등이 있다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>매년 3월 중순경 가입신청을 받은 후, 오디션을 통해 선발한다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>■ 17,18,19학번 활동중<br>■ 19학번 주1회 정기 연습<br>■ 3월 22일 타 동아리와 합동 공연<br>■ 신입들과의 회식</p><p><br></p><h3><strong>동아리 활동 계획</strong></h3><hr class="__se__solid"><p>■ 6월 28일 타 동아리와 합동 공연 예정<br>■ 7월 정기공연, 컴밤 공연 예정</p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/Stein.PNG?itok=J8eVZbbZ',
   },
@@ -238,20 +254,20 @@ export const clubs: Club[] = [
     name: '스눕스',
     engName: 'SNUPS',
     description:
-      '<p><a href="https://snups.org/">스눕스(SNUPS)</a>는 컴퓨터공학의 한 분야인 문제 해결 및 알고리즘을 공부하고 연구하는 동아리입니다.<br></p><p>다양한 난이도의 스터디를 통해 회원 개개인의 실력을 기르고 각종 온/오프라인 프로그래밍 대회에 참가하는 것이 주된 활동이며, 모든 서울대학교 학생이 참가할 수 있는 서울대학교 프로그래밍 경시대회(SNUPC)를 직접 준비 및 개최하고 있습니다.<br>매년 많은 회원들이 삼성 대학생 프로그래밍 경진대회(SCPC), 카카오 코드 페스티벌, Google Code Jam, Facebook Hacker Cup 등 여러 프로그래밍 대회에서 높은 성과를 거두고 있으며, 특히 최근 3년(2017~2019) 동안 SNUPS 회원들로 구성된 팀이 국제 대학생 프로그래밍 경시대회(ACM-ICPC) 국내 대회에서 대상을 차지하고 세계 대회에 출전해 메달을 획득한 바 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월 달에 신입생을 모집하며, 스눕스 구성원과의 개별 연락을 통해 상시 가입도 가능하다.</p><h3><strong>최근 동아리 활동 현황</strong></h3><hr class="__se__solid"><p>ipsc, icpc, 전국 대학생 프로그래밍동아리 연합 대회 등에 3인팀을 꾸려 출전하고 있으며, google code jam, facebook hacker cup나 기타 PS 대회에 스눕스 소속으로 개인출전하고 있다. 팀을 꾸릴 때는 SNUTOC(SNU Team Organization Contest) 등의 내부대회를 통해 실력과 분야에 맞는 팀원을 구성하여 출전하고 있다.</p><p>2019년 ACM-ICPC World Final 은메달 (7위)<br>2018년 ACM-ICPC World Final 은메달 (5위)<br>2017년 ACM-ICPC World Final 금메달 (3위)<br>2018년 ACM-ICPC Asia Taipei Regional Contest 3위<br>2017년 ACM-ICPC Asia Tsukuba Regional Contest 2위<br>2017년 ACM-ICPC Asia Hua-Lien Regional Contest 3위<br>2016년 ACM-ICPC Asia Nha Trang Regional Contest 1위<br>2016년 ACM-ICPC Asia Bangkok Regional Contest 5위<br>2016, 2017, 2018년 한국 대학생 프로그래밍 경시대회 대상 및 다수<br>2018년 UCPC 2등상 및 다수<br>2016, 2017, 2018년 SCPC 1등상 및 다수<br>2017년 LG CNS Code Monster 2등상 및 다수<br>2016년 LG CNS Code Monster 1등상 및 다수<br>2017, 2018년 카카오 코드 페스티벌 1등상 및 다수<br>2016, 2018년 Google Code Jam World Final 진출<br>2016, 2017, 2018년 Facebook Hacker Cup Final Round 진출<br>2017, 2018년 Code Festival Final Onsite 진출<br>2016년 Russian Code Cup Final Round 진출</p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>홈페이지:&nbsp;<a href="https://snups.org/">https://snups.org</a></p>',
+      '<p><a href="https://snups.org/">스눕스(SNUPS)</a>는 컴퓨터공학의 한 분야인 문제 해결 및 알고리즘을 공부하고 연구하는 동아리입니다.<br></p><p>다양한 난이도의 스터디를 통해 회원 개개인의 실력을 기르고 각종 온/오프라인 프로그래밍 대회에 참가하는 것이 주된 활동이며, 모든 서울대학교 학생이 참가할 수 있는 서울대학교 프로그래밍 경시대회(SNUPC)를 직접 준비 및 개최하고 있습니다.<br>매년 많은 회원들이 삼성 대학생 프로그래밍 경진대회(SCPC), 카카오 코드 페스티벌, Google Code Jam, Facebook Hacker Cup 등 여러 프로그래밍 대회에서 높은 성과를 거두고 있으며, 특히 최근 3년(2017~2019) 동안 SNUPS 회원들로 구성된 팀이 국제 대학생 프로그래밍 경시대회(ACM-ICPC) 국내 대회에서 대상을 차지하고 세계 대회에 출전해 메달을 획득한 바 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월 달에 신입생을 모집하며, 스눕스 구성원과의 개별 연락을 통해 상시 가입도 가능하다.</p><p><br></p><h3><strong>최근 동아리 활동 현황</strong></h3><hr class="__se__solid"><p>ipsc, icpc, 전국 대학생 프로그래밍동아리 연합 대회 등에 3인팀을 꾸려 출전하고 있으며, google code jam, facebook hacker cup나 기타 PS 대회에 스눕스 소속으로 개인출전하고 있다. 팀을 꾸릴 때는 SNUTOC(SNU Team Organization Contest) 등의 내부대회를 통해 실력과 분야에 맞는 팀원을 구성하여 출전하고 있다.</p><p>2019년 ACM-ICPC World Final 은메달 (7위)<br>2018년 ACM-ICPC World Final 은메달 (5위)<br>2017년 ACM-ICPC World Final 금메달 (3위)<br>2018년 ACM-ICPC Asia Taipei Regional Contest 3위<br>2017년 ACM-ICPC Asia Tsukuba Regional Contest 2위<br>2017년 ACM-ICPC Asia Hua-Lien Regional Contest 3위<br>2016년 ACM-ICPC Asia Nha Trang Regional Contest 1위<br>2016년 ACM-ICPC Asia Bangkok Regional Contest 5위<br>2016, 2017, 2018년 한국 대학생 프로그래밍 경시대회 대상 및 다수<br>2018년 UCPC 2등상 및 다수<br>2016, 2017, 2018년 SCPC 1등상 및 다수<br>2017년 LG CNS Code Monster 2등상 및 다수<br>2016년 LG CNS Code Monster 1등상 및 다수<br>2017, 2018년 카카오 코드 페스티벌 1등상 및 다수<br>2016, 2018년 Google Code Jam World Final 진출<br>2016, 2017, 2018년 Facebook Hacker Cup Final Round 진출<br>2017, 2018년 Code Festival Final Onsite 진출<br>2016년 Russian Code Cup Final Round 진출</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>홈페이지:&nbsp;<a href="https://snups.org/">https://snups.org</a></p>',
   },
   {
     name: '와플스튜디오',
     engName: 'Waffle Studio',
     description:
-      '<p>서울대학교 컴퓨터공학부 웹/앱 개발 동아리 와플스튜디오는 웹/앱 서비스 개발을 통해 개인의 개발 실력 향상을 도모합니다. 또한 회원 간의 친목을 추구하여 개발자 간의 커뮤니티 형성을 목적으로 합니다.</p><p>와플스튜디오에서는 프로젝트, 스터디, 코딩모임 등 개발과 관련된 다양한 활동들이 진행됩니다. 프로젝트를 통해 개발 결과물을 도출하고, 나아가 사람들에게 유용하고 실험적이며 재미있는 서비스로 기여합니다. 현재 본교 학생들을 대상으로 출시한 다양한 서비스를 운영하고 있으며 더하여 여러 신규 프로젝트가 진행되고 있습니다. 또한 매년 2학기 백엔드, 프론트엔드, 그리고 모바일 개발에 관한 세미나를 정기적으로 개최하고 있습니다.</p><p><br></p><h3>신입회원 모집 시기</h3><hr class="__se__solid"><p><strong>Rookies</strong></p><p>매년 2학기 준회원인 Rookies를 선발합니다. 이들은 세미나와 과제를 통과하면 정회원인 Programmers로 승격할 수 있는 자격을 얻습니다.</p><p><strong>Programmers &amp; Designers</strong></p><p>매년 1학기, 2학기 정회원인 Programmers와 Designers를 선발합니다. 이들은 선발과 동시에 정회원의 자격이 주어지며 프로젝트와 스터디 등 진행 중인 활동에 자유롭게 참여하고, 활동을 주도할 수 있습니다.</p><h3>동아리 활동 현황</h3><hr class="__se__solid"><p>​<a href="https://snutt.wafflestudio.com/">SNUTT</a>​</p><p>2012년에 서비스를 시작한 서울대학교 시간표 작성 서비스 SNUTT가 2021년 개편 작업을 거쳐 현재까지 안정적이고 편리한 서비스를 제공하고 있습니다. 깔끔한 UI와 다양한 필터를 이용해 강의를 검색하고 시간표를 만들 수 있습니다. 더하여 곧 강의평 기능도 추가될 예정입니다.</p><p>​<a href="https://siksha.wafflestudio.com/">식샤</a>​</p><p>2015년 초 기존 식단 어플리케이션들의 문제점을 보완하기 위해 개발되었고 2021년에 리뉴얼되었습니다. 날짜와 시간대별로 서울대학교 식단 상세정보뿐만 아니라 식당 운영시간과 위치정보를 제공합니다. 또한 식단 리뷰 기능까지 추가되어 식단에 대한 평가를 남기고 사진도 직접 올릴 수 있습니다.</p><p><strong>스누보드</strong></p><p>현재 학과별로 흩어져있는 서울대학교 과별 홈페이지를 하나의 모바일 플랫폼으로 통합한 서비스입니다. 원하는 학과와 태그별로 공지사항을 모아볼 수 있으며 새로운 글이 올라왔을 때 푸시 알림을 받아볼 수 있습니다. 구독(팔로우) 중인 공지사항 중에 필요한 내용을 검색하는 것도 가능합니다. 2021년 8월 초기 버전이 출시되었고, 꾸준한 업데이트가 진행되고 있습니다. 현재 앱스토어와 구글플레이스토어에서 다운로드 받을 수 있습니다.</p><p><strong>괌</strong></p><p>개발 프로젝트 팀을 만들어주고, 팀원간 소통을 가능하게 해주는 앱 서비스입니다. 2021년 9월 Google Store에 배포되었으며, 10월 현재 IT SNS로 거듭나기 위해 Version 2.0을 개발 중입니다.</p><h3>연락처</h3><hr class="__se__solid"><p>이메일: <a href="mailto:master@wafflestudio.com">master@wafflestudio.com</a>​</p>',
+      '<p>서울대학교 컴퓨터공학부 웹/앱 개발 동아리 와플스튜디오는 웹/앱 서비스 개발을 통해 개인의 개발 실력 향상을 도모합니다. 또한 회원 간의 친목을 추구하여 개발자 간의 커뮤니티 형성을 목적으로 합니다.</p><p>와플스튜디오에서는 프로젝트, 스터디, 코딩모임 등 개발과 관련된 다양한 활동들이 진행됩니다. 프로젝트를 통해 개발 결과물을 도출하고, 나아가 사람들에게 유용하고 실험적이며 재미있는 서비스로 기여합니다. 현재 본교 학생들을 대상으로 출시한 다양한 서비스를 운영하고 있으며 더하여 여러 신규 프로젝트가 진행되고 있습니다. 또한 매년 2학기 백엔드, 프론트엔드, 그리고 모바일 개발에 관한 세미나를 정기적으로 개최하고 있습니다.</p><p><br></p><h3>신입회원 모집 시기</h3><hr class="__se__solid"><p><strong>Rookies</strong></p><p>매년 2학기 준회원인 Rookies를 선발합니다. 이들은 세미나와 과제를 통과하면 정회원인 Programmers로 승격할 수 있는 자격을 얻습니다.</p><p><strong>Programmers &amp; Designers</strong></p><p>매년 1학기, 2학기 정회원인 Programmers와 Designers를 선발합니다. 이들은 선발과 동시에 정회원의 자격이 주어지며 프로젝트와 스터디 등 진행 중인 활동에 자유롭게 참여하고, 활동을 주도할 수 있습니다.</p><p><br></p><h3>동아리 활동 현황</h3><hr class="__se__solid"><p>​<a href="https://snutt.wafflestudio.com/">SNUTT</a>​</p><p>2012년에 서비스를 시작한 서울대학교 시간표 작성 서비스 SNUTT가 2021년 개편 작업을 거쳐 현재까지 안정적이고 편리한 서비스를 제공하고 있습니다. 깔끔한 UI와 다양한 필터를 이용해 강의를 검색하고 시간표를 만들 수 있습니다. 더하여 곧 강의평 기능도 추가될 예정입니다.</p><p><a href="https://siksha.wafflestudio.com/">​식샤</a>​</p><p>2015년 초 기존 식단 어플리케이션들의 문제점을 보완하기 위해 개발되었고 2021년에 리뉴얼되었습니다. 날짜와 시간대별로 서울대학교 식단 상세정보뿐만 아니라 식당 운영시간과 위치정보를 제공합니다. 또한 식단 리뷰 기능까지 추가되어 식단에 대한 평가를 남기고 사진도 직접 올릴 수 있습니다.</p><p><strong>스누보드</strong></p><p>현재 학과별로 흩어져있는 서울대학교 과별 홈페이지를 하나의 모바일 플랫폼으로 통합한 서비스입니다. 원하는 학과와 태그별로 공지사항을 모아볼 수 있으며 새로운 글이 올라왔을 때 푸시 알림을 받아볼 수 있습니다. 구독(팔로우) 중인 공지사항 중에 필요한 내용을 검색하는 것도 가능합니다. 2021년 8월 초기 버전이 출시되었고, 꾸준한 업데이트가 진행되고 있습니다. 현재 앱스토어와 구글플레이스토어에서 다운로드 받을 수 있습니다.</p><p><strong>괌</strong></p><p>개발 프로젝트 팀을 만들어주고, 팀원간 소통을 가능하게 해주는 앱 서비스입니다. 2021년 9월 Google Store에 배포되었으며, 10월 현재 IT SNS로 거듭나기 위해 Version 2.0을 개발 중입니다.</p><br/><h3>연락처</h3><hr class="__se__solid"><p>이메일: <a href="mailto:master@wafflestudio.com">master@wafflestudio.com</a>​</p>',
     imageURL: '',
   },
   {
     name: '유피넬',
     engName: 'UPNL',
     description:
-      '<p><a href="https://upnl.org/">유피넬</a>은 컴퓨터공학부의 소프트웨어 개발 동아리입니다.</p><p>동아리원들이 모여 여러 프로젝트를 진행하고 유용한 소프트웨어를 만들어내는 것을 목표로 하며, 이를 위해 주기적으로 내부 워크샵과 아이디어 제안회 등 서로의 지식과 아이디어, 성과를 공유하는 자리를 가집니다. 여러 대의 서버를 보유하고 있어 동아리원들을 위한 소스 코드 관리 시스템과 위키를 직접 서비스하고 있으며, 서버가 필요한 게임이나 웹 서비스 등의 프로젝트도 진행할 수 있습니다. 그 외에도 몇 대의 PC와 다양한 개발 관련 기기 및 서적이 갖추어져 있습니다.</p><p>2019년 현재 (외부 기업의) 동아리 지원 프로그램에 소속되어 활동비 및 행사 지원과 현직 소프트웨어 개발자 멘토링 등의 도움을 받고 있습니다.</p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>3월 중에 공개적으로 신입회원들을 모집하고 OT를 실시합니다. 개발 경험이 없는 신입회원들을 위해서 Git과 C#을 가르치는 세미나를 매년 진행하고 있습니다.</p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>2019년<br>■ 오브의마검사<br>■ 패러독스<br>2018년<br>■ 막고라<br>■ 눈을떠보니</p>',
+      '<p><a href="https://upnl.org/">유피넬</a>은 컴퓨터공학부의 소프트웨어 개발 동아리입니다.</p><p>동아리원들이 모여 여러 프로젝트를 진행하고 유용한 소프트웨어를 만들어내는 것을 목표로 하며, 이를 위해 주기적으로 내부 워크샵과 아이디어 제안회 등 서로의 지식과 아이디어, 성과를 공유하는 자리를 가집니다. 여러 대의 서버를 보유하고 있어 동아리원들을 위한 소스 코드 관리 시스템과 위키를 직접 서비스하고 있으며, 서버가 필요한 게임이나 웹 서비스 등의 프로젝트도 진행할 수 있습니다. 그 외에도 몇 대의 PC와 다양한 개발 관련 기기 및 서적이 갖추어져 있습니다.</p><p>2019년 현재 (외부 기업의) 동아리 지원 프로그램에 소속되어 활동비 및 행사 지원과 현직 소프트웨어 개발자 멘토링 등의 도움을 받고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>3월 중에 공개적으로 신입회원들을 모집하고 OT를 실시합니다. 개발 경험이 없는 신입회원들을 위해서 Git과 C#을 가르치는 세미나를 매년 진행하고 있습니다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>2019년<br>■ 오브의마검사<br>■ 패러독스<br>2018년<br>■ 막고라<br>■ 눈을떠보니</p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/upnllogo_0.png?itok=BJdQ6N6u',
   },
@@ -262,7 +278,7 @@ export const facilities: Facilities = {
     {
       id: 0,
       name: `학부 행정실`,
-      description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="https://cse.snu.ac.kr/sites/all/libraries/mediawiki/index.php?title=/people/staff_%ED%96%89%EC%A0%95%EC%8B%A4&action=edit&redlink=1">직원 목록</a>을 참조.</p>`,
+      description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="/people/staff">직원 목록</a>을 참조.</p>`,
       location: `301동 316호`,
       imageURL:
         'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/admin.JPG?itok=-ilXd4wR',
@@ -334,6 +350,25 @@ export const facilities: Facilities = {
   ],
 };
 
+export const directions: Direction[] = [
+  {
+    name: '대중교통',
+    engName: 'public-transit',
+    description: `<p><strong>지하철 2호선 낙성대역</strong><br></p><p>낙성대역 4번 출구로 나와 직진, 주유소에서 좌회전하여 제과점 앞 정류장에서 마을버스 관악02를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>지하철 2호선 서울대입구역</strong></p><p>서울대입구역 3번 출구로 나와 관악구청 방향으로 직진하여 학교 셔틀 버스나 시내버스 5511 또는 5513을 타고 제2공학관에서 내립니다. 제2공학관행 셔틀 버스는 아침 8시부터 10시까지 15분 간격으로 월요일부터 금요일까지 운행됩니다.</p><p><br></p><p><strong>지하철 2호선 신림역</strong></p><p>신림역 3번 출구에서 나와 시내버스 5516을 타고 제2공학관에서 하차합니다.</p><p><br></p><p><strong>지하철 신림경전철 관악산역</strong><br></p><p>관악산역 1번 출구로 나와 직진, 관악산입구.관악아트홀.중앙도서관 정류장에서 5511 또는 5516 시내버스를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>서울대학교 정문 경유 버스</strong></p><p>서울대학교 정문을 경유하는 버스를 이용해서 정문에 내린 후 교내순환 셔틀버스, 시내버스 5511 또는 5513을 타고 제2공학관으로 갈 수 있습니다.</p><table style="margin: 1em 0px; border-collapse: collapse; color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><tbody><tr><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>버스 번호</div></th><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>종점</div></th><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>경유지</div></th></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>5517</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>시흥벽산APT ↔ 중앙대</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대, 노량진</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6511</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 구로동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신대방역, 신도림역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6512</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 구로동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대입구역, 신림역, 영등포</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6513</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 철산동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신림역, 대방역, 영등포</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>750A, 750B</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 덕은동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>관악구청, 상도터널, 서울역, 신촌, 수색역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>5528</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>가산동 ↔ 사당동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>금천경찰서, 신림사거리, 서울대, 낙성대</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6514</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 양천</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신림역, 대방역, 영등포역, 당산역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>501</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 종로2가</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>상도동, 신용산, 서울역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6003</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 인천공항</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>대림역, 목동역, 88체육관, 김포공항</div></td></tr></tbody></table>`,
+  },
+  {
+    name: '승용차',
+    engName: 'car',
+    description:
+      '<p><strong>남부순환도로에서 오는 방법</strong><br></p><ol><li>남부순환도로의 낙성대입구에서 좌·우회전합니다.</li><li>남쪽으로 직진합니다.</li><li>서울대학교 후문을 지나 기숙사 삼거리에서 좌회전합니다.</li><li>서울대학교 제1공학관이 보일 때까지 직진합니다.</li><li>컴퓨터공학부는 제1공학관 3층에 있습니다.</li></ol><p><br></p><p><strong>한강대교에서 오는 방법</strong></p><ol><li>상도터널을 지나 지하철 7호선 상도역에서 좌회전하여 직진합니다.</li><li>서울대 입구역에서 직진하거나 좌회전한 후 남부순환도로에서 오는 방법을 따릅니다.</li><li>서울대 정문이 보이면 교내로 진입합니다.</li><li>정문 게이트웨이에서 직진 합니다.</li><li>교내 순환도로를 따라 제1공학관이 보일 때까지 직진합니다.</li><li>컴퓨터공학부는 제1공학관 3층에 있습니다.</li></ol><p><br></p><p><strong>주차 안내</strong></p><ul><li>방문자용 주차권은 용무를 마치고 나갈 때 주차료 계산시 사용합니다.</li><li>주차는 제 1공학관 앞 공터를 이용하시기 바랍니다.</li></ul>',
+  },
+  {
+    name: '지방 및 해외',
+    engName: 'far-away',
+    description:
+      '<h3><strong>비행기로 오는 경우</strong><br></h3><hr class="__se__solid"><p><strong>인천공항</strong></p><p>인천공항에서 6003번 리무진을 타고 서울대 정문에서 하차합니다. 또는 6017번을 타고 호암교수회관에서 하차합니다. 6017번은 김포공항을 경유하지 않는 서울대와 인천공항 사이의 직통 리무진입니다.</p><p><strong>김포공항</strong></p><p>김포공항에서 6003번 리무진 또는 651번 파란색 간선버스을 타고 서울대 정문에서 하차하거나 지하철을 이용할 때는 5호선을 타고 영등포구청역에서 2호선으로 환승하여 서울대입구역 또는 낙성대역에서 하차합니다.</p><br/><h3><strong>기차로 오는 경우</strong></h3><hr class="__se__solid"><p><strong>​</strong><strong>서울역</strong></p><p>서울역에서 501, 750번 파란색 버스를 이용하여 서울대 정문에 하차하거나, 지하철을 이용할 때는 4호선에서 사당방향으로 승차한 후 사당역에서 2호선으로 환승하여 서울대입구역에서 하차합니다.</p><p><strong>영등포역</strong></p><p>지하철 1호선을 타고 신도림역에서 2호선으로 환승하여 서울대입구역에서 하차합니다.</p><br/><h3><strong>고속버스로 오는 경우</strong></h3><hr class="__se__solid"><p><strong>경부 및 호남 고속터미널</strong></p><p>5412번 초록색 지선버스를 이용하여 서울대 정문에 하차하거나 지하철 3호선을 타고 교대역에서 2호선으로 환승하여 서울대입구역에 하차하여 셔틀버스나 시내버스 또는 택시를 이용합니다.</p><p><strong>동서울터미널</strong></p><p>지하철 2호선을 이용하여 서울대입구역에 하차하여, 셔틀버스나 시내버스 또는 택시를 이용합니다.</p>',
+  },
+];
 /* 학사 및 교과 */
 
 export const graduateGuideData = `<div className="mw-parser-output">
@@ -850,5 +885,2630 @@ export const researchCentersData: ResearchCenter[] = [
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--research_center/20210824_100327_0.png?itok=-wn7SKLk',
     websiteURL: 'https://aiis.snu.ac.kr:55568/',
+  },
+];
+
+export const facultyList: SimpleFaculty[] = [
+  {
+    id: 0,
+    name: '강유',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'ukang@snu.ac.kr',
+    labId: 0,
+    labName: '데이터 마이닝 연구실',
+  },
+  {
+    id: 1,
+    name: '권태경',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_image001_jpg_01D35F87_52DDAF00_CID_image001.jpg?itok=EqJJj0NN',
+    academicRank: '교수',
+    phone: '(02) 880-9105',
+    email: 'tk@mmlab.snu.ac.kr',
+    labId: 20,
+    labName: '인터넷 융합 및 보안 연구실',
+  },
+  {
+    id: 2,
+    name: '김건희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/GunheeKim-20150115.jpg?itok=mfClJ_bq',
+    academicRank: '부교수',
+    phone: '(02) 880-7300',
+    email: 'gunhee@snu.ac.kr',
+    labId: 10,
+    labName: '시각 및 학습 연구실',
+  },
+  {
+    id: 3,
+    name: '김선',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%84%A0%EA%B5%90%EC%88%98%EB%8B%98_20171102.jpg?itok=v2fmuFHJ',
+    academicRank: '교수',
+    phone: '(02) 880-7280',
+    email: 'sunkim.bioinfo@snu.ac.kr',
+    labId: 7,
+    labName: '생물정보 및 생명정보 연구실',
+  },
+  {
+    id: 4,
+    name: '김지홍',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A7%80%ED%99%8D%20%EA%B5%90%EC%88%98%EB%8B%98_30_0.jpg?itok=J28d1qPE',
+    academicRank: '교수',
+    phone: '(02) 880-8792',
+    email: 'kjihong@snu.ac.kr',
+    labId: 21,
+    labName: '임베디드 시스템 연구실',
+  },
+  {
+    id: 5,
+    name: '김진수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%EC%A7%84-%EB%B0%98%EB%AA%85%ED%95%A8.jpg?itok=beFMQWAP',
+    academicRank: '교수(교무부학부장)',
+    phone: '(02) 880-7302',
+    email: 'jinsoo.kim@snu.ac.kr',
+    labId: 11,
+    labName: '시스템 소프트웨어 및 구조 연구실',
+  },
+  {
+    id: 6,
+    name: '김태현',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%83%9C%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=KcXndMTI',
+    academicRank: '부교수',
+    phone: '(02) 880-1725',
+    email: 'taehyun@snu.ac.kr',
+    labId: 15,
+    labName: '양자정보 및 양자컴퓨팅 연구실',
+  },
+  {
+    id: 7,
+    name: '김형주',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%98%95%EC%A3%BC%EA%B5%90%EC%88%98%EB%8B%98_20210208.jpg?itok=VWpdCb2h',
+    academicRank: '교수',
+    phone: '(02) 880-1826',
+    email: 'hjk@snu.ac.kr',
+    labId: 6,
+    labName: '빅데이터 분석 연구실',
+  },
+  {
+    id: 8,
+    name: '문병로',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AC%B8%EB%B3%91%EB%A1%9C%20%EA%B5%90%EC%88%98%EB%8B%98_17_0.jpg?itok=Hdk36H05',
+    academicRank: '교수',
+    phone: '(02) 880-8793',
+    email: 'moon@snu.ac.kr',
+    labId: 25,
+    labName: '최적화 및 금융공학 연구실',
+  },
+  {
+    id: 9,
+    name: '문봉기',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/PROF.BONGKIMOON2.jpg?itok=irM2dneh',
+    academicRank: '교수',
+    phone: '(02) 880-1842',
+    email: 'bkmoon@snu.ac.kr',
+    labId: 1,
+    labName: '데이터베이스 시스템 연구실',
+  },
+  {
+    id: 10,
+    name: '박근수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/thumb_kpark.jpg?itok=hI49Mbtk',
+    academicRank: '교수',
+    phone: '(02) 880-8381',
+    email: 'kpark@thoery.snu.ac.kr',
+    labId: 28,
+    labName: '컴퓨터이론 및 응용 연구실',
+  },
+  {
+    id: 11,
+    name: '서진욱',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_ii_k0rwf03i0_CID_profile-fig-1.png?itok=Wl_uJGVz',
+    academicRank: '교수',
+    phone: '(02) 880-1761',
+    email: 'jseo@snu.ac.kr',
+    labId: 32,
+    labName: '휴먼-컴퓨터 인터액션 연구실',
+  },
+  {
+    id: 12,
+    name: '송용수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/profile.jpeg?itok=fdlAU2Px',
+    academicRank: '조교수',
+    phone: '(02) 880-7314',
+    email: 'y.song@snu.ac.kr',
+    labId: 14,
+    labName: '암호 및 프라이버시 연구실',
+  },
+  {
+    id: 13,
+    name: '송현오',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%86%A1%ED%98%84%EC%98%A4%20%EA%B5%90%EC%88%98.png?itok=BpERbaxx',
+    academicRank: '부교수',
+    phone: '(02) 880-7272',
+    email: 'hyunoh@snu.ac.kr',
+    labId: 2,
+    labName: '머신러닝 연구실',
+  },
+  {
+    id: 14,
+    name: '신영길',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%EC%98%81%EA%B8%B8.jpg?itok=3gQ19Ca6',
+    academicRank: '교수',
+    phone: '(02) 880-6757',
+    email: 'yshin@snu.ac.kr',
+    labId: 26,
+    labName: '컴퓨터 그래픽스 및 이미지 처리 연구실',
+  },
+  {
+    id: 15,
+    name: '엄현상',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%84%ED%98%84%EC%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=38GFePpq',
+    academicRank: '교수',
+    phone: '(02) 880-6755',
+    email: 'hseom@snu.ac.kr',
+    labId: 4,
+    labName: '분산시스템 연구실',
+  },
+  {
+    id: 16,
+    name: '버나드 에거',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%B2%84%EB%82%98%EB%93%9C%EC%97%90%EA%B1%B0_0.jpg?itok=GJRQE_dL',
+    academicRank: '교수',
+    phone: '(02) 880-1843',
+    email: 'bernhard@snu.ac.kr',
+    labId: 27,
+    labName: '컴퓨터 시스템 및 플랫폼 연구실',
+  },
+  {
+    id: 17,
+    name: '염헌영',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%BC%ED%97%8C%EC%98%81%20%20%EA%B5%90%EC%88%98%EB%8B%98_28%20%2811%29_0.jpg?itok=ENsd23cC',
+    academicRank: '교수',
+    phone: '(02) 880-5583',
+    email: 'yeom@snu.ac.kr',
+    labId: 4,
+    labName: '분산시스템 연구실',
+  },
+  {
+    id: 18,
+    name: '원정담',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9B%90%EC%A0%95%EB%8B%B4%203x4_0.jpg?itok=V-QZUyQs',
+    academicRank: '조교수',
+    phone: '(02) 880-1846',
+    email: 'nonaxis@snu.ac.kr',
+    labId: 23,
+    labName: '지능형 동작 연구실',
+  },
+  {
+    id: 19,
+    name: '유승주',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9C%A0%EC%8A%B9%EC%A3%BC_%EA%B3%A0%ED%95%B4%EC%83%81%EB%8F%84_small.jpg?itok=WJvfYfE6',
+    academicRank: '교수',
+    phone: '(02) 880-9392',
+    email: 'sungjoo.yoo@gmail.com',
+    labId: 29,
+    labName: '컴퓨팅 메모리 구조 연구실',
+  },
+  {
+    id: 20,
+    name: '이광근',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/________-______.jpg?itok=3OAJgzKL',
+    academicRank: '교수(학부장)',
+    phone: '(02) 880-1857',
+    email: 'kwang@ropas.snu.ac.kr',
+    labId: 31,
+    labName: '프로그래밍 연구실',
+  },
+  {
+    id: 21,
+    name: '이상구',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/SGLee.jpg?itok=U1SZGpDF',
+    academicRank: '교수',
+    phone: '(02) 880-5357',
+    email: 'sglee@snu.ac.kr',
+    labId: 22,
+    labName: '지능형 데이터 시스템 연구실',
+  },
+  {
+    id: 22,
+    name: '이영기',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/yk-photo.jpg?itok=RjHbuOmx',
+    academicRank: '부교수',
+    phone: '(02) 880-1726',
+    email: 'youngkilee@snu.ac.kr',
+    labId: 19,
+    labName: '인간 중심 컴퓨터 시스템 연구실',
+  },
+  {
+    id: 23,
+    name: '이재욱',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%9A%B1%20%EA%B5%90%EC%88%98%EB%8B%98.png?itok=Xf6pr9GB',
+    academicRank: '교수',
+    phone: '(02) 880-1834',
+    email: 'jaewlee@snu.ac.kr',
+    labId: 13,
+    labName: '아키텍처 및 코드 최적화 연구실',
+  },
+  {
+    id: 24,
+    name: '이재진',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%A7%84_0.jpg?itok=XzA58-Gw',
+    academicRank: '교수',
+    phone: '(02) 880-1863',
+    email: 'jaejin@snu.ac.kr',
+    labId: 24,
+    labName: '천둥 연구실',
+  },
+  {
+    id: 25,
+    name: '이제희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/jehee20210813.jpg?itok=VsuQmNU3',
+    academicRank: '교수',
+    phone: '(02) 880-1845',
+    email: 'jaewlee@mrl.snu.ac.kr',
+    labId: 17,
+    labName: '운동 연구실',
+  },
+  {
+    id: 26,
+    name: '이창건',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%B0%BD%EA%B1%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=fPUQShUX',
+    academicRank: '교수',
+    phone: '(02) 880-1862',
+    email: 'cglee@snu.ac.kr',
+    labId: 12,
+    labName: '실시간 유비쿼터스 시스템 연구실',
+  },
+  {
+    id: 27,
+    name: '장병탁',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%B3%91%ED%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_22.jpg?itok=zR9V6Z7Z',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'btzhang@bi.snu.ac.kr',
+    labId: 3,
+    labName: '바이오지능 연구실',
+  },
+  {
+    id: 28,
+    name: '전병곤',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/bgchun_2021.jpg?itok=RbQi0Qx0',
+    academicRank: '교수(학생.연구부학부장)',
+    phone: '(02) 880-1928',
+    email: 'bgchun@snu.ac.kr',
+    labId: 9,
+    labName: '소프트웨어 플랫폼 연구실',
+  },
+  {
+    id: 29,
+    name: '전화숙',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%ED%99%94%EC%88%99_0.jpg?itok=ATbB8R7d',
+    academicRank: '교수',
+    phone: '(02) 880-1839',
+    email: 'wsjeon@snu.ac.kr',
+    labId: 18,
+    labName: '이동 컴퓨팅 및 통신 연구실',
+  },
+  {
+    id: 30,
+    name: '주한별',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A3%BC%ED%95%9C%EB%B3%84%EA%B5%90%EC%88%98%EB%8B%98.jpeg?itok=2SIfQOB0',
+    academicRank: '조교수',
+    phone: '(02) 880-7293',
+    email: 'hbjoo@snu.ac.kr',
+    labId: 5,
+    labName: '비주얼 컴퓨팅 연구실',
+  },
+  {
+    id: 31,
+    name: '하순회',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%98%EC%88%9C%ED%9A%8C%20%EA%B5%90%EC%88%98%EB%8B%98%20%283%29_0.jpg?itok=_gzD3jsT',
+    academicRank: '교수',
+    phone: '(02) 880-8382',
+    email: 'sha@iris.snu.ac.kr',
+    labId: 30,
+    labName: '통합설계 및 병렬 처리 연구실',
+  },
+  {
+    id: 32,
+    name: '허충길',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/1.%20%ED%97%88%EC%B6%A9%EA%B8%B8%EA%B5%90%EC%88%98%EB%8B%9820191206.png?itok=V0Ictg_k',
+    academicRank: '교수',
+    phone: '(02) 880-7254',
+    email: 'gil.hur@sf.snu.ac.kr',
+    labId: 8,
+    labName: '소프트웨어 원리 연구실',
+  },
+  {
+    id: 33,
+    name: '황승원',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/2021.3%EC%9B%94%20%EB%B6%80%EC%9E%84%EC%98%88%EC%A0%95_%ED%99%A9%EC%8A%B9%EC%9B%90%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=V1eW61q1',
+    academicRank: '교수',
+    phone: '(02) 880-7316',
+    email: 'seungwonh@snu.ac.kr',
+    labId: 16,
+    labName: '언어 및 데이터지능 연구실',
+  },
+];
+
+// 팩스 넣어야되나싶어서 중간부터 안넣음 ^^,,,
+export const faculties: Faculty[] = [
+  {
+    ...facultyList[0],
+    office: '301동 502호',
+    website: 'http://datalab.snu.ac.kr/~ukang',
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2012)
+카네기멜론대학교 Information Technology 석사 (2009)
+서울대학교 컴퓨터공학과 학사 (2003)`.split('\n'),
+    researchAreas: `딥러닝, 기계 학습
+그래프/텐서 분석
+추천 시스템
+금융 인공 지능`.split('\n'),
+    careers: `2015.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2013 – 2015.08.: 조교수, KAIST 전산학부
+2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
+2004 – 2007: Researcher, Korea Telecom`.split('\n'),
+  },
+  {
+    ...facultyList[1],
+    office: '301동 503호',
+    fax: '(02) 872-2045',
+    website: 'http://mmlab.snu.ac.kr/~tk/',
+    educations: `서울대학교 컴퓨터공학 박사 (2000)
+서울대학교 컴퓨터공학 석사 (1995)
+서울대학교 컴퓨터공학 학사 (1993)`.split('\n'),
+    researchAreas: `Wireless networks: ad-hoc network, sensor network, multimedia streaming
+Wireless technologies convergence
+Mobile networks: mobility management, peer-to-peer mobility
+Ubiquitous/mobile computing
+Internet: active queue management, peer-to-peer`.split('\n'),
+  },
+  {
+    ...facultyList[2],
+    office: '302동 327호',
+    website: 'http://vision.snu.ac.kr/',
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2013)
+카네기멜론대학교 The Robotics Institute 석사 (2008)
+한국과학기술원 기계공학 석사 (2001)
+한국과학기술원 기계공학 학사 (1999)`.split('\n'),
+    researchAreas: `Computer Vision, Machine Learning, Natural Language Processing`.split('\n'),
+    careers: `2019.03. – 현재: 부교수, 서울대학교 컴퓨터공학부
+2015 – 2019.02.: 조교수, 서울대학교 컴퓨터공학부
+2013 – 2014: Disney Research, Postdoctoral Researcher
+2011: Visiting Student, Computer Science Department, Stanford University
+2009: Visiting Student, CSAIL, MIT
+2008 – 2009: Research Intern, Honda Research Institute
+2008: Intel/CMU Summer Fellow, Intel Research
+2005 – 2006: Visiting Researcher, The Robotics Institute, Carnegie Mellon University
+2001 – 2006: 연구원, 한국과학기술연구원 지능로봇연구센터`.split('\n'),
+  },
+  {
+    ...facultyList[3],
+    office: '301동 421호',
+    website: 'http://biohealth.snu.ac.kr',
+    educations: `아이오와대학교 컴퓨터과학 박사 (1997)
+한국과학기술원 컴퓨터과학 석사 (1987)
+서울대학교 계산통계학 학사 (1985)`.split('\n'),
+    careers: `2014.09. – 현재: 교수, 서울대학교 컴퓨터공학부
+2011 – 2014.08.: 부교수, 서울대학교 컴퓨터공학부
+2011 – 현재: 서울대학교 생물정보연구소 소장
+2009 – 2011: 미국 인디애나대학교 School of Informatics and Computing 학과장
+2001 – 2011: 미국 인디애나대학교 School of Informatics and Computing 조교수, 부교수
+1998 – 2001: 미국 듀퐁중앙연구소 선임 연구원`.split('\n'),
+  },
+  {
+    ...facultyList[4],
+    office: '302동 328호',
+    website: 'http://cares.snu.ac.kr',
+    educations: `워싱턴 대학교 전산과학 및 공학 박사 (1995)
+워싱턴 대학교 전산과학 석사 (1988)
+서울대학교 계산통계학과 학사(1986)`.split('\n'),
+    researchAreas: `플래시 메모리 시스템/소프트웨어 최적화
+스마트 디바이스 최적화
+멀티프로세서 시스템/소프트웨어 최적화`.split('\n'),
+    careers: `1995 – 1997: 선임연구원, Texas Instruments DSP R&D 연구소`.split('\n'),
+  },
+  {
+    ...facultyList[5],
+    office: '301동 504호',
+    website: 'http://csl.snu.ac.kr/',
+    educations: `서울대학교 컴퓨터공학 박사 (1999)
+서울대학교 컴퓨터공학 석사 (1993)
+서울대학교 컴퓨터공학 학사 (1991)`.split('\n'),
+    researchAreas: `운영체제
+스토리지 시스템
+병렬 및 분산 컴퓨팅
+내장형 시스템`.split('\n'),
+    careers: `2018. 3. – 현재: 서울대학교 컴퓨터공학부 교수
+2008. 9. – 2018. 2.:성균관대학교 컴퓨터공학과 교수
+2002. 3. – 2008. 8.: KAIST 전산학부 부교수
+1999. 9. – 2002. 2.: 한국전자통신연구원 (ETRI), 선임연구원`.split('\n'),
+  },
+  {
+    ...facultyList[6],
+    office: '301동 407호',
+    fax: '(02) 886-7589',
+    educations: `Massachusetts Institute of Technology (MIT) 물리학 박사 (2008)
+서울대학교 제어계측 석사 (1997)
+서울대학교 컴퓨터공학 학사 (1995)`.split('\n'),
+    researchAreas: `Quantum cryptography
+Quantum algorithms
+Development of quantum computer system`.split('\n'),
+    careers: `2018. 9. – 현재: 부교수, 서울대학교 컴퓨터공학부
+2011 – 2018: Project Leader, SK텔레콤 Quantum Tech. Lab
+2008 – 2011: Postdoctoral Researcher, Duke University Electrical and Computer Engineering
+1997 – 2000: 강사 및 전임강사, 공군사관학교 전산통계학과`.split('\n'),
+  },
+  {
+    ...facultyList[7],
+    office: '301동 406호',
+    fax: '(02) 882-0269',
+    educations: `텍사스 대학교 오스틴 컴퓨터공학 박사 (1988)
+텍사스 대학교 오스틴 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1982)`.split('\n'),
+    researchAreas: `온톨로지 변경 관리
+태그 시각화
+태그 추천`.split('\n'),
+  },
+  {
+    ...facultyList[8],
+    office: '302동 430호',
+    fax: '(02) 871-4912',
+    website: 'http://soar.snu.ac.kr/~moon/',
+    educations: `펜실베이니아 주립 대학교 컴퓨터공학 박사 (1994)
+한국과학기술원 컴퓨터공학부 석사 (1987)
+서울대학교 컴퓨터공학 학사 (1985)`.split('\n'),
+    researchAreas: `최적화 이론 및 응용
+유전 알고리즘
+금융 공학`.split('\n'),
+  },
+  {
+    ...facultyList[9],
+    office: '301동 402호',
+    fax: '(02) 886-7589',
+    website: 'http://dbs.snu.ac.kr/',
+    educations: `메릴랜드대학교 칼리지 파크 컴퓨터과학 박사 (1996)
+서울대학교 전자계산기공학과 석사 (1985)
+서울대학교 전자계산기공학과 학사 (1983)`.split('\n'),
+    researchAreas: `High performance database systems
+Parallel and distributed databases
+XML indexing and streaming
+Spatio-temporal databases
+`.split('\n'),
+    careers: `2013 – 현재: 교수, 서울대학교 컴퓨터공학부
+1997 – 2013: 조교수/부교수/정교수, University of Arizona, U.S.A.
+2005 – 2010: 편집위원, IEEE Transactions on Knowledge and Data Engineering
+1999 – 2003: CAREER Award, U.S. National Science Foundation
+1985 – 1990: 연구원, 삼성전자 및 삼성종합기술원`.split('\n'),
+  },
+  {
+    ...facultyList[10],
+    office: '301동 405호',
+    fax: '(02) 886-7589',
+    website: 'http://theory.snu.ac.kr/~kpark/',
+    educations: `컬럼비아 대학교 컴퓨터공학 박사 (1992)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+    researchAreas: `바이오 알고리즘
+암호학
+웹 검색엔진`.split('\n'),
+    careers: `2005: 프랑스 Marne-la-Vallee 대학교 방문교수
+1995: 호주 Curtin 대학교 방문연구원
+1991 – 1993: 영국 런던대학교 King's College 조교수`.split('\n'),
+  },
+  {
+    ...facultyList[11],
+    office: '302동 431호',
+    website: 'http://hcil.snu.ac.kr/people/jinwook-seo',
+    educations: `메릴랜드 대학교 컴퓨터공학 박사 (2005)
+서울대학교 컴퓨터공학 석사 (1997)
+서울대학교 계산통계학과 전산과학전공 학사 (1995)`.split('\n'),
+    researchAreas: `Human-Computer Interaction, Interaction Design, User Interface Design
+Information Visualization, Visual Analytics
+Biomedical Informatics`.split('\n'),
+    careers: `2009 – 현재: 전임교수, 서울대 컴퓨터공학부
+2006 – 2008: 조교수, Children's Research Institute & George Washington University School of Medicine
+2005 – 2006: 연구원, Children's Research Institute
+1997 – 2000: 교관/전임강사, 공군사관학교, 전산통계학과`.split('\n'),
+  },
+  {
+    ...facultyList[12],
+    office: '301동 501호',
+    website: 'https://yongsoosong.github.io/',
+    educations: `서울대학교 수리과학부 박사 (2018)
+서울대학교 수리과학부 학사 (2012)`.split('\n'),
+    researchAreas: `Cryptography
+Privacy
+Security`.split('\n'),
+    careers: `2021. 03. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019. 01. – 2021. 02.: Senior Researcher, Cryptography and Privacy Research Group, Microsoft Research Redmond
+2018. 01. – 2018. 12.: Postdoctoral Researcher, Dept. of Computer Science and Engineering, UC San Diego`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyList[13],
+    office: '302동 326호',
+    website: 'https://mllab.snu.ac.kr/hyunoh/',
+    educations: `University of California, Berkeley, Computer Science 박사 (2014)
+University of California, Berkeley, Computer Science 석사 (2013)
+Stanford University, Mechanical engineering 석사 (2008)
+한양대학교 기계공학 학사 (2006)`.split('\n'),
+    researchAreas: `Machine learning
+Optimization
+Robotics
+Artificial intelligence`.split('\n'),
+    careers: `2017.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2016.07. – 2017.08.: Google Research (Research Scientist)
+2014.11. – 2016.07.: Stanford University (Postdoctoral fellow)
+2013: INRIA Grenoble (Visiting researcher)
+2013: IBM Research (Research intern)`.split('\n'),
+  },
+  {
+    ...facultyList[14],
+    office: '302동 329호',
+    educations: `서던 캘리포니아 대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1984)
+서울대학교 컴퓨터공학 학사 (1981)`.split('\n'),
+    researchAreas: `의료영상처리
+3차원 모델링
+증강현실
+볼륨 가시화`.split('\n'),
+    careers: `1992.03 – 현재: 서울대학교 컴퓨터공학부 교수
+1990.03 – 1992.02: 경북대학교 전자계산학과 조교수`.split('\n'),
+  },
+  {
+    ...facultyList[15],
+    office: '302동 324호',
+    website: 'http://meslab.snu.ac.kr/~hseom/',
+    educations: `메릴랜드 대학교 전산 박사 (2003)
+메릴랜드 대학교 전산 석사 (1996)
+서울대학교 계산통계학과 학사 (1992)`.split('\n'),
+    researchAreas: `운영체제 소프트웨어 스택과 스토리지 디바이스 간의 정보 차이 메우기
+분산 데이터 처리 프레임웍에서 중복되는 계산이나 데이터 제거하기
+데이터 손실을 방지할 수 있는 결함 내성 소프트웨어 디자인 및 구현하기`.split('\n'),
+    careers: `2017.3. – 현재: 서울대학교 교수
+2012 – 2017.2.: 서울대학교 부교수
+2005 – 2005 – 2011: 서울대학교 조교수
+2005 – 2003 – 2005: 삼성전자 정보통신총괄 책임연구원`.split('\n'),
+  },
+  {
+    ...facultyList[16],
+    office: '301동 403호',
+    website: 'http://csap.snu.ac.kr/bernhard',
+    educations: `서울대학교 박사 (2008)
+스위스 연방 공과대학교 (ETH Zürich) 석사 (2002)
+스위스 연방 공과대학교 (ETH Zürich) 학사`.split('\n'),
+    researchAreas: `Architecture, operating system and compiler interaction for embedded systems
+OS/Compiler-issues for portable heterogeneous multi-core architectures
+Coarse-grained reconfigurable architectures and compilers
+Virtualization techniques for multicores/manycores
+GPU performance estimation`.split('\n'),
+  },
+  {
+    ...facultyList[17],
+    office: '302동 321호',
+    website: 'http://arirang.snu.ac.kr/~yeom/',
+    educations: `텍사스 A&M 대학교 전산 박사 (1992)
+텍사스 A&M 대학교 전산 석사 (1986)
+서울대학교 계산통계학과 학사 (1984)`.split('\n'),
+    researchAreas: `운영체제 소프트웨어 스택과 스토리지 디바이스 간의 정보 차이 메우기
+분산 데이터 처리 프레임웍에서 중복되는 계산이나 데이터 제거하기
+데이터 손실을 방지할 수 있는 결함 내성 소프트웨어 디자인 및 구현하기
+`.split('\n'),
+    careers: `2004 – 현재: 서울대학교 교수
+1993 – 2003: 서울대학교 조교수.부교수`.split('\n'),
+  },
+  {
+    ...facultyList[18],
+    office: '302동 330호',
+    website: 'https://sites.google.com/view/jungdam',
+    educations: `서울대학교 컴퓨터공학 박사 (2017)
+서울대학교 컴퓨터공학 학사 (2011)`.split('\n'),
+    researchAreas: `Computer Graphics
+Machine Learning
+Biomechnics
+Robotics
+Animation
+Motion Analysis and Synthesis
+Motion Simulation and Control
+Simulated-based Creature Modeling`.split('\n'),
+    careers: `2023. 03. - 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019 - 2023.02: Research Scientist, Meta (Facebook) AI, Pittsburgh
+2017.09 - 2019: 연수 연구원, 서울대학교 컴퓨터 연구소
+2013: Research Intern, Disney Research Los Angeles`.split('\n'),
+  },
+  {
+    ...facultyList[19],
+    office: '302동 427호',
+    website: 'http://cmalab.snu.ac.kr/',
+    educations: `서울대학교 전기공학부 박사 (2000)
+서울대학교 전자공학과 석사 (1995)
+서울대학교 전자공학과 학사 (1992)`.split('\n'),
+    researchAreas:
+      `Memory subsystem architectures and software/hardware design optimization methods for mobile and server systems`.split(
+        '\n',
+      ),
+    careers: `2015 – 현재: 서울대학교 컴퓨터공학부 교수
+2012 – 2015: 포항공과대학교 부교수
+2008 – 2012: 포항공과대학교 조교수
+2004 – 2008: 삼성전자 S.LSI 수석연구원
+2002 – 2004: TIMA 연구소 연구원
+2001 – 2002: 서울대학교 반도체공동연구소 연구원
+2000 – 2001: TIMA 연구소 연구원`.split('\n'),
+  },
+  {
+    ...facultyList[20],
+    office: '302동 428호',
+    website: 'http://ropas.snu.ac.kr/~kwang/',
+    educations: `University of Illinois at Urbana-Champaign 컴퓨터과학 박사 (1993)
+University of Illinois at Urbana-Champaign 컴퓨터과학 석사 (1990)
+서울대학교 계산통계학 학사 (1987)`.split('\n'),
+    researchAreas: `Static program analysis
+Static analysis for safe softwares
+Programming systems application of static analysis technology
+HOT (higher-order & typed) programming system`.split('\n'),
+    careers: `2008 – 2015: 센터장, 소프트웨어무결점 연구센터 (교과부/한국연구재단 선도연구센터)
+1998 – 2003: 단장, 프로그램분석시스템 연구단 (과기부/과학재단 창의연구단)
+1995 – 2003: 조교수/부교수, KAIST 전산학과
+1993 – 1995: 정규연구원, SW Principles Research Dept, Bell Labs.
+2016: Research Scientist, Facebook
+방문교수, Stanford (2017), MIT(2012,2008), CMU(2008), 파리고등사범학교(ENS Paris)(2016, 2002)`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyList[21],
+    office: '301동 404호',
+    website: 'http://ids.snu.ac.kr/site/members/M_Sang-goo_Lee.html',
+    educations: `노스웨스턴 대학교 컴퓨터과학 박사 (1990)
+노스웨스턴 대학교 컴퓨터과학 석사 (1987)
+서울대학교 계산통계학과 학사 (1985)`.split('\n'),
+    researchAreas: `Exploiting Concept Networks for Personalized Information Retrieval
+uKnow: Product Review Summarization
+KKMA: Korean Morpheme Analyzer
+LifeLogOn: Lifelog Ontology
+User Context Aggregation for Context-Aware Recommendation`.split('\n'),
+    careers: `1990 – 1992: 선임연구원,EDS Research & Dev.
+1989 – 1990: 전임강사,Univ. of Minnesota
+2002 – 현재: 회장,한국전자거래학회`.split('\n'),
+  },
+  {
+    ...facultyList[22],
+    office: '301동 413호',
+    website: 'http://youngkilee.blogspot.com/',
+    educations: `KAIST Computer Science 박사 (2012)
+KAIST Computer Science 학사 (2004)`.split('\n'),
+    researchAreas: `Mobile and Ubiquitous Computing
+Human Behavior and Context Sensing
+Embedded Machine Learning & Deep Learning Systems
+Computational Social Science`.split('\n'),
+    careers: `2018. 9. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2013. 3. – 2018. 8.: Assistant Professor, Singapore Management University
+2015. 6. – 현재: 겸직교수, KAIST 전산학과
+2007. 4. – 2007. 6.: Research Intern, Microsoft Research Redmond
+2006. 9. – 2007. 3.: Research Intern, Microsoft Research Asia`.split('\n'),
+  },
+  {
+    ...facultyList[23],
+    office: '301동 506호',
+    website: 'https://iamjaelee.github.io/www/',
+    educations: `MIT EECS (CS Division) 박사 (2009)
+Stanford University EE 석사 (2002)
+서울대학교 전기공학부 학사 (1999)`.split('\n'),
+    researchAreas: `Computer Architecture and Systems
+Parallel Programming
+Compilers
+Security`.split('\n'),
+    careers: `2016.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2011 – 2016.08.: 조교수, 성균관대학교 반도체시스템공학과
+2011: Postdoctoral Research Associate, CS Department, Princeton University
+2009 – 2011: Researcher and Engineer, Parakinetics, Inc. (Princeton, USA)
+2002 – 2009: Research Assistant, MIT CSAIL
+2008: Graduate Exchange Scholar, EECS Department, UC Berkeley
+2006, 2007: Research Intern, Nokia Research Lab in Cambridge (NRCC)
+2002: Engineering Intern, Nvidia Corp.`.split('\n'),
+  },
+  {
+    ...facultyList[24],
+    office: '301동 505호',
+    website: 'https://sites.google.com/view/jaejinlee',
+    educations: `일리노이 대학교 어배너-섐페인 컴퓨터공학 박사 (1999)
+스탠퍼드 대학교 컴퓨터공학 석사 (1995)
+서울대학교 물리학 학사 (1991)`.split('\n'),
+    researchAreas: `Programming systems of heterogeneous machines (GPUs and FPGAs)
+Parallelization and optimization of deep learning models (e.g., GPT-3) and frameworks (e.g., PyTorch)
+Programming and simulation environments of quantum computers`.split('\n'),
+    careers: `2010 – 현재: 교수, 서울대학교 컴퓨터공학부
+2004 – 2010: 부교수, 서울대학교 컴퓨터공학부
+2002 – 2004: 조교수, 서울대학교 컴퓨터공학부
+2000 – 2002: 조교수, 미시간 주립대학교 컴퓨터공학과
+1999 – 1999: 객원 강사, 일리노이 대학교 어배너-섐페인 컴퓨터과학과`.split('\n'),
+  },
+  {
+    ...facultyList[25],
+    office: '301동 325호',
+    website: 'http://mrl.snu.ac.kr/~jehee/',
+    educations: `카네기멜론대학교 Computer Science Department 박사 (2013)
+카네기멜론대학교 The Robotics Institute 석사 (2008)
+한국과학기술원 기계공학 석사 (2001)
+한국과학기술원 기계공학 학사 (1999)`.split('\n'),
+    researchAreas: `물리 기반 동작 제어
+데이터 기반 동작 학습 및 생성
+사실적인 인체 모델링
+다양한 생물체 제어`.split('\n'),
+    careers: `한국과학기술원 전산학 박사 (2000)
+한국과학기술원 전산학 석사 (1995)
+한국과학기술원 전산학 학사 (1993)`.split('\n'),
+  },
+  {
+    ...facultyList[26],
+    office: '301동 409호',
+    website: 'http://rubis.snu.ac.kr/~cglee',
+    educations: `서울대학교 컴퓨터공학 박사 (1998)
+서울대학교 컴퓨터공학 석사 (1993)
+서울대학교 컴퓨터공학 학사 (1991)`.split('\n'),
+    researchAreas: `Real-Time and Embedded System Architecture
+Real-Time Communications
+QoS Management in Control Applications, Multimedia Systems, and Web Servers
+Satellite and Mobile Communications
+Wireless Sensor Networks
+Real-Time Ubiquitous Systems`.split('\n'),
+    careers:
+      `During his study as a Ph.D. candidate, he was a member of the Real-Time research group at Seoul National University. He was also a visiting student to the University of Virginia from Jan. to Mar. 1996 to work with Prof. Son in the Computer Science Department. From March 1998 to Feburary 2000, we worked for LG Information & Communications Ltd. developing real-time software platform and UMTS signaling protocols for IMT-2000 mobile terminals. From March 2000 to July 2002, he was a Post Doctoral Research Associate in the Department of Computer Science at University of Illinois working with Prof. Sha. From August 2002 to August 2006, he was an assistant professor in the Department of Electrical and Computer Engineering, Ohio State University , Columbus, Ohio. He joined the School of Computer Science and Engineering, Seoul National University from September 2006.`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyList[27],
+    office: '302동 323호',
+    website: 'http://bi.snu.ac.kr/~btzhang/',
+    educations: `본 라인 프리드리히 빌헬름 대학교 컴퓨터공학 (Informatik) 박사 (1992)
+서울대학교 컴퓨터공학 석사 (1988)
+서울대학교 컴퓨터공학 학사 (1986)`.split('\n'),
+    researchAreas: `Computer Vision, Machine Learning, Natural Language Processing`.split('\n'),
+    careers: `뇌정보처리 모델링에 의한 기계학습 기반 사용자 의도 예측기술
+지능형 추천 서비스를 위한 인지기반 기계학습 및 추론 기술
+기계학습 기반 멀티모달 복합 정보 추출 및 추천기술
+모바일 라이프로그를 이용한 상황 문맥 상에서의 행동 파악 기술`.split('\n'),
+  },
+  {
+    ...facultyList[28],
+    office: '302동 322호',
+    website: 'https://bgchun.github.io/',
+    educations: `University of California, Berkeley, Computer Science 박사 (2007)
+Stanford University, Computer Science 석사 (2002)
+서울대학교 전자공학과 석사 (1996)
+서울대학교 전자공학과 학사 (1994)`.split('\n'),
+    researchAreas: `Machine learning systems
+Big data analytics
+Datacenter infrastructure / cloud computing
+Operating systems`.split('\n'),
+    careers: `2016: Facebook (Research Scientist)
+2012 – 2013: Microsoft (Principal Scientist)
+2011 – 2012: Yahoo!Research (Research Scientist)
+2008 – 2011: Intel Labs Berkeley (Research Scientist)
+2007 – 2008: International Computer Science Institute (Post-doctoral Researcher)`.split('\n'),
+  },
+  {
+    ...facultyList[29],
+    office: '302동 429호',
+    website: 'http://mccl.snu.ac.kr/Members01.htm',
+    educations: `서울대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+    researchAreas: `Resource management for wireless and mobile networks
+Mobile networks including 3G/4G cellular systems, wireless PAN/LAN, MBWA
+Mobile Internet over cellular systems
+Network performance evaluation
+Cognitive radio`.split('\n'),
+  },
+  {
+    ...facultyList[30],
+    office: '302동 324호',
+    website: 'https://jhugestar.github.io/',
+    educations: `카네기멜론대학교 The Robotics Institute 박사 (2018)
+KAIST 전기 및 전자공학 석사 (2009)
+KAIST 전산학 학사 (2007)`.split('\n'),
+    researchAreas: `Computer Vision
+Machine Learning
+Graphics
+Artificial intelligence`.split('\n'),
+    careers: `2022. 03. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019 – 2022. 02.: Research Scientist, Facebook AI Research (FAIR), Menlo Park
+2017: Research Intern, Facebook Reality Labs, Pittsburgh
+2015: Research Intern, Disney Research Zurich
+2009 – 2012: 연구원, ETRI`.split('\n'),
+  },
+  {
+    ...facultyList[31],
+    office: '301동 408호',
+    website: 'http://peace.snu.ac.kr/sha/',
+    educations: `캘리포니아 대학교 버클리 전기·컴퓨터공학 박사 (1992)
+서울대학교 전자공학 석사 (1987)
+서울대학교 전자공학 학사 (1985)`.split('\n'),
+    researchAreas: `하드웨어-소프트웨어 통합설계 방법론
+병렬 임베디드 시스템 설계
+임베디드 시스템의 성능 측정 및 검증
+임베디드 시스템 구조 최적화`.split('\n'),
+  },
+  {
+    ...facultyList[32],
+    office: '302동 426호',
+    website: 'http://sf.snu.ac.kr/gil.hur',
+    educations: `영국 케임브리지 대학교, 컴퓨터 과학 박사 (2010)
+KAIST, 전산학 및 수학 학사 (2000)`.split('\n'),
+    researchAreas: `Software Verification
+Relaxed Memory Concurrency
+Low-level Language Semantics
+Automated & Interactive Theorem Proving`.split('\n'),
+    careers: `2013 – 현재: 전임교수, 서울대학교 컴퓨터공학부
+2012 – 2013: 박사후 연구원, Microsoft Research Cambridge, UK
+2010 – 2012: 박사후 연구원, Max Planck Institute for Software Systems (MPI-SWS), Germany
+2009 – 2010: 박사후 연구원, Laboratoire Preuves, Programmes et Systèmes (PPS), France`.split('\n'),
+  },
+  {
+    ...facultyList[33],
+    office: '301동 520호',
+    website: 'https://seungwonh.github.io/',
+    educations: `University of Illinois at Urbana-Champaign 컴퓨터과학 박사 (2005)
+University of Illinois at Urbana-Champaign 컴퓨터과학 석사 (2000)
+KAIST 전산학 학사 (1998)`.split('\n'),
+    researchAreas: `Natural language understanding
+Knowledge and data intelligence
+Information retrieval and search engines`.split('\n'),
+    careers: `2021.03. – 현재: 정교수, 서울대학교, 컴퓨터공학부
+2015 – 2021.02.: 정교수, 연세대학교, 컴퓨터과학과
+2005 – 2015: 조교수/영년직 부교수, 포스텍 컴퓨터공학과
+2012 – 2013: 방문연구원, 마이크로소프트 연구소
+2003, 2004: 연구인턴, 마이크로소프트 연구소
+2000, 2002: 연구인턴, 버클리 국립 연구소`.split('\n'),
+  },
+];
+
+export const emeritusFacultyList: SimpleEmiritusFaculty[] = [
+  {
+    id: 0,
+    name: '고건',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B3%A0%EA%B1%B4%EA%B5%90%EC%88%98%EB%8B%98_0.JPG?itok=ViFOQxpn',
+    academicRank: '명예교수',
+  },
+  {
+    id: 1,
+    name: '김명수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EB%AA%85%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_7_0.jpg?itok=cenRhzgQ',
+    academicRank: '명예교수',
+    email: 'mskim@snu.ac.kr',
+  },
+  {
+    id: 2,
+    name: '김영택',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%98%81%ED%83%9D.JPG?itok=iZj0e4na',
+    academicRank: '명예교수',
+  },
+  {
+    id: 3,
+    name: '김종권',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A2%85%EA%B6%8C%20%EA%B5%90%EC%88%98%EB%8B%98_3_0.jpg?itok=5VRTyj8Q',
+    academicRank: '전직교수',
+  },
+  {
+    id: 4,
+    name: '김종상',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%A2%85%EC%83%81.JPG?itok=qEJ4RkAA',
+    academicRank: '명예교수',
+  },
+  {
+    id: 5,
+    name: '러브트 이안 믁카이',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%81%EC%B9%B4%EC%9D%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=YF7t3o3w',
+    academicRank: '전직교수',
+  },
+  {
+    id: 6,
+    name: '민상렬',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%BC%EC%83%81%EB%A0%AC%20%EC%82%AC%EC%A7%84.jpg?itok=tP7iNY6c',
+    academicRank: '전직교수',
+  },
+  {
+    id: 7,
+    name: '스리니바사 라오 사티',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%ED%8B%B0%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=G4lPjZGI',
+    academicRank: '전직교수',
+  },
+  {
+    id: 8,
+    name: '신현식',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%ED%98%84%EC%8B%9D%20%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=xBTNvrUM',
+    academicRank: '명예교수',
+    email: 'shinhs@snu.ac.kr',
+  },
+  {
+    id: 9,
+    name: '우치수',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9A%B0%EC%B9%98%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_2_0.jpg?itok=0gA50NU3',
+    academicRank: '명예교수',
+  },
+  {
+    id: 10,
+    name: '유석인',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EB%B6%80_%EC%9C%A0%EC%84%9D%EC%9D%B8%EA%B5%90%EC%88%98%EB%8B%98%28%ED%95%99%EB%B6%80%ED%99%88%ED%94%BC%EB%8F%84%20%EA%B5%90%EC%B2%B4%29.jpg?itok=EOqPZkqo',
+    academicRank: '명예교수',
+    email: 'sukinyoo@snu.ac.kr',
+  },
+  {
+    id: 11,
+    name: '이석호',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EC%9D%B4%EC%84%9D%ED%98%B8_0.JPG?itok=xK9OUlQH',
+    academicRank: '명예교수',
+    email: 'shlee@snu.ac.kr',
+  },
+  {
+    id: 12,
+    name: '장래혁',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%9E%98%ED%98%81_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=wr2Otbqp',
+    academicRank: '전직교수',
+  },
+  {
+    id: 13,
+    name: '전주식',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%EC%A3%BC%EC%8B%9D%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=BhXk9ZZJ',
+    academicRank: '전직교수',
+  },
+  {
+    id: 14,
+    name: '조유근',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A1%B0%EC%9C%A0%EA%B7%BC%20%20%EA%B5%90%EC%88%98%EB%8B%98_3.jpg?itok=SbQwYiiE',
+    academicRank: '명예교수',
+    email: 'ykcho@snu.ac.kr',
+  },
+  {
+    id: 15,
+    name: '최양희',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%B5%9C%EC%96%91%ED%9D%AC%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=_Cx5BW6V',
+    academicRank: '명예교수',
+    email: 'yhchoi@snu.ac.kr',
+  },
+  {
+    id: 16,
+    name: '한상영',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%9C%EC%83%81%EC%98%81%20%EA%B5%90%EC%88%98%EB%8B%98_21_0.jpg?itok=oAU3XgvE',
+    academicRank: '명예교수',
+  },
+  {
+    id: 17,
+    name: '황희융',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%ED%99%A9%ED%9D%AC%EC%9C%B5_0.JPG?itok=4SRtsnwG',
+    academicRank: '명예교수',
+  },
+];
+
+export const emeritusFaculties: EmiritusFaculty[] = [
+  {
+    ...emeritusFacultyList[0],
+    educations: `버지니아대학교 컴퓨터과학과 박사
+서울대학교 응용물리학과 학사`.split('\n'),
+    startDate: '1983년 3월',
+    endDate: '2011년 8월',
+  },
+  {
+    ...emeritusFacultyList[1],
+    website: ' http://3map.snu.ac.kr',
+    educations: `퍼듀 대학교 컴퓨터공학 박사 (1988)
+퍼듀 대학교 컴퓨터공학 석사 (1987)
+퍼듀 대학교 응용수학 석사 (1985)
+서울대학교 수학 석사 (1982)
+서울대학교 수학교육 학사 (1980)`.split('\n'),
+    researchAreas: `자유형상 기하학 모델을 위한 실시간 알고리즘
+인체 모델링, 형상변형`.split('\n'),
+    startDate: '1999년 3월',
+    endDate: '2022년 8월',
+  },
+  {
+    ...emeritusFacultyList[2],
+    startDate: '1971년 5월',
+    endDate: '2001년 2월',
+    educations: `유타대학교 전자공학과 박사
+콜로라도 주립대학교 전자공학과 석사
+육군사관학교 응용화학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[3],
+    startDate: '1991년 2월',
+    endDate: '2021년 6월',
+    educations: `일리노이 대학교 어배너-섐페인 컴퓨터공학 박사
+조지아 공과대학교 Operation Research 석사
+서울대학교 산업공학 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[4],
+    startDate: '1968년 5월',
+    endDate: '2003년 2월',
+    educations: `서울대학교 전자공학과 박사
+서울대학교 전자공학과 석사
+서울대학교 전자공학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[5],
+    startDate: '2005년 9월',
+    endDate: '2015년 2월',
+    educations: `브리스틀 대학교 컴퓨터공학 박사 (1976)
+오스트레일리아 국립 대학교 순수수학 학사 (1971)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[6],
+    startDate: '1992년 2월',
+    endDate: '2020년 2월',
+    educations: `워싱턴 대학교 컴퓨터공학 박사 (1989)
+서울대학교 컴퓨터공학 석사 (1985)
+서울대학교 컴퓨터공학 학사 (1983)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[7],
+    startDate: '2009년 3월',
+    endDate: '2021년 2월',
+    educations: `첸나이 수리과학원 (IMSc) 이론 컴퓨터 과학 박사 (2002)
+첸나이 수리과학원 (IMSc) 이론 컴퓨터 과학 석사 (1997)
+와랑갈 이공대학교 (NITW) 컴퓨터공학 학사 (1995)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[8],
+    startDate: '1986년 3월',
+    endDate: '2016년 8월',
+    educations: `텍사스 대학교 오스틴 컴퓨터공학 박사 (1985)
+텍사스 대학교 오스틴 생체의학 석사
+서울대학교 응용 물리학 학사
+서던 일리노이 대학교 카본데일 생명과학 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[9],
+    startDate: '1982년 9월',
+    endDate: '2012년 2월',
+    educations: `서울대학교 계산통계학과 박사
+서울대학교 계산통계학과 석사
+서울대학교 계산통계학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[10],
+    startDate: '1985년 12월',
+    endDate: '2017년 2월',
+    educations: `미시간 대학교 전기·컴퓨터공학 박사 (1985)
+리하이 대학교 전자공학 석사 (1980)
+서울대학교 전자공학 학사 (1977)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[11],
+    startDate: '1982년 3월',
+    endDate: '2009년 2월',
+    educations: `텍사스대학교 전산학과 박사
+텍사스대학교 전산학과 석사
+연세대 정치외교학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[12],
+    startDate: '1997년 3월',
+    endDate: '2014년 6월',
+    educations: `서울대학교 제어계측공학 박사 (1996)
+서울대학교 제어계측공학 석사 (1992)
+서울대학교 제어계측공학 학사 (1989)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[13],
+    startDate: '1985년 3월',
+    endDate: '2015년 8월',
+    educations: `유타 대학교 전자계산학 박사 (1982)
+한국과학기술원 전자계산학 석사 (1976)
+서울대학교 응용수학 학사 (1974)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[14],
+    startDate: '1979년 4월',
+    endDate: '2014년 8월',
+    educations: `미네소타 대학교 컴퓨터공학 박사 (1978)
+서울대학교 건축학 석사 (1973)
+서울대학교 건축학 학사 (1971)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[15],
+    startDate: '1991년 7월',
+    endDate: '2020년 8월',
+    educations: `ENST Paris 전산공학 박사 (1984)
+한국과학기술원 전기공학부 석사 (1977)
+서울대학교 전기공학부 학사 (1975)`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[16],
+    startDate: '1984년 3월',
+    endDate: '2013년 8월',
+    educations: `텍사스대학교 계산통계학과 박사
+서울대학교 계산통계학과 석사
+서울대학교 응용수학과 학사`.split('\n'),
+  },
+  {
+    ...emeritusFacultyList[17],
+    startDate: '1968년 2월',
+    endDate: '1993년 3월',
+    educations: `서울대학교 전기공학과 박사
+서울대학교 전기공학과 석사
+서울대학교 전기공학과 학사`.split('\n'),
+  },
+];
+
+export const staffList: StaffList = {
+  staffList: [
+    {
+      id: 0,
+      name: '박지혜',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/KakaoTalk_20230109_143257675.jpg?itok=-qTVUJTk',
+      role: '장학.전문연구요원',
+      office: '301동 316호',
+      phone: '(02) 880-7288',
+      email: 'paji52@snu.ac.kr',
+    },
+    {
+      id: 1,
+      name: '손소연',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%86%90%EC%86%8C%EC%97%B0_0_0.jpg?itok=3Jobsn1N',
+      role: '학부생 학사.수업.교과과정',
+      office: '301동 316호',
+      phone: '(02) 880-1850',
+      email: 'soyeoun7@snu.ac.kr',
+    },
+    {
+      id: 2,
+      name: '우미숙',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%9A%B0%EB%AF%B8%EC%88%99.jpg?itok=8I4pjuDz',
+      role: '학부생 학사.수업.교과과정',
+      office: '301동 316호',
+      phone: '(02) 880-6583',
+      email: 'misuk@snu.ac.kr',
+    },
+    {
+      id: 3,
+      name: '이은주',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%9D%B4%EC%9D%80%EC%A3%BC%20%EC%A6%9D%EB%AA%85%EC%82%AC%EC%A7%84.jpg?itok=blvo3Hne',
+      role: '학적, 학부 졸업/입시, 다전공',
+      office: '301동 316호',
+      phone: '(02) 880-1526',
+      email: 'kate0911@snu.ac.kr',
+    },
+    {
+      id: 4,
+      name: '정재교',
+      imageURL: '',
+      role: '대학원 학사.입시',
+      office: '301동 316호',
+      phone: '(02) 880-1827',
+      email: 'jjk767@snu.ac.kr',
+    },
+    {
+      id: 5,
+      name: '차예지',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%B0%A8%EC%98%88%EC%A7%80%EC%83%98.jpg?itok=0aM0frPr',
+      role: '외국인 교수 및 학생 지원',
+      office: '301동 316호',
+      phone: '(02) 880-7287',
+      email: 'yejicdefg@snu.ac.kr',
+    },
+    {
+      id: 6,
+      name: '한민정',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%ED%95%9C%EB%AF%BC%EC%A0%95.png?itok=Qz-KA1Dx',
+      role: '교원인사.일반서무.',
+      office: '301동 316호',
+      phone: '(02) 880-1527',
+      email: 'alswjd@snu.ac.kr',
+    },
+  ],
+};
+
+export const staff: Staff[] = [
+  {
+    ...staffList.staffList[0],
+    tasks: `학점인정인턴 프로그램(주전공/다전공 2Track)
+연구처 업무
+세미나실 예약
+대학원 전문연구요원
+동문회`.split('\n'),
+  },
+  {
+    ...staffList.staffList[1],
+    tasks: `교과과정 변경 (교과목 폐지 및 신설, 변경)
+수업편성(교육과정, 수업시간 편성, 변경, 취소 등)
+수강신청(변경, 취소, 확정, 재수강 등)
+수업관리(분반, 합반, 폐강, 교수 책임시간, 타교출강 등)
+성적관리(평가, 처리, 정정 등), 강의평가
+학사경고, 학사제명, 학사유급, 유급제명`.split('\n'),
+  },
+  {
+    ...staffList.staffList[2],
+    tasks: `학부 업무 총괄
+법인회계
+자체직원 인사
+교수회의
+각종 위원회
+시설관리`.split('\n'),
+  },
+  {
+    ...staffList.staffList[3],
+    tasks: `학부생 지도교수 배정
+다전공(복수전공/부전공) 및 학사편입학, 전과
+학적(등록/휴학/복학/퇴학/제적/복적/재입학)
+학생회 및 동아리 관리
+S-Card 발급 및 사용등록, 사물함 관리
+학부 입시
+학부 신입생 O/T
+학부생 수료, 졸업사정 및 논문 관리`.split('\n'),
+  },
+  {
+    ...staffList.staffList[4],
+    tasks: `대학원 논문제출자격시험
+대학원 논문심사
+대학원 교과학점 통산인정
+대학원 수료 사정
+대학원 입시
+대학원 신입생 O/T
+대학원 연구실 현황 관리
+전문연구요원`.split('\n'),
+  },
+  {
+    ...staffList.staffList[5],
+    tasks: `외국인 교수 및 학생 지원
+국제협력(MOU, 학생교류프로그램-유학, 교환학생, 방문학생)
+외국인 입시 및 장학금
+10-10프로젝트
+[세미나] DLS, Industry Seminar, Lunch Talk, 교수후보탐색세미나
+교원 외부강의 관리 및 보고`.split('\n'),
+  },
+  {
+    ...staffList.staffList[6],
+    tasks: `일반 서무
+네트워크(도메인, IP, 포트 관리 등)
+교원 인사(신규채용, 연구년, 겸직, 승진, 겸무 등)
+학부 홈페이지 및 메일링 운영`.split('\n'),
+  },
+];
+
+export const tcl: TopConferenceList = {
+  modifiedAt: '2023.04.17.',
+  author: '한민정',
+  conferenceList: [
+    {
+      id: 1,
+      code: 'BKCSA001',
+      abbreviation: 'AAAI',
+      name: 'AAAI Conference on Artificial Intelligence ',
+    },
+    {
+      id: 2,
+      code: 'BKCSA002',
+      abbreviation: 'CCS',
+      name: 'ACM Conference on Computer and Communications Security ',
+    },
+    {
+      id: 3,
+      code: 'BKCSA003',
+      abbreviation: 'CHI',
+      name: 'ACM Conference on Human Factors in Computing Systems ',
+    },
+    {
+      id: 4,
+      code: 'BKCSA004',
+      abbreviation: 'MobiCom',
+      name: 'ACM International Conference on Mobile Computing and Networking',
+    },
+    {
+      id: 5,
+      code: 'BKCSA005',
+      abbreviation: 'MM',
+      name: 'ACM Multimedia Conference',
+    },
+    {
+      id: 6,
+      code: 'BKCSA006',
+      abbreviation: 'SIGCOMM',
+      name: 'ACM SIGCOMM Conference',
+    },
+    {
+      id: 7,
+      code: 'BKCSA007',
+      abbreviation: 'SIGIR',
+      name: 'ACM SIGIR Conference on Information Retrieval',
+    },
+    {
+      id: 8,
+      code: 'BKCSA008',
+      abbreviation: 'KDD',
+      name: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining',
+    },
+    {
+      id: 9,
+      code: 'BKCSA009',
+      abbreviation: 'FSE',
+      name: 'ACM SIGSOFT Symposium on the Foundations of Software Engineering ',
+    },
+    {
+      id: 10,
+      code: 'BKCSA010',
+      abbreviation: 'SOSP',
+      name: 'ACM Symposium on Operating Systems Principles ',
+    },
+    {
+      id: 11,
+      code: 'BKCSA011',
+      abbreviation: 'STOC',
+      name: 'ACM Symposium on Theory of Computing ',
+    },
+    {
+      id: 12,
+      code: 'BKCSA012',
+      abbreviation: 'ACL',
+      name: 'Annual Meeting of the Association for Computational Linguistics ',
+    },
+    {
+      id: 13,
+      code: 'BKCSA013',
+      abbreviation: 'ASPLOS',
+      name: 'Architectural Support for Programming Languages and Operating Systems',
+    },
+    {
+      id: 14,
+      code: 'BKCSA014',
+      abbreviation: 'CVPR',
+      name: 'Conference on Computer Vision and Pattern Recognition ',
+    },
+    {
+      id: 15,
+      code: 'BKCSA015',
+      abbreviation: 'NIPS',
+      name: 'Conference on Neural Information Processing Systems ',
+    },
+    {
+      id: 16,
+      code: 'BKCSA016',
+      abbreviation: 'OOPSLA',
+      name: 'Conference on Object-Oriented Programming, System, Languages, and Applications',
+    },
+    {
+      id: 17,
+      code: 'BKCSA017',
+      abbreviation: 'INFOCOM',
+      name: 'IEEE Conference on Computer Communications',
+    },
+    {
+      id: 18,
+      code: 'BKCSA018',
+      abbreviation: 'HPCA',
+      name: 'IEEE International Symposium on High-Performance Computer Architecture',
+    },
+    {
+      id: 19,
+      code: 'BKCSA019',
+      abbreviation: 'RTSS',
+      name: 'IEEE Real-Time Systems Symposium ',
+    },
+    {
+      id: 20,
+      code: 'BKCSA020',
+      abbreviation: 'FOCS',
+      name: 'IEEE Symposium on Foundations of Computer Science',
+    },
+    {
+      id: 21,
+      code: 'BKCSA021',
+      abbreviation: 'S&P',
+      name: 'IEEE Symposium on Security and Privacy',
+    },
+    {
+      id: 22,
+      code: 'BKCSA022',
+      abbreviation: 'VIS',
+      name: 'IEEE Visualization',
+    },
+    {
+      id: 23,
+      code: 'BKCSA023',
+      abbreviation: 'MICRO',
+      name: 'IEEE/ACM International Symposium on Microarchitecture',
+    },
+    {
+      id: 24,
+      code: 'BKCSA024',
+      abbreviation: 'SIGGRAPH,SIGGRAPH-ASIA',
+      name: 'ACM SIG International Conference on Computer Graphics and Interactive Techniques,ACM SIG International Conference on Computer Graphics and Interactive Techniques - Asia',
+    },
+    {
+      id: 25,
+      code: 'BKCSA025',
+      abbreviation: 'ICCV',
+      name: 'International Conference on Computer Vision ',
+    },
+    {
+      id: 26,
+      code: 'BKCSA026',
+      abbreviation: 'CAV',
+      name: 'International Conference on Computer-Aided Verification',
+    },
+    {
+      id: 27,
+      code: 'BKCSA027',
+      abbreviation: 'ICML',
+      name: 'International Conference on Machine Learning',
+    },
+    {
+      id: 28,
+      code: 'BKCSA028',
+      abbreviation: 'SIGMOD',
+      name: 'International Conference on Management of Data',
+    },
+    {
+      id: 29,
+      code: 'BKCSA029',
+      abbreviation: 'ICSE',
+      name: 'International Conference on Software Engineering ',
+    },
+    {
+      id: 30,
+      code: 'BKCSA030',
+      abbreviation: 'EUROCRYPT',
+      name: 'International Conference on the Theory and Applications of Cryptographic Techniques',
+    },
+    {
+      id: 31,
+      code: 'BKCSA031',
+      abbreviation: 'VLDB/PVLDB',
+      name: 'International Conference on Very Large Databases',
+    },
+    {
+      id: 32,
+      code: 'BKCSA032',
+      abbreviation: 'CRYPTO',
+      name: 'International Cryptology Conference',
+    },
+    {
+      id: 33,
+      code: 'BKCSA033',
+      abbreviation: 'IJCAI',
+      name: 'International Joint Conference on Artificial Intelligence ',
+    },
+    {
+      id: 34,
+      code: 'BKCSA034',
+      abbreviation: 'ISCA',
+      name: 'International Symposium on Computer Architecture ',
+    },
+    {
+      id: 35,
+      code: 'BKCSA035',
+      abbreviation: 'WWW',
+      name: 'International World Wide Web Conference ',
+    },
+    {
+      id: 36,
+      code: 'BKCSA036',
+      abbreviation: 'PLDI',
+      name: 'SIGPLAN Conference on Programming Language Design and Implementation',
+    },
+    {
+      id: 37,
+      code: 'BKCSA037',
+      abbreviation: 'POPL',
+      name: 'Symposium on Principles of Programming Languages ',
+    },
+    {
+      id: 38,
+      code: 'BKCSA038',
+      abbreviation: 'NSDI',
+      name: 'USENIX Symposium on Networked Systems Design and Implementation ',
+    },
+    {
+      id: 39,
+      code: 'BKCSA039',
+      abbreviation: 'OSDI',
+      name: 'USENIX Symposium on Operating Systems Design and Implementation ',
+    },
+    {
+      id: 40,
+      code: 'BKCSA040',
+      abbreviation: 'CSCW',
+      name: 'ACM Conference on Computer-Supported Cooperative Work',
+    },
+    {
+      id: 41,
+      code: 'BKCSA041',
+      abbreviation: 'SenSys',
+      name: 'ACM Conference on Embedded Networked Sensor Systems',
+    },
+    {
+      id: 42,
+      code: 'BKCSA042',
+      abbreviation: 'CIKM',
+      name: 'ACM Conference on Information and Knowledge Management',
+    },
+    {
+      id: 43,
+      code: 'BKCSA043',
+      abbreviation: 'MobiSys',
+      name: 'ACM International Conference on Mobile Systems, Application and Services',
+    },
+    {
+      id: 44,
+      code: 'BKCSA044',
+      abbreviation: 'WSDM',
+      name: 'ACM International Conference on Web Search and Data Mining',
+    },
+    {
+      id: 45,
+      code: 'BKCSA045',
+      abbreviation: 'UbiComp',
+      name: 'ACM International Joint Conference on Pervasive and Ubiquitous Computing',
+    },
+    {
+      id: 46,
+      code: 'BKCSA046',
+      abbreviation: 'MobiHoc',
+      name: 'ACM International Symposium on Mobile Ad Hoc Networking and Computing',
+    },
+    {
+      id: 47,
+      code: 'BKCSA047',
+      abbreviation: 'SIGMETRICS',
+      name: 'ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems',
+    },
+    {
+      id: 48,
+      code: 'BKCSA048',
+      abbreviation: 'PPoPP',
+      name: 'ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming ',
+    },
+    {
+      id: 49,
+      code: 'BKCSA049',
+      abbreviation: 'SPAA',
+      name: 'ACM Symposium on Parallelism in Algorithms and Architectures',
+    },
+    {
+      id: 50,
+      code: 'BKCSA050',
+      abbreviation: 'PODS',
+      name: 'ACM Symposium on Principles of Database Systems',
+    },
+    {
+      id: 51,
+      code: 'BKCSA051',
+      abbreviation: 'PODC',
+      name: 'ACM Symposium on Principles of Distributed Computing',
+    },
+    {
+      id: 52,
+      code: 'BKCSA052',
+      abbreviation: 'IPSN',
+      name: 'ACM/IEEE Information Processing in Sensor Networks',
+    },
+    {
+      id: 53,
+      code: 'BKCSA053',
+      abbreviation: 'SC',
+      name: 'ACM/IEEE Internataional Conference for High Performance Computing, Networking, Storage, and Analysis',
+    },
+    {
+      id: 54,
+      code: 'BKCSA054',
+      abbreviation: 'LICS',
+      name: 'ACM/IEEE Symposium on Logic in Computer Science',
+    },
+    {
+      id: 55,
+      code: 'BKCSA055',
+      abbreviation: 'SODA',
+      name: 'ACM-SIAM Symposium on Discrete Algorithms',
+    },
+    {
+      id: 56,
+      code: 'BKCSA056',
+      abbreviation: 'COLT',
+      name: 'Annual Conference on Computational Learning Theory',
+    },
+    {
+      id: 57,
+      code: 'BKCSA057',
+      abbreviation: 'UAI',
+      name: 'Conference on Uncertainty in Artificial Intelligence',
+    },
+    {
+      id: 58,
+      code: 'BKCSA058',
+      abbreviation: 'DAC',
+      name: 'Design Automation Conference ',
+    },
+    {
+      id: 59,
+      code: 'BKCSA059',
+      abbreviation: 'EMNLP',
+      name: 'Empirical Methods in Natural Language Processing',
+    },
+    {
+      id: 60,
+      code: 'BKCSA060',
+      abbreviation: 'ICDE',
+      name: 'IEEE International Conference on Data Engineering',
+    },
+    {
+      id: 61,
+      code: 'BKCSA061',
+      abbreviation: 'ICDM',
+      name: 'IEEE International Conference on Data Mining',
+    },
+    {
+      id: 62,
+      code: 'BKCSA062',
+      abbreviation: 'ICDCS',
+      name: 'IEEE International Conference on Distributed Computing Systems ',
+    },
+    {
+      id: 63,
+      code: 'BKCSA063',
+      abbreviation: 'PerCom',
+      name: 'IEEE International Conference on Pervasive Computing and Communications',
+    },
+    {
+      id: 64,
+      code: 'BKCSA064',
+      abbreviation: 'ASE',
+      name: 'IEEE/ACM International Conference on Automated Software Engineering',
+    },
+    {
+      id: 65,
+      code: 'BKCSA065',
+      abbreviation: 'ICCAD',
+      name: 'IEEE/ACM International Conference on Computer-Aided Design',
+    },
+    {
+      id: 66,
+      code: 'BKCSA066',
+      abbreviation: 'CoNEXT',
+      name: 'International Conference on emerging Networking Experiments and Technologies',
+    },
+    {
+      id: 67,
+      code: 'BKCSA067',
+      abbreviation: 'PACT',
+      name: 'International Conference on Parallel Architectures and Compilation Techniques ',
+    },
+    {
+      id: 68,
+      code: 'BKCSA068',
+      abbreviation: 'KR',
+      name: 'International Conference on Principles of Knowledge Representation and Reasoning',
+    },
+    {
+      id: 69,
+      code: 'BKCSA069',
+      abbreviation: 'ATC',
+      name: 'USENIX Annual Technical Conference',
+    },
+    {
+      id: 70,
+      code: 'BKCSA070',
+      abbreviation: 'FAST',
+      name: 'USENIX Conference on File and Storage Technologies ',
+    },
+    {
+      id: 71,
+      code: 'BKCSA071',
+      abbreviation: 'Security',
+      name: 'USENIX Security Symposium ',
+    },
+    {
+      id: 72,
+      code: 'BKCSA077',
+      abbreviation: 'ICS',
+      name: 'ACM International Conference on Supercomputing',
+    },
+    {
+      id: 73,
+      code: 'BKCSA081',
+      abbreviation: 'UIST',
+      name: 'ACM Symposium on User Interface Software and Technology ',
+    },
+    {
+      id: 74,
+      code: 'BKCSA091',
+      abbreviation: 'EuroSys',
+      name: 'European Conference on Computer Systems ',
+    },
+    {
+      id: 75,
+      code: 'BKCSA092',
+      abbreviation: 'ECCV',
+      name: 'European Conference on Computer Vision ',
+    },
+    {
+      id: 76,
+      code: 'BKCSA102',
+      abbreviation: 'HPDC',
+      name: 'IEEE International Symposium on High Performance Distributed Computing',
+    },
+    {
+      id: 77,
+      code: 'BKCSA103',
+      abbreviation: 'RTAS',
+      name: 'IEEE Real-Time and Embedded Technology and Applications Symposium ',
+    },
+    {
+      id: 78,
+      code: 'BKCSA115',
+      abbreviation: 'ICFP',
+      name: 'International Conference on Functional Programming ',
+    },
+    {
+      id: 79,
+      code: 'BKCSA116',
+      abbreviation: 'CODES',
+      name: 'International Conference on Hardware/Software Codesign and System Synthesis',
+    },
+    {
+      id: 80,
+      code: 'BKCSA124',
+      abbreviation: 'NDSS',
+      name: 'Network and Distributed System Security Symposium ',
+    },
+    {
+      id: 81,
+      code: 'BKCSA141',
+      abbreviation: 'ECRTS',
+      name: 'Euromicro Conference on Real-Time Systems ',
+    },
+    {
+      id: 82,
+      code: 'BKCSA145',
+      abbreviation: 'GECCO',
+      name: 'Genetic and Evolutionary Computation Conference ',
+    },
+    {
+      id: 83,
+      code: 'BKCSA169',
+      abbreviation: 'ISMB',
+      name: 'Intelligent Systems for Molecular Biology ',
+    },
+    {
+      id: 84,
+      code: 'BKCSA179',
+      abbreviation: 'MICCAI',
+      name: 'International Conference on Medical Image Computing and Computer Assisted Interventions',
+    },
+    {
+      id: 85,
+      code: 'BKCSA186',
+      abbreviation: 'RECOMB',
+      name: 'Research in Computational Molecular Biology ',
+    },
+  ],
+};
+
+export const simpleResearchLabs: SimpleResearchLab[] = [
+  {
+    id: 0,
+    name: '데이터 마이닝 연구실',
+    professors: [
+      {
+        id: 0,
+        name: '강유',
+      },
+    ],
+    location: '301동 515호 / 518호 / 551-1호 / 551-3호',
+    tel: '(02) 880-7263',
+    acronym: 'DM',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/dmlab-poster-230313.pdf',
+      youtube: 'https://youtu.be/Wy0I4EhTFHw',
+    },
+  },
+  {
+    id: 1,
+    name: '데이터베이스 시스템 연구실',
+    professors: [
+      {
+        id: 9,
+        name: '문봉기',
+      },
+    ],
+    location: '301동 418호 / 452-2호',
+    tel: '(02) 880-6575',
+    acronym: 'DBS',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_bkmoon_%EB%AC%B8%EB%B4%89%EA%B8%B0%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 2,
+    name: '머신러닝 연구실',
+    professors: [
+      {
+        id: 13,
+        name: '송현오',
+      },
+    ],
+    location: '302동 319호',
+    tel: '',
+    acronym: 'ML',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/ML_20220919.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 3,
+    name: '바이오지능 연구실',
+    professors: [
+      {
+        id: 27,
+        name: '장병탁',
+      },
+    ],
+    location: '302동 314-1호',
+    tel: '(02) 880-1835',
+    acronym: 'BI',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/x82_eaoLENg',
+    },
+  },
+  {
+    id: 4,
+    name: '분산시스템 연구실',
+    professors: [
+      {
+        id: 17,
+        name: '염헌영',
+      },
+      {
+        id: 15,
+        name: '엄현상',
+      },
+    ],
+    location: '302동 319호',
+    tel: '(02) 880-9330',
+    acronym: 'DCS',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/3rHDN1qknOA',
+    },
+  },
+  {
+    id: 5,
+    name: '비주얼 컴퓨팅 연구실',
+    professors: [
+      {
+        id: 30,
+        name: '주한별',
+      },
+    ],
+    location: '302동 310-1호',
+    tel: '',
+    acronym: 'VC',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_HanbyulJoo_0.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 6,
+    name: '빅데이터 분석 연구실',
+    professors: [
+      {
+        id: 7,
+        name: '김형주',
+      },
+    ],
+    location: '301동 453호',
+    tel: '(02) 880-1830',
+    acronym: 'BDA',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/20210421Lab_hjk_%EA%B9%80%ED%98%95%EC%A3%BC.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 7,
+    name: '생물정보 및 생명정보 연구실',
+    professors: [
+      {
+        id: 3,
+        name: '김선',
+      },
+    ],
+    location: '301동 551-3호 / 554-2호 / 554-3호',
+    tel: '',
+    acronym: 'BHI',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/jjRKrlKktGo',
+    },
+  },
+  {
+    id: 8,
+    name: '소프트웨어 원리 연구실',
+    professors: [
+      {
+        id: 32,
+        name: '허충길',
+      },
+    ],
+    location: '302동 312-2호',
+    tel: '(02) 880-1865',
+    acronym: 'SF',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_gil.hur_%ED%97%88%EC%B6%A9%EA%B8%B8%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: 'https://youtu.be/517X3a5lH_E',
+    },
+  },
+  {
+    id: 9,
+    name: '소프트웨어 플랫폼 연구실',
+    professors: [
+      {
+        id: 28,
+        name: '전병곤',
+      },
+    ],
+    location: '302동 420호',
+    tel: '02) 880-1611',
+    acronym: 'SPL',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/20211014Lab_bgchun.pdf',
+      youtube: 'https://youtu.be/ofiykDZaZBQ',
+    },
+  },
+  {
+    id: 10,
+    name: '시각 및 학습 연구실',
+    professors: [
+      {
+        id: 2,
+        name: '김건희',
+      },
+    ],
+    location: '302동 319호',
+    tel: '(02) 880-7289',
+    acronym: 'VL',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/R0OHd-_Nobg',
+    },
+  },
+  {
+    id: 11,
+    name: '시스템 소프트웨어 및 구조 연구실',
+    professors: [
+      {
+        id: 5,
+        name: '김진수',
+      },
+    ],
+    location: '301동 515호 / 516호 / 517호',
+    tel: '(02) 880-7296',
+    acronym: 'CSL',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2022_CSL_jinsoo_v2.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 12,
+    name: '실시간 유비쿼터스 시스템 연구실',
+    professors: [
+      {
+        id: 26,
+        name: '이창건',
+      },
+    ],
+    location: '301동 415호',
+    tel: '(02) 880-2562',
+    acronym: 'RUBIS',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/NKke8PNwoI8',
+    },
+  },
+  {
+    id: 13,
+    name: '아키텍처 및 코드 최적화 연구실',
+    professors: [
+      {
+        id: 23,
+        name: '이재욱',
+      },
+    ],
+    location: '301동 554-1호',
+    tel: '(02) 880-1836',
+    acronym: 'ARC',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_jaewlee_%EC%9D%B4%EC%9E%AC%EC%9A%B1%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: 'https://youtu.be/MaikqeWx12w',
+    },
+  },
+  {
+    id: 14,
+    name: '암호 및 프라이버시 연구실',
+    professors: [
+      {
+        id: 12,
+        name: '송용수',
+      },
+    ],
+    location: '301동 451-1호',
+    tel: '',
+    acronym: 'CNP',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_y.song_%EC%86%A1%EC%9A%A9%EC%88%98.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 15,
+    name: '양자정보 및 양자컴퓨팅 연구실',
+    professors: [
+      {
+        id: 6,
+        name: '김태현',
+      },
+    ],
+    location: '301동 416호',
+    tel: '(02) 880-4165',
+    acronym: 'QUIQCL',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/hHcPfbZz7AI',
+    },
+  },
+  {
+    id: 16,
+    name: '언어 및 데이터지능 연구실',
+    professors: [
+      {
+        id: 33,
+        name: '황승원',
+      },
+    ],
+    location: '301동 516호 / 551-2호 / 554-1호',
+    tel: '',
+    acronym: 'LDI',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_seungwonh_%ED%99%A9%EC%8A%B9%EC%9B%90%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 17,
+    name: '운동 연구실',
+    professors: [
+      {
+        id: 25,
+        name: '이제희',
+      },
+    ],
+    location: '302동 312-1호',
+    tel: '(02) 880-1864',
+    acronym: 'MRL',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_jehee_%EC%9D%B4%EC%A0%9C%ED%9D%AC.pdf',
+      youtube: 'https://youtu.be/ZbpthRSWQ-c',
+    },
+  },
+  {
+    id: 18,
+    name: '이동 컴퓨팅 및 통신 연구실',
+    professors: [
+      {
+        id: 29,
+        name: '전화숙',
+      },
+    ],
+    location: '302동 313-1호',
+    tel: '(02) 880-1841',
+    acronym: 'MCCL',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/MCCL_20220919.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 19,
+    name: '인간 중심 컴퓨터 시스템 연구실',
+    professors: [
+      {
+        id: 22,
+        name: '이영기',
+      },
+    ],
+    location: '301동 412호',
+    tel: '(02) 880-4165',
+    acronym: 'HCS',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_yonugkilee.pdf',
+      youtube: 'https://youtu.be/e58ecslJUrY',
+    },
+  },
+  {
+    id: 20,
+    name: '인터넷 융합 및 보안 연구실',
+    professors: [
+      {
+        id: 1,
+        name: '권태경',
+      },
+    ],
+    location: '301동 551-1호 / 551-2호 / 554-1호 / 516호',
+    tel: '',
+    acronym: 'NCSL',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/bCLWYhurBuo',
+    },
+  },
+  {
+    id: 21,
+    name: '임베디드 시스템 연구실',
+    professors: [
+      {
+        id: 4,
+        name: '김지홍',
+      },
+    ],
+    location: '302동 315-2호',
+    tel: '(02) 880-1861',
+    acronym: 'CARES',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/uPrBi4mA9_s',
+    },
+  },
+  {
+    id: 22,
+    name: '지능형 데이터 시스템 연구실',
+    professors: [
+      {
+        id: 21,
+        name: '이상구',
+      },
+    ],
+    location: '301동 420호',
+    tel: '(02) 880-1859',
+    acronym: 'IDS',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/IDS%20Lab20220930.pdf',
+      youtube: 'https://youtu.be/FFFOOI-V6Sc',
+    },
+  },
+  {
+    id: 23,
+    name: '지능형 동작 연구실',
+    professors: [
+      {
+        id: 18,
+        name: '원정담',
+      },
+    ],
+    location: '302동 312-1호',
+    tel: '(02) 880-1864',
+    acronym: '',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/_IMO.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 24,
+    name: '천둥 연구실',
+    professors: [
+      {
+        id: 24,
+        name: '이재진',
+      },
+    ],
+    location: '301동 515호',
+    tel: '(02) 880-1837',
+    acronym: 'TRG',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/xggyliOHUGQ',
+    },
+  },
+  {
+    id: 25,
+    name: '최적화 및 금융공학 연구실',
+    professors: [
+      {
+        id: 8,
+        name: '문병로',
+      },
+    ],
+    location: '302동 313-2호',
+    tel: '(02) 880-1851',
+    acronym: 'OPT',
+    introductionMaterials: {
+      pdf: null,
+      youtube: null,
+    },
+  },
+  {
+    id: 26,
+    name: '컴퓨터 그래픽스 및 이미지 처리 연구실',
+    professors: [
+      {
+        id: 14,
+        name: '신영길',
+      },
+    ],
+    location: '302동 320호',
+    tel: '(02) 880-1860',
+    acronym: 'CGIP',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2021Lab_yshin_%EC%8B%A0%EC%98%81%EA%B8%B8.pdf',
+      youtube: null,
+    },
+  },
+  {
+    id: 27,
+    name: '컴퓨터 시스템 및 플랫폼 연구실',
+    professors: [
+      {
+        id: 16,
+        name: '버나드 에거',
+      },
+    ],
+    location: '301동 419호',
+    tel: '(02) 880-1819',
+    acronym: 'CSAP',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/mJxZsoDETiw',
+    },
+  },
+  {
+    id: 28,
+    name: '컴퓨터 이론 및 응용 연구실',
+    professors: [
+      {
+        id: 10,
+        name: '박근수',
+      },
+    ],
+    location: '301동 414호',
+    tel: '(02) 880-1828',
+    acronym: 'CTA',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/NBGT3yXsQYg',
+    },
+  },
+  {
+    id: 29,
+    name: '컴퓨팅 메모리 구조 연구실',
+    professors: [
+      {
+        id: 19,
+        name: '유승주',
+      },
+    ],
+    location: '138동 313호',
+    tel: '(02) 874-5296',
+    acronym: 'CMA',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_sungjoo.yoo_%EC%9C%A0%EC%8A%B9%EC%A3%BC%EA%B5%90%EC%88%98%EB%8B%98.pptx',
+      youtube: null,
+    },
+  },
+  {
+    id: 30,
+    name: '통합설계 및 병렬 처리 연구실',
+    professors: [
+      {
+        id: 31,
+        name: '하순회',
+      },
+    ],
+    location: '301동 455-1호',
+    tel: '(02) 880-7292',
+    acronym: 'CAP',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_sha_%ED%95%98%EC%88%9C%ED%9A%8C%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: 'https://youtu.be/oCSR212S7DQ',
+    },
+  },
+  {
+    id: 31,
+    name: '프로그래밍 연구실',
+    professors: [
+      {
+        id: 20,
+        name: '이광근',
+      },
+    ],
+    location: '302동 312-2호',
+    tel: '(02) 880-1865',
+    acronym: 'ROPAS',
+    introductionMaterials: {
+      pdf: null,
+      youtube: 'https://youtu.be/wDunxRTga_Q',
+    },
+  },
+  {
+    id: 32,
+    name: '휴먼-컴퓨터 인터액션 연구실',
+    professors: [
+      {
+        id: 11,
+        name: '서진욱',
+      },
+    ],
+    location: '302동 314-2호',
+    tel: '(02) 880-7044',
+    acronym: 'HCI',
+    introductionMaterials: {
+      pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_jseo_%EC%84%9C%EC%A7%84%EC%9A%B1%EA%B5%90%EC%88%98%EB%8B%98.pdf',
+      youtube: null,
+    },
+  },
+];
+
+export const researchLabs: ResearchLab[] = [
+  {
+    ...simpleResearchLabs[0],
+    description: readFileSync('data/htmls/lab0Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://datalab.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[1],
+    description: readFileSync('data/htmls/lab1Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://dbs.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[2],
+    description: readFileSync('data/htmls/lab2Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://mllab.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[3],
+    description: readFileSync('data/htmls/lab3Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://bi.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[4],
+    description: readFileSync('data/htmls/lab4Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://dcslab.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[5],
+    description: readFileSync('data/htmls/lab5Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://jhugestar.github.io/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[6],
+    description: readFileSync('data/htmls/lab6Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://bda.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[7],
+    description: readFileSync('data/htmls/lab7Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://biohealth.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[8],
+    description: readFileSync('data/htmls/lab8Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://sf.snu.ac.kr/',
+    group: '프로그래밍 시스템 및 SW공학',
+  },
+  {
+    ...simpleResearchLabs[9],
+    description: readFileSync('data/htmls/lab9Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://spl.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[10],
+    description: readFileSync('data/htmls/lab10Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://vision.snu.ac.kr/',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[11],
+    description: readFileSync('data/htmls/lab11Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://csl.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[12],
+    description: readFileSync('data/htmls/lab12Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://rubis.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[13],
+    description: readFileSync('data/htmls/lab13Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://arc.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[14],
+    description: readFileSync('data/htmls/lab14Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://yongsoosong.github.io/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[15],
+    description: readFileSync('data/htmls/lab15Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://quiqcl.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[16],
+    description: readFileSync('data/htmls/lab16Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://seungwonh.github.io/ldi.html',
+    group: '인공지능',
+  },
+  {
+    ...simpleResearchLabs[17],
+    description: readFileSync('data/htmls/lab17Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://mrl.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[18],
+    description: readFileSync('data/htmls/lab18Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://mccl.snu.ac.kr/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[19],
+    description: readFileSync('data/htmls/lab19Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'https://hcs.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[20],
+    description: readFileSync('data/htmls/lab20Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://mmlab.snu.ac.kr/',
+    group: '네트워크',
+  },
+  {
+    ...simpleResearchLabs[21],
+    description: readFileSync('data/htmls/lab21Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://davinci.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드',
+  },
+  {
+    ...simpleResearchLabs[22],
+    description: readFileSync('data/htmls/lab22Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://ids.snu.ac.kr/',
+    group: '데이터베이스 및 빅데이터',
+  },
+  {
+    ...simpleResearchLabs[23],
+    description: readFileSync('data/htmls/lab23Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://imo.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[24],
+    description: readFileSync('data/htmls/lab24Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://aces.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[25],
+    description: readFileSync('data/htmls/lab25Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://soar.snu.ac.kr/',
+    group: '이론 및 금융공학',
+  },
+  {
+    ...simpleResearchLabs[26],
+    description: readFileSync('data/htmls/lab26Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://cglab.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
+  },
+  {
+    ...simpleResearchLabs[27],
+    description: readFileSync('data/htmls/lab27Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://csap.snu.ac.kr/',
+    group: '시스템 소프트웨어 및 분산시스템',
+  },
+  {
+    ...simpleResearchLabs[28],
+    description: readFileSync('data/htmls/lab28Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://theory.snu.ac.kr/',
+    group: '이론 및 금융공학',
+  },
+  {
+    ...simpleResearchLabs[29],
+    description: readFileSync('data/htmls/lab29Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://cmalab.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드 시스템',
+  },
+  {
+    ...simpleResearchLabs[30],
+    description: readFileSync('data/htmls/lab30Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://iris.snu.ac.kr/',
+    group: '컴퓨터구조 및 임베디드 시스템',
+  },
+  {
+    ...simpleResearchLabs[31],
+    description: readFileSync('data/htmls/lab31Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://ropas.snu.ac.kr/',
+    group: '프로그래밍 시스템 및 SW공학',
+  },
+  {
+    ...simpleResearchLabs[32],
+    description: readFileSync('data/htmls/lab32Description.txt', { encoding: 'utf-8' }),
+    websiteURL: 'http://hcil.snu.ac.kr/',
+    group: '그래픽스 및 사람 중심 컴퓨팅',
   },
 ];

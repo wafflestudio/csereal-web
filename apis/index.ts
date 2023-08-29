@@ -4,7 +4,7 @@ const BASE_URL = 'http://cse-dev-waffle.bacchus.io';
 
 export const getRequest = async <T = unknown>(
   url: string,
-  params: { [key: string]: string | string[] | number } = {},
+  params: object = {},
   headers: HeadersInit = {},
 ) => {
   const queryString = objToQueryString(params);

@@ -1,4 +1,4 @@
-export const objToURLSearchParams = (params: { [key: string]: string | string[] | number }) => {
+export const objToURLSearchParams = (params: object) => {
   const flattenedArray: string[][] = [];
   for (const [key, value] of Object.entries(params)) {
     if (!value) continue;
@@ -14,7 +14,7 @@ export const objToURLSearchParams = (params: { [key: string]: string | string[] 
 export const urlSearchParamsToString = (params: URLSearchParams) =>
   params.size ? `?${params}` : '';
 
-export const objToQueryString = (params: { [key: string]: string | string[] | number }) => {
+export const objToQueryString = (params: object) => {
   const urlSearchParams = objToURLSearchParams(params);
   const queryString = urlSearchParamsToString(urlSearchParams);
   return queryString;
