@@ -2,12 +2,12 @@
 
 import { useModalStateContext } from '@/contexts/ModalContext';
 
-import AlertModal from './AlertModal';
-import CserealModal from './CserealModal';
+import AlertModal, { AlertModalProps } from './AlertModal';
+import CserealModal, { CserealModalProps } from './CserealModal';
 
-export const MODALS = {
-  alert: AlertModal,
-  csereal: CserealModal,
+export const modals = {
+  getAlert: (props: AlertModalProps) => ({ Component: AlertModal, props }),
+  getCsereal: (props: CserealModalProps) => ({ Component: CserealModal, props }),
 };
 
 export default function ModalContainer() {

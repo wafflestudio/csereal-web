@@ -8,7 +8,7 @@ import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { MODALS } from '@/components/modal/ModalContainer';
+import { modals } from '@/components/modal/ModalContainer';
 import { BatchButton, CreateButton, EditButton } from '@/components/notice/NoticeButtons';
 import NoticeList from '@/components/notice/NoticeList';
 
@@ -56,6 +56,7 @@ export default function NoticePage() {
     }
     // await mutate();
     resetSelectedPosts();
+    closeModal();
   };
 
   const batchUnpin = async () => {
@@ -71,6 +72,7 @@ export default function NoticePage() {
     }
     // await mutate();
     resetSelectedPosts();
+    closeModal();
   };
 
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
@@ -104,12 +106,14 @@ export default function NoticePage() {
             <BatchButton
               disabled={selectedPostIds.size === 0}
               onClick={() =>
-                openModal(MODALS.alert, {
-                  message: '선택한 게시글을 모두 삭제하시겠습니까?',
-                  confirmText: '삭제',
-                  onConfirm: batchDelete,
-                  onClose: closeModal,
-                })
+                openModal(
+                  modals.getAlert({
+                    message: '선택한 게시글을 모두 삭제하시겠습니까?',
+                    confirmText: '삭제',
+                    onConfirm: batchDelete,
+                    onClose: closeModal,
+                  }),
+                )
               }
             >
               일괄 삭제
@@ -117,12 +121,14 @@ export default function NoticePage() {
             <BatchButton
               disabled={selectedPostIds.size === 0}
               onClick={() =>
-                openModal(MODALS.alert, {
-                  message: '선택한 게시글을 모두 고정 해제하시겠습니까?',
-                  confirmText: '고정 해제',
-                  onConfirm: batchUnpin,
-                  onClose: closeModal,
-                })
+                openModal(
+                  modals.getAlert({
+                    message: '선택한 게시글을 모두 고정 해제하시겠습니까?',
+                    confirmText: '고정 해제',
+                    onConfirm: batchUnpin,
+                    onClose: closeModal,
+                  }),
+                )
               }
             >
               일괄 고정 해제

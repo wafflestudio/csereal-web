@@ -1,6 +1,6 @@
 import ModalFrame from './ModalFrame';
 
-interface AlertModalProps {
+export interface AlertModalProps {
   message: string;
   cancelText?: string;
   confirmText?: string;

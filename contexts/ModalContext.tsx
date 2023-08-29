@@ -11,11 +11,11 @@ import React, {
 
 interface Modal {
   Component: ElementType;
-  props?: { [key: string]: unknown };
+  props?: object;
 }
 
 interface ModalSetterContextData {
-  open: (Component: ElementType, props?: { [key: string]: unknown }) => void;
+  open: (Component: ElementType, props?: object) => void;
   close: () => void;
 }
 
@@ -35,7 +35,7 @@ export const useModalSetterContext = () => useContext(ModalSetterContext);
 export default function ModalContextProvider({ children }: PropsWithChildren) {
   const [openedModals, setOpenedModals] = useState<Modal[]>([]);
 
-  const open = (Component: ElementType, props?: { [key: string]: unknown }) => {
+  const open = (Component: ElementType, props?: object) => {
     setOpenedModals((modals) => [...modals, { Component, props }]);
   };
 

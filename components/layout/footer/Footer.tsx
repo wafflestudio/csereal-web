@@ -7,7 +7,7 @@ import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/SNUCOM.svg';
 
-import { MODALS } from '@/components/modal/ModalContainer';
+import { modals } from '@/components/modal/ModalContainer';
 
 import {
   aboutLinks,
@@ -100,7 +100,7 @@ function FooterBottomLeft() {
         Powered by{' '}
         <span
           className="cursor-pointer hover:underline"
-          onClick={() => openModal(MODALS.csereal, { onClose: closeModal })}
+          onClick={() => openModal(modals.getCsereal({ onClose: closeModal }))}
         >
           CSEREAL
         </span>

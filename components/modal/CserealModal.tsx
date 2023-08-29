@@ -11,6 +11,10 @@ const MEMBERS = [
 // TODO: 시리얼 메일 파기
 const MAIL = '';
 
+export interface CserealModalProps {
+  onClose: () => void;
+}
+
 export default function CserealModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalFrame onClose={onClose}>
