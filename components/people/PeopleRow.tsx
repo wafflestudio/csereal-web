@@ -6,7 +6,7 @@ import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
 import { getPath } from '@/utils/page';
 
 export interface PeopleRowProps {
-  type: 'FACULTY' | 'EMIRITUS FACULTY' | 'STAFF';
+  type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
   id: number;
   name: string;
   academicRank?: string;
@@ -37,19 +37,12 @@ export default function PeopleRow({
   office,
   imageURL,
 }: PeopleRowProps) {
-  let href: string;
-  switch (type) {
-    case 'EMIRITUS FACULTY':
-      href = emeritusFacultyPath;
-      break;
-    case 'FACULTY':
-      href = facultyPath;
-      break;
-    case 'STAFF':
-      href = staffPath;
-      break;
-  }
-  href += `/${id}`;
+  const hrefList = {
+    'EMIRITUS_FACULTY': emeritusFacultyPath,
+    FACULTY: facultyPath,
+    STAFF: staffPath,
+  };
+  const href = `${hrefList[type]}/${id}`;
 
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">

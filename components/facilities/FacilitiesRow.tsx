@@ -17,7 +17,7 @@ export default function FacilitiesRow({
 }: FacilitiesRowProps) {
   return (
     <article className="text-neutral-700 font-noto flex my-[1.2rem] flex-row items-start justify-between break-all">
-      <div className="flex flex-col w-[35.5rem] h-auto">
+      <div className="flex flex-col w-[35.5rem]">
         <h3 className="text-neutral-800 text-md font-bold mb-[.69rem] leading-5">{name}</h3>
         <HTMLViewer htmlContent={description} />
         <div className="flex gap-[0.12rem]">

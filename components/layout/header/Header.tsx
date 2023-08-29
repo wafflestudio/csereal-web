@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 z-40 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll no-scrollbar z-50
+        bg-white fixed top-0 right-0 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll no-scrollbar
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >

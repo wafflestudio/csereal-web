@@ -10,7 +10,7 @@ export default async function EmeritusFacultyPage() {
       <div className="grid grid-cols-4 gap-14">
         {facultyList.map((emeritusFaculty, index) => (
           <PeopleRow
-            type="EMIRITUS FACULTY"
+            type="EMIRITUS_FACULTY"
             key={index}
             id={emeritusFaculty.id}
             name={emeritusFaculty.name}
