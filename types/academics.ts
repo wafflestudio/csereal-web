@@ -26,3 +26,18 @@ export interface CourseChange {
   year: number;
   description: string;
 }
+
+export interface GeneralStudiesRequirements {
+  description: string;
+}
+
+export interface ScholarshipList {
+  description: string;
+  scholarship: Pick<Scholarship, 'id' | 'name'>[];
+}
+
+export interface Scholarship {
+  id: number;
+  name: string;
+  description: string;
+}
