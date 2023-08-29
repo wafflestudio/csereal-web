@@ -1,25 +1,14 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
-import useSWR from 'swr';
 
 import PentagonMedium from '@/public/image/pentagon_medium.svg';
 
 import { getCurriculum } from '@/apis/academics';
 
-import Dropdown from '@/components/common/Dropdown';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import CurriculumBody from '@/components/academics/CurriculumBody';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Curriculum } from '@/types/academics';
-
-export default function UndergradutecurriculumPage() {
-  const { data } = useSWR<Curriculum[]>(
-    `academics/undergraduate/degree-requirements`,
-    getCurriculum,
-  );
-  const [selectedcurriculumIndex, setSelectedcurriculumIndex] = useState(0);
+export default async function UndergradutecurriculumPage() {
+  const data = await getCurriculum();
 
   return (
     data && (
@@ -37,17 +26,7 @@ export default function UndergradutecurriculumPage() {
               <PentagonMedium className="duration-300" />
             </div>
           </div>
-          <div className="flex flex-col mt-8">
-            <div className="flex flex-row items-center gap-2">
-              <p className="font-noto text-sm font-normal">입학연도</p>
-              <Dropdown
-                contents={data.map((item) => item.year.toString())}
-                selectedIndex={selectedcurriculumIndex}
-                onClick={setSelectedcurriculumIndex}
-              />
-            </div>
-          </div>
-          <HTMLViewer htmlContent={data[selectedcurriculumIndex].description} margin="mt-7" />
+          <CurriculumBody data={data} />
         </div>
       </PageLayout>
     )
