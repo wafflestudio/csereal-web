@@ -10,6 +10,7 @@ export interface SimpleFacultyResponse extends People {
   academicRank: string;
   labId?: number;
   labName?: string;
+  status?: 'ACTIVE' | 'INACTIVE' | 'VISITING';
 }
 
 export interface FacultyListResponse {
