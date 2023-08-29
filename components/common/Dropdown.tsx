@@ -22,7 +22,7 @@ export default function Dropdown({ contents, selectedIndex, onClick }: DropdownP
         selectedIndex={selectedIndex}
       />
       {expanded && (
-        <div className="relative">
+        <div className="relative z-10">
           <DropdownList
             contents={contents}
             handleClick={handleClick}
