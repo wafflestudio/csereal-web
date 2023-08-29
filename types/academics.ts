@@ -32,3 +32,9 @@ export interface DegreeRequirements {
     bytes: number;
   };
 }
+
+export interface Curriculum {
+  id: number;
+  description: string;
+  year: number;
+}

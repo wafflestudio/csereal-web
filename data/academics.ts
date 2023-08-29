@@ -1,6 +1,7 @@
-import { Course, CourseChange, DegreeRequirements } from '@/types/academics';
+import { Course, CourseChange, Curriculum, DegreeRequirements } from '@/types/academics';
 
 import {
+  CurriculumData,
   DegreeRequirementsData,
   courseChangesData,
   courseData1,
@@ -36,3 +37,5 @@ export const getMockCourseChanges = async (
 
 export const getMockDegreeRequirements = async (): Promise<DegreeRequirements[]> =>
   DegreeRequirementsData;
+
+export const getMockCurriculum = async (): Promise<Curriculum[]> => CurriculumData;

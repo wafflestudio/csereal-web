@@ -1,5 +1,5 @@
 import { Club, Facilities } from '@/types/about';
-import { Course, DegreeRequirements } from '@/types/academics';
+import { Course, Curriculum, DegreeRequirements } from '@/types/academics';
 import { ResearchCenter, ResearchGroups } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
@@ -1057,5 +1057,168 @@ export const DegreeRequirementsData: DegreeRequirements[] = [
       url: '',
       bytes: 63.76,
     },
+  },
+];
+
+const CurriculumHTMLData = `
+<div class="mw-parser-output"><h3><span id=".EC.A0.84.EA.B3.B5.EC.84.A0.ED.83.9D_.EC.9D.B8.EC.A0.95.EA.B5.90.EA.B3.BC.EB.AA.A9"></span><span class="mw-headline" id="전공선택_인정교과목">전공선택 인정교과목</span></h3>
+<ol><li>공과대학 전기·정보공학부, 산업공학과, 연합전공 기술경영 및 자연과학대학 수리과학부 및 통계학과, 사회과학대학 연합전공 정보문화학, 경영대학 교과목 중 학부장이 인정하는 교과목으로 총12학점까지 인정</li>
+<li>전기·정보공학부와 산업공학과의 경우 컴퓨터공학부와 유사과목은 인정 안됨. 유사과목 확인  <a rel="nofollow" class="external free" href="http://cse.snu.ac.kr/undergraduate">http://cse.snu.ac.kr/undergraduate</a></li>
+<li>경영대학 교과목은 아래의 교과목에 한하여 인정</li></ol>
+<pre>    251.101 경영학 원론, 251.204 재무회계, 251.205 회계원리, 251.209 조직행위론, 251.321 마케팅 관리, 
+    251.301 재무관리, 251.303 인사관리, 251.322 국제경영, 251.332 현대경영이론, 251.215 조직구조론
+</pre>
+<p><br>
+</p>
+<h2><span id=".ED.95.99.EC.82.AC.EA.B3.BC.EC.A0.95_.EC.A0.84.EA.B3.B5.EA.B5.90.EA.B3.BC.EB.AA.A9_.EC.9D.B4.EC.88.98_.ED.91.9C.EC.A4.80.ED.98.95.ED.83.9C_.282015.ED.95.99.EB.B2.88.EB.B6.80.ED.84.B0_.EC.A0.81.EC.9A.A9.29"></span><span class="mw-headline" id="학사과정_전공교과목_이수_표준형태_(2015학번부터_적용)">학사과정 전공교과목 이수 표준형태 (2015학번부터 적용)</span></h2>
+<table>
+<tbody><tr>
+<th align="center">구분
+</th>
+<th align="center">1학기
+</th>
+<th align="center">2학기
+</th></tr>
+<tr>
+<th align="center">1학년
+</th>
+<td valign="top">
+</td>
+<td valign="top">
+<ul><li>4190.103A 프로그래밍연습</li></ul>
+</td></tr>
+<tr>
+<th align="center">2학년
+</th>
+<td valign="top">
+<ul><li>4190.101* 이산수학</li>
+<li>M1522.000600* 컴퓨터프로그래밍</li>
+<li>M1522.000700* 논리설계</li>
+<li>400.021 정보통신융합</li></ul>
+</td>
+<td valign="top">
+<ul><li>4190.206A* 전기전자회로</li>
+<li>4190.209 컴퓨터공학세미나</li>
+<li>4190.210 프로그래밍의 원리</li>
+<li>4190.308* 컴퓨터구조</li>
+<li>M1522.000900* 자료구조</li>
+<li>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)* 공과대학 공통교과목</li></ul>
+</td></tr>
+<tr>
+<th align="center">3학년
+</th>
+<td valign="top">
+<ul><li>4190.306 오토마타이론</li>
+<li>4190.313 선형 및 비선형 계산모델</li>
+<li>4190.416A 디지털신호처리</li>
+<li>M1522.000100* 소프트웨어 개발의 원리와 실제</li>
+<li>M1522.000800* 시스템프로그래밍</li>
+<li>M1522.001400 데이터마이닝 개론</li></ul>
+</td>
+<td valign="top">
+<ul><li>4190.301 데이터베이스</li>
+<li>4190.302 데이터통신</li>
+<li>4190.307 운영체제</li>
+<li>4190.309A* 하드웨어시스템설계</li>
+<li>4190.310 프로그래밍언어</li>
+<li>4190.315 IT벤처창업개론</li>
+<li>4190.407* 알고리즘</li>
+<li>M1522.000200 창의적통합설계1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li></ul>
+</td></tr>
+<tr>
+<th align="center">4학년
+</th>
+<td valign="top">
+<ul><li>4190.303C 임베디드시스템과 응용</li>
+<li>4190.402 소프트웨어공학</li>
+<li>4190.408 인공지능</li>
+<li>4190.409 컴파일러</li>
+<li>4190.410 컴퓨터그래픽스</li>
+<li>4190.411 컴퓨터네트워크</li>
+<li>4190.422 IT-리더십세미나</li>
+<li>4190.425 컴퓨터엔지니어를 위한 기술 영어작문</li>
+<li>4190.427 소셜 네트워크 분석</li>
+<li>M1522.000300 창의적통합설계2</li>
+<li>M1522.001100 컴퓨터시스템특강</li></ul>
+</td>
+<td valign="top">
+<ul><li>4190.403 소프트웨어응용</li>
+<li>4190.406B 모바일 컴퓨팅과 응용</li>
+<li>4190.412 컴퓨터모델링</li>
+<li>4190.414A 멀티코어 컴퓨팅</li>
+<li>4190.415 컴퓨터보안</li>
+<li>4190.418A 웹정보시스템</li>
+<li>4190.423 컴퓨터융합응용</li>
+<li>4190.426A 인간컴퓨터상호작용</li>
+<li>4190.428 기계학습 개론</li>
+<li>4190.429 영상처리</li>
+<li>M1522.001000 컴퓨터비전</li>
+<li>M1522.001200 컴퓨터 신기술 특강</li></ul>
+</td></tr></tbody></table>
+<h3><span id=".EA.B2.BD.EA.B3.BC.EC.A1.B0.EC.B9.98"></span><span class="mw-headline" id="경과조치">경과조치</span></h3>
+<p>학사과정 전공교과목 이수표준형태는 2015학번부터 적용하며, 2014학번 이전 입학생은 종전 전공교과목 이수 표준형태를 따른다.
+</p>
+<h3><span id=".EA.B5.90.EA.B3.BC.EB.AA.A9_.EC.9D.B4.EC.88.98.EA.B7.9C.EC.A0.95"></span><span class="mw-headline" id="교과목_이수규정">교과목 이수규정</span></h3>
+<ol><li>공과대학 공통교과목
+<ul><li>400.013 기계공학개론</li>
+<li>400.015 산업공학개론</li>
+<li>400.020 재료공학개론</li>
+<li>400.022 건설환경공학개론</li>
+<li>400.023 화학생물공학개론</li>
+<li>400.024 에너지자원공학개론</li></ul>
+<dl><dd>중 1과목을 필수과목으로 이수하여야 함.</dd></dl></li>
+<li>학부 내규에 의한 이수규정을 따라야 함.</li></ol>
+<h3><span id=".EA.B2.BD.EA.B3.BC.EC.A1.B0.EC.B9.98_2"></span><span class="mw-headline" id="경과조치_2">경과조치</span></h3>
+<ol><li>’4190.206A 전기전자회로’를 수강한 학생은 구 교과과정 ‘4190.206 전자회로’와 ‘4190.208 회로이론’ 두 과목 이수를 충족한 것으로 본다.</li>
+<li>’4190.102A 컴퓨터프로그래밍’을 수강한 학생은 구 교과과정 ‘419.311 컴퓨터시스템실습’과 ‘419.312 컴퓨터이용설계실험’ 두 과목 이수를 총족한 것으로 본다.</li></ol>
+<h3><span id=".EB.B3.B5.EC.88.98.EC.A0.84.EA.B3.B5_.EC.9D.B4.EC.88.98.EA.B7.9C.EC.A0.95"></span><span class="mw-headline" id="복수전공_이수규정">복수전공 이수규정</span></h3>
+<p>학부내규에 따름.
+</p>
+<h3><span id=".EB.B6.80.EC.A0.84.EA.B3.B5_.EC.9D.B4.EC.88.98.EA.B7.9C.EC.A0.95"></span><span class="mw-headline" id="부전공_이수규정">부전공 이수규정</span></h3>
+<p>학부내규에 따름.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20230517040419
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.015 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 20/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+</div>
+`;
+
+export const CurriculumData: Curriculum[] = [
+  {
+    id: 1,
+    description: CurriculumHTMLData,
+    year: 2023,
+  },
+  {
+    id: 2,
+    description: CurriculumHTMLData,
+    year: 2022,
+  },
+  {
+    id: 3,
+    description: CurriculumHTMLData,
+    year: 2021,
+  },
+  {
+    id: 4,
+    description: CurriculumHTMLData,
+    year: 2020,
   },
 ];

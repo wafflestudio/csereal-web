@@ -2,10 +2,11 @@ import {
   getMockAcademicsGuide,
   getMockCourseChanges,
   getMockCourses,
+  getMockCurriculum,
   getMockDegreeRequirements,
 } from '@/data/academics';
 
-import { Course, CourseChange, DegreeRequirements, Guide } from '@/types/academics';
+import { Course, CourseChange, Curriculum, DegreeRequirements, Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
@@ -19,6 +20,8 @@ export const getCourseChanges = getMockCourseChanges;
 
 export const getDegreeRequirements = getMockDegreeRequirements;
 
+export const getCurriculum = getMockCurriculum;
+
 // export const getAcademicsGuide = (type: StudentType) =>
 //   getRequest(`/academics/${type}/guide`) as Promise<Guide>;
 
@@ -29,3 +32,6 @@ export const getDegreeRequirements = getMockDegreeRequirements;
 
 // export const getDegreeRequirements = () =>
 //   getRequest(`/academics/undergraduate/degree-requirements`) as Promise<DegreeRequirements[]>;
+
+// export const getCurriculum = () =>
+//    getRequest(`/academics/undergraduate/curriculum`) as Promise<Curriculum[]>;
