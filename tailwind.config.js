@@ -9,13 +9,23 @@ module.exports = {
   ],
   theme: {
     colors: {
-      neutral: colors.neutral,
+      neutral: {
+        50: '#121212',
+        100: '#171717',
+        200: '#262626',
+        300: '#404040',
+        400: '#737373',
+        500: '#a3a3a3',
+        600: '#d4d4d4',
+        700: '#e5e5e5',
+        800: '#fafafa',
+        900: '#ffffff',
+      },
       white: {
-        DEFAULT: '#ffffff',
+        DEFAULT: '#141212',
       },
       'main-orange': {
-        DEFAULT: '#ff6914',
-        dark: '#cf5c10',
+        DEFAULT: '#e9390b',
       },
       link: {
         DEFAULT: '#3c7be4',

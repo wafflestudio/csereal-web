@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body
-        className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal overscroll-none`}
+        className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal overscroll-none bg-white`}
       >
         <ModalContextProvider>
           <NavbarContextProvider>
