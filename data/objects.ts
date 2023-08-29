@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+
 import { Club, Direction, Facilities } from '@/types/about';
 import { Course } from '@/types/academics';
 import {
@@ -5,7 +7,6 @@ import {
   Faculty,
   SimpleEmiritusFaculty,
   SimpleFaculty,
-  SimpleStaff,
   Staff,
   StaffList,
 } from '@/types/people';
@@ -3314,7 +3315,7 @@ export const simpleResearchLabs: SimpleResearchLab[] = [
 export const researchLabs: ResearchLab[] = [
   {
     ...simpleResearchLabs[0],
-    description: '',
+    description: readFileSync('data/htmls/lab1Description.txt', { encoding: 'utf-8' }),
     websiteURL: 'http://datalab.snu.ac.kr/',
     group: '데이터베이스 및 빅데이터',
   },

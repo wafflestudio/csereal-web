@@ -11,7 +11,7 @@ import {
   Overview,
 } from '@/types/about';
 
-import { careerStat, clubs, directions, facilities, futureCompanies } from './objects.js';
+import { careerStat, clubs, directions, facilities, futureCompanies } from './objects';
 
 export const getMockOverview = async (): Promise<Overview> => {
   return {
