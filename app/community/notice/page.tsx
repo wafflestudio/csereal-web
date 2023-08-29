@@ -8,7 +8,7 @@ import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { modals } from '@/components/modal/ModalContainer';
+import AlertModal from '@/components/modal/AlertModal';
 import { BatchButton, CreateButton, EditButton } from '@/components/notice/NoticeButtons';
 import NoticeList from '@/components/notice/NoticeList';
 
@@ -103,12 +103,12 @@ export default function NoticePage() {
               disabled={selectedPostIds.size === 0}
               onClick={() =>
                 openModal(
-                  modals.getAlert({
-                    message: '선택한 게시글을 모두 삭제하시겠습니까?',
-                    confirmText: '삭제',
-                    onConfirm: batchDelete,
-                    onClose: closeModal,
-                  }),
+                  <AlertModal
+                    message="선택한 게시글을 모두 삭제하시겠습니까?"
+                    confirmText="삭제"
+                    onConfirm={batchDelete}
+                    onClose={closeModal}
+                  />,
                 )
               }
             >
@@ -118,12 +118,12 @@ export default function NoticePage() {
               disabled={selectedPostIds.size === 0}
               onClick={() =>
                 openModal(
-                  modals.getAlert({
-                    message: '선택한 게시글을 모두 고정 해제하시겠습니까?',
-                    confirmText: '고정 해제',
-                    onConfirm: batchUnpin,
-                    onClose: closeModal,
-                  }),
+                  <AlertModal
+                    message="선택한 게시글을 모두 고정 해제하시겠습니까?"
+                    confirmText="고정 해제"
+                    onConfirm={batchUnpin}
+                    onClose={closeModal}
+                  />,
                 )
               }
             >
