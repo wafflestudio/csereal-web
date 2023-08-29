@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
 
 import { faculty, researchLabs } from '@/types/page';
-import { ResearchLabInfo } from '@/types/research';
+import { SimpleResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
 
@@ -20,7 +20,7 @@ export const LAB_ROW_ITEM_WIDTH = {
 const laboratoriesPath = getPath(researchLabs);
 const facultyPath = getPath(faculty);
 
-export default function ResearchLabListRow({ lab }: { lab: ResearchLabInfo }) {
+export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) {
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
       <NameCell name={lab.name} id={lab.id} />

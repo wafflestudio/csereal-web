@@ -1,5 +1,10 @@
 export interface Guide {
   description: string;
+  attachments: {
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
 }
 
 export type Year = '1학년' | '2학년' | '3학년' | '4학년' | '대학원';

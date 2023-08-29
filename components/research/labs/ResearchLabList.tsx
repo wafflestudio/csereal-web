@@ -1,10 +1,10 @@
-import { ResearchLabInfo } from '@/types/research';
+import { SimpleResearchLab } from '@/types/research';
 
 import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';
 
 interface ResearchLabListProps {
-  labInfos: ResearchLabInfo[];
+  labInfos: SimpleResearchLab[];
 }
 
 export default function ResearchLabList({ labInfos }: ResearchLabListProps) {

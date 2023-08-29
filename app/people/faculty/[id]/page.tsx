@@ -1,10 +1,7 @@
-'use client';
-
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import useSWR from 'swr';
 
-import { getMockFaculty } from '@/apis/faculty';
+import { getFaculty } from '@/apis/people';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -17,10 +14,8 @@ import { getPath } from '@/utils/page';
 
 const labUrl = getPath(researchLabs);
 
-export default function FacultyMemberPage() {
-  const id = parseInt(useParams().id);
-
-  const { data, isLoading, error } = useSWR({ url: `/professor/${id}` }, getMockFaculty);
+export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
+  const data = await getFaculty(params.id);
 
   return (
     data && (
@@ -58,7 +53,9 @@ export default function FacultyMemberPage() {
           </div>
           <div className="mt-8 break-all">
             <PeopleInfoList title="학력" infoList={data.educations} />
-            <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            {data.researchAreas !== undefined && (
+              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            )}
             {data.careers && <PeopleInfoList title="경력" infoList={data.careers} />}
           </div>
         </div>
