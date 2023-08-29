@@ -2,9 +2,9 @@ import { useParams } from 'next/navigation';
 import { useCallback } from 'react';
 import useSwr from 'swr';
 
-import { AdjPostInfo } from '@/types/post';
+import { AdjPostInfo, PostSearchQueryParams } from '@/types/post';
 
-import { PostSearchQueryParams, useCustomSearchParams } from './useCustomSearchParams';
+import { useCustomSearchParams } from './useCustomSearchParams';
 import { useQueryString } from './useQueryString';
 
 interface PostWithAdjIdInfo {
@@ -53,4 +53,3 @@ export function usePosts<T extends PostWithAdjIdInfo>(
     listPathWithQuery,
   } as const;
 }
-
