@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { getMockNewsPosts } from '@/apis/news';
+import { getNewsPosts } from '@/apis/news';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
@@ -28,7 +28,7 @@ export default function NewsPage() {
     data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
     isLoading, // TODO: 로딩 컴포넌트
     error, // TODO: 에러 컴포넌트?
-  } = useSWR({ url: '/news', params: { page, keyword, tag: tags } }, getMockNewsPosts); // 추후 fetcher 삭제
+  } = useSWR({ url: '/news', params: { page, keyword, tag: tags } }, getNewsPosts); // 추후 fetcher 삭제
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });

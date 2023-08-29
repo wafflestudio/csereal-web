@@ -53,3 +53,4 @@ export function usePosts<T extends PostWithAdjIdInfo>(
     listPathWithQuery,
   } as const;
 }
+

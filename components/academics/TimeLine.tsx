@@ -14,7 +14,7 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
         <TimeSpot
           year={spot.year}
           isSelected={spot.year === selectedYear}
-          onClick={() => setSelectedYear(spot.year)}
+          onChange={() => setSelectedYear(spot.year)}
           margin={spot.margin}
           isLast={spot.isLast}
           key={spot.year}
@@ -27,18 +27,18 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
 interface TimeSpotProps {
   year: number;
   isSelected: boolean;
-  onClick: () => void;
+  onChange: () => void;
   margin?: string;
   isLast?: boolean;
 }
 
-function TimeSpot({ year, isSelected, onClick, margin, isLast }: TimeSpotProps) {
+function TimeSpot({ year, isSelected, onChange, margin, isLast }: TimeSpotProps) {
   return (
-    <button
+    <label
+      htmlFor={`${year}`}
       className={`z-10 group top-0 w-[1.875rem] h-full flex flex-col justify-between items-center ${margin} ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
-      onClick={onClick}
     >
       <Circle highlight={isSelected} />
       <span className="flex items-center font-yoon text-main-orange text-sm tracking-[0.02em]">
@@ -47,7 +47,16 @@ function TimeSpot({ year, isSelected, onClick, margin, isLast }: TimeSpotProps) 
           <span className="material-symbols-rounded font-light text-base">arrow_downward</span>
         )}
       </span>
-    </button>
+      <input
+        type="radio"
+        id={`${year}`}
+        name="year"
+        className="hidden"
+        value={year}
+        checked={isSelected}
+        onChange={onChange}
+      />
+    </label>
   );
 }
 

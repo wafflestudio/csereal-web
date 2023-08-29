@@ -1,6 +1,4 @@
-'use client';
-
-import { getNoticePostDetail, getNoticePostDetailMock } from '@/apis/notice';
+import { getNoticePostDetail } from '@/apis/notice';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -9,23 +7,28 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { usePosts } from '@/hooks/usePosts';
-
 import { notice } from '@/types/page';
-import { NoticePostResponse } from '@/types/post';
+import { PostSearchQueryParams } from '@/types/post';
 
+import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
 
 const writer = '박지혜';
 
+interface NoticePostPageProps {
+  params: { id: string };
+  searchParams: PostSearchQueryParams;
+}
+
 const noticePath = getPath(notice);
 
-export default function NoticePostPage() {
-  const { currPost, prevPostPreview, nextPostPreview, listPathWithQuery } =
-    usePosts<NoticePostResponse>(
-      noticePath,
-      getNoticePostDetailMock, // 추후에 getNoticePostDetail로 변경
-    );
+export default async function NoticePostPage({ params, searchParams }: NoticePostPageProps) {
+  const currPost = await getNoticePostDetail(parseInt(params.id), searchParams);
+  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
+    currPost,
+    searchParams,
+    noticePath,
+  );
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
