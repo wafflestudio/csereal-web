@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { careerStatCols, careerStatRows } from '@/data/objects';
+
 import { FutureCareers } from '@/types/about';
 
 import Dropdown from '../common/Dropdown';
