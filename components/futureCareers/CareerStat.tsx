@@ -6,9 +6,6 @@ import { FutureCareers } from '@/types/about';
 
 import Dropdown from '../common/Dropdown';
 
-const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
-const careerStatCols = ['학부', '석사', '박사'];
-
 export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);
 
