@@ -14,7 +14,7 @@ export const getRequest = async <T = unknown>(
     const responseData = await response.json();
     return responseData as T;
   } catch (error) {
-    console.log('error on get request');
+    console.log('error on get request', error);
   }
 };
 
@@ -29,7 +29,7 @@ export const postRequest = async <T = unknown>(
     const responseData = await response.json();
     return responseData as T;
   } catch (error) {
-    console.log('error on post request');
+    console.log('error on post request', error);
   }
 };
 
@@ -48,17 +48,15 @@ export const patchRequest = async <T = unknown>(
     const responseData = await response.json();
     return responseData as T;
   } catch (error) {
-    console.log('error on patch request');
+    console.log('error on patch request', error);
   }
 };
 
 export const deleteRequest = async <T = unknown>(url: string, headers: HeadersInit = {}) => {
   const fetchUrl = `${BASE_URL}${url}`;
   try {
-    const response = await fetch(fetchUrl, { method: 'DELETE', headers });
-    const responseData = await response.json();
-    return responseData as T;
+    await fetch(fetchUrl, { method: 'DELETE', headers });
   } catch (error) {
-    console.log('error on delete request');
+    console.log('error on delete request', error);
   }
 };
