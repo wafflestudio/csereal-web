@@ -1,17 +1,24 @@
-import { getMockNewsPostDetail, getMockNewsPosts } from '@/data/news';
+import {
+  PostSearchQueryParams,
+  GETNewsPostsResponse,
+  NewsPostResponse,
+  NewsPost,
+} from '@/types/post';
 
-import { NewsPostResponse, GETNewsPostsResponse, PostSearchQueryParams } from '@/types/post';
-
-import { getRequest } from '.';
-
-export const getNewsPosts = getMockNewsPosts;
-
-export const getNewsPostDetail = getMockNewsPostDetail;
+import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
 const newsPath = '/news';
 
-// export const getNewsPosts = ({ params }: { params: PostSearchQueryParams }) =>
-//   getRequest(newsPath, params) as Promise<GETNewsPostsResponse>;
+export const getNewsPosts = (params: PostSearchQueryParams) =>
+  getRequest(newsPath, params) as Promise<GETNewsPostsResponse>;
 
-// export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
-//   getRequest(`${newsPath}/${id}`, params) as Promise<NewsPostResponse>;
+export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
+  getRequest(`${newsPath}/${id}`, params) as Promise<NewsPostResponse>;
+
+export const postNews = (newPost: NewsPost) =>
+  postRequest(newsPath, newPost) as Promise<NewsPostResponse>;
+
+export const patchNews = (id: number, newPost: Partial<NewsPost>) =>
+  patchRequest(`${newsPath}/${id}`, newPost) as Promise<NewsPostResponse>;
+
+export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);
