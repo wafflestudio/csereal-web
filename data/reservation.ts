@@ -63,6 +63,8 @@ const buildDate = (month: number, date: number, hour: number, minute: 0 | 30): D
 const reservations: Reservation[] = [
   buildMockReservation(0, buildDate(8, 31, 15, 30), buildDate(8, 31, 17, 30)),
   buildMockReservation(1, buildDate(8, 31, 18, 30), buildDate(8, 31, 20, 30)),
-  buildMockReservation(1, buildDate(9, 2, 18, 30), buildDate(9, 2, 20, 30)),
-  buildMockReservation(1, buildDate(9, 20, 18, 30), buildDate(9, 20, 20, 30)),
+  buildMockReservation(2, buildDate(9, 2, 18, 30), buildDate(9, 2, 20, 30)),
+  buildMockReservation(3, buildDate(9, 20, 18, 30), buildDate(9, 20, 20, 30)),
+  buildMockReservation(4, buildDate(9, 3, 18, 30), buildDate(9, 3, 19, 0)),
+  buildMockReservation(5, buildDate(9, 5, 8, 0), buildDate(9, 5, 19, 0)),
 ];

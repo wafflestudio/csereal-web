@@ -27,10 +27,26 @@ export function SelectDayButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
   const [show, toggle] = useReducer((x) => !x, false);
 
+  const today = new Date();
+  const isDateToday =
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate();
+
   return (
     <div>
-      <BasicButton className="w-[6.25rem] relative h-full" onClick={toggle}>
-        날짜 선택
+      <BasicButton
+        className="w-[6.25rem] h-full flex gap-1 items-center justify-center"
+        onClick={toggle}
+      >
+        {isDateToday ? (
+          '날짜 선택'
+        ) : (
+          <>
+            <span className="material-symbols-rounded text-sm">calendar_month</span>
+            {dateToDotSeparatedYmdStr(date)}
+          </>
+        )}
       </BasicButton>
       <div className="relative">
         {show && (
@@ -84,14 +100,16 @@ const useDateQuery = () => {
   return (date: Date) => router.push(`${pathname}?startDate=${dateToYmdStr(date)}`);
 };
 
-const ymdToDate = (ymd: { year: number; month: number; day: number }) => {
-  return new Date(ymd.year, ymd.month - 1, ymd.day);
-};
-
 const dateToYmdStr = (date: Date): string => {
   return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
     .map((x) => (x + '').padStart(2, '0'))
     .join('-');
+};
+
+const dateToDotSeparatedYmdStr = (date: Date): string => {
+  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+    .map((x) => (x + '').padStart(2, '0'))
+    .join('.');
 };
 
 const addWeekToDate = (date: Date): Date => {
