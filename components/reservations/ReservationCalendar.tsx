@@ -1,6 +1,7 @@
 import { Reservation } from '@/types/reservation';
 
 import BasicButton from './BasicButton';
+import CalendarContent from './CalendarContent';
 import {
   NextWeekButton,
   PreviousWeekButton,
@@ -19,6 +20,7 @@ export default function ReservationCalendar({
     <div className="w-[47.5rem]">
       <Header year={ymd.year} month={ymd.month} />
       <Toolbar {...ymd} />
+      <CalendarContent ymd={ymd} />
     </div>
   );
 }
@@ -39,7 +41,7 @@ const Toolbar = (date: { year: number; month: number; day: number }) => {
     today.getDate() === date.day;
 
   return (
-    <div className="flex h-7 items-stretch justify-between">
+    <div className="flex h-7 items-stretch justify-between mb-4">
       <div className="w-24" />
       <div className="flex gap-2">
         <TodayButton hidden={todayButtonHidden} />
@@ -54,4 +56,3 @@ const Toolbar = (date: { year: number; month: number; day: number }) => {
     </div>
   );
 };
-
