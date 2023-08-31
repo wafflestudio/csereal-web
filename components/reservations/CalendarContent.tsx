@@ -1,11 +1,27 @@
+import { Reservation } from '@/types/reservation';
+
 export default function CalendarContent({
-  ymd,
+  startDate,
+  selectedDate,
+  reservations,
 }: {
-  ymd: { year: number; month: number; day: number };
+  startDate: Date;
+  selectedDate: Date;
+  reservations: Reservation[];
 }) {
+  const dates = getNextSevenDays(startDate);
+
   return (
     <div className="flex">
       <RowIndex />
+      {dates.map((date) => (
+        <DayColumn
+          key={date.toISOString()}
+          date={date}
+          selected={isSameDay(date, selectedDate)}
+          reservations={reservations.filter((x) => isReservationInDate(x, date))}
+        />
+      ))}
     </div>
   );
 }
@@ -35,8 +51,48 @@ const RowIndex = () => {
   );
 };
 
+const DayColumn = ({
+  date,
+  selected,
+  reservations,
+}: {
+  date: Date;
+  selected: boolean;
+  reservations: Reservation[];
+}) => {
+  const dayToStr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
-
-const ymdToDate = (ymd: { year: number; month: number; day: number }) => {
-  return new Date(ymd.year, ymd.month - 1, ymd.day);
+  return (
+    <div className="flex flex-col items-stretch w-[6.25rem]">
+      <div
+        className={`
+        h-[4.0625rem] border border-x-neutral-200 border-b-neutral-200 border-t-neutral-300 
+        bg-neutral-100 px-3 py-[.62rem] flex flex-col justify-between
+        ${selected && 'bg-neutral-200'}
+        `}
+      >
+        <p className="font-yoon text-xs font-medium">{dayToStr[date.getDay()]}</p>
+        <p className="font-yoon text-base font-bold leading-4">{date.getDate()}</p>
+      </div>
+    </div>
+  );
 };
+
+const getNextSevenDays = (date: Date) => {
+  return Array(7)
+    .fill(0)
+    .map((_, i) => {
+      const temp = new Date(date);
+      temp.setDate(temp.getDate() + i);
+      return temp;
+    });
+};
+
+const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
+  return isSameDay(reservation.startTime, date) && isSameDay(reservation.endTime, date);
+};
+
+const isSameDay = (date1: Date, date2: Date) =>
+  date1.getFullYear() === date2.getFullYear() &&
+  date1.getMonth() === date2.getMonth() &&
+  date1.getDate() === date2.getDate();

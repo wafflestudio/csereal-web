@@ -53,7 +53,7 @@ const buildMockReservation = (id: number, startTime: Date, endTime: Date): Reser
 
 const buildDate = (month: number, date: number, hour: number, minute: 0 | 30): Date => {
   const ret = new Date();
-  ret.setMonth(month);
+  ret.setMonth(month - 1);
   ret.setDate(date);
   ret.setHours(hour);
   ret.setMinutes(minute);
