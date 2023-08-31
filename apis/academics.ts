@@ -1,6 +1,6 @@
 import { getMockAcademicsGuide, getMockCourseChanges, getMockCourses } from '@/data/academics';
 
-import { Course, CourseChange, Guide } from '@/types/academics';
+import { Course, CourseChange, Curriculum, DegreeRequirements, Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
