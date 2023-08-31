@@ -1,9 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import SlideList from '@/components/admin/SlideList';
 import { StraightNode } from '@/components/common/Nodes';
+import Pagination from '@/components/common/Pagination';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -15,19 +17,30 @@ import { getPath } from '@/utils/page';
 const ADMIN_MENU = ['슬라이드쇼 관리', '중요 안내 관리'];
 
 interface AdminPageProps {
-  searchParams: { selected: string };
+  searchParams: { selected: string; page: string };
 }
 
-const slidesMock: SimpleSlide[] = [
-  { title: '슬라이드', id: 1, createdAt: '2023-08-05' },
-  { title: '슬라이드', id: 2, createdAt: '2023-08-05' },
-];
+const slidesMock: { posts: SimpleSlide[]; total: number } = {
+  posts: [
+    { title: '슬라이드', id: 1, createdAt: '2023-08-05' },
+    { title: '슬라이드', id: 2, createdAt: '2023-08-05' },
+  ],
+  total: 2,
+};
 
+const POST_LIMIT = 40;
 const adminPath = getPath(admin);
 
-export default function AdminPage({ searchParams: { selected } }: AdminPageProps) {
-  const posts = slidesMock;
+export default function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
+  const posts = slidesMock.posts;
+  const totalPostsCount = slidesMock.total;
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const router = useRouter();
+
+  const changePage = (newPage: number) => {
+    const selectedMenu = selected || ADMIN_MENU[0];
+    router.push(`/admin?selected=${selectedMenu}&page=${newPage}`);
+  };
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
@@ -44,6 +57,12 @@ export default function AdminPage({ searchParams: { selected } }: AdminPageProps
         posts={posts}
         selectedPostIds={selectedPostIds}
         setSelectedPostIds={setSelectedPostIds}
+      />
+      <Pagination
+        totalPostsCount={totalPostsCount}
+        postsCountPerPage={POST_LIMIT}
+        currentPage={parseInt(page) || 1}
+        setCurrentPage={changePage}
       />
     </PageLayout>
   );

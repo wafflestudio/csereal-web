@@ -34,7 +34,7 @@ export default function SlideList({ posts, selectedPostIds, setSelectedPostIds }
         {posts.map((post, i) => (
           <SlideListRow
             key={i}
-            order={i}
+            index={i + 1}
             post={post}
             isSelected={selectedPostIds.has(post.id)}
             toggleSelected={toggleSelected}

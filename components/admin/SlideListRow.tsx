@@ -8,7 +8,7 @@ import { seminar } from '@/types/page';
 import { getPath } from '@/utils/page';
 
 interface SlideListRowProps {
-  order: number;
+  index: number;
   post: SimpleSlide;
   isSelected: boolean;
   toggleSelected: (id: number, isSelected: boolean) => void;
@@ -16,7 +16,7 @@ interface SlideListRowProps {
 
 export const SLIDE_ROW_CELL_WIDTH = {
   check: 'w-[3.125rem]',
-  order: 'w-[3.125rem]',
+  index: 'w-[3.125rem]',
   title: 'w-[31.25rem]',
   date: 'w-[9.375rem]',
   edit: 'w-[4.375rem]',
@@ -25,7 +25,7 @@ export const SLIDE_ROW_CELL_WIDTH = {
 const seminarPath = getPath(seminar);
 
 export default function SlideListRow({
-  order,
+  index,
   post,
   isSelected,
   toggleSelected,
@@ -40,7 +40,7 @@ export default function SlideListRow({
         isChecked={isSelected}
         toggleCheck={() => toggleSelected(post.id, isSelected)}
       />
-      <OrderCell order={order} />
+      <IndexCell index={index} />
       <TitleCell title={post.title} id={post.id} />
       <DateCell date={post.createdAt} />
       <EditCell id={post.id} />
@@ -70,8 +70,8 @@ function CheckboxCell({ isChecked = true, toggleCheck }: CheckboxCellProps) {
   );
 }
 
-function OrderCell({ order }: { order: number }) {
-  return <span className={`${SLIDE_ROW_CELL_WIDTH.order} text-center`}>{order}</span>;
+function IndexCell({ index }: { index: number }) {
+  return <span className={`${SLIDE_ROW_CELL_WIDTH.index} text-center`}>{index}</span>;
 }
 
 function TitleCell({ title, id }: { title: string; id: number }) {
