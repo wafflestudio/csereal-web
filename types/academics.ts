@@ -49,3 +49,19 @@ export interface Scholarship {
   name: string;
   description: string;
 }
+export interface DegreeRequirements {
+  id: number;
+  description: string;
+  year: number;
+  attachment: {
+    name: string;
+    url: string;
+    bytes: number;
+  };
+}
+
+export interface Curriculum {
+  id: number;
+  description: string;
+  year: number;
+}

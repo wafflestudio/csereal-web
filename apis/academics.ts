@@ -7,7 +7,7 @@ import {
   getMockUndergraduateScholarshipList,
 } from '@/data/academics';
 
-import { Course, CourseChange, Guide, Scholarship, ScholarshipList } from '@/types/academics';
+import { Course, CourseChange, Curriculum, DegreeRequirements, Guide } from '@/types/academics';
 
 import { getRequest } from '.';
 
@@ -32,9 +32,3 @@ export const getScholarship = getMockScholarship;
 //   getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
 
 // export const getCourseChanges = (): Promise<CourseChange[]> => courseChangesData;
-
-// export const getUndergraduateScholarshipList = () =>
-//   getRequest(`/academics/${type}/scholarship`) as Promise<ScholarshipList>;
-
-// export const getScholarship = (id: number) =>
-//   getRequest(`/academics/${type}/scholarship/${id}`) as Promise<Scholarship>;
