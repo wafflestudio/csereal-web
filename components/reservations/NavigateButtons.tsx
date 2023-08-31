@@ -3,8 +3,12 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 
+import useModal from '@/hooks/useModal';
+
+import AddReservationModal from './AddReservationModal';
 import BasicButton from './BasicButton';
 import DateSelector from './DateSelector';
+import ModalFrame from '../modal/ModalFrame';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();
@@ -90,6 +94,19 @@ export function NextWeekButton({ date }: { date: Date }) {
   return (
     <BasicButton className="w-[1.875rem]" onClick={handleClick}>
       <span className="material-symbols-rounded text-xl align-middle">navigate_next</span>
+    </BasicButton>
+  );
+}
+
+export function MakeReservationButton() {
+  const { openModal } = useModal();
+  const handleClick = () => {
+    openModal(<AddReservationModal />);
+  };
+
+  return (
+    <BasicButton className="w-[4.0625rem]" onClick={handleClick}>
+      예약하기
     </BasicButton>
   );
 }

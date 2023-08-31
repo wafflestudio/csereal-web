@@ -3,6 +3,7 @@ import { Reservation } from '@/types/reservation';
 import BasicButton from './BasicButton';
 import CalendarContent from './CalendarContent';
 import {
+  MakeReservationButton,
   NextWeekButton,
   PreviousWeekButton,
   SelectDayButton,
@@ -48,7 +49,7 @@ const Toolbar = ({ date }: { date: Date }) => {
 
   return (
     <div className="flex h-7 items-stretch justify-between mb-4">
-      <div className="w-24" />
+      <div className="w-[4.0625rem]" />
       <div className="flex gap-2">
         <TodayButton hidden={todayButtonHidden} />
         <SelectDayButton date={date} />
@@ -56,8 +57,7 @@ const Toolbar = ({ date }: { date: Date }) => {
         <NextWeekButton date={date} />
       </div>
       <div className="flex gap-2">
-        <BasicButton className="w-[4.0625rem]">예약하기</BasicButton>
-        <BasicButton className="w-[4.1875rem]">예약 삭제</BasicButton>
+        <MakeReservationButton />
       </div>
     </div>
   );
