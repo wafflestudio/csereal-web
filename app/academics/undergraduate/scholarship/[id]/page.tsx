@@ -1,4 +1,4 @@
-import { getScholarship } from '@/apis/academics';
+import { getScholarship } from '@/apis/academicsServer';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

@@ -1,4 +1,4 @@
-import { getUndergraduateScholarshipList } from '@/apis/academics';
+import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
 
 import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
 import HTMLViewer from '@/components/editor/HTMLViewer';
