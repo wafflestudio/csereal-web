@@ -7,7 +7,7 @@ import DegreeRequirementsContent from '@/public/image/undergraduate_degree_requi
 import { DegreeRequirements } from '@/types/academics';
 
 import Attachments from '../common/Attachments';
-import Dropdown from '../common/Dropdown';
+import { DropdownWithScroll } from '../common/Dropdown';
 import { StraightNode } from '../common/Nodes';
 import HTMLViewer from '../editor/HTMLViewer';
 
@@ -18,7 +18,7 @@ export default function DegreeRequirementsBody({ data }: { data: DegreeRequireme
       <div className="flex flex-col">
         <div className="flex flex-row items-center gap-2">
           <p className="font-noto text-sm font-normal">입학연도</p>
-          <Dropdown
+          <DropdownWithScroll
             contents={data.map((item) => item.year.toString())}
             selectedIndex={selectedDegreeRequirementsIndex}
             onClick={setSelectedDegreeRequirementsIndex}
