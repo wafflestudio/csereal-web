@@ -17,7 +17,7 @@ export default function AlertModal({
 }: AlertModalProps) {
   return (
     <ModalFrame onClose={onClose}>
-      <div className="px-10 py-6">
+      <div className="px-10 py-6 bg-white">
         <DialogMessage message={message} />
         <div className="text-right">
           <CancelButton text={cancelText} onClick={onClose} />

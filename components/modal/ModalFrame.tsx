@@ -1,4 +1,4 @@
-import { Dialog } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
 
 interface ModalFrameProps {
   onClose: () => void;
@@ -7,7 +7,12 @@ interface ModalFrameProps {
 
 export default function ModalFrame({ onClose, children }: ModalFrameProps) {
   return (
-    <Dialog open onClose={onClose} PaperProps={{ sx: { maxWidth: '100%' } }}>
+    <Dialog
+      open
+      onClose={onClose}
+      PaperProps={{ sx: { maxWidth: '100%' } }}
+      sx={{ backdropFilter: 'blur(2px)' }}
+    >
       {children}
     </Dialog>
   );
