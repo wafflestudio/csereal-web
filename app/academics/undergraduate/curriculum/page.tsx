@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import PentagonMedium from '@/public/image/pentagon_medium.svg';
 
-import { getCurriculum } from '@/apis/academics';
+import { getCurriculum } from '@/apis/academicsServer';
 
 import CurriculumBody from '@/components/academics/CurriculumBody';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

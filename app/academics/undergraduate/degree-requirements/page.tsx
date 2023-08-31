@@ -1,10 +1,10 @@
-import { getDegreeRequirements } from '@/apis/academics';
+import { getMockDegreeRequirements } from '@/data/serverObjects';
 
 import DegreeRequirementsBody from '@/components/academics/DegreeRequirements';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function UndergraduteDegreeRequirementsPage() {
-  const data = await getDegreeRequirements();
+  const data = await getMockDegreeRequirements();
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
