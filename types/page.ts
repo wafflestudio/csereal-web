@@ -518,6 +518,14 @@ export const bldg302room209: SegmentNode = {
   children: null,
 };
 
+export const admin: SegmentNode = {
+  name: '관리자 페이지',
+  segment: 'admin',
+  isPage: true,
+  parent: null,
+  children: [notice, news, seminar],
+};
+
 main.children = [about, community, people, research, admissions, academics, reservations];
 about.children = [
   overview,
