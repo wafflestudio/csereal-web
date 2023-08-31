@@ -13,6 +13,7 @@ import { SimpleSlide } from '@/types/admin';
 import { admin } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 
 interface AdminPageProps {
   searchParams: { selected: string; page: string };
@@ -46,10 +47,10 @@ export default function AdminPage({ searchParams: { selected, page } }: AdminPag
   };
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
       <SelectionList
         names={ADMIN_MENU}
-        selectedItemName={selected || ADMIN_MENU[0]}
+        selectedItemName={replaceDashWithSpace(selected) || ADMIN_MENU[0]}
         path={adminPath}
         listGridColumnClass="grid-cols-[200px_220px]"
       />
