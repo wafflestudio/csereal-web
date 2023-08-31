@@ -31,7 +31,7 @@ export default function CalendarColumn({
           .map((_, i) => (
             <div
               key={i}
-              className={`h-6 ${styles.cell} ${selected && 'bg-[rgba(64,64,64,0.3)]'}`}
+              className={`h-6 box-border ${styles.cell} ${selected && 'bg-[rgba(64,64,64,0.3)]'}`}
             />
           ))}
         {reservations.map((reservation) => (
@@ -65,11 +65,17 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
 
   return (
     <div
-      className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center box-content`}
+      className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center`}
       style={{ height: height + 'rem', top: topOffset + 'rem' }}
     >
-      {unitHeight !== 1 && <p className="font-yoon text-xs font-bold h-6">{timeText}</p>}
-      <p className="font-yoon text-xs font-medium h-6">{reservation.userName}</p>
+      {unitHeight !== 1 && (
+        <div className="flex h-6 items-center">
+          <p className="font-yoon text-xs font-bold">{timeText}</p>
+        </div>
+      )}
+      <div className="flex h-6 items-center">
+        <p className="font-yoon text-xs font-medium">{reservation.userName}</p>
+      </div>
     </div>
   );
 };
