@@ -7,7 +7,7 @@ export interface SimpleFaculty {
   email?: string;
   labId?: number;
   labName?: string;
-  status?: 'ACTIVE' | 'INACTIVE' | 'VISITING';
+  status?: 'ACTIVE' | 'VISITING';
 }
 
 export interface FacultyList {

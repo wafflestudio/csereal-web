@@ -7,12 +7,10 @@ export default async function UndergraduteDegreeRequirementsPage() {
   const data = await getDegreeRequirements();
 
   return (
-    data && (
-      <PageLayout titleType="big" titleMargin="mb-9">
-        <div className="flex flex-col">
-          <DegreeRequirementsBody data={data} />
-        </div>
-      </PageLayout>
-    )
+    <PageLayout titleType="big" titleMargin="mb-9">
+      <div className="flex flex-col">
+        <DegreeRequirementsBody data={data} />
+      </div>
+    </PageLayout>
   );
 }
