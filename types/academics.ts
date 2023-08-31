@@ -28,6 +28,14 @@ export interface CourseChange {
 }
 
 export interface GeneralStudiesRequirements {
+  overview: string;
+  subjectChanges?: {
+    status: 'new' | 'change';
+    time: number;
+    additionalInfos?: string[];
+    changes: string[];
+    progress: string;
+  }[];
   description: string;
 }
 
