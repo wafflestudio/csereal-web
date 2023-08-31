@@ -10,7 +10,7 @@ interface RoomReservationProps {
 
 export default async function RoomReservation({ params, searchParams }: RoomReservationProps) {
   const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
-  const ymd = parseDate(searchParams.startDate || todayYMDStr());
+  const date = parseDate(searchParams.startDate || todayYMDStr());
 
   if (roomId === undefined) {
     return (
@@ -20,7 +20,7 @@ export default async function RoomReservation({ params, searchParams }: RoomRese
     );
   }
 
-  if (ymd === undefined) {
+  if (date === undefined) {
     return (
       <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
         유효하지 않은 날짜입니다.
@@ -28,11 +28,22 @@ export default async function RoomReservation({ params, searchParams }: RoomRese
     );
   }
 
-  const reservations = await getWeeklyReservation(roomId, ymd.year, ymd.month, ymd.day);
+  const startOfWeek = getStartOfWeek(date);
+
+  const reservations = await getWeeklyReservation(
+    roomId,
+    startOfWeek.getFullYear(),
+    startOfWeek.getMonth() + 1,
+    startOfWeek.getDate(),
+  );
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
-      <ReservationCalendar ymd={ymd} reservations={reservations} />
+      <ReservationCalendar
+        startDate={startOfWeek}
+        selectedDate={date}
+        reservations={reservations}
+      />
     </PageLayout>
   );
 }
@@ -67,8 +78,15 @@ const parseDate = (dateString: string) => {
   if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) monthLength[1] = 29;
 
   if (day > 0 && day <= monthLength[month - 1]) {
-    return { year, month, day };
+    return new Date(year, month - 1, day);
   } else {
     return undefined;
   }
+};
+
+// 일주일의 시작을 월요일로 간주
+const getStartOfWeek = (date: Date) => {
+  const ret = new Date(date);
+  while (ret.getDay() !== 1) ret.setDate(ret.getDate() - 1);
+  return ret;
 };

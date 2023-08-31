@@ -23,10 +23,10 @@ export function TodayButton({ hidden }: { hidden: boolean }) {
   );
 }
 
-export function SelectDayButton(ymd: { year: number; month: number; day: number }) {
+export function SelectDayButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
   const [show, toggle] = useReducer((x) => !x, false);
-  const date = ymdToDate(ymd);
+
   return (
     <div>
       <BasicButton className="w-[6.25rem] relative h-full" onClick={toggle}>
@@ -48,11 +48,10 @@ export function SelectDayButton(ymd: { year: number; month: number; day: number 
   );
 }
 
-export function PreviousWeekButton(ymd: { year: number; month: number; day: number }) {
+export function PreviousWeekButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
 
   const handleClick = () => {
-    const date = ymdToDate(ymd);
     const prevWeekDate = subWeekFromDate(date);
     querySetter(prevWeekDate);
   };
@@ -64,11 +63,10 @@ export function PreviousWeekButton(ymd: { year: number; month: number; day: numb
   );
 }
 
-export function NextWeekButton(ymd: { year: number; month: number; day: number }) {
+export function NextWeekButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
 
   const handleClick = () => {
-    const date = ymdToDate(ymd);
     const prevWeekDate = addWeekToDate(date);
     querySetter(prevWeekDate);
   };

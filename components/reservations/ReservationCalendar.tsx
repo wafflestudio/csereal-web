@@ -10,17 +10,23 @@ import {
 } from './NavigateButtons';
 
 export default function ReservationCalendar({
-  ymd,
+  startDate,
+  selectedDate,
   reservations,
 }: {
-  ymd: { year: number; month: number; day: number };
+  startDate: Date;
+  selectedDate: Date;
   reservations: Reservation[];
 }) {
   return (
     <div className="w-[47.5rem]">
-      <Header year={ymd.year} month={ymd.month} />
-      <Toolbar {...ymd} />
-      <CalendarContent ymd={ymd} />
+      <Header year={selectedDate.getFullYear()} month={selectedDate.getMonth() + 1} />
+      <Toolbar date={selectedDate} />
+      <CalendarContent
+        startDate={startDate}
+        selectedDate={selectedDate}
+        reservations={reservations}
+      />
     </div>
   );
 }
@@ -33,21 +39,21 @@ const Header = ({ year, month }: { year: number; month: number }) => {
   );
 };
 
-const Toolbar = (date: { year: number; month: number; day: number }) => {
+const Toolbar = ({ date }: { date: Date }) => {
   const today = new Date();
   const todayButtonHidden =
-    today.getFullYear() === date.year &&
-    today.getMonth() + 1 === date.month &&
-    today.getDate() === date.day;
+    today.getFullYear() === date.getFullYear() &&
+    today.getMonth() === date.getMonth() &&
+    today.getDate() === date.getDate();
 
   return (
     <div className="flex h-7 items-stretch justify-between mb-4">
       <div className="w-24" />
       <div className="flex gap-2">
         <TodayButton hidden={todayButtonHidden} />
-        <SelectDayButton {...date} />
-        <PreviousWeekButton {...date} />
-        <NextWeekButton {...date} />
+        <SelectDayButton date={date} />
+        <PreviousWeekButton date={date} />
+        <NextWeekButton date={date} />
       </div>
       <div className="flex gap-2">
         <BasicButton className="w-[4.0625rem]">예약하기</BasicButton>
