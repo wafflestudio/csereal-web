@@ -22,7 +22,7 @@ interface SeminarPostPageProps {
 const seminarPath = getPath(seminar);
 
 export default async function SeminarPostPage({ params, searchParams }: SeminarPostPageProps) {
-  const currPost = await getSeminarPost(parseInt(params.id));
+  const currPost = await getSeminarPost(parseInt(params.id), searchParams);
   const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
     currPost,
     searchParams,
@@ -36,7 +36,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
           <Attachments files={[]} />
           <div className="relative float-right ml-7 mt-4 mb-7 w-60 h-60">
             <Image
-              src={currPost.imageURL}
+              src={currPost.imageURL ?? undefined}
               alt="대표 이미지"
               priority
               fill
