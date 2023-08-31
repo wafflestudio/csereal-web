@@ -12,6 +12,7 @@ export default function BasicButton({
   return (
     <button
       className={`text-xs text-neutral-700 rounded-sm border border-neutral-300 ${className}`}
+      onClick={onClick}
     >
       {children}
     </button>

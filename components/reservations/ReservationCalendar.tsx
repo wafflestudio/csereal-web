@@ -1,18 +1,24 @@
 import { Reservation } from '@/types/reservation';
 
 import BasicButton from './BasicButton';
+import {
+  NextWeekButton,
+  PreviousWeekButton,
+  SelectDayButton,
+  TodayButton,
+} from './NavigateButtons';
 
 export default function ReservationCalendar({
-  date: { year, month, day },
+  ymd,
   reservations,
 }: {
-  date: { year: number; month: number; day: number };
+  ymd: { year: number; month: number; day: number };
   reservations: Reservation[];
 }) {
   return (
     <div className="w-[47.5rem]">
-      <Header year={year} month={month} />
-      <Toolbar />
+      <Header year={ymd.year} month={ymd.month} />
+      <Toolbar {...ymd} />
     </div>
   );
 }
@@ -20,24 +26,26 @@ export default function ReservationCalendar({
 const Header = ({ year, month }: { year: number; month: number }) => {
   return (
     <h3 className="text-2xl font-bold text-neutral-800 mb-4">
-      {year}/{month}
+      {year}/{(month + '').padStart(2, '0')}
     </h3>
   );
 };
 
-const Toolbar = () => {
+const Toolbar = (date: { year: number; month: number; day: number }) => {
+  const today = new Date();
+  const todayButtonHidden =
+    today.getFullYear() === date.year &&
+    today.getMonth() + 1 === date.month &&
+    today.getDate() === date.day;
+
   return (
     <div className="flex h-7 items-stretch justify-between">
       <div className="w-24" />
       <div className="flex gap-2">
-        <BasicButton className="w-[2.6875rem]">오늘</BasicButton>
-        <BasicButton className="w-[6.25rem]">날짜 선택</BasicButton>
-        <BasicButton className="w-[1.875rem]">
-          <span className="material-symbols-rounded text-xl align-middle">navigate_before</span>
-        </BasicButton>
-        <BasicButton className="w-[1.875rem]">
-          <span className="material-symbols-rounded text-xl align-middle">navigate_next</span>
-        </BasicButton>
+        <TodayButton hidden={todayButtonHidden} />
+        <SelectDayButton {...date} />
+        <PreviousWeekButton {...date} />
+        <NextWeekButton {...date} />
       </div>
       <div className="flex gap-2">
         <BasicButton className="w-[4.0625rem]">예약하기</BasicButton>
@@ -46,3 +54,4 @@ const Toolbar = () => {
     </div>
   );
 };
+

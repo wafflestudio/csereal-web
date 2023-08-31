@@ -10,7 +10,7 @@ interface RoomReservationProps {
 
 export default async function RoomReservation({ params, searchParams }: RoomReservationProps) {
   const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
-  const date = parseDate(searchParams.startDate || todayYMDStr());
+  const ymd = parseDate(searchParams.startDate || todayYMDStr());
 
   if (roomId === undefined) {
     return (
@@ -20,7 +20,7 @@ export default async function RoomReservation({ params, searchParams }: RoomRese
     );
   }
 
-  if (date === undefined) {
+  if (ymd === undefined) {
     return (
       <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
         유효하지 않은 날짜입니다.
@@ -28,11 +28,11 @@ export default async function RoomReservation({ params, searchParams }: RoomRese
     );
   }
 
-  const reservations = await getWeeklyReservation(roomId, date.year, date.month, date.day);
+  const reservations = await getWeeklyReservation(roomId, ymd.year, ymd.month, ymd.day);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
-      <ReservationCalendar date={date} reservations={reservations} />
+      <ReservationCalendar ymd={ymd} reservations={reservations} />
     </PageLayout>
   );
 }
