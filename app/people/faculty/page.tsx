@@ -15,20 +15,41 @@ export default async function FacultyPage() {
           </div>
         ) : null}
         <div className="grid grid-cols-4 gap-14 mt-12">
-          {facultyList.map((faculty, index) => (
-            <PeopleRow
-              type="FACULTY"
-              key={index}
-              id={faculty.id}
-              name={faculty.name}
-              academicRank={faculty.academicRank}
-              labId={faculty.labId}
-              labName={faculty.labName}
-              email={faculty.email}
-              phone={faculty.phone}
-              imageURL={faculty.imageURL}
-            />
-          ))}
+          {facultyList
+            .filter((faculty) => faculty.status === 'ACTIVE')
+            .map((faculty, index) => (
+              <PeopleRow
+                type="FACULTY"
+                key={index}
+                id={faculty.id}
+                name={faculty.name}
+                academicRank={faculty.academicRank}
+                labId={faculty.labId}
+                labName={faculty.labName}
+                email={faculty.email}
+                phone={faculty.phone}
+                imageURL={faculty.imageURL}
+              />
+            ))}
+        </div>
+        <div className="mt-20">
+          <h3 className="font-noto font-bold text-[20px] mb-11">객원교수</h3>
+          {facultyList
+            .filter((faculty) => faculty.status === 'VISITING')
+            .map((faculty, index) => (
+              <PeopleRow
+                type="FACULTY"
+                key={index}
+                id={faculty.id}
+                name={faculty.name}
+                academicRank={faculty.academicRank}
+                labId={faculty.labId}
+                labName={faculty.labName}
+                email={faculty.email}
+                phone={faculty.phone}
+                imageURL={faculty.imageURL}
+              />
+            ))}
         </div>
       </div>
     </PageLayout>

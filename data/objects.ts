@@ -896,6 +896,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'ukang@snu.ac.kr',
     labId: 0,
     labName: '데이터 마이닝 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 1,
@@ -907,6 +908,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'tk@mmlab.snu.ac.kr',
     labId: 20,
     labName: '인터넷 융합 및 보안 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 2,
@@ -918,6 +920,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'gunhee@snu.ac.kr',
     labId: 10,
     labName: '시각 및 학습 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 3,
@@ -929,6 +932,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'sunkim.bioinfo@snu.ac.kr',
     labId: 7,
     labName: '생물정보 및 생명정보 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 4,
@@ -940,6 +944,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'kjihong@snu.ac.kr',
     labId: 21,
     labName: '임베디드 시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 5,
@@ -951,6 +956,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'jinsoo.kim@snu.ac.kr',
     labId: 11,
     labName: '시스템 소프트웨어 및 구조 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 6,
@@ -962,6 +968,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'taehyun@snu.ac.kr',
     labId: 15,
     labName: '양자정보 및 양자컴퓨팅 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 7,
@@ -973,6 +980,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'hjk@snu.ac.kr',
     labId: 6,
     labName: '빅데이터 분석 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 8,
@@ -984,6 +992,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'moon@snu.ac.kr',
     labId: 25,
     labName: '최적화 및 금융공학 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 9,
@@ -995,6 +1004,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'bkmoon@snu.ac.kr',
     labId: 1,
     labName: '데이터베이스 시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 10,
@@ -1006,6 +1016,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'kpark@thoery.snu.ac.kr',
     labId: 28,
     labName: '컴퓨터이론 및 응용 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 11,
@@ -1017,6 +1028,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'jseo@snu.ac.kr',
     labId: 32,
     labName: '휴먼-컴퓨터 인터액션 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 12,
@@ -1028,6 +1040,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'y.song@snu.ac.kr',
     labId: 14,
     labName: '암호 및 프라이버시 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 13,
@@ -1039,6 +1052,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'hyunoh@snu.ac.kr',
     labId: 2,
     labName: '머신러닝 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 14,
@@ -1050,6 +1064,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'yshin@snu.ac.kr',
     labId: 26,
     labName: '컴퓨터 그래픽스 및 이미지 처리 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 15,
@@ -1061,6 +1076,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'hseom@snu.ac.kr',
     labId: 4,
     labName: '분산시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 16,
@@ -1072,6 +1088,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'bernhard@snu.ac.kr',
     labId: 27,
     labName: '컴퓨터 시스템 및 플랫폼 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 17,
@@ -1083,6 +1100,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'yeom@snu.ac.kr',
     labId: 4,
     labName: '분산시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 18,
@@ -1094,6 +1112,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'nonaxis@snu.ac.kr',
     labId: 23,
     labName: '지능형 동작 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 19,
@@ -1105,6 +1124,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'sungjoo.yoo@gmail.com',
     labId: 29,
     labName: '컴퓨팅 메모리 구조 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 20,
@@ -1116,6 +1136,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'kwang@ropas.snu.ac.kr',
     labId: 31,
     labName: '프로그래밍 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 21,
@@ -1127,6 +1148,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'sglee@snu.ac.kr',
     labId: 22,
     labName: '지능형 데이터 시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 22,
@@ -1138,6 +1160,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'youngkilee@snu.ac.kr',
     labId: 19,
     labName: '인간 중심 컴퓨터 시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 23,
@@ -1149,6 +1172,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'jaewlee@snu.ac.kr',
     labId: 13,
     labName: '아키텍처 및 코드 최적화 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 24,
@@ -1160,6 +1184,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'jaejin@snu.ac.kr',
     labId: 24,
     labName: '천둥 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 25,
@@ -1171,6 +1196,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'jaewlee@mrl.snu.ac.kr',
     labId: 17,
     labName: '운동 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 26,
@@ -1182,6 +1208,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'cglee@snu.ac.kr',
     labId: 12,
     labName: '실시간 유비쿼터스 시스템 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 27,
@@ -1193,6 +1220,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'btzhang@bi.snu.ac.kr',
     labId: 3,
     labName: '바이오지능 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 28,
@@ -1204,6 +1232,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'bgchun@snu.ac.kr',
     labId: 9,
     labName: '소프트웨어 플랫폼 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 29,
@@ -1215,6 +1244,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'wsjeon@snu.ac.kr',
     labId: 18,
     labName: '이동 컴퓨팅 및 통신 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 30,
@@ -1226,6 +1256,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'hbjoo@snu.ac.kr',
     labId: 5,
     labName: '비주얼 컴퓨팅 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 31,
@@ -1237,6 +1268,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'sha@iris.snu.ac.kr',
     labId: 30,
     labName: '통합설계 및 병렬 처리 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 32,
@@ -1248,6 +1280,7 @@ export const facultyList: SimpleFaculty[] = [
     email: 'gil.hur@sf.snu.ac.kr',
     labId: 8,
     labName: '소프트웨어 원리 연구실',
+    status: 'ACTIVE',
   },
   {
     id: 33,
@@ -1259,6 +1292,15 @@ export const facultyList: SimpleFaculty[] = [
     email: 'seungwonh@snu.ac.kr',
     labId: 16,
     labName: '언어 및 데이터지능 연구실',
+    status: 'ACTIVE',
+  },
+  {
+    id: 34,
+    name: '장석영',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EC%84%9D%EC%98%81%ED%8A%B9%EC%9E%84%EA%B5%90%EC%88%98.png?itok=Lp1vS9fa',
+    academicRank: '특임교수',
+    status: 'VISITING',
   },
 ];
 
