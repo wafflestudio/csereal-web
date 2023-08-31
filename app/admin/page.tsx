@@ -14,8 +14,6 @@ import { admin } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-const ADMIN_MENU = ['슬라이드쇼 관리', '중요 안내 관리'];
-
 interface AdminPageProps {
   searchParams: { selected: string; page: string };
 }
@@ -28,6 +26,7 @@ const slidesMock: { posts: SimpleSlide[]; total: number } = {
   total: 2,
 };
 
+const ADMIN_MENU = ['슬라이드쇼 관리', '중요 안내 관리'];
 const POST_LIMIT = 40;
 const adminPath = getPath(admin);
 
@@ -42,6 +41,10 @@ export default function AdminPage({ searchParams: { selected, page } }: AdminPag
     router.push(`/admin?selected=${selectedMenu}&page=${newPage}`);
   };
 
+  const batchReleaseImportant = () => {
+    console.log('중요안내 일괄 해제');
+  };
+
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <SelectionList
@@ -51,7 +54,7 @@ export default function AdminPage({ searchParams: { selected, page } }: AdminPag
         listGridColumnClass="grid-cols-[200px_220px]"
       />
       <SlideDescription />
-      <StraightNode double margin="mt-[2.6875rem] mb-[2.375rem]" />
+      <StraightNode double />
       <TotalPostsCount count={posts.length} />
       <SlideList
         posts={posts}
@@ -64,13 +67,14 @@ export default function AdminPage({ searchParams: { selected, page } }: AdminPag
         currentPage={parseInt(page) || 1}
         setCurrentPage={changePage}
       />
+      <BatchAction selectedCount={selectedPostIds.size} onClickButton={batchReleaseImportant} />
     </PageLayout>
   );
 }
 
 function SlideDescription() {
   return (
-    <p className="font-yoon text-sm tracking-wide">
+    <p className="mb-[2.6875rem] font-yoon text-sm tracking-wide">
       메인페이지의 슬라이드쇼에는 <strong>{`소식 > 새 소식`}</strong> 중{' '}
       <strong>{`'슬라이드쇼에 표시'`}</strong> 체크박스가 선택된 글들이 올라갑니다. 이 목록에 20개
       이상의 글이 포함되면 자동으로 최신글 20개만 표시되지만, 원활한 유지보수를 위하여 주기적인
@@ -82,10 +86,55 @@ function SlideDescription() {
   );
 }
 
+interface BatchActionProps {
+  selectedCount: number;
+  onClickButton: () => void;
+}
+
+function BatchAction({ selectedCount, onClickButton }: BatchActionProps) {
+  return (
+    <div className="flex items-center">
+      <SelectedPostsCount count={selectedCount} />
+      <BatchButton disabled={selectedCount === 0} onClick={onClickButton}>
+        일괄 슬라이드쇼 해제
+      </BatchButton>
+    </div>
+  );
+}
+
 function TotalPostsCount({ count }: { count: number }) {
   return (
-    <span className="ml-[1.5625rem] text-xs text-neutral-500 tracking-wide">
+    <span className="block mt-[2.375rem] ml-[1.5625rem] text-xs text-neutral-500 tracking-wide">
       총 {count}개의 게시물
     </span>
+  );
+}
+
+function SelectedPostsCount({ count }: { count: number }) {
+  return (
+    <div className="flex items-center gap-1 mr-6">
+      <span className="material-symbols-rounded text-neutral-500 text-lg font-extralight">
+        check_box
+      </span>
+      <span className="text-neutral-500 text-xs tracking-wide">{count}개 게시물 선택</span>
+    </div>
+  );
+}
+
+interface BatchButtonProps {
+  disabled: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+function BatchButton({ disabled, onClick, children }: BatchButtonProps) {
+  return (
+    <button
+      className="px-[0.875rem] h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium tracking-[0.02em] disabled:bg-neutral-50 disabled:text-neutral-300"
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
   );
 }
