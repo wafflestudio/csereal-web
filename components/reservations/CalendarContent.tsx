@@ -1,5 +1,7 @@
 import { Reservation } from '@/types/reservation';
 
+import CalendarColumn from './CalendarColumn';
+
 export default function CalendarContent({
   startDate,
   selectedDate,
@@ -15,7 +17,7 @@ export default function CalendarContent({
     <div className="flex">
       <RowIndex />
       {dates.map((date) => (
-        <DayColumn
+        <CalendarColumn
           key={date.toISOString()}
           date={date}
           selected={isSameDay(date, selectedDate)}
@@ -47,33 +49,6 @@ const RowIndex = () => {
           <p className="font-yoon text-xs text-neutral-700 font-medium text-center">{x}</p>
         </div>
       ))}
-    </div>
-  );
-};
-
-const DayColumn = ({
-  date,
-  selected,
-  reservations,
-}: {
-  date: Date;
-  selected: boolean;
-  reservations: Reservation[];
-}) => {
-  const dayToStr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-
-  return (
-    <div className="flex flex-col items-stretch w-[6.25rem]">
-      <div
-        className={`
-        h-[4.0625rem] border border-x-neutral-200 border-b-neutral-200 border-t-neutral-300 
-        bg-neutral-100 px-3 py-[.62rem] flex flex-col justify-between
-        ${selected && 'bg-neutral-200'}
-        `}
-      >
-        <p className="font-yoon text-xs font-medium">{dayToStr[date.getDay()]}</p>
-        <p className="font-yoon text-base font-bold leading-4">{date.getDate()}</p>
-      </div>
     </div>
   );
 };

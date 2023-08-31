@@ -35,7 +35,7 @@ export function SelectDayButton({ date }: { date: Date }) {
       <div className="relative">
         {show && (
           <DateSelector
-            className="absolute border-neutral-300 border top-2"
+            className="absolute border-neutral-300 border top-2 z-10 bg-white"
             date={date}
             setDate={(date) => {
               date && querySetter(date);
