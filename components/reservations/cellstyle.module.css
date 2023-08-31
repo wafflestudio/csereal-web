@@ -3,6 +3,6 @@
   border-right: 1px solid rgb(38, 38, 38);
 }
 
-.cell:nth-child(even) {
+.cell:nth-child(odd) {
   border-bottom-style: dashed;
 }

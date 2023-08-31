@@ -8,7 +8,6 @@ import useModal from '@/hooks/useModal';
 import AddReservationModal from './AddReservationModal';
 import BasicButton from './BasicButton';
 import DateSelector from './DateSelector';
-import ModalFrame from '../modal/ModalFrame';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();
