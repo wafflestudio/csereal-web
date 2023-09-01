@@ -22,6 +22,7 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
   const selectedMenu = selected ? replaceDashWithSpace(selected) : DEFAULT_MENU;
   const { posts, total } =
     selectedMenu === ADMIN_MENU.slide ? await getSlides() : await getImportants();
+  const pageNum = (page && parseInt(page)) || 1;
 
   return (
     <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
@@ -33,17 +34,9 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
       />
       {posts &&
         (selectedMenu === ADMIN_MENU.slide ? (
-          <SlideManagement
-            posts={posts as SimpleSlide[]}
-            total={total}
-            page={page ? parseInt(page) : 1}
-          />
+          <SlideManagement posts={posts as SimpleSlide[]} total={total} page={pageNum} />
         ) : (
-          <ImportantManagement
-            posts={posts as SimpleImportant[]}
-            total={total}
-            page={page ? parseInt(page) : 1}
-          />
+          <ImportantManagement posts={posts as SimpleImportant[]} total={total} page={pageNum} />
         ))}
     </PageLayout>
   );
