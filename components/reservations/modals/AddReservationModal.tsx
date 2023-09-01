@@ -7,11 +7,11 @@ import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
-import BasicButton from './BasicButton';
-import DateSelector from './DateSelector';
-import TimeSelector from './TimeSelector';
-import { Dropdown } from '../common/Dropdown';
-import ModalFrame from '../modal/ModalFrame';
+import { Dropdown } from '../../common/Dropdown';
+import ModalFrame from '../../modal/ModalFrame';
+import BasicButton from '../BasicButton';
+import DateSelector from '../mui/DateSelector';
+import TimeSelector from '../mui/TimeSelector';
 
 export default function AddReservationModal() {
   const { closeModal } = useModal();
@@ -32,6 +32,7 @@ export default function AddReservationModal() {
     (value: ReservationPostBody[T]) =>
       setBody((body) => ({ ...body, [key]: value }));
 
+  // startTime과 endTime의 ymd를 date의 것과 동일하게 설정
   const setDate = (date: Date) => {
     const startTime = new Date(body.startTime);
     const endTime = new Date(body.endTime);
@@ -63,7 +64,10 @@ export default function AddReservationModal() {
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>
 
         <div className="flex flex-col items-start gap-1 mb-6">
-          <DateInput date={body.startTime} setDate={setDate} />
+          <InputWithLabel title="예약 날짜">
+            <DateInput date={body.startTime} setDate={setDate} />
+          </InputWithLabel>
+
           <div className="flex gap-3">
             <InputWithLabel title="예약 시간">
               <TimeInput date={body.startTime} setDate={buildBodyValueSetter('startTime')} />
@@ -72,6 +76,7 @@ export default function AddReservationModal() {
               <TimeInput date={body.endTime} setDate={buildBodyValueSetter('endTime')} />
             </InputWithLabel>
           </div>
+
           <InputWithLabel title="매주 반복">
             <Dropdown
               contents={Array(15)
@@ -104,6 +109,7 @@ export default function AddReservationModal() {
             text={body.professor}
             setText={buildBodyValueSetter('professor')}
           />
+
           <PurposeTextInputFieldset text={body.purpose} setText={buildBodyValueSetter('purpose')} />
 
           <div className="flex itmes-center gap-1 text-normal text-neutral-500">
@@ -141,37 +147,34 @@ const InputWithLabel = ({ title, children }: { title: string; children: ReactNod
 
 const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => void }) => {
   const { openModal, closeModal } = useModal();
-  const dateToDotSeparatedYMD = (date: Date) => {
-    return `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(2, '0')}.${(
-      date.getDate() + ''
-    ).padStart(2, '0')}.`;
-  };
+  const labelStr = `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(
+    2,
+    '0',
+  )}.${(date.getDate() + '').padStart(2, '0')}.`;
 
   return (
-    <InputWithLabel title="예약 날짜">
-      <div>
-        <button
-          className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
-          onClick={() => {
-            openModal(
-              <ModalFrame onClose={closeModal}>
-                <DateSelector
-                  date={date}
-                  setDate={(date) => {
-                    setDate(date);
-                    closeModal();
-                  }}
-                  className="bg-white"
-                />
-              </ModalFrame>,
-            );
-          }}
-        >
-          {dateToDotSeparatedYMD(date)}
-          <span className="material-symbols-outlined text-base">calendar_month</span>
-        </button>
-      </div>
-    </InputWithLabel>
+    <div>
+      <button
+        className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
+        onClick={() => {
+          openModal(
+            <ModalFrame onClose={closeModal}>
+              <DateSelector
+                date={date}
+                setDate={(date) => {
+                  setDate(date);
+                  closeModal();
+                }}
+                className="bg-white"
+              />
+            </ModalFrame>,
+          );
+        }}
+      >
+        {labelStr}
+        <span className="material-symbols-outlined text-base">calendar_month</span>
+      </button>
+    </div>
   );
 };
 

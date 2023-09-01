@@ -5,9 +5,9 @@ import { useReducer } from 'react';
 
 import useModal from '@/hooks/useModal';
 
-import AddReservationModal from './AddReservationModal';
-import BasicButton from './BasicButton';
-import DateSelector from './DateSelector';
+import BasicButton from '../BasicButton';
+import AddReservationModal from '../modals/AddReservationModal';
+import DateSelector from '../mui/DateSelector';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();
@@ -36,6 +36,12 @@ export function SelectDayButton({ date }: { date: Date }) {
     date.getMonth() === today.getMonth() &&
     date.getDate() === today.getDate();
 
+  const formatDateStr = (date: Date): string => {
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+      .map((x) => (x + '').padStart(2, '0'))
+      .join('.');
+  };
+
   return (
     <div>
       <BasicButton
@@ -47,7 +53,7 @@ export function SelectDayButton({ date }: { date: Date }) {
         ) : (
           <>
             <span className="material-symbols-rounded text-sm">calendar_month</span>
-            {dateToDotSeparatedYmdStr(date)}
+            {formatDateStr(date)}
           </>
         )}
       </BasicButton>
@@ -71,7 +77,7 @@ export function PreviousWeekButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
 
   const handleClick = () => {
-    const prevWeekDate = subWeekFromDate(date);
+    const prevWeekDate = addDayToDate(date, -7);
     querySetter(prevWeekDate);
   };
 
@@ -86,7 +92,7 @@ export function NextWeekButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
 
   const handleClick = () => {
-    const prevWeekDate = addWeekToDate(date);
+    const prevWeekDate = addDayToDate(date, 7);
     querySetter(prevWeekDate);
   };
 
@@ -113,29 +119,16 @@ export function MakeReservationButton() {
 const useDateQuery = () => {
   const router = useRouter();
   const pathname = usePathname();
-  return (date: Date) => router.push(`${pathname}?startDate=${dateToYmdStr(date)}`);
+  return (date: Date) => {
+    const str = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+      .map((x) => (x + '').padStart(2, '0'))
+      .join('-');
+    router.push(`${pathname}?startDate=${str}`);
+  };
 };
 
-const dateToYmdStr = (date: Date): string => {
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
-    .map((x) => (x + '').padStart(2, '0'))
-    .join('-');
-};
-
-const dateToDotSeparatedYmdStr = (date: Date): string => {
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
-    .map((x) => (x + '').padStart(2, '0'))
-    .join('.');
-};
-
-const addWeekToDate = (date: Date): Date => {
+const addDayToDate = (date: Date, day: number) => {
   const ret = new Date(date);
-  ret.setDate(ret.getDate() + 7);
-  return ret;
-};
-
-const subWeekFromDate = (date: Date): Date => {
-  const ret = new Date(date);
-  ret.setDate(ret.getDate() - 7);
+  ret.setDate(ret.getDate() + day);
   return ret;
 };

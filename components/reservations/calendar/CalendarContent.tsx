@@ -4,11 +4,9 @@ import CalendarColumn from './CalendarColumn';
 
 export default function CalendarContent({
   startDate,
-  selectedDate,
   reservations,
 }: {
   startDate: Date;
-  selectedDate: Date;
   reservations: Reservation[];
 }) {
   const dates = getNextSevenDays(startDate);
@@ -19,7 +17,7 @@ export default function CalendarContent({
       <RowIndex />
       {dates.map((date) => (
         <CalendarColumn
-          key={date.toISOString()}
+          key={date.getTime()}
           date={date}
           selected={isSameDay(date, today)}
           reservations={reservations.filter((x) => isReservationInDate(x, date))}
@@ -30,15 +28,6 @@ export default function CalendarContent({
 }
 
 const RowIndex = () => {
-  const rows = [
-    ...Array(5)
-      .fill(0)
-      .map((_, x) => x + 8 + 'AM'),
-    ...Array(10)
-      .fill(0)
-      .map((_, x) => x + 1 + 'PM'),
-  ];
-
   return (
     <div className="flex flex-col items-stretch w-[3.75rem]">
       <div className="h-[4.0625rem] border border-x-neutral-200 border-b-neutral-200 border-t-neutral-300 bg-neutral-100" />
@@ -64,11 +53,20 @@ const getNextSevenDays = (date: Date) => {
     });
 };
 
-const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
-  return isSameDay(reservation.startTime, date) && isSameDay(reservation.endTime, date);
-};
-
 const isSameDay = (date1: Date, date2: Date) =>
   date1.getFullYear() === date2.getFullYear() &&
   date1.getMonth() === date2.getMonth() &&
   date1.getDate() === date2.getDate();
+
+const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
+  return isSameDay(reservation.startTime, date) && isSameDay(reservation.endTime, date);
+};
+
+const rows = [
+  ...Array(5)
+    .fill(0)
+    .map((_, x) => x + 8 + 'AM'),
+  ...Array(10)
+    .fill(0)
+    .map((_, x) => x + 1 + 'PM'),
+];
