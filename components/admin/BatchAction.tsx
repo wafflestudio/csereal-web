@@ -10,7 +10,7 @@ export default function BatchAction({
   onClickButton,
 }: BatchActionProps) {
   return (
-    <div className="flex items-center">
+    <div className="mt-[3.25rem] flex items-center">
       <SelectedPostsCount count={selectedCount} />
       <BatchButton disabled={selectedCount === 0} onClick={onClickButton}>
         {buttonText}

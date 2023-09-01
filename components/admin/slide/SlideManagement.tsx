@@ -37,6 +37,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   };
 
   const batchRelease = (requestPath: string) => {
+    // TODO: 일괄 삭제 요청
     console.log('일괄 해제');
     resetSelectedPosts();
   };

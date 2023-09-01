@@ -38,6 +38,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
 
   const batchRelease = (requestPath: string) => {
     console.log('일괄 해제');
+    // TODO: 일괄 삭제 요청
     resetSelectedPosts();
   };
 
