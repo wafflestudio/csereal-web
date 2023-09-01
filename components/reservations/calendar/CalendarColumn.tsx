@@ -1,6 +1,7 @@
 import { Reservation } from '@/types/reservation';
 
 import styles from './cellstyle.module.css';
+import { ReservationDetailModalButton } from './ReservationDetailModal';
 
 export default function CalendarColumn({
   date,
@@ -62,7 +63,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
   )}:${padZero(endTime.getMinutes())}`;
 
   return (
-    <div
+    <ReservationDetailModalButton
       className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}
       style={{ height: height + 'rem', top: topOffset + 'rem' }}
     >
@@ -74,7 +75,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
       <div className="flex h-6 items-center">
         <p className="font-yoon text-xs font-medium">{reservation.userName}</p>
       </div>
-    </div>
+    </ReservationDetailModalButton>
   );
 };
 

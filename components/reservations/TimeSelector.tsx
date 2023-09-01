@@ -1,21 +1,18 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
-import {
-  LocalizationProvider,
-  DateCalendar,
-  StaticTimePicker,
-  TimeClock,
-} from '@mui/x-date-pickers';
+import { LocalizationProvider, StaticTimePicker, koKR } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import { useRef } from 'react';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
+const darkTheme = createTheme(
+  {
+    palette: {
+      mode: 'dark',
+    },
   },
-});
+  koKR,
+);
 
 export default function TimeSelector({
   date,
