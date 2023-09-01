@@ -18,8 +18,12 @@ export default function AddReservationModal() {
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
   const [body, setBody] = useState<ReservationPostBody>(defaultBodyValue);
 
+  const canSubmit =
+    privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+    if (!canSubmit) return;
     console.log(body);
   };
 
@@ -114,7 +118,10 @@ export default function AddReservationModal() {
           <BasicButton className="w-[2.75rem]" onClick={closeModal}>
             취소
           </BasicButton>
-          <BasicButton type="submit" className="w-[4.25rem]">
+          <BasicButton
+            type="submit"
+            className={`w-[4.25rem] ${!canSubmit && 'text-neutral-300 cursor-not-allowed'}`}
+          >
             예약하기
           </BasicButton>
         </div>
