@@ -1,36 +1,60 @@
 'use client';
 
 import Link from 'next/link';
-import { MouseEventHandler, useReducer, useState } from 'react';
+import { FormEventHandler, useReducer, useState } from 'react';
 
 import useModal from '@/hooks/useModal';
+
+import { ReservationPostBody } from '@/types/reservation';
 
 import BasicButton from './BasicButton';
 import ModalFrame from '../modal/ModalFrame';
 
 export default function AddReservationModal() {
   const { closeModal } = useModal();
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-  };
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
+  const [body, setBody] = useState<ReservationPostBody>(defaultBodyValue);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    console.log(body);
+  };
+
+  const buildBodyValueSetter =
+    <T extends keyof ReservationPostBody>(key: T) =>
+    (value: ReservationPostBody[T]) =>
+      setBody((body) => ({ ...body, [key]: value }));
 
   return (
     <ModalFrame onClose={closeModal}>
       <form
         className="font-noto bg-white w-[24.4rem] text-neutral-700 px-5 py-6"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
+        onSubmit={handleSubmit}
       >
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>
 
         <div className="flex flex-col gap-2 mb-6">
-          <RequiredTextInputFieldset title="단체 이름" />
-          <RequiredTextInputFieldset title="연락가능 이메일" />
-          <RequiredTextInputFieldset title="연락가능 전화번호" />
-          <RequiredTextInputFieldset title="지도교수" />
-          <PurposeTextInputFieldset />
+          <RequiredTextInputFieldset
+            title="단체 이름"
+            text={body.title}
+            setText={buildBodyValueSetter('title')}
+          />
+          <RequiredTextInputFieldset
+            title="연락가능 이메일"
+            text={body.contactEmail}
+            setText={buildBodyValueSetter('contactEmail')}
+          />
+          <RequiredTextInputFieldset
+            title="연락가능 전화번호"
+            text={body.contactPhone}
+            setText={buildBodyValueSetter('contactPhone')}
+          />
+          <RequiredTextInputFieldset
+            title="지도교수"
+            text={body.professor}
+            setText={buildBodyValueSetter('professor')}
+          />
+          <PurposeTextInputFieldset text={body.purpose} setText={buildBodyValueSetter('purpose')} />
 
           <div className="flex itmes-center gap-1 text-normal text-neutral-500">
             <span className="material-symbols-outlined text-base my-auto">error</span>
@@ -84,8 +108,8 @@ const PurposeTextInputFieldset = ({
   text,
   setText,
 }: {
-  text: string;
-  setText: (text: string) => void;
+  text?: string;
+  setText: (text?: string) => void;
 }) => {
   return (
     <fieldset className="text-sm font-normal">
@@ -135,4 +159,15 @@ const PrivacyFieldset = ({
       </div>
     </fieldset>
   );
+};
+
+const defaultBodyValue = {
+  roomId: 0,
+  startTime: new Date(),
+  endTime: new Date(),
+  recurringWeeks: 0,
+  title: '',
+  contactEmail: '',
+  contactPhone: '',
+  professor: '',
 };
