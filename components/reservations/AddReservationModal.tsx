@@ -19,7 +19,14 @@ export default function AddReservationModal() {
     <ModalFrame onClose={closeModal}>
       <form className="bg-white w-[24.4rem] text-neutral-700 px-5 py-6">
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>
+
+        <div className="flex itmes-center gap-1 text-normal text-neutral-500 mb-6">
+          <span className="material-symbols-outlined text-base my-auto">error</span>
+          <p className="text-sm ">예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.</p>
+        </div>
+
         <PrivacyFieldset checked={privacyChecked} toggleChecked={togglePrivacyChecked} />
+
         <BottomToolbar closeModal={closeModal} handleSubmit={handleSubmit} />
       </form>
     </ModalFrame>
@@ -34,20 +41,30 @@ const PrivacyFieldset = ({
   toggleChecked: () => void;
 }) => {
   return (
-    <fieldset className="flex flex-col gap-1">
-      <legend className="text-sm font-normal">개인정보 수집 및 이용동의</legend>
+    <fieldset className="flex flex-col mb-6 text-sm font-normal">
+      <legend className="mb-1">개인정보 수집 및 이용동의</legend>
 
-      <div className="flex items-center gap-1">
-        <span
+      <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-1 hover:cursor-pointer select-none"
           onClick={toggleChecked}
-          className="material-symbols-outlined text-base text-neutral-500 hover:cursor-pointer select-none"
         >
-          {checked ? 'check_box' : 'check_box_outline_blank'}
-        </span>
-        <Link className="text-sm font-normal" href="/reservations/privacy-policy" target="_blank">
-          개인정보 수집이용에 관한 사항(필수)<span className="text-main-orange">*</span>
+          <span className="material-symbols-outlined text-base text-neutral-500">
+            {checked ? 'check_box' : 'check_box_outline_blank'}
+          </span>
+          <p>
+            개인정보 수집이용에 관한 사항(필수)<span className="text-main-orange">*</span>
+          </p>
+        </div>
+
+        <Link
+          className="text-neutral-400 flex items-center"
+          href="/reservations/privacy-policy"
+          target="_blank"
+        >
+          자세히
+          <span className="material-symbols-outlined text-xs">chevron_right</span>
         </Link>
-        <span className="material-symbols-outlined text-md text-neutral-400">chevron_right</span>
       </div>
     </fieldset>
   );
