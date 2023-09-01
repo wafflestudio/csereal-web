@@ -6,7 +6,7 @@ interface DropdownProps {
   onClick: (index: number) => void;
 }
 
-export default function Dropdown({ contents, selectedIndex, onClick }: DropdownProps) {
+export function Dropdown({ contents, selectedIndex, onClick }: DropdownProps) {
   const [expanded, toggleExpanded] = useReducer((x) => !x, false);
   const handleClick = (index: number) => {
     onClick(index);
@@ -14,22 +14,21 @@ export default function Dropdown({ contents, selectedIndex, onClick }: DropdownP
   };
 
   return (
-    <div className="relative">
+    <div className="relative selection-none">
       <DropdownButton
         expanded={expanded}
         toggleExpanded={toggleExpanded}
         contents={contents}
         selectedIndex={selectedIndex}
       />
-      {expanded && (
-        <div className="relative z-10">
-          <DropdownList
-            contents={contents}
-            handleClick={handleClick}
-            selectedIndex={selectedIndex}
-          />
-        </div>
-      )}
+      <div className="relative z-10">
+        <DropdownListWithScroll
+          className={expanded ? 'scale-y-0' : 'scale-y-1'}
+          contents={contents}
+          handleClick={handleClick}
+          selectedIndex={selectedIndex}
+        />
+      </div>
     </div>
   );
 }
@@ -61,82 +60,32 @@ function DropdownButton({
   );
 }
 
-function DropdownList({
-  contents,
-  handleClick,
-  selectedIndex,
-}: {
-  contents: string[];
-  handleClick: (index: number) => void;
-  selectedIndex: number;
-}) {
-  return (
-    <div className="absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white">
-      {contents.map((content, index) => (
-        <button
-          key={index}
-          className={`w-full text-left text-sm font-normal py-[.28rem] pl-[.62rem] hover:bg-neutral-100 ${
-            selectedIndex === index && 'text-main-orange'
-          }`}
-          onClick={() => handleClick(index)}
-        >
-          {content}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function DropdownListWithScroll({
+  className,
   contents,
   handleClick,
   selectedIndex,
 }: {
+  className: string;
   contents: string[];
   handleClick: (index: number) => void;
   selectedIndex: number;
 }) {
   return (
-    <div className="absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white h-[168px] overflow-y-scroll styled-scrollbar">
+    <div
+      className={`absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition origin-top ${className}`}
+    >
       {contents.map((content, index) => (
         <button
           key={index}
-          className={`w-full text-left text-sm font-normal py-[.28rem] pl-[.62rem] hover:bg-neutral-100 ${
+          className={`w-full h-7 text-left text-sm font-normal pl-[.62rem] hover:bg-neutral-100 ${
             selectedIndex === index && 'text-main-orange'
-          }`}
+          } focus:border focus:border-neutral-400`}
           onClick={() => handleClick(index)}
         >
           {content}
         </button>
       ))}
-    </div>
-  );
-}
-
-export function DropdownWithScroll({ contents, selectedIndex, onClick }: DropdownProps) {
-  const [expanded, toggleExpanded] = useReducer((x) => !x, false);
-  const handleClick = (index: number) => {
-    onClick(index);
-    toggleExpanded();
-  };
-
-  return (
-    <div className="relative">
-      <DropdownButton
-        expanded={expanded}
-        toggleExpanded={toggleExpanded}
-        contents={contents}
-        selectedIndex={selectedIndex}
-      />
-      {expanded && (
-        <div className="relative z-10">
-          <DropdownListWithScroll
-            contents={contents}
-            handleClick={handleClick}
-            selectedIndex={selectedIndex}
-          />
-        </div>
-      )}
     </div>
   );
 }
