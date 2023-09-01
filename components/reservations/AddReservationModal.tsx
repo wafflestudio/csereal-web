@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEventHandler, useReducer, useState } from 'react';
+import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
 import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
 import BasicButton from './BasicButton';
+import DateSelector from './DateSelector';
+import { Dropdown } from '../common/Dropdown';
 import ModalFrame from '../modal/ModalFrame';
 
 export default function AddReservationModal() {
@@ -25,6 +27,28 @@ export default function AddReservationModal() {
     (value: ReservationPostBody[T]) =>
       setBody((body) => ({ ...body, [key]: value }));
 
+  const setDate = (date: Date) => {
+    const startTime = new Date(body.startTime);
+    const endTime = new Date(body.endTime);
+
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+
+    startTime.setFullYear(year);
+    startTime.setMonth(month);
+    startTime.setDate(day);
+
+    endTime.setFullYear(year);
+    endTime.setMonth(month);
+    endTime.setDate(day);
+
+    const startTimeSetter = buildBodyValueSetter('startTime');
+    const endTimeSetter = buildBodyValueSetter('endTime');
+    startTimeSetter(startTime);
+    endTimeSetter(endTime);
+  };
+
   return (
     <ModalFrame onClose={closeModal}>
       <form
@@ -32,6 +56,23 @@ export default function AddReservationModal() {
         onSubmit={handleSubmit}
       >
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>
+
+        <div className="flex flex-col items-start gap-1 mb-6">
+          <DateInput date={body.startTime} setDate={setDate} />
+          <div className="flex gap-3">
+            <InputWithLabel title="예약 시간"></InputWithLabel>
+            <InputWithLabel title="종료 시간"></InputWithLabel>
+          </div>
+          <InputWithLabel title="매주 반복">
+            <Dropdown
+              contents={Array(15)
+                .fill(0)
+                .map((_, i) => i + '')}
+              selectedIndex={body.recurringWeeks}
+              onClick={buildBodyValueSetter('recurringWeeks')}
+            />
+          </InputWithLabel>
+        </div>
 
         <div className="flex flex-col gap-2 mb-6">
           <RequiredTextInputFieldset
@@ -76,6 +117,45 @@ export default function AddReservationModal() {
     </ModalFrame>
   );
 }
+
+const InputWithLabel = ({ title, children }: { title: string; children: ReactNode }) => {
+  return (
+    <fieldset className="h-7 flex items-center gap-2">
+      <label className="text-sm font-normal">{title}: </label>
+      {children}
+    </fieldset>
+  );
+};
+
+const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => void }) => {
+  const [expanded, toggle] = useReducer((x) => !x, false);
+
+  return (
+    <div>
+      <InputWithLabel title="예약 날짜">
+        <button
+          className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-center gap-1"
+          onClick={toggle}
+        >
+          {dateToDotSeparatedYMD(date)}
+          <span className="material-symbols-outlined text-base">calendar_month</span>
+        </button>
+      </InputWithLabel>
+      <div className="relative">
+        {expanded && (
+          <DateSelector
+            date={date}
+            setDate={(date) => {
+              toggle();
+              setDate(date);
+            }}
+            className="absolute top-2 bg-white z-20 border border-neutral-300"
+          />
+        )}
+      </div>
+    </div>
+  );
+};
 
 const RequiredTextInputFieldset = ({
   title,
@@ -161,13 +241,22 @@ const PrivacyFieldset = ({
   );
 };
 
-const defaultBodyValue = {
-  roomId: 0,
-  startTime: new Date(),
-  endTime: new Date(),
-  recurringWeeks: 0,
-  title: '',
-  contactEmail: '',
-  contactPhone: '',
-  professor: '',
+const defaultBodyValue = (() => {
+  const date = new Date();
+  return {
+    roomId: 0,
+    startTime: date,
+    endTime: date,
+    recurringWeeks: 0,
+    title: '',
+    contactEmail: '',
+    contactPhone: '',
+    professor: '',
+  };
+})();
+
+const dateToDotSeparatedYMD = (date: Date) => {
+  return `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(2, '0')}.${(
+    date.getDate() + ''
+  ).padStart(2, '0')}.`;
 };

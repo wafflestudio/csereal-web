@@ -23,7 +23,7 @@ export function Dropdown({ contents, selectedIndex, onClick }: DropdownProps) {
       />
       <div className="relative z-10">
         <DropdownListWithScroll
-          className={expanded ? 'scale-y-0' : 'scale-y-1'}
+          className={expanded ? 'scale-y-1' : 'scale-y-0'}
           contents={contents}
           handleClick={handleClick}
           selectedIndex={selectedIndex}
@@ -73,12 +73,12 @@ function DropdownListWithScroll({
 }) {
   return (
     <div
-      className={`absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition origin-top ${className}`}
+      className={`absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition duration-200 origin-top ${className}`}
     >
       {contents.map((content, index) => (
         <button
           key={index}
-          className={`w-full h-7 text-left text-sm font-normal pl-[.62rem] hover:bg-neutral-100 ${
+          className={`w-full h-7 text-left text-sm font-normal pl-[.62rem] hover:bg-neutral-200 ${
             selectedIndex === index && 'text-main-orange'
           } focus:border focus:border-neutral-400`}
           onClick={() => handleClick(index)}
