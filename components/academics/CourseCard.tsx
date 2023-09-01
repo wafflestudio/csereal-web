@@ -60,17 +60,18 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     left: 0,
     height: '11rem', // 176px
     borderRadius: '0.25rem', // 4px
-    boxShadow: '0 2px 4px 0 rgba(0,0,0,0.2)',
+    boxShadow:
+      '2px 2px 4px 0px rgba(255, 255, 255, 0.05) inset, -2px -2px 6px 0px rgba(0, 0, 0, 0.4) inset',
     WebkitBackfaceVisibility: 'hidden',
     backfaceVisibility: 'hidden',
     transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
   };
 
-  const frontStyle = `absolute p-[1.125rem] bg-white hover:bg-neutral-50 ${
+  const frontStyle = `absolute p-[1.125rem] bg-neutral-100 hover:bg-neutral-200 ${
     isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
   }`;
 
-  const backStyle = `py-5 px-[1.125rem] bg-neutral-100 ${
+  const backStyle = `py-5 px-[1.125rem] bg-neutral-200 ${
     isFlipped ? '[transform:rotateY(0deg)]' : '[transform:rotateY(180deg)]'
   }`;
 
