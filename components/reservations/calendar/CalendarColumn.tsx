@@ -66,6 +66,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
     <ReservationDetailModalButton
       className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}
       style={{ height: height + 'rem', top: topOffset + 'rem' }}
+      reservation={reservation}
     >
       {unitHeight !== 1 && (
         <div className="flex h-6 items-center">
