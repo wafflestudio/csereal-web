@@ -35,7 +35,7 @@ const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
 };
 
 // TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
-export default function GraduateCourseChanges() {
+export default function GraduateCourseChangesPage() {
   const { data } = useSWR('/academics/graduate/course-changes', getCourseChanges);
   const [selectedYear, setSelectedYear] = useState<number>(2020);
   const selectedChanges = getSelectedChanges(selectedYear, data ?? []);

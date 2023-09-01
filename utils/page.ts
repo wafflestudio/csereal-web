@@ -1,4 +1,4 @@
-import { SegmentNode, main } from '@/types/page';
+import { SegmentNode, admin, main } from '@/types/page';
 
 export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
   const log: SegmentNode[] = [];
@@ -11,7 +11,7 @@ export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
 };
 
 export const getPath = (location: SegmentNode): string => {
-  if (location.parent === null) return '/';
+  if (location.parent === null) return `/${location.segment}`;
 
   let fullPath = '';
   let curr = location;
@@ -23,11 +23,11 @@ export const getPath = (location: SegmentNode): string => {
 };
 
 export const getRootTab = (currTab: SegmentNode): SegmentNode => {
-  if (currTab === main) return main;
+  if (currTab === main || currTab === admin) return currTab;
 
   let root = currTab;
   while (root.parent !== main) {
-    root = root.parent!; // main 제외한 탭은 전부 parent가 있음
+    root = root.parent!; // main 제외한 내비탭은 전부 parent가 있음
   }
   return root;
 };

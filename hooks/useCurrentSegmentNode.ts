@@ -1,9 +1,10 @@
 import { usePathname } from 'next/navigation';
 
-import { SegmentNode, main } from '@/types/page';
+import { SegmentNode, admin, main } from '@/types/page';
 
 export default function useCurrentSegmentNode(): SegmentNode {
   const pathname = usePathname();
+  if (pathname === `/${admin.segment}`) return admin; // admin은 main과 별도
   const segments = pathname.split('/');
   segments.shift(); // 맨 앞의 공백 제거
   let node = main;
