@@ -63,7 +63,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
 
   return (
     <div
-      className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center`}
+      className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}
       style={{ height: height + 'rem', top: topOffset + 'rem' }}
     >
       {unitHeight !== 1 && (
