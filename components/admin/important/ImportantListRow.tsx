@@ -11,7 +11,7 @@ interface ImportantListRowProps {
   index: number;
   post: SimpleImportant;
   isSelected: boolean;
-  toggleSelected: (id: number, isSelected: boolean) => void;
+  toggleSelected: (id: number) => void;
 }
 
 export const IMPORTANT_ROW_CELL_WIDTH = {
@@ -43,10 +43,7 @@ export default function ImportantListRow({
         isSelected && 'bg-neutral-100'
       }`}
     >
-      <CheckboxCell
-        isChecked={isSelected}
-        toggleCheck={() => toggleSelected(post.id, isSelected)}
-      />
+      <CheckboxCell isChecked={isSelected} toggleCheck={() => toggleSelected(post.id)} />
       <IndexCell index={index} />
       <CategoryCell category={post.category} />
       <TitleCell title={post.title} href={`${categoryPath}/${post.id}`} />

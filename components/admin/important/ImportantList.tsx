@@ -27,8 +27,8 @@ export default function ImportantList({
     });
   };
 
-  const toggleSelected = (id: number, isSelected: boolean) => {
-    isSelected ? deselectPost(id) : selectPost(id);
+  const toggleSelected = (id: number) => {
+    selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);
   };
 
   return (

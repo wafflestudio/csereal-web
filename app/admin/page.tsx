@@ -12,7 +12,7 @@ import { getPath } from '@/utils/page';
 import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 
 interface AdminPageProps {
-  searchParams: { selected: string; page: string };
+  searchParams: { selected?: string; page?: string };
 }
 
 const DEFAULT_MENU = ADMIN_MENU.slide;
@@ -36,13 +36,13 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
           <SlideManagement
             posts={posts as SimpleSlide[]}
             total={total}
-            page={parseInt(page) || 1}
+            page={page ? parseInt(page) : 1}
           />
         ) : (
           <ImportantManagement
             posts={posts as SimpleImportant[]}
             total={total}
-            page={parseInt(page) || 1}
+            page={page ? parseInt(page) : 1}
           />
         ))}
     </PageLayout>

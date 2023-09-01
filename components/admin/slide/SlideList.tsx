@@ -23,8 +23,8 @@ export default function SlideList({ posts, selectedPostIds, setSelectedPostIds }
     });
   };
 
-  const toggleSelected = (id: number, isSelected: boolean) => {
-    isSelected ? deselectPost(id) : selectPost(id);
+  const toggleSelected = (id: number) => {
+    selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);
   };
 
   return (

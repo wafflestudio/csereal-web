@@ -11,7 +11,7 @@ interface SlideListRowProps {
   index: number;
   post: SimpleSlide;
   isSelected: boolean;
-  toggleSelected: (id: number, isSelected: boolean) => void;
+  toggleSelected: (id: number) => void;
 }
 
 export const SLIDE_ROW_CELL_WIDTH = {
@@ -36,10 +36,7 @@ export default function SlideListRow({
         isSelected && 'bg-neutral-100'
       }`}
     >
-      <CheckboxCell
-        isChecked={isSelected}
-        toggleCheck={() => toggleSelected(post.id, isSelected)}
-      />
+      <CheckboxCell isChecked={isSelected} toggleCheck={() => toggleSelected(post.id)} />
       <IndexCell index={index} />
       <TitleCell title={post.title} id={post.id} />
       <DateCell date={post.createdAt} />
