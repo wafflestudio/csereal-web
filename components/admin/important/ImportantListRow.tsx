@@ -35,7 +35,7 @@ export default function ImportantListRow({
   isSelected,
   toggleSelected,
 }: ImportantListRowProps) {
-  const categoryPath = `${importantCategoryPaths[post.category]}/${post.id}`;
+  const categoryPath = importantCategoryPaths[post.category];
 
   return (
     <li
