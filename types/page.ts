@@ -518,6 +518,14 @@ export const bldg302room209: SegmentNode = {
   children: null,
 };
 
+export const admin: SegmentNode = {
+  name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
+  segment: 'admin',
+  isPage: true,
+  parent: null,
+  children: [notice, news, seminar],
+};
+
 main.children = [about, community, people, research, admissions, academics, reservations];
 about.children = [
   overview,
