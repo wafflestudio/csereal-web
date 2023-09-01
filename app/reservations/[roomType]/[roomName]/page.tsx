@@ -1,7 +1,7 @@
 import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ReservationCalendar from '@/components/reservations/ReservationCalendar';
+import ReservationCalendar from '@/components/reservations/calendar/ReservationCalendar';
 
 interface RoomReservationProps {
   params: { roomType: string; roomName: string };

@@ -1,14 +1,14 @@
 import { Reservation } from '@/types/reservation';
 
-import BasicButton from './BasicButton';
 import CalendarContent from './CalendarContent';
+import BasicButton from '../BasicButton';
 import {
   MakeReservationButton,
   NextWeekButton,
   PreviousWeekButton,
   SelectDayButton,
   TodayButton,
-} from './NavigateButtons';
+} from '../NavigateButtons';
 
 export default function ReservationCalendar({
   startDate,

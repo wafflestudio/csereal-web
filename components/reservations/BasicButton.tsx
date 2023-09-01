@@ -1,12 +1,12 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export default function BasicButton({
   className,
   onClick,
   children,
 }: {
-  className: string;
-  onClick: () => void;
+  className?: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 }) {
   return (
