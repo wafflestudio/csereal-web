@@ -55,7 +55,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <Pagination
         totalPostsCount={total}
         postsCountPerPage={POST_LIMIT}
-        currentPage={page || 1}
+        currentPage={page}
         setCurrentPage={changePage}
       />
       <BatchAction

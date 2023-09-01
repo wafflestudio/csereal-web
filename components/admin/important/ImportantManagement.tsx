@@ -55,7 +55,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
       <Pagination
         totalPostsCount={total}
         postsCountPerPage={POST_LIMIT}
-        currentPage={page || 1}
+        currentPage={page}
         setCurrentPage={changePage}
       />
       <BatchAction

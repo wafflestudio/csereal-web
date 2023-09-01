@@ -33,12 +33,16 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
       />
       {posts &&
         (selectedMenu === ADMIN_MENU.slide ? (
-          <SlideManagement posts={posts as SimpleSlide[]} total={total} page={parseInt(page)} />
+          <SlideManagement
+            posts={posts as SimpleSlide[]}
+            total={total}
+            page={parseInt(page) || 1}
+          />
         ) : (
           <ImportantManagement
             posts={posts as SimpleImportant[]}
             total={total}
-            page={parseInt(page)}
+            page={parseInt(page) || 1}
           />
         ))}
     </PageLayout>
