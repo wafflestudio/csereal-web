@@ -5,7 +5,7 @@ import SlideManagement from '@/components/admin/slide/SlideManagement';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { SimpleImportant, SimpleSlide } from '@/types/admin';
+import { ADMIN_MENU, SimpleImportant, SimpleSlide } from '@/types/admin';
 import { admin } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -15,7 +15,6 @@ interface AdminPageProps {
   searchParams: { selected: string; page: string };
 }
 
-export const ADMIN_MENU = { slide: '슬라이드쇼 관리', important: '중요 안내 관리' };
 const DEFAULT_MENU = ADMIN_MENU.slide;
 const adminPath = getPath(admin);
 

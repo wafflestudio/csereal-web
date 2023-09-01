@@ -3,12 +3,10 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { ADMIN_MENU } from '@/app/admin/page';
-
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 
-import { SimpleSlide } from '@/types/admin';
+import { ADMIN_MENU, SimpleSlide } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -16,17 +14,15 @@ import SlideList from './SlideList';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
 
-const POST_LIMIT = 40;
-
-export default function SlideManagement({
-  posts,
-  page,
-  total,
-}: {
+interface SlideManagementProps {
   posts: SimpleSlide[];
   page: number;
   total: number;
-}) {
+}
+
+const POST_LIMIT = 40;
+
+export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
   const router = useRouter();
 

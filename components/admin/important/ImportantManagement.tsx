@@ -3,12 +3,10 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { ADMIN_MENU } from '@/app/admin/page';
-
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 
-import { SimpleImportant } from '@/types/admin';
+import { ADMIN_MENU, SimpleImportant } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -16,17 +14,15 @@ import ImportantList from './ImportantList';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
 
-const POST_LIMIT = 40;
-
-export default function ImportantManagement({
-  posts,
-  page,
-  total,
-}: {
+interface ImportantManagementProps {
   posts: SimpleImportant[];
   page: number;
   total: number;
-}) {
+}
+
+const POST_LIMIT = 40;
+
+export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
   const router = useRouter();
 
