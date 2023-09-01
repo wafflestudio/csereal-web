@@ -48,7 +48,7 @@ export default function SeminarRow({
         {imageURL ? (
           <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
         ) : (
-          <SnuLogo className="fill-neutral-300" />
+          <SnuLogo className="fill-neutral-400" />
         )}
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">

@@ -34,6 +34,7 @@ module.exports = {
         // TBD
         DEFAULT: '#ff0000',
       },
+      transparent: 'transparent',
     },
     fontFamily: {
       yoon: ['var(--font-yoon)'],

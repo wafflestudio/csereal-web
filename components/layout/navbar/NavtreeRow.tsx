@@ -39,7 +39,7 @@ export default function NavTreeRow({
       return (
         <Link
           href={href}
-          className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
+          className="block font-yoon text-md font-medium mb-6 text-neutral-800 hover:text-main-orange "
           onClick={closeNavbar}
         >
           {segmentNode.name}
@@ -47,7 +47,9 @@ export default function NavTreeRow({
       );
     } else {
       return (
-        <p className="block font-yoon text-md font-medium mb-6 text-white">{segmentNode.name}</p>
+        <p className="block font-yoon text-md font-medium mb-6 text-neutral-500">
+          {segmentNode.name}
+        </p>
       );
     }
   }

@@ -60,8 +60,6 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     left: 0,
     height: '11rem', // 176px
     borderRadius: '0.25rem', // 4px
-    boxShadow:
-      '2px 2px 4px 0px rgba(255, 255, 255, 0.05) inset, -2px -2px 6px 0px rgba(0, 0, 0, 0.4) inset',
     WebkitBackfaceVisibility: 'hidden',
     backfaceVisibility: 'hidden',
     transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
@@ -69,11 +67,11 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
   const frontStyle = `absolute p-[1.125rem] bg-neutral-100 hover:bg-neutral-200 ${
     isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
-  }`;
+  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_6px_0_rgba(0,0,0,0.4)_inset]`;
 
   const backStyle = `py-5 px-[1.125rem] bg-neutral-200 ${
     isFlipped ? '[transform:rotateY(0deg)]' : '[transform:rotateY(180deg)]'
-  }`;
+  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,_-2px_-2px_4px_0_rgba(0,_0,_0,_0.35)_inset]`;
 
   return (
     <div style={cardStyle} onClick={flipCard}>
