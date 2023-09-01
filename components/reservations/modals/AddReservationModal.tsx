@@ -7,7 +7,7 @@ import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
-import { Dropdown } from '../../common/Dropdown';
+import Dropdown from '../../common/Dropdown';
 import ModalFrame from '../../modal/ModalFrame';
 import BasicButton from '../BasicButton';
 import DateSelector from '../mui/DateSelector';

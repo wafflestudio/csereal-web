@@ -6,7 +6,7 @@ import { careerStatCols, careerStatRows } from '@/data/objects';
 
 import { FutureCareers } from '@/types/about';
 
-import { Dropdown } from '../common/Dropdown';
+import Dropdown from '../common/Dropdown';
 
 export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   const [selectedCareerStatIndex, setSelectedCareerStatIndex] = useState(0);

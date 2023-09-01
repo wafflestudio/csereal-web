@@ -7,7 +7,7 @@ import DegreeRequirementsContent from '@/public/image/undergraduate_degree_requi
 import { DegreeRequirements } from '@/types/academics';
 
 import Attachments from '../common/Attachments';
-import { Dropdown } from '../common/Dropdown';
+import Dropdown from '../common/Dropdown';
 import { StraightNode } from '../common/Nodes';
 import HTMLViewer from '../editor/HTMLViewer';
 

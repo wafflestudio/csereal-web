@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Curriculum } from '@/types/academics';
 
-import { Dropdown } from '../common/Dropdown';
+import Dropdown from '../common/Dropdown';
 import HTMLViewer from '../editor/HTMLViewer';
 
 export default function CurriculumBody({ data }: { data: Curriculum[] }) {

@@ -6,7 +6,7 @@ interface DropdownProps {
   onClick: (index: number) => void;
 }
 
-export function Dropdown({ contents, selectedIndex, onClick }: DropdownProps) {
+export default function Dropdown({ contents, selectedIndex, onClick }: DropdownProps) {
   const [expanded, toggleExpanded] = useReducer((x) => !x, false);
   const handleClick = (index: number) => {
     onClick(index);
