@@ -28,7 +28,7 @@ export default function SlideList({ posts, selectedPostIds, setSelectedPostIds }
   };
 
   return (
-    <div className="mt-6 mb-8 mx-2.5">
+    <div className="mb-8 mx-2.5">
       <SlideListHeader />
       <ul className={`divide-y divide-neutral-200 divide-dashed border-b border-neutral-300`}>
         {posts.map((post, i) => (
