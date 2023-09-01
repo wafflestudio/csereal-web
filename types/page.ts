@@ -271,7 +271,7 @@ export const undergraduateGuide: SegmentNode = {
 };
 
 export const undergraduateCourses: SegmentNode = {
-  name: '교과목 정보',
+  name: '교과과정',
   segment: 'courses',
   isPage: true,
   parent: undergraduateAcademics,
@@ -335,7 +335,7 @@ export const graduateGuide: SegmentNode = {
 };
 
 export const graduateCourses: SegmentNode = {
-  name: '교과목 정보',
+  name: '교과과정',
   segment: 'courses',
   isPage: true,
   parent: graduateAcademics,
