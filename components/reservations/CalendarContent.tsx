@@ -12,6 +12,7 @@ export default function CalendarContent({
   reservations: Reservation[];
 }) {
   const dates = getNextSevenDays(startDate);
+  const today = new Date();
 
   return (
     <div className="flex">
@@ -20,7 +21,7 @@ export default function CalendarContent({
         <CalendarColumn
           key={date.toISOString()}
           date={date}
-          selected={isSameDay(date, selectedDate)}
+          selected={isSameDay(date, today)}
           reservations={reservations.filter((x) => isReservationInDate(x, date))}
         />
       ))}

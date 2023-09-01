@@ -43,8 +43,6 @@ export default function CalendarColumn({
 }
 
 const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
-  console.log(reservation);
-
   const unitHeight =
     (reservation.endTime.getTime() - reservation.startTime.getTime()) / 1000 / 60 / 30;
   const height = unitHeight * 1.5;
