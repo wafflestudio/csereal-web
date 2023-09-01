@@ -9,6 +9,7 @@ import { ReservationPostBody } from '@/types/reservation';
 
 import BasicButton from './BasicButton';
 import DateSelector from './DateSelector';
+import TimeSelector from './TimeSelector';
 import { Dropdown } from '../common/Dropdown';
 import ModalFrame from '../modal/ModalFrame';
 
@@ -60,8 +61,12 @@ export default function AddReservationModal() {
         <div className="flex flex-col items-start gap-1 mb-6">
           <DateInput date={body.startTime} setDate={setDate} />
           <div className="flex gap-3">
-            <InputWithLabel title="예약 시간"></InputWithLabel>
-            <InputWithLabel title="종료 시간"></InputWithLabel>
+            <InputWithLabel title="예약 시간">
+              <TimeInput date={body.startTime} setDate={buildBodyValueSetter('startTime')} />
+            </InputWithLabel>
+            <InputWithLabel title="종료 시간">
+              <TimeInput date={body.endTime} setDate={buildBodyValueSetter('endTime')} />
+            </InputWithLabel>
           </div>
           <InputWithLabel title="매주 반복">
             <Dropdown
@@ -128,32 +133,64 @@ const InputWithLabel = ({ title, children }: { title: string; children: ReactNod
 };
 
 const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => void }) => {
-  const [expanded, toggle] = useReducer((x) => !x, false);
+  const { openModal, closeModal } = useModal();
+  const dateToDotSeparatedYMD = (date: Date) => {
+    return `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(2, '0')}.${(
+      date.getDate() + ''
+    ).padStart(2, '0')}.`;
+  };
 
   return (
-    <div>
-      <InputWithLabel title="예약 날짜">
+    <InputWithLabel title="예약 날짜">
+      <div>
         <button
-          className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-center gap-1"
-          onClick={toggle}
+          className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
+          onClick={() => {
+            openModal(
+              <ModalFrame onClose={closeModal}>
+                <DateSelector
+                  date={date}
+                  setDate={(date) => {
+                    setDate(date);
+                    closeModal();
+                  }}
+                  className="bg-white"
+                />
+              </ModalFrame>,
+            );
+          }}
         >
           {dateToDotSeparatedYMD(date)}
           <span className="material-symbols-outlined text-base">calendar_month</span>
         </button>
-      </InputWithLabel>
-      <div className="relative">
-        {expanded && (
-          <DateSelector
-            date={date}
-            setDate={(date) => {
-              toggle();
-              setDate(date);
-            }}
-            className="absolute top-2 bg-white z-20 border border-neutral-300"
-          />
-        )}
       </div>
-    </div>
+    </InputWithLabel>
+  );
+};
+
+const TimeInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => void }) => {
+  const { openModal, closeModal } = useModal();
+  return (
+    <button
+      className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
+      onClick={() => {
+        openModal(
+          <ModalFrame onClose={closeModal}>
+            <TimeSelector
+              date={date}
+              setDate={(date) => {
+                setDate(date);
+                closeModal();
+              }}
+              className="bg-white"
+            />
+          </ModalFrame>,
+        );
+      }}
+    >
+      {(date.getHours() + '').padStart(2, '0')}:{(date.getMinutes() + '').padStart(2, '0')}
+      <span className="material-symbols-outlined text-base">schedule</span>
+    </button>
   );
 };
 
@@ -254,9 +291,3 @@ const defaultBodyValue = (() => {
     professor: '',
   };
 })();
-
-const dateToDotSeparatedYMD = (date: Date) => {
-  return `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(2, '0')}.${(
-    date.getDate() + ''
-  ).padStart(2, '0')}.`;
-};
