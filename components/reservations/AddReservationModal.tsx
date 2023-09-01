@@ -17,21 +17,88 @@ export default function AddReservationModal() {
 
   return (
     <ModalFrame onClose={closeModal}>
-      <form className="bg-white w-[24.4rem] text-neutral-700 px-5 py-6">
+      <form
+        className="font-noto bg-white w-[24.4rem] text-neutral-700 px-5 py-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>
 
-        <div className="flex itmes-center gap-1 text-normal text-neutral-500 mb-6">
-          <span className="material-symbols-outlined text-base my-auto">error</span>
-          <p className="text-sm ">예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.</p>
+        <div className="flex flex-col gap-2 mb-6">
+          <RequiredTextInputFieldset title="단체 이름" />
+          <RequiredTextInputFieldset title="연락가능 이메일" />
+          <RequiredTextInputFieldset title="연락가능 전화번호" />
+          <RequiredTextInputFieldset title="지도교수" />
+          <PurposeTextInputFieldset />
+
+          <div className="flex itmes-center gap-1 text-normal text-neutral-500">
+            <span className="material-symbols-outlined text-base my-auto">error</span>
+            <p className="text-sm ">예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.</p>
+          </div>
         </div>
 
         <PrivacyFieldset checked={privacyChecked} toggleChecked={togglePrivacyChecked} />
 
-        <BottomToolbar closeModal={closeModal} handleSubmit={handleSubmit} />
+        <div className="flex justify-end h-[1.875rem] gap-2">
+          <BasicButton className="w-[2.75rem]" onClick={closeModal}>
+            취소
+          </BasicButton>
+          <BasicButton type="submit" className="w-[4.25rem]">
+            예약하기
+          </BasicButton>
+        </div>
       </form>
     </ModalFrame>
   );
 }
+
+const RequiredTextInputFieldset = ({
+  title,
+  text,
+  setText,
+}: {
+  title: string;
+  text: string;
+  setText: (text: string) => void;
+}) => {
+  return (
+    <fieldset className="text-sm font-normal">
+      <legend className="mb-1">
+        {title}
+        <span className="text-main-orange">*</span>
+      </legend>
+      <input
+        type="text"
+        className={`w-full rounded-sm border border-neutral-200 bg-neutral-50 h-[1.75rem]
+            outline-none pl-2`}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+      />
+    </fieldset>
+  );
+};
+
+const PurposeTextInputFieldset = ({
+  text,
+  setText,
+}: {
+  text: string;
+  setText: (text: string) => void;
+}) => {
+  return (
+    <fieldset className="text-sm font-normal">
+      <legend className="mb-1">사용 목적</legend>
+      <textarea
+        className={`w-full rounded-sm border border-neutral-200 bg-neutral-50
+            outline-none p-1 h-14`}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+    </fieldset>
+  );
+};
 
 const PrivacyFieldset = ({
   checked,
@@ -67,24 +134,5 @@ const PrivacyFieldset = ({
         </Link>
       </div>
     </fieldset>
-  );
-};
-
-const BottomToolbar = ({
-  closeModal,
-  handleSubmit,
-}: {
-  closeModal: () => void;
-  handleSubmit: MouseEventHandler<HTMLButtonElement>;
-}) => {
-  return (
-    <div className="flex justify-end h-[1.875rem] gap-2">
-      <BasicButton className="w-[2.75rem]" onClick={closeModal}>
-        취소
-      </BasicButton>
-      <BasicButton className="w-[4.25rem]" onClick={handleSubmit}>
-        예약하기
-      </BasicButton>
-    </div>
   );
 };
