@@ -3,15 +3,15 @@
 import Link from 'next/link';
 import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
+import Dropdown from '@/components/common/Dropdown';
+import ModalFrame from '@/components/modal/ModalFrame';
+import BasicButton from '@/components/reservations/BasicButton';
+import DateSelector from '@/components/reservations/mui/DateSelector';
+import TimeSelector from '@/components/reservations/mui/TimeSelector';
+
 import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
-
-import Dropdown from '../../common/Dropdown';
-import ModalFrame from '../../modal/ModalFrame';
-import BasicButton from '../BasicButton';
-import DateSelector from '../mui/DateSelector';
-import TimeSelector from '../mui/TimeSelector';
 
 export default function AddReservationModal() {
   const { closeModal } = useModal();
@@ -73,7 +73,11 @@ export default function AddReservationModal() {
               <TimeInput date={body.startTime} setDate={buildBodyValueSetter('startTime')} />
             </InputWithLabel>
             <InputWithLabel title="종료 시간">
-              <TimeInput date={body.endTime} setDate={buildBodyValueSetter('endTime')} />
+              <TimeInput
+                date={body.endTime}
+                setDate={buildBodyValueSetter('endTime')}
+                shouldDisableTime={(date) => date < body.startTime}
+              />
             </InputWithLabel>
           </div>
 
@@ -124,10 +128,7 @@ export default function AddReservationModal() {
           <BasicButton className="w-[2.75rem]" onClick={closeModal}>
             취소
           </BasicButton>
-          <BasicButton
-            type="submit"
-            className={`w-[4.25rem] ${!canSubmit && 'text-neutral-300 cursor-not-allowed'}`}
-          >
+          <BasicButton type="submit" className={`w-[4.25rem]`}>
             예약하기
           </BasicButton>
         </div>
@@ -178,7 +179,15 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   );
 };
 
-const TimeInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => void }) => {
+const TimeInput = ({
+  date,
+  setDate,
+  shouldDisableTime,
+}: {
+  date: Date;
+  setDate: (date: Date) => void;
+  shouldDisableTime?: (date: Date) => boolean;
+}) => {
   const { openModal, closeModal } = useModal();
   return (
     <button
@@ -192,6 +201,7 @@ const TimeInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
                 setDate(date);
                 closeModal();
               }}
+              shouldDisableTime={shouldDisableTime}
               className="bg-white"
             />
           </ModalFrame>,

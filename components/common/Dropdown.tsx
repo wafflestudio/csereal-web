@@ -14,7 +14,7 @@ export default function Dropdown({ contents, selectedIndex, onClick }: DropdownP
   };
 
   return (
-    <div className="relative selection-none">
+    <div className="relative select-none">
       <DropdownButton
         expanded={expanded}
         toggleExpanded={toggleExpanded}

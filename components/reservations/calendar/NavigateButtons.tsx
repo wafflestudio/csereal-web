@@ -123,7 +123,7 @@ const useDateQuery = () => {
     const str = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
       .map((x) => (x + '').padStart(2, '0'))
       .join('-');
-    router.push(`${pathname}?startDate=${str}`);
+    router.push(`${pathname}?selectedDate=${str}`);
   };
 };
 

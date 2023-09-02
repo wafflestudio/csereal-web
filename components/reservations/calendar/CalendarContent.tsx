@@ -63,9 +63,10 @@ const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
 };
 
 const rows = [
-  ...Array(5)
+  ...Array(4)
     .fill(0)
     .map((_, x) => x + 8 + 'AM'),
+  '12PM',
   ...Array(10)
     .fill(0)
     .map((_, x) => x + 1 + 'PM'),

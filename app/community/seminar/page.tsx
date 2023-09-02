@@ -17,11 +17,10 @@ import { PostSearchQueryParams } from '@/types/post';
 const postsCountPerPage = 10;
 
 interface SeminarPageParams {
-  params: { id: string };
   searchParams: PostSearchQueryParams;
 }
 
-export default function SeminarPage({ params, searchParams }: SeminarPageParams) {
+export default function SeminarPage({ searchParams }: SeminarPageParams) {
   const { page, keyword, setSearchParams } = useCustomSearchParams();
 
   const setCurrentPage = (pageNum: number) => {
@@ -42,7 +41,7 @@ export default function SeminarPage({ params, searchParams }: SeminarPageParams)
         <SeminarSearchBar setSearchParams={setSearchParams} />
       </div>
       <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
-        {data?.searchList?.map((post, index) => (
+        {data?.searchList.map((post, index) => (
           <div key={post.id}>
             {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
             <SeminarRow

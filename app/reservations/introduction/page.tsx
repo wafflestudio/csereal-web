@@ -10,7 +10,7 @@ import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 
 const path = getPath(reservationIntroduction);
 
-export default function ReservationIntroduction({
+export default function ReservationIntroductionPage({
   searchParams,
 }: {
   searchParams: { selected?: string };

@@ -11,9 +11,12 @@ import ModalFrame from '../../modal/ModalFrame';
 export default function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
   const { closeModal } = useModal();
 
-  const dateStr = `${reservation.startTime.getFullYear() / 100}.${padZero(
-    reservation.startTime.getMonth() + 1,
-  )}.${padZero(reservation.startTime.getDate())}.`;
+  const dateStr = reservation.startTime.toLocaleString('ko-kr', {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+  });
 
   const formatTime = (date: Date) => `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
 

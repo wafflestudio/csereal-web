@@ -375,7 +375,7 @@ export const reservationIntroduction: SegmentNode = {
 };
 
 export const seminarRoom: SegmentNode = {
-  name: '세미나실',
+  name: '세미나실 예약',
   segment: 'seminar-room',
   isPage: false,
   parent: reservations,

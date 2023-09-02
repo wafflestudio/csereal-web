@@ -18,10 +18,12 @@ export default function TimeSelector({
   date,
   setDate,
   className,
+  shouldDisableTime,
 }: {
   date: Date;
   setDate: (date: Date) => void;
   className?: string;
+  shouldDisableTime?: (date: Date) => boolean;
 }) {
   return (
     <ThemeProvider theme={darkTheme}>
@@ -32,6 +34,11 @@ export default function TimeSelector({
           onAccept={(value) => {
             const date = value?.toDate();
             date && setDate(date);
+          }}
+          shouldDisableTime={(value) => {
+            if (!shouldDisableTime) return false;
+            const date = value.toDate();
+            return shouldDisableTime(date);
           }}
         />
       </LocalizationProvider>

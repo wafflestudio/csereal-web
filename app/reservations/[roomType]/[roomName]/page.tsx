@@ -5,12 +5,12 @@ import ReservationCalendar from '@/components/reservations/ReservationCalendar';
 
 interface RoomReservationProps {
   params: { roomType: string; roomName: string };
-  searchParams: { startDate?: string };
+  searchParams: { selectedDate?: string };
 }
 
-export default async function RoomReservation({ params, searchParams }: RoomReservationProps) {
+export default async function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
   const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
-  const date = parseDate(searchParams.startDate || todayYMDStr());
+  const date = parseDate(searchParams.selectedDate || todayYMDStr());
 
   if (roomId === undefined) {
     return (
@@ -87,6 +87,7 @@ const parseDate = (dateString: string) => {
 // 일주일의 시작을 월요일로 간주
 const getStartOfWeek = (date: Date) => {
   const ret = new Date(date);
-  while (ret.getDay() !== 1) ret.setDate(ret.getDate() - 1);
+  const diff = (date.getDay() || 7) - 1;
+  ret.setDate(ret.getDate() - diff);
   return ret;
 };
