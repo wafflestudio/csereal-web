@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
 import { getFaculty } from '@/apis/people';
 
