@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 
+import { useLanguage } from '@/contexts/LanguageContext';
+
 import { CurvedHorizontalNode } from '@/components/common/Nodes';
 
 import { SegmentNode } from '@/types/page';
 
 import { getLocationLog, getPath } from '@/utils/page';
+import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 
 interface PageTitleProps {
   title: string | JSX.Element;
@@ -34,6 +37,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 
 function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   const log: SegmentNode[] = getLocationLog(currentPage);
+  const { isEnglish } = useLanguage();
 
   return log.length ? (
     <ol className="flex items-center gap-0.5 text-neutral-700">
@@ -42,8 +46,14 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
           <Fragment key={location.name}>
             <li className="flex">
               <LocationText
-                path={location.isPage ? getPath(location) : null}
-                name={location.name}
+                path={
+                  location.isPage
+                    ? isEnglish
+                      ? '/en' + getPath(location)
+                      : getPath(location)
+                    : null
+                }
+                name={isEnglish ? capitalizeFirstLetter(location.segment) : location.name}
               />
             </li>
             {i !== log.length - 1 && (

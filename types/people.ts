@@ -16,10 +16,10 @@ export interface FacultyList {
 }
 
 export interface Faculty extends SimpleFaculty {
-  office: string;
+  office?: string;
   fax?: string;
   website?: string;
-  educations: string[];
+  educations?: string[];
   researchAreas?: string[];
   careers?: string[];
 }
@@ -39,7 +39,7 @@ export interface EmiritusFaculty extends SimpleEmiritusFaculty {
   website?: string;
   careers?: string[];
   office?: string;
-  educations: string[];
+  educations?: string[];
 }
 
 export interface SimpleStaff {

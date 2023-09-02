@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { useLanguage } from '@/contexts/LanguageContext';
 
 import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
 
@@ -37,12 +41,13 @@ export default function PeopleRow({
   office,
   imageURL,
 }: PeopleRowProps) {
+  const { isEnglish } = useLanguage();
   const hrefList = {
-    'EMIRITUS_FACULTY': emeritusFacultyPath,
+    EMIRITUS_FACULTY: emeritusFacultyPath,
     FACULTY: facultyPath,
     STAFF: staffPath,
   };
-  const href = `${hrefList[type]}/${id}`;
+  const href = isEnglish ? `/en` + `${hrefList[type]}/${id}` : `${hrefList[type]}/${id}`;
 
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">

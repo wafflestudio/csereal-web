@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import { StraightNode } from '@/components/common/Nodes';
@@ -9,6 +10,7 @@ import { StraightNode } from '@/components/common/Nodes';
 import { SegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 
 export default function NavTreeRow({
   segmentNode,
@@ -17,9 +19,11 @@ export default function NavTreeRow({
   segmentNode: SegmentNode;
   highlight: boolean;
 }) {
+  const { isEnglish } = useLanguage();
+
   const { setNavbarState } = useNavbarContext();
   const closeNavbar = () => setNavbarState({ type: 'closed' });
-  const href = getPath(segmentNode);
+  const href = isEnglish ? '/en' + getPath(segmentNode) : getPath(segmentNode);
 
   if (highlight) {
     return (
@@ -29,7 +33,7 @@ export default function NavTreeRow({
           className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0"
           onClick={closeNavbar}
         >
-          {segmentNode.name}
+          {isEnglish ? capitalizeFirstLetter(segmentNode.segment) : segmentNode.name}
         </Link>
         <StraightNode />
       </div>
@@ -42,12 +46,14 @@ export default function NavTreeRow({
           className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
           onClick={closeNavbar}
         >
-          {segmentNode.name}
+          {isEnglish ? capitalizeFirstLetter(segmentNode.segment) : segmentNode.name}
         </Link>
       );
     } else {
       return (
-        <p className="block font-yoon text-md font-medium mb-6 text-white">{segmentNode.name}</p>
+        <p className="block font-yoon text-md font-medium mb-6 text-white">
+          {isEnglish ? capitalizeFirstLetter(segmentNode.segment) : segmentNode.name}
+        </p>
       );
     }
   }

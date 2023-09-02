@@ -1,7 +1,10 @@
+'use client';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import useSWR from 'swr';
 
-import { getFaculty } from '@/apis/people';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+import { getFaculty, getFacultyEng } from '@/apis/people';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -14,8 +17,11 @@ import { getPath } from '@/utils/page';
 
 const labUrl = getPath(researchLabs);
 
-export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
-  const data = await getFaculty(params.id);
+export default function FacultyMemberPage({ params }: { params: { id: number } }) {
+  const { isEnglish } = useLanguage();
+  const url = isEnglish ? `/eng/people/faculty/${params.id}` : `/people/faculty/${params.id}`;
+  const fetchFunction = () => (isEnglish ? getFacultyEng(params.id) : getFaculty(params.id));
+  const { data } = useSWR(url, fetchFunction);
 
   return (
     data && (
@@ -44,7 +50,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
             <CurvedHorizontalSmallNode />
             <div className=" border-b-[1px] pb-[5px] pr-2 border-b-main-orange -translate-x-[7.15px] translate-y-[1.5px]">
               <Link
-                href={`${labUrl}`}
+                href={isEnglish ? `/en/${labUrl}` : `${labUrl}`}
                 className="font-noto font-medium text-sm leading-5 hover:text-main-orange hover:cursor-pointer"
               >
                 {data?.labName}
@@ -52,11 +58,21 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
             </div>
           </div>
           <div className="mt-8 break-all">
-            <PeopleInfoList title="학력" infoList={data.educations} />
-            {data.researchAreas !== undefined && (
-              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
+            {data.educations && (
+              <PeopleInfoList
+                title={isEnglish ? 'Educations' : '학력'}
+                infoList={data.educations}
+              />
             )}
-            {data.careers && <PeopleInfoList title="경력" infoList={data.careers} />}
+            {data.researchAreas !== undefined && (
+              <PeopleInfoList
+                title={isEnglish ? 'Research Areas' : '연구 분야'}
+                infoList={data.researchAreas}
+              />
+            )}
+            {data.careers && (
+              <PeopleInfoList title={isEnglish ? 'Careers' : '경력'} infoList={data.careers} />
+            )}
           </div>
         </div>
       </PageLayout>

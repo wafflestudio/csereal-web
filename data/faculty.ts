@@ -9,11 +9,17 @@ import {
 
 import {
   emeritusFaculties,
+  emeritusFacultiesEng,
   emeritusFacultyList,
+  emeritusFacultyListEng,
   faculties,
+  facultiesEng,
   facultyList,
+  facultyListEng,
   staff,
+  staffEng,
   staffList,
+  staffListEng,
 } from './objects';
 
 // TODO: labId 연결
@@ -43,4 +49,33 @@ export const getMockStaffList = async (): Promise<StaffList> => {
 
 export const getMockStaff = async (id: number): Promise<Staff> => {
   return staff[id];
+};
+
+// 영어 데이터
+
+export const getMockFacultyListEng = async (): Promise<FacultyList> => {
+  return {
+    description: `<p><span style="color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px;">The current enrollment in the department is about 400 undergraduate and over 350 graduate students. Students are studying in state-of-the-art facilities with 35 internationally renowned faculty members.</span><br></p><p style="margin: 1em 0px; color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">CSE has been leading SNU's globalization efforts. CSE recruited the first international professor at Seoul National University, Robert lan McKay, in 2005. As of 2011, six international scholars are actively engaged in CSE education and research programs. Currently over 50 international undergraduate and graduate students are enrolled in CSE degree programs. Over 30% of the courses in CSE (including mandatory courses) are offered in English. CSE is one of the successfully internationalized academic units at SNU.</p><p style="margin: 1em 0px; color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">The department hosts various annual programs to help foreign students adjust quickly to the new environment at SNU. These events, formed by the international study group at SNU, are an opportunity for foreign students and current CSE students to get to know each other. These efforts will help our students succeed in a globalized world.</p>`,
+    facultyList: facultyListEng,
+  };
+};
+
+export const getMockFacultyEng = async (id: number): Promise<Faculty> => {
+  return facultiesEng[id];
+};
+
+export const getMockEmeritusFacultyListEng = async (): Promise<SimpleEmiritusFaculty[]> => {
+  return emeritusFacultyListEng;
+};
+
+export const getMockEmeritusFacultyEng = async (id: number): Promise<EmiritusFaculty> => {
+  return emeritusFacultiesEng[id];
+};
+
+export const getMockStaffListEng = async (): Promise<StaffList> => {
+  return staffListEng;
+};
+
+export const getMockStaffEng = async (id: number): Promise<Staff> => {
+  return staffEng[id];
 };

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import { NavbarState } from '@/contexts/NavbarContext';
 import NaviBarClose from '@/public/image/NaviBar_Close.svg';
 import NaviBarMenu from '@/public/image/NaviBar_Menu.svg';
@@ -9,6 +10,7 @@ import SnuLogo from '@/public/image/SNU_Logo.svg';
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 
 export default function NavbarRoot({
   state,
@@ -59,6 +61,8 @@ function NavList({
   state: NavbarState;
   setState: (state: NavbarState) => void;
 }) {
+  const { isEnglish } = useLanguage();
+
   const pathName = usePathname();
 
   // 노드별 강조 처리 여부
@@ -83,7 +87,7 @@ function NavList({
           <NavListRow
             key={i}
             highlight={shouldHighlight(child)}
-            name={child.name}
+            name={isEnglish ? capitalizeFirstLetter(child.segment) : child.name}
             onMouseEnter={makeMouseEnterHandler(child)}
           />
         ))}

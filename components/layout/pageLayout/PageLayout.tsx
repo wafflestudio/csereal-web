@@ -2,12 +2,15 @@
 
 import React, { ReactNode } from 'react';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+
+import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 
 interface PageLayoutProps {
   title?: string | JSX.Element;
@@ -17,8 +20,15 @@ interface PageLayoutProps {
 }
 
 export default function PageLayout({ title, titleType, titleMargin, children }: PageLayoutProps) {
+  const { isEnglish } = useLanguage();
+
   const currentPage = useCurrentSegmentNode();
-  title ||= currentPage.name;
+  if (isEnglish) {
+    title ||= capitalizeFirstLetter(currentPage.segment);
+  } else {
+    title ||= currentPage.name;
+  }
+
   const { navbarState } = useNavbarContext();
 
   return (

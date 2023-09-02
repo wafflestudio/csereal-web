@@ -1,16 +1,20 @@
 import Link from 'next/link';
 
+import { useLanguage } from '@/contexts/LanguageContext';
+
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 
 import { SegmentNode } from '@/types/page';
 
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
+import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 
 interface SubNavbarProps {
   currentTab: SegmentNode;
 }
 
 export default function SubNavbar({ currentTab }: SubNavbarProps) {
+  const { isEnglish } = useLanguage();
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30 + 10}px`;
@@ -22,7 +26,9 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
     >
       <CurvedVerticalNode grow={false} />
       <div className="pt-[0.6875rem] pl-1.5">
-        <h3 className="font-yoon font-bold text-sm text-neutral-600">{rootTab.name}</h3>
+        <h3 className="font-yoon font-bold text-sm text-neutral-600">
+          {isEnglish ? capitalizeFirstLetter(rootTab.segment) : rootTab.name}
+        </h3>
         <ul className="mt-4">
           {subTabs.map((tab) => (
             <SubTab
@@ -38,6 +44,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
 }
 
 function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
+  const { isEnglish } = useLanguage();
   const marginLeft = `${(getDepth(tab) - 1) * 12}px`;
 
   return (
@@ -48,8 +55,11 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
       style={{ marginLeft }}
     >
       {tab.isPage ? (
-        <Link href={getPath(tab)} className="hover:text-main-orange whitespace-nowrap">
-          {tab.name}
+        <Link
+          href={isEnglish ? '/en' + getPath(tab) : getPath(tab)}
+          className="hover:text-main-orange whitespace-nowrap"
+        >
+          {isEnglish ? capitalizeFirstLetter(tab.segment) : tab.name}
         </Link>
       ) : (
         <span className="whitespace-nowrap">{tab.name}</span>

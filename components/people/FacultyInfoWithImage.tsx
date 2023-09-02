@@ -23,7 +23,7 @@ export default function FacultyInfoWithImage({
   return (
     <div className="relative float-right w-[348px] h-[374px]">
       <PeopleImageWithAnimation imageURL={imageURL} />
-      <div className="w-64 h-[196px] absolute bottom-0 left-0 z-10">
+      <div className="w-64 h-[165px] absolute bottom-0 left-0 z-10">
         <div
           style={{
             filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',

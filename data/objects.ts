@@ -1308,19 +1308,20 @@ export const facultyList: SimpleFaculty[] = [
 export const faculties: Faculty[] = [
   {
     ...facultyList[0],
-    office: '301동 502호',
+    office: '301 Building, Room 502',
     website: 'http://datalab.snu.ac.kr/~ukang',
-    educations: `카네기멜론대학교 Computer Science Department 박사 (2012)
-카네기멜론대학교 Information Technology 석사 (2009)
-서울대학교 컴퓨터공학과 학사 (2003)`.split('\n'),
-    researchAreas: `딥러닝, 기계 학습
-그래프/텐서 분석
-추천 시스템
-금융 인공 지능`.split('\n'),
-    careers: `2015.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
-2013 – 2015.08.: 조교수, KAIST 전산학부
-2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
-2004 – 2007: Researcher, Korea Telecom`.split('\n'),
+    educations: `Ph.D. in Computer Science, Carnegie Mellon University, 2012
+    M.S. in Information Technology, Carnegie Mellon University, 2009
+    B.S. in Computer Engineering, Seoul National University, 2003`.split('\n'),
+    researchAreas: `Deep Learning and Machine Learning
+    Graphs and Tensors
+    Recommendation System
+    Financial AI`.split('\n'),
+    careers:
+      ` 2015.09. – now: Full-time Professor, Dept. of Computer Science and Engineering, Seoul National University
+      2013 – 2015.08.: Assistant Professor, Dept. of CS, KAIST
+      2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
+      2004 – 2007: Researcher, Korea Telecom`.split('\n'),
   },
   {
     ...facultyList[1],
@@ -3348,5 +3349,1332 @@ export const simpleResearchLabs: SimpleResearchLab[] = [
       pdf: 'https://cse.snu.ac.kr/sites/default/files/node--notice/2020Lab_jseo_%EC%84%9C%EC%A7%84%EC%9A%B1%EA%B5%90%EC%88%98%EB%8B%98.pdf',
       youtube: null,
     },
+  },
+];
+
+export const facultyListEng: SimpleFaculty[] = [
+  {
+    id: 0,
+    name: 'U Kang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B0%95%EC%9C%A0.png?itok=MB8iS-5w',
+    academicRank: 'Professor',
+    phone: '(02) 880-7254',
+    email: 'ukang@snu.ac.kr',
+    labId: 0,
+    labName: 'Data Mining Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 1,
+    name: 'Taekyoung Kwon',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_image001_jpg_01D35F87_52DDAF00_CID_image001.jpg?itok=EqJJj0NN',
+    academicRank: 'Professor',
+    phone: '(02) 880-9105',
+    email: 'tk@mmlab.snu.ac.kr',
+    labId: 20,
+    labName: 'Network Convergence & Security Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 2,
+    name: 'Gunhee Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/GunheeKim-20150115.jpg?itok=mfClJ_bq',
+    academicRank: 'Associate Professor',
+    phone: '(02) 880-7300',
+    email: 'gunhee@snu.ac.kr',
+    labId: 10,
+    labName: 'Vision and Learning Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 3,
+    name: 'Sun Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%84%A0%EA%B5%90%EC%88%98%EB%8B%98_20171102.jpg?itok=v2fmuFHJ',
+    academicRank: 'Professor',
+    phone: '(02) 880-7280',
+    email: 'sunkim.bioinfo@snu.ac.kr',
+    labId: 7,
+    labName: 'Bio and Health Informatics Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 4,
+    name: 'Jihong Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A7%80%ED%99%8D%20%EA%B5%90%EC%88%98%EB%8B%98_30_0.jpg?itok=J28d1qPE',
+    academicRank: 'Professor',
+    phone: '(02) 880-8792',
+    email: 'kjihong@snu.ac.kr',
+    labId: 21,
+    labName: 'Computer Architecture and Embedded Systems Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 5,
+    name: 'Jin-Soo Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%EC%A7%84-%EB%B0%98%EB%AA%85%ED%95%A8.jpg?itok=beFMQWAP',
+    academicRank: 'Professor (Vice head for Academic Affairs)',
+    phone: '(02) 880-7302',
+    email: 'jinsoo.kim@snu.ac.kr',
+    labId: 11,
+    labName: 'Systems Software and Architecture Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 6,
+    name: 'Taehyun Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%83%9C%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=KcXndMTI',
+    academicRank: 'Associate Professor',
+    phone: '(02) 880-1725',
+    email: 'taehyun@snu.ac.kr',
+    labId: 15,
+    labName: 'Quantum Information and Quantum Computing Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 7,
+    name: 'Hyoung-Joo Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%ED%98%95%EC%A3%BC%EA%B5%90%EC%88%98%EB%8B%98_20210208.jpg?itok=VWpdCb2h',
+    academicRank: 'Professor',
+    phone: '(02) 880-1826',
+    email: 'hjk@snu.ac.kr',
+    labId: 6,
+    labName: 'BigData Analytics Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 8,
+    name: 'Byung-Ro Moon',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AC%B8%EB%B3%91%EB%A1%9C%20%EA%B5%90%EC%88%98%EB%8B%98_17_0.jpg?itok=Hdk36H05',
+    academicRank: 'Professor',
+    phone: '(02) 880-8793',
+    email: 'moon@snu.ac.kr',
+    labId: 25,
+    labName: 'Optimization and Financial Engineering Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 9,
+    name: 'Bongki Moon',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/PROF.BONGKIMOON2.jpg?itok=irM2dneh',
+    academicRank: 'Professor',
+    phone: '(02) 880-1842',
+    email: 'bkmoon@snu.ac.kr',
+    labId: 1,
+    labName: 'Database Systems Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 10,
+    name: 'Kunsoo Park',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/thumb_kpark.jpg?itok=hI49Mbtk',
+    academicRank: 'Professor',
+    phone: '(02) 880-8381',
+    email: 'kpark@thoery.snu.ac.kr',
+    labId: 28,
+    labName: 'Computer Theory and Applications Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 11,
+    name: 'Jinwook Seo',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_CID_ii_k0rwf03i0_CID_profile-fig-1.png?itok=Wl_uJGVz',
+    academicRank: 'Professor',
+    phone: '(02) 880-1761',
+    email: 'jseo@snu.ac.kr',
+    labId: 32,
+    labName: 'Human-Computer Interaction Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 12,
+    name: 'Yongsoo Song',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/profile.jpeg?itok=fdlAU2Px',
+    academicRank: 'Assistant Professor',
+    phone: '(02) 880-7314',
+    email: 'y.song@snu.ac.kr',
+    labId: 14,
+    labName: 'Cryptography and Privacy Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 13,
+    name: 'Hyun Oh Song',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%86%A1%ED%98%84%EC%98%A4%20%EA%B5%90%EC%88%98.png?itok=BpERbaxx',
+    academicRank: 'Associate Professor',
+    phone: '(02) 880-7272',
+    email: 'hyunoh@snu.ac.kr',
+    labId: 2,
+    labName: 'Machine Learning Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 14,
+    name: 'Yeong Gil Shin',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%EC%98%81%EA%B8%B8.jpg?itok=3gQ19Ca6',
+    academicRank: 'Professor',
+    phone: '(02) 880-6757',
+    email: 'yshin@snu.ac.kr',
+    labId: 26,
+    labName: 'Computer Graphics and Image Processing Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 15,
+    name: 'Hyeonsang Eom',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%84%ED%98%84%EC%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=38GFePpq',
+    academicRank: 'Professor',
+    phone: '(02) 880-6755',
+    email: 'hseom@snu.ac.kr',
+    labId: 4,
+    labName: 'Distributed Computing Systems Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 16,
+    name: 'Bernhard Egger',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%B2%84%EB%82%98%EB%93%9C%EC%97%90%EA%B1%B0_0.jpg?itok=GJRQE_dL',
+    academicRank: 'Professor',
+    phone: '(02) 880-1843',
+    email: 'bernhard@snu.ac.kr',
+    labId: 27,
+    labName: 'Computer Systems and Platforms Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 17,
+    name: 'Heon Young Yeom',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%97%BC%ED%97%8C%EC%98%81%20%20%EA%B5%90%EC%88%98%EB%8B%98_28%20%2811%29_0.jpg?itok=ENsd23cC',
+    academicRank: 'Professor',
+    phone: '(02) 880-5583',
+    email: 'yeom@snu.ac.kr',
+    labId: 4,
+    labName: 'Distributed Computing Systems Lab',
+    status: 'ACTIVE',
+  },
+  // 최신데이터 반영 안된듯
+  {
+    id: 18,
+    name: '원정담',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9B%90%EC%A0%95%EB%8B%B4%203x4_0.jpg?itok=V-QZUyQs',
+    academicRank: '조Professor',
+    phone: '(02) 880-1846',
+    email: 'nonaxis@snu.ac.kr',
+    labId: 23,
+    labName: '지능형 동작 연구실',
+    status: 'ACTIVE',
+  },
+  // '원정담' 없음!
+  {
+    id: 19,
+    name: 'Sungjoo Yoo',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9C%A0%EC%8A%B9%EC%A3%BC_%EA%B3%A0%ED%95%B4%EC%83%81%EB%8F%84_small.jpg?itok=WJvfYfE6',
+    academicRank: 'Professor',
+    phone: '(02) 880-9392',
+    email: 'sungjoo.yoo@gmail.com',
+    labId: 29,
+    labName: 'Computing and Memory Architecture Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 20,
+    name: 'Kwangkeun Yi',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/________-______.jpg?itok=3OAJgzKL',
+    academicRank: 'Professor (Department Head)',
+    phone: '(02) 880-1857',
+    email: 'kwang@ropas.snu.ac.kr',
+    labId: 31,
+    labName: 'Programming Research Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 21,
+    name: 'Sang-goo Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/SGLee.jpg?itok=U1SZGpDF',
+    academicRank: 'Professor',
+    phone: '(02) 880-5357',
+    email: 'sglee@snu.ac.kr',
+    labId: 22,
+    labName: 'Intelligent Data Systems Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 22,
+    name: 'Youngki LEE',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/yk-photo.jpg?itok=RjHbuOmx',
+    academicRank: 'Associate Professor',
+    phone: '(02) 880-1726',
+    email: 'youngkilee@snu.ac.kr',
+    labId: 19,
+    labName: 'Human-Centered Computer Systems Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 23,
+    name: 'Jae W. Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%9A%B1%20%EA%B5%90%EC%88%98%EB%8B%98.png?itok=Xf6pr9GB',
+    academicRank: 'Professor',
+    phone: '(02) 880-1834',
+    email: 'jaewlee@snu.ac.kr',
+    labId: 13,
+    labName: 'Architecture and Code Optimization Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 24,
+    name: 'Jaejin Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%9E%AC%EC%A7%84_0.jpg?itok=XzA58-Gw',
+    academicRank: 'Professor',
+    phone: '(02) 880-1863',
+    email: 'jaejin@snu.ac.kr',
+    labId: 24,
+    labName: 'Thunder Research Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 25,
+    name: 'Jehee Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/jehee20210813.jpg?itok=VsuQmNU3',
+    academicRank: 'Professor',
+    phone: '(02) 880-1845',
+    email: 'jaewlee@mrl.snu.ac.kr',
+    labId: 17,
+    labName: 'Movement Research Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 26,
+    name: 'Chang-Gun Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9D%B4%EC%B0%BD%EA%B1%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=fPUQShUX',
+    academicRank: 'Professor',
+    phone: '(02) 880-1862',
+    email: 'cglee@snu.ac.kr',
+    labId: 12,
+    labName: 'Real-time Ubiquitous System Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 27,
+    name: 'Byoung-Tak Zhang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%B3%91%ED%83%81%20%EA%B5%90%EC%88%98%EB%8B%98_22.jpg?itok=zR9V6Z7Z',
+    academicRank: 'Professor',
+    phone: '(02) 880-7254',
+    email: 'btzhang@bi.snu.ac.kr',
+    labId: 3,
+    labName: 'Biointelligence Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 28,
+    name: 'Byung-Gon Chun',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/bgchun_2021.jpg?itok=RbQi0Qx0',
+    academicRank: 'Professor (Vice head for Research)',
+    phone: '(02) 880-1928',
+    email: 'bgchun@snu.ac.kr',
+    labId: 9,
+    labName: 'Software Platform Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 29,
+    name: 'Wha Sook Jeon',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%ED%99%94%EC%88%99_0.jpg?itok=ATbB8R7d',
+    academicRank: 'Professor',
+    phone: '(02) 880-1839',
+    email: 'wsjeon@snu.ac.kr',
+    labId: 18,
+    labName: 'Mobile Computing and Communications Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 30,
+    name: 'Hanbyul Joo',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A3%BC%ED%95%9C%EB%B3%84%EA%B5%90%EC%88%98%EB%8B%98.jpeg?itok=2SIfQOB0',
+    academicRank: 'Assistant Professor',
+    phone: '(02) 880-7293',
+    email: 'hbjoo@snu.ac.kr',
+    labId: 5,
+    labName: 'Visual Computing Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 31,
+    name: 'Soonhoi Ha',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%98%EC%88%9C%ED%9A%8C%20%EA%B5%90%EC%88%98%EB%8B%98%20%283%29_0.jpg?itok=_gzD3jsT',
+    academicRank: 'Professor',
+    phone: '(02) 880-8382',
+    email: 'sha@iris.snu.ac.kr',
+    labId: 30,
+    labName: 'Codesign And Parallel Processing Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 32,
+    name: 'Chung-Kil Hur',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/1.%20%ED%97%88%EC%B6%A9%EA%B8%B8%EA%B5%90%EC%88%98%EB%8B%9820191206.png?itok=V0Ictg_k',
+    academicRank: 'Professor',
+    phone: '(02) 880-7254',
+    email: 'gil.hur@sf.snu.ac.kr',
+    labId: 8,
+    labName: 'Software Foundations Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 33,
+    name: 'Seung-won Hwang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/2021.3%EC%9B%94%20%EB%B6%80%EC%9E%84%EC%98%88%EC%A0%95_%ED%99%A9%EC%8A%B9%EC%9B%90%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=V1eW61q1',
+    academicRank: 'Professor',
+    phone: '(02) 880-7316',
+    email: 'seungwonh@snu.ac.kr',
+    labId: 16,
+    labName: 'Language and Data Intelligence Lab',
+    status: 'ACTIVE',
+  },
+  {
+    id: 34,
+    name: 'Seok-young Jang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EC%84%9D%EC%98%81%ED%8A%B9%EC%9E%84%EA%B5%90%EC%88%98.png?itok=Lp1vS9fa',
+    academicRank: ' ',
+    status: 'VISITING',
+  },
+];
+
+export const facultiesEng: Faculty[] = [
+  {
+    ...facultyListEng[0],
+    office: '301 Building, Room 502',
+    website: 'http://datalab.snu.ac.kr/~ukang',
+    educations: `Ph.D. in Computer Science, Carnegie Mellon University, 2012
+    M.S. in Information Technology, Carnegie Mellon University, 2009
+    B.S. in Computer Engineering, Seoul National University, 2003`.split('\n'),
+    researchAreas: `Deep Learning and Machine Learning
+    Graphs and Tensors
+    Recommendation System
+    Financial AI
+    `.split('\n'),
+    careers:
+      `2015.09. – now: Full-time Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2013 – 2015.08.: Assistant Professor, Dept. of CS, KAIST
+    2012.07. – 2012.12.: Postdoctoral Fellow, Carnegie Mellon University
+    2004 – 2007: Researcher, Korea Telecom`.split('\n'),
+  },
+  {
+    ...facultyListEng[1],
+    office: '301 Building, Room 503',
+    fax: '(02) 872-2045',
+    website: 'http://mmlab.snu.ac.kr/~tk/',
+    educations: `Ph.D. in Computer Science and Engineering, Seoul National University, 2000
+    M.S. in Computer Engineering, Seoul National University, 1995
+    B.S. in Computer Engineering, Seoul National University, 1993`.split('\n'),
+    researchAreas: `Wireless networks: ad-hoc network, sensor network, multimedia streaming
+    Wireless technologies convergence
+    Mobile networks: mobility management, peer-to-peer mobility
+    Ubiquitous/mobile computing
+    Internet: active queue management, peer-to-peer`.split('\n'),
+  },
+  {
+    ...facultyListEng[2],
+    office: '302 Building, Room 327',
+    website: 'http://vision.snu.ac.kr/',
+    educations: `Ph.D. in Computer Science, Carnegie Mellon University, 2013
+    M.S. in The Robotics Institute, Carnegie Mellon University, 2008
+    M.S. in Mechanical Engineering, KAIST, 2001
+    B.S. in Mechanical Engineering, KAIST, 1999`.split('\n'),
+    researchAreas: `Computer Vision, Machine Learning, Natural Language Processing`.split('\n'),
+    careers:
+      `2019.03. – now: Associate Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2015 – 2019.02.: Assistant Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2013 – 2014: Disney Research, Postdoctoral Researcher
+    2011: Visiting Student, Computer Science Department, Stanford University
+    2009: Visiting Student, CSAIL, MIT
+    2008 – 2009: Research Intern, Honda Research Institute
+    2008: Intel/CMU Summer Fellow, Intel Research
+    2005 – 2006: Visiting Researcher, The Robotics Institute, Carnegie Mellon University
+    2001 – 2006: Researcher, 지능로봇연구센터, KIST`.split('\n'),
+  },
+  {
+    ...facultyListEng[3],
+    office: '301 Building, Room 421',
+    website: 'http://biohealth.snu.ac.kr',
+    educations: `Ph.D. in Computer Science, University of Iowa, 1997
+    M.S. in Computer Science, KAIST, 1987
+    B.S. in Computer Science and Statistics , Seoul National University, 1985`.split('\n'),
+    careers:
+      `2014.09. – now: Professor, Seoul National University Department of Computer Science and Engineering
+    2011 – 2014.08.: Associate Professor, Seoul National University Department of Computer Science and Engineering
+    2011 – now: Director, Seoul National University Bioinformatics
+    2009 – 2011: Faculty Division C Chair, Indiana University School of Informatics and Computing
+    2001 – 2011:Assistant/Associate Professor, Indiana University School of Informatics and Computing
+    1998 – 2001: Senior Computer Scientist, DuPont Central Research`.split('\n'),
+  },
+  {
+    ...facultyListEng[4],
+    office: '302 Building, Room 328',
+    website: 'http://cares.snu.ac.kr',
+    educations: `Ph.D. in Computer Science and Engineering, University of Washington, 1995`.split(
+      '\n',
+    ),
+    careers: `1995 – 1997: Member of Technical Staff, DSP R&D Center, Texas Instruments`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyListEng[5],
+    office: '301 Building, Room 504',
+    website: 'http://csl.snu.ac.kr/',
+    educations: `Ph.D. in Computer Engineering, Seoul National University, 1999
+    M.S. in Computer Engineering, Seoul National University, 1993
+    B.S. in Computer Engineering, Seoul National University, 1991`.split('\n'),
+    researchAreas: `Operating System
+    Storage System
+    Parallel and Distributed Computing
+    Embedded System`.split('\n'),
+    careers: `2018. 3. – now: Professor, Dept. of CSE, Seoul National University
+    2008. 9. – 2018. 2.: Professor, Dept. of Computer Engineering, Sungkyunkwan University
+    2002. 3. – 2008. 8.: Associate Professor, Dept. of Computer Science, KAIST
+    1999. 9. – 2002. 2.: Senior Researcher, ETRI`.split('\n'),
+  },
+  {
+    ...facultyListEng[6],
+    office: '301 Building, Room 407',
+    fax: '(02) 886-7589',
+    educations: `Ph.D. in Physics, Massachusetts Institute of Technology (MIT), 2008
+    M.S. in Control and Instrument Engineering, Seoul National University, 1997
+    B.S. in Computer Engineering, Seoul National University, 1995`.split('\n'),
+    researchAreas: `Quantum cryptography
+    Quantum algorithms
+    Development of quantum computer system`.split('\n'),
+    careers:
+      `2018. 9. – now: Associate Professor, Department of Computer Science and Engineering at Seoul National University
+    2011 – 2018: Project Leader, Quantum Tech. Lab at SK telecom
+    2008 – 2011: Postdoctoral Researcher, Electrical and Computer Engineering at Duke University
+    1997 – 2000: Instructor and Full-Time Instructor, Computer Science and Statistics at Korean Air Force Academy`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[7],
+    office: '301 Building, Room 406',
+    fax: '(02) 882-0269',
+    educations: `Ph.D. in Computer Science, University of Texas at Austin, 1988`.split('\n'),
+  },
+  {
+    ...facultyListEng[8],
+    office: '302 Building, Room 430',
+    fax: '(02) 871-4912',
+    website: 'http://soar.snu.ac.kr/~moon/',
+    educations: `Ph.D. in Computer Science, Pennsylvania State University, 1994`.split('\n'),
+  },
+  {
+    ...facultyListEng[9],
+    office: '301 Building, Room 402',
+    fax: '(02) 886-7589',
+    website: 'http://dbs.snu.ac.kr/',
+    educations: `Ph.D. in Computer Science, University of Maryland College Park, 1996
+    M.S. in Computer Engineering, Seoul National University, 1985
+    B.S. in Computer Engineering, Seoul National University, 1983`.split('\n'),
+    researchAreas: `High performance database systems
+    Parallel and distributed databases
+    XML indexing and streaming
+    Spatio-temporal databases`.split('\n'),
+    careers: `2013 – now: Professor, Seoul National University
+    1997 – 2013: Assistant/Associate/Full Professor, University of Arizona, U.S.A.
+    2005 – 2010: Associate Editor, IEEE Transactions on Knowledge and Data Engineering
+    1999 – 2003: CAREER Award, U.S. National Science Foundation
+    1985 – 1990: Technical staff, Samsung Electronics and SAIT`.split('\n'),
+  },
+  {
+    ...facultyListEng[10],
+    office: '301 Building, Room 405',
+    fax: '(02) 886-7589',
+    website: 'http://theory.snu.ac.kr/~kpark/',
+    educations: `Ph.D. in Computer Science, Columbia University, 1992`.split('\n'),
+    careers: `2005: Visiting Professor, University of Marne-la-Vallee, France
+    1995: Visiting Research Fellow, Curtin University, Australia
+    1991 – 1993: Lecturer, King's College, University of London, UK`.split('\n'),
+  },
+  {
+    ...facultyListEng[11],
+    office: '302 Building, Room 431',
+    website: 'http://hcil.snu.ac.kr/people/jinwook-seo',
+    educations:
+      `Ph.D. in Human-Computer Interaction Laboratory, Department of Computer Science, University of Maryland, College Park, MD, USA, Spring 2005
+    M.S. in Department of Computer Science, Seoul National University, Seoul, Korea, 1997
+    B.S. in Department of Computer Science, Seoul National University, Seoul, Korea, 1995`.split(
+        '\n',
+      ),
+    researchAreas: `Human-Computer Interaction, Interaction Design, User Interface Design
+    Information Visualization, Visual Analytics
+    Biomedical Informatics`.split('\n'),
+    careers: `2009 – now: full-time professor, Seoul National University
+    2006 – 2008: Assistant Professor, Children's Research Institute & George Washington University School of Medicine
+    2005 – 2006: Research Staff, Children's Research Institute
+    1997 – 2000: Instructor/Full-time Instructor, Korea Air Force Academy, Department of Computer Science and Statistics`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyListEng[12],
+    office: '301 Building, Room 501',
+    website: 'https://yongsoosong.github.io/',
+    educations: `Ph.D. in Mathematical Sciences, Seoul National University (2018)
+    B.S. in Mathematical Sciences, Seoul National University (2012)`.split('\n'),
+    researchAreas: `Cryptography
+    Privacy
+    Security`.split('\n'),
+    careers:
+      `2021. 03. – now: Assistant Professor, Department of Computer Science and Engineering, Seoul National University
+    2019. 01. – 2021. 02.: Senior Researcher, Cryptography and Privacy Research Group, Microsoft Research Redmond
+    2018. 01. – 2018. 12.: Postdoctoral Researcher, Dept. of Computer Science and Engineering, UC San Diego`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[13],
+    office: '302 Building, Room 326',
+    website: 'https://mllab.snu.ac.kr/hyunoh/',
+    educations: `Ph.D. in Computer Science, University of California, Berkeley, 2014
+    M.S. in Computer Science, University of California, Berkeley, 2013
+    M.S. in Mechanical Engineering, Stanford University, 2008
+    B.S. in Mechanical Engineering, Hanyang University, 2006`.split('\n'),
+    researchAreas: `Machine learning
+    Optimization
+    Robotics
+    Artificial intelligence`.split('\n'),
+    careers:
+      `2017.09. – now: full-time professor, Dept. of Computer Science and Engineering, Seoul National University
+    2016.07. – 2017.08.: Google Research (Research Scientist)
+    2014.11. – 2016.07.: Stanford University (Postdoctoral fellow)
+    2013: INRIA Grenoble (Visiting researcher)
+    2013: IBM Research (Research intern)`.split('\n'),
+  },
+  {
+    ...facultyListEng[14],
+    office: '302 Building, Room 329',
+    educations: `Ph.D. in Computer Science, University of Southern California, 1989
+    M.S. in Computer Science and Engineering, Seoul National University, 1984
+    B.S. in Computer Science and Engineering, Seoul National University, 1981`.split('\n'),
+    researchAreas: `Medical Imaging Processing
+    3D Modelling
+    Augmented Reality
+    Volume Rendering`.split('\n'),
+    careers:
+      `1992.03 – now: Prof., Dept. Computer Science & Engineering, Seoul National University, Korea
+    1990.03 – 1992.02: Prof., Dept. Computer Science & Engineering, Kyungpook National University, Korea`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[15],
+    office: '302 Building, Room 324',
+    website: 'http://meslab.snu.ac.kr/~hseom/',
+    educations: `Ph.D. in Computer Science, University of Maryland, College Park, 2003`.split('\n'),
+    careers: `2017.3. – now: Professor, Seoul National University
+    2012 – 2017.2.: Associate Professor, Seoul National University
+    2005 – 2011: Assistant Professor, Seoul National University
+    2003 – 2005: Senior Research Engineer, Samsung Electronics`.split('\n'),
+  },
+  {
+    ...facultyListEng[16],
+    office: '301 Building, Room 403',
+    website: 'http://csap.snu.ac.kr/bernhard',
+    educations: `Ph.D., Seoul National University`.split('\n'),
+    researchAreas: `Architecture, operating system and compiler interaction for embedded systems
+    OS/Compiler-issues for portable heterogeneous multi-core architectures
+    Coarse-grained reconfigurable architectures and compilers
+    Virtualization techniques for multicores/manycores
+    GPU performance estimation`.split('\n'),
+  },
+  {
+    ...facultyListEng[17],
+    office: '302 Building, Room 321',
+    website: 'http://arirang.snu.ac.kr/~yeom/',
+    educations: `Ph.D. in Computer Science, Texas A&M University, 1992`.split('\n'),
+    careers:
+      `2004 – now: Professor, School of Computer Science and Engineering, Seoul National University
+    1993 – 2003: Assistant/Associate Professor, School of Computer Science and Engineering, Seoul National University
+    1992 – 1993: Research Scientist, Samsung Data Systems`.split('\n'),
+  },
+  {
+    ...facultyListEng[18],
+    office: '302동 330호',
+    website: 'https://sites.google.com/view/jungdam',
+    educations: `서울대학교 컴퓨터공학 박사 (2017)
+서울대학교 컴퓨터공학 학사 (2011)`.split('\n'),
+    researchAreas: `Computer Graphics
+Machine Learning
+Biomechnics
+Robotics
+Animation
+Motion Analysis and Synthesis
+Motion Simulation and Control
+Simulated-based Creature Modeling`.split('\n'),
+    careers: `2023. 03. - 현재: 전임교수, 서울대학교 컴퓨터공학부
+2019 - 2023.02: Research Scientist, Meta (Facebook) AI, Pittsburgh
+2017.09 - 2019: 연수 연구원, 서울대학교 컴퓨터 연구소
+2013: Research Intern, Disney Research Los Angeles`.split('\n'),
+  },
+  {
+    ...facultyListEng[19],
+    office: '302 Building, Room 427',
+    website: 'http://cmalab.snu.ac.kr/',
+    educations: `Ph.D. in Electrical Engineering, Seoul National University, 2000
+    M.S. in Electronics Engineering, Seoul National University, 1995
+    B.S. in Electronics Engineering, Seoul National University, 1992`.split('\n'),
+    researchAreas:
+      `Memory subsystem architectures and software/hardware design optimization methods for mobile and server systems`.split(
+        '\n',
+      ),
+    careers:
+      `2015 – now: Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2012 – 2015: Associate Professor, POSTECH
+    2008 – 2012: Assistant Professor, POSTECH
+    2004 – 2008: Principal Engineer, System LSI Division, Samsung Electronics
+    2002 – 2004: Researcher, TIMA Laboratory
+    2001 – 2002: Researcher, ISRC, SNU
+    2000 – 2001; Researcher, TIMA Laboratory`.split('\n'),
+  },
+  {
+    ...facultyListEng[20],
+    office: '302 Building, Room 428',
+    website: 'http://ropas.snu.ac.kr/~kwang/',
+    educations: `Ph.D. in Computer Science, University of Illinois at Urbana-Champaign, 1993
+    M.S. in Computer Science, University of Illinois at Urbana-Champaign, 1990
+    B.S. in Computer Science and Statistics, Seoul National University, 1987`.split('\n'),
+    researchAreas: `Static program analysis
+    Static analysis for safe softwares
+    Programming systems application of static analysis technology
+    HOT (higher-order & typed) programming system`.split('\n'),
+    careers:
+      `2008 – 2015: Director, Research On Software Analysis for Error-free Computing Center, Engineering Research Center of Excellence
+    1998 – 2003: Director, National Creative Research Initiative Center for Research On Program Analysis System
+    1995 – 2003: Assistant/Associate Professor, Dept. of Computer Science, KAIST
+    1993 – 1995: Member of Technical Staff, SW Principles Research Dept, Bell Labs.
+    2016: Research Scientist, Facebook
+    Visiting Professor, Stanford(2017), MIT(2012, 2008), CMU(2008), École Normale Supérieure, Paris(2016, 2002)`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[21],
+    office: '301 Building, Room 404',
+    website: 'http://ids.snu.ac.kr/site/members/M_Sang-goo_Lee.html',
+    educations: `Ph.D. in Computer Science, Northwestern University, 1990`.split('\n'),
+    careers: `1990 – 1992: member of technical staff, EDS Research & Dev
+    1989 – 1990: an instructor, Univ. of Minnesota
+    2002 – now: chairman, Society for e-Business Studies`.split('\n'),
+  },
+  {
+    ...facultyListEng[22],
+    office: '301 Building, Room 413',
+    website: 'http://youngkilee.blogspot.com/',
+    educations: `Ph.D. in Computer Science, KAIST, 2012
+    B.S. in Computer Science, KAIST, 2004)`.split('\n'),
+    researchAreas: `Mobile and Ubiquitous Computing
+    Human Behavior and Context Sensing
+    Embedded Machine Learning & Deep Learning Systems
+    Computational Social Science`.split('\n'),
+    careers:
+      `2018. 9. – now: Full-time Professor, Department of Computer Science and Engineering, Seoul National University
+    2013. 3. – 2018. 8.: Assistant Professor, School of Information Systems, Singapore Management University
+    2015. 6. – now: Affiliated Faculty, Computer Science Department, KAIST
+    2007. 4. – 2007. 6.: Research Intern, Microsoft Research Redmond
+    2006. 9. – 2007. 3.: Research Intern, Microsoft Research Asia`.split('\n'),
+  },
+  {
+    ...facultyListEng[23],
+    office: '301 Building, Room 506',
+    website: 'https://iamjaelee.github.io/www/',
+    educations: `Ph.D. in EECS (CS Division), MIT, 2009
+    M.S. in EE, Stanford University, 2002
+    B.S. in Electrical Engineering, Seoul National University, 1999`.split('\n'),
+    researchAreas: `Computer Architecture and Systems
+    Parallel Programming
+    Compilers
+    Security`.split('\n'),
+    careers:
+      `2016.09. – now: full-time professor, Dept. of Computer Science and Engineering, Seoul National University
+    2011 – 2016.08.: Assistant Professor, Dept. of Semiconductor Systems Engineering, SungKyunKwan University
+    2011: Postdoctoral Research Associate, CS Department, Princeton University
+    2009 – 2011: Researcher and Engineer, Parakinetics, Inc. (Princeton, USA)
+    2002 – 2009: Research Assistant, MIT CSAIL
+    2008: Graduate Exchange Scholar, EECS Department, UC Berkeley
+    2006, 2007: Research Intern, Nokia Research Lab in Cambridge (NRCC)
+    2002: Engineering Intern, Nvidia Corp.`.split('\n'),
+  },
+  {
+    ...facultyListEng[24],
+    office: '301 Building, Room 505',
+    website: 'https://sites.google.com/view/jaejinlee',
+    educations: `Ph.D., Computer Science, University of Illinois at Urbana-Champaign, 1999
+    M.S., Computer Science, Stanford University, 1995
+    B.S. Physics, Seoul National University, 1991`.split('\n'),
+    researchAreas: `Programming systems of heterogeneous machines (GPUs and FPGAs)
+    Parallelization and optimization of Deep Learning frameworks (PyTorch and TensorFlow)
+    Deep Learning compilers
+    Programming and simulation environments for Quantum Computing`.split('\n'),
+    careers:
+      `2010 – now: Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2004 – 2010: Associate Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2002 – 2004: Assistant Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2000 – 2002: Assistant Professor, Dept. of Computer Science and Engineering, Michigan State University, USA
+    1999 – 1999: Visiting Lecturer, Dept. of Computer Science, University of Illinois at Urbana-Champaign, USA`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[25],
+    office: '302 Building, Room 325',
+    website: 'http://mrl.snu.ac.kr/~jehee/',
+    careers:
+      `I am a professor in the Department of Computer Science and Engineering at Seoul National University. My research interests are in the areas of computer graphics, animation, biomechanics, and robotics. I am particularly interested in developing new ways of understanding, representing, planning, and simulating human and animal movements. This involves full-body motion analysis and synthesis, biped control and simulation, clinical gait analysis, deep learning, motion capture, motion planning, data-driven and physically based techniques, interactive avatar control, crowd simulation, and controller design. I co-chaired ACM/EG Symposium on Computer Animation (SCA) in 2012, ACM SIGGRAPH conference on Motion, Interaction and Games (MIG) in 2018, and Pacific Graphics in 2019. I will be the technical program chair of SIGGRAPH Asia 2022. I also served on numerous program committees, including ACM SIGGRAPH, ACM SIGGRAPH Asia, Eurographics, ACM/EG Symposium on Computer Animation, Pacific Graphics, CGI, and CASA. I served as an associate editor of IEEE Transactions on Visualization and Computer Graphics. I am leading SNU Movement Research Lab.`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[26],
+    office: '301 Building, Room 409',
+    website: 'http://rubis.snu.ac.kr/~cglee',
+    educations: `Ph.D. in Computer Engineering, Seoul National University, 1998`.split('\n'),
+    researchAreas: `Real-Time and Embedded System Architecture
+    Real-Time Communications
+    QoS Management in Control Applications, Multimedia Systems, and Web Servers
+    Satellite and Mobile Communications
+    Wireless Sensor Networks
+    Real-Time Ubiquitous Systems
+    `.split('\n'),
+    careers:
+      `During his study as a Ph.D. candidate, he was a member of the Real-Time research group at Seoul National University. He was also a visiting student to the University of Virginia from Jan. to Mar. 1996 to work with Prof. Son in the Computer Science Department. From March 1998 to Feburary 2000, we worked for LG Information & Communications Ltd. developing real-time software platform and UMTS signaling protocols for IMT-2000 mobile terminals. From March 2000 to July 2002, he was a Post Doctoral Research Associate in the Department of Computer Science at University of Illinois working with Prof. Sha. From August 2002 to August 2006, he was an assistant professor in the Department of Electrical and Computer Engineering, Ohio State University , Columbus, Ohio. He joined the School of Computer Science and Engineering, Seoul National University from September 2006.`.split(
+        '\n',
+      ),
+  },
+  {
+    ...facultyListEng[27],
+    office: '302 Building, Room 323',
+    website: 'http://bi.snu.ac.kr/~btzhang/',
+    educations: `Ph.D. in Computer Science (Informatik), University of Bonn, 1992
+    M.S. in Compter Science, Seoul National University, 1988
+    B.S. in Compter Science, Seoul National University, 1986`.split('\n'),
+    researchAreas: `Artificial intelligence
+    Learning and adaptive systems`.split('\n'),
+  },
+  {
+    ...facultyListEng[28],
+    office: '302동 322호',
+    website: 'https://bgchun.github.io/',
+    educations: `Ph.D. in Computer Science, University of California, Berkeley, 2007
+    M.S. in Computer Science, Stanford University, 2002
+    M.S. in Electronic Engineering, Seoul National University, 1996
+    B.S. in Electronic Engineering, Seoul National University, 1994`.split('\n'),
+    researchAreas: `Machine learning systems
+    Big data analytics
+    Datacenter infrastructure / cloud computing
+    Operating systems`.split('\n'),
+    careers: `2016: Facebook (Research Scientist)
+    2012 – 2013: Microsoft (Principal Scientist)
+    2011 – 2012: Yahoo!Research (Research Scientist)
+    2008 – 2011: Intel Labs Berkeley (Research Scientist)
+    2007 – 2008: International Computer Science Institute (Post-doctoral Researcher)`.split('\n'),
+  },
+  {
+    ...facultyListEng[29],
+    office: '302 Building, Room 429',
+    website: 'http://mccl.snu.ac.kr/Members01.htm',
+    educations: `Ph.D. in Computer Engineering, Seoul National University, 1989`.split('\n'),
+    researchAreas: `Resource management for wireless and mobile networks
+    Mobile networks including 3G/4G cellular systems, wireless PAN/LAN, MBWA
+    Mobile Internet over cellular systems
+    Network performance evaluation
+    Cognitive radio`.split('\n'),
+  },
+  {
+    ...facultyListEng[30],
+    office: '302 Building, Room 324',
+    website: 'https://jhugestar.github.io/',
+    educations: `Ph.D. in Robotics, Carnegie Mellon University, 2018
+    M.S. in Electrical Engineering, KAIST, 2009
+    B.S. in Computer Science, KAIST, 2007`.split('\n'),
+    researchAreas: `Computer Vision
+    Machine Learning
+    Graphics
+    Artificial intelligence`.split('\n'),
+    careers:
+      `2022. 03. – now: Assistant Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2019 – 2022. 02.: Research Scientist, Facebook AI Research (FAIR), Menlo Park
+    2017: Research Intern, Facebook Reality Labs, Pittsburgh
+    2015: Research Intern, Disney Research Zurich
+    2009 – 2012: Researcher, ETRI`.split('\n'),
+  },
+  {
+    ...facultyListEng[31],
+    office: '301동 408호',
+    website: 'http://peace.snu.ac.kr/sha/',
+    educations: `Ph.D. in EECS, University of California, Berkeley, 1992`.split('\n'),
+  },
+  {
+    ...facultyListEng[32],
+    office: '302 Building, Room 426',
+    website: 'http://sf.snu.ac.kr/gil.hur',
+    educations: `Ph.D. in Computer Science, University of Cambridge (2010)
+    B.S. in Computer Science and Mathematics, KAIST (2000)`.split('\n'),
+    researchAreas: `Software Verification
+    Relaxed Memory Concurrency
+    Low-level Language Semantics
+    Automated & Interactive Theorem Proving`.split('\n'),
+    careers: `2013  – now: Full-time Professor, CSE Department, Seoul National University
+    2012 – 2013: Postdoc Researcher, Microsoft Research Cambridge, UK
+    2010 – 2012: Postdoc Researcher Max Planck Institute for Software Systems (MPI-SWS), Germany
+    2009 – 2010: Postdoc Researcher, Laboratoire Preuves, Programmes et Systèmes (PPS) , France`.split(
+      '\n',
+    ),
+  },
+  {
+    ...facultyListEng[33],
+    office: '301 Building, Room 520',
+    website: 'https://seungwonh.github.io/',
+    educations: `Ph.D. in Computer Science, University of Illinois at Urbana-Champaign (2005)
+    M.S. in Computer Science, University of Illinois at Urbana-Champaign (2000)
+    B.S. in Computer Science, KAIST (1998)`.split('\n'),
+    researchAreas: `Natural language understanding
+    Knowledge and data intelligence
+    Information retrieval and search engines`.split('\n'),
+    careers:
+      `2021.03. – now: Professor, Dept. of Computer Science and Engineering, Seoul National University
+    2015 – 2021.02.: Professor, Dept. of Computer Science, Yonsei University
+    2005 – 2015: Tenured Associate/Assistant Professor, Dept. of Computer Science and Engineering, POSTECH
+    2012 – 2013: Visiting Researcher, Microsoft Research
+    2003, 2004: Research Intern, Microsoft Research
+    2000, 2002: Research Intern, Berkeley National Lab`.split('\n'),
+  },
+  {
+    ...facultyListEng[34],
+    educations: `LLM. in Department of Law, University of Denver, CO, USA, Spring 2003
+    M.S. in Department of Public Administration, Graduate School of Public Administration, Seoul National University, Seoul, Korea, 1990
+    B.S. in Department of Law, Korea University, Seoul, Korea, 1988`.split('\n'),
+    researchAreas: `Artificial Intelligence Development Policy
+    Artificial Intelligence Ethics and Adverse Effects
+    Artificial Intelligence Regulations and Legal Issues`.split('\n'),
+    careers: `2021 – now: CEO, Kumyang Innovation Co, Ltd
+      2019 – 2021: Vice Minister, Ministry of Science and ICT
+      2010 – 2019: Assistant Minister, Ministry of Science and ICT / Senior Executive Official, Office of the President / Minister-Counsellor, Embassy of the Republic of Korea in China
+      1990 – 2010: Director, Director Generall, Ministry of ICT`.split('\n'),
+  },
+];
+
+export const emeritusFacultyListEng: SimpleEmiritusFaculty[] = [
+  {
+    id: 0,
+    name: 'Kern Koh',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B3%A0%EA%B1%B4%EA%B5%90%EC%88%98%EB%8B%98_0.JPG?itok=ViFOQxpn',
+    academicRank: ' ',
+  },
+  {
+    id: 1,
+    name: 'Myung-Soo Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EB%AA%85%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_7_0.jpg?itok=cenRhzgQ',
+    academicRank: ' ',
+    email: 'mskim@snu.ac.kr',
+  },
+  {
+    id: 2,
+    name: 'Yungtaek Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%98%81%ED%83%9D.JPG?itok=iZj0e4na',
+    academicRank: ' ',
+  },
+  {
+    id: 3,
+    name: 'Chong-kwon Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EA%B9%80%EC%A2%85%EA%B6%8C%20%EA%B5%90%EC%88%98%EB%8B%98_3_0.jpg?itok=5VRTyj8Q',
+    academicRank: ' ',
+  },
+  {
+    id: 4,
+    name: 'Chongsang Kim',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EA%B9%80%EC%A2%85%EC%83%81.JPG?itok=qEJ4RkAA',
+    academicRank: ' ',
+  },
+  {
+    id: 5,
+    name: 'Robert Ian McKay',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%81%EC%B9%B4%EC%9D%B4_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=YF7t3o3w',
+    academicRank: ' ',
+  },
+  {
+    id: 6,
+    name: 'Sang Lyul Min',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EB%AF%BC%EC%83%81%EB%A0%AC%20%EC%82%AC%EC%A7%84.jpg?itok=tP7iNY6c',
+    academicRank: ' ',
+  },
+  {
+    id: 7,
+    name: 'Srinivasa Rao Satti',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%82%AC%ED%8B%B0%20%EA%B5%90%EC%88%98%EB%8B%98.jpg?itok=G4lPjZGI',
+    academicRank: ' ',
+  },
+  {
+    id: 8,
+    name: 'Heonshik Shin',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%8B%A0%ED%98%84%EC%8B%9D%20%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=xBTNvrUM',
+    academicRank: ' ',
+    email: 'shinhs@snu.ac.kr',
+  },
+  {
+    id: 9,
+    name: 'Chisu Wu',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9A%B0%EC%B9%98%EC%88%98%20%EA%B5%90%EC%88%98%EB%8B%98_2_0.jpg?itok=0gA50NU3',
+    academicRank: ' ',
+  },
+  {
+    id: 10,
+    name: 'Suk I. Yoo',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EB%B6%80_%EC%9C%A0%EC%84%9D%EC%9D%B8%EA%B5%90%EC%88%98%EB%8B%98%28%ED%95%99%EB%B6%80%ED%99%88%ED%94%BC%EB%8F%84%20%EA%B5%90%EC%B2%B4%29.jpg?itok=EOqPZkqo',
+    academicRank: ' ',
+    email: 'sukinyoo@snu.ac.kr',
+  },
+  {
+    id: 11,
+    name: 'Sukho Lee',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%EC%9D%B4%EC%84%9D%ED%98%B8_0.JPG?itok=xK9OUlQH',
+    academicRank: ' ',
+    email: 'shlee@snu.ac.kr',
+  },
+  {
+    id: 12,
+    name: 'Naehyuck Chang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%9E%A5%EB%9E%98%ED%98%81_%ED%8C%9C%ED%94%8C%EB%A0%9B.jpg?itok=wr2Otbqp',
+    academicRank: ' ',
+  },
+  {
+    id: 13,
+    name: '전주식',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A0%84%EC%A3%BC%EC%8B%9D%20%EA%B5%90%EC%88%98%EB%8B%98_8_0.jpg?itok=BhXk9ZZJ',
+    academicRank: ' ',
+  },
+  {
+    id: 14,
+    name: 'Chu Shik Jhon',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%A1%B0%EC%9C%A0%EA%B7%BC%20%20%EA%B5%90%EC%88%98%EB%8B%98_3.jpg?itok=SbQwYiiE',
+    academicRank: ' ',
+    email: 'ykcho@snu.ac.kr',
+  },
+  {
+    id: 15,
+    name: 'Yanghee Choi',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%EC%B5%9C%EC%96%91%ED%9D%AC%20%EA%B5%90%EC%88%98%EB%8B%98_1%20%283%29_0.jpg?itok=_Cx5BW6V',
+    academicRank: ' ',
+    email: 'yhchoi@snu.ac.kr',
+  },
+  {
+    id: 16,
+    name: 'Sang Yong Han',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/%ED%95%9C%EC%83%81%EC%98%81%20%EA%B5%90%EC%88%98%EB%8B%98_21_0.jpg?itok=oAU3XgvE',
+    academicRank: ' ',
+  },
+  {
+    id: 17,
+    name: 'Heeyeung Hwang',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--professor/_%EB%AA%85%EC%98%88%EA%B5%90%EC%88%98_%ED%99%A9%ED%9D%AC%EC%9C%B5_0.JPG?itok=4SRtsnwG',
+    academicRank: ' ',
+  },
+];
+
+export const emeritusFacultiesEng: EmiritusFaculty[] = [
+  {
+    ...emeritusFacultyListEng[0],
+    educations: `Ph.D. in Computer Science, University of Virginia, 1981`.split('\n'),
+    startDate: 'March 1983',
+    endDate: 'August 2011',
+  },
+  {
+    ...emeritusFacultyListEng[1],
+    office: '138 Building, Room 210',
+    website: 'http://3map.snu.ac.kr',
+    educations: `Ph.D. in Computer Science, Purdue University, 1988`.split('\n'),
+    startDate: 'March 1999',
+    endDate: 'August 2022',
+  },
+  {
+    ...emeritusFacultyListEng[2],
+    startDate: 'May 1971',
+    endDate: 'February 2001',
+    educations: `Ph.D., University of Utah, 1968`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[3],
+    startDate: 'February 1991',
+    endDate: 'June 2021',
+    educations: `Ph.D. in Computer Science, University of Illinois at Urbana-Champaign
+    M.S. in Operations Research, Georgia Institute of Technology
+    B.S. in Industrial Engineering ,Seoul National University`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[4],
+    startDate: 'May 1968',
+    endDate: 'February 2003',
+  },
+  {
+    ...emeritusFacultyListEng[5],
+    startDate: 'September 2005',
+    endDate: 'February 2015',
+    educations: `Ph.D. in Computer Science, University of Bristol, 1976`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[6],
+    startDate: 'February 1992',
+    endDate: 'February 2020',
+    educations: `Ph.D. in Computer Science and Engineering, University of Washington, 1989`.split(
+      '\n',
+    ),
+  },
+  {
+    ...emeritusFacultyListEng[7],
+    startDate: 'March 2009',
+    endDate: 'February 2021',
+    educations: `Ph.D., Institute of Mathematical Sciences, Chennai`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[8],
+    startDate: 'March 1986',
+    endDate: 'August 2016',
+    educations: `Ph.D. in Computer Engineering, University of Texas at Austin, 1985`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[9],
+    startDate: 'September 1982',
+    endDate: 'February 2012',
+    educations: `Ph.D. in Computer Science, Seoul National University, 1982`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[10],
+    startDate: 'December 1985',
+    endDate: 'February 2017',
+    educations: `Ph.D. in Electrical and Computer Engineering, University of Michigan, 1985
+    M.S. degree in electrical engineering, Lehigh University, 1980
+    B.S. degree in electrical engineering, Seoul National University, 1977`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[11],
+    startDate: 'March 1982',
+    endDate: 'February 2009',
+    educations: `Ph.D., University of Texas at Austin`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[12],
+    startDate: 'March 1997',
+    endDate: 'June 2014',
+    educations: `Ph.D. in Control and Instrumentation, Seoul National University, 1996`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[13],
+    startDate: 'March 1985',
+    endDate: 'August 2015',
+    educations: `Ph.D. in Computer Science, University of Utah, 1982`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[14],
+    startDate: 'April 1979',
+    endDate: 'August 2014',
+    educations: `Ph.D. in Computer Science, University of Minnesota, 1978`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[15],
+    startDate: 'July 1991',
+    endDate: 'August 2020',
+    educations: `Ph.D. in Computer Science, ENST Paris, 1984`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[16],
+    startDate: 'March 1984',
+    endDate: 'August 2013',
+    educations: `Ph.D. in Computer Science, University of Texas at Austin, 1983`.split('\n'),
+  },
+  {
+    ...emeritusFacultyListEng[17],
+    startDate: 'February 1968',
+    endDate: 'March 1993',
+    educations: `Ph.D., Seoul National University, 1974
+    M.S., Seoul National University, 1964
+    B.S., Seoul National University, 1960`.split('\n'),
+  },
+];
+
+export const staffListEng: StaffList = {
+  staffList: [
+    // 이름이 다름
+    {
+      id: 0,
+      name: 'Hee-Jeong Oh',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/KakaoTalk_20230109_143257675.jpg?itok=-qTVUJTk',
+      role: ' ',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-7288',
+      email: 'paji52@snu.ac.kr',
+    },
+    {
+      id: 1,
+      name: 'So Yeoun Son',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%86%90%EC%86%8C%EC%97%B0_0_0.jpg?itok=3Jobsn1N',
+      role: ' ',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-1850',
+      email: 'soyeoun7@snu.ac.kr',
+    },
+    {
+      id: 2,
+      name: 'Yanghee Kim',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EA%B9%80%EC%96%91%ED%9D%AC.jpg?itok=CXidI7tA',
+      role: 'School properties',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-6583',
+      email: '',
+    },
+    {
+      id: 3,
+      name: 'Eun Ju Lee',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%9D%B4%EC%9D%80%EC%A3%BC%20%EC%A6%9D%EB%AA%85%EC%82%AC%EC%A7%84.jpg?itok=blvo3Hne',
+      role: ' ',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-1526',
+      email: 'kate0911@snu.ac.kr',
+    },
+    // {
+    //   id: 4,
+    //   name: '정재교',
+    //   imageURL: '',
+    //   role: '대학원 학사.입시',
+    //   office: '301 Building, Room 316',
+    //   phone: '(02) 880-1827',
+    //   email: 'jjk767@snu.ac.kr',
+    // },
+    // 새로 추가
+    {
+      id: 8,
+      name: 'Seohyun Park',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%A6%9D%EB%AA%85%EC%82%AC%EC%A7%84.jpg?itok=nalaGIt7',
+      role: ' ',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-7287',
+      email: '',
+    },
+    {
+      id: 5,
+      name: 'Yeji Cha',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%B0%A8%EC%98%88%EC%A7%80%EC%83%98.jpg?itok=0aM0frPr',
+      role: 'Foreign Students and Professors Support',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-7287',
+      email: 'yejicdefg@snu.ac.kr',
+    },
+    {
+      id: 6,
+      name: 'Jinpyo Lee',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%ED%95%9C%EB%AF%BC%EC%A0%95.png?itok=Qz-KA1Dx',
+      role: ' ',
+      office: '301 Building, Room 316',
+      phone: '(02) 880-1527',
+      email: 'alswjd@snu.ac.kr',
+    },
+  ],
+};
+
+export const staffEng: Staff[] = [
+  {
+    ...staffListEng.staffList[0],
+    tasks: `Webmaster
+    Email maintenance`.split('\n'),
+  },
+  {
+    ...staffListEng.staffList[1],
+    tasks: `Master and Ph.D. thesis examination
+    Course completion and graduation
+    Admissions`.split('\n'),
+  },
+  {
+    ...staffListEng.staffList[2],
+    tasks: `Faculty Recruitment`.split('\n'),
+  },
+  {
+    ...staffListEng.staffList[3],
+    tasks: `Scholarships
+    SCSC Program management(Samsung Convergence Software Course)
+    Registrations
+    Bachelor graduation`.split('\n'),
+  },
+  {
+    ...staffListEng.staffList[4],
+    tasks: `Curriculum
+    Course registrations
+    Student exchange programs, Overseas study`.split('\n'),
+  },
+  {
+    ...staffListEng.staffList[5],
+    tasks: `Foreign Students and Professors Support(BK international)
+    International Cooperation(MOU, Student Exchange Program-Study abroad, Exchange Student, Visiting Student)`.split(
+      '\n',
+    ),
+  },
+  {
+    ...staffListEng.staffList[6],
+    tasks: `School budget
+    SNU Foundation claims`.split('\n'),
   },
 ];

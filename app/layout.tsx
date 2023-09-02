@@ -1,3 +1,4 @@
+import { LanguageContextProvider } from '@/contexts/LanguageContext';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 
@@ -22,23 +23,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal overscroll-none bg-white`}
       >
-        <ModalContextProvider>
-          <NavbarContextProvider>
-            <Navbar />
-            <div className="flex flex-col flex-1">
-              <Header />
-              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
-                <main className="flex-1">
-                  <SWRProvider>
-                    <div className="font-noto">{children}</div>
-                  </SWRProvider>
-                </main>
-                <Footer />
+        <LanguageContextProvider>
+          <ModalContextProvider>
+            <NavbarContextProvider>
+              <Navbar />
+              <div className="flex flex-col flex-1">
+                <Header />
+                <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
+                  <main className="flex-1">
+                    <SWRProvider>
+                      <div className="font-noto">{children}</div>
+                    </SWRProvider>
+                  </main>
+                  <Footer />
+                </div>
               </div>
-            </div>
-            <ModalContainer />
-          </NavbarContextProvider>
-        </ModalContextProvider>
+              <ModalContainer />
+            </NavbarContextProvider>
+          </ModalContextProvider>
+        </LanguageContextProvider>
       </body>
     </html>
   );

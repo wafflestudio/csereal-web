@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import { logOut, login } from '@/apis/auth';
@@ -10,6 +11,7 @@ import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
   const { navbarState } = useNavbarContext();
+
   return (
     <header
       className={`
@@ -39,8 +41,7 @@ function HeaderTitle() {
 }
 
 function HeaderRight() {
-  // TODO
-  const lang = 'ENG';
+  const { isEnglish, changeLanguage } = useLanguage();
 
   const handleLogin = () => {
     console.log('로그인 버튼 클릭');
@@ -48,22 +49,19 @@ function HeaderRight() {
   const handleLogOut = () => {
     console.log('로그아웃 버튼 클릭');
   };
-  const handleLangChange = () => {
-    // TODO
-  };
 
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
       <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
         <Link href="http://cse-dev-waffle.bacchus.io/login">
-          <button onClick={handleLogin}>로그인</button>
+          <button onClick={handleLogin}>{isEnglish ? 'Login' : '로그인'}</button>
         </Link>
         <span>|</span>
         <Link href="http://cse-dev-waffle.bacchus.io/logout">
-          <button onClick={handleLogOut}>로그아웃</button>
+          <button onClick={handleLogOut}>{isEnglish ? 'LogOut' : '로그아웃'}</button>
         </Link>
         <span>|</span>
-        <button onClick={handleLangChange}>{lang}</button>
+        <button onClick={changeLanguage}>{isEnglish ? '한국어' : 'English'}</button>
       </div>
       <HeaderSearchBar />
     </div>
