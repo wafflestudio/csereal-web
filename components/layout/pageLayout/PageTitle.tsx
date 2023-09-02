@@ -35,7 +35,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   const log: SegmentNode[] = getLocationLog(currentPage);
 
-  return (
+  return log.length ? (
     <ol className="flex items-center gap-0.5 text-neutral-700">
       {log.map((location, i) => {
         return (
@@ -55,7 +55,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
         );
       })}
     </ol>
-  );
+  ) : null;
 }
 
 function LocationText({ path, name }: { path: string | null; name: string }) {
