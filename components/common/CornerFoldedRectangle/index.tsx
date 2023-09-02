@@ -60,9 +60,13 @@ export default function CornerFoldedRectangle({
           background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
             colorTheme.bgColor
           } 0)`,
+          border: `1px solid ${colorTheme.bgColor}`,
         }}
       >
-        <div className={`absolute top-0 right-0 w-0 h-0 border-solid`} style={triangleStyle} />
+        <div
+          className={`absolute top-[-0.8px] right-[-0.8px] w-0 h-0 border-solid`}
+          style={triangleStyle}
+        />
         {children}
       </div>
     );

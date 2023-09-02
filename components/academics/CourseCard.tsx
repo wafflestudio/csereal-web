@@ -65,7 +65,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
   };
 
-  const frontStyle = `absolute p-[1.125rem] bg-neutral-100 hover:bg-neutral-200 ${
+  const frontStyle = `absolute p-[1.125rem] bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-50 ${
     isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
   } shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_6px_0_rgba(0,0,0,0.4)_inset]`;
 

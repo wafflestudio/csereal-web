@@ -45,7 +45,7 @@ function RoadMap() {
 function CloseButton({ onClick }: { onClick: () => void }) {
   return (
     <button className="absolute top-3 right-3" onClick={onClick}>
-      <span className="material-symbols-outlined font-light text-neutral-300 text-2xl">close</span>
+      <span className="material-symbols-rounded font-light text-neutral-300 text-2xl">close</span>
     </button>
   );
 }
