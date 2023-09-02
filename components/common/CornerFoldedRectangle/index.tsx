@@ -31,6 +31,8 @@ export default function CornerFoldedRectangle({
   children,
 }: CornerFoldedRectangleProps) {
   const rectangleStyle: CSSProperties = {
+    backgroundColor: colorTheme.bgColor,
+    border: `1px solid ${colorTheme.borderColor}`,
     borderRadius: `${radius}rem`,
     filter: rectangleDropShadow,
   };
@@ -46,23 +48,22 @@ export default function CornerFoldedRectangle({
     return (
       <div
         className={`relative ${width} ${margin} ${styles[animationType]}`}
-        style={{ ...rectangleStyle, backgroundColor: colorTheme.bgColor }}
+        style={rectangleStyle}
       >
         {children}
       </div>
     );
   } else {
     return (
-      <div
-        className={`relative ${width} ${margin}`}
-        style={{
-          ...rectangleStyle,
-          background: `linear-gradient(-135deg, transparent ${triangleLength * FOLD_RATIO}rem, ${
-            colorTheme.bgColor
-          } 0)`,
-          border: `1px solid ${colorTheme.bgColor}`,
-        }}
-      >
+      <div className={`relative ${width} ${margin}`} style={rectangleStyle}>
+        <div
+          className={`absolute top-[-0.8px] right-[-0.8px] w-0 h-0 border-solid`}
+          style={{
+            borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
+            borderColor: `#141212 #141212 ${colorTheme.triangleColor} ${colorTheme.triangleColor}`,
+            borderBottomLeftRadius: `${radius}rem`,
+          }}
+        />
         <div
           className={`absolute top-[-0.8px] right-[-0.8px] w-0 h-0 border-solid`}
           style={triangleStyle}
