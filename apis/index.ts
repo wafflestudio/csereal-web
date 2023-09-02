@@ -15,6 +15,7 @@ export const getRequest = async <T = unknown>(
     return responseData as T;
   } catch (error) {
     console.log('error on get request');
+    throw error;
   }
 };
 
@@ -30,6 +31,7 @@ export const postRequest = async <T = unknown>(
     return responseData as T;
   } catch (error) {
     console.log('error on post request');
+    throw error;
   }
 };
 
@@ -49,6 +51,7 @@ export const patchRequest = async <T = unknown>(
     return responseData as T;
   } catch (error) {
     console.log('error on patch request');
+    throw error;
   }
 };
 
@@ -60,5 +63,6 @@ export const deleteRequest = async <T = unknown>(url: string, headers: HeadersIn
     return responseData as T;
   } catch (error) {
     console.log('error on delete request');
+    throw error;
   }
 };
