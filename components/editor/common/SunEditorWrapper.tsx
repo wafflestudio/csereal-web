@@ -32,9 +32,9 @@ export default function SunEditorWrapper({
           ['lineHeight', 'align', 'horizontalRule', 'list'],
           ['table', 'link', 'image', 'preview'],
         ],
-        attributesWhitelist: {
-          all: 'style',
-        },
+        // attributesBlacklist: {
+        //   all: 'style',
+        // },
       }}
     />
   );

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Curriculum } from '@/types/academics';
 
-import { DropdownWithScroll } from '../common/Dropdown';
+import Dropdown from '../common/Dropdown';
 import HTMLViewer from '../editor/HTMLViewer';
 
 export default function CurriculumBody({ data }: { data: Curriculum[] }) {
@@ -14,7 +14,7 @@ export default function CurriculumBody({ data }: { data: Curriculum[] }) {
       <div className="flex flex-col mt-8">
         <div className="flex flex-row items-center gap-2">
           <p className="font-noto text-sm font-normal">입학연도</p>
-          <DropdownWithScroll
+          <Dropdown
             contents={data.map((item) => item.year.toString())}
             selectedIndex={selectedcurriculumIndex}
             onClick={setSelectedcurriculumIndex}

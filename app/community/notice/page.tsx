@@ -51,10 +51,9 @@ export default function NoticePage() {
 
   const batchDelete = async () => {
     for (const id of Array.from(selectedPostIds)) {
-      // CORS 에러 해결되면 주석 해제
-      // await deleteNotice(id);
+      await deleteNotice(id);
     }
-    // await mutate();
+    await mutate();
     resetSelectedPosts();
   };
 
@@ -63,18 +62,17 @@ export default function NoticePage() {
       const unpinnedPost: Partial<NoticePost> = {
         isPinned: false,
       };
-      // CORS 에러 해결되면 주석 해제
-      // await patchNotice(id, unpinnedPost);
+      await patchNotice(id, unpinnedPost);
       for (const p of posts) {
         if (p.id === id) p.isPinned = false;
       }
     }
-    // await mutate();
+    await mutate();
     resetSelectedPosts();
     closeModal();
   };
 
-  // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
+  // TODO: edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
   return (
     <PageLayout titleType="big" titleMargin="mb-6">
