@@ -79,9 +79,9 @@ export default function AddReservationModal() {
 
           <InputWithLabel title="매주 반복">
             <Dropdown
-              contents={Array(15)
+              contents={Array(14)
                 .fill(0)
-                .map((_, i) => i + '')}
+                .map((_, i) => i + 1 + '회')}
               selectedIndex={body.recurringWeeks}
               onClick={buildBodyValueSetter('recurringWeeks')}
             />
