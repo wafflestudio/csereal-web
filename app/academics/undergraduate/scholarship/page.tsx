@@ -4,7 +4,7 @@ import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function UndergraduateScholarshipPage() {
+export default async function UndergraduateScholarshipListPage() {
   const { description, scholarship } = await getUndergraduateScholarshipList();
 
   return (

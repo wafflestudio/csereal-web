@@ -29,9 +29,9 @@ export interface CourseChange {
 
 export interface GeneralStudiesRequirements {
   overview: string;
-  subjectChanges?: {
+  subjectChanges: {
     status: 'new' | 'change';
-    time: number;
+    time: string;
     additionalInfos?: string[];
     changes: string[];
     progress: string;

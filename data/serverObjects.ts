@@ -768,7 +768,7 @@ export const getMockGeneralStudiesRequirements = async (): Promise<GeneralStudie
     subjectChanges: [
       {
         status: 'change',
-        time: 2014,
+        time: '2014학년도 1학기',
         changes: [
           '(구) 010.001 대학국어(Korean) 3-2-2',
           '(신) 031.001 글쓰기의 기초(College Writing: Process & Structure) 3-3-0',
@@ -777,7 +777,7 @@ export const getMockGeneralStudiesRequirements = async (): Promise<GeneralStudie
       },
       {
         status: 'change',
-        time: 2010,
+        time: '2010학년도 1학기',
         changes: [
           '(구) 010.142 컴퓨터의 기초(Fundamental of Computer System) 2-2-0',
           '(신) 010.133 컴퓨터의 개념 및 실습(Digital Computer Concept and Practice) 3-2-2',
@@ -789,7 +789,7 @@ export const getMockGeneralStudiesRequirements = async (): Promise<GeneralStudie
       },
       {
         status: 'new',
-        time: 2005,
+        time: '2005학년도 1학기',
         additionalInfos: [
           '공과대학 이수규정 변경에 따라 전공교과목에서 교양교과목으로 변경하여 신설하는 것임.',
           '‘컴퓨터개론(Introduction to Computer)’을 ‘컴퓨터원리’로 명칭변경함.',
@@ -813,21 +813,21 @@ export const getMockUndergraduateScholarshipList = async (): Promise<Scholarship
   return {
     description: await readFile('data/htmls/scholarshipList.txt', { encoding: 'utf-8' }),
     scholarship: [
-      { id: 1, name: '성적우수 국가장학금 (이공계)' },
-      { id: 2, name: '대통령과학장학금' },
-      { id: 3, name: '국가장학금(I,II)' },
-      { id: 4, name: '단대 맞춤형 장학금' },
-      { id: 5, name: '유학생 장학금' },
+      { id: 0, name: '성적우수 국가장학금 (이공계)' },
+      { id: 1, name: '대통령과학장학금' },
+      { id: 2, name: '국가장학금(I,II)' },
+      { id: 3, name: '단대 맞춤형 장학금' },
+      { id: 4, name: '유학생 장학금' },
       {
-        id: 6,
+        id: 5,
         name: '서울대학교 발전기금 장학금(신영길장학금, 현암 김종상장학금, 기타 컴퓨터공학부 지정 장학금 다수)',
       },
       {
-        id: 7,
+        id: 6,
         name: '교외장학금 (현송문화재단, 유한재단, 관악회,동부문화재단, 청합장학회, 봉신장학회 등 다수)',
       },
-      { id: 8, name: '컴퓨터공학 동문회 장학금' },
-      { id: 9, name: '근로장학금' },
+      { id: 7, name: '컴퓨터공학 동문회 장학금' },
+      { id: 8, name: '근로장학금' },
     ],
   };
 };
@@ -847,7 +847,7 @@ const scholarshipNames = [
 export const getMockScholarship = async (id: number): Promise<Scholarship> => {
   return {
     id: id,
-    name: scholarshipNames[id - 1],
+    name: scholarshipNames[id],
     description: await readFile(`data/htmls/scholarship/${id}.txt`, { encoding: 'utf-8' }),
   };
 };

@@ -3,10 +3,12 @@ import { getScholarship } from '@/apis/academicsServer';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function UndergraduateGuidePage({ params }: { params: { id: number } }) {
-  const { name, description } = await getScholarship(params.id);
+export default async function UndergraduateScholarshipPage({ params }: { params: { id: string } }) {
+  const { name, description } = await getScholarship(parseInt(params.id));
 
   return (
+    // 타이틀이 긴 경우 정규표현식으로 괄호 내부 내용을 제거
+    // ex) 교외장학금 (현송문화재단, 유한재단, ...) -> 교외장학금
     <PageLayout
       title={name.length > 20 ? name.replace(/\([^)]*\)/g, '') : name}
       titleType="big"
