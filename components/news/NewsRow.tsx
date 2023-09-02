@@ -9,6 +9,8 @@ import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+import ImageWithFallback from '../common/ImageWithFallback';
+
 export interface NewsRowProps {
   href: string;
   title: string;
@@ -44,20 +46,15 @@ export default function NewsRow({ href, title, description, tags, date, imageURL
         </div>
         <time className="self-end text-xs font-normal">{dateStr}</time>
       </div>
-      <Link href={href} className="h-[9.375rem] aspect-[4/3] relative">
-        {imageURL ? (
-          <Image
-            alt="포스트 대표 이미지"
-            src={imageURL}
-            fill
-            className="object-fill"
-            sizes="12.5rem"
-            priority
-          />
-        ) : (
-          // TODO: SNU logo
-          <div className="bg-[#ffffff] w-full h-full" />
-        )}
+      <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">
+        <ImageWithFallback
+          alt="포스트 대표 이미지"
+          src={imageURL}
+          fill
+          className="object-fill"
+          sizes="12.5rem"
+          priority
+        />
       </Link>
     </article>
   );
