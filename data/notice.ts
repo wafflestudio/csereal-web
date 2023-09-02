@@ -1,9 +1,13 @@
 import { NoticePostResponse, PostSearchQueryParams, SimpleNoticePost } from '@/types/post';
 
-export const getMockNoticePosts = async (params: PostSearchQueryParams) => ({
-  searchList: noticeListMock,
-  total: noticeListMock.length,
-});
+export const getMockNoticePosts = async (params: PostSearchQueryParams) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  throw new Error('clientside error');
+  //   return {
+  //     searchList: noticeListMock,
+  //     total: noticeListMock.length,
+  //   };
+};
 
 export const getMockNoticePostDetail = async (id: number, params: PostSearchQueryParams) =>
   NoticeDetailMock;
