@@ -7,7 +7,8 @@ import { deleteNotice, getNoticePosts, patchNotice } from '@/apis/notice';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
-import { ErrorFallback, LoadingFallback } from '@/components/layout/Boundary';
+import ErrorFallback from '@/components/layout/ErrorFallback';
+import LoadingFallback from '@/components/layout/LoadingFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import AlertModal from '@/components/modal/AlertModal';
 import { BatchButton, CreateButton, EditButton } from '@/components/notice/NoticeButtons';
