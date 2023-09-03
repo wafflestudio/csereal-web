@@ -28,8 +28,6 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
     newsPath,
   );
 
-  console.log(currPost);
-
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
       {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}

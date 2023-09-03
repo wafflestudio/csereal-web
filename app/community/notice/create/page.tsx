@@ -9,7 +9,7 @@ import { NoticeTags } from '@/constants/tag';
 export default function NoticeCreatePage() {
   const handleComplete = async (content: PostEditorContent) => {
     console.log(content.description);
-    // throw new Error();
+    // throw new Error();`
   };
 
   return (
