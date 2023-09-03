@@ -53,6 +53,7 @@ const mockSeminarContent: SeminarEditorContent = {
     organization: '소속',
     organizationURL: '소속 URL',
     description: '연사 소개개개개개',
+    imageURL: null,
   },
   attachments: [],
   isPublic: false,

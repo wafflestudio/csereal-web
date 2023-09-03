@@ -67,6 +67,19 @@ export interface GETNewsPostsResponse {
   searchList: SimpleNewsPost[];
 }
 
+export interface POSTNewsBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isImportant: boolean;
+    tags: string[];
+  };
+  mainImage: File | null;
+  attachments: File[];
+}
+
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
@@ -89,7 +102,7 @@ export interface GETNoticePostsResponse {
   searchList: SimpleNoticePost[];
 }
 
-export interface POSTNoticePostsBody {
+export interface POSTNoticeBody {
   request: {
     title: string;
     description: string;

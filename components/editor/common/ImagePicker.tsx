@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
 export interface ImagePickerProps {
-  file?: File;
-  setFile: (file?: File) => void;
+  file: File | null;
+  setFile: (file: File | null) => void;
 }
 
 export default function ImagePicker({ file, setFile }: ImagePickerProps) {
@@ -33,14 +33,20 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
 
 const IMAGE_WIDTH = 100;
 
-const SelectedImageViewer = ({ file, setFile }: { file: File; setFile: (file?: File) => void }) => {
+const SelectedImageViewer = ({
+  file,
+  setFile,
+}: {
+  file: File;
+  setFile: (file: File | null) => void;
+}) => {
   const [imageHeight, setImageHeight] = useState(45);
 
   const imageURL = URL.createObjectURL(file);
   const fileSizeRounded = Math.floor(file.size / 100) / 10;
   const handleDeleteBlob: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    setFile(undefined);
+    setFile(null);
   };
 
   useEffect(() => {

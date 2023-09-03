@@ -3,7 +3,7 @@ import { CreateAction, EditAction } from './common/ActionButtons';
 export interface PostEditorContent {
   title: string;
   description: string;
-  mainImage?: File;
+  mainImage: File | null;
   attachments: File[];
   tags: string[];
   isPublic: boolean;
@@ -25,6 +25,7 @@ export interface PostEditorProps {
 export const postEditorDefaultValue: PostEditorContent = {
   title: '',
   description: '',
+  mainImage: null,
   attachments: [],
   tags: [],
   isPublic: true,
