@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEventHandler, ReactNode, useEffect, useReducer, useState } from 'react';
+import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
 import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
