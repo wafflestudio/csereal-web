@@ -56,5 +56,6 @@ const mockSeminarContent: SeminarEditorContent = {
     image: null,
   },
   attachments: [],
-  isPublic: false,
+  isPublic: true,
+  isImportant: false,
 };

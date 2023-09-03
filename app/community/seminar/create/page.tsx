@@ -31,6 +31,7 @@ export default function SeminarCreatePage() {
         location: content.location,
         host: content.host,
         isPublic: content.isPublic,
+        isImportant: content.isImportant,
       },
       image: content.speaker.image,
       attachments: content.attachments,

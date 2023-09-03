@@ -2094,11 +2094,11 @@ textarea.se-error:focus {
 .sun-editor-editable a:focus,
 .sun-editor-editable a:hover {
   cursor: pointer;
-  color: #0093ff;
+  color: #3c7be4;
   text-decoration: underline;
 }
 .sun-editor-editable a.on {
-  color: #0093ff;
+  color: #3c7be4;
   background-color: #e8f7ff;
 }
 .sun-editor-editable pre {

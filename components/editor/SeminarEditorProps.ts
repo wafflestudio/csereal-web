@@ -9,6 +9,7 @@ export interface SeminarEditorContent {
   speaker: SeminarSpeaker;
   attachments: File[];
   isPublic: boolean;
+  isImportant: boolean;
 }
 
 export interface SeminarSchedule {
@@ -56,4 +57,5 @@ export const seminarEditorPlaceholder: SeminarEditorContent = {
   },
   attachments: [],
   isPublic: true,
+  isImportant: false,
 };

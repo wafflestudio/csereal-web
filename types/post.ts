@@ -155,8 +155,8 @@ export interface POSTSeminarBody {
     location: string;
     host: string | null;
     isPublic: boolean;
+    isImportant: boolean;
     // additionalNote: string | null;
-    // isImportant: boolean;
   };
   image: File | null;
   attachments: File[];
