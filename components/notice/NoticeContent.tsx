@@ -1,8 +1,8 @@
 'use client';
 
+import { revalidatePath } from 'next/cache';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-// eslint-disable-next-line import/named
-import { KeyedMutator } from 'swr';
 
 import { deleteNotice, patchNotice } from '@/apis/notice';
 
@@ -19,7 +19,7 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import useModal from '@/hooks/useModal';
 
 import { notice } from '@/types/page';
-import { GETNoticePostsResponse, NoticePost } from '@/types/post';
+import { GETNoticePostsResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
@@ -28,15 +28,18 @@ const noticePath = getPath(notice);
 
 export default function NoticeContent({
   data: { searchList: posts, total: totalPostsCount },
-  mutate,
 }: {
   data: GETNoticePostsResponse;
-  mutate: KeyedMutator<GETNoticePostsResponse>;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
   const { openModal, closeModal } = useModal();
+
+  const router = useRouter();
+  const mutate = () => {
+    router.refresh();
+  };
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -52,24 +55,21 @@ export default function NoticeContent({
   };
 
   const batchDelete = async () => {
-    for (const id of Array.from(selectedPostIds)) {
-      await deleteNotice(id);
-    }
-    await mutate();
+    const promises = Array.from(selectedPostIds).map(async (id) => await deleteNotice(id));
+    await Promise.all(promises);
+    mutate();
     resetSelectedPosts();
   };
 
   const batchUnpin = async () => {
-    for (const id of Array.from(selectedPostIds)) {
-      const unpinnedPost: Partial<NoticePost> = {
-        isPinned: false,
-      };
-      await patchNotice(id, unpinnedPost);
+    const promises = Array.from(selectedPostIds).map(async (id) => {
+      await patchNotice(id, { isPinned: false });
       for (const p of posts) {
         if (p.id === id) p.isPinned = false;
       }
-    }
-    await mutate();
+    });
+    await Promise.all(promises);
+    mutate();
     resetSelectedPosts();
     closeModal();
   };

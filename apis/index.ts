@@ -5,11 +5,14 @@ const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
 export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
-  headers: HeadersInit = {},
+  init?: RequestInit,
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  const response = await fetch(fetchUrl, { method: 'GET', headers });
+  const response = await fetch(fetchUrl, {
+    ...init,
+    method: 'GET',
+  });
   checkError(response);
   const responseData = await response.json();
   return responseData as T;
@@ -47,8 +50,6 @@ export const deleteRequest = async <T = unknown>(url: string, headers: HeadersIn
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { method: 'DELETE', headers });
   checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
 };
 
 const checkError = (response: Response) => {

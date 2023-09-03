@@ -10,7 +10,7 @@ import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 const newsPath = '/news';
 
 export const getNewsPosts = (params: PostSearchQueryParams) =>
-  getRequest(newsPath, params) as Promise<GETNewsPostsResponse>;
+  getRequest(newsPath, params, { cache: 'no-store' }) as Promise<GETNewsPostsResponse>;
 
 export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
   getRequest(`${newsPath}/${id}`, params) as Promise<NewsPostResponse>;
