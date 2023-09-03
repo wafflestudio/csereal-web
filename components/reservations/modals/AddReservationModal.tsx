@@ -26,9 +26,6 @@ export default function AddReservationModal() {
     console.log(body);
   };
 
-  console.log('시작 시간: ', body.startTime.toLocaleString());
-  console.log('끝 시간: ', body.endTime.toLocaleString());
-
   const buildBodyValueSetter =
     <T extends keyof ReservationPostBody>(key: T) =>
     (value: ReservationPostBody[T]) =>

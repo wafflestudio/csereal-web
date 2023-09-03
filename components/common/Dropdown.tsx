@@ -80,7 +80,7 @@ function DropdownListWithScroll({
           key={index}
           className={`w-full h-7 text-left text-sm font-normal pl-[.62rem] hover:bg-neutral-200 ${
             selectedIndex === index && 'text-main-orange'
-          } focus:border focus:border-neutral-400 `}
+          } focus:border focus:border-neutral-400`}
           onClick={() => handleClick(index)}
         >
           {content}
