@@ -11,7 +11,7 @@ export const getSeminarPosts = async (params: PostSearchQueryParams) => {
 };
 
 export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
-  return (await getRequest(`/${seminarPath}/${id}`, params, {
+  return (await getRequest(`${seminarPath}/${id}`, params, {
     cache: 'no-store',
   })) as SeminarPostResponse;
 };

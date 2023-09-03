@@ -12,7 +12,9 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
   if (error || !props.src) {
     return (
       <div
-        className="flex flex-1 justify-center items-center bg-neutral-100"
+        className={`flex flex-1 justify-center items-center bg-neutral-100 ${
+          props.fill && 'w-full h-full'
+        }`}
         style={{ width: props.width, height: props.height }}
       >
         <SnuLogo className="fill-neutral-300" />

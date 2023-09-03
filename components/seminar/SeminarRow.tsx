@@ -44,7 +44,7 @@ export default function SeminarRow({
           !imageURL && 'bg-neutral-100'
         }`}
       >
-        <ImageWithFallback alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
+        <ImageWithFallback alt="대표 이미지" src={imageURL} fill priority />
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
         <Link href={`${seminarPath}/${id}${queryString}`} className="hover:underline">

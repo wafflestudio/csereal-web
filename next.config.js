@@ -41,6 +41,11 @@ const nextConfig = {
         hostname: 'cse.snu.ac.kr',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'cse-dev-waffle.bacchus.io',
+        pathname: '/**',
+      },
     ],
   },
 
