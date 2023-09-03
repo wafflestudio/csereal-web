@@ -1,6 +1,7 @@
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 
+import Boundary from '@/components/layout/Boundary';
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
@@ -30,7 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
                 <main className="flex-1">
                   <SWRProvider>
-                    <div className="font-noto">{children}</div>
+                    <div className="font-noto">
+                      <Boundary>{children}</Boundary>
+                    </div>
                   </SWRProvider>
                 </main>
                 <Footer />
