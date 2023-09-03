@@ -10,7 +10,10 @@ export default function ModalFrame({ onClose, children }: ModalFrameProps) {
     <Dialog
       open
       onClose={onClose}
-      PaperProps={{ sx: { maxWidth: '100%' }, style: { borderRadius: 0 } }}
+      PaperProps={{
+        sx: { maxWidth: '100%' },
+        style: { borderRadius: 0, backgroundColor: 'transparent' },
+      }}
       sx={{ backdropFilter: 'blur(2px)' }}
     >
       {children}

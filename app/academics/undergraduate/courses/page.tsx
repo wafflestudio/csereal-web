@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import { getCourses } from '@/apis/academics';
 
 import CourseRow from '@/components/academics/CourseRow';
+import RoadMapButton from '@/components/academics/RoadMapButton';
 import { Tag } from '@/components/common/Tags';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -18,6 +19,8 @@ export default function UndergraduateCoursePage() {
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
+      <RoadMapButton />
+      <h4 className="my-8 font-bold">교과목 정보</h4>
       <SortOptions selectedOption={selectedOption} changeOption={setSelectedOption} />
       {sortedCourses.length > 0 && (
         <div className="mt-6 flex flex-col gap-8">

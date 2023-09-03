@@ -271,7 +271,7 @@ export const undergraduateGuide: SegmentNode = {
 };
 
 export const undergraduateCourses: SegmentNode = {
-  name: '교과목 정보',
+  name: '교과과정',
   segment: 'courses',
   isPage: true,
   parent: undergraduateAcademics,
@@ -335,7 +335,7 @@ export const graduateGuide: SegmentNode = {
 };
 
 export const graduateCourses: SegmentNode = {
-  name: '교과목 정보',
+  name: '교과과정',
   segment: 'courses',
   isPage: true,
   parent: graduateAcademics,
@@ -454,7 +454,7 @@ export const bldg302room308: SegmentNode = {
   children: null,
 };
 
-export const buld302room309first: SegmentNode = {
+export const bldg302room309first: SegmentNode = {
   name: '302-309-1 (48석)',
   segment: '302-309-1',
   isPage: true,
@@ -462,7 +462,7 @@ export const buld302room309first: SegmentNode = {
   children: null,
 };
 
-export const buld302room309second: SegmentNode = {
+export const bldg302room309second: SegmentNode = {
   name: '302-309-2 (8석)',
   segment: '302-309-2',
   isPage: true,
@@ -470,7 +470,7 @@ export const buld302room309second: SegmentNode = {
   children: null,
 };
 
-export const buld302room309third: SegmentNode = {
+export const bldg302room309third: SegmentNode = {
   name: '302-309-3 (8석)',
   segment: '302-309-3',
   isPage: true,
@@ -578,9 +578,9 @@ seminarRoom.children = [
   bldg301Jeju,
   bldg301ProfMeeting,
   bldg302room308,
-  buld302room309first,
-  buld302room309second,
-  buld302room309third,
+  bldg302room309first,
+  bldg302room309second,
+  bldg302room309third,
 ];
 labRoom.children = [softwareLab, hardwareLab];
 lectureRoom.children = [bldg302room208, bldg302room209];

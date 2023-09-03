@@ -24,11 +24,10 @@ const newsPath = getPath(news);
 export default function NewsPage() {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const queryString = useQueryString();
-  const {
-    data: { searchList: posts = [], total: totalPostsCount = 0 } = {},
-    isLoading, // TODO: 로딩 컴포넌트
-    error, // TODO: 에러 컴포넌트?
-  } = useSWR({ url: '/news', params: { page, keyword, tag: tags } }, getNewsPosts); // 추후 fetcher 삭제
+  const { data: { searchList: posts = [], total: totalPostsCount = 0 } = {} } = useSWR(
+    { url: '/news', params: { page, keyword, tag: tags } },
+    getNewsPosts,
+  ); // 추후 fetcher 삭제
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -43,7 +42,7 @@ export default function NewsPage() {
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-4 mt-10 mb-8">
+      <div className="flex flex-col gap-4 mt-10 mb-8 mx-2.5">
         {posts.map((post) => (
           <NewsRow
             key={post.id}

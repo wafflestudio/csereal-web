@@ -27,8 +27,8 @@ export default function SeminarPage({ searchParams }: SeminarPageParams) {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const { data, isLoading, error } = useSWR(
-    { url: '/seminar', params: searchParams },
+  const { data  } = useSWR(
+    { url: '/seminar', params: { keyword, page } },
     getSeminarPosts, // 추후 fetcher 삭제
   );
 
