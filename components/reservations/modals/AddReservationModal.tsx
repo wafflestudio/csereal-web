@@ -26,31 +26,31 @@ export default function AddReservationModal() {
     console.log(body);
   };
 
+  console.log(body.startTime.toLocaleString());
+  console.log(body.endTime.toLocaleString());
+
   const buildBodyValueSetter =
     <T extends keyof ReservationPostBody>(key: T) =>
     (value: ReservationPostBody[T]) =>
       setBody((body) => ({ ...body, [key]: value }));
 
-  // startTime과 endTime의 ymd를 date의 것과 동일하게 설정
+  // 날짜 선택 모달용
   const setDate = (date: Date) => {
-    const startTime = new Date(body.startTime);
-    const endTime = new Date(body.endTime);
+    let newStartTime = new Date(body.startTime);
+    newStartTime.setFullYear(date.getFullYear());
+    newStartTime.setMonth(date.getMonth());
+    newStartTime.setDate(date.getDate());
 
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
+    // 오늘을 선택헀으면 예약 불가 시간 필터링
+    if (isSameDay(newStartTime, new Date())) {
+      newStartTime = convertToFastestStartTime(newStartTime);
+    }
 
-    startTime.setFullYear(year);
-    startTime.setMonth(month);
-    startTime.setDate(day);
-
-    endTime.setFullYear(year);
-    endTime.setMonth(month);
-    endTime.setDate(day);
+    const endTime = getOptimalEndTime(body.startTime, body.endTime, newStartTime);
 
     const startTimeSetter = buildBodyValueSetter('startTime');
     const endTimeSetter = buildBodyValueSetter('endTime');
-    startTimeSetter(startTime);
+    startTimeSetter(newStartTime);
     endTimeSetter(endTime);
   };
 
@@ -194,42 +194,41 @@ const StartTimePicker = ({
   setStartDate: (date: Date) => void;
   setEndDate: (date: Date) => void;
 }) => {
-  const contents = Array(15)
+  const now = new Date();
+  let contents = Array(15)
     .fill(0)
     .map((_, i) => i + 8)
-    .reduce<string[]>((prev, cur) => [...prev, cur + ':00', cur + ':30'], []);
+    .reduce<[number, number][]>((prev, cur) => [...prev, [cur, 0], [cur, 30]], []);
 
-  let selectedIndex = 2 * (startDate.getHours() - 8);
-  if (30 <= startDate.getMinutes()) selectedIndex++;
+  // 당일 예약이라면 가능한 시작 시간들을 필터링
+  if (isSameDay(startDate, now)) {
+    contents = contents.filter(([hour, minute]) => {
+      return now.getHours() < hour || (now.getHours() === hour && now.getMinutes() <= minute);
+    });
+  }
+
+  const contentsInStr = contents.map(
+    ([hour, minute]) => `${(hour + '').padStart(2, '0')}:${(minute + '').padStart(2, '0')}`,
+  );
+
+  let selectedIndex = contents.findIndex(
+    ([hour, minute]) => hour === startDate.getHours() && minute === startDate.getMinutes(),
+  );
+  if (selectedIndex === -1) selectedIndex = 0;
 
   const handleClick = (idx: number) => {
-    const hour = idx / 2 + 8;
-    const minute = idx % 2 ? 30 : 0;
+    const [hour, minute] = contents[idx];
 
     const newStartDate = new Date(startDate);
     newStartDate.setHours(hour);
     newStartDate.setMinutes(minute);
     setStartDate(newStartDate);
 
-    // 사용 시간을 가능한 유지시킴
-    const previousDiff = endDate.getTime() - startDate.getTime();
-    let newEndDate = new Date(newStartDate);
-    newEndDate.setTime(newStartDate.getTime() + previousDiff);
-
-    // 유지시켰는데 오후 11시 이후면 오후 11시로 고정
-    if (
-      newEndDate.getDate() != newStartDate.getDate() ||
-      (23 <= newEndDate.getHours() && 0 < newEndDate.getMinutes())
-    ) {
-      newEndDate = new Date(startDate);
-      newEndDate.setHours(23);
-      newEndDate.setMinutes(0);
-    }
-
+    const newEndDate = getOptimalEndTime(startDate, endDate, newStartDate);
     setEndDate(newEndDate);
   };
 
-  return <Dropdown contents={contents} selectedIndex={selectedIndex} onClick={handleClick} />;
+  return <Dropdown contents={contentsInStr} selectedIndex={selectedIndex} onClick={handleClick} />;
 };
 
 const DurationPicker = ({
@@ -243,11 +242,17 @@ const DurationPicker = ({
 }) => {
   const endOfDayInMinute = 23 * 60; // 예약은 밤 11시까지만 가능
   const startTimeInMinute = startTime.getHours() * 60 + startTime.getMinutes();
-  const remainingOptionCnt = (endOfDayInMinute - startTimeInMinute) / 30;
+
+  // 최대 3시간이라서 최대값은 6
+  const remainingOptionCnt = Math.min(6, (endOfDayInMinute - startTimeInMinute) / 30);
 
   const contents = Array(remainingOptionCnt)
     .fill(0)
-    .map((_, i) => (i + 1) * 30 + '분');
+    .map((_, i) => {
+      const minutes = (i + 1) * 30;
+      if (minutes % 60 === 0) return minutes / 60 + '시간';
+      else return minutes + '분';
+    });
 
   const endTimeInMinute = endTime.getHours() * 60 + endTime.getMinutes();
   const selectedIndex = (endTimeInMinute - startTimeInMinute) / 30 - 1;
@@ -346,7 +351,31 @@ const PrivacyFieldset = ({
 };
 
 const getDefaultBodyValue = () => {
-  let startTime = new Date();
+  const startTime = convertToFastestStartTime(new Date());
+
+  const endTime = new Date(startTime);
+  endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
+
+  return {
+    roomId: 0,
+    startTime,
+    endTime,
+    recurringWeeks: 0,
+    title: '',
+    contactEmail: '',
+    contactPhone: '',
+    professor: '',
+  };
+};
+
+// date 이후 시점 중 가장 빠른 유효 startTime을 반환
+const convertToFastestStartTime = (date: Date) => {
+  let startTime = new Date(date);
+
+  // 과거면 현재로 변경
+  const now = new Date();
+  if (startTime < now) startTime = now;
+
   startTime.setSeconds(0);
   startTime.setMilliseconds(0);
 
@@ -368,18 +397,33 @@ const getDefaultBodyValue = () => {
     startTime.setHours(8);
     startTime.setMinutes(0);
   }
+  return startTime;
+};
 
-  const endTime = new Date(startTime);
-  endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
+// 기존 사용 시간을 최대한 유지한 채 새로운 startDate에 맞는 새로운 endDate를 반환
+const getOptimalEndTime = (prevStartDate: Date, prevEndDate: Date, newStartDate: Date): Date => {
+  // 사용 시간을 가능한 유지시킴
+  const previousDiff = prevEndDate.getTime() - prevStartDate.getTime();
+  let newEndDate = new Date(newStartDate);
+  newEndDate.setTime(newStartDate.getTime() + previousDiff);
 
-  return {
-    roomId: 0,
-    startTime,
-    endTime,
-    recurringWeeks: 0,
-    title: '',
-    contactEmail: '',
-    contactPhone: '',
-    professor: '',
-  };
+  // 유지시켰는데 오후 11시 이후면 오후 11시로 고정
+  if (
+    newEndDate.getDate() != newStartDate.getDate() ||
+    (23 <= newEndDate.getHours() && 0 < newEndDate.getMinutes())
+  ) {
+    newEndDate = new Date(newStartDate);
+    newEndDate.setHours(23);
+    newEndDate.setMinutes(0);
+  }
+
+  return newEndDate;
+};
+
+const isSameDay = (lhs: Date, rhs: Date) => {
+  return (
+    lhs.getFullYear() === rhs.getFullYear() &&
+    lhs.getMonth() === rhs.getMonth() &&
+    lhs.getDate() === rhs.getDate()
+  );
 };
