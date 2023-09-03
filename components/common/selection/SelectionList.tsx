@@ -7,7 +7,7 @@ import { COLOR_THEME } from '@/constants/color';
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 interface SelectionListProps {
-  names: string[];
+  names: readonly string[];
   selectedItemName: string;
   path: string;
   listGridColumnClass?: string; // tailwind class

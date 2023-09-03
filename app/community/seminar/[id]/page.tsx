@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { getSeminarPost } from '@/apis/seminar';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -22,7 +22,7 @@ interface SeminarPostPageProps {
 const seminarPath = getPath(seminar);
 
 export default async function SeminarPostPage({ params, searchParams }: SeminarPostPageProps) {
-  const currPost = await getSeminarPost(parseInt(params.id));
+  const currPost = await getSeminarPost(parseInt(params.id), searchParams);
   const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
     currPost,
     searchParams,
@@ -35,8 +35,8 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
         <div className="mb-9 text-sm font-yoon text-neutral-700 leading-[1.63rem] flow-root break-all">
           <Attachments files={[]} />
           <div className="relative float-right ml-7 mt-4 mb-7 w-60 h-60">
-            <Image
-              src={currPost.imageURL}
+            <ImageWithFallback
+              src={currPost.imageURL ?? undefined}
               alt="대표 이미지"
               priority
               fill

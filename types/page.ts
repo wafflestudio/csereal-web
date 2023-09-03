@@ -366,10 +366,18 @@ export const reservations: SegmentNode = {
   children: [],
 };
 
-export const seminarRoom: SegmentNode = {
-  name: '세미나실',
-  segment: 'seminar-room',
+export const reservationIntroduction: SegmentNode = {
+  name: '시설 예약 안내',
+  segment: 'introduction',
   isPage: true,
+  parent: reservations,
+  children: [],
+};
+
+export const seminarRoom: SegmentNode = {
+  name: '세미나실 예약',
+  segment: 'seminar-room',
+  isPage: false,
   parent: reservations,
   children: [],
 };
@@ -473,7 +481,7 @@ export const buld302room309third: SegmentNode = {
 export const labRoom: SegmentNode = {
   name: '실습실 예약',
   segment: 'lab',
-  isPage: true,
+  isPage: false,
   parent: reservations,
   children: [],
 };
@@ -497,7 +505,7 @@ export const hardwareLab: SegmentNode = {
 export const lectureRoom: SegmentNode = {
   name: '공과대학 강의실 예약',
   segment: 'lecture-room',
-  isPage: true,
+  isPage: false,
   parent: reservations,
   children: [],
 };
@@ -559,7 +567,7 @@ graduateAcademics.children = [
   graduateCourseChanges,
   graduateScholarship,
 ];
-reservations.children = [seminarRoom, labRoom, lectureRoom];
+reservations.children = [reservationIntroduction, seminarRoom, labRoom, lectureRoom];
 seminarRoom.children = [
   bldg301room417,
   bldg301Maldives,
