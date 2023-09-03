@@ -1,6 +1,4 @@
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import FilePickerRow from './FilePickerRow';
 
@@ -31,15 +29,6 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
     e.target.value = '';
   };
 
-  const moveFile = (dragIndex: number, hoverIndex: number) => {
-    setFiles((prevFiles) => {
-      const nextFiles = [...prevFiles];
-      nextFiles.splice(dragIndex, 1);
-      nextFiles.splice(hoverIndex, 0, prevFiles[dragIndex]);
-      return nextFiles;
-    });
-  };
-
   const deleteFileAtIndex = (index: number) => {
     setFiles((prevFiles) => {
       const nextFiles = [...prevFiles];
@@ -49,7 +38,7 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <>
       <SelectFileButton onChange={handleChange} />
       <ol
         className={`
@@ -60,15 +49,12 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
         {filesWithURL.map((item, index) => (
           <FilePickerRow
             key={item.url}
-            index={index}
-            url={item.url}
             file={item.file}
-            moveFile={moveFile}
             deleteFile={() => deleteFileAtIndex(index)}
           />
         ))}
       </ol>
-    </DndProvider>
+    </>
   );
 }
 
