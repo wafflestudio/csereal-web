@@ -33,7 +33,7 @@ const HOVER_STYLE: { [key in HoverStyle]: string } = {
 const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
   orange: 'bg-white border-main-orange text-main-orange',
   gray: 'bg-white border-neutral-400 text-neutral-400',
-  fill: 'bg-main-orange border-main-orange text-white',
+  fill: 'bg-main-orange border-main-orange text-white font-medium',
 };
 
 interface TagProps {

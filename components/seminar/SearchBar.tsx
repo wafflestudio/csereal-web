@@ -29,14 +29,12 @@ export default function SeminarSearchBar({ setSearchParams }: SeminarSearchBarPr
       <input
         type="text"
         id="search"
-        className="outline-none font-yoon text-xs w-full pl-2"
+        className="outline-none font-yoon text-xs w-full pl-2 bg-transparent"
         value={text}
         onChange={handleChange}
       />
       <button className="flex justify-center items-center py-[.31rem] pr-[.81rem]">
-        <span className="material-symbols-rounded text-xl font-normal text-neutral-700">
-          search
-        </span>
+        <span className="material-symbols-rounded text-xl font-light text-neutral-700">search</span>
       </button>
     </form>
   );

@@ -38,7 +38,7 @@ export default function NoticeListRow({
   return (
     <li
       className={`flex items-center h-10 py-2.5 ${fontWeight} ${
-        !isEditMode && 'odd:bg-neutral-50'
+        !isEditMode && 'odd:bg-neutral-100'
       } ${isSelected && 'bg-neutral-100'}`}
     >
       {isEditMode && (

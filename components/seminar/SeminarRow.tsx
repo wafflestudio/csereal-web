@@ -1,7 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-
-import SnuLogo from '@/public/image/SNU_Logo.svg';
 
 import { useQueryString } from '@/hooks/useQueryString';
 

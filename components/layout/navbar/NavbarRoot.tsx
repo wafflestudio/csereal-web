@@ -39,7 +39,7 @@ export default function NavbarRoot({
 function SNULogo() {
   return (
     <Link href="/">
-      <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
+      <SnuLogo className="fill-neutral-800" width="56" height="58" viewBox="0 0 45 47" />
     </Link>
   );
 }
@@ -103,7 +103,7 @@ function NavListRow({
 }) {
   return (
     <li
-      className={`text-white font-yoon text-md font-medium ${
+      className={`text-neutral-800 font-yoon text-md font-medium ${
         !highlight && 'opacity-60'
       } cursor-pointer`}
       onMouseEnter={onMouseEnter}

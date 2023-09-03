@@ -33,10 +33,10 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
 
 function StatTableHeader() {
   return (
-    <div className="flex flex-1 border-b-[1px] border-b-neutral-300">
+    <div className="flex flex-1 border-b-[1px] border-b-neutral-300 bg-neutral-100 text-neutral-800">
       <div className="flex-1" />
       {careerStatCols.map((colName) => (
-        <div key={colName} className="flex justify-center items-center w-[5rem] bg-neutral-50">
+        <div key={colName} className="flex justify-center items-center w-[5rem]">
           <p>{colName}</p>
         </div>
       ))}
@@ -47,7 +47,9 @@ function StatTableHeader() {
 function StatTableHeaderRow({ rowName, values }: { rowName: string; values: number[] }) {
   return (
     <div className={`flex flex-1 flex-row border-b border-neutral-200 last:border-0`}>
-      <div className="flex w-[6.25rem] bg-neutral-50 justify-center items-center">{rowName}</div>
+      <div className="flex w-[6.25rem] bg-neutral-100 justify-center items-center text-neutral-800">
+        {rowName}
+      </div>
       {values.map((value, index) => (
         <div key={index} className="flex flex-1 justify-center items-center">
           {value}
