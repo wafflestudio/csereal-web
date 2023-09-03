@@ -47,7 +47,7 @@ export default function CornerFoldedRectangle({
   if (animationType) {
     return (
       <div
-        className={`relative ${width} ${margin} ${styles[animationType]}`}
+        className={`relative ${width} ${margin} ${styles.animated} ${styles[animationType]}`}
         style={rectangleStyle}
       >
         {children}

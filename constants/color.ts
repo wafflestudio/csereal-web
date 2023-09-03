@@ -8,7 +8,7 @@ export const WHITE = '#141212';
 export const COLOR_THEME = {
   orange: { bgColor: MAIN_ORANGE, triangleColor: NEUTRAL_700, borderColor: MAIN_ORANGE },
   lightGray: { bgColor: NEUTRAL_100, triangleColor: NEUTRAL_700, borderColor: NEUTRAL_200 },
-  darkGray: { bgColor: NEUTRAL_700, triangleColor: NEUTRAL_200, borderColor: NEUTRAL_700 },
+  darkGray: { bgColor: NEUTRAL_200, triangleColor: NEUTRAL_700, borderColor: NEUTRAL_200 },
   white: { bgColor: WHITE, triangleColor: NEUTRAL_100, borderColor: NEUTRAL_100 },
 } as const;
 
