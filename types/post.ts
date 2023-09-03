@@ -18,7 +18,11 @@ export interface PostResponse extends Omit<Post, 'attachment'> {
   readonly prevTitle: string | null;
   readonly nextId: number | null;
   readonly nextTitle: string | null;
-  readonly attachment: string | null;
+  readonly attachments: {
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
 }
 
 export interface AdjPostInfo {
@@ -65,8 +69,10 @@ export interface GETNewsPostsResponse {
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
+  author: string;
   tags: string[];
   isPinned: boolean;
+  isImportant: boolean;
 }
 
 export interface NoticePostResponse extends Omit<NoticePost, 'attachment'>, PostResponse {}
