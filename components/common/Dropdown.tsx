@@ -73,7 +73,7 @@ function DropdownListWithScroll({
 }) {
   return (
     <div
-      className={`absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition duration-200 origin-top ${className}`}
+      className={`absolute top-0 left-0 right-0 border-x border-b border-neutral-300 rounded-bl-sm rounded-br-sm bg-white max-h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition duration-200 origin-top ${className}`}
     >
       {contents.map((content, index) => (
         <button

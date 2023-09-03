@@ -7,7 +7,6 @@ import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BasicButton from '@/components/reservations/BasicButton';
 import DateSelector from '@/components/reservations/mui/DateSelector';
-import TimeSelector from '@/components/reservations/mui/TimeSelector';
 
 import useModal from '@/hooks/useModal';
 
@@ -16,7 +15,7 @@ import { ReservationPostBody } from '@/types/reservation';
 export default function AddReservationModal() {
   const { closeModal } = useModal();
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const [body, setBody] = useState<ReservationPostBody>(defaultBodyValue);
+  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue);
 
   const canSubmit =
     privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
@@ -32,26 +31,23 @@ export default function AddReservationModal() {
     (value: ReservationPostBody[T]) =>
       setBody((body) => ({ ...body, [key]: value }));
 
-  // startTime과 endTime의 ymd를 date의 것과 동일하게 설정
+  // 날짜 선택 모달용
   const setDate = (date: Date) => {
-    const startTime = new Date(body.startTime);
-    const endTime = new Date(body.endTime);
+    let newStartTime = new Date(body.startTime);
+    newStartTime.setFullYear(date.getFullYear());
+    newStartTime.setMonth(date.getMonth());
+    newStartTime.setDate(date.getDate());
 
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
+    // 오늘을 선택헀으면 예약 불가 시간 필터링
+    if (isSameDay(newStartTime, new Date())) {
+      newStartTime = convertToFastestStartTime(newStartTime);
+    }
 
-    startTime.setFullYear(year);
-    startTime.setMonth(month);
-    startTime.setDate(day);
-
-    endTime.setFullYear(year);
-    endTime.setMonth(month);
-    endTime.setDate(day);
+    const endTime = getOptimalEndTime(body.startTime, body.endTime, newStartTime);
 
     const startTimeSetter = buildBodyValueSetter('startTime');
     const endTimeSetter = buildBodyValueSetter('endTime');
-    startTimeSetter(startTime);
+    startTimeSetter(newStartTime);
     endTimeSetter(endTime);
   };
 
@@ -69,14 +65,19 @@ export default function AddReservationModal() {
           </InputWithLabel>
 
           <div className="flex gap-3">
-            <InputWithLabel title="예약 시간">
-              <TimeInput date={body.startTime} setDate={buildBodyValueSetter('startTime')} />
+            <InputWithLabel title="시작 시간">
+              <StartTimePicker
+                startDate={body.startTime}
+                endDate={body.endTime}
+                setStartDate={buildBodyValueSetter('startTime')}
+                setEndDate={buildBodyValueSetter('endTime')}
+              />
             </InputWithLabel>
-            <InputWithLabel title="종료 시간">
-              <TimeInput
-                date={body.endTime}
-                setDate={buildBodyValueSetter('endTime')}
-                shouldDisableTime={(date) => date < body.startTime}
+            <InputWithLabel title="사용 시간">
+              <DurationPicker
+                startTime={body.startTime}
+                endTime={body.endTime}
+                setEndTime={buildBodyValueSetter('endTime')}
               />
             </InputWithLabel>
           </div>
@@ -139,7 +140,7 @@ export default function AddReservationModal() {
 
 const InputWithLabel = ({ title, children }: { title: string; children: ReactNode }) => {
   return (
-    <fieldset className="h-7 flex items-center gap-2">
+    <fieldset className="flex items-center gap-2">
       <label className="text-sm font-normal">{title}: </label>
       {children}
     </fieldset>
@@ -156,7 +157,7 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   return (
     <div>
       <button
-        className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
+        className="border border-neutral-300 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2"
         onClick={() => {
           openModal(
             <ModalFrame onClose={closeModal}>
@@ -179,39 +180,87 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   );
 };
 
-const TimeInput = ({
-  date,
-  setDate,
-  shouldDisableTime,
+const StartTimePicker = ({
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }: {
-  date: Date;
-  setDate: (date: Date) => void;
-  shouldDisableTime?: (date: Date) => boolean;
+  startDate: Date;
+  endDate: Date;
+  setStartDate: (date: Date) => void;
+  setEndDate: (date: Date) => void;
 }) => {
-  const { openModal, closeModal } = useModal();
-  return (
-    <button
-      className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
-      onClick={() => {
-        openModal(
-          <ModalFrame onClose={closeModal}>
-            <TimeSelector
-              date={date}
-              setDate={(date) => {
-                setDate(date);
-                closeModal();
-              }}
-              shouldDisableTime={shouldDisableTime}
-              className="bg-white"
-            />
-          </ModalFrame>,
-        );
-      }}
-    >
-      {(date.getHours() + '').padStart(2, '0')}:{(date.getMinutes() + '').padStart(2, '0')}
-      <span className="material-symbols-outlined text-base">schedule</span>
-    </button>
+  const now = new Date();
+  let contents = Array(15)
+    .fill(0)
+    .map((_, i) => i + 8)
+    .reduce<[number, number][]>((prev, cur) => [...prev, [cur, 0], [cur, 30]], []);
+
+  // 당일 예약이라면 가능한 시작 시간들을 필터링
+  if (isSameDay(startDate, now)) {
+    contents = contents.filter(([hour, minute]) => {
+      return now.getHours() < hour || (now.getHours() === hour && now.getMinutes() <= minute);
+    });
+  }
+
+  const contentsInStr = contents.map(
+    ([hour, minute]) => `${(hour + '').padStart(2, '0')}:${(minute + '').padStart(2, '0')}`,
   );
+
+  let selectedIndex = contents.findIndex(
+    ([hour, minute]) => hour === startDate.getHours() && minute === startDate.getMinutes(),
+  );
+  if (selectedIndex === -1) selectedIndex = 0;
+
+  const handleClick = (idx: number) => {
+    const [hour, minute] = contents[idx];
+
+    const newStartDate = new Date(startDate);
+    newStartDate.setHours(hour);
+    newStartDate.setMinutes(minute);
+    setStartDate(newStartDate);
+
+    const newEndDate = getOptimalEndTime(startDate, endDate, newStartDate);
+    setEndDate(newEndDate);
+  };
+
+  return <Dropdown contents={contentsInStr} selectedIndex={selectedIndex} onClick={handleClick} />;
+};
+
+const DurationPicker = ({
+  startTime,
+  endTime,
+  setEndTime,
+}: {
+  startTime: Date;
+  endTime: Date;
+  setEndTime: (date: Date) => void;
+}) => {
+  const endOfDayInMinute = 23 * 60; // 예약은 밤 11시까지만 가능
+  const startTimeInMinute = startTime.getHours() * 60 + startTime.getMinutes();
+
+  // 최대 3시간이라서 최대값은 6
+  const remainingOptionCnt = Math.min(6, (endOfDayInMinute - startTimeInMinute) / 30);
+
+  const contents = Array(remainingOptionCnt)
+    .fill(0)
+    .map((_, i) => {
+      const minutes = (i + 1) * 30;
+      if (minutes % 60 === 0) return minutes / 60 + '시간';
+      else return minutes + '분';
+    });
+
+  const endTimeInMinute = endTime.getHours() * 60 + endTime.getMinutes();
+  const selectedIndex = (endTimeInMinute - startTimeInMinute) / 30 - 1;
+
+  const handleClick = (idx: number) => {
+    const newEndTime = new Date(startTime);
+    newEndTime.setTime(startTime.getTime() + (idx + 1) * 30 * 60 * 1000);
+    setEndTime(newEndTime);
+  };
+
+  return <Dropdown contents={contents} selectedIndex={selectedIndex} onClick={handleClick} />;
 };
 
 const RequiredTextInputFieldset = ({
@@ -298,16 +347,80 @@ const PrivacyFieldset = ({
   );
 };
 
-const defaultBodyValue = (() => {
-  const date = new Date();
+const getDefaultBodyValue = () => {
+  const startTime = convertToFastestStartTime(new Date());
+
+  const endTime = new Date(startTime);
+  endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
+
   return {
     roomId: 0,
-    startTime: date,
-    endTime: date,
+    startTime,
+    endTime,
     recurringWeeks: 0,
     title: '',
     contactEmail: '',
     contactPhone: '',
     professor: '',
   };
-})();
+};
+
+// date 이후 시점 중 가장 빠른 유효 startTime을 반환
+const convertToFastestStartTime = (date: Date) => {
+  let startTime = new Date(date);
+
+  // 과거면 현재로 변경
+  const now = new Date();
+  if (startTime < now) startTime = now;
+
+  startTime.setSeconds(0);
+  startTime.setMilliseconds(0);
+
+  // 가장 가까운 30분 혹은 0분으로 올림
+  if (30 < startTime.getMinutes()) {
+    startTime = new Date(startTime.getTime() + 30 * 60 * 1000);
+    startTime.setMinutes(0);
+  } else {
+    startTime.setMinutes(30);
+  }
+
+  // 가장 늦은 시작 시간인 오후 10시 30분보다 늦다면 다음날 8시로 설정
+  if (
+    startTime.getHours() < 8 ||
+    23 <= startTime.getHours() ||
+    (startTime.getHours() === 22 && 30 < startTime.getMinutes())
+  ) {
+    startTime = new Date(startTime.getTime() + 24 * 60 * 60 * 1000);
+    startTime.setHours(8);
+    startTime.setMinutes(0);
+  }
+  return startTime;
+};
+
+// 기존 사용 시간을 최대한 유지한 채 새로운 startDate에 맞는 새로운 endDate를 반환
+const getOptimalEndTime = (prevStartDate: Date, prevEndDate: Date, newStartDate: Date): Date => {
+  // 사용 시간을 가능한 유지시킴
+  const previousDiff = prevEndDate.getTime() - prevStartDate.getTime();
+  let newEndDate = new Date(newStartDate);
+  newEndDate.setTime(newStartDate.getTime() + previousDiff);
+
+  // 유지시켰는데 오후 11시 이후면 오후 11시로 고정
+  if (
+    newEndDate.getDate() != newStartDate.getDate() ||
+    (23 <= newEndDate.getHours() && 0 < newEndDate.getMinutes())
+  ) {
+    newEndDate = new Date(newStartDate);
+    newEndDate.setHours(23);
+    newEndDate.setMinutes(0);
+  }
+
+  return newEndDate;
+};
+
+const isSameDay = (lhs: Date, rhs: Date) => {
+  return (
+    lhs.getFullYear() === rhs.getFullYear() &&
+    lhs.getMonth() === rhs.getMonth() &&
+    lhs.getDate() === rhs.getDate()
+  );
+};
