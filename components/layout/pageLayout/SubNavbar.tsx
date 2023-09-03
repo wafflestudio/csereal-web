@@ -22,7 +22,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
     >
       <CurvedVerticalNode grow={false} />
       <div className="pt-[0.6875rem] pl-1.5">
-        <h3 className="font-yoon font-bold text-sm text-neutral-700">{rootTab.name}</h3>
+        <h3 className="font-yoon font-bold text-sm text-neutral-600">{rootTab.name}</h3>
         <ul className="mt-4">
           {subTabs.map((tab) => (
             <SubTab

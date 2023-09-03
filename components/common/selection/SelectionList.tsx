@@ -59,7 +59,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleDropShadow={dropShadow}
           width="w-full"
         >
-          <span className={`${itemCommonStyle} text-neutral-800`}>{name}</span>
+          <span className={`${itemCommonStyle} text-neutral-800 font-medium`}>{name}</span>
         </CornerFoldedRectangle>
       ) : (
         <CornerFoldedRectangle
@@ -72,7 +72,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
         >
           <Link
             href={`${path}?selected=${replaceSpaceWithDash(name)}`}
-            className={`${itemCommonStyle} text-neutral-600 hover:text-neutral-700`}
+            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700 transition-all duration-300`}
             scroll={false}
           >
             {name}

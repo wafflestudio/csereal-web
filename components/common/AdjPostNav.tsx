@@ -56,7 +56,7 @@ function RowPostTitle({ title }: { title?: string }) {
     <p
       className={`
       ${title ? 'group-hover:underline' : ''} 
-      font-yoon text-xs font-normal line-clamp-1 text-neutral-700
+      font-yoon text-xs font-normal line-clamp-1
       `}
     >
       {title ?? '(없음)'}
@@ -68,7 +68,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="self-end text-white mt-6 text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-5 py-2 rounded-[0.0625] font-bold"
+      className="self-end mt-6 text-sm font-noto bg-neutral-200 hover:bg-neutral-300 px-5 py-2 rounded-[0.0625rem] font-bold"
     >
       목록
     </Link>
