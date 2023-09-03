@@ -7,7 +7,6 @@ import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BasicButton from '@/components/reservations/BasicButton';
 import DateSelector from '@/components/reservations/mui/DateSelector';
-import TimeSelector from '@/components/reservations/mui/TimeSelector';
 
 import useModal from '@/hooks/useModal';
 
@@ -16,7 +15,7 @@ import { ReservationPostBody } from '@/types/reservation';
 export default function AddReservationModal() {
   const { closeModal } = useModal();
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const [body, setBody] = useState<ReservationPostBody>(defaultBodyValue);
+  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue);
 
   const canSubmit =
     privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
@@ -346,7 +345,7 @@ const PrivacyFieldset = ({
   );
 };
 
-const defaultBodyValue = (() => {
+const getDefaultBodyValue = () => {
   let startTime = new Date();
   startTime.setSeconds(0);
   startTime.setMilliseconds(0);
@@ -383,4 +382,4 @@ const defaultBodyValue = (() => {
     contactPhone: '',
     professor: '',
   };
-})();
+};
