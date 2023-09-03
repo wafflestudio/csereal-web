@@ -12,8 +12,9 @@ font-familiy 설정 제거
   height: auto;
   box-sizing: border-box;
   border: 1px solid #dadada;
-  background-color: #fff;
-  color: #000;
+  /* 수정 */
+  background-color: transparent;
+  color: #e5e5e5;
   user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
@@ -2034,10 +2035,14 @@ textarea.se-error:focus {
     transform: rotate(361deg);
   }
 }
+
+/* editable 시작 */
+
 .sun-editor-editable {
   font-size: 13px;
-  color: #333;
-  background-color: #fff;
+  /* 수정 */
+  color: #e5e5e5;
+  background-color: transparent;
   line-height: 2;
   word-break: normal;
   word-wrap: break-word;

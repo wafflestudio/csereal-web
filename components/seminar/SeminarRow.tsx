@@ -9,6 +9,8 @@ import { seminar } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+import ImageWithFallback from '../common/ImageWithFallback';
+
 export interface SeminarRowProps {
   id: number;
   title: string;
@@ -45,11 +47,7 @@ export default function SeminarRow({
           !imageURL && 'bg-neutral-100'
         }`}
       >
-        {imageURL ? (
-          <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
-        ) : (
-          <SnuLogo className="fill-neutral-400" />
-        )}
+        <ImageWithFallback alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
         <Link href={`${seminarPath}/${id}${queryString}`} className="hover:underline">

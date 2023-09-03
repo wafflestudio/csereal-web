@@ -20,6 +20,7 @@ const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 export default function PostEditor({
   tags,
   showMainImage = false,
+  showIsImportant = false,
   showIsPinned = false,
   showIsSlide = false,
   actions,
@@ -101,10 +102,17 @@ export default function PostEditor({
               toggleCheck={() => setContentByKey('isPinned')(!content.isPinned)}
             />
           )}
+          {showIsImportant && (
+            <TagCheckbox
+              tag="메인-중요 안내에 표시"
+              isChecked={content.isImportant}
+              toggleCheck={() => setContentByKey('isImportant')(!content.isImportant)}
+            />
+          )}
           {showIsSlide && (
             <>
               <TagCheckbox
-                tag="슬라이드 쇼에 표시"
+                tag="메인-슬라이드쇼에 표시"
                 isChecked={content.isSlide}
                 toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
               />
