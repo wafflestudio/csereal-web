@@ -34,9 +34,11 @@ const RowIndex = () => {
       {rows.map((x) => (
         <div
           key={x}
-          className="h-12 border-x border-b border-neutral-200 flex items-center justify-center"
+          className="h-12 border-x border-b border-neutral-200 flex items-start justify-center"
         >
-          <p className="font-yoon text-xs text-neutral-700 font-medium text-center">{x}</p>
+          <div className="h-6 flex items-center">
+            <p className="font-yoon text-xs text-neutral-700 font-medium">{x}</p>
+          </div>
         </div>
       ))}
     </div>
