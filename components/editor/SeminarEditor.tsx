@@ -83,7 +83,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         speakerIntroductionEditorRef={speakerIntroductionEditorRef}
         initialContent={content.speaker.description}
       />
-      <ImageFieldset file={content.speaker.imageURL} setFile={setSpeakerContentByKey('imageURL')} />
+      <ImageFieldset file={content.speaker.image} setFile={setSpeakerContentByKey('image')} />
       <FileFieldset files={content.attachments} setFiles={setFiles} />
       <IsPublicFieldset isPublic={content.isPublic} setIsPublic={setContentByKey('isPublic')} />
 

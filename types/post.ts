@@ -138,6 +138,30 @@ export interface SimpleSeminarPost
   isYearLast: boolean;
 }
 
+export interface POSTSeminarBody {
+  request: {
+    title: string;
+    description: string;
+    introduction: string;
+    name: string;
+    speakerURL: string | null;
+    speakerTitle: string | null;
+    affiliation: string;
+    affiliationURL: string | null;
+    startDate: string | null;
+    startTime: string | null;
+    endDate: string | null;
+    endTime: string | null;
+    location: string;
+    host: string | null;
+    isPublic: boolean;
+    // additionalNote: string | null;
+    // isImportant: boolean;
+  };
+  image: File | null;
+  attachments: File[];
+}
+
 export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
   introduction: string;
   category: string;

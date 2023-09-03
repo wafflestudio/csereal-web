@@ -26,7 +26,7 @@ export interface SeminarSpeaker {
   organization: string;
   organizationURL: string;
   description: string;
-  imageURL: File | null;
+  image: File | null;
 }
 
 export interface SeminarEditorProps {
@@ -52,7 +52,7 @@ export const seminarEditorPlaceholder: SeminarEditorContent = {
     organization: '',
     organizationURL: '',
     description: '',
-    imageURL: null,
+    image: null,
   },
   attachments: [],
   isPublic: true,
