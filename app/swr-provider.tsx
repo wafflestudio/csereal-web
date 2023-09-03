@@ -4,8 +4,6 @@ import { SWRConfig } from 'swr';
 
 import { getRequest } from '@/apis';
 
-import { getNoticePosts } from '@/apis/notice';
-
 export const SWRProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <SWRConfig

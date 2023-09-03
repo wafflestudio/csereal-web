@@ -7,13 +7,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function OverviewPage() {
   const response = await getOverview();
 
-  await (async () => {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-    throw new Error('serverside error');
-  })();
-
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <HTMLViewer
