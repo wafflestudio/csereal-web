@@ -34,7 +34,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
 
 interface ImageWithFallbackProps {
   alt: string;
-  src?: string;
+  src: string | null | undefined;
   className?: string;
   sizes?: string;
   width?: number | `${number}` | undefined;

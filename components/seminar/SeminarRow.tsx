@@ -15,7 +15,7 @@ export interface SeminarRowProps {
   company: string;
   date: Date;
   location: string;
-  imageURL?: string;
+  imageURL: string | null;
   isYearLast: boolean;
 }
 

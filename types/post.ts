@@ -6,11 +6,11 @@ export interface Post {
   // html 내용
   description: string;
   isPublic: boolean;
-  attachment: FormData;
+  attachments: FormData;
 }
 
 // 서버에서 만드는 속성들이 포함됨
-export interface PostResponse extends Omit<Post, 'attachment'> {
+export interface PostResponse extends Omit<Post, 'attachments'> {
   readonly id: number;
   readonly createdAt: string;
   readonly modifiedAt: string;
@@ -49,11 +49,12 @@ export interface SimpleHTMLPageResponse {
 
 export interface NewsPost extends Post {
   tags: string[];
-  imageURL: string;
+  imageURL: string | null;
   isSlide: boolean;
+  isImportant: boolean;
 }
 
-export interface NewsPostResponse extends Omit<NewsPost, 'attachment'>, PostResponse {}
+export interface NewsPostResponse extends Omit<NewsPost, 'attachments'>, PostResponse {}
 
 export interface SimpleNewsPost
   extends Pick<
@@ -75,7 +76,7 @@ export interface NoticePost extends Post {
   isImportant: boolean;
 }
 
-export interface NoticePostResponse extends Omit<NoticePost, 'attachment'>, PostResponse {}
+export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {}
 
 export interface SimpleNoticePost
   extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
@@ -125,6 +126,6 @@ export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
   location: string;
   host: string;
   isSlide: boolean;
-  imageURL: string;
+  imageURL: string | null;
   additionalNote?: string;
 }

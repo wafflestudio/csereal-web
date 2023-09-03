@@ -17,7 +17,7 @@ export interface NewsRowProps {
   description: string;
   tags: string[];
   date: Date;
-  imageURL: string;
+  imageURL: string | null;
 }
 
 const newsPath = getPath(news);
