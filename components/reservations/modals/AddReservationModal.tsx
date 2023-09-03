@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
+import { FormEventHandler, ReactNode, useEffect, useReducer, useState } from 'react';
 
 import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
@@ -69,14 +69,19 @@ export default function AddReservationModal() {
           </InputWithLabel>
 
           <div className="flex gap-3">
-            <InputWithLabel title="예약 시간">
-              <TimeInput date={body.startTime} setDate={buildBodyValueSetter('startTime')} />
+            <InputWithLabel title="시작 시간">
+              <StartTimePicker
+                startDate={body.startTime}
+                endDate={body.endTime}
+                setStartDate={buildBodyValueSetter('startTime')}
+                setEndDate={buildBodyValueSetter('endTime')}
+              />
             </InputWithLabel>
-            <InputWithLabel title="종료 시간">
-              <TimeInput
-                date={body.endTime}
-                setDate={buildBodyValueSetter('endTime')}
-                shouldDisableTime={(date) => date < body.startTime}
+            <InputWithLabel title="사용 시간">
+              <DurationPicker
+                startTime={body.startTime}
+                endTime={body.endTime}
+                setEndTime={buildBodyValueSetter('endTime')}
               />
             </InputWithLabel>
           </div>
@@ -139,7 +144,7 @@ export default function AddReservationModal() {
 
 const InputWithLabel = ({ title, children }: { title: string; children: ReactNode }) => {
   return (
-    <fieldset className="h-7 flex items-center gap-2">
+    <fieldset className="flex items-center gap-2">
       <label className="text-sm font-normal">{title}: </label>
       {children}
     </fieldset>
@@ -156,7 +161,7 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   return (
     <div>
       <button
-        className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
+        className="border border-neutral-300 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2"
         onClick={() => {
           openModal(
             <ModalFrame onClose={closeModal}>
@@ -179,39 +184,82 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   );
 };
 
-const TimeInput = ({
-  date,
-  setDate,
-  shouldDisableTime,
+const StartTimePicker = ({
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }: {
-  date: Date;
-  setDate: (date: Date) => void;
-  shouldDisableTime?: (date: Date) => boolean;
+  startDate: Date;
+  endDate: Date;
+  setStartDate: (date: Date) => void;
+  setEndDate: (date: Date) => void;
 }) => {
-  const { openModal, closeModal } = useModal();
-  return (
-    <button
-      className="border border-neutral-200 rounded-sm w-[6.25rem] h-7 text-sm font-normal flex items-center justify-between px-[.62rem]"
-      onClick={() => {
-        openModal(
-          <ModalFrame onClose={closeModal}>
-            <TimeSelector
-              date={date}
-              setDate={(date) => {
-                setDate(date);
-                closeModal();
-              }}
-              shouldDisableTime={shouldDisableTime}
-              className="bg-white"
-            />
-          </ModalFrame>,
-        );
-      }}
-    >
-      {(date.getHours() + '').padStart(2, '0')}:{(date.getMinutes() + '').padStart(2, '0')}
-      <span className="material-symbols-outlined text-base">schedule</span>
-    </button>
-  );
+  const contents = Array(15)
+    .fill(0)
+    .map((_, i) => i + 8)
+    .reduce<string[]>((prev, cur) => [...prev, cur + ':00', cur + ':30'], []);
+
+  let selectedIndex = 2 * (startDate.getHours() - 8);
+  if (30 <= startDate.getMinutes()) selectedIndex++;
+
+  const handleClick = (idx: number) => {
+    const hour = idx / 2 + 8;
+    const minute = idx % 2 ? 30 : 0;
+
+    const newStartDate = new Date(startDate);
+    newStartDate.setHours(hour);
+    newStartDate.setMinutes(minute);
+    setStartDate(newStartDate);
+
+    // 사용 시간을 가능한 유지시킴
+    const previousDiff = endDate.getTime() - startDate.getTime();
+    let newEndDate = new Date(newStartDate);
+    newEndDate.setTime(newStartDate.getTime() + previousDiff);
+
+    // 유지시켰는데 오후 11시 이후면 오후 11시로 고정
+    if (
+      newEndDate.getDate() != newStartDate.getDate() ||
+      (23 <= newEndDate.getHours() && 0 < newEndDate.getMinutes())
+    ) {
+      newEndDate = new Date(startDate);
+      newEndDate.setHours(23);
+      newEndDate.setMinutes(0);
+    }
+
+    setEndDate(newEndDate);
+  };
+
+  return <Dropdown contents={contents} selectedIndex={selectedIndex} onClick={handleClick} />;
+};
+
+const DurationPicker = ({
+  startTime,
+  endTime,
+  setEndTime,
+}: {
+  startTime: Date;
+  endTime: Date;
+  setEndTime: (date: Date) => void;
+}) => {
+  const endOfDayInMinute = 23 * 60; // 예약은 밤 11시까지만 가능
+  const startTimeInMinute = startTime.getHours() * 60 + startTime.getMinutes();
+  const remainingOptionCnt = (endOfDayInMinute - startTimeInMinute) / 30;
+
+  const contents = Array(remainingOptionCnt)
+    .fill(0)
+    .map((_, i) => (i + 1) * 30 + '분');
+
+  const endTimeInMinute = endTime.getHours() * 60 + endTime.getMinutes();
+  const selectedIndex = (endTimeInMinute - startTimeInMinute) / 30 - 1;
+
+  const handleClick = (idx: number) => {
+    const newEndTime = new Date(startTime);
+    newEndTime.setTime(startTime.getTime() + (idx + 1) * 30 * 60 * 1000);
+    setEndTime(newEndTime);
+  };
+
+  return <Dropdown contents={contents} selectedIndex={selectedIndex} onClick={handleClick} />;
 };
 
 const RequiredTextInputFieldset = ({
@@ -299,11 +347,36 @@ const PrivacyFieldset = ({
 };
 
 const defaultBodyValue = (() => {
-  const date = new Date();
+  let startTime = new Date();
+  startTime.setSeconds(0);
+  startTime.setMilliseconds(0);
+
+  // 가장 가까운 30분 혹은 0분으로 올림
+  if (30 < startTime.getMinutes()) {
+    startTime = new Date(startTime.getTime() + 30 * 60 * 1000);
+    startTime.setMinutes(0);
+  } else {
+    startTime.setMinutes(30);
+  }
+
+  // 가장 늦은 시작 시간인 오후 10시 30분보다 늦다면 다음날 8시로 설정
+  if (
+    startTime.getHours() < 8 ||
+    23 <= startTime.getHours() ||
+    (startTime.getHours() === 22 && 30 < startTime.getMinutes())
+  ) {
+    startTime = new Date(startTime.getTime() + 24 * 60 * 60 * 1000);
+    startTime.setHours(8);
+    startTime.setMinutes(0);
+  }
+
+  const endTime = new Date(startTime);
+  endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
+
   return {
     roomId: 0,
-    startTime: date,
-    endTime: date,
+    startTime,
+    endTime,
     recurringWeeks: 0,
     title: '',
     contactEmail: '',
