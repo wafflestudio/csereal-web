@@ -15,8 +15,11 @@ export const getNewsPosts = (params: PostSearchQueryParams) =>
 export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
   getRequest(`${newsPath}/${id}`, params, { cache: 'no-store' }) as Promise<NewsPostResponse>;
 
-export const postNews = (newPost: NewsPost) =>
-  postRequest(newsPath, newPost) as Promise<NewsPostResponse>;
+export const postNews = (newPost: NewsPost) => {
+//   const formData = new FormData();
+//   formData.append('request', newPost.)
+//   postRequest(newsPath, { body: newPost }) as Promise<NewsPostResponse>;
+};
 
 export const patchNews = (id: number, newPost: Partial<NewsPost>) =>
   patchRequest(`${newsPath}/${id}`, newPost) as Promise<NewsPostResponse>;

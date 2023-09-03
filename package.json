@@ -28,6 +28,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.11",
+    "react-hot-toast": "^2.4.1",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
     "swr": "^2.2.0",

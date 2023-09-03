@@ -3,6 +3,7 @@ import {
   GETNoticePostsResponse,
   NoticePost,
   PostSearchQueryParams,
+  POSTNoticePostsBody,
 } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
@@ -15,8 +16,17 @@ export const getNoticePosts = (params: PostSearchQueryParams) =>
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
   getRequest(`${noticePath}/${id}`, params, { cache: 'no-store' }) as Promise<NoticePostResponse>;
 
-export const postNotice = (newPost: NoticePost) =>
-  postRequest(noticePath, newPost) as Promise<NoticePostResponse>;
+export const postNotice = async (body: POSTNoticePostsBody) => {
+  const formData = new FormData();
+  formData.append('request', JSON.stringify(body.request));
+  for (const attachment of body.attachments) {
+    formData.append('attachments', attachment);
+  }
+
+  return (await postRequest(noticePath, {
+    body: formData,
+  })) as NoticePostResponse;
+};
 
 export const patchNotice = (id: number, newPost: Partial<NoticePost>) =>
   patchRequest(`${noticePath}/${id}`, newPost) as Promise<NoticePostResponse>;

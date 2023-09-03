@@ -70,13 +70,14 @@ export interface GETNewsPostsResponse {
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
-  author: string;
   tags: string[];
   isPinned: boolean;
   isImportant: boolean;
 }
 
-export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {}
+export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {
+  author: string;
+}
 
 export interface SimpleNoticePost
   extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
@@ -86,6 +87,19 @@ export interface SimpleNoticePost
 export interface GETNoticePostsResponse {
   total: number;
   searchList: SimpleNoticePost[];
+}
+
+export interface POSTNoticePostsBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isPinned: boolean;
+    isImportant: boolean;
+    tags: string[];
+  };
+  attachments: File[];
 }
 
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -

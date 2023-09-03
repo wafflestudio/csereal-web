@@ -16,7 +16,6 @@ import TagCheckbox from '../common/search/TagCheckbox';
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
-// TODO: 네트워크 에러 처리
 export default function PostEditor({
   tags,
   showMainImage = false,
@@ -53,7 +52,7 @@ export default function PostEditor({
 
   return (
     <form className="flex flex-col">
-      <TitleFieldset value={content.title} onChange={(e) => setContentByKey('title')} />
+      <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
 
       <EditorFieldset editorRef={editorRef} />
 
