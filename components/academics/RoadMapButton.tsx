@@ -1,3 +1,5 @@
+'use client';
+
 import SignPostIcon from '@/public/image/signpost_icon.svg';
 
 import useModal from '@/hooks/useModal';
