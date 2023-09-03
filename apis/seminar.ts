@@ -6,8 +6,13 @@ import { getRequest } from '.';
 
 const seminarPath = '/seminar';
 
-export const getSeminarPosts = (url: string, params: PostSearchQueryParams) =>
-  getRequest(seminarPath, params) as Promise<GETSeminarPostsResponse>;
+export const getSeminarPosts = async (params: PostSearchQueryParams) => {
+  return (await getRequest(seminarPath, params, {
+    cache: 'no-store',
+  })) as GETSeminarPostsResponse;
+};
 
 export const getSeminarPost = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`/${seminarPath}/${id}`, params) as Promise<SeminarPostResponse>;
+  getRequest(`/${seminarPath}/${id}`, params, {
+    cache: 'no-store',
+  }) as Promise<SeminarPostResponse>;
