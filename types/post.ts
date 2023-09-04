@@ -192,27 +192,68 @@ export interface POSTSeminarBody {
     host: string | null;
     isPublic: boolean;
     isImportant: boolean;
-    // additionalNote: string | null;
   };
   image: File | null;
   attachments: File[];
 }
 
-export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
+export interface SeminarPostResponse {
+  id: number;
+  title: string;
+  description: string;
+  isPublic: boolean;
+
+  createdAt: string;
+  modifiedAt: string;
+  prevId: number | null;
+  prevTitle: string | null;
+  nextId: number | null;
+  nextTitle: string | null;
+
   introduction: string;
   category: string;
   name: string;
-  speakerUrl?: string;
-  speakerTitle?: string;
+  speakerUrl: string | null;
+  speakerTitle: string | null;
   affiliation: string;
-  affiliationUrl?: string;
+  affiliationUrl: string | null;
   startDate: string;
   startTime: string;
   endDate: string;
   endTime: string;
   location: string;
   host: string;
-  isSlide: boolean;
+  isImportant: boolean;
   imageURL: string | null;
-  additionalNote?: string;
+  attachments: {
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
+}
+
+export interface PatchSeminarBody {
+  request: {
+    introduction: string;
+    category: string;
+    name: string;
+    speakerUrl: string | null;
+    speakerTitle: string | null;
+    affiliation: string;
+    affiliationUrl: string | null;
+    startDate: string | null;
+    startTime: string | null;
+    endDate: string | null;
+    endTime: string | null;
+    location: string;
+    host: string | null;
+    isSlide: boolean;
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  newAttachments: File[];
+  image: File | null;
 }

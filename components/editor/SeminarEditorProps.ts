@@ -6,7 +6,7 @@ export interface SeminarEditorContent {
   description: string;
   location: string;
   schedule: SeminarSchedule;
-  host: string;
+  host: string | null;
   speaker: SeminarSpeaker;
   attachments: PostEditorFile[];
   isPublic: boolean;
@@ -14,19 +14,17 @@ export interface SeminarEditorContent {
 }
 
 export interface SeminarSchedule {
-  allDay: boolean;
-  showEndDate: boolean;
   startDate: Date;
   endDate: Date;
 }
 
 export interface SeminarSpeaker {
   name: string;
-  nameURL: string;
+  nameURL: string | null;
   // 직함
-  title: string;
+  title: string | null;
   organization: string;
-  organizationURL: string;
+  organizationURL: string | null;
   description: string;
   image: PostEditorImage | null;
 }
@@ -41,8 +39,6 @@ export const seminarEditorPlaceholder: SeminarEditorContent = {
   description: '',
   location: '',
   schedule: {
-    allDay: false,
-    showEndDate: false,
     startDate: new Date(),
     endDate: new Date(),
   },

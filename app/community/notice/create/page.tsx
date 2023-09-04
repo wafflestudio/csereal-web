@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import { postNotice } from '@/apis/notice';
 
-import { infoToast } from '@/components/common/toast';
 import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
