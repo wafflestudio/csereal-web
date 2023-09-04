@@ -2,7 +2,6 @@
   --white: #141212;
   --neutral-200: #262626;
   --neutral-600: #d4d4d4;
-  --main-orange: #e9390b;
   transition: 0.3s;
 }
 
@@ -48,11 +47,11 @@
   width: 1.75rem; /* 28px */
   height: 1.75rem; /* 28px */
   transition: 0.4s;
-  border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 4px;
 }
 
 .unfolding::before {
-  background: linear-gradient(-135deg, var(--white) 50%, var(--main-orange) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-200) 50%);
 }
 
 .unfolding::after {
