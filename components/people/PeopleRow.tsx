@@ -38,14 +38,14 @@ export default function PeopleRow({
   imageURL,
 }: PeopleRowProps) {
   const hrefList = {
-    'EMIRITUS_FACULTY': emeritusFacultyPath,
+    EMIRITUS_FACULTY: emeritusFacultyPath,
     FACULTY: facultyPath,
     STAFF: staffPath,
   };
   const href = `${hrefList[type]}/${id}`;
 
   return (
-    <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
+    <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3 group">
       <Link
         href={href}
         className="w-36 h-48 relative"
@@ -67,11 +67,12 @@ export default function PeopleRow({
       </Link>
       <div className="flex flex-col items-start break-keep">
         {academicRank && (
-          <div className="flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
+          <div className="relative flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
             <Link href={href} className="hover:cursor-pointer ">
               <p className="text-md font-bold">{name}</p>
             </Link>
-            <p className="text-neutral-500">{academicRank}</p>
+            <AcademicRankText academicRank={academicRank} />
+            <span className="absolute inline-block bottom-0 border-b w-0 border-main-orange group-hover:w-full transition-all duration-700" />
           </div>
         )}
         {role && (
@@ -106,3 +107,22 @@ export default function PeopleRow({
     </article>
   );
 }
+
+// 괄호 안 문자는 폰트 크기 작게
+function AcademicRankText({ academicRank }: { academicRank: string }) {
+  return (
+    <p className="flex items-end text-neutral-500">
+      {splitParenthesis(academicRank).map((rank, i) =>
+        i === 0 ? (
+          <span key={rank}>{rank}</span>
+        ) : (
+          <span key={rank} className="inline-block scale-75 origin-left whitespace-nowrap">
+            ({rank}
+          </span>
+        ),
+      )}
+    </p>
+  );
+}
+
+const splitParenthesis = (text: string) => text.split('(');
