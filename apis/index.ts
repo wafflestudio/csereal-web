@@ -27,17 +27,9 @@ export const postRequest = async <T = unknown>(url: string, init?: RequestInit) 
   return responseData as T;
 };
 
-export const patchRequest = async <T = unknown>(
-  url: string,
-  data: object,
-  headers: HeadersInit = {},
-) => {
+export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
   checkError(response);
   const responseData = await response.json();
   return responseData as T;

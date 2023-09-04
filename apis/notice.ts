@@ -34,6 +34,6 @@ export const postNotice = async (body: POSTNoticeBody) => {
 };
 
 export const patchNotice = (id: number, newPost: Partial<NoticePost>) =>
-  patchRequest(`${noticePath}/${id}`, newPost) as Promise<NoticePostResponse>;
+  patchRequest(`${noticePath}/${id}`, { body: newPost }) as Promise<NoticePostResponse>;
 
 export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);

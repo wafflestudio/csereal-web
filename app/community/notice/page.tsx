@@ -1,6 +1,6 @@
 import { getNoticePosts } from '@/apis/notice';
 
-import NoticeContent from '@/components/notice/NoticeContent';
+import NoticePageContent from '@/components/notice/NoticePageContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -10,5 +10,5 @@ interface NoticePageParams {
 
 export default async function NoticePage({ searchParams }: NoticePageParams) {
   const data = await getNoticePosts(searchParams);
-  return <NoticeContent data={data} />;
+  return <NoticePageContent data={data} />;
 }

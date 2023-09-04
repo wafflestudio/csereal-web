@@ -80,6 +80,24 @@ export interface POSTNewsBody {
   attachments: File[];
 }
 
+export interface PATCHNewsBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isImportant: boolean;
+    tags: string[];
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  mainImage: File | null;
+  newAttachments: File[];
+}
+
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {

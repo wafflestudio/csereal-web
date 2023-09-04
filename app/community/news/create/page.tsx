@@ -4,9 +4,8 @@ import { useRouter } from 'next/navigation';
 
 import { postNews } from '@/apis/news';
 
-import { infoToast } from '@/components/common/toast';
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
+import { PostEditorContent, isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
@@ -24,6 +23,8 @@ export default function NewsCreatePage() {
     if (content.title === '') {
       throw new Error('제목을 입력해주세요');
     }
+    const mainImage =
+      content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNews({
@@ -35,7 +36,7 @@ export default function NewsCreatePage() {
         isImportant: content.isImportant,
         tags: content.tags,
       },
-      mainImage: content.mainImage,
+      mainImage,
       attachments,
     });
 

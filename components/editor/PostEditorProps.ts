@@ -18,10 +18,28 @@ export interface UploadedFile {
 
 export const isLocalFile = (file: PostEditorFile): file is LocalFile => file.type === 'LOCAL_FILE';
 
+export const isUploadedFile = (file: PostEditorFile): file is UploadedFile =>
+  file.type === 'UPLOADED_FILE';
+
+export type PostEditorImage = LocalImage | UploadedImage | null;
+
+export interface LocalImage {
+  type: 'LOCAL_IMAGE';
+  file: File;
+}
+
+export interface UploadedImage {
+  type: 'UPLOADED_IMAGE';
+  url: string;
+}
+
+export const isLocalImage = (image: LocalImage | UploadedImage): image is LocalImage =>
+  image.type === 'LOCAL_IMAGE';
+
 export interface PostEditorContent {
   title: string;
   description: string;
-  mainImage: File | null;
+  mainImage: PostEditorImage;
   attachments: PostEditorFile[];
   tags: string[];
   isPublic: boolean;

@@ -12,7 +12,7 @@ import { GETSeminarPostsResponse } from '@/types/post';
 
 const postsCountPerPage = 10;
 
-export default function SeminarContent({
+export default function SeminarPageContent({
   data: { searchList, total },
 }: {
   data: GETSeminarPostsResponse;

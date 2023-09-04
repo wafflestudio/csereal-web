@@ -1,6 +1,6 @@
 import { getNewsPosts } from '@/apis/news';
 
-import NewsContent from '@/components/news/NewsContent';
+import NewsPageContent from '@/components/news/NewsPageContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -10,5 +10,5 @@ interface NewsPageParams {
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
   const data = await getNewsPosts(searchParams);
-  return <NewsContent data={data} />;
+  return <NewsPageContent data={data} />;
 }

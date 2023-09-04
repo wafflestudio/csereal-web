@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { postSeminar } from '@/apis/seminar';
 
 import { infoToast } from '@/components/common/toast';
-import { isLocalFile } from '@/components/editor/PostEditorProps';
+import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -25,7 +25,13 @@ export default function SeminarCreatePage() {
       return;
     }
 
+    const image =
+      content.speaker.image && isLocalImage(content.speaker.image)
+        ? content.speaker.image.file
+        : null;
+
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+
     await postSeminar({
       request: {
         title: content.title,
@@ -45,7 +51,7 @@ export default function SeminarCreatePage() {
         isPublic: content.isPublic,
         isImportant: content.isImportant,
       },
-      image: content.speaker.image,
+      image,
       attachments,
     });
 

@@ -26,7 +26,7 @@ import { getPath } from '@/utils/page';
 const POST_LIMIT = 20;
 const noticePath = getPath(notice);
 
-export default function NoticeContent({
+export default function NoticePageContent({
   data: { searchList: posts, total: totalPostsCount },
 }: {
   data: GETNoticePostsResponse;

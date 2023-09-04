@@ -18,7 +18,11 @@ import { getPath } from '@/utils/page';
 const POST_LIMIT = 10;
 const newsPath = getPath(news);
 
-export default function NewsContent({ data: { searchList, total } }: { data: GETNewsPostsResponse }) {
+export default function NewsPageContent({
+  data: { searchList, total },
+}: {
+  data: GETNewsPostsResponse;
+}) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const queryString = useQueryString();
 

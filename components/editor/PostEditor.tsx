@@ -54,7 +54,7 @@ export default function PostEditor({
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
 
-      <EditorFieldset editorRef={editorRef} />
+      <EditorFieldset editorRef={editorRef} initialContent={content.description} />
 
       {showMainImage && (
         <ImageFieldset file={content.mainImage} setFile={setContentByKey('mainImage')} />
@@ -141,10 +141,16 @@ function TitleFieldset({ value, onChange }: { value: string; onChange: (text: st
   );
 }
 
-function EditorFieldset({ editorRef }: { editorRef: MutableRefObject<SunEditorCore | undefined> }) {
+function EditorFieldset({
+  editorRef,
+  initialContent,
+}: {
+  editorRef: MutableRefObject<SunEditorCore | undefined>;
+  initialContent: string;
+}) {
   return (
     <Fieldset title="내용" mb="mb-6" titleMb="mb-2">
-      <SunEditorWrapper editorRef={editorRef} />
+      <SunEditorWrapper editorRef={editorRef} initialContent={initialContent} />
     </Fieldset>
   );
 }

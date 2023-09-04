@@ -1,5 +1,5 @@
 import { CreateAction, EditAction } from './common/ActionButtons';
-import { PostEditorFile } from './PostEditorProps';
+import { PostEditorFile, PostEditorImage } from './PostEditorProps';
 
 export interface SeminarEditorContent {
   title: string;
@@ -28,7 +28,7 @@ export interface SeminarSpeaker {
   organization: string;
   organizationURL: string;
   description: string;
-  image: File | null;
+  image: PostEditorImage | null;
 }
 
 export interface SeminarEditorProps {
