@@ -36,7 +36,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
-  const batchRelease = (requestPath: string) => {
+  const handleBatchRelease = (requestPath: string) => {
     // TODO: 일괄 삭제 요청
     console.log('일괄 해제');
     resetSelectedPosts();
@@ -61,7 +61,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <BatchAction
         selectedCount={selectedPostIds.size}
         buttonText="일괄 슬라이드쇼 해제"
-        onClickButton={() => batchRelease('/slide')}
+        onClickButton={() => handleBatchRelease('/slide')}
       />
     </div>
   );

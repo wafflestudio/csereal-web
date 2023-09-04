@@ -19,7 +19,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 
   return (
     <div
-      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-3`}
+      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-1`}
     >
       <div className="flex gap-2 mb-2">
         <LocationLog currentPage={currentPage} />

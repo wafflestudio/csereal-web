@@ -5,7 +5,7 @@ export default function NoticeListHeader({ isEditMode }: { isEditMode: boolean }
 
   return (
     <h5
-      className={`h-10 ${paddingLeft} flex font-yoon items-center border-b border-neutral-300 text-neutral-700`}
+      className={`h-10 ${paddingLeft} flex font-yoon items-center border-b border-neutral-200 text-neutral-700`}
     >
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 tracking-wide`}>제목</span>
       <span className={`${NOTICE_ROW_CELL_WIDTH.date} pl-8 tracking-wide`}>날짜</span>

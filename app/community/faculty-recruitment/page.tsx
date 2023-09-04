@@ -13,9 +13,9 @@ export default async function FacultyRecruitment() {
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <CornerFoldedRectangle
-        radius={0.25}
+        radius={0.25} // 4px
         colorTheme={COLOR_THEME.darkGray}
-        triangleLength={1.75}
+        triangleLength={1.75} // 28px
         triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
         margin="mb-8"
         animationType="unfolding"

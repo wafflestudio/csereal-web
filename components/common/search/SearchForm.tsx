@@ -77,7 +77,7 @@ export default function SearchForm({
 function SearchButton({ disabled }: { disabled: boolean }) {
   return (
     <button
-      className="col-start-3 h-[1.875rem] w-[4.5rem] bg-neutral-700 enabled:hover:bg-neutral-500 font-yoon font-bold text-white text-xs tracking-[0.02em]"
+      className="col-start-3 px-3 py-[0.1875rem] rounded-[0.0625rem] bg-neutral-200 enabled:hover:bg-neutral-300 font-yoon font-bold text-xs tracking-[0.02em]"
       disabled={disabled}
     >
       결과 보기

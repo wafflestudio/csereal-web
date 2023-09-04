@@ -12,7 +12,7 @@ const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 
 export function ScholarshipRow({ id, name }: ScholarshipRowProps) {
   return (
-    <li className="w-fit my-[5px]">
+    <li className="w-fit my-1">
       <Link
         href={`${undergraduateScholarshipPath}/${id}`}
         className="flex h-7 gap-2.5 px-3 items-center group"

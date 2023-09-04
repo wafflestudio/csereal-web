@@ -1,7 +1,4 @@
-'use client';
-
-import { Dispatch, SetStateAction, useState } from 'react';
-import useSWR from 'swr';
+import Link from 'next/link';
 
 import { getCourses } from '@/apis/academics';
 
@@ -11,17 +8,30 @@ import { Tag } from '@/components/common/Tags';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Classification, Course, SortOption } from '@/types/academics';
+import { undergraduateCourses } from '@/types/page';
 
-export default function UndergraduateCoursePage() {
-  const { data } = useSWR<Course[]>(`/academics/undergraduate/courses`, getCourses);
-  const [selectedOption, setSelectedOption] = useState<SortOption>('학년');
+import { getPath } from '@/utils/page';
+import { replaceDashWithSpace, replaceSpaceWithDash } from '@/utils/replaceCharacter';
+
+interface UndergraduateCoursePageProps {
+  searchParams: { sortby?: string };
+}
+
+export default async function UndergraduateCoursePage({
+  searchParams: { sortby = '' },
+}: UndergraduateCoursePageProps) {
+  const data: Course[] = await getCourses('undergraduate');
+  const optionWithoutDash = replaceDashWithSpace(sortby);
+  const selectedOption: SortOption = isValidSortOption(optionWithoutDash)
+    ? optionWithoutDash
+    : '학년';
   const sortedCourses = sortCourses(data ?? [], selectedOption);
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <RoadMapButton />
       <h4 className="my-8 font-bold">교과목 정보</h4>
-      <SortOptions selectedOption={selectedOption} changeOption={setSelectedOption} />
+      <SortOptions selectedOption={selectedOption} />
       {sortedCourses.length > 0 && (
         <div className="mt-6 flex flex-col gap-8">
           {sortedCourses.map((courses, i) => (
@@ -35,30 +45,31 @@ export default function UndergraduateCoursePage() {
 
 interface SortOptionsProps {
   selectedOption: SortOption;
-  changeOption: Dispatch<SetStateAction<SortOption>>;
 }
 
 const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
 
-function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
+const coursePath = getPath(undergraduateCourses);
+
+function SortOptions({ selectedOption }: SortOptionsProps) {
   return (
     <div className="flex flex-wrap items-center gap-2.5">
       {SORT_OPTIONS.map((option) =>
         option === selectedOption ? (
           <Tag key={option} tag={option} defaultStyle="fill" />
         ) : (
-          <Tag
-            key={option}
-            tag={option}
-            hoverStyle="fill"
-            defaultStyle="orange"
-            onClick={() => changeOption(option)}
-          />
+          <Link key={option} href={`${coursePath}?sortby=${replaceSpaceWithDash(option)}`}>
+            <Tag tag={option} hoverStyle="fill" defaultStyle="orange" />
+          </Link>
         ),
       )}
     </div>
   );
 }
+
+const isValidSortOption = (searchParam: string): searchParam is (typeof SORT_OPTIONS)[number] => {
+  return SORT_OPTIONS.findIndex((x) => x === searchParam) !== -1;
+};
 
 const getSortGroupIndexByClassification = (classification: Classification) => {
   if (classification === '전공필수') return 0;

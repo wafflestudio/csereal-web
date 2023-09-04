@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
+import HeaderLogo from '@/public/image/header_logo.svg';
 
 import { logOut, login } from '@/apis/auth';
 
@@ -13,28 +14,15 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 pt-12 px-[3.75rem] pb-[1.69rem] flex justify-between overflow-scroll no-scrollbar
+        bg-white fixed top-0 right-0 h-[9.25rem] px-[3.75rem] pt-[51px] flex justify-between gap-4 overflow-scroll no-scrollbar
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
-      <HeaderTitle />
+      <Link href="/">
+        <HeaderLogo />
+      </Link>
       <HeaderRight />
     </header>
-  );
-}
-
-function HeaderTitle() {
-  return (
-    <div className="font-yoon font-bold text-neutral-800 mr-8 whitespace-nowrap">
-      <Link href="/">
-        <h2 className="text-xl tracking-[.03438rem] mb-[0.31rem]">서울대학교 컴퓨터공학부</h2>
-        <h3 className="text-md tracking-[-0.04375rem] leading-tight">
-          Seoul National University
-          <br />
-          Dept. of Computer Science and Engineering
-        </h3>
-      </Link>
-    </div>
   );
 }
 
@@ -53,12 +41,12 @@ function HeaderRight() {
   };
 
   return (
-    <div className="flex flex-col justify-between items-end flex-grow">
-      <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
+    <div className="flex flex-col gap-4 items-end flex-grow">
+      <div className="font-yoon text-xs font-normal flex gap-3">
         <Link href="http://cse-dev-waffle.bacchus.io/login">
           <button onClick={handleLogin}>로그인</button>
         </Link>
-        <span>|</span>
+        <span className="text-neutral-500">|</span>
         <Link href="http://cse-dev-waffle.bacchus.io/logout">
           <button onClick={handleLogOut}>로그아웃</button>
         </Link>
