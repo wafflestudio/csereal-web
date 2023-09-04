@@ -1,30 +1,20 @@
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEventHandler } from 'react';
 
 import FilePickerRow from './FilePickerRow';
+import { PostEditorFile } from '../PostEditorProps';
 
 export interface FilePickerProps {
-  files: File[];
-  setFiles: Dispatch<SetStateAction<File[]>>;
+  files: PostEditorFile[];
+  setFiles: (f: (cur: PostEditorFile[]) => PostEditorFile[]) => void;
 }
 
 export default function FilePicker({ files, setFiles }: FilePickerProps) {
   // 성능 확인 필요
-  const filesWithURL = files.map((file) => ({ file, url: URL.createObjectURL(file) }));
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (!e.target.files || e.target.files.length === 0) return;
 
     const file = e.target.files[0];
-    const fileURL = URL.createObjectURL(file);
-
-    // 직접 해보니 URL이 겹치지는 않는데 혹시 모르니 중복 처리
-    if (filesWithURL.find((x) => x.url === fileURL) !== undefined) {
-      // TODO: toast 같은걸로 대체
-      alert('이미 추가된 파일입니다.');
-      return;
-    }
-
-    setFiles((files) => [...files, file]);
-
+    setFiles((files) => [...files, { type: 'LOCAL_FILE', file }]);
     // stackoverflow.com/questions/12030686/html-input-file-selection-event-not-firing-upon-selecting-the-same-file
     e.target.value = '';
   };
@@ -46,11 +36,12 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
         bg-neutral-50 rounded-sm border-[1px] border-neutral-200
       `}
       >
-        {filesWithURL.map((item, index) => (
+        {files.map((item, idx) => (
           <FilePickerRow
-            key={item.url}
-            file={item.file}
-            deleteFile={() => deleteFileAtIndex(index)}
+            //   순서를 안바꾸기로 했으니 키값으로 인덱스 써도 ㄱㅊ
+            key={idx}
+            file={item}
+            deleteFile={() => deleteFileAtIndex(idx)}
           />
         ))}
       </ol>

@@ -57,17 +57,6 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
     };
 
-  const setFiles: Dispatch<SetStateAction<File[]>> = (dispatch) => {
-    if (typeof dispatch === 'function') {
-      setContent((content) => ({
-        ...content,
-        attachments: dispatch(content.attachments),
-      }));
-    } else {
-      setContentByKey('attachments')(dispatch);
-    }
-  };
-
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
@@ -84,7 +73,12 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         initialContent={content.speaker.description}
       />
       <ImageFieldset file={content.speaker.image} setFile={setSpeakerContentByKey('image')} />
-      <FileFieldset files={content.attachments} setFiles={setFiles} />
+      <FileFieldset
+        files={content.attachments}
+        setFiles={(dispatch) => {
+          setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
+        }}
+      />
       <CheckboxFieldset
         isPublic={content.isPublic}
         isImportant={content.isImportant}

@@ -39,7 +39,4 @@ export const postNews = async (body: POSTNewsBody) => {
   })) as NewsPostResponse;
 };
 
-export const patchNews = (id: number, newPost: Partial<NewsPost>) =>
-  patchRequest(`${newsPath}/${id}`, newPost) as Promise<NewsPostResponse>;
-
 export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);

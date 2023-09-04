@@ -6,7 +6,7 @@ import { postNews } from '@/apis/news';
 
 import { infoToast } from '@/components/common/toast';
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent } from '@/components/editor/PostEditorProps';
+import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
@@ -25,6 +25,7 @@ export default function NewsCreatePage() {
       throw new Error('제목을 입력해주세요');
     }
 
+    const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNews({
       request: {
         title: content.title,
@@ -35,7 +36,7 @@ export default function NewsCreatePage() {
         tags: content.tags,
       },
       mainImage: content.mainImage,
-      attachments: content.attachments,
+      attachments,
     });
 
     router.replace(newsPath);

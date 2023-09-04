@@ -63,14 +63,7 @@ export default function PostEditor({
       <FileFieldset
         files={content.attachments}
         setFiles={(dispatch) => {
-          if (typeof dispatch === 'function') {
-            setContent((content) => ({
-              ...content,
-              attachments: dispatch(content.attachments),
-            }));
-          } else {
-            setContentByKey('attachments')(dispatch);
-          }
+          setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
         }}
       />
 

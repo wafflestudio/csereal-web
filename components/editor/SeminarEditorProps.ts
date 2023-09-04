@@ -1,4 +1,5 @@
 import { CreateAction, EditAction } from './common/ActionButtons';
+import { PostEditorFile } from './PostEditorProps';
 
 export interface SeminarEditorContent {
   title: string;
@@ -7,7 +8,7 @@ export interface SeminarEditorContent {
   schedule: SeminarSchedule;
   host: string;
   speaker: SeminarSpeaker;
-  attachments: File[];
+  attachments: PostEditorFile[];
   isPublic: boolean;
   isImportant: boolean;
 }

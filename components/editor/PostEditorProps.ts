@@ -1,10 +1,28 @@
 import { CreateAction, EditAction } from './common/ActionButtons';
 
+export type PostEditorFile = LocalFile | UploadedFile;
+
+export interface LocalFile {
+  type: 'LOCAL_FILE';
+  file: File;
+}
+
+export interface UploadedFile {
+  type: 'UPLOADED_FILE';
+  file: {
+    name: string;
+    url: string;
+    bytes: number;
+  };
+}
+
+export const isLocalFile = (file: PostEditorFile): file is LocalFile => file.type === 'LOCAL_FILE';
+
 export interface PostEditorContent {
   title: string;
   description: string;
   mainImage: File | null;
-  attachments: File[];
+  attachments: PostEditorFile[];
   tags: string[];
   isPublic: boolean;
   isPinned: boolean;
