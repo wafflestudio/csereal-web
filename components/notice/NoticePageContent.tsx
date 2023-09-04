@@ -1,10 +1,7 @@
 'use client';
 
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-import { deleteNotice, patchNotice } from '@/apis/notice';
 
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
@@ -54,24 +51,24 @@ export default function NoticePageContent({
     setIsEditMode(!isEditMode);
   };
 
-  const batchDelete = async () => {
-    const promises = Array.from(selectedPostIds).map(async (id) => await deleteNotice(id));
-    await Promise.all(promises);
-    mutate();
-    resetSelectedPosts();
+  const handleBatchDelete = async () => {
+    // const promises = Array.from(selectedPostIds).map(async (id) => await deleteNotice(id));
+    // await Promise.all(promises);
+    // mutate();
+    // resetSelectedPosts();
   };
 
-  const batchUnpin = async () => {
-    const promises = Array.from(selectedPostIds).map(async (id) => {
-      await patchNotice(id, { isPinned: false });
-      for (const p of posts) {
-        if (p.id === id) p.isPinned = false;
-      }
-    });
-    await Promise.all(promises);
-    mutate();
-    resetSelectedPosts();
-    closeModal();
+  const handleBatchUnpin = async () => {
+    // const promises = Array.from(selectedPostIds).map(async (id) => {
+    //   await patchNotice(id, { isPinned: false });
+    //   for (const p of posts) {
+    //     if (p.id === id) p.isPinned = false;
+    //   }
+    // });
+    // await Promise.all(promises);
+    // mutate();
+    // resetSelectedPosts();
+    // closeModal();
   };
 
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
@@ -109,7 +106,7 @@ export default function NoticePageContent({
                   <AlertModal
                     message="선택한 게시글을 모두 삭제하시겠습니까?"
                     confirmText="삭제"
-                    onConfirm={batchDelete}
+                    onConfirm={handleBatchDelete}
                     onClose={closeModal}
                   />,
                 )
@@ -124,7 +121,7 @@ export default function NoticePageContent({
                   <AlertModal
                     message="선택한 게시글을 모두 고정 해제하시겠습니까?"
                     confirmText="고정 해제"
-                    onConfirm={batchUnpin}
+                    onConfirm={handleBatchUnpin}
                     onClose={closeModal}
                   />,
                 )

@@ -58,9 +58,9 @@ export const patchNews = async (id: number, body: PATCHNewsBody) => {
     formData.append('newAttachments', attachment);
   }
 
-  return (await patchRequest(`${newsPath}/${id}`, {
+  await patchRequest(`${newsPath}/${id}`, {
     body: formData,
-  })) as NewsPostResponse;
+  });
 };
 
 export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);

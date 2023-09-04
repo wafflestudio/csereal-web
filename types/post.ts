@@ -133,6 +133,24 @@ export interface POSTNoticeBody {
   attachments: File[];
 }
 
+export interface PatchNoticeBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isPinned: boolean;
+    isImportant: boolean;
+    tags: string[];
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  newAttachments: File[];
+}
+
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacultyRecruitmentResponse {

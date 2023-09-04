@@ -20,8 +20,14 @@ interface NoticePostPageProps {
 
 const noticePath = getPath(notice);
 
-export default async function NoticePostPage({ params, searchParams }: NoticePostPageProps) {
-  const currPost = await getNoticePostDetail(parseInt(params.id), searchParams);
+export default async function NoticePostPage({
+  params: { id: rawId },
+  searchParams,
+}: NoticePostPageProps) {
+  const id = +rawId;
+  if (Number.isNaN(id)) throw new Error('올바르지 않은 id: ' + rawId);
+
+  const currPost = await getNoticePostDetail(id, searchParams);
 
   const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
     currPost,
