@@ -47,10 +47,10 @@ function HeaderRight() {
           <button onClick={handleLogin}>로그인</button>
         </Link>
         <span className="text-neutral-500">|</span>
-        {/* <Link href="http://cse-dev-waffle.bacchus.io/logout">
+        <Link href="http://cse-dev-waffle.bacchus.io/logout">
           <button onClick={handleLogOut}>로그아웃</button>
         </Link>
-        <span>|</span> */}
+        <span>|</span>
         <button onClick={handleLangChange}>{lang}</button>
       </div>
       <HeaderSearchBar />
