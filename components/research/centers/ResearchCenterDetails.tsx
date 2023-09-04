@@ -28,11 +28,11 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
       <a
         href={link}
         target="_blank"
-        className="group flex items-center gap-1 h-10"
+        className="group flex items-center gap-1"
         rel="noopener noreferrer"
       >
         <span>{name}</span>
-        <LinkIcon className="mt-1 fill-neutral-400 group-hover:fill-main-orange" />
+        <LinkIcon className="mt-0.5 fill-[#a3a3a3] group-hover:fill-main-orange" />
       </a>
     </SelectionTitle>
   );
