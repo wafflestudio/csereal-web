@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { postNews } from '@/apis/news';
 
 import { infoToast } from '@/components/common/toast';
@@ -9,14 +11,24 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
-export default function NewsCreatePage() {
-  const handleComplete = async (content: PostEditorContent) => {
-      console.log(content.description);
-    if (content.title === '') {
-      infoToast('제목을 입력해주세요');
-      return;
-    }
+import { news } from '@/types/page';
 
+import { getPath } from '@/utils/page';
+
+const newsPath = getPath(news);
+
+export default function NewsCreatePage() {
+  const router = useRouter();
+
+  const handleComplete = async (content: PostEditorContent) => {
+    // if (content.title === '') {
+    //   infoToast('제목을 입력해주세요');
+    //   return;
+    // }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // throw new Error('알림');
+    router.replace(newsPath);
 
     // await postNews({
     //   request: {
