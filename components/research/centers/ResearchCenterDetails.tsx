@@ -32,7 +32,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
         rel="noopener noreferrer"
       >
         <span>{name}</span>
-        <LinkIcon className="mt-0.5 fill-[#a3a3a3] group-hover:fill-main-orange" />
+        <LinkIcon className="mt-0.5 fill-neutral-500 group-hover:fill-main-orange" />
       </a>
     </SelectionTitle>
   );
