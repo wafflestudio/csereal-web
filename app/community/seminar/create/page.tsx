@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { postSeminar } from '@/apis/seminar';
 
 import { infoToast } from '@/components/common/toast';
@@ -7,7 +9,15 @@ import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { seminar } from '@/types/page';
+
+import { getPath } from '@/utils/page';
+
+const seminarPath = getPath(seminar);
+
 export default function SeminarCreatePage() {
+  const router = useRouter();
+
   const handleComplete = async (content: SeminarEditorContent) => {
     if (content.title === '') {
       infoToast('제목을 입력해주세요');
@@ -36,6 +46,8 @@ export default function SeminarCreatePage() {
       image: content.speaker.image,
       attachments: content.attachments,
     });
+
+    router.replace(seminarPath);
   };
 
   return (

@@ -6,11 +6,13 @@ import { errorToast } from '@/components/common/toast';
 export interface EditAction<T> {
   type: 'EDIT';
   onDelete: () => Promise<void>;
+  /** 성공한 경우가 아니면 반드시 error를 던져야함 */
   onComplete: (content: T) => Promise<void>;
 }
 
 export interface CreateAction<T> {
   type: 'CREATE';
+  /** 성공한 경우가 아니면 반드시 error를 던져야함 */
   onComplete: (content: T) => Promise<void>;
 }
 
@@ -37,7 +39,7 @@ export function EditActionButtons<T>({
       <BlackButton
         title="수정하기"
         disabled={requesting}
-        onClick={buildCreateHandler(requesting, setRequesting, getContent, onComplete)}
+        onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
       />
     </>
   );
@@ -60,7 +62,7 @@ export function CreateActionButtons<T>({
       <BlackButton
         title="게시하기"
         disabled={requesting}
-        onClick={buildCreateHandler(requesting, setRequesting, getContent, onComplete)}
+        onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
       />
     </>
   );
@@ -112,7 +114,7 @@ const BlackButton = ({
   </button>
 );
 
-const buildCreateHandler = <T,>(
+const buildPostHandler = <T,>(
   requesting: boolean,
   setRequesting: (val: boolean) => void,
   getContent: () => T,
@@ -125,9 +127,9 @@ const buildCreateHandler = <T,>(
       setRequesting(true);
       await onComplete(getContent());
     } catch (e) {
+      setRequesting(false);
       if (e instanceof Error) {
         errorToast(e.message);
-        setRequesting(false);
         // 에러 없는 경우에는 페이지가 닫힐 것이므로 false로 설정할 필요 없음
       } else {
         throw e;
@@ -149,9 +151,9 @@ const buildDeleteHandler = <T,>(
       setRequesting(true);
       await onDelete();
     } catch (e) {
+      setRequesting(false);
       if (e instanceof Error) {
         errorToast(e.message);
-        setRequesting(false);
         // 에러 없는 경우에는 페이지가 닫힐 것이므로 false로 설정할 필요 없음
       } else {
         throw e;

@@ -21,27 +21,24 @@ export default function NewsCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
-    // if (content.title === '') {
-    //   infoToast('제목을 입력해주세요');
-    //   return;
-    // }
+    if (content.title === '') {
+      throw new Error('제목을 입력해주세요');
+    }
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    // throw new Error('알림');
+    await postNews({
+      request: {
+        title: content.title,
+        description: content.description,
+        isPublic: content.isPublic,
+        isSlide: content.isSlide,
+        isImportant: content.isImportant,
+        tags: content.tags,
+      },
+      mainImage: content.mainImage,
+      attachments: content.attachments,
+    });
+
     router.replace(newsPath);
-
-    // await postNews({
-    //   request: {
-    //     title: content.title,
-    //     description: content.description,
-    //     isPublic: content.isPublic,
-    //     isSlide: content.isSlide,
-    //     isImportant: content.isImportant,
-    //     tags: content.tags,
-    //   },
-    //   mainImage: content.mainImage,
-    //   attachments: content.attachments,
-    // });
   };
 
   return (

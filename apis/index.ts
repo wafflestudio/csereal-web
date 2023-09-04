@@ -15,6 +15,7 @@ export const getRequest = async <T = unknown>(
   });
   checkError(response);
   const responseData = await response.json();
+
   return responseData as T;
 };
 
