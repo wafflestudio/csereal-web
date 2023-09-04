@@ -38,7 +38,7 @@ export default function NoticeList({
   };
 
   return (
-    <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-300">
+    <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-200">
       <NoticeListHeader isEditMode={isEditMode} />
       <ul className={`font-noto ${isEditMode && 'divide-y divide-neutral-200 divide-dashed'}`}>
         {posts.map((post, i) => (

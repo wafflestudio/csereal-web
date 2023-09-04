@@ -53,7 +53,7 @@ export default function PostEditor({
 
   return (
     <form className="flex flex-col">
-      <TitleFieldset value={content.title} onChange={(e) => setContentByKey('title')} />
+      <TitleFieldset value={content.title} onChange={(title) => setContentByKey('title')(title)} />
 
       <EditorFieldset editorRef={editorRef} />
 

@@ -27,20 +27,15 @@ export default function SeminarPage({ searchParams }: SeminarPageParams) {
     setSearchParams({ purpose: 'navigation', page: pageNum });
   };
 
-  const { data  } = useSWR(
+  const { data } = useSWR(
     { url: '/seminar', params: { keyword, page } },
     getSeminarPosts, // 추후 fetcher 삭제
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-6">
-      <div className="flex flex-row items-center gap-6">
-        <h3 className="text-neutral-700 font-yoon text-md font-bold w-7 text-center leading-[1.2rem]">
-          검색
-        </h3>
-        <SeminarSearchBar setSearchParams={setSearchParams} />
-      </div>
-      <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
+    <PageLayout titleType="big" titleMargin="mb-12">
+      <SeminarSearchBar setSearchParams={setSearchParams} />
+      <div className="flex flex-col mt-12 mb-8 border-neutral-200 border-b-[1px]">
         {data?.searchList.map((post, index) => (
           <div key={post.id}>
             {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}

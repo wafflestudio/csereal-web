@@ -2411,7 +2411,7 @@ export const tcl: TopConferenceList = {
     {
       id: 24,
       code: 'BKCSA024',
-      abbreviation: 'SIGGRAPH,SIGGRAPH-ASIA',
+      abbreviation: 'SIGGRAPH, SIGGRAPH-ASIA',
       name: 'ACM SIG International Conference on Computer Graphics and Interactive Techniques,ACM SIG International Conference on Computer Graphics and Interactive Techniques - Asia',
     },
     {

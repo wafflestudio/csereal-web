@@ -13,8 +13,8 @@ export default async function FacultyRecruitment() {
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <CornerFoldedRectangle
-        radius={0.25}
-        colorTheme={COLOR_THEME.darkGray}
+        radius={0.125}
+        colorTheme={COLOR_THEME.orange}
         triangleLength={1.75}
         triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
         margin="mb-8"
