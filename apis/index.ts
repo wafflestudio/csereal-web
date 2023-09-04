@@ -35,9 +35,9 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   return responseData as T;
 };
 
-export const deleteRequest = async <T = unknown>(url: string, headers: HeadersInit = {}) => {
+export const deleteRequest = async (url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { method: 'DELETE', headers });
+  const response = await fetch(fetchUrl, { ...init, method: 'DELETE' });
   checkError(response);
 };
 

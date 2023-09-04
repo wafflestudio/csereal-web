@@ -20,9 +20,8 @@ export default function NewsCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
-    if (content.title === '') {
-      throw new Error('제목을 입력해주세요');
-    }
+    throwIfCantSubmit(content);
+
     const mainImage =
       content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
 
@@ -57,3 +56,12 @@ export default function NewsCreatePage() {
     </PageLayout>
   );
 }
+
+const throwIfCantSubmit = (content: PostEditorContent) => {
+  if (content.title === '') {
+    throw new Error('제목을 입력해주세요');
+  }
+  if (content.description === '') {
+    throw new Error('내용을 입력해주세요');
+  }
+};
