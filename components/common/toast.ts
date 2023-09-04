@@ -22,7 +22,6 @@ export const errorToast = (message: string) => {
 
 export const infoToast = (message: string) => {
   toast(message, {
-    icon: 'ℹ️',
     style: {
       borderRadius: '10px',
       background: '#333',

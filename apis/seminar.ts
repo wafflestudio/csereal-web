@@ -23,7 +23,14 @@ export const getSeminarPost = async (id: number, params: PostSearchQueryParams) 
 
 export const postSeminar = async (body: POSTSeminarBody) => {
   const formData = new FormData();
-  formData.append('request', JSON.stringify(body.request));
+
+  formData.append(
+    'request',
+    new Blob([JSON.stringify(body.request)], {
+      type: 'application/json',
+    }),
+  );
+
   if (body.image) {
     formData.append('image', body.image);
   }

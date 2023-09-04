@@ -18,7 +18,12 @@ export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =
 
 export const postNotice = async (body: POSTNoticeBody) => {
   const formData = new FormData();
-  formData.append('request', JSON.stringify(body.request));
+  formData.append(
+    'request',
+    new Blob([JSON.stringify(body.request)], {
+      type: 'application/json',
+    }),
+  );
   for (const attachment of body.attachments) {
     formData.append('attachments', attachment);
   }

@@ -18,10 +18,18 @@ export const getNewsPostDetail = (id: number, params: PostSearchQueryParams) =>
 
 export const postNews = async (body: POSTNewsBody) => {
   const formData = new FormData();
-  formData.append('request', JSON.stringify(body.request));
+
+  formData.append(
+    'request',
+    new Blob([JSON.stringify(body.request)], {
+      type: 'application/json',
+    }),
+  );
+
   if (body.mainImage) {
     formData.append('mainImage', body.mainImage);
   }
+
   for (const attachment of body.attachments) {
     formData.append('attachments', attachment);
   }
