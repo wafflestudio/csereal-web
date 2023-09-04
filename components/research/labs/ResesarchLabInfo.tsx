@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import StickyNote from '@/public/image/sticky_note.svg';
+import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
+
+import { COLOR_THEME } from '@/constants/color';
 
 import { faculty } from '@/types/page';
 import { ResearchLab } from '@/types/research';
@@ -9,16 +11,25 @@ import { ResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';
 
 export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
+  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
+  const triangleLength = 2.5; // 20px
+  const radius = 0.125; // 2px
+
   return (
-    <div className="mt-[-64px] mb-11 ml-11 w-60 h-40 border">
-      <StickyNote />
-      <ul className="absolute top-[-64px] w-60 h-40 py-5 px-6 flex flex-col gap-1 font-noto">
+    <CornerFoldedRectangle
+      triangleDropShadow={dropShadow}
+      radius={radius}
+      triangleLength={triangleLength}
+      colorTheme={COLOR_THEME.darkGray}
+      margin="mt-[-64px] mb-11 ml-11"
+    >
+      <ul className="w-60 h-40 py-5 px-6 flex flex-col gap-1 font-noto">
         <ProfessorsInfo professors={lab.professors} />
-        <LocationInfo location={'테ㅡ트'} />
+        <LocationInfo location={lab.location} />
         <TelephoneInfo tel={lab.tel} />
         <WebsiteInfo url={lab.websiteURL} />
       </ul>
-    </div>
+    </CornerFoldedRectangle>
   );
 }
 
