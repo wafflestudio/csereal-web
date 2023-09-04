@@ -2042,6 +2042,8 @@ textarea.se-error:focus {
   font-size: 13px;
   /* 수정 */
   color: #e5e5e5;
+  /* 추가 */
+  /* font-weight: 400; */
   background-color: transparent;
   line-height: 2;
   word-break: normal;
@@ -2094,11 +2096,11 @@ textarea.se-error:focus {
 .sun-editor-editable a:focus,
 .sun-editor-editable a:hover {
   cursor: pointer;
-  color: #0093ff;
+  color: #3c7be4;
   text-decoration: underline;
 }
 .sun-editor-editable a.on {
-  color: #0093ff;
+  color: #3c7be4;
   background-color: #e8f7ff;
 }
 .sun-editor-editable pre {

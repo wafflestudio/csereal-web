@@ -6,11 +6,11 @@ export interface Post {
   // html 내용
   description: string;
   isPublic: boolean;
-  attachment: FormData;
+  attachments: FormData;
 }
 
 // 서버에서 만드는 속성들이 포함됨
-export interface PostResponse extends Omit<Post, 'attachment'> {
+export interface PostResponse extends Omit<Post, 'attachments'> {
   readonly id: number;
   readonly createdAt: string;
   readonly modifiedAt: string;
@@ -18,7 +18,11 @@ export interface PostResponse extends Omit<Post, 'attachment'> {
   readonly prevTitle: string | null;
   readonly nextId: number | null;
   readonly nextTitle: string | null;
-  readonly attachment: string | null;
+  readonly attachments: {
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
 }
 
 export interface AdjPostInfo {
@@ -45,11 +49,12 @@ export interface SimpleHTMLPageResponse {
 
 export interface NewsPost extends Post {
   tags: string[];
-  imageURL: string;
+  imageURL: string | null;
   isSlide: boolean;
+  isImportant: boolean;
 }
 
-export interface NewsPostResponse extends Omit<NewsPost, 'attachment'>, PostResponse {}
+export interface NewsPostResponse extends Omit<NewsPost, 'attachments'>, PostResponse {}
 
 export interface SimpleNewsPost
   extends Pick<
@@ -62,14 +67,48 @@ export interface GETNewsPostsResponse {
   searchList: SimpleNewsPost[];
 }
 
+export interface POSTNewsBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isImportant: boolean;
+    tags: string[];
+  };
+  mainImage: File | null;
+  attachments: File[];
+}
+
+export interface PATCHNewsBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isImportant: boolean;
+    tags: string[];
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  mainImage: File | null;
+  newAttachments: File[];
+}
+
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
   tags: string[];
   isPinned: boolean;
+  isImportant: boolean;
 }
 
-export interface NoticePostResponse extends Omit<NoticePost, 'attachment'>, PostResponse {}
+export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {
+  author: string;
+}
 
 export interface SimpleNoticePost
   extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
@@ -79,6 +118,37 @@ export interface SimpleNoticePost
 export interface GETNoticePostsResponse {
   total: number;
   searchList: SimpleNoticePost[];
+}
+
+export interface POSTNoticeBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isPinned: boolean;
+    isImportant: boolean;
+    tags: string[];
+  };
+  attachments: File[];
+}
+
+export interface PatchNoticeBody {
+  request: {
+    title: string;
+    description: string;
+    isPublic: boolean;
+    isSlide: boolean;
+    isPinned: boolean;
+    isImportant: boolean;
+    tags: string[];
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  newAttachments: File[];
 }
 
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
@@ -104,21 +174,86 @@ export interface SimpleSeminarPost
   isYearLast: boolean;
 }
 
-export interface SeminarPostResponse extends Omit<PostResponse, 'attachment'> {
+export interface POSTSeminarBody {
+  request: {
+    title: string;
+    description: string;
+    introduction: string;
+    name: string;
+    speakerURL: string | null;
+    speakerTitle: string | null;
+    affiliation: string;
+    affiliationURL: string | null;
+    startDate: string | null;
+    startTime: string | null;
+    endDate: string | null;
+    endTime: string | null;
+    location: string;
+    host: string | null;
+    isPublic: boolean;
+    isImportant: boolean;
+  };
+  image: File | null;
+  attachments: File[];
+}
+
+export interface SeminarPostResponse {
+  id: number;
+  title: string;
+  description: string;
+  isPublic: boolean;
+
+  createdAt: string;
+  modifiedAt: string;
+  prevId: number | null;
+  prevTitle: string | null;
+  nextId: number | null;
+  nextTitle: string | null;
+
   introduction: string;
   category: string;
   name: string;
-  speakerUrl?: string;
-  speakerTitle?: string;
+  speakerUrl: string | null;
+  speakerTitle: string | null;
   affiliation: string;
-  affiliationUrl?: string;
+  affiliationUrl: string | null;
   startDate: string;
   startTime: string;
   endDate: string;
   endTime: string;
   location: string;
   host: string;
-  isSlide: boolean;
-  imageURL: string;
-  additionalNote?: string;
+  isImportant: boolean;
+  imageURL: string | null;
+  attachments: {
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
+}
+
+export interface PatchSeminarBody {
+  request: {
+    introduction: string;
+    category: string;
+    name: string;
+    speakerUrl: string | null;
+    speakerTitle: string | null;
+    affiliation: string;
+    affiliationUrl: string | null;
+    startDate: string | null;
+    startTime: string | null;
+    endDate: string | null;
+    endTime: string | null;
+    location: string;
+    host: string | null;
+    isSlide: boolean;
+    attachments: {
+      name: string;
+      url: string;
+      bytes: number;
+    }[];
+  };
+  newAttachments: File[];
+  image: File | null;
 }

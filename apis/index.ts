@@ -5,50 +5,40 @@ const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
 export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
-  headers: HeadersInit = {},
+  init?: RequestInit,
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  const response = await fetch(fetchUrl, { method: 'GET', headers });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
-};
-
-export const postRequest = async <T = unknown>(
-  url: string,
-  data: object,
-  headers: HeadersInit = {},
-) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { method: 'POST', headers, body: JSON.stringify(data) });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
-};
-
-export const patchRequest = async <T = unknown>(
-  url: string,
-  data: object,
-  headers: HeadersInit = {},
-) => {
-  const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify(data),
+    ...init,
+    method: 'GET',
   });
   checkError(response);
   const responseData = await response.json();
+
   return responseData as T;
 };
 
-export const deleteRequest = async <T = unknown>(url: string, headers: HeadersInit = {}) => {
+export const postRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { method: 'DELETE', headers });
+  const response = await fetch(fetchUrl, { ...init, method: 'POST' });
   checkError(response);
   const responseData = await response.json();
   return responseData as T;
+};
+
+export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
+  const fetchUrl = `${BASE_URL}${url}`;
+  const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
+  checkError(response);
+  const responseData = await response.json();
+  return responseData as T;
+};
+
+export const deleteRequest = async (url: string, init?: RequestInit) => {
+  const fetchUrl = `${BASE_URL}${url}`;
+  const response = await fetch(fetchUrl, { ...init, method: 'DELETE' });
+  checkError(response);
 };
 
 const checkError = (response: Response) => {

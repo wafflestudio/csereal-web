@@ -13,8 +13,6 @@ import { PostSearchQueryParams } from '@/types/post';
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
 
-const writer = '박지혜';
-
 interface NoticePostPageProps {
   params: { id: string };
   searchParams: PostSearchQueryParams;
@@ -22,8 +20,15 @@ interface NoticePostPageProps {
 
 const noticePath = getPath(notice);
 
-export default async function NoticePostPage({ params, searchParams }: NoticePostPageProps) {
-  const currPost = await getNoticePostDetail(parseInt(params.id), searchParams);
+export default async function NoticePostPage({
+  params: { id: rawId },
+  searchParams,
+}: NoticePostPageProps) {
+  const id = +rawId;
+  if (Number.isNaN(id)) throw new Error('올바르지 않은 id: ' + rawId);
+
+  const currPost = await getNoticePostDetail(id, searchParams);
+
   const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
     currPost,
     searchParams,
@@ -33,9 +38,10 @@ export default async function NoticePostPage({ params, searchParams }: NoticePos
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
       <div className="mb-10 ml-2.5 text-xs font-yoon text-neutral-400">
-        글쓴이: {writer}, 작성시각: {currPost && formatFullDate(new Date(currPost.createdAt))}
+        글쓴이: {currPost.author}, 작성시각:{' '}
+        {currPost && formatFullDate(new Date(currPost.createdAt))}
       </div>
-      <Attachments files={[]} />
+      {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
       <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10 ml-2.5" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />

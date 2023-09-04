@@ -1,3 +1,5 @@
+import { Toaster } from 'react-hot-toast';
+
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 
@@ -40,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <ModalContainer />
+            <Toaster />
           </NavbarContextProvider>
         </ModalContextProvider>
       </body>
