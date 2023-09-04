@@ -11,23 +11,25 @@ import { NewsTags } from '@/constants/tag';
 
 export default function NewsCreatePage() {
   const handleComplete = async (content: PostEditorContent) => {
+      console.log(content.description);
     if (content.title === '') {
       infoToast('제목을 입력해주세요');
       return;
     }
 
-    await postNews({
-      request: {
-        title: content.title,
-        description: content.description,
-        isPublic: content.isPublic,
-        isSlide: content.isSlide,
-        isImportant: content.isImportant,
-        tags: content.tags,
-      },
-      mainImage: content.mainImage,
-      attachments: content.attachments,
-    });
+
+    // await postNews({
+    //   request: {
+    //     title: content.title,
+    //     description: content.description,
+    //     isPublic: content.isPublic,
+    //     isSlide: content.isSlide,
+    //     isImportant: content.isImportant,
+    //     tags: content.tags,
+    //   },
+    //   mainImage: content.mainImage,
+    //   attachments: content.attachments,
+    // });
   };
 
   return (
