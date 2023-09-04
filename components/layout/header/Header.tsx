@@ -14,11 +14,13 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 h-[9.25rem] px-[3.75rem] mb-1 flex justify-between items-center overflow-scroll no-scrollbar
+        bg-white fixed top-0 right-0 h-[9.25rem] px-[3.75rem] pt-[51px] flex justify-between overflow-scroll no-scrollbar
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
-      <HeaderLogo />
+      <Link href="/">
+        <HeaderLogo />
+      </Link>
       <HeaderRight />
     </header>
   );
