@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import { useLanguage } from '@/contexts/LanguageContext';
-
 import { CurvedHorizontalNode } from '@/components/common/Nodes';
+
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { SegmentNode } from '@/types/page';
 

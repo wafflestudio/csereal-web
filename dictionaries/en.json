@@ -1,0 +1,26 @@
+{
+  "People": {
+    "Faculty": {
+      "educations": "Educations",
+      "researchAreas": "ResearchAreas",
+      "careers": "Careers",
+      "visitingFaculty": "Visiting Faculty"
+    },
+    "EmeritusFaculty": {
+      "termOfService": "Term Of Service",
+      "educations": "Educations",
+      "researchAreas": "ResearchAreas",
+      "website": "Website",
+      "office": "Office",
+      "email": "Email",
+      "contactInfo": "Contact Info"
+    },
+    "Staff": {
+      "tasks": "Tasks",
+      "office": "Office",
+      "phone": "Phone",
+      "email": "Email",
+      "contactInfo": "Contact Info"
+    }
+  }
+}

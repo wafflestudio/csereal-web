@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
 
@@ -28,6 +28,12 @@ const emeritusFacultyPath = getPath(emeritusFaculty);
 const staffPath = getPath(staff);
 const labLink = getPath(researchLabs);
 
+const hrefList = {
+  EMIRITUS_FACULTY: emeritusFacultyPath,
+  FACULTY: facultyPath,
+  STAFF: staffPath,
+};
+
 export default function PeopleRow({
   type,
   id,
@@ -42,12 +48,8 @@ export default function PeopleRow({
   imageURL,
 }: PeopleRowProps) {
   const { isEnglish } = useLanguage();
-  const hrefList = {
-    EMIRITUS_FACULTY: emeritusFacultyPath,
-    FACULTY: facultyPath,
-    STAFF: staffPath,
-  };
-  const href = isEnglish ? `/en` + `${hrefList[type]}/${id}` : `${hrefList[type]}/${id}`;
+
+  const href = isEnglish ? '/en' + `${hrefList[type]}/${id}` : `${hrefList[type]}/${id}`;
 
   return (
     <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
@@ -69,16 +71,31 @@ export default function PeopleRow({
             clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
           }}
         />
-      </Link>
-      <div className="flex flex-col items-start break-keep">
-        {academicRank && (
-          <div className="flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
-            <Link href={href} className="hover:cursor-pointer ">
-              <p className="text-md font-bold">{name}</p>
-            </Link>
-            <p className="text-neutral-500">{academicRank}</p>
+        {isEnglish && academicRank?.match(/\(([^)]+)\)/) ? (
+          <div className="absolute right-0 -bottom-2 w-auto max-w-[132px] items-center justify-center text-center px-[10px] break-words text-white text-[10px] font-bold bg-main-orange">
+            {academicRank.match(/\(([^)]+)\)/)?.[1]}
           </div>
-        )}
+        ) : null}
+      </Link>
+
+      <div className="flex flex-col items-start break-keep">
+        {academicRank ? (
+          !isEnglish ? (
+            <div className="flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
+              <Link href={href} className="hover:cursor-pointer ">
+                <p className="text-md font-bold leading-5">{name}</p>
+              </Link>
+              <p className="text-neutral-500">{academicRank}</p>
+            </div>
+          ) : (
+            <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
+              <Link href={href} className="hover:cursor-pointer ">
+                <p className="text-md font-bold leading-5">{name}</p>
+              </Link>
+              <p className="text-neutral-500">{academicRank}</p>
+            </div>
+          )
+        ) : null}
         {role && (
           <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
             <Link href={href} className="hover:cursor-pointer ">
@@ -91,9 +108,9 @@ export default function PeopleRow({
           {labId !== undefined && labName !== undefined && (
             <Link
               href={`${labLink}/${labId}`}
-              className="hover:underline leading-[1.1rem] items-center"
+              className="hover:underline leading-[1rem] items-center"
             >
-              <p>{labName}</p>
+              <p className={isEnglish ? 'text-[11px]' : ''}>{labName}</p>
             </Link>
           )}
           {office && <p className="leading-[1.1rem] items-center">{office}</p>}

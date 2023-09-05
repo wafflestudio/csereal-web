@@ -44,15 +44,6 @@ const nextConfig = {
     ],
   },
 
-  async rewrites() {
-    return [
-      {
-        source: '/en/:path*',
-        destination: '/:path*',
-      },
-    ];
-  },
-
   output: 'standalone',
 };
 

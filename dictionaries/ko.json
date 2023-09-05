@@ -1,0 +1,26 @@
+{
+  "People": {
+    "Faculty": {
+      "educations": "학력",
+      "researchAreas": "연구 분야",
+      "careers": "경력",
+      "visitingFaculty": "객원 교수"
+    },
+    "EmeritusFaculty": {
+      "termOfService": "재직 기간",
+      "educations": "학력",
+      "researchAreas": "연구 분야",
+      "website": "웹사이트",
+      "office": "교수실",
+      "email": "이메일",
+      "contactInfo": "연락처 정보"
+    },
+    "Staff": {
+      "tasks": "주요 업무",
+      "office": "위치",
+      "phone": "전화",
+      "email": "이메일",
+      "contactInfo": "연락처 정보"
+    }
+  }
+}

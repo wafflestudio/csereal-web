@@ -2,13 +2,13 @@
 
 import React, { ReactNode } from 'react';
 
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { capitalizeFirstLetter } from '@/utils/replaceCharacter';
 

@@ -6,7 +6,7 @@ export default function useCurrentSegmentNode(): SegmentNode {
   const pathname = usePathname();
   if (pathname === `/${admin.segment}`) return admin; // admin은 main과 별도
 
-  const segments = pathname.startsWith('/en') ? pathname.slice(3).split('/') : pathname.split('/');
+  const segments = pathname.slice(3).split('/');
   segments.shift(); // 맨 앞의 공백 제거
   let node = main;
 

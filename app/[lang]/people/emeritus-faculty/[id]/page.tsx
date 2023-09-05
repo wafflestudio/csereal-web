@@ -1,8 +1,7 @@
-'use client';
 import Link from 'next/link';
-import useSWR from 'swr';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { getDictionary } from '@/dictionaries/get-dictionaries';
+import { Locale } from '@/i18n-config';
 
 import { getEmeritusFaculty, getEmeritusFacultyEng } from '@/apis/people';
 
@@ -10,19 +9,21 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-export default function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
-  const { isEnglish } = useLanguage();
-  const url = isEnglish
-    ? `/eng/people/emeritus-faculty/${params.id}`
-    : `/people/emeritus-faculty/${params.id}`;
-  const fetchFunction = () =>
-    isEnglish ? getEmeritusFacultyEng(params.id) : getEmeritusFaculty(params.id);
-  const { data } = useSWR(url, fetchFunction);
+export default async function EmeritusFacultyMemberPage({
+  params,
+}: {
+  params: { id: number; lang: Locale };
+}) {
+  const data =
+    params.lang === 'ko'
+      ? await getEmeritusFaculty(params.id)
+      : await getEmeritusFacultyEng(params.id);
 
+  const dictionary = await getDictionary(params.lang);
   //   const startTime = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
   //   const endTime = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
   //   const careerTime = { startTime, endTime };
-  const careerTime = { startTime: data?.startDate, endTime: data?.endDate };
+  const careerTime = { startTime: data.startDate, endTime: data.endDate };
 
   return (
     data && (
@@ -45,14 +46,14 @@ export default function EmeritusFacultyMemberPage({ params }: { params: { id: nu
               <article className="text-neutral-700 font-noto flex flex-col mb-7">
                 <>
                   <h3 className="text-base font-bold leading-8">
-                    {isEnglish ? 'Contact Info' : '연락처 정보'}
+                    {dictionary.People.EmeritusFaculty.contactInfo}
                   </h3>
                   <ul className="list-inside list-disc">
                     {data.office && (
                       <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                         <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                         <p>
-                          {isEnglish ? 'Office' : '교수실'}: {data.office}
+                          {dictionary.People.EmeritusFaculty.office}: {data.office}
                         </p>
                       </li>
                     )}
@@ -60,7 +61,7 @@ export default function EmeritusFacultyMemberPage({ params }: { params: { id: nu
                       <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                         <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                         <p>
-                          {isEnglish ? 'Email' : '이메일'}:
+                          {dictionary.People.EmeritusFaculty.email}:
                           <Link
                             className="ml-1 text-link hover:underline"
                             href={`mailto:${data.email}`}
@@ -74,7 +75,7 @@ export default function EmeritusFacultyMemberPage({ params }: { params: { id: nu
                       <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                         <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                         <p>
-                          {isEnglish ? 'Website' : '웹사이트'}:
+                          {dictionary.People.EmeritusFaculty.website}:
                           <Link className="ml-1 text-link hover:underline" href={`${data.website}`}>
                             {data.website}
                           </Link>
@@ -87,18 +88,18 @@ export default function EmeritusFacultyMemberPage({ params }: { params: { id: nu
             )}
             {data.educations && (
               <PeopleInfoList
-                title={isEnglish ? 'Educations' : '학력'}
+                title={dictionary.People.EmeritusFaculty.educations}
                 infoList={data.educations}
               />
             )}
             {data.researchAreas && (
               <PeopleInfoList
-                title={isEnglish ? 'Research Areas' : '연구 분야'}
+                title={dictionary.People.EmeritusFaculty.researchAreas}
                 infoList={data.researchAreas}
               />
             )}
             <div className="mb-7 font-noto font-medium text-sm text-neutral-700">
-              {isEnglish ? 'Team of Service' : '재직 기간'}: {careerTime.startTime} -{' '}
+              {dictionary.People.EmeritusFaculty.termOfService}: {careerTime.startTime} -{' '}
               {careerTime.endTime}
             </div>
           </div>

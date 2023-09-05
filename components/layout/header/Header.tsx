@@ -1,11 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import { logOut, login } from '@/apis/auth';
+
+import { useLanguage } from '@/hooks/useLanguage';
 
 import HeaderSearchBar from './HeaderSearchBar';
 
@@ -41,7 +43,15 @@ function HeaderTitle() {
 }
 
 function HeaderRight() {
-  const { isEnglish, changeLanguage } = useLanguage();
+  const { isEnglish } = useLanguage();
+
+  const pathName = usePathname();
+  const redirectedPathName = (locale: string) => {
+    if (!pathName) return '/';
+    const segments = pathName.split('/');
+    segments[1] = locale;
+    return segments.join('/');
+  };
 
   const handleLogin = () => {
     console.log('로그인 버튼 클릭');
@@ -53,15 +63,17 @@ function HeaderRight() {
   return (
     <div className="flex flex-col justify-between items-end flex-grow">
       <div className="font-yoon text-xs font-normal text-neutral-700 flex gap-[.62rem]">
-        <Link href="http://cse-dev-waffle.bacchus.io/login">
+        <Link href="http://cse-dev-waffle.bacchus.io/api/v1/login">
           <button onClick={handleLogin}>{isEnglish ? 'Login' : '로그인'}</button>
         </Link>
         <span>|</span>
-        <Link href="http://cse-dev-waffle.bacchus.io/logout">
-          <button onClick={handleLogOut}>{isEnglish ? 'LogOut' : '로그아웃'}</button>
+        <Link href="http://cse-dev-waffle.bacchus.io/api/v1/logout">
+          <button onClick={handleLogOut}>{isEnglish ? 'Logout' : '로그아웃'}</button>
         </Link>
         <span>|</span>
-        <button onClick={changeLanguage}>{isEnglish ? '한국어' : 'English'}</button>
+        <Link href={redirectedPathName(isEnglish ? 'ko' : 'en')}>
+          <button>{isEnglish ? '한국어' : 'English'}</button>
+        </Link>
       </div>
       <HeaderSearchBar />
     </div>

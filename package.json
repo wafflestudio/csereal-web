@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@formatjs/intl-localematcher": "^0.4.0",
     "@mui/material": "^5.14.5",
     "@mui/x-date-pickers": "^6.11.2",
     "@types/node": "20.4.0",
@@ -21,12 +22,14 @@
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "isomorphic-dompurify": "^1.8.0",
+    "negotiator": "^0.6.3",
     "next": "13.4.12",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
     "swr": "^2.2.0",
@@ -35,6 +38,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/negotiator": "^0.6.1",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "3.0.0"
   }

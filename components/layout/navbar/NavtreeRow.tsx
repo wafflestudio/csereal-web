@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
 import { StraightNode } from '@/components/common/Nodes';
+
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { SegmentNode } from '@/types/page';
 

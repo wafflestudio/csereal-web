@@ -1,8 +1,7 @@
-'use client';
 import Link from 'next/link';
-import useSWR from 'swr';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { getDictionary } from '@/dictionaries/get-dictionaries';
+import { Locale } from '@/i18n-config';
 
 import { getStaff, getStaffEng } from '@/apis/people';
 
@@ -10,13 +9,13 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-export default function StaffMemberPage({ params }: { params: { id: number } }) {
-  const { isEnglish } = useLanguage();
-  const url = isEnglish
-    ? `/eng/people/emeritus-faculty/${params.id}`
-    : `/people/emeritus-faculty/${params.id}`;
-  const fetchFunction = () => (isEnglish ? getStaffEng(params.id) : getStaff(params.id));
-  const { data } = useSWR(url, fetchFunction);
+export default async function StaffMemberPage({
+  params,
+}: {
+  params: { id: number; lang: Locale };
+}) {
+  const data = params.lang === 'ko' ? await getStaff(params.id) : await getStaffEng(params.id);
+  const dictionary = await getDictionary(params.lang);
 
   return (
     data && (
@@ -35,14 +34,14 @@ export default function StaffMemberPage({ params }: { params: { id: number } }) 
           <div className="break-all">
             <article className="text-neutral-700 font-noto flex flex-col mb-7">
               <h3 className="text-base font-bold leading-8">
-                {isEnglish ? 'Contact Info' : '연락처 정보'}
+                {dictionary.People.Staff.contactInfo}
               </h3>
               <ul className="list-inside list-disc">
                 {data.office && (
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                     <p>
-                      {isEnglish ? 'Office' : '위치'}: {data.office}
+                      {dictionary.People.Staff.office}: {data.office}
                     </p>
                   </li>
                 )}
@@ -50,7 +49,7 @@ export default function StaffMemberPage({ params }: { params: { id: number } }) 
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                     <p>
-                      {isEnglish ? 'Phone' : '전화'}: {data.phone}
+                      {dictionary.People.Staff.phone}: {data.phone}
                     </p>
                   </li>
                 )}
@@ -58,7 +57,7 @@ export default function StaffMemberPage({ params }: { params: { id: number } }) 
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
                     <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
                     <p>
-                      {isEnglish ? 'Email' : '이메일'}:
+                      {dictionary.People.Staff.email}:
                       <Link
                         className="ml-1 text-link hover:underline"
                         href={`mailto:${data.email}`}
@@ -70,7 +69,7 @@ export default function StaffMemberPage({ params }: { params: { id: number } }) 
                 )}
               </ul>
             </article>
-            <PeopleInfoList title={isEnglish ? 'Tasks' : '주요 업무'} infoList={data.tasks} />
+            <PeopleInfoList title={dictionary.People.Staff.tasks} infoList={data.tasks} />
           </div>
         </div>
       </PageLayout>

@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { useLanguage } from '@/contexts/LanguageContext';
 import { NavbarState } from '@/contexts/NavbarContext';
 import NaviBarClose from '@/public/image/NaviBar_Close.svg';
 import NaviBarMenu from '@/public/image/NaviBar_Menu.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
+
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { useLanguage } from '@/contexts/LanguageContext';
-
 import { CurvedVerticalNode } from '@/components/common/Nodes';
+
+import { useLanguage } from '@/hooks/useLanguage';
 
 import { SegmentNode } from '@/types/page';
 
@@ -46,6 +46,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
 function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
   const { isEnglish } = useLanguage();
   const marginLeft = `${(getDepth(tab) - 1) * 12}px`;
+  const href = isEnglish ? '/en' + getPath(tab) : getPath(tab);
 
   return (
     <li
@@ -55,10 +56,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
       style={{ marginLeft }}
     >
       {tab.isPage ? (
-        <Link
-          href={isEnglish ? '/en' + getPath(tab) : getPath(tab)}
-          className="hover:text-main-orange whitespace-nowrap"
-        >
+        <Link href={href} className="hover:text-main-orange whitespace-nowrap">
           {isEnglish ? capitalizeFirstLetter(tab.segment) : tab.name}
         </Link>
       ) : (
