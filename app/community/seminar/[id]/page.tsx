@@ -73,7 +73,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
         <div className="mt-10">주최: {currPost.host}</div>
         <div>
-          일시: {currPost.startDate} {currPost.startTime} - {currPost.endDate} {currPost.endTime}
+          일시: {currPost.startDate} - {currPost.endDate}
         </div>
         <div>장소: {currPost.location}</div>
 

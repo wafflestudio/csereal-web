@@ -6,7 +6,7 @@ import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BasicButton from '@/components/reservations/BasicButton';
-import DateSelector from '@/components/reservations/mui/DateSelector';
+import DateSelector from '@/components/mui/DateSelector';
 
 import useModal from '@/hooks/useModal';
 

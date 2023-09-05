@@ -79,9 +79,7 @@ export interface POSTSeminarBody {
     affiliation: string;
     affiliationURL: string | null;
     startDate: string | null;
-    startTime: string | null;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
     isPublic: boolean;
@@ -112,9 +110,7 @@ export interface SeminarPostResponse {
   affiliation: string;
   affiliationUrl: string | null;
   startDate: string;
-  startTime: string;
   endDate: string;
-  endTime: string;
   location: string;
   host: string;
   isImportant: boolean;
@@ -136,9 +132,7 @@ export interface PatchSeminarBody {
     affiliation: string;
     affiliationUrl: string | null;
     startDate: string | null;
-    startTime: string | null;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
     isSlide: boolean;

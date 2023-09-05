@@ -2,13 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteNotice, patchNotice } from '@/apis/notice';
+import { deleteNotice } from '@/apis/notice';
 
-import {
-  PostEditorContent,
-  isLocalFile,
-  isUploadedFile,
-} from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { news } from '@/types/page';
@@ -37,8 +32,8 @@ export default function EditSeminarPageContent({
     description: data.description,
     location: data.location,
     schedule: {
-      startDate: strToDate(data.startDate, data.startTime),
-      endDate: strToDate(data.endDate, data.endTime),
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
     },
     speaker: {
       name: data.name,

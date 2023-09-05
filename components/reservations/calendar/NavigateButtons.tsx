@@ -7,7 +7,7 @@ import useModal from '@/hooks/useModal';
 
 import BasicButton from '../BasicButton';
 import AddReservationModal from '../modals/AddReservationModal';
-import DateSelector from '../mui/DateSelector';
+import DateSelector from '../../mui/DateSelector';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();

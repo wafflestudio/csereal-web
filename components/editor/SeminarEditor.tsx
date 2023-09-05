@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
@@ -154,16 +154,12 @@ function ScheduleFieldset({
   const { startDate: startDateStr, endDate: endDateStr } = values;
   const startDate = new Date(startDateStr);
   const endDate = endDateStr && new Date(endDateStr);
-  const oneDayInMillSec = 1000 * 60 * 60 * 24;
   const allDay =
     startDate.getHours() === 0 &&
     startDate.getMinutes() === 0 &&
     startDate.getSeconds() === 0 &&
     startDate.getMilliseconds() === 0 &&
     endDate === null;
-
-  console.log(startDate.toLocaleString(), endDate?.toLocaleString());
-  console.log(allDay);
 
   return (
     <div>
@@ -333,7 +329,7 @@ function CheckboxFieldset({
         <TagCheckbox
           tag="비공개 글"
           isChecked={!isPublic}
-          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
+          toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
         />
         <TagCheckbox
           tag="메인-중요 안내에 표시"
