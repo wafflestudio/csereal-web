@@ -1,10 +1,16 @@
 import { SimpleImportant, SimpleSlide } from '@/types/admin';
 
-import { deleteRequest, getRequest } from '.';
+import { deleteRequest, getRequest, patchRequest } from '.';
 
 // export const getSlides = (page: number) => getRequest('/slide', { page });
 
 // export const getImportants = (page: number) => getRequest('/important', { page });
+
+export const patchMultipleSlides = (newsIdList: number[]) =>
+  patchRequest('/admin/slide', { body: JSON.stringify(newsIdList) });
+
+export const patchMultipleImportants = (targetInfos: { id: number; category: string }[]) =>
+  patchRequest('/admin/important', { body: JSON.stringify(targetInfos) });
 
 export const getSlides = async (): Promise<{ posts: SimpleSlide[]; total: number }> => ({
   posts: [

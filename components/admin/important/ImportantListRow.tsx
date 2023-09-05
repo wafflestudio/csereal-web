@@ -7,11 +7,13 @@ import { news, notice, seminar } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+import { ImportantInfo } from './ImportantManagement';
+
 interface ImportantListRowProps {
   index: number;
   post: SimpleImportant;
   isSelected: boolean;
-  toggleSelected: (id: number) => void;
+  toggleSelected: (postInfo: ImportantInfo) => void;
 }
 
 export const IMPORTANT_ROW_CELL_WIDTH = {
@@ -43,7 +45,10 @@ export default function ImportantListRow({
         isSelected && 'bg-neutral-100'
       }`}
     >
-      <CheckboxCell isChecked={isSelected} toggleCheck={() => toggleSelected(post.id)} />
+      <CheckboxCell
+        isChecked={isSelected}
+        toggleCheck={() => toggleSelected({ id: post.id, category: post.category })}
+      />
       <IndexCell index={index} />
       <CategoryCell category={post.category} />
       <TitleCell title={post.title} href={`${categoryPath}/${post.id}`} />

@@ -4,31 +4,34 @@ import { SimpleImportant } from '@/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';
+import { ImportantInfo } from './ImportantManagement';
 
 interface ImportantListProps {
   posts: SimpleImportant[];
-  selectedPostIds: Set<number>;
-  setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
+  selectedPostInfos: ImportantInfo[];
+  setSelectedPostInfos: Dispatch<SetStateAction<ImportantInfo[]>>;
 }
 
 export default function ImportantList({
   posts,
-  selectedPostIds,
-  setSelectedPostIds,
+  selectedPostInfos,
+  setSelectedPostInfos,
 }: ImportantListProps) {
-  const selectPost = (id: number) => {
-    setSelectedPostIds((prev) => new Set(prev.add(id)));
+  const selectPost = (postInfo: ImportantInfo) => {
+    setSelectedPostInfos((prev) => [...prev, postInfo]);
   };
 
-  const deselectPost = (id: number) => {
-    setSelectedPostIds((prev) => {
-      prev.delete(id);
-      return new Set(prev);
-    });
+  const deselectPost = (postInfo: ImportantInfo) => {
+    setSelectedPostInfos((prev) =>
+      prev.filter((info) => !(info.id === postInfo.id && info.category === postInfo.category)),
+    );
   };
 
-  const toggleSelected = (id: number) => {
-    selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);
+  const getIsSelected = (postInfo: ImportantInfo) =>
+    selectedPostInfos.some((p) => p.id === postInfo.id && p.category === postInfo.category);
+
+  const toggleSelected = (postInfo: ImportantInfo) => {
+    getIsSelected(postInfo) ? deselectPost(postInfo) : selectPost(postInfo);
   };
 
   return (
@@ -40,7 +43,7 @@ export default function ImportantList({
             key={i}
             index={i + 1}
             post={post}
-            isSelected={selectedPostIds.has(post.id)}
+            isSelected={getIsSelected({ id: post.id, category: post.category })}
             toggleSelected={toggleSelected}
           />
         ))}

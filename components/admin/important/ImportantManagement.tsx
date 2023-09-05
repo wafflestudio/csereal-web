@@ -3,8 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { patchMultipleImportants } from '@/apis/admin';
+
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
+import AlertModal from '@/components/modal/AlertModal';
+
+import useCallbackOnce from '@/hooks/useCallbackOnce';
+import useModal from '@/hooks/useModal';
 
 import { ADMIN_MENU, SimpleImportant } from '@/types/admin';
 
@@ -20,14 +26,26 @@ interface ImportantManagementProps {
   total: number;
 }
 
+export interface ImportantInfo {
+  id: number;
+  category: string;
+}
+
 const POST_LIMIT = 40;
 
 export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
-  const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const [selectedPostInfos, setSelectedPostInfos] = useState<ImportantInfo[]>([]);
+  const { openModal, closeModal } = useModal();
   const router = useRouter();
 
   const resetSelectedPosts = () => {
-    setSelectedPostIds(new Set());
+    setSelectedPostInfos([]);
+  };
+
+  const finishRequest = () => {
+    resetSelectedPosts();
+    closeModal();
+    // mutate()
   };
 
   const changePage = (newPage: number) => {
@@ -36,11 +54,10 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
-  const batchRelease = (requestPath: string) => {
-    console.log('일괄 해제');
-    // TODO: 일괄 삭제 요청
-    resetSelectedPosts();
-  };
+  const handleBatchUnimportant = useCallbackOnce(async () => {
+    await patchMultipleImportants(Array.from(selectedPostInfos));
+    finishRequest();
+  });
 
   return (
     <div>
@@ -49,8 +66,8 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
       <TotalPostsCount count={total} />
       <ImportantList
         posts={posts}
-        selectedPostIds={selectedPostIds}
-        setSelectedPostIds={setSelectedPostIds}
+        selectedPostInfos={selectedPostInfos}
+        setSelectedPostInfos={setSelectedPostInfos}
       />
       <Pagination
         totalPostsCount={total}
@@ -59,9 +76,18 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
         setCurrentPage={changePage}
       />
       <BatchAction
-        selectedCount={selectedPostIds.size}
+        selectedCount={selectedPostInfos.length}
         buttonText="일괄 중요 안내 해제"
-        onClickButton={() => batchRelease('/slide')}
+        onClickButton={() =>
+          openModal(
+            <AlertModal
+              message="정말 선택된 중요 안내를 모두 해제하시겠습니까?"
+              confirmText="해제"
+              onClose={closeModal}
+              onConfirm={handleBatchUnimportant}
+            />,
+          )
+        }
       />
     </div>
   );

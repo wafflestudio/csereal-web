@@ -3,8 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { patchMultipleSlides } from '@/apis/admin';
+
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
+import AlertModal from '@/components/modal/AlertModal';
+
+import useCallbackOnce from '@/hooks/useCallbackOnce';
+import useModal from '@/hooks/useModal';
 
 import { ADMIN_MENU, SimpleSlide } from '@/types/admin';
 
@@ -24,10 +30,17 @@ const POST_LIMIT = 40;
 
 export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const { openModal, closeModal } = useModal();
   const router = useRouter();
 
   const resetSelectedPosts = () => {
     setSelectedPostIds(new Set());
+  };
+
+  const finishRequest = () => {
+    resetSelectedPosts();
+    closeModal();
+    // mutate()
   };
 
   const changePage = (newPage: number) => {
@@ -36,11 +49,10 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
-  const handleBatchRelease = (requestPath: string) => {
-    // TODO: 일괄 삭제 요청
-    console.log('일괄 해제');
-    resetSelectedPosts();
-  };
+  const handleBatchUnslide = useCallbackOnce(async () => {
+    await patchMultipleSlides(Array.from(selectedPostIds));
+    finishRequest();
+  });
 
   return (
     <div>
@@ -61,7 +73,16 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <BatchAction
         selectedCount={selectedPostIds.size}
         buttonText="일괄 슬라이드쇼 해제"
-        onClickButton={() => handleBatchRelease('/slide')}
+        onClickButton={() =>
+          openModal(
+            <AlertModal
+              message="정말 선택된 슬라이드쇼를 모두 해제하시겠습니까?"
+              confirmText="해제"
+              onConfirm={handleBatchUnslide}
+              onClose={closeModal}
+            />,
+          )
+        }
       />
     </div>
   );
