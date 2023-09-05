@@ -15,8 +15,8 @@ import { NoticeTags } from '@/constants/tag';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import useModal from '@/hooks/useModal';
 
+import { NoticePreviewList } from '@/types/notice';
 import { notice } from '@/types/page';
-import { GETNoticePostsResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
@@ -26,7 +26,7 @@ const noticePath = getPath(notice);
 export default function NoticePageContent({
   data: { searchList: posts, total: totalPostsCount },
 }: {
-  data: GETNoticePostsResponse;
+  data: NoticePreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);

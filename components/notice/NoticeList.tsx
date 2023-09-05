@@ -2,13 +2,13 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { useQueryString } from '@/hooks/useQueryString';
 
-import { SimpleNoticePost } from '@/types/post';
+import { NoticePreview } from '@/types/notice';
 
 import NoticeListHeader from './NoticeListHeader';
 import NoticeListRow from './NoticeListRow';
 
 interface NoticeListProps {
-  posts: SimpleNoticePost[];
+  posts: NoticePreview[];
   isEditMode: boolean;
   selectedPostIds: Set<number>;
   setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;

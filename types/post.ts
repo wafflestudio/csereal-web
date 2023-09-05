@@ -45,59 +45,6 @@ export interface SimpleHTMLPageResponse {
   description: string;
 }
 
-// 공지사항 - - - - - - - - - - - - - - - - - - - -
-
-export interface NoticePost extends Post {
-  tags: string[];
-  isPinned: boolean;
-  isImportant: boolean;
-}
-
-export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {
-  author: string;
-}
-
-export interface SimpleNoticePost
-  extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
-  hasAttachment: boolean;
-}
-
-export interface GETNoticePostsResponse {
-  total: number;
-  searchList: SimpleNoticePost[];
-}
-
-export interface POSTNoticeBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-  };
-  attachments: File[];
-}
-
-export interface PatchNoticeBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
-  };
-  newAttachments: File[];
-}
-
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacultyRecruitmentResponse {

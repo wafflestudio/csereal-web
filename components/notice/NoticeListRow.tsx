@@ -4,13 +4,13 @@ import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
+import { NoticePreview } from '@/types/notice';
 import { notice } from '@/types/page';
-import { SimpleNoticePost } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
-  post: SimpleNoticePost;
+  post: NoticePreview;
   queryString: string;
   isEditMode: boolean;
   isSelected: boolean;

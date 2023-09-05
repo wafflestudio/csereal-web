@@ -15,20 +15,14 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NoticeTags } from '@/constants/tag';
 
+import { Notice } from '@/types/notice';
 import { news } from '@/types/page';
-import { NoticePostResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
 const newsPath = getPath(news);
 
-export default function EditNoticePageContent({
-  id,
-  data,
-}: {
-  id: number;
-  data: NoticePostResponse;
-}) {
+export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
