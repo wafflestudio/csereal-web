@@ -7,7 +7,7 @@ import useModal from '@/hooks/useModal';
 
 import BasicButton from '../BasicButton';
 import AddReservationModal from '../modals/AddReservationModal';
-import DateSelector from '../../mui/DateSelector';
+import MuiDateSelector from '../../mui/MuiDateSelector';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();
@@ -59,7 +59,7 @@ export function SelectDayButton({ date }: { date: Date }) {
       </BasicButton>
       <div className="relative">
         {show && (
-          <DateSelector
+          <MuiDateSelector
             className="absolute border-neutral-300 border top-2 z-10 bg-white"
             date={date}
             setDate={(date) => {

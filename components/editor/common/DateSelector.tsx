@@ -2,8 +2,11 @@ import { LocalizationProvider, StaticDateTimePicker, StaticDatePicker } from '@m
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { koKR } from '@mui/x-date-pickers/locales';
 import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
-import { useReducer } from 'react';
+
+import ModalFrame from '@/components/modal/ModalFrame';
+import MuiDateSelector from '@/components/mui/MuiDateSelector';
+
+import useModal from '@/hooks/useModal';
 
 export default function DateSelector({
   date,
@@ -14,23 +17,27 @@ export default function DateSelector({
   setDate: (date: Date) => void;
   hideTime?: boolean;
 }) {
-  const [expanded, toggleExpanded] = useReducer((x) => !x, false);
+  const { openModal, closeModal } = useModal();
+  const openCalendar = () => {
+    openModal(
+      <ModalFrame onClose={closeModal}>
+        <MuiDateSelector
+          date={date}
+          setDate={(date) => {
+            setDate(date);
+            closeModal();
+          }}
+          className="bg-white"
+        />
+      </ModalFrame>,
+    );
+  };
 
   return (
     <div>
       <div className="flex gap-[.62rem]">
-        <BorderButton text={formatDate(date)} onClick={toggleExpanded} />
-        {!hideTime && <BorderButton text={formatTime(date)} onClick={toggleExpanded} />}
-      </div>
-      <div className="relative">
-        {expanded && (
-          <DateTimePicker
-            date={date}
-            setDate={setDate}
-            close={toggleExpanded}
-            hideTime={hideTime}
-          />
-        )}
+        <BorderButton text={formatDate(date)} onClick={openCalendar} />
+        {!hideTime && <BorderButton text={formatTime(date)} onClick={openCalendar} />}
       </div>
     </div>
   );
