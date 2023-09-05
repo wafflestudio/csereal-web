@@ -28,9 +28,9 @@ export default function FacultyInfoWithImage({
           style={{
             filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
           }}
-          className="w-full h-full absolute"
+          className="w-full min-h-[165px] h-full absolute"
         >
-          <div className="flex flex-col text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
+          <div className="flex flex-col h-full text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
             {phone && <FacultyInfoWithSymbols symbol="phone_in_talk" content={phone} />}
             {fax && <FacultyInfoWithSymbols symbol="print" content={fax} />}
@@ -40,10 +40,10 @@ export default function FacultyInfoWithImage({
         </div>
         <div className="relative h-full w-full z-[-1]">
           <div
-            className="h-full w-full absolute bottom-[-17px] right-[-17px] animate-fadeIn"
+            className="h-full w-full absolute bottom-[-18.3px] right-[-18.3px] animate-fadeIn"
             style={{
               background:
-                'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+                'repeating-linear-gradient(-45deg, black, black 4px, #E9390B 4px, #E9390B 5px)',
             }}
           />
         </div>

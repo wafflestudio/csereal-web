@@ -34,6 +34,23 @@ const hrefList = {
   STAFF: staffPath,
 };
 
+const getTextInParentheses = (title: string) => {
+  const match = title.match(/\(([^)]+)\)/);
+  if (match) {
+    return match[1];
+  } else {
+    return title;
+  }
+};
+
+const removeTextInParentheses = (title: string) => {
+  const match = title.match(/(.*?)\([^)]+\)/); // 괄호 안의 내용을 포함한 부분을 추출하는 정규 표현식
+  if (match) {
+    return match[1].trim(); // 괄호를 포함한 부분 중에서 괄호 안의 내용을 생략하고 나머지 문자열을 반환
+  } else {
+    return title; // 괄호가 없으면 원래 문자열 반환
+  }
+};
 export default function PeopleRow({
   type,
   id,
@@ -73,7 +90,7 @@ export default function PeopleRow({
         />
         {isEnglish && academicRank?.match(/\(([^)]+)\)/) ? (
           <div className="absolute right-0 -bottom-2 w-auto max-w-[132px] items-center justify-center text-center px-[10px] break-words text-white text-[10px] font-bold bg-main-orange">
-            {academicRank.match(/\(([^)]+)\)/)?.[1]}
+            {getTextInParentheses(academicRank)}
           </div>
         ) : null}
       </Link>
@@ -85,14 +102,21 @@ export default function PeopleRow({
               <Link href={href} className="hover:cursor-pointer ">
                 <p className="text-md font-bold leading-5">{name}</p>
               </Link>
-              <p className="text-neutral-500">{academicRank}</p>
+              <div className="text-neutral-500 flex flex-row items-end">
+                <p>{removeTextInParentheses(academicRank)}</p>
+                {academicRank?.match(/\(([^)]+)\)/) && (
+                  <p className="text-[9px] whitespace-nowrap">
+                    {'(' + getTextInParentheses(academicRank) + ')'}
+                  </p>
+                )}
+              </div>
             </div>
           ) : (
             <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
               <Link href={href} className="hover:cursor-pointer ">
                 <p className="text-md font-bold leading-5">{name}</p>
               </Link>
-              <p className="text-neutral-500">{academicRank}</p>
+              <p className="text-neutral-500">{removeTextInParentheses(academicRank)}</p>
             </div>
           )
         ) : null}

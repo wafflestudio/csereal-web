@@ -27,10 +27,10 @@ export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAn
       </div>
       <div className="relative h-full w-full">
         <div
-          className="h-full w-full absolute bottom-[-17px] left-[-17px] animate-fadeIn"
+          className="h-full w-full absolute bottom-[-18.3px] left-[-18.3px] animate-fadeIn"
           style={{
             background:
-              'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+              'repeating-linear-gradient(-45deg, black, black 4px, #E9390B 4px, #E9390B 5px)',
             clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
           }}
         />
