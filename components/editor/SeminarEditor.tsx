@@ -151,18 +151,48 @@ function ScheduleFieldset({
   values: SeminarSchedule;
   setValues: <T extends keyof SeminarSchedule>(key: T) => (value: SeminarSchedule[T]) => void;
 }) {
+  const { startDate: startDateStr, endDate: endDateStr } = values;
+  const startDate = new Date(startDateStr);
+  const endDate = endDateStr && new Date(endDateStr);
+  const oneDayInMillSec = 1000 * 60 * 60 * 24;
+  const allDay =
+    startDate.getHours() === 0 &&
+    startDate.getMinutes() === 0 &&
+    startDate.getSeconds() === 0 &&
+    startDate.getMilliseconds() === 0 &&
+    endDate === null;
+
+  console.log(startDate.toLocaleString(), endDate?.toLocaleString());
+  console.log(allDay);
+
   return (
     <div>
       <div className="flex gap-2 mt-4 mb-2">
         <TagCheckbox
           tag="하루 종일"
-          isChecked={values.allDay}
-          toggleCheck={(tag, isChecked) => setValues('allDay')(!isChecked)}
+          isChecked={allDay}
+          toggleCheck={(tag, isChecked) => {
+            if (isChecked) {
+              setValues('startDate')(new Date());
+              setValues('endDate')(new Date());
+            } else {
+              setValues('endDate')(null);
+              const newStartDate = new Date(startDate);
+              newStartDate.setHours(0, 0, 0, 0);
+              setValues('startDate')(newStartDate);
+            }
+          }}
         />
         <TagCheckbox
           tag="종료 일시 표시"
-          isChecked={values.showEndDate}
-          toggleCheck={(tag, isChecked) => setValues('showEndDate')(!isChecked)}
+          isChecked={values.endDate !== null}
+          toggleCheck={(tag, isChecked) => {
+            if (isChecked) {
+              setValues('endDate')(null);
+            } else {
+              setValues('endDate')(new Date());
+            }
+          }}
         />
       </div>
       <div className="flex mb-4 gap-8">
@@ -170,16 +200,12 @@ function ScheduleFieldset({
           <DateSelector
             date={values.startDate}
             setDate={setValues('startDate')}
-            hideTime={values.allDay}
+            hideTime={allDay}
           />
         </Fieldset>
-        {values.showEndDate && (
+        {values.endDate && (
           <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
-            <DateSelector
-              date={values.endDate}
-              setDate={setValues('endDate')}
-              hideTime={values.allDay}
-            />
+            <DateSelector date={values.endDate} setDate={setValues('endDate')} hideTime={allDay} />
           </Fieldset>
         )}
       </div>
@@ -187,7 +213,13 @@ function ScheduleFieldset({
   );
 }
 
-function HostFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
+function HostFieldset({
+  value,
+  onChange,
+}: {
+  value: string | null;
+  onChange: (text: string) => void;
+}) {
   return (
     <Fieldset title="주최" mb="mb-10" titleMb="mb-2">
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[24.625rem]" />

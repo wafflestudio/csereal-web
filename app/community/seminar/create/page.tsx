@@ -21,15 +21,13 @@ export default function SeminarCreatePage() {
 
   const handleComplete = async (content: SeminarEditorContent) => {
     if (content.title === '') {
-      infoToast('제목을 입력해주세요');
-      return;
+      throw new Error('제목을 입력해주세요');
     }
 
     const image =
       content.speaker.image && isLocalImage(content.speaker.image)
         ? content.speaker.image.file
         : null;
-
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
 
     await postSeminar({

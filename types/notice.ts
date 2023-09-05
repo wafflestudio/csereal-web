@@ -1,6 +1,18 @@
+export interface NoticePreview {
+  id: number;
+  title: string;
+  isPinned: boolean;
+  createdAt: string;
+  hasAttachment: boolean;
+}
+
+export interface NoticePreviewList {
+  total: number;
+  searchList: NoticePreview[];
+}
+
 export interface Notice {
   title: string;
-  // html 내용
   description: string;
   isPublic: boolean;
   tags: string[];
@@ -22,25 +34,11 @@ export interface Notice {
   }[];
 }
 
-export interface NoticePreview {
-  id: number;
-  title: string;
-  isPinned: boolean;
-  createdAt: string;
-  hasAttachment: boolean;
-}
-
-export interface NoticePreviewList {
-  total: number;
-  searchList: NoticePreview[];
-}
-
 export interface POSTNoticeBody {
   request: {
     title: string;
     description: string;
     isPublic: boolean;
-    isSlide: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];
@@ -53,7 +51,6 @@ export interface PatchNoticeBody {
     title: string;
     description: string;
     isPublic: boolean;
-    isSlide: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];

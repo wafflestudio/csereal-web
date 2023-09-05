@@ -15,7 +15,7 @@ export interface SeminarEditorContent {
 
 export interface SeminarSchedule {
   startDate: Date;
-  endDate: Date;
+  endDate: Date | null;
 }
 
 export interface SeminarSpeaker {

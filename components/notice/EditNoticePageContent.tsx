@@ -48,7 +48,6 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         title: content.title,
         description: content.description,
         isPublic: content.isPublic,
-        isSlide: content.isSlide,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
@@ -70,7 +69,6 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
       <PostEditor
         tags={NoticeTags}
         showMainImage
-        showIsSlide
         actions={{
           type: 'EDIT',
           onComplete: handleComplete,
