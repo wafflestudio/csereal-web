@@ -1,14 +1,40 @@
-import { getMockWeeklyReservation, postMockReservation } from '@/data/reservation';
+// import { getMockWeeklyReservation, postMockReservation } from '@/data/reservation';
 
-import { ReservationPostBody } from '@/types/reservation';
+import { cookies } from 'next/dist/client/components/headers';
 
-export const getWeeklyReservation = getMockWeeklyReservation;
+import { Reservation, ReservationPostBody } from '@/types/reservation';
 
-export const postReservation = async (body: ReservationPostBody) => postMockReservation;
+import { deleteRequest, getRequest, postRequest } from '.';
 
-export const deleteSingleReservation = async (id: number) => {};
+const reservationPath = '/reservation';
 
-export const deleteAllRecurringReservation = async (id: number) => {};
+export const postReservation = async (body: ReservationPostBody) => {
+  postRequest(reservationPath, { body: JSON.stringify(body) });
+};
+
+export const getWeeklyReservation = async (params: {
+  roomId: number;
+  year: number;
+  month: number;
+  day: number;
+}) => {
+  const jsessionId = cookies().get('JSESSIONID');
+  console.log(jsessionId);
+  return (await getRequest(`${reservationPath}/week`, params, {
+    credentials: 'include',
+    headers: {
+      Cookie: `JSESSIONID=${jsessionId?.value}`,
+    },
+  })) as Reservation[];
+};
+
+export const deleteSingleReservation = async (id: number) => {
+  deleteRequest(`${reservationPath}/${id}`);
+};
+
+export const deleteAllRecurringReservation = async (id: number) => {
+  deleteRequest(`${reservationPath}/recurring/${id}`);
+};
 
 export const roomNameToId = {
   // 세미나실
