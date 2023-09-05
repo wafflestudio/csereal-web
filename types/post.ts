@@ -45,59 +45,6 @@ export interface SimpleHTMLPageResponse {
   description: string;
 }
 
-// 새소식 - - - - - - - - - - - - - - - - - - - -
-
-export interface NewsPost extends Post {
-  tags: string[];
-  imageURL: string | null;
-  isSlide: boolean;
-  isImportant: boolean;
-}
-
-export interface NewsPostResponse extends Omit<NewsPost, 'attachments'>, PostResponse {}
-
-export interface SimpleNewsPost
-  extends Pick<
-    NewsPostResponse,
-    'id' | 'title' | 'description' | 'tags' | 'createdAt' | 'imageURL'
-  > {}
-
-export interface GETNewsPostsResponse {
-  total: number;
-  searchList: SimpleNewsPost[];
-}
-
-export interface POSTNewsBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-  };
-  mainImage: File | null;
-  attachments: File[];
-}
-
-export interface PATCHNewsBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
-  };
-  mainImage: File | null;
-  newAttachments: File[];
-}
-
 // 공지사항 - - - - - - - - - - - - - - - - - - - -
 
 export interface NoticePost extends Post {
