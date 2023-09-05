@@ -12,6 +12,7 @@ module.exports = {
       neutral: {
         50: '#121212',
         100: '#171717',
+        150: '#1e1e1e',
         200: '#262626',
         300: '#404040',
         400: '#737373',
@@ -34,6 +35,7 @@ module.exports = {
         // TBD
         DEFAULT: '#ff0000',
       },
+      transparent: 'transparent',
     },
     fontFamily: {
       yoon: ['var(--font-yoon)'],

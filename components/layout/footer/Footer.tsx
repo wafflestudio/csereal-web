@@ -41,7 +41,7 @@ export default function Footer() {
 
 function FooterTop() {
   return (
-    <div className="bg-white px-[3.75rem] py-8 flex">
+    <div className="bg-neutral-100 px-[3.75rem] py-8 flex">
       <LinkGroup groupName="About" links={aboutLinks} width="w-[7.8rem]" />
       <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.55rem]" />
       <LinkGroup groupName="Research" links={researchLinks} width="w-[9.3rem]" />
@@ -73,7 +73,7 @@ function LinkGroup({ groupName, links, width }: LinkGroupProps) {
 
 function FooterBottom() {
   return (
-    <div className="bg-neutral-100 px-[3.75rem] py-8 flex justify-between items-center">
+    <div className="bg-neutral-50 px-[3.75rem] py-8 flex justify-between items-center">
       <FooterBottomLeft />
       <FooterBottomRight />
     </div>

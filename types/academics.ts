@@ -27,6 +27,28 @@ export interface CourseChange {
   description: string;
 }
 
+export interface GeneralStudiesRequirements {
+  overview: string;
+  subjectChanges: {
+    status: 'new' | 'change';
+    time: string;
+    additionalInfos?: string[];
+    changes: string[];
+    progress: string;
+  }[];
+  description: string;
+}
+
+export interface ScholarshipList {
+  description: string;
+  scholarship: Pick<Scholarship, 'id' | 'name'>[];
+}
+
+export interface Scholarship {
+  id: number;
+  name: string;
+  description: string;
+}
 export interface DegreeRequirements {
   id: number;
   description: string;

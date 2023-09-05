@@ -16,10 +16,10 @@ import TagCheckbox from '../common/search/TagCheckbox';
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
 
-// TODO: 네트워크 에러 처리
 export default function PostEditor({
   tags,
   showMainImage = false,
+  showIsImportant = false,
   showIsPinned = false,
   showIsSlide = false,
   actions,
@@ -52,9 +52,9 @@ export default function PostEditor({
 
   return (
     <form className="flex flex-col">
-      <TitleFieldset value={content.title} onChange={(e) => setContentByKey('title')} />
+      <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
 
-      <EditorFieldset editorRef={editorRef} />
+      <EditorFieldset editorRef={editorRef} initialContent={content.description} />
 
       {showMainImage && (
         <ImageFieldset file={content.mainImage} setFile={setContentByKey('mainImage')} />
@@ -63,14 +63,7 @@ export default function PostEditor({
       <FileFieldset
         files={content.attachments}
         setFiles={(dispatch) => {
-          if (typeof dispatch === 'function') {
-            setContent((content) => ({
-              ...content,
-              attachments: dispatch(content.attachments),
-            }));
-          } else {
-            setContentByKey('attachments')(dispatch);
-          }
+          setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
         }}
       />
 
@@ -101,10 +94,17 @@ export default function PostEditor({
               toggleCheck={() => setContentByKey('isPinned')(!content.isPinned)}
             />
           )}
+          {showIsImportant && (
+            <TagCheckbox
+              tag="메인-중요 안내에 표시"
+              isChecked={content.isImportant}
+              toggleCheck={() => setContentByKey('isImportant')(!content.isImportant)}
+            />
+          )}
           {showIsSlide && (
             <>
               <TagCheckbox
-                tag="슬라이드 쇼에 표시"
+                tag="메인-슬라이드쇼에 표시"
                 isChecked={content.isSlide}
                 toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
               />
@@ -141,10 +141,16 @@ function TitleFieldset({ value, onChange }: { value: string; onChange: (text: st
   );
 }
 
-function EditorFieldset({ editorRef }: { editorRef: MutableRefObject<SunEditorCore | undefined> }) {
+function EditorFieldset({
+  editorRef,
+  initialContent,
+}: {
+  editorRef: MutableRefObject<SunEditorCore | undefined>;
+  initialContent: string;
+}) {
   return (
     <Fieldset title="내용" mb="mb-6" titleMb="mb-2">
-      <SunEditorWrapper editorRef={editorRef} />
+      <SunEditorWrapper editorRef={editorRef} initialContent={initialContent} />
     </Fieldset>
   );
 }

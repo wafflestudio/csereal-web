@@ -44,11 +44,11 @@ const getTextInParentheses = (title: string) => {
 };
 
 const removeTextInParentheses = (title: string) => {
-  const match = title.match(/(.*?)\([^)]+\)/); // 괄호 안의 내용을 포함한 부분을 추출하는 정규 표현식
+  const match = title.match(/(.*?)\([^)]+\)/);
   if (match) {
-    return match[1].trim(); // 괄호를 포함한 부분 중에서 괄호 안의 내용을 생략하고 나머지 문자열을 반환
+    return match[1].trim();
   } else {
-    return title; // 괄호가 없으면 원래 문자열 반환
+    return title;
   }
 };
 export default function PeopleRow({
@@ -69,7 +69,7 @@ export default function PeopleRow({
   const href = isEnglish ? '/en' + `${hrefList[type]}/${id}` : `${hrefList[type]}/${id}`;
 
   return (
-    <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3">
+    <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3 group">
       <Link
         href={href}
         className="w-36 h-48 relative"
@@ -152,3 +152,22 @@ export default function PeopleRow({
     </article>
   );
 }
+
+// 괄호 안 문자는 폰트 크기 작게
+function AcademicRankText({ academicRank }: { academicRank: string }) {
+  return (
+    <p className="flex items-end text-neutral-500">
+      {splitParenthesis(academicRank).map((rank, i) =>
+        i === 0 ? (
+          <span key={rank}>{rank}</span>
+        ) : (
+          <span key={rank} className="inline-block scale-75 origin-left whitespace-nowrap">
+            ({rank}
+          </span>
+        ),
+      )}
+    </p>
+  );
+}
+
+const splitParenthesis = (text: string) => text.split('(');

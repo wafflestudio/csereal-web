@@ -75,7 +75,7 @@ function TitleCell({ title, id }: { title: string; id: number }) {
   return (
     <span className={`${SLIDE_ROW_CELL_WIDTH.title} pl-3 font-medium`}>
       <Link
-        href={`${seminarPath}/${id}}`}
+        href={`${seminarPath}/${id}`}
         className="flex max-w-fit items-center gap-1.5 hover:underline whitespace-nowrap text-ellipsis overflow-hidden"
       >
         {title}

@@ -18,10 +18,9 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
   return (
     <CornerFoldedRectangle
       triangleDropShadow={dropShadow}
-      rectangleDropShadow={dropShadow}
       radius={radius}
       triangleLength={triangleLength}
-      colorTheme={COLOR_THEME.white}
+      colorTheme={COLOR_THEME.black}
       margin="mt-[-64px] mb-11 ml-11"
     >
       <ul className="w-60 h-40 py-5 px-6 flex flex-col gap-1 font-noto">

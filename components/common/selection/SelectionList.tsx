@@ -7,7 +7,7 @@ import { COLOR_THEME } from '@/constants/color';
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 interface SelectionListProps {
-  names: string[];
+  names: readonly string[];
   selectedItemName: string;
   path: string;
   listGridColumnClass?: string; // tailwind class
@@ -44,10 +44,10 @@ interface SelectionItemProps {
 }
 
 function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) {
-  const itemCommonStyle = `block w-full h-10 py-3 text-center text-sm tracking-wide font-yoon ${padding}`;
+  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-sm tracking-wide font-yoon ${padding}`;
   const triangleLength = 1.25; // 20px
-  const radius = 0.125; // 2px
-  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
+  const radius = 0.0625; // 1px
+  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.3)';
 
   return (
     <li>
@@ -59,7 +59,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           triangleDropShadow={dropShadow}
           width="w-full"
         >
-          <span className={`${itemCommonStyle} text-white`}>{name}</span>
+          <span className={`${itemCommonStyle} text-neutral-800 font-medium`}>{name}</span>
         </CornerFoldedRectangle>
       ) : (
         <CornerFoldedRectangle
@@ -72,7 +72,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
         >
           <Link
             href={`${path}?selected=${replaceSpaceWithDash(name)}`}
-            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700`}
+            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700 transition-all duration-300`}
             scroll={false}
           >
             {name}

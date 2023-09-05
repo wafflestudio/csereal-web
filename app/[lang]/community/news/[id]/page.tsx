@@ -29,9 +29,8 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
   );
 
   return (
-    <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
-      {/* TODO: API 반영 */}
-      <Attachments files={mockFiles} />
+    <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
+      {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
       <HTMLViewer htmlContent={currPost.description} margin="mt-4" />
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
@@ -44,21 +43,3 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
     </PageLayout>
   );
 }
-
-const mockFiles = [
-  {
-    name: 'FILE1',
-    url: 'www.google.com',
-    bytes: 123123,
-  },
-  {
-    name: 'FILE2',
-    url: 'www.apple.com',
-    bytes: 123123,
-  },
-  {
-    name: 'FILE1',
-    url: 'www.instagram.com',
-    bytes: 123123,
-  },
-];

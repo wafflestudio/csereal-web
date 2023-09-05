@@ -44,7 +44,7 @@ export default function NavTreeRow({
       return (
         <Link
           href={href}
-          className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
+          className="block font-yoon text-md font-medium mb-6 text-neutral-800 hover:text-main-orange "
           onClick={closeNavbar}
         >
           {isEnglish ? capitalizeFirstLetter(segmentNode.segment) : segmentNode.name}
@@ -52,7 +52,7 @@ export default function NavTreeRow({
       );
     } else {
       return (
-        <p className="block font-yoon text-md font-medium mb-6 text-white">
+        <p className="block font-yoon text-md font-medium mb-6 text-neutral-500">
           {isEnglish ? capitalizeFirstLetter(segmentNode.segment) : segmentNode.name}
         </p>
       );

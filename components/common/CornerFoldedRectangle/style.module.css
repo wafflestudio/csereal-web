@@ -1,11 +1,12 @@
-.folding {
-  --bg-color: #f5f5f5;
-  border: 1px solid var(--bg-color);
+.animated {
+  --white: #141212;
+  --neutral-200: #262626;
+  --neutral-600: #d4d4d4;
   transition: 0.3s;
 }
 
 .folding:hover {
-  background-color: var(--bg-color) !important;
+  background-color: var(--neutral-200) !important;
 }
 
 .folding::before,
@@ -13,32 +14,27 @@
   display: inline-block;
   content: '';
   position: absolute;
-  top: -1px;
-  right: -1px;
+  top: -0.8px;
+  right: -0.8px;
   width: 0;
   height: 0;
   transition: 0.3s;
+  border-bottom-left-radius: 1px;
 }
 
 .folding::before {
-  background: linear-gradient(-135deg, white 50%, var(--bg-color) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-600) 50%);
 }
 
 .folding::after {
-  border-style: solid;
-  border-width: 0;
-  border-bottom-left-radius: 0.125rem;
-  border-color: transparent transparent var(--bg-color) var(--bg-color);
-  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-600) 50%);
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.5));
 }
 
-.folding:hover::before {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
+.folding:hover::before,
 .folding:hover::after {
-  border-width: 1.25rem 0 0 1.25rem;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
 }
 
 .unfolding::before,
@@ -46,32 +42,25 @@
   display: inline-block;
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -0.8px;
+  right: -0.8px;
+  width: 1.75rem; /* 28px */
+  height: 1.75rem; /* 28px */
   transition: 0.4s;
+  border-bottom-left-radius: 4px;
 }
 
 .unfolding::before {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(-135deg, white 50%, #404040 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-200) 50%);
 }
 
 .unfolding::after {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 27.9px 0 0 27.9px;
-  border-bottom-left-radius: 5px;
-  border-color: transparent transparent #e5e5e5 #e5e5e5;
-  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-600) 50%);
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
 }
 
-.unfolding:hover::before {
-  width: 0;
-  height: 0;
-}
-
+.unfolding:hover::before,
 .unfolding:hover::after {
-  border-width: 0;
+  width: 0;
+  height: 0;
 }

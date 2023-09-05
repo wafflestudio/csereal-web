@@ -1,35 +1,15 @@
 import { getNewsPostDetail } from '@/apis/news';
 
-import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent } from '@/components/editor/PostEditorProps';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import EditNewsPageContent from '@/components/news/EditNewsPageContent';
 
-import { NewsTags } from '@/constants/tag';
+interface EditNewsPageProps {
+  params: { id: string };
+}
 
-export default async function NewsEditPage() {
-  const handleComplete = async (content: PostEditorContent) => {
-    console.log(content);
-    // throw new Error();
-  };
+export default async function EditNewsPage({ params: { id: rawId } }: EditNewsPageProps) {
+  const id = +rawId;
+  if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 
-  const initialContent = await getNewsPostDetail(1, {});
-
-  const handleDelete = async () => {};
-
-  return (
-    <PageLayout title="새 소식 편집" titleType="big" titleMargin="mb-[2.25rem]">
-      <PostEditor
-        tags={NewsTags}
-        showMainImage
-        showIsSlide
-        actions={{
-          type: 'EDIT',
-          onComplete: handleComplete,
-          onDelete: handleDelete,
-        }}
-        // 첨부파일 관련 확정되면 적용
-        // initialContent={initialContent}
-      />
-    </PageLayout>
-  );
+  const data = await getNewsPostDetail(id, {});
+  return <EditNewsPageContent id={id} data={data} />;
 }

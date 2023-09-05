@@ -13,9 +13,9 @@ export default async function FacultyRecruitment() {
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <CornerFoldedRectangle
-        radius={0.3125}
+        radius={0.25} // 4px
         colorTheme={COLOR_THEME.darkGray}
-        triangleLength={1.75}
+        triangleLength={1.75} // 28px
         triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
         margin="mb-8"
         animationType="unfolding"
@@ -32,10 +32,7 @@ function LatestRecruitmentBanner({
   latestRecruitmentPostHref,
 }: GETFacultyRecruitmentResponse) {
   return (
-    <a
-      className="block relative w-[25rem] h-[4.5rem] text-white font-yoon"
-      href={latestRecruitmentPostHref}
-    >
+    <a className="block relative w-[25rem] h-[4.5rem] font-yoon" href={latestRecruitmentPostHref}>
       <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
         최근 채용 바로가기
       </p>

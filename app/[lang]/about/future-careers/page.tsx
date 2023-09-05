@@ -38,7 +38,7 @@ const TABLE_COLUMN_SIZE = ['w-12', 'w-[12.5rem]', 'w-80', 'w-20'];
 
 function CompanyTableHeader() {
   return (
-    <div className="flex pt-3 pb-[.81rem] border-b-[1px] border-neutral-200 [&_p]:pl-3 leading-3">
+    <div className="flex py-3 border-b-[1px] border-neutral-200 [&_p]:pl-3">
       <p className={TABLE_COLUMN_SIZE[0]}>연번</p>
       <p className={TABLE_COLUMN_SIZE[1]}>창업 기업명</p>
       <p className={TABLE_COLUMN_SIZE[2]}>홈페이지</p>
@@ -56,7 +56,7 @@ interface CompanyTableRowProps {
 
 function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
   return (
-    <li className="flex pt-[.63rem] pb-3 odd:bg-neutral-50">
+    <li className="flex py-3 odd:bg-neutral-100">
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
       <a

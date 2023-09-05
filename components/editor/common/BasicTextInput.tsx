@@ -14,7 +14,7 @@ export default function BasicTextInput({
   return (
     <input
       type="text"
-      className={`${maxWidth} rounded-sm border border-neutral-700 h-[1.875rem]
+      className={`${maxWidth} rounded-sm border border-[#ffffff] bg-white h-[1.875rem]
             outline-none font-noto text-xs pl-2 font-normal`}
       placeholder={placeholder}
       value={value}

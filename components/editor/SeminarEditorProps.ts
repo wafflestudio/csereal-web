@@ -1,32 +1,32 @@
 import { CreateAction, EditAction } from './common/ActionButtons';
+import { PostEditorFile, PostEditorImage } from './PostEditorProps';
 
 export interface SeminarEditorContent {
   title: string;
   description: string;
   location: string;
   schedule: SeminarSchedule;
-  host: string;
+  host: string | null;
   speaker: SeminarSpeaker;
-  attachments: File[];
+  attachments: PostEditorFile[];
   isPublic: boolean;
+  isImportant: boolean;
 }
 
 export interface SeminarSchedule {
-  allDay: boolean;
-  showEndDate: boolean;
   startDate: Date;
   endDate: Date;
 }
 
 export interface SeminarSpeaker {
   name: string;
-  nameURL: string;
+  nameURL: string | null;
   // 직함
-  title: string;
+  title: string | null;
   organization: string;
-  organizationURL: string;
+  organizationURL: string | null;
   description: string;
-  imageURL?: File;
+  image: PostEditorImage | null;
 }
 
 export interface SeminarEditorProps {
@@ -39,8 +39,6 @@ export const seminarEditorPlaceholder: SeminarEditorContent = {
   description: '',
   location: '',
   schedule: {
-    allDay: false,
-    showEndDate: false,
     startDate: new Date(),
     endDate: new Date(),
   },
@@ -52,7 +50,9 @@ export const seminarEditorPlaceholder: SeminarEditorContent = {
     organization: '',
     organizationURL: '',
     description: '',
+    image: null,
   },
   attachments: [],
   isPublic: true,
+  isImportant: false,
 };

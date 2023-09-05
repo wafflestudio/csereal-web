@@ -57,17 +57,6 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
     };
 
-  const setFiles: Dispatch<SetStateAction<File[]>> = (dispatch) => {
-    if (typeof dispatch === 'function') {
-      setContent((content) => ({
-        ...content,
-        attachments: dispatch(content.attachments),
-      }));
-    } else {
-      setContentByKey('attachments')(dispatch);
-    }
-  };
-
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
@@ -83,9 +72,19 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         speakerIntroductionEditorRef={speakerIntroductionEditorRef}
         initialContent={content.speaker.description}
       />
-      <ImageFieldset file={content.speaker.imageURL} setFile={setSpeakerContentByKey('imageURL')} />
-      <FileFieldset files={content.attachments} setFiles={setFiles} />
-      <IsPublicFieldset isPublic={content.isPublic} setIsPublic={setContentByKey('isPublic')} />
+      <ImageFieldset file={content.speaker.image} setFile={setSpeakerContentByKey('image')} />
+      <FileFieldset
+        files={content.attachments}
+        setFiles={(dispatch) => {
+          setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
+        }}
+      />
+      <CheckboxFieldset
+        isPublic={content.isPublic}
+        isImportant={content.isImportant}
+        setIsPublic={setContentByKey('isPublic')}
+        setIsImportant={setContentByKey('isImportant')}
+      />
 
       <div className="self-end flex gap-3">
         {actions.type === 'CREATE' && (
@@ -285,20 +284,31 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
   );
 }
 
-function IsPublicFieldset({
+function CheckboxFieldset({
   isPublic,
   setIsPublic,
+  isImportant,
+  setIsImportant,
 }: {
   isPublic: boolean;
+  isImportant: boolean;
   setIsPublic: (value: boolean) => void;
+  setIsImportant: (value: boolean) => void;
 }) {
   return (
     <Fieldset title="게시 설정" titleMb="mb-3" mb="mb-11">
-      <TagCheckbox
-        tag="비공개 글"
-        isChecked={isPublic}
-        toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
-      />
+      <div className="flex flex-col gap-1">
+        <TagCheckbox
+          tag="비공개 글"
+          isChecked={!isPublic}
+          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
+        />
+        <TagCheckbox
+          tag="메인-중요 안내에 표시"
+          isChecked={isImportant}
+          toggleCheck={(tag, isChecked) => setIsImportant(!isChecked)}
+        />
+      </div>
     </Fieldset>
   );
 }
