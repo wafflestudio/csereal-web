@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SimpleImportant } from '@/types/admin';
+import { ImportantPreview } from '@/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';
 import { ImportantInfo } from './ImportantManagement';
 
 interface ImportantListProps {
-  posts: SimpleImportant[];
+  posts: ImportantPreview[];
   selectedPostInfos: ImportantInfo[];
   setSelectedPostInfos: Dispatch<SetStateAction<ImportantInfo[]>>;
 }

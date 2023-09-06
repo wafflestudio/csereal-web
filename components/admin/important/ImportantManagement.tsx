@@ -13,7 +13,7 @@ import AlertModal from '@/components/modal/AlertModal';
 import useCallbackOnce from '@/hooks/useCallbackOnce';
 import useModal from '@/hooks/useModal';
 
-import { ADMIN_MENU, SimpleImportant } from '@/types/admin';
+import { ADMIN_MENU, ImportantInfo, ImportantPreview } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -22,14 +22,9 @@ import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
 
 interface ImportantManagementProps {
-  posts: SimpleImportant[];
+  posts: ImportantPreview[];
   page: number;
   total: number;
-}
-
-export interface ImportantInfo {
-  id: number;
-  category: string;
 }
 
 const POST_LIMIT = 40;

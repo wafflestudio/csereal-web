@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SimpleSlide } from '@/types/admin';
+import { SlidePreview } from '@/types/admin';
 
 import SlideListHeader from './SlideLIstHeader';
 import SlideListRow from './SlideListRow';
 
 interface SlideListProps {
-  posts: SimpleSlide[];
+  posts: SlidePreview[];
   selectedPostIds: Set<number>;
   setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
 }

@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
-import { SimpleSlide } from '@/types/admin';
+import { SlidePreview } from '@/types/admin';
 import { seminar } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
 interface SlideListRowProps {
   index: number;
-  post: SimpleSlide;
+  post: SlidePreview;
   isSelected: boolean;
   toggleSelected: (id: number) => void;
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Pagination from '@/components/common/Pagination';
@@ -26,11 +25,6 @@ export default function NoticePageContent({
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
-  const router = useRouter();
-
-  const mutate = () => {
-    router.refresh();
-  };
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });

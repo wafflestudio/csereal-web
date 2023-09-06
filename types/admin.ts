@@ -1,14 +1,19 @@
 export const ADMIN_MENU = { slide: '슬라이드쇼 관리', important: '중요 안내 관리' } as const;
 
-export interface SimpleSlide {
+export interface SlidePreview {
   title: string;
   createdAt: string;
   id: number;
 }
 
-export interface SimpleImportant {
+export interface ImportantPreview {
   title: string;
   createdAt: string;
   id: number;
   category: 'notice' | 'news' | 'seminar';
+}
+
+export interface ImportantInfo {
+  id: number;
+  category: string;
 }

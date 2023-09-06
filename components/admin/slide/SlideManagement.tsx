@@ -13,7 +13,7 @@ import AlertModal from '@/components/modal/AlertModal';
 import useCallbackOnce from '@/hooks/useCallbackOnce';
 import useModal from '@/hooks/useModal';
 
-import { ADMIN_MENU, SimpleSlide } from '@/types/admin';
+import { ADMIN_MENU, SlidePreview } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -22,7 +22,7 @@ import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
 
 interface SlideManagementProps {
-  posts: SimpleSlide[];
+  posts: SlidePreview[];
   page: number;
   total: number;
 }

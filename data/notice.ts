@@ -65,10 +65,10 @@ const NoticeMock = {
 
 const noticeListMock = [
   NoticeMockLong,
-  NoticeMockPrivate,
   ...Array(6)
     .fill(0)
     .map((_, i) => ({ ...NoticeMockPin, id: i + 2 })),
+  NoticeMockPrivate,
   ...Array(20)
     .fill(0)
     .map((_, i) => ({ ...NoticeMock, id: i + 10 })),
