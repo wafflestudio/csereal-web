@@ -14,17 +14,8 @@ export default function useCallbackOnce(callback: Function, resetAfterSuccess: b
   return async (e?: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (requesting) return;
-    try {
-      setRequesting(true);
-      await callback(e);
-      if (resetAfterSuccess) setRequesting(false);
-    } catch (e) {
-      setRequesting(false);
-      if (e instanceof Error) {
-        errorToast(e.message);
-      } else {
-        throw e;
-      }
-    }
+    setRequesting(true);
+    await callback(e);
+    setRequesting(false);
   };
 }

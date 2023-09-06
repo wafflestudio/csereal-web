@@ -14,6 +14,7 @@ export const getRequest = async <T = unknown>(
     method: 'GET',
   });
   checkError(response);
+  console.log(response);
   const responseData = await response.json();
 
   return responseData as T;
@@ -31,8 +32,12 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
   checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
+  console.log(response);
+  if (response) {
+    console.log(response.body);
+    const responseData = await response.json();
+    return responseData as T;
+  }
 };
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {

@@ -51,6 +51,7 @@ export default function NoticeListRow({
       <PrivateOrPinCell isPrivate={!post.isPublic} isPinned={post.isPinned} />
       <TitleCell
         title={post.title}
+        hasAttachment={post.hasAttachment}
         href={`${noticePath}/${post.id}${queryString}`}
         isEditMode={isEditMode}
       />
@@ -91,18 +92,19 @@ function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinne
 
 interface TitleCellProps {
   title: string;
+  hasAttachment: boolean;
   href: string;
   isEditMode: boolean;
 }
 
-function TitleCell({ title, href, isEditMode }: TitleCellProps) {
+function TitleCell({ title, hasAttachment, href, isEditMode }: TitleCellProps) {
   if (isEditMode) {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
         <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
           {title}
         </span>
-        <ClipIcon className="shrink-0" />
+        {hasAttachment && <ClipIcon className="shrink-0" />}
       </span>
     );
   } else {
@@ -112,7 +114,7 @@ function TitleCell({ title, href, isEditMode }: TitleCellProps) {
           <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
             {title}
           </span>
-          <ClipIcon className="shrink-0" />
+          {hasAttachment && <ClipIcon className="shrink-0" />}
         </Link>
       </span>
     );

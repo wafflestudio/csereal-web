@@ -4,10 +4,11 @@ import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { patchMultipleSlides } from '@/apis/admin';
+import { batchUnslide } from '@/app/admin/actions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
+import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 
 import useCallbackOnce from '@/hooks/useCallbackOnce';
@@ -51,8 +52,20 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   };
 
   const handleBatchUnslide = useCallbackOnce(async () => {
-    await patchMultipleSlides(Array.from(selectedPostIds));
-    finishRequest();
+    const result = await batchUnslide(selectedPostIds);
+    if (result?.error) {
+      errorToast('슬라이드를 해제하지 못했습니다.');
+      closeModal();
+      if (result.error instanceof Error) {
+        console.error(result.error.message);
+      } else {
+        throw result.error;
+      }
+    } else {
+      successToast('슬라이드를 해제했습니다.');
+      resetSelectedPosts();
+      closeModal();
+    }
   });
 
   return (

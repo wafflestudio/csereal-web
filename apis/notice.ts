@@ -53,10 +53,18 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
   });
 };
 
-export const patchMultipleNotices = (idList: number[]) =>
-  patchRequest(noticePath, { body: JSON.stringify({ idList }) });
+export const patchMultipleNotices = (idList: number[]) => {
+  console.log(JSON.stringify({ idList }));
+  return patchRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList }),
+  });
+};
 
 export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
 
 export const deleteMultipleNotices = (idList: number[]) =>
-  deleteRequest(noticePath, { body: JSON.stringify({ idList }) });
+  deleteRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList }),
+  });

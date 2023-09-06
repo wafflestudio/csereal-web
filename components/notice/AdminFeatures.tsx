@@ -1,9 +1,8 @@
 'use client';
 
-import { revalidatePath } from 'next/cache';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-import { deleteMultipleNotices, patchMultipleNotices } from '@/apis/notice';
+import { batchDelete, batchUnpin } from '@/app/community/notice/actions';
 
 import useCallbackOnce from '@/hooks/useCallbackOnce';
 import useModal from '@/hooks/useModal';
@@ -13,6 +12,7 @@ import { notice } from '@/types/page';
 import { getPath } from '@/utils/page';
 
 import { BatchButton, CreateButton, EditButton } from './NoticeButtons';
+import { errorToast, successToast } from '../common/toast';
 import AlertModal from '../modal/AlertModal';
 
 interface AdminFeaturesProps {
@@ -37,20 +37,38 @@ export default function AdminFeatures({
     setIsEditMode(!isEditMode);
   };
 
-  const finishRequest = () => {
-    resetSelectedPosts();
-    revalidatePath('/notice');
-    closeModal();
-  };
-
   const handleBatchDelete = useCallbackOnce(async () => {
-    await deleteMultipleNotices(Array.from(selectedPostIds));
-    finishRequest();
+    const result = await batchDelete(selectedPostIds);
+    if (result?.error) {
+      errorToast('공지를 삭제하지 못했습니다.');
+      closeModal();
+      if (result.error instanceof Error) {
+        console.error(result.error.message);
+      } else {
+        throw result.error;
+      }
+    } else {
+      successToast('선택된 공지를 삭제했습니다.');
+      resetSelectedPosts();
+      closeModal();
+    }
   });
 
   const handleBatchUnpin = useCallbackOnce(async () => {
-    await patchMultipleNotices(Array.from(selectedPostIds));
-    finishRequest();
+    const result = await batchUnpin(selectedPostIds);
+    if (result?.error) {
+      errorToast('공지를 고정 해제하지 못했습니다.');
+      closeModal();
+      if (result.error instanceof Error) {
+        console.error(result.error.message);
+      } else {
+        throw result.error;
+      }
+    } else {
+      successToast('선택된 공지를 고정 해체했습니다.');
+      resetSelectedPosts();
+      closeModal();
+    }
   });
 
   return (

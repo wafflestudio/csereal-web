@@ -1,13 +1,13 @@
 'use client';
 
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { patchMultipleImportants } from '@/apis/admin';
+import { batchUnimportant } from '@/app/admin/actions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
+import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 
 import useCallbackOnce from '@/hooks/useCallbackOnce';
@@ -38,12 +38,6 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
     setSelectedPostInfos([]);
   };
 
-  const finishRequest = () => {
-    resetSelectedPosts();
-    revalidatePath('/admin/important');
-    closeModal();
-  };
-
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
     resetSelectedPosts();
@@ -51,8 +45,20 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   };
 
   const handleBatchUnimportant = useCallbackOnce(async () => {
-    await patchMultipleImportants(Array.from(selectedPostInfos));
-    finishRequest();
+    const result = await batchUnimportant(selectedPostInfos);
+    if (result?.error) {
+      errorToast('중요 안내를 해제하지 못했습니다.');
+      closeModal();
+      if (result.error instanceof Error) {
+        console.error(result.error.message);
+      } else {
+        throw result.error;
+      }
+    } else {
+      successToast('중요 안내를 해제했습니다.');
+      resetSelectedPosts();
+      closeModal();
+    }
   });
 
   return (
