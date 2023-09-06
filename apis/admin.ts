@@ -2,9 +2,9 @@ import { SimpleImportant, SimpleSlide } from '@/types/admin';
 
 import { deleteRequest, getRequest, patchRequest } from '.';
 
-// export const getSlides = (page: number) => getRequest('/slide', { page });
+// export const getSlides = (page: number) => getRequest('/admin/slide', { page });
 
-// export const getImportants = (page: number) => getRequest('/important', { page });
+// export const getImportants = (page: number) => getRequest('/admin/important', { page });
 
 export const patchMultipleSlides = (newsIdList: number[]) =>
   patchRequest('/admin/slide', { body: JSON.stringify(newsIdList) });

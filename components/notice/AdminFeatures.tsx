@@ -1,5 +1,6 @@
 'use client';
 
+import { revalidatePath } from 'next/cache';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import { deleteMultipleNotices, patchMultipleNotices } from '@/apis/notice';
@@ -38,8 +39,8 @@ export default function AdminFeatures({
 
   const finishRequest = () => {
     resetSelectedPosts();
+    revalidatePath('/notice');
     closeModal();
-    // mutate()
   };
 
   const handleBatchDelete = useCallbackOnce(async () => {

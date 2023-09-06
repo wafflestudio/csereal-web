@@ -1,5 +1,6 @@
 'use client';
 
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -44,8 +45,8 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
 
   const finishRequest = () => {
     resetSelectedPosts();
+    revalidatePath('/admin/important');
     closeModal();
-    // mutate()
   };
 
   const changePage = (newPage: number) => {

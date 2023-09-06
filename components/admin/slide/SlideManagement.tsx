@@ -1,5 +1,6 @@
 'use client';
 
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -39,8 +40,8 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
 
   const finishRequest = () => {
     resetSelectedPosts();
+    revalidatePath('/admin/slide');
     closeModal();
-    // mutate()
   };
 
   const changePage = (newPage: number) => {
