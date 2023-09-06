@@ -7,10 +7,16 @@ import { deleteRequest, getRequest, patchRequest } from '.';
 // export const getImportants = (page: number) => getRequest('/admin/important', { page });
 
 export const patchMultipleSlides = (newsIdList: number[]) =>
-  patchRequest('/admin/slide', { body: JSON.stringify({ newsIdList }) });
+  patchRequest('/admin/slide', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ newsIdList }),
+  });
 
 export const patchMultipleImportants = (targetInfos: { id: number; category: string }[]) =>
-  patchRequest('/admin/important', { body: JSON.stringify({ targetInfos }) });
+  patchRequest('/admin/important', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ targetInfos }),
+  });
 
 export const getSlides = async (): Promise<{ posts: SlidePreview[]; total: number }> => ({
   posts: [
