@@ -35,6 +35,7 @@ const NoticeMockLong: SimpleNoticePost = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: true,
+  isPublic: true,
 };
 
 const NoticeMockPin = {
@@ -42,17 +43,29 @@ const NoticeMockPin = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
+  isPublic: true,
+};
+
+const NoticeMockPrivate = {
+  id: 80,
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
+  createdAt: '2023-07-11T09:29:13',
+  isPinned: true,
+  hasAttachment: false,
+  isPublic: false,
 };
 
 const NoticeMock = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: false,
+  isPublic: true,
   hasAttachment: true,
 };
 
 const noticeListMock = [
   NoticeMockLong,
+  NoticeMockPrivate,
   ...Array(6)
     .fill(0)
     .map((_, i) => ({ ...NoticeMockPin, id: i + 2 })),

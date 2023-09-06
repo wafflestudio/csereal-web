@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
+import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
 import { notice } from '@/types/page';
@@ -38,8 +39,8 @@ export default function NoticeListRow({
   return (
     <li
       className={`flex items-center h-10 py-2.5 ${fontWeight} ${
-        !isEditMode && 'odd:bg-neutral-100'
-      } ${isSelected && 'bg-neutral-100'}`}
+        !isEditMode && (post.isPublic ? 'odd:bg-neutral-100' : 'bg-neutral-200')
+      } ${isSelected && 'bg-neutral-100'} `}
     >
       {isEditMode && (
         <CheckboxCell
@@ -47,7 +48,7 @@ export default function NoticeListRow({
           toggleCheck={() => toggleSelected(post.id, isSelected)}
         />
       )}
-      <PinCell isPinned={post.isPinned} />
+      <PrivateOrPinCell isPrivate={!post.isPublic} isPinned={post.isPinned} />
       <TitleCell
         title={post.title}
         href={`${noticePath}/${post.id}${queryString}`}
@@ -80,10 +81,10 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   );
 }
 
-function PinCell({ isPinned }: { isPinned: boolean }) {
+function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinned: boolean }) {
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.pin} px-[0.8125rem] shrink-0`}>
-      {isPinned && <PinIcon />}
+      {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
   );
 }
