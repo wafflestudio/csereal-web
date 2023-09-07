@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { useQueryString } from '@/hooks/useQueryString';
-
 import { SimpleNoticePost } from '@/types/post';
 
 import NoticeListHeader from './NoticeListHeader';
@@ -20,8 +18,6 @@ export default function NoticeList({
   selectedPostIds,
   setSelectedPostIds,
 }: NoticeListProps) {
-  const queryString = useQueryString();
-
   const selectPost = (id: number) => {
     setSelectedPostIds((prev) => new Set(prev.add(id)));
   };
@@ -45,7 +41,6 @@ export default function NoticeList({
           <NoticeListRow
             key={i}
             post={post}
-            queryString={queryString}
             isEditMode={isEditMode}
             isSelected={selectedPostIds.has(post.id)}
             toggleSelected={toggleSelected}

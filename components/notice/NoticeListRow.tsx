@@ -12,7 +12,6 @@ import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
   post: SimpleNoticePost;
-  queryString: string;
   isEditMode: boolean;
   isSelected: boolean;
   toggleSelected: (id: number, isSelected: boolean) => void;
@@ -25,11 +24,8 @@ export const NOTICE_ROW_CELL_WIDTH = {
   date: 'w-auto',
 } as const;
 
-const noticePath = getPath(notice);
-
 export default function NoticeListRow({
   post,
-  queryString,
   isEditMode,
   isSelected,
   toggleSelected,
@@ -52,7 +48,7 @@ export default function NoticeListRow({
       <TitleCell
         title={post.title}
         hasAttachment={post.hasAttachment}
-        href={`${noticePath}/${post.id}${queryString}`}
+        id={post.id}
         isEditMode={isEditMode}
       />
       <DateCell date={post.createdAt} />
@@ -93,11 +89,13 @@ function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinne
 interface TitleCellProps {
   title: string;
   hasAttachment: boolean;
-  href: string;
+  id: number;
   isEditMode: boolean;
 }
 
-function TitleCell({ title, hasAttachment, href, isEditMode }: TitleCellProps) {
+const noticePath = getPath(notice);
+
+function TitleCell({ title, hasAttachment, id, isEditMode }: TitleCellProps) {
   if (isEditMode) {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
@@ -110,7 +108,10 @@ function TitleCell({ title, hasAttachment, href, isEditMode }: TitleCellProps) {
   } else {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
-        <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
+        <Link
+          href={`${noticePath}/${id}`}
+          className="flex max-w-fit items-center gap-1.5 hover:text-main-orange"
+        >
           <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
             {title}
           </span>
