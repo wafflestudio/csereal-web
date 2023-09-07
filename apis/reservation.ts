@@ -2,6 +2,8 @@
 
 import { cookies } from 'next/dist/client/components/headers';
 
+import { getMockWeeklyReservation } from '@/data/reservation';
+
 import { Reservation, ReservationPostBody } from '@/types/reservation';
 
 import { deleteRequest, getRequest, postRequest } from '.';
@@ -9,7 +11,7 @@ import { deleteRequest, getRequest, postRequest } from '.';
 const reservationPath = '/reservation';
 
 export const postReservation = async (body: ReservationPostBody) => {
-  postRequest(reservationPath, { body: JSON.stringify(body) });
+  await postRequest(reservationPath, { body: JSON.stringify(body) });
 };
 
 export const getWeeklyReservation = async (params: {
@@ -19,7 +21,6 @@ export const getWeeklyReservation = async (params: {
   day: number;
 }) => {
   const jsessionId = cookies().get('JSESSIONID');
-  console.log(jsessionId);
   return (await getRequest(`${reservationPath}/week`, params, {
     credentials: 'include',
     headers: {
@@ -29,11 +30,11 @@ export const getWeeklyReservation = async (params: {
 };
 
 export const deleteSingleReservation = async (id: number) => {
-  deleteRequest(`${reservationPath}/${id}`);
+  await deleteRequest(`${reservationPath}/${id}`);
 };
 
 export const deleteAllRecurringReservation = async (id: number) => {
-  deleteRequest(`${reservationPath}/recurring/${id}`);
+  await deleteRequest(`${reservationPath}/recurring/${id}`);
 };
 
 export const roomNameToId = {

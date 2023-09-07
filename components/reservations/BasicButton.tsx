@@ -1,21 +1,18 @@
-import { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 export default function BasicButton({
   type = 'button',
   className,
   onClick,
   children,
-}: {
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  className?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  children: ReactNode;
-}) {
+  ...props
+}: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
   return (
     <button
       type={type}
       className={`text-xs text-neutral-700 rounded-sm border border-neutral-300 ${className}`}
       onClick={onClick}
+      {...props}
     >
       {children}
     </button>
