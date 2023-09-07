@@ -1,7 +1,5 @@
 'use client';
 
-import { Dispatch, SetStateAction } from 'react';
-
 import { batchDelete, batchUnpin } from '@/actions/noticeActions';
 
 import useModal from '@/hooks/useModal';
@@ -16,7 +14,7 @@ import AlertModal from '../modal/AlertModal';
 
 interface AdminFeaturesProps {
   isEditMode: boolean;
-  setIsEditMode: Dispatch<SetStateAction<boolean>>;
+  toggleEditMode: () => void;
   selectedPostIds: Set<number>;
   resetSelectedPosts: () => void;
 }
@@ -25,16 +23,11 @@ const noticePath = getPath(notice);
 
 export default function AdminFeatures({
   isEditMode,
-  setIsEditMode,
+  toggleEditMode,
   selectedPostIds,
   resetSelectedPosts,
 }: AdminFeaturesProps) {
   const { openModal } = useModal();
-
-  const toggleEditMode = () => {
-    resetSelectedPosts();
-    setIsEditMode(!isEditMode);
-  };
 
   const handleBatchDelete = async () => {
     const result = await batchDelete(selectedPostIds);

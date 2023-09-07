@@ -35,7 +35,7 @@ export default function AlertModal({
           <CancelButton
             text={cancelText}
             onClick={() => {
-              if (onCancel) onCancel();
+              onCancel?.();
               closeModal();
             }}
           />

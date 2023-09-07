@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import { batchUnslide } from '@/actions/adminActions';
 
@@ -28,14 +28,35 @@ interface SlideManagementProps {
 
 const POST_LIMIT = 40;
 
+type ReducerAction =
+  | {
+      type: 'ADD' | 'DELETE';
+      id: number;
+    }
+  | {
+      type: 'RESET';
+    };
+
+const reducer = (state: Set<number>, action: ReducerAction) => {
+  switch (action.type) {
+    case 'ADD':
+      return new Set<number>(state.add(action.id));
+    case 'DELETE':
+      state.delete(action.id);
+      return new Set<number>(state);
+    case 'RESET':
+      return new Set<number>();
+    default:
+      throw new Error('undefined action');
+  }
+};
+
 export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
-  const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const { openModal } = useModal();
   const router = useRouter();
 
-  const resetSelectedPosts = () => {
-    setSelectedPostIds(new Set());
-  };
+  const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
@@ -66,7 +87,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <SlideList
         posts={posts}
         selectedPostIds={selectedPostIds}
-        setSelectedPostIds={setSelectedPostIds}
+        changeSelectedIds={changeSelectedIds}
       />
       <Pagination
         totalPostsCount={total}

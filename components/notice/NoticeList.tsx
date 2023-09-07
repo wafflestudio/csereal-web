@@ -9,25 +9,18 @@ interface NoticeListProps {
   posts: SimpleNoticePost[];
   isEditMode: boolean;
   selectedPostIds: Set<number>;
-  setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
+  changeSelectedIds: Dispatch<{ type: 'ADD' | 'DELETE'; id: number }>;
 }
 
 export default function NoticeList({
   posts,
   isEditMode,
   selectedPostIds,
-  setSelectedPostIds,
+  changeSelectedIds,
 }: NoticeListProps) {
-  const selectPost = (id: number) => {
-    setSelectedPostIds((prev) => new Set(prev.add(id)));
-  };
+  const selectPost = (id: number) => changeSelectedIds({ type: 'ADD', id });
 
-  const deselectPost = (id: number) => {
-    setSelectedPostIds((prev) => {
-      prev.delete(id);
-      return new Set(prev);
-    });
-  };
+  const deselectPost = (id: number) => changeSelectedIds({ type: 'DELETE', id });
 
   const toggleSelected = (id: number, isSelected: boolean) => {
     isSelected ? deselectPost(id) : selectPost(id);

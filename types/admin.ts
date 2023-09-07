@@ -6,14 +6,16 @@ export interface SlidePreview {
   id: number;
 }
 
+export type ImportantCategory = 'notice' | 'news' | 'seminar';
+
 export interface ImportantPreview {
   title: string;
   createdAt: string;
   id: number;
-  category: 'notice' | 'news' | 'seminar';
+  category: ImportantCategory;
 }
 
 export interface ImportantInfo {
   id: number;
-  category: string;
+  category: ImportantCategory;
 }

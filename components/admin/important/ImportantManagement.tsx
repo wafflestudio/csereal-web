@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import { batchUnimportant } from '@/actions/adminActions';
 
@@ -12,7 +12,7 @@ import AlertModal from '@/components/modal/AlertModal';
 
 import useModal from '@/hooks/useModal';
 
-import { ADMIN_MENU, ImportantInfo, ImportantPreview } from '@/types/admin';
+import { ADMIN_MENU, ImportantCategory, ImportantInfo, ImportantPreview } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -28,14 +28,36 @@ interface ImportantManagementProps {
 
 const POST_LIMIT = 40;
 
+type ReducerAction =
+  | {
+      type: 'ADD' | 'DELETE';
+      postInfo: { id: number; category: ImportantCategory };
+    }
+  | {
+      type: 'RESET';
+    };
+
+const reducer = (state: ImportantInfo[], action: ReducerAction) => {
+  switch (action.type) {
+    case 'ADD':
+      return [...state, action.postInfo];
+    case 'DELETE':
+      return state.filter(
+        (info) => !(info.id === action.postInfo.id && info.category === action.postInfo.category),
+      );
+    case 'RESET':
+      return [];
+    default:
+      throw new Error('undefined action');
+  }
+};
+
 export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
-  const [selectedPostInfos, setSelectedPostInfos] = useState<ImportantInfo[]>([]);
+  const [selectedPostInfos, changeSelectedInfos] = useReducer(reducer, []);
   const { openModal } = useModal();
   const router = useRouter();
 
-  const resetSelectedPosts = () => {
-    setSelectedPostInfos([]);
-  };
+  const resetSelectedPosts = () => changeSelectedInfos({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
@@ -66,7 +88,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
       <ImportantList
         posts={posts}
         selectedPostInfos={selectedPostInfos}
-        setSelectedPostInfos={setSelectedPostInfos}
+        changeSelectedInfos={changeSelectedInfos}
       />
       <Pagination
         totalPostsCount={total}

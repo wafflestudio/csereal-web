@@ -43,7 +43,7 @@ function RoadMapDescription() {
 
 function RoadMap() {
   return (
-    <div className="relative h-[430px]">
+    <div className="relative h-[430px] min-h-[310px]">
       <Image src={roadmap} alt="교과목_로드맵" priority fill objectFit="contain" />
     </div>
   );

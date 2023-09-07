@@ -1,5 +1,3 @@
-import { getMockNoticePosts } from '@/data/notice';
-
 import { getNoticePosts } from '@/apis/notice';
 
 import NoticePageContent from '@/components/notice/NoticePageContent';

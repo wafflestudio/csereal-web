@@ -1,31 +1,25 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { ImportantPreview } from '@/types/admin';
+import { ImportantInfo, ImportantPreview } from '@/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';
-import { ImportantInfo } from './ImportantManagement';
 
 interface ImportantListProps {
   posts: ImportantPreview[];
   selectedPostInfos: ImportantInfo[];
-  setSelectedPostInfos: Dispatch<SetStateAction<ImportantInfo[]>>;
+  changeSelectedInfos: Dispatch<{ type: 'ADD' | 'DELETE'; postInfo: ImportantInfo }>;
 }
 
 export default function ImportantList({
   posts,
   selectedPostInfos,
-  setSelectedPostInfos,
+  changeSelectedInfos,
 }: ImportantListProps) {
-  const selectPost = (postInfo: ImportantInfo) => {
-    setSelectedPostInfos((prev) => [...prev, postInfo]);
-  };
+  const selectPost = (postInfo: ImportantInfo) => changeSelectedInfos({ type: 'ADD', postInfo });
 
-  const deselectPost = (postInfo: ImportantInfo) => {
-    setSelectedPostInfos((prev) =>
-      prev.filter((info) => !(info.id === postInfo.id && info.category === postInfo.category)),
-    );
-  };
+  const deselectPost = (postInfo: ImportantInfo) =>
+    changeSelectedInfos({ type: 'DELETE', postInfo });
 
   const getIsSelected = (postInfo: ImportantInfo) =>
     selectedPostInfos.some((p) => p.id === postInfo.id && p.category === postInfo.category);
