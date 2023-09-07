@@ -10,7 +10,6 @@ import Pagination from '@/components/common/Pagination';
 import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 
-import useCallbackOnce from '@/hooks/useCallbackOnce';
 import useModal from '@/hooks/useModal';
 
 import { ADMIN_MENU, ImportantInfo, ImportantPreview } from '@/types/admin';
@@ -31,7 +30,7 @@ const POST_LIMIT = 40;
 
 export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
   const [selectedPostInfos, setSelectedPostInfos] = useState<ImportantInfo[]>([]);
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const router = useRouter();
 
   const resetSelectedPosts = () => {
@@ -44,11 +43,10 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
-  const handleBatchUnimportant = useCallbackOnce(async () => {
+  const handleBatchUnimportant = async () => {
     const result = await batchUnimportant(selectedPostInfos);
     if (result?.error) {
       errorToast('중요 안내를 해제하지 못했습니다.');
-      closeModal();
       if (result.error instanceof Error) {
         console.error(result.error.message);
       } else {
@@ -57,9 +55,8 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
     } else {
       successToast('중요 안내를 해제했습니다.');
       resetSelectedPosts();
-      closeModal();
     }
-  });
+  };
 
   return (
     <div>
@@ -85,7 +82,6 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
             <AlertModal
               message="정말 선택된 중요 안내를 모두 해제하시겠습니까?"
               confirmText="해제"
-              onClose={closeModal}
               onConfirm={handleBatchUnimportant}
             />,
           )

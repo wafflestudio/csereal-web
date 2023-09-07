@@ -1,3 +1,7 @@
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+
+import useModal from '@/hooks/useModal';
+
 import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
@@ -5,7 +9,7 @@ interface AlertModalProps {
   cancelText?: string;
   confirmText?: string;
   onConfirm: () => void;
-  onClose: () => void;
+  onCancel?: () => void;
 }
 
 export default function AlertModal({
@@ -13,23 +17,31 @@ export default function AlertModal({
   cancelText = '취소',
   confirmText = '확인',
   onConfirm,
-  onClose,
+  onCancel,
 }: AlertModalProps) {
+  const { closeModal } = useModal();
+
   return (
-    <ModalFrame onClose={onClose}>
-      <div className="px-10 py-6 bg-white">
+    <ModalFrame onClose={closeModal}>
+      <form
+        className="px-10 py-6 bg-white"
+        action={() => {
+          onConfirm();
+          closeModal();
+        }}
+      >
         <AlertMessage message={message} />
         <div className="text-right">
-          <CancelButton text={cancelText} onClick={onClose} />
-          <ConfirmButton
-            text={confirmText}
+          <CancelButton
+            text={cancelText}
             onClick={() => {
-              onConfirm();
-              onClose();
+              if (onCancel) onCancel();
+              closeModal();
             }}
           />
+          <ConfirmButton text={confirmText} />
         </div>
-      </div>
+      </form>
     </ModalFrame>
   );
 }
@@ -43,17 +55,21 @@ function CancelButton({ text, onClick }: { text: string; onClick: () => void }) 
     <button
       className={`px-[.875rem] h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 hover:bg-neutral-200 font-medium text-xs text-neutral-500`}
       onClick={onClick}
+      type="button"
     >
       {text}
     </button>
   );
 }
 
-function ConfirmButton({ text, onClick }: { text: string; onClick: () => void }) {
+function ConfirmButton({ text }: { text: string }) {
+  const { pending } = useFormStatus();
+
   return (
     <button
       className={`ml-2.5 px-[.875rem] h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 hover:bg-neutral-500 font-medium text-xs text-white`}
-      onClick={onClick}
+      disabled={pending}
+      type="submit"
     >
       {text}
     </button>

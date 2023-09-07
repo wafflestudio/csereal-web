@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { batchDelete, batchUnpin } from '@/app/community/notice/actions';
 
-import useCallbackOnce from '@/hooks/useCallbackOnce';
 import useModal from '@/hooks/useModal';
 
 import { notice } from '@/types/page';
@@ -30,18 +29,17 @@ export default function AdminFeatures({
   selectedPostIds,
   resetSelectedPosts,
 }: AdminFeaturesProps) {
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
 
   const toggleEditMode = () => {
     resetSelectedPosts();
     setIsEditMode(!isEditMode);
   };
 
-  const handleBatchDelete = useCallbackOnce(async () => {
+  const handleBatchDelete = async () => {
     const result = await batchDelete(selectedPostIds);
     if (result?.error) {
       errorToast('공지를 삭제하지 못했습니다.');
-      closeModal();
       if (result.error instanceof Error) {
         console.error(result.error.message);
       } else {
@@ -50,26 +48,23 @@ export default function AdminFeatures({
     } else {
       successToast('선택된 공지를 삭제했습니다.');
       resetSelectedPosts();
-      closeModal();
     }
-  });
+  };
 
-  const handleBatchUnpin = useCallbackOnce(async () => {
+  const handleBatchUnpin = async () => {
     const result = await batchUnpin(selectedPostIds);
     if (result?.error) {
       errorToast('공지를 고정 해제하지 못했습니다.');
-      closeModal();
       if (result.error instanceof Error) {
         console.error(result.error.message);
       } else {
         throw result.error;
       }
     } else {
-      successToast('선택된 공지를 고정 해체했습니다.');
+      successToast('선택된 공지를 고정 해제했습니다.');
       resetSelectedPosts();
-      closeModal();
     }
-  });
+  };
 
   return (
     <div className="flex mt-12 mx-2.5">
@@ -84,7 +79,6 @@ export default function AdminFeatures({
                   message="선택한 게시글을 모두 삭제하시겠습니까?"
                   confirmText="삭제"
                   onConfirm={handleBatchDelete}
-                  onClose={closeModal}
                 />,
               )
             }
@@ -99,7 +93,6 @@ export default function AdminFeatures({
                   message="선택한 게시글을 모두 고정 해제하시겠습니까?"
                   confirmText="고정 해제"
                   onConfirm={handleBatchUnpin}
-                  onClose={closeModal}
                 />,
               )
             }

@@ -8,7 +8,7 @@ import { ImportantInfo } from '@/types/admin';
 
 export const batchUnslide = async (ids: Set<number>) => {
   try {
-    const result = await patchMultipleSlides(Array.from(ids));
+    await patchMultipleSlides(Array.from(ids));
     revalidatePath('/admin');
   } catch (error) {
     return { error };

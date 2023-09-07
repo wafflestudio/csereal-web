@@ -14,9 +14,7 @@ export const getRequest = async <T = unknown>(
     method: 'GET',
   });
   checkError(response);
-  console.log(response);
   const responseData = await response.json();
-
   return responseData as T;
 };
 
@@ -32,9 +30,10 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
   checkError(response);
-  // patch response가 딱히 없는 요청이 있음
-  // const responseData = await response.json();
-  // return responseData as T;
+  if (response.headers.get('content-type')) {
+    const responseData = await response.json();
+    return responseData as T;
+  }
 };
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {
