@@ -15,7 +15,7 @@ export interface ImportantPreview {
   category: ImportantCategory;
 }
 
-export interface ImportantInfo {
+export interface ImportantPostIdentifier {
   id: number;
   category: ImportantCategory;
 }

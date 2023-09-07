@@ -1,31 +1,37 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
-import { ImportantInfo, ImportantPreview } from '@/types/admin';
+import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';
 
 interface ImportantListProps {
   posts: ImportantPreview[];
-  selectedPostInfos: ImportantInfo[];
-  changeSelectedInfos: Dispatch<{ type: 'ADD' | 'DELETE'; postInfo: ImportantInfo }>;
+  selectedPostIdentifiers: ImportantPostIdentifier[];
+  changeSelectedIdentifiers: Dispatch<{
+    type: 'ADD' | 'DELETE';
+    identifier: ImportantPostIdentifier;
+  }>;
 }
 
 export default function ImportantList({
   posts,
-  selectedPostInfos,
-  changeSelectedInfos,
+  selectedPostIdentifiers,
+  changeSelectedIdentifiers,
 }: ImportantListProps) {
-  const selectPost = (postInfo: ImportantInfo) => changeSelectedInfos({ type: 'ADD', postInfo });
+  const selectPost = (identifier: ImportantPostIdentifier) =>
+    changeSelectedIdentifiers({ type: 'ADD', identifier });
 
-  const deselectPost = (postInfo: ImportantInfo) =>
-    changeSelectedInfos({ type: 'DELETE', postInfo });
+  const deselectPost = (identifier: ImportantPostIdentifier) =>
+    changeSelectedIdentifiers({ type: 'DELETE', identifier });
 
-  const getIsSelected = (postInfo: ImportantInfo) =>
-    selectedPostInfos.some((p) => p.id === postInfo.id && p.category === postInfo.category);
+  const getIsSelected = (identifier: ImportantPostIdentifier) =>
+    selectedPostIdentifiers.some(
+      (p) => p.id === identifier.id && p.category === identifier.category,
+    );
 
-  const toggleSelected = (postInfo: ImportantInfo) => {
-    getIsSelected(postInfo) ? deselectPost(postInfo) : selectPost(postInfo);
+  const toggleSelected = (identifier: ImportantPostIdentifier) => {
+    getIsSelected(identifier) ? deselectPost(identifier) : selectPost(identifier);
   };
 
   return (

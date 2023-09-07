@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 
 import { patchMultipleImportants, patchMultipleSlides } from '@/apis/admin';
 
-import { ImportantInfo } from '@/types/admin';
+import { ImportantPostIdentifier } from '@/types/admin';
 
 export const batchUnslide = async (ids: Set<number>) => {
   try {
@@ -15,7 +15,7 @@ export const batchUnslide = async (ids: Set<number>) => {
   }
 };
 
-export const batchUnimportant = async (infos: ImportantInfo[]) => {
+export const batchUnimportant = async (infos: ImportantPostIdentifier[]) => {
   try {
     await patchMultipleImportants(Array.from(infos));
     revalidatePath('/admin');
