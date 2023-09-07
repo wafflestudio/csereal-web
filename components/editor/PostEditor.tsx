@@ -85,13 +85,23 @@ export default function PostEditor({
           <TagCheckbox
             tag="비공개 글"
             isChecked={!content.isPublic}
-            toggleCheck={() => setContentByKey('isPublic')(!content.isPublic)}
+            toggleCheck={() => {
+              setContentByKey('isPublic')(!content.isPublic);
+              if (content.isPublic) {
+                setContentByKey('isPinned')(false);
+              }
+            }}
           />
           {showIsPinned && (
             <TagCheckbox
               tag="목록 상단에 고정"
               isChecked={content.isPinned}
-              toggleCheck={() => setContentByKey('isPinned')(!content.isPinned)}
+              toggleCheck={() => {
+                setContentByKey('isPinned')(!content.isPinned);
+                if (!content.isPinned) {
+                  setContentByKey('isPublic')(true);
+                }
+              }}
             />
           )}
           {showIsImportant && (
