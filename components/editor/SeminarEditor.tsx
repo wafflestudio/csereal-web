@@ -16,7 +16,7 @@ import {
   SeminarEditorProps,
   SeminarSchedule,
   SeminarSpeaker,
-  seminarEditorPlaceholder,
+  getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
 import TagCheckbox from '../common/search/TagCheckbox';
 
@@ -26,7 +26,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
 
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<SeminarEditorContent>({
-    ...seminarEditorPlaceholder,
+    ...getSeminarEditorDefaultValue(),
     ...initialContent,
   });
 

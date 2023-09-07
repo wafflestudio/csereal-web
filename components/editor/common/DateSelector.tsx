@@ -1,8 +1,4 @@
-import { LocalizationProvider, StaticDateTimePicker, StaticDatePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { koKR } from '@mui/x-date-pickers/locales';
-import dayjs from 'dayjs';
-
+import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
 import MuiDateSelector from '@/components/mui/MuiDateSelector';
 
@@ -37,7 +33,34 @@ export default function DateSelector({
     <div>
       <div className="flex gap-[.62rem]">
         <BorderButton text={formatDate(date)} onClick={openCalendar} />
-        {!hideTime && <BorderButton text={formatTime(date)} onClick={openCalendar} />}
+        {!hideTime && (
+          <div className="flex gap-1">
+            <Dropdown
+              contents={Array(24)
+                .fill(0)
+                .map((x, i) => (i + '').padStart(2, '0') + '시')}
+              selectedIndex={date.getHours()}
+              onClick={(idx) => {
+                const newDate = new Date(date);
+                newDate.setHours(idx);
+                setDate(newDate);
+              }}
+              borderStyle="border-neutral-700"
+            />
+            <Dropdown
+              contents={Array(4)
+                .fill(0)
+                .map((x, i) => (i * 15 + '').padStart(2, '0') + '분')}
+              selectedIndex={Math.floor(date.getMinutes() / 15)}
+              onClick={(idx) => {
+                const newDate = new Date(date);
+                newDate.setMinutes(idx * 15);
+                setDate(newDate);
+              }}
+              borderStyle="border-neutral-700"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -55,60 +78,6 @@ const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) 
     >
       {text}
     </button>
-  );
-};
-
-const DateTimePicker = ({
-  date,
-  setDate,
-  close,
-  hideTime,
-}: {
-  date: Date;
-  setDate: (date: Date) => void;
-  close: () => void;
-  hideTime: boolean;
-}) => {
-  return (
-    <LocalizationProvider
-      adapterLocale="ko"
-      dateAdapter={AdapterDayjs}
-      localeText={koKR.components.MuiLocalizationProvider.defaultProps.localeText}
-    >
-      <div className="flex flex-col absolute top-1 left-0 z-10 border border-neutral-700 bg-white">
-        {hideTime ? (
-          <StaticDatePicker
-            value={dayjs(date)}
-            onChange={(value) => {
-              const date = value?.toDate();
-              date && setDate(date);
-            }}
-            slotProps={{
-              actionBar: {
-                actions: [],
-              },
-            }}
-          />
-        ) : (
-          <StaticDateTimePicker
-            value={dayjs(date)}
-            onChange={(value) => {
-              const date = value?.toDate();
-              date && setDate(date);
-            }}
-            slotProps={{
-              actionBar: {
-                actions: [],
-              },
-            }}
-          />
-        )}
-
-        <button className="self-end p-4" onClick={close}>
-          완료
-        </button>
-      </div>
-    </LocalizationProvider>
   );
 };
 

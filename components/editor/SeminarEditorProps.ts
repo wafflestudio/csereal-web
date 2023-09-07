@@ -34,25 +34,35 @@ export interface SeminarEditorProps {
   initialContent?: SeminarEditorContent;
 }
 
-export const seminarEditorPlaceholder: SeminarEditorContent = {
-  title: '',
-  description: '',
-  location: '',
-  schedule: {
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  host: '',
-  speaker: {
-    name: '',
-    nameURL: '',
+export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
+  const date = new Date();
+  const availableMinutes = [0, 15, 30, 45];
+  date.setTime(date.getTime() + 15 * 60 * 1000 - 1);
+  const minute = availableMinutes[Math.floor(date.getMinutes() / 15)];
+  date.setMinutes(minute, 0, 0);
+
+  console.log(date);
+
+  return {
     title: '',
-    organization: '',
-    organizationURL: '',
     description: '',
-    image: null,
-  },
-  attachments: [],
-  isPublic: true,
-  isImportant: false,
+    location: '',
+    schedule: {
+      startDate: date,
+      endDate: date,
+    },
+    host: '',
+    speaker: {
+      name: '',
+      nameURL: '',
+      title: '',
+      organization: '',
+      organizationURL: '',
+      description: '',
+      image: null,
+    },
+    attachments: [],
+    isPublic: true,
+    isImportant: false,
+  };
 };

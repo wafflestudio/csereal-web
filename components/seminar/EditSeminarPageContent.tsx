@@ -12,7 +12,7 @@ import { SeminarPostResponse } from '@/types/post';
 import { getPath } from '@/utils/page';
 
 import SeminarEditor from '../editor/SeminarEditor';
-import { SeminarEditorContent, seminarEditorPlaceholder } from '../editor/SeminarEditorProps';
+import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/SeminarEditorProps';
 
 const newsPath = getPath(news);
 
@@ -24,9 +24,8 @@ export default function EditSeminarPageContent({
   data: SeminarPostResponse;
 }) {
   const router = useRouter();
-
   const initialContent: SeminarEditorContent = {
-    ...seminarEditorPlaceholder,
+    ...getSeminarEditorDefaultValue(),
 
     title: data.title,
     description: data.description,
