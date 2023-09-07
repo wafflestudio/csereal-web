@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { batchUnimportant } from '@/app/admin/actions';
+import { batchUnimportant } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';

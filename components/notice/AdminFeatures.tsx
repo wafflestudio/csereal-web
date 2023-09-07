@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction } from 'react';
 
-import { batchDelete, batchUnpin } from '@/app/community/notice/actions';
+import { batchDelete, batchUnpin } from '@/actions/noticeActions';
 
 import useModal from '@/hooks/useModal';
 
