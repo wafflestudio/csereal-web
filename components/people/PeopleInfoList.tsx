@@ -13,7 +13,7 @@ export default function PeopleInfoList({ title, infoList }: PeopleInfoListProps)
             key={i}
             className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]"
           >
-            <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+            <div className="w-[3px] h-[3px] bg-neutral-700 rounded-full"></div>
             <p>{info}</p>
           </li>
         ))}
