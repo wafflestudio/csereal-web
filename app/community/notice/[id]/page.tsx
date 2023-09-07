@@ -25,15 +25,20 @@ export default async function NoticePostPage({
   searchParams,
 }: NoticePostPageProps) {
   const id = +rawId;
-  if (Number.isNaN(id)) throw new Error('올바르지 않은 id: ' + rawId);
+
+  if (Number.isNaN(id)) {
+    return (
+      <PageLayout titleType="small" titleMargin="mb-5">
+        <p>
+          <b>{`'${rawId}'`}</b>는 올바르지 않은 id입니다.
+        </p>
+        <AdjPostNav href={noticePath} margin="mt-12" />
+      </PageLayout>
+    );
+  }
 
   const currPost = await getNoticePostDetail(id, searchParams);
-
-  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
-    currPost,
-    searchParams,
-    noticePath,
-  );
+  const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, noticePath);
 
   return (
     <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
@@ -48,7 +53,7 @@ export default async function NoticePostPage({
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={listPathWithQuery}
+        href={noticePath}
         margin="mt-12"
       />
     </PageLayout>
