@@ -41,8 +41,6 @@ export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
   const minute = availableMinutes[Math.floor(date.getMinutes() / 15)];
   date.setMinutes(minute, 0, 0);
 
-  console.log(date);
-
   return {
     title: '',
     description: '',

@@ -154,12 +154,9 @@ function ScheduleFieldset({
   const { startDate: startDateStr, endDate: endDateStr } = values;
   const startDate = new Date(startDateStr);
   const endDate = endDateStr && new Date(endDateStr);
-  const allDay =
-    startDate.getHours() === 0 &&
-    startDate.getMinutes() === 0 &&
-    startDate.getSeconds() === 0 &&
-    startDate.getMilliseconds() === 0 &&
-    endDate === null;
+
+  const midnight = new Date(new Date(startDate).setHours(0, 0, 0, 0));
+  const allDay = startDate.getTime() === midnight.getTime() && endDate === null;
 
   return (
     <div>
