@@ -1,5 +1,3 @@
-import { useLocale } from 'next-intl';
-
 import { getContact } from '@/apis/about';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
