@@ -1,5 +1,11 @@
 {
-  "Index": {
-    "title": "Hello world!"
+  "Nav": {
+    "소개": "About",
+    "소식": "News",
+    "구성원": "People",
+    "연구": "Research",
+    "입학": "Admissions",
+    "학사 및 교과": "Academics",
+    "시설 예약": "Reservations"
   }
 }
