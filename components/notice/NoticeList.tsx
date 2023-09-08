@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
-import { SimpleNoticePost } from '@/types/post';
+import { NoticePreview } from '@/types/notice';
 
 import NoticeListHeader from './NoticeListHeader';
 import NoticeListRow from './NoticeListRow';
 
 interface NoticeListProps {
-  posts: SimpleNoticePost[];
+  posts: NoticePreview[];
   isEditMode: boolean;
   selectedPostIds: Set<number>;
   changeSelectedIds: Dispatch<{ type: 'ADD' | 'DELETE'; id: number }>;

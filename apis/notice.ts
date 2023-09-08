@@ -1,21 +1,15 @@
-import {
-  NoticePostResponse,
-  GETNoticePostsResponse,
-  NoticePost,
-  PostSearchQueryParams,
-  POSTNoticeBody,
-  PatchNoticeBody,
-} from '@/types/post';
+import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
+import { PostSearchQueryParams } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
 
 const noticePath = '/notice';
 
 export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticePath, params, { cache: 'no-store' }) as Promise<GETNoticePostsResponse>;
+  getRequest(noticePath, params, { cache: 'no-store' }) as Promise<NoticePreviewList>;
 
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticePath}/${id}`, params, { cache: 'no-store' }) as Promise<NoticePostResponse>;
+  getRequest(`${noticePath}/${id}`, params, { cache: 'no-store' }) as Promise<Notice>;
 
 export const postNotice = async (body: POSTNoticeBody) => {
   const formData = new FormData();
@@ -29,9 +23,9 @@ export const postNotice = async (body: POSTNoticeBody) => {
     formData.append('attachments', attachment);
   }
 
-  return (await postRequest(noticePath, {
+  await postRequest(noticePath, {
     body: formData,
-  })) as NoticePostResponse;
+  });
 };
 
 export const patchNotice = async (id: number, body: PatchNoticeBody) => {

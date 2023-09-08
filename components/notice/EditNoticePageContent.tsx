@@ -15,20 +15,14 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NoticeTags } from '@/constants/tag';
 
+import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
-import { NoticePostResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
 const noticePath = getPath(notice);
 
-export default function EditNoticePageContent({
-  id,
-  data,
-}: {
-  id: number;
-  data: NoticePostResponse;
-}) {
+export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
@@ -54,7 +48,6 @@ export default function EditNoticePageContent({
         title: content.title,
         description: content.description,
         isPublic: content.isPublic,
-        isSlide: content.isSlide,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
@@ -76,7 +69,6 @@ export default function EditNoticePageContent({
       <PostEditor
         tags={NoticeTags}
         showMainImage
-        showIsSlide
         actions={{
           type: 'EDIT',
           onComplete: handleComplete,

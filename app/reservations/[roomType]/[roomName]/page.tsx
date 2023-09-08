@@ -30,12 +30,12 @@ export default async function RoomReservationPage({ params, searchParams }: Room
 
   const startOfWeek = getStartOfWeek(date);
 
-  const reservations = await getWeeklyReservation(
+  const reservations = await getWeeklyReservation({
     roomId,
-    startOfWeek.getFullYear(),
-    startOfWeek.getMonth() + 1,
-    startOfWeek.getDate(),
-  );
+    year: startOfWeek.getFullYear(),
+    month: startOfWeek.getMonth() + 1,
+    day: startOfWeek.getDate(),
+  });
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.25rem]">

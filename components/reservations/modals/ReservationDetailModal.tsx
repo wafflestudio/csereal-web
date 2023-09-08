@@ -1,12 +1,17 @@
 'use client';
 
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
+
+import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
+
+import { errorToast } from '@/components/common/toast';
 
 import useModal from '@/hooks/useModal';
 
 import { Reservation } from '@/types/reservation';
 
 import ModalFrame from '../../modal/ModalFrame';
+import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
   const { closeModal } = useModal();
@@ -42,6 +47,7 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>
+          <DeleteButtons reservationId={reservation.id} />
         </div>
         <span
           className="absolute top-3 right-3 material-symbols-outlined text-base cursor-pointer"
@@ -53,6 +59,46 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
     </ModalFrame>
   );
 }
+
+const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
+  const [submitting, setSubmitting] = useState(false);
+  const { closeModal } = useModal();
+
+  const handleDeleteAll = async () => {
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await deleteAllRecurringReservation(reservationId);
+      closeModal();
+    } catch {
+      errorToast('문제가 발생했습니다');
+      setSubmitting(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await deleteSingleReservation(reservationId);
+      closeModal();
+    } catch {
+      errorToast('문제가 발생했습니다');
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="flex justify-end gap-2 h-[1.875rem]">
+      <BasicButton className="px-[.62rem]" onClick={handleDeleteAll}>
+        반복 예약 전체 삭제
+      </BasicButton>
+      <BasicButton className="px-[.62rem]" onClick={handleDelete}>
+        해당 예약만 삭제
+      </BasicButton>
+    </div>
+  );
+};
 
 export const ReservationDetailModalButton = ({
   reservation,

@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
@@ -16,7 +16,7 @@ import {
   SeminarEditorProps,
   SeminarSchedule,
   SeminarSpeaker,
-  seminarEditorPlaceholder,
+  getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
 import TagCheckbox from '../common/search/TagCheckbox';
 
@@ -26,7 +26,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
 
   // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<SeminarEditorContent>({
-    ...seminarEditorPlaceholder,
+    ...getSeminarEditorDefaultValue(),
     ...initialContent,
   });
 
@@ -151,18 +151,41 @@ function ScheduleFieldset({
   values: SeminarSchedule;
   setValues: <T extends keyof SeminarSchedule>(key: T) => (value: SeminarSchedule[T]) => void;
 }) {
+  const { startDate: startDateStr, endDate: endDateStr } = values;
+  const startDate = new Date(startDateStr);
+  const endDate = endDateStr && new Date(endDateStr);
+
+  const midnight = new Date(new Date(startDate).setHours(0, 0, 0, 0));
+  const allDay = startDate.getTime() === midnight.getTime() && endDate === null;
+
   return (
     <div>
       <div className="flex gap-2 mt-4 mb-2">
         <TagCheckbox
           tag="하루 종일"
-          isChecked={values.allDay}
-          toggleCheck={(tag, isChecked) => setValues('allDay')(!isChecked)}
+          isChecked={allDay}
+          toggleCheck={(tag, isChecked) => {
+            if (isChecked) {
+              setValues('startDate')(new Date());
+              setValues('endDate')(new Date());
+            } else {
+              setValues('endDate')(null);
+              const newStartDate = new Date(startDate);
+              newStartDate.setHours(0, 0, 0, 0);
+              setValues('startDate')(newStartDate);
+            }
+          }}
         />
         <TagCheckbox
           tag="종료 일시 표시"
-          isChecked={values.showEndDate}
-          toggleCheck={(tag, isChecked) => setValues('showEndDate')(!isChecked)}
+          isChecked={values.endDate !== null}
+          toggleCheck={(tag, isChecked) => {
+            if (isChecked) {
+              setValues('endDate')(null);
+            } else {
+              setValues('endDate')(new Date());
+            }
+          }}
         />
       </div>
       <div className="flex mb-4 gap-8">
@@ -170,16 +193,12 @@ function ScheduleFieldset({
           <DateSelector
             date={values.startDate}
             setDate={setValues('startDate')}
-            hideTime={values.allDay}
+            hideTime={allDay}
           />
         </Fieldset>
-        {values.showEndDate && (
+        {values.endDate && (
           <Fieldset title="종료 일시" titleMb="mb-[.54rem]" required grow={false}>
-            <DateSelector
-              date={values.endDate}
-              setDate={setValues('endDate')}
-              hideTime={values.allDay}
-            />
+            <DateSelector date={values.endDate} setDate={setValues('endDate')} hideTime={allDay} />
           </Fieldset>
         )}
       </div>
@@ -187,7 +206,13 @@ function ScheduleFieldset({
   );
 }
 
-function HostFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
+function HostFieldset({
+  value,
+  onChange,
+}: {
+  value: string | null;
+  onChange: (text: string) => void;
+}) {
   return (
     <Fieldset title="주최" mb="mb-10" titleMb="mb-2">
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[24.625rem]" />
@@ -301,7 +326,7 @@ function CheckboxFieldset({
         <TagCheckbox
           tag="비공개 글"
           isChecked={!isPublic}
-          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
+          toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
         />
         <TagCheckbox
           tag="메인-중요 안내에 표시"

@@ -30,7 +30,6 @@ export default function NoticeCreatePage() {
         title: content.title,
         description: content.description,
         isPublic: content.isPublic,
-        isSlide: content.isSlide,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
@@ -48,7 +47,6 @@ export default function NoticeCreatePage() {
         showMainImage
         showIsPinned
         showIsImportant
-        showIsSlide
         actions={{
           type: 'CREATE',
           onComplete: handleComplete,

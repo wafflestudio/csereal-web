@@ -43,36 +43,26 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
             sizes="240px"
           />
         </div>
-        <div>
-          이름:{' '}
-          {currPost.speakerUrl ? (
-            <Link className="text-link hover:underline" href={currPost.speakerUrl}>
-              {currPost.name}
-            </Link>
-          ) : (
-            <p>{currPost.name}</p>
-          )}
-        </div>
-
+        {currPost.speakerUrl ? (
+          <Link className="text-link hover:underline" href={currPost.speakerUrl}>
+            이름: {currPost.name}
+          </Link>
+        ) : (
+          <p>이름: {currPost.name}</p>
+        )}
         {currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}
-
-        <div>
-          소속:{' '}
-          {currPost.affiliationUrl ? (
-            <Link className="text-link hover:underline" href={currPost.affiliationUrl}>
-              {currPost.affiliation}
-            </Link>
-          ) : (
-            <p>{currPost.affiliation}</p>
-          )}
-        </div>
-
+        {currPost.affiliationUrl ? (
+          <Link className="text-link hover:underline" href={currPost.affiliationUrl}>
+            소속: {currPost.affiliation}
+          </Link>
+        ) : (
+          <p>소속: {currPost.affiliation}</p>
+        )}
         <div className="mt-10">주최: {currPost.host}</div>
         <div>
-          일시: {currPost.startDate} {currPost.startTime} - {currPost.endDate} {currPost.endTime}
+          일시: {currPost.startDate} - {currPost.endDate}
         </div>
         <div>장소: {currPost.location}</div>
-
         <div className="font-bold  mt-12">요약</div>
         <HTMLViewer htmlContent={currPost.description} />
         <div className="font-bold  mt-12">연사 소개</div>

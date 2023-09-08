@@ -2,13 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteNotice, patchNotice } from '@/apis/notice';
+import { deleteNotice } from '@/apis/notice';
 
-import {
-  PostEditorContent,
-  isLocalFile,
-  isUploadedFile,
-} from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { news } from '@/types/page';
@@ -17,7 +12,7 @@ import { SeminarPostResponse } from '@/types/post';
 import { getPath } from '@/utils/page';
 
 import SeminarEditor from '../editor/SeminarEditor';
-import { SeminarEditorContent, seminarEditorPlaceholder } from '../editor/SeminarEditorProps';
+import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/SeminarEditorProps';
 
 const newsPath = getPath(news);
 
@@ -29,16 +24,15 @@ export default function EditSeminarPageContent({
   data: SeminarPostResponse;
 }) {
   const router = useRouter();
-
   const initialContent: SeminarEditorContent = {
-    ...seminarEditorPlaceholder,
+    ...getSeminarEditorDefaultValue(),
 
     title: data.title,
     description: data.description,
     location: data.location,
     schedule: {
-      startDate: strToDate(data.startDate, data.startTime),
-      endDate: strToDate(data.endDate, data.endTime),
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
     },
     speaker: {
       name: data.name,

@@ -9,8 +9,8 @@ import { NewsTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
+import { NewsPreviewList } from '@/types/news';
 import { news } from '@/types/page';
-import { GETNewsPostsResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
@@ -20,7 +20,7 @@ const newsPath = getPath(news);
 export default function NewsPageContent({
   data: { searchList, total },
 }: {
-  data: GETNewsPostsResponse;
+  data: NewsPreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
 

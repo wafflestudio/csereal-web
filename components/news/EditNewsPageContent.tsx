@@ -16,14 +16,14 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
+import { News } from '@/types/news';
 import { news } from '@/types/page';
-import { NewsPostResponse } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
 const newsPath = getPath(news);
 
-export default function EditNewsPageContent({ id, data }: { id: number; data: NewsPostResponse }) {
+export default function EditNewsPageContent({ id, data }: { id: number; data: News }) {
   const router = useRouter();
 
   const initialContent: PostEditorContent = {

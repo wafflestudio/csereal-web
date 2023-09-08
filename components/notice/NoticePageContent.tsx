@@ -11,7 +11,7 @@ import { NoticeTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
-import { GETNoticePostsResponse } from '@/types/post';
+import { NoticePreviewList } from '@/types/notice';
 
 import AdminFeatures from './AdminFeatures';
 
@@ -43,7 +43,7 @@ const reducer = (state: Set<number>, action: ReducerAction) => {
 export default function NoticePageContent({
   data: { searchList: posts, total: totalPostsCount },
 }: {
-  data: GETNoticePostsResponse;
+  data: NoticePreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());

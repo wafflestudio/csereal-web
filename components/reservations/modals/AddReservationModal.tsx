@@ -5,8 +5,8 @@ import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
 import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
+import MuiDateSelector from '@/components/mui/MuiDateSelector';
 import BasicButton from '@/components/reservations/BasicButton';
-import DateSelector from '@/components/reservations/mui/DateSelector';
 
 import useModal from '@/hooks/useModal';
 
@@ -161,7 +161,7 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
         onClick={() => {
           openModal(
             <ModalFrame onClose={closeModal}>
-              <DateSelector
+              <MuiDateSelector
                 date={date}
                 setDate={(date) => {
                   setDate(date);

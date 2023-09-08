@@ -2,18 +2,16 @@ import Link from 'next/link';
 
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
-import { ImportantPreview } from '@/types/admin';
+import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
 import { news, notice, seminar } from '@/types/page';
 
 import { getPath } from '@/utils/page';
-
-import { ImportantInfo } from './ImportantManagement';
 
 interface ImportantListRowProps {
   index: number;
   post: ImportantPreview;
   isSelected: boolean;
-  toggleSelected: (postInfo: ImportantInfo) => void;
+  toggleSelected: (postInfo: ImportantPostIdentifier) => void;
 }
 
 export const IMPORTANT_ROW_CELL_WIDTH = {

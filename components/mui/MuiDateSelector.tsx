@@ -11,7 +11,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function DateSelector({
+export default function MuiDateSelector({
   date,
   setDate,
   className,

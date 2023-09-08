@@ -45,113 +45,6 @@ export interface SimpleHTMLPageResponse {
   description: string;
 }
 
-// 새소식 - - - - - - - - - - - - - - - - - - - -
-
-export interface NewsPost extends Post {
-  tags: string[];
-  imageURL: string | null;
-  isSlide: boolean;
-  isImportant: boolean;
-}
-
-export interface NewsPostResponse extends Omit<NewsPost, 'attachments'>, PostResponse {}
-
-export interface SimpleNewsPost
-  extends Pick<
-    NewsPostResponse,
-    'id' | 'title' | 'description' | 'tags' | 'createdAt' | 'imageURL'
-  > {}
-
-export interface GETNewsPostsResponse {
-  total: number;
-  searchList: SimpleNewsPost[];
-}
-
-export interface POSTNewsBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-  };
-  mainImage: File | null;
-  attachments: File[];
-}
-
-export interface PATCHNewsBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
-  };
-  mainImage: File | null;
-  newAttachments: File[];
-}
-
-// 공지사항 - - - - - - - - - - - - - - - - - - - -
-
-export interface NoticePost extends Post {
-  tags: string[];
-  isPinned: boolean;
-  isImportant: boolean;
-}
-
-export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, PostResponse {
-  author: string;
-}
-
-export interface SimpleNoticePost
-  extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
-  hasAttachment: boolean;
-  isPublic: boolean;
-}
-
-export interface GETNoticePostsResponse {
-  total: number;
-  searchList: SimpleNoticePost[];
-}
-
-export interface POSTNoticeBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-  };
-  attachments: File[];
-}
-
-export interface PatchNoticeBody {
-  request: {
-    title: string;
-    description: string;
-    isPublic: boolean;
-    isSlide: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
-  };
-  newAttachments: File[];
-}
-
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacultyRecruitmentResponse {
@@ -186,9 +79,7 @@ export interface POSTSeminarBody {
     affiliation: string;
     affiliationURL: string | null;
     startDate: string | null;
-    startTime: string | null;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
     isPublic: boolean;
@@ -219,9 +110,7 @@ export interface SeminarPostResponse {
   affiliation: string;
   affiliationUrl: string | null;
   startDate: string;
-  startTime: string;
   endDate: string;
-  endTime: string;
   location: string;
   host: string;
   isImportant: boolean;
@@ -243,9 +132,7 @@ export interface PatchSeminarBody {
     affiliation: string;
     affiliationUrl: string | null;
     startDate: string | null;
-    startTime: string | null;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
     isSlide: boolean;

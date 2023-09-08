@@ -1,4 +1,5 @@
-import { NoticePostResponse, PostSearchQueryParams, SimpleNoticePost } from '@/types/post';
+import { Notice, NoticePreview } from '@/types/notice';
+import { PostSearchQueryParams } from '@/types/post';
 
 export const getMockNoticePosts = async (params: PostSearchQueryParams) => {
   return {
@@ -10,7 +11,7 @@ export const getMockNoticePosts = async (params: PostSearchQueryParams) => {
 export const getMockNoticePostDetail = async (id: number, params: PostSearchQueryParams) =>
   noticeDetailMock;
 
-const noticeDetailMock: NoticePostResponse = {
+const noticeDetailMock: Notice = {
   id: 3,
   title: 'What is Lorem Ipsum?',
   nextId: 4,
@@ -28,7 +29,7 @@ const noticeDetailMock: NoticePostResponse = {
   attachments: [],
 };
 
-const noticeMockLong: SimpleNoticePost = {
+const noticeMockLong: NoticePreview = {
   id: 1,
   title:
     '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
