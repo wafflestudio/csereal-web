@@ -70,5 +70,35 @@
   "Header": {
     "로그인": "login",
     "로그아웃": "logout"
+  },
+
+  "Footer": {
+    "About": "About",
+    "학부 소개": "Department Overview",
+    "교수진": "Faculty",
+    "학부 안내": "Undergraduate Guide",
+    "대학원 안내": "Graduate Guide",
+
+    "Resources": "Resources",
+    "공지사항": "News",
+    "세미나": "Seminars",
+    "시설 예약 안내": "Reservation",
+
+    "Research": "Research",
+    "신임교수초빙": "Faculty Recruitment",
+    "연구실 목록": "Laboratories",
+    "Top Conference List": "Top Conference List",
+    "10-10 Project": "10-10 Project",
+
+    "More": "More",
+    "연합전공 인공지능(학사)": "Interdisciplinary Major in Artificial Intelligence",
+    "지능형컴퓨팅사업단": "BK21 FOUR Intelligence Computing",
+    "컴퓨터 연구소": "Institute of Computer Technology",
+    "해동학술정보실": "HAEDONG Digital Library",
+
+    "개인정보처리방침": "Privacy Policy",
+    "학부 연락처": "Contact Us",
+    "찾아오시는 길": "Directions",
+    "address": "8826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)"
   }
 }
