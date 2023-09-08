@@ -44,25 +44,19 @@ function FooterTop() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="bg-neutral-100 px-[3.75rem] py-8 flex">
-      <LinkGroup groupName={t('About')} links={aboutLinks} width="w-[7.8rem]" />
-      <LinkGroup groupName={t('Resources')} links={resourcesLinks} width="w-[8.55rem]" />
-      <LinkGroup groupName={t('Research')} links={researchLinks} width="w-[9.3rem]" />
-      <LinkGroup groupName={t('More')} links={moreLinks} width="w-[6.9rem]" />
+    <div className="bg-neutral-100 px-[3.75rem] py-8 flex gap-8">
+      <LinkGroup groupName={t('About')} links={aboutLinks} />
+      <LinkGroup groupName={t('Resources')} links={resourcesLinks} />
+      <LinkGroup groupName={t('Research')} links={researchLinks} />
+      <LinkGroup groupName={t('More')} links={moreLinks} />
     </div>
   );
 }
 
-interface LinkGroupProps {
-  groupName: string;
-  links: FooterLink[];
-  width: string;
-}
-
-function LinkGroup({ groupName, links, width }: LinkGroupProps) {
+function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[] }) {
   const t = useTranslations('Footer');
   return (
-    <section className={`${width}`}>
+    <section>
       <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
       <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (

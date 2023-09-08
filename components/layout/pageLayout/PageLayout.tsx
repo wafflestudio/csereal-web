@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React, { ReactNode } from 'react';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
@@ -17,8 +18,9 @@ interface PageLayoutProps {
 }
 
 export default function PageLayout({ title, titleType, titleMargin, children }: PageLayoutProps) {
+  const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
-  title ||= currentPage.name;
+  title ||= t(currentPage.name);
   const { navbarState } = useNavbarContext();
 
   return (

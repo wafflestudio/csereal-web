@@ -16,7 +16,6 @@ interface PageTitleProps {
 }
 
 export default function PageTitle({ title, currentPage, titleType, margin }: PageTitleProps) {
-  const t = useTranslations('Nav');
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
@@ -28,7 +27,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
         <CurvedHorizontalNode grow={true} />
       </div>
       <h3 className={`mr-[65px] ${titleStyle} break-keep font-yoon text-neutral-800 tracking-wide`}>
-        {t(title)}
+        {title}
       </h3>
     </div>
   );
