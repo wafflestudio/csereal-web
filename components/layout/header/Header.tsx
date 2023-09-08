@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import HeaderLogo from '@/public/image/header_logo.svg';
@@ -27,8 +29,11 @@ export default function Header() {
 }
 
 function HeaderRight() {
-  // TODO
-  const lang = 'ENG';
+  const { isEnglish, changeLanguage } = useLanguage();
+
+  const t = useTranslations('Header');
+
+  const langButtonText = isEnglish ? '한국어' : 'english';
 
   const handleLogin = () => {
     console.log('로그인 버튼 클릭');
@@ -36,24 +41,39 @@ function HeaderRight() {
   const handleLogOut = () => {
     console.log('로그아웃 버튼 클릭');
   };
-  const handleLangChange = () => {
-    // TODO
-  };
 
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
         <Link href="http://cse-dev-waffle.bacchus.io/login">
-          <button onClick={handleLogin}>로그인</button>
+          <button onClick={handleLogin}>{t('로그인')}</button>
         </Link>
         <span className="text-neutral-500">|</span>
         <Link href="http://cse-dev-waffle.bacchus.io/logout">
-          <button onClick={handleLogOut}>로그아웃</button>
+          <button onClick={handleLogOut}>{t('로그아웃')}</button>
         </Link>
         <span>|</span>
-        <button onClick={handleLangChange}>{lang}</button>
+        <button onClick={changeLanguage}>{langButtonText}</button>
       </div>
       <HeaderSearchBar />
     </div>
   );
 }
+
+const useLanguage = () => {
+  const router = useRouter();
+  const path = usePathname();
+  const searchParams = useSearchParams();
+
+  const isEnglish = path.startsWith('/en');
+
+  const changeLanguage = () => {
+    if (isEnglish) {
+      router.push(`/ko${path.slice(3)}${searchParams}`);
+    } else {
+      router.push(`/en${path}?${searchParams}`);
+    }
+  };
+
+  return { isEnglish, changeLanguage };
+};
