@@ -48,9 +48,7 @@ export default function DateSelector({
               borderStyle="border-neutral-700"
             />
             <Dropdown
-              contents={Array(4)
-                .fill(0)
-                .map((x, i) => (i * 15 + '').padStart(2, '0') + '분')}
+              contents={minuteDropdownContent}
               selectedIndex={Math.floor(date.getMinutes() / 15)}
               onClick={(idx) => {
                 const newDate = new Date(date);
@@ -88,6 +86,6 @@ const formatDate = (date: Date) => {
   }요일`;
 };
 
-const formatTime = (date: Date) => {
-  return `${(date.getHours() + '').padStart(2, '0')}:${(date.getMinutes() + '').padStart(2, '0')}`;
-};
+const minuteDropdownContent = Array(4)
+  .fill(0)
+  .map((x, i) => (i * 15 + '').padStart(2, '0') + '분');
