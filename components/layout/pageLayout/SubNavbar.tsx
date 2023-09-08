@@ -55,7 +55,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
           {t(tab.name)}
         </Link>
       ) : (
-        <span className="whitespace-nowrap">{tab.name}</span>
+        <span className="whitespace-nowrap">{t(tab.name)}</span>
       )}
     </li>
   );
