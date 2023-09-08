@@ -16,11 +16,11 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NoticeTags } from '@/constants/tag';
 
 import { Notice } from '@/types/notice';
-import { news } from '@/types/page';
+import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-const newsPath = getPath(news);
+const noticePath = getPath(notice);
 
 export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
@@ -56,12 +56,12 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
       newAttachments: localAttachments,
     });
 
-    router.replace(`${newsPath}/${id}`);
+    router.replace(`${noticePath}/${id}`);
   };
 
   const handleDelete = async () => {
     await deleteNotice(id);
-    router.replace(newsPath);
+    router.replace(noticePath);
   };
 
   return (

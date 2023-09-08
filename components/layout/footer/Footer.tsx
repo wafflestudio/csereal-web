@@ -81,7 +81,7 @@ function FooterBottom() {
 }
 
 function FooterBottomLeft() {
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
 
   return (
     <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
@@ -99,7 +99,7 @@ function FooterBottomLeft() {
         Powered by{' '}
         <span
           className="cursor-pointer hover:underline"
-          onClick={() => openModal(<CserealModal onClose={closeModal} />)}
+          onClick={() => openModal(<CserealModal />)}
         >
           CSEREAL
         </span>

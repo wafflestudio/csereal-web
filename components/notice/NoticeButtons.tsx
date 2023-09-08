@@ -27,7 +27,7 @@ export function EditButton({ isEditMode, toggleEditMode }: EditButtonProps) {
   return (
     <button
       type="button"
-      className="px-[0.875rem] h-[2.1875rem] rounded-[0.0625rem] bg-main-orange text-xs tracking-[0.02em] font-bold"
+      className="px-[0.875rem] h-[2.1875rem] rounded-[0.0625rem] bg-main-orange hover:bg-neutral-500 text-xs tracking-[0.02em] font-bold"
       onClick={toggleEditMode}
     >
       {isEditMode ? '완료' : '편집'}

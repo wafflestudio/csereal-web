@@ -4,6 +4,7 @@ export interface NoticePreview {
   isPinned: boolean;
   createdAt: string;
   hasAttachment: boolean;
+  isPublic: boolean;
 }
 
 export interface NoticePreviewList {

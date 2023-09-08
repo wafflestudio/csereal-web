@@ -47,4 +47,16 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
   });
 };
 
+export const patchMultipleNotices = (idList: number[]) =>
+  patchRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList }),
+  });
+
 export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
+
+export const deleteMultipleNotices = (idList: number[]) =>
+  deleteRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList }),
+  });

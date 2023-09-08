@@ -5,9 +5,9 @@ import { useReducer } from 'react';
 
 import useModal from '@/hooks/useModal';
 
+import MuiDateSelector from '../../mui/MuiDateSelector';
 import BasicButton from '../BasicButton';
 import AddReservationModal from '../modals/AddReservationModal';
-import MuiDateSelector from '../../mui/MuiDateSelector';
 
 export function TodayButton({ hidden }: { hidden: boolean }) {
   const querySetter = useDateQuery();

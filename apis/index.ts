@@ -9,14 +9,12 @@ export const getRequest = async <T = unknown>(
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  console.log(fetchUrl);
   const response = await fetch(fetchUrl, {
     ...init,
     method: 'GET',
   });
   checkError(response);
   const responseData = await response.json();
-
   return responseData as T;
 };
 
@@ -32,8 +30,10 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
   checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
+  if (response.headers.get('content-type')) {
+    const responseData = await response.json();
+    return responseData as T;
+  }
 };
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {

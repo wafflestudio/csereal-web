@@ -22,11 +22,7 @@ const newsPath = getPath(news);
 
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
   const currPost = await getNewsPostDetail(parseInt(params.id), searchParams);
-  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
-    currPost,
-    searchParams,
-    newsPath,
-  );
+  const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, newsPath);
 
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
@@ -37,7 +33,7 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={listPathWithQuery}
+        href={newsPath}
         margin="mt-12"
       />
     </PageLayout>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
+import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
 import { NoticePreview } from '@/types/notice';
@@ -11,7 +12,6 @@ import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
   post: NoticePreview;
-  queryString: string;
   isEditMode: boolean;
   isSelected: boolean;
   toggleSelected: (id: number, isSelected: boolean) => void;
@@ -24,11 +24,8 @@ export const NOTICE_ROW_CELL_WIDTH = {
   date: 'w-auto',
 } as const;
 
-const noticePath = getPath(notice);
-
 export default function NoticeListRow({
   post,
-  queryString,
   isEditMode,
   isSelected,
   toggleSelected,
@@ -38,8 +35,8 @@ export default function NoticeListRow({
   return (
     <li
       className={`flex items-center h-10 py-2.5 ${fontWeight} ${
-        !isEditMode && 'odd:bg-neutral-100'
-      } ${isSelected && 'bg-neutral-100'}`}
+        !isEditMode && (post.isPublic ? 'odd:bg-neutral-100' : 'bg-neutral-200')
+      } ${isSelected && 'bg-neutral-100'} `}
     >
       {isEditMode && (
         <CheckboxCell
@@ -47,10 +44,11 @@ export default function NoticeListRow({
           toggleCheck={() => toggleSelected(post.id, isSelected)}
         />
       )}
-      <PinCell isPinned={post.isPinned} />
+      <PrivateOrPinCell isPrivate={!post.isPublic} isPinned={post.isPinned} />
       <TitleCell
         title={post.title}
-        href={`${noticePath}/${post.id}${queryString}`}
+        hasAttachment={post.hasAttachment}
+        id={post.id}
         isEditMode={isEditMode}
       />
       <DateCell date={post.createdAt} />
@@ -80,38 +78,44 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   );
 }
 
-function PinCell({ isPinned }: { isPinned: boolean }) {
+function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinned: boolean }) {
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.pin} px-[0.8125rem] shrink-0`}>
-      {isPinned && <PinIcon />}
+      {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
   );
 }
 
 interface TitleCellProps {
   title: string;
-  href: string;
+  hasAttachment: boolean;
+  id: number;
   isEditMode: boolean;
 }
 
-function TitleCell({ title, href, isEditMode }: TitleCellProps) {
+const noticePath = getPath(notice);
+
+function TitleCell({ title, hasAttachment, id, isEditMode }: TitleCellProps) {
   if (isEditMode) {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
         <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
           {title}
         </span>
-        <ClipIcon className="shrink-0" />
+        {hasAttachment && <ClipIcon className="shrink-0" />}
       </span>
     );
   } else {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
-        <Link href={href} className="flex max-w-fit items-center gap-1.5 hover:text-main-orange">
+        <Link
+          href={`${noticePath}/${id}`}
+          className="flex max-w-fit items-center gap-1.5 hover:text-main-orange"
+        >
           <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
             {title}
           </span>
-          <ClipIcon className="shrink-0" />
+          {hasAttachment && <ClipIcon className="shrink-0" />}
         </Link>
       </span>
     );

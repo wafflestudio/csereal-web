@@ -8,7 +8,6 @@ import NewsRow from '@/components/news/NewsRow';
 import { NewsTags } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-import { useQueryString } from '@/hooks/useQueryString';
 
 import { NewsPreviewList } from '@/types/news';
 import { news } from '@/types/page';
@@ -24,7 +23,6 @@ export default function NewsPageContent({
   data: NewsPreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
-  const queryString = useQueryString();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', page: pageNum });
@@ -43,7 +41,7 @@ export default function NewsPageContent({
         {searchList.map((post) => (
           <NewsRow
             key={post.id}
-            href={`${newsPath}/${post.id}${queryString}`}
+            href={`${newsPath}/${post.id}`}
             title={post.title}
             description={post.description}
             tags={post.tags}
