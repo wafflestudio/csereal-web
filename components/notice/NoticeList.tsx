@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { useQueryString } from '@/hooks/useQueryString';
-
 import { SimpleNoticePost } from '@/types/post';
 
 import NoticeListHeader from './NoticeListHeader';
@@ -11,27 +9,18 @@ interface NoticeListProps {
   posts: SimpleNoticePost[];
   isEditMode: boolean;
   selectedPostIds: Set<number>;
-  setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
+  changeSelectedIds: Dispatch<{ type: 'ADD' | 'DELETE'; id: number }>;
 }
 
 export default function NoticeList({
   posts,
   isEditMode,
   selectedPostIds,
-  setSelectedPostIds,
+  changeSelectedIds,
 }: NoticeListProps) {
-  const queryString = useQueryString();
+  const selectPost = (id: number) => changeSelectedIds({ type: 'ADD', id });
 
-  const selectPost = (id: number) => {
-    setSelectedPostIds((prev) => new Set(prev.add(id)));
-  };
-
-  const deselectPost = (id: number) => {
-    setSelectedPostIds((prev) => {
-      prev.delete(id);
-      return new Set(prev);
-    });
-  };
+  const deselectPost = (id: number) => changeSelectedIds({ type: 'DELETE', id });
 
   const toggleSelected = (id: number, isSelected: boolean) => {
     isSelected ? deselectPost(id) : selectPost(id);
@@ -45,7 +34,6 @@ export default function NoticeList({
           <NoticeListRow
             key={i}
             post={post}
-            queryString={queryString}
             isEditMode={isEditMode}
             isSelected={selectedPostIds.has(post.id)}
             toggleSelected={toggleSelected}

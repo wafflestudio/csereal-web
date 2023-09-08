@@ -27,11 +27,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
   if (Number.isNaN(id)) throw new Error('/seminar/[id]: id가 숫자가 아닙니다.');
 
   const currPost = await getSeminarPost(parseInt(params.id), searchParams);
-  const { prevPostPreview, nextPostPreview, listPathWithQuery } = getAdjPostsInfo(
-    currPost,
-    searchParams,
-    seminarPath,
-  );
+  const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, seminarPath);
 
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
@@ -86,7 +82,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={listPathWithQuery}
+        href={seminarPath}
         margin="mt-12"
       />
     </PageLayout>

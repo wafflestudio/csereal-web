@@ -1,27 +1,20 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SimpleSlide } from '@/types/admin';
+import { SlidePreview } from '@/types/admin';
 
 import SlideListHeader from './SlideLIstHeader';
 import SlideListRow from './SlideListRow';
 
 interface SlideListProps {
-  posts: SimpleSlide[];
+  posts: SlidePreview[];
   selectedPostIds: Set<number>;
-  setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
+  changeSelectedIds: Dispatch<{ type: 'ADD' | 'DELETE'; id: number }>;
 }
 
-export default function SlideList({ posts, selectedPostIds, setSelectedPostIds }: SlideListProps) {
-  const selectPost = (id: number) => {
-    setSelectedPostIds((prev) => new Set(prev.add(id)));
-  };
+export default function SlideList({ posts, selectedPostIds, changeSelectedIds }: SlideListProps) {
+  const selectPost = (id: number) => changeSelectedIds({ type: 'ADD', id });
 
-  const deselectPost = (id: number) => {
-    setSelectedPostIds((prev) => {
-      prev.delete(id);
-      return new Set(prev);
-    });
-  };
+  const deselectPost = (id: number) => changeSelectedIds({ type: 'DELETE', id });
 
   const toggleSelected = (id: number) => {
     selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);

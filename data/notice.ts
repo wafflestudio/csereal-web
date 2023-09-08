@@ -8,9 +8,9 @@ export const getMockNoticePosts = async (params: PostSearchQueryParams) => {
 };
 
 export const getMockNoticePostDetail = async (id: number, params: PostSearchQueryParams) =>
-  NoticeDetailMock;
+  noticeDetailMock;
 
-const NoticeDetailMock: NoticePostResponse = {
+const noticeDetailMock: NoticePostResponse = {
   id: 3,
   title: 'What is Lorem Ipsum?',
   nextId: 4,
@@ -28,35 +28,48 @@ const NoticeDetailMock: NoticePostResponse = {
   attachments: [],
 };
 
-const NoticeMockLong: SimpleNoticePost = {
+const noticeMockLong: SimpleNoticePost = {
   id: 1,
   title:
     '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: true,
+  isPublic: true,
 };
 
-const NoticeMockPin = {
+const noticeMockPin = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
+  isPublic: true,
 };
 
-const NoticeMock = {
+const noticeMockPrivate = {
+  id: 80,
+  title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발 안내',
+  createdAt: '2023-07-11T09:29:13',
+  isPinned: true,
+  hasAttachment: false,
+  isPublic: false,
+};
+
+const noticeMock = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: false,
+  isPublic: true,
   hasAttachment: true,
 };
 
 const noticeListMock = [
-  NoticeMockLong,
+  noticeMockLong,
   ...Array(6)
     .fill(0)
-    .map((_, i) => ({ ...NoticeMockPin, id: i + 2 })),
+    .map((_, i) => ({ ...noticeMockPin, id: i + 2 })),
+  noticeMockPrivate,
   ...Array(20)
     .fill(0)
-    .map((_, i) => ({ ...NoticeMock, id: i + 10 })),
+    .map((_, i) => ({ ...noticeMock, id: i + 10 })),
 ];

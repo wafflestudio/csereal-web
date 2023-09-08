@@ -113,6 +113,7 @@ export interface NoticePostResponse extends Omit<NoticePost, 'attachments'>, Pos
 export interface SimpleNoticePost
   extends Pick<NoticePostResponse, 'id' | 'title' | 'isPinned' | 'createdAt'> {
   hasAttachment: boolean;
+  isPublic: boolean;
 }
 
 export interface GETNoticePostsResponse {

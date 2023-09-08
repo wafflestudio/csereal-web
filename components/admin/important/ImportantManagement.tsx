@@ -1,12 +1,23 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useReducer } from 'react';
+
+import { batchUnimportant } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
+import { errorToast, successToast } from '@/components/common/toast';
+import AlertModal from '@/components/modal/AlertModal';
 
-import { ADMIN_MENU, SimpleImportant } from '@/types/admin';
+import useModal from '@/hooks/useModal';
+
+import {
+  ADMIN_MENU,
+  ImportantCategory,
+  ImportantPostIdentifier,
+  ImportantPreview,
+} from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
@@ -15,20 +26,44 @@ import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
 
 interface ImportantManagementProps {
-  posts: SimpleImportant[];
+  posts: ImportantPreview[];
   page: number;
   total: number;
 }
 
 const POST_LIMIT = 40;
 
+type ReducerAction =
+  | {
+      type: 'ADD' | 'DELETE';
+      identifier: { id: number; category: ImportantCategory };
+    }
+  | {
+      type: 'RESET';
+    };
+
+const reducer = (state: ImportantPostIdentifier[], action: ReducerAction) => {
+  switch (action.type) {
+    case 'ADD':
+      return [...state, action.identifier];
+    case 'DELETE':
+      return state.filter(
+        (info) =>
+          !(info.id === action.identifier.id && info.category === action.identifier.category),
+      );
+    case 'RESET':
+      return [];
+    default:
+      throw new Error('undefined action');
+  }
+};
+
 export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
-  const [selectedPostIds, setSelectedPostIds] = useState<Set<number>>(new Set());
+  const [selectedPostIdentifiers, changeSelectedIdentifiers] = useReducer(reducer, []);
+  const { openModal } = useModal();
   const router = useRouter();
 
-  const resetSelectedPosts = () => {
-    setSelectedPostIds(new Set());
-  };
+  const resetSelectedPosts = () => changeSelectedIdentifiers({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
@@ -36,10 +71,19 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
-  const batchRelease = (requestPath: string) => {
-    console.log('일괄 해제');
-    // TODO: 일괄 삭제 요청
-    resetSelectedPosts();
+  const handleBatchUnimportant = async () => {
+    const result = await batchUnimportant(selectedPostIdentifiers);
+    if (result?.error) {
+      errorToast('중요 안내를 해제하지 못했습니다.');
+      if (result.error instanceof Error) {
+        console.error(result.error.message);
+      } else {
+        throw result.error;
+      }
+    } else {
+      successToast('중요 안내를 해제했습니다.');
+      resetSelectedPosts();
+    }
   };
 
   return (
@@ -49,8 +93,8 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
       <TotalPostsCount count={total} />
       <ImportantList
         posts={posts}
-        selectedPostIds={selectedPostIds}
-        setSelectedPostIds={setSelectedPostIds}
+        selectedPostIdentifiers={selectedPostIdentifiers}
+        changeSelectedIdentifiers={changeSelectedIdentifiers}
       />
       <Pagination
         totalPostsCount={total}
@@ -59,9 +103,17 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
         setCurrentPage={changePage}
       />
       <BatchAction
-        selectedCount={selectedPostIds.size}
+        selectedCount={selectedPostIdentifiers.length}
         buttonText="일괄 중요 안내 해제"
-        onClickButton={() => batchRelease('/slide')}
+        onClickButton={() =>
+          openModal(
+            <AlertModal
+              message="정말 선택된 중요 안내를 모두 해제하시겠습니까?"
+              confirmText="해제"
+              onConfirm={handleBatchUnimportant}
+            />,
+          )
+        }
       />
     </div>
   );

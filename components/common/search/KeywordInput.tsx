@@ -10,7 +10,7 @@ export default function KeywordInput({ keyword, setKeyword, disabled = false }: 
   return (
     <div className="col-start-1 flex items-center">
       <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap tracking-wide">검색어</h5>
-      <div className="flex gap-1 items-center px-1.5 w-[13.5rem] h-[1.875rem] border rounded">
+      <div className="flex gap-1 items-center px-1.5 w-[13.5rem] h-[1.875rem] border rounded-[0.1875rem]">
         <input
           type="text"
           id="search"
@@ -21,7 +21,7 @@ export default function KeywordInput({ keyword, setKeyword, disabled = false }: 
         />
         {keyword && (
           <span
-            className="material-symbols-outlined text-neutral-400 text-md cursor-pointer"
+            className="material-symbols-outlined text-neutral-500 hover:text-neutral-700 text-md cursor-pointer"
             onClick={() => setKeyword('')}
           >
             close

@@ -1,7 +1,5 @@
 import { AdjPostInfo, PostSearchQueryParams } from '@/types/post';
 
-import { objToQueryString } from './convertParams';
-
 interface PostWithAdjInfo {
   nextId: number | null;
   nextTitle: string | null;
@@ -9,14 +7,9 @@ interface PostWithAdjInfo {
   prevTitle: string | null;
 }
 
-const getAdjPostInfo = (
-  id: number | null,
-  title: string | null,
-  listPath: string,
-  queryString: string,
-) => {
+const getAdjPostInfo = (id: number | null, title: string | null, listPath: string) => {
   if (!id || !title) return;
-  const adjPost: AdjPostInfo = { title, href: `${listPath}/${id}${queryString}` };
+  const adjPost: AdjPostInfo = { title, href: `${listPath}/${id}` };
   return adjPost;
 };
 
@@ -25,20 +18,8 @@ export const getAdjPostsInfo = <T extends PostWithAdjInfo>(
   params: PostSearchQueryParams,
   listPath: string,
 ) => {
-  const queryString = objToQueryString(params);
-  const prevPostPreview = getAdjPostInfo(
-    currPost.prevId,
-    currPost.prevTitle,
-    listPath,
-    queryString,
-  );
-  const nextPostPreview = getAdjPostInfo(
-    currPost.nextId,
-    currPost.nextTitle,
-    listPath,
-    queryString,
-  );
-  const listPathWithQuery = `${listPath}${queryString}`;
+  const prevPostPreview = getAdjPostInfo(currPost.prevId, currPost.prevTitle, listPath);
+  const nextPostPreview = getAdjPostInfo(currPost.nextId, currPost.nextTitle, listPath);
 
-  return { prevPostPreview, nextPostPreview, listPathWithQuery };
+  return { prevPostPreview, nextPostPreview };
 };

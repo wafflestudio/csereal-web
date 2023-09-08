@@ -1,34 +1,37 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
-import { SimpleImportant } from '@/types/admin';
+import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';
 
 interface ImportantListProps {
-  posts: SimpleImportant[];
-  selectedPostIds: Set<number>;
-  setSelectedPostIds: Dispatch<SetStateAction<Set<number>>>;
+  posts: ImportantPreview[];
+  selectedPostIdentifiers: ImportantPostIdentifier[];
+  changeSelectedIdentifiers: Dispatch<{
+    type: 'ADD' | 'DELETE';
+    identifier: ImportantPostIdentifier;
+  }>;
 }
 
 export default function ImportantList({
   posts,
-  selectedPostIds,
-  setSelectedPostIds,
+  selectedPostIdentifiers,
+  changeSelectedIdentifiers,
 }: ImportantListProps) {
-  const selectPost = (id: number) => {
-    setSelectedPostIds((prev) => new Set(prev.add(id)));
-  };
+  const selectPost = (identifier: ImportantPostIdentifier) =>
+    changeSelectedIdentifiers({ type: 'ADD', identifier });
 
-  const deselectPost = (id: number) => {
-    setSelectedPostIds((prev) => {
-      prev.delete(id);
-      return new Set(prev);
-    });
-  };
+  const deselectPost = (identifier: ImportantPostIdentifier) =>
+    changeSelectedIdentifiers({ type: 'DELETE', identifier });
 
-  const toggleSelected = (id: number) => {
-    selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);
+  const getIsSelected = (identifier: ImportantPostIdentifier) =>
+    selectedPostIdentifiers.some(
+      (p) => p.id === identifier.id && p.category === identifier.category,
+    );
+
+  const toggleSelected = (identifier: ImportantPostIdentifier) => {
+    getIsSelected(identifier) ? deselectPost(identifier) : selectPost(identifier);
   };
 
   return (
@@ -40,7 +43,7 @@ export default function ImportantList({
             key={i}
             index={i + 1}
             post={post}
-            isSelected={selectedPostIds.has(post.id)}
+            isSelected={getIsSelected({ id: post.id, category: post.category })}
             toggleSelected={toggleSelected}
           />
         ))}
