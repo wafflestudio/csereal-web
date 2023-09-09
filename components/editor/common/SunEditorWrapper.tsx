@@ -20,6 +20,7 @@ export default function SunEditorWrapper({
     <Suspense fallback={<SunEditorFallback />}>
       <SunEditor
         getSunEditorInstance={(x) => (editorRef.current = x)}
+        setDefaultStyle="padding: 1rem"
         height="400px"
         lang={ko}
         defaultValue={initialContent}

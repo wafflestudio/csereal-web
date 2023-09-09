@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { NavbarState } from '@/contexts/NavbarContext';
 import NaviBarClose from '@/public/image/NaviBar_Close.svg';
@@ -60,6 +63,7 @@ function NavList({
   setState: (state: NavbarState) => void;
 }) {
   const pathName = usePathname();
+  const t = useTranslations('Nav');
 
   // 노드별 강조 처리 여부
   const shouldHighlight = (child: SegmentNode) => {
@@ -83,7 +87,7 @@ function NavList({
           <NavListRow
             key={i}
             highlight={shouldHighlight(child)}
-            name={child.name}
+            name={t(child.name)}
             onMouseEnter={makeMouseEnterHandler(child)}
           />
         ))}

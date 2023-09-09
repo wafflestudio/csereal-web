@@ -6,10 +6,10 @@ import {
   graduateGuide,
   notice,
   seminar,
-  reservations,
   facultyRecruitment,
   researchLabs,
   topConferenceList,
+  reservationIntroduction,
 } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -28,7 +28,7 @@ export const aboutLinks = [overview, faculty, undergraduateGuide, graduateGuide]
   segmentNodeToLink,
 );
 
-export const resourcesLinks = [notice, seminar, reservations].map(segmentNodeToLink);
+export const resourcesLinks = [notice, seminar, reservationIntroduction].map(segmentNodeToLink);
 
 export const researchLinks = [
   segmentNodeToLink(facultyRecruitment),

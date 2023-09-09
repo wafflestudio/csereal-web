@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 
@@ -11,6 +12,7 @@ interface SubNavbarProps {
 }
 
 export default function SubNavbar({ currentTab }: SubNavbarProps) {
+  const t = useTranslations('Nav');
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * 30 + 10}px`;
@@ -22,7 +24,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
     >
       <CurvedVerticalNode grow={false} />
       <div className="pt-[0.6875rem] pl-1.5">
-        <h3 className="font-yoon font-bold text-sm text-neutral-600">{rootTab.name}</h3>
+        <h3 className="font-yoon font-bold text-sm text-neutral-600">{t(rootTab.name)}</h3>
         <ul className="mt-4">
           {subTabs.map((tab) => (
             <SubTab
@@ -38,6 +40,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
 }
 
 function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
+  const t = useTranslations('Nav');
   const marginLeft = `${(getDepth(tab) - 1) * 12}px`;
 
   return (
@@ -49,10 +52,10 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="hover:text-main-orange whitespace-nowrap">
-          {tab.name}
+          {t(tab.name)}
         </Link>
       ) : (
-        <span className="whitespace-nowrap">{tab.name}</span>
+        <span className="whitespace-nowrap">{t(tab.name)}</span>
       )}
     </li>
   );

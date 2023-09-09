@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
@@ -18,6 +19,7 @@ export default function NavTreeRow({
   highlight: boolean;
 }) {
   const { setNavbarState } = useNavbarContext();
+  const t = useTranslations('Nav');
   const closeNavbar = () => setNavbarState({ type: 'closed' });
   const href = getPath(segmentNode);
 
@@ -29,7 +31,7 @@ export default function NavTreeRow({
           className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0"
           onClick={closeNavbar}
         >
-          {segmentNode.name}
+          {t(segmentNode.name)}
         </Link>
         <StraightNode />
       </div>
@@ -42,13 +44,13 @@ export default function NavTreeRow({
           className="block font-yoon text-md font-medium mb-6 text-neutral-800 hover:text-main-orange "
           onClick={closeNavbar}
         >
-          {segmentNode.name}
+          {t(segmentNode.name)}
         </Link>
       );
     } else {
       return (
         <p className="block font-yoon text-md font-medium mb-6 text-neutral-500">
-          {segmentNode.name}
+          {t(segmentNode.name)}
         </p>
       );
     }

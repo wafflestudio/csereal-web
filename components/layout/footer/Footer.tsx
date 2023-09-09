@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
@@ -40,30 +41,27 @@ export default function Footer() {
 }
 
 function FooterTop() {
+  const t = useTranslations('Footer');
+
   return (
-    <div className="bg-neutral-100 px-[3.75rem] py-8 flex">
-      <LinkGroup groupName="About" links={aboutLinks} width="w-[7.8rem]" />
-      <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.55rem]" />
-      <LinkGroup groupName="Research" links={researchLinks} width="w-[9.3rem]" />
-      <LinkGroup groupName="More" links={moreLinks} width="w-[6.9rem]" />
+    <div className="bg-neutral-100 px-[3.75rem] py-8 flex gap-8">
+      <LinkGroup groupName={t('About')} links={aboutLinks} />
+      <LinkGroup groupName={t('Resources')} links={resourcesLinks} />
+      <LinkGroup groupName={t('Research')} links={researchLinks} />
+      <LinkGroup groupName={t('More')} links={moreLinks} />
     </div>
   );
 }
 
-interface LinkGroupProps {
-  groupName: string;
-  links: FooterLink[];
-  width: string;
-}
-
-function LinkGroup({ groupName, links, width }: LinkGroupProps) {
+function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[] }) {
+  const t = useTranslations('Footer');
   return (
-    <section className={`${width}`}>
+    <section>
       <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
       <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (
           <li key={i} className="mb-2">
-            <Link href={link.href}>{link.title}</Link>
+            <Link href={link.href}>{t(link.title)}</Link>
           </li>
         ))}
       </ul>
@@ -82,19 +80,18 @@ function FooterBottom() {
 
 function FooterBottomLeft() {
   const { openModal } = useModal();
+  const t = useTranslations('Footer');
 
   return (
     <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
       <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
-        <Link href={privacyPath}>개인정보처리방침</Link>
+        <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
-        <Link href={contactPath}>학부 연락처</Link>
+        <Link href={contactPath}>{t('학부 연락처')}</Link>
         <span>|</span>
-        <Link href={directionsPath}>찾아오시는 길</Link>
+        <Link href={directionsPath}>{t('찾아오시는 길')}</Link>
       </div>
-      <address className="not-italic mb-4">
-        8826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)
-      </address>
+      <address className="not-italic mb-4">{t('address')}</address>
       <p className="font-normal">
         Powered by{' '}
         <span

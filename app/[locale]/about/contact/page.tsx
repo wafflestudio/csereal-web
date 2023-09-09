@@ -5,6 +5,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function ContactPage() {
   const { description, imageURL } = await getContact();
+
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <HTMLViewer

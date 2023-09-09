@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 
 import { CurvedHorizontalNode } from '@/components/common/Nodes';
@@ -33,6 +34,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 }
 
 function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
+  const t = useTranslations('Nav');
   const log: SegmentNode[] = getLocationLog(currentPage);
 
   return log.length ? (
@@ -43,7 +45,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
             <li className="flex">
               <LocationText
                 path={location.isPage ? getPath(location) : null}
-                name={location.name}
+                name={t(location.name)}
               />
             </li>
             {i !== log.length - 1 && (
