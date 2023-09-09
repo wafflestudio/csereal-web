@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { BASE_URL } from '@/apis';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import HeaderLogo from '@/public/image/header_logo.svg';
 
-import { logOut, login } from '@/apis/auth';
-
 import HeaderSearchBar from './HeaderSearchBar';
+
+const LOGIN_URL = BASE_URL + '/login';
+const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
   const { navbarState } = useNavbarContext();
@@ -45,11 +47,11 @@ function HeaderRight() {
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
-        <Link href="http://cse-dev-waffle.bacchus.io/login">
+        <Link href={LOGIN_URL}>
           <button onClick={handleLogin}>{t('로그인')}</button>
         </Link>
         <span className="text-neutral-500">|</span>
-        <Link href="http://cse-dev-waffle.bacchus.io/logout">
+        <Link href={LOGOUT_URL}>
           <button onClick={handleLogOut}>{t('로그아웃')}</button>
         </Link>
         <span>|</span>
