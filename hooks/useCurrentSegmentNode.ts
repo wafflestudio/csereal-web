@@ -11,7 +11,7 @@ export default function useCurrentSegmentNode(): SegmentNode {
   if (segments.length && segments[0] === 'en') segments.shift();
 
   // admin 예외처리
-  if (pathname === `/${admin.segment}`) return admin;
+  if (segments[0] === admin.segment) return admin;
 
   return findCurrentSegmentNode(main, segments);
 }
