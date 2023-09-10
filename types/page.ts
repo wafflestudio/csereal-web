@@ -280,7 +280,7 @@ export const exchangeVisitingProgram: SegmentNode = {
 
 export const internationalScholarships: SegmentNode = {
   name: 'Scholarships',
-  segment: 'exchange',
+  segment: 'scholarships',
   isPage: true,
   parent: internationalAdmission,
   children: [],
