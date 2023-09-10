@@ -9,7 +9,8 @@ export default function useHorizontalScroll() {
     if (scrollDiv) {
       const onWheel = (e: WheelEvent) => {
         // https://stackoverflow.com/a/74597327
-        if (!(e.deltaY && !Number.isInteger(e.deltaY))) return;
+        const isMouse = e.deltaY && !Number.isInteger(e.deltaY);
+        if (!isMouse) return;
         e.preventDefault(); // prevent vertical scrolling while scrolling horizontally
         scrollDiv.scrollTo({
           left: scrollDiv.scrollLeft + e.deltaY * 2,
