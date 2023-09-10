@@ -1,7 +1,8 @@
-import { Course, CourseChange } from '@/types/academics';
+import { CourseChange } from '@/types/academics';
 
 import {
   courseChangesData,
+  graduateCourses,
   graduateGuideData,
   undergraduateCourses,
   undergraduateGuideData,
@@ -14,7 +15,7 @@ export const getMockAcademicsGuide = async (type: 'undergraduate' | 'graduate') 
 };
 
 export const getMockCourses = async (type: 'undergraduate' | 'graduate') => {
-  return undergraduateCourses;
+  return type === 'undergraduate' ? undergraduateCourses : graduateCourses;
 };
 
 export const getMockCourseChanges = async (

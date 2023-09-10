@@ -8,8 +8,8 @@ export default function useHorizontalScroll() {
 
     if (scrollDiv) {
       const onWheel = (e: WheelEvent) => {
-        const isTouchpad = -e.deltaY ? -e.deltaY === -3 * e.deltaY : e.deltaMode === 0;
-        if (isTouchpad) return; // enable touchpad horizontal scroll
+        // https://stackoverflow.com/a/74597327
+        if (!(e.deltaY && !Number.isInteger(e.deltaY))) return;
         e.preventDefault(); // prevent vertical scrolling while scrolling horizontally
         scrollDiv.scrollTo({
           left: scrollDiv.scrollLeft + e.deltaY * 2,
