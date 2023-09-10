@@ -17,6 +17,8 @@ export default function useCurrentSegmentNode(): SegmentNode {
   if (segments[0] === tentenProject.segment)
     return findCurrentSegmentNode(tentenProject, segments.slice(1));
 
+  console.log(findCurrentSegmentNode(main, segments));
+
   return findCurrentSegmentNode(main, segments);
 }
 
