@@ -1,13 +1,8 @@
 import { SegmentNode, admin, main } from '@/types/page';
 
-export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
-  const log: SegmentNode[] = [];
-  let curr = location;
-  while (curr.parent !== null) {
-    log.push(curr);
-    curr = curr.parent;
-  }
-  return log.reverse();
+export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
+  if (!(location && location.segment)) return [];
+  return [...getLocationLog(location.parent), location];
 };
 
 export const getPath = (location: SegmentNode | null): string => {

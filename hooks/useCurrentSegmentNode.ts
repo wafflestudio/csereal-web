@@ -14,7 +14,8 @@ export default function useCurrentSegmentNode(): SegmentNode {
   if (segments[0] === admin.segment) return admin;
 
   // 10-10 에외처리
-  if (segments[0] === tentenProject.segment) return tentenProject;
+  if (segments[0] === tentenProject.segment)
+    return findCurrentSegmentNode(tentenProject, segments.slice(1));
 
   return findCurrentSegmentNode(main, segments);
 }
