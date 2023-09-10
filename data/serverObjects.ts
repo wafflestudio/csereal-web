@@ -715,7 +715,9 @@ export const getMockGeneralStudiesRequirements = async (): Promise<GeneralStudie
 
 export const getMockUndergraduateScholarshipList = async (): Promise<ScholarshipList> => {
   return {
-    description: await readFile('data/htmls/scholarshipList.txt', { encoding: 'utf-8' }),
+    description: await readFile('data/htmls/undergraduateScholarshipList.txt', {
+      encoding: 'utf-8',
+    }),
     scholarship: [
       { id: 0, name: '성적우수 국가장학금 (이공계)' },
       { id: 1, name: '대통령과학장학금' },
@@ -736,22 +738,39 @@ export const getMockUndergraduateScholarshipList = async (): Promise<Scholarship
   };
 };
 
-const scholarshipNames = [
-  '성적우수 국가장학금 (이공계)',
-  '대통령과학장학금',
-  '국가장학금(I,II)',
-  '단대 맞춤형 장학금',
-  '유학생 장학금',
-  '서울대학교 발전기금 장학금(신영길장학금, 현암 김종상장학금, 기타 컴퓨터공학부 지정 장학금 다수)',
-  '교외장학금 (현송문화재단, 유한재단, 관악회,동부문화재단, 청합장학회, 봉신장학회 등 다수)',
-  '컴퓨터공학 동문회 장학금',
-  '근로장학금',
-];
-
-export const getMockScholarship = async (id: number): Promise<Scholarship> => {
+export const getMockGraduateScholarshipList = async (): Promise<ScholarshipList> => {
   return {
-    id: id,
-    name: scholarshipNames[id],
-    description: await readFile(`data/htmls/scholarship/${id}.txt`, { encoding: 'utf-8' }),
+    description: await readFile('data/htmls/graduateScholarshipList.txt', { encoding: 'utf-8' }),
+    scholarship: [
+      { id: 0, name: '강의연구지원장학금' },
+      { id: 1, name: '수업료 10% 면제 장학금' },
+      { id: 2, name: '대학원 연구실 장학금' },
+      { id: 3, name: '컴퓨터공학부 지정 SNU President Fellowship 기금' },
+    ],
   };
+};
+
+export const getMockScholarship = async (
+  id: number,
+  type: 'graduate' | 'undergraduate',
+): Promise<Scholarship> => {
+  if (type === 'undergraduate') {
+    const scholarshipList = await getMockUndergraduateScholarshipList();
+    return {
+      id: id,
+      name: scholarshipList.scholarship[id].name,
+      description: await readFile(`data/htmls/scholarship/undergraduate/${id}.txt`, {
+        encoding: 'utf-8',
+      }),
+    };
+  } else {
+    const scholarshipList = await getMockGraduateScholarshipList();
+    return {
+      id: id,
+      name: scholarshipList.scholarship[id].name,
+      description: await readFile(`data/htmls/scholarship/graduate/${id}.txt`, {
+        encoding: 'utf-8',
+      }),
+    };
+  }
 };

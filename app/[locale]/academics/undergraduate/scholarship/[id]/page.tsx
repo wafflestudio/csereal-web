@@ -4,7 +4,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function UndergraduateScholarshipPage({ params }: { params: { id: string } }) {
-  const { name, description } = await getScholarship(parseInt(params.id));
+  const { name, description } = await getScholarship(parseInt(params.id), 'undergraduate');
 
   return (
     // 타이틀이 긴 경우 정규표현식으로 괄호 내부 내용을 제거

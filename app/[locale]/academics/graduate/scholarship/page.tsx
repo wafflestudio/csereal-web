@@ -1,11 +1,11 @@
-import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
+import { getMockGraduateScholarshipList } from '@/data/serverObjects';
 
 import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function UndergraduateScholarshipListPage() {
-  const { description, scholarship } = await getUndergraduateScholarshipList();
+export default async function GraduateScholarshipListPage() {
+  const { description, scholarship } = await getMockGraduateScholarshipList();
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
@@ -16,7 +16,7 @@ export default async function UndergraduateScholarshipListPage() {
         </h3>
         <ul className="mt-2">
           {scholarship.map((item) => (
-            <ScholarshipRow id={item.id} name={item.name} key={item.id} />
+            <ScholarshipRow id={item.id} name={item.name} key={item.id} type="GRADUATE" />
           ))}
         </ul>
       </div>
