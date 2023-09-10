@@ -10,16 +10,9 @@ export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
   return log.reverse();
 };
 
-export const getPath = (location: SegmentNode): string => {
-  if (location.parent === null) return `/${location.segment}`;
-
-  let fullPath = '';
-  let curr = location;
-  while (curr.parent !== null) {
-    fullPath = '/' + curr.segment + fullPath;
-    curr = curr.parent;
-  }
-  return fullPath;
+export const getPath = (location: SegmentNode | null): string => {
+  if (!(location && location.segment)) return '';
+  return `${getPath(location.parent)}/${location.segment}`;
 };
 
 export const getRootTab = (currTab: SegmentNode): SegmentNode => {
@@ -27,7 +20,7 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
 
   let root = currTab;
   while (root.parent !== null) {
-    root = root.parent!; // main 제외한 내비탭은 전부 parent가 있음
+    root = root.parent;
   }
   return root;
 };

@@ -592,7 +592,7 @@ export const admin: SegmentNode = {
 export const tentenProject: SegmentNode = {
   name: '10-10 Project',
   segment: '10-10-project',
-  isPage: true,
+  isPage: false,
   parent: null,
   children: [],
 };
@@ -621,4 +621,5 @@ export const tentenProposal: SegmentNode = {
   children: [],
 };
 
-tentenProject.children = [tentenManager, tentenParticipants, tentenProposal];
+// 기존 홈페이지 푸터 링크가 propsal로 이동시는 등 proposal 내용이 우선순위라 판단되어 기존과 다르게 0번째로 배치
+tentenProject.children = [tentenProposal, tentenManager, tentenParticipants];
