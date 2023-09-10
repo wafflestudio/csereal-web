@@ -69,7 +69,7 @@ const useLanguage = () => {
 
   const changeLanguage = () => {
     if (isEnglish) {
-      router.push(`/ko${path.slice(3)}${searchParams}`);
+      router.push(`/ko${path.slice(3)}?${searchParams}`);
     } else {
       router.push(`/en${path}?${searchParams}`);
     }
