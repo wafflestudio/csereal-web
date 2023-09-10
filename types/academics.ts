@@ -50,7 +50,6 @@ export interface Scholarship {
 }
 export interface DegreeRequirements {
   id: number;
-  description: string;
   year: number;
   attachment: {
     name: string;

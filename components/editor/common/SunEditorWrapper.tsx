@@ -9,10 +9,9 @@ const SunEditor = lazy(() => import('suneditor-react'));
 
 import './suneditor.custom.css';
 
-const initialContent = ``
-
 export default function SunEditorWrapper({
   editorRef,
+  initialContent,
 }: {
   editorRef: MutableRefObject<SunEditorCore | undefined>;
   initialContent?: string;

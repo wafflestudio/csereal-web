@@ -1,5 +1,5 @@
 import { Club, Direction, Facilities } from '@/types/about';
-import { Course } from '@/types/academics';
+import { Course, CourseChange } from '@/types/academics';
 import {
   EmiritusFaculty,
   Faculty,
@@ -1486,12 +1486,12 @@ export const graduateCourses: Course[] = [
   },
 ];
 
-export const courseChangesData = [
-  2020, 2019, 2018, 2017, 2016, 2015, 2013, 2012, 2011, 2010, 2009, 2008,
-].map((year) => ({
-  year,
-  description: `${year}학년도 1학기 시행 교과과정 변경`,
-}));
+export const courseChangesData: CourseChange[] = [
+  {
+    year: 2020,
+    description: '',
+  },
+];
 
 /* 연구 */
 
