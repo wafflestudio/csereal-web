@@ -26,6 +26,7 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
   { year: 2015, margin: 'ml-7' },
   { year: 2013, margin: 'ml-[5.375rem]' },
   { year: 2012, margin: 'ml-7' },
+  { year: 2011, margin: 'ml-7' },
   { year: 2010, margin: 'ml-[5.375rem]', isLast: true },
 ];
 
