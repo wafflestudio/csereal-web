@@ -26,7 +26,7 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
   if (currTab === main || currTab === admin) return currTab;
 
   let root = currTab;
-  while (root.parent !== main) {
+  while (root.parent !== null) {
     root = root.parent!; // main 제외한 내비탭은 전부 parent가 있음
   }
   return root;
