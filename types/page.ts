@@ -526,14 +526,6 @@ export const bldg302room209: SegmentNode = {
   children: null,
 };
 
-export const admin: SegmentNode = {
-  name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
-  segment: 'admin',
-  isPage: true,
-  parent: null,
-  children: [notice, news, seminar],
-};
-
 main.children = [about, community, people, research, admissions, academics, reservations];
 about.children = [
   overview,
@@ -584,3 +576,49 @@ seminarRoom.children = [
 ];
 labRoom.children = [softwareLab, hardwareLab];
 lectureRoom.children = [bldg302room208, bldg302room209];
+
+// 관리자
+
+export const admin: SegmentNode = {
+  name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
+  segment: 'admin',
+  isPage: true,
+  parent: null,
+  children: [notice, news, seminar],
+};
+
+// 10-10
+
+export const tentenProject: SegmentNode = {
+  name: '10-10 Project',
+  segment: '10-10-project',
+  isPage: true,
+  parent: null,
+  children: [],
+};
+
+export const tentenManager: SegmentNode = {
+  name: 'Manager',
+  segment: 'manager',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+export const tentenParticipants: SegmentNode = {
+  name: 'Participants(Professors)',
+  segment: 'participants',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+export const tentenProposal: SegmentNode = {
+  name: 'Proposal',
+  segment: 'proposal',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+tentenProject.children = [tentenManager, tentenParticipants, tentenProposal];

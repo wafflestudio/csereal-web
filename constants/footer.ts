@@ -10,6 +10,7 @@ import {
   researchLabs,
   topConferenceList,
   reservationIntroduction,
+  tentenProject,
 } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -38,7 +39,7 @@ export const researchLinks = [
   },
   segmentNodeToLink(topConferenceList),
   {
-    href: '/404',
+    href: getPath(tentenProject),
     title: '10-10 Project',
   },
 ];
