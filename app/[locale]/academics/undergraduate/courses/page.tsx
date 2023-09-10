@@ -14,10 +14,12 @@ import { getPath } from '@/utils/page';
 import { replaceDashWithSpace, replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 interface UndergraduateCoursePageProps {
+  params: { locale: string };
   searchParams: { sortby?: string };
 }
 
 export default async function UndergraduateCoursePage({
+  params: { locale },
   searchParams: { sortby = '' },
 }: UndergraduateCoursePageProps) {
   const data: Course[] = await getCourses('undergraduate');

@@ -246,6 +246,46 @@ export const graduateRegularAdmission: SegmentNode = {
   children: null,
 };
 
+export const internationalAdmission: SegmentNode = {
+  name: 'International',
+  segment: 'international',
+  isPage: false,
+  parent: admissions,
+  children: [],
+};
+
+export const internationalUndergraduateAdmission: SegmentNode = {
+  name: 'Undergraduate',
+  segment: 'undergraduate',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const internationalGraduateAdmission: SegmentNode = {
+  name: 'Graduate',
+  segment: 'graduate',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const exchangeVisitingProgram: SegmentNode = {
+  name: 'Exchange/Visiting Program',
+  segment: 'exchange',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const internationalScholarships: SegmentNode = {
+  name: 'Scholarships',
+  segment: 'exchange',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
 export const academics: SegmentNode = {
   name: '학사 및 교과',
   segment: 'academics',
@@ -540,9 +580,15 @@ about.children = [
 community.children = [notice, news, seminar, facultyRecruitment];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
-admissions.children = [undergraduateAdmission, graduateAdmission];
+admissions.children = [undergraduateAdmission, graduateAdmission, internationalAdmission];
 undergraduateAdmission.children = [undergraduateEarlyAdmission, undergraduateRegularAdmission];
 graduateAdmission.children = [graduateRegularAdmission];
+internationalAdmission.children = [
+  internationalUndergraduateAdmission,
+  internationalGraduateAdmission,
+  exchangeVisitingProgram,
+  internationalScholarships,
+];
 academics.children = [undergraduateAcademics, graduateAcademics];
 undergraduateAcademics.children = [
   undergraduateGuide,
