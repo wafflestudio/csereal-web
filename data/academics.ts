@@ -13,23 +13,6 @@ import {
 export const getMockAcademicsGuide = async (type: 'undergraduate' | 'graduate') => {
   return {
     description: type === 'undergraduate' ? undergraduateGuideData : graduateGuideData,
-    attachments: [
-      {
-        name: 'FILE1',
-        url: 'www.google.com',
-        bytes: 123123,
-      },
-      {
-        name: 'FILE2',
-        url: 'www.google.com',
-        bytes: 123123,
-      },
-      {
-        name: 'FILE3',
-        url: 'www.google.com',
-        bytes: 123123,
-      },
-    ],
   };
 };
 
