@@ -1489,6 +1489,44 @@ export const graduateCourses: Course[] = [
 export const courseChangesData: CourseChange[] = [
   {
     year: 2020,
+    description:
+      '<p>2020학년도 1학기 시행 교과과정 변경<br></p><h3>교과목 신설</h3><ul><li>M1522.002800 블록체인의 이해(Understanding Blockchains) 3-3-0</li></ul><p><br></p><h3>대체교과목 지정</h3><table><tbody><tr><th colspan="3"><div>폐지 교과목</div></th><th colspan="3"><div>대체 지정 교과목</div></th></tr><tr><th><div>교과목번호</div></th><th><div>학점-강의-실습</div></th><th><div>교과목명</div></th><th><div>교과목번호</div></th><th><div>학점-강의-실습</div></th><th><div>교과목명</div></th></tr><tr><td><div>M1522.001100</div></td><td><div>3-3-0</div></td><td><div>컴퓨터시스템특강</div></td><td><div>M1522.001200</div></td><td><div>3-3-0</div></td><td><div>컴퓨터 신기술 특강</div></td></tr></tbody></table><p><br></p><h3>전공필수 해제 (2020학년도 입학자부터 적용) (전필 → 전선)</h3><ul><li>M1522.002400 소프트웨어 개발의 원리와 실습 (Principles and Practices of Software Development) 4-3-2</li></ul>',
+  },
+  {
+    year: 2019,
+    description: '',
+  },
+  {
+    year: 2018,
+    description: '',
+  },
+  {
+    year: 2017,
+    description: '',
+  },
+  {
+    year: 2016,
+    description: '',
+  },
+  {
+    year: 2015,
+    description: '',
+  },
+  {
+    year: 2013,
+    description: '',
+  },
+  {
+    year: 2012,
+    description: '',
+  },
+  {
+    year: 2011,
+    description: '',
+  },
+  // TODO: 원본처럼 연도별로 나누기?? 일단 UI가 2010이전은 모아서 보여주기에 합침
+  {
+    year: 2010,
     description: '',
   },
 ];
