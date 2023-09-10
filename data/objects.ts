@@ -959,7 +959,7 @@ export const undergraduateCourses: Course[] = [
 export const graduateCourses: Course[] = [
   {
     name: '고급그래픽스',
-    description: '',
+    description: '3차원 모델링 및 상호작용에 관한 최근의 연구동향에 관하여 공부한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.562',
@@ -967,7 +967,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '고급운영체제',
-    description: '',
+    description:
+      '이 과목에서는 유닉스 운영체제를 중심으로 운영체제의 내부 구조와 운영체제 분야의 최신 이론을 배운다. 수강생들은 또한 운영체제 관련 다수의 논문을 읽고 발표해야 하며, 운영체제와 연관된 프로젝트를 수행해야 한다. 강좌 내용을 요약하면, 유닉스의 구조와 발전, 운영체제 관련 논문 연구, 프로젝트 수행 등이다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.568',
@@ -975,7 +976,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '고급인공지능',
-    description: '',
+    description:
+      '인공지능은 사람의 지능과 인지 기능을 모사하는 정보처리 모델을 연구하는 컴퓨터 과학의 한 분야이다. 본 강좌는 전통적인 인공지능 주제들에 대해서 살펴보며, 문제 정의와 해결, 다양한 탐색 방법, 논리 표현 및 추론, 확률 모델, 강화학습, 게임 이론, 메커니즘 디자인 등을 포함한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.569',
@@ -983,7 +985,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '고급컴퓨터구조',
-    description: '',
+    description:
+      '컴퓨터를 설계하는데 필요한 공학적 방법론, 설계기법, 무결함 검증방법, 기술동향, 성능평가 방법을 익힌다. 구체적으로 다루어지는 내용은 파이프라인 형태의 명령어 실행 방법, 명령어 수준의 병렬성, 메모리 계층구조, 입출력 시스템, 다중처리기 등이다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.571',
@@ -991,7 +994,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '고급컴퓨터네트워크',
-    description: '',
+    description:
+      'ATM에 관하여 Physical layer, ATM Layer, ATM Adaptation Layer 각 layer에 관하여 강의를 하며 특히 connectionless service, traffic management, switch에 관하여 심도있는 강의를 한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.572',
@@ -999,7 +1003,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '프로그램분석',
-    description: '',
+    description:
+      '이 강의에서는 프로그램 분석 기술의 이론과 실제를 강의한다. 프로그램 분석 기술은 주어진 컴퓨터 소프트웨어가 실행중에 어떤 성질을 가지는 지를 실행하기 전에 미리 자동으로 엄밀하게 확인하는 기술이다. 이 기술은 무결점 소프트웨어 개발, 소프트웨어 실행비용 최적화, 소프트웨어 관리 및 이해 등을 위한 자동화 환경의 핵심기술이 된다. 다루는 토픽은, 프로그램 분석의 가장 강력한 틀로 인정받는 요약해석 기술의 이론과 응용, 프로그래밍 언어의 타입 시스템, 집합 제약식을 이용한 분석, 모델검증 등이다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.664A',
@@ -1007,7 +1012,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '기계학습',
-    description: '',
+    description:
+      '기계학습은 환경으로부터 데이터 관찰과 경험을 통해 성능을 계속적으로 향상시킬 수 있는 문제해결 시스템을 연구하는 인공지능의 한 분야이다. 본 과목에서는 기계학습에 관한 이론 및 실제적인 연구 주제들에 관해 학습한다. 감독 학습과 무감독 학습 및 강화학습에 관한 기본 원리와 이론적인 배경을 공부하며 이들에 대한 구체적인 알고리즘을 학습한다. 기호규칙 학습, 결정트리, 메모리기반 학습, 신경망, 유전자알고리즘, 베이지안 망, 은닉 마코프 모델, 커널방법 및 기타 최근 기계학습 알고리즘을 다룬다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.666',
@@ -1015,7 +1021,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '기하모델링',
-    description: '',
+    description:
+      '다양한 곡선 및 곡면디자인 방법들에 대하여 공부한다. 3차원 입체모델의 표현방식들에 대한 이론들을 배우고, 간단한 모델링 시스템을 구축하여본다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.667',
@@ -1023,7 +1030,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '디지털시스템설계방법론',
-    description: '',
+    description:
+      '본 강의에서는 마이크로프로세서 응용 전용 디지털 시스템을 체계적으로 설계하기 위한 방법론으로 최근에 많은 주목을 받고있는 하드웨어-소프트웨어 통합설계에 관하여 공부하도록 한다. 우선, 시스템을 정형적으로 명세하기 위한 다양한 계산 모델 (model of computation)에 관하여 살펴보고 각 모델에 기반한 연구들에 대하여 개괄적으로 살펴본다. 그리고, 데이터플로우 그래프와 FSM을 이용하여 시스템을 명세하는 통합설계 도구인 PeaCE를 이용하여 시스템 설계의 최적화를 위한 세부 내용들을 알아보도록 한다. 최종적으로 기말에는 PeaCE 에 관련된 프로젝트를 수행하게 될 것이다',
     year: '대학원',
     classification: '전공선택',
     code: '4190.668A',
@@ -1031,7 +1039,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '실시간시스템',
-    description: '',
+    description:
+      '실시간 계산 시스템에서는 계산상의 정확성과 아울러 태스크가 주어진 시간내에 정상적으로 종료되어야만 올바르게 동작한다고 한다. 이 과목에서는 이러한 시스템 구성을 위한 태스크 스케쥴링, 프로그래밍언어, 통신, 데이타베이스, 결함허용, 등의 기법에 대하여 학습한다. 또 기말과제를 통하여 각자의 연구분야의 실시간 특성에 대하여 연구할 기회를 갖는다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.672',
@@ -1039,7 +1048,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '암호학',
-    description: '',
+    description:
+      '현대 암호학의 주요 내용을 배운다. 구체적으로 고전 암호학, 샤논의 무제한 보안성, 대칭키 암호시스템, 공개키 암호시스템, 전자서명, 해쉬함수, 비밀공유기법, 난수발생기법, 영지식 증명 등을 배운다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.673',
@@ -1047,7 +1057,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '인공신경망',
-    description: '',
+    description:
+      '자연언어처리는 인간의 언어를 컴퓨터가 자동으로 분석하고 생성하기 위한 소프트웨어를 연구하는 분야이다. 본 교과목에서는 자연언어를 이해하고 기계번역을 자동으로 수행하기 위한 기본적인 개념과 구체적인 언어 처리 기법을 공부한다. 특히, 형태소 분석, 구문분석, 의미분석, 화용론 및 언어생성에 대해 공부한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.676',
@@ -1055,7 +1066,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '자연언어처리',
-    description: '',
+    description:
+      '자연언어처리는 인간의 언어를 컴퓨터가 자동으로 분석하고 생성하기 위한 소프트웨어를 연구하는 분야이다. 본 교과목에서는 자연언어를 이해하고 기계번역을 자동으로 수행하기 위한 기본적인 개념과 구체적인 언어 처리 기법을 공부한다. 특히, 형태소 분석, 구문분석, 의미분석, 화용론 및 언어생성에 대해 공부한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.678',
@@ -1063,7 +1075,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '지식표현및추론',
-    description: '',
+    description:
+      '지식 표현 및 추론은 인간 수준의 인공지능을 실현하기 위한 가장 중요한 주제중의 하나이다. 본 과목에서는 지식표현과 관련된 최신 주제에 관한 논문에 대하여 토론한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.680',
@@ -1071,7 +1084,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '유전알고리즘',
-    description: '',
+    description:
+      '유전 알고리즘으로 대표되는 진화 알고리즘과 문제 공간 탐색에 대해학습한다. 진화 알고리즘은 크게 문제 해결을 위한 경우와 시뮬레이션을 위한 경우가 있는데 본 강의는 문제 해결 측면에 촛점을 맞춘다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.681A',
@@ -1079,7 +1093,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '계산이론특강',
-    description: '',
+    description:
+      '이 교과목에서는 먼저 알고리즘의 성능을 분석하는 기법에 대해 배운다. 여러 가지 string processing 알고리즘bioinformatics에의 응용들을 익힌다. 또한, online 알고리즘, randomized 알고리즘, approximation 알고리즘에 대해 배운다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.761',
@@ -1087,7 +1102,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '그래픽스특강',
-    description: '',
+    description:
+      '컴퓨터그래픽스 전반에 걸쳐 기본적인 개념들을 설명한다. 컴퓨터 그래픽스의 기본적인 렌더링 파이프라인, 물체들을 표현하는 여러 가지 방법, 빛을 나타내는 방법, 레이트레이싱, 볼륨렌더링 등의 특수한 렌더링 방법, 그림자나 질감을 나타내는 방법에 대해서 개론 형식으로 강의한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.762',
@@ -1095,7 +1111,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '내장형시스템특강',
-    description: '',
+    description:
+      '본 강좌는 이미 embedded system에 익숙한 대학원생들을 대상으로 하며 embedded system을 설계하는 데 중요한 여러 주제들에 관한 최신의 연구논문들을 중심으로 연구 결과들을 학습하여 embedded system분야의 본격적인 연구를 준비시키는 데 목적이 있다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.763',
@@ -1103,7 +1120,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '데이터베이스특강',
-    description: '',
+    description:
+      '전자 도서관(Digital Library)과 정보 검색(Information retrieval)분야의 기본적 지식부터 고급 주제까지 다루며 전자상거래(Electronic commerce)에서의 데이타베이스 관련 연구 이슈들도 살펴본다. 이 강좌는 교수의 강의와 학생들의 관련 논문 발표, Term Project 발표로 이루어지며, 영어강좌이므로 강의, 숙제 , 발표 , 시험 등 강좌와 관련된 모든 것이 영어로 진행된다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.765',
@@ -1111,7 +1129,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '실시간시스템특강',
-    description: '',
+    description:
+      '최근 실시간 계산기술의 발전을 기반으로 실제 실시간시스템 구성기술을 연마하는 것을 목적으로한다. 실시간 요구조건의 분석과 실시간 운영체계의 작성 연습을 통하여 실시간 시스템을 설계하는 기법을 습득한다. 이를 위하여 시간의 관리, 실시간 소프트웨어 및 하드웨어의 개발 방법, 실시간 운영체계의 특성, 자원의 할당 및 스케쥴링 방법 등에 대해 검토한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.770',
@@ -1119,7 +1138,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '알고리즘특강',
-    description: '',
+    description:
+      'Shortest path, Network flow 등의 그래프 문제를 해결하는 최근에 개발된 알고리즘과 알고리즘 분야에서의 최근의 연구결과를 학습한다. 분산 시스템의 여러 모델들과 분산 시스템에서 발생하는 중요한 문제들을 해결하는 분산 알고리즘에 관하여 연구한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.771',
@@ -1127,7 +1147,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '인공지능특강',
-    description: '',
+    description:
+      '주어진 지식과 경험을 바탕으로 앞으로 주어질 작업을 효율적이고 체계적으로 수행할수 있는 컴퓨터 프로그램 개발에 많은 연구가 계속되어 오고 있다. 이러한 연구의 핵심 분야인 기계 학습(Machine Learning)에 관한 강의로써 현재까지 발표된 대표적인 연구 논문들을 중심으로 이론및 알고리즘, 응용 분야등을 설명한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.773',
@@ -1135,7 +1156,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '컴퓨터구조특강',
-    description: '',
+    description:
+      '본 교과목에서는 석·박사과정 학생들에게 CPU 구조, 캐쉬 설계, 메모리 관리 정책, 파이프라이닝, 버스 구조, 입출력 장치 등 컴퓨터 구조에 관한 전반적인 동향을 소개하고, 최근 발표된 논문에 대한 강독을 통해 새로이 소개되는 기술을 익힐 수 있게 한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.777',
@@ -1143,7 +1165,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '컴퓨터네트워크특강',
-    description: '',
+    description:
+      '지난 20년간 눈부시게 발전한 인터넷은 앞으로 Fundamental한 변혁을 겪을 것으로 예상된다. 본 강좌에서는 인터넷이 미래에 어떻게 진화할 것인지 조망하고 인터넷의 핵심장비인 차세대 라우터의 구현에 필요한 기술들을 살펴본다. 강의를 수강한 사람은 미래 인터넷의 진화방향, 차세대 라우터의 요구사항 및 기능을 고찰할 능력을 갖추며 차세대 라우터의 설계, 개발 능력을 보유할 것으로 기대한다. 나아가서 본 강의를 수강한 네트워크 전문가, 시스템 구현 전문가들이 참여하는 모험적인 연구, 개발조직이 자발적으로 태동할 것을 기대한다. 강의는 선정된 논문 및 앞으로 추가될 논문을 발표하고 토론하는 것을 중심으로 진행될 것이며 자생적인 그룹 프로젝트를 추진한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.778',
@@ -1151,7 +1174,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '고급컴퓨터공학세미나',
-    description: '',
+    description:
+      '본 과목은 집담회 형식의 세미나 과목으로 컴퓨터공학 대학원 수준의 다양한 연구 분야와 최근 동향을 소개한다.',
     year: '대학원',
     classification: '전공선택',
     code: '4190.781',
@@ -1167,7 +1191,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '정보시각화와 시각적분석',
-    description: '',
+    description:
+      '사람들이 일반적으로 동의하는 시각적인 표현이 존재하지 않는 대량의 추상적인 데이터를 직관적으로 시각화하고 동적으로 제어할 수 있게 함으로써 사용자들의 인지능력의 향상을 꾀하는 정보 시각화에 대하여, 시지각 이론을 포함한 이론적 바탕에서 출발하여 데이터의 형태별 시각화 방법론, 인터액션 방법론, 디자인 스터디 방법론, 평가 방법론 등 다양한 기술적 배경을 실제 문제 해결을 통하여 학습한다. 더 나아가서, 정보시각화 기술에 기반하여 인터액티브한 시각적 인터페이스를 디자인하고 이를 통하여 전문가의 창의적 문제해결 능력을 극대화함으로써 인류가 직면한 실제 문제를 해결하려는 새로운 과학적 시도인 시각적 분석 기술도 학습한다. 특히 통계학, 기계학습, 데이터마이닝 등 데이터 과학 분야의 관련 기술들을 정보 시각화 시스템에 효과적으로 융합하는 기술적 방법론도 다양한 실례와 디자인 프로젝트를 통해 체득한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.000500',
@@ -1175,7 +1200,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '확률 그래프 모델',
-    description: '',
+    description:
+      '확률 그래프 모델은 확률 변수들 간의 조건 의존성을 그래프 형태로 나타낼 수 있는 통계 방법론으로, 대용량 변수들의 복잡한 상호관계도 조밀하게 표현할 수 있다. 근래 컴퓨터 비전, 자연어 처리, 로봇공학, 컴퓨터 시스템, 계산 생물학 등 인공지능과 연관된 다양한 실제 문제들에 성공적으로 활용되고 있다. 본 과목에서는 확률 그래프 모델에 필요한 이론, 원리, 알고리즘 등을 폭넓게 배우며, 특히 주요 주제로는, 베이지안 그래프와 마코프 랜덤 필드의 표현, 합-곱 알고리즘과 신뢰 전파 알고리즘 등을 통한 그래프 모델의 학습과 추론, 변분 분석과 표본화를 통한 근사 방법, 최대 마진 방법과 깊은 신경망 등의 최신 기계 학습 기법 등과 그들의 실제 적용 방법과 예시 등을 다룬다. 본 과목은 대학원생과 일부 고년차 학부생을 대상으로 한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.001300',
@@ -1183,7 +1209,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '정보검색',
-    description: '',
+    description:
+      '대용량 검색 엔진 플랫폼을 설계하고 구현하기 위한 핵심 기반 기술은 무엇일까? 대규모 문서/멀티미디어 데이터에서 어떻게 중요한 정보를 검색할 수 있을까? 본 과목에서는 검색 엔진의 주요 이론, 설계, 핵심 기술 구현을 설명한다. 주요 학습 주제로 검색 엔진 플랫폼 기술 (inverted index, 분산 인덱싱, 인덱스 압축), 텍스트의 통계적 특성(TF-IDF, weighted scoring), 정보 요구 표현, 문서 표현, 중요 검색 모델 (PageRank, vector space, Bayesian 검색), 검색 엔진 평가 방법 등이 있다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.001500',
@@ -1191,7 +1218,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '대규모 데이터분석 특강',
-    description: '',
+    description:
+      '수 페타 바이트에 달하는 대규모 데이터에서 어떻게 유용한 패턴과 이상 신호를 찾을 수 있을까? 대규모 데이터를 분석하는 분산 시스템, 플랫폼, 알고리즘은 어떻게 설계할 수 있을까? 소셜 네트워크, 웹, 통신, 생물학 등 다양한 분야에서 대규모 데이터가 생성되고 있으며 대규모 데이터를 분석하여 중요한 정보를 추출하는 것은 다양한 응용에 활용될 수 있는 매우 중요한 일이다. 본 과목에서는 대규모 데이터를 분석하기 위한 분석 시스템 설계 기법, 기반 기술과 핵심 알고리즘을 다룬다. 또한 설계한 시스템과 알고리즘을 이용하여 데이터에서 유용한 패턴과 이상 신호를 찾는 기법을 학습한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.001600',
@@ -1199,7 +1227,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '계산이론',
-    description: '',
+    description:
+      '계산이론은 컴퓨터공학의 기초학문이며, 중요한 문제에 대한 효율적인 알고리즘들을 소개하고, 그런 알고리즘의 복잡도 분석을 다룬다. 이 교과목에서는 먼저 알고리즘의 성능을 분석하는 기법, 특히 amortized analysis에 대해 배운다. 그리고, 계산이론 분야에서 중요한 알고리즘과 그 응용에 대해 배운다. 구체적으로, (스트링 매칭, 2차원 패턴 매칭, 근사 매칭, suffix trees, 데이터 압축 문제에 대한) 스트링 알고리즘과 bioinformatics에의 응용, (선택 문제, 다항식 확인 문제에 대한) randomized 알고리즘과 그 영향, (페이지 교체 문제, k 서버 문제에 대한) online 알고리즘과 금융문제(일방향 거래와 portfolio 선택 문제)에의 응용을 배운다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.002900',
@@ -1207,7 +1236,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '데이터베이스시스템',
-    description: '',
+    description:
+      '이 교과목에서는 고급 데이터베이스 시스템의 기반이 되는 주제로서 질의어 처리, 데이터베이스 회복, 병행제어, 데이터베이스 보안 및 무결성, 그리고 분산 데이타베이스를 다룬다. 또한 현재 제기되고 있는 문제로서 의사결정지원 시스템, 웹 데이터베이스, 멀티미디어 데이터베이스, 그리고 이동 데이터베이스도 다뤄질 것이다. 교과목을 통해 관련 연구논문들이 논의될 것이다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.003000',
@@ -1247,7 +1277,11 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '비정형데이터베이스시스템',
-    description: '',
+    description: `본 교과목은 대학원 과정 교과목인 고급데이터베이스 1의 후속 과정으로서 관계형 및 비관계형 데이터 모델에 기반한 데이터베이스 응용을 위한 핵심적 알고리즘과 규모확장적인 방법론을 다루며, 이들 기법을 시공간 데이터, 텍스트 데이터 그리고 NoSQL 등 다양하고 새로운 형태의 데이터에 대해 적용한다. 수강 학생들은 학사과정 데이터베이스와 고급데이터베이스 1의 수강 내용을 사전에 숙지하고 있어야 한다. 필수적 강의 주제들로는 공간 및 다차원 데이터베이스, 텍스트 데이터와 벡터 모델, 그래프 데이터베이스, NoSQL 데이터 모델과 키-밸류 스토어, Map-Reduce와 규모확장적 데이터 처리 등이 있다. 또한 담당 교수의 재량으로 선택할 수 있는 주제로는 대규모 클러스터링, 시계열 및 스트리밍 데이터, 과학 데이터베이스, 유사도 검색, 그리고 병렬 및 분산 데이터베이스 등이 있다.
+
+추천 과제물: (1) DBMS 기능 구현, (2) 연구 중심 주제.
+
+선수 교과목: (1) 자료구조, (2) 학사과정 데이터베이스, (3) 고급데이터베이스 1`,
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.003500',
@@ -1287,7 +1321,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '컴파일러최적화',
-    description: '',
+    description:
+      '최적화 컴파일러 설계에 필요한 data flow analysis, register allocation, static single assignment form, 병렬화, 메모리 최적화, 루프 최적화 방법 등에 대하여 배운다. 이론적인 최적화 개념을 실제로 공개 소프트웨어 컴파일러(LLVM/clang)나 수업에서 개발한 컴파일러에 적용해 그 효과를 알아 본다. 이과목을 수강하려면 학부 컴파일러 수업에서 배운 컴파일러 구현에 관한 기본 지식이 필요하다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.004000',
@@ -1295,7 +1330,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '컴퓨터애니메이션',
-    description: '',
+    description:
+      '본 교과목에서는 컴퓨터 애니메이션의 근간을 구성하는 수학적 요소와 알고리즘을 배운다. 구체적인 주제는 애니메이션의 역사, 회전 및 방향 표현, 키프레임 보간, 기구학 및 역기구학, 물리기반 시뮬레이션, 모션 캡쳐, 데이터기반 애니메이션, 유연체 모델링, 얼굴 애니메이션 등을 포함한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.004100',
@@ -1311,7 +1347,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '객체지향시스템특강',
-    description: '',
+    description:
+      '차세대 DBMS의 데이터 모델과 기능 등을 연구한다. RDBMS에서 OODBMS로의 변환 과정과 ODMG 표준 등을 포함한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.004300',
@@ -1335,7 +1372,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '프로그래밍언어특강',
-    description: '',
+    description:
+      '이 수업에서는 프로그래밍 언어의 스펙(Notation and concepts),디자인(Case studies of languages and features), 그리고 프로그램을 분석하는 방법에 대해서 공부한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.004600',
@@ -1391,7 +1429,8 @@ export const graduateCourses: Course[] = [
   },
   {
     name: '인간컴퓨터상호작용연구',
-    description: '',
+    description:
+      '본 교과목은 학부 인간컴퓨터상호작용(Introduction to Human-Computer Interaction) 과목의 상위 대학원 교과목으로서, HCI분야 연구 수행에 있어서 필수적인 HCI 모델, 이론, 프레임워크에 대해서 보다 깊이 있게 소개하고, HCI의 다양한 응용분야(Information Visualization, Mobile Interaction, Visual Analytics, Social Computing 등)에서 실제 문제 해결에 적용하는 방법론 및 기술을 숙지할 수 있는 기회를 제공한다.',
     year: '대학원',
     classification: '전공선택',
     code: 'M1522.005400',
