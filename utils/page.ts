@@ -1,12 +1,12 @@
 import { SegmentNode, admin, main } from '@/types/page';
 
 export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
-  if (!(location && location.segment)) return [];
+  if (!(location && location !== main)) return [];
   return [...getLocationLog(location.parent), location];
 };
 
 export const getPath = (location: SegmentNode | null): string => {
-  if (!(location && location.segment)) return '';
+  if (!(location && location !== main)) return '';
   return `${getPath(location.parent)}/${location.segment}`;
 };
 
@@ -14,7 +14,7 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
   if (currTab === main || currTab === admin) return currTab;
 
   let root = currTab;
-  while (root.parent !== null) {
+  while (root.parent && root.parent !== main) {
     root = root.parent;
   }
   return root;
