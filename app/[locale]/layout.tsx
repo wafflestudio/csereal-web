@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
+import { PropsWithChildren } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
+import SessionContextProvider from '@/contexts/SessionContext';
 
 import Boundary from '@/components/layout/Boundary';
 import Footer from '@/components/layout/footer/Footer';
@@ -45,29 +47,37 @@ export default async function RootLayout({
       <body
         className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal overscroll-none bg-white`}
       >
-        <ModalContextProvider>
-          <NavbarContextProvider>
-            <NextIntlClientProvider locale={params.locale} messages={messages}>
-              <Navbar />
-              <div className="flex flex-col flex-1">
-                <Header />
-                <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
-                  <main className="flex-1">
-                    <SWRProvider>
-                      <div className="font-noto">
-                        <Boundary>{children}</Boundary>
-                      </div>
-                    </SWRProvider>
-                  </main>
-                  <Footer />
-                </div>
+        <ContextProviders>
+          <NextIntlClientProvider locale={params.locale} messages={messages}>
+            <Navbar />
+            <div className="flex flex-col flex-1">
+              <Header />
+              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
+                <main className="flex-1">
+                  <SWRProvider>
+                    <div className="font-noto">
+                      <Boundary>{children}</Boundary>
+                    </div>
+                  </SWRProvider>
+                </main>
+                <Footer />
               </div>
-              <ModalContainer />
-              <Toaster />
-            </NextIntlClientProvider>
-          </NavbarContextProvider>
-        </ModalContextProvider>
+            </div>
+            <ModalContainer />
+            <Toaster />
+          </NextIntlClientProvider>
+        </ContextProviders>
       </body>
     </html>
+  );
+}
+
+function ContextProviders({ children }: PropsWithChildren) {
+  return (
+    <SessionContextProvider>
+      <NavbarContextProvider>
+        <ModalContextProvider>{children}</ModalContextProvider>
+      </NavbarContextProvider>
+    </SessionContextProvider>
   );
 }

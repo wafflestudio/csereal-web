@@ -5,28 +5,51 @@ import React, {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
+  useCallback,
   useContext,
   useState,
 } from 'react';
 
+import { getIsStaff } from '@/apis/auth';
+
 interface SessionContextData {
-  isStaff?: boolean;
-  setIsStaff: Dispatch<SetStateAction<boolean | undefined>>;
+  user?: User;
+  setUser: Dispatch<SetStateAction<User | undefined>>;
+  autoLogin: () => Promise<void>;
 }
 
 const SessionContext = createContext<SessionContextData>({
-  isStaff: undefined,
-  setIsStaff: () => {
+  user: undefined,
+  setUser: () => {
+    throw Error('session context not provided');
+  },
+  autoLogin: () => {
     throw Error('session context not provided');
   },
 });
 
 export const useSessionContext = () => useContext(SessionContext);
 
+interface User {
+  isStaff: boolean;
+}
+
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const [isStaff, setIsStaff] = useState<boolean>();
+  const [user, setUser] = useState<User | undefined>();
+
+  const autoLogin = useCallback(async () => {
+    try {
+      const data = await getIsStaff();
+      setUser({ isStaff: data.isStaff });
+    } catch (error) {
+      setUser(undefined);
+      console.log(error);
+    }
+  }, []);
 
   return (
-    <SessionContext.Provider value={{ isStaff, setIsStaff }}>{children}</SessionContext.Provider>
+    <SessionContext.Provider value={{ user, setUser, autoLogin }}>
+      {children}
+    </SessionContext.Provider>
   );
 }

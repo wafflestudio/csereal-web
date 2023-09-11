@@ -3,9 +3,12 @@
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
+import useSWR from 'swr';
 
 import { BASE_URL } from '@/apis';
 import { useNavbarContext } from '@/contexts/NavbarContext';
+import { useSessionContext } from '@/contexts/SessionContext';
 import HeaderLogo from '@/public/image/header_logo.svg';
 
 import HeaderSearchBar from './HeaderSearchBar';
@@ -32,6 +35,7 @@ export default function Header() {
 
 function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();
+  const { user, autoLogin } = useSessionContext();
 
   const t = useTranslations('Header');
 
@@ -44,16 +48,23 @@ function HeaderRight() {
     console.log('로그아웃 버튼 클릭');
   };
 
+  useEffect(() => {
+    if (!user) autoLogin();
+  }, [user, autoLogin]);
+
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
-        <Link href={LOGIN_URL}>
-          <button onClick={handleLogin}>{t('로그인')}</button>
-        </Link>
-        <span className="text-neutral-500">|</span>
-        <Link href={LOGOUT_URL}>
-          <button onClick={handleLogOut}>{t('로그아웃')}</button>
-        </Link>
+        {user ? (
+          <Link href={LOGIN_URL}>
+            <button onClick={handleLogin}>{t('로그인')}</button>
+          </Link>
+        ) : (
+          // <span className="text-neutral-500">|</span>
+          <Link href={LOGOUT_URL}>
+            <button onClick={handleLogOut}>{t('로그아웃')}</button>
+          </Link>
+        )}
         <span>|</span>
         <button onClick={changeLanguage}>{langButtonText}</button>
       </div>
