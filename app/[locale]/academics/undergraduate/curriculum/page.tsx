@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next-intl/link';
 
 import PentagonMedium from '@/public/image/pentagon_medium.svg';

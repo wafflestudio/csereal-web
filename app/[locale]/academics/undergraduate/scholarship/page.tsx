@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
 
 import { ScholarshipRow } from '@/components/academics/ScholarshipRow';

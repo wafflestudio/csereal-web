@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getMockGraduateScholarshipList } from '@/data/serverObjects';
 
 import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
