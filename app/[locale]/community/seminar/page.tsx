@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarContent from '@/components/seminar/SeminarPageContent';
