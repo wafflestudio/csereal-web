@@ -27,7 +27,7 @@ type DefaultStyle = 'orange' | 'gray' | 'fill';
 
 const HOVER_STYLE: { [key in HoverStyle]: string } = {
   fill: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
-  orange: 'hover:bg-white hover:border-main-orange text-main-orange',
+  orange: 'hover:bg-white hover:border-main-orange hover:text-main-orange',
 };
 
 const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {

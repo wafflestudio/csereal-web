@@ -1,4 +1,5 @@
 import ImportantPosts from '@/components/main/ImportantPosts';
+import Notices from '@/components/main/Notices';
 import ShortCutBox from '@/components/main/ShortCutBox';
 
 import { ImportantCategory } from '@/types/admin';
@@ -23,12 +24,13 @@ const posts: {
 export default function MainPage() {
   return (
     <div>
-      <div>
+      <section>
         <ShortCutBox title={topConferenceList.name} href={tclPath} />
         <ShortCutBox title={facultyRecruitment.name} href={facultyRecruitmentPath} />
         <ShortCutBox title={'학부 ' + notice.name} href={undergraduateNoticePath} />
-      </div>
+      </section>
       <ImportantPosts posts={posts} />
+      <Notices />
     </div>
   );
 }

@@ -8,11 +8,13 @@ interface ImportantPostsProps {
 
 export default function ImportantPosts({ posts }: ImportantPostsProps) {
   return (
-    <ul className="flex flex-col gap-6">
-      {posts.map((post) => (
-        <ImportantPostPreviewMain post={post} key={post.title} />
-      ))}
-    </ul>
+    <section>
+      <ul className="flex flex-col gap-6">
+        {posts.map((post) => (
+          <ImportantPostPreviewMain post={post} key={post.title} />
+        ))}
+      </ul>
+    </section>
   );
 }
 
