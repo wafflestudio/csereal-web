@@ -10,12 +10,12 @@ import React, {
 } from 'react';
 
 interface SessionContextData {
-  isStaff: boolean;
-  setIsStaff: Dispatch<SetStateAction<boolean>>;
+  isStaff?: boolean;
+  setIsStaff: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 const SessionContext = createContext<SessionContextData>({
-  isStaff: false,
+  isStaff: undefined,
   setIsStaff: () => {
     throw Error('session context not provided');
   },
@@ -24,7 +24,7 @@ const SessionContext = createContext<SessionContextData>({
 export const useSessionContext = () => useContext(SessionContext);
 
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const [isStaff, setIsStaff] = useState(false);
+  const [isStaff, setIsStaff] = useState<boolean>();
 
   return (
     <SessionContext.Provider value={{ isStaff, setIsStaff }}>{children}</SessionContext.Provider>

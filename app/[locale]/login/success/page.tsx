@@ -8,10 +8,16 @@ import { useSessionContext } from '@/contexts/SessionContext';
 import { getIsStaff } from '@/apis/auth';
 
 export default function LoginSuccessPage() {
+  //   const result = await getIsStaff();
+  //   console.log(result);
+
   const { isStaff, setIsStaff } = useSessionContext();
   const { data } = useSWR('/user/is-staff', getIsStaff);
   const router = useRouter();
 
+  console.log('asdf');
+  console.log('Data:', data);
+  console.log(isStaff);
   if (data) {
     setIsStaff((prev) => {
       console.log('is staff: ' + prev);
