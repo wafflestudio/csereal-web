@@ -40,6 +40,7 @@ function HeaderRight() {
   const t = useTranslations('Header');
 
   const langButtonText = isEnglish ? '한국어' : 'english';
+  console.log(user);
 
   useEffect(() => {
     if (!user) autoLogin();

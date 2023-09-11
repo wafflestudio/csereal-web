@@ -30,7 +30,7 @@ const SessionContext = createContext<SessionContextData>({
 
 export const useSessionContext = () => useContext(SessionContext);
 
-interface User {
+export interface User {
   isStaff: boolean;
 }
 
@@ -38,12 +38,14 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   const [user, setUser] = useState<User | undefined>();
 
   const autoLogin = useCallback(async () => {
+    console.log('자동 로그인!');
     try {
       const data = await getIsStaff();
       setUser({ isStaff: data.isStaff });
     } catch (error) {
       setUser(undefined);
       console.log(error);
+      console.log('ㅡ태프 인증 실패!');
     }
   }, []);
 
