@@ -1,3 +1,5 @@
+'use client'; // next-intl과 readFile 충돌로 인한 임시
+
 import { LAB_ROW_ITEM_WIDTH } from './ResearchLabListRow';
 
 export default function ResearchLabListHeader() {

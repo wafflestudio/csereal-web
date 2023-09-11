@@ -1,3 +1,5 @@
+'use client'; // next-intl과 readFile 충돌로 인한 임시
+
 import Link from 'next-intl/link';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';

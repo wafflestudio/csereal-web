@@ -1,3 +1,5 @@
+'use client'; // next-intl과 readFile 충돌로 인한 임시
+
 import Link from 'next-intl/link';
 
 import { researchLabs } from '@/types/page';
