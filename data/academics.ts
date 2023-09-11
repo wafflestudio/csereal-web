@@ -1,11 +1,12 @@
 import { CourseChange } from '@/types/academics';
 
 import {
-  courseChangesData,
+  undergraduateCourseChangesData,
   graduateCourses,
   graduateGuideData,
   undergraduateCourses,
   undergraduateGuideData,
+  graduateCourseChangesData,
 } from './objects';
 
 export const getMockAcademicsGuide = async (type: 'undergraduate' | 'graduate') => {
@@ -20,4 +21,10 @@ export const getMockCourses = async (type: 'undergraduate' | 'graduate') => {
 
 export const getMockCourseChanges = async (
   type: 'undergraduate' | 'graduate',
-): Promise<CourseChange[]> => courseChangesData;
+): Promise<CourseChange[]> => {
+  if (type === 'undergraduate') {
+    return undergraduateCourseChangesData;
+  } else {
+    return graduateCourseChangesData;
+  }
+};
