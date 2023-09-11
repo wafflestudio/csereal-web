@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next-intl/link';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import HeaderLogo from '@/public/image/header_logo.svg';

@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from 'next-intl/link';
 import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
 import Dropdown from '@/components/common/Dropdown';

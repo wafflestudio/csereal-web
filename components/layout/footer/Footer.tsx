@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import Link from 'next-intl/link';
 
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';

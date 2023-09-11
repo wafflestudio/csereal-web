@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
