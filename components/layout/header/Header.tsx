@@ -41,13 +41,6 @@ function HeaderRight() {
 
   const langButtonText = isEnglish ? '한국어' : 'english';
 
-  const handleLogin = () => {
-    console.log('로그인 버튼 클릭');
-  };
-  const handleLogOut = () => {
-    console.log('로그아웃 버튼 클릭');
-  };
-
   useEffect(() => {
     if (!user) autoLogin();
   }, [user, autoLogin]);
@@ -56,13 +49,13 @@ function HeaderRight() {
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
         {user ? (
-          <Link href={LOGIN_URL}>
-            <button onClick={handleLogin}>{t('로그인')}</button>
-          </Link>
-        ) : (
           // <span className="text-neutral-500">|</span>
           <Link href={LOGOUT_URL}>
-            <button onClick={handleLogOut}>{t('로그아웃')}</button>
+            <button>{t('로그아웃')}</button>
+          </Link>
+        ) : (
+          <Link href={LOGIN_URL}>
+            <button>{t('로그인')}</button>
           </Link>
         )}
         <span>|</span>

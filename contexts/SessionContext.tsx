@@ -14,15 +14,15 @@ import { getIsStaff } from '@/apis/auth';
 
 interface SessionContextData {
   user?: User;
-  setUser: Dispatch<SetStateAction<User | undefined>>;
+  // setUser: Dispatch<SetStateAction<User | undefined>>;
   autoLogin: () => Promise<void>;
 }
 
 const SessionContext = createContext<SessionContextData>({
   user: undefined,
-  setUser: () => {
-    throw Error('session context not provided');
-  },
+  // setUser: () => {
+  //   throw Error('session context not provided');
+  // },
   autoLogin: () => {
     throw Error('session context not provided');
   },
@@ -47,9 +47,5 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
     }
   }, []);
 
-  return (
-    <SessionContext.Provider value={{ user, setUser, autoLogin }}>
-      {children}
-    </SessionContext.Provider>
-  );
+  return <SessionContext.Provider value={{ user, autoLogin }}>{children}</SessionContext.Provider>;
 }
