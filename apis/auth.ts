@@ -1,4 +1,13 @@
-import { getRequest, postRequest } from '.';
+import { cookies } from 'next/dist/client/components/headers';
 
-export const login = () => getRequest('/login');
-export const logOut = () => postRequest('/logout', {});
+import { getRequest } from '.';
+
+export const getIsStaff = async () => {
+  const jsessionId = cookies().get('JSESSIONID');
+
+  return (await getRequest(
+    '/user/is-staff',
+    {},
+    { credentials: 'include', headers: { Cookie: `JESSIONID=${jsessionId?.value}` } },
+  )) as { isStaff: boolean };
+};
