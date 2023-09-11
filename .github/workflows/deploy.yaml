@@ -55,4 +55,4 @@ jobs:
             docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
             docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
-            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image
+            docker run -d -p 3001:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image

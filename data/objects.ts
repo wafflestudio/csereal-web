@@ -1,5 +1,5 @@
 import { Club, Direction, Facilities } from '@/types/about';
-import { Course, CourseChange } from '@/types/academics';
+import { Course, CourseChange, DegreeRequirements } from '@/types/academics';
 import {
   EmiritusFaculty,
   Faculty,
@@ -4193,3 +4193,296 @@ export const simpleResearchLabs: SimpleResearchLab[] = [
     },
   },
 ];
+
+export const getMockDegreeRequirements = async (): Promise<DegreeRequirements[]> => {
+  return [
+    {
+      id: 1,
+      year: 2023,
+      attachment: {
+        name: '2023학번 졸업 규정.pdf ',
+        url: 'http://cse-dev-waffle.bacchus.io/sites/default/files/node--page/2023%ED%95%99%EB%B2%88%20%EC%A1%B8%EC%97%85%20%EA%B7%9C%EC%A0%95.pdf',
+        bytes: 80830,
+      },
+    },
+    {
+      id: 2,
+      year: 2022,
+      attachment: {
+        name: '2022학번 졸업 규정.pdf ',
+        url: 'https://cse.snu.ac.kr/sites/default/files/node--page/2022%ED%95%99%EB%B2%88%20%EC%A1%B8%EC%97%85%20%EA%B7%9C%EC%A0%95.pdf',
+        bytes: 80560,
+      },
+    },
+    {
+      id: 3,
+      year: 2021,
+      attachment: {
+        name: '2021학번 졸업 규정.pdf ',
+        url: 'https://cse.snu.ac.kr/sites/default/files/node--page/2021%ED%95%99%EB%B2%88%20%EC%A1%B8%EC%97%85%20%EA%B7%9C%EC%A0%95.pdf',
+        bytes: 80630,
+      },
+    },
+    {
+      id: 4,
+      year: 2020,
+      attachment: {
+        name: '2020학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 5,
+      year: 2019,
+      attachment: {
+        name: '2019학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 6,
+      year: 2018,
+      attachment: {
+        name: '2018학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 7,
+      year: 2017,
+      attachment: {
+        name: '2017학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 8,
+      year: 2016,
+      attachment: {
+        name: '2016학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 9,
+      year: 2015,
+      attachment: {
+        name: '2015학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 10,
+      year: 2014,
+      attachment: {
+        name: '2014학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 11,
+      year: 2013,
+      attachment: {
+        name: '2013학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 12,
+      year: 2012,
+      attachment: {
+        name: '2012학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 13,
+      year: 2011,
+      attachment: {
+        name: '2011학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 14,
+      year: 2010,
+      attachment: {
+        name: '2010학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 15,
+      year: 2009,
+      attachment: {
+        name: '2009학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 16,
+      year: 2008,
+      attachment: {
+        name: '2008학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 17,
+      year: 2007,
+      attachment: {
+        name: '2007학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 18,
+      year: 2006,
+      attachment: {
+        name: '2006학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 19,
+      year: 2005,
+      attachment: {
+        name: '2005학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 20,
+      year: 2004,
+      attachment: {
+        name: '2004학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 21,
+      year: 2003,
+      attachment: {
+        name: '2003학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 22,
+      year: 2002,
+      attachment: {
+        name: '2002학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 23,
+      year: 2001,
+      attachment: {
+        name: '2001학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 24,
+      year: 2000,
+      attachment: {
+        name: '2000학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 25,
+      year: 1999,
+      attachment: {
+        name: '1999학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 26,
+      year: 1998,
+      attachment: {
+        name: '1998학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 27,
+      year: 1997,
+      attachment: {
+        name: '1997학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 28,
+      year: 1996,
+      attachment: {
+        name: '1996학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 29,
+      year: 1995,
+      attachment: {
+        name: '1995학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 30,
+      year: 1994,
+      attachment: {
+        name: '1994학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 31,
+      year: 1993,
+      attachment: {
+        name: '1993학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+    {
+      id: 32,
+      year: 1992,
+      attachment: {
+        name: '1992학번 졸업 규정.pdf ',
+        url: '',
+        bytes: 0,
+      },
+    },
+  ];
+};
