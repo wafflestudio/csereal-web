@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getResearchGroups } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
