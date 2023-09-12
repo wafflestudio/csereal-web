@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation';
 
-import { SegmentNode, admin, main } from '@/types/page';
+import { SegmentNode, admin, main, tentenProject } from '@/types/page';
 
 export default function useCurrentSegmentNode(): SegmentNode {
   const pathname = usePathname();
@@ -12,6 +12,10 @@ export default function useCurrentSegmentNode(): SegmentNode {
 
   // admin 예외처리
   if (segments[0] === admin.segment) return admin;
+
+  // 10-10 에외처리
+  if (segments[0] === tentenProject.segment)
+    return findCurrentSegmentNode(tentenProject, segments.slice(1));
 
   return findCurrentSegmentNode(main, segments);
 }

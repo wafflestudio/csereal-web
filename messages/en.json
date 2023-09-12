@@ -1,5 +1,7 @@
 {
   "Nav": {
+    "홈": "Home",
+
     "소개": "About",
     "소식": "Community",
     "구성원": "People",
@@ -35,6 +37,11 @@
     "정시 모집": "Regular Admission",
     "대학원": "Graduate",
     "전기/후기 모집": "Regular Admission",
+    "International": "International",
+    "Graduate": "Graduate",
+    "Undergraduate": "Undergraduate",
+    "Exchange/Visiting Program": "Exchange/Visiting Program",
+    "Scholarships": "Scholarships",
 
     "학부 안내": "Guide",
     "교과과정": "Courses",
@@ -65,6 +72,11 @@
     "하드웨어 실습실 (302-310-2, 30석)": "Hardware lab (302-310-2, 30seats)",
     "302-208 (116석)": "302-208 (116seats)",
     "302-209 (90석)": "302-209 (90seats)",
+
+    "10-10 Project": "10-10 Project",
+    "Manager": "Manager",
+    "Participants(Professors)": "Participants(Professors)",
+    "Proposal": "Proposal",
 
     "관련 페이지": "관련 페이지"
   },

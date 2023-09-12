@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 import { getCourses } from '@/apis/academics';
 
@@ -14,6 +14,7 @@ import { getPath } from '@/utils/page';
 import { replaceDashWithSpace, replaceSpaceWithDash } from '@/utils/replaceCharacter';
 
 interface UndergraduateCoursePageProps {
+  params: { locale: string };
   searchParams: { sortby?: string };
 }
 

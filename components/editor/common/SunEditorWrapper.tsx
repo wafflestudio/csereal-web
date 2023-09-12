@@ -35,9 +35,9 @@ export default function SunEditorWrapper({
             ['lineHeight', 'align', 'horizontalRule', 'list'],
             ['table', 'link', 'image', 'preview'],
           ],
-          // attributesBlacklist: {
-          //   all: 'style',
-          // },
+          attributesBlacklist: {
+            all: 'style',
+          },
         }}
       />
     </Suspense>

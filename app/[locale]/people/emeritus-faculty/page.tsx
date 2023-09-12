@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getEmeritusFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

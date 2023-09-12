@@ -1,10 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next-intl/link';
 import { useEffect } from 'react';
-import useSWR from 'swr';
 
 import { BASE_URL } from '@/apis';
 import { useNavbarContext } from '@/contexts/NavbarContext';
@@ -76,7 +75,7 @@ const useLanguage = () => {
 
   const changeLanguage = () => {
     if (isEnglish) {
-      router.push(`/ko${path.slice(3)}${searchParams}`);
+      router.push(`/ko${path.slice(3)}?${searchParams}`);
     } else {
       router.push(`/en${path}?${searchParams}`);
     }
