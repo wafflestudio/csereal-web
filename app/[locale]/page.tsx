@@ -3,6 +3,7 @@ import { getMainContents } from '@/apis/main';
 import ImportantPosts from '@/components/main/ImportantPosts';
 import Notices from '@/components/main/Notices';
 import ShortCutBox from '@/components/main/ShortCutBox';
+import SlideScreen from '@/components/main/SlideScreen';
 
 import { ImportantPostMain, NoticeListMainType } from '@/types/main';
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
@@ -25,6 +26,7 @@ export default async function MainPage() {
       </section>
       <ImportantPosts posts={data.importants} />
       <Notices notices={data.notices} />
+      <SlideScreen slides={data.slides} />
     </div>
   );
 }

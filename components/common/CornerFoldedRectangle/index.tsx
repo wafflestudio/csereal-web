@@ -16,9 +16,6 @@ interface CornerFoldedRectangleProps {
   children: ReactNode;
 }
 
-// linear-grdient로 자른 직사각형 모서리 길이와 접힌 직각삼각형 가로(세로) 비율
-const FOLD_RATIO = 0.714;
-
 export default function CornerFoldedRectangle({
   colorTheme,
   triangleLength,
