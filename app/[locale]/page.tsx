@@ -27,10 +27,14 @@ const mainMock: MainData = {
       { createdAt: '2021-08-23', title: '휴학하고 싶다', id: 62 },
       {
         createdAt: '2021-08-23',
+        title: '로그잉ㄴ 언제 해 rl 긴 문장 하나 더 만드러어ㅗㅂ알 ㅏ야',
+        id: 45,
+      },
+      {
+        createdAt: '2021-08-23',
         title: '살려줘요 긴 문장 말줄임 테스트ㅡㅡㅡㅡ으아아 왜 안 줄어',
         id: 496,
       },
-      { createdAt: '2021-08-23', title: '로그잉ㄴ 언제 해', id: 45 },
     ],
     scholarship: [
       { id: 1, title: '장학 공지 제목', createdAt: '2021-08-18' },

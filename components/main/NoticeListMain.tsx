@@ -9,13 +9,15 @@ interface NoticeListMainProps {
   selectedNotices: NoticeMainPreview[];
 }
 
+const noticePath = getPath(notice);
+
 export default function NoticeListMain({ selectedNotices }: NoticeListMainProps) {
   console.log(selectedNotices);
 
   return (
-    <ul className="">
-      {selectedNotices.map((notice) => (
-        <NoticeRow key={notice.id} notice={notice} />
+    <ul className="flex flex-col gap-1">
+      {selectedNotices.map((notice, i) => (
+        <NoticeRow key={notice.id} notice={notice} isLast={i === selectedNotices.length - 1} />
       ))}
     </ul>
   );
@@ -23,15 +25,14 @@ export default function NoticeListMain({ selectedNotices }: NoticeListMainProps)
 
 interface NoticeRowProps {
   notice: NoticeMainPreview;
+  isLast: boolean;
 }
 
-const noticePath = getPath(notice);
-
-function NoticeRow({ notice }: NoticeRowProps) {
+function NoticeRow({ notice, isLast }: NoticeRowProps) {
   return (
     <li>
       <Link
-        className="flex items-center gap-2.5 text-xs tracking-wide"
+        className={`flex items-center gap-2.5 text-xs tracking-wide ${isLast && 'pr-4'}`}
         href={`${noticePath}/${notice.id}`}
       >
         <span className="whitespace-nowrap">{formatDate(new Date(notice.createdAt))}</span>
