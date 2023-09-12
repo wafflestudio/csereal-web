@@ -2,8 +2,7 @@ import ImportantPosts from '@/components/main/ImportantPosts';
 import Notices from '@/components/main/Notices';
 import ShortCutBox from '@/components/main/ShortCutBox';
 
-import { ImportantCategory } from '@/types/admin';
-import { ImportantPostMain } from '@/types/main';
+import { ImportantPostMain, NoticeListMainType } from '@/types/main';
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -11,38 +10,6 @@ import { getPath } from '@/utils/page';
 const tclPath = getPath(topConferenceList);
 const facultyRecruitmentPath = getPath(facultyRecruitment);
 const undergraduateNoticePath = getPath(notice) + '?tag=학부';
-
-const posts: {
-  category: ImportantCategory;
-  id: number;
-  title: string;
-  summary: string;
-}[] = [
-  { category: 'news', title: '뉴스 타이틀', summary: '어쩌고 저쩌고', id: 1 },
-  { category: 'notice', title: '공지스 타이틀', summary: '어쩌고 저쩌고', id: 4 },
-];
-
-export default function MainPage() {
-  const data = mainMock;
-
-  return (
-    <div>
-      <section>
-        <ShortCutBox title={topConferenceList.name} href={tclPath} />
-        <ShortCutBox title={facultyRecruitment.name} href={facultyRecruitmentPath} />
-        <ShortCutBox title={'학부 ' + notice.name} href={undergraduateNoticePath} />
-      </section>
-      <ImportantPosts posts={data.importants} />
-      <Notices />
-    </div>
-  );
-}
-
-interface MainData {
-  slides: object[];
-  notices: {};
-  importants: ImportantPostMain[];
-}
 
 const mainMock: MainData = {
   slides: [
@@ -66,19 +33,19 @@ const mainMock: MainData = {
       { createdAt: '2021-08-23', title: '로그잉ㄴ 언제 해', id: 45 },
     ],
     scholarship: [
-      { id: 1, title: '공지 제목', createdAt: '날짜' },
-      { id: 2, title: '공지 제목2', createdAt: '날짜' },
-      { id: 3, title: '공지 제목3', createdAt: '날짜' },
+      { id: 1, title: '장학 공지 제목', createdAt: '2021-08-18' },
+      { id: 2, title: '공지 제목2', createdAt: '2021-08-18' },
+      { id: 3, title: '공지 제목3', createdAt: '2021-08-18' },
     ],
     undergraduate: [
-      { id: 1, title: '공지 제목', createdAt: '날짜' },
-      { id: 2, title: '공지 제목2', createdAt: '날짜' },
-      { id: 3, title: '공지 제목3', createdAt: '날짜' },
+      { id: 1, title: '학부 공지 제목', createdAt: '2021-08-18' },
+      { id: 2, title: '공지 제목2', createdAt: '2021-08-18' },
+      { id: 3, title: '공지 제목3', createdAt: '2021-08-18' },
     ],
     graduate: [
-      { id: 1, title: '공지 제목', createdAt: '날짜' },
-      { id: 2, title: '공지 제목2', createdAt: '날짜' },
-      { id: 3, title: '공지 제목3', createdAt: '날짜' },
+      { id: 1, title: '대학우너 공지 제목', createdAt: '2021-08-18' },
+      { id: 2, title: '공지 제목2', createdAt: '2021-08-18' },
+      { id: 3, title: '공지 제목3', createdAt: '2021-08-18' },
     ],
   },
   importants: [
@@ -87,3 +54,25 @@ const mainMock: MainData = {
     { id: 2, title: '새소식 제목2', summary: '요약', category: 'news' },
   ],
 };
+
+export default function MainPage() {
+  const data = mainMock;
+
+  return (
+    <div>
+      <section>
+        <ShortCutBox title={topConferenceList.name} href={tclPath} />
+        <ShortCutBox title={facultyRecruitment.name} href={facultyRecruitmentPath} />
+        <ShortCutBox title={'학부 ' + notice.name} href={undergraduateNoticePath} />
+      </section>
+      <ImportantPosts posts={data.importants} />
+      <Notices notices={data.notices} />
+    </div>
+  );
+}
+
+interface MainData {
+  slides: object[];
+  notices: NoticeListMainType;
+  importants: ImportantPostMain[];
+}

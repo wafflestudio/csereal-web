@@ -1,27 +1,24 @@
 import Link from 'next/link';
 
+import { NoticeMainPreview } from '@/types/main';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
 interface NoticeListMainProps {
-  notices: NoticeMainPreview[];
+  selectedNotices: NoticeMainPreview[];
 }
 
-export default function NoticeListMain({ notices }: NoticeListMainProps) {
+export default function NoticeListMain({ selectedNotices }: NoticeListMainProps) {
+  console.log(selectedNotices);
+
   return (
     <ul className="">
-      {notices.map((notice) => (
+      {selectedNotices.map((notice) => (
         <NoticeRow key={notice.id} notice={notice} />
       ))}
     </ul>
   );
-}
-
-interface NoticeMainPreview {
-  createdAt: string;
-  title: string;
-  id: number;
 }
 
 interface NoticeRowProps {

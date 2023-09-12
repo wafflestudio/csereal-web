@@ -2,14 +2,16 @@
 
 import { useState } from 'react';
 
-import { NoticeCategoryType } from '@/types/main';
+import { NoticeCategoryType, NoticeListMainType } from '@/types/main';
 
 import NoticeCategory from './NoticeCategory';
 import NoticeListMain from './NoticeListMain';
 
-interface NoticesMain {}
+interface NoticesMainProps {
+  notices: NoticeListMainType;
+}
 
-export default function Notices() {
+export default function Notices({ notices }: NoticesMainProps) {
   const [selectedCategory, setSeletedCategory] = useState<NoticeCategoryType>('전체');
 
   return (
@@ -18,24 +20,20 @@ export default function Notices() {
         <h4 className="font-bold text-main-orange tracking-wide">공지사항</h4>
         <NoticeCategory selected={selectedCategory} setSelected={setSeletedCategory} />
       </div>
-      <NoticeListMain notices={noticesMock} />
+      <NoticeListMain selectedNotices={notices[convertKrCategoryToEn(selectedCategory)]} />
     </section>
   );
 }
 
-const noticesMock: {
-  createdAt: string;
-  title: string;
-  id: number;
-}[] = [
-  { createdAt: '2021-08-18', title: '이제 진짜 자야 된다', id: 4 },
-  { createdAt: '2021-08-19', title: '지금 자면 5시간', id: 5 },
-  { createdAt: '2021-08-20', title: '내일 영어논문 보려면 와... 진짜 싫다', id: 8 },
-  { createdAt: '2021-08-23', title: '휴학하고 싶다', id: 62 },
-  {
-    createdAt: '2021-08-23',
-    title: '살려줘요 긴 문장 말줄임 테스트ㅡㅡㅡㅡ으아아 왜 안 줄어',
-    id: 496,
-  },
-  { createdAt: '2021-08-23', title: '로그잉ㄴ 언제 해', id: 45 },
-];
+const convertKrCategoryToEn = (category: NoticeCategoryType) => {
+  switch (category) {
+    case '전체':
+      return 'all';
+    case '장학':
+      return 'scholarship';
+    case '학부':
+      return 'undergraduate';
+    case '대학원':
+      return 'graduate';
+  }
+};
