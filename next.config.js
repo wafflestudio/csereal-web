@@ -47,6 +47,11 @@ const nextConfig = {
         hostname: 'cse-dev-waffle.bacchus.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cse-dev-waffle.bacchus.io',
+        pathname: '/**',
+      },
     ],
   },
 

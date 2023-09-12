@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
 
 import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
@@ -16,10 +18,11 @@ export default async function UndergraduateScholarshipListPage() {
         </h3>
         <ul className="mt-2">
           {scholarship.map((item) => (
-            <ScholarshipRow id={item.id} name={item.name} key={item.id} />
+            <ScholarshipRow id={item.id} name={item.name} key={item.id} type="UNDERGRADUATE" />
           ))}
         </ul>
       </div>
     </PageLayout>
   );
 }
+

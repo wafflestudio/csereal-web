@@ -1,6 +1,6 @@
+import { getMockDegreeRequirements } from '@/data/objects';
 import {
   getMockCurriculum,
-  getMockDegreeRequirements,
   getMockGeneralStudiesRequirements,
   getMockScholarship,
   getMockUndergraduateScholarshipList,

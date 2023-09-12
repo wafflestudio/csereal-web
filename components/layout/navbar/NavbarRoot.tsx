@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next-intl/link';
 
 import { NavbarState } from '@/contexts/NavbarContext';
 import NaviBarClose from '@/public/image/NaviBar_Close.svg';

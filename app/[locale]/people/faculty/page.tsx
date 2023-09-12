@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getFacultyList } from '@/apis/people';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';

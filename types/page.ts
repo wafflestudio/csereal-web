@@ -246,6 +246,46 @@ export const graduateRegularAdmission: SegmentNode = {
   children: null,
 };
 
+export const internationalAdmission: SegmentNode = {
+  name: 'International',
+  segment: 'international',
+  isPage: false,
+  parent: admissions,
+  children: [],
+};
+
+export const internationalUndergraduateAdmission: SegmentNode = {
+  name: 'Undergraduate',
+  segment: 'undergraduate',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const internationalGraduateAdmission: SegmentNode = {
+  name: 'Graduate',
+  segment: 'graduate',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const exchangeVisitingProgram: SegmentNode = {
+  name: 'Exchange/Visiting Program',
+  segment: 'exchange',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
+export const internationalScholarships: SegmentNode = {
+  name: 'Scholarships',
+  segment: 'scholarships',
+  isPage: true,
+  parent: internationalAdmission,
+  children: [],
+};
+
 export const academics: SegmentNode = {
   name: '학사 및 교과',
   segment: 'academics',
@@ -526,14 +566,6 @@ export const bldg302room209: SegmentNode = {
   children: null,
 };
 
-export const admin: SegmentNode = {
-  name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
-  segment: 'admin',
-  isPage: true,
-  parent: null,
-  children: [notice, news, seminar],
-};
-
 main.children = [about, community, people, research, admissions, academics, reservations];
 about.children = [
   overview,
@@ -548,9 +580,15 @@ about.children = [
 community.children = [notice, news, seminar, facultyRecruitment];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
-admissions.children = [undergraduateAdmission, graduateAdmission];
+admissions.children = [undergraduateAdmission, graduateAdmission, internationalAdmission];
 undergraduateAdmission.children = [undergraduateEarlyAdmission, undergraduateRegularAdmission];
 graduateAdmission.children = [graduateRegularAdmission];
+internationalAdmission.children = [
+  internationalUndergraduateAdmission,
+  internationalGraduateAdmission,
+  exchangeVisitingProgram,
+  internationalScholarships,
+];
 academics.children = [undergraduateAcademics, graduateAcademics];
 undergraduateAcademics.children = [
   undergraduateGuide,
@@ -584,3 +622,50 @@ seminarRoom.children = [
 ];
 labRoom.children = [softwareLab, hardwareLab];
 lectureRoom.children = [bldg302room208, bldg302room209];
+
+// 관리자
+
+export const admin: SegmentNode = {
+  name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
+  segment: 'admin',
+  isPage: true,
+  parent: null,
+  children: [notice, news, seminar],
+};
+
+// 10-10
+
+export const tentenProject: SegmentNode = {
+  name: '10-10 Project',
+  segment: '10-10-project',
+  isPage: false,
+  parent: null,
+  children: [],
+};
+
+export const tentenManager: SegmentNode = {
+  name: 'Manager',
+  segment: 'manager',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+export const tentenParticipants: SegmentNode = {
+  name: 'Participants(Professors)',
+  segment: 'participants',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+export const tentenProposal: SegmentNode = {
+  name: 'Proposal',
+  segment: 'proposal',
+  isPage: true,
+  parent: tentenProject,
+  children: [],
+};
+
+// 기존 홈페이지 푸터 링크가 propsal로 이동시는 등 proposal 내용이 우선순위라 판단되어 기존과 다르게 0번째로 배치
+tentenProject.children = [tentenProposal, tentenManager, tentenParticipants];

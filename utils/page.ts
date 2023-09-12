@@ -1,33 +1,19 @@
 import { SegmentNode, admin, main } from '@/types/page';
 
-export const getLocationLog = (location: SegmentNode): SegmentNode[] => {
-  const log: SegmentNode[] = [];
-  let curr = location;
-  while (curr.parent !== null) {
-    log.push(curr);
-    curr = curr.parent;
-  }
-  return log.reverse();
+export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
+  if (!(location && location !== main)) return [];
+  return [...getLocationLog(location.parent), location];
 };
 
-export const getPath = (location: SegmentNode): string => {
-  if (location.parent === null) return `/${location.segment}`;
-
-  let fullPath = '';
-  let curr = location;
-  while (curr.parent !== null) {
-    fullPath = '/' + curr.segment + fullPath;
-    curr = curr.parent;
-  }
-  return fullPath;
+export const getPath = (location: SegmentNode | null): string => {
+  if (!(location && location !== main)) return '';
+  return `${getPath(location.parent)}/${location.segment}`;
 };
 
 export const getRootTab = (currTab: SegmentNode): SegmentNode => {
-  if (currTab === main || currTab === admin) return currTab;
-
   let root = currTab;
-  while (root.parent !== main) {
-    root = root.parent!; // main 제외한 내비탭은 전부 parent가 있음
+  while (root.parent && root.parent !== main) {
+    root = root.parent;
   }
   return root;
 };

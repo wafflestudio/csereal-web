@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';

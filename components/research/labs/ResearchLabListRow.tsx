@@ -1,4 +1,6 @@
-import Link from 'next/link';
+'use client';
+
+import Link from 'next-intl/link';
 import { Fragment } from 'react';
 
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
