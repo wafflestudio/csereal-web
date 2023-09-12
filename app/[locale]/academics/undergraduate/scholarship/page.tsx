@@ -1,4 +1,4 @@
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
 
