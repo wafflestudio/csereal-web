@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { getScholarship } from '@/apis/academicsServer';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -17,4 +19,12 @@ export default async function GraduateScholarshipPage({ params }: { params: { id
       <HTMLViewer htmlContent={description} />
     </PageLayout>
   );
+}
+
+export async function generateStaticParams() {
+  return Array(4)
+    .fill(0)
+    .map((_, i) => ({
+      id: i + '',
+    }));
 }
