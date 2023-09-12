@@ -1,9 +1,11 @@
+export const dynamic = 'force-dynamic';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 
 import { reservations } from '@/types/page';
 
-export default function ReservationPrivacyPolicty() {
+export default function ReservationPrivacyPolicy() {
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageTitle
