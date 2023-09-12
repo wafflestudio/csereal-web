@@ -1,19 +1,17 @@
 import Link from 'next/link';
 
-import { NoticeMainPreview } from '@/types/main';
+import { NoticeMain } from '@/types/main';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
 interface NoticeListMainProps {
-  selectedNotices: NoticeMainPreview[];
+  selectedNotices: NoticeMain[];
 }
 
 const noticePath = getPath(notice);
 
 export default function NoticeListMain({ selectedNotices }: NoticeListMainProps) {
-  console.log(selectedNotices);
-
   return (
     <ul className="flex flex-col gap-1">
       {selectedNotices.map((notice, i) => (
@@ -24,7 +22,7 @@ export default function NoticeListMain({ selectedNotices }: NoticeListMainProps)
 }
 
 interface NoticeRowProps {
-  notice: NoticeMainPreview;
+  notice: NoticeMain;
   isLast: boolean;
 }
 

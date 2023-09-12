@@ -2,13 +2,6 @@ import { ImportantCategory } from './admin';
 
 export const NOTICE_CATEGORY = ['전체', '장학', '학부', '대학원'] as const;
 
-export const NOTICE_TAGS_EN = {
-  전체: 'all',
-  장학: 'scholarship',
-  학부: 'undergraduate',
-  대학원: 'graduate',
-};
-
 export type NoticeCategoryType = (typeof NOTICE_CATEGORY)[number];
 
 export interface ImportantPostMain {
@@ -19,14 +12,27 @@ export interface ImportantPostMain {
 }
 
 export interface NoticeListMainType {
-  all: NoticeMainPreview[];
-  scholarship: NoticeMainPreview[];
-  undergraduate: NoticeMainPreview[];
-  graduate: NoticeMainPreview[];
+  all: NoticeMain[];
+  scholarship: NoticeMain[];
+  undergraduate: NoticeMain[];
+  graduate: NoticeMain[];
 }
 
-export interface NoticeMainPreview {
+export interface NoticeMain {
   createdAt: string;
   title: string;
   id: number;
+}
+
+export interface SlideMain {
+  id: number;
+  title: string;
+  imageURL: string;
+  description: string;
+}
+
+export interface MainContents {
+  slides: SlideMain[];
+  notices: NoticeListMainType;
+  importants: ImportantPostMain[];
 }
