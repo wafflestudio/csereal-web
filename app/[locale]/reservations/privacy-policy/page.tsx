@@ -1,5 +1,3 @@
-'use client';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 

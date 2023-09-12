@@ -19,7 +19,6 @@ interface UndergraduateCoursePageProps {
 }
 
 export default async function UndergraduateCoursePage({
-  params: { locale },
   searchParams: { sortby = '' },
 }: UndergraduateCoursePageProps) {
   const data: Course[] = await getCourses('undergraduate');

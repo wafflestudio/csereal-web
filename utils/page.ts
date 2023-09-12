@@ -11,8 +11,6 @@ export const getPath = (location: SegmentNode | null): string => {
 };
 
 export const getRootTab = (currTab: SegmentNode): SegmentNode => {
-  if (currTab === main || currTab === admin) return currTab;
-
   let root = currTab;
   while (root.parent && root.parent !== main) {
     root = root.parent;
