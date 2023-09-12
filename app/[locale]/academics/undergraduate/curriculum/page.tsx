@@ -1,6 +1,6 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
-import Link from 'next-intl/link';
+import Link from 'next/link';
 
 import PentagonMedium from '@/public/image/pentagon_medium.svg';
 
@@ -9,7 +9,11 @@ import { getCurriculum } from '@/apis/academicsServer';
 import CurriculumBody from '@/components/academics/CurriculumBody';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function UndergradutecurriculumPage() {
+export default async function UndergradutecurriculumPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const data = await getCurriculum();
 
   return (
@@ -17,7 +21,7 @@ export default async function UndergradutecurriculumPage() {
       <div className="flex flex-col">
         <div className="relative">
           <Link
-            href={`/academics/undergraduate/courses`}
+            href={`/${params.locale}/academics/undergraduate/courses`}
             className={`absolute flex flex-row text-sm h-10 p-4 items-center text-center peer text-main-orange hover:text-[#141212] duration-300`}
           >
             <span className="font-yoon tracking-[-0.019em] mr-2 font-medium">
