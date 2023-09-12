@@ -3,9 +3,27 @@ import { MainContents } from '@/types/main';
 export const getMockMainContents = async (): Promise<MainContents> => ({
   slides: [
     // isSlide === true인 새소식 중 최신 20개
-    { id: 1, title: '제목', imageURL: '대표이미지 주소', description: '내용' },
-    { id: 2, title: '제목', imageURL: '대표이미지 주소', description: '내용' },
-    { id: 3, title: '제목', imageURL: '대표이미지 주소', description: '내용' },
+    {
+      id: 1,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
+    {
+      id: 2,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
+    {
+      id: 3,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
   ],
   notices: {
     // 전체, 장학, 학부, 대학원 항목별로 최신 6개씩

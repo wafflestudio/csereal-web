@@ -5,7 +5,6 @@ import Notices from '@/components/main/Notices';
 import ShortCutBox from '@/components/main/ShortCutBox';
 import SlideScreen from '@/components/main/SlideScreen';
 
-import { ImportantPostMain, NoticeListMainType } from '@/types/main';
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -29,10 +28,4 @@ export default async function MainPage() {
       <SlideScreen slides={data.slides} />
     </div>
   );
-}
-
-interface MainData {
-  slides: object[];
-  notices: NoticeListMainType;
-  importants: ImportantPostMain[];
 }
