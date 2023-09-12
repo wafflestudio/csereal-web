@@ -7,6 +7,8 @@ import { NoticeCategoryType } from '@/types/main';
 import NoticeCategory from './NoticeCategory';
 import NoticeListMain from './NoticeListMain';
 
+interface NoticesMain {}
+
 export default function Notices() {
   const [selectedCategory, setSeletedCategory] = useState<NoticeCategoryType>('전체');
 
