@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next-intl/link';
 import { Fragment } from 'react';
 

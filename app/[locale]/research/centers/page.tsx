@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { getResearchCenters } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';

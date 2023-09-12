@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 import { getMockGraduateScholarshipList } from '@/data/serverObjects';
 

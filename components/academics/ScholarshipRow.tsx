@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next-intl/link';
 
 import { graduateScholarship, undergraduateScholarship } from '@/types/page';
