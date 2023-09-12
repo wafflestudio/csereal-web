@@ -1,5 +1,3 @@
-export const dynamic = 'force-static';
-
 import { getResearchLab } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
