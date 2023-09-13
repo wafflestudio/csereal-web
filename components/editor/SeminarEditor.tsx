@@ -18,7 +18,7 @@ import {
   SeminarSpeaker,
   getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
-import Checkbox from '../common/search/TagCheckbox';
+import Checkbox from '../common/Checkbox';
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();

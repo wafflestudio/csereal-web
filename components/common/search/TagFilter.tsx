@@ -1,6 +1,6 @@
 import { SetStateAction } from 'react';
 
-import Checkbox from './TagCheckbox';
+import Checkbox from '../Checkbox';
 
 interface TagFilterProps {
   tags: string[];

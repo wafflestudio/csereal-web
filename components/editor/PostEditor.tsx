@@ -11,7 +11,7 @@ import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorContent, PostEditorProps, postEditorDefaultValue } from './PostEditorProps';
-import Checkbox from '../common/search/TagCheckbox';
+import Checkbox from '../common/Checkbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
