@@ -11,7 +11,7 @@ import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorContent, PostEditorProps, postEditorDefaultValue } from './PostEditorProps';
-import TagCheckbox from '../common/search/TagCheckbox';
+import Checkbox from '../common/search/TagCheckbox';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
@@ -70,9 +70,9 @@ export default function PostEditor({
       <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
         <div className={`grow grid  gap-x-6 gap-y-2.5 ${gridStyle}`}>
           {tags.map((tag) => (
-            <TagCheckbox
+            <Checkbox
               key={tag}
-              tag={tag}
+              label={tag}
               isChecked={content.tags.includes(tag)}
               toggleCheck={toggleCheck}
             />
@@ -82,8 +82,8 @@ export default function PostEditor({
 
       <Fieldset title="게시 설정" mb="mb-6" titleMb="mb-3">
         <div className="flex flex-col gap-2">
-          <TagCheckbox
-            tag="비공개 글"
+          <Checkbox
+            label="비공개 글"
             isChecked={!content.isPublic}
             toggleCheck={() => {
               setContentByKey('isPublic')(!content.isPublic);
@@ -93,8 +93,8 @@ export default function PostEditor({
             }}
           />
           {showIsPinned && (
-            <TagCheckbox
-              tag="목록 상단에 고정"
+            <Checkbox
+              label="목록 상단에 고정"
               isChecked={content.isPinned}
               toggleCheck={() => {
                 setContentByKey('isPinned')(!content.isPinned);
@@ -105,16 +105,16 @@ export default function PostEditor({
             />
           )}
           {showIsImportant && (
-            <TagCheckbox
-              tag="메인-중요 안내에 표시"
+            <Checkbox
+              label="메인-중요 안내에 표시"
               isChecked={content.isImportant}
               toggleCheck={() => setContentByKey('isImportant')(!content.isImportant)}
             />
           )}
           {showIsSlide && (
             <>
-              <TagCheckbox
-                tag="메인-슬라이드쇼에 표시"
+              <Checkbox
+                label="메인-슬라이드쇼에 표시"
                 isChecked={content.isSlide}
                 toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
               />

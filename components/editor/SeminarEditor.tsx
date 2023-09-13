@@ -18,7 +18,7 @@ import {
   SeminarSpeaker,
   getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
-import TagCheckbox from '../common/search/TagCheckbox';
+import Checkbox from '../common/search/TagCheckbox';
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();
@@ -161,8 +161,8 @@ function ScheduleFieldset({
   return (
     <div>
       <div className="flex gap-2 mt-4 mb-2">
-        <TagCheckbox
-          tag="하루 종일"
+        <Checkbox
+          label="하루 종일"
           isChecked={allDay}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
@@ -176,8 +176,8 @@ function ScheduleFieldset({
             }
           }}
         />
-        <TagCheckbox
-          tag="종료 일시 표시"
+        <Checkbox
+          label="종료 일시 표시"
           isChecked={values.endDate !== null}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
@@ -323,13 +323,13 @@ function CheckboxFieldset({
   return (
     <Fieldset title="게시 설정" titleMb="mb-3" mb="mb-11">
       <div className="flex flex-col gap-1">
-        <TagCheckbox
-          tag="비공개 글"
+        <Checkbox
+          label="비공개 글"
           isChecked={!isPublic}
           toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
         />
-        <TagCheckbox
-          tag="메인-중요 안내에 표시"
+        <Checkbox
+          label="메인-중요 안내에 표시"
           isChecked={isImportant}
           toggleCheck={(tag, isChecked) => setIsImportant(!isChecked)}
         />
