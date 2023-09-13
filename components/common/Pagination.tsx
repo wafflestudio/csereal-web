@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 interface PaginationProps {
   totalPostsCount: number;
   postsCountPerPage: number; // 한번에 보여줄 글 개수
@@ -7,6 +9,7 @@ interface PaginationProps {
 }
 
 const PAGE_LIMIT = 10; // 페이지네이션 바에 한번에 보여줄 페이지 개수
+const MAX_PAGE = 1000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
 
 export default function Pagination({
   totalPostsCount,
@@ -21,6 +24,13 @@ export default function Pagination({
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
   const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1));
 
+  // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
+  useEffect(() => {
+    if (NUM_PAGES < currentPage) {
+      setCurrentPage(NUM_PAGES);
+    }
+  }, [currentPage, NUM_PAGES, setCurrentPage]);
+
   return (
     <div className={`flex justify-center ${disabled && 'opacity-30'}`}>
       <ul className="flex gap-x-[0.3125rem] font-yoon h-[1.375rem] mx-auto text-neutral-700 tracking-wide">
@@ -32,7 +42,7 @@ export default function Pagination({
         />
         <PaginationArrow
           iconName="navigate_before"
-          num={firstNum - PAGE_LIMIT}
+          num={firstNum - 1}
           disabled={firstNum === 1 || disabled}
           movePageNumber={setCurrentPage}
         />
@@ -55,7 +65,7 @@ export default function Pagination({
         />
         <PaginationArrow
           iconName="keyboard_double_arrow_right"
-          num={NUM_PAGES}
+          num={currentPage === 1 ? MAX_PAGE : NUM_PAGES}
           disabled={currentPage === NUM_PAGES || disabled}
           movePageNumber={setCurrentPage}
         />
@@ -96,7 +106,7 @@ function PaginationNumber({ num, isSelected, disabled, movePageNumber }: Paginat
 
   return (
     <li
-      className={`flex items-center justify-center w-[22px] ${cursorStyle} ${textStyle}`}
+      className={`flex items-center justify-center px-2 ${cursorStyle} ${textStyle}`}
       onClick={() => !isSelected && !disabled && movePageNumber(num)}
     >
       <span className={`text-xs ${isSelected && 'font-bold underline'}`}>{num}</span>
