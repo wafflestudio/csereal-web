@@ -30,3 +30,15 @@ export const yoonGothic = localFont({
   display: 'swap',
   variable: '--font-yoon',
 });
+
+export const notoDemiLight = localFont({
+  src: [
+    {
+      path: '../public/font/NotoSansCJKkr-DemiLight.otf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-noto-demi',
+});

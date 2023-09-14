@@ -10,7 +10,7 @@ import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
-import { noto, yoonGothic } from '@/styles/font';
+import { noto, notoDemiLight, yoonGothic } from '@/styles/font';
 
 import '@/styles/globals.css';
 
@@ -42,7 +42,7 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`flex ${yoonGothic.variable} ${noto.variable} text-neutral-700 font-normal overscroll-none bg-white`}
+        className={`flex ${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal overscroll-none bg-white`}
       >
         <ModalContextProvider>
           <NavbarContextProvider>
@@ -53,7 +53,7 @@ export default async function RootLayout({
                 <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
                   <main className="flex-1">
                     <SWRProvider>
-                      <div className="font-noto">{children}</div>
+                      <div className="font-noto-demi">{children}</div>
                     </SWRProvider>
                   </main>
                   <Footer />
