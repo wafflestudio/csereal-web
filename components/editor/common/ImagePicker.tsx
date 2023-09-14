@@ -21,7 +21,7 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
         className={`rounded-sm border-[1px] border-neutral-700
             h-[1.875rem] px-[.62rem] mb-3
             flex items-center
-            font-noto text-xs font-normal self-start 
+            text-xs self-start 
             hover:bg-neutral-100`}
       >
         {`이미지 ${file ? '변경' : '업로드'}`}
@@ -81,8 +81,8 @@ const SelectedImageViewer = ({
         style={{ width: IMAGE_WIDTH, height: imageHeight }}
       />
       <div className="flex flex-col justify-between items-start">
-        <p className="font-noto text-xs font-normal">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
-        <button className="font-noto text-xs font-normal underline" onClick={handleDeleteBlob}>
+        <p className="text-xs">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
+        <button className="text-xs underline" onClick={handleDeleteBlob}>
           삭제
         </button>
       </div>

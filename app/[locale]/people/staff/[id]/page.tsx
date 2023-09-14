@@ -24,8 +24,8 @@ export default async function StaffMemberPage({ params }: { params: { id: number
         <div className="flow-root relative mb-32">
           <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
-            <article className="text-neutral-700 font-noto flex flex-col mb-7">
-              <h3 className="text-base font-bold leading-8">주요 업무</h3>
+            <article className="text-neutral-700 flex flex-col mb-7">
+              <h3 className="font-noto text-base font-bold leading-8">주요 업무</h3>
               <ul className="list-inside list-disc">
                 {data.office && (
                   <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">

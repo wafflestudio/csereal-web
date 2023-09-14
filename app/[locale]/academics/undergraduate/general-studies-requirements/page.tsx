@@ -8,8 +8,8 @@ export default async function UndergraduateGeneralStudiesRequirementsPage() {
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
-      <div className="flex flex-col font-noto">
-        <p className="font-normal text-sm leading-[26px]">{overview}</p>
+      <div className="flex flex-col">
+        <p className="text-sm leading-[26px]">{overview}</p>
         <div className="flex flex-col mt-12">
           <ContentTitle content={'교양 교과과정 변경 내역'} />
           <div className="mt-5">
@@ -38,7 +38,7 @@ function ContentTitle({ content }: { content: string }) {
   return (
     <div className="flex flex-row leading-8 items-center">
       <div className="border border-main-orange rounded-full w-2.5 h-2.5" />
-      <h3 className="font-bold text-base pl-3">{content}</h3>
+      <h3 className="font-noto font-bold text-base pl-3">{content}</h3>
     </div>
   );
 }
@@ -53,7 +53,7 @@ interface SubjectChangesProps {
 
 function SubjectChanges({ status, time, additionalInfos, changes, progress }: SubjectChangesProps) {
   return (
-    <div key={time} className="flex flex-col border-l-4 border-neutral-300 pl-5 mb-9">
+    <div key={time} className="font-noto flex flex-col border-l-4 border-neutral-300 pl-5 mb-9">
       <p className="font-bold text-sm text-neutral-400">{time} 시행 교양 교과과정 변경</p>
       <h3 className="font-bold text-base mt-3">
         {status === 'new' ? '교과목 신설' : '교과목 변경'}

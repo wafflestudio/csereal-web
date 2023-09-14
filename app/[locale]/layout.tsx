@@ -48,13 +48,11 @@ export default async function RootLayout({
           <NavbarContextProvider>
             <NextIntlClientProvider locale={params.locale} messages={messages}>
               <Navbar />
-              <div className="flex flex-col flex-1">
+              <div className="flex flex-col flex-1 font-noto-demi">
                 <Header />
                 <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
                   <main className="flex-1">
-                    <SWRProvider>
-                      <div className="font-noto-demi">{children}</div>
-                    </SWRProvider>
+                    <SWRProvider>{children}</SWRProvider>
                   </main>
                   <Footer />
                 </div>

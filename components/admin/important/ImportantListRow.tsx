@@ -39,7 +39,7 @@ export default function ImportantListRow({
 
   return (
     <li
-      className={`flex items-center h-10 py-2.5 font-noto text-xs tracking-wide ${
+      className={`flex items-center h-10 py-2.5 text-xs tracking-wide ${
         isSelected && 'bg-neutral-100'
       }`}
     >
@@ -88,7 +88,7 @@ function CategoryCell({ category }: { category: string }) {
 
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
-    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title} pl-3 font-medium`}>
+    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title} pl-3 font-noto font-medium`}>
       <Link
         href={href}
         className="flex max-w-fit items-center gap-1.5 hover:underline whitespace-nowrap text-ellipsis overflow-hidden"

@@ -23,7 +23,7 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
       colorTheme={COLOR_THEME.black}
       margin="mt-[-64px] mb-11 ml-11"
     >
-      <ul className="w-60 h-40 py-5 px-6 flex flex-col gap-1 font-noto">
+      <ul className="w-60 h-40 py-5 px-6 flex flex-col gap-1">
         <ProfessorsInfo professors={lab.professors} />
         <LocationInfo location={lab.location} />
         <TelephoneInfo tel={lab.tel} />
