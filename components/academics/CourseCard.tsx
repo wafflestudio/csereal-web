@@ -92,7 +92,7 @@ function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
   return (
     <div className="flex items-center mb-4 justify-between">
       <Tag tag={sortedProperties[0]} />
-      <span className="text-xs text-neutral-500">
+      <span className="text-xs text-neutral-500 whitespace-nowrap ml-2">
         <span className="mr-2">{sortedProperties[1]}</span>
         <span>{sortedProperties[2]}</span>
       </span>

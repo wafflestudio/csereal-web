@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next-intl/link';
+import { Dispatch, SetStateAction } from 'react';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
 
@@ -14,6 +15,7 @@ interface SelectionListProps {
   path: string;
   listGridColumnClass?: string; // tailwind class
   listItemPadding?: string; // tailwlind class
+  setSelected?: Dispatch<SetStateAction<string>>;
 }
 
 export default function SelectionList({
@@ -22,7 +24,12 @@ export default function SelectionList({
   path,
   listGridColumnClass = 'grid-cols-[repeat(4,_max-content)]',
   listItemPadding = '',
+  setSelected,
 }: SelectionListProps) {
+  const selectItem = (itemName: string) => {
+    setSelected?.(itemName);
+  };
+
   return (
     <ul className={`grid ${listGridColumnClass} gap-3 mb-9`}>
       {names.map((name) => (
@@ -32,6 +39,7 @@ export default function SelectionList({
           name={name}
           isSelected={name === selectedItemName}
           padding={listItemPadding}
+          selectItem={selectItem}
         />
       ))}
     </ul>
@@ -43,9 +51,10 @@ interface SelectionItemProps {
   isSelected: boolean;
   path: string;
   padding: string;
+  selectItem?: (itemName: string) => void;
 }
 
-function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) {
+function SelectionItem({ name, isSelected, path, padding, selectItem }: SelectionItemProps) {
   const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-sm tracking-wide font-yoon ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.0625; // 1px
@@ -77,7 +86,9 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
             className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700 transition-all duration-300`}
             scroll={false}
           >
-            {name}
+            <div className={`${itemCommonStyle} inline-block`} onClick={() => selectItem?.(name)}>
+              {name}
+            </div>
           </Link>
         </CornerFoldedRectangle>
       )}
