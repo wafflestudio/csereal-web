@@ -43,16 +43,18 @@ function HeaderRight() {
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
         {user ? (
-          <Link href={LOGOUT_URL}>
+          <Link href={LOGOUT_URL} className="hover:text-main-orange">
             <button>{t('로그아웃')}</button>
           </Link>
         ) : (
-          <Link href={LOGIN_URL}>
+          <Link href={LOGIN_URL} className="hover:text-main-orange">
             <button>{t('로그인')}</button>
           </Link>
         )}
         <span>|</span>
-        <button onClick={changeLanguage}>{langButtonText}</button>
+        <button onClick={changeLanguage} className="hover:text-main-orange">
+          {langButtonText}
+        </button>
       </div>
       <HeaderSearchBar />
     </div>
