@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 import { Fragment } from 'react';
@@ -36,6 +37,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   const t = useTranslations('Nav');
   const log: SegmentNode[] = getLocationLog(currentPage);
+  const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
 
   return log.length ? (
     <ol className="flex items-center gap-0.5 text-neutral-700">
@@ -46,6 +48,7 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
               <LocationText
                 path={location.isPage ? getPath(location) : null}
                 name={t(location.name)}
+                isCurrent={exactCurrentPagePathname === getPath(location)}
               />
             </li>
             {i !== log.length - 1 && (
@@ -60,11 +63,18 @@ function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   ) : null;
 }
 
-function LocationText({ path, name }: { path: string | null; name: string }) {
+interface LoactionText {
+  path: string | null;
+  name: string;
+  isCurrent: boolean;
+}
+
+function LocationText({ path, name, isCurrent }: LoactionText) {
   return path ? (
     <Link
       href={path}
       className="text-xs font-yoon font-normal tracking-[.02em] hover:text-main-orange"
+      onClick={() => isCurrent && window.location.reload()}
     >
       {name}
     </Link>
