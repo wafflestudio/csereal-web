@@ -1,7 +1,7 @@
 import { FormEvent, useReducer, useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
-import Tags from '@/components/common/Tags';
+import { Tag } from '@/components/common/Tags';
 
 import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
@@ -39,6 +39,12 @@ export default function SearchForm({
     setSearchParams({ purpose: 'search', keyword });
   };
 
+  const deleteTag = (targetTag: string) => {
+    const filteredTags = selectedTags.filter((tag) => tag !== targetTag);
+    setSelectedTags(filteredTags);
+    setSearchParams({ purpose: 'search', keyword, tag: filteredTags });
+  };
+
   return (
     <div className={`mb-6 w-full ${disabled && 'opacity-30'}`}>
       <h4
@@ -67,7 +73,8 @@ export default function SearchForm({
       )}
       <StraightNode double={true} margin="mt-6 mb-3" />
       <div className="flex justify-between items-start gap-3 px-2.5">
-        <Tags tags={initTags.length ? initTags : ['전체']} />
+        {/* <Tags tags={initTags.length ? initTags : ['전체']} /> */}
+        <SelectedTags tags={initTags.length ? initTags : ['전체']} deleteTag={deleteTag} />
         {initTags.length > 0 && <TagResetButton onClickReset={resetTags} disabled={disabled} />}
       </div>
     </div>
@@ -82,6 +89,21 @@ function SearchButton({ disabled }: { disabled: boolean }) {
     >
       결과 보기
     </button>
+  );
+}
+
+interface SelectedTagsProps {
+  tags: string[];
+  deleteTag: (tag: string) => void;
+}
+
+function SelectedTags({ tags, deleteTag }: SelectedTagsProps) {
+  return (
+    <div className={`flex flex-wrap items-center gap-2.5`}>
+      {tags.map((tag) => (
+        <Tag key={tag} tag={tag} onDelete={tag === '전체' ? undefined : deleteTag} />
+      ))}
+    </div>
   );
 }
 
