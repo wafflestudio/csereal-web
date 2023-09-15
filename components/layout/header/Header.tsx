@@ -3,8 +3,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
-import { useEffect } from 'react';
-import useSWR from 'swr';
 
 import { BASE_URL } from '@/apis';
 import { useNavbarContext } from '@/contexts/NavbarContext';
