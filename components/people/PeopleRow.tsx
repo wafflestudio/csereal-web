@@ -45,7 +45,7 @@ export default function PeopleRow({
   const href = `${hrefList[type]}/${id}`;
 
   return (
-    <article className="text-neutral-700 font-noto font-normal text-xs flex flex-col w-36 gap-3 group">
+    <article className="text-neutral-700 text-xs flex flex-col w-36 gap-3 group">
       <Link
         href={href}
         className="w-36 h-48 relative"
@@ -69,7 +69,7 @@ export default function PeopleRow({
         {academicRank && (
           <div className="relative flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
             <Link href={href} className="hover:cursor-pointer ">
-              <p className="text-md font-bold">{name}</p>
+              <p className="text-md font-noto font-bold">{name}</p>
             </Link>
             <AcademicRankText academicRank={academicRank} />
             <span className="absolute inline-block bottom-0 border-b w-0 border-main-orange group-hover:w-full transition-all duration-700" />
@@ -78,7 +78,7 @@ export default function PeopleRow({
         {role && (
           <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
             <Link href={href} className="hover:cursor-pointer ">
-              <p className="text-md font-bold leading-5">{name}</p>
+              <p className="font-noto text-md font-bold leading-5">{name}</p>
             </Link>
             <p className="text-neutral-500 leading-6">{role}</p>
           </div>

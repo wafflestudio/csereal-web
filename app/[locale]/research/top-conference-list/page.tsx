@@ -22,8 +22,8 @@ export default async function TopConferenceListPage() {
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
-      <div className="flex flex-col font-noto font-normal text-neutral-700">
-        <h3 className="font-bold text-base leading-8 mb-5">
+      <div className="flex flex-col text-neutral-700">
+        <h3 className="font-noto font-bold text-base leading-8 mb-5">
           서울대학교 공과대학 컴퓨터공학부 Top Conference List
         </h3>
         <p className="text-sm leading-[26px]">

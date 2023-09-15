@@ -83,8 +83,8 @@ function FooterBottomLeft() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="text-neutral-500 font-noto text-[.6875rem] tracking-[.01125rem]">
-      <div className="flex [&>a]:font-bold [&>span]:font-normal gap-1">
+    <div className="text-neutral-500 text-[.6875rem] tracking-[.01125rem]">
+      <div className="flex [&>a]:font-bold [&>a]:font-noto gap-1">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
