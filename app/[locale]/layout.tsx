@@ -52,9 +52,7 @@ export default async function RootLayout({
             <div className="flex flex-col flex-1 font-noto-demi">
               <Header />
               <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
-                <main className="flex-1">
-                  <SWRProvider>{children}</SWRProvider>
-                </main>
+                <main className="flex-1">{children}</main>
                 <Footer />
               </div>
             </div>
@@ -69,10 +67,12 @@ export default async function RootLayout({
 
 function ContextProviders({ children }: PropsWithChildren) {
   return (
-    <SessionContextProvider>
-      <NavbarContextProvider>
-        <ModalContextProvider>{children}</ModalContextProvider>
-      </NavbarContextProvider>
-    </SessionContextProvider>
+    <SWRProvider>
+      <SessionContextProvider>
+        <NavbarContextProvider>
+          <ModalContextProvider>{children}</ModalContextProvider>
+        </NavbarContextProvider>
+      </SessionContextProvider>
+    </SWRProvider>
   );
 }

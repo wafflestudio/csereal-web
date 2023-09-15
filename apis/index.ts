@@ -1,6 +1,7 @@
 import { objToQueryString } from '@/utils/convertParams';
 
-export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+// export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+export const BASE_URL = 'http://localhost:8080/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,

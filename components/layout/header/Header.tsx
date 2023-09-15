@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 import { useEffect } from 'react';
+import useSWR from 'swr';
 
 import { BASE_URL } from '@/apis';
 import { useNavbarContext } from '@/contexts/NavbarContext';
@@ -34,16 +35,11 @@ export default function Header() {
 
 function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();
-  const { user, autoLogin } = useSessionContext();
+  const { user, logout } = useSessionContext();
 
   const t = useTranslations('Header');
 
   const langButtonText = isEnglish ? '한국어' : 'english';
-  console.log(user);
-
-  useEffect(() => {
-    if (!user) autoLogin();
-  }, [user, autoLogin]);
 
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">

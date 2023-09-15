@@ -1,31 +1,22 @@
 'use client';
 
-import React, {
-  createContext,
-  Dispatch,
-  PropsWithChildren,
-  SetStateAction,
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, PropsWithChildren, useCallback, useContext, useMemo } from 'react';
+import useSWR from 'swr';
 
-import { getIsStaff } from '@/apis/auth';
+import { getRequest } from '@/apis';
 
 interface SessionContextData {
   user?: User;
-  // setUser: Dispatch<SetStateAction<User | undefined>>;
-  autoLogin: () => Promise<void>;
+  logout: () => void;
+  isLoading: boolean;
 }
 
 const SessionContext = createContext<SessionContextData>({
   user: undefined,
-  // setUser: () => {
-  //   throw Error('session context not provided');
-  // },
-  autoLogin: () => {
-    throw Error('session context not provided');
+  logout: () => {
+    throw new Error('SessionContext not provided');
   },
+  isLoading: true,
 });
 
 export const useSessionContext = () => useContext(SessionContext);
@@ -35,19 +26,32 @@ export interface User {
 }
 
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const [user, setUser] = useState<User | undefined>();
+  const { data, isLoading, error } = useSWR<User>('/user/is-staff', getRequestWithCookie);
 
-  const autoLogin = useCallback(async () => {
-    console.log('자동 로그인!');
-    try {
-      const data = await getIsStaff();
-      setUser({ isStaff: data.isStaff });
-    } catch (error) {
-      setUser(undefined);
-      console.log(error);
-      console.log('ㅡ태프 인증 실패!');
+  const user = useMemo(() => {
+    if (data?.isStaff === undefined || error) {
+      return undefined;
+    } else {
+      return {
+        isStaff: data.isStaff,
+      };
     }
+  }, [data?.isStaff, error]);
+
+  const logout = useCallback(() => {
+    deleteCookie('JSESSIONID');
   }, []);
 
-  return <SessionContext.Provider value={{ user, autoLogin }}>{children}</SessionContext.Provider>;
+  return (
+    <SessionContext.Provider value={{ user, logout, isLoading }}>
+      {children}
+    </SessionContext.Provider>
+  );
 }
+
+const getRequestWithCookie: typeof getRequest = (url, params, init) =>
+  getRequest(url, params, { ...init, credentials: 'include' });
+
+const deleteCookie = (key: string) => {
+  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+};
