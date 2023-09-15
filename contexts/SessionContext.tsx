@@ -3,19 +3,15 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext, useMemo } from 'react';
 import useSWR from 'swr';
 
-import { getRequest } from '@/apis';
+import { getRequest, getRequestWithCookie } from '@/apis';
 
 interface SessionContextData {
   user?: User;
-  logout: () => void;
   isLoading: boolean;
 }
 
 const SessionContext = createContext<SessionContextData>({
   user: undefined,
-  logout: () => {
-    throw new Error('SessionContext not provided');
-  },
   isLoading: true,
 });
 
@@ -38,19 +34,8 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
     }
   }, [data?.isStaff, error]);
 
-  const logout = useCallback(() => {
-    deleteCookie('JSESSIONID');
-  }, []);
-
-  return (
-    <SessionContext.Provider value={{ user, logout, isLoading }}>
-      {children}
-    </SessionContext.Provider>
-  );
+  return <SessionContext.Provider value={{ user, isLoading }}>{children}</SessionContext.Provider>;
 }
-
-const getRequestWithCookie: typeof getRequest = (url, params, init) =>
-  getRequest(url, params, { ...init, credentials: 'include' });
 
 const deleteCookie = (key: string) => {
   document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

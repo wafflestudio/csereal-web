@@ -35,7 +35,7 @@ export default function Header() {
 
 function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();
-  const { user, logout } = useSessionContext();
+  const { user } = useSessionContext();
 
   const t = useTranslations('Header');
 
@@ -45,7 +45,6 @@ function HeaderRight() {
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">
         {user ? (
-          // <span className="text-neutral-500">|</span>
           <Link href={LOGOUT_URL}>
             <button>{t('로그아웃')}</button>
           </Link>

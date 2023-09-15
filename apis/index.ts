@@ -19,6 +19,9 @@ export const getRequest = async <T = unknown>(
   return responseData as T;
 };
 
+export const getRequestWithCookie: typeof getRequest = (url, params, init) =>
+  getRequest(url, params, { ...init, credentials: 'include' });
+
 export const postRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'POST' });
