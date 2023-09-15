@@ -7,15 +7,13 @@ interface KeywordInputProps {
 }
 
 export default function KeywordInput({ keyword, setKeyword, disabled = false }: KeywordInputProps) {
-  const changeKeyword = (newKeyword: string) => setKeyword(newKeyword);
-
   const resetKeyword = () => setKeyword('');
 
   return (
     <div className="col-start-1 flex items-center">
       <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap tracking-wide">검색어</h5>
       <div className="flex gap-1 items-center px-1.5 w-[13.5rem] h-[1.875rem] border rounded-[0.1875rem]">
-        <Input keyword={keyword} disabled={disabled} onChange={changeKeyword} />
+        <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
         {keyword && <ResetKeywordButton onClick={resetKeyword} />}
       </div>
     </div>

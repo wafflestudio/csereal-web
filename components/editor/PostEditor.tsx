@@ -45,8 +45,8 @@ export default function PostEditor({
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
     let nextTags = [...content.tags];
-    if (isChecked) nextTags = nextTags.filter((x) => x !== tag);
-    else nextTags.push(tag);
+    if (isChecked) nextTags.push(tag);
+    else nextTags = nextTags.filter((x) => x !== tag);
     setContentByKey('tags')(nextTags);
   };
 

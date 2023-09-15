@@ -166,13 +166,13 @@ function ScheduleFieldset({
           isChecked={allDay}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
-              setValues('startDate')(new Date());
-              setValues('endDate')(new Date());
-            } else {
               setValues('endDate')(null);
               const newStartDate = new Date(startDate);
               newStartDate.setHours(0, 0, 0, 0);
               setValues('startDate')(newStartDate);
+            } else {
+              setValues('startDate')(new Date());
+              setValues('endDate')(new Date());
             }
           }}
         />
@@ -181,9 +181,9 @@ function ScheduleFieldset({
           isChecked={values.endDate !== null}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
-              setValues('endDate')(null);
-            } else {
               setValues('endDate')(new Date());
+            } else {
+              setValues('endDate')(null);
             }
           }}
         />
@@ -326,12 +326,12 @@ function CheckboxFieldset({
         <Checkbox
           label="비공개 글"
           isChecked={!isPublic}
-          toggleCheck={(tag, isChecked) => setIsPublic(isChecked)}
+          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
         />
         <Checkbox
           label="메인-중요 안내에 표시"
           isChecked={isImportant}
-          toggleCheck={(tag, isChecked) => setIsImportant(!isChecked)}
+          toggleCheck={(tag, isChecked) => setIsImportant(isChecked)}
         />
       </div>
     </Fieldset>

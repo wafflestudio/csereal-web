@@ -9,7 +9,7 @@ interface PaginationProps {
 }
 
 const PAGE_LIMIT = 10; // 페이지네이션 바에 한번에 보여줄 페이지 개수
-const MAX_PAGE = 1000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
+const MAX_PAGE = 10000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
 
 export default function Pagination({
   totalPostsCount,
@@ -20,16 +20,14 @@ export default function Pagination({
 }: PaginationProps) {
   const NUM_PAGES = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
   const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
+  console.log(currentPage);
+  console.log(NUM_PAGES);
 
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
   const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1));
 
-  // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
-  useEffect(() => {
-    if (NUM_PAGES < currentPage) {
-      setCurrentPage(NUM_PAGES);
-    }
-  }, [currentPage, NUM_PAGES, setCurrentPage]);
+  // // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
+  if (NUM_PAGES < currentPage) setCurrentPage(NUM_PAGES);
 
   return (
     <div className={`flex justify-center ${disabled && 'opacity-30'}`}>

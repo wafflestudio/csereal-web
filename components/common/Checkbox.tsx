@@ -32,7 +32,7 @@ export default function Checkbox({
         value={label}
         checked={isChecked}
         disabled={disabled}
-        onChange={() => toggleCheck(label, isChecked)}
+        onChange={() => toggleCheck(label, !isChecked)}
       />
     </label>
   );

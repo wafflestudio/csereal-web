@@ -20,8 +20,8 @@ export default function TagFilter({
 }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
-      ? setSelectedTags(selectedTags.filter((t) => t !== tag))
-      : setSelectedTags((prev) => [...prev, tag]);
+      ? setSelectedTags((prev) => [...prev, tag])
+      : setSelectedTags(selectedTags.filter((t) => t !== tag));
   };
 
   return (
