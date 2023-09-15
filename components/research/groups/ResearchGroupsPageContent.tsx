@@ -53,7 +53,5 @@ export default function ResearchGroupsPageContent({
 }
 
 function ResearchDescription({ description }: { description: string }) {
-  return (
-    <p className="mb-[3.25rem] font-noto text-sm tracking-wide leading-[1.625rem]">{description}</p>
-  );
+  return <p className="mb-[3.25rem] text-sm tracking-wide leading-[1.625rem]">{description}</p>;
 }

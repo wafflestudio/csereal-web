@@ -55,7 +55,7 @@ function SelectFileButton({ onChange }: { onChange: ChangeEventHandler<HTMLInput
       className={`rounded-sm border-[1px] border-neutral-700
             h-[1.875rem] px-[.62rem] mb-3
             flex items-center
-            font-noto text-xs font-normal self-start 
+            text-xs self-start 
             hover:bg-neutral-100`}
     >
       파일 선택
