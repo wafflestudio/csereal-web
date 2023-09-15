@@ -26,7 +26,7 @@ export default function SeminarSearchBar({ setSearchParams }: SeminarSearchBarPr
       <input
         type="text"
         id="search"
-        className="outline-none border border-neutral-500 rounded-l-sm text-xs w-[13.5rem] h-8 px-2 bg-transparent placeholder:text-neutral-300 tracking-[0.02em]"
+        className="outline-none border border-neutral-500 rounded-l-sm text-xs w-[13.5rem] h-8 px-2 bg-transparent placeholder:text-neutral-300 tracking-[0.02em] autofill-bg-white"
         placeholder="세미나 키워드 검색"
         value={text}
         onChange={handleChange}

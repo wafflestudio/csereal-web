@@ -14,7 +14,7 @@ export default function KeywordInput({ keyword, setKeyword, disabled = false }: 
         <input
           type="text"
           id="search"
-          className="outline-none grow font-yoon text-xs tracking-wide bg-transparent"
+          className="outline-none grow font-yoon text-xs tracking-wide bg-transparent autofill-bg-white autofill:text-xs autofill:font-yoon"
           value={keyword}
           disabled={disabled}
           onChange={(e) => setKeyword(e.target.value)}
