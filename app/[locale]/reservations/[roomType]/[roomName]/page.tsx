@@ -11,9 +11,11 @@ interface RoomReservationProps {
 
 export default function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
   return (
-    <LoginUserVisible fallback={<p>로그인 후 사용할 수 있는 페이지입니다.</p>}>
-      <LoginedRoomReservationPage params={params} searchParams={searchParams} />
-    </LoginUserVisible>
+    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+      <LoginUserVisible fallback={<p>로그인 후 사용할 수 있는 페이지입니다.</p>}>
+        <LoginedRoomReservationPage params={params} searchParams={searchParams} />
+      </LoginUserVisible>
+    </PageLayout>
   );
 }
 
@@ -47,13 +49,11 @@ export async function LoginedRoomReservationPage({ params, searchParams }: RoomR
   });
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
       <ReservationCalendar
         startDate={startOfWeek}
         selectedDate={date}
         reservations={reservations}
       />
-    </PageLayout>
   );
 }
 
