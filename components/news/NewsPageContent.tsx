@@ -25,7 +25,7 @@ export default function NewsPageContent({
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
 
   const setCurrentPage = (pageNum: number) => {
-    setSearchParams({ purpose: 'navigation', page: pageNum });
+    setSearchParams({ purpose: 'navigation', pageNum });
   };
 
   return (
