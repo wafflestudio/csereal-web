@@ -93,3 +93,5 @@ const throwIfCantSubmit = (content: PostEditorContent) => {
     throw new Error('내용을 입력해주세요');
   }
 };
+
+const emptyStringToNull = (str: string | null) => (str ? str : null);

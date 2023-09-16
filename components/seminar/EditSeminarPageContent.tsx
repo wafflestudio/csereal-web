@@ -66,17 +66,17 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
       request: {
         title: content.title,
         titleForMain: content.titleForMain,
-        description: content.description,
-        introduction: content.speaker.description,
-        name: content.speaker.name,
-        speakerURL: content.speaker.nameURL,
-        speakerTitle: content.speaker.title,
-        affiliation: content.speaker.organization,
-        affiliationURL: content.speaker.organizationURL,
+        description: emptyStringToNull(content.description),
+        introduction: emptyStringToNull(content.speaker.description),
+        name: emptyStringToNull(content.speaker.name),
+        speakerURL: emptyStringToNull(content.speaker.nameURL),
+        speakerTitle: emptyStringToNull(content.speaker.title),
+        affiliation: emptyStringToNull(content.speaker.organization),
+        affiliationURL: emptyStringToNull(content.speaker.organizationURL),
         startDate: content.schedule.startDate.toISOString(),
         endDate: content.schedule.endDate?.toISOString() ?? null,
         location: content.location,
-        host: content.host,
+        host: emptyStringToNull(content.host),
         isPrivate: content.isPrivate,
         isImportant: content.isImportant,
 
@@ -117,4 +117,4 @@ const throwIfCantSubmit = (content: SeminarEditorContent) => {
   }
 };
 
-const emptyStringToNull = (str: string) => (str ? str : null);
+const emptyStringToNull = (str: string | null) => (str ? str : null);
