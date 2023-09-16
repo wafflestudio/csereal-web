@@ -60,8 +60,6 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
         ? content.speaker.image.file
         : null;
 
-    console.log(deleteIds, localAttachments, image);
-
     await editSeminar(id, {
       request: {
         title: content.title,

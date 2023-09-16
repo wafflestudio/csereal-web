@@ -20,7 +20,6 @@ export default function NewsCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
-    console.log(content.description);
     throwIfCantSubmit(content);
 
     const mainImage =

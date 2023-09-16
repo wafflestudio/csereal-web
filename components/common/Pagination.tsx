@@ -20,8 +20,6 @@ export default function Pagination({
 }: PaginationProps) {
   const NUM_PAGES = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
   const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
-  console.log(currentPage);
-  console.log(NUM_PAGES);
 
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
   const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1));

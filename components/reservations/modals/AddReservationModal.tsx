@@ -23,7 +23,6 @@ export default function AddReservationModal() {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (!canSubmit) return;
-    console.log(body);
   };
 
   const buildBodyValueSetter =
