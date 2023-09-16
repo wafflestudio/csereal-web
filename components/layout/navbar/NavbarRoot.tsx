@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -9,9 +8,11 @@ import NaviBarClose from '@/public/image/NaviBar_Close.svg';
 import NaviBarMenu from '@/public/image/NaviBar_Menu.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 
-import { getPath } from '@/utils/page';
+import { isAncestorNode } from '@/utils/page';
 
 export default function NavbarRoot({
   state,
@@ -62,9 +63,8 @@ function NavList({
   state: NavbarState;
   setState: (state: NavbarState) => void;
 }) {
-  const pathName = usePathname();
+  const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
-
   // 노드별 강조 처리 여부
   const shouldHighlight = (child: SegmentNode) => {
     if (state.type === 'hovered') {
@@ -72,7 +72,7 @@ function NavList({
       return child === state.segmentNode;
     } else {
       // 이외의 경우 현재 url 경로와 매칭되면 true
-      return pathName.startsWith(getPath(child));
+      return isAncestorNode(child, cur);
     }
   };
 
