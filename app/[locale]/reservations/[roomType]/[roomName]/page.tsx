@@ -1,5 +1,6 @@
 import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
 
+import LoginUserVisible from '@/components/common/LoginUserVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ReservationCalendar from '@/components/reservations/ReservationCalendar';
 
@@ -8,7 +9,17 @@ interface RoomReservationProps {
   searchParams: { selectedDate?: string };
 }
 
-export default async function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
+export default function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
+  return (
+    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+      <LoginUserVisible fallback={<p>로그인 후 사용할 수 있는 페이지입니다.</p>}>
+        <LoginedRoomReservationPage params={params} searchParams={searchParams} />
+      </LoginUserVisible>
+    </PageLayout>
+  );
+}
+
+export async function LoginedRoomReservationPage({ params, searchParams }: RoomReservationProps) {
   const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
   const date = parseDate(searchParams.selectedDate || todayYMDStr());
 
@@ -38,13 +49,11 @@ export default async function RoomReservationPage({ params, searchParams }: Room
   });
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
       <ReservationCalendar
         startDate={startOfWeek}
         selectedDate={date}
         reservations={reservations}
       />
-    </PageLayout>
   );
 }
 
