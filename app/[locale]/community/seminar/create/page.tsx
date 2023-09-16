@@ -33,6 +33,7 @@ export default function SeminarCreatePage() {
     await postSeminar({
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
         introduction: content.speaker.description,
         name: content.speaker.name,

@@ -60,6 +60,10 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
+      <TitleForMainFieldset
+        value={content.titleForMain}
+        onChange={setContentByKey('titleForMain')}
+      />
       <SummaryEditorFieldset
         summaryEditorRef={summaryEditorRef}
         initialContent={content.description}
@@ -103,6 +107,25 @@ function TitleFieldset({ value, onChange }: { value: string; onChange: (text: st
     <Fieldset title="제목" mb="mb-10" titleMb="mb-2" required>
       <BasicTextInput
         placeholder="제목을 입력하세요."
+        value={value}
+        onChange={onChange}
+        maxWidth="max-w-[40rem]"
+      />
+    </Fieldset>
+  );
+}
+
+function TitleForMainFieldset({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="메인-중요 안내용 제목" mb="mb-6" titleMb="mb-2">
+      <BasicTextInput
+        placeholder="미입력시 제목과 동일하게 표시됩니다."
         value={value}
         onChange={onChange}
         maxWidth="max-w-[40rem]"

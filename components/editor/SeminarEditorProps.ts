@@ -3,6 +3,7 @@ import { PostEditorFile, PostEditorImage } from './PostEditorProps';
 
 export interface SeminarEditorContent {
   title: string;
+  titleForMain: string;
   description: string;
   location: string;
   schedule: SeminarSchedule;
@@ -43,6 +44,7 @@ export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
 
   return {
     title: '',
+    titleForMain: '',
     description: '',
     location: '',
     schedule: {

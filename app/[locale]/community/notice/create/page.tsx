@@ -28,6 +28,7 @@ export default function NoticeCreatePage() {
     await postNotice({
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
         isPublic: content.isPublic,
         isPinned: content.isPinned,

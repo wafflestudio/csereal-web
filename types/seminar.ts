@@ -42,6 +42,7 @@ export interface Seminar {
   nextId: number | null;
   nextTitle: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -51,6 +52,7 @@ export interface Seminar {
 export interface POSTSeminarBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
     introduction: string;
     name: string;
@@ -69,27 +71,25 @@ export interface POSTSeminarBody {
   attachments: File[];
 }
 
-export interface PatchSeminarBody {
+export interface PATCHSeminarBody {
   request: {
+    title: string;
+    titleForMain: string | null;
+    description: string;
     introduction: string;
-    category: string;
     name: string;
-    speakerUrl: string | null;
+    speakerURL: string | null;
     speakerTitle: string | null;
     affiliation: string;
-    affiliationUrl: string | null;
+    affiliationURL: string | null;
     startDate: string | null;
-    startTime: string | null;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
-    isSlide: boolean;
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    isPublic: boolean;
+    isImportant: boolean;
+
+    deleteIds: number[];
   };
   newAttachments: File[];
   image: File | null;

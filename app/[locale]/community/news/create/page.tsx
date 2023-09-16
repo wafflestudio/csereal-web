@@ -30,6 +30,7 @@ export default function NewsCreatePage() {
     await postNews({
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
         isPublic: content.isPublic,
         isSlide: content.isSlide,
