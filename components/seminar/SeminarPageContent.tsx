@@ -28,6 +28,9 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         <SeminarSearchBar setSearchParams={setSearchParams} />
       </div>
       <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
+        {searchList.length === 0 && (
+          <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
+        )}
         {searchList.map((post, index) => (
           <div key={post.id}>
             {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}

@@ -38,6 +38,9 @@ export default function NewsPageContent({
         setSearchParams={setSearchParams}
       />
       <div className="flex flex-col gap-4 mt-10 mb-8 mx-2.5">
+        {searchList.length === 0 && (
+          <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
+        )}
         {searchList.map((post) => (
           <NewsRow
             key={post.id}
