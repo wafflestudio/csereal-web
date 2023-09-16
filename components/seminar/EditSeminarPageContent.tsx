@@ -19,8 +19,8 @@ import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/Se
 const seminarPath = getPath(seminar);
 
 export default function EditSeminarPageContent({ id, data }: { id: number; data: Seminar }) {
-  console.log(data);
   const router = useRouter();
+
   const initialContent: SeminarEditorContent = {
     ...getSeminarEditorDefaultValue(),
 
@@ -48,13 +48,19 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   const handleComplete = async (content: SeminarEditorContent) => {
     throwIfCantSubmit(content);
 
-    const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+    const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
+
+    const deleteIds = data.attachments
+      .map((x) => x.id)
+      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
 
     const image =
       content.speaker.image && isLocalImage(content.speaker.image)
         ? content.speaker.image.file
         : null;
+
+    console.log(deleteIds, localAttachments, image);
 
     await editSeminar(id, {
       request: {
@@ -74,7 +80,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
         isPrivate: content.isPrivate,
         isImportant: content.isImportant,
 
-        deleteIds: [],
+        deleteIds,
       },
       image,
       newAttachments: localAttachments,

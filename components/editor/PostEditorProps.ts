@@ -10,6 +10,7 @@ export interface LocalFile {
 export interface UploadedFile {
   type: 'UPLOADED_FILE';
   file: {
+    id: number;
     name: string;
     url: string;
     bytes: number;

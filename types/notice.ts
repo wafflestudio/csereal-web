@@ -29,6 +29,7 @@ export interface Notice {
   nextId: number | null;
   nextTitle: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -57,11 +58,7 @@ export interface PatchNoticeBody {
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    deleteIds: number[];
   };
   newAttachments: File[];
 }

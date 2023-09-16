@@ -1,6 +1,8 @@
 import Link from 'next-intl/link';
 import { ReactNode } from 'react';
 
+import { deleteRequestWithCookie } from '@/apis';
+
 import { getSeminarPost } from '@/apis/seminar';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
@@ -79,8 +81,8 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        listHref={seminarPath}
-        editHref={`${seminarPath}/${params.id}/edit`}
+        postType="seminar"
+        id={params.id}
         margin="mt-12"
       />
     </PageLayout>

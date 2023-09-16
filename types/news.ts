@@ -30,6 +30,7 @@ export interface News {
   nextId: number | null;
   nextTitle: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -59,11 +60,7 @@ export interface PATCHNewsBody {
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    deleteIds: number[];
   };
   mainImage: File | null;
   newAttachments: File[];

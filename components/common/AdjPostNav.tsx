@@ -1,14 +1,19 @@
 import Link from 'next-intl/link';
 
+import { deleteRequestWithCookie } from '@/apis';
+
 import { AdjPostInfo } from '@/types/post';
 
 import LoginStaffVisible from './LoginStaffVisible';
+import PostDeleteButton from './PostDeleteButton';
+
+type PostType = 'notice' | 'seminar' | 'news';
 
 interface AdjPostNavProps {
+  postType: PostType;
+  id?: string;
   prevPost?: AdjPostInfo;
   nextPost?: AdjPostInfo;
-  listHref: string;
-  editHref: string;
   margin?: string;
 }
 
@@ -16,17 +21,22 @@ export default function AdjPostNav({
   prevPost,
   nextPost,
   margin = '',
-  listHref,
-  editHref,
+  postType,
+  id,
 }: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
       <Row post={nextPost} type="next" />
       <Row post={prevPost} type="prev" />
       <div className="flex justify-end mt-6">
-        <PostListLink href={listHref} />
+        <PostListLink href={`/community/${postType}`} />
         <LoginStaffVisible>
-          <PostEditLink href={editHref} />
+          {id && (
+            <>
+              <PostDeleteButton postType={postType} id={id} />
+              <PostEditLink href={`/community/${postType}/${id}/edit`} />
+            </>
+          )}
         </LoginStaffVisible>
       </div>
     </div>

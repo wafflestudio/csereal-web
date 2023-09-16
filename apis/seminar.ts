@@ -1,7 +1,13 @@
 import { PostSearchQueryParams } from '@/types/post';
 import { PATCHSeminarBody, POSTSeminarBody, Seminar, SeminarList } from '@/types/seminar';
 
-import { getRequest, patchRequestWithCookie, postRequest, postRequestWithCookie } from '.';
+import {
+  deleteRequest,
+  getRequest,
+  patchRequestWithCookie,
+  postRequest,
+  postRequestWithCookie,
+} from '.';
 
 const seminarPath = '/seminar';
 
@@ -56,3 +62,5 @@ export const editSeminar = async (id: number, body: PATCHSeminarBody) => {
 
   await patchRequestWithCookie(`${seminarPath}/${id}`, { body: formData });
 };
+
+export const deleteSeminar = async (id: number) => deleteRequest(`${seminarPath}/${id}`);

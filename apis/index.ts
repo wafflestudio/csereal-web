@@ -52,6 +52,9 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
   checkError(response);
 };
 
+export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =>
+  deleteRequest(url, { ...init, credentials: 'include' });
+
 const checkError = (response: Response) => {
   if (!response.ok) {
     throw new Error(`네트워크 에러

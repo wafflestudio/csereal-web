@@ -1,3 +1,5 @@
+import { deleteRequestWithCookie } from '@/apis';
+
 import { getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
@@ -33,8 +35,8 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        listHref={newsPath}
-        editHref={`${newsPath}/${params.id}/edit`}
+        postType="news"
+        id={params.id}
         margin="mt-12"
       />
     </PageLayout>
