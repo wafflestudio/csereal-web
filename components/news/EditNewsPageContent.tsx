@@ -31,7 +31,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
 
     title: data.title,
     description: data.description,
-    isPublic: data.isPublic,
+    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
@@ -54,7 +54,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         title: content.title,
         titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isSlide: content.isSlide,
         isImportant: content.isImportant,
         tags: content.tags,

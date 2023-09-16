@@ -5,7 +5,7 @@ export interface Post {
   title: string;
   // html 내용
   description: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   attachments: FormData;
 }
 

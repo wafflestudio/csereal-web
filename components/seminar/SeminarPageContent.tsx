@@ -10,6 +10,9 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { SeminarList } from '@/types/seminar';
 
+import AdminFeatures from './AdminFeatures';
+import LoginStaffVisible from '../common/LoginStaffVisible';
+
 const postsCountPerPage = 10;
 
 export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
@@ -53,6 +56,9 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />
+      <LoginStaffVisible>
+        <AdminFeatures />
+      </LoginStaffVisible>
     </PageLayout>
   );
 }

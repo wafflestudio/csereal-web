@@ -30,7 +30,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
 
     title: data.title,
     description: data.description,
-    isPublic: data.isPublic,
+    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
@@ -48,7 +48,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         title: content.title,
         titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,

@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import Pagination from '@/components/common/Pagination';
 import SearchForm from '@/components/common/search/SearchForm';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -13,6 +15,9 @@ import { NewsPreviewList } from '@/types/news';
 import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+
+import AdminFeatures from './AdminFeatures';
+import LoginStaffVisible from '../common/LoginStaffVisible';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);
@@ -59,6 +64,9 @@ export default function NewsPageContent({
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />
+      <LoginStaffVisible>
+        <AdminFeatures />
+      </LoginStaffVisible>
     </PageLayout>
   );
 }

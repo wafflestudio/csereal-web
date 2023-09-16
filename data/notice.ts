@@ -20,7 +20,7 @@ const noticeDetailMock: Notice = {
   prevTitle: null,
   tags: ['장학', '다전공'],
   isPinned: false,
-  isPublic: true,
+  isPrivate: true,
   isImportant: false,
   author: 'AUTHOR',
   description: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>`,
@@ -36,7 +36,7 @@ const noticeMockLong: NoticePreview = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: true,
-  isPublic: true,
+  isPrivate: true,
 };
 
 const noticeMockPin = {
@@ -44,7 +44,7 @@ const noticeMockPin = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
-  isPublic: true,
+  isPrivate: true,
 };
 
 const noticeMockPrivate = {
@@ -53,14 +53,14 @@ const noticeMockPrivate = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
-  isPublic: false,
+  isPrivate: false,
 };
 
 const noticeMock = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: false,
-  isPublic: true,
+  isPrivate: true,
   hasAttachment: true,
 };
 

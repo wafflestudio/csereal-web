@@ -32,7 +32,7 @@ export default function NewsCreatePage() {
         title: content.title,
         titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isSlide: content.isSlide,
         isImportant: content.isImportant,
         tags: content.tags,

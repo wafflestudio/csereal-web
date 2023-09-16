@@ -4,7 +4,7 @@ export interface NoticePreview {
   isPinned: boolean;
   createdAt: string;
   hasAttachment: boolean;
-  isPublic: boolean;
+  isPrivate: boolean;
 }
 
 export interface NoticePreviewList {
@@ -15,7 +15,7 @@ export interface NoticePreviewList {
 export interface Notice {
   title: string;
   description: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   tags: string[];
   isPinned: boolean;
   isImportant: boolean;
@@ -40,7 +40,7 @@ export interface POSTNoticeBody {
     title: string;
     titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];
@@ -53,7 +53,7 @@ export interface PatchNoticeBody {
     title: string;
     titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];

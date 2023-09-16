@@ -30,7 +30,7 @@ export default function NoticeCreatePage() {
         title: content.title,
         titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,

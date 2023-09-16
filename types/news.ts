@@ -4,7 +4,7 @@ export interface NewsPreview {
   description: string;
   tags: string[];
   createdAt: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   imageURL: string | null;
 }
 
@@ -16,7 +16,7 @@ export interface NewsPreviewList {
 export interface News {
   title: string;
   description: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   tags: string[];
   imageURL: string | null;
   isSlide: boolean;
@@ -41,7 +41,7 @@ export interface POSTNewsBody {
     title: string;
     titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];
@@ -55,7 +55,7 @@ export interface PATCHNewsBody {
     title: string;
     titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];

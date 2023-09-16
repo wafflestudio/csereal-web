@@ -43,7 +43,7 @@ export interface PostEditorContent {
   mainImage: PostEditorImage;
   attachments: PostEditorFile[];
   tags: string[];
-  isPublic: boolean;
+  isPrivate: boolean;
   isPinned: boolean;
   isImportant: boolean;
   isSlide: boolean;
@@ -66,7 +66,7 @@ export const postEditorDefaultValue: PostEditorContent = {
   mainImage: null,
   attachments: [],
   tags: [],
-  isPublic: true,
+  isPrivate: true,
   isPinned: false,
   isImportant: false,
   isSlide: false,
