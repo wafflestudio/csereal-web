@@ -38,6 +38,7 @@ export const isLocalImage = (image: LocalImage | UploadedImage): image is LocalI
 
 export interface PostEditorContent {
   title: string;
+  titleForMain: string;
   description: string;
   mainImage: PostEditorImage;
   attachments: PostEditorFile[];
@@ -60,6 +61,7 @@ export interface PostEditorProps {
 
 export const postEditorDefaultValue: PostEditorContent = {
   title: '',
+  titleForMain: '',
   description: '',
   mainImage: null,
   attachments: [],
