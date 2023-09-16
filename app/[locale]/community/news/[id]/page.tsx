@@ -33,7 +33,8 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={newsPath}
+        listHref={newsPath}
+        editHref={`${newsPath}/${params.id}/edit`}
         margin="mt-12"
       />
     </PageLayout>

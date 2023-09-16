@@ -46,17 +46,13 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
           />
         </div>
 
-        <p>
-          {'이름: '}
-          <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
-        </p>
+        {'이름: '}
+        <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
 
         {currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}
 
-        <p>
-          {'소속: '}
-          <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
-        </p>
+        {'소속: '}
+        <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
 
         <div className="mt-10">주최: {currPost.host}</div>
 
@@ -83,7 +79,8 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={seminarPath}
+        listHref={seminarPath}
+        editHref={`${seminarPath}/${params.id}/edit`}
         margin="mt-12"
       />
     </PageLayout>
@@ -113,7 +110,7 @@ const formatStartEndDate = (startDateStr: string, endDateStr: string | null) => 
       })} - ${endDate.toLocaleTimeString('ko-KR', {
         hour: '2-digit',
         minute: '2-digit',
-      })})`;
+      })}`;
     } else {
       return `${startDate.toLocaleString('ko-KR')} - ${endDate.toLocaleString('ko-KR')}`;
     }

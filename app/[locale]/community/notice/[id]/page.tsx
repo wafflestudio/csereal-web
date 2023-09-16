@@ -32,7 +32,7 @@ export default async function NoticePostPage({
         <p>
           <b>{`'${rawId}'`}</b>는 올바르지 않은 id입니다.
         </p>
-        <AdjPostNav href={noticePath} margin="mt-12" />
+        <AdjPostNav listHref={noticePath} editHref={`${noticePath}/${id}/edit`} margin="mt-12" />
       </PageLayout>
     );
   }
@@ -53,7 +53,8 @@ export default async function NoticePostPage({
       <AdjPostNav
         prevPost={prevPostPreview}
         nextPost={nextPostPreview}
-        href={noticePath}
+        listHref={noticePath}
+        editHref={`${noticePath}/${id}/edit`}
         margin="mt-12"
       />
     </PageLayout>
