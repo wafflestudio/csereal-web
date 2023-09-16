@@ -32,7 +32,7 @@ export default async function NoticePostPage({
         <p>
           <b>{`'${rawId}'`}</b>는 올바르지 않은 id입니다.
         </p>
-        <AdjPostNav href={noticePath} margin="mt-12" />
+        <AdjPostNav postType="notice" margin="mt-12" />
       </PageLayout>
     );
   }

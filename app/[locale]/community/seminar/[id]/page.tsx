@@ -1,8 +1,6 @@
 import Link from 'next-intl/link';
 import { ReactNode } from 'react';
 
-import { deleteRequestWithCookie } from '@/apis';
-
 import { getSeminarPost } from '@/apis/seminar';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
@@ -100,10 +98,14 @@ const LinkOrText = ({ href, children }: { href: string | null; children: ReactNo
 };
 
 const formatStartEndDate = (startDateStr: string, endDateStr: string | null) => {
+  const startDate = new Date(startDateStr);
   if (endDateStr === null) {
-    return new Date(startDateStr).toLocaleString('ko-KR');
+    if (startDate.getHours() === 0 && startDate.getMinutes() === 0) {
+      return new Date(startDateStr).toLocaleDateString('ko-KR');
+    } else {
+      return new Date(startDateStr).toLocaleString('ko-KR');
+    }
   } else {
-    const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
     if (isSameDay(startDate, endDate)) {
       return `${startDate.toLocaleDateString()} ${startDate.toLocaleTimeString('ko-KR', {

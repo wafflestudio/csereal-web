@@ -43,6 +43,10 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
 
+    const deleteIds = data.attachments
+      .map((x) => x.id)
+      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
     await patchNotice(id, {
       request: {
         title: content.title,
@@ -52,7 +56,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
-        attachments: uploadedAttachments,
+        deleteIds,
       },
       newAttachments: localAttachments,
     });

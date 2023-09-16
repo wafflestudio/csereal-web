@@ -204,7 +204,7 @@ function ScheduleFieldset({
           isChecked={values.endDate !== null}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
-              setValues('endDate')(new Date());
+              setValues('endDate')(values.startDate);
             } else {
               setValues('endDate')(null);
             }
