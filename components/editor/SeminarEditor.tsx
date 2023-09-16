@@ -84,9 +84,9 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         }}
       />
       <CheckboxFieldset
-        isPublic={content.isPublic}
+        isPrivate={content.isPrivate}
         isImportant={content.isImportant}
-        setIsPublic={setContentByKey('isPublic')}
+        setIsPrivate={setContentByKey('isPrivate')}
         setIsImportant={setContentByKey('isImportant')}
       />
 
@@ -333,14 +333,14 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
 }
 
 function CheckboxFieldset({
-  isPublic,
-  setIsPublic,
+  isPrivate,
+  setIsPrivate,
   isImportant,
   setIsImportant,
 }: {
-  isPublic: boolean;
+  isPrivate: boolean;
   isImportant: boolean;
-  setIsPublic: (value: boolean) => void;
+  setIsPrivate: (value: boolean) => void;
   setIsImportant: (value: boolean) => void;
 }) {
   return (
@@ -348,8 +348,8 @@ function CheckboxFieldset({
       <div className="flex flex-col gap-1">
         <Checkbox
           label="비공개 글"
-          isChecked={!isPublic}
-          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
+          isChecked={isPrivate}
+          toggleCheck={(tag, isChecked) => setIsPrivate(isChecked)}
         />
         <Checkbox
           label="메인-중요 안내에 표시"

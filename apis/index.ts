@@ -1,7 +1,7 @@
 import { objToQueryString } from '@/utils/convertParams';
 
-export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
-// export const BASE_URL = 'http://localhost:8080/api/v1';
+// export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+export const BASE_URL = 'http://localhost:8080/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -30,6 +30,9 @@ export const postRequest = async <T = unknown>(url: string, init?: RequestInit) 
   return responseData as T;
 };
 
+export const postRequestWithCookie: typeof postRequest = (url, init) =>
+  postRequest(url, { ...init, credentials: 'include' });
+
 export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
@@ -39,6 +42,9 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
     return responseData as T;
   }
 };
+
+export const patchRequestWithCookie: typeof patchRequest = (url, init) =>
+  patchRequest(url, { ...init, credentials: 'include' });
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;

@@ -10,7 +10,7 @@ export interface SeminarEditorContent {
   host: string | null;
   speaker: SeminarSpeaker;
   attachments: PostEditorFile[];
-  isPublic: boolean;
+  isPrivate: boolean;
   isImportant: boolean;
 }
 
@@ -62,7 +62,7 @@ export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
       image: null,
     },
     attachments: [],
-    isPublic: true,
+    isPrivate: false,
     isImportant: false,
   };
 };

@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import { postSeminar } from '@/apis/seminar';
 
-import { infoToast } from '@/components/common/toast';
 import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
@@ -20,9 +19,7 @@ export default function SeminarCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: SeminarEditorContent) => {
-    if (content.title === '') {
-      throw new Error('제목을 입력해주세요');
-    }
+    throwIfCantSubmit(content);
 
     const image =
       content.speaker.image && isLocalImage(content.speaker.image)
@@ -41,11 +38,11 @@ export default function SeminarCreatePage() {
         speakerTitle: content.speaker.title,
         affiliation: content.speaker.organization,
         affiliationURL: content.speaker.organizationURL,
-        startDate: content.schedule.startDate.toLocaleDateString(),
-        endDate: content.schedule.endDate?.toLocaleDateString() ?? null,
+        startDate: content.schedule.startDate.toISOString(),
+        endDate: content.schedule.endDate?.toISOString() ?? null,
         location: content.location,
         host: content.host,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isImportant: content.isImportant,
       },
       image,
@@ -66,3 +63,9 @@ export default function SeminarCreatePage() {
     </PageLayout>
   );
 }
+
+const throwIfCantSubmit = (content: SeminarEditorContent) => {
+  if (content.title === '') {
+    throw new Error('제목을 입력해주세요');
+  }
+};
