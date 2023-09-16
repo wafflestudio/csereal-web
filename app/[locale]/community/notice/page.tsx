@@ -12,5 +12,6 @@ interface NoticePageParams {
 
 export default async function NoticePage({ searchParams }: NoticePageParams) {
   const data = await getNoticePosts(searchParams);
+  console.log(data);
   return <NoticePageContent data={data} />;
 }

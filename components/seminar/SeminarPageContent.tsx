@@ -8,15 +8,11 @@ import SeminarYear from '@/components/seminar/SeminarYear';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
-import { GETSeminarPostsResponse } from '@/types/post';
+import { SeminarList } from '@/types/seminar';
 
 const postsCountPerPage = 10;
 
-export default function SeminarContent({
-  data: { searchList, total },
-}: {
-  data: GETSeminarPostsResponse;
-}) {
+export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
   const { page, setSearchParams } = useCustomSearchParams();
 
   const setCurrentPage = (pageNum: number) => {

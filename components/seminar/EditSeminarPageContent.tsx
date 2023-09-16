@@ -7,7 +7,7 @@ import { deleteNotice } from '@/apis/notice';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { news } from '@/types/page';
-import { SeminarPostResponse } from '@/types/post';
+import { Seminar } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
 
@@ -16,13 +16,7 @@ import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/Se
 
 const newsPath = getPath(news);
 
-export default function EditSeminarPageContent({
-  id,
-  data,
-}: {
-  id: number;
-  data: SeminarPostResponse;
-}) {
+export default function EditSeminarPageContent({ id, data }: { id: number; data: Seminar }) {
   const router = useRouter();
   const initialContent: SeminarEditorContent = {
     ...getSeminarEditorDefaultValue(),

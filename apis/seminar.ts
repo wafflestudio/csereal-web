@@ -1,24 +1,20 @@
 import { getMockSeminarPost, getMockSeminarPosts } from '@/data/seminar';
 
-import {
-  GETSeminarPostsResponse,
-  SeminarPostResponse,
-  PostSearchQueryParams,
-  POSTSeminarBody,
-} from '@/types/post';
+import { PostSearchQueryParams } from '@/types/post';
+import { POSTSeminarBody, Seminar, SeminarList } from '@/types/seminar';
 
 import { getRequest, postRequest } from '.';
 
 const seminarPath = '/seminar';
 
 export const getSeminarPosts = async (params: PostSearchQueryParams) => {
-  return (await getRequest(seminarPath, params, { cache: 'no-store' })) as GETSeminarPostsResponse;
+  return (await getRequest(seminarPath, params, { cache: 'no-store' })) as SeminarList;
 };
 
 export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
   return (await getRequest(`${seminarPath}/${id}`, params, {
     cache: 'no-store',
-  })) as SeminarPostResponse;
+  })) as Seminar;
 };
 
 export const postSeminar = async (body: POSTSeminarBody) => {
@@ -38,5 +34,5 @@ export const postSeminar = async (body: POSTSeminarBody) => {
     formData.append('attachments', attachment);
   }
 
-  return (await postRequest(seminarPath, { body: formData })) as SeminarPostResponse;
+  return (await postRequest(seminarPath, { body: formData })) as Seminar;
 };
