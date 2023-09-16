@@ -38,6 +38,7 @@ export interface Notice {
 export interface POSTNoticeBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
     isPublic: boolean;
     isPinned: boolean;
@@ -50,6 +51,7 @@ export interface POSTNoticeBody {
 export interface PatchNoticeBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
     isPublic: boolean;
     isPinned: boolean;

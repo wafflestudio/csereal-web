@@ -46,6 +46,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     await patchNotice(id, {
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
         isPublic: content.isPublic,
         isPinned: content.isPinned,
