@@ -11,8 +11,10 @@ export const objToURLSearchParams = (params: object) => {
   return new URLSearchParams(flattenedArray);
 };
 
-export const urlSearchParamsToString = (params: URLSearchParams) =>
-  params.size ? `?${params}` : '';
+export const urlSearchParamsToString = (params: URLSearchParams) => {
+  const paramsStr = params.toString();
+  return paramsStr ? `?${paramsStr}` : '';
+};
 
 export const objToQueryString = (params: object) => {
   const urlSearchParams = objToURLSearchParams(params);

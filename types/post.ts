@@ -31,7 +31,7 @@ export interface AdjPostInfo {
 }
 
 export interface PostSearchQueryParams {
-  page?: number;
+  pageNum?: number;
   keyword?: string;
   tag?: string[] | string;
 }

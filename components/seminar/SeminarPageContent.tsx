@@ -20,7 +20,7 @@ export default function SeminarContent({
   const { page, setSearchParams } = useCustomSearchParams();
 
   const setCurrentPage = (pageNum: number) => {
-    setSearchParams({ purpose: 'navigation', page: pageNum });
+    setSearchParams({ purpose: 'navigation', pageNum });
   };
 
   return (

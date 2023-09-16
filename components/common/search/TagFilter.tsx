@@ -1,6 +1,6 @@
 import { SetStateAction } from 'react';
 
-import TagCheckbox from './TagCheckbox';
+import Checkbox from '../Checkbox';
 
 interface TagFilterProps {
   tags: string[];
@@ -20,8 +20,8 @@ export default function TagFilter({
 }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
-      ? setSelectedTags(selectedTags.filter((t) => t !== tag))
-      : setSelectedTags((prev) => [...prev, tag]);
+      ? setSelectedTags((prev) => [...prev, tag])
+      : setSelectedTags(selectedTags.filter((t) => t !== tag));
   };
 
   return (
@@ -31,9 +31,9 @@ export default function TagFilter({
       </h5>
       <div className={`grow grid ${gridStyle} gap-x-7 gap-y-2.5`}>
         {tags.map((tag) => (
-          <TagCheckbox
+          <Checkbox
             key={tag}
-            tag={tag}
+            label={tag}
             isChecked={selectedTags.includes(tag)}
             toggleCheck={toggleCheck}
             disabled={disabled}
