@@ -27,7 +27,7 @@ export const getMockNewsPostDetail = async (id: number, params: PostSearchQueryP
     title: `id가 ${id}인 글`,
     description: htmlMock1,
     tags: ['연구', '테스트'],
-    isPrivate: true,
+    isPrivate: false,
     isSlide: true,
     imageURL: 'https://picsum.photos/id/237/320/240',
     createdAt: new Date().toISOString(),
