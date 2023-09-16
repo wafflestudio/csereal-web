@@ -1,17 +1,16 @@
-// import { getMockWeeklyReservation, postMockReservation } from '@/data/reservation';
-
 import { cookies } from 'next/dist/client/components/headers';
-
-import { getMockWeeklyReservation } from '@/data/reservation';
 
 import { Reservation, ReservationPostBody } from '@/types/reservation';
 
-import { deleteRequest, getRequest, postRequest } from '.';
+import { deleteRequest, getRequest, postRequestWithCookie } from '.';
 
 const reservationPath = '/reservation';
 
 export const postReservation = async (body: ReservationPostBody) => {
-  await postRequest(reservationPath, { body: JSON.stringify(body) });
+  await postRequestWithCookie(reservationPath, {
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' },
+  });
 };
 
 export const getWeeklyReservation = async (params: {

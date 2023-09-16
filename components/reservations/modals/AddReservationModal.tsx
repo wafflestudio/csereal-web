@@ -3,7 +3,10 @@
 import Link from 'next-intl/link';
 import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
+import { postReservation } from '@/apis/reservation';
+
 import Dropdown from '@/components/common/Dropdown';
+import { errorToast, infoToast } from '@/components/common/toast';
 import ModalFrame from '@/components/modal/ModalFrame';
 import MuiDateSelector from '@/components/mui/MuiDateSelector';
 import BasicButton from '@/components/reservations/BasicButton';
@@ -20,9 +23,19 @@ export default function AddReservationModal() {
   const canSubmit =
     privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSubmit) {
+      infoToast('모든 필수 정보를 입력해주세요');
+      return;
+    }
+    try {
+      await postReservation(body);
+      closeModal();
+    } catch (e) {
+      if (e instanceof Error) errorToast(e.message);
+      else errorToast('알 수 없는 에러');
+    }
   };
 
   const buildBodyValueSetter =
@@ -157,7 +170,8 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
     <div>
       <button
         className="border border-neutral-300 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           openModal(
             <ModalFrame onClose={closeModal}>
               <MuiDateSelector
