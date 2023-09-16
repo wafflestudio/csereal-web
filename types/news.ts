@@ -39,6 +39,7 @@ export interface News {
 export interface POSTNewsBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
     isPublic: boolean;
     isSlide: boolean;
@@ -52,6 +53,7 @@ export interface POSTNewsBody {
 export interface PATCHNewsBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
     isPublic: boolean;
     isSlide: boolean;
