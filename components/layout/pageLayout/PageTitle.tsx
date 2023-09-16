@@ -37,7 +37,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   const t = useTranslations('Nav');
   const log: SegmentNode[] = getLocationLog(currentPage);
-  const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
+  const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (e.g. 공지목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
 
   return log.length ? (
     <ol className="flex items-center gap-0.5 text-neutral-700">
@@ -70,15 +70,20 @@ interface LoactionText {
 }
 
 function LocationText({ path, name, isCurrent }: LoactionText) {
-  return path ? (
-    <Link
-      href={path}
-      className="text-xs font-yoon font-normal tracking-[.02em] hover:text-main-orange"
-      onClick={() => isCurrent && window.location.reload()}
+  const textStyle = 'text-xs font-yoon font-normal tracking-[.02em]';
+
+  return isCurrent ? (
+    <button
+      className={`${textStyle} hover:text-main-orange`}
+      onClick={() => window.location.reload()}
     >
+      {name}
+    </button>
+  ) : path ? (
+    <Link href={path} className={`${textStyle} hover:text-main-orange`}>
       {name}
     </Link>
   ) : (
-    <span className="text-xs font-yoon font-normal tracking-[.02em]">{name}</span>
+    <span className={textStyle}>{name}</span>
   );
 }
