@@ -14,7 +14,9 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageHeader />
-      <div className="w-[52.5rem] row-start-2 col-start-1"></div>
+      <div className="w-[52.5rem] row-start-2 col-start-1">
+        <SectionTitle title="소식" size={100} />
+      </div>
       <SearchSubNav total={100} nodes={[{ title: 'A', size: 10, children: [] }]} />
     </div>
   );
@@ -41,7 +43,16 @@ const PageHeader = () => {
   );
 };
 
-const SectionHeader = ({ title, size}: { title: string, size: number}) => {
-    
-
-}
+const SectionTitle = ({ title, size }: { title: string; size: number }) => {
+  return (
+    <div className="mt-12 flex">
+      <p className="font-noto border-b border-neutral-300 inline pb-[.59rem] text-[1.25rem] font-bold text-neutral-700 leading-loose">
+        {title}({size})
+      </p>
+      <div className="flex self-end h-5">
+        <div className="self-end border-b border-neutral-300 rotate-[-45deg] origin-bottom-left w-[1.7rem]" />
+        <div className="self-start border-t border-neutral-300 w-[10rem] translate-x-[-0.53rem]" />
+      </div>
+    </div>
+  );
+};
