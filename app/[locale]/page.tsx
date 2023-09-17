@@ -25,13 +25,17 @@ export default async function MainPage() {
 
   return (
     <div>
-      <div>
-        <BgVideo />
+      <div className="relative flex justify-center h-[600px]">
         <ShortCuts shortCuts={shortCuts} />
+        <BgVideo />
       </div>
-      <SlideScreen slides={data.slides} />
-      <ImportantPosts posts={data.importants} />
-      <Notices notices={data.notices} />
+      <div className="relative">
+        <SlideScreen slides={data.slides} />
+      </div>
+      <div className="flex justify-center mt-[70px]">
+        <ImportantPosts posts={data.importants} />
+        <Notices notices={data.notices} />
+      </div>
     </div>
   );
 }

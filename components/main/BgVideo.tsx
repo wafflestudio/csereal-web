@@ -1,6 +1,6 @@
 export default function BgVideo() {
   return (
-    <section className="w-[450px]">
+    <section className="w-[500px] mt-[133px]">
       <video
         id="background-video"
         loop
