@@ -73,7 +73,6 @@ export default function SearchForm({
       )}
       <StraightNode double={true} margin="mt-6 mb-3" />
       <div className="flex justify-between items-start gap-3 px-2.5">
-        {/* <Tags tags={initTags.length ? initTags : ['전체']} /> */}
         <SelectedTags tags={initTags.length ? initTags : ['전체']} deleteTag={deleteTag} />
         {initTags.length > 0 && <TagResetButton onClickReset={resetTags} disabled={disabled} />}
       </div>

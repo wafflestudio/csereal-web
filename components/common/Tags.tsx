@@ -59,12 +59,11 @@ export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelet
     >
       <span>{tag}</span>
       {onDelete && (
-        <span
-          className="material-symbols-outlined text-neutral-500 hover:text-neutral-700 active:text-main-orange text-xs cursor-pointer"
-          onClick={() => onDelete(tag)}
-        >
-          close
-        </span>
+        <button className="flex items-center text-main-orange hover:text-neutral-400 active:text-main-orange">
+          <span className="material-symbols-outlined  text-xs" onClick={() => onDelete(tag)}>
+            close
+          </span>
+        </button>
       )}
     </span>
   );
