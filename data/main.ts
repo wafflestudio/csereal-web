@@ -38,14 +38,14 @@ export const getMockMainContents = async (): Promise<MainContents> => ({
       id: 5,
       title: '제목',
       imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
       description: '내용',
     },
     {
       id: 6,
       title: '제목',
       imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
       description:
         '내용 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
     },
@@ -53,14 +53,14 @@ export const getMockMainContents = async (): Promise<MainContents> => ({
       id: 7,
       title: '제목',
       imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
       description: '내용',
     },
     {
       id: 8,
       title: '제목',
       imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
       description:
         '내용 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
     },
