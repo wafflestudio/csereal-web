@@ -26,14 +26,14 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center">
+    <section className="flex flex-col gap-5 items-center">
       <div className="flex items-center">
         <DoubleArrowButton direction="left" onClick={movePrev} />
         <SlideGroups currentIndex={currIndex} slideGroups={result} />
         <DoubleArrowButton direction="right" onClick={moveNext} />
       </div>
       <Indicator total={result.length} currentIndex={currIndex} changeIndex={setCurrIndex} />
-    </div>
+    </section>
   );
 }
 

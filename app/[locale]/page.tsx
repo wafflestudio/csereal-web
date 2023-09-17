@@ -1,7 +1,9 @@
 // import mainVideo from '@/public/video/main_video.mov';
+import mainVideo from '@/public/video/main_video_bg.mp4';
 
 import { getMainContents } from '@/apis/main';
 
+import BgVideo from '@/components/main/BgVideo';
 import ImportantPosts from '@/components/main/ImportantPosts';
 import Notices from '@/components/main/Notices';
 import ShortCutBox from '@/components/main/ShortCutBox';
@@ -20,6 +22,7 @@ export default async function MainPage() {
 
   return (
     <div>
+      <BgVideo />
       <section>
         <ShortCutBox title={topConferenceList.name} href={tclPath} />
         <ShortCutBox title={facultyRecruitment.name} href={facultyRecruitmentPath} />
@@ -28,22 +31,6 @@ export default async function MainPage() {
       <ImportantPosts posts={data.importants} />
       <Notices notices={data.notices} />
       <SlideScreen slides={data.slides} />
-      <div className="w-full h-screen bg-neutral-200">
-        <video
-          id="background-video"
-          loop
-          autoPlay
-          muted
-          style={{
-            // position: 'relative',
-            width: '100%',
-            height: '100%',
-            // left: 0,
-            // top: 0,
-          }}
-          src="../../public/video/main_video.mov"
-        />
-      </div>
     </div>
   );
 }
