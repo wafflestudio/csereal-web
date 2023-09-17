@@ -28,7 +28,7 @@ export default async function MainPage() {
       <ImportantPosts posts={data.importants} />
       <Notices notices={data.notices} />
       <SlideScreen slides={data.slides} />
-      <div className="w-full h-screen bg-neutral-900">
+      <div className="w-full h-screen bg-neutral-200">
         <video
           id="background-video"
           loop
