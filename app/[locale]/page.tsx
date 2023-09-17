@@ -1,3 +1,5 @@
+// import mainVideo from '@/public/video/main_video.mov';
+
 import { getMainContents } from '@/apis/main';
 
 import ImportantPosts from '@/components/main/ImportantPosts';
@@ -26,6 +28,22 @@ export default async function MainPage() {
       <ImportantPosts posts={data.importants} />
       <Notices notices={data.notices} />
       <SlideScreen slides={data.slides} />
+      <div className="w-full h-screen bg-neutral-900">
+        <video
+          id="background-video"
+          loop
+          autoPlay
+          muted
+          style={{
+            // position: 'relative',
+            width: '100%',
+            height: '100%',
+            // left: 0,
+            // top: 0,
+          }}
+          src="../../public/video/main_video.mov"
+        />
+      </div>
     </div>
   );
 }
