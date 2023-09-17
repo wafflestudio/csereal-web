@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { SlideMain } from '@/types/main';
 
@@ -13,24 +13,41 @@ interface SlideScreenProps {
 
 export default function SlideScreen({ slides }: SlideScreenProps) {
   const [currIndex, setCurrIndex] = useState(0);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const result = chunkSlides(slides);
 
-  const moveNext = () => {
-    const nextIndex = currIndex < result.length - 1 ? currIndex + 1 : 0;
+  const moveAutomatically = useCallback(() => {
+    setCurrIndex((prev) => (prev === result.length - 1 ? 0 : prev + 1));
+  }, [result.length]);
+
+  const moveToNextSlide = () => {
+    const nextIndex = currIndex === result.length - 1 ? 0 : currIndex + 1;
     setCurrIndex(nextIndex);
+    const interval = setInterval(moveAutomatically, 4000);
+    setIntervalId(interval);
   };
 
-  const movePrev = () => {
+  const moveToPrevSlide = () => {
     const prevIndex = currIndex === 0 ? result.length - 1 : currIndex - 1;
     setCurrIndex(prevIndex);
+    const interval = setInterval(moveAutomatically, 4000);
+    setIntervalId(interval);
   };
+
+  useEffect(() => {
+    let interval = intervalId ? intervalId : setInterval(moveAutomatically, 4000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [intervalId, moveAutomatically]);
 
   return (
     <section className="flex flex-col gap-5 items-center">
       <div className="flex items-center">
-        <DoubleArrowButton direction="left" onClick={movePrev} />
+        <DoubleArrowButton direction="left" onClick={moveToPrevSlide} />
         <SlideGroups currentIndex={currIndex} slideGroups={result} />
-        <DoubleArrowButton direction="right" onClick={moveNext} />
+        <DoubleArrowButton direction="right" onClick={moveToNextSlide} />
       </div>
       <Indicator total={result.length} currentIndex={currIndex} changeIndex={setCurrIndex} />
     </section>
