@@ -1,7 +1,5 @@
 import Link from 'next-intl/link';
 
-import { deleteRequestWithCookie } from '@/apis';
-
 import { AdjPostInfo } from '@/types/post';
 
 import LoginStaffVisible from './LoginStaffVisible';

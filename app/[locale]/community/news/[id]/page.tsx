@@ -1,5 +1,3 @@
-import { deleteRequestWithCookie } from '@/apis';
-
 import { getNewsPostDetail } from '@/apis/news';
 
 import AdjPostNav from '@/components/common/AdjPostNav';

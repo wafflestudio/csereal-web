@@ -1,4 +1,10 @@
-import { getRequest } from '.';
+// import { getRequest } from '.';
+
+// export const getNoticeSearch = (params: { keyword: string; number: number }) =>
+//   getRequest('/notice/totalSearch', params);
+
+// export const getNewsSearch = (params: { keyword: string; number: number }) =>
+//   getRequest('/news/totalSearch', params);
 
 export const getNoticeSearch = async (params: {
   keyword: string;
@@ -74,9 +80,3 @@ export const getNewsSearch = async (params: {
     },
   ],
 });
-
-// export const getNoticeSearch = (params: { keyword: string; number: number }) =>
-//   getRequest('/notice/totalSearch', params);
-
-// export const getNewsSearch = (params: { keyword: string; number: number }) =>
-//   getRequest('/news/totalSearch', params);
