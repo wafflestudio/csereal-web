@@ -55,6 +55,21 @@ const nextConfig = {
     ],
   },
 
+  redirects() {
+    return [
+      {
+        source: '/login/success',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/logout/success',
+        destination: '/',
+        permanent: false,
+      },
+    ];
+  },
+
   output: 'standalone',
 };
 

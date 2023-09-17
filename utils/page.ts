@@ -38,3 +38,11 @@ export const getDepth = (tab: SegmentNode): number => {
   }
   return depth;
 };
+
+export const isAncestorNode = (parent: SegmentNode, child: SegmentNode) => {
+  while (child.parent) {
+    if (child.parent === parent) return true;
+    child = child.parent;
+  }
+  return false;
+};

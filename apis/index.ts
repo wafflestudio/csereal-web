@@ -1,6 +1,7 @@
 import { objToQueryString } from '@/utils/convertParams';
 
-const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+// export const BASE_URL = 'http://localhost:8080/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -17,6 +18,9 @@ export const getRequest = async <T = unknown>(
   const responseData = await response.json();
   return responseData as T;
 };
+
+export const getRequestWithCookie: typeof getRequest = (url, params, init) =>
+  getRequest(url, params, { ...init, credentials: 'include' });
 
 export const postRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
