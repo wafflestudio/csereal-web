@@ -1,8 +1,19 @@
+export const dynamic = 'force-dynamic';
+
 import { useTranslations } from 'next-intl';
+import Link from 'next-intl/link';
 
 import { CurvedHorizontalNode, StraightNode } from '@/components/common/Nodes';
 import SearchForm from '@/components/search/SearchForm';
 import SearchSubNav from '@/components/search/SearchSubNav';
+
+import { news, notice, seminar } from '@/types/page';
+
+import { getPath } from '@/utils/page';
+
+const newsPath = getPath(news);
+const noticePath = getPath(notice);
+const seminarPath = getPath(seminar);
 
 interface SearchPageProps {
   searchParams: {
@@ -10,12 +21,25 @@ interface SearchPageProps {
   };
 }
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
+export default function SearchPage({ searchParams: { query } }: SearchPageProps) {
+  const t = useTranslations('Nav');
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageHeader />
-      <div className="w-[52.5rem] row-start-2 col-start-1">
-        <SectionTitle title="소식" size={100} />
+      <div className="flex flex-col w-[52.5rem] row-start-2 col-start-1">
+        <SectionTitle title={t('소식')} size={100} />
+
+        <SectionSubtitle title={t('공지사항')} size={1} />
+        <MoreResultLink href={`${noticePath}?keyword=${query}`} />
+        <Divider />
+
+        <SectionSubtitle title={t('새 소식')} size={1} />
+        <MoreResultLink href={`${newsPath}?keyword=${query}`} />
+        <Divider />
+
+        <SectionSubtitle title={t('세미나')} size={1} />
+        <MoreResultLink href={`${seminarPath}?keyword=${query}`} />
+        <Divider />
       </div>
       <SearchSubNav total={100} nodes={[{ title: 'A', size: 10, children: [] }]} />
     </div>
@@ -56,3 +80,25 @@ const SectionTitle = ({ title, size }: { title: string; size: number }) => {
     </div>
   );
 };
+
+const SectionSubtitle = ({ title, size }: { title: string; size: number }) => {
+  return (
+    <div className="mt-7 flex gap-2 items-center">
+      <div className="rounded-full w-[.625rem] h-[.625rem] border border-neutral-500" />
+      <h3 className="text-neutral-700 font-noto text-base font-bold leading-loose">
+        {title}({size})
+      </h3>
+    </div>
+  );
+};
+
+const MoreResultLink = ({ href }: { href: string }) => (
+  <Link
+    href={href}
+    className="text-main-orange font-noto text-xs text-middle flex items-center self-end"
+  >
+    결과 더보기<span className="material-symbols-outlined text-sm">chevron_right</span>
+  </Link>
+);
+
+const Divider = () => <div className="border-b border-neutral-300 mt-7" />;

@@ -11,7 +11,7 @@ export default function SearchSubNav({ total, nodes }: SearchSubNavProps) {
   const t = useTranslations('Nav');
 
   return (
-    <div className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-16">
+    <div className="flex col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-16">
       <CurvedVerticalNode grow={false} />
       <div className="pt-[0.6875rem] pl-1.5">
         <h3 className="font-yoon font-bold text-sm text-neutral-600">{t('통합 검색')}</h3>
