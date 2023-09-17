@@ -5,6 +5,7 @@ hr 색 수정
 h3 상하 마진 수정
 링크 색 수정
 font-familiy 설정 제거
+table th background-color 제거
 */
 
 .sun-editor {
@@ -2108,12 +2109,12 @@ textarea.se-error:focus {
   padding: 8px;
   margin: 0 0 10px;
   font-family: monospace;
-  color: #666;
+  /* color: #666; */
   line-height: 1.45;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; 
   border: 1px solid #e1e1e1;
-  border-radius: 2px;
-  white-space: pre-wrap !important;
+  border-radius: 2px; */
+  white-space: normal !important;
   word-wrap: break-word;
   overflow: visible;
 }
@@ -2304,7 +2305,8 @@ textarea.se-error:focus {
   border: 1px solid #efefef;
 }
 .sun-editor-editable table th {
-  background-color: #f3f3f3;
+  /* 임의로 수정 */
+  background-color: #333;
 }
 .sun-editor-editable table td,
 .sun-editor-editable table th {

@@ -47,7 +47,27 @@ const nextConfig = {
         hostname: 'cse-dev-waffle.bacchus.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cse-dev-waffle.bacchus.io',
+        pathname: '/**',
+      },
     ],
+  },
+
+  redirects() {
+    return [
+      {
+        source: '/login/success',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/logout/success',
+        destination: '/',
+        permanent: false,
+      },
+    ];
   },
 
   output: 'standalone',

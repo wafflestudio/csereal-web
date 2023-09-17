@@ -2,7 +2,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const noto = Noto_Sans_KR({
-  weight: ['400', '500', '700'],
+  weight: ['300', '400', '500', '700'],
   style: ['normal'],
   subsets: ['latin'],
   display: 'swap',
@@ -29,4 +29,16 @@ export const yoonGothic = localFont({
   ],
   display: 'swap',
   variable: '--font-yoon',
+});
+
+export const notoDemiLight = localFont({
+  src: [
+    {
+      path: '../public/font/NotoSansCJKkr-DemiLight.otf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-noto-demi',
 });

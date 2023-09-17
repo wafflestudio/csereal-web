@@ -1,5 +1,7 @@
 {
   "Nav": {
+    "홈": "홈",
+
     "소개": "소개",
     "소식": "소식",
     "구성원": "구성원",
@@ -36,6 +38,11 @@
     "정시 모집": "정시 모집",
     "대학원": "대학원",
     "전기/후기 모집": "전기/후기 모집",
+    "International": "International",
+    "Graduate": "Graduate",
+    "Undergraduate": "Undergraduate",
+    "Exchange/Visiting Program": "Exchange/Visiting Program",
+    "Scholarships": "Scholarships",
 
     "학부 안내": "학부 안내",
     "교과과정": "교과과정",
@@ -66,6 +73,11 @@
     "하드웨어 실습실 (302-310-2, 30석)": "하드웨어 실습실 (302-310-2, 30석)",
     "302-208 (116석)": "302-208 (116석)",
     "302-209 (90석)": "302-209 (90석)",
+
+    "10-10 Project": "10-10 Project",
+    "Manager": "Manager",
+    "Participants(Professors)": "Participants(Professors)",
+    "Proposal": "Proposal",
 
     "관련 페이지": "관련 페이지"
   },

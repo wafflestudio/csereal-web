@@ -26,7 +26,7 @@ export default function NoticeList({
     isSelected ? deselectPost(id) : selectPost(id);
   };
 
-  return (
+  return posts.length ? (
     <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-200">
       <NoticeListHeader isEditMode={isEditMode} />
       <ul className={`font-noto ${isEditMode && 'divide-y divide-neutral-200 divide-dashed'}`}>
@@ -41,5 +41,7 @@ export default function NoticeList({
         ))}
       </ul>
     </div>
+  ) : (
+    <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
   );
 }

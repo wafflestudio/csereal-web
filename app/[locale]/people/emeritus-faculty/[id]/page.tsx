@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 import { getEmeritusFaculty } from '@/apis/people';
 
@@ -32,9 +32,9 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
           <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
             {(data.office || data.email || data.website) && (
-              <article className="text-neutral-700 font-noto flex flex-col mb-7">
+              <article className="text-neutral-700 flex flex-col mb-7">
                 <>
-                  <h3 className="text-base font-bold leading-8">연락처 정보</h3>
+                  <h3 className="font-noto text-base font-bold leading-8">연락처 정보</h3>
                   <ul className="list-inside list-disc">
                     {data.office && (
                       <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">

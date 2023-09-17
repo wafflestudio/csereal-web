@@ -1,3 +1,5 @@
+'use client';
+
 import { LAB_ROW_ITEM_WIDTH } from './ResearchLabListRow';
 
 export default function ResearchLabListHeader() {

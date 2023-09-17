@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getNewsPosts } from '@/apis/news';
 
 import NewsPageContent from '@/components/news/NewsPageContent';
