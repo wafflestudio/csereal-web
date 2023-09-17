@@ -16,7 +16,7 @@ import LoginStaffVisible from '../common/LoginStaffVisible';
 const postsCountPerPage = 10;
 
 export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
-  const { page, setSearchParams } = useCustomSearchParams();
+  const { page, keyword, setSearchParams } = useCustomSearchParams();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', pageNum });
@@ -28,7 +28,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         <h3 className="text-neutral-700 font-yoon text-md font-bold w-7 text-center leading-[1.2rem]">
           검색
         </h3>
-        <SeminarSearchBar setSearchParams={setSearchParams} />
+        <SeminarSearchBar keyword={keyword} setSearchParams={setSearchParams} />
       </div>
       <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
         {searchList.length === 0 && (

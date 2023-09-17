@@ -5,11 +5,12 @@ import { useState, ChangeEventHandler, FormEvent } from 'react';
 import { SearchInfo } from '@/hooks/useCustomSearchParams';
 
 interface SeminarSearchBarProps {
+  keyword?: string;
   setSearchParams: (searchInfo: SearchInfo) => void;
 }
 
-export default function SeminarSearchBar({ setSearchParams }: SeminarSearchBarProps) {
-  const [text, setText] = useState('');
+export default function SeminarSearchBar({ keyword, setSearchParams }: SeminarSearchBarProps) {
+  const [text, setText] = useState(keyword ?? '');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
