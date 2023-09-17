@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState, ChangeEventHandler, FormEventHandler } from 'react';
 
-export default function SearchForm() {
-  const [text, setText] = useState('');
+export default function SearchForm({ query }: { query: string }) {
+  const [text, setText] = useState(query);
   const router = useRouter();
   const t = useTranslations('Nav');
 

@@ -23,9 +23,10 @@ interface SearchPageProps {
 
 export default function SearchPage({ searchParams: { query } }: SearchPageProps) {
   const t = useTranslations('Nav');
+
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
-      <PageHeader />
+      <PageHeader query={query} />
       <div className="flex flex-col w-[52.5rem] row-start-2 col-start-1">
         <SectionTitle title={t('소식')} size={100} />
 
@@ -46,7 +47,7 @@ export default function SearchPage({ searchParams: { query } }: SearchPageProps)
   );
 }
 
-const PageHeader = () => {
+const PageHeader = ({ query }: { query: string }) => {
   const t = useTranslations('Nav');
 
   return (
@@ -61,7 +62,7 @@ const PageHeader = () => {
           {t('통합 검색')}
         </h3>
       </div>
-      <SearchForm />
+      <SearchForm key={query} query={query} />
       <StraightNode margin="mt-12" double />
     </div>
   );
