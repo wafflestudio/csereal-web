@@ -43,7 +43,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
             <CurvedHorizontalSmallNode />
             <div className=" border-b-[1px] pb-[5px] pr-2 border-b-main-orange -translate-x-[7.15px] translate-y-[1.5px]">
               <Link
-                href={`${labUrl}`}
+                href={`${labUrl}/${data.labId}`}
                 className="font-noto font-medium text-sm leading-5 hover:text-main-orange hover:cursor-pointer"
               >
                 {data?.labName}
