@@ -26,6 +26,51 @@ export const getMockMainContents = async (): Promise<MainContents> => ({
         'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
       description: '내용',
     },
+    {
+      id: 4,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description:
+        '내용 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
+    },
+    {
+      id: 5,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
+    {
+      id: 6,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description:
+        '내용 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
+    },
+    {
+      id: 7,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
+    {
+      id: 8,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description:
+        '내용 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
+    },
+    {
+      id: 9,
+      title: '제목',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      description: '내용',
+    },
   ],
   notices: {
     // 전체, 장학, 학부, 대학원 항목별로 최신 6개씩
