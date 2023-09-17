@@ -1,7 +1,4 @@
-import Image from 'next/image';
 import Link from 'next-intl/link';
-
-import SNULogo from '@/public/image/SNU_Logo.svg'; // 추후 수정
 
 import Tags from '@/components/common/Tags';
 
@@ -18,11 +15,24 @@ export interface NewsRowProps {
   tags: string[];
   date: Date;
   imageURL: string | null;
+
+  descriptionBold?: {
+    startIndex: number;
+    endIndex: number;
+  };
 }
 
 const newsPath = getPath(news);
 
-export default function NewsRow({ href, title, description, tags, date, imageURL }: NewsRowProps) {
+export default function NewsRow({
+  href,
+  title,
+  description,
+  tags,
+  date,
+  imageURL,
+  descriptionBold,
+}: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
 
   const dateStr = date.toLocaleDateString('ko', {
@@ -33,19 +43,35 @@ export default function NewsRow({ href, title, description, tags, date, imageURL
   });
 
   return (
-    <article className="text-neutral-700 font-noto flex pb-4 border-b-[1px] border-neutral-200">
+    <article className="text-neutral-700 flex pb-4 border-b-[1px] border-neutral-200">
       <div className="flex flex-col flex-1 mr-[3.75rem] break-keep justify-between">
         <div className="flex flex-col items-start">
-          <Link href={href} className="hover:underline">
+          <Link href={href} className="hover:underline font-noto ">
             <h3 className="text-md font-bold mb-[.69rem]">{title}</h3>
           </Link>
+
           <Link href={href} className="hover:cursor-pointer">
-            <p className="text-xs font-normal mb-[.69rem] line-clamp-3">{description}</p>
+            <p className="text-xs font-normal mb-[.69rem] line-clamp-3">
+              {descriptionBold ? (
+                <>
+                  {description.slice(0, descriptionBold.startIndex)}
+                  <span className="font-noto font-bold">
+                    {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
+                  </span>
+                  {description.slice(descriptionBold.endIndex)}
+                </>
+              ) : (
+                description
+              )}
+            </p>
           </Link>
+
           <Tags margin="mb-[.69rem]" tags={tags} searchPath={newsPath} />
         </div>
-        <time className="self-end text-xs font-normal">{dateStr}</time>
+
+        <time className="font-noto self-end text-xs font-normal">{dateStr}</time>
       </div>
+
       <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">
         <ImageWithFallback
           alt="포스트 대표 이미지"

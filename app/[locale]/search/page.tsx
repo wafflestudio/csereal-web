@@ -7,6 +7,7 @@ import { getNewsSearch, getNoticeSearch } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
 
 import { CurvedHorizontalNode, StraightNode } from '@/components/common/Nodes';
+import NewsRow from '@/components/news/NewsRow';
 import NoticeRow from '@/components/search/NoticeRow';
 import SearchForm from '@/components/search/SearchForm';
 import SearchSubNav, { SearchSubNavProps } from '@/components/search/SearchSubNav';
@@ -92,7 +93,21 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
         <Divider />
 
         {/* 새소식 */}
-        <SectionSubtitle title="새 소식" size={1} />
+        <SectionSubtitle title="새 소식" size={newsSearchResult.total} />
+        <div className="flex flex-col gap-6 mt-[.88rem]">
+          {newsSearchResult.results.slice(0, 2).map((news) => (
+            <NewsRow
+              key={news.id}
+              href={`${newsPath}/${news.id}`}
+              title={news.title}
+              description={news.partialDescription}
+              tags={news.tags}
+              date={new Date(news.date)}
+              imageURL={news.imageUrl}
+              descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
+            />
+          ))}
+        </div>
         <MoreResultLink href={`${newsPath}?keyword=${query}`} />
         <Divider />
 
@@ -128,11 +143,9 @@ const PageHeader = ({ query }: { query: string }) => {
   return (
     <div>
       <div className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mt-1`}>
-        <div className="flex gap-2 mb-[1.19rem]">
-          <CurvedHorizontalNode grow={true} />
-        </div>
+        <CurvedHorizontalNode grow={true} />
         <h3
-          className={`mr-[65px] break-keep font-yoon text-neutral-800 tracking-wide text-2xl font-bold`}
+          className={`mr-[65px] break-keep font-yoon text-neutral-800 tracking-wide text-2xl font-bold mt-[1.19rem]`}
         >
           {t('통합 검색')}
         </h3>
@@ -146,7 +159,7 @@ const PageHeader = ({ query }: { query: string }) => {
 const SectionTitle = ({ title, size }: { title: string; size: number }) => {
   const t = useTranslations('Nav');
   return (
-    <div className="mt-12 flex">
+    <div className="flex">
       <p className="font-noto border-b border-neutral-300 inline pb-[.59rem] text-[1.25rem] font-bold text-neutral-700 leading-loose">
         {t(title)}({size})
       </p>
