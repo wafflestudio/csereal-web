@@ -129,7 +129,7 @@ export const getMockMainContents = async (): Promise<MainContents> => ({
   },
   importants: [
     // 공지, 새소식, 세미나 글들 중 하나. 개수는 아직 미정 -> 2개!
-    { id: 1, title: '공지 제목', summary: '요약', category: 'notice' },
-    { id: 2, title: '새소식 제목2', summary: '요약', category: 'news' },
+    { id: 1, title: '공지 제목', description: '요약', category: 'notice' },
+    { id: 2, title: '새소식 제목2', description: '요약', category: 'news' },
   ],
 });

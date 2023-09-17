@@ -22,7 +22,7 @@ interface ImportantPostMain {
   category: ImportantCategory;
   id: number;
   title: string;
-  summary: string;
+  description: string;
 }
 
 interface ImportantPostPreviewMainProps {
@@ -34,7 +34,7 @@ function ImportantPostPreviewMain({ post }: ImportantPostPreviewMainProps) {
     <li>
       <Link href={`/community/${post.category}/${post.id}`}>
         <h4 className="font-medium text-base tracking-wide">{post.title}</h4>
-        <p className="text-xs tracking-wide">{post.summary}</p>
+        <p className="text-xs tracking-wide">{post.description}</p>
       </Link>
     </li>
   );

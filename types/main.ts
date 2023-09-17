@@ -8,7 +8,7 @@ export interface ImportantPostMain {
   category: ImportantCategory;
   id: number;
   title: string;
-  summary: string;
+  description: string;
 }
 
 export interface NoticeListMainType {
