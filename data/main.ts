@@ -6,8 +6,7 @@ export const getMockMainContents = async (): Promise<MainContents> => ({
     {
       id: 1,
       title: '박근수 교수 연구진, 2022년 국가연구개발 정보전자 분야 정보전자 분야',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0',
+      imageURL: '',
       description:
         '박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다. 박근수 교수 연구진의 연구결과가 2022년 국가연구개발 정보전자 분야 최우수 성과로 선정되었습니다.',
     },

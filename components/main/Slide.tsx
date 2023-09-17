@@ -6,6 +6,8 @@ import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
+import ImageWithFallback from '../common/ImageWithFallback';
+
 interface SlideProps {
   slide: SlideMain;
 }
@@ -19,7 +21,7 @@ export default function Slide({ slide }: SlideProps) {
       style={{ clipPath: 'polygon(calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%, 0 0)' }}
     >
       <Link href={`${newsPath}/${slide.id}`} className="block w-[185px] h-[110px] relative">
-        <Image src={slide.imageURL} alt={`${slide.title}_이미지`} fill />
+        <ImageWithFallback src={slide.imageURL} alt={`${slide.title}_이미지`} fill />
       </Link>
       <div className="flex flex-col items-end p-2.5 h-[128px] text-neutral-900 border-x border-b border-[#000]">
         <h5 className="w-full font-noto mb-1.5 font-bold text-xs line-clamp-2">
