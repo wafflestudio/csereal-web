@@ -4,7 +4,7 @@ export const getNoticeSearch = async (params: {
   keyword: string;
   number: number;
 }): Promise<NoticeSearchResult> => ({
-  total: 3,
+  total: 10,
   results: [
     {
       id: 1,
@@ -13,6 +13,22 @@ export const getNoticeSearch = async (params: {
       partialDescription: '12345678912345 789',
       boldStartIndex: 3,
       boldEndIndex: 7,
+    },
+    {
+      id: 2,
+      title: 'TITLE2',
+      createdAt: new Date().toISOString(),
+      partialDescription: '12345678912345 789',
+      boldStartIndex: 0,
+      boldEndIndex: 4,
+    },
+    {
+      id: 3,
+      title: 'TITLE3',
+      createdAt: new Date().toISOString(),
+      partialDescription: '12345678912345 789',
+      boldStartIndex: 0,
+      boldEndIndex: 4,
     },
   ],
 });

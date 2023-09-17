@@ -7,6 +7,7 @@ import { getNoticeSearch } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
 
 import { CurvedHorizontalNode, StraightNode } from '@/components/common/Nodes';
+import NoticeRow from '@/components/search/NoticeRow';
 import SearchForm from '@/components/search/SearchForm';
 import SearchSubNav from '@/components/search/SearchSubNav';
 import SeminarRow from '@/components/seminar/SeminarRow';
@@ -25,7 +26,6 @@ interface SearchPageProps {
   };
 }
 
-// TODO: 섹션, 서브섹션 일반화하기
 export default async function SearchPage({ searchParams: { query } }: SearchPageProps) {
   const noticeSearchResult = await getNoticeSearch({ keyword: query, number: 2 });
   const seminarSearchResult = await getSeminarPosts({ keyword: query, pageNum: 1 });
@@ -37,10 +37,11 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
         <SectionTitle title="소식" size={100} />
 
         <SectionSubtitle title="공지사항" size={noticeSearchResult.total} />
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-[.88rem]">
           {noticeSearchResult.results.slice(0, 2).map((notice) => (
             <NoticeRow
               key={notice.id}
+              id={notice.id}
               title={notice.title}
               description={{
                 content: notice.partialDescription,
@@ -144,32 +145,3 @@ const MoreResultLink = ({ href }: { href: string }) => {
 };
 
 const Divider = () => <div className="border-b border-neutral-300 mt-7" />;
-
-interface NoticeRowProps {
-  title: string;
-  description: {
-    content: string;
-    boldStartIndex: number;
-    boldEndIndex: number;
-  };
-  dateStr: string;
-}
-
-const NoticeRow = ({ title, description, dateStr }: NoticeRowProps) => {
-  const date = new Date(dateStr);
-  return (
-    <div className="flex flex-col gap-[.69rem]">
-      <h3>{title}</h3>
-      <p>
-        {description.content.slice(0, description.boldStartIndex)}
-        <span className="font-bold">
-          {description.content.slice(description.boldStartIndex, description.boldEndIndex)}
-        </span>
-        {description.content.slice(description.boldEndIndex)}
-      </p>
-      <time>
-        {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
-      </time>
-    </div>
-  );
-};
