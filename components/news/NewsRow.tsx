@@ -20,6 +20,7 @@ export interface NewsRowProps {
     startIndex: number;
     endIndex: number;
   };
+  hideDivider?: boolean;
 }
 
 const newsPath = getPath(news);
@@ -32,6 +33,7 @@ export default function NewsRow({
   date,
   imageURL,
   descriptionBold,
+  hideDivider,
 }: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
 
@@ -43,7 +45,11 @@ export default function NewsRow({
   });
 
   return (
-    <article className="text-neutral-700 flex pb-4 border-b-[1px] border-neutral-200">
+    <article
+      className={`text-neutral-700 flex pb-4 ${
+        hideDivider ? '' : 'border-neutral-200 border-b-[1px]'
+      }`}
+    >
       <div className="flex flex-col flex-1 mr-[3.75rem] break-keep justify-between">
         <div className="flex flex-col items-start">
           <Link href={href} className="hover:underline font-noto ">

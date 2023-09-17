@@ -105,6 +105,7 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
               date={new Date(news.date)}
               imageURL={news.imageUrl}
               descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
+              hideDivider
             />
           ))}
         </div>
@@ -125,6 +126,7 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
               location={seminar.location}
               imageURL={seminar.imageURL}
               isYearLast={seminar.isYearLast}
+              hideDivider
             />
           ))}
         </div>

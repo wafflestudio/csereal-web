@@ -15,6 +15,7 @@ export interface SeminarRowProps {
   location: string;
   imageURL: string | null;
   isYearLast: boolean;
+  hideDivider?: boolean;
 }
 
 const seminarPath = getPath(seminar);
@@ -28,11 +29,12 @@ export default function SeminarRow({
   location,
   imageURL,
   isYearLast,
+  hideDivider,
 }: SeminarRowProps) {
   return (
     <article
       className={`font-noto flex py-[1.2rem] border-neutral-200 ${
-        !isYearLast ? 'border-t-[1px]' : null
+        !isYearLast && !hideDivider ? 'border-t-[1px]' : null
       }`}
     >
       <Link
