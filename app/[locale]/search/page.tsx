@@ -3,13 +3,13 @@ export const dynamic = 'force-dynamic';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 
-import { getNoticeSearch } from '@/apis/search';
+import { getNewsSearch, getNoticeSearch } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
 
 import { CurvedHorizontalNode, StraightNode } from '@/components/common/Nodes';
 import NoticeRow from '@/components/search/NoticeRow';
 import SearchForm from '@/components/search/SearchForm';
-import SearchSubNav from '@/components/search/SearchSubNav';
+import SearchSubNav, { SearchSubNavProps } from '@/components/search/SearchSubNav';
 import SeminarRow from '@/components/seminar/SeminarRow';
 
 import { news, notice, seminar } from '@/types/page';
@@ -28,14 +28,50 @@ interface SearchPageProps {
 
 export default async function SearchPage({ searchParams: { query } }: SearchPageProps) {
   const noticeSearchResult = await getNoticeSearch({ keyword: query, number: 2 });
+  const newsSearchResult = await getNewsSearch({ keyword: query, number: 2 });
   const seminarSearchResult = await getSeminarPosts({ keyword: query, pageNum: 1 });
+
+  const total = noticeSearchResult.total + newsSearchResult.total + seminarSearchResult.total;
+  const searchNavProps: SearchSubNavProps = {
+    total,
+    nodes: [
+      {
+        type: 'INTERNAL',
+        title: '소식',
+        size: total,
+        children: [
+          {
+            type: 'LEAF',
+            title: '공지사항',
+            size: noticeSearchResult.total,
+            href: `${noticePath}?keyword=${query}`,
+          },
+          {
+            type: 'LEAF',
+            title: '새 소식',
+            size: newsSearchResult.total,
+            href: `${newsPath}?keyword=${query}`,
+          },
+          {
+            type: 'LEAF',
+            title: '세미나',
+            size: seminarSearchResult.total,
+            href: `${seminarPath}?keyword=${query}`,
+          },
+        ],
+      },
+    ],
+  };
 
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
       <PageHeader query={query} />
+
+      {/* 검색 결과 */}
       <div className="flex flex-col w-[52.5rem] row-start-2 col-start-1">
         <SectionTitle title="소식" size={100} />
 
+        {/* 공지사항 */}
         <SectionSubtitle title="공지사항" size={noticeSearchResult.total} />
         <div className="flex flex-col gap-6 mt-[.88rem]">
           {noticeSearchResult.results.slice(0, 2).map((notice) => (
@@ -55,10 +91,12 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
         <MoreResultLink href={`${noticePath}?keyword=${query}`} />
         <Divider />
 
+        {/* 새소식 */}
         <SectionSubtitle title="새 소식" size={1} />
         <MoreResultLink href={`${newsPath}?keyword=${query}`} />
         <Divider />
 
+        {/* 세미나 */}
         <SectionSubtitle title="세미나" size={seminarSearchResult.total} />
         <div className="flex flex-col gap-6">
           {seminarSearchResult.searchList.slice(0, 2).map((seminar) => (
@@ -78,7 +116,8 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
         <MoreResultLink href={`${seminarPath}?keyword=${query}`} />
         <Divider />
       </div>
-      <SearchSubNav total={100} nodes={[{ title: 'A', size: 10, children: [] }]} />
+
+      <SearchSubNav {...searchNavProps} />
     </div>
   );
 }

@@ -41,7 +41,27 @@ export const getNewsSearch = async (params: {
   results: [
     {
       id: 1,
-      title: 'TITLE',
+      title: 'TITLE1',
+      date: new Date().toISOString(),
+      partialDescription: '12345678912345 789',
+      boldStartIndex: 3,
+      boldEndIndex: 7,
+      tags: ['TAG1', 'TAG2'],
+      imageUrl: 'asd',
+    },
+    {
+      id: 2,
+      title: 'TITLE2',
+      date: new Date().toISOString(),
+      partialDescription: '12345678912345 789',
+      boldStartIndex: 3,
+      boldEndIndex: 7,
+      tags: ['TAG1', 'TAG2'],
+      imageUrl: 'asd',
+    },
+    {
+      id: 3,
+      title: 'TITLE3',
       date: new Date().toISOString(),
       partialDescription: '12345678912345 789',
       boldStartIndex: 3,
