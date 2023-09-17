@@ -25,15 +25,52 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   };
 
   return (
-    <div className="flex items-center">
-      <DoubleArrowButton direction="left" onClick={movePrev} />
-      <div className="relative">
-        {result.map((items, i) => (
-          <SlideGroup key={i} slides={items} show={i === currIndex} />
-        ))}
+    <div className="flex flex-col gap-5 items-center">
+      <div className="flex items-center">
+        <DoubleArrowButton direction="left" onClick={movePrev} />
+        <div className="relative">
+          {result.map((items, i) => (
+            <SlideGroup key={i} slides={items} show={i === currIndex} />
+          ))}
+        </div>
+        <DoubleArrowButton direction="right" onClick={moveNext} />
       </div>
-      <DoubleArrowButton direction="right" onClick={moveNext} />
+      <Indicator total={result.length} currentIndex={currIndex} changeIndex={setCurrIndex} />
     </div>
+  );
+}
+
+interface IndicatorProps {
+  total: number;
+  currentIndex: number;
+  changeIndex: (index: number) => void;
+}
+
+function Indicator({ total, currentIndex, changeIndex }: IndicatorProps) {
+  return (
+    <div className="flex gap-2">
+      {Array(total)
+        .fill(0)
+        .map((v, i) => i)
+        .map((index) => (
+          <Dot key={index} index={index} fill={index === currentIndex} changeIndex={changeIndex} />
+        ))}
+    </div>
+  );
+}
+
+interface DotProps {
+  index: number;
+  fill: boolean;
+  changeIndex: (index: number) => void;
+}
+
+function Dot({ index, fill, changeIndex }: DotProps) {
+  return (
+    <button
+      className={`w-2.5 h-2.5 rounded-full ${fill ? 'bg-main-orange' : 'bg-neutral-300'}`}
+      onClick={() => changeIndex(index)}
+    />
   );
 }
 
