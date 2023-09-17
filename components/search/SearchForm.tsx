@@ -1,11 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState, ChangeEventHandler, FormEventHandler } from 'react';
 
 export default function SearchForm() {
   const [text, setText] = useState('');
   const router = useRouter();
+  const t = useTranslations('Nav');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
@@ -21,7 +23,7 @@ export default function SearchForm() {
 
   return (
     <form className="flex items-center mt-8 gap-[.69rem]" onSubmit={searchText}>
-      <label className="font-yoon text-md font-bold">검색</label>
+      <label className="font-yoon text-md font-bold">{t('검색')}</label>
       <div className="flex justify-center outline-none rounded-[.1875rem] min-w-[8rem] w-[13.5rem] h-[1.875rem] border-neutral-700 border  px-[.63rem]">
         <input
           type="text"
