@@ -59,7 +59,7 @@ export default function SearchBox({
       )}
       <StraightNode double={true} margin="mt-6 mb-3" />
       <SelectedTags
-        initTags={initTags}
+        tags={initTags}
         deleteTag={deleteTag}
         resetTags={resetTags}
         disabled={disabled}

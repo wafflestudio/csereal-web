@@ -1,22 +1,17 @@
 import { Tag } from '../Tags';
 
 interface SelectedTagsProps {
-  initTags: string[];
+  tags: string[];
   deleteTag: (tag: string) => void;
   resetTags: () => void;
   disabled: boolean;
 }
 
-export default function SelectedTags({
-  initTags,
-  deleteTag,
-  resetTags,
-  disabled,
-}: SelectedTagsProps) {
+export default function SelectedTags({ tags, deleteTag, resetTags, disabled }: SelectedTagsProps) {
   return (
     <div className="flex justify-between items-start gap-3 px-2.5">
-      <Tags tags={initTags.length ? initTags : ['전체']} deleteTag={deleteTag} />
-      {initTags.length > 0 && <TagResetButton onClickReset={resetTags} disabled={disabled} />}
+      <Tags tags={tags.length ? tags : ['전체']} deleteTag={deleteTag} />
+      {tags.length > 0 && <TagResetButton onClick={resetTags} disabled={disabled} />}
     </div>
   );
 }
@@ -38,13 +33,13 @@ function Tags({ tags, deleteTag }: TagsProps) {
 
 interface TagResetButtonProps {
   disabled: boolean;
-  onClickReset: () => void;
+  onClick: () => void;
 }
 
-function TagResetButton({ disabled, onClickReset }: TagResetButtonProps) {
+function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
   return (
     <button
-      onClick={onClickReset}
+      onClick={onClick}
       className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-xs whitespace-nowrap"
       disabled={disabled}
     >
