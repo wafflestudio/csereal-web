@@ -277,8 +277,7 @@ export const facilities: Facilities = {
       name: `학부 행정실`,
       description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="/people/staff">직원 목록</a>을 참조.</p>`,
       location: `301동 316호`,
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/admin.JPG?itok=-ilXd4wR',
+      imageURL: '행정실',
     },
     {
       id: 1,
@@ -286,8 +285,7 @@ export const facilities: Facilities = {
       description:
         '<p>S-Lab은 학생들이 학습, 개발, 토론 등 다양한 목적으로 사용할 수 있는 공간이다. 안쪽에는 중앙의 공간과 분리된 4개의 회의실이 있다. 고성능 PC와 Mac, 스마트 TV, 빔 프로젝터 등의 장비와 회의실을 갖추고 있다.</p>',
       location: '301동 315호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/IMG_5546.jpg?itok=NvCi07VP',
+      imageURL: 'SLAB',
     },
     {
       id: 2,
@@ -295,8 +293,7 @@ export const facilities: Facilities = {
       description:
         '<p>소프트웨어와 관련된 실습 수업 시에 사용된다. 수업 시간이 아닌 경우에는 컴퓨터공학부 학생이라면 누구나 자유롭게 사용할 수 있다. 과거에는 "NT실"이라고 불리기도 했다.</p>',
       location: '302동 311-1호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/1.%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%8B%A4%EC%8A%B5%EC%8B%A4.jpg?itok=SVfNrk8b',
+      imageURL: '소프트웨어',
     },
     {
       id: 3,
@@ -304,8 +301,7 @@ export const facilities: Facilities = {
       description:
         '<p>하드웨어 관련 실습 수업에 사용된다. 오실로스코프, 직류 전원 공급기, 함수 발생기, 멀티미터, Intel Core i7 PC 등의 장비와 각종 공구를 이용할 수 있다. 논리설계나 하드웨어시스템설계 등의 수업을 수강하는 학생들은 이곳에서 많은 시간을 보내게 된다.</p>',
       location: '302동 310-2호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/hw_lab_0.jpg?itok=P53mcJL5',
+      imageURL: '하드웨어',
     },
     {
       id: 3,
@@ -313,8 +309,7 @@ export const facilities: Facilities = {
       description:
         '<p><a href="http://haedong.snu.ac.kr/">해동학술정보실</a>은 전기공학부와 컴퓨터공학부 학생들을 위한 도서관이다. 정기 간행물 및 논문을 열람하거나 대여할 수 있다. 조용한 환경에서 공부할 수 있는 230석 규모의 열람실이 딸려 있다.</p>',
       location: '310동 312호 ',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/haedong_0.JPG?itok=O_2aXCK2',
+      imageURL: '해동',
     },
     {
       id: 4,
@@ -322,8 +317,7 @@ export const facilities: Facilities = {
       description:
         '<p>과방은 학부생들의 주 생활 공간이다. 끊임없이 나오는 과제를 해치우는데 사용되는 수십 대의 Intel Core i7 PC가 구비되어 있으며, 오랫동안 컴퓨터를 하느라 편할 날이 없는 학생들의 눈·목·손목 등의 휴식을 위한 편의 시설도 마련되어 있다. 학생들이 기증하거나 잠시 빌려준 각종 서적·만화책·보드 게임 등이 있어 공부뿐만 아니라 여가도 즐길 줄 아는 학생들을 위한 환경이 조성되어 있다.</p>',
       location: '301동 315호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/301%EB%8F%99%20314%ED%98%B8%20%EA%B3%BC%EB%B0%A9.jpg?itok=p36Nt-sl',
+      imageURL: '과방',
     },
     {
       id: 5,
@@ -332,8 +326,7 @@ export const facilities: Facilities = {
         '<p>세미나실은 301동과 302동에 있다. 컴퓨터공학부 대학원생들이 온라인예약하여 사용할 수 있다.</p>',
       location:
         '301동 417호, 301동 521호(MALDIVES), 301동 551-4호(HAWAII), 302동 308호, 302동 309-1호, 302동 309-2호, 302동 309-3호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/302%EB%8F%99309-1%ED%98%B8_20190301.jpg?itok=dww7DhCf',
+      imageURL: '세미나실',
     },
     {
       id: 5,
@@ -341,8 +334,7 @@ export const facilities: Facilities = {
       description:
         '<p>컴퓨터공학부의 실습 서버, 통합계정 서버, 프린터 서버 등 각종 서버 및 워크스테이션을 관리하는 곳이다. 학부 서버는 학생 동아리인 <a href="https://cse.snu.ac.kr/sites/all/libraries/mediawiki/index.php?title=/student-club/%EB%B0%94%EC%BF%A0%EC%8A%A4&action=edit&redlink=1">바쿠스<a/>에서 관리하고 있다.</p>',
       location: '302동 310-2호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/%EC%84%9C%EB%B2%84%EC%8B%A4.JPG?itok=_7gF4r5h',
+      imageURL: '서버실',
     },
   ],
 };

@@ -1,6 +1,5 @@
 'use client';
 
-import { revalidatePath } from 'next/cache';
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
 import useSWR from 'swr';
 

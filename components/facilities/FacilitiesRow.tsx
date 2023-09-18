@@ -1,5 +1,4 @@
-import Image from 'next/image';
-
+import FacilitiesRowImage from './FacilitiesRowImage';
 import HTMLViewer from '../editor/HTMLViewer';
 
 export interface FacilitiesRowProps {
@@ -32,13 +31,5 @@ export default function FacilitiesRow({
 
       <FacilitiesRowImage imageURL={imageURL} />
     </article>
-  );
-}
-
-function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
-  return (
-    <div className="w-60 h-40 relative">
-      <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" priority />
-    </div>
   );
 }
