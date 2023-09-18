@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useRef } from 'react';
 
 interface KeywordInputProps {
   keyword: string;
@@ -12,10 +12,7 @@ export default function KeywordInput({ keyword, setKeyword, disabled = false }: 
   return (
     <div className="col-start-1 flex items-center">
       <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap tracking-wide">검색어</h5>
-      <div className="flex gap-1 items-center px-1.5 w-[13.5rem] h-[1.875rem] border rounded-[0.1875rem]">
-        <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
-        {keyword && <ResetKeywordButton onClick={resetKeyword} />}
-      </div>
+      <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
     </div>
   );
 }
@@ -27,15 +24,28 @@ interface InputProps {
 }
 
 function Input({ keyword, disabled, onChange }: InputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const resetKeyword = () => {
+    onChange('');
+    inputRef.current?.focus();
+  };
+
   return (
-    <input
-      type="text"
-      id="search"
-      className="outline-none grow font-yoon text-xs tracking-wide bg-transparent"
-      value={keyword}
-      disabled={disabled}
-      onChange={(e) => onChange(e.target.value)}
-    />
+    <div className="relative w-fit">
+      <input
+        type="text"
+        id="search"
+        ref={inputRef}
+        className={`${
+          keyword ? 'pl-1.5 pr-6' : 'px-1.5'
+        } w-[13.5rem] h-[1.875rem] rounded-[0.1875rem] outline outline-1 outline-neutral-300 focus:outline-neutral-700 font-yoon text-xs tracking-wide bg-transparent autofill-bg-white`}
+        value={keyword}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      {keyword && !disabled && <ResetKeywordButton onClick={resetKeyword} />}
+    </div>
   );
 }
 
@@ -46,7 +56,7 @@ interface ResetKeywordButtonProps {
 function ResetKeywordButton({ onClick }: ResetKeywordButtonProps) {
   return (
     <span
-      className="material-symbols-outlined text-neutral-500 hover:text-neutral-700 text-md cursor-pointer"
+      className="material-symbols-outlined absolute top-[8px] right-1.5 text-neutral-500 hover:text-neutral-700 text-md cursor-pointer"
       onClick={onClick}
     >
       close

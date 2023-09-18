@@ -1,7 +1,7 @@
 'use client';
 
 import Pagination from '@/components/common/Pagination';
-import SearchForm from '@/components/common/search/SearchForm';
+import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
@@ -30,7 +30,7 @@ export default function NewsPageContent({
 
   return (
     <PageLayout titleType="big" titleMargin="mb-6">
-      <SearchForm
+      <SearchBox
         key={tags + ''}
         tags={NewsTags}
         initTags={tags}

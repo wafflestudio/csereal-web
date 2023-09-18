@@ -41,11 +41,12 @@ interface TagProps {
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
   onClick?: (tag: string) => void;
+  onDelete?: (tag: string) => void;
 }
 
-export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick }: TagProps) {
+export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelete }: TagProps) {
   const tagClass =
-    'flex items-center px-2.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap duration-200';
+    'flex items-center gap-1 px-2.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap duration-200';
   const defaultClass = DEFAULT_STYLE[defaultStyle];
   const hoverClass = hoverStyle ? `${HOVER_STYLE[hoverStyle]} cursor-pointer` : '';
 
@@ -56,7 +57,14 @@ export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick }: TagPr
         onClick && onClick(tag);
       }}
     >
-      {tag}
+      <span>{tag}</span>
+      {onDelete && (
+        <button className="flex items-center text-main-orange hover:text-neutral-400 active:text-main-orange">
+          <span className="material-symbols-outlined  text-xs" onClick={() => onDelete(tag)}>
+            close
+          </span>
+        </button>
+      )}
     </span>
   );
 }
