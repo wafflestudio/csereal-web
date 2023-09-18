@@ -15,8 +15,8 @@ const facultyRecruitmentPath = getPath(facultyRecruitment);
 const undergraduateNoticePath = getPath(notice) + '?tag=학부';
 
 const shortCuts = [
-  { title: topConferenceList.name, href: tclPath },
   { title: facultyRecruitment.name, href: facultyRecruitmentPath },
+  { title: topConferenceList.name, href: tclPath },
   { title: '학부 ' + notice.name, href: undergraduateNoticePath },
 ];
 
@@ -24,15 +24,15 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div>
-      <div className="relative flex justify-center h-[600px]">
+    <div className="w-[1280px] mx-auto">
+      <div className="relative flex justify-center h-[615px]">
         <ShortCuts shortCuts={shortCuts} />
         <BgVideo />
       </div>
-      <div className="relative">
+      <div className="relative mt-[68px] pt-8">
         <SlideScreen slides={data.slides} />
       </div>
-      <div className="flex justify-center mt-[70px]">
+      <div className="flex justify-center gap-16 mt-[67px]">
         <ImportantPosts posts={data.importants} />
         <Notices notices={data.notices} />
       </div>

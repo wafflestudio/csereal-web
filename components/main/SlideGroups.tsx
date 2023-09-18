@@ -30,7 +30,7 @@ interface SlideGroupProps {
 function SlideGroup({ slides, show }: SlideGroupProps) {
   return (
     <div
-      className={`flex gap-9 ${
+      className={`flex gap-[34px] ${
         show ? 'opacity-100' : 'absolute top-0 opacity-0'
       } transition-opacity duration-700`}
     >

@@ -23,7 +23,7 @@ export default function Notices({ notices }: NoticesMainProps) {
   const [selectedCategory, setSeletedCategory] = useState<NoticeCategoryType>('전체');
 
   return (
-    <section className="relative w-[345px] border border-neutral-900 p-3">
+    <section className="relative w-[345px] p-3">
       <div className="flex gap-[0.9375rem] items-center mb-3">
         <h4 className="font-bold text-main-orange tracking-wide">공지사항</h4>
         <NoticeCategory selected={selectedCategory} setSelected={setSeletedCategory} />

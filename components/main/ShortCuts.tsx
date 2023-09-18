@@ -5,9 +5,9 @@ interface ShortCutsProps {
 }
 
 const locations = [
-  'top-[100px] right-[100px]',
-  'top-[280px] left-[80px]',
-  'top-[450px] right-[220px]',
+  'top-[199px] right-[71px]',
+  'top-[389px] left-[60px]',
+  'top-[545px] right-[203px]',
 ];
 
 export default function ShortCuts({ shortCuts }: ShortCutsProps) {
@@ -38,8 +38,8 @@ function ShortCutBox({ title, href, location }: ShortCutBoxProps) {
       className={` absolute px-3 py-2.5 bg-main-orange flex flex-col gap-3 rounded-sm w-fit ${location}`}
     >
       <span className="min-w-[8.4375rem] font-yoon font-bold text-sm tracking-wide">{title}</span>
-      <span className="min-w-[8.4375rem] font-yoon font-medium text-xs tracking-wide flex items-center justify-end">
-        <span>바로가기</span>
+      <span className="min-w-[8.4375rem] flex items-center justify-end">
+        <span className="font-yoon font-medium text-[10px] tracking-wide">바로가기</span>
         <span className="material-symbols-outlined font-light text-md">navigate_next</span>
       </span>
     </Link>
