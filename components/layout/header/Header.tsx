@@ -39,6 +39,8 @@ function HeaderRight() {
 
   const langButtonText = isEnglish ? '한국어' : 'english';
 
+  console.log(user);
+
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
       <div className="font-yoon text-xs font-normal flex gap-3">

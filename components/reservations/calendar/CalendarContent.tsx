@@ -1,4 +1,4 @@
-import { Reservation } from '@/types/reservation';
+import { ReservationPreview } from '@/types/reservation';
 
 import CalendarColumn from './CalendarColumn';
 
@@ -7,7 +7,7 @@ export default function CalendarContent({
   reservations,
 }: {
   startDate: Date;
-  reservations: Reservation[];
+  reservations: ReservationPreview[];
 }) {
   const dates = getNextSevenDays(startDate);
   const today = new Date();
@@ -62,7 +62,7 @@ const isSameDay = (date1: Date, date2: Date) => {
   );
 };
 
-const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
+const isReservationInDate = (reservation: ReservationPreview, date: Date): boolean => {
   return (
     isSameDay(new Date(reservation.startTime), date) &&
     isSameDay(new Date(reservation.endTime), date)

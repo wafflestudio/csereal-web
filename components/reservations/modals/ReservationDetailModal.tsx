@@ -101,10 +101,10 @@ const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
 };
 
 export const ReservationDetailModalButton = ({
-  reservation,
+  reservationId,
   ...props
 }: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
-  reservation: Reservation;
+  reservationId: number;
 }) => {
   const { openModal } = useModal();
 

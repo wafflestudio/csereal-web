@@ -1,8 +1,8 @@
 import { cookies } from 'next/dist/client/components/headers';
 
-import { Reservation, ReservationPostBody } from '@/types/reservation';
+import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
 
-import { deleteRequest, getRequest, postRequestWithCookie } from '.';
+import { deleteRequest, getRequest, getRequestWithCookie, postRequestWithCookie } from '.';
 
 const reservationPath = '/reservation';
 
@@ -13,20 +13,15 @@ export const postReservation = async (body: ReservationPostBody) => {
   });
 };
 
-export const getWeeklyReservation = async (params: {
+export const getWeeklyReservation = (params: {
   roomId: number;
   year: number;
   month: number;
   day: number;
-}) => {
-  const jsessionId = cookies().get('JSESSIONID');
-  return (await getRequest(`${reservationPath}/week`, params, {
-    credentials: 'include',
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-    },
-  })) as Reservation[];
-};
+}) => getRequestWithCookie(`${reservationPath}/week`, params) as Promise<ReservationPreview[]>;
+
+export const getReservation = async (id: number) =>
+  getRequestWithCookie(`${reservationPath}/${id}`) as Promise<Reservation[]>;
 
 export const deleteSingleReservation = async (id: number) => {
   await deleteRequest(`${reservationPath}/${id}`);

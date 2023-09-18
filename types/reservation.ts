@@ -1,3 +1,10 @@
+export interface ReservationPreview {
+  id: number;
+  title: string;
+  startTime: string;
+  endTime: string;
+}
+
 export interface Reservation {
   id: number;
   recurrenceId: string;

@@ -1,4 +1,4 @@
-import { Reservation } from '@/types/reservation';
+import { Reservation, ReservationPreview } from '@/types/reservation';
 
 import styles from './cellstyle.module.css';
 import { ReservationDetailModalButton } from '../modals/ReservationDetailModal';
@@ -10,7 +10,7 @@ export default function CalendarColumn({
 }: {
   date: Date;
   selected: boolean;
-  reservations: Reservation[];
+  reservations: ReservationPreview[];
 }) {
   return (
     <div className="flex flex-col items-stretch w-[6.25rem]">
@@ -52,7 +52,7 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     ));
 };
 
-const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
+const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
   // 셀 높이 구하기
   // 30분으로 나눴을 때 몇 칸인지
 
@@ -82,7 +82,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
     <ReservationDetailModalButton
       className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}
       style={{ height: height + 'rem', top: topOffset + 'rem' }}
-      reservation={reservation}
+      reservationId={reservation.id}
     >
       {unitCnt !== 1 && (
         <div className="flex h-6 items-center">
@@ -90,7 +90,7 @@ const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
         </div>
       )}
       <div className="flex h-6 items-center">
-        <p className="font-yoon text-xs font-medium">{reservation.userName}</p>
+        <p className="font-yoon text-xs font-medium">{reservation.title}</p>
       </div>
     </ReservationDetailModalButton>
   );

@@ -1,4 +1,4 @@
-import { Reservation } from '@/types/reservation';
+import { Reservation, ReservationPreview } from '@/types/reservation';
 
 import CalendarContent from './calendar/CalendarContent';
 import Toolbar from './calendar/CalendarToolbar';
@@ -11,7 +11,7 @@ export default function ReservationCalendar({
 }: {
   startDate: Date;
   selectedDate: Date;
-  reservations: Reservation[];
+  reservations: ReservationPreview[];
   roomId: number;
 }) {
   const headerText = `${selectedDate.getFullYear()}/${(selectedDate.getMonth() + 1 + '').padStart(
