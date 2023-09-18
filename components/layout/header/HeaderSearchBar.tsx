@@ -27,7 +27,7 @@ export default function HeaderSearchBar() {
       <input
         type="text"
         id="search"
-        className="outline-none font-yoon text-xs w-full px-2 bg-transparent"
+        className="outline-none font-yoon text-xs w-full px-2 bg-transparent autofill-bg-neutral-200"
         value={text}
         onChange={handleChange}
       />

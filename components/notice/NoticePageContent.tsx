@@ -3,7 +3,7 @@
 import { useReducer } from 'react';
 
 import Pagination from '@/components/common/Pagination';
-import SearchForm from '@/components/common/search/SearchForm';
+import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
@@ -60,7 +60,7 @@ export default function NoticePageContent({
 
   return (
     <PageLayout titleType="big" titleMargin="mb-6">
-      <SearchForm
+      <SearchBox
         tags={NoticeTags}
         initTags={tags}
         initKeyword={keyword ?? ''}
