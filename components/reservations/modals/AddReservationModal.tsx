@@ -15,10 +15,10 @@ import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
-export default function AddReservationModal() {
+export default function AddReservationModal({ roomId }: { roomId: number }) {
   const { closeModal } = useModal();
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue);
+  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue(roomId));
 
   const canSubmit =
     privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
@@ -55,12 +55,16 @@ export default function AddReservationModal() {
       newStartTime = convertToFastestStartTime(newStartTime);
     }
 
-    const endTime = getOptimalEndTime(body.startTime, body.endTime, newStartTime);
+    const endTime = getOptimalEndTime(
+      new Date(body.startTime),
+      new Date(body.endTime),
+      newStartTime,
+    );
 
     const startTimeSetter = buildBodyValueSetter('startTime');
     const endTimeSetter = buildBodyValueSetter('endTime');
-    startTimeSetter(newStartTime);
-    endTimeSetter(endTime);
+    startTimeSetter(newStartTime.toISOString());
+    endTimeSetter(endTime.toISOString());
   };
 
   return (
@@ -73,23 +77,23 @@ export default function AddReservationModal() {
 
         <div className="flex flex-col items-start gap-1 mb-6">
           <InputWithLabel title="예약 날짜">
-            <DateInput date={body.startTime} setDate={setDate} />
+            <DateInput date={new Date(body.startTime)} setDate={setDate} />
           </InputWithLabel>
 
           <div className="flex gap-3">
             <InputWithLabel title="시작 시간">
               <StartTimePicker
-                startDate={body.startTime}
-                endDate={body.endTime}
-                setStartDate={buildBodyValueSetter('startTime')}
-                setEndDate={buildBodyValueSetter('endTime')}
+                startDate={new Date(body.startTime)}
+                endDate={new Date(body.endTime)}
+                setStartDate={(x) => buildBodyValueSetter('startTime')(x.toISOString())}
+                setEndDate={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
               />
             </InputWithLabel>
             <InputWithLabel title="사용 시간">
               <DurationPicker
-                startTime={body.startTime}
-                endTime={body.endTime}
-                setEndTime={buildBodyValueSetter('endTime')}
+                startTime={new Date(body.startTime)}
+                endTime={new Date(body.endTime)}
+                setEndTime={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
               />
             </InputWithLabel>
           </div>
@@ -100,7 +104,7 @@ export default function AddReservationModal() {
                 .fill(0)
                 .map((_, i) => i + 1 + '회')}
               selectedIndex={body.recurringWeeks}
-              onClick={buildBodyValueSetter('recurringWeeks')}
+              onClick={(x) => buildBodyValueSetter('recurringWeeks')(x + 1)}
             />
           </InputWithLabel>
         </div>
@@ -360,17 +364,17 @@ const PrivacyFieldset = ({
   );
 };
 
-const getDefaultBodyValue = () => {
+const getDefaultBodyValue = (roomId: number) => {
   const startTime = convertToFastestStartTime(new Date());
 
   const endTime = new Date(startTime);
   endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
 
   return {
-    roomId: 0,
-    startTime,
-    endTime,
-    recurringWeeks: 0,
+    roomId,
+    startTime: startTime.toISOString(),
+    endTime: endTime.toISOString(),
+    recurringWeeks: 1,
     title: '',
     contactEmail: '',
     contactPhone: '',

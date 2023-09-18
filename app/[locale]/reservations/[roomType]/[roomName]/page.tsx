@@ -49,7 +49,12 @@ async function LoginedRoomReservationPage({ params, searchParams }: RoomReservat
   });
 
   return (
-    <ReservationCalendar startDate={startOfWeek} selectedDate={date} reservations={reservations} />
+    <ReservationCalendar
+      startDate={startOfWeek}
+      selectedDate={date}
+      reservations={reservations}
+      roomId={roomId}
+    />
   );
 }
 

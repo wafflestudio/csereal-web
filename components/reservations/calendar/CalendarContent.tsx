@@ -53,13 +53,20 @@ const getNextSevenDays = (date: Date) => {
     });
 };
 
-const isSameDay = (date1: Date, date2: Date) =>
-  date1.getFullYear() === date2.getFullYear() &&
-  date1.getMonth() === date2.getMonth() &&
-  date1.getDate() === date2.getDate();
+const isSameDay = (date1: Date, date2: Date) => {
+  console.log(date1, date2);
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
+};
 
 const isReservationInDate = (reservation: Reservation, date: Date): boolean => {
-  return isSameDay(reservation.startTime, date) && isSameDay(reservation.endTime, date);
+  return (
+    isSameDay(new Date(reservation.startTime), date) &&
+    isSameDay(new Date(reservation.endTime), date)
+  );
 };
 
 const rows = [

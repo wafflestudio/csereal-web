@@ -16,7 +16,7 @@ import BasicButton from '../BasicButton';
 export default function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
   const { closeModal } = useModal();
 
-  const dateStr = reservation.startTime.toLocaleString('ko-kr', {
+  const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
     year: '2-digit',
     month: '2-digit',
     day: '2-digit',
@@ -34,8 +34,8 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
           <div className="flex flex-col gap-1">
             <p>예약 날짜: {dateStr}</p>
             <div className="flex gap-6">
-              <p>시작 시간: {formatTime(reservation.startTime)}</p>
-              <p>종료 시간: {formatTime(reservation.endTime)}</p>
+              <p>시작 시간: {formatTime(new Date(reservation.startTime))}</p>
+              <p>종료 시간: {formatTime(new Date(reservation.endTime))}</p>
             </div>
             <p>매주 반복: {reservation.recurringWeeks}</p>
           </div>

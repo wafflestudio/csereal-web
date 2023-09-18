@@ -6,7 +6,7 @@ import {
   TodayButton,
 } from './NavigateButtons';
 
-export default function Toolbar({ date }: { date: Date }) {
+export default function Toolbar({ date, roomId }: { date: Date; roomId: number }) {
   const today = new Date();
   const todayButtonHidden =
     today.getFullYear() === date.getFullYear() &&
@@ -23,7 +23,7 @@ export default function Toolbar({ date }: { date: Date }) {
         <NextWeekButton date={date} />
       </div>
       <div className="flex gap-2">
-        <MakeReservationButton />
+        <MakeReservationButton roomId={roomId} />
       </div>
     </div>
   );

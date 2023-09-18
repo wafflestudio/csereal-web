@@ -55,13 +55,15 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
 const CalendarCell = ({ reservation }: { reservation: Reservation }) => {
   // 셀 높이 구하기
   // 30분으로 나눴을 때 몇 칸인지
-  const unitCnt =
-    (reservation.endTime.getTime() - reservation.startTime.getTime()) / 1000 / 60 / 30;
+
+  const startTime = new Date(reservation.startTime);
+  const endTime = new Date(reservation.endTime);
+
+  const unitCnt = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 30;
   const unitHeightInREM = 1.5;
   const height = unitCnt * unitHeightInREM;
 
   // 셀 y축 offset 구하기
-  const { startTime, endTime } = reservation;
   const topTime = new Date(
     startTime.getFullYear(),
     startTime.getMonth(),

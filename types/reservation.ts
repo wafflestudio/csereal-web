@@ -2,8 +2,8 @@ export interface Reservation {
   id: number;
   recurrenceId: string;
 
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   recurringWeeks: number;
 
   title: string;
@@ -22,8 +22,8 @@ export interface Reservation {
 export interface ReservationPostBody {
   roomId: number;
 
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   recurringWeeks: number;
 
   title: string;
