@@ -1,5 +1,6 @@
 'use client';
 
+import { revalidatePath } from 'next/cache';
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
 import useSWR from 'swr';
 
@@ -17,7 +18,7 @@ import ModalFrame from '../../modal/ModalFrame';
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation } = useSWR<Reservation>(
+  const { data: reservation, mutate } = useSWR<Reservation>(
     `/reservation/${reservationId}`,
     getRequestWithCookie,
   );
@@ -84,9 +85,9 @@ const DeleteButtons = ({
     setSubmitting(true);
     try {
       await deleteAllRecurringReservation(recurrenceId);
-      closeModal();
-    } catch {
-      errorToast('문제가 발생했습니다');
+      window.location.reload();
+    } catch (e) {
+      toastError(e);
       setSubmitting(false);
     }
   };
@@ -96,9 +97,9 @@ const DeleteButtons = ({
     setSubmitting(true);
     try {
       await deleteSingleReservation(reservationId);
-      closeModal();
-    } catch {
-      errorToast('문제가 발생했습니다');
+      window.location.reload();
+    } catch (e) {
+      toastError(e);
       setSubmitting(false);
     }
   };
@@ -132,3 +133,11 @@ export const ReservationDetailModalButton = ({
 };
 
 const padZero = (x: number) => (x + '').padStart(2, '0');
+
+const toastError = (e: any) => {
+  if (e instanceof Error) {
+    errorToast(e.message);
+  } else {
+    errorToast('알 수 없는 문제가 발생했습니다.');
+  }
+};
