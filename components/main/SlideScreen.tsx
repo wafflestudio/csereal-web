@@ -16,26 +16,32 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const result = chunkSlides(slides);
 
+  const startInterval = () => {
+    const interval = setInterval(moveAutomatically, 4000);
+    setIntervalId(interval);
+  };
+
   const moveAutomatically = useCallback(() => {
     setCurrIndex((prev) => (prev === result.length - 1 ? 0 : prev + 1));
   }, [result.length]);
 
+  const moveToSpecificSlide = (index: number) => {
+    setCurrIndex(index);
+    startInterval();
+  };
+
   const moveToNextSlide = () => {
     const nextIndex = currIndex === result.length - 1 ? 0 : currIndex + 1;
-    setCurrIndex(nextIndex);
-    const interval = setInterval(moveAutomatically, 4000);
-    setIntervalId(interval);
+    moveToSpecificSlide(nextIndex);
   };
 
   const moveToPrevSlide = () => {
     const prevIndex = currIndex === 0 ? result.length - 1 : currIndex - 1;
-    setCurrIndex(prevIndex);
-    const interval = setInterval(moveAutomatically, 4000);
-    setIntervalId(interval);
+    moveToSpecificSlide(prevIndex);
   };
 
   useEffect(() => {
-    let interval = intervalId ? intervalId : setInterval(moveAutomatically, 4000);
+    let interval = intervalId || setInterval(moveAutomatically, 4000);
 
     return () => {
       clearInterval(interval);
@@ -49,7 +55,7 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
         <SlideGroups currentIndex={currIndex} slideGroups={result} />
         <DoubleArrowButton direction="right" onClick={moveToNextSlide} />
       </div>
-      <Indicator total={result.length} currentIndex={currIndex} changeIndex={setCurrIndex} />
+      <Indicator total={result.length} currentIndex={currIndex} changeIndex={moveToSpecificSlide} />
     </section>
   );
 }
