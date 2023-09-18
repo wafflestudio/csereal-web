@@ -74,7 +74,7 @@ const DeleteButtons = ({
   recurrenceId,
 }: {
   reservationId: number;
-  recurrenceId: number;
+  recurrenceId: string;
 }) => {
   const [submitting, setSubmitting] = useState(false);
   const { closeModal } = useModal();
