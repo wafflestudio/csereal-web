@@ -13,12 +13,20 @@ export const postReservation = async (body: ReservationPostBody) => {
   });
 };
 
-export const getWeeklyReservation = (params: {
+export const getWeeklyReservation = async (params: {
   roomId: number;
   year: number;
   month: number;
   day: number;
-}) => getRequestWithCookie(`${reservationPath}/week`, params) as Promise<ReservationPreview[]>;
+}) => {
+  const jsessionId = cookies().get('JSESSIONID');
+  return (await getRequest(`${reservationPath}/week`, params, {
+    credentials: 'include',
+    headers: {
+      Cookie: `JSESSIONID=${jsessionId?.value}`,
+    },
+  })) as ReservationPreview[];
+};
 
 export const getReservation = async (id: number) =>
   getRequestWithCookie(`${reservationPath}/${id}`) as Promise<Reservation[]>;
@@ -27,7 +35,7 @@ export const deleteSingleReservation = async (id: number) => {
   await deleteRequest(`${reservationPath}/${id}`);
 };
 
-export const deleteAllRecurringReservation = async (id: number) => {
+export const deleteAllRecurringReservation = async (id: string) => {
   await deleteRequest(`${reservationPath}/recurring/${id}`);
 };
 

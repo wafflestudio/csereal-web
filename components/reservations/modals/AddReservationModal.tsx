@@ -3,6 +3,8 @@
 import Link from 'next-intl/link';
 import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
+import { NetworkError } from '@/apis';
+
 import { postReservation } from '@/apis/reservation';
 
 import Dropdown from '@/components/common/Dropdown';
@@ -20,21 +22,31 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
   const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue(roomId));
 
-  const canSubmit =
-    privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
+    const canSubmit =
+      privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
+
     if (!canSubmit) {
       infoToast('모든 필수 정보를 입력해주세요');
       return;
     }
     try {
       await postReservation(body);
-      closeModal();
+      window.location.reload();
     } catch (e) {
-      if (e instanceof Error) errorToast(e.message);
-      else errorToast('알 수 없는 에러');
+      if (e instanceof NetworkError) {
+        if (e.statusCode === 409) {
+          errorToast('해당 위치에 예약이 존재합니다.');
+        } else {
+          errorToast(e.message);
+        }
+      } else if (e instanceof Error) {
+        errorToast(e.message);
+      } else {
+        errorToast('알 수 없는 에러');
+      }
     }
   };
 
@@ -103,7 +115,7 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
               contents={Array(14)
                 .fill(0)
                 .map((_, i) => i + 1 + '회')}
-              selectedIndex={body.recurringWeeks}
+              selectedIndex={body.recurringWeeks - 1}
               onClick={(x) => buildBodyValueSetter('recurringWeeks')(x + 1)}
             />
           </InputWithLabel>

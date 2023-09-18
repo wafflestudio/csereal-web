@@ -57,7 +57,14 @@ export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =
 
 const checkError = (response: Response) => {
   if (!response.ok) {
-    throw new Error(`네트워크 에러
-status: ${response.status}`);
+    throw new NetworkError(response.status);
   }
 };
+
+export class NetworkError extends Error {
+  statusCode: number;
+  constructor(statusCode: number) {
+    super(`네트워크 에러\nstatus: ${statusCode}`);
+    this.statusCode = statusCode;
+  }
+}

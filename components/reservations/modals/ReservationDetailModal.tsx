@@ -1,6 +1,9 @@
 'use client';
 
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
+import useSWR from 'swr';
+
+import { getRequestWithCookie } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
@@ -13,8 +16,14 @@ import { Reservation } from '@/types/reservation';
 import ModalFrame from '../../modal/ModalFrame';
 import BasicButton from '../BasicButton';
 
-export default function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
+export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
+  const { data: reservation } = useSWR<Reservation>(
+    `/reservation/${reservationId}`,
+    getRequestWithCookie,
+  );
   const { closeModal } = useModal();
+
+  if (reservation === undefined) return <></>;
 
   const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
     year: '2-digit',
@@ -47,7 +56,7 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>
-          <DeleteButtons reservationId={reservation.id} />
+          <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
         </div>
         <span
           className="absolute top-3 right-3 material-symbols-outlined text-base cursor-pointer"
@@ -60,7 +69,13 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
   );
 }
 
-const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
+const DeleteButtons = ({
+  reservationId,
+  recurrenceId,
+}: {
+  reservationId: number;
+  recurrenceId: number;
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const { closeModal } = useModal();
 
@@ -68,7 +83,7 @@ const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
     if (submitting) return;
     setSubmitting(true);
     try {
-      await deleteAllRecurringReservation(reservationId);
+      await deleteAllRecurringReservation(recurrenceId);
       closeModal();
     } catch {
       errorToast('문제가 발생했습니다');
@@ -111,7 +126,7 @@ export const ReservationDetailModalButton = ({
   return (
     <button
       {...props}
-      onClick={() => openModal(<ReservationDetailModal reservation={reservation} />)}
+      onClick={() => openModal(<ReservationDetailModal reservationId={reservationId} />)}
     />
   );
 };
