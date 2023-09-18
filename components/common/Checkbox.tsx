@@ -16,14 +16,20 @@ export default function Checkbox({
   return (
     <label
       htmlFor={label}
-      className={`flex items-center gap-1 whitespace-nowrap w-fit h-5 ${
+      className={`group flex items-center gap-1 whitespace-nowrap w-fit h-5 ${
         !disabled && 'cursor-pointer'
       }`}
     >
-      <span className="material-symbols-rounded text-neutral-700 text-lg font-light">
+      <span
+        className={`material-symbols-rounded text-neutral-300 group-hover:text-neutral-700 group-active:text-main-orange ${
+          isChecked && 'text-neutral-700'
+        } text-lg font-light`}
+      >
         {iconName}
       </span>
-      <span className="font-yoon text-xs text-neutral-700 font-light tracking-wide">{label}</span>
+      <span className="font-yoon text-xs text-neutral-700 font-light tracking-wide group-active:text-main-orange">
+        {label}
+      </span>
       <input
         type="checkbox"
         id={label}

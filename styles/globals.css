@@ -41,4 +41,29 @@
     border: 4px solid transparent;
     border-radius: 10px;
   }
+
+  /* https://github.com/tailwindlabs/tailwindcss/discussions/8679#discussioncomment-4741637 */
+  /* https://github.com/tailwindlabs/tailwindcss/discussions/8679#discussioncomment-6577036 */
+  /* 플러그인 깔아도 autofill:bg-white 등 직관적인 설정은 안 먹히므로 차라리 클래스 새로 생성하는 것이 낫다고 판단 */
+  .autofill-bg-white:-webkit-autofill,
+  .autofill-bg-white:-webkit-autofill:hover,
+  .autofill-bg-white:-webkit-autofill:focus,
+  .autofill-bg-white:-webkit-autofill:active {
+    -webkit-text-fill-color: #e5e5e5 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #141212 inset;
+    box-shadow: 0 0 0px 1000px #141212 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #e5e5e5;
+  }
+
+  .autofill-bg-neutral-200:-webkit-autofill,
+  .autofill-bg-neutral-200:-webkit-autofill:hover,
+  .autofill-bg-neutral-200:-webkit-autofill:focus,
+  .autofill-bg-neutral-200:-webkit-autofill:active {
+    -webkit-text-fill-color: #e5e5e5 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
+    box-shadow: 0 0 0px 1000px #262626 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #e5e5e5;
+  }
 }

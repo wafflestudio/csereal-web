@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 interface PaginationProps {
   totalPostsCount: number;
   postsCountPerPage: number; // 한번에 보여줄 글 개수

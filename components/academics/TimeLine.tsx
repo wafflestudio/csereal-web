@@ -9,7 +9,7 @@ interface TimeLineProps {
 export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: TimeLineProps) {
   return (
     <div className="relative h-[38px] w-[48.75rem] flex">
-      <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px] bg-gradient-to-r from-main-orange from-90% to-white" />
+      <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px]" />
       {timeSpots.map((spot) => (
         <TimeSpot
           year={spot.year}

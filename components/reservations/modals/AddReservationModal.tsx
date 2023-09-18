@@ -298,7 +298,7 @@ const RequiredTextInputFieldset = ({
       <input
         type="text"
         className={`w-full rounded-sm border border-neutral-200 bg-neutral-50 h-[1.75rem]
-            outline-none pl-2`}
+            outline-none pl-2 autofill-bg-white`}
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
