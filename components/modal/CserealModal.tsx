@@ -1,16 +1,13 @@
-import Link from 'next-intl/link';
-
 import useModal from '@/hooks/useModal';
 
 import ModalFrame from './ModalFrame';
 
 const MEMBERS = [
   { part: 'Designer', members: ['유채원', '최유진'] },
-  { part: 'Frontend Developer', members: ['이성열', '임찬솔', '한우현'] },
+  { part: 'Frontend Developer', members: ['이성열', '임찬솔'] },
   { part: 'Backend Developer', members: ['김준형', '우혁준', '조성규'] },
 ];
 
-// TODO: 시리얼 메일 파기
 const MAIL = 'csereal.waffle@gmail.com';
 
 export default function CserealModal() {
@@ -49,10 +46,10 @@ function Members() {
 function Part({ part, members }: { part: string; members: string[] }) {
   return (
     <div>
-      <h4 className="mb-2.5 font-light text-main-orange text-base text-center tracking-[0.02em] ">
+      <h4 className="mb-2.5 font-light text-main-orange text-base text-center tracking-[0.02em]">
         {part}
       </h4>
-      <p className="flex gap-[1.0625rem] font-yoon text-md tracking-[0.02em]">
+      <p className="flex justify-center gap-[1.0625rem] font-yoon text-md tracking-[0.02em]">
         {members.map((member) => (
           <span key={member}>{member}</span>
         ))}
@@ -63,11 +60,8 @@ function Part({ part, members }: { part: string; members: string[] }) {
 
 function Contact() {
   return (
-    <Link
-      href={`mailto:${MAIL}`}
-      className="font-light text-main-orange text-base text-center tracking-[0.02em]"
-    >
+    <div className="font-light text-main-orange text-base text-center tracking-[0.02em]">
       Contact Us
-    </Link>
+    </div>
   );
 }
