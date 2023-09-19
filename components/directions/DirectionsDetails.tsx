@@ -26,7 +26,7 @@ const getDirectionsPostposition = (directionName: string) => {
 
 function DirectionsTitle({ name }: { name: string }) {
   return (
-    <h4 className="h-10 mb-4 font-black text-[1.25rem]">{`${name}${getDirectionsPostposition(
+    <h4 className="h-10 mb-4 font-noto font-bold text-[1.25rem]">{`${name}${getDirectionsPostposition(
       name,
     )} 오는 방법`}</h4>
   );

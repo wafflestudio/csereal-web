@@ -26,14 +26,14 @@ type HoverStyle = 'fill' | 'orange';
 type DefaultStyle = 'orange' | 'gray' | 'fill';
 
 const HOVER_STYLE: { [key in HoverStyle]: string } = {
-  fill: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
+  fill: 'hover:bg-main-orange hover:border-main-orange hover:text-white hover:font-bold',
   orange: 'hover:bg-white hover:border-main-orange hover:text-main-orange',
 };
 
 const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
-  orange: 'bg-white border-main-orange text-main-orange',
+  orange: 'bg-white border-main-orange text-main-orange ',
   gray: 'bg-white border-neutral-400 text-neutral-400',
-  fill: 'bg-main-orange border-main-orange text-white font-medium',
+  fill: 'font-noto bg-main-orange border-main-orange text-white',
 };
 
 interface TagProps {
@@ -57,7 +57,7 @@ export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelet
         onClick && onClick(tag);
       }}
     >
-      <span>{tag}</span>
+      <span className="">{tag}</span>
       {onDelete && (
         <button className="flex items-center text-main-orange hover:text-neutral-400 active:text-main-orange">
           <span className="material-symbols-outlined  text-xs" onClick={() => onDelete(tag)}>

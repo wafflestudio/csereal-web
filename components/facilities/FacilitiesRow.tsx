@@ -26,7 +26,7 @@ export default function FacilitiesRow({
       onMouseLeave={() => setHover(false)}
     >
       <div className="flex flex-col w-[35.5rem]">
-        <h3 className="text-neutral-800 text-md font-noto font-bold mb-[.69rem] leading-5">
+        <h3 className="text-neutral-800 text-md font-noto font-bold mb-[.69rem] leading-5 tracking-wide">
           {name}
         </h3>
         <HTMLViewer htmlContent={description} />

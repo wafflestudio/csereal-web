@@ -67,20 +67,23 @@ export default function PeopleRow({
       </Link>
       <div className="flex flex-col items-start break-keep">
         {academicRank && (
-          <div className="relative flex flex-row w-full gap-1 items-end pb-2 border-b-[1px] border-neutral-200">
+          <div className="relative flex flex-row w-full gap-1 items-end pb-2 mb-1">
             <Link href={href} className="hover:cursor-pointer ">
               <p className="text-md font-noto font-bold">{name}</p>
             </Link>
             <AcademicRankText academicRank={academicRank} />
-            <span className="absolute inline-block bottom-0 border-b w-0 border-main-orange group-hover:w-full transition-all duration-700" />
+            <span className="absolute inline-block bottom-0 border-b w-full border-neutral-200" />
+            <span className="absolute inline-block bottom-0 border-b w-0 border-main-orange group-hover:w-full transition-all duration-700 ease-out" />
           </div>
         )}
         {role && (
-          <div className="flex flex-col w-full pb-1 border-b-[1px] border-neutral-200">
+          <div className="relative flex flex-col w-full pb-1 mb-1 border-b-[1px] border-neutral-200">
             <Link href={href} className="hover:cursor-pointer ">
               <p className="font-noto text-md font-bold leading-5">{name}</p>
             </Link>
             <p className="text-neutral-500 leading-6">{role}</p>
+            <span className="absolute inline-block bottom-0 border-b w-full border-neutral-200" />
+            <span className="absolute inline-block bottom-0 border-b w-0 border-main-orange group-hover:w-full transition-all duration-700 ease-out" />
           </div>
         )}
         <div className="flex flex-col gap-[0.37rem] mt-1 items-start break-keep">

@@ -57,7 +57,7 @@ export default function NewsRow({
           </Link>
 
           <Link href={href} className="hover:cursor-pointer">
-            <p className="text-xs font-normal mb-[.69rem] line-clamp-3">
+            <p className="text-xs font-normal text-neutral-500 mb-[.69rem] line-clamp-3">
               {descriptionBold ? (
                 <>
                   {description.slice(0, descriptionBold.startIndex)}
@@ -75,7 +75,7 @@ export default function NewsRow({
           <Tags margin="mb-[.69rem]" tags={tags} searchPath={newsPath} />
         </div>
 
-        <time className="font-noto self-end text-xs font-normal">{dateStr}</time>
+        <time className="self-end text-xs text-neutral-500">{dateStr}</time>
       </div>
 
       <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">
