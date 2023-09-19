@@ -103,8 +103,11 @@ export default function PostEditor({
               isChecked={content.isPinned}
               toggleCheck={() => {
                 setContentByKey('isPinned')(!content.isPinned);
-                if (!content.isPinned) {
-                  setContentByKey('isPrivate')(true);
+                if (content.isPinned) {
+                  setContentByKey('isPrivate')(false);
+                }
+                if (content.isPrivate) {
+                  setContentByKey('isPinned')(false);
                 }
               }}
             />

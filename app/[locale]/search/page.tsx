@@ -114,7 +114,7 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
 
         {/* 세미나 */}
         <SectionSubtitle title="세미나" size={seminarSearchResult.total} />
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-[0.3rem]">
           {seminarSearchResult.searchList.slice(0, 2).map((seminar) => (
             <SeminarRow
               key={seminar.id}
@@ -131,7 +131,6 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
           ))}
         </div>
         <MoreResultLink href={`${seminarPath}?keyword=${query}`} />
-        <Divider />
       </div>
 
       <SearchSubNav {...searchNavProps} />
@@ -162,9 +161,11 @@ const SectionTitle = ({ title, size }: { title: string; size: number }) => {
   const t = useTranslations('Nav');
   return (
     <div className="flex">
-      <p className="font-noto border-b border-neutral-300 inline pb-[.59rem] text-[1.25rem] font-bold text-neutral-700 leading-loose">
-        {t(title)}({size})
-      </p>
+      <div className="font-noto border-b border-neutral-300 inline pb-[.59rem] text-[1.25rem] font-bold text-neutral-700 leading-loose">
+        <p className="px-[10px]">
+          {t(title)}({size})
+        </p>
+      </div>
       <div className="flex self-end h-5">
         <div className="self-end border-b border-neutral-300 rotate-[-45deg] origin-bottom-left w-[1.7rem]" />
         <div className="self-start border-t border-neutral-300 w-[10rem] translate-x-[-0.53rem]" />

@@ -3005,7 +3005,8 @@ export const staffList: StaffList = {
     {
       id: 4,
       name: '정재교',
-      imageURL: '',
+      imageURL:
+        'https://cse.snu.ac.kr/sites/default/files/styles/scale-width-220/public/node--staff_member/%EC%A0%95%EC%9E%AC%EA%B5%90%EC%8C%A4.png?itok=txBl4WNC',
       role: '대학원 학사.입시',
       office: '301동 316호',
       phone: '(02) 880-1827',

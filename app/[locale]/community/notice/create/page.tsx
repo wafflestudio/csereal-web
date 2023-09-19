@@ -20,11 +20,10 @@ export default function NoticeCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
-      console.log(content.description);
+    console.log(content.description);
     if (content.title === '') {
       throw new Error('제목을 입력해주세요');
     }
-
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNotice({
@@ -47,7 +46,6 @@ export default function NoticeCreatePage() {
     <PageLayout title="공지사항 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NoticeTags}
-        showMainImage
         showIsPinned
         showIsImportant
         actions={{
