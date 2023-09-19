@@ -2176,7 +2176,7 @@ textarea.se-error:focus {
 }
 .sun-editor-editable p {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 0 1rem;
 }
 .sun-editor-editable div {
   display: block;

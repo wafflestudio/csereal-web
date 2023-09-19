@@ -87,8 +87,8 @@
   },
 
   "Header": {
-    "로그인": "login",
-    "로그아웃": "logout"
+    "로그인": "Login",
+    "로그아웃": "Logout"
   },
 
   "Footer": {

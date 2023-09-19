@@ -16,6 +16,8 @@ const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
   const { navbarState } = useNavbarContext();
+  const refreshPage = () => window.location.reload();
+
   return (
     <header
       className={`
@@ -23,9 +25,9 @@ export default function Header() {
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
-      <Link href="/">
+      <div onClick={refreshPage} className="cursor-pointer">
         <HeaderLogo />
-      </Link>
+      </div>
       <HeaderRight />
     </header>
   );
@@ -37,7 +39,7 @@ function HeaderRight() {
 
   const t = useTranslations('Header');
 
-  const langButtonText = isEnglish ? '한국어' : 'english';
+  const langButtonText = isEnglish ? '한국어' : 'ENG';
 
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">

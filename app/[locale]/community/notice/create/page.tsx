@@ -20,9 +20,11 @@ export default function NoticeCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
+      console.log(content.description);
     if (content.title === '') {
       throw new Error('제목을 입력해주세요');
     }
+
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNotice({

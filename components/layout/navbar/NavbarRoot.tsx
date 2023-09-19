@@ -41,10 +41,11 @@ export default function NavbarRoot({
 }
 
 function SNULogo() {
+  const refreshPage = () => window.location.reload();
   return (
-    <Link href="/">
+    <button onClick={refreshPage}>
       <SnuLogo className="fill-neutral-800" width="56" height="58" viewBox="0 0 45 47" />
-    </Link>
+    </button>
   );
 }
 

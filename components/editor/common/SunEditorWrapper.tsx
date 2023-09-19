@@ -23,7 +23,7 @@ export default function SunEditorWrapper({
         setDefaultStyle="padding: 1rem"
         height="400px"
         lang={ko}
-        defaultValue={initialContent}
+        defaultValue={''}
         setOptions={{
           plugins,
           buttonList: [
@@ -35,9 +35,6 @@ export default function SunEditorWrapper({
             ['lineHeight', 'align', 'horizontalRule', 'list'],
             ['table', 'link', 'image', 'preview'],
           ],
-          attributesBlacklist: {
-            all: 'style',
-          },
         }}
       />
     </Suspense>

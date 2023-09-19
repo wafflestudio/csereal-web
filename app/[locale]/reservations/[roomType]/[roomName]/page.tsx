@@ -1,3 +1,5 @@
+import { NetworkError } from '@/apis';
+
 import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
 
 import LoginUserVisible from '@/components/common/LoginUserVisible';
@@ -41,21 +43,33 @@ async function LoginedRoomReservationPage({ params, searchParams }: RoomReservat
 
   const startOfWeek = getStartOfWeek(date);
 
-  const reservations = await getWeeklyReservation({
-    roomId,
-    year: startOfWeek.getFullYear(),
-    month: startOfWeek.getMonth() + 1,
-    day: startOfWeek.getDate(),
-  });
+  try {
+    const reservations = await getWeeklyReservation({
+      roomId,
+      year: startOfWeek.getFullYear(),
+      month: startOfWeek.getMonth() + 1,
+      day: startOfWeek.getDate(),
+    });
 
-  return (
-    <ReservationCalendar
-      startDate={startOfWeek}
-      selectedDate={date}
-      reservations={reservations}
-      roomId={roomId}
-    />
-  );
+    return (
+      <ReservationCalendar
+        startDate={startOfWeek}
+        selectedDate={date}
+        reservations={reservations}
+        roomId={roomId}
+      />
+    );
+  } catch (e) {
+    if (e instanceof NetworkError && e.statusCode === 401) {
+      return (
+        <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+          권한이 없습니다.
+        </PageLayout>
+      );
+    } else {
+      throw e;
+    }
+  }
 }
 
 const isValidRoomName = (roomName: string): roomName is keyof typeof roomNameToId => {
