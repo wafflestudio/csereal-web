@@ -83,7 +83,7 @@ function SelectionItem({ name, isSelected, path, padding, selectItem }: Selectio
         >
           <Link
             href={`${path}?selected=${replaceSpaceWithDash(name)}`}
-            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-700 transition-all duration-300`}
+            className={`${itemCommonStyle} text-neutral-400 hover:text-neutral-700 transition-all duration-300`}
             scroll={false}
           >
             <div className={`${itemCommonStyle} inline-block`} onClick={() => selectItem?.(name)}>

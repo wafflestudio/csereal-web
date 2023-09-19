@@ -21,7 +21,9 @@ export default async function GreetingsPage() {
 function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
   return (
     <div>
-      <h3 className="text-base font-bold leading-[1.625rem] mb-[0.8rem]">졸업생 창업 기업</h3>
+      <h3 className="text-base font-noto font-bold leading-[1.625rem] mb-[0.8rem]">
+        졸업생 창업 기업
+      </h3>
       <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
         <ol>

@@ -29,7 +29,7 @@ export default function FacultyInfoWithImage({
           }}
           className="w-full h-full absolute"
         >
-          <div className="flex flex-col text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
+          <div className="flex flex-col text-neutral-600 text-sm gap-[9px] p-5 bg-white">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
             {phone && <FacultyInfoWithSymbols symbol="phone_in_talk" content={phone} />}
             {fax && <FacultyInfoWithSymbols symbol="print" content={fax} />}
@@ -59,9 +59,7 @@ interface FacultyInfoWithSymbols {
 const FacultyInfoWithSymbols = ({ symbol, content }: FacultyInfoWithSymbols) => {
   return (
     <div className="flex flex-row break-all gap-[6px]">
-      <span className="material-symbols-rounded text-[20px] font-light text-neutral-400">
-        {symbol}
-      </span>
+      <span className="material-symbols-rounded text-[20px] font-light">{symbol}</span>
       {symbol === 'mail' ? (
         <Link href={`mailto:${content}`} className="text-link hover:underline">
           {content}
@@ -71,7 +69,7 @@ const FacultyInfoWithSymbols = ({ symbol, content }: FacultyInfoWithSymbols) => 
           {content}
         </Link>
       ) : (
-        <p>{content}</p>
+        <p className="">{content}</p>
       )}
     </div>
   );
