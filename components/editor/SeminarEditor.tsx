@@ -57,14 +57,6 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
     };
 
-  if (content.isImportant) {
-    setContentByKey('isPrivate')(false);
-  }
-
-  if (content.isPrivate) {
-    setContentByKey('isImportant')(false);
-  }
-
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
@@ -94,8 +86,14 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       <CheckboxFieldset
         isPrivate={content.isPrivate}
         isImportant={content.isImportant}
-        setIsPrivate={setContentByKey('isPrivate')}
-        setIsImportant={setContentByKey('isImportant')}
+        setIsPrivate={(x) => {
+          setContentByKey('isPrivate')(x);
+          if (x) setContentByKey('isImportant')(false);
+        }}
+        setIsImportant={(x) => {
+          setContentByKey('isImportant')(x);
+          if (x) setContentByKey('isPrivate')(false);
+        }}
       />
 
       <div className="self-end flex gap-3">
