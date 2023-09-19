@@ -57,6 +57,7 @@ export default function AdminFeatures({
         throw error;
       }
     }
+  };
 
   return (
     <div className="flex mt-12 mx-2.5">
