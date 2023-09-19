@@ -11,7 +11,7 @@ const MEMBERS = [
 ];
 
 // TODO: 시리얼 메일 파기
-const MAIL = '';
+const MAIL = 'csereal.waffle@gmail.com';
 
 export default function CserealModal() {
   const { closeModal } = useModal();
