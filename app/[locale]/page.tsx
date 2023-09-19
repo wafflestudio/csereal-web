@@ -34,7 +34,7 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div className="w-[1104px] relative mx-auto overflow-hidden">
+    <div className="w-[1104px] relative mx-auto overflow-hidden border border-neutral-700">
       <BackgroundNode />
       <div className="relative flex justify-center h-[615px]">
         <ShortCuts shortCuts={shortCuts} />
@@ -54,9 +54,9 @@ export default async function MainPage() {
 function BackgroundNode() {
   return (
     <div className="absolute w-full">
-      <MainNode1 className="absolute top-[-20px] left-0" />
-      <MainNode2 className="absolute top-[-60px] right-0" />
-      <MainNode3 className="absolute top-[497px] left-[14px]" />
+      <MainNode1 className="absolute top-[-20px] left-[-10px]" />
+      <MainNode2 className="absolute top-[-70px] right-0" />
+      <MainNode3 className="absolute top-[497px] left-0" />
       <MainNode4 className="absolute top-[306px] right-[105.5px]" />
       <MainNode5 className="absolute top-[875px] left-[105px]" />
       <MainNode6 className="absolute top-[1082px] left-[-68px]" />
