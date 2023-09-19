@@ -22,8 +22,10 @@ function ClubTitle({ name, engName }: { name: string; engName: string }) {
   return (
     <SelectionTitle animationKey={name}>
       <div className="flex items-center gap-2">
-        <span className="text-[1.25rem] font-bold">{name}</span>
-        <span className="text-md font-medium tracking-[0.02rem] pt-[0.1875rem]">{engName}</span>
+        <span className="text-[1.25rem] font-noto font-bold">{name}</span>
+        <span className="text-md font-noto font-medium tracking-[0.02rem] pt-[0.1875rem]">
+          {engName}
+        </span>
       </div>
     </SelectionTitle>
   );

@@ -54,9 +54,7 @@ interface FacultyInfoWithSymbols {
 const FacultyInfoWithSymbols = ({ symbol, content }: FacultyInfoWithSymbols) => {
   return (
     <div className="flex flex-row break-all gap-[6px]">
-      <span className="material-symbols-rounded text-[20px] font-light text-neutral-400">
-        {symbol}
-      </span>
+      <span className="material-symbols-rounded text-[20px] font-light">{symbol}</span>
       {symbol === 'mail' ? (
         <Link href={`mailto:${content}`} className="text-link hover:underline">
           {content}
@@ -66,7 +64,7 @@ const FacultyInfoWithSymbols = ({ symbol, content }: FacultyInfoWithSymbols) => 
           {content}
         </Link>
       ) : (
-        <p>{content}</p>
+        <p className="">{content}</p>
       )}
     </div>
   );

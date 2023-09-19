@@ -31,7 +31,10 @@ function LatestRecruitmentBanner({
   latestRecruitmentPostHref,
 }: GETFacultyRecruitmentResponse) {
   return (
-    <a className="block relative w-[25rem] h-[4.5rem] font-yoon" href={latestRecruitmentPostHref}>
+    <a
+      className="block relative w-[25rem] h-[4.5rem] font-yoon cursor-pointer"
+      href={latestRecruitmentPostHref}
+    >
       <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
         최근 채용 바로가기
       </p>
