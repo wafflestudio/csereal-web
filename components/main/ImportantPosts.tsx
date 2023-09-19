@@ -8,7 +8,7 @@ interface ImportantPostsProps {
 
 export default function ImportantPosts({ posts }: ImportantPostsProps) {
   return (
-    <section className="w-[350px] ml-[216px] mt-[38px]">
+    <section className="z-10 w-[350px] ml-[216px] mt-[38px]">
       <ul className="w-full flex flex-col gap-7">
         {posts.map((post) => (
           <ImportantPostPreviewMain post={post} key={post.title} />
