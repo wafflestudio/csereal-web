@@ -2310,6 +2310,8 @@ textarea.se-error:focus {
 }
 .sun-editor-editable table td,
 .sun-editor-editable table th {
+  /* 가끔 html에 스타일이 수동으로 들어간 경우가 있어서 임시 조치 */
+  background-color: transparent !important;
   border: 1px solid #e1e1e1;
   padding: 0.4em;
   background-clip: padding-box;

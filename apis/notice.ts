@@ -1,7 +1,7 @@
 import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
-import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
+import { deleteRequest, getRequest, patchRequest, postRequest, postRequestWithCookie } from '.';
 
 const noticePath = '/notice';
 
@@ -23,7 +23,7 @@ export const postNotice = async (body: POSTNoticeBody) => {
     formData.append('attachments', attachment);
   }
 
-  await postRequest(noticePath, {
+  await postRequestWithCookie(noticePath, {
     body: formData,
   });
 };

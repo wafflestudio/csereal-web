@@ -60,6 +60,10 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
+      <TitleForMainFieldset
+        value={content.titleForMain}
+        onChange={setContentByKey('titleForMain')}
+      />
       <SummaryEditorFieldset
         summaryEditorRef={summaryEditorRef}
         initialContent={content.description}
@@ -80,9 +84,9 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         }}
       />
       <CheckboxFieldset
-        isPublic={content.isPublic}
+        isPrivate={content.isPrivate}
         isImportant={content.isImportant}
-        setIsPublic={setContentByKey('isPublic')}
+        setIsPrivate={setContentByKey('isPrivate')}
         setIsImportant={setContentByKey('isImportant')}
       />
 
@@ -103,6 +107,25 @@ function TitleFieldset({ value, onChange }: { value: string; onChange: (text: st
     <Fieldset title="제목" mb="mb-10" titleMb="mb-2" required>
       <BasicTextInput
         placeholder="제목을 입력하세요."
+        value={value}
+        onChange={onChange}
+        maxWidth="max-w-[40rem]"
+      />
+    </Fieldset>
+  );
+}
+
+function TitleForMainFieldset({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="메인-중요 안내용 제목" mb="mb-6" titleMb="mb-2">
+      <BasicTextInput
+        placeholder="미입력시 제목과 동일하게 표시됩니다."
         value={value}
         onChange={onChange}
         maxWidth="max-w-[40rem]"
@@ -181,7 +204,7 @@ function ScheduleFieldset({
           isChecked={values.endDate !== null}
           toggleCheck={(tag, isChecked) => {
             if (isChecked) {
-              setValues('endDate')(new Date());
+              setValues('endDate')(values.startDate);
             } else {
               setValues('endDate')(null);
             }
@@ -310,14 +333,14 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
 }
 
 function CheckboxFieldset({
-  isPublic,
-  setIsPublic,
+  isPrivate,
+  setIsPrivate,
   isImportant,
   setIsImportant,
 }: {
-  isPublic: boolean;
+  isPrivate: boolean;
   isImportant: boolean;
-  setIsPublic: (value: boolean) => void;
+  setIsPrivate: (value: boolean) => void;
   setIsImportant: (value: boolean) => void;
 }) {
   return (
@@ -325,8 +348,8 @@ function CheckboxFieldset({
       <div className="flex flex-col gap-1">
         <Checkbox
           label="비공개 글"
-          isChecked={!isPublic}
-          toggleCheck={(tag, isChecked) => setIsPublic(!isChecked)}
+          isChecked={isPrivate}
+          toggleCheck={(tag, isChecked) => setIsPrivate(isChecked)}
         />
         <Checkbox
           label="메인-중요 안내에 표시"

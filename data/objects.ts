@@ -277,8 +277,7 @@ export const facilities: Facilities = {
       name: `학부 행정실`,
       description: `<p>컴퓨터공학부 행정실에서는 학부생, 대학원생, 교수를 위한 다양한 행정 업무를 돕고 있다. 각 업무별 담당자는 <a href="/people/staff">직원 목록</a>을 참조.</p>`,
       location: `301동 316호`,
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/admin.JPG?itok=-ilXd4wR',
+      imageURL: '행정실',
     },
     {
       id: 1,
@@ -286,8 +285,7 @@ export const facilities: Facilities = {
       description:
         '<p>S-Lab은 학생들이 학습, 개발, 토론 등 다양한 목적으로 사용할 수 있는 공간이다. 안쪽에는 중앙의 공간과 분리된 4개의 회의실이 있다. 고성능 PC와 Mac, 스마트 TV, 빔 프로젝터 등의 장비와 회의실을 갖추고 있다.</p>',
       location: '301동 315호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/IMG_5546.jpg?itok=NvCi07VP',
+      imageURL: 'SLAB',
     },
     {
       id: 2,
@@ -295,8 +293,7 @@ export const facilities: Facilities = {
       description:
         '<p>소프트웨어와 관련된 실습 수업 시에 사용된다. 수업 시간이 아닌 경우에는 컴퓨터공학부 학생이라면 누구나 자유롭게 사용할 수 있다. 과거에는 "NT실"이라고 불리기도 했다.</p>',
       location: '302동 311-1호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/1.%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%8B%A4%EC%8A%B5%EC%8B%A4.jpg?itok=SVfNrk8b',
+      imageURL: '소프트웨어',
     },
     {
       id: 3,
@@ -304,8 +301,7 @@ export const facilities: Facilities = {
       description:
         '<p>하드웨어 관련 실습 수업에 사용된다. 오실로스코프, 직류 전원 공급기, 함수 발생기, 멀티미터, Intel Core i7 PC 등의 장비와 각종 공구를 이용할 수 있다. 논리설계나 하드웨어시스템설계 등의 수업을 수강하는 학생들은 이곳에서 많은 시간을 보내게 된다.</p>',
       location: '302동 310-2호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/hw_lab_0.jpg?itok=P53mcJL5',
+      imageURL: '하드웨어',
     },
     {
       id: 3,
@@ -313,8 +309,7 @@ export const facilities: Facilities = {
       description:
         '<p><a href="http://haedong.snu.ac.kr/">해동학술정보실</a>은 전기공학부와 컴퓨터공학부 학생들을 위한 도서관이다. 정기 간행물 및 논문을 열람하거나 대여할 수 있다. 조용한 환경에서 공부할 수 있는 230석 규모의 열람실이 딸려 있다.</p>',
       location: '310동 312호 ',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/haedong_0.JPG?itok=O_2aXCK2',
+      imageURL: '해동',
     },
     {
       id: 4,
@@ -322,8 +317,7 @@ export const facilities: Facilities = {
       description:
         '<p>과방은 학부생들의 주 생활 공간이다. 끊임없이 나오는 과제를 해치우는데 사용되는 수십 대의 Intel Core i7 PC가 구비되어 있으며, 오랫동안 컴퓨터를 하느라 편할 날이 없는 학생들의 눈·목·손목 등의 휴식을 위한 편의 시설도 마련되어 있다. 학생들이 기증하거나 잠시 빌려준 각종 서적·만화책·보드 게임 등이 있어 공부뿐만 아니라 여가도 즐길 줄 아는 학생들을 위한 환경이 조성되어 있다.</p>',
       location: '301동 315호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-landscape-crop/public/node--facility/301%EB%8F%99%20314%ED%98%B8%20%EA%B3%BC%EB%B0%A9.jpg?itok=p36Nt-sl',
+      imageURL: '과방',
     },
     {
       id: 5,
@@ -332,8 +326,7 @@ export const facilities: Facilities = {
         '<p>세미나실은 301동과 302동에 있다. 컴퓨터공학부 대학원생들이 온라인예약하여 사용할 수 있다.</p>',
       location:
         '301동 417호, 301동 521호(MALDIVES), 301동 551-4호(HAWAII), 302동 308호, 302동 309-1호, 302동 309-2호, 302동 309-3호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/302%EB%8F%99309-1%ED%98%B8_20190301.jpg?itok=dww7DhCf',
+      imageURL: '세미나실',
     },
     {
       id: 5,
@@ -341,8 +334,7 @@ export const facilities: Facilities = {
       description:
         '<p>컴퓨터공학부의 실습 서버, 통합계정 서버, 프린터 서버 등 각종 서버 및 워크스테이션을 관리하는 곳이다. 학부 서버는 학생 동아리인 <a href="https://cse.snu.ac.kr/sites/all/libraries/mediawiki/index.php?title=/student-club/%EB%B0%94%EC%BF%A0%EC%8A%A4&action=edit&redlink=1">바쿠스<a/>에서 관리하고 있다.</p>',
       location: '302동 310-2호',
-      imageURL:
-        'https://cse.snu.ac.kr/sites/default/files/styles/medium-larger/public/node--facility/%EC%84%9C%EB%B2%84%EC%8B%A4.JPG?itok=_7gF4r5h',
+      imageURL: '서버실',
     },
   ],
 };
@@ -351,7 +343,7 @@ export const directions: Direction[] = [
   {
     name: '대중교통',
     engName: 'public-transit',
-    description: `<p><strong>지하철 2호선 낙성대역</strong><br></p><p>낙성대역 4번 출구로 나와 직진, 주유소에서 좌회전하여 제과점 앞 정류장에서 마을버스 관악02를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>지하철 2호선 서울대입구역</strong></p><p>서울대입구역 3번 출구로 나와 관악구청 방향으로 직진하여 학교 셔틀 버스나 시내버스 5511 또는 5513을 타고 제2공학관에서 내립니다. 제2공학관행 셔틀 버스는 아침 8시부터 10시까지 15분 간격으로 월요일부터 금요일까지 운행됩니다.</p><p><br></p><p><strong>지하철 2호선 신림역</strong></p><p>신림역 3번 출구에서 나와 시내버스 5516을 타고 제2공학관에서 하차합니다.</p><p><br></p><p><strong>지하철 신림경전철 관악산역</strong><br></p><p>관악산역 1번 출구로 나와 직진, 관악산입구.관악아트홀.중앙도서관 정류장에서 5511 또는 5516 시내버스를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>서울대학교 정문 경유 버스</strong></p><p>서울대학교 정문을 경유하는 버스를 이용해서 정문에 내린 후 교내순환 셔틀버스, 시내버스 5511 또는 5513을 타고 제2공학관으로 갈 수 있습니다.</p><table style="margin: 1em 0px; border-collapse: collapse; color: rgb(51, 51, 51); font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><tbody><tr><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>버스 번호</div></th><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>종점</div></th><th style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(236, 236, 236); text-align: center;"><div>경유지</div></th></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>5517</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>시흥벽산APT ↔ 중앙대</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대, 노량진</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6511</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 구로동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신대방역, 신도림역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6512</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 구로동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대입구역, 신림역, 영등포</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6513</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 철산동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신림역, 대방역, 영등포</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>750A, 750B</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 덕은동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>관악구청, 상도터널, 서울역, 신촌, 수색역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>5528</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>가산동 ↔ 사당동</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>금천경찰서, 신림사거리, 서울대, 낙성대</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6514</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 양천</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>신림역, 대방역, 영등포역, 당산역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>501</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 종로2가</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>상도동, 신용산, 서울역</div></td></tr><tr><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>6003</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>서울대 ↔ 인천공항</div></td><td style="border: 1px solid rgb(153, 153, 153); padding: 0.25em 0.5em; background-color: rgb(252, 252, 252);"><div>대림역, 목동역, 88체육관, 김포공항</div></td></tr></tbody></table>`,
+    description: `<p><strong>지하철 2호선 낙성대역</strong></p><p>낙성대역 4번 출구로 나와 직진, 주유소에서 좌회전하여 제과점 앞 정류장에서 마을버스 관악02를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>지하철 2호선 서울대입구역</strong></p><p>서울대입구역 3번 출구로 나와 관악구청 방향으로 직진하여 학교 셔틀 버스나 시내버스 5511 또는 5513을 타고 제2공학관에서 내립니다. 제2공학관행 셔틀 버스는 아침 8시부터 10시까지 15분 간격으로 월요일부터 금요일까지 운행됩니다.</p><p><br></p><p><strong>지하철 2호선 신림역</strong></p><p>신림역 3번 출구에서 나와 시내버스 5516을 타고 제2공학관에서 하차합니다.</p><p><br></p><p><strong>지하철 신림경전철 관악산역</strong><br></p><p>관악산역 1번 출구로 나와 직진, 관악산입구.관악아트홀.중앙도서관 정류장에서 5511 또는 5516 시내버스를 타고 제2공학관에서 내립니다.</p><p><br></p><p><strong>서울대학교 정문 경유 버스</strong></p><p>서울대학교 정문을 경유하는 버스를 이용해서 정문에 내린 후 교내순환 셔틀버스, 시내버스 5511 또는 5513을 타고 제2공학관으로 갈 수 있습니다.</p><table><tbody><tr><th><div>버스 번호</div></th><th><div>종점</div></th><th><div>경유지</div></th></tr><tr><td><div>5517</div></td><td><div>시흥벽산APT ↔ 중앙대</div></td><td><div>서울대, 노량진</div></td></tr><tr><td><div>6511</div></td><td><div>서울대 ↔ 구로동</div></td><td><div>신대방역, 신도림역</div></td></tr><tr><td><div>6512</div></td><td><div>서울대 ↔ 구로동</div></td><td><div>서울대입구역, 신림역, 영등포</div></td></tr><tr><td><div>6513</div></td><td><div>서울대 ↔ 철산동</div></td><td><div>신림역, 대방역, 영등포</div></td></tr><tr><td><div>750A, 750B</div></td><td><div>서울대 ↔ 덕은동</div></td><td><div>관악구청, 상도터널, 서울역, 신촌, 수색역</div></td></tr><tr><td><div>5528</div></td><td><div>가산동 ↔ 사당동</div></td><td><div>금천경찰서, 신림사거리, 서울대, 낙성대</div></td></tr><tr><td><div>6514</div></td><td><div>서울대 ↔ 양천</div></td><td><div>신림역, 대방역, 영등포역, 당산역</div></td></tr><tr><td><div>501</div></td><td><div>서울대 ↔ 종로2가</div></td><td><div>상도동, 신용산, 서울역</div></td></tr><tr><td><div>6003</div></td><td><div>서울대 ↔ 인천공항</div></td><td><div>대림역, 목동역, 88체육관, 김포공항</div></td></tr></tbody></table><p></p>`,
   },
   {
     name: '승용차',

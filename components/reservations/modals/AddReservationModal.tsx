@@ -3,7 +3,12 @@
 import Link from 'next-intl/link';
 import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
 
+import { NetworkError } from '@/apis';
+
+import { postReservation } from '@/apis/reservation';
+
 import Dropdown from '@/components/common/Dropdown';
+import { errorToast, infoToast } from '@/components/common/toast';
 import ModalFrame from '@/components/modal/ModalFrame';
 import MuiDateSelector from '@/components/mui/MuiDateSelector';
 import BasicButton from '@/components/reservations/BasicButton';
@@ -12,18 +17,37 @@ import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
-export default function AddReservationModal() {
+export default function AddReservationModal({ roomId }: { roomId: number }) {
   const { closeModal } = useModal();
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue);
+  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue(roomId));
 
-  const canSubmit =
-    privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    if (!canSubmit) return;
-    console.log(body);
+
+    const canSubmit =
+      privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
+
+    if (!canSubmit) {
+      infoToast('모든 필수 정보를 입력해주세요');
+      return;
+    }
+    try {
+      await postReservation(body);
+      window.location.reload();
+    } catch (e) {
+      if (e instanceof NetworkError) {
+        if (e.statusCode === 409) {
+          errorToast('해당 위치에 예약이 존재합니다.');
+        } else {
+          errorToast(e.message);
+        }
+      } else if (e instanceof Error) {
+        errorToast(e.message);
+      } else {
+        errorToast('알 수 없는 에러');
+      }
+    }
   };
 
   const buildBodyValueSetter =
@@ -43,12 +67,16 @@ export default function AddReservationModal() {
       newStartTime = convertToFastestStartTime(newStartTime);
     }
 
-    const endTime = getOptimalEndTime(body.startTime, body.endTime, newStartTime);
+    const endTime = getOptimalEndTime(
+      new Date(body.startTime),
+      new Date(body.endTime),
+      newStartTime,
+    );
 
     const startTimeSetter = buildBodyValueSetter('startTime');
     const endTimeSetter = buildBodyValueSetter('endTime');
-    startTimeSetter(newStartTime);
-    endTimeSetter(endTime);
+    startTimeSetter(newStartTime.toISOString());
+    endTimeSetter(endTime.toISOString());
   };
 
   return (
@@ -61,23 +89,23 @@ export default function AddReservationModal() {
 
         <div className="flex flex-col items-start gap-1 mb-6">
           <InputWithLabel title="예약 날짜">
-            <DateInput date={body.startTime} setDate={setDate} />
+            <DateInput date={new Date(body.startTime)} setDate={setDate} />
           </InputWithLabel>
 
           <div className="flex gap-3">
             <InputWithLabel title="시작 시간">
               <StartTimePicker
-                startDate={body.startTime}
-                endDate={body.endTime}
-                setStartDate={buildBodyValueSetter('startTime')}
-                setEndDate={buildBodyValueSetter('endTime')}
+                startDate={new Date(body.startTime)}
+                endDate={new Date(body.endTime)}
+                setStartDate={(x) => buildBodyValueSetter('startTime')(x.toISOString())}
+                setEndDate={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
               />
             </InputWithLabel>
             <InputWithLabel title="사용 시간">
               <DurationPicker
-                startTime={body.startTime}
-                endTime={body.endTime}
-                setEndTime={buildBodyValueSetter('endTime')}
+                startTime={new Date(body.startTime)}
+                endTime={new Date(body.endTime)}
+                setEndTime={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
               />
             </InputWithLabel>
           </div>
@@ -87,8 +115,8 @@ export default function AddReservationModal() {
               contents={Array(14)
                 .fill(0)
                 .map((_, i) => i + 1 + '회')}
-              selectedIndex={body.recurringWeeks}
-              onClick={buildBodyValueSetter('recurringWeeks')}
+              selectedIndex={body.recurringWeeks - 1}
+              onClick={(x) => buildBodyValueSetter('recurringWeeks')(x + 1)}
             />
           </InputWithLabel>
         </div>
@@ -158,7 +186,8 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
     <div>
       <button
         className="border border-neutral-300 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           openModal(
             <ModalFrame onClose={closeModal}>
               <MuiDateSelector
@@ -347,17 +376,17 @@ const PrivacyFieldset = ({
   );
 };
 
-const getDefaultBodyValue = () => {
+const getDefaultBodyValue = (roomId: number) => {
   const startTime = convertToFastestStartTime(new Date());
 
   const endTime = new Date(startTime);
   endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
 
   return {
-    roomId: 0,
-    startTime,
-    endTime,
-    recurringWeeks: 0,
+    roomId,
+    startTime: startTime.toISOString(),
+    endTime: endTime.toISOString(),
+    recurringWeeks: 1,
     title: '',
     contactEmail: '',
     contactPhone: '',

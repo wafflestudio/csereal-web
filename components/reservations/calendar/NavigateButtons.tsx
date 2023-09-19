@@ -103,10 +103,10 @@ export function NextWeekButton({ date }: { date: Date }) {
   );
 }
 
-export function MakeReservationButton() {
+export function MakeReservationButton({ roomId }: { roomId: number }) {
   const { openModal } = useModal();
   const handleClick = () => {
-    openModal(<AddReservationModal />);
+    openModal(<AddReservationModal roomId={roomId} />);
   };
 
   return (

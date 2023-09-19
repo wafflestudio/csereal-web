@@ -63,6 +63,12 @@ const nextConfig = {
         hostname: 'cse-dev-waffle.bacchus.io',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '/**',
+        port: '8080',
+      },
     ],
   },
 

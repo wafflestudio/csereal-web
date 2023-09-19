@@ -10,6 +10,7 @@ export const getRequest = async <T = unknown>(
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
+  console.log(fetchUrl);
   const response = await fetch(fetchUrl, {
     ...init,
     method: 'GET',
@@ -30,6 +31,9 @@ export const postRequest = async <T = unknown>(url: string, init?: RequestInit) 
   return responseData as T;
 };
 
+export const postRequestWithCookie: typeof postRequest = (url, init) =>
+  postRequest(url, { ...init, credentials: 'include' });
+
 export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
@@ -40,15 +44,28 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   }
 };
 
+export const patchRequestWithCookie: typeof patchRequest = (url, init) =>
+  patchRequest(url, { ...init, credentials: 'include' });
+
 export const deleteRequest = async (url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
   const response = await fetch(fetchUrl, { ...init, method: 'DELETE' });
   checkError(response);
 };
 
+export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =>
+  deleteRequest(url, { ...init, credentials: 'include' });
+
 const checkError = (response: Response) => {
   if (!response.ok) {
-    throw new Error(`네트워크 에러
-status: ${response.status}`);
+    throw new NetworkError(response.status);
   }
 };
+
+export class NetworkError extends Error {
+  statusCode: number;
+  constructor(statusCode: number) {
+    super(`네트워크 에러\nstatus: ${statusCode}`);
+    this.statusCode = statusCode;
+  }
+}

@@ -1,6 +1,9 @@
 'use client';
 
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
+import useSWR from 'swr';
+
+import { getRequestWithCookie } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
@@ -13,10 +16,16 @@ import { Reservation } from '@/types/reservation';
 import ModalFrame from '../../modal/ModalFrame';
 import BasicButton from '../BasicButton';
 
-export default function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
+export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
+  const { data: reservation, mutate } = useSWR<Reservation>(
+    `/reservation/${reservationId}`,
+    getRequestWithCookie,
+  );
   const { closeModal } = useModal();
 
-  const dateStr = reservation.startTime.toLocaleString('ko-kr', {
+  if (reservation === undefined) return <></>;
+
+  const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
     year: '2-digit',
     month: '2-digit',
     day: '2-digit',
@@ -34,8 +43,8 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
           <div className="flex flex-col gap-1">
             <p>예약 날짜: {dateStr}</p>
             <div className="flex gap-6">
-              <p>시작 시간: {formatTime(reservation.startTime)}</p>
-              <p>종료 시간: {formatTime(reservation.endTime)}</p>
+              <p>시작 시간: {formatTime(new Date(reservation.startTime))}</p>
+              <p>종료 시간: {formatTime(new Date(reservation.endTime))}</p>
             </div>
             <p>매주 반복: {reservation.recurringWeeks}</p>
           </div>
@@ -47,7 +56,7 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>
-          <DeleteButtons reservationId={reservation.id} />
+          <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
         </div>
         <span
           className="absolute top-3 right-3 material-symbols-outlined text-base cursor-pointer"
@@ -60,7 +69,13 @@ export default function ReservationDetailModal({ reservation }: { reservation: R
   );
 }
 
-const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
+const DeleteButtons = ({
+  reservationId,
+  recurrenceId,
+}: {
+  reservationId: number;
+  recurrenceId: string;
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const { closeModal } = useModal();
 
@@ -68,10 +83,10 @@ const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
     if (submitting) return;
     setSubmitting(true);
     try {
-      await deleteAllRecurringReservation(reservationId);
-      closeModal();
-    } catch {
-      errorToast('문제가 발생했습니다');
+      await deleteAllRecurringReservation(recurrenceId);
+      window.location.reload();
+    } catch (e) {
+      toastError(e);
       setSubmitting(false);
     }
   };
@@ -81,9 +96,9 @@ const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
     setSubmitting(true);
     try {
       await deleteSingleReservation(reservationId);
-      closeModal();
-    } catch {
-      errorToast('문제가 발생했습니다');
+      window.location.reload();
+    } catch (e) {
+      toastError(e);
       setSubmitting(false);
     }
   };
@@ -101,19 +116,27 @@ const DeleteButtons = ({ reservationId }: { reservationId: number }) => {
 };
 
 export const ReservationDetailModalButton = ({
-  reservation,
+  reservationId,
   ...props
 }: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
-  reservation: Reservation;
+  reservationId: number;
 }) => {
   const { openModal } = useModal();
 
   return (
     <button
       {...props}
-      onClick={() => openModal(<ReservationDetailModal reservation={reservation} />)}
+      onClick={() => openModal(<ReservationDetailModal reservationId={reservationId} />)}
     />
   );
 };
 
 const padZero = (x: number) => (x + '').padStart(2, '0');
+
+const toastError = (e: any) => {
+  if (e instanceof Error) {
+    errorToast(e.message);
+  } else {
+    errorToast('알 수 없는 문제가 발생했습니다.');
+  }
+};

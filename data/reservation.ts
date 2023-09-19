@@ -14,7 +14,7 @@ export const getMockWeeklyReservation = async (
   const endDateTime = endDate.getTime();
 
   return reservations.filter((x) => {
-    const time = x.startTime.getTime();
+    const time = new Date(x.startTime).getTime();
     return startDateTime <= time && time <= endDateTime;
   });
 };
@@ -36,8 +36,8 @@ const buildMockReservation = (id: number, startTime: Date, endTime: Date): Reser
 
   purpose: '목적',
 
-  startTime,
-  endTime,
+  startTime: startTime.toISOString(),
+  endTime: endTime.toISOString(),
   recurringWeeks: 1,
 
   title: '예약 1',

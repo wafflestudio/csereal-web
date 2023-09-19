@@ -4,7 +4,7 @@ export interface NoticePreview {
   isPinned: boolean;
   createdAt: string;
   hasAttachment: boolean;
-  isPublic: boolean;
+  isPrivate: boolean;
 }
 
 export interface NoticePreviewList {
@@ -15,7 +15,7 @@ export interface NoticePreviewList {
 export interface Notice {
   title: string;
   description: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   tags: string[];
   isPinned: boolean;
   isImportant: boolean;
@@ -29,6 +29,7 @@ export interface Notice {
   nextId: number | null;
   nextTitle: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -38,8 +39,9 @@ export interface Notice {
 export interface POSTNoticeBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];
@@ -50,16 +52,13 @@ export interface POSTNoticeBody {
 export interface PatchNoticeBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isPinned: boolean;
     isImportant: boolean;
     tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    deleteIds: number[];
   };
   newAttachments: File[];
 }

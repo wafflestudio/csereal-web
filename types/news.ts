@@ -4,7 +4,7 @@ export interface NewsPreview {
   description: string;
   tags: string[];
   createdAt: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   imageURL: string | null;
 }
 
@@ -16,7 +16,7 @@ export interface NewsPreviewList {
 export interface News {
   title: string;
   description: string;
-  isPublic: boolean;
+  isPrivate: boolean;
   tags: string[];
   imageURL: string | null;
   isSlide: boolean;
@@ -30,6 +30,7 @@ export interface News {
   nextId: number | null;
   nextTitle: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -39,8 +40,9 @@ export interface News {
 export interface POSTNewsBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];
@@ -52,16 +54,13 @@ export interface POSTNewsBody {
 export interface PATCHNewsBody {
   request: {
     title: string;
+    titleForMain: string | null;
     description: string;
-    isPublic: boolean;
+    isPrivate: boolean;
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    deleteIds: number[];
   };
   mainImage: File | null;
   newAttachments: File[];

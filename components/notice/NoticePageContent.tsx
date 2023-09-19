@@ -14,6 +14,7 @@ import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 import { NoticePreviewList } from '@/types/notice';
 
 import AdminFeatures from './AdminFeatures';
+import LoginStaffVisible from '../common/LoginStaffVisible';
 
 const POST_LIMIT = 20;
 
@@ -80,12 +81,14 @@ export default function NoticePageContent({
         setCurrentPage={setCurrentPage}
         disabled={isEditMode}
       />
-      <AdminFeatures
-        isEditMode={isEditMode}
-        toggleEditMode={toggleEditMode}
-        selectedPostIds={selectedPostIds}
-        resetSelectedPosts={() => changeSelectedIds({ type: 'RESET' })}
-      />
+      <LoginStaffVisible>
+        <AdminFeatures
+          isEditMode={isEditMode}
+          toggleEditMode={toggleEditMode}
+          selectedPostIds={selectedPostIds}
+          resetSelectedPosts={() => changeSelectedIds({ type: 'RESET' })}
+        />
+      </LoginStaffVisible>
     </PageLayout>
   );
 }

@@ -55,7 +55,7 @@ export const getMockSeminarPost = async (id: number) => {
     nextTitle: 'NEXTTITLE',
     createdAt: new Date().toISOString(),
     modifiedAt: new Date().toISOString(),
-    isPublic: true,
+    isPrivate: true,
     isSlide: true,
     additionalNote: '',
   };

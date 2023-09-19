@@ -30,7 +30,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
 
     title: data.title,
     description: data.description,
-    isPublic: data.isPublic,
+    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
@@ -43,15 +43,20 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
 
+    const deleteIds = data.attachments
+      .map((x) => x.id)
+      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
     await patchNotice(id, {
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
-        attachments: uploadedAttachments,
+        deleteIds,
       },
       newAttachments: localAttachments,
     });

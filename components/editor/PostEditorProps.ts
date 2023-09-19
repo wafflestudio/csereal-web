@@ -10,6 +10,7 @@ export interface LocalFile {
 export interface UploadedFile {
   type: 'UPLOADED_FILE';
   file: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
@@ -38,11 +39,12 @@ export const isLocalImage = (image: LocalImage | UploadedImage): image is LocalI
 
 export interface PostEditorContent {
   title: string;
+  titleForMain: string;
   description: string;
   mainImage: PostEditorImage;
   attachments: PostEditorFile[];
   tags: string[];
-  isPublic: boolean;
+  isPrivate: boolean;
   isPinned: boolean;
   isImportant: boolean;
   isSlide: boolean;
@@ -60,11 +62,12 @@ export interface PostEditorProps {
 
 export const postEditorDefaultValue: PostEditorContent = {
   title: '',
+  titleForMain: '',
   description: '',
   mainImage: null,
   attachments: [],
   tags: [],
-  isPublic: true,
+  isPrivate: true,
   isPinned: false,
   isImportant: false,
   isSlide: false,

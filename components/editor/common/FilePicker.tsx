@@ -41,7 +41,10 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
             //   순서를 안바꾸기로 했으니 키값으로 인덱스 써도 ㄱㅊ
             key={idx}
             file={item}
-            deleteFile={() => deleteFileAtIndex(idx)}
+            deleteFile={(e) => {
+              e.preventDefault();
+              deleteFileAtIndex(idx);
+            }}
           />
         ))}
       </ol>

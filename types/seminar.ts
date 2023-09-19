@@ -1,3 +1,8 @@
+export interface SeminarList {
+  total: number;
+  searchList: SeminarPreview[];
+}
+
 export interface SeminarPreview {
   id: number;
   title: string;
@@ -10,87 +15,81 @@ export interface SeminarPreview {
   isYearLast: boolean;
 }
 
-export interface SeminarList {
-  total: number;
-  searchList: SeminarPreview[];
-}
-
 export interface Seminar {
-  title: string;
-  description: string;
-  isPublic: boolean;
-
-  introduction: string;
-  category: string;
-  name: string;
-  speakerUrl: string | null;
-  speakerTitle: string | null;
-  affiliation: string;
-  affiliationUrl: string | null;
-  startDate: string;
-  endDate: string;
-  location: string;
-  host: string;
-  isImportant: boolean;
-  imageURL: string | null;
-
-  id: number;
-  createdAt: string;
-  modifiedAt: string;
-  prevId: number | null;
-  prevTitle: string | null;
-  nextId: number | null;
-  nextTitle: string | null;
+  affiliation: string | null;
+  affiliationURL: string | null;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;
   }[];
+  createdAt: string;
+  description: string | null;
+  endDate: string | null;
+  host: string | null;
+  id: number;
+  imageURL: string | null;
+  introduction: string | null;
+  isImportant: boolean;
+  isPrivate: boolean;
+  location: string;
+  modifiedAt: string;
+  name: string | null;
+  nextId: number | null;
+  nextTitle: string | null;
+  prevId: number | null;
+  prevTitle: string | null;
+  speakerTitle: string | null;
+  speakerURL: string | null;
+  startDate: string;
+  title: string;
 }
 
 export interface POSTSeminarBody {
   request: {
-    title: string;
-    description: string;
-    introduction: string;
-    name: string;
+    title: string | null;
+    titleForMain: string | null;
+    description: string | null;
+    introduction: string | null;
+    name: string | null;
     speakerURL: string | null;
     speakerTitle: string | null;
-    affiliation: string;
+    affiliation: string | null;
     affiliationURL: string | null;
-    startDate: string | null;
+    startDate: string;
     endDate: string | null;
     location: string;
     host: string | null;
-    isPublic: boolean;
+    isPrivate: boolean;
     isImportant: boolean;
   };
+
   image: File | null;
   attachments: File[];
 }
 
-export interface PatchSeminarBody {
+export interface PATCHSeminarBody {
   request: {
-    introduction: string;
-    category: string;
-    name: string;
-    speakerUrl: string | null;
+    title: string | null;
+    titleForMain: string | null;
+    description: string | null;
+    introduction: string | null;
+    name: string | null;
+    speakerURL: string | null;
     speakerTitle: string | null;
-    affiliation: string;
-    affiliationUrl: string | null;
-    startDate: string | null;
-    startTime: string | null;
+    affiliation: string | null;
+    affiliationURL: string | null;
+    startDate: string;
     endDate: string | null;
-    endTime: string | null;
     location: string;
     host: string | null;
-    isSlide: boolean;
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
+    isPrivate: boolean;
+    isImportant: boolean;
+
+    deleteIds: number[];
   };
+
   newAttachments: File[];
   image: File | null;
 }

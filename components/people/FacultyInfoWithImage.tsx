@@ -1,5 +1,4 @@
 import Link from 'next-intl/link';
-import { useEffect, useState } from 'react';
 
 import PeopleImageWithAnimation from './PeopleImageWithAnimation';
 
@@ -43,7 +42,7 @@ export default function FacultyInfoWithImage({
             className="h-full w-full absolute bottom-[-17px] right-[-17px] animate-fadeIn"
             style={{
               background:
-                'repeating-linear-gradient(-45deg, white, white 5px, orange 5px, orange 6px)',
+                'repeating-linear-gradient(-45deg, black, black 5px, #E9390B 5px, #E9390B 6px)',
             }}
           />
         </div>

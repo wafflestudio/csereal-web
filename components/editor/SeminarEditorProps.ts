@@ -3,13 +3,14 @@ import { PostEditorFile, PostEditorImage } from './PostEditorProps';
 
 export interface SeminarEditorContent {
   title: string;
+  titleForMain: string;
   description: string;
   location: string;
   schedule: SeminarSchedule;
   host: string | null;
   speaker: SeminarSpeaker;
   attachments: PostEditorFile[];
-  isPublic: boolean;
+  isPrivate: boolean;
   isImportant: boolean;
 }
 
@@ -43,6 +44,7 @@ export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
 
   return {
     title: '',
+    titleForMain: '',
     description: '',
     location: '',
     schedule: {
@@ -60,7 +62,7 @@ export const getSeminarEditorDefaultValue = (): SeminarEditorContent => {
       image: null,
     },
     attachments: [],
-    isPublic: true,
+    isPrivate: false,
     isImportant: false,
   };
 };

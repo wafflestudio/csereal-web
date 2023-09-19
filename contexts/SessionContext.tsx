@@ -1,9 +1,9 @@
 'use client';
 
-import React, { createContext, PropsWithChildren, useCallback, useContext, useMemo } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 import useSWR from 'swr';
 
-import { getRequest, getRequestWithCookie } from '@/apis';
+import { getRequestWithCookie } from '@/apis';
 
 interface SessionContextData {
   user?: User;
