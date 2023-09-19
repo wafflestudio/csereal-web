@@ -82,6 +82,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         tags={NewsTags}
         showMainImage
         showIsSlide
+        showIsImportant
         actions={{
           type: 'EDIT',
           onComplete: handleComplete,

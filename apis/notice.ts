@@ -1,7 +1,7 @@
 import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
-import { deleteRequest, getRequest, patchRequest, postRequest, postRequestWithCookie } from '.';
+import { deleteRequest, deleteRequestWithCookie, getRequest, patchRequest, patchRequestWithCookie, postRequest, postRequestWithCookie } from '.';
 
 const noticePath = '/notice';
 
@@ -42,21 +42,21 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
     formData.append('newAttachments', attachment);
   }
 
-  await patchRequest(`${noticePath}/${id}`, {
+  await patchRequestWithCookie(`${noticePath}/${id}`, {
     body: formData,
   });
 };
 
 export const patchMultipleNotices = (idList: number[]) =>
-  patchRequest(noticePath, {
+  patchRequestWithCookie(noticePath, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ idList }),
   });
 
-export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
+export const deleteNotice = (id: number) => deleteRequestWithCookie(`${noticePath}/${id}`);
 
 export const deleteMultipleNotices = (idList: number[]) =>
-  deleteRequest(noticePath, {
+  deleteRequestWithCookie(noticePath, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ idList }),
   });

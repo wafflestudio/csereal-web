@@ -76,7 +76,8 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NoticeTags}
-        showMainImage
+        showIsPinned
+        showIsImportant
         actions={{
           type: 'EDIT',
           onComplete: handleComplete,
