@@ -15,6 +15,7 @@ export interface SeminarRowProps {
   location: string;
   imageURL: string | null;
   isYearLast: boolean;
+  hideDivider?: boolean;
 }
 
 const seminarPath = getPath(seminar);
@@ -28,11 +29,12 @@ export default function SeminarRow({
   location,
   imageURL,
   isYearLast,
+  hideDivider,
 }: SeminarRowProps) {
   return (
     <article
       className={`font-noto flex py-[1.2rem] border-neutral-200 ${
-        !isYearLast ? 'border-t-[1px]' : null
+        !isYearLast && !hideDivider ? 'border-t-[1px]' : null
       }`}
     >
       <Link
@@ -41,7 +43,13 @@ export default function SeminarRow({
           !imageURL && 'bg-neutral-100'
         }`}
       >
-        <ImageWithFallback alt="대표 이미지" src={imageURL} fill priority />
+        <ImageWithFallback
+          alt="대표 이미지"
+          src={imageURL}
+          fill
+          priority
+          className="object-cover"
+        />
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
         <Link href={`${seminarPath}/${id}`} className="hover:underline">

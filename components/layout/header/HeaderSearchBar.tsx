@@ -1,22 +1,22 @@
 'use client';
 
-import { useState, ChangeEventHandler, KeyboardEventHandler } from 'react';
-
-import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+import { useRouter } from 'next/navigation';
+import { useState, ChangeEventHandler, FormEventHandler } from 'react';
 
 export default function HeaderSearchBar() {
   const [text, setText] = useState('');
-
-  // TODO: /search 페이지 구현
-  const { setSearchParams } = useCustomSearchParams('/search');
+  const router = useRouter();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
   };
 
-  const searchText = () => {
-    const trimmedText = text.trim();
-    if (trimmedText) setSearchParams({ keyword: trimmedText, purpose: 'search' });
+  const searchText: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    const query = text.trim();
+    if (query) {
+      router.push(`/search?query=${query}`);
+    }
   };
 
   return (

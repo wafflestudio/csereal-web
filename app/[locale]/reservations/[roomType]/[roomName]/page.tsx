@@ -19,7 +19,7 @@ export default function RoomReservationPage({ params, searchParams }: RoomReserv
   );
 }
 
-export async function LoginedRoomReservationPage({ params, searchParams }: RoomReservationProps) {
+async function LoginedRoomReservationPage({ params, searchParams }: RoomReservationProps) {
   const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
   const date = parseDate(searchParams.selectedDate || todayYMDStr());
 
@@ -49,11 +49,12 @@ export async function LoginedRoomReservationPage({ params, searchParams }: RoomR
   });
 
   return (
-      <ReservationCalendar
-        startDate={startOfWeek}
-        selectedDate={date}
-        reservations={reservations}
-      />
+    <ReservationCalendar
+      startDate={startOfWeek}
+      selectedDate={date}
+      reservations={reservations}
+      roomId={roomId}
+    />
   );
 }
 

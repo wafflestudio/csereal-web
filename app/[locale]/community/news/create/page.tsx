@@ -20,7 +20,6 @@ export default function NewsCreatePage() {
   const router = useRouter();
 
   const handleComplete = async (content: PostEditorContent) => {
-    console.log(content.description);
     throwIfCantSubmit(content);
 
     const mainImage =
@@ -30,8 +29,9 @@ export default function NewsCreatePage() {
     await postNews({
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isSlide: content.isSlide,
         isImportant: content.isImportant,
         tags: content.tags,

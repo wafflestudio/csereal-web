@@ -54,6 +54,11 @@ export default function PostEditor({
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
 
+      <TitleForMainFieldset
+        value={content.titleForMain}
+        onChange={setContentByKey('titleForMain')}
+      />
+
       <EditorFieldset editorRef={editorRef} initialContent={content.description} />
 
       {showMainImage && (
@@ -84,10 +89,10 @@ export default function PostEditor({
         <div className="flex flex-col gap-2">
           <Checkbox
             label="비공개 글"
-            isChecked={!content.isPublic}
+            isChecked={!content.isPrivate}
             toggleCheck={() => {
-              setContentByKey('isPublic')(!content.isPublic);
-              if (content.isPublic) {
+              setContentByKey('isPrivate')(!content.isPrivate);
+              if (content.isPrivate) {
                 setContentByKey('isPinned')(false);
               }
             }}
@@ -99,7 +104,7 @@ export default function PostEditor({
               toggleCheck={() => {
                 setContentByKey('isPinned')(!content.isPinned);
                 if (!content.isPinned) {
-                  setContentByKey('isPublic')(true);
+                  setContentByKey('isPrivate')(true);
                 }
               }}
             />
@@ -140,9 +145,28 @@ export default function PostEditor({
 
 function TitleFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="제목" mb="mb-6" titleMb="mb-2">
+    <Fieldset title="제목" mb="mb-6" titleMb="mb-2" required>
       <BasicTextInput
         placeholder="제목을 입력하세요."
+        value={value}
+        onChange={onChange}
+        maxWidth="max-w-[40rem]"
+      />
+    </Fieldset>
+  );
+}
+
+function TitleForMainFieldset({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="메인-중요 안내용 제목" mb="mb-6" titleMb="mb-2">
+      <BasicTextInput
+        placeholder="미입력시 제목과 동일하게 표시됩니다."
         value={value}
         onChange={onChange}
         maxWidth="max-w-[40rem]"
@@ -159,7 +183,7 @@ function EditorFieldset({
   initialContent: string;
 }) {
   return (
-    <Fieldset title="내용" mb="mb-6" titleMb="mb-2">
+    <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
       <SunEditorWrapper editorRef={editorRef} initialContent={initialContent} />
     </Fieldset>
   );

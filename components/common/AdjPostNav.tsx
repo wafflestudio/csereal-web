@@ -2,19 +2,41 @@ import Link from 'next-intl/link';
 
 import { AdjPostInfo } from '@/types/post';
 
+import LoginStaffVisible from './LoginStaffVisible';
+import PostDeleteButton from './PostDeleteButton';
+
+type PostType = 'notice' | 'seminar' | 'news';
+
 interface AdjPostNavProps {
+  postType: PostType;
+  id?: string;
   prevPost?: AdjPostInfo;
   nextPost?: AdjPostInfo;
-  href: string;
   margin?: string;
 }
 
-export default function AdjPostNav({ prevPost, nextPost, margin = '', href }: AdjPostNavProps) {
+export default function AdjPostNav({
+  prevPost,
+  nextPost,
+  margin = '',
+  postType,
+  id,
+}: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
       <Row post={nextPost} type="next" />
       <Row post={prevPost} type="prev" />
-      <PostListLink href={href} />
+      <div className="flex justify-end mt-6">
+        <PostListLink href={`/community/${postType}`} />
+        <LoginStaffVisible>
+          {id && (
+            <>
+              <PostDeleteButton postType={postType} id={id} />
+              <PostEditLink href={`/community/${postType}/${id}/edit`} />
+            </>
+          )}
+        </LoginStaffVisible>
+      </div>
     </div>
   );
 }
@@ -68,9 +90,20 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="self-end mt-6 text-sm font-noto bg-neutral-200 hover:bg-neutral-300 px-5 py-2 rounded-[0.0625rem] font-bold"
+      className="text-sm font-noto bg-neutral-200 hover:bg-neutral-300 px-5 py-2 rounded-[0.0625rem] font-bold"
     >
       목록
+    </Link>
+  );
+}
+
+function PostEditLink({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      className="ml-4 px-5 py-2 rounded-[0.0625rem] bg-neutral-200 hover:bg-neutral-300 text-sm tracking-[0.02em] font-noto font-bold"
+    >
+      편집
     </Link>
   );
 }

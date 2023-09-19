@@ -1,5 +1,3 @@
-import { CSSProperties } from 'react';
-
 interface CurvedNodeProps {
   grow?: boolean; // flex-grow 속성 (true일 때는 부모 element가 'display: flex'여야 함)
   direction?: 'row' | 'col'; // 가로 노드: row, 세로 노드: col

@@ -90,8 +90,8 @@ const sortCourses = (courses: Course[], sortOption: SortOption) => {
       sortedCourses[getSortGroupIndexByClassification(course.classification)].push(course),
     );
   } else {
-    sortedCourses.push([], [], []);
-    courses.forEach((course) => sortedCourses[course.credit - 2].push(course));
+    sortedCourses.push([], [], [], []);
+    courses.forEach((course) => sortedCourses[course.credit - 1].push(course));
   }
 
   return sortedCourses;

@@ -31,7 +31,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
 
     title: data.title,
     description: data.description,
-    isPublic: data.isPublic,
+    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
@@ -49,15 +49,20 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     const mainImage =
       content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
 
+    const deleteIds = data.attachments
+      .map((x) => x.id)
+      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
     await patchNews(id, {
       request: {
         title: content.title,
+        titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
-        isPublic: content.isPublic,
+        isPrivate: content.isPrivate,
         isSlide: content.isSlide,
         isImportant: content.isImportant,
         tags: content.tags,
-        attachments: uploadedAttachments,
+        deleteIds,
       },
       mainImage,
       newAttachments: localAttachments,
