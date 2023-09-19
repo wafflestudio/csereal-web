@@ -24,7 +24,7 @@ const NODES: { Component: React.ReactNode; location: 'top' | 'bottom' }[] = [
 
 export default function ShortCuts({ shortCuts }: ShortCutsProps) {
   return (
-    <section className="">
+    <section className="relative flex justify-center h-[615px]">
       {shortCuts.map((shortcut, i) => (
         <ShortCutBox
           key={shortcut.title}

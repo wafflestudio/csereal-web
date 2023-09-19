@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import MainNode1 from '@/public/image/main_1.svg';
 import MainNode2 from '@/public/image/main_2.svg';
 import MainNode3 from '@/public/image/main_3.svg';
@@ -37,12 +35,8 @@ export default async function MainPage() {
     <div className="w-[1104px] relative mx-auto overflow-hidden">
       <BgVideo />
       <BackgroundNode />
-      <div className="relative flex justify-center h-[615px]">
-        <ShortCuts shortCuts={shortCuts} />
-      </div>
-      <div className="relative mt-[90px] pt-8">
-        <SlideScreen slides={data.slides} />
-      </div>
+      <ShortCuts shortCuts={shortCuts} />
+      <SlideScreen slides={data.slides} />
       <div className="flex justify-between mt-[67px]">
         <ImportantPosts posts={data.importants} />
         <Notices notices={data.notices} />
