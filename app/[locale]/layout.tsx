@@ -51,7 +51,7 @@ export default async function RootLayout({
             <Navbar />
             <div className="flex flex-col flex-1 font-noto-demi">
               <Header />
-              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto">
+              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
                 <main className="flex-1">{children}</main>
                 <Footer />
               </div>
