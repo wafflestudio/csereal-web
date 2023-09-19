@@ -1,10 +1,18 @@
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { deleteRequest, getRequest, patchRequest } from '.';
+import { deleteRequest, getRequest, getRequestWithCookie, patchRequest } from '.';
 
-// export const getSlides = (page: number) => getRequest('/admin/slide', { page });
+// export const getSlides = (pageNum: number) =>
+//   getRequestWithCookie('/admin/slide', { pageNum }) as Promise<{
+//     posts: SlidePreview[];
+//     total: number;
+//   }>;
 
-// export const getImportants = (page: number) => getRequest('/admin/important', { page });
+// export const getImportants = (pageNum: number) =>
+//   getRequest('/admin/important', { pageNum }) as Promise<{
+//     posts: ImportantPreview[];
+//     total: number;
+//   }>;
 
 export const patchMultipleSlides = (newsIdList: number[]) =>
   patchRequest('/admin/slide', {
