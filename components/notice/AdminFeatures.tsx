@@ -1,6 +1,6 @@
 'use client';
 
-import { batchDelete, batchUnpin } from '@/actions/noticeActions';
+import { deleteMultipleNotices, patchMultipleNotices } from '@/apis/notice';
 
 import useModal from '@/hooks/useModal';
 
@@ -30,34 +30,33 @@ export default function AdminFeatures({
   const { openModal } = useModal();
 
   const handleBatchDelete = async () => {
-    const result = await batchDelete(selectedPostIds);
-    if (result?.error) {
-      errorToast('공지를 삭제하지 못했습니다.');
-      if (result.error instanceof Error) {
-        console.error(result.error.message);
-      } else {
-        throw result.error;
-      }
-    } else {
+    try {
+      await deleteMultipleNotices(Array.from(selectedPostIds));
       successToast('선택된 공지를 삭제했습니다.');
       resetSelectedPosts();
+    } catch (error) {
+      errorToast('공지를 삭제하지 못했습니다.');
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 
   const handleBatchUnpin = async () => {
-    const result = await batchUnpin(selectedPostIds);
-    if (result?.error) {
-      errorToast('공지를 고정 해제하지 못했습니다.');
-      if (result.error instanceof Error) {
-        console.error(result.error.message);
-      } else {
-        throw result.error;
-      }
-    } else {
+    try {
+      await patchMultipleNotices(Array.from(selectedPostIds));
       successToast('선택된 공지를 고정 해제했습니다.');
       resetSelectedPosts();
+    } catch (error) {
+      errorToast('공지를 고정 해제하지 못했습니다.');
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        throw error;
+      }
     }
-  };
 
   return (
     <div className="flex mt-12 mx-2.5">
