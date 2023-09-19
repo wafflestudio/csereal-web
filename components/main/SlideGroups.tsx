@@ -56,7 +56,7 @@ function Slide({ slide }: SlideProps) {
       <Link href={`${newsPath}/${slide.id}`} className="block w-[185px] h-[116px] relative">
         <ImageWithFallback src={slide.imageURL} alt={`${slide.title}_이미지`} fill />
       </Link>
-      <div className="flex flex-col items-end p-2.5 h-[128px] text-neutral-900 border-x border-b border-[#000]">
+      <div className="flex flex-col items-end p-2.5 h-[128px] border-x border-b border-neutral-150">
         <h5 className="w-full font-noto mb-1.5 font-bold text-xs line-clamp-2">
           <Link href={`${newsPath}/${slide.id}`}>{slide.title}</Link>
         </h5>

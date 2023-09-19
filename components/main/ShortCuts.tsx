@@ -11,9 +11,9 @@ interface ShortCutsProps {
 }
 
 const POSITIONS = [
-  'top-[230px] right-[145px]',
-  'top-[420px] left-[146px]',
-  'top-[557.5px] right-[277px]',
+  'top-[190px] right-[145px]',
+  'top-[380px] left-[146px]',
+  'top-[517.5px] right-[277px]',
 ];
 
 const NODES: { Component: React.ReactNode; location: 'top' | 'bottom' }[] = [

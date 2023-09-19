@@ -49,7 +49,7 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   }, [intervalId, moveAutomatically]);
 
   return (
-    <section className="flex flex-col gap-5 items-center relative mt-[90px] pt-8">
+    <section className="flex flex-col gap-5 items-center relative mt-[48px] pt-8">
       <div className="flex items-center">
         <DoubleArrowButton direction="left" onClick={moveToPrevSlide} />
         <SlideGroups currentIndex={currIndex} slideGroups={result} />

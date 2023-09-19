@@ -8,7 +8,7 @@ interface ImportantPostsProps {
 
 export default function ImportantPosts({ posts }: ImportantPostsProps) {
   return (
-    <section className="w-[345px] ml-[130px] py-9">
+    <section className="w-[350px] ml-[216px] mt-[38px]">
       <ul className="w-full flex flex-col gap-7">
         {posts.map((post) => (
           <ImportantPostPreviewMain post={post} key={post.title} />
@@ -33,8 +33,8 @@ function ImportantPostPreviewMain({ post }: ImportantPostPreviewMainProps) {
   return (
     <li>
       <Link href={`/community/${post.category}/${post.id}`}>
-        <h4 className="font-medium text-base tracking-wide">{post.title}</h4>
-        <p className="text-xs tracking-wide line-clamp-2">{post.description}</p>
+        <h4 className="font-medium text-base tracking-wide mb-2 line-clamp-1">{post.title}</h4>
+        <p className="text-xs tracking-wide line-clamp-1">{post.description}</p>
       </Link>
     </li>
   );
