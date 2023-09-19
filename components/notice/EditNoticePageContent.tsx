@@ -9,7 +9,6 @@ import {
   PostEditorContent,
   isLocalFile,
   isUploadedFile,
-  postEditorDefaultValue,
 } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -38,6 +37,8 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
 
     mainImage: null,
     isSlide: false,
+
+    date: new Date().toISOString(),
   };
 
   const handleCancel = () => {

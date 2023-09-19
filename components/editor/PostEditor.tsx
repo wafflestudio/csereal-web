@@ -5,6 +5,8 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 
+import useModal from '@/hooks/useModal';
+
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
@@ -12,6 +14,8 @@ import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorContent, PostEditorProps, postEditorDefaultValue } from './PostEditorProps';
 import Checkbox from '../common/Checkbox';
+import ModalFrame from '../modal/ModalFrame';
+import MuiDateSelector from '../mui/MuiDateSelector';
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
@@ -22,6 +26,7 @@ export default function PostEditor({
   showIsImportant = false,
   showIsPinned = false,
   showIsSlide = false,
+  showDate = false,
   actions,
   initialContent,
 }: PostEditorProps) {
@@ -51,7 +56,9 @@ export default function PostEditor({
   };
 
   if (content.isPinned || content.isImportant || content.isSlide) {
-    setContentByKey('isPrivate')(false);
+    if (content.isPrivate) {
+      setContentByKey('isPrivate')(false);
+    }
   }
 
   return (
@@ -62,6 +69,13 @@ export default function PostEditor({
         value={content.titleForMain}
         onChange={setContentByKey('titleForMain')}
       />
+
+      {showDate && (
+        <DateInputFieldSet
+          date={new Date(content.date)}
+          setDate={(x) => setContentByKey('date')(x.toISOString())}
+        />
+      )}
 
       <EditorFieldset editorRef={editorRef} initialContent={content.description} />
 
@@ -178,6 +192,41 @@ function TitleForMainFieldset({
         onChange={onChange}
         maxWidth="max-w-[40rem]"
       />
+    </Fieldset>
+  );
+}
+
+function DateInputFieldSet({ date, setDate }: { date: Date; setDate: (date: Date) => void }) {
+  const { openModal, closeModal } = useModal();
+  const labelStr = `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(
+    2,
+    '0',
+  )}.${(date.getDate() + '').padStart(2, '0')}.`;
+
+  return (
+    <Fieldset title="시기" mb="mb-6" titleMb="mb-2" required>
+      <button
+        className="border border-neutral-900 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2 self-start"
+        onClick={(e) => {
+          e.preventDefault();
+          openModal(
+            <ModalFrame onClose={closeModal}>
+              <MuiDateSelector
+                enablePast
+                date={date}
+                setDate={(date) => {
+                  setDate(date);
+                  closeModal();
+                }}
+                className="bg-white"
+              />
+            </ModalFrame>,
+          );
+        }}
+      >
+        {labelStr}
+        <span className="material-symbols-outlined text-base">calendar_month</span>
+      </button>
     </Fieldset>
   );
 }

@@ -37,6 +37,7 @@ export default function NewsCreatePage() {
         isSlide: content.isSlide,
         isImportant: content.isImportant,
         tags: content.tags,
+        date: content.date,
       },
       mainImage,
       attachments,

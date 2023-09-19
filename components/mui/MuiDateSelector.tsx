@@ -15,12 +15,16 @@ export default function MuiDateSelector({
   date,
   setDate,
   className,
+  enablePast,
 }: {
   date: Date;
   setDate: (date: Date) => void;
   className?: string;
+  enablePast?: boolean;
 }) {
   const shouldDisableDate = (day: Dayjs) => {
+    if (enablePast) return false;
+
     const date = day.toDate();
 
     const today = new Date();
