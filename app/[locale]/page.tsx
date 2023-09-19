@@ -35,10 +35,10 @@ export default async function MainPage() {
 
   return (
     <div className="w-[1104px] relative mx-auto overflow-hidden">
+      <BgVideo />
       <BackgroundNode />
       <div className="relative flex justify-center h-[615px]">
         <ShortCuts shortCuts={shortCuts} />
-        <BgVideo />
       </div>
       <div className="relative mt-[90px] pt-8">
         <SlideScreen slides={data.slides} />

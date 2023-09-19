@@ -1,12 +1,12 @@
 export default function BgVideo() {
   return (
-    <section className="absolute w-[468px] h-[263px] top-[144px]">
+    <section className="absolute flex w-full justify-center top-0">
       <video
         id="background-video"
         loop
         autoPlay
         muted
-        className="w-full"
+        className="w-[1200px]"
         src={'video/main_video_bg.mp4'}
       />
     </section>
