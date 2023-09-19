@@ -46,13 +46,16 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
           />
         </div>
 
-        {'이름: '}
-        <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
+        <div>
+          {'이름: '}
+          <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
+        </div>
 
-        {currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}
-
-        {'소속: '}
-        <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
+        <div>{currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}</div>
+        <div>
+          {'소속: '}
+          <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
+        </div>
 
         <div className="mt-10">주최: {currPost.host}</div>
 
@@ -93,7 +96,7 @@ const LinkOrText = ({ href, children }: { href: string | null; children: ReactNo
       {children}
     </Link>
   ) : (
-    <p>{children}</p>
+    <p className="inline">{children}</p>
   );
 };
 

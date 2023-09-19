@@ -25,9 +25,6 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
   return (
     <PageLayout titleType="big" titleMargin="mb-6">
       <div className="flex flex-row items-center gap-6">
-        <h3 className="text-neutral-700 font-yoon text-md font-bold w-7 text-center leading-[1.2rem]">
-          검색
-        </h3>
         <SeminarSearchBar keyword={keyword} setSearchParams={setSearchParams} />
       </div>
       <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
