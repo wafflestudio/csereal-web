@@ -33,7 +33,7 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
       {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
       <div
-        className="sun-editor-editable [&_strong]:font-noto"
+        className="sun-editor-editable [&_strong]:font-noto [&_h1]:font-noto [&_h2]:font-noto [&_h3]:font-noto"
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       />
     </div>

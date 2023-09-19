@@ -16,7 +16,9 @@ const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
   const { navbarState } = useNavbarContext();
-  const refreshPage = () => window.location.reload();
+  const refreshPage = () => {
+    window.location.href = '/';
+  };
 
   return (
     <header
