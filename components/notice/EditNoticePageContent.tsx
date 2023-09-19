@@ -26,16 +26,18 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
-    ...postEditorDefaultValue,
-
     title: data.title,
     titleForMain: data.titleForMain ?? '',
     description: data.description,
-    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
+    isPrivate: data.isPrivate,
     isImportant: data.isImportant,
+    isPinned: data.isPinned,
+
+    mainImage: null,
+    isSlide: false,
   };
 
   const handleCancel = () => {

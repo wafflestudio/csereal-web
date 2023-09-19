@@ -26,11 +26,17 @@ export function EditActionButtons<T>({
   getContent,
 }: EditAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
-  const router = useRouter();
 
   return (
     <>
-      <GrayButton title="취소" disabled={requesting} onClick={onCancel} />
+      <GrayButton
+        title="취소"
+        disabled={requesting}
+        onClick={(e) => {
+          e.preventDefault();
+          onCancel();
+        }}
+      />
       <BlackButton
         title="삭제"
         disabled={requesting}
@@ -51,11 +57,17 @@ export function CreateActionButtons<T>({
   getContent,
 }: CreateAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
-  const router = useRouter();
 
   return (
     <>
-      <GrayButton title="취소" disabled={requesting} onClick={onCancel} />
+      <GrayButton
+        title="취소"
+        disabled={requesting}
+        onClick={(e) => {
+          e.preventDefault();
+          onCancel();
+        }}
+      />
       <BlackButton
         title="게시하기"
         disabled={requesting}

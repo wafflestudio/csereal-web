@@ -94,6 +94,8 @@ export default function PostEditor({
               setContentByKey('isPrivate')(!content.isPrivate);
               if (content.isPrivate) {
                 setContentByKey('isPinned')(false);
+                setContentByKey('isImportant')(false);
+                setContentByKey('isSlide')(false);
               }
             }}
           />
@@ -106,9 +108,6 @@ export default function PostEditor({
                 if (content.isPinned) {
                   setContentByKey('isPrivate')(false);
                 }
-                if (content.isPrivate) {
-                  setContentByKey('isPinned')(false);
-                }
               }}
             />
           )}
@@ -116,7 +115,12 @@ export default function PostEditor({
             <Checkbox
               label="메인-중요 안내에 표시"
               isChecked={content.isImportant}
-              toggleCheck={() => setContentByKey('isImportant')(!content.isImportant)}
+              toggleCheck={() => {
+                setContentByKey('isImportant')(!content.isImportant);
+                if (content.isImportant) {
+                  setContentByKey('isPrivate')(false);
+                }
+              }}
             />
           )}
           {showIsSlide && (
@@ -124,7 +128,12 @@ export default function PostEditor({
               <Checkbox
                 label="메인-슬라이드쇼에 표시"
                 isChecked={content.isSlide}
-                toggleCheck={() => setContentByKey('isSlide')(!content.isSlide)}
+                toggleCheck={() => {
+                  setContentByKey('isSlide')(!content.isSlide);
+                  if (content.isSlide) {
+                    setContentByKey('isPrivate')(false);
+                  }
+                }}
               />
               <p className="font-yoon text-xs text-neutral-700 font-light tracking-wide">
                 * ‘슬라이드쇼에 표시’ 글은 대표이미지가 첨부되어있는지 확인 바랍니다.
