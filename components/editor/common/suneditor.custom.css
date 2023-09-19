@@ -8,6 +8,10 @@ font-familiy 설정 제거
 table th background-color 제거
 */
 
+.sun-editor-editable img {
+  object-fit: contain;
+}
+
 .sun-editor {
   width: auto;
   height: auto;

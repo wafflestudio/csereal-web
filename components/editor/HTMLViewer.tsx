@@ -1,17 +1,24 @@
+/* eslint-disable @next/next/no-img-element */
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
 import './common/suneditor.custom.css';
 
-interface TopRightImage {
-  type: 'image';
-  url: string;
-  // px 단위
-  width: number;
-  // px 단위
-  height: number;
-}
+type TopRightImage =
+  | {
+      type: 'image';
+      url: string;
+      // px 단위
+      width: number;
+      // px 단위
+      height: number;
+    }
+  | {
+      type: 'imageUnoptimized';
+      url: string;
+      width: number;
+    };
 
 interface TopRightComponent {
   type: 'component';
@@ -30,7 +37,9 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
 
   return (
     <div className={`flow-root ${margin} `}>
-      {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
+      {(topRightContent?.type === 'image' || topRightContent?.type === 'imageUnoptimized') && (
+        <TopRightImageContent {...topRightContent} />
+      )}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
       <div
         className="sun-editor-editable [&_strong]:font-noto [&_h1]:font-noto [&_h2]:font-noto [&_h3]:font-noto"
@@ -40,19 +49,29 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
   );
 }
 
-function TopRightImageContent({ width, height, url }: TopRightImage) {
-  return (
-    <div className="relative float-right ml-[28px] mb-[28px]" style={{ width, height }}>
-      <Image
-        src={url}
-        alt="대표 이미지"
-        priority
-        fill
-        className="object-contain"
-        sizes={`${width}px`}
-      />
-    </div>
-  );
+function TopRightImageContent(props: TopRightImage) {
+  if (props.type === 'image') {
+    const { url, width, height } = props;
+    return (
+      <div className="relative float-right ml-[28px] mb-[28px]" style={{ width, height }}>
+        <Image
+          src={url}
+          alt="대표 이미지"
+          priority
+          fill
+          className="object-contain"
+          sizes={`${width}px`}
+        />
+      </div>
+    );
+  } else {
+    const { url, width } = props;
+    return (
+      <div className="relative float-right ml-[28px] mb-[20px]">
+        <img src={url} alt="대표 이미지" className="object-contain" width={width} />
+      </div>
+    );
+  }
 }
 
 function TopRightComponent({ content }: TopRightComponent) {
