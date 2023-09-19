@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { revalidateNotice } from '@/actions/noticeActions';
+
 import { deleteNotice, patchNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
@@ -61,6 +63,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
       newAttachments: localAttachments,
     });
 
+    await revalidateNotice();
     router.replace(`${noticePath}/${id}`);
   };
 

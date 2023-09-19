@@ -49,6 +49,7 @@ export default function NewsCreatePage() {
         tags={NewsTags}
         showMainImage
         showIsSlide
+        showIsImportant
         actions={{
           type: 'CREATE',
           onComplete: handleComplete,

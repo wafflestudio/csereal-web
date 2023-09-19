@@ -21,3 +21,7 @@ export const batchUnpin = async (ids: Set<number>) => {
     return { error };
   }
 };
+
+export const revalidateNotice = async () => {
+  revalidatePath('/community/notice');
+};
