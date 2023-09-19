@@ -8,6 +8,7 @@ import plugins from 'suneditor/src/plugins';
 const SunEditor = lazy(() => import('suneditor-react'));
 
 import './suneditor.custom.css';
+import { noto } from '@/styles/font';
 
 export default function SunEditorWrapper({
   editorRef,
@@ -18,25 +19,27 @@ export default function SunEditorWrapper({
 }) {
   return (
     <Suspense fallback={<SunEditorFallback />}>
-      <SunEditor
-        getSunEditorInstance={(x) => (editorRef.current = x)}
-        setDefaultStyle="padding: 1rem"
-        height="400px"
-        lang={ko}
+      <div className="font-noto-demi [&_strong]:font-noto [&_h1]:font-noto [&_h2]:font-noto [&_h3]:font-noto">
+        <SunEditor
+          getSunEditorInstance={(x) => (editorRef.current = x)}
+          setDefaultStyle={`padding: 1rem;`}
+          height="400px"
+          lang={ko}
         defaultValue={initialContent}
-        setOptions={{
-          plugins,
-          buttonList: [
-            ['undo', 'redo'],
-            ['font', 'fontSize', 'formatBlock'],
-            ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-            '/', // Line break
-            ['fontColor', 'hiliteColor'],
-            ['lineHeight', 'align', 'horizontalRule', 'list'],
-            ['table', 'link', 'image', 'preview'],
-          ],
-        }}
-      />
+          setOptions={{
+            plugins,
+            buttonList: [
+              ['undo', 'redo'],
+              ['fontSize', 'formatBlock'],
+              ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+              '/', // Line break
+              ['fontColor', 'hiliteColor'],
+              ['lineHeight', 'align', 'horizontalRule', 'list'],
+              ['table', 'link', 'image', 'preview'],
+            ],
+          }}
+        />
+      </div>
     </Suspense>
   );
 }

@@ -19,6 +19,8 @@ const newsPath = getPath(news);
 export default function NewsCreatePage() {
   const router = useRouter();
 
+  const handleCancel = () => router.push(newsPath);
+
   const handleComplete = async (content: PostEditorContent) => {
     throwIfCantSubmit(content);
 
@@ -52,6 +54,7 @@ export default function NewsCreatePage() {
         showIsImportant
         actions={{
           type: 'CREATE',
+          onCancel: handleCancel,
           onComplete: handleComplete,
         }}
       />

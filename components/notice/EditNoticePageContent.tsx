@@ -29,12 +29,17 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     ...postEditorDefaultValue,
 
     title: data.title,
+    titleForMain: data.titleForMain ?? '',
     description: data.description,
     isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
     isImportant: data.isImportant,
+  };
+
+  const handleCancel = () => {
+    router.push(`${noticePath}/${id}`);
   };
 
   const handleComplete = async (content: PostEditorContent) => {
@@ -77,6 +82,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         showIsImportant
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

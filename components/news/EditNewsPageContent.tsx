@@ -40,6 +40,8 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     isImportant: data.isImportant,
   };
 
+  const handleCancel = () => router.push(`${newsPath}/${id}`);
+
   const handleComplete = async (content: PostEditorContent) => {
     throwIfCantSubmit(content);
 
@@ -85,6 +87,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         showIsImportant
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

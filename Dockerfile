@@ -56,5 +56,6 @@ EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME localhost
+ENV TZ Asia/Seoul
 
 CMD ["node", "server.js"]

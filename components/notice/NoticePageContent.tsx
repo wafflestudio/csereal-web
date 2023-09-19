@@ -86,7 +86,11 @@ export default function NoticePageContent({
           isEditMode={isEditMode}
           toggleEditMode={toggleEditMode}
           selectedPostIds={selectedPostIds}
-          resetSelectedPosts={() => changeSelectedIds({ type: 'RESET' })}
+          resetSelectedPosts={() => {
+            changeSelectedIds({ type: 'RESET' });
+            // TODO: 깔끔하게
+            window.location.reload();
+          }}
         />
       </LoginStaffVisible>
     </PageLayout>

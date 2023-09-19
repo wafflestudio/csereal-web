@@ -45,6 +45,8 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     isImportant: data.isImportant,
   };
 
+  const handleCancel = () => router.push(`${seminarPath}/${id}`);
+
   const handleComplete = async (content: SeminarEditorContent) => {
     throwIfCantSubmit(content);
 
@@ -97,6 +99,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
       <SeminarEditor
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

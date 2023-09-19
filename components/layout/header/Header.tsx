@@ -51,7 +51,7 @@ function HeaderRight() {
             {user.isStaff && (
               <>
                 <Link href={'/admin'} className="hover:text-main-orange">
-                  관리자 메뉴ga <div className=""></div>
+                  관리자 메뉴 <div className=""></div>
                 </Link>
                 <span>|</span>
               </>

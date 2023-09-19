@@ -19,6 +19,8 @@ const noticePath = getPath(notice);
 export default function NoticeCreatePage() {
   const router = useRouter();
 
+  const handleCancel = () => router.push(noticePath);
+
   const handleComplete = async (content: PostEditorContent) => {
     console.log(content.description);
     if (content.title === '') {
@@ -49,6 +51,7 @@ export default function NoticeCreatePage() {
         showIsImportant
         actions={{
           type: 'CREATE',
+          onCancel: handleCancel,
           onComplete: handleComplete,
         }}
       />
