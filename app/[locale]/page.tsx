@@ -34,7 +34,7 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div className="w-[1104px] relative mx-auto overflow-hidden border border-neutral-700">
+    <div className="w-[1104px] relative mx-auto overflow-hidden">
       <BackgroundNode />
       <div className="relative flex justify-center h-[615px]">
         <ShortCuts shortCuts={shortCuts} />
