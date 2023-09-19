@@ -89,7 +89,7 @@ export default function PostEditor({
         <div className="flex flex-col gap-2">
           <Checkbox
             label="비공개 글"
-            isChecked={!content.isPrivate}
+            isChecked={content.isPrivate}
             toggleCheck={() => {
               setContentByKey('isPrivate')(!content.isPrivate);
               if (content.isPrivate) {

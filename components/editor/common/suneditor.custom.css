@@ -2265,7 +2265,7 @@ textarea.se-error:focus {
 .sun-editor-editable hr {
   display: flex;
   border-width: 1px 0 0;
-  border-color: #404040;
+  border-color: #262626;
   border-image: initial;
   height: 1px;
   margin-bottom: 0.75rem;

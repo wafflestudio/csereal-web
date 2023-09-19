@@ -67,7 +67,7 @@ export const postEditorDefaultValue: PostEditorContent = {
   mainImage: null,
   attachments: [],
   tags: [],
-  isPrivate: true,
+  isPrivate: false,
   isPinned: false,
   isImportant: false,
   isSlide: false,

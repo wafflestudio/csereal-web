@@ -29,10 +29,13 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
 
   return (
-    <div className={`flow-root ${margin}`}>
+    <div className={`flow-root ${margin} `}>
       {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
-      <div className="sun-editor-editable" dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
+      <div
+        className="sun-editor-editable [&_strong]:font-noto"
+        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
+      />
     </div>
   );
 }
