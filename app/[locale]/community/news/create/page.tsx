@@ -53,6 +53,7 @@ export default function NewsCreatePage() {
         showMainImage
         showIsSlide
         showIsImportant
+        showDate
         actions={{
           type: 'CREATE',
           onCancel: handleCancel,
