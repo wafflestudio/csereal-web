@@ -32,12 +32,12 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div className="w-[1264px] relative mx-auto overflow-hidden">
+    <div className="w-[1264px] h-[1236px] relative mx-auto overflow-hidden">
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
       <SlideScreen slides={data.slides} />
-      <div className="flex justify-between mt-[67px] mb-7">
+      <div className="flex justify-between mt-[67px]">
         <ImportantPosts posts={data.importants} />
         <Notices notices={data.notices} />
       </div>

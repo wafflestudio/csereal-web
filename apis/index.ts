@@ -10,7 +10,7 @@ export const getRequest = async <T = unknown>(
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  console.log(fetchUrl);
+  console.log('주쇠:', fetchUrl);
   const response = await fetch(fetchUrl, {
     ...init,
     method: 'GET',
