@@ -1,7 +1,7 @@
 .animated {
   --white: #141212;
   --neutral-200: #262626;
-  --neutral-600: #d4d4d4;
+  --neutral-400: #404040;
   transition: 0.3s;
 }
 
@@ -23,11 +23,11 @@
 }
 
 .folding::before {
-  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-600) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-400) 50%);
 }
 
 .folding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-600) 50%);
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-400) 50%);
   filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.5));
 }
 
@@ -55,7 +55,7 @@
 }
 
 .unfolding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-600) 50%);
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-400) 50%);
   filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
 }
 
