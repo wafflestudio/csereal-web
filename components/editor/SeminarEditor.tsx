@@ -57,6 +57,14 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       setContent((content) => ({ ...content, speaker: { ...content.speaker, [key]: value } }));
     };
 
+  if (content.isImportant) {
+    setContentByKey('isPrivate')(false);
+  }
+
+  if (content.isPrivate) {
+    setContentByKey('isImportant')(false);
+  }
+
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
