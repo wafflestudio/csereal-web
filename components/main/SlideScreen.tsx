@@ -67,7 +67,7 @@ interface DoubleArrowButtonProps {
 
 function DoubleArrowButton({ direction, onClick }: DoubleArrowButtonProps) {
   return (
-    <button onClick={onClick} className="h-fit">
+    <button onClick={onClick} className="h-[70px]">
       <span className="material-symbols-outlined text-[60px] font-extralight text-main-orange">
         {`keyboard_double_arrow_${direction}`}
       </span>

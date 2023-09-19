@@ -30,7 +30,7 @@ interface SlideGroupProps {
 function SlideGroup({ slides, show }: SlideGroupProps) {
   return (
     <div
-      className={`flex gap-[34px] ${
+      className={`flex gap-[33.5px] ${
         show ? 'opacity-100' : 'absolute top-0 opacity-0'
       } transition-opacity duration-700`}
     >
@@ -51,7 +51,7 @@ function Slide({ slide }: SlideProps) {
   return (
     <article
       className="w-[185px]"
-      style={{ clipPath: 'polygon(calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%, 0 0)' }}
+      style={{ clipPath: 'polygon(calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%, 0 0)' }}
     >
       <Link href={`${newsPath}/${slide.id}`} className="block w-[185px] h-[116px] relative">
         <ImageWithFallback src={slide.imageURL} alt={`${slide.title}_이미지`} fill />

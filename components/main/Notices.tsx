@@ -23,7 +23,7 @@ export default function Notices({ notices }: NoticesMainProps) {
   const [selectedCategory, setSeletedCategory] = useState<NoticeCategoryType>('전체');
 
   return (
-    <section className="relative w-[345px] p-3">
+    <section className="relative w-[345px] mr-[180px] px-3 py-1">
       <div className="flex gap-[0.9375rem] items-center mb-3">
         <h4 className="font-bold text-main-orange tracking-wide">공지사항</h4>
         <NoticeCategory selected={selectedCategory} setSelected={setSeletedCategory} />
@@ -42,10 +42,7 @@ function MoreNoticesButton({ selectedCategory }: MoreNoticesButtonProps) {
   const href = selectedCategory === '전체' ? noticePath : `${noticePath}?tag=${selectedCategory}`;
 
   return (
-    <Link
-      href={href}
-      className="absolute bottom-[13px] right-3 bg-main-orange w-4 h-4 rounded-full "
-    >
+    <Link href={href} className="absolute top-[150px] right-1 bg-main-orange w-4 h-4 rounded-full ">
       <AddIcon />
     </Link>
   );
