@@ -50,6 +50,10 @@ export default function PostEditor({
     setContentByKey('tags')(nextTags);
   };
 
+  if (content.isPinned || content.isImportant || content.isSlide) {
+    setContentByKey('isPrivate')(false);
+  }
+
   return (
     <form className="flex flex-col">
       <TitleFieldset value={content.title} onChange={setContentByKey('title')} />
@@ -105,9 +109,6 @@ export default function PostEditor({
               isChecked={content.isPinned}
               toggleCheck={() => {
                 setContentByKey('isPinned')(!content.isPinned);
-                if (content.isPinned) {
-                  setContentByKey('isPrivate')(false);
-                }
               }}
             />
           )}
@@ -117,9 +118,6 @@ export default function PostEditor({
               isChecked={content.isImportant}
               toggleCheck={() => {
                 setContentByKey('isImportant')(!content.isImportant);
-                if (content.isImportant) {
-                  setContentByKey('isPrivate')(false);
-                }
               }}
             />
           )}
@@ -130,9 +128,6 @@ export default function PostEditor({
                 isChecked={content.isSlide}
                 toggleCheck={() => {
                   setContentByKey('isSlide')(!content.isSlide);
-                  if (content.isSlide) {
-                    setContentByKey('isPrivate')(false);
-                  }
                 }}
               />
               <p className="font-yoon text-xs text-neutral-700 font-light tracking-wide">
