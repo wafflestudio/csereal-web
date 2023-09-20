@@ -41,6 +41,7 @@ export default async function MainPage() {
         <ImportantPosts posts={data.importants} />
         <Notices notices={data.notices} />
       </div>
+      <ScrollButton />
     </div>
   );
 }
@@ -55,6 +56,17 @@ function BackgroundNode() {
       <MainNode5 className="absolute top-[835px] left-[186px]" />
       <MainNode6 className="absolute top-[1042px] left-0" />
       <MainNode7 className="absolute top-[1150px] right-1" />
+    </div>
+  );
+}
+
+function ScrollButton() {
+  return (
+    <div className="w-full z-40 flex flex-col items-center fixed bottom-2.5">
+      <span className="text-xs text-main-orange font-yoon font-bold animate-pulse">SCROLL</span>
+      <span className="material-symbols-outlined text-[48px] text-main-orange font-extralight">
+        keyboard_double_arrow_down
+      </span>
     </div>
   );
 }
