@@ -7,7 +7,6 @@ import { getRequestWithCookie } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
-import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
@@ -16,6 +15,7 @@ import useModal from '@/hooks/useModal';
 import { Reservation } from '@/types/reservation';
 
 import { refreshPage } from '@/utils/refreshPage';
+import { errorToast, successToast } from '@/utils/toast';
 
 import BasicButton from '../BasicButton';
 

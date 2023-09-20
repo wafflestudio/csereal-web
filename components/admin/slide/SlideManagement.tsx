@@ -7,7 +7,6 @@ import { batchUnslide } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
-import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 
 import useModal from '@/hooks/useModal';
@@ -15,6 +14,7 @@ import useModal from '@/hooks/useModal';
 import { ADMIN_MENU, SlidePreview } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';
 import BatchAction from '../BatchAction';

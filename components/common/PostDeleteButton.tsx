@@ -6,7 +6,7 @@ import { deleteRequestWithCookie } from '@/apis';
 
 import useModal from '@/hooks/useModal';
 
-import { errorToast, successToast } from './toast';
+import { errorToast, successToast } from '../../utils/toast';
 import AlertModal from '../modal/AlertModal';
 
 export default function PostDeleteButton({ postType, id }: { postType: string; id: string }) {
