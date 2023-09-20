@@ -27,14 +27,14 @@ export default function AdjPostNav({
       <Row post={nextPost} type="next" />
       <Row post={prevPost} type="prev" />
       <div className="flex justify-end mt-6">
-        {/* <LoginStaffVisible> */}
-        {id && (
-          <>
-            <PostDeleteButton postType={postType} id={id} />
-            <PostEditLink href={`/community/${postType}/${id}/edit`} />
-          </>
-        )}
-        {/* </LoginStaffVisible> */}
+        <LoginStaffVisible>
+          {id && (
+            <>
+              <PostDeleteButton postType={postType} id={id} />
+              <PostEditLink href={`/community/${postType}/${id}/edit`} />
+            </>
+          )}
+        </LoginStaffVisible>
         <PostListLink href={`/community/${postType}`} />
       </div>
     </div>
