@@ -14,7 +14,7 @@ interface SlideGroupsProps {
 
 export default function SlideGroups({ currentIndex, slideGroups }: SlideGroupsProps) {
   return (
-    <div className="relative">
+    <div className="relative w-[840.5px] h-[244px]">
       {slideGroups.map((slides, i) => (
         <SlideGroup key={i} slides={slides} show={i === currentIndex} />
       ))}
@@ -30,8 +30,8 @@ interface SlideGroupProps {
 function SlideGroup({ slides, show }: SlideGroupProps) {
   return (
     <div
-      className={`flex gap-[33.5px] ${
-        show ? 'opacity-100' : 'absolute top-0 opacity-0'
+      className={`flex gap-[33.5px] absolute top-0 ${
+        show ? 'opacity-100 z-10' : 'opacity-0'
       } transition-opacity duration-700`}
     >
       {slides.map((slide) => (
