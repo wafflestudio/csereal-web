@@ -9,10 +9,8 @@ import MainNode7 from '@/public/image/main_7.svg';
 import { getMainContents } from '@/apis/main';
 
 import BgVideo from '@/components/main/BgVideo';
-import ImportantPosts from '@/components/main/ImportantPosts';
-import Notices from '@/components/main/Notices';
+import MainPageContent from '@/components/main/MainPageContent';
 import ShortCuts from '@/components/main/ShortCuts';
-import SlideScreen from '@/components/main/SlideScreen';
 
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
 
@@ -36,12 +34,7 @@ export default async function MainPage() {
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
-      <SlideScreen slides={data.slides} />
-      <div className="flex justify-between mt-[67px]">
-        <ImportantPosts posts={data.importants} />
-        <Notices notices={data.notices} />
-      </div>
-      <ScrollButton />
+      {data && <MainPageContent data={data} />}
     </div>
   );
 }
@@ -56,17 +49,6 @@ function BackgroundNode() {
       <MainNode5 className="absolute top-[835px] left-[186px]" />
       <MainNode6 className="absolute top-[1042px] left-0" />
       <MainNode7 className="absolute top-[1150px] right-1" />
-    </div>
-  );
-}
-
-function ScrollButton() {
-  return (
-    <div className="w-[1264px] z-40 flex flex-col items-center fixed bottom-2.5">
-      <span className="text-xs text-main-orange font-yoon font-bold animate-pulse">SCROLL</span>
-      <span className="material-symbols-outlined text-[48px] text-main-orange font-extralight">
-        keyboard_double_arrow_down
-      </span>
     </div>
   );
 }
