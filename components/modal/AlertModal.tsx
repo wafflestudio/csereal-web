@@ -53,7 +53,7 @@ function AlertMessage({ message }: { message: string }) {
 function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {
   return (
     <button
-      className={`px-[.875rem] h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 hover:bg-neutral-200 font-medium text-xs text-neutral-500`}
+      className={`px-[17px] h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 hover:bg-neutral-200 font-noto font--bold text-xs text-neutral-500 hover:text-neutral-700`}
       onClick={onClick}
       type="button"
     >
@@ -67,7 +67,7 @@ function ConfirmButton({ text }: { text: string }) {
 
   return (
     <button
-      className={`ml-2.5 px-[.875rem] h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 hover:bg-neutral-500 font-medium text-xs text-white`}
+      className={`ml-2.5 px-[17px] h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 hover:bg-neutral-500 font-bold text-xs text-white`}
       disabled={pending}
       type="submit"
     >
