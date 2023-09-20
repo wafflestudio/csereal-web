@@ -17,6 +17,8 @@ import useModal from '@/hooks/useModal';
 
 import { ReservationPostBody } from '@/types/reservation';
 
+import { refreshPage } from '@/utils/refreshPage';
+
 export default function AddReservationModal({ roomId }: { roomId: number }) {
   const { closeModal } = useModal();
   const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
@@ -34,11 +36,11 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
     }
     try {
       await postReservation(body);
-      window.location.reload();
+      refreshPage();
     } catch (e) {
       if (e instanceof NetworkError) {
         if (e.statusCode === 409) {
-          errorToast('해당 위치에 예약이 존재합니다.');
+          errorToast('해당 위치에 이미 예약이 존재합니다.');
         } else {
           errorToast(e.message);
         }

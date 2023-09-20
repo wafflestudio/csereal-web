@@ -8,6 +8,7 @@ import { CurvedHorizontalNode } from '@/components/common/Nodes';
 import { SegmentNode } from '@/types/page';
 
 import { getLocationLog, getPath } from '@/utils/page';
+import { refreshPage } from '@/utils/refreshPage';
 
 interface PageTitleProps {
   title: string | JSX.Element;
@@ -73,10 +74,7 @@ function LocationText({ path, name, isCurrent }: LoactionText) {
   const textStyle = 'text-xs font-yoon font-normal tracking-[.02em]';
 
   return isCurrent ? (
-    <button
-      className={`${textStyle} hover:text-main-orange`}
-      onClick={() => window.location.reload()}
-    >
+    <button className={`${textStyle} hover:text-main-orange`} onClick={refreshPage}>
       {name}
     </button>
   ) : path ? (
