@@ -62,7 +62,7 @@ function BackgroundNode() {
 
 function ScrollButton() {
   return (
-    <div className="w-full z-40 flex flex-col items-center fixed bottom-2.5">
+    <div className="w-[1264px] z-40 flex flex-col items-center fixed bottom-2.5">
       <span className="text-xs text-main-orange font-yoon font-bold animate-pulse">SCROLL</span>
       <span className="material-symbols-outlined text-[48px] text-main-orange font-extralight">
         keyboard_double_arrow_down
