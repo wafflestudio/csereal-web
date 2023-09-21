@@ -11,17 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare deploy key
-        run: |
-          echo "${{secrets.SSH_KEY}}" > deploy_key
-          chmod 600 ./deploy_key
-
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
+          debug: true
           script: |
             cd ~/csereal_web
             npm run build
