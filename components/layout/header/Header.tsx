@@ -16,6 +16,10 @@ const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
   const { navbarState } = useNavbarContext();
+  const refreshPage = () => {
+    window.location.href = '/';
+  };
+
   return (
     <header
       className={`
@@ -23,9 +27,9 @@ export default function Header() {
         ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
       `}
     >
-      <Link href="/">
+      <div onClick={refreshPage} className="cursor-pointer">
         <HeaderLogo />
-      </Link>
+      </div>
       <HeaderRight />
     </header>
   );
@@ -37,7 +41,7 @@ function HeaderRight() {
 
   const t = useTranslations('Header');
 
-  const langButtonText = isEnglish ? '한국어' : 'english';
+  const langButtonText = isEnglish ? '한국어' : 'ENG';
 
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
@@ -47,19 +51,19 @@ function HeaderRight() {
             {user.isStaff && (
               <>
                 <Link href={'/admin'} className="hover:text-main-orange">
-                  관리자 메뉴
+                  관리자 메뉴 <div className=""></div>
                 </Link>
                 <span>|</span>
               </>
             )}
-            <Link href={LOGOUT_URL} className="hover:text-main-orange">
+            <a href={LOGOUT_URL} className="hover:text-main-orange">
               {t('로그아웃')}
-            </Link>
+            </a>
           </>
         ) : (
-          <Link href={LOGIN_URL} className="hover:text-main-orange">
+          <a href={LOGIN_URL} className="hover:text-main-orange">
             {t('로그인')}
-          </Link>
+          </a>
         )}
         <span>|</span>
 

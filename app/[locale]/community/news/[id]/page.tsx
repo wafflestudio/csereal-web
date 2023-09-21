@@ -23,11 +23,26 @@ const newsPath = getPath(news);
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
   const currPost = await getNewsPostDetail(parseInt(params.id), searchParams);
   const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, newsPath);
+  const date = new Date(currPost.date);
+  const dateStr = `${date.getFullYear()}년 ${
+    date.getMonth() + 1
+  }월 ${date.getDate()}일 ${date.toLocaleString('ko-KR', { weekday: 'long' })}`;
+
+  console.log(currPost);
 
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
       {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-      <HTMLViewer htmlContent={currPost.description} margin="mt-4" />
+      <HTMLViewer
+        htmlContent={currPost.description}
+        margin="mt-4"
+        topRightContent={
+          currPost.imageURL
+            ? { type: 'imageUnoptimized', url: currPost.imageURL, width: 320 }
+            : undefined
+        }
+      />
+      <time className="font-noto text-sm font-bold text-end block mt-12">{dateStr}</time>
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
       <AdjPostNav

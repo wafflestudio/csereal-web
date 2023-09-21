@@ -30,6 +30,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     ...postEditorDefaultValue,
 
     title: data.title,
+    titleForMain: data.titleForMain ?? '',
     description: data.description,
     isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
@@ -39,6 +40,8 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     isSlide: data.isSlide,
     isImportant: data.isImportant,
   };
+
+  const handleCancel = () => router.push(`${newsPath}/${id}`);
 
   const handleComplete = async (content: PostEditorContent) => {
     throwIfCantSubmit(content);
@@ -63,6 +66,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         isImportant: content.isImportant,
         tags: content.tags,
         deleteIds,
+        date: content.date,
       },
       mainImage,
       newAttachments: localAttachments,
@@ -82,8 +86,11 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         tags={NewsTags}
         showMainImage
         showIsSlide
+        showIsImportant
+        showDate
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

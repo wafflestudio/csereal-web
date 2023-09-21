@@ -53,7 +53,7 @@ export const editSeminar = async (id: number, body: PATCHSeminarBody) => {
   );
 
   if (body.image) {
-    formData.append('mainImage', body.image);
+    formData.append('newMainImage', body.image);
   }
 
   for (const attachment of body.newAttachments) {

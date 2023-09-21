@@ -78,8 +78,6 @@ const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
     endTime.getHours(),
   )}:${padZero(endTime.getMinutes())}`;
 
-  console.log(reservation.id);
-
   return (
     <ReservationDetailModalButton
       className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}

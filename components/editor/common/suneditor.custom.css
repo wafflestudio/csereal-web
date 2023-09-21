@@ -8,6 +8,10 @@ font-familiy 설정 제거
 table th background-color 제거
 */
 
+.sun-editor-editable img {
+  object-fit: contain;
+}
+
 .sun-editor {
   width: auto;
   height: auto;
@@ -2129,7 +2133,7 @@ textarea.se-error:focus {
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 0;
-  padding-inline-start: 40px;
+  padding-inline-start: 14px;
 }
 .sun-editor-editable ul {
   list-style-type: disc;
@@ -2176,7 +2180,7 @@ textarea.se-error:focus {
 }
 .sun-editor-editable p {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 0 1rem;
 }
 .sun-editor-editable div {
   display: block;
@@ -2265,7 +2269,7 @@ textarea.se-error:focus {
 .sun-editor-editable hr {
   display: flex;
   border-width: 1px 0 0;
-  border-color: #404040;
+  border-color: #262626;
   border-image: initial;
   height: 1px;
   margin-bottom: 0.75rem;
@@ -2312,7 +2316,7 @@ textarea.se-error:focus {
 .sun-editor-editable table th {
   /* 가끔 html에 스타일이 수동으로 들어간 경우가 있어서 임시 조치 */
   background-color: transparent !important;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #404040;
   padding: 0.4em;
   background-clip: padding-box;
 }

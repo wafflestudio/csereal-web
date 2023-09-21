@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/search
+      - fix/design
 
 jobs:
   build:
@@ -52,7 +52,7 @@ jobs:
           command: |
             ssh -T -i ./deploy_key -p 22 waffle@${{ secrets.SSH_HOST }}
             docker ps
+            docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
             docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
-            docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
             docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image

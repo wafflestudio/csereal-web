@@ -22,7 +22,7 @@ export default function NoticeRow({ id, title, description, dateStr }: NoticeRow
   return (
     <Link className="flex flex-col gap-[.69rem]" href={`${noticePath}/${id}`}>
       <h3 className="text-neutral-700 font-noto text-md font-bold leading-none">{title}</h3>
-      <p className="text-neutral-700 font-noto text-xs font-normal leading-none">
+      <p className="text-neutral-700 text-xs font-normal line-clamp-1">
         {description.content.slice(0, description.boldStartIndex)}
         <span className="font-bold">
           {description.content.slice(description.boldStartIndex, description.boldEndIndex)}

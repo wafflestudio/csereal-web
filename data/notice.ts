@@ -14,6 +14,7 @@ export const getMockNoticePostDetail = async (id: number, params: PostSearchQuer
 const noticeDetailMock: Notice = {
   id: 3,
   title: 'What is Lorem Ipsum?',
+  titleForMain: 'title for main',
   nextId: 4,
   nextTitle: 'Why do we use it?',
   prevId: null,

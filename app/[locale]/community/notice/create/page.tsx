@@ -19,7 +19,10 @@ const noticePath = getPath(notice);
 export default function NoticeCreatePage() {
   const router = useRouter();
 
+  const handleCancel = () => router.push(noticePath);
+
   const handleComplete = async (content: PostEditorContent) => {
+    console.log(content.description);
     if (content.title === '') {
       throw new Error('제목을 입력해주세요');
     }
@@ -37,7 +40,6 @@ export default function NoticeCreatePage() {
       },
       attachments,
     });
-
     router.replace(noticePath);
   };
 
@@ -45,11 +47,11 @@ export default function NoticeCreatePage() {
     <PageLayout title="공지사항 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NoticeTags}
-        showMainImage
         showIsPinned
         showIsImportant
         actions={{
           type: 'CREATE',
+          onCancel: handleCancel,
           onComplete: handleComplete,
         }}
       />

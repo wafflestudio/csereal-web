@@ -48,6 +48,7 @@ export interface PostEditorContent {
   isPinned: boolean;
   isImportant: boolean;
   isSlide: boolean;
+  date: string;
 }
 
 export interface PostEditorProps {
@@ -56,6 +57,7 @@ export interface PostEditorProps {
   showIsPinned?: boolean;
   showIsImportant?: boolean;
   showIsSlide?: boolean;
+  showDate?: boolean;
   actions: EditAction<PostEditorContent> | CreateAction<PostEditorContent>;
   initialContent?: PostEditorContent;
 }
@@ -67,8 +69,9 @@ export const postEditorDefaultValue: PostEditorContent = {
   mainImage: null,
   attachments: [],
   tags: [],
-  isPrivate: true,
+  isPrivate: false,
   isPinned: false,
   isImportant: false,
   isSlide: false,
+  date: new Date().toISOString(),
 };

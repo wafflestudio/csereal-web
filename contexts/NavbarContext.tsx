@@ -25,12 +25,12 @@ interface NavbarContextContent {
 }
 
 const NavbarContext = createContext<NavbarContextContent>({
-  navbarState: { type: 'closed' },
+  navbarState: { type: 'expanded' },
   setNavbarState: () => {},
 });
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
-  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'closed' });
+  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'expanded' });
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }}>
       {children}

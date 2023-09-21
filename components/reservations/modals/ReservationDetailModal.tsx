@@ -7,6 +7,7 @@ import { getRequestWithCookie } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
+import LoginStaffVisible from '@/components/common/LoginStaffVisible';
 import { errorToast } from '@/components/common/toast';
 
 import useModal from '@/hooks/useModal';
@@ -17,7 +18,7 @@ import ModalFrame from '../../modal/ModalFrame';
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation, mutate } = useSWR<Reservation>(
+  const { data: reservation } = useSWR<Reservation>(
     `/reservation/${reservationId}`,
     getRequestWithCookie,
   );
@@ -56,7 +57,9 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>
-          <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
+          <LoginStaffVisible>
+            <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
+          </LoginStaffVisible>
         </div>
         <span
           className="absolute top-3 right-3 material-symbols-outlined text-base cursor-pointer"

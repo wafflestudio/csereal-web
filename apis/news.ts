@@ -45,7 +45,7 @@ export const patchNews = async (id: number, body: PATCHNewsBody) => {
   );
 
   if (body.mainImage) {
-    formData.append('mainImage', body.mainImage);
+    formData.append('newMainImage', body.mainImage);
   }
 
   for (const attachment of body.newAttachments) {

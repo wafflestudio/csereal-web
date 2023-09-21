@@ -33,7 +33,7 @@ export default function SeminarRow({
 }: SeminarRowProps) {
   return (
     <article
-      className={`font-noto flex py-[1.2rem] border-neutral-200 ${
+      className={`flex py-[1.2rem] border-neutral-200 ${
         !isYearLast && !hideDivider ? 'border-t-[1px]' : null
       }`}
     >
@@ -53,7 +53,7 @@ export default function SeminarRow({
       </Link>
       <div className="flex flex-col items-start pl-5 break-all">
         <Link href={`${seminarPath}/${id}`} className="hover:underline">
-          <h3 className="text-md font-bold mb-[.63rem] leading-5 text-neutral-800">{title}</h3>
+          <h3 className="font-noto text-md font-bold mb-[.63rem] leading-5">{title}</h3>
         </Link>
 
         <Link

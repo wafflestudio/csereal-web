@@ -56,5 +56,8 @@ EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME localhost
+ENV TZ Asia/Seoul
+ENV LANG ko_KR.UTF-8
+ENV TIME ko_KR.UTF-8
 
 CMD ["node", "server.js"]

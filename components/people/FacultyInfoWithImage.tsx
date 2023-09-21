@@ -23,13 +23,8 @@ export default function FacultyInfoWithImage({
     <div className="relative float-right w-[348px] h-[374px]">
       <PeopleImageWithAnimation imageURL={imageURL} />
       <div className="w-64 h-[196px] absolute bottom-0 left-0 z-10">
-        <div
-          style={{
-            filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
-          }}
-          className="w-full h-full absolute"
-        >
-          <div className="flex flex-col text-neutral-600 text-sm gap-[9px] p-5 bg-white">
+        <div className="w-full h-full absolute">
+          <div className="flex flex-col text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
             {phone && <FacultyInfoWithSymbols symbol="phone_in_talk" content={phone} />}
             {fax && <FacultyInfoWithSymbols symbol="print" content={fax} />}
@@ -39,10 +34,10 @@ export default function FacultyInfoWithImage({
         </div>
         <div className="relative h-full w-full z-[-1]">
           <div
-            className="h-full w-full absolute bottom-[-17px] right-[-17px] animate-fadeIn"
+            className="h-full w-full absolute bottom-[-8px] right-[-17px] animate-fadeIn"
             style={{
               background:
-                'repeating-linear-gradient(-45deg, black, black 5px, #E9390B 5px, #E9390B 6px)',
+                'repeating-linear-gradient(-45deg, transparent, transparent 5px, #E9390B 5px, #E9390B 6px)',
             }}
           />
         </div>

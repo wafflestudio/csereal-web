@@ -14,6 +14,7 @@ export interface NoticePreviewList {
 
 export interface Notice {
   title: string;
+  titleForMain: string | null;
   description: string;
   isPrivate: boolean;
   tags: string[];
