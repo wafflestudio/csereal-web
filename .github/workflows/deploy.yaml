@@ -18,8 +18,8 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
           script: |
-            cd ~/csereal_web
+            cd ~/csereal-web
+            git pull
             npm run build
-            pm2 stop csereal_front
-            pm2 --name csereal_front start npm -- start
+            pm2 restart csereal_front
 

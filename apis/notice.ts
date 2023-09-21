@@ -1,20 +1,10 @@
 import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
-import {
-  deleteRequestWithCookie,
-  getRequest,
-  patchRequestWithCookie,
-  postRequestWithCookie,
-} from '.';
+import { deleteRequestWithCookie, patchRequestWithCookie, postRequestWithCookie } from '.';
+import { getRequest } from '../actions';
 
 const noticePath = '/notice';
-
-export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticePath, params, { next: { tags: ['notice'] } }) as Promise<NoticePreviewList>;
-
-export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticePath}/${id}`, params, { next: { tags: ['notice'] } }) as Promise<Notice>;
 
 export const postNotice = async (body: POSTNoticeBody) => {
   const formData = new FormData();

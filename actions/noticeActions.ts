@@ -3,14 +3,26 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+import { NoticePreviewList, Notice } from '@/types/notice';
 import { notice } from '@/types/page';
+import { PostSearchQueryParams } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
-import { deleteRequest, patchRequest } from '.';
+import { deleteRequest, getRequest, patchRequest } from '.';
 
 const noticeApiPath = '/notice';
 const noticePath = getPath(notice);
+
+export const getNoticePosts = (params: PostSearchQueryParams) =>
+  getRequest(noticeApiPath, params, {
+    next: { tags: ['notice'] },
+  }) as Promise<NoticePreviewList>;
+
+export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
+  getRequest(`${noticeApiPath}/${id}`, params, {
+    next: { tags: ['notice'] },
+  }) as Promise<Notice>;
 
 export const batchDeleteAction = async (ids: Set<number>) => {
   try {

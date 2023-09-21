@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { startTransition, useTransition } from 'react';
+import { useTransition } from 'react';
 
 import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
 
-import { deleteNotice, patchNotice } from '@/apis/notice';
+import { patchNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
