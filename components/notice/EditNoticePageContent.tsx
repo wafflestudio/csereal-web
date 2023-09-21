@@ -17,17 +17,22 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NoticeTags } from '@/constants/tag';
 
+import useModal from '@/hooks/useModal';
+
 import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 import { errorToast, successToast } from '@/utils/toast';
 
+import AlertModal from '../modal/AlertModal';
+
 const noticePath = getPath(notice);
 
 export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
   const [_, startTransition] = useTransition();
+  const { openModal } = useModal();
 
   const initialContent: PostEditorContent = {
     title: data.title,
@@ -47,7 +52,12 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   };
 
   const handleCancel = () => {
-    router.push(`${noticePath}/${id}`);
+    openModal(
+      <AlertModal
+        message="편집을 취소하시겠습니까?"
+        onConfirm={() => router.push(`${noticePath}/${id}`)}
+      />,
+    );
   };
 
   const handleComplete = async (content: PostEditorContent) => {
