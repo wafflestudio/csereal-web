@@ -1,7 +1,12 @@
 import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
-import { deleteRequest, deleteRequestWithCookie, getRequest, patchRequest, patchRequestWithCookie, postRequest, postRequestWithCookie } from '.';
+import {
+  deleteRequestWithCookie,
+  getRequest,
+  patchRequestWithCookie,
+  postRequestWithCookie,
+} from '.';
 
 const noticePath = '/notice';
 
@@ -47,16 +52,4 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
   });
 };
 
-export const patchMultipleNotices = (idList: number[]) =>
-  patchRequestWithCookie(noticePath, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ idList }),
-  });
-
 export const deleteNotice = (id: number) => deleteRequestWithCookie(`${noticePath}/${id}`);
-
-export const deleteMultipleNotices = (idList: number[]) =>
-  deleteRequestWithCookie(noticePath, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ idList }),
-  });

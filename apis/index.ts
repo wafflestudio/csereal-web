@@ -55,7 +55,7 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
 export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =>
   deleteRequest(url, { ...init, credentials: 'include' });
 
-const checkError = (response: Response) => {
+export const checkError = (response: Response) => {
   if (!response.ok) {
     throw new NetworkError(response.status);
   }
