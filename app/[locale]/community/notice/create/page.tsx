@@ -25,9 +25,7 @@ export default function NoticeCreatePage() {
 
   const handleComplete = async (content: PostEditorContent) => {
     console.log(content.description);
-    if (content.title === '') {
-      throw new Error('제목을 입력해주세요');
-    }
+    canSubmit(content);
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNotice({
@@ -61,3 +59,12 @@ export default function NoticeCreatePage() {
     </PageLayout>
   );
 }
+
+const canSubmit = (content: PostEditorContent) => {
+  if (content.title === '') {
+    throw new Error('제목을 입력해주세요');
+  }
+  if (content.description === '') {
+    throw new Error('내용을 입력해주세요');
+  }
+};

@@ -14,11 +14,12 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: cse-dev-waffle.bacchus.io
-          username: waffle
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
           script: |
             cd ~/csereal_web
             npm run build
             pm2 stop csereal_front
             pm2 --name csereal_front start npm -- start
+
