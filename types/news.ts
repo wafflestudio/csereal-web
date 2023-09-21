@@ -15,6 +15,7 @@ export interface NewsPreviewList {
 
 export interface News {
   title: string;
+  titleForMain: string | null;
   description: string;
   isPrivate: boolean;
   tags: string[];
@@ -35,6 +36,8 @@ export interface News {
     url: string;
     bytes: number;
   }[];
+
+  date: string;
 }
 
 export interface POSTNewsBody {
@@ -46,6 +49,7 @@ export interface POSTNewsBody {
     isSlide: boolean;
     isImportant: boolean;
     tags: string[];
+    date: string;
   };
   mainImage: File | null;
   attachments: File[];
@@ -61,6 +65,7 @@ export interface PATCHNewsBody {
     isImportant: boolean;
     tags: string[];
     deleteIds: number[];
+    date: string;
   };
   mainImage: File | null;
   newAttachments: File[];

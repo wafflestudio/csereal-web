@@ -22,9 +22,8 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   const router = useRouter();
 
   const initialContent: SeminarEditorContent = {
-    ...getSeminarEditorDefaultValue(),
-
     title: data.title,
+    titleForMain: data.titleForMain,
     description: data.description ?? '',
     location: data.location,
     schedule: {
@@ -43,7 +42,10 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
     isPrivate: data.isPrivate,
     isImportant: data.isImportant,
+    host: data.host,
   };
+
+  const handleCancel = () => router.push(`${seminarPath}/${id}`);
 
   const handleComplete = async (content: SeminarEditorContent) => {
     throwIfCantSubmit(content);
@@ -97,6 +99,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
       <SeminarEditor
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

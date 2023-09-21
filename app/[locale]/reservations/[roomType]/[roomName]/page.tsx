@@ -1,3 +1,5 @@
+import { NetworkError } from '@/apis';
+
 import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
 
 import LoginUserVisible from '@/components/common/LoginUserVisible';
@@ -12,9 +14,7 @@ interface RoomReservationProps {
 export default function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
-      <LoginUserVisible fallback={<p>로그인 후 사용할 수 있는 페이지입니다.</p>}>
-        <LoginedRoomReservationPage params={params} searchParams={searchParams} />
-      </LoginUserVisible>
+      <LoginedRoomReservationPage params={params} searchParams={searchParams} />
     </PageLayout>
   );
 }

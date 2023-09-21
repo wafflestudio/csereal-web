@@ -22,22 +22,17 @@ export default function SearchForm({ query }: { query: string }) {
   };
 
   return (
-    <form className="flex items-center mt-8 gap-[.69rem]" onSubmit={searchText}>
-      <label className="font-yoon text-md font-bold">{t('검색')}</label>
-      <div className="flex justify-center outline-none rounded-[.1875rem] min-w-[8rem] w-[13.5rem] h-[1.875rem] border-neutral-700 border  px-[.63rem]">
-        <input
-          type="text"
-          id="search"
-          className="font-yoon text-xs font-bold bg-transparent w-full outline-none"
-          value={text}
-          onChange={handleChange}
-        />
-        <button className="flex justify-center items-center">
-          <span className="material-symbols-rounded text-[1.25rem] font-regular text-neutral-700 hover:text-neutral-700">
-            search
-          </span>
-        </button>
-      </div>
+    <form className="flex w-fit mt-6" onSubmit={searchText}>
+      <input
+        type="text"
+        id="search"
+        className="outline-none border border-neutral-300 rounded-l-sm text-xs w-[13.5rem] h-8 px-2 bg-transparent placeholder:text-neutral-300 tracking-[0.02em] autofill-bg-white"
+        value={text}
+        onChange={handleChange}
+      />
+      <button className="flex justify-center items-center py-[.1875rem] px-3 h-8 border-y border-r border-neutral-300 rounded-r-sm font-bold text-xs tracking-[0.02em]">
+        검색
+      </button>
     </form>
   );
 }

@@ -18,6 +18,8 @@ const seminarPath = getPath(seminar);
 export default function SeminarCreatePage() {
   const router = useRouter();
 
+  const handleCancel = () => router.push(seminarPath);
+
   const handleComplete = async (content: SeminarEditorContent) => {
     throwIfCantSubmit(content);
 
@@ -57,6 +59,7 @@ export default function SeminarCreatePage() {
       <SeminarEditor
         actions={{
           type: 'CREATE',
+          onCancel: handleCancel,
           onComplete: handleComplete,
         }}
       />

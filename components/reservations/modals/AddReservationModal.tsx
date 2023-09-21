@@ -28,7 +28,11 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
     e.preventDefault();
 
     const canSubmit =
-      privacyChecked && body.title !== '' && body.contactEmail !== '' && body.professor !== '';
+      privacyChecked &&
+      body.title !== '' &&
+      body.contactEmail !== '' &&
+      body.professor !== '' &&
+      body.purpose !== '';
 
     if (!canSubmit) {
       infoToast('모든 필수 정보를 입력해주세요');
@@ -325,12 +329,14 @@ const PurposeTextInputFieldset = ({
   text,
   setText,
 }: {
-  text?: string;
-  setText: (text?: string) => void;
+  text: string;
+  setText: (text: string) => void;
 }) => {
   return (
     <fieldset className="text-sm font-normal">
-      <legend className="mb-1">사용 목적</legend>
+      <legend className="mb-1">
+        사용 목적<span className="text-main-orange">*</span>
+      </legend>
       <textarea
         className={`w-full rounded-sm border border-neutral-200 bg-neutral-50
             outline-none p-1 h-14`}
@@ -378,7 +384,7 @@ const PrivacyFieldset = ({
   );
 };
 
-const getDefaultBodyValue = (roomId: number) => {
+const getDefaultBodyValue = (roomId: number): ReservationPostBody => {
   const startTime = convertToFastestStartTime(new Date());
 
   const endTime = new Date(startTime);
@@ -393,6 +399,7 @@ const getDefaultBodyValue = (roomId: number) => {
     contactEmail: '',
     contactPhone: '',
     professor: '',
+    purpose: '',
   };
 };
 

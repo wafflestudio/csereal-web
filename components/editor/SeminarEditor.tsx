@@ -86,8 +86,14 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
       <CheckboxFieldset
         isPrivate={content.isPrivate}
         isImportant={content.isImportant}
-        setIsPrivate={setContentByKey('isPrivate')}
-        setIsImportant={setContentByKey('isImportant')}
+        setIsPrivate={(x) => {
+          setContentByKey('isPrivate')(x);
+          if (x) setContentByKey('isImportant')(false);
+        }}
+        setIsImportant={(x) => {
+          setContentByKey('isImportant')(x);
+          if (x) setContentByKey('isPrivate')(false);
+        }}
       />
 
       <div className="self-end flex gap-3">

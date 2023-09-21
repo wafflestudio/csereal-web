@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import MainNode1 from '@/public/image/main_1.svg';
 import MainNode2 from '@/public/image/main_2.svg';
 import MainNode3 from '@/public/image/main_3.svg';
@@ -9,10 +11,8 @@ import MainNode7 from '@/public/image/main_7.svg';
 import { getMainContents } from '@/apis/main';
 
 import BgVideo from '@/components/main/BgVideo';
-import ImportantPosts from '@/components/main/ImportantPosts';
-import Notices from '@/components/main/Notices';
+import MainPageContent from '@/components/main/MainPageContent';
 import ShortCuts from '@/components/main/ShortCuts';
-import SlideScreen from '@/components/main/SlideScreen';
 
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
 
@@ -20,12 +20,12 @@ import { getPath } from '@/utils/page';
 
 const tclPath = getPath(topConferenceList);
 const facultyRecruitmentPath = getPath(facultyRecruitment);
-const undergraduateNoticePath = getPath(notice) + '?tag=학부';
+const undergraduateNoticePath = getPath(notice);
 
 const shortCuts = [
   { title: facultyRecruitment.name, href: facultyRecruitmentPath },
   { title: topConferenceList.name, href: tclPath },
-  { title: '학부 ' + notice.name, href: undergraduateNoticePath },
+  { title: '학부 ' + notice.name, href: `${undergraduateNoticePath}?tag=학사(학부)` },
 ];
 
 export default async function MainPage() {
@@ -36,11 +36,7 @@ export default async function MainPage() {
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
-      <SlideScreen slides={data.slides} />
-      <div className="flex justify-between mt-[67px]">
-        <ImportantPosts posts={data.importants} />
-        <Notices notices={data.notices} />
-      </div>
+      {data && <MainPageContent data={data} />}
     </div>
   );
 }

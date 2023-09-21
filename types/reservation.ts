@@ -37,5 +37,5 @@ export interface ReservationPostBody {
   contactEmail: string;
   contactPhone: string;
   professor: string;
-  purpose?: string;
+  purpose: string;
 }

@@ -50,7 +50,7 @@ const SearchSubNavNode = (props: SearchSubNavNodeProps) => {
   if (type === 'INTERNAL') {
     return (
       <div>
-        <p className="text-neutral-400 font-yoon text-xs">
+        <p className="text-neutral-600 font-yoon text-xs">
           {t(title)}({size})
         </p>
         <div className="flex flex-col pl-3 gap-3 mt-3">

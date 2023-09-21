@@ -9,7 +9,6 @@ import {
   PostEditorContent,
   isLocalFile,
   isUploadedFile,
-  postEditorDefaultValue,
 } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -26,15 +25,24 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
-    ...postEditorDefaultValue,
-
     title: data.title,
+    titleForMain: data.titleForMain ?? '',
     description: data.description,
-    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
+    isPrivate: data.isPrivate,
     isImportant: data.isImportant,
+    isPinned: data.isPinned,
+
+    mainImage: null,
+    isSlide: false,
+
+    date: new Date().toISOString(),
+  };
+
+  const handleCancel = () => {
+    router.push(`${noticePath}/${id}`);
   };
 
   const handleComplete = async (content: PostEditorContent) => {
@@ -73,9 +81,11 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
         tags={NoticeTags}
-        showMainImage
+        showIsPinned
+        showIsImportant
         actions={{
           type: 'EDIT',
+          onCancel: handleCancel,
           onComplete: handleComplete,
           onDelete: handleDelete,
         }}

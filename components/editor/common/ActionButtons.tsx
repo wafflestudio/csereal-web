@@ -5,6 +5,7 @@ import { errorToast } from '@/utils/toast';
 
 export interface EditAction<T> {
   type: 'EDIT';
+  onCancel: () => void;
   onDelete: () => Promise<void>;
   /** 성공한 경우가 아니면 반드시 error를 던져야함 */
   onComplete: (content: T) => Promise<void>;
@@ -12,25 +13,30 @@ export interface EditAction<T> {
 
 export interface CreateAction<T> {
   type: 'CREATE';
+  onCancel: () => void;
   /** 성공한 경우가 아니면 반드시 error를 던져야함 */
   onComplete: (content: T) => Promise<void>;
 }
 
 // content 자체를 매번 건네는건 무거울 것 같아 getContent 함수로 전달
 export function EditActionButtons<T>({
+  onCancel,
   onDelete,
   onComplete,
   getContent,
 }: EditAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
-  const router = useRouter();
-  const cancel = () => {
-    // 정말 취소하시겠습니까? 같은 창을 띄워야할 때는 대비해 router로 처리
-    router.back();
-  };
+
   return (
     <>
-      <GrayButton title="취소" disabled={requesting} onClick={cancel} />
+      <GrayButton
+        title="취소"
+        disabled={requesting}
+        onClick={(e) => {
+          e.preventDefault();
+          onCancel();
+        }}
+      />
       <BlackButton
         title="삭제"
         disabled={requesting}
@@ -46,19 +52,22 @@ export function EditActionButtons<T>({
 }
 
 export function CreateActionButtons<T>({
+  onCancel,
   onComplete,
   getContent,
 }: CreateAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
-  const router = useRouter();
-  const cancel = () => {
-    // 정말 취소하시겠습니까? 같은 창을 띄워야할 때는 대비해 router로 처리
-    router.back();
-  };
 
   return (
     <>
-      <GrayButton title="취소" disabled={requesting} onClick={cancel} />
+      <GrayButton
+        title="취소"
+        disabled={requesting}
+        onClick={(e) => {
+          e.preventDefault();
+          onCancel();
+        }}
+      />
       <BlackButton
         title="게시하기"
         disabled={requesting}

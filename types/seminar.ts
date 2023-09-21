@@ -44,6 +44,7 @@ export interface Seminar {
   speakerURL: string | null;
   startDate: string;
   title: string;
+  titleForMain: string;
 }
 
 export interface POSTSeminarBody {

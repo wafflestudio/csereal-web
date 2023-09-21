@@ -24,7 +24,12 @@ export default function Attachments({ files }: AttachmentProps) {
 const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
   const kilobyte = Math.round(bytes / 100);
   return (
-    <a className="text-xs font-normal hover:underline w-fit" href={url} download target="_blank">
+    <a
+      className="text-xs font-normal hover:underline w-fit"
+      href={url}
+      download={name}
+      target="_blank"
+    >
       {name}({kilobyte / 10}KB)
     </a>
   );
