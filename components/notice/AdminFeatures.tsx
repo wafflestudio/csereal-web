@@ -7,9 +7,9 @@ import useModal from '@/hooks/useModal';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { errorToast, successToast } from '@/utils/toast';
 
 import { BatchButton, CreateButton, EditButton } from './NoticeButtons';
-import { errorToast, successToast } from '../common/toast';
 import AlertModal from '../modal/AlertModal';
 
 interface AdminFeaturesProps {

@@ -8,13 +8,16 @@ import { getRequestWithCookie } from '@/apis';
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
 import LoginStaffVisible from '@/components/common/LoginStaffVisible';
-import { errorToast } from '@/components/common/toast';
+import AlertModal from '@/components/modal/AlertModal';
+import ModalFrame from '@/components/modal/ModalFrame';
 
 import useModal from '@/hooks/useModal';
 
 import { Reservation } from '@/types/reservation';
 
-import ModalFrame from '../../modal/ModalFrame';
+import { refreshPage } from '@/utils/refreshPage';
+import { errorToast, successToast } from '@/utils/toast';
+
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
@@ -80,16 +83,17 @@ const DeleteButtons = ({
   recurrenceId: string;
 }) => {
   const [submitting, setSubmitting] = useState(false);
-  const { closeModal } = useModal();
+  const { openModal } = useModal();
 
   const handleDeleteAll = async () => {
     if (submitting) return;
     setSubmitting(true);
     try {
       await deleteAllRecurringReservation(recurrenceId);
-      window.location.reload();
-    } catch (e) {
-      toastError(e);
+      successToast('예약을 삭제했습니다.');
+      refreshPage();
+    } catch (error) {
+      toastError(error);
       setSubmitting(false);
     }
   };
@@ -99,19 +103,42 @@ const DeleteButtons = ({
     setSubmitting(true);
     try {
       await deleteSingleReservation(reservationId);
-      window.location.reload();
-    } catch (e) {
-      toastError(e);
+      successToast('예약을 삭제했습니다.');
+      refreshPage();
+    } catch (error) {
+      toastError(error);
       setSubmitting(false);
     }
   };
 
   return (
     <div className="flex justify-end gap-2 h-[1.875rem]">
-      <BasicButton className="px-[.62rem]" onClick={handleDeleteAll}>
+      <BasicButton
+        className="px-[.62rem]"
+        onClick={() =>
+          openModal(
+            <AlertModal
+              message="반복 예약을 모두 삭제하시겠습니까?"
+              confirmText="삭제"
+              onConfirm={handleDeleteAll}
+            />,
+          )
+        }
+      >
         반복 예약 전체 삭제
       </BasicButton>
-      <BasicButton className="px-[.62rem]" onClick={handleDelete}>
+      <BasicButton
+        className="px-[.62rem]"
+        onClick={() =>
+          openModal(
+            <AlertModal
+              message="해당 예약을 삭제하시겠습니까?"
+              confirmText="삭제"
+              onConfirm={handleDelete}
+            />,
+          )
+        }
+      >
         해당 예약만 삭제
       </BasicButton>
     </div>
@@ -136,9 +163,9 @@ export const ReservationDetailModalButton = ({
 
 const padZero = (x: number) => (x + '').padStart(2, '0');
 
-const toastError = (e: any) => {
-  if (e instanceof Error) {
-    errorToast(e.message);
+const toastError = (error: any) => {
+  if (error instanceof Error) {
+    errorToast(error.message);
   } else {
     errorToast('알 수 없는 문제가 발생했습니다.');
   }

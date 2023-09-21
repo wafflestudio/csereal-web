@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { MouseEventHandler, useState } from 'react';
 
-import { errorToast } from '@/components/common/toast';
+import { errorToast } from '@/utils/toast';
 
 export interface EditAction<T> {
   type: 'EDIT';

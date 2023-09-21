@@ -27,7 +27,6 @@ export default function AdjPostNav({
       <Row post={nextPost} type="next" />
       <Row post={prevPost} type="prev" />
       <div className="flex justify-end mt-6">
-        <PostListLink href={`/community/${postType}`} />
         <LoginStaffVisible>
           {id && (
             <>
@@ -36,6 +35,7 @@ export default function AdjPostNav({
             </>
           )}
         </LoginStaffVisible>
+        <PostListLink href={`/community/${postType}`} />
       </div>
     </div>
   );
@@ -90,7 +90,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="text-sm font-noto bg-neutral-200 hover:bg-neutral-300 px-5 py-2 rounded-[0.0625rem] font-bold"
+      className="flex items-center text-white text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-700 hover:border-neutral-500 font-bold"
     >
       목록
     </Link>
@@ -101,7 +101,7 @@ function PostEditLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="ml-4 px-5 py-2 rounded-[0.0625rem] bg-neutral-200 hover:bg-neutral-300 text-sm tracking-[0.02em] font-noto font-bold"
+      className="flex items-center mr-3 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 hover:bg-neutral-500 font-noto font-bold text-sm text-neutral-500 hover:text-white tracking-[0.02em]"
     >
       편집
     </Link>

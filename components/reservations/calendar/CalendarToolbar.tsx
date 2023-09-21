@@ -1,3 +1,5 @@
+import LoginUserVisible from '@/components/common/LoginUserVisible';
+
 import {
   MakeReservationButton,
   NextWeekButton,
@@ -23,7 +25,9 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
         <NextWeekButton date={date} />
       </div>
       <div className="flex gap-2">
-        <MakeReservationButton roomId={roomId} />
+        <LoginUserVisible>
+          <MakeReservationButton roomId={roomId} />
+        </LoginUserVisible>
       </div>
     </div>
   );

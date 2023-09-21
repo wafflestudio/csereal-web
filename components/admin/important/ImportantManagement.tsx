@@ -7,7 +7,6 @@ import { batchUnimportant } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
-import { errorToast, successToast } from '@/components/common/toast';
 import AlertModal from '@/components/modal/AlertModal';
 
 import useModal from '@/hooks/useModal';
@@ -20,6 +19,7 @@ import {
 } from '@/types/admin';
 
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { errorToast, successToast } from '@/utils/toast';
 
 import ImportantList from './ImportantList';
 import BatchAction from '../BatchAction';
