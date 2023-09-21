@@ -11,10 +11,8 @@ import MainNode7 from '@/public/image/main_7.svg';
 import { getMainContents } from '@/apis/main';
 
 import BgVideo from '@/components/main/BgVideo';
-import ImportantPosts from '@/components/main/ImportantPosts';
-import Notices from '@/components/main/Notices';
+import MainPageContent from '@/components/main/MainPageContent';
 import ShortCuts from '@/components/main/ShortCuts';
-import SlideScreen from '@/components/main/SlideScreen';
 
 import { facultyRecruitment, notice, topConferenceList } from '@/types/page';
 
@@ -38,11 +36,7 @@ export default async function MainPage() {
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
-      <SlideScreen slides={data.slides} />
-      <div className="flex justify-between mt-[67px]">
-        <ImportantPosts posts={data.importants} />
-        <Notices notices={data.notices} />
-      </div>
+      {data && <MainPageContent data={data} />}
     </div>
   );
 }

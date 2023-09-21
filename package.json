@@ -27,6 +27,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-intersection-observer": "^9.5.2",
     "sharp": "^0.32.5",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
