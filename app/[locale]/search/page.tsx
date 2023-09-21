@@ -70,7 +70,7 @@ export default async function SearchPage({ searchParams: { query } }: SearchPage
 
       {/* 검색 결과 */}
       <div className="flex flex-col w-[52.5rem] row-start-2 col-start-1">
-        <SectionTitle title="소식" size={100} />
+        <SectionTitle title="소식" size={total} />
 
         {/* 공지사항 */}
         <SectionSubtitle title="공지사항" size={noticeSearchResult.total} />
