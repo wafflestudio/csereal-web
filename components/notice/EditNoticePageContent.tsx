@@ -1,6 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { startTransition, useTransition } from 'react';
+
+import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
 
 import { deleteNotice, patchNotice } from '@/apis/notice';
 
@@ -18,11 +21,13 @@ import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { errorToast, successToast } from '@/utils/toast';
 
 const noticePath = getPath(notice);
 
 export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
+  const [_, startTransition] = useTransition();
 
   const initialContent: PostEditorContent = {
     title: data.title,
@@ -69,12 +74,15 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
       newAttachments: localAttachments,
     });
 
+    revalidateNoticeTag();
     router.replace(`${noticePath}/${id}`);
   };
 
   const handleDelete = async () => {
-    await deleteNotice(id);
-    router.replace(noticePath);
+    startTransition(async () => {
+      const result = await noticeDeleteAction(id);
+      result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+    });
   };
 
   return (
