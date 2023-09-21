@@ -14,8 +14,8 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.SSH_USER}}
+          host: cse-dev-waffle.bacchus.io
+          username: waffle
           key: ${{secrets.SSH_KEY}}
           script: |
             cd ~/csereal_web
