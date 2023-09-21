@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { revalidateNoticeTag } from '@/actions/noticeActions';
+
 import { postNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
@@ -40,6 +42,7 @@ export default function NoticeCreatePage() {
       },
       attachments,
     });
+    revalidateNoticeTag();
     router.replace(noticePath);
   };
 

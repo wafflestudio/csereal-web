@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 import { getNoticePosts } from '@/apis/notice';
 
 import NoticePageContent from '@/components/notice/NoticePageContent';

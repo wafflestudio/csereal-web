@@ -8,7 +8,6 @@ import plugins from 'suneditor/src/plugins';
 const SunEditor = lazy(() => import('suneditor-react'));
 
 import './suneditor.custom.css';
-import { noto } from '@/styles/font';
 
 export default function SunEditorWrapper({
   editorRef,
@@ -25,7 +24,7 @@ export default function SunEditorWrapper({
           setDefaultStyle={`padding: 1rem;`}
           height="400px"
           lang={ko}
-        defaultValue={initialContent}
+          defaultValue={initialContent}
           setOptions={{
             plugins,
             buttonList: [

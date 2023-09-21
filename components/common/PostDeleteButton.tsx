@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
+import { noticeDeleteAction } from '@/actions/noticeActions';
 import { deleteRequestWithCookie } from '@/apis';
 
 import useModal from '@/hooks/useModal';
@@ -11,19 +13,28 @@ import AlertModal from '../modal/AlertModal';
 
 export default function PostDeleteButton({ postType, id }: { postType: string; id: string }) {
   const { openModal } = useModal();
+  const [_, startTransition] = useTransition();
+
   const router = useRouter();
 
   const handleDelete = async () => {
-    try {
-      await deleteRequestWithCookie(`/${postType}/${id}`);
-      successToast('게시글을 삭제했습니다.');
-      router.replace(`/community/${postType}`);
-    } catch (error) {
-      errorToast('게시글을 삭제하지 못했습니다.');
-      if (error instanceof Error) {
-        console.log(error.message);
-      } else {
-        throw error;
+    if (postType === 'notice') {
+      startTransition(async () => {
+        const result = await noticeDeleteAction(id);
+        result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+      });
+    } else {
+      try {
+        await deleteRequestWithCookie(`/${postType}/${id}`);
+        successToast('게시글을 삭제했습니다.');
+        router.replace(`/community/${postType}`);
+      } catch (error) {
+        errorToast('게시글을 삭제하지 못했습니다.');
+        if (error instanceof Error) {
+          console.log(error.message);
+        } else {
+          throw error;
+        }
       }
     }
   };

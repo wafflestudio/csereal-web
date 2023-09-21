@@ -11,10 +11,10 @@ import {
 const noticePath = '/notice';
 
 export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticePath, params, { cache: 'no-store' }) as Promise<NoticePreviewList>;
+  getRequest(noticePath, params, { next: { tags: ['notice'] } }) as Promise<NoticePreviewList>;
 
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticePath}/${id}`, params, { cache: 'no-store' }) as Promise<Notice>;
+  getRequest(`${noticePath}/${id}`, params, { next: { tags: ['notice'] } }) as Promise<Notice>;
 
 export const postNotice = async (body: POSTNoticeBody) => {
   const formData = new FormData();
