@@ -9,20 +9,12 @@ import { PostSearchQueryParams } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 
-import { deleteRequest, getRequest, patchRequest } from '.';
+import { deleteRequest, getRequest, patchRequest } from '../apis/serverIndex';
 
 const noticeApiPath = '/notice';
 const noticePath = getPath(notice);
 
-export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticeApiPath, params, {
-    next: { tags: ['notice'] },
-  }) as Promise<NoticePreviewList>;
 
-export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticeApiPath}/${id}`, params, {
-    next: { tags: ['notice'] },
-  }) as Promise<Notice>;
 
 export const batchDeleteAction = async (ids: Set<number>) => {
   try {

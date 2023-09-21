@@ -1,8 +1,6 @@
-import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
-import { PostSearchQueryParams } from '@/types/post';
+import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
 import { deleteRequestWithCookie, patchRequestWithCookie, postRequestWithCookie } from '.';
-import { getRequest } from '../actions';
 
 const noticePath = '/notice';
 

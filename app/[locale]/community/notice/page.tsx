@@ -1,4 +1,4 @@
-import { getNoticePosts } from '@/actions/noticeActions';
+import { getNoticePosts } from '@/apis/noticeServer';
 
 import NoticePageContent from '@/components/notice/NoticePageContent';
 

@@ -24,7 +24,6 @@ export default function NoticeCreatePage() {
   const handleCancel = () => router.push(noticePath);
 
   const handleComplete = async (content: PostEditorContent) => {
-    console.log(content.isPrivate);
     canSubmit(content);
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
