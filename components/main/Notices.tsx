@@ -39,7 +39,10 @@ interface MoreNoticesButtonProps {
 }
 
 function MoreNoticesButton({ selectedCategory }: MoreNoticesButtonProps) {
-  const href = selectedCategory === '전체' ? noticePath : `${noticePath}?tag=${selectedCategory}`;
+  const href =
+    selectedCategory === '전체'
+      ? noticePath
+      : `${noticePath}?tag=${convertCategoryToTag(selectedCategory)}`;
 
   return (
     <Link href={href} className="absolute top-[150px] right-1 bg-main-orange w-4 h-4 rounded-full ">
@@ -58,5 +61,16 @@ const convertKrCategoryToEn = (category: NoticeCategoryType) => {
       return 'undergraduate';
     case '대학원':
       return 'graduate';
+  }
+};
+
+const convertCategoryToTag = (category: NoticeCategoryType) => {
+  switch (category) {
+    case '전체':
+    case '장학':
+      return category;
+    case '학부':
+    case '대학원':
+      return `학사(${category})`;
   }
 };

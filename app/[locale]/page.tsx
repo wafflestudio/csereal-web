@@ -22,12 +22,12 @@ import { getPath } from '@/utils/page';
 
 const tclPath = getPath(topConferenceList);
 const facultyRecruitmentPath = getPath(facultyRecruitment);
-const undergraduateNoticePath = getPath(notice) + '?tag=학부';
+const undergraduateNoticePath = getPath(notice);
 
 const shortCuts = [
   { title: facultyRecruitment.name, href: facultyRecruitmentPath },
   { title: topConferenceList.name, href: tclPath },
-  { title: '학부 ' + notice.name, href: undergraduateNoticePath },
+  { title: '학부 ' + notice.name, href: `${undergraduateNoticePath}?tag=학사(학부)` },
 ];
 
 export default async function MainPage() {
