@@ -11,13 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create .env file
-        run: echo "${{secrets.SSH_KEY}}" > key
-
       - name: SSH Remote Commands
-        run: |
-          ssh -i key ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} -p 22
-          cd ~/csereal_web
-          npm run build
-          pm2 stop csereal_front
-          pm2 --name csereal_front start npm -- start
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSH_KEY}}
+          script: |
+            cd ~/csereal_web
+            npm run build
+            pm2 stop csereal_front
+            pm2 --name csereal_front start npm -- start
