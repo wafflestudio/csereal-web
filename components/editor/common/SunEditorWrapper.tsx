@@ -8,6 +8,7 @@ import plugins from 'suneditor/src/plugins';
 const SunEditor = lazy(() => import('suneditor-react'));
 
 import './suneditor.custom.css';
+import { BASE_URL } from '@/apis';
 
 export default function SunEditorWrapper({
   editorRef,
@@ -36,6 +37,7 @@ export default function SunEditorWrapper({
               ['lineHeight', 'align', 'horizontalRule', 'list'],
               ['table', 'link', 'image', 'preview'],
             ],
+            // imageUploadUrl: `${BASE_URL}/file/upload`,
           }}
         />
       </div>

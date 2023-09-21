@@ -14,8 +14,6 @@ import { deleteRequest, getRequest, patchRequest } from '../apis/serverIndex';
 const noticeApiPath = '/notice';
 const noticePath = getPath(notice);
 
-
-
 export const batchDeleteAction = async (ids: Set<number>) => {
   try {
     await deleteRequest(noticeApiPath, {

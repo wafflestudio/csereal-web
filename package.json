@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 next start",
     "lint": "next lint"
   },
   "dependencies": {
