@@ -28,24 +28,25 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         <SeminarSearchBar keyword={keyword} setSearchParams={setSearchParams} />
       </div>
       <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
-        {searchList.length === 0 && (
+        {searchList.length > 0 ? (
+          searchList.map((post, index) => (
+            <div key={post.id}>
+              {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
+              <SeminarRow
+                id={post.id}
+                title={post.title}
+                host={post.name}
+                company={post.affiliation}
+                date={new Date(post.startDate)}
+                location={post.location}
+                imageURL={post.imageURL}
+                isYearLast={post.isYearLast}
+              />
+            </div>
+          ))
+        ) : (
           <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
         )}
-        {searchList.map((post, index) => (
-          <div key={post.id}>
-            {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
-            <SeminarRow
-              id={post.id}
-              title={post.title}
-              host={post.name}
-              company={post.affiliation}
-              date={new Date(post.startDate)}
-              location={post.location}
-              imageURL={post.imageURL}
-              isYearLast={post.isYearLast}
-            />
-          </div>
-        ))}
       </div>
       <Pagination
         totalPostsCount={total ?? 0}
