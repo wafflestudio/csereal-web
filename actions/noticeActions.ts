@@ -3,13 +3,13 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+import { deleteRequest, getRequest, patchRequest } from '@/apis/serverIndex';
+
 import { NoticePreviewList, Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getPath } from '@/utils/page';
-
-import { deleteRequest, getRequest, patchRequest } from '../apis/serverIndex';
 
 const noticeApiPath = '/notice';
 const noticePath = getPath(notice);
