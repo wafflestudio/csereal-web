@@ -11,7 +11,7 @@ import LoginStaffVisible from '@/components/common/LoginStaffVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { ADMIN_MENU } from '@/types/admin';
+import { ADMIN_MENU, ImportantPreview, SlidePreview } from '@/types/admin';
 import { admin } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -24,30 +24,31 @@ interface AdminPageProps {
 const DEFAULT_MENU = ADMIN_MENU.slide;
 const adminPath = getPath(admin);
 
+const getAdminData = async ([selectedMenu, pageNum]: [string, number]) => {
+  if (selectedMenu === ADMIN_MENU.slide) {
+    return await getSlides(pageNum);
+  } else {
+    return await getImportants(pageNum);
+  }
+};
+
 export default function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
   const selectedMenu = selected ? replaceDashWithSpace(selected) : DEFAULT_MENU;
   const pageNum = (page && parseInt(page)) || 1;
-  const { data: slideData } = useSWR('/admin/slide', () => getSlides(pageNum));
-  const { data: importantData } = useSWR('/admin/important', () => getImportants(pageNum));
+  const { data } = useSWR([selectedMenu, pageNum], getAdminData);
 
-  if (selectedMenu === ADMIN_MENU.slide) {
+  if (selectedMenu === ADMIN_MENU.slide && data) {
+    const { slides, total } = data as { slides: SlidePreview[]; total: number };
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {slideData?.slides && (
-          <SlideManagement posts={slideData.slides} total={slideData.total} page={pageNum} />
-        )}
+        {slides && <SlideManagement posts={slides} total={total} page={pageNum} />}
       </AdminPageLayout>
     );
-  } else if (selectedMenu === ADMIN_MENU.important) {
+  } else if (selectedMenu === ADMIN_MENU.important && data) {
+    const { importants, total } = data as { importants: ImportantPreview[]; total: number };
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {importantData?.importants && (
-          <ImportantManagement
-            posts={importantData.importants}
-            total={importantData.total}
-            page={pageNum}
-          />
-        )}
+        {importants && <ImportantManagement posts={importants} total={total} page={pageNum} />}
       </AdminPageLayout>
     );
   } else {
