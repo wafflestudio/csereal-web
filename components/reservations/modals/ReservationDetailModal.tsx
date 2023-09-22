@@ -42,7 +42,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
   return (
     <ModalFrame onClose={closeModal}>
       <div className="relative bg-white font-noto w-[24.4rem] text-neutral-700 px-5 py-6 text-sm font-normal border-[#32B40A] border-t-[3px] border-b">
-        <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.userName}</h2>
+        <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.title}</h2>
         <div className="flex flex-col gap-6">
           <p>{reservation.purpose ?? ''}</p>
           <div className="flex flex-col gap-1">
@@ -57,7 +57,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
             <p>세미나실: {reservation.roomLocation}</p>
           </div>
           <div className="flex flex-col gap-1">
-            {/* <p>예약자 계정: {reservation}</p> */}
+            <p>예약자 계정: {reservation.userName}</p>
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>
