@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -50,7 +50,9 @@ export default async function RootLayout({
           <NextIntlClientProvider locale={params.locale} messages={messages}>
             <Navbar />
             <div className="flex flex-col flex-1 font-noto-demi">
-              <Header />
+              <Suspense>
+                <Header />
+              </Suspense>
               <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
                 <main className="flex-1">{children}</main>
                 <Footer />

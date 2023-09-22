@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteMultipleNotices, patchMultipleNotices } from '@/apis/notice';
+import { batchDeleteAction, batchUnpinAction } from '@/actions/noticeActions';
 
 import useModal from '@/hooks/useModal';
 
@@ -30,32 +30,22 @@ export default function AdminFeatures({
   const { openModal } = useModal();
 
   const handleBatchDelete = async () => {
-    try {
-      await deleteMultipleNotices(Array.from(selectedPostIds));
+    const result = await batchDeleteAction(selectedPostIds);
+    if (result?.message) {
+      errorToast('공지를 삭제하지 못했습니다: ' + result.message);
+    } else {
       successToast('선택된 공지를 삭제했습니다.');
       resetSelectedPosts();
-    } catch (error) {
-      errorToast('공지를 삭제하지 못했습니다.');
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        throw error;
-      }
     }
   };
 
   const handleBatchUnpin = async () => {
-    try {
-      await patchMultipleNotices(Array.from(selectedPostIds));
+    const result = await batchUnpinAction(selectedPostIds);
+    if (result?.message) {
+      errorToast('공지를 고정 해제하지 못했습니다: ' + result.message);
+    } else {
       successToast('선택된 공지를 고정 해제했습니다.');
       resetSelectedPosts();
-    } catch (error) {
-      errorToast('공지를 고정 해제하지 못했습니다.');
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        throw error;
-      }
     }
   };
 

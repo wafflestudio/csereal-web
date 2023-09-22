@@ -25,6 +25,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
     `/reservation/${reservationId}`,
     getRequestWithCookie,
   );
+
   const { closeModal } = useModal();
 
   if (reservation === undefined) return <></>;
@@ -84,6 +85,8 @@ const DeleteButtons = ({
 }) => {
   const [submitting, setSubmitting] = useState(false);
   const { openModal } = useModal();
+
+  console.log(reservationId, recurrenceId);
 
   const handleDeleteAll = async () => {
     if (submitting) return;

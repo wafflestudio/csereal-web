@@ -1,8 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
-import { deleteNotice, patchNotice } from '@/apis/notice';
+import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
+
+import { patchNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
@@ -14,15 +17,22 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NoticeTags } from '@/constants/tag';
 
+import useModal from '@/hooks/useModal';
+
 import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { errorToast, successToast } from '@/utils/toast';
+
+import AlertModal from '../modal/AlertModal';
 
 const noticePath = getPath(notice);
 
 export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
+  const [_, startTransition] = useTransition();
+  const { openModal } = useModal();
 
   const initialContent: PostEditorContent = {
     title: data.title,
@@ -42,7 +52,12 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   };
 
   const handleCancel = () => {
-    router.push(`${noticePath}/${id}`);
+    openModal(
+      <AlertModal
+        message="수정된 내용이 사라집니다"
+        onConfirm={() => router.push(`${noticePath}/${id}`)}
+      />,
+    );
   };
 
   const handleComplete = async (content: PostEditorContent) => {
@@ -69,12 +84,15 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
       newAttachments: localAttachments,
     });
 
+    revalidateNoticeTag();
     router.replace(`${noticePath}/${id}`);
   };
 
   const handleDelete = async () => {
-    await deleteNotice(id);
-    router.replace(noticePath);
+    startTransition(async () => {
+      const result = await noticeDeleteAction(id);
+      result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+    });
   };
 
   return (

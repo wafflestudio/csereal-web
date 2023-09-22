@@ -4,55 +4,20 @@ on:
   push:
     branches:
       - main
-      - fix/design
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.8.0
-
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Log in to the Container Registry
-        uses: docker/login-action@v2.2.0
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          registry: ghcr.io
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Create .env file
-        run: |
-          echo "NEXT_PUBLIC_KAKAO_MAP_API_KEY=${{secrets.KAKAO_MAP_API_KEY}}" > .env.local
-
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v4.1.1
-        with:
-          context: '.'
-          push: true
-          tags: |
-            ghcr.io/wafflestudio/csereal_nextjs_image:latest
-            ghcr.io/wafflestudio/csereal_nextjs_image:${{github.sha}}
-
-      - name: 'Prepare deploy key'
-        run: |
-          echo "${{secrets.SSH_KEY}}" > deploy_key
-          chmod 600 ./deploy_key
-
-      - name: 'Remote server commands'
-        uses: 'nick-fields/retry@v2'
-        with:
-          timeout_minutes: 1
-          max_attempts: 5
-          retry_wait_seconds: 1
-          retry_on: 'error'
-          command: |
-            ssh -T -i ./deploy_key -p 22 waffle@${{ secrets.SSH_HOST }}
-            docker ps
-            docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
-            docker stop csereal_nextjs_image
-            docker rm csereal_nextjs_image
-            docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSH_KEY}}
+          script: |
+            cd ~/csereal-web
+            git pull
+            npm run build
+            pm2 restart csereal_front

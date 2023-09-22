@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: { serverActions: true },
+  experimental: {
+    serverActions: true,
+    logging: {
+      level: 'verbose',
+    },
+  },
 
   webpack(config) {
     // Grab the existing rule that handles SVG imports

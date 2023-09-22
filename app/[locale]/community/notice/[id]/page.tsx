@@ -1,4 +1,4 @@
-import { getNoticePostDetail } from '@/apis/notice';
+import { getNoticePostDetail } from '@/apis/noticeServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
