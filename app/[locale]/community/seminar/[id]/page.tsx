@@ -1,7 +1,7 @@
 import Link from 'next-intl/link';
 import { ReactNode } from 'react';
 
-import { getSeminarPost } from '@/apis/seminar';
+import { getSeminarPost } from '@/apis/seminarServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';

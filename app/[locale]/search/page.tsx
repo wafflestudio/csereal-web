@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 
 import { getNewsSearch, getNoticeSearch } from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminar';
+import { getSeminarPosts } from '@/apis/seminarServer';
 
 import { CurvedHorizontalNode, StraightNode } from '@/components/common/Nodes';
 import NewsRow from '@/components/news/NewsRow';

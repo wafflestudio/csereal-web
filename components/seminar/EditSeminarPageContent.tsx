@@ -2,24 +2,31 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteNotice } from '@/apis/notice';
+import { revalidateSeminarTag, seminarDeleteAction } from '@/actions/seminarActions';
+
 import { editSeminar } from '@/apis/seminar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import useModal from '@/hooks/useModal';
+
 import { seminar } from '@/types/page';
 import { Seminar } from '@/types/seminar';
 
+import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { errorToast } from '@/utils/toast';
 
 import { isLocalFile, isLocalImage, isUploadedFile } from '../editor/PostEditorProps';
 import SeminarEditor from '../editor/SeminarEditor';
-import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/SeminarEditorProps';
+import { SeminarEditorContent } from '../editor/SeminarEditorProps';
+import AlertModal from '../modal/AlertModal';
 
 const seminarPath = getPath(seminar);
 
 export default function EditSeminarPageContent({ id, data }: { id: number; data: Seminar }) {
   const router = useRouter();
+  const { openModal } = useModal();
 
   const initialContent: SeminarEditorContent = {
     title: data.title,
@@ -48,7 +55,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   const handleCancel = () => router.push(`${seminarPath}/${id}`);
 
   const handleComplete = async (content: SeminarEditorContent) => {
-    throwIfCantSubmit(content);
+    validateSeminarForm(content);
 
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
@@ -65,7 +72,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     await editSeminar(id, {
       request: {
         title: content.title,
-        titleForMain: content.titleForMain,
+        titleForMain: emptyStringToNull(content.titleForMain),
         description: emptyStringToNull(content.description),
         introduction: emptyStringToNull(content.speaker.description),
         name: emptyStringToNull(content.speaker.name),
@@ -86,12 +93,13 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
       newAttachments: localAttachments,
     });
 
+    revalidateSeminarTag();
     router.replace(`${seminarPath}/${id}`);
   };
 
   const handleDelete = async () => {
-    await deleteNotice(id);
-    router.replace(seminarPath);
+    const result = await seminarDeleteAction(id);
+    if (result) errorToast(result.message);
   };
 
   return (
@@ -108,14 +116,5 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: SeminarEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};
 
 const emptyStringToNull = (str: string | null) => (str ? str : null);

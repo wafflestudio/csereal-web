@@ -22,6 +22,7 @@ import useModal from '@/hooks/useModal';
 import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 
+import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -51,17 +52,10 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     date: new Date().toISOString(),
   };
 
-  const handleCancel = () => {
-    openModal(
-      <AlertModal
-        message="수정된 내용이 사라집니다"
-        onConfirm={() => router.push(`${noticePath}/${id}`)}
-      />,
-    );
-  };
+  const handleCancel = () => router.push(`${noticePath}/${id}`);
 
   const handleComplete = async (content: PostEditorContent) => {
-    throwIfCantSubmit(content);
+    validateNoticeForm(content);
 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
@@ -112,12 +106,3 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: PostEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};

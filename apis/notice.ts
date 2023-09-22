@@ -1,6 +1,6 @@
 import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
-import { deleteRequestWithCookie, patchRequestWithCookie, postRequestWithCookie } from '.';
+import { patchRequestWithCookie, postRequestWithCookie } from '.';
 
 const noticePath = '/notice';
 
@@ -39,5 +39,3 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
     body: formData,
   });
 };
-
-export const deleteNotice = (id: number) => deleteRequestWithCookie(`${noticePath}/${id}`);
