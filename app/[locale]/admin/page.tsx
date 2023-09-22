@@ -30,18 +30,24 @@ export default function AdminPage({ searchParams: { selected, page } }: AdminPag
   const { data: slideData } = useSWR('/admin/slide', () => getSlides(pageNum));
   const { data: importantData } = useSWR('/admin/important', () => getImportants(pageNum));
 
-  if (selectedMenu === ADMIN_MENU.slide && slideData) {
-    const { slides, total } = slideData;
+  if (selectedMenu === ADMIN_MENU.slide) {
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {slides && <SlideManagement posts={slides} total={total} page={pageNum} />}
+        {slideData?.slides && (
+          <SlideManagement posts={slideData.slides} total={slideData.total} page={pageNum} />
+        )}
       </AdminPageLayout>
     );
-  } else if (selectedMenu === ADMIN_MENU.important && importantData) {
-    const { importants, total } = importantData;
+  } else if (selectedMenu === ADMIN_MENU.important) {
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {importants && <ImportantManagement posts={importants} total={total} page={pageNum} />}
+        {importantData?.importants && (
+          <ImportantManagement
+            posts={importantData.importants}
+            total={importantData.total}
+            page={pageNum}
+          />
+        )}
       </AdminPageLayout>
     );
   } else {
