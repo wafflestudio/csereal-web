@@ -17,10 +17,15 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
 
   const router = useRouter();
 
+  const idInNumber = +id;
+  if (Number.isNaN(idInNumber)) {
+    errorToast('유효하지 않은 id: ' + id);
+  }
+
   const handleDelete = async () => {
     if (postType === 'notice') {
       startTransition(async () => {
-        const result = await noticeDeleteAction(id);
+        const result = await noticeDeleteAction(idInNumber);
         result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
       });
     } else {

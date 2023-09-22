@@ -3,21 +3,17 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+import { batchDeleteNotice, batchUnpinNotice, deleteNotice } from '@/apis/noticeServer';
+
 import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
-import { deleteRequest, patchRequest } from '../apis/serverIndex';
-
-const noticeApiPath = '/notice';
 const noticePath = getPath(notice);
 
 export const batchDeleteAction = async (ids: Set<number>) => {
   try {
-    await deleteRequest(noticeApiPath, {
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idList: Array.from(ids) }),
-    });
+    await batchDeleteNotice(ids);
     revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
@@ -26,10 +22,7 @@ export const batchDeleteAction = async (ids: Set<number>) => {
 
 export const batchUnpinAction = async (ids: Set<number>) => {
   try {
-    await patchRequest(noticeApiPath, {
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idList: Array.from(ids) }),
-    });
+    await batchUnpinNotice(ids);
     revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
@@ -37,9 +30,9 @@ export const batchUnpinAction = async (ids: Set<number>) => {
 };
 
 /** 성공시에 리턴값이 never(호출한 함수로 되돌아가지 않음)이어야하는데 이상하게 성공시에 undefined를 반환한다. */
-export const noticeDeleteAction = async (id: string | number) => {
+export const noticeDeleteAction = async (id: number) => {
   try {
-    await deleteRequest(`${noticeApiPath}/${id}`);
+    await deleteNotice(id);
     revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };

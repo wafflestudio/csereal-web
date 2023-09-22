@@ -39,5 +39,3 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
     body: formData,
   });
 };
-
-export const deleteNotice = (id: number) => deleteRequestWithCookie(`${noticePath}/${id}`);
