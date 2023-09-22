@@ -54,7 +54,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   const handleCancel = () => {
     openModal(
       <AlertModal
-        message="편집을 취소하시겠습니까?"
+        message="수정된 내용이 사라집니다"
         onConfirm={() => router.push(`${noticePath}/${id}`)}
       />,
     );
