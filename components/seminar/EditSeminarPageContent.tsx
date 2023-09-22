@@ -72,7 +72,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     await editSeminar(id, {
       request: {
         title: content.title,
-        titleForMain: content.titleForMain,
+        titleForMain: emptyStringToNull(content.titleForMain),
         description: emptyStringToNull(content.description),
         introduction: emptyStringToNull(content.speaker.description),
         name: emptyStringToNull(content.speaker.name),
