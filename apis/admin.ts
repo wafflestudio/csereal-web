@@ -2,17 +2,43 @@ import { ImportantPreview, SlidePreview } from '@/types/admin';
 
 import { deleteRequest, getRequest, getRequestWithCookie, patchRequest } from '.';
 
-// export const getSlides = (pageNum: number) =>
-//   getRequestWithCookie('/admin/slide', { pageNum }) as Promise<{
-//     posts: SlidePreview[];
-//     total: number;
-//   }>;
+export const getSlides = (pageNum: number) =>
+  getRequestWithCookie(
+    '/admin/slide',
+    { pageNum },
+    {
+      next: { tags: ['slide'] },
+    },
+  ) as Promise<{
+    slides: SlidePreview[];
+    total: number;
+  }>;
 
-// export const getImportants = (pageNum: number) =>
-//   getRequest('/admin/important', { pageNum }) as Promise<{
-//     posts: ImportantPreview[];
-//     total: number;
-//   }>;
+export const getImportants = (pageNum: number) =>
+  getRequestWithCookie(
+    '/admin/important',
+    { pageNum },
+    {
+      next: { tags: ['important'] },
+    },
+  ) as Promise<{
+    importants: ImportantPreview[];
+    total: number;
+  }>;
+
+// export const getSlides = async (
+//   pageNum: number,
+// ): Promise<{ slides: SlidePreview[]; total: number }> => ({
+//   slides: [],
+//   total: 0,
+// });
+
+// export const getImportants = async (
+//   pageNum: number,
+// ): Promise<{ importants: ImportantPreview[]; total: number }> => ({
+//   importants: [],
+//   total: 0,
+// });
 
 // export const patchMultipleSlides = (newsIdList: number[]) =>
 //   patchRequest('/admin/slide', {
