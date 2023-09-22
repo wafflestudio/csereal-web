@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
+import { newsDeleteAction } from '@/actions/newsActions';
 import { noticeDeleteAction } from '@/actions/noticeActions';
 import { deleteRequestWithCookie } from '@/apis';
 
@@ -20,28 +21,36 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
   const idInNumber = +id;
   if (Number.isNaN(idInNumber)) {
     errorToast('유효하지 않은 id: ' + id);
+    return;
   }
 
   const handleDelete = async () => {
-    if (postType === 'notice') {
-      startTransition(async () => {
-        const result = await noticeDeleteAction(idInNumber);
-        result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
-      });
-    } else {
-      try {
-        await deleteRequestWithCookie(`/${postType}/${id}`);
-        successToast('게시글을 삭제했습니다.');
-        router.replace(`/community/${postType}`);
-      } catch (error) {
-        errorToast('게시글을 삭제하지 못했습니다.');
-        if (error instanceof Error) {
-          console.log(error.message);
-        } else {
-          throw error;
+    startTransition(async () => {
+      switch (postType) {
+        case 'notice': {
+          const result = await noticeDeleteAction(idInNumber);
+          result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+          break;
+        }
+        case 'news': {
+          const result = await newsDeleteAction(idInNumber);
+          result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+          break;
         }
       }
-    }
+    });
+    // try {
+    //   await deleteRequestWithCookie(`/${postType}/${id}`);
+    //   successToast('게시글을 삭제했습니다.');
+    //   router.replace(`/community/${postType}`);
+    // } catch (error) {
+    //   errorToast('게시글을 삭제하지 못했습니다.');
+    //   if (error instanceof Error) {
+    //     console.log(error.message);
+    //   } else {
+    //     throw error;
+    //   }
+    // }
   };
 
   return (

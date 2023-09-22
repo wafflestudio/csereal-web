@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteNews, patchNews } from '@/apis/news';
+import { newsDeleteAction, revalidateNewsTag } from '@/actions/newsActions';
+
+import { patchNews } from '@/apis/news';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
@@ -72,11 +74,12 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
       newAttachments: localAttachments,
     });
 
+    revalidateNewsTag();
     router.replace(`${newsPath}/${id}`);
   };
 
   const handleDelete = async () => {
-    await deleteNews(id);
+    await newsDeleteAction(id);
     router.replace(newsPath);
   };
 

@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteNotice } from '@/apis/notice';
-import { editSeminar } from '@/apis/seminar';
+import { deleteSeminar, editSeminar } from '@/apis/seminar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -90,7 +89,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   };
 
   const handleDelete = async () => {
-    await deleteNotice(id);
+    await deleteSeminar(id);
     router.replace(seminarPath);
   };
 

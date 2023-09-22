@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { revalidateNewsTag } from '@/actions/newsActions';
+
 import { postNews } from '@/apis/news';
 
 import PostEditor from '@/components/editor/PostEditor';
@@ -43,6 +45,7 @@ export default function NewsCreatePage() {
       attachments,
     });
 
+    revalidateNewsTag();
     router.replace(newsPath);
   };
 
