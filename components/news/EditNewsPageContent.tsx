@@ -18,16 +18,21 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NewsTags } from '@/constants/tag';
 
+import useModal from '@/hooks/useModal';
+
 import { News } from '@/types/news';
 import { news } from '@/types/page';
 
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 
+import AlertModal from '../modal/AlertModal';
+
 const newsPath = getPath(news);
 
 export default function EditNewsPageContent({ id, data }: { id: number; data: News }) {
   const router = useRouter();
+  const { openModal } = useModal();
 
   const initialContent: PostEditorContent = {
     ...postEditorDefaultValue,
@@ -44,7 +49,14 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     isImportant: data.isImportant,
   };
 
-  const handleCancel = () => router.push(`${newsPath}/${id}`);
+  const handleCancel = () => {
+    openModal(
+      <AlertModal
+        message="수정된 내용이 사라집니다"
+        onConfirm={() => router.push(`${newsPath}/${id}`)}
+      />,
+    );
+  };
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNewsForm(content);

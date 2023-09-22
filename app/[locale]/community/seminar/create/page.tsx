@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { revalidateSeminarTag } from '@/actions/seminarActions';
+
 import { postSeminar } from '@/apis/seminar';
 
 import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
@@ -11,6 +13,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { seminar } from '@/types/page';
 
+import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 
 const seminarPath = getPath(seminar);
@@ -21,7 +24,7 @@ export default function SeminarCreatePage() {
   const handleCancel = () => router.push(seminarPath);
 
   const handleComplete = async (content: SeminarEditorContent) => {
-    throwIfCantSubmit(content);
+    validateSeminarForm(content);
 
     const image =
       content.speaker.image && isLocalImage(content.speaker.image)
@@ -51,6 +54,7 @@ export default function SeminarCreatePage() {
       attachments,
     });
 
+    revalidateSeminarTag();
     router.replace(seminarPath);
   };
 
@@ -66,9 +70,3 @@ export default function SeminarCreatePage() {
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: SeminarEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-};
