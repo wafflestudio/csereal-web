@@ -22,6 +22,7 @@ import useModal from '@/hooks/useModal';
 import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
 
+import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -61,7 +62,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   };
 
   const handleComplete = async (content: PostEditorContent) => {
-    throwIfCantSubmit(content);
+    validateNoticeForm(content);
 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
@@ -112,12 +113,3 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: PostEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};
