@@ -14,6 +14,7 @@ import { NewsTags } from '@/constants/tag';
 
 import { news } from '@/types/page';
 
+import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 
 const newsPath = getPath(news);
@@ -24,7 +25,7 @@ export default function NewsCreatePage() {
   const handleCancel = () => router.push(newsPath);
 
   const handleComplete = async (content: PostEditorContent) => {
-    throwIfCantSubmit(content);
+    validateNewsForm(content);
 
     const mainImage =
       content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
@@ -66,12 +67,3 @@ export default function NewsCreatePage() {
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: PostEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};

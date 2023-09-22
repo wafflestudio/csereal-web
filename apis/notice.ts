@@ -1,6 +1,6 @@
 import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
-import { deleteRequestWithCookie, patchRequestWithCookie, postRequestWithCookie } from '.';
+import { patchRequestWithCookie, postRequestWithCookie } from '.';
 
 const noticePath = '/notice';
 

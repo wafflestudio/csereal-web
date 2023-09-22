@@ -21,6 +21,7 @@ import { NewsTags } from '@/constants/tag';
 import { News } from '@/types/news';
 import { news } from '@/types/page';
 
+import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 
 const newsPath = getPath(news);
@@ -46,7 +47,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
   const handleCancel = () => router.push(`${newsPath}/${id}`);
 
   const handleComplete = async (content: PostEditorContent) => {
-    throwIfCantSubmit(content);
+    validateNewsForm(content);
 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
@@ -102,12 +103,3 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     </PageLayout>
   );
 }
-
-const throwIfCantSubmit = (content: PostEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};
