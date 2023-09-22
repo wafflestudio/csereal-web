@@ -1,7 +1,9 @@
 import { objToQueryString } from '@/utils/convertParams';
 
-export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
-// export const BASE_URL = 'http://localhost:8080/api/v1';
+export const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
+    : 'http://localhost:8080/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -55,7 +57,7 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
 export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =>
   deleteRequest(url, { ...init, credentials: 'include' });
 
-const checkError = (response: Response) => {
+export const checkError = (response: Response) => {
   if (!response.ok) {
     throw new NetworkError(response.status);
   }

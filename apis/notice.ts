@@ -1,15 +1,8 @@
-import { Notice, NoticePreviewList, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
-import { PostSearchQueryParams } from '@/types/post';
+import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
-import { deleteRequest, deleteRequestWithCookie, getRequest, patchRequest, patchRequestWithCookie, postRequest, postRequestWithCookie } from '.';
+import { deleteRequestWithCookie, patchRequestWithCookie, postRequestWithCookie } from '.';
 
 const noticePath = '/notice';
-
-export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticePath, params, { cache: 'no-store' }) as Promise<NoticePreviewList>;
-
-export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticePath}/${id}`, params, { cache: 'no-store' }) as Promise<Notice>;
 
 export const postNotice = async (body: POSTNoticeBody) => {
   const formData = new FormData();
@@ -47,16 +40,4 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
   });
 };
 
-export const patchMultipleNotices = (idList: number[]) =>
-  patchRequestWithCookie(noticePath, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ idList }),
-  });
-
 export const deleteNotice = (id: number) => deleteRequestWithCookie(`${noticePath}/${id}`);
-
-export const deleteMultipleNotices = (idList: number[]) =>
-  deleteRequestWithCookie(noticePath, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ idList }),
-  });

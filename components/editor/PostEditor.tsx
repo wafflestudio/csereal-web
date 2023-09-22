@@ -3,7 +3,7 @@
 import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
-import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
+import SunEditorWrapper, { isContentEmpty } from '@/components/editor/common/SunEditorWrapper';
 
 import useModal from '@/hooks/useModal';
 
@@ -37,10 +37,18 @@ export default function PostEditor({
     ...initialContent,
   });
 
-  const getContentWithDescription = (): PostEditorContent => ({
-    ...content,
-    description: editorRef.current?.getContents(false) ?? '',
-  });
+  const getContentWithDescription = (): PostEditorContent => {
+    if (editorRef.current) {
+      if (isContentEmpty(editorRef.current)) {
+        return { ...content, description: '' };
+      } else {
+        const description = editorRef.current.getContents(false);
+        return { ...content, description };
+      }
+    } else {
+      return { ...content, description: '' };
+    }
+  };
 
   const setContentByKey =
     <T extends keyof PostEditorContent>(key: T) =>
