@@ -52,14 +52,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     host: data.host,
   };
 
-  const handleCancel = () => {
-    openModal(
-      <AlertModal
-        message="수정된 내용이 사라집니다"
-        onConfirm={() => router.push(`${seminarPath}/${id}`)}
-      />,
-    );
-  };
+  const handleCancel = () => router.push(`${seminarPath}/${id}`);
 
   const handleComplete = async (content: SeminarEditorContent) => {
     validateSeminarForm(content);

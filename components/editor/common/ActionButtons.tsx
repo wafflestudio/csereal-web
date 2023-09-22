@@ -1,5 +1,8 @@
-import { useRouter } from 'next/navigation';
 import { MouseEventHandler, useState } from 'react';
+
+import AlertModal from '@/components/modal/AlertModal';
+
+import useModal from '@/hooks/useModal';
 
 import { errorToast } from '@/utils/toast';
 
@@ -26,6 +29,7 @@ export function EditActionButtons<T>({
   getContent,
 }: EditAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
+  const { openModal } = useModal();
 
   return (
     <>
@@ -34,13 +38,21 @@ export function EditActionButtons<T>({
         disabled={requesting}
         onClick={(e) => {
           e.preventDefault();
-          onCancel();
+          openModal(<AlertModal message="편집중인 내용이 사라집니다." onConfirm={onCancel} />);
         }}
       />
       <BlackButton
         title="삭제"
         disabled={requesting}
-        onClick={buildDeleteHandler(requesting, setRequesting, onDelete)}
+        onClick={(e) => {
+          e.preventDefault();
+          openModal(
+            <AlertModal
+              message="게시물을 삭제하시겠습니까?"
+              onConfirm={buildDeleteHandler(requesting, setRequesting, onDelete)}
+            />,
+          );
+        }}
       />
       <BlackButton
         title="수정하기"
@@ -153,8 +165,7 @@ const buildDeleteHandler = <T,>(
   setRequesting: (val: boolean) => void,
   onDelete: () => Promise<void>,
 ) => {
-  const handler: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.preventDefault();
+  const handler = async () => {
     if (requesting) return;
     try {
       setRequesting(true);

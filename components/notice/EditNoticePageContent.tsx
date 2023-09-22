@@ -52,14 +52,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     date: new Date().toISOString(),
   };
 
-  const handleCancel = () => {
-    openModal(
-      <AlertModal
-        message="수정된 내용이 사라집니다"
-        onConfirm={() => router.push(`${noticePath}/${id}`)}
-      />,
-    );
-  };
+  const handleCancel = () => router.push(`${noticePath}/${id}`);
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNoticeForm(content);
