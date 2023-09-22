@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getImportants, getSlides } from '@/apis/adminServer';
 
 import ImportantManagement from '@/components/admin/important/ImportantManagement';
