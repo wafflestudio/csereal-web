@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteSeminar, editSeminar } from '@/apis/seminar';
+import { seminarDeleteAction } from '@/actions/seminarActions';
+
+import { editSeminar } from '@/apis/seminar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -10,10 +12,11 @@ import { seminar } from '@/types/page';
 import { Seminar } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
+import { errorToast } from '@/utils/toast';
 
 import { isLocalFile, isLocalImage, isUploadedFile } from '../editor/PostEditorProps';
 import SeminarEditor from '../editor/SeminarEditor';
-import { SeminarEditorContent, getSeminarEditorDefaultValue } from '../editor/SeminarEditorProps';
+import { SeminarEditorContent } from '../editor/SeminarEditorProps';
 
 const seminarPath = getPath(seminar);
 
@@ -89,8 +92,8 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   };
 
   const handleDelete = async () => {
-    await deleteSeminar(id);
-    router.replace(seminarPath);
+    const result = await seminarDeleteAction(id);
+    if (result) errorToast(result.message);
   };
 
   return (
