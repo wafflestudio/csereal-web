@@ -20,7 +20,7 @@ export const batchDeleteAction = async (ids: Set<number>) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idList: Array.from(ids) }),
     });
-    revalidateTag('notice');
+    revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
   }
@@ -32,7 +32,7 @@ export const batchUnpinAction = async (ids: Set<number>) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idList: Array.from(ids) }),
     });
-    revalidateTag('notice');
+    revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
   }
@@ -42,7 +42,7 @@ export const batchUnpinAction = async (ids: Set<number>) => {
 export const noticeDeleteAction = async (id: string | number) => {
   try {
     await deleteRequest(`${noticeApiPath}/${id}`);
-    revalidateTag('notice');
+    revalidateNoticeTag();
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
   }
