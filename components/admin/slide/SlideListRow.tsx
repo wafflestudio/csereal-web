@@ -3,7 +3,7 @@ import Link from 'next-intl/link';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
 import { SlidePreview } from '@/types/admin';
-import { seminar } from '@/types/page';
+import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
 
@@ -22,7 +22,7 @@ export const SLIDE_ROW_CELL_WIDTH = {
   edit: 'w-[4.375rem]',
 } as const;
 
-const seminarPath = getPath(seminar);
+const newsPath = getPath(news);
 
 export default function SlideListRow({
   index,
@@ -75,7 +75,7 @@ function TitleCell({ title, id }: { title: string; id: number }) {
   return (
     <span className={`${SLIDE_ROW_CELL_WIDTH.title} pl-3 font-medium`}>
       <Link
-        href={`${seminarPath}/${id}`}
+        href={`${newsPath}/${id}`}
         className="flex max-w-fit items-center gap-1.5 hover:underline whitespace-nowrap text-ellipsis overflow-hidden"
       >
         {title}
@@ -91,7 +91,7 @@ function DateCell({ date }: { date: string }) {
 function EditCell({ id }: { id: number }) {
   return (
     <span className={`${SLIDE_ROW_CELL_WIDTH.edit} pl-3`}>
-      <Link href={`${seminarPath}/${id}/edit`} className="hover:underline cursor-pointer">
+      <Link href={`${newsPath}/${id}/edit`} className="hover:underline cursor-pointer">
         편집
       </Link>
     </span>
