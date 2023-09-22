@@ -63,15 +63,15 @@ interface AdminPageLayoutProps {
 function AdminPageLayout({ selectedMenu, children }: AdminPageLayoutProps) {
   return (
     <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
-      {/* <LoginStaffVisible fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}> */}
-      <SelectionList
-        names={Object.values(ADMIN_MENU)}
-        selectedItemName={selectedMenu}
-        path={adminPath}
-        listGridColumnClass="grid-cols-[200px_220px]"
-      />
-      {children}
-      {/* </LoginStaffVisible> */}
+      <LoginStaffVisible fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
+        <SelectionList
+          names={Object.values(ADMIN_MENU)}
+          selectedItemName={selectedMenu}
+          path={adminPath}
+          listGridColumnClass="grid-cols-[200px_220px]"
+        />
+        {children}
+      </LoginStaffVisible>
     </PageLayout>
   );
 }
