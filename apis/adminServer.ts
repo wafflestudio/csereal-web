@@ -10,7 +10,7 @@ import { getRequest, patchRequest } from './serverIndex';
 //       next: { tags: ['slide'] },
 //     },
 //   ) as Promise<{
-//     posts: SlidePreview[];
+//     slides: SlidePreview[];
 //     total: number;
 //   }>;
 
@@ -22,21 +22,21 @@ import { getRequest, patchRequest } from './serverIndex';
 //       next: { tags: ['important'] },
 //     },
 //   ) as Promise<{
-//     posts: ImportantPreview[];
+//     importants: ImportantPreview[];
 //     total: number;
 //   }>;
 
 export const getSlides = async (
   page: number,
-): Promise<{ posts: SlidePreview[]; total: number }> => ({
-  posts: [],
+): Promise<{ slides: SlidePreview[]; total: number }> => ({
+  slides: [],
   total: 0,
 });
 
 export const getImportants = async (
   page: number,
-): Promise<{ posts: ImportantPreview[]; total: number }> => ({
-  posts: [],
+): Promise<{ importants: ImportantPreview[]; total: number }> => ({
+  importants: [],
   total: 0,
 });
 

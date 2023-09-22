@@ -24,17 +24,17 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
   const pageNum = (page && parseInt(page)) || 1;
 
   if (selectedMenu === ADMIN_MENU.slide) {
-    const { posts, total } = await getSlides(pageNum);
+    const { slides, total } = await getSlides(pageNum);
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {posts && <SlideManagement posts={posts} total={total} page={pageNum} />}
+        {slides && <SlideManagement posts={slides} total={total} page={pageNum} />}
       </AdminPageLayout>
     );
   } else if (selectedMenu === ADMIN_MENU.important) {
-    const { posts, total } = await getImportants(pageNum);
+    const { importants, total } = await getImportants(pageNum);
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
-        {posts && <ImportantManagement posts={posts} total={total} page={pageNum} />}
+        {importants && <ImportantManagement posts={importants} total={total} page={pageNum} />}
       </AdminPageLayout>
     );
   } else {
