@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
+import { useSWRConfig } from 'swr';
 
 import { batchUnslideAction } from '@/actions/adminActions';
 
@@ -55,6 +56,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const { openModal } = useModal();
   const router = useRouter();
+  const { mutate } = useSWRConfig();
 
   const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
 
@@ -71,6 +73,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
     } else {
       successToast('슬라이드를 해제했습니다.');
       resetSelectedPosts();
+      mutate('/admin');
     }
   };
 
