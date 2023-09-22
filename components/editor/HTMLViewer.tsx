@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+
+import Autolinker from 'autolinker';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
 import './common/suneditor.custom.css';
-import Autolinker from 'autolinker';
 
 type TopRightImage =
   | {
