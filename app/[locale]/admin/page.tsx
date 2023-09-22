@@ -1,4 +1,9 @@
-import { getImportants, getSlides } from '@/apis/adminServer';
+'use client';
+
+import useSWR from 'swr';
+
+import { getImportants, getSlides } from '@/apis/admin';
+// import { getImportants, getSlides } from '@/apis/adminServer';
 
 import ImportantManagement from '@/components/admin/important/ImportantManagement';
 import SlideManagement from '@/components/admin/slide/SlideManagement';
@@ -19,19 +24,21 @@ interface AdminPageProps {
 const DEFAULT_MENU = ADMIN_MENU.slide;
 const adminPath = getPath(admin);
 
-export default async function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
+export default function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
   const selectedMenu = selected ? replaceDashWithSpace(selected) : DEFAULT_MENU;
   const pageNum = (page && parseInt(page)) || 1;
+  const { data: slideData } = useSWR('/admin/slide', () => getSlides(pageNum));
+  const { data: importantData } = useSWR('/admin/important', () => getImportants(pageNum));
 
-  if (selectedMenu === ADMIN_MENU.slide) {
-    const { slides, total } = await getSlides(pageNum);
+  if (selectedMenu === ADMIN_MENU.slide && slideData) {
+    const { slides, total } = slideData;
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
         {slides && <SlideManagement posts={slides} total={total} page={pageNum} />}
       </AdminPageLayout>
     );
-  } else if (selectedMenu === ADMIN_MENU.important) {
-    const { importants, total } = await getImportants(pageNum);
+  } else if (selectedMenu === ADMIN_MENU.important && importantData) {
+    const { importants, total } = importantData;
     return (
       <AdminPageLayout selectedMenu={selectedMenu}>
         {importants && <ImportantManagement posts={importants} total={total} page={pageNum} />}
