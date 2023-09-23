@@ -26,12 +26,12 @@ export default function MainPageContent({ data }: MainPageContentProps) {
           <Notices notices={data.notices} />
         </div>
       </div>
-      <ScrollButton hide={inView} />
+      <ScrollSign hide={inView} />
     </>
   );
 }
 
-function ScrollButton({ hide }: { hide: boolean }) {
+function ScrollSign({ hide }: { hide: boolean }) {
   const { navbarState } = useNavbarContext();
 
   return (
@@ -40,7 +40,7 @@ function ScrollButton({ hide }: { hide: boolean }) {
         navbarState.type === 'closed'
           ? 'w-[calc(100vw-100px)] left-[100px]'
           : 'w-[calc(100vw-172px)] left-[172px]'
-      } z-40 flex flex-col items-center fixed bottom-2.5 ${
+      } z-30 flex flex-col items-center fixed bottom-2.5 ${
         hide && 'opacity-0'
       } transition-opacity duration-200`}
     >
