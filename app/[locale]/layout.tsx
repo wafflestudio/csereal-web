@@ -44,19 +44,17 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`flex ${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal overscroll-none bg-white`}
+        className={`flex ${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white no-scrollbar`}
       >
         <ContextProviders>
           <NextIntlClientProvider locale={params.locale} messages={messages}>
             <Navbar />
-            <div className="flex flex-col flex-1 font-noto-demi">
+            <div className="min-w-fit flex flex-col flex-1 overflow-auto styled-scrollbar font-noto-demi">
               <Suspense>
                 <Header />
               </Suspense>
-              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
+              <main className="flex-1">{children}</main>
+              <Footer />
             </div>
             <ModalContainer />
             <Toaster />
