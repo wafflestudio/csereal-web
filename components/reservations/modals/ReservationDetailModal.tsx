@@ -41,7 +41,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="relative bg-white font-noto w-[24.4rem] text-neutral-700 px-5 py-6 text-sm font-normal">
+      <div className="relative bg-white font-noto w-[24.4rem] text-neutral-700 px-5 py-6 text-sm font-normal border-[#32B40A] border-t-[3px] border-b">
         <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.userName}</h2>
         <div className="flex flex-col gap-6">
           <p>{reservation.purpose ?? ''}</p>

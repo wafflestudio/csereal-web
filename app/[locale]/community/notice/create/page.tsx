@@ -14,6 +14,7 @@ import { NoticeTags } from '@/constants/tag';
 
 import { notice } from '@/types/page';
 
+import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 
 const noticePath = getPath(notice);
@@ -24,7 +25,7 @@ export default function NoticeCreatePage() {
   const handleCancel = () => router.push(noticePath);
 
   const handleComplete = async (content: PostEditorContent) => {
-    canSubmit(content);
+    validateNoticeForm(content);
 
     const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNotice({
@@ -58,12 +59,3 @@ export default function NoticeCreatePage() {
     </PageLayout>
   );
 }
-
-const canSubmit = (content: PostEditorContent) => {
-  if (content.title === '') {
-    throw new Error('제목을 입력해주세요');
-  }
-  if (content.description === '') {
-    throw new Error('내용을 입력해주세요');
-  }
-};

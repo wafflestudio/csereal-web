@@ -88,7 +88,7 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
   return (
     <ModalFrame onClose={closeModal}>
       <form
-        className="font-noto bg-white w-[24.4rem] text-neutral-700 px-5 py-6"
+        className="font-noto bg-white w-[24.4rem] text-neutral-700 px-5 py-6 border-main-orange border-t-[3px] border-b"
         onSubmit={handleSubmit}
       >
         <h2 className="text-[1.25rem] mb-7">시설 예약</h2>

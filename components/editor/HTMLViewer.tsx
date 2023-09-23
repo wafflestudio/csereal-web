@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+
+import Autolinker from 'autolinker';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
@@ -34,6 +36,7 @@ interface HTMLViewerProps {
 
 export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }: HTMLViewerProps) {
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
+  const linkedHTML = Autolinker.link(sanitizedHTML);
 
   return (
     <div className={`flow-root ${margin} `}>
@@ -43,7 +46,7 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
       <div
         className="sun-editor-editable [&_strong]:font-noto [&_h1]:font-noto [&_h2]:font-noto [&_h3]:font-noto"
-        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
+        dangerouslySetInnerHTML={{ __html: linkedHTML }}
       />
     </div>
   );

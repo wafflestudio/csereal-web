@@ -1,15 +1,8 @@
-import { News, NewsPreviewList, PATCHNewsBody, POSTNewsBody } from '@/types/news';
-import { PostSearchQueryParams } from '@/types/post';
+import { PATCHNewsBody, POSTNewsBody } from '@/types/news';
 
-import { deleteRequest, getRequest, patchRequest, postRequest } from '.';
+import { patchRequestWithCookie, postRequestWithCookie } from '.';
 
 const newsPath = '/news';
-
-export const getNewsPosts = (params: PostSearchQueryParams) =>
-  getRequest(newsPath, params, { cache: 'no-store' }) as Promise<NewsPreviewList>;
-
-export const getNewsPostDetail = (id: number, params?: PostSearchQueryParams) =>
-  getRequest(`${newsPath}/${id}`, params, { cache: 'no-store' }) as Promise<News>;
 
 export const postNews = async (body: POSTNewsBody) => {
   const formData = new FormData();
@@ -29,9 +22,11 @@ export const postNews = async (body: POSTNewsBody) => {
     formData.append('attachments', attachment);
   }
 
-  await postRequest(newsPath, {
+  await postRequestWithCookie(newsPath, {
     body: formData,
   });
+
+  
 };
 
 export const patchNews = async (id: number, body: PATCHNewsBody) => {
@@ -52,9 +47,7 @@ export const patchNews = async (id: number, body: PATCHNewsBody) => {
     formData.append('newAttachments', attachment);
   }
 
-  await patchRequest(`${newsPath}/${id}`, {
+  await patchRequestWithCookie(`${newsPath}/${id}`, {
     body: formData,
   });
 };
-
-export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);

@@ -88,8 +88,6 @@ export default function NoticePageContent({
           selectedPostIds={selectedPostIds}
           resetSelectedPosts={() => {
             changeSelectedIds({ type: 'RESET' });
-            // TODO: 깔끔하게
-            window.location.reload();
           }}
         />
       </LoginStaffVisible>
