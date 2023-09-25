@@ -38,9 +38,9 @@ function ScrollSign({ hide }: { hide: boolean }) {
     <div
       className={`${
         navbarState.type === 'closed'
-          ? 'w-[calc(100vw-100px)] left-[100px]'
-          : 'w-[calc(100vw-172px)] left-[172px]'
-      } z-30 flex flex-col items-center fixed bottom-2.5 ${
+          ? 'left-[calc(50vw+50px-25px)]'
+          : 'left-[calc(50vw+86px-25px)]'
+      }  z-30 w-[50px] flex flex-col items-center fixed bottom-2.5 ${
         hide && 'opacity-0'
       } transition-opacity duration-200`}
     >
