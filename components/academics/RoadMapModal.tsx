@@ -23,7 +23,7 @@ function RoadMapTitle() {
     <h4 className="flex items-center gap-2">
       <SignPostIcon />
       <span className="align-bottom">
-        <span className="font-bold">교과목 로드맵 </span>
+        <span className="font-noto font-bold">교과목 로드맵 </span>
         <span className="text-neutral-600 text-xs">(선수 교과목)</span>
       </span>
     </h4>

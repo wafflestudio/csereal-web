@@ -11,11 +11,11 @@ interface CourseCardProps {
 
 const getSortedProperties = (course: Course, selectedOption: SortOption) => {
   if (selectedOption === '교과목 구분') {
-    return [course.classification, course.year, `${course.credit}학점`];
+    return [course.classification, course.grade, `${course.credit}학점`];
   } else if (selectedOption === '학점') {
-    return [`${course.credit}학점`, course.year, course.classification];
+    return [`${course.credit}학점`, course.grade, course.classification];
   } else {
-    return [course.year, course.classification, `${course.credit}학점`];
+    return [course.grade, course.classification, `${course.credit}학점`];
   }
 };
 
