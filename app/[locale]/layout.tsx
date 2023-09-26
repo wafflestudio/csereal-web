@@ -7,6 +7,7 @@ import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
 
+import BetaBanner from '@/components/common/BetaBanner';
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
@@ -44,24 +45,25 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`flex ${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal overscroll-none bg-white`}
+        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit`}
       >
-        <ContextProviders>
-          <NextIntlClientProvider locale={params.locale} messages={messages}>
-            <Navbar />
-            <div className="flex flex-col flex-1 font-noto-demi">
-              <Suspense>
-                <Header />
-              </Suspense>
-              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
+        <BetaBanner />
+        <div className="flex">
+          <ContextProviders>
+            <NextIntlClientProvider locale={params.locale} messages={messages}>
+              <Navbar />
+              <div className="min-w-fit flex flex-col flex-1 overflow-auto font-noto-demi">
+                <Suspense>
+                  <Header />
+                </Suspense>
                 <main className="flex-1">{children}</main>
                 <Footer />
               </div>
-            </div>
-            <ModalContainer />
-            <Toaster />
-          </NextIntlClientProvider>
-        </ContextProviders>
+              <ModalContainer />
+              <Toaster />
+            </NextIntlClientProvider>
+          </ContextProviders>
+        </div>
       </body>
     </html>
   );

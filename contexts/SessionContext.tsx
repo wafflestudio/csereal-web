@@ -3,7 +3,7 @@
 import React, { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 import useSWR from 'swr';
 
-import { getRequestWithCookie } from '@/apis';
+import { getRequest } from '@/apis';
 
 interface SessionContextData {
   user?: User;
@@ -22,7 +22,7 @@ export interface User {
 }
 
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const { data, isLoading, error } = useSWR<User>('/user/is-staff', getRequestWithCookie);
+  const { data, isLoading, error } = useSWR<User>('/user/is-staff', getRequest);
 
   const user = useMemo(() => {
     if (data?.isStaff === undefined || error) {

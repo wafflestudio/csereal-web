@@ -1,6 +1,6 @@
 import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
-import { patchRequestWithCookie, postRequestWithCookie } from '.';
+import { patchRequest, postRequest } from '.';
 
 const noticePath = '/notice';
 
@@ -16,7 +16,7 @@ export const postNotice = async (body: POSTNoticeBody) => {
     formData.append('attachments', attachment);
   }
 
-  await postRequestWithCookie(noticePath, {
+  await postRequest(noticePath, {
     body: formData,
   });
 };
@@ -35,7 +35,7 @@ export const patchNotice = async (id: number, body: PatchNoticeBody) => {
     formData.append('newAttachments', attachment);
   }
 
-  await patchRequestWithCookie(`${noticePath}/${id}`, {
+  await patchRequest(`${noticePath}/${id}`, {
     body: formData,
   });
 };

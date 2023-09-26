@@ -1,9 +1,11 @@
 import { objToQueryString } from '@/utils/convertParams';
 
-export const BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
-    : 'http://localhost:8080/api/v1';
+// export const BASE_URL =
+//   process.env.NODE_ENV === 'production'
+//     ? 'https://cse-dev-waffle.bacchus.io/api/v1'
+//     : 'http://localhost:8080/api/v1';
+
+export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -15,29 +17,24 @@ export const getRequest = async <T = unknown>(
   const response = await fetch(fetchUrl, {
     ...init,
     method: 'GET',
+    credentials: 'include',
   });
   checkError(response);
   const responseData = await response.json();
   return responseData as T;
 };
 
-export const getRequestWithCookie: typeof getRequest = (url, params, init) =>
-  getRequest(url, params, { ...init, credentials: 'include' });
-
 export const postRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'POST' });
+  const response = await fetch(fetchUrl, { ...init, method: 'POST', credentials: 'include' });
   checkError(response);
   const responseData = await response.json();
   return responseData as T;
 };
 
-export const postRequestWithCookie: typeof postRequest = (url, init) =>
-  postRequest(url, { ...init, credentials: 'include' });
-
 export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'PATCH' });
+  const response = await fetch(fetchUrl, { ...init, method: 'PATCH', credentials: 'include' });
   checkError(response);
   if (response.headers.get('content-type')) {
     const responseData = await response.json();
@@ -45,17 +42,11 @@ export const patchRequest = async <T = unknown>(url: string, init?: RequestInit)
   }
 };
 
-export const patchRequestWithCookie: typeof patchRequest = (url, init) =>
-  patchRequest(url, { ...init, credentials: 'include' });
-
 export const deleteRequest = async (url: string, init?: RequestInit) => {
   const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'DELETE' });
+  const response = await fetch(fetchUrl, { ...init, method: 'DELETE', credentials: 'include' });
   checkError(response);
 };
-
-export const deleteRequestWithCookie: typeof deleteRequest = async (url, init) =>
-  deleteRequest(url, { ...init, credentials: 'include' });
 
 export const checkError = (response: Response) => {
   if (!response.ok) {
