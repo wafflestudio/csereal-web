@@ -42,7 +42,7 @@ function ScrollSign({ hide }: { hide: boolean }) {
           : 'left-[calc(50vw+86px-25px)]'
       }  z-30 w-[50px] flex flex-col items-center fixed bottom-2.5 ${
         hide && 'opacity-0'
-      } transition-opacity duration-200`}
+      } transition-opacity duration-200 pointer-events-none`}
     >
       <span className="text-xs text-main-orange font-yoon font-bold animate-pulse">SCROLL</span>
       <span className="material-symbols-outlined text-[48px] text-main-orange font-extralight">
