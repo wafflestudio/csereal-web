@@ -1,6 +1,10 @@
 'use client';
 
+import useModal from '@/hooks/useModal';
+
 import { Course } from '@/types/academics';
+
+import CourseDetailModal from './CourseDetailModal';
 
 export const COURSE_ROW_ITEM_WIDTH = {
   name: 'w-56',
@@ -13,7 +17,7 @@ export const COURSE_ROW_ITEM_WIDTH = {
 export default function CourseListRow({ course }: { course: Course }) {
   return (
     <li className="flex items-center h-14 text-xs [&>span]:px-3">
-      <NameCell name={course.name} />
+      <NameCell name={course.name} course={course} />
       <ClassificationCell classification={course.classification} />
       <CodeCell code={course.code} />
       <CreditCell credit={course.credit} />
@@ -22,8 +26,16 @@ export default function CourseListRow({ course }: { course: Course }) {
   );
 }
 
-function NameCell({ name }: { name: string }) {
-  return <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>{name}</span>;
+function NameCell({ name, course }: { name: string; course: Course }) {
+  const { openModal, closeModal } = useModal();
+
+  return (
+    <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>
+      <button onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}>
+        {name}
+      </button>
+    </span>
+  );
 }
 
 function ClassificationCell({ classification }: { classification: string }) {
