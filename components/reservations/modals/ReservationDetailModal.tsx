@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
 import useSWR from 'swr';
 
-import { getRequestWithCookie } from '@/apis';
+import { getRequest } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
@@ -21,10 +21,7 @@ import { errorToast, successToast } from '@/utils/toast';
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation } = useSWR<Reservation>(
-    `/reservation/${reservationId}`,
-    getRequestWithCookie,
-  );
+  const { data: reservation } = useSWR<Reservation>(`/reservation/${reservationId}`, getRequest);
 
   const { closeModal } = useModal();
 
