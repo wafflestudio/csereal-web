@@ -85,7 +85,6 @@ export default function NewsRow({
           fill
           className="object-fill"
           sizes="12.5rem"
-          priority
         />
       </Link>
     </article>

@@ -57,7 +57,7 @@ function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }
         !imageURL && 'bg-neutral-100'
       }`}
     >
-      <ImageWithFallback alt="대표 이미지" src={imageURL} fill priority className="object-cover" />
+      <ImageWithFallback alt="대표 이미지" src={imageURL} fill className="object-cover" />
     </Link>
   );
 }

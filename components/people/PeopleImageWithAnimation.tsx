@@ -16,7 +16,6 @@ export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAn
         <Image
           alt="대표 이미지"
           src={imageURL}
-          priority={true}
           fill
           className="w-full h-full object-cover"
           sizes="186px, 248px"
