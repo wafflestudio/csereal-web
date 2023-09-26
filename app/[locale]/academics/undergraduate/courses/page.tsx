@@ -2,6 +2,7 @@ import Link from 'next-intl/link';
 
 import { getCourses } from '@/apis/academics';
 
+import CourseList from '@/components/academics/CourseList';
 import CourseRow from '@/components/academics/CourseRow';
 import RoadMapButton from '@/components/academics/RoadMapButton';
 import { Tag } from '@/components/common/Tags';
@@ -33,13 +34,14 @@ export default async function UndergraduateCoursePage({
       <RoadMapButton />
       <h4 className="my-8 font-bold">교과목 정보</h4>
       <SortOptions selectedOption={selectedOption} />
-      {sortedCourses.length > 0 && (
+      <CourseList courses={data} />
+      {/* {sortedCourses.length > 0 && (
         <div className="mt-6 flex flex-col gap-8">
           {sortedCourses.map((courses, i) => (
             <CourseRow courses={courses} selectedOption={selectedOption} key={i} />
           ))}
         </div>
-      )}
+      )} */}
     </PageLayout>
   );
 }
@@ -83,7 +85,7 @@ const sortCourses = (courses: Course[], sortOption: SortOption) => {
 
   if (sortOption === '학년') {
     sortedCourses.push([], [], [], []);
-    courses.forEach((course) => sortedCourses[parseInt(course.year) - 1].push(course));
+    courses.forEach((course) => sortedCourses[parseInt(course.grade) - 1].push(course));
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>
