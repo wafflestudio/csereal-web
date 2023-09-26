@@ -31,6 +31,7 @@ const NavbarContext = createContext<NavbarContextContent>({
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'expanded' });
+
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }}>
       {children}
