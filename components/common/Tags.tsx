@@ -26,7 +26,7 @@ type HoverStyle = 'fill' | 'orange';
 type DefaultStyle = 'orange' | 'gray' | 'fill';
 
 const HOVER_STYLE: { [key in HoverStyle]: string } = {
-  fill: 'hover:bg-main-orange hover:border-main-orange hover:text-white hover:font-bold',
+  fill: 'font-noto hover:bg-main-orange hover:border-main-orange hover:text-white',
   orange: 'hover:bg-white hover:border-main-orange hover:text-main-orange',
 };
 
