@@ -29,25 +29,8 @@ const NavbarContext = createContext<NavbarContextContent>({
   setNavbarState: () => {},
 });
 
-const localStorageKey = 'NAVBARSTATE' as const;
-
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
-  const saveNavState = (state: NavbarState) => {
-    if (typeof window === 'undefined') return;
-    localStorage.setItem(localStorageKey, JSON.stringify(state));
-  };
-
-  const getNavState = (): NavbarState | null => {
-    if (typeof window === 'undefined') return null;
-    const item = localStorage.getItem(localStorageKey);
-    return item ? JSON.parse(item) : null;
-  };
-
-  const [navbarState, setState] = useState<NavbarState>(getNavState() || { type: 'closed' });
-  const setNavbarState = (state: NavbarState) => {
-    if (state.type === 'closed' || state.type === 'expanded') saveNavState(state);
-    setState(state);
-  };
+  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'expanded' });
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }}>
