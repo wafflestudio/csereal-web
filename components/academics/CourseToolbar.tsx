@@ -13,7 +13,6 @@ export default function CourseToolbar({
   sortOption,
   changeOptions,
 }: CourseToolbarProps) {
-  console.log(viewOption, sortOption);
   return (
     <div className="flex items-center justify-between mb-5 pr-1">
       <ViewOptions
