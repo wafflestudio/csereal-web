@@ -30,11 +30,11 @@ export default function CalendarContent({
 const RowIndex = () => {
   return (
     <div className="flex flex-col items-stretch w-[3.75rem]">
-      <div className="h-[4.0625rem] border border-x-neutral-200 border-b-neutral-200 border-t-neutral-300 bg-neutral-100" />
+      <div className="h-[4.0625rem] border-r border-y-[2px] border-neutral-300 bg-neutral-100" />
       {rows.map((x) => (
         <div
           key={x}
-          className="p-1 h-12 border-x border-b border-neutral-200 text-center font-yoon text-xs text-neutral-700 font-medium"
+          className="p-1 h-12 border-r border-b border-neutral-300 text-center font-yoon text-xs text-neutral-700 font-medium"
         >
           {x}
         </div>

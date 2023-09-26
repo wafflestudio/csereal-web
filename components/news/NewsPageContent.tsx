@@ -43,20 +43,21 @@ export default function NewsPageContent({
         setSearchParams={setSearchParams}
       />
       <div className="flex flex-col gap-4 mt-10 mb-8 mx-2.5">
-        {searchList.length === 0 && (
+        {searchList.length > 0 ? (
+          searchList.map((post) => (
+            <NewsRow
+              key={post.id}
+              href={`${newsPath}/${post.id}`}
+              title={post.title}
+              description={post.description}
+              tags={post.tags}
+              date={new Date(post.createdAt)}
+              imageURL={post.imageURL}
+            />
+          ))
+        ) : (
           <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
         )}
-        {searchList.map((post) => (
-          <NewsRow
-            key={post.id}
-            href={`${newsPath}/${post.id}`}
-            title={post.title}
-            description={post.description}
-            tags={post.tags}
-            date={new Date(post.createdAt)}
-            imageURL={post.imageURL}
-          />
-        ))}
       </div>
       <Pagination
         totalPostsCount={total}

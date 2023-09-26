@@ -57,7 +57,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
             <p>세미나실: {reservation.roomLocation}</p>
           </div>
           <div className="flex flex-col gap-1">
-            {/* <p>예약자 계정: {reservation}</p> */}
+            <p>예약자 계정: {reservation.userName}</p>
             <p>이메일: {reservation.contactEmail}</p>
             <p>핸드폰: {reservation.contactPhone}</p>
           </div>

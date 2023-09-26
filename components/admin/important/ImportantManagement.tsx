@@ -2,8 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
+import { useSWRConfig } from 'swr';
 
-import { batchUnimportant } from '@/actions/adminActions';
+import { batchUnimportantAction } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -62,6 +63,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   const [selectedPostIdentifiers, changeSelectedIdentifiers] = useReducer(reducer, []);
   const { openModal } = useModal();
   const router = useRouter();
+  const { mutate } = useSWRConfig();
 
   const resetSelectedPosts = () => changeSelectedIdentifiers({ type: 'RESET' });
 
@@ -72,17 +74,13 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   };
 
   const handleBatchUnimportant = async () => {
-    const result = await batchUnimportant(selectedPostIdentifiers);
+    const result = await batchUnimportantAction(selectedPostIdentifiers);
     if (result?.error) {
       errorToast('중요 안내를 해제하지 못했습니다.');
-      if (result.error instanceof Error) {
-        console.error(result.error.message);
-      } else {
-        throw result.error;
-      }
     } else {
       successToast('중요 안내를 해제했습니다.');
       resetSelectedPosts();
+      mutate('/admin');
     }
   };
 

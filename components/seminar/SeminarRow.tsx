@@ -31,57 +31,86 @@ export default function SeminarRow({
   isYearLast,
   hideDivider,
 }: SeminarRowProps) {
+  const seminarPostPath = `${seminarPath}/${id}`;
+
   return (
     <article
       className={`flex py-[1.2rem] border-neutral-200 ${
         !isYearLast && !hideDivider ? 'border-t-[1px]' : null
       }`}
     >
-      <Link
-        href={`${seminarPath}/${id}`}
-        className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
-          !imageURL && 'bg-neutral-100'
-        }`}
-      >
-        <ImageWithFallback
-          alt="대표 이미지"
-          src={imageURL}
-          fill
-          priority
-          className="object-cover"
-        />
-      </Link>
+      <ImageCell imageURL={imageURL} href={seminarPostPath} />
       <div className="flex flex-col items-start pl-5 break-all">
-        <Link href={`${seminarPath}/${id}`} className="hover:underline">
-          <h3 className="font-noto text-md font-bold mb-[.63rem] leading-5">{title}</h3>
-        </Link>
-
-        <Link
-          href={`${seminarPath}/${id}`}
-          className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center"
-        >
-          <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-            person
-          </span>
-          <p className="text-xs font-normal text-neutral-500">{host}</p>
-          <p className="text-xs font-normal w-5 text-center text-neutral-500">|</p>
-          <p className="text-xs font-normal text-neutral-500">{company}</p>
-        </Link>
-        <Link
-          href={`${seminarPath}/${id}`}
-          className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center"
-        >
-          <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-            calendar_month
-          </span>
-          <p className="text-xs font-normal mr-2 text-neutral-500">{formatDateWithDays(date)}</p>
-          <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-            distance
-          </span>
-          <p className="text-xs font-normal text-neutral-500">{location}</p>
-        </Link>
+        <TitleCell title={title} href={seminarPostPath} />
+        <HostInformationCell host={host} company={company} href={seminarPostPath} />
+        <DateAndLocationCell date={date} location={location} href={seminarPostPath} />
       </div>
     </article>
+  );
+}
+
+function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }) {
+  return (
+    <Link
+      href={href}
+      className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
+        !imageURL && 'bg-neutral-100'
+      }`}
+    >
+      <ImageWithFallback alt="대표 이미지" src={imageURL} fill priority className="object-cover" />
+    </Link>
+  );
+}
+
+function TitleCell({ title, href }: { title: string; href: string }) {
+  return (
+    <Link href={href} className="hover:underline">
+      <h3 className="font-noto text-md font-bold mb-[.63rem] leading-5">{title}</h3>
+    </Link>
+  );
+}
+
+function HostInformationCell({
+  host,
+  company,
+  href,
+}: {
+  host: string;
+  company: string;
+  href: string;
+}) {
+  return (
+    <Link href={href} className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
+      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
+        person
+      </span>
+      <span className="text-xs font-normal text-neutral-500">{host}</span>
+      <span className="text-xs font-normal w-5 text-center text-neutral-500">|</span>
+      <span className="text-xs font-normal text-neutral-500">{company}</span>
+    </Link>
+  );
+}
+
+function DateAndLocationCell({
+  date,
+  location,
+  href,
+}: {
+  date: Date;
+  location: string;
+  href: string;
+}) {
+  return (
+    <Link href={href} className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
+      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
+        calendar_month
+      </span>
+      <span className="text-xs font-normal mr-2 text-neutral-500">{formatDateWithDays(date)}</span>
+      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
+        distance
+      </span>
+      <span className="text-xs font-normal text-neutral-500">{location}</span>
+    </Link>
   );
 }
 

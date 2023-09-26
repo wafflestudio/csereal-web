@@ -30,7 +30,7 @@ export default function SearchForm({ query }: { query: string }) {
         value={text}
         onChange={handleChange}
       />
-      <button className="flex justify-center items-center py-[.1875rem] px-3 h-8 border-y border-r border-neutral-300 rounded-r-sm font-bold text-xs tracking-[0.02em]">
+      <button className="flex justify-center items-center py-[.1875rem] px-3 h-8 border-y border-r border-neutral-300 rounded-r-sm font-yoon font-bold text-xs tracking-[0.02em]">
         검색
       </button>
     </form>

@@ -1,4 +1,4 @@
-import { Reservation, ReservationPreview } from '@/types/reservation';
+import { ReservationPreview } from '@/types/reservation';
 
 import styles from './cellstyle.module.css';
 import { ReservationDetailModalButton } from '../modals/ReservationDetailModal';
@@ -30,7 +30,8 @@ const ColumnIndex = ({ selected, date }: { selected: boolean; date: Date }) => {
   return (
     <div
       className={`
-        h-[4.0625rem] border border-x-neutral-200 border-b-neutral-200 border-t-neutral-300 
+        h-[4.0625rem] border-y-[2px]  
+        border-r-[1px] border-neutral-300 
         bg-neutral-100 px-3 py-[.62rem] flex flex-col justify-between
         ${selected && 'bg-neutral-200'}
         `}
@@ -47,7 +48,7 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     .map((_, i) => (
       <div
         key={i}
-        className={`h-6 box-border ${styles.cell} ${selected && 'bg-[rgba(64,64,64,0.3)]'}`}
+        className={`h-6 box-border ${styles.cell} ${selected && 'bg-[rgba(38,38,38,0.5)]'}`}
       />
     ));
 };

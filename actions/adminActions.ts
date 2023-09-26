@@ -1,25 +1,43 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
-import { patchMultipleImportants, patchMultipleSlides } from '@/apis/admin';
+import { patchMultipleImportants, patchMultipleSlides } from '@/apis/adminServer';
 
 import { ImportantPostIdentifier } from '@/types/admin';
 
-export const batchUnslide = async (ids: Set<number>) => {
+import { revalidateNewsTag } from './newsActions';
+import { revalidateNoticeTag } from './noticeActions';
+import { revalidateSeminarTag } from './seminarActions';
+
+export const batchUnslideAction = async (ids: Set<number>) => {
   try {
     await patchMultipleSlides(Array.from(ids));
-    revalidatePath('/admin');
+    revalidateSlideTag();
+    revalidateNewsTag();
   } catch (error) {
+    console.log(error instanceof Error ? error.message : error);
     return { error };
   }
 };
 
-export const batchUnimportant = async (infos: ImportantPostIdentifier[]) => {
+export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) => {
   try {
     await patchMultipleImportants(Array.from(infos));
-    revalidatePath('/admin');
+    revalidateImportantTag();
+    revalidateNoticeTag();
+    revalidateNewsTag();
+    revalidateSeminarTag();
   } catch (error) {
+    console.log(error instanceof Error ? error.message : error);
     return { error };
   }
+};
+
+const revalidateSlideTag = () => {
+  revalidateTag('slide');
+};
+
+const revalidateImportantTag = () => {
+  revalidateTag('important');
 };

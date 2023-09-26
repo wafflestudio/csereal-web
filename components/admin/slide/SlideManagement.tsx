@@ -2,8 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
+import { useSWRConfig } from 'swr';
 
-import { batchUnslide } from '@/actions/adminActions';
+import { batchUnslideAction } from '@/actions/adminActions';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -55,6 +56,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const { openModal } = useModal();
   const router = useRouter();
+  const { mutate } = useSWRConfig();
 
   const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
 
@@ -65,17 +67,13 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   };
 
   const handleBatchUnslide = async () => {
-    const result = await batchUnslide(selectedPostIds);
+    const result = await batchUnslideAction(selectedPostIds);
     if (result?.error) {
       errorToast('슬라이드를 해제하지 못했습니다.');
-      if (result.error instanceof Error) {
-        console.error(result.error.message);
-      } else {
-        throw result.error;
-      }
     } else {
       successToast('슬라이드를 해제했습니다.');
       resetSelectedPosts();
+      mutate('/admin');
     }
   };
 
@@ -97,11 +95,11 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       />
       <BatchAction
         selectedCount={selectedPostIds.size}
-        buttonText="일괄 슬라이드쇼 해제"
+        buttonText="일괄 슬라이드 해제"
         onClickButton={() =>
           openModal(
             <AlertModal
-              message="정말 선택된 슬라이드쇼를 모두 해제하시겠습니까?"
+              message="정말 선택된 슬라이드를 모두 해제하시겠습니까?"
               confirmText="해제"
               onConfirm={handleBatchUnslide}
             />,

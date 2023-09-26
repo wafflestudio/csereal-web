@@ -16,8 +16,8 @@ export default function AlertModal({
   message,
   cancelText = '취소',
   confirmText = '확인',
-  onConfirm,
   onCancel,
+  onConfirm,
 }: AlertModalProps) {
   const { closeModal } = useModal();
 
