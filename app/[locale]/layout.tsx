@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { PropsWithChildren, Suspense } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -34,45 +34,47 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${params.locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
-
   return (
     <html lang="ko">
       <body
         className={`flex ${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal overscroll-none bg-white`}
       >
-        <ContextProviders>
-          <NextIntlClientProvider locale={params.locale} messages={messages}>
-            <Navbar />
-            <div className="flex flex-col flex-1 font-noto-demi">
-              <Suspense>
-                <Header />
-              </Suspense>
-              <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
+        <ContextProviders locale={params.locale}>
+          <Navbar />
+          <div className="flex flex-col flex-1 font-noto-demi">
+            <Suspense>
+              <Header />
+            </Suspense>
+            <div className="min-w-fit flex flex-col flex-1 mt-[9.25rem] overflow-auto styled-scrollbar">
+              <main className="flex-1">{children}</main>
+              <Footer />
             </div>
-            <ModalContainer />
-            <Toaster />
-          </NextIntlClientProvider>
+          </div>
+          <ModalContainer />
+          <Toaster />
         </ContextProviders>
       </body>
     </html>
   );
 }
 
-function ContextProviders({ children }: PropsWithChildren) {
+async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
     <SWRProvider>
       <SessionContextProvider>
         <NavbarContextProvider>
-          <ModalContextProvider>{children}</ModalContextProvider>
+          <ModalContextProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </ModalContextProvider>
         </NavbarContextProvider>
       </SessionContextProvider>
     </SWRProvider>
