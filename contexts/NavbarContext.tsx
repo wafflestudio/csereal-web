@@ -33,10 +33,12 @@ const localStorageKey = 'NAVBARSTATE' as const;
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const saveNavState = (state: NavbarState) => {
+    if (typeof window === 'undefined') return;
     localStorage.setItem(localStorageKey, JSON.stringify(state));
   };
 
   const getNavState = (): NavbarState | null => {
+    if (typeof window === 'undefined') return null;
     const item = localStorage.getItem(localStorageKey);
     return item ? JSON.parse(item) : null;
   };
