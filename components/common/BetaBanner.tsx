@@ -1,6 +1,6 @@
 export default function BetaBanner() {
   return (
-    <div className="h-20 bg-neutral-100 border-b border-neutral-150 min-w-full flex items-center gap-[18.63rem]">
+    <div className="h-20 bg-neutral-100 border-b border-neutral-150 flex items-center gap-[18.63rem]">
       <div>
         <div className="pl-[13.5rem] flex items-center gap-[.19rem]">
           <div className="rounded-full border border-main-orange w-[.625rem] h-[.625rem] mr-[.63rem]" />

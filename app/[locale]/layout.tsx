@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { ReactNode, Suspense } from 'react';
+import { PropsWithChildren, ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -38,25 +38,33 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit`}
+        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex flex-col`}
       >
         <BetaBanner />
-        <div className="flex">
+        <div className="flex flex-1 h-[calc(100vh-5rem)]">
           <ContextProviders locale={params.locale}>
             <Navbar />
-            <div className="min-w-fit flex flex-col flex-1 overflow-auto font-noto-demi">
-              <Suspense>
-                <Header />
-              </Suspense>
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
+            <Content>{children}</Content>
             <ModalContainer />
             <Toaster />
           </ContextProviders>
         </div>
       </body>
     </html>
+  );
+}
+
+function Content({ children }: PropsWithChildren) {
+  return (
+    <div className="flex flex-col flex-1 font-noto-demi">
+      <Suspense>
+        <Header />
+      </Suspense>
+      <main className="flex flex-col flex-1 overflow-scroll">
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </main>
+    </div>
   );
 }
 
