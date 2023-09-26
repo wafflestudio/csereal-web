@@ -1,12 +1,12 @@
 .animated {
   --white: #141212;
-  --neutral-200: #262626;
+  --neutral-150: #1e1e1e;
   --neutral-400: #404040;
   transition: 0.3s;
 }
 
 .folding:hover {
-  background-color: var(--neutral-200) !important;
+  background-color: var(--neutral-150) !important;
 }
 
 .folding::before,
@@ -15,7 +15,7 @@
   content: '';
   position: absolute;
   top: -0.8px;
-  right: -0.8px;
+  right: -0.8px; 
   width: 0;
   height: 0;
   transition: 0.3s;
@@ -51,7 +51,7 @@
 }
 
 .unfolding::before {
-  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-200) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-150) 50%);
 }
 
 .unfolding::after {

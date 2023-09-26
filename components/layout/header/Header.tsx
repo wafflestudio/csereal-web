@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 
 import { BASE_URL } from '@/apis';
-import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
 import HeaderLogo from '@/public/image/header_logo.svg';
 
@@ -15,7 +14,6 @@ const LOGIN_URL = BASE_URL + '/login';
 const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
-  const { navbarState } = useNavbarContext();
   const refreshPage = () => {
     window.location.href = '/';
   };
@@ -23,8 +21,7 @@ export default function Header() {
   return (
     <header
       className={`
-        bg-white fixed top-0 right-0 h-[9.25rem] px-[3.75rem] pt-[51px] flex justify-between gap-4 overflow-scroll no-scrollbar
-        ${navbarState.type === 'closed' ? 'left-[6.25rem]' : 'left-[11rem]'}
+         sticky top-0 bg-white h-[9.25rem] px-[3.75rem] pt-[51px] pb-[1.69rem] flex justify-between gap-4 z-40
       `}
     >
       <div onClick={refreshPage} className="cursor-pointer">

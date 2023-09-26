@@ -1,6 +1,6 @@
 import { PATCHSeminarBody, POSTSeminarBody, Seminar, SeminarList } from '@/types/seminar';
 
-import { patchRequestWithCookie, postRequestWithCookie } from '.';
+import { patchRequest, postRequest } from '.';
 
 const seminarPath = '/seminar';
 
@@ -22,7 +22,7 @@ export const postSeminar = async (body: POSTSeminarBody) => {
     formData.append('attachments', attachment);
   }
 
-  await postRequestWithCookie(seminarPath, { body: formData });
+  await postRequest(seminarPath, { body: formData });
 };
 
 export const editSeminar = async (id: number, body: PATCHSeminarBody) => {
@@ -43,5 +43,5 @@ export const editSeminar = async (id: number, body: PATCHSeminarBody) => {
     formData.append('newAttachments', attachment);
   }
 
-  await patchRequestWithCookie(`${seminarPath}/${id}`, { body: formData });
+  await patchRequest(`${seminarPath}/${id}`, { body: formData });
 };

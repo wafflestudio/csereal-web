@@ -47,7 +47,7 @@ interface ShortCutBoxProps {
 
 function ShortCutBox({ title, href, location, nodes }: ShortCutBoxProps) {
   return (
-    <div className={`absolute flex flex-col gap-2 items-center z-40 ${location}`}>
+    <div className={`absolute flex flex-col gap-2 items-center ${location}`}>
       {nodes.location === 'top' && nodes.Component}
       <Link
         href={href}

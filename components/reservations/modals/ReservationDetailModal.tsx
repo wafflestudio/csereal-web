@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
 import useSWR from 'swr';
 
-import { getRequestWithCookie } from '@/apis';
+import { getRequest } from '@/apis';
 
 import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
 
@@ -21,10 +21,7 @@ import { errorToast, successToast } from '@/utils/toast';
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation } = useSWR<Reservation>(
-    `/reservation/${reservationId}`,
-    getRequestWithCookie,
-  );
+  const { data: reservation } = useSWR<Reservation>(`/reservation/${reservationId}`, getRequest);
 
   const { closeModal } = useModal();
 
@@ -42,7 +39,7 @@ export default function ReservationDetailModal({ reservationId }: { reservationI
   return (
     <ModalFrame onClose={closeModal}>
       <div className="relative bg-white font-noto w-[24.4rem] text-neutral-700 px-5 py-6 text-sm font-normal border-[#32B40A] border-t-[3px] border-b">
-        <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.userName}</h2>
+        <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.title}</h2>
         <div className="flex flex-col gap-6">
           <p>{reservation.purpose ?? ''}</p>
           <div className="flex flex-col gap-1">

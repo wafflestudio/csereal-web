@@ -1,9 +1,9 @@
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { deleteRequest, getRequest, getRequestWithCookie, patchRequest } from '.';
+import { getRequest } from '.';
 
 export const getSlides = (pageNum: number) =>
-  getRequestWithCookie(
+  getRequest(
     '/admin/slide',
     { pageNum },
     {
@@ -15,7 +15,7 @@ export const getSlides = (pageNum: number) =>
   }>;
 
 export const getImportants = (pageNum: number) =>
-  getRequestWithCookie(
+  getRequest(
     '/admin/important',
     { pageNum },
     {
