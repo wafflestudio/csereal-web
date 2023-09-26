@@ -1,7 +1,5 @@
 export const dynamic = 'force-dynamic';
 
-import { useEffect } from 'react';
-
 import MainNode1 from '@/public/image/main_1.svg';
 import MainNode2 from '@/public/image/main_2.svg';
 import MainNode3 from '@/public/image/main_3.svg';

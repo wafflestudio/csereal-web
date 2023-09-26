@@ -1,7 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { SegmentNode } from '@/types/page';
 
@@ -30,7 +29,18 @@ const NavbarContext = createContext<NavbarContextContent>({
   setNavbarState: () => {},
 });
 
+const localStorageKey = 'NAVBARSTATE' as const;
+
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
+  const saveNavState = (state: NavbarState) => {
+    localStorage.setItem(localStorageKey, JSON.stringify(state));
+  };
+
+  const getNavState = (): NavbarState | null => {
+    const item = localStorage.getItem(localStorageKey);
+    return item ? JSON.parse(item) : null;
+  };
+
   const [navbarState, setState] = useState<NavbarState>(getNavState() || { type: 'closed' });
   const setNavbarState = (state: NavbarState) => {
     if (state.type === 'closed' || state.type === 'expanded') saveNavState(state);
@@ -45,18 +55,3 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
 }
 
 export const useNavbarContext = () => useContext(NavbarContext);
-
-const localStorageKey = 'NAVBARSTATE';
-
-const saveNavState = (state: NavbarState) => {
-  localStorage.setItem(localStorageKey, JSON.stringify(state));
-};
-
-const getNavState = (): NavbarState | null => {
-  const item = localStorage.getItem(localStorageKey);
-  if (item) {
-    return JSON.parse(item);
-  } else {
-    return null;
-  }
-};
