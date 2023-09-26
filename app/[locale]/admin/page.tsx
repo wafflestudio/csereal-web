@@ -24,7 +24,7 @@ interface AdminPageProps {
 const DEFAULT_MENU = ADMIN_MENU.slide;
 const adminPath = getPath(admin);
 
-const getAdminData = async ([selectedMenu, pageNum]: [string, number]) => {
+const getAdminData = async (selectedMenu: string, pageNum: number) => {
   if (selectedMenu === ADMIN_MENU.slide) {
     return await getSlides(pageNum);
   } else {
@@ -35,7 +35,9 @@ const getAdminData = async ([selectedMenu, pageNum]: [string, number]) => {
 export default function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
   const selectedMenu = selected ? replaceDashWithSpace(selected) : DEFAULT_MENU;
   const pageNum = (page && parseInt(page)) || 1;
-  const { data } = useSWR([selectedMenu, pageNum], getAdminData);
+  const { data } = useSWR(['/admin', selectedMenu, pageNum], () =>
+    getAdminData(selectedMenu, pageNum),
+  );
 
   if (selectedMenu === ADMIN_MENU.slide && data) {
     const { slides, total } = data as { slides: SlidePreview[]; total: number };
