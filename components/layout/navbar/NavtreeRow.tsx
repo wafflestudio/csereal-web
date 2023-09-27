@@ -23,7 +23,7 @@ export default function NavTreeRow({
     return (
       <div className="flex items-center mb-6">
         <Link href={href} className="font-yoon text-md mr-4 font-medium text-main-orange shrink-0">
-          {t(segmentNode.name)}
+          <FormattedText text={segmentNode.name} />
         </Link>
         <StraightNode />
       </div>
@@ -35,15 +35,31 @@ export default function NavTreeRow({
           href={href}
           className="block font-yoon text-md font-medium mb-6 text-neutral-800 hover:text-main-orange "
         >
-          {t(segmentNode.name)}
+          <FormattedText text={segmentNode.name} />
         </Link>
       );
     } else {
       return (
         <p className="block font-yoon text-md font-medium mb-6 text-neutral-500">
-          {t(segmentNode.name)}
+          <FormattedText text={segmentNode.name} />
         </p>
       );
     }
   }
 }
+
+const FormattedText = ({ text }: { text: string }) => {
+  const t = useTranslations('Nav');
+  if (text.includes('(')) {
+    // 예약 관련
+    const idx = text.indexOf('(');
+    return (
+      <>
+        {text.slice(0, idx)}
+        <span className="text-xs">{text.slice(idx)}</span>
+      </>
+    );
+  } else {
+    return t(text);
+  }
+};

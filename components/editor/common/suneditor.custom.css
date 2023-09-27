@@ -2044,7 +2044,8 @@ textarea.se-error:focus {
 /* editable 시작 */
 
 .sun-editor-editable {
-  font-size: 13px;
+  /* 수정 */
+  font-size: 14px;
   /* 수정 */
   color: #e5e5e5;
   /* 추가 */
