@@ -38,16 +38,18 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex flex-col`}
+        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex`}
       >
-        <BetaBanner />
-        <div className="flex flex-1 h-[calc(100vh-5rem)]">
-          <ContextProviders locale={params.locale}>
-            <Navbar />
-            <Content>{children}</Content>
-            <ModalContainer />
-            <Toaster />
-          </ContextProviders>
+        <div className="flex flex-1 flex-col min-w-[1000px]">
+          <BetaBanner />
+          <div className="flex flex-1 h-[calc(100vh-5rem)]">
+            <ContextProviders locale={params.locale}>
+              <Navbar />
+              <Content>{children}</Content>
+              <ModalContainer />
+              <Toaster />
+            </ContextProviders>
+          </div>
         </div>
       </body>
     </html>
