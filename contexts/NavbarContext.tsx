@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { SegmentNode } from '@/types/page';
@@ -30,10 +31,13 @@ const NavbarContext = createContext<NavbarContextContent>({
 });
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
-  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'expanded' });
+  const pathName = usePathname();
+  const [navbarState, setNavbarState] = useState<NavbarState>({
+    type: pathName === '/' ? 'expanded' : 'closed',
+  });
 
   return (
-    <NavbarContext.Provider value={{ navbarState, setNavbarState }}>
+    <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>
       {children}
     </NavbarContext.Provider>
   );
