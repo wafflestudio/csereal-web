@@ -4,7 +4,7 @@ import { PropsWithChildren, ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
-import NavbarContextWrapper from '@/contexts/NavbarContextWrapper';
+import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
 import SessionContextProvider from '@/contexts/SessionContext';
 
 import BetaBanner from '@/components/common/BetaBanner';
@@ -81,13 +81,13 @@ async function ContextProviders({ locale, children }: { locale: string; children
   return (
     <SWRProvider>
       <SessionContextProvider>
-        <NavbarContextWrapper>
+        <NavbarContextProviderWrapper>
           <ModalContextProvider>
             <NextIntlClientProvider locale={locale} messages={messages}>
               {children}
             </NextIntlClientProvider>
           </ModalContextProvider>
-        </NavbarContextWrapper>
+        </NavbarContextProviderWrapper>
       </SessionContextProvider>
     </SWRProvider>
   );
