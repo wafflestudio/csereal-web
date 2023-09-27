@@ -33,7 +33,9 @@ function ImportantPostPreviewMain({ post }: ImportantPostPreviewMainProps) {
   return (
     <li>
       <Link href={`/community/${post.category}/${post.id}`}>
-        <h4 className="font-medium text-base tracking-wide mb-2 line-clamp-1">{post.title}</h4>
+        <h4 className="font-noto font-medium text-xs tracking-wide mb-2 line-clamp-1">
+          {post.title}
+        </h4>
         <p className="text-xs tracking-wide line-clamp-1">{post.description}</p>
       </Link>
     </li>
