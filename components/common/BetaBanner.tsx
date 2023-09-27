@@ -13,7 +13,7 @@ export default function BetaBanner() {
         </p>
         <div />
       </div>
-      <a className="text-sm text-main-orange">
+      <a className="text-sm text-main-orange" href="https://forms.gle/wiLUvBXWs4Ytw2jn7">
         구글 폼 바로가기<span className="material-symbols-outlined text-sm">chevron_right</span>
       </a>
     </div>
