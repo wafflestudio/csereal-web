@@ -60,7 +60,7 @@ function Content({ children }: PropsWithChildren) {
       <Suspense>
         <Header />
       </Suspense>
-      <main className="flex flex-col flex-1 overflow-scroll">
+    <main className="flex flex-col flex-1 overflow-scroll overflow-x-hidden">
         <div className="flex-1">{children}</div>
         <Footer />
       </main>
