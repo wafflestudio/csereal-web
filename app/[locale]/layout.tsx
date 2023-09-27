@@ -4,7 +4,7 @@ import { PropsWithChildren, ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
-import { NavbarContextProvider } from '@/contexts/NavbarContext';
+import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
 import SessionContextProvider from '@/contexts/SessionContext';
 
 import BetaBanner from '@/components/common/BetaBanner';
@@ -38,16 +38,18 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex flex-col`}
+        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex`}
       >
-        <BetaBanner />
-        <div className="flex flex-1 h-[calc(100vh-5rem)]">
-          <ContextProviders locale={params.locale}>
-            <Navbar />
-            <Content>{children}</Content>
-            <ModalContainer />
-            <Toaster />
-          </ContextProviders>
+        <div className="flex flex-1 flex-col min-w-[1000px]">
+          <BetaBanner />
+          <div className="flex flex-1 h-[calc(100vh-5rem)]">
+            <ContextProviders locale={params.locale}>
+              <Navbar />
+              <Content>{children}</Content>
+              <ModalContainer />
+              <Toaster />
+            </ContextProviders>
+          </div>
         </div>
       </body>
     </html>
@@ -60,7 +62,7 @@ function Content({ children }: PropsWithChildren) {
       <Suspense>
         <Header />
       </Suspense>
-    <main className="flex flex-col flex-1 overflow-scroll overflow-x-hidden">
+      <main className="flex flex-col flex-1 overflow-scroll overflow-x-hidden">
         <div className="flex-1">{children}</div>
         <Footer />
       </main>
@@ -79,13 +81,13 @@ async function ContextProviders({ locale, children }: { locale: string; children
   return (
     <SWRProvider>
       <SessionContextProvider>
-        <NavbarContextProvider>
+        <NavbarContextProviderWrapper>
           <ModalContextProvider>
             <NextIntlClientProvider locale={locale} messages={messages}>
               {children}
             </NextIntlClientProvider>
           </ModalContextProvider>
-        </NavbarContextProvider>
+        </NavbarContextProviderWrapper>
       </SessionContextProvider>
     </SWRProvider>
   );
