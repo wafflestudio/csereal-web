@@ -45,7 +45,7 @@ const noticeMockPin = {
   createdAt: '2023-07-11T09:29:13',
   isPinned: true,
   hasAttachment: false,
-  isPrivate: true,
+  isPrivate: false,
 };
 
 const noticeMockPrivate = {
@@ -61,7 +61,7 @@ const noticeMock = {
   title: '2023학년도 2학기 푸른등대 기부장학사업 신규장학생 선발',
   createdAt: '2023-07-11T09:29:13',
   isPinned: false,
-  isPrivate: true,
+  isPrivate: false,
   hasAttachment: true,
 };
 
