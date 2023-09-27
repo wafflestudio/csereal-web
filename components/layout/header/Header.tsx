@@ -21,10 +21,10 @@ export default function Header() {
   return (
     <header
       className={`
-         sticky top-0 bg-white h-[9.25rem] px-[3.75rem] pt-[51px] pb-[1.69rem] flex justify-between gap-4 z-40
+         top-0 bg-white h-[9.25rem] px-[3.75rem] pt-[51px] pb-[1.69rem] flex w-full justify-between gap-4 z-40
       `}
     >
-      <div onClick={refreshPage} className="cursor-pointer">
+      <div onClick={refreshPage} className="cursor-pointer flex-1">
         <HeaderLogo />
       </div>
       <HeaderRight />

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { PropsWithChildren, Suspense } from 'react';
+import { PropsWithChildren, ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -35,33 +35,18 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${params.locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
-
   return (
     <html lang="ko">
       <body
-        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit`}
+        className={`${yoonGothic.variable} ${noto.variable} ${notoDemiLight.variable} text-neutral-700 font-normal bg-white min-w-fit flex flex-col`}
       >
         <BetaBanner />
-        <div className="flex">
-          <ContextProviders>
-            <NextIntlClientProvider locale={params.locale} messages={messages}>
-              <Navbar />
-              <div className="min-w-fit flex flex-col flex-1 overflow-auto font-noto-demi">
-                <Suspense>
-                  <Header />
-                </Suspense>
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-              <ModalContainer />
-              <Toaster />
-            </NextIntlClientProvider>
+        <div className="flex flex-1 h-[calc(100vh-5rem)]">
+          <ContextProviders locale={params.locale}>
+            <Navbar />
+            <Content>{children}</Content>
+            <ModalContainer />
+            <Toaster />
           </ContextProviders>
         </div>
       </body>
@@ -69,12 +54,37 @@ export default async function RootLayout({
   );
 }
 
-function ContextProviders({ children }: PropsWithChildren) {
+function Content({ children }: PropsWithChildren) {
+  return (
+    <div className="flex flex-col flex-1 font-noto-demi">
+      <Suspense>
+        <Header />
+      </Suspense>
+    <main className="flex flex-col flex-1 overflow-scroll overflow-x-hidden">
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </main>
+    </div>
+  );
+}
+
+async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
     <SWRProvider>
       <SessionContextProvider>
         <NavbarContextProvider>
-          <ModalContextProvider>{children}</ModalContextProvider>
+          <ModalContextProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </ModalContextProvider>
         </NavbarContextProvider>
       </SessionContextProvider>
     </SWRProvider>

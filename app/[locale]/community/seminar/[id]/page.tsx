@@ -39,7 +39,6 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
           <ImageWithFallback
             src={currPost.imageURL ?? undefined}
             alt="대표 이미지"
-            priority
             fill
             className="object-cover flex-1"
             sizes="240px"

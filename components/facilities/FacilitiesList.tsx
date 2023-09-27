@@ -80,7 +80,7 @@ function FacilitiesRowImage({ imageURL, isColor }: { imageURL: string; isColor: 
 
   return (
     <div className="w-60 h-40 relative">
-      <Image alt="대표 이미지" src={src} fill sizes="10rem" priority />
+      <Image alt="대표 이미지" src={src} fill sizes="10rem" />
     </div>
   );
 }
