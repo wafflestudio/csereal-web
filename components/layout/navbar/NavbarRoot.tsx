@@ -26,7 +26,9 @@ export default function NavbarRoot({
   const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
 
   return (
-    <div className={`flex flex-col items-center pt-12 ${width} overflow-y-scroll no-scrollbar`}>
+    <div
+      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar`}
+    >
       <SNULogo />
       {state.type === 'closed' ? (
         <ExpandButton expand={expand} />
