@@ -25,6 +25,7 @@ export default function BetaBanner() {
             <a
               className="text-sm text-neutral-900 flex items-center translate-y-1"
               href="https://forms.gle/wiLUvBXWs4Ytw2jn7"
+              target="_blank"
             >
               구글 폼 바로가기
               <span className="material-symbols-outlined text-sm">chevron_right</span>
