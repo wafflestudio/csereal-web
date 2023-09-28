@@ -11,9 +11,9 @@ interface ShortCutsProps {
 }
 
 const POSITIONS = [
-  'top-[190px] right-[145px]',
-  'top-[380px] left-[146px]',
-  'top-[517.5px] right-[277px]',
+  'top-[223px] right-[145px]',
+  'top-[413px] left-[146px]',
+  'top-[550px] right-[277px]',
 ];
 
 const NODES: { Component: React.ReactNode; location: 'top' | 'bottom' }[] = [
@@ -51,12 +51,16 @@ function ShortCutBox({ title, href, location, nodes }: ShortCutBoxProps) {
       {nodes.location === 'top' && nodes.Component}
       <Link
         href={href}
-        className={`px-3 py-2.5 h-[60px] bg-main-orange flex flex-col justify-between rounded-sm w-fit`}
+        className={`px-3 py-2.5 h-[60px] bg-[#1E1E1E80] shadow-[1px_1px_3px_0_rgba(255,255,255,0.05)_inset,_-1px_-1px_4px_0_rgba(0,0,0,0.4)_inset] backdrop-blur-[2.5px] flex flex-col justify-between rounded-sm w-fit`}
       >
-        <span className="min-w-[8.4375rem] font-yoon font-bold text-sm tracking-wide">{title}</span>
+        <span className="min-w-[8.4375rem] font-yoon font-bold text-sm text-main-orange tracking-wide">
+          {title}
+        </span>
         <span className="min-w-[8.4375rem] flex items-center justify-end scale-90 origin-right">
-          <span className="font-yoon font-medium text-[10px] tracking-wide">바로가기</span>
-          <span className="material-symbols-outlined font-light text-md pt-[2px]">
+          <span className="font-yoon font-medium text-[10px] text-main-orange tracking-wide">
+            바로가기
+          </span>
+          <span className="material-symbols-outlined font-light text-md text-main-orange pt-[2px]">
             navigate_next
           </span>
         </span>

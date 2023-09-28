@@ -21,7 +21,7 @@ export default function MainPageContent({ data }: MainPageContentProps) {
     <>
       <div ref={ref}>
         <SlideScreen slides={data.slides} />
-        <div className="flex justify-between mt-[67px]">
+        <div className="flex justify-between mt-[60px]">
           <ImportantPosts posts={data.importants} />
           <Notices notices={data.notices} />
         </div>
