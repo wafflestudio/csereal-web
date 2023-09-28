@@ -13,7 +13,7 @@ export default function BetaBanner() {
   if (hidden || pathName !== '/') return <></>;
 
   return (
-    <div className="bg-[#c02800] flex flex-1 items-center gap-[18.63rem] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.20)] justify-between">
+    <div className="bg-[#c02800] h-[3.75rem] flex shrink-0 items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.20)] justify-between">
       <div>
         <div className="pl-[13.5rem] flex items-center gap-[.19rem] relative">
           <div className="rounded-full border border-neutral-900 w-[.625rem] h-[.625rem] mr-[.63rem]" />

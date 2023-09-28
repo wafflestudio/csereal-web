@@ -42,7 +42,7 @@ export default async function RootLayout({
       >
         <div className="flex flex-1 flex-col min-w-[1000px]">
           <BetaBanner />
-          <div className="flex flex-1 h-[calc(100vh-3.75rem)]">
+          <div className="flex grow">
             <ContextProviders locale={params.locale}>
               <Navbar />
               <Content>{children}</Content>
