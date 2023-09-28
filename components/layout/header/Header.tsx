@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <header
       className={`
-         top-0 bg-white px-[3.75rem] pt-[40px] pb-[1rem] flex w-full justify-between gap-4 z-40
+         top-0 bg-white px-[3.75rem] pt-[40px] pb-8 flex w-full justify-between gap-4 z-40
       `}
     >
       <div onClick={refreshPage} className="cursor-pointer flex-1">
