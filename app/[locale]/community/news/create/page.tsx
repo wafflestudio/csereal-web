@@ -25,7 +25,7 @@ export default function NewsCreatePage() {
   const handleCancel = () => router.push(newsPath);
 
   const handleComplete = async (content: PostEditorContent) => {
-    console.log(content.description);
+    // console.log(content.description);
     validateNewsForm(content);
 
     const mainImage =
