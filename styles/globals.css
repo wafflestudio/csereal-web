@@ -11,6 +11,10 @@
   }
 }
 
+:root {
+  color-scheme: dark;
+}
+
 /* 출처  */
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 @layer utilities {
