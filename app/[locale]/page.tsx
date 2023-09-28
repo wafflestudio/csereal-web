@@ -32,7 +32,7 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div className="w-[1264px] h-[1236px] relative mx-auto overflow-hidden">
+    <div className="w-[1264px] h-[1270px] relative mx-auto overflow-hidden">
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
@@ -46,11 +46,11 @@ function BackgroundNode() {
     <div className="absolute w-full">
       <MainNode1 className="absolute top-0 left-[-10px]" />
       <MainNode2 className="absolute top-0 right-0" />
-      <MainNode3 className="absolute top-[457px] left-0" />
-      <MainNode4 className="absolute top-[266px] right-[188.5px]" />
-      <MainNode5 className="absolute top-[835px] left-[186px]" />
-      <MainNode6 className="absolute top-[1042px] left-0" />
-      <MainNode7 className="absolute top-[1150px] right-1" />
+      <MainNode3 className="absolute top-[490px] left-0" />
+      <MainNode4 className="absolute top-[300px] right-[188.5px]" />
+      <MainNode5 className="absolute top-[865px] left-[186px]" />
+      <MainNode6 className="absolute top-[1070px] left-0" />
+      <MainNode7 className="absolute top-[1176px] right-1" />
     </div>
   );
 }
