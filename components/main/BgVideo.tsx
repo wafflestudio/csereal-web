@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import mainBg from '@/public/image/main_bg.gif';
+import mainBg from '@/public/image/main_bg.webp';
 
 export default function BgVideo() {
   return (
