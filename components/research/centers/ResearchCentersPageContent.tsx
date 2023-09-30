@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -16,7 +17,8 @@ import ResearchCenterDetails from './ResearchCenterDetails';
 const researchCentersPath = getPath(researchCenters);
 
 export default function ResearchCentersPageContent({ centers }: { centers: ResearchCenter[] }) {
-  const [selected, setSelected] = useState<string>('');
+  const searchParams = useSearchParams();
+  const [selected, setSelected] = useState<string>(searchParams.get('selected') ?? '');
   const selectedCenter = findSelectedItem<ResearchCenter>(
     centers,
     decodeURI(selected ?? ''),
