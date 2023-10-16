@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -24,7 +25,8 @@ export default function ResearchGroupsPageContent({
   groups,
   description,
 }: ResearchGroupsPageContentProps) {
-  const [selected, setSelected] = useState<string>('');
+  const searchParams = useSearchParams();
+  const [selected, setSelected] = useState<string>(searchParams.get('selected') ?? '');
   const selectedGroup = findSelectedItem<ResearchGroup>(
     groups,
     decodeURI(selected ?? ''),
