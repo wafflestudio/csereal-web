@@ -14,9 +14,7 @@ const LOGIN_URL = BASE_URL + '/login';
 const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
-  const refreshPage = () => {
-    window.location.href = '/';
-  };
+  const goToMainPage = () => (window.location.href = '/');
 
   return (
     <header
@@ -24,7 +22,7 @@ export default function Header() {
          top-0 bg-white px-[3.75rem] pt-[40px] pb-8 flex w-full justify-between gap-4 z-40
       `}
     >
-      <div onClick={refreshPage} className="cursor-pointer flex-1">
+      <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo />
       </div>
       <HeaderRight />
