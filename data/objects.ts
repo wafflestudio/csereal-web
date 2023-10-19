@@ -216,12 +216,33 @@ export const futureCompanies = [
 
 export const clubs: Club[] = [
   {
+    name: '와플스튜디오',
+    engName: 'Waffle Studio',
+    description:
+      '<p>서울대학교 컴퓨터공학부 웹/앱 개발 동아리 와플스튜디오는 웹/앱 서비스 개발을 통해 개인의 개발 실력 향상을 도모합니다. 또한 회원 간의 친목을 추구하여 개발자 간의 커뮤니티 형성을 목적으로 합니다.</p><p>와플스튜디오에서는 프로젝트, 스터디, 코딩모임 등 개발과 관련된 다양한 활동들이 진행됩니다. 프로젝트를 통해 개발 결과물을 도출하고, 나아가 사람들에게 유용하고 실험적이며 재미있는 서비스로 기여합니다. 현재 본교 학생들을 대상으로 출시한 다양한 서비스를 운영하고 있으며 더하여 여러 신규 프로젝트가 진행되고 있습니다. 또한 매년 2학기 백엔드, 프론트엔드, 그리고 모바일 개발에 관한 세미나를 정기적으로 개최하고 있습니다.</p><p><br></p><h3>신입회원 모집 시기</h3><hr class="__se__solid"><p><strong>Rookies</strong></p><p>매년 2학기 준회원인 Rookies를 선발합니다. 이들은 세미나와 과제를 통과하면 정회원인 Programmers로 승격할 수 있는 자격을 얻습니다.</p><p><strong>Programmers &amp; Designers</strong></p><p>매년 1학기, 2학기 정회원인 Programmers와 Designers를 선발합니다. 이들은 선발과 동시에 정회원의 자격이 주어지며 프로젝트와 스터디 등 진행 중인 활동에 자유롭게 참여하고, 활동을 주도할 수 있습니다.</p><p><br></p><h3>동아리 활동 현황</h3><hr class="__se__solid"><p>​<a href="https://snutt.wafflestudio.com/">SNUTT</a>​</p><p>2012년에 서비스를 시작한 서울대학교 시간표 작성 서비스 SNUTT가 2021년 개편 작업을 거쳐 현재까지 안정적이고 편리한 서비스를 제공하고 있습니다. 깔끔한 UI와 다양한 필터를 이용해 강의를 검색하고 시간표를 만들 수 있습니다. 더하여 곧 강의평 기능도 추가될 예정입니다.</p><p><a href="https://siksha.wafflestudio.com/">​식샤</a>​</p><p>2015년 초 기존 식단 어플리케이션들의 문제점을 보완하기 위해 개발되었고 2021년에 리뉴얼되었습니다. 날짜와 시간대별로 서울대학교 식단 상세정보뿐만 아니라 식당 운영시간과 위치정보를 제공합니다. 또한 식단 리뷰 기능까지 추가되어 식단에 대한 평가를 남기고 사진도 직접 올릴 수 있습니다.</p><p><strong>스누보드</strong></p><p>현재 학과별로 흩어져있는 서울대학교 과별 홈페이지를 하나의 모바일 플랫폼으로 통합한 서비스입니다. 원하는 학과와 태그별로 공지사항을 모아볼 수 있으며 새로운 글이 올라왔을 때 푸시 알림을 받아볼 수 있습니다. 구독(팔로우) 중인 공지사항 중에 필요한 내용을 검색하는 것도 가능합니다. 2021년 8월 초기 버전이 출시되었고, 꾸준한 업데이트가 진행되고 있습니다. 현재 앱스토어와 구글플레이스토어에서 다운로드 받을 수 있습니다.</p><p><strong>괌</strong></p><p>개발 프로젝트 팀을 만들어주고, 팀원간 소통을 가능하게 해주는 앱 서비스입니다. 2021년 9월 Google Store에 배포되었으며, 10월 현재 IT SNS로 거듭나기 위해 Version 2.0을 개발 중입니다.</p><br/><h3>연락처</h3><hr class="__se__solid"><p>이메일: <a href="mailto:master@wafflestudio.com">master@wafflestudio.com</a>​</p>',
+    imageURL: '/image/waffle.png',
+  },
+  {
+    name: '스눕스',
+    engName: 'SNUPS',
+    description:
+      '<p><a href="https://snups.org/">스눕스(SNUPS)</a>는 컴퓨터공학의 한 분야인 문제 해결 및 알고리즘을 공부하고 연구하는 동아리입니다.<br></p><p>다양한 난이도의 스터디를 통해 회원 개개인의 실력을 기르고 각종 온/오프라인 프로그래밍 대회에 참가하는 것이 주된 활동이며, 모든 서울대학교 학생이 참가할 수 있는 서울대학교 프로그래밍 경시대회(SNUPC)를 직접 준비 및 개최하고 있습니다.<br>매년 많은 회원들이 삼성 대학생 프로그래밍 경진대회(SCPC), 카카오 코드 페스티벌, Google Code Jam, Facebook Hacker Cup 등 여러 프로그래밍 대회에서 높은 성과를 거두고 있으며, 특히 최근 3년(2017~2019) 동안 SNUPS 회원들로 구성된 팀이 국제 대학생 프로그래밍 경시대회(ACM-ICPC) 국내 대회에서 대상을 차지하고 세계 대회에 출전해 메달을 획득한 바 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월 달에 신입생을 모집하며, 스눕스 구성원과의 개별 연락을 통해 상시 가입도 가능하다.</p><p><br></p><h3><strong>최근 동아리 활동 현황</strong></h3><hr class="__se__solid"><p>ipsc, icpc, 전국 대학생 프로그래밍동아리 연합 대회 등에 3인팀을 꾸려 출전하고 있으며, google code jam, facebook hacker cup나 기타 PS 대회에 스눕스 소속으로 개인출전하고 있다. 팀을 꾸릴 때는 SNUTOC(SNU Team Organization Contest) 등의 내부대회를 통해 실력과 분야에 맞는 팀원을 구성하여 출전하고 있다.</p><p>2019년 ACM-ICPC World Final 은메달 (7위)<br>2018년 ACM-ICPC World Final 은메달 (5위)<br>2017년 ACM-ICPC World Final 금메달 (3위)<br>2018년 ACM-ICPC Asia Taipei Regional Contest 3위<br>2017년 ACM-ICPC Asia Tsukuba Regional Contest 2위<br>2017년 ACM-ICPC Asia Hua-Lien Regional Contest 3위<br>2016년 ACM-ICPC Asia Nha Trang Regional Contest 1위<br>2016년 ACM-ICPC Asia Bangkok Regional Contest 5위<br>2016, 2017, 2018년 한국 대학생 프로그래밍 경시대회 대상 및 다수<br>2018년 UCPC 2등상 및 다수<br>2016, 2017, 2018년 SCPC 1등상 및 다수<br>2017년 LG CNS Code Monster 2등상 및 다수<br>2016년 LG CNS Code Monster 1등상 및 다수<br>2017, 2018년 카카오 코드 페스티벌 1등상 및 다수<br>2016, 2018년 Google Code Jam World Final 진출<br>2016, 2017, 2018년 Facebook Hacker Cup Final Round 진출<br>2017, 2018년 Code Festival Final Onsite 진출<br>2016년 Russian Code Cup Final Round 진출</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>홈페이지:&nbsp;<a href="https://snups.org/">https://snups.org</a></p>',
+  },
+  {
     name: '가디언',
     engName: 'Guardian',
     description:
       '<p>​<a href="http://guardian.snucse.org">가디언</a>은 1999년 4월 30일에 창립된 서울대학교 보안 연구 동아리입니다.<br></p><p>가디언에서는 시스템, 웹, 네트워크, 모바일 등 다양한 분야에서 취약점을 찾고 공격과 방어 기법을 연구하며 해킹에 대한 열정을 펼치고 있습니다. 보안 분야의 진입장벽을 낮추기 위해 신입회원을 위한 교육을 진행하며, 개강총회와 종강총회에서 그동안 연구한 내용들을 발표하기도 합니다.<br>또한 DEF CON 등 다양한 보안 대회에 출전하는 등 활발한 활동을 진행하고 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월에 신입회원을 모집하고 9월에도 비정기적으로 모집합니다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>가디언은 전 세계의 내로라하는 해킹/보안 팀이 참가하는 해킹/보안 대회에서 꾸준히 좋은 성적을 내고 있다.<br>특히 2013년에는 전년보다 대회 참여 인원이 대폭 늘어 4월에 열린 PlaidCTF에서는 17위, 6월 예선과 8월 본선이 열린 DEFCON CTF에서는 보안 팀 Alternatives와 연합 참가하여 각각 17위(본선 진출), 8위를 차지했다.<br>이 밖에도 CodeGate, SECUINSIDE CTF, Ghost In The Shellcode 등 다양한 대회에 출전하여 실력을 쌓고 있다.</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>이메일: snucsguard@gmail.com<br>홈페이지:&nbsp;<a href="http://guardian.snucse.org/">http://guardian.snucse.org</a></p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/%EA%B0%80%EB%94%94%EC%96%B8_%EB%A1%9C%EA%B3%A0.jpg?itok=Jk3PN69X',
+  },
+  {
+    name: '슈타인',
+    engName: 'Stein',
+    description:
+      '<p>슈타인은 2012년 결성된 학부 내 경음악에 흥미와 소질이 있는 학생들로 구성된 밴드 동아리이다. 매년 신입 회원을 영입하여 기 단위로 운영되는 슈타인은 연중 수시로 합주를 하며 친목을 다지는 것을 목표로 한다.<br></p><p>주요 활동으로는 정기 공연 및 타 학교의 밴드들과의 교류 등이 있다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>매년 3월 중순경 가입신청을 받은 후, 오디션을 통해 선발한다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>■ 17,18,19학번 활동중<br>■ 19학번 주1회 정기 연습<br>■ 3월 22일 타 동아리와 합동 공연<br>■ 신입들과의 회식</p><p><br></p><h3><strong>동아리 활동 계획</strong></h3><hr class="__se__solid"><p>■ 6월 28일 타 동아리와 합동 공연 예정<br>■ 7월 정기공연, 컴밤 공연 예정</p>',
+    imageURL:
+      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/Stein.PNG?itok=J8eVZbbZ',
   },
   {
     name: '바쿠스',
@@ -238,27 +259,6 @@ export const clubs: Club[] = [
       '<p>2008년 결성된 학부 내 축구를 좋아하고 즐기는 학생들로 구성된 축구 동아리이다. 축구를 통한 체력 향상 및 친목 도모를 목표로 한다. 매주 주말 모여 훈련 및 친선경기를 하고 있으며 서울대 학내에서 열리는 총장배 구기대회, 공대 학장배 축구대회, 공대축제 축구대회 등 여러 대회에 꾸준히 참가해 좋은 성적을 내고 있다.<br></p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>상시 모집</p><p><br></p><h3><strong>대회 성적</strong></h3><hr class="__se__solid"><p>2009년 공대 학장배 3위<br>2013년 공대 축제 3위<br>2014년 공대 학장배 1위<br>2014년 공대 축제 1위</p><p><br></p>',
     imageURL:
       'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/Soccer301_%EB%A1%9C%EA%B3%A0.jpg?itok=_wtIa-xW',
-  },
-  {
-    name: '슈타인',
-    engName: 'Stein',
-    description:
-      '<p>슈타인은 2012년 결성된 학부 내 경음악에 흥미와 소질이 있는 학생들로 구성된 밴드 동아리이다. 매년 신입 회원을 영입하여 기 단위로 운영되는 슈타인은 연중 수시로 합주를 하며 친목을 다지는 것을 목표로 한다.<br></p><p>주요 활동으로는 정기 공연 및 타 학교의 밴드들과의 교류 등이 있다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>매년 3월 중순경 가입신청을 받은 후, 오디션을 통해 선발한다.</p><p><br></p><h3><strong>동아리 활동 현황</strong></h3><hr class="__se__solid"><p>■ 17,18,19학번 활동중<br>■ 19학번 주1회 정기 연습<br>■ 3월 22일 타 동아리와 합동 공연<br>■ 신입들과의 회식</p><p><br></p><h3><strong>동아리 활동 계획</strong></h3><hr class="__se__solid"><p>■ 6월 28일 타 동아리와 합동 공연 예정<br>■ 7월 정기공연, 컴밤 공연 예정</p>',
-    imageURL:
-      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--student-club/Stein.PNG?itok=J8eVZbbZ',
-  },
-  {
-    name: '스눕스',
-    engName: 'SNUPS',
-    description:
-      '<p><a href="https://snups.org/">스눕스(SNUPS)</a>는 컴퓨터공학의 한 분야인 문제 해결 및 알고리즘을 공부하고 연구하는 동아리입니다.<br></p><p>다양한 난이도의 스터디를 통해 회원 개개인의 실력을 기르고 각종 온/오프라인 프로그래밍 대회에 참가하는 것이 주된 활동이며, 모든 서울대학교 학생이 참가할 수 있는 서울대학교 프로그래밍 경시대회(SNUPC)를 직접 준비 및 개최하고 있습니다.<br>매년 많은 회원들이 삼성 대학생 프로그래밍 경진대회(SCPC), 카카오 코드 페스티벌, Google Code Jam, Facebook Hacker Cup 등 여러 프로그래밍 대회에서 높은 성과를 거두고 있으며, 특히 최근 3년(2017~2019) 동안 SNUPS 회원들로 구성된 팀이 국제 대학생 프로그래밍 경시대회(ACM-ICPC) 국내 대회에서 대상을 차지하고 세계 대회에 출전해 메달을 획득한 바 있습니다.</p><p><br></p><h3><strong>신입회원 모집 시기</strong></h3><hr class="__se__solid"><p>주로 3월 달에 신입생을 모집하며, 스눕스 구성원과의 개별 연락을 통해 상시 가입도 가능하다.</p><p><br></p><h3><strong>최근 동아리 활동 현황</strong></h3><hr class="__se__solid"><p>ipsc, icpc, 전국 대학생 프로그래밍동아리 연합 대회 등에 3인팀을 꾸려 출전하고 있으며, google code jam, facebook hacker cup나 기타 PS 대회에 스눕스 소속으로 개인출전하고 있다. 팀을 꾸릴 때는 SNUTOC(SNU Team Organization Contest) 등의 내부대회를 통해 실력과 분야에 맞는 팀원을 구성하여 출전하고 있다.</p><p>2019년 ACM-ICPC World Final 은메달 (7위)<br>2018년 ACM-ICPC World Final 은메달 (5위)<br>2017년 ACM-ICPC World Final 금메달 (3위)<br>2018년 ACM-ICPC Asia Taipei Regional Contest 3위<br>2017년 ACM-ICPC Asia Tsukuba Regional Contest 2위<br>2017년 ACM-ICPC Asia Hua-Lien Regional Contest 3위<br>2016년 ACM-ICPC Asia Nha Trang Regional Contest 1위<br>2016년 ACM-ICPC Asia Bangkok Regional Contest 5위<br>2016, 2017, 2018년 한국 대학생 프로그래밍 경시대회 대상 및 다수<br>2018년 UCPC 2등상 및 다수<br>2016, 2017, 2018년 SCPC 1등상 및 다수<br>2017년 LG CNS Code Monster 2등상 및 다수<br>2016년 LG CNS Code Monster 1등상 및 다수<br>2017, 2018년 카카오 코드 페스티벌 1등상 및 다수<br>2016, 2018년 Google Code Jam World Final 진출<br>2016, 2017, 2018년 Facebook Hacker Cup Final Round 진출<br>2017, 2018년 Code Festival Final Onsite 진출<br>2016년 Russian Code Cup Final Round 진출</p><p><br></p><h3><strong>연락처</strong></h3><hr class="__se__solid"><p>홈페이지:&nbsp;<a href="https://snups.org/">https://snups.org</a></p>',
-  },
-  {
-    name: '와플스튜디오',
-    engName: 'Waffle Studio',
-    description:
-      '<p>서울대학교 컴퓨터공학부 웹/앱 개발 동아리 와플스튜디오는 웹/앱 서비스 개발을 통해 개인의 개발 실력 향상을 도모합니다. 또한 회원 간의 친목을 추구하여 개발자 간의 커뮤니티 형성을 목적으로 합니다.</p><p>와플스튜디오에서는 프로젝트, 스터디, 코딩모임 등 개발과 관련된 다양한 활동들이 진행됩니다. 프로젝트를 통해 개발 결과물을 도출하고, 나아가 사람들에게 유용하고 실험적이며 재미있는 서비스로 기여합니다. 현재 본교 학생들을 대상으로 출시한 다양한 서비스를 운영하고 있으며 더하여 여러 신규 프로젝트가 진행되고 있습니다. 또한 매년 2학기 백엔드, 프론트엔드, 그리고 모바일 개발에 관한 세미나를 정기적으로 개최하고 있습니다.</p><p><br></p><h3>신입회원 모집 시기</h3><hr class="__se__solid"><p><strong>Rookies</strong></p><p>매년 2학기 준회원인 Rookies를 선발합니다. 이들은 세미나와 과제를 통과하면 정회원인 Programmers로 승격할 수 있는 자격을 얻습니다.</p><p><strong>Programmers &amp; Designers</strong></p><p>매년 1학기, 2학기 정회원인 Programmers와 Designers를 선발합니다. 이들은 선발과 동시에 정회원의 자격이 주어지며 프로젝트와 스터디 등 진행 중인 활동에 자유롭게 참여하고, 활동을 주도할 수 있습니다.</p><p><br></p><h3>동아리 활동 현황</h3><hr class="__se__solid"><p>​<a href="https://snutt.wafflestudio.com/">SNUTT</a>​</p><p>2012년에 서비스를 시작한 서울대학교 시간표 작성 서비스 SNUTT가 2021년 개편 작업을 거쳐 현재까지 안정적이고 편리한 서비스를 제공하고 있습니다. 깔끔한 UI와 다양한 필터를 이용해 강의를 검색하고 시간표를 만들 수 있습니다. 더하여 곧 강의평 기능도 추가될 예정입니다.</p><p><a href="https://siksha.wafflestudio.com/">​식샤</a>​</p><p>2015년 초 기존 식단 어플리케이션들의 문제점을 보완하기 위해 개발되었고 2021년에 리뉴얼되었습니다. 날짜와 시간대별로 서울대학교 식단 상세정보뿐만 아니라 식당 운영시간과 위치정보를 제공합니다. 또한 식단 리뷰 기능까지 추가되어 식단에 대한 평가를 남기고 사진도 직접 올릴 수 있습니다.</p><p><strong>스누보드</strong></p><p>현재 학과별로 흩어져있는 서울대학교 과별 홈페이지를 하나의 모바일 플랫폼으로 통합한 서비스입니다. 원하는 학과와 태그별로 공지사항을 모아볼 수 있으며 새로운 글이 올라왔을 때 푸시 알림을 받아볼 수 있습니다. 구독(팔로우) 중인 공지사항 중에 필요한 내용을 검색하는 것도 가능합니다. 2021년 8월 초기 버전이 출시되었고, 꾸준한 업데이트가 진행되고 있습니다. 현재 앱스토어와 구글플레이스토어에서 다운로드 받을 수 있습니다.</p><p><strong>괌</strong></p><p>개발 프로젝트 팀을 만들어주고, 팀원간 소통을 가능하게 해주는 앱 서비스입니다. 2021년 9월 Google Store에 배포되었으며, 10월 현재 IT SNS로 거듭나기 위해 Version 2.0을 개발 중입니다.</p><br/><h3>연락처</h3><hr class="__se__solid"><p>이메일: <a href="mailto:master@wafflestudio.com">master@wafflestudio.com</a>​</p>',
-    imageURL: '/image/waffle.png',
   },
   {
     name: '유피넬',

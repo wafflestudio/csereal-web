@@ -13,7 +13,7 @@ export default function ModalFrame({ onClose, children }: ModalFrameProps) {
       PaperProps={{
         sx: {
           maxWidth: '100%',
-          maxHeight: '80vh',
+          maxHeight: '85vh',
           borderRadius: 0,
           backgroundColor: 'transparent',
           color: '#e5e5e5', // text-neutral-700

@@ -13,7 +13,6 @@ interface StudentClubsPageProps {
   searchParams: { selected?: string };
 }
 
-const DEFAULT_CLUB = '와플스튜디오';
 const clubPath = getPath(studentClubs);
 
 export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
@@ -21,7 +20,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   const selectedClub = findSelectedItem(
     clubs,
     decodeURI(searchParams.selected ?? ''),
-    DEFAULT_CLUB,
+    clubs[0]?.name,
   );
 
   return (

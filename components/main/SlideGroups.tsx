@@ -53,8 +53,16 @@ function Slide({ slide }: SlideProps) {
       className="w-[185px]"
       style={{ clipPath: 'polygon(calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%, 0 0)' }}
     >
-      <Link href={`${newsPath}/${slide.id}`} className="block w-[185px] h-[116px] relative">
-        <ImageWithFallback src={slide.imageURL} alt={`${slide.title}_이미지`} fill />
+      <Link
+        href={`${newsPath}/${slide.id}`}
+        className="block w-[185px] h-[116px] overflow-hidden relative"
+      >
+        <ImageWithFallback
+          src={slide.imageURL}
+          alt={`${slide.title}_이미지`}
+          fill
+          objectFit="cover"
+        />
       </Link>
       <div className="flex flex-col items-end p-2.5 h-[128px] border-x border-b border-neutral-150">
         <h5 className="w-full font-noto mb-1.5 font-bold text-xs line-clamp-2">

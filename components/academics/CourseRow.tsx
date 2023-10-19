@@ -15,7 +15,7 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
   const { scrollRef: screenRef } = useHorizontalScroll();
 
   return (
-    <div className="no-scrollbar overflow-y-hidden overflow-x-auto p-1.5" ref={screenRef}>
+    <div className="styled-scrollbar overflow-y-hidden overflow-x-auto p-1.5" ref={screenRef}>
       <div className="flex gap-5">
         {courses.map((course) => (
           <CourseCard course={course} selectedOption={selectedOption} key={course.code} />

@@ -44,4 +44,5 @@ interface ImageWithFallbackProps {
   fill?: boolean | undefined;
   priority?: boolean | undefined;
   loading?: 'eager' | 'lazy' | undefined;
+  objectFit?: 'cover' | 'contain';
 }

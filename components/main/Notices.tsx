@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-import AddIcon from '@/public/image/add_icon.svg';
-
 import { NoticeCategoryType, NoticeListMainType } from '@/types/main';
 import { notice } from '@/types/page';
 
@@ -45,8 +43,11 @@ function MoreNoticesButton({ selectedCategory }: MoreNoticesButtonProps) {
       : `${noticePath}?tag=${convertCategoryToTag(selectedCategory)}`;
 
   return (
-    <Link href={href} className="absolute top-[150px] right-1 bg-main-orange w-4 h-4 rounded-full ">
-      <AddIcon />
+    <Link
+      href={href}
+      className="absolute top-[150px] px-1 right-[-4px] text-xs text-neutral-500 hover:text-main-orange"
+    >
+      더보기
     </Link>
   );
 }

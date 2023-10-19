@@ -30,13 +30,15 @@ function NoticeRow({ notice, isLast }: NoticeRowProps) {
   return (
     <li>
       <Link
-        className={`flex items-center gap-2.5 text-xs tracking-wide ${isLast && 'pr-5'}`}
+        className={`flex items-center gap-2.5 text-xs tracking-wide ${isLast && 'pr-5'} group`}
         href={`${noticePath}/${notice.id}`}
       >
         <span className="whitespace-nowrap font-noto font-light">
           {formatDate(new Date(notice.createdAt))}
         </span>
-        <span className="whitespace-nowrap text-ellipsis overflow-hidden">{notice.title}</span>
+        <span className="whitespace-nowrap text-ellipsis overflow-hidden group-hover:underline">
+          {notice.title}
+        </span>
       </Link>
     </li>
   );
