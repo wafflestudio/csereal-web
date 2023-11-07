@@ -31,6 +31,8 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
 ];
 
 const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
+  console.log('선택 연도', selectedYear);
+  console.log(data);
   if (selectedYear <= YEAR_LIMIT) return data.filter((d) => d.year <= YEAR_LIMIT);
 
   const change = data.find((d) => d.year === selectedYear);
@@ -39,7 +41,7 @@ const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
 
 // TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
 export default function UndergraduateCourseChangesPage() {
-  const { data } = useSWR('/academics/undergraduate/course-changes', getCourseChanges);
+  const { data } = useSWR('undergraduate', getCourseChanges);
   const [selectedYear, setSelectedYear] = useState<number>(2020);
   const selectedChanges = getSelectedChanges(selectedYear, data ?? []);
 
