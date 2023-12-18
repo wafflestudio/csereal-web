@@ -2501,14 +2501,15 @@ Computational Social Science`.split('\n'),
     ...facultyList[23],
     office: '301동 506호',
     website: 'https://iamjaelee.github.io/www/',
-    educations: `MIT EECS (CS Division) 박사 (2009)
-Stanford University EE 석사 (2002)
+    educations: `MIT Computer Science 박사 (2009)
+Stanford University Electrical Engineering 석사 (2002)
 서울대학교 전기공학부 학사 (1999)`.split('\n'),
     researchAreas: `Computer Architecture and Systems
 Parallel Programming
 Compilers
 Security`.split('\n'),
-    careers: `2016.09. – 현재: 전임교수, 서울대학교 컴퓨터공학부
+    careers: `2016.09. – 현재: 정교수, 서울대학교 컴퓨터공학부
+    2022 - 2023: Google DeepMind (Mountain View, USA) 방문 연구원
 2011 – 2016.08.: 조교수, 성균관대학교 반도체시스템공학과
 2011: Postdoctoral Research Associate, CS Department, Princeton University
 2009 – 2011: Researcher and Engineer, Parakinetics, Inc. (Princeton, USA)
