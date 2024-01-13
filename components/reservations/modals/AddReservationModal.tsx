@@ -129,21 +129,25 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
 
         <div className="flex flex-col gap-2 mb-6">
           <RequiredTextInputFieldset
+            type="text"
             title="단체 이름"
             text={body.title}
             setText={buildBodyValueSetter('title')}
           />
           <RequiredTextInputFieldset
+            type="email"
             title="연락가능 이메일"
             text={body.contactEmail}
             setText={buildBodyValueSetter('contactEmail')}
           />
           <RequiredTextInputFieldset
+            type="tel"
             title="연락가능 전화번호"
             text={body.contactPhone}
             setText={buildBodyValueSetter('contactPhone')}
           />
           <RequiredTextInputFieldset
+            type="text"
             title="지도교수"
             text={body.professor}
             setText={buildBodyValueSetter('professor')}
@@ -299,10 +303,12 @@ const DurationPicker = ({
 };
 
 const RequiredTextInputFieldset = ({
+  type,
   title,
   text,
   setText,
 }: {
+  type: string;
   title: string;
   text: string;
   setText: (text: string) => void;
@@ -314,7 +320,7 @@ const RequiredTextInputFieldset = ({
         <span className="text-main-orange">*</span>
       </legend>
       <input
-        type="text"
+        type={type}
         className={`w-full rounded-sm border border-neutral-200 bg-neutral-50 h-[1.75rem]
             outline-none pl-2 autofill-bg-white`}
         value={text}
