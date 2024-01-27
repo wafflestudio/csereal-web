@@ -53,7 +53,7 @@ function SNULogo() {
 function DotList({ state }: { state: NavbarState }) {
   const cur = useCurrentSegmentNode();
   return (
-    <div className="flex flex-col gap-[2.72rem] mt-[3.38rem]">
+    <div className="flex flex-col items-center gap-[2.72rem] mt-[3.38rem]">
       {mainSegmentNode.children?.map((node, idx) => {
         return isAncestorNode(node, cur) ? <DotFill /> : <DotEmpty />;
       })}
