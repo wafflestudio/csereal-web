@@ -1,4 +1,6 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer, useRef, useState } from 'react';
+
+import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
 
 interface DropdownProps {
   contents: string[];
@@ -8,14 +10,23 @@ interface DropdownProps {
 }
 
 export default function Dropdown({ contents, selectedIndex, onClick, borderStyle }: DropdownProps) {
-  const [expanded, toggleExpanded] = useReducer((x) => !x, false);
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOutClickAlerter(
+    ref,
+    useCallback(() => setExpanded((x) => false), []),
+  );
+
+  const toggleExpanded = () => setExpanded((x) => !x);
+
   const handleClick = (index: number) => {
     onClick(index);
     toggleExpanded();
   };
 
   return (
-    <div className="relative select-none">
+    <div className="relative select-none" ref={ref}>
       <DropdownButton
         expanded={expanded}
         toggleExpanded={toggleExpanded}
