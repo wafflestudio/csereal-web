@@ -14,7 +14,8 @@ export const getRequest = async <T = unknown>(
 ) => {
   const queryString = objToQueryString(params);
   const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  const response = await fetch(fetchUrl, { ...init,
+  const response = await fetch(fetchUrl, {
+    ...init,
     method: 'GET',
     credentials: 'include',
   });
