@@ -32,9 +32,7 @@ const NavbarContext = createContext<NavbarContextContent>({
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const pathName = usePathname();
-  const [navbarState, setNavbarState] = useState<NavbarState>({
-    type: pathName === '/' ? 'expanded' : 'closed',
-  });
+  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'closed' });
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>

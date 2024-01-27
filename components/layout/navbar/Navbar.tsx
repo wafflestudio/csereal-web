@@ -8,13 +8,10 @@ import NavbarRoot from './NavbarRoot';
 export default function Navbar() {
   const { navbarState, setNavbarState } = useNavbarContext();
 
-  const handleMouseLeave = () => {
-    // 세부 페이지가 보이고 있다면 닫기
-    navbarState.type === 'hovered' && setNavbarState({ type: 'expanded' });
-  };
+  const handleMouseLeave = () => setNavbarState({ type: 'closed' });
 
   return (
-    <div className="relative bg-main-orange flex" onMouseLeave={handleMouseLeave}>
+    <div className="absolute h-[100vh] z-50 bg-[#323235] flex" onMouseLeave={handleMouseLeave}>
       <NavbarRoot state={navbarState} setState={setNavbarState} />
       {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
     </div>

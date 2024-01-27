@@ -58,7 +58,7 @@ export default async function RootLayout({
 
 function Content({ children }: PropsWithChildren) {
   return (
-    <div className="flex flex-col flex-1 font-noto-demi">
+    <div className="flex flex-col flex-1 font-noto-demi ml-[6.25rem]">
       <Suspense>
         <Header />
       </Suspense>
