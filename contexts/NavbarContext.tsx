@@ -3,7 +3,9 @@
 import { usePathname } from 'next/navigation';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-import { SegmentNode } from '@/types/page';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+
+import { SegmentNode, main } from '@/types/page';
 
 export type NavbarState =
   | {
@@ -32,7 +34,11 @@ const NavbarContext = createContext<NavbarContextContent>({
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const pathName = usePathname();
-  const [navbarState, setNavbarState] = useState<NavbarState>({ type: 'closed' });
+  const node = useCurrentSegmentNode();
+
+  const [navbarState, setNavbarState] = useState<NavbarState>({
+    type: node === main ? 'expanded' : 'closed',
+  });
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>

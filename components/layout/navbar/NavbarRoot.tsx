@@ -1,11 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link';
 
 import { NavbarState } from '@/contexts/NavbarContext';
-import NaviBarClose from '@/public/image/NaviBar_Close.svg';
-import NaviBarMenu from '@/public/image/NaviBar_Menu.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
@@ -22,19 +19,15 @@ export default function NavbarRoot({
   setState: (state: NavbarState) => void;
 }) {
   const expand = () => setState({ type: 'expanded' });
-  const width = state.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]';
+  const width = state.type === 'closed' ? `w-[6.25rem]` : `w-[11rem]`;
 
   return (
     <div
-      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar transition-all ease-in-out`}
+      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar transition-all duration-300 ease-in-out`}
       onMouseEnter={expand}
     >
       <SNULogo />
-      {state.type === 'closed' ? (
-        <DotList state={state} />
-      ) : (
-        <NavList state={state} setState={setState} />
-      )}
+      {state.type === 'closed' ? <DotList /> : <NavList state={state} setState={setState} />}
     </div>
   );
 }
@@ -50,12 +43,12 @@ function SNULogo() {
   );
 }
 
-function DotList({ state }: { state: NavbarState }) {
+function DotList() {
   const cur = useCurrentSegmentNode();
   return (
     <div className="flex flex-col items-center gap-[2.72rem] mt-[3.38rem]">
       {mainSegmentNode.children?.map((node, idx) => {
-        return isAncestorNode(node, cur) ? <DotFill /> : <DotEmpty />;
+        return isAncestorNode(node, cur) ? <DotFill key={idx} /> : <DotEmpty key={idx} />;
       })}
     </div>
   );
@@ -102,10 +95,6 @@ function NavList({
     }
   };
 
-  const makeMouseEnterHandler = (child: SegmentNode) => () => {
-    setState({ type: 'hovered', segmentNode: child });
-  };
-
   return (
     <nav>
       <ul className="mx-12 mt-12 flex flex-col text-center gap-9">
@@ -114,7 +103,7 @@ function NavList({
             key={i}
             highlight={shouldHighlight(child)}
             name={t(child.name)}
-            onMouseEnter={makeMouseEnterHandler(child)}
+            onMouseEnter={() => setState({ type: 'hovered', segmentNode: child })}
           />
         ))}
       </ul>
@@ -135,7 +124,7 @@ function NavListRow({
     <li
       className={`text-neutral-800 font-yoon text-md font-medium ${
         !highlight && 'opacity-60'
-      } cursor-pointer line-clamp-1`}
+      } cursor-pointer whitespace-nowrap`}
       onMouseEnter={onMouseEnter}
     >
       {name}
