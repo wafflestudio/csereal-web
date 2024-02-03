@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { PropsWithChildren, ReactNode, Suspense } from 'react';
+import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -8,8 +8,6 @@ import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
 import SessionContextProvider from '@/contexts/SessionContext';
 
 import BetaBanner from '@/components/common/BetaBanner';
-import Footer from '@/components/layout/footer/Footer';
-import Header from '@/components/layout/header/Header';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
@@ -17,6 +15,7 @@ import { noto, notoDemiLight, yoonGothic } from '@/styles/font';
 
 import '@/styles/globals.css';
 
+import Content from './content';
 import { SWRProvider } from './swr-provider';
 
 export const metadata = {
@@ -53,20 +52,6 @@ export default async function RootLayout({
         </div>
       </body>
     </html>
-  );
-}
-
-function Content({ children }: PropsWithChildren) {
-  return (
-    <div className="flex flex-col flex-1 font-noto-demi">
-      <Suspense>
-        <Header />
-      </Suspense>
-      <main className="flex flex-col flex-1 overflow-scroll overflow-x-hidden">
-        <div className="flex-1">{children}</div>
-        <Footer />
-      </main>
-    </div>
   );
 }
 

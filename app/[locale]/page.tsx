@@ -32,7 +32,7 @@ export default async function MainPage() {
   const data = await getMainContents();
 
   return (
-    <div className="w-[1264px] h-[1270px] relative mx-auto overflow-hidden">
+    <div className={`w-[1264px] h-[1270px] relative mx-auto overflow-hidden`}>
       <BgVideo />
       <BackgroundNode />
       <ShortCuts shortCuts={shortCuts} />
