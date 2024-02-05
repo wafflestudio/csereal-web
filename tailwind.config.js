@@ -37,11 +37,6 @@ module.exports = {
       },
       transparent: 'transparent',
     },
-    fontFamily: {
-      yoon: ['var(--font-yoon)'],
-      noto: ['var(--font-noto)'],
-      'noto-demi': ['var(--font-noto-demi)'],
-    },
     fontSize: {
       xs: '0.75rem', // 12px
       sm: '0.8125rem', // 13px changed
