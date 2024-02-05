@@ -23,7 +23,7 @@ export default function NavbarRoot({
 
   return (
     <div
-      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar transition-all duration-300 ease-in-out`}
+      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar transition-all duration-300 ease-in-out z-50 bg-[#323235]`}
       onMouseEnter={expand}
     >
       <SNULogo />

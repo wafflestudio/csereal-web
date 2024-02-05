@@ -8,7 +8,7 @@ export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode
   const currentSegmentNode = useCurrentSegmentNode();
 
   return (
-    <div className="bg-[rgba(22,_22,_22,_0.97)] backdrop-blur-[2px] pt-[8.8125rem] pl-[3.75rem] w-[22rem] overflow-x-hidden overflow-y-scroll no-scrollbar absolute left-44 top-0 bottom-0 z-50">
+    <div className="bg-[rgba(22,_22,_22,_0.97)] backdrop-blur-[2px] pt-[8.8125rem] pl-[14.75rem] w-[33rem] overflow-x-hidden overflow-y-scroll no-scrollbar absolute top-0 bottom-0 z-40">
       <NavTree node={segmentNode} currentNode={currentSegmentNode} isRoot />
     </div>
   );
