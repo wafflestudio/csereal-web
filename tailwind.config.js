@@ -23,7 +23,7 @@ module.exports = {
         900: '#ffffff',
       },
       white: {
-        DEFAULT: '#141212',
+        DEFAULT: '#171717',
       },
       'main-orange': {
         DEFAULT: '#e9390b',

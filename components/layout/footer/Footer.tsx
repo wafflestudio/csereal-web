@@ -33,7 +33,7 @@ const directionsPath = getPath(directions);
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-neutral-100 mt-20 z-30">
+    <footer className="border-t-2 border-neutral-100 z-30">
       <FooterTop />
       <FooterBottom />
     </footer>

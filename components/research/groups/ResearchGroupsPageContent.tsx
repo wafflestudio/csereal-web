@@ -14,6 +14,8 @@ import { getPath } from '@/utils/page';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 
+// import PageTitleNew from '@/components/layout/pageLayout/PageTitleNew';
+
 const researchGroupsPath = getPath(researchGroups);
 
 interface ResearchGroupsPageContentProps {
@@ -34,22 +36,27 @@ export default function ResearchGroupsPageContent({
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
-      <ResearchDescription description={description} />
-      <SelectionList
-        names={groups.map((group) => group.name)}
-        selectedItemName={selectedGroup?.name ?? ''}
-        path={researchGroupsPath}
-        listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
-        setSelected={setSelected}
-      />
-      {selectedGroup ? (
-        <ResearchGroupDetails group={selectedGroup} />
-      ) : (
-        <p>
-          <b>{`'${selected}'`}</b> 연구그룹은 존재하지 않습니다.
-        </p>
-      )}
+    <PageLayout titleType="big" titleMargin="mb-[44px]">
+      {/* <PageTitleNew  /> */}
+      <div>
+        <div className="pl-[100px] pr-[350px]">
+          <SelectionList
+            names={groups.map((group) => group.name)}
+            selectedItemName={selectedGroup?.name ?? ''}
+            path={researchGroupsPath}
+            listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
+            setSelected={setSelected}
+          />
+        </div>
+        {/* <ResearchDescription description={description} /> */}
+        {selectedGroup ? (
+          <ResearchGroupDetails group={selectedGroup} />
+        ) : (
+          <p>
+            <b>{`'${selected}'`}</b> 연구그룹은 존재하지 않습니다.
+          </p>
+        )}
+      </div>
     </PageLayout>
   );
 }

@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 import { Fragment } from 'react';
 
-import { CurvedHorizontalNode, CurvedHorizontalNodeGray } from '@/components/common/Nodes';
+import { CurvedHorizontalNode } from '@/components/common/Nodes';
 
 import { SegmentNode } from '@/types/page';
 
@@ -17,29 +17,25 @@ interface PageTitleProps {
   margin: string;
 }
 
-export default function PageTitle({ title, currentPage, titleType, margin }: PageTitleProps) {
+export default function PageTitleOld({ title, currentPage, titleType, margin }: PageTitleProps) {
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div className="bg-[#171717] px-[100px] pt-[54px]">
-      <div
-        className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-[6.2px]`}
-      >
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Breadcrumb currentPage={currentPage} />
-          <CurvedHorizontalNodeGray />
-        </div>
-        <h3
-          className={`mr-[100px] ${titleStyle} text-[32px] break-keep font-yoon text-neutral-800 tracking-wide `}
-        >
-          {title} 제목이 길어지면
-        </h3>
+    <div
+      className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-[6.2px]`}
+    >
+      <div className="flex gap-2 mb-2">
+        <LocationLog currentPage={currentPage} />
+        <CurvedHorizontalNode grow={true} />
       </div>
+      <h3 className={`mr-[65px] ${titleStyle} break-keep font-yoon text-neutral-800 tracking-wide`}>
+        {title}
+      </h3>
     </div>
   );
 }
 
-function Breadcrumb({ currentPage }: { currentPage: SegmentNode }) {
+function LocationLog({ currentPage }: { currentPage: SegmentNode }) {
   const t = useTranslations('Nav');
   const log: SegmentNode[] = getLocationLog(currentPage);
   const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (e.g. 공지목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
@@ -75,7 +71,7 @@ interface LoactionText {
 }
 
 function LocationText({ path, name, isCurrent }: LoactionText) {
-  const textStyle = 'text-[14px] font-yoon font-normal tracking-[.02em]';
+  const textStyle = 'text-xs font-yoon font-normal tracking-[.02em]';
 
   return isCurrent ? (
     <button className={`${textStyle} hover:text-main-orange`} onClick={refreshPage}>

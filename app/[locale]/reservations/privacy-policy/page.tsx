@@ -1,14 +1,14 @@
 export const dynamic = 'force-dynamic';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageTitle from '@/components/layout/pageLayout/PageTitle';
+import PageTitleOld from '@/components/layout/pageLayout/PageTitleOld';
 
 import { reservations } from '@/types/page';
 
 export default function ReservationPrivacyPolicy() {
   return (
     <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
-      <PageTitle
+      <PageTitleOld
         title={'개인정보 수집 및 이용동의'}
         currentPage={reservations}
         titleType="big"
