@@ -44,7 +44,7 @@ function FooterTop() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="bg-neutral-100 px-[3.75rem] py-10 flex gap-8">
+    <div className="bg-neutral-900 px-[3.75rem] py-10 flex gap-8">
       <LinkGroup groupName={t('About')} links={aboutLinks} />
       <LinkGroup groupName={t('Resources')} links={resourcesLinks} />
       <LinkGroup groupName={t('Research')} links={researchLinks} />
@@ -71,7 +71,7 @@ function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[
 
 function FooterBottom() {
   return (
-    <div className="bg-neutral-50 px-[3.75rem] py-8 flex justify-between items-center">
+    <div className="bg-neutral-800 px-[3.75rem] py-8 flex justify-between items-center">
       <FooterBottomLeft />
       <FooterBottomRight />
     </div>
