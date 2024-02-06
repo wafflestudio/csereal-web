@@ -32,7 +32,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
         <h3
           className={`mr-[100px] ${titleStyle} text-[32px] break-keep font-yoon text-neutral-800 tracking-wide `}
         >
-          {title} 제목이 길어지면
+          {title}
         </h3>
       </div>
     </div>
