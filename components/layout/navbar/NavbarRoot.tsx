@@ -38,7 +38,7 @@ function SNULogo() {
   };
   return (
     <button onClick={refreshPage}>
-      <SnuLogo className="fill-neutral-800" width="56" height="58" viewBox="0 0 45 47" />
+      <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
     </button>
   );
 }
@@ -122,8 +122,8 @@ function NavListRow({
 }) {
   return (
     <li
-      className={`text-neutral-800 font-yoon text-md font-medium ${
-        !highlight && 'opacity-60'
+      className={`font-yoon text-md font-medium ${
+        highlight ? 'text-white' : 'text-neutral-500'
       } cursor-pointer whitespace-nowrap`}
       onMouseEnter={onMouseEnter}
     >

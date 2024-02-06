@@ -7,7 +7,6 @@ import ModalContextProvider from '@/contexts/ModalContext';
 import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
 import SessionContextProvider from '@/contexts/SessionContext';
 
-import BetaBanner from '@/components/common/BetaBanner';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
@@ -36,7 +35,6 @@ export default async function RootLayout({
     <html lang="ko">
       <body className="text-neutral-700 font-normal bg-white min-w-fit flex">
         <div className="flex flex-1 flex-col min-w-[1000px]">
-          <BetaBanner />
           <div className="flex grow h-[calc(100vh-5rem)]">
             <ContextProviders locale={params.locale}>
               <Navbar />
