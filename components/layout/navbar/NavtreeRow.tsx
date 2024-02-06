@@ -33,14 +33,14 @@ export default function NavTreeRow({
       return (
         <Link
           href={href}
-          className="block font-yoon text-md font-medium mb-6 text-neutral-800 hover:text-main-orange "
+          className="block font-yoon text-md font-medium mb-6 text-white hover:text-main-orange "
         >
           <FormattedText text={segmentNode.name} />
         </Link>
       );
     } else {
       return (
-        <p className="block font-yoon text-md font-medium mb-6 text-neutral-500">
+        <p className="block font-yoon text-md font-medium mb-6 text-white">
           <FormattedText text={segmentNode.name} />
         </p>
       );

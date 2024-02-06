@@ -32,7 +32,8 @@ export default function HeaderSearchBar() {
         onChange={handleChange}
       />
       <button className="flex justify-center items-center w-fit">
-        <span className="material-symbols-rounded text-[1.25rem] font-light text-neutral-500 hover:text-neutral-700">
+        {/* TODO: 돋보기 호버 색 */}
+        <span className="material-symbols-rounded text-[1.25rem] font-light text-[#1f2021]">
           search
         </span>
       </button>
