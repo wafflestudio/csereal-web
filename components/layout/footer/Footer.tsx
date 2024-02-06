@@ -57,7 +57,7 @@ function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[
   const t = useTranslations('Footer');
   return (
     <section>
-      <h3 className={`text-[#ffffff] text-xs font-medium mb-[.625rem]`}>{groupName}</h3>
+      <h3 className={`text-white text-xs font-medium mb-[.625rem]`}>{groupName}</h3>
       <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (
           <li key={i} className="mb-2">
