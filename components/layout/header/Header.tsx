@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header
-      className={`top-0 bg-white px-[3.75rem] pt-[40px] pb-8 flex w-full justify-between gap-4`}
+      className={`top-0 bg-[#1f2021] px-[3.75rem] pt-[40px] pb-8 flex w-full justify-between gap-4`}
     >
       <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo />
@@ -38,7 +38,7 @@ function HeaderRight() {
 
   return (
     <div className="flex flex-col gap-4 items-end flex-grow">
-      <div className="font-yoon text-xs font-normal flex gap-3">
+      <div className="font-yoon text-xs font-normal flex gap-3 text-white">
         {user ? (
           <>
             {user.isStaff && (
