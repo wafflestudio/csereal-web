@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl';
 import React, { ReactNode } from 'react';
 
-import PageTitleOld from '@/components/layout/pageLayout/PageTitleOld';
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';

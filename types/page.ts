@@ -4,6 +4,7 @@ export interface SegmentNode {
   isPage: boolean;
   children: SegmentNode[] | null;
   parent: SegmentNode | null;
+  description?: string | null;
 }
 
 export const main: SegmentNode = {

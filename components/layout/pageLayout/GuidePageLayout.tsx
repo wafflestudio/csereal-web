@@ -36,7 +36,7 @@ export default function GuidePageLayout({
             <DetailItem
               key={index}
               title={subpage.name}
-              description="연구 그룹은 어쩌고 저쩌고 연구 그룹은 어쩌고 저쩌고"
+              description={subpage.description ?? ''}
               href={getPath(subpage)}
             />
           ))}
