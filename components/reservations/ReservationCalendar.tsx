@@ -1,4 +1,4 @@
-import { Reservation, ReservationPreview } from '@/types/reservation';
+import { ReservationPreview } from '@/types/reservation';
 
 import CalendarContent from './calendar/CalendarContent';
 import Toolbar from './calendar/CalendarToolbar';

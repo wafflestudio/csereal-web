@@ -33,7 +33,7 @@ const directionsPath = getPath(directions);
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-neutral-100 z-30">
+    <footer className="z-30">
       <FooterTop />
       <FooterBottom />
     </footer>
@@ -44,7 +44,7 @@ function FooterTop() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="bg-neutral-100 px-[3.75rem] py-8 flex gap-8">
+    <div className="bg-neutral-900 px-[3.75rem] py-10 flex gap-8">
       <LinkGroup groupName={t('About')} links={aboutLinks} />
       <LinkGroup groupName={t('Resources')} links={resourcesLinks} />
       <LinkGroup groupName={t('Research')} links={researchLinks} />
@@ -57,7 +57,7 @@ function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[
   const t = useTranslations('Footer');
   return (
     <section>
-      <h3 className={`text-neutral-600 text-xs font-medium mb-2`}>{groupName}</h3>
+      <h3 className={`text-white text-xs font-medium mb-[.625rem]`}>{groupName}</h3>
       <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
         {links.map((link, i) => (
           <li key={i} className="mb-2">
@@ -71,7 +71,7 @@ function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[
 
 function FooterBottom() {
   return (
-    <div className="bg-neutral-50 px-[3.75rem] py-8 flex justify-between items-center">
+    <div className="bg-neutral-800 px-[3.75rem] py-8 flex justify-between items-center">
       <FooterBottomLeft />
       <FooterBottomRight />
     </div>
