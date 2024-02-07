@@ -11,7 +11,7 @@ interface ResearchGroupDetailProps {
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
-    <div>
+    <div className="bg-[#fafafa] pl-[100px] pr-[350px] pt-[50px] pb-[100px]">
       <SelectionTitle animationKey={group.name}>{group.name} 연구 그룹</SelectionTitle>
       <HTMLViewer
         htmlContent={group.description}

@@ -31,7 +31,7 @@ export default function SelectionList({
   };
 
   return (
-    <ul className={`grid ${listGridColumnClass} gap-3 mb-9`}>
+    <ul className={`grid ${listGridColumnClass} gap-3 mb-9 pt-[44px]`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
