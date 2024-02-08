@@ -1,5 +1,3 @@
-'use-client';
-
 import { useTranslations } from 'next-intl';
 
 import { BASE_URL } from '@/apis';
@@ -18,7 +16,7 @@ export default function Header() {
   const goToMainPage = () => (window.location.href = '/');
 
   return (
-    <header className={`bg-transparent px-[3.75rem] h-[148px] flex items-center justify-between`}>
+    <header className={`bg-[#1f2021] px-[3.75rem] pt-12 pb-[2.44rem] flex justify-between`}>
       <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo />
       </div>
