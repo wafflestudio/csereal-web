@@ -1,9 +1,9 @@
 export const MAIN_ORANGE = '#ff6914';
 export const NEUTRAL_50 = '#fafafa';
 export const NEUTRAL_100 = '#f5f5f5';
-export const NEUTRAL_200 = '#262626';
-export const NEUTRAL_300 = '#404040';
-export const NEUTRAL_600 = '#d4d4d4';
+export const NEUTRAL_200 = '#e5e5e5';
+export const NEUTRAL_300 = '#d4d4d4';
+export const NEUTRAL_600 = '#525252';
 export const WHITE = '#ffffff';
 
 export const COLOR_THEME = {

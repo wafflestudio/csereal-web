@@ -23,7 +23,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
   return (
     <div className="bg-neutral-900 px-[100px] pt-[54px]">
       <div
-        className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 mb-[44px]`}
+        className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin}`}
       >
         <div className="flex items-center justify-center gap-2 mb-2">
           <Breadcrumb currentPage={currentPage} />

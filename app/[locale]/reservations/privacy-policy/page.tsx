@@ -1,3 +1,5 @@
+'use client';
+
 export const dynamic = 'force-dynamic';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
