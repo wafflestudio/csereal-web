@@ -2,6 +2,9 @@ import { LocalizationProvider, DateCalendar } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ko';
+import { useRef } from 'react';
+
+import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
 
 export default function MuiDateSelector({
   date,
@@ -10,10 +13,13 @@ export default function MuiDateSelector({
   enablePast,
 }: {
   date: Date;
-  setDate: (date: Date) => void;
+  setDate: (date?: Date) => void;
   className?: string;
   enablePast?: boolean;
 }) {
+  const ref = useRef(null);
+  useOutClickAlerter(ref, () => setDate());
+
   const shouldDisableDate = (day: Dayjs) => {
     if (enablePast) return false;
 
@@ -31,6 +37,7 @@ export default function MuiDateSelector({
   return (
     <LocalizationProvider adapterLocale="ko" dateAdapter={AdapterDayjs}>
       <DateCalendar
+        ref={ref}
         className={className}
         value={dayjs(date)}
         views={['day']}

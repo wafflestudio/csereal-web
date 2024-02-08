@@ -28,9 +28,9 @@ export function SelectDayButton({ date }: { date: Date }) {
   };
 
   return (
-    <div className="flex items-stretch">
+    <div>
       <BasicButton
-        className="w-[6.25rem] flex gap-1 items-center justify-center"
+        className="w-[6.25rem] h-full flex gap-1 items-center justify-center"
         onClick={toggleCalendar}
       >
         {isDateToday ? (
@@ -48,7 +48,7 @@ export function SelectDayButton({ date }: { date: Date }) {
             className="absolute border-neutral-300 border top-2 z-10 bg-white"
             date={date}
             setDate={(date) => {
-              querySetter(date);
+              date && querySetter(date);
               toggleCalendar();
             }}
           />
