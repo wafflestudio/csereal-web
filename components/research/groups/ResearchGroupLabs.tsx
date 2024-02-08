@@ -10,7 +10,6 @@ export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: 
   return (
     <div className="mt-[40px]">
       <h3 className="font-bold text-[20px] mb-[4px] pl-2.5 py-1 leading-loose">연구실</h3>
-      {/* <div className="h-px bg-neutral-200 my-3" /> */}
       <ul>
         {labs.map((lab) => (
           <ResearchGroupLab lab={lab} key={lab.id} />
