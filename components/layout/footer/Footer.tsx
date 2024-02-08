@@ -1,11 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-<<<<<<< HEAD
-=======
-import Link from 'next-intl/link';
-import { useState } from 'react';
->>>>>>> 1dafa61 (design: 네비바 디자인 적용, 리팩터링)
 
 import { Link } from '@/navigation';
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
@@ -33,14 +28,10 @@ import useModal from '@/hooks/useModal';
 import useFooterDesignMode, { FooterMode } from './useFooterToDesignMode';
 
 export default function Footer() {
-<<<<<<< HEAD
   const mode = useFooterDesignMode();
 
   const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
-=======
-  const [mode, setMode] = useState<'light' | 'dark'>();
->>>>>>> 1dafa61 (design: 네비바 디자인 적용, 리팩터링)
 
   return (
     <footer>

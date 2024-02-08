@@ -24,7 +24,7 @@ export default function NavbarRoot({
   return (
     // 상하로 짧은 경우를 대비해 overflow-scroll
     <div
-      className={`flex flex-col items-center pt-[2.25rem] ${width} transition-all duration-300 ease-in-out z-50 bg-[#323235]`}
+      className={`flex flex-col items-center py-[2.25rem] ${width} transition-all duration-300 ease-in-out z-50 bg-[#323235] overflow-scroll no-scrollbar`}
       onMouseEnter={() => setState({ type: 'expanded' })}
     >
       <SNUButton />
