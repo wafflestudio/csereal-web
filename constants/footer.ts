@@ -11,6 +11,8 @@ import {
   topConferenceList,
   reservationIntroduction,
   tentenProposal,
+  contact,
+  directions,
 } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -62,6 +64,13 @@ export const moreLinks: FooterLink[] = [
     href: 'http://haedong.snu.ac.kr/',
   },
 ];
+
+// TODO: 개인정보처리방침 링크
+export const privacyPath = '/404';
+
+export const contactPath = getPath(contact);
+
+export const directionsPath = getPath(directions);
 
 export const snucseFacebookLink = 'https://www.facebook.com/groups/snucsegroup/';
 
