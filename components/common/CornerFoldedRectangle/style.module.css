@@ -1,12 +1,11 @@
 .animated {
-  --white: #141212;
-  --neutral-150: #1e1e1e;
-  --neutral-400: #404040;
+  --white: #ffffff;
+  --neutral-100: #f5f5f5;
   transition: 0.3s;
 }
 
 .folding:hover {
-  background-color: var(--neutral-150) !important;
+  background-color: var(--neutral-100) !important;
 }
 
 .folding::before,
@@ -15,20 +14,20 @@
   content: '';
   position: absolute;
   top: -0.8px;
-  right: -0.8px; 
+  right: -0.8px;
   width: 0;
   height: 0;
   transition: 0.3s;
-  border-bottom-left-radius: 1px;
+  border-bottom-left-radius: 2px;
 }
 
 .folding::before {
-  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-400) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-100) 50%);
 }
 
 .folding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-400) 50%);
-  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.5));
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-100) 50%);
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
 }
 
 .folding:hover::before,
@@ -51,11 +50,11 @@
 }
 
 .unfolding::before {
-  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-150) 50%);
+  background: linear-gradient(-135deg, var(--white) 50%, var(--neutral-100) 50%);
 }
 
 .unfolding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-400) 50%);
+  background: linear-gradient(-135deg, transparent 50%, var(--neutral-100) 50%);
   filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
 }
 

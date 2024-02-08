@@ -57,7 +57,7 @@ export default function CornerFoldedRectangle({
           className={`absolute top-[-1px] right-[-1px] w-0 h-0 border-solid`}
           style={{
             borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
-            borderColor: `#141212 #141212 ${colorTheme.triangleColor} ${colorTheme.triangleColor}`,
+            borderColor: `#ffffff #ffffff ${colorTheme.triangleColor} ${colorTheme.triangleColor}`,
             borderBottomLeftRadius: `${radius}rem`,
           }}
         />

@@ -21,17 +21,15 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div className="bg-[#171717] px-[100px] pt-[54px]">
+    <div className="bg-neutral-900 px-[100px] pt-[54px]">
       <div
-        className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin} mt-[6.2px]`}
+        className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin}`}
       >
         <div className="flex items-center justify-center gap-2 mb-2">
           <Breadcrumb currentPage={currentPage} />
           <CurvedHorizontalNodeGray />
         </div>
-        <h3
-          className={`mr-[100px] ${titleStyle} text-[32px] break-keep font-yoon text-neutral-800 tracking-wide `}
-        >
+        <h3 className={`mr-[100px] ${titleStyle} text-[32px] break-keep text-white tracking-wide `}>
           {title}
         </h3>
       </div>
@@ -45,7 +43,7 @@ function Breadcrumb({ currentPage }: { currentPage: SegmentNode }) {
   const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (e.g. 공지목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
 
   return log.length ? (
-    <ol className="flex items-center gap-0.5 text-neutral-700">
+    <ol className="flex items-center gap-0.5 text-neutral-300">
       {log.map((location, i) => {
         return (
           <Fragment key={location.name}>

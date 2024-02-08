@@ -21,10 +21,10 @@ export function CurvedHorizontalNodeGray() {
   return (
     <div className={`flex grow items-center`}>
       <div className={`flex w-full items-center`}>
-        <div className="border border-[#525252] rounded-full w-2.5 h-2.5" />
-        <div className={`grow border-[#525252] border-t`} />
+        <div className="border border-neutral-600 rounded-full w-2.5 h-2.5" />
+        <div className={`grow border-neutral-600 border-t`} />
       </div>
-      <div className={`origin-top-left rotate-45 border-t border-[#525252] h-0 w-[90px]`} />
+      <div className={`origin-top-left rotate-45 border-t border-neutral-600 h-0 w-[90px]`} />
       {/* <span className="w-[200px] border-t border-main-orange translate-x-[-18.5px] translate-y-[43.3px]"></span> */}
       {/* <Straight direction="row" translateX="translate-x-[300px]" translateY="translate-y-[10px]" /> */}
     </div>

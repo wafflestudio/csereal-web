@@ -14,19 +14,13 @@ import { getPath } from '@/utils/page';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 
-// import PageTitleNew from '@/components/layout/pageLayout/PageTitleNew';
-
 const researchGroupsPath = getPath(researchGroups);
 
 interface ResearchGroupsPageContentProps {
   groups: ResearchGroup[];
-  description: string;
 }
 
-export default function ResearchGroupsPageContent({
-  groups,
-  description,
-}: ResearchGroupsPageContentProps) {
+export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPageContentProps) {
   const searchParams = useSearchParams();
   const [selected, setSelected] = useState<string>(searchParams.get('selected') ?? '');
   const selectedGroup = findSelectedItem<ResearchGroup>(
@@ -37,7 +31,6 @@ export default function ResearchGroupsPageContent({
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]">
-      {/* <PageTitleNew  /> */}
       <div>
         <div className="pl-[100px] pr-[350px]">
           <SelectionList
@@ -48,7 +41,6 @@ export default function ResearchGroupsPageContent({
             setSelected={setSelected}
           />
         </div>
-        {/* <ResearchDescription description={description} /> */}
         {selectedGroup ? (
           <ResearchGroupDetails group={selectedGroup} />
         ) : (

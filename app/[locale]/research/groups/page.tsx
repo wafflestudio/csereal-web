@@ -23,7 +23,7 @@ interface ResearchGroupsPageProps {
 
 export default async function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
   const { description, groups } = await getResearchGroups();
-  return <ResearchGroupsPageContent description={description} groups={groups} />;
+  return <ResearchGroupsPageContent groups={groups} />;
 }
 
 // function ResearchDescription({ description }: { description: string }) {

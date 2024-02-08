@@ -18,7 +18,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
   const height = `${(subTabs.length + 1) * 30 + 10}px`;
 
   return (
-    <div className="absolute top-[172px] right-[60px] h-full">
+    <div className="absolute top-[172px] right-[60px] h-[80%]">
       <div
         className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-16"
         style={{ height }}
