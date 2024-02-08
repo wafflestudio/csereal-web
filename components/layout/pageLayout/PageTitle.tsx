@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 import { Fragment } from 'react';
 
-import { CurvedHorizontalNode, CurvedHorizontalNodeGray } from '@/components/common/Nodes';
+import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 
 import { SegmentNode } from '@/types/page';
 

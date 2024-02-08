@@ -1,6 +1,14 @@
 {
   "plugins": ["import"],
-  "extends": ["next/core-web-vitals", "plugin:import/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "next/core-web-vitals",
+    "plugin:import/recommended",
+    "prettier"
+  ],
   "rules": {
     "import/order": [
       "error",
