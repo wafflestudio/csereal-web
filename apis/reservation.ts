@@ -39,7 +39,7 @@ export const deleteAllRecurringReservation = async (id: string) => {
   await deleteRequest(`${reservationPath}/recurring/${id}`);
 };
 
-export const roomNameToId = {
+export const roomNameToId: { [roomName: string]: number } = {
   // 세미나실
   '301-417': 1,
   '301-521': 2,
@@ -59,4 +59,4 @@ export const roomNameToId = {
   // 공과대학 강의실
   '302-208': 15,
   '302-209': 16,
-} as const;
+};
