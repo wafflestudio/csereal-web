@@ -14,14 +14,9 @@ interface ResearchGroupDetailProps {
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
     <div className="bg-[#fafafa] pl-[100px] pr-[350px] pt-[50px] pb-[100px]">
-      {/* <SelectionTitle animationKey={group.name}>{group.name} 연구 그룹</SelectionTitle> */}
       <h2 className="font-bold text-[24px] leading-loose mb-[18px]">{group.name} 연구 그룹</h2>
       <div className="bg-white p-[40px] w-[780px]">
-        <HTMLViewer
-          htmlContent={group.description}
-          // topRightContent={{ type: 'image', width: 320, height: 160, url: group.imageURL }}
-          margin="mb-9 ml-2.5"
-        />
+        <HTMLViewer htmlContent={group.description} margin="mb-9 ml-2.5" />
       </div>
       <div className="relative h-[200px] mt-[24px]">
         <Image
