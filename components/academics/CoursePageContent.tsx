@@ -24,7 +24,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <div className={selectedOption.view === '카드형' ? 'w-[840px]' : 'w-[664px]'}>
-      <h4 className="my-8 font-bold">교과목 정보</h4>
+      <h4 className="mt-14 mb-8 text-[17px] font-bold pl-5">교과목 정보</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
