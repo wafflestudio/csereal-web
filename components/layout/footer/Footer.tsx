@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
+import { useState } from 'react';
 
 import SnuEngineeringIcon from '@/public/image/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/SNU_Logo_with_Text.svg';
@@ -32,6 +33,8 @@ const contactPath = getPath(contact);
 const directionsPath = getPath(directions);
 
 export default function Footer() {
+  const [mode, setMode] = useState<'light' | 'dark'>();
+
   return (
     <footer className="z-30">
       <FooterTop />

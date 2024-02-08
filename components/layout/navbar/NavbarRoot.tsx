@@ -20,24 +20,24 @@ export default function NavbarRoot({
   state: NavbarState;
   setState: (state: NavbarState) => void;
 }) {
-  const expand = () => setState({ type: 'expanded' });
   const width = state.type === 'closed' ? `w-[6.25rem]` : `w-[11rem]`;
 
   return (
     <div
-      className={`flex flex-col items-center pt-[2.25rem] ${width} overflow-y-scroll no-scrollbar transition-all duration-300 ease-in-out z-50 bg-[#323235]`}
-      onMouseEnter={expand}
+      className={`flex flex-col items-center pt-[2.25rem] ${width} transition-all duration-300 ease-in-out z-50 bg-[#323235]`}
+      onMouseEnter={() => setState({ type: 'expanded' })}
     >
-      <SNULogo />
+      <SNUButton />
       {state.type === 'closed' ? <DotList /> : <NavList state={state} setState={setState} />}
     </div>
   );
 }
 
-function SNULogo() {
+function SNUButton() {
   const refreshPage = () => {
     window.location.href = '/';
   };
+
   return (
     <button onClick={refreshPage}>
       <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
@@ -65,15 +65,9 @@ function NavList({
 }) {
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
-  // 노드별 강조 처리 여부
+
   const shouldHighlight = (child: SegmentNode) => {
-    if (state.type === 'hovered') {
-      // 이전에 마우스로 선택된 노드가 있으면 그것과 같아야 함,
-      return child === state.segmentNode;
-    } else {
-      // 이외의 경우 현재 url 경로와 매칭되면 true
-      return isAncestorNode(child, cur);
-    }
+    return state.type === 'hovered' ? child === state.segmentNode : isAncestorNode(child, cur);
   };
 
   return (
@@ -101,11 +95,10 @@ function NavListRow({
   highlight: boolean;
   onMouseEnter: () => void;
 }) {
+  const color = highlight ? 'text-white' : 'text-neutral-500';
   return (
     <li
-      className={`font-yoon text-md font-medium ${
-        highlight ? 'text-white' : 'text-neutral-500'
-      } cursor-pointer whitespace-nowrap`}
+      className={`text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap`}
       onMouseEnter={onMouseEnter}
     >
       {name}
