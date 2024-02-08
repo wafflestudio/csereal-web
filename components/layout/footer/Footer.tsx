@@ -18,49 +18,58 @@ import {
   snucomLink,
   snuEngLink,
   snuLink,
+  contactPath,
+  directionsPath,
+  privacyPath,
 } from '@/constants/footer';
 
 import useModal from '@/hooks/useModal';
 
-import { contact, directions } from '@/types/page';
-
-import { getPath } from '@/utils/page';
-
-// TODO: 개인정보처리방침 링크
-const privacyPath = '/404';
-const contactPath = getPath(contact);
-const directionsPath = getPath(directions);
+import useFooterDesignMode, { FooterMode } from './useFooterToDesignMode';
 
 export default function Footer() {
+  const mode = useFooterDesignMode();
+
+  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-900';
+  const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
+
   return (
-    <footer className="z-30">
-      <FooterTop />
-      <FooterBottom />
+    <footer>
+      <div className={`${topBg} px-[3.75rem] py-10 flex`}>
+        <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
+        <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
+        <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" mode={mode} />
+        <LinkGroup groupName="More" links={moreLinks} width="w-[8rem]" mode={mode} />
+      </div>
+      <div className={`${bottomBg} px-[3.75rem] py-8 flex justify-between items-center`}>
+        <FooterBottomLeft />
+        <FooterBottomRight />
+      </div>
     </footer>
   );
 }
 
-function FooterTop() {
+type LinkGroupProps = {
+  groupName: string;
+  links: FooterLink[];
+  width: string;
+  mode: FooterMode;
+};
+
+function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   const t = useTranslations('Footer');
 
-  return (
-    <div className="bg-neutral-900 px-[3.75rem] py-10 flex gap-8">
-      <LinkGroup groupName={t('About')} links={aboutLinks} />
-      <LinkGroup groupName={t('Resources')} links={resourcesLinks} />
-      <LinkGroup groupName={t('Research')} links={researchLinks} />
-      <LinkGroup groupName={t('More')} links={moreLinks} />
-    </div>
-  );
-}
+  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-white';
 
-function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[] }) {
-  const t = useTranslations('Footer');
   return (
-    <section>
-      <h3 className={`text-white text-xs font-medium mb-[.625rem]`}>{groupName}</h3>
-      <ul className="text-neutral-500 text-[.6875rem] font-normal tracking-[.0125rem]">
+    <section className={width}>
+      <h3 className={`${titleColor} text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}>
+        {t(groupName)}
+      </h3>
+
+      <ul className="text-neutral-500 text-sm font-normal flex flex-col gap-[0.63rem]">
         {links.map((link, i) => (
-          <li key={i} className="mb-2">
+          <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
           </li>
         ))}
@@ -69,30 +78,23 @@ function LinkGroup({ groupName, links }: { groupName: string; links: FooterLink[
   );
 }
 
-function FooterBottom() {
-  return (
-    <div className="bg-neutral-800 px-[3.75rem] py-8 flex justify-between items-center">
-      <FooterBottomLeft />
-      <FooterBottomRight />
-    </div>
-  );
-}
-
 function FooterBottomLeft() {
   const { openModal } = useModal();
   const t = useTranslations('Footer');
 
   return (
-    <div className="text-neutral-500 text-[.6875rem] tracking-[.01125rem]">
-      <div className="flex [&>a]:font-bold [&>a]:font-noto gap-1">
+    <div className="text-neutral-500 text-sm">
+      <div className="flex [&>a]:font-bold gap-[1ch]">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
         <span>|</span>
         <Link href={directionsPath}>{t('찾아오시는 길')}</Link>
       </div>
-      <address className="not-italic mb-4">{t('address')}</address>
-      <p className="font-normal">
+
+      <address className="not-italic mb-[1.37rem]">{t('address')}</address>
+
+      <p>
         Powered by{' '}
         <span
           className="cursor-pointer hover:underline"
@@ -109,7 +111,7 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="flex items-end gap-7">
+    <div className="flex items-center gap-7">
       <Link href={snucomLink}>
         <SnucomIcon />
       </Link>
