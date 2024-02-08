@@ -22,14 +22,14 @@ export default function PageLayout({ title, titleType, titleMargin, children }: 
   title ||= t(currentPage.name);
 
   return (
-    <div className="relative">
+    <div className="relative bg-neutral-900">
       <PageTitle
         title={title}
         currentPage={currentPage}
         titleType={titleType}
         margin={titleMargin ?? ''}
       />
-      <div className="row-start-2 col-start-1 bg-[#ffffff]">{children}</div>
+      <div className="row-start-2 col-start-1 bg-white">{children}</div>
       <SubNavbar currentTab={currentPage} />
     </div>
   );

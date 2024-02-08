@@ -27,6 +27,7 @@ module.exports = {
       },
       'main-orange': {
         DEFAULT: '#ff6914',
+        dark: '#e65817',
       },
       link: {
         DEFAULT: '#3c7be4',

@@ -37,7 +37,6 @@ export default function ResearchGroupsPageContent({
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]">
-      {/* <PageTitleNew  /> */}
       <div>
         <div className="pl-[100px] pr-[350px]">
           <SelectionList
