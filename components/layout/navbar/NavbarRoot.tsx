@@ -48,10 +48,15 @@ function SNUButton() {
 
 function DotList() {
   const cur = useCurrentSegmentNode();
+
   return (
-    <div className="flex flex-col items-center gap-[2.72rem] mt-[3.38rem]">
+    <div className="flex flex-col items-center mt-[3.38rem]">
       {mainSegmentNode.children?.map((node, idx) => {
-        return isAncestorNode(node, cur) ? <DotFill key={idx} /> : <DotEmpty key={idx} />;
+        return isAncestorNode(node, cur) ? (
+          <DotFill key={idx} className="mb-[2.2rem] -translate-y-2" />
+        ) : (
+          <DotEmpty key={idx} className="mb-12" />
+        );
       })}
     </div>
   );
