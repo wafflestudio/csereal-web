@@ -16,7 +16,7 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
     today.getDate() === date.getDate();
 
   return (
-    <div className="flex h-7 items-stretch justify-between mb-4">
+    <div className="flex h-7 items-stretch justify-between mb-6">
       <div className="flex gap-2">
         <SelectDayButton date={date} />
         <PreviousWeekButton date={date} />
