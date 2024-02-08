@@ -1,12 +1,10 @@
-'use client';
-
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next-intl/link';
 
 import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
-import HeaderLogo from '@/public/image/header_logo.svg';
+import HeaderLogo from '@/public/image/header/header_logo.svg';
 
 import HeaderSearchBar from './HeaderSearchBar';
 
@@ -17,9 +15,7 @@ export default function Header() {
   const goToMainPage = () => (window.location.href = '/');
 
   return (
-    <header
-      className={`top-0 bg-[#1f2021] px-[3.75rem] pt-[40px] pb-8 flex w-full justify-between gap-4`}
-    >
+    <header className={`bg-[#1f2021] px-[3.75rem] pt-12 pb-[2.44rem] flex justify-between`}>
       <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo />
       </div>
