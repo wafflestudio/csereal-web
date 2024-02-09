@@ -14,7 +14,11 @@ export default function CourseToolbar({
   changeOptions,
 }: CourseToolbarProps) {
   return (
-    <div className="flex items-center justify-between mb-5 px-5">
+    <div
+      className={`flex items-center justify-between mb-5 pl-5 ${
+        viewOption === '카드형' ? 'pr-8' : 'pr-5'
+      }`}
+    >
       <ViewOptions
         selectedOption={viewOption}
         changeOption={(option) => changeOptions('view', option)}

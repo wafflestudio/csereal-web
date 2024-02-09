@@ -49,18 +49,18 @@
 
   .styled-scrollbar::-webkit-scrollbar {
     width: 10px;
-    height: 11px;
+    height: 5px;
   }
 
   .styled-scrollbar::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: #f5f5f5;
     border-radius: 10px;
   }
 
   .styled-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #e5e5e5;
+    background-color: #d4d4d4;
     background-clip: padding-box;
-    border: 4px solid transparent;
+    border: 1px solid transparent;
     border-radius: 10px;
   }
 
