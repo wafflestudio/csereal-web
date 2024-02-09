@@ -10,14 +10,16 @@ export default async function GraduateCoursePage() {
   const chunckedCourses = data ? chunkCourse(data) : [];
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
-      {chunckedCourses.length > 0 && (
-        <div className="mt-6 flex flex-col gap-8">
-          {chunckedCourses.map((courses, i) => (
-            <CourseRow courses={courses} selectedOption="학년" key={i} />
-          ))}
-        </div>
-      )}
+    <PageLayout titleType="big" titleMargin="mb-[44px]">
+      <div className="pl-[100px] pr-[350px] pt-[36px] pb-[150px]">
+        {chunckedCourses.length > 0 && (
+          <div className="flex flex-col gap-8 w-[840px]">
+            {chunckedCourses.map((courses, i) => (
+              <CourseRow courses={courses} selectedOption="학년" key={i} />
+            ))}
+          </div>
+        )}
+      </div>
     </PageLayout>
   );
 }
