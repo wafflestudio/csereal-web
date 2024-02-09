@@ -21,7 +21,7 @@ export function SelectDayButton({ date }: { date: Date }) {
 
   const formatDateStr = (date: Date): string => {
     return (
-      [Math.floor(date.getFullYear() / 100), date.getMonth() + 1, date.getDate()]
+      [date.getFullYear() % 100, date.getMonth() + 1, date.getDate()]
         .map((x) => (x + '').padStart(2, '0'))
         .join('.') + '.'
     );
@@ -30,7 +30,7 @@ export function SelectDayButton({ date }: { date: Date }) {
   return (
     <div>
       <BasicButton
-        className="w-[6.25rem] h-full flex gap-1 items-center justify-center"
+        className="h-full px-[0.625rem] flex gap-1 items-center justify-center"
         onClick={toggleCalendar}
       >
         {isDateToday ? (

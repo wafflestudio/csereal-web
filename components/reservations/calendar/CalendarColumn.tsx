@@ -3,6 +3,9 @@ import { ReservationPreview } from '@/types/reservation';
 import styles from './cellstyle.module.css';
 import { ReservationDetailModalButton } from '../modals/ReservationDetailModal';
 
+const UNIT_HEIGHT_IN_REM = 1.5;
+const MILLISEC_IN_THIRTY_MIN = 1000 / 60 / 30;
+
 export default function CalendarColumn({
   date,
   selected,
@@ -26,18 +29,17 @@ export default function CalendarColumn({
 }
 
 const ColumnIndex = ({ selected, date }: { selected: boolean; date: Date }) => {
-  const dayToStr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   return (
     <div
       className={`
-        h-[4.0625rem] border-y-[2px]  
-        border-r-[1px] border-neutral-300 
-        bg-neutral-100 px-3 py-[.62rem] flex flex-col justify-between
-        ${selected && 'bg-neutral-200'}
+        flex flex-col justify-between
+        h-[4.0625rem] px-3 py-[0.62rem]
+        border-t border-r border-b border-neutral-200 
+        ${selected ? 'bg-neutral-200' : 'bg-neutral-100'}
         `}
     >
-      <p className="font-yoon text-xs font-medium">{dayToStr[date.getDay()]}</p>
-      <p className="font-yoon text-base font-bold leading-4">{date.getDate()}</p>
+      <p className="text-xs font-medium text-neutral-800">{weekdayStrArr[date.getDay()]}</p>
+      <p className="text-base font-bold leading-4 text-neutral-800">{date.getDate()}</p>
     </div>
   );
 };
@@ -48,21 +50,56 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     .map((_, i) => (
       <div
         key={i}
-        className={`h-6 box-border ${styles.cell} ${selected && 'bg-[rgba(38,38,38,0.5)]'}`}
+        className={`box-border ${styles.cell} ${selected && 'bg-neutral-100'}`}
+        style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
       />
     ));
 };
 
 const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
-  // 셀 높이 구하기
-  // 30분으로 나눴을 때 몇 칸인지
-
   const startTime = new Date(reservation.startTime);
   const endTime = new Date(reservation.endTime);
 
+  const { topOffset, unitCnt } = getReservationCellLayout(startTime, endTime);
+
+  return (
+    <ReservationDetailModalButton
+      className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
+      style={{ height: unitCnt * UNIT_HEIGHT_IN_REM + 'rem', top: topOffset + 'rem' }}
+      reservationId={reservation.id}
+    >
+      {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
+      <p
+        className="flex itemd-center text-xs font-medium"
+        style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
+      >
+        {reservation.title}
+      </p>
+    </ReservationDetailModalButton>
+  );
+};
+
+const CalendarCellTitle = ({ startTime, endTime }: { startTime: Date; endTime: Date }) => {
+  const timeText = `${padZero(startTime.getHours())}:${padZero(startTime.getMinutes())} - ${padZero(
+    endTime.getHours(),
+  )}:${padZero(endTime.getMinutes())}`;
+
+  return (
+    <p
+      className="flex items-center text-xs font-bold text-neutral-700"
+      style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
+    >
+      {timeText}
+    </p>
+  );
+};
+
+const padZero = (val: number): string => (val + '').padStart(2, '0');
+
+const weekdayStrArr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+const getReservationCellLayout = (startTime: Date, endTime: Date) => {
   const unitCnt = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 30;
-  const unitHeightInREM = 1.5;
-  const height = unitCnt * unitHeightInREM;
 
   // 셀 y축 offset 구하기
   const topTime = new Date(
@@ -72,29 +109,8 @@ const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
     8,
     0,
   );
-  const topOffset = ((startTime.getTime() - topTime.getTime()) / 1000 / 60 / 30) * unitHeightInREM;
+  const topOffset =
+    ((startTime.getTime() - topTime.getTime()) / MILLISEC_IN_THIRTY_MIN) * UNIT_HEIGHT_IN_REM;
 
-  // 셀 내부 텍스트 구하기
-  const timeText = `${padZero(startTime.getHours())}:${padZero(startTime.getMinutes())} - ${padZero(
-    endTime.getHours(),
-  )}:${padZero(endTime.getMinutes())}`;
-
-  return (
-    <ReservationDetailModalButton
-      className={`absolute bg-[rgba(64,64,64,0.3)]  left-0 right-0 flex flex-col items-center border border-neutral-400`}
-      style={{ height: height + 'rem', top: topOffset + 'rem' }}
-      reservationId={reservation.id}
-    >
-      {unitCnt !== 1 && (
-        <div className="flex h-6 items-center">
-          <p className="font-yoon text-xs font-bold">{timeText}</p>
-        </div>
-      )}
-      <div className="flex h-6 items-center">
-        <p className="font-yoon text-xs font-medium">{reservation.title}</p>
-      </div>
-    </ReservationDetailModalButton>
-  );
+  return { topOffset, unitCnt };
 };
-
-const padZero = (val: number): string => (val + '').padStart(2, '0');
