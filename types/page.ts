@@ -624,6 +624,8 @@ seminarRoom.children = [
 labRoom.children = [softwareLab, hardwareLab];
 lectureRoom.children = [bldg302room208, bldg302room209];
 
+// 여기 아래로는 네비바 트리에 속하지 않는 페이지들
+
 // 관리자
 
 export const admin: SegmentNode = {
@@ -670,3 +672,13 @@ export const tentenProposal: SegmentNode = {
 
 // 기존 홈페이지 푸터 링크가 propsal로 이동시는 등 proposal 내용이 우선순위라 판단되어 기존과 다르게 0번째로 배치
 tentenProject.children = [tentenProposal, tentenManager, tentenParticipants];
+
+// 개인정보처리방침
+
+export const privacyPolicy: SegmentNode = {
+  name: '개인정보처리방침',
+  segment: 'privacy-policy',
+  isPage: true,
+  parent: about,
+  children: [],
+};
