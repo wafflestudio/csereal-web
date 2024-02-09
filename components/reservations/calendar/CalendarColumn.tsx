@@ -4,7 +4,7 @@ import styles from './cellstyle.module.css';
 import ReservationModalButton from '../modals/ReservationDetailModal';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
-const MILLISEC_IN_THIRTY_MIN = 1000 / 60 / 30;
+const THIRTY_MIN_IN_MILLISEC = 1000 * 60 * 30;
 
 export default function CalendarColumn({
   date,
@@ -110,7 +110,9 @@ const getReservationCellLayout = (startTime: Date, endTime: Date) => {
     0,
   );
   const topOffset =
-    ((startTime.getTime() - topTime.getTime()) / MILLISEC_IN_THIRTY_MIN) * UNIT_HEIGHT_IN_REM;
+    ((startTime.getTime() - topTime.getTime()) / THIRTY_MIN_IN_MILLISEC) * UNIT_HEIGHT_IN_REM;
+
+  console.log(startTime, topTime, topOffset);
 
   return { topOffset, unitCnt };
 };
