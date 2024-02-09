@@ -1,7 +1,7 @@
 import { ReservationPreview } from '@/types/reservation';
 
 import styles from './cellstyle.module.css';
-import { ReservationDetailModalButton } from '../modals/ReservationDetailModal';
+import ReservationModalButton from '../modals/ReservationDetailModal';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
 const MILLISEC_IN_THIRTY_MIN = 1000 / 60 / 30;
@@ -56,16 +56,16 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     ));
 };
 
-const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
+const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }) => {
   const startTime = new Date(reservation.startTime);
   const endTime = new Date(reservation.endTime);
 
   const { topOffset, unitCnt } = getReservationCellLayout(startTime, endTime);
 
   return (
-    <ReservationDetailModalButton
-      className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
-      style={{ height: unitCnt * UNIT_HEIGHT_IN_REM + 'rem', top: topOffset + 'rem' }}
+    <ReservationModalButton
+      height={unitCnt * UNIT_HEIGHT_IN_REM + 'rem'}
+      top={topOffset + 'rem'}
       reservationId={reservation.id}
     >
       {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
@@ -75,7 +75,7 @@ const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
       >
         {reservation.title}
       </p>
-    </ReservationDetailModalButton>
+    </ReservationModalButton>
   );
 };
 

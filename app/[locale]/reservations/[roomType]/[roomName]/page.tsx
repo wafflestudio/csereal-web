@@ -1,4 +1,4 @@
-import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
+import { getWeeklyReservation } from '@/apis/reservation';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ReservationCalendar from '@/components/reservations/ReservationCalendar';
@@ -57,4 +57,26 @@ const getStartOfWeek = (date: Date) => {
   const diff = (date.getDay() || 7) - 1;
   ret.setDate(ret.getDate() - diff);
   return ret;
+};
+
+const roomNameToId: { [roomName: string]: number } = {
+  // 세미나실
+  '301-417': 1,
+  '301-521': 2,
+  '301-551-4': 3,
+  '301-552-1': 4,
+  '301-552-2': 5,
+  '301-552-3': 6,
+  '301-553-6': 7,
+  '301-317': 8,
+  '302-308': 9,
+  '302-309-1': 10,
+  '302-309-2': 11,
+  '302-309-3': 12,
+  //   실습실
+  '302-311-1': 13,
+  '302-310-2': 14,
+  // 공과대학 강의실
+  '302-208': 15,
+  '302-209': 16,
 };

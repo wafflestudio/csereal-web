@@ -1,11 +1,12 @@
 'use client';
 
-import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
-import useSWR from 'swr';
+import { ReactNode, useState } from 'react';
 
-import { getRequest } from '@/apis';
-
-import { deleteAllRecurringReservation, deleteSingleReservation } from '@/apis/reservation';
+import {
+  deleteAllRecurringReservation,
+  deleteSingleReservation,
+  getReservation,
+} from '@/apis/reservation';
 
 import LoginStaffVisible from '@/components/common/LoginStaffVisible';
 import AlertModal from '@/components/modal/AlertModal';
@@ -20,21 +21,35 @@ import { errorToast, successToast } from '@/utils/toast';
 
 import BasicButton from '../BasicButton';
 
-export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation, error } = useSWR<Reservation>(
-    `/reservation/${reservationId}`,
-    getRequest,
+export default function ReservationModalButton({
+  height,
+  top,
+  reservationId,
+  children,
+}: {
+  height: string;
+  top: string;
+  reservationId: number;
+  children: ReactNode;
+}) {
+  const { openModal } = useModal();
+
+  return (
+    <button
+      className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
+      style={{ height, top }}
+      onClick={async () => {
+        const reservation = await getReservation(reservationId);
+        openModal(<ReservationDetailModal reservation={reservation} />);
+      }}
+    >
+      {children}
+    </button>
   );
+}
 
+function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
   const { closeModal } = useModal();
-
-  if (error) {
-    toastError(error);
-    closeModal();
-    return;
-  }
-
-  if (reservation === undefined) return;
 
   const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
     year: '2-digit',
@@ -149,22 +164,6 @@ const DeleteButtons = ({
         해당 예약만 삭제
       </BasicButton>
     </div>
-  );
-};
-
-export const ReservationDetailModalButton = ({
-  reservationId,
-  ...props
-}: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
-  reservationId: number;
-}) => {
-  const { openModal } = useModal();
-
-  return (
-    <button
-      {...props}
-      onClick={() => openModal(<ReservationDetailModal reservationId={reservationId} />)}
-    />
   );
 };
 
