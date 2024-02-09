@@ -64,9 +64,9 @@ const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }
 
   return (
     <ReservationModalButton
+      id={reservation.id}
       height={unitCnt * UNIT_HEIGHT_IN_REM + 'rem'}
       top={topOffset + 'rem'}
-      reservationId={reservation.id}
     >
       {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
       <p

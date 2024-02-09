@@ -40,6 +40,7 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
     }
     try {
       await postReservation(body);
+      // TODO: revalidate같은거 써서 좀 더 예쁘게
       refreshPage();
     } catch (e) {
       if (e instanceof NetworkError) {

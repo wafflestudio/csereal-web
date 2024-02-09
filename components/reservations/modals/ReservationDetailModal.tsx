@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 
 import {
   deleteAllRecurringReservation,
@@ -8,7 +8,6 @@ import {
   getReservation,
 } from '@/apis/reservation';
 
-import LoginStaffVisible from '@/components/common/LoginStaffVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
@@ -21,27 +20,31 @@ import { errorToast, successToast } from '@/utils/toast';
 
 import BasicButton from '../BasicButton';
 
-export default function ReservationModalButton({
-  height,
-  top,
-  reservationId,
-  children,
-}: {
+type ReservationModalButtonProps = {
+  id: number;
   height: string;
   top: string;
-  reservationId: number;
   children: ReactNode;
-}) {
+};
+
+export default function ReservationModalButton({
+  id,
+  height,
+  top,
+  children,
+}: ReservationModalButtonProps) {
   const { openModal } = useModal();
+
+  const handleClick = async () => {
+    const reservation = await getReservation(id);
+    openModal(<ReservationDetailModal reservation={reservation} />);
+  };
 
   return (
     <button
       className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
       style={{ height, top }}
-      onClick={async () => {
-        const reservation = await getReservation(reservationId);
-        openModal(<ReservationDetailModal reservation={reservation} />);
-      }}
+      onClick={handleClick}
     >
       {children}
     </button>
@@ -51,51 +54,67 @@ export default function ReservationModalButton({
 function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
   const { closeModal } = useModal();
 
-  const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-    weekday: 'short',
-  });
+  const startTime = new Date(reservation.startTime);
+  const reservationDateStr = [
+    startTime.getFullYear() % 100,
+    startTime.getMonth() + 1,
+    startTime.getDate(),
+  ]
+    .map((x) => x.toString().padStart(2, '0'))
+    .join('.');
 
   const formatTime = (date: Date) => `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="relative bg-white font-noto w-[24.4rem] text-neutral-700 px-5 py-6 text-sm font-normal border-[#32B40A] border-t-[3px] border-b">
-        <h2 className="font-bold mb-5 text-[1.25rem]">{reservation.title}</h2>
-        <div className="flex flex-col gap-6">
-          <p>{reservation.purpose ?? ''}</p>
-          <div className="flex flex-col gap-1">
-            <p>예약 날짜: {dateStr}</p>
-            <div className="flex gap-6">
-              <p>시작 시간: {formatTime(new Date(reservation.startTime))}</p>
-              <p>종료 시간: {formatTime(new Date(reservation.endTime))}</p>
-            </div>
-            <p>매주 반복: {reservation.recurringWeeks}</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <p>세미나실: {reservation.roomLocation}</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <p>예약자 계정: {reservation.userName}</p>
-            <p>이메일: {reservation.contactEmail}</p>
-            <p>핸드폰: {reservation.contactPhone}</p>
-          </div>
-          <LoginStaffVisible>
-            <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
-          </LoginStaffVisible>
+      <div className="bg-neutral-100 p-7 border-main-orange border-t-[3px] border-b">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl font-bold text-neutral-800">{reservation.title}</h2>
+          <span
+            className="material-symbols-outlined text-2xl font-light cursor-pointe text-neutral-300"
+            onClick={closeModal}
+          >
+            close
+          </span>
         </div>
-        <span
-          className="absolute top-3 right-3 material-symbols-outlined text-base cursor-pointer"
-          onClick={closeModal}
-        >
-          close
-        </span>
+
+        <div className="flex flex-col gap-6 mb-[2.19rem]">
+          <p className="text-neutral-800">{reservation.purpose ?? '예약 목적 미기입'}</p>
+
+          <div className="flex flex-col gap-1">
+            <Row title="예약 날짜" body={reservationDateStr} />
+            <Row title="시작 시간" body={formatTime(new Date(reservation.startTime))} />
+            <Row title="종료 시간" body={formatTime(new Date(reservation.endTime))} />
+            <Row title="매주 반복" body={reservation.recurringWeeks + '회'} />
+          </div>
+
+          <Row title="예약 위치" body={reservation.roomLocation} />
+
+          <div className="flex flex-col gap-1">
+            <p className="text-md text-neutral-400 font-normal">예약자 정보</p>
+            <Row title="계정" body={reservation.userName} />
+            <Row title="이메일" body={reservation.contactEmail} />
+            <Row title="핸드폰" body={reservation.contactPhone} />
+          </div>
+        </div>
+
+        {/* TODO: 관리자 계정 얻을 때까지 주석 처리 */}
+        {/* <LoginStaffVisible> */}
+        <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
+        {/* </LoginStaffVisible> */}
       </div>
     </ModalFrame>
   );
 }
+
+const Row = ({ title, body }: { title: string; body: string }) => {
+  return (
+    <div className="flex gap-3">
+      <p className="w-[4.0625rem] text-md text-neutral-500">{title}</p>
+      <p className="text-md text-neutral-800">{body}</p>
+    </div>
+  );
+};
 
 const DeleteButtons = ({
   reservationId,
@@ -104,37 +123,30 @@ const DeleteButtons = ({
   reservationId: number;
   recurrenceId: string;
 }) => {
-  const [submitting, setSubmitting] = useState(false);
   const { openModal } = useModal();
 
   const handleDeleteAll = async () => {
-    if (submitting) return;
-    setSubmitting(true);
     try {
       await deleteAllRecurringReservation(recurrenceId);
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
       toastError(error);
-      setSubmitting(false);
     }
   };
 
   const handleDelete = async () => {
-    if (submitting) return;
-    setSubmitting(true);
     try {
       await deleteSingleReservation(reservationId);
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
       toastError(error);
-      setSubmitting(false);
     }
   };
 
   return (
-    <div className="flex justify-end gap-2 h-[1.875rem]">
+    <div className="flex gap-2 h-[1.875rem] ml-[3.94rem]">
       <BasicButton
         className="px-[.62rem]"
         onClick={() =>
