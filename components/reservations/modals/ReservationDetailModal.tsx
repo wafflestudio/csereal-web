@@ -21,11 +21,20 @@ import { errorToast, successToast } from '@/utils/toast';
 import BasicButton from '../BasicButton';
 
 export default function ReservationDetailModal({ reservationId }: { reservationId: number }) {
-  const { data: reservation } = useSWR<Reservation>(`/reservation/${reservationId}`, getRequest);
+  const { data: reservation, error } = useSWR<Reservation>(
+    `/reservation/${reservationId}`,
+    getRequest,
+  );
 
   const { closeModal } = useModal();
 
-  if (reservation === undefined) return <></>;
+  if (error) {
+    toastError(error);
+    closeModal();
+    return;
+  }
+
+  if (reservation === undefined) return;
 
   const dateStr = new Date(reservation.startTime).toLocaleString('ko-kr', {
     year: '2-digit',
@@ -161,7 +170,7 @@ export const ReservationDetailModalButton = ({
 
 const padZero = (x: number) => (x + '').padStart(2, '0');
 
-const toastError = (error: any) => {
+const toastError = (error: unknown) => {
   if (error instanceof Error) {
     errorToast(error.message);
   } else {
