@@ -8,7 +8,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 export default function RoadMapModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalFrame onClose={onClose}>
-      <div className="relative flex flex-col gap-4 p-6 w-fit max-w-[768px] bg-neutral-50 border-t-2 border-b rounded-t-sm border-main-orange overflow-auto styled-scrollbar overflow-x-hidden">
+      <div className="relative flex flex-col gap-4 p-6 w-fit max-w-[768px] bg-neutral-100 border-t-2 border-b rounded-t-sm border-main-orange overflow-auto styled-scrollbar overflow-x-hidden">
         <RoadMapTitle />
         <RoadMapDescription />
         <RoadMap />
