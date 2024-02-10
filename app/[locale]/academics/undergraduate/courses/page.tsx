@@ -11,10 +11,8 @@ export default async function UndergraduateCoursePage() {
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]">
-      <div className="pl-[100px] pr-[350px] pt-[36px] pb-[150px]">
-        <RoadMapButton />
-        <CoursePageContent courses={data} />
-      </div>
+      <RoadMapButton />
+      <CoursePageContent courses={data} />
     </PageLayout>
   );
 }

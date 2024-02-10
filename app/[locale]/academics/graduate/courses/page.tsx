@@ -11,15 +11,13 @@ export default async function GraduateCoursePage() {
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]">
-      <div className="pl-[100px] pr-[350px] pt-[36px] pb-[150px]">
-        {chunckedCourses.length > 0 && (
-          <div className="flex flex-col gap-8 w-[840px]">
-            {chunckedCourses.map((courses, i) => (
-              <CourseRow courses={courses} selectedOption="학년" key={i} />
-            ))}
-          </div>
-        )}
-      </div>
+      {chunckedCourses.length > 0 && (
+        <div className="flex flex-col gap-8 w-[840px]">
+          {chunckedCourses.map((courses, i) => (
+            <CourseRow courses={courses} selectedOption="학년" key={i} />
+          ))}
+        </div>
+      )}
     </PageLayout>
   );
 }
