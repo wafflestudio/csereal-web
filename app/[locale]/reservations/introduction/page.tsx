@@ -20,7 +20,11 @@ export default function ReservationIntroductionPage({
   const itemName = isSearchParamValid(temp) ? temp : names[0];
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout
+      titleType="big"
+      titleMargin="mb-[2.25rem]"
+      bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}
+    >
       <SelectionList
         names={names}
         selectedItemName={itemName}

@@ -10,9 +10,9 @@ export default async function GraduateCoursePage() {
   const chunckedCourses = data ? chunkCourse(data) : [];
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big" titleMargin="mb-[44px]">
       {chunckedCourses.length > 0 && (
-        <div className="mt-6 flex flex-col gap-8">
+        <div className="flex flex-col gap-8 w-[840px]">
           {chunckedCourses.map((courses, i) => (
             <CourseRow courses={courses} selectedOption="학년" key={i} />
           ))}

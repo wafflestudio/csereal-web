@@ -65,13 +65,13 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
   };
 
-  const frontStyle = `absolute p-[1.125rem] bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-50 ${
+  const frontStyle = `absolute p-[1.125rem] bg-neutral-50 hover:bg-neutral-100 active:bg-neutral-50 ${
     isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
-  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_6px_0_rgba(0,0,0,0.4)_inset]`;
+  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_6px_0_rgba(0,0,0,0.05)_inset]`;
 
   const backStyle = `py-5 px-[1.125rem] bg-neutral-200 ${
     isFlipped ? '[transform:rotateY(0deg)]' : '[transform:rotateY(180deg)]'
-  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,_-2px_-2px_4px_0_rgba(0,_0,_0,_0.35)_inset]`;
+  } shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,_-2px_-2px_4px_0_rgba(0,_0,_0,_0.05)_inset]`;
 
   return (
     <div style={cardStyle} onClick={flipCard}>
@@ -103,8 +103,8 @@ function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
 function CardTitle({ name, code }: { name: string; code: string }) {
   return (
     <h2 className="mb-2 whitespace-nowrap">
-      <span className="font-bold text-base mr-2">{name}</span>
-      <span className="text-xs text-neutral-500">{code}</span>
+      <span className="font-bold text-base mr-2 leading-normal">{name}</span>
+      <span className="text-xs text-neutral-500 leading-normal">{code}</span>
     </h2>
   );
 }
@@ -112,9 +112,7 @@ function CardTitle({ name, code }: { name: string; code: string }) {
 function CardContentPreview({ description }: { description: string }) {
   return (
     <div className="flex">
-      <p className="grow w-0 line-clamp-2 text-[0.6875rem] text-neutral-400 leading-normal">
-        {description}
-      </p>
+      <p className="grow w-0 line-clamp-2 text-xs text-neutral-500 leading-normal">{description}</p>
     </div>
   );
 }
@@ -122,7 +120,7 @@ function CardContentPreview({ description }: { description: string }) {
 function CardContent({ description }: { description: string }) {
   return (
     <div className="flex">
-      <p className="w-0 grow text-[0.6875rem] text-neutral-500">{description}</p>
+      <p className="w-0 grow text-xs leading-normal">{description}</p>
     </div>
   );
 }

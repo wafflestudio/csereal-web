@@ -30,25 +30,23 @@ export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPage
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[44px]">
-      <div>
-        <div className="pl-[100px] pr-[350px]">
-          <SelectionList
-            names={groups.map((group) => group.name)}
-            selectedItemName={selectedGroup?.name ?? ''}
-            path={researchGroupsPath}
-            listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
-            setSelected={setSelected}
-          />
-        </div>
-        {selectedGroup ? (
-          <ResearchGroupDetails group={selectedGroup} />
-        ) : (
-          <p>
-            <b>{`'${selected}'`}</b> 연구그룹은 존재하지 않습니다.
-          </p>
-        )}
+    <PageLayout titleType="big" titleMargin="mb-[44px]" bodyStyle={{ padding: 0 }}>
+      <div className="pl-[100px] pr-[350px]">
+        <SelectionList
+          names={groups.map((group) => group.name)}
+          selectedItemName={selectedGroup?.name ?? ''}
+          path={researchGroupsPath}
+          listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
+          setSelected={setSelected}
+        />
       </div>
+      {selectedGroup ? (
+        <ResearchGroupDetails group={selectedGroup} />
+      ) : (
+        <p>
+          <b>{`'${selected}'`}</b> 연구그룹은 존재하지 않습니다.
+        </p>
+      )}
     </PageLayout>
   );
 }

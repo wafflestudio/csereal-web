@@ -46,7 +46,7 @@ interface TagProps {
 
 export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelete }: TagProps) {
   const tagClass =
-    'flex items-center pl-2.5 h-6 border rounded-[1.875rem] text-xs whitespace-nowrap duration-200';
+    'flex items-center pl-2.5 h-[24px] border rounded-[1.875rem] text-[13px] whitespace-nowrap duration-200';
   const defaultClass = DEFAULT_STYLE[defaultStyle];
   const hoverClass = hoverStyle ? `${HOVER_STYLE[hoverStyle]} cursor-pointer` : '';
 

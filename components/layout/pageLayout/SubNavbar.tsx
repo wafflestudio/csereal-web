@@ -20,13 +20,10 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
 
   return (
     <div className="absolute top-[172px] right-[60px] h-[80%]">
-      <div
-        className="flex row-span-full col-start-2 mt-[3.25rem] w-[11.25rem] sticky top-16"
-        style={{ height }}
-      >
+      <div className="flex row-span-full col-start-2 mt-[3.25rem] sticky top-16" style={{ height }}>
         <CurvedVerticalNode grow={false} />
         <div className="pt-[0.6875rem] pl-1.5">
-          <h3 className="font-yoon font-bold text-sm text-neutral-600">{t(rootTab.name)}</h3>
+          <h3 className="font-bold text-sm text-neutral-600">{t(rootTab.name)}</h3>
           <ul className="mt-4">
             {subTabs.map((tab) => (
               <SubTab
