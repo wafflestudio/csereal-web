@@ -52,7 +52,7 @@ export default function AdminFeatures({
   return (
     <div className="flex mt-12 mx-2.5">
       {isEditMode && (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <SelectedCountStatus count={selectedPostIds.size} />
           <BatchButton
             disabled={selectedPostIds.size === 0}
@@ -94,11 +94,11 @@ export default function AdminFeatures({
 
 function SelectedCountStatus({ count }: { count: number }) {
   return (
-    <div className="flex items-center gap-1 mr-3">
+    <div className="flex items-center gap-1">
       <span className="material-symbols-rounded text-neutral-500 text-lg font-extralight">
         check_box
       </span>
-      <span className="text-neutral-500 text-xs tracking-wide">{count}개 게시물 선택</span>
+      <span className="text-neutral-500 text-[13px] tracking-wide">{count}개 게시물 선택</span>
     </div>
   );
 }
