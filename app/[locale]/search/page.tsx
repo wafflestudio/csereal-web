@@ -1,7 +1,8 @@
 export const dynamic = 'force-dynamic';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link';
+
+import { Link } from '@/navigation';
 
 import { getNewsSearch, getNoticeSearch } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminarServer';

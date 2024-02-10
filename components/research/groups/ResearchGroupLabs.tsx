@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next-intl/link';
+import { Link } from '@/navigation';
 
 import { researchLabs } from '@/types/page';
 
