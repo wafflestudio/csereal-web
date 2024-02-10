@@ -16,7 +16,7 @@ interface GuidePageLayoutProps {
   description: string;
 }
 
-export default function GuidePageLayout({
+export default function MajorCategoryPageLayout({
   title,
   subtitle = 'Welcome!',
   description,

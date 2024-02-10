@@ -1,9 +1,9 @@
 import { getPeopleDescription } from '@/apis/people';
 
-import GuidePageLayout from '@/components/layout/pageLayout/GuidePageLayout';
+import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 
 export default async function PeoplePage() {
   const description = await getPeopleDescription();
 
-  return <GuidePageLayout subtitle="Leading CSE" description={description} />;
+  return <MajorCategoryPageLayout subtitle="Leading CSE" description={description} />;
 }
