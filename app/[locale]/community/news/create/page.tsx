@@ -1,8 +1,5 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-
 import { revalidateNewsTag } from '@/actions/newsActions';
+import { useRouter } from '@/navigation';
 
 import { postNews } from '@/apis/news';
 

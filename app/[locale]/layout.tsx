@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -31,6 +32,9 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  // https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
+  unstable_setRequestLocale(params.locale);
+
   return (
     <html lang={params.locale}>
       <body className="text-neutral-800 font-normal bg-white min-w-fit flex">
