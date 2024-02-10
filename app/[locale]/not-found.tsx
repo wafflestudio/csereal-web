@@ -1,7 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Link from 'next-intl/link';
+
+import { Link } from '@/navigation';
 
 export default function NotFound() {
   const path = usePathname();

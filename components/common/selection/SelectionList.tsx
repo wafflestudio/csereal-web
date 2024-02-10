@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next-intl/link';
 import { Dispatch, SetStateAction } from 'react';
+
+import { Link } from '@/navigation';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
 

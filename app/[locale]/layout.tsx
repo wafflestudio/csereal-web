@@ -32,7 +32,7 @@ export default async function RootLayout({
   params: { locale: string };
 }) {
   return (
-    <html lang="ko">
+    <html lang={params.locale}>
       <body className="text-neutral-800 font-normal bg-white min-w-fit flex">
         <div className="flex flex-1 flex-col min-w-[1000px]">
           <div className="flex grow h-[calc(100vh-5rem)]">

@@ -1,4 +1,4 @@
-import Link from 'next-intl/link';
+import { Link } from '@/navigation';
 
 import { notice } from '@/types/page';
 

@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next-intl/link';
 import { Fragment } from 'react';
 
+import { Link } from '@/navigation';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
 
 import { faculty, researchLabs } from '@/types/page';

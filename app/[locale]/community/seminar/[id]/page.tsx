@@ -1,5 +1,6 @@
-import Link from 'next-intl/link';
 import { ReactNode } from 'react';
+
+import { Link } from '@/navigation';
 
 import { getSeminarPost } from '@/apis/seminarServer';
 

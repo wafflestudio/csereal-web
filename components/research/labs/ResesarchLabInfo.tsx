@@ -1,5 +1,6 @@
-import Link from 'next-intl/link';
 import { Fragment } from 'react';
+
+import { Link } from '@/navigation';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 
