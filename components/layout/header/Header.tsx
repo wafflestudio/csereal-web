@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 
-
 import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/navigation';
@@ -34,7 +33,7 @@ function HeaderRight() {
 
   const t = useTranslations('Header');
 
-  const langButtonText = isEnglish ? '한국어' : 'ENG';
+  const langButtonText = isEnglish ? '한국어' : 'ENG!';
 
   return (
     <div className="flex flex-col justify-between gap-[0.94rem] items-end">
