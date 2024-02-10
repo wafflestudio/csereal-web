@@ -1,8 +1,5 @@
-import { NetworkError } from '@/apis';
+import { getWeeklyReservation } from '@/apis/reservation';
 
-import { getWeeklyReservation, roomNameToId } from '@/apis/reservation';
-
-import LoginUserVisible from '@/components/common/LoginUserVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ReservationCalendar from '@/components/reservations/ReservationCalendar';
 
@@ -11,29 +8,23 @@ interface RoomReservationProps {
   searchParams: { selectedDate?: string };
 }
 
-export default function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
-  return (
-    <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
-      <LoginedRoomReservationPage params={params} searchParams={searchParams} />
-    </PageLayout>
-  );
-}
+const TITLE_BOTTOM_MARGIN = 'mb-[2.75rem]';
 
-async function LoginedRoomReservationPage({ params, searchParams }: RoomReservationProps) {
-  const roomId = isValidRoomName(params.roomName) ? roomNameToId[params.roomName] : undefined;
-  const date = parseDate(searchParams.selectedDate || todayYMDStr());
-
+// TODO: 에러 처리 페이지 디자인
+export default async function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
+  const roomId = roomNameToId[params.roomName];
   if (roomId === undefined) {
     return (
-      <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+      <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
         존재하지 않는 시설 아이디입니다.
       </PageLayout>
     );
   }
 
-  if (date === undefined) {
+  const date = searchParams.selectedDate ? new Date(searchParams.selectedDate) : new Date();
+  if (isNaN(date.valueOf())) {
     return (
-      <PageLayout titleType="big" titleMargin="mb-[2.25rem]">
+      <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
         유효하지 않은 날짜입니다.
       </PageLayout>
     );
@@ -49,55 +40,43 @@ async function LoginedRoomReservationPage({ params, searchParams }: RoomReservat
   });
 
   return (
-    <ReservationCalendar
-      startDate={startOfWeek}
-      selectedDate={date}
-      reservations={reservations}
-      roomId={roomId}
-    />
+    <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
+      <ReservationCalendar
+        startDate={startOfWeek}
+        selectedDate={date}
+        reservations={reservations}
+        roomId={roomId}
+      />
+    </PageLayout>
   );
 }
 
-const isValidRoomName = (roomName: string): roomName is keyof typeof roomNameToId => {
-  return Object.keys(roomNameToId).findIndex((x) => x === roomName) !== -1;
-};
-
-// 오늘 날짜는 yyyy-mm-dd 형식으로 변환
-const todayYMDStr = () => {
-  const date = new Date();
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
-    .map((x) => (x + '').padStart(2, '0'))
-    .join('-');
-};
-
-// yyyy-mm-dd 형식의 date의 유효성 검증
-const parseDate = (dateString: string) => {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-    return undefined;
-  }
-
-  const [year, month, day] = dateString.split('-').map((x) => +x);
-
-  if (year < 1000 || year > 3000 || month == 0 || month > 12) {
-    return undefined;
-  }
-
-  const monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-  // 윤년
-  if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) monthLength[1] = 29;
-
-  if (day > 0 && day <= monthLength[month - 1]) {
-    return new Date(year, month - 1, day);
-  } else {
-    return undefined;
-  }
-};
-
-// 일주일의 시작을 월요일로 간주
+/** 일주일의 시작을 월요일로 간주 */
 const getStartOfWeek = (date: Date) => {
   const ret = new Date(date);
   const diff = (date.getDay() || 7) - 1;
   ret.setDate(ret.getDate() - diff);
   return ret;
+};
+
+const roomNameToId: { [roomName: string]: number } = {
+  // 세미나실
+  '301-417': 1,
+  '301-521': 2,
+  '301-551-4': 3,
+  '301-552-1': 4,
+  '301-552-2': 5,
+  '301-552-3': 6,
+  '301-553-6': 7,
+  '301-317': 8,
+  '302-308': 9,
+  '302-309-1': 10,
+  '302-309-2': 11,
+  '302-309-3': 12,
+  //   실습실
+  '302-311-1': 13,
+  '302-310-2': 14,
+  // 공과대학 강의실
+  '302-208': 15,
+  '302-209': 16,
 };

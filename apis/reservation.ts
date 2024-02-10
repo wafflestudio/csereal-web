@@ -1,3 +1,5 @@
+'use server';
+
 import { cookies } from 'next/dist/client/components/headers';
 
 import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
@@ -28,8 +30,9 @@ export const getWeeklyReservation = async (params: {
   })) as ReservationPreview[];
 };
 
-export const getReservation = async (id: number) =>
-  getRequest(`${reservationPath}/${id}`) as Promise<Reservation[]>;
+export const getReservation = async (id: number) => {
+  return getRequest(`${reservationPath}/${id}`) as Promise<Reservation>;
+};
 
 export const deleteSingleReservation = async (id: number) => {
   await deleteRequest(`${reservationPath}/${id}`);
@@ -38,25 +41,3 @@ export const deleteSingleReservation = async (id: number) => {
 export const deleteAllRecurringReservation = async (id: string) => {
   await deleteRequest(`${reservationPath}/recurring/${id}`);
 };
-
-export const roomNameToId = {
-  // 세미나실
-  '301-417': 1,
-  '301-521': 2,
-  '301-551-4': 3,
-  '301-552-1': 4,
-  '301-552-2': 5,
-  '301-552-3': 6,
-  '301-553-6': 7,
-  '301-317': 8,
-  '302-308': 9,
-  '302-309-1': 10,
-  '302-309-2': 11,
-  '302-309-3': 12,
-  //   실습실
-  '302-311-1': 13,
-  '302-310-2': 14,
-  // 공과대학 강의실
-  '302-208': 15,
-  '302-209': 16,
-} as const;
