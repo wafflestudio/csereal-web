@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next-intl/link';
-
+import { Link } from '@/navigation';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
 

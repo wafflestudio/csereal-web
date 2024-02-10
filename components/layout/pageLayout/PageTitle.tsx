@@ -1,7 +1,8 @@
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link';
 import { Fragment } from 'react';
+
+import { Link } from '@/navigation';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 

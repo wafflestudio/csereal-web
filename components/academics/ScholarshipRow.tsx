@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next-intl/link';
+import { Link } from '@/navigation';
 
 import { graduateScholarship, undergraduateScholarship } from '@/types/page';
 

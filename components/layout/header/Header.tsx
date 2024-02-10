@@ -1,10 +1,11 @@
 'use-client';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link';
+
 
 import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
+import { Link } from '@/navigation';
 import HeaderLogo from '@/public/image/header/header_logo.svg';
 
 import useLanguage from '@/hooks/useLanguage';

@@ -1,5 +1,4 @@
-import Link from 'next-intl/link';
-
+import { Link } from '@/navigation';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
 import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';

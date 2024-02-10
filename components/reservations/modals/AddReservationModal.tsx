@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next-intl/link';
+import { Link } from '@/navigation';
 
 import ModalFrame from '@/components/modal/ModalFrame';
 import BasicButton from '@/components/reservations/BasicButton';
