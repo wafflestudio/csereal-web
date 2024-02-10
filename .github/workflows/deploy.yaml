@@ -34,19 +34,13 @@ jobs:
           tags: |
             ghcr.io/wafflestudio/csereal_nextjs_image:latest
             ghcr.io/wafflestudio/csereal_nextjs_image:${{github.sha}}
-      - name: 'Prepare deploy key'
-        run: |
-          echo "${{secrets.SSH_KEY}}" > deploy_key
-          chmod 600 ./deploy_key
-      - name: 'Remote server commands'
-        uses: 'nick-fields/retry@v2'
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          timeout_minutes: 1
-          max_attempts: 5
-          retry_wait_seconds: 1
-          retry_on: 'error'
-          command: |
-            ssh -T -i ./deploy_key -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
             docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
             docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
