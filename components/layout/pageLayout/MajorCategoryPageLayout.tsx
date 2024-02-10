@@ -11,15 +11,15 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 
 interface GuidePageLayoutProps {
-  title?: string | JSX.Element;
+  title?: string;
   subtitle?: string;
-  description: string;
+  description?: string;
 }
 
 export default function MajorCategoryPageLayout({
   title,
-  subtitle = 'Welcome!',
-  description,
+  subtitle = '',
+  description = '',
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
