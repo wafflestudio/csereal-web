@@ -19,7 +19,7 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
   return (
     <ModalFrame onClose={closeModal}>
       <form
-        className="bg-neutral-100 text-md text-neutral-700 px-5 pt-7 pb-6 border-main-orange border-t-[3px] border-b"
+        className="bg-neutral-100 text-md text-neutral-700 px-7 pt-7 pb-6 border-main-orange border-t-[3px] border-b"
         onSubmit={handleSubmit}
       >
         <h2 className="text-xl mb-7 font-bold">시설 예약</h2>
