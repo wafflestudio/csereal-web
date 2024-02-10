@@ -13,6 +13,7 @@ import {
   tentenProposal,
   contact,
   directions,
+  privacyPolicy,
 } from '@/types/page';
 
 import { getPath } from '@/utils/page';
@@ -65,8 +66,7 @@ export const moreLinks: FooterLink[] = [
   },
 ];
 
-// TODO: 개인정보처리방침 링크
-export const privacyPath = '/404';
+export const privacyPath = getPath(privacyPolicy);
 
 export const contactPath = getPath(contact);
 

@@ -5,7 +5,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
-import './common/suneditor.custom.css';
+import './common/suneditor-contents.css';
 
 type TopRightImage =
   | {
@@ -44,10 +44,7 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
         <TopRightImageContent {...topRightContent} />
       )}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
-      <div
-        className="sun-editor-editable [&_strong]:font-noto [&_h1]:font-noto [&_h2]:font-noto [&_h3]:font-noto"
-        dangerouslySetInnerHTML={{ __html: linkedHTML }}
-      />
+      <div className="sun-editor-editable" dangerouslySetInnerHTML={{ __html: linkedHTML }} />
     </div>
   );
 }
