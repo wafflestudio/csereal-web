@@ -1,25 +1,18 @@
-/*
-수정사항 - .sun-editor-editable
-line-height 2로 수정, padding 제거
-hr 색 수정
-h3 상하 마진 수정
-링크 색 수정
-font-familiy 설정 제거
-table th background-color 제거
-*/
+/* used color #000 , #fff , #CCC, #f5f5f5, #f9f9f9 */
+/* font color #333, background color: #fff */
+/* grey color #e1e1e1 , #d1d1d1 , #c1c1c1 , #b1b1b1 */
+/* blue color #c7deff , #80bdff , #3f9dff , #4592ff, #407dd1, #3288ff */
+/* red color #b94a48 , #f2dede , #eed3d7, #d9534f */
 
-.sun-editor-editable img {
-  object-fit: contain;
-}
-
+/** --- suneditor main */
 .sun-editor {
   width: auto;
   height: auto;
   box-sizing: border-box;
+  font-family: Helvetica Neue;
   border: 1px solid #dadada;
-  /* 수정 */
-  background-color: transparent;
-  color: #e5e5e5;
+  background-color: #fff;
+  color: #000;
   user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
@@ -32,53 +25,54 @@ table th background-color 제거
   -webkit-user-drag: none;
   overflow: visible;
 }
-.sun-editor-common button,
 .sun-editor-common input,
 .sun-editor-common select,
-.sun-editor-common textarea {
+.sun-editor-common textarea,
+.sun-editor-common button {
   font-size: 14px;
   line-height: 1.5;
 }
-.sun-editor-common blockquote,
 .sun-editor-common body,
-.sun-editor-common button,
-.sun-editor-common code,
-.sun-editor-common dd,
 .sun-editor-common div,
 .sun-editor-common dl,
 .sun-editor-common dt,
-.sun-editor-common fieldset,
-.sun-editor-common form,
+.sun-editor-common dd,
+.sun-editor-common ul,
+.sun-editor-common ol,
+.sun-editor-common li,
 .sun-editor-common h1,
 .sun-editor-common h2,
 .sun-editor-common h3,
 .sun-editor-common h4,
 .sun-editor-common h5,
 .sun-editor-common h6,
-.sun-editor-common input,
-.sun-editor-common legend,
-.sun-editor-common li,
-.sun-editor-common ol,
-.sun-editor-common p,
 .sun-editor-common pre,
-.sun-editor-common select,
-.sun-editor-common td,
+.sun-editor-common code,
+.sun-editor-common form,
+.sun-editor-common fieldset,
+.sun-editor-common legend,
 .sun-editor-common textarea,
+.sun-editor-common p,
+.sun-editor-common blockquote,
 .sun-editor-common th,
-.sun-editor-common ul {
+.sun-editor-common td,
+.sun-editor-common input,
+.sun-editor-common select,
+.sun-editor-common textarea,
+.sun-editor-common button {
   margin: 0;
   padding: 0;
   border: 0;
 }
 .sun-editor-common dl,
-.sun-editor-common li,
-.sun-editor-common menu,
+.sun-editor-common ul,
 .sun-editor-common ol,
-.sun-editor-common ul {
+.sun-editor-common menu,
+.sun-editor-common li {
   list-style: none !important;
 }
 .sun-editor-common hr {
-  margin: 6px 0 !important;
+  margin: 6px 0 6px 0 !important;
 }
 .sun-editor textarea {
   resize: none;
@@ -86,16 +80,16 @@ table th background-color 제거
   padding: 0;
 }
 .sun-editor button {
-  border: 0;
+  border: 0 none;
   background-color: transparent;
   touch-action: manipulation;
   cursor: pointer;
   outline: none;
 }
-.sun-editor button,
 .sun-editor input,
 .sun-editor select,
-.sun-editor textarea {
+.sun-editor textarea,
+.sun-editor button {
   vertical-align: middle;
 }
 .sun-editor button span {
@@ -110,17 +104,22 @@ table th background-color 제거
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* button children are pointer event none */
 .sun-editor button * {
   pointer-events: none;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
 }
+
+/** --- Icons ---------------------------------------------------------- */
+/* default svg */
 .sun-editor svg {
   fill: currentColor;
 }
-.sun-editor .se-svg,
-.sun-editor button > svg {
+.sun-editor button > svg,
+.sun-editor .se-svg {
   width: 16px;
   height: 16px;
   margin: auto;
@@ -129,16 +128,19 @@ table th background-color 제거
   text-align: center;
   float: none;
 }
+/* close class icon */
 .sun-editor .close > svg,
 .sun-editor .se-dialog-close > svg {
   width: 10px;
   height: 10px;
 }
+/* se-select-btn icon */
 .sun-editor .se-btn-select > svg {
   float: right;
   width: 10px;
   height: 10px;
 }
+/* se-btn-list inner icon */
 .sun-editor .se-btn-list > .se-list-icon {
   display: inline-block;
   width: 16px;
@@ -146,11 +148,14 @@ table th background-color 제거
   margin: -1px 10px 0 0;
   vertical-align: middle;
 }
+/* se-line-breaker inner icon */
 .sun-editor .se-line-breaker > button > svg {
   width: 24px;
   height: 24px;
 }
-.sun-editor button > i:before {
+
+/* icon class */
+.sun-editor button > i::before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -164,14 +169,17 @@ table th background-color 제거
   font-size: 20px;
   line-height: 1;
 }
+
+/** --- arrow icon ---------------------------------------------------------- */
 .sun-editor .se-arrow,
-.sun-editor .se-arrow:after {
+.sun-editor .se-arrow::after {
   position: absolute;
   display: block;
   width: 0;
   height: 0;
   border: 11px solid transparent;
 }
+/* arrow up */
 .sun-editor .se-arrow.se-arrow-up {
   top: -11px;
   left: 20px;
@@ -179,41 +187,48 @@ table th background-color 제거
   border-top-width: 0;
   border-bottom-color: #dadada;
 }
-.sun-editor .se-arrow.se-arrow-up:after {
+.sun-editor .se-arrow.se-arrow-up::after {
   top: 1px;
   margin-left: -11px;
   content: ' ';
   border-top-width: 0;
   border-bottom-color: #fff;
 }
-.sun-editor .se-toolbar .se-arrow.se-arrow-up:after {
+.sun-editor .se-toolbar .se-arrow.se-arrow-up::after {
   border-bottom-color: #fafafa;
 }
+/* arrow down */
 .sun-editor .se-arrow.se-arrow-down {
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   margin-left: -11px;
   border-bottom-width: 0;
   border-top-color: #dadada;
 }
-.sun-editor .se-arrow.se-arrow-down:after {
+.sun-editor .se-arrow.se-arrow-down::after {
   top: -12px;
   margin-left: -11px;
   content: ' ';
   border-bottom-width: 0;
   border-top-color: #fff;
 }
-.sun-editor .se-toolbar .se-arrow.se-arrow-down:after {
+.sun-editor .se-toolbar .se-arrow.se-arrow-down::after {
   border-top-color: #fafafa;
 }
+
+/** --- container */
 .sun-editor .se-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
+
+/** button */
 .sun-editor button {
   color: #000;
 }
+
+/** --- se-btn button */
 .sun-editor .se-btn {
   float: left;
   width: 34px;
@@ -225,8 +240,8 @@ table th background-color 제거
   font-size: 12px;
   line-height: 27px;
 }
-.sun-editor .se-btn:enabled:focus,
-.sun-editor .se-btn:enabled:hover {
+.sun-editor .se-btn:enabled:hover,
+.sun-editor .se-btn:enabled:focus {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
@@ -237,14 +252,15 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #c1c1c1;
   box-shadow: inset 0 3px 5px #c1c1c1;
 }
+/** --- primary button */
 .sun-editor .se-btn-primary {
   color: #000;
   background-color: #c7deff;
   border: 1px solid #80bdff;
   border-radius: 4px;
 }
-.sun-editor .se-btn-primary:focus,
-.sun-editor .se-btn-primary:hover {
+.sun-editor .se-btn-primary:hover,
+.sun-editor .se-btn-primary:focus {
   color: #000;
   background-color: #80bdff;
   border-color: #3f9dff;
@@ -257,6 +273,8 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #4592ff;
   box-shadow: inset 0 3px 5px #4592ff;
 }
+
+/** --- Input */
 .sun-editor input,
 .sun-editor select,
 .sun-editor textarea {
@@ -275,12 +293,14 @@ table th background-color 제거
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
 }
+
+/* se-btn button active*/
 .sun-editor .se-btn:enabled.active {
   color: #4592ff;
   outline: 0 none;
 }
-.sun-editor .se-btn:enabled.active:focus,
-.sun-editor .se-btn:enabled.active:hover {
+.sun-editor .se-btn:enabled.active:hover,
+.sun-editor .se-btn:enabled.active:focus {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
@@ -291,13 +311,14 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #c1c1c1;
   box-shadow: inset 0 3px 5px #c1c1c1;
 }
+/* se-btn button on */
 .sun-editor .se-btn:enabled.on {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
 }
-.sun-editor .se-btn:enabled.on:focus,
-.sun-editor .se-btn:enabled.on:hover {
+.sun-editor .se-btn:enabled.on:hover,
+.sun-editor .se-btn:enabled.on:focus {
   background-color: #d1d1d1;
   border-color: #c1c1c1;
   outline: 0 none;
@@ -308,13 +329,16 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #b1b1b1;
   box-shadow: inset 0 3px 5px #b1b1b1;
 }
-.sun-editor .se-btn-list:disabled,
+/* disabled buttons, icon blur */
 .sun-editor .se-btn:disabled,
+.sun-editor .se-btn-list:disabled,
 .sun-editor button:disabled {
   cursor: not-allowed;
   background-color: inherit;
   color: #bdbdbd;
 }
+
+/** --- loading box */
 .sun-editor .se-loading-box {
   position: absolute;
   display: none;
@@ -340,6 +364,8 @@ table th background-color 제거
   animation: spinner 0.8s linear infinite;
   margin: -25px 0 0 -25px;
 }
+
+/** --- line breaker */
 .sun-editor .se-line-breaker {
   position: absolute;
   display: none;
@@ -367,6 +393,7 @@ table th background-color 제거
   background-color: #fff;
   border-color: #041b39;
 }
+/** --- line breaker --- component - top, bottom */
 .sun-editor .se-line-breaker-component {
   position: absolute;
   display: none;
@@ -382,6 +409,8 @@ table th background-color 제거
 .sun-editor .se-line-breaker-component:hover {
   opacity: 0.9;
 }
+
+/** --- toolbar ---------------------------------------------------------- */
 .sun-editor .se-toolbar {
   display: block;
   position: relative;
@@ -396,7 +425,7 @@ table th background-color 제거
 }
 .sun-editor .se-toolbar-shadow {
   display: block !important;
-  height: 0 !important;
+  height: 0px !important;
   padding: 0 !important;
   margin: 0 !important;
   background-color: transparent !important;
@@ -420,31 +449,40 @@ table th background-color 제거
 }
 .sun-editor .se-toolbar-separator-vertical {
   display: inline-block;
-  height: 0;
-  width: 0;
-  margin: 0;
+  height: 0px;
+  width: 0px;
+  margin: 0px;
   vertical-align: top;
 }
-.sun-editor .se-toolbar.se-toolbar-balloon,
+/* inline toolbar */
 .sun-editor .se-toolbar.se-toolbar-inline {
   display: none;
   position: absolute;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
+/* balloon toolbar */
 .sun-editor .se-toolbar.se-toolbar-balloon {
+  display: none;
+  position: absolute;
   z-index: 2147483647;
   width: auto;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
+/* sticky toolbar */
 .sun-editor .se-toolbar.se-toolbar-sticky {
   position: fixed;
-  top: 0;
+  top: 0px;
 }
 .sun-editor .se-toolbar-sticky-dummy {
   display: none;
   position: static;
   z-index: -1;
 }
+
+/** --- tool bar --- module --- button, module, group ----------------------------------------------------------  */
+/* module */
 .sun-editor .se-btn-module {
   display: inline-block;
 }
@@ -457,11 +495,12 @@ table th background-color 제거
 .sun-editor .se-btn-module-enter {
   display: block;
   width: 100%;
-  height: 0;
+  height: 0px;
   margin: 0;
   padding: 0;
   background-color: transparent;
 }
+/* ---more - layer */
 .sun-editor .se-toolbar-more-layer {
   margin: 0 -3px;
   background-color: #fafafa;
@@ -474,14 +513,15 @@ table th background-color 제거
   display: inline-block;
   width: 100%;
   height: auto;
-  padding: 4px 3px 0;
+  padding: 4px 3px 0 3px;
 }
+/* ---more - button */
 .sun-editor .se-btn-module .se-btn-more.se-btn-more-text {
   width: auto;
   padding: 0 4px;
 }
-.sun-editor .se-btn-module .se-btn-more:focus,
-.sun-editor .se-btn-module .se-btn-more:hover {
+.sun-editor .se-btn-module .se-btn-more:hover,
+.sun-editor .se-btn-module .se-btn-more:focus {
   color: #000;
   background-color: #d1d1d1;
   border-color: #c1c1c1;
@@ -499,15 +539,19 @@ table th background-color 제거
   border-color: #b1b1b1;
   outline: 0 none;
 }
-.sun-editor .se-menu-list,
-.sun-editor .se-menu-list li {
+/* innser ul */
+.sun-editor .se-menu-list {
   float: left;
   padding: 0;
   margin: 0;
 }
 .sun-editor .se-menu-list li {
   position: relative;
+  float: left;
+  padding: 0;
+  margin: 0;
 }
+/* tool bar select button (font, fontSize, formatBlock) */
 .sun-editor .se-btn-select {
   width: auto;
   display: flex;
@@ -526,20 +570,24 @@ table th background-color 제거
 .sun-editor .se-btn-select.se-btn-tool-size {
   width: 78px;
 }
+
+/** --- menu tray -------------------------------------------------------------- */
 .sun-editor .se-btn-tray {
   position: relative;
   width: 100%;
   height: auto;
-  padding: 4px 3px 0;
+  padding: 4px 3px 0 3px;
   margin: 0;
 }
 .sun-editor .se-menu-tray {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 100%;
-  height: 0;
+  height: 0px;
 }
+
+/** --- submenu layer ---------------------------------------------------------- */
 .sun-editor .se-submenu {
   overflow-x: hidden;
   overflow-y: auto;
@@ -551,8 +599,8 @@ table th background-color 제거
 .sun-editor .se-list-layer {
   display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   height: auto;
   z-index: 5;
   border: 1px solid #bababa;
@@ -582,6 +630,7 @@ table th background-color 제거
   min-width: 100%;
   width: max-content;
 }
+/* submenu layer - basic list */
 .sun-editor .se-list-inner .se-list-basic li {
   width: 100%;
 }
@@ -605,6 +654,7 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #407dd1;
   box-shadow: inset 0 3px 5px #407dd1;
 }
+/* submenu layer - checked list */
 .sun-editor .se-list-inner .se-list-checked li button > .se-svg {
   float: left;
   padding: 6px 6px 0 0;
@@ -618,6 +668,7 @@ table th background-color 제거
 .sun-editor .se-list-inner .se-list-checked li button.se-checked > .se-svg > svg {
   display: block;
 }
+/* submenu layer - list button */
 .sun-editor .se-btn-list {
   width: 100%;
   height: auto;
@@ -635,8 +686,8 @@ table th background-color 제거
   border-top: 1px dotted #b1b1b1;
   border-bottom: 1px dotted #b1b1b1;
 }
-.sun-editor .se-btn-list:focus,
-.sun-editor .se-btn-list:hover {
+.sun-editor .se-btn-list:hover,
+.sun-editor .se-btn-list:focus {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
@@ -647,16 +698,20 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #c1c1c1;
   box-shadow: inset 0 3px 5px #c1c1c1;
 }
+/** --- submenu layer - se-list-inner > exception */
+/* submenu layer - font size */
 .sun-editor .se-list-layer.se-list-font-size {
   min-width: 140px;
   max-height: 300px;
 }
+/* submenu layer - font family */
 .sun-editor .se-list-layer.se-list-font-family {
   min-width: 156px;
 }
 .sun-editor .se-list-layer.se-list-font-family .default {
   border-bottom: 1px solid #ccc;
 }
+/* submenu layer - hr */
 .sun-editor .se-list-layer.se-list-line {
   width: 125px;
 }
@@ -664,9 +719,11 @@ table th background-color 제거
   border-width: 1px 0 0;
   height: 1px;
 }
+/* submenu layer - align */
 .sun-editor .se-list-layer.se-list-align .se-list-inner {
   left: 9px;
 }
+/** submenu layer - format block, paragraph style, text style */
 .sun-editor .se-list-layer.se-list-format {
   min-width: 156px;
 }
@@ -692,32 +749,32 @@ table th background-color 제거
 }
 .sun-editor .se-list-layer.se-list-format ul h1 {
   font-size: 2em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul h2 {
   font-size: 1.5em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul h3 {
   font-size: 1.17em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul h4 {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul h5 {
   font-size: 0.83em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul h6 {
   font-size: 0.67em;
-  font-weight: 700;
+  font-weight: bold;
   color: #333;
 }
 .sun-editor .se-list-layer.se-list-format ul blockquote {
@@ -727,10 +784,10 @@ table th background-color 제거
   margin: 0;
   background-color: transparent;
   line-height: 1.5;
+  border-style: solid;
   border-color: #b1b1b1;
   padding: 0 0 0 7px;
-  border-left: 5px #b1b1b1;
-  border-style: solid;
+  border-left-width: 5px;
 }
 .sun-editor .se-list-layer.se-list-format ul pre {
   font-size: 13px;
@@ -741,6 +798,7 @@ table th background-color 제거
   border: 1px solid #e1e1e1;
   border-radius: 4px;
 }
+/* submenu layer --- table selector */
 .sun-editor .se-selector-table {
   display: none;
   position: absolute;
@@ -797,6 +855,7 @@ table th background-color 제거
 .sun-editor .se-list-layer.se-table-split {
   top: 36px;
 }
+/* submenu layer --- color selector button */
 .sun-editor .se-list-layer .se-selector-color {
   display: flex;
   width: max-content;
@@ -824,10 +883,12 @@ table th background-color 제거
   text-indent: -9999px;
 }
 .sun-editor .se-list-layer .se-selector-color .se-color-pallet button.active,
-.sun-editor .se-list-layer .se-selector-color .se-color-pallet button:focus,
-.sun-editor .se-list-layer .se-selector-color .se-color-pallet button:hover {
+.sun-editor .se-list-layer .se-selector-color .se-color-pallet button:hover,
+.sun-editor .se-list-layer .se-selector-color .se-color-pallet button:focus {
   border: 3px solid #fff;
 }
+
+/** --- form group - input -------------------------------------------------------------- */
 .sun-editor .se-form-group {
   display: flex;
   width: 100%;
@@ -841,7 +902,7 @@ table th background-color 제거
   width: auto;
   height: 33px;
   font-size: 12px;
-  margin: 1px 0;
+  margin: 1px 0 1px 0;
   padding: 0;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
@@ -853,6 +914,7 @@ table th background-color 제거
   height: 34px;
   margin: 0 2px !important;
 }
+.sun-editor .se-form-group button.se-btn,
 .sun-editor .se-form-group button.se-btn {
   border: 1px solid #ccc;
 }
@@ -863,17 +925,21 @@ table th background-color 제거
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: 700;
+  font-weight: bold;
 }
+
+/** --- form group - label -------------------------------------------------------------- */
 .sun-editor .se-form-group-label {
   width: 100%;
   height: auto;
-  padding: 0 4px;
+  padding: 0px 4px;
 }
 .sun-editor .se-form-group-label label {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: bold;
 }
+
+/** form group - submenu - color input */
 .sun-editor .se-submenu .se-form-group input {
   width: auto;
   height: 33px;
@@ -889,6 +955,8 @@ table th background-color 제거
 .sun-editor .se-submenu .se-form-group .se-color-input:focus {
   border-bottom: 3px solid #b1b1b1;
 }
+
+/** --- editor area */
 .sun-editor .se-wrapper {
   position: relative !important;
   width: 100%;
@@ -928,6 +996,7 @@ table th background-color 제거
 .sun-editor .se-wrapper .se-wrapper-code-mirror {
   font-size: 13px;
 }
+/** --- placeholder */
 .sun-editor .se-wrapper .se-placeholder {
   position: absolute;
   display: none;
@@ -941,17 +1010,19 @@ table th background-color 제거
   left: 0;
   right: 0;
   overflow: hidden;
-  margin-top: 0;
+  margin-top: 0px;
   padding-top: 16px;
   padding-left: 16px;
-  margin-left: 0;
+  margin-left: 0px;
   padding-right: 16px;
-  margin-right: 0;
+  margin-right: 0px;
   pointer-events: none;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
 }
+
+/** --- resizing bar */
 .sun-editor .se-resizing-bar {
   display: flex;
   width: auto;
@@ -975,6 +1046,7 @@ table th background-color 제거
   height: 100%;
   z-index: 2147483647;
 }
+/** resizing bar - nabigation */
 .sun-editor .se-resizing-bar .se-navigation {
   flex: auto;
   position: relative;
@@ -987,6 +1059,7 @@ table th background-color 제거
   line-height: 1.5;
   background: transparent;
 }
+/** resizing bar - charCounter */
 .sun-editor .se-resizing-bar .se-char-counter-wrapper {
   flex: none;
   position: relative;
@@ -1006,6 +1079,8 @@ table th background-color 제거
 .sun-editor .se-resizing-bar .se-char-counter-wrapper .se-char-label {
   margin-right: 4px;
 }
+
+/* --- dialog ---------------------------------------------------------- */
 .sun-editor .se-dialog {
   position: absolute;
   display: none;
@@ -1015,19 +1090,24 @@ table th background-color 제거
   height: 100%;
   z-index: 2147483647;
 }
-.sun-editor .se-dialog button,
+.sun-editor .se-dialog label,
 .sun-editor .se-dialog input,
-.sun-editor .se-dialog label {
+.sun-editor .se-dialog button {
   font-size: 14px;
   line-height: 1.5;
   color: #111;
   margin: 0;
 }
 .sun-editor .se-dialog .se-dialog-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background-color: #222;
   opacity: 0.5;
 }
-.sun-editor .se-dialog .se-dialog-back,
+/* dialog - modal */
 .sun-editor .se-dialog .se-dialog-inner {
   position: absolute;
   width: 100%;
@@ -1058,14 +1138,14 @@ table th background-color 제거
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: 700;
+  font-weight: bold;
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-content .se-btn-primary {
   display: inline-block;
   padding: 6px 12px;
-  margin: 0 0 10px !important;
+  margin: 0 0 10px 0 !important;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -1076,12 +1156,12 @@ table th background-color 제거
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-header {
   height: 50px;
-  padding: 6px 15px;
+  padding: 6px 15px 6px 15px;
   border-bottom: 1px solid #e5e5e5;
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-header .se-dialog-close {
   float: right;
-  font-weight: 700;
+  font-weight: bold;
   text-shadow: 0 1px 0 #fff;
   -webkit-appearance: none;
   filter: alpha(opacity=100);
@@ -1090,14 +1170,14 @@ table th background-color 제거
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-header .se-modal-title {
   float: left;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: bold;
   margin: 0;
   padding: 0;
   line-height: 2.5;
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-body {
   position: relative;
-  padding: 15px 15px 5px;
+  padding: 15px 15px 5px 15px;
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form {
   margin-bottom: 10px;
@@ -1112,20 +1192,23 @@ table th background-color 제거
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-size-text {
   width: 100%;
 }
-.sun-editor .se-dialog .se-dialog-inner .se-dialog-size-text .size-h,
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-size-text .size-w {
   width: 70px;
   text-align: center;
 }
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-size-text .size-h {
+  width: 70px;
+  text-align: center;
+}
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-size-x {
-  margin: 0 8px;
+  margin: 0 8px 0 8px;
   width: 25px;
   text-align: center;
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-footer {
   height: auto;
   min-height: 55px;
-  padding: 10px 15px 0;
+  padding: 10px 15px 0px 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
@@ -1149,8 +1232,9 @@ table th background-color 제거
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form-footer label:first-child {
   margin-right: 16px;
-  margin-left: 0;
+  margin-left: 0px;
 }
+/* dialog - modal - form - files */
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-dialog-form-files {
   position: relative;
   display: flex;
@@ -1178,7 +1262,7 @@ table th background-color 제거
   > svg {
   width: 8px;
   height: 8px;
-}
+} /* custom."remove icon" */
 .sun-editor
   .se-dialog
   .se-dialog-inner
@@ -1198,6 +1282,7 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #d6d6d6;
   box-shadow: inset 0 3px 5px #d6d6d6;
 }
+/* dialog - modal - input */
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-input-select {
   display: inline-block;
   width: auto;
@@ -1236,6 +1321,7 @@ table th background-color 제거
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form a {
   color: #004cff;
 }
+/* dialog - revert button */
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-btn-revert {
   border: 1px solid #ccc;
 }
@@ -1250,6 +1336,7 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #c1c1c1;
   box-shadow: inset 0 3px 5px #c1c1c1;
 }
+/* dialog - inner tab */
 .sun-editor .se-dialog-tabs {
   width: 100%;
   height: 25px;
@@ -1270,6 +1357,8 @@ table th background-color 제거
   background-color: #fff;
   border-bottom: 0;
 }
+
+/* dialog - modal - math */
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-input-form.se-math-exp {
   resize: vertical;
   height: 14em;
@@ -1310,12 +1399,13 @@ table th background-color 제거
   height: 30px;
   color: #b94a48;
 }
+/* dialog - modal - link preview */
 .sun-editor .se-dialog .se-dialog-inner .se-link-preview {
   display: block;
   height: auto;
   max-height: 18px;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: normal;
   font-family: inherit;
   color: #666;
   background-color: transparent;
@@ -1324,6 +1414,7 @@ table th background-color 제거
   word-break: break-all;
   white-space: pre;
 }
+/* dialog - modal - anchor module */
 .sun-editor .se-dialog .se-dialog-inner .se-anchor-preview-form {
   width: 100%;
   display: flex;
@@ -1339,6 +1430,7 @@ table th background-color 제거
   flex: auto;
   margin: 0;
 }
+/* dialog - modal - anchor module - rel select */
 .sun-editor .se-dialog .se-dialog-inner .se-anchor-rel {
   height: 34px;
 }
@@ -1354,6 +1446,12 @@ table th background-color 제거
 .sun-editor .se-dialog .se-dialog-inner .se-anchor-rel-preview {
   text-align: left;
 }
+/* .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-mention-item {line-height:28px;min-height:25px;padding:0 5px;cursor:pointer;}
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-mention-item:hover {background-color:#e1e1e1}
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-mention-item.se-mention-active {background-color: #d1d1d1; border-radius:3px;}
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-mention-search {margin-bottom: 10px;} */
+
+/** --- controller ---------------------------------------------------------- */
 .sun-editor .se-controller .se-arrow.se-arrow-up {
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
@@ -1380,6 +1478,8 @@ table th background-color 제거
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   line-break: auto;
 }
+
+/* controller - button group */
 .sun-editor .se-controller .se-btn-group {
   position: relative;
   display: flex;
@@ -1392,7 +1492,7 @@ table th background-color 제거
   left: 50%;
   min-width: auto;
   width: max-content;
-  display: none;
+  display: none; /* display: inline-table; */
 }
 .sun-editor .se-controller .se-btn-group .se-btn-group-sub button {
   margin: 0;
@@ -1409,15 +1509,15 @@ table th background-color 제거
   font-size: 12px;
   line-height: 1.5;
   display: inline-block;
-  font-weight: 400;
+  font-weight: normal;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
-.sun-editor .se-controller .se-btn-group button:focus:enabled,
-.sun-editor .se-controller .se-btn-group button:hover:enabled {
+.sun-editor .se-controller .se-btn-group button:hover:enabled,
+.sun-editor .se-controller .se-btn-group button:focus:enabled {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
@@ -1433,12 +1533,13 @@ table th background-color 제거
   padding: 0;
   margin: 0;
 }
+/* controller - buttn group active */
 .sun-editor .se-controller .se-btn-group button:enabled.active {
   color: #4592ff;
   outline: 0 none;
 }
-.sun-editor .se-controller .se-btn-group button:enabled.active:focus,
-.sun-editor .se-controller .se-btn-group button:enabled.active:hover {
+.sun-editor .se-controller .se-btn-group button:enabled.active:hover,
+.sun-editor .se-controller .se-btn-group button:enabled.active:focus {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
@@ -1449,13 +1550,14 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #c1c1c1;
   box-shadow: inset 0 3px 5px #c1c1c1;
 }
+/* controller - buttn group on */
 .sun-editor .se-controller .se-btn-group button:enabled.on {
   background-color: #e1e1e1;
   border-color: #d1d1d1;
   outline: 0 none;
 }
-.sun-editor .se-controller .se-btn-group button:enabled.on:focus,
-.sun-editor .se-controller .se-btn-group button:enabled.on:hover {
+.sun-editor .se-controller .se-btn-group button:enabled.on:hover,
+.sun-editor .se-controller .se-btn-group button:enabled.on:focus {
   background-color: #d1d1d1;
   border-color: #c1c1c1;
   outline: 0 none;
@@ -1466,15 +1568,18 @@ table th background-color 제거
   -webkit-box-shadow: inset 0 3px 5px #b1b1b1;
   box-shadow: inset 0 3px 5px #b1b1b1;
 }
+/* controller - input */
 .sun-editor .se-controller .se-form-group input {
   min-width: 120px;
 }
+
+/* controller - resizing(image, iframe) */
 .sun-editor .se-controller-resizing {
   margin-top: -50px !important;
   padding: 0;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 1.42857143;
 }
 .sun-editor .se-controller-resizing .se-btn-group .se-btn-group-sub.se-resizing-align-list {
@@ -1494,8 +1599,8 @@ table th background-color 제거
 }
 .sun-editor .se-resizing-container .se-resize-dot {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
 }
@@ -1557,21 +1662,33 @@ table th background-color 제거
   background-color: #333;
   border-radius: 4px;
 }
-.sun-editor .se-controller-table,
-.sun-editor .se-controller-table-cell {
+/* controller - table */
+.sun-editor .se-controller-table {
   width: auto;
-}
-.sun-editor .se-controller-link,
-.sun-editor .se-controller-table,
-.sun-editor .se-controller-table-cell {
   padding: 0;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 1.42857143;
 }
-.sun-editor .se-controller-link:after,
-.sun-editor .se-controller-link:before {
+.sun-editor .se-controller-table-cell {
+  width: auto;
+  padding: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.42857143;
+}
+/* controller - link */
+.sun-editor .se-controller-link {
+  padding: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.42857143;
+}
+.sun-editor .se-controller-link::before,
+.sun-editor .se-controller-link::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1590,10 +1707,12 @@ table th background-color 제거
   vertical-align: middle;
   margin-left: 5px;
 }
+
+/* --- select list ---------------------------------------------------------- */
 .sun-editor .se-select-list {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   display: none;
   width: auto;
   max-width: 100%;
@@ -1620,6 +1739,8 @@ table th background-color 제거
 .sun-editor .se-dialog-form-files .se-select-list {
   width: 100%;
 }
+
+/* --- browser ---------------------------------------------------------- */
 .sun-editor .se-file-browser {
   position: absolute;
   display: none;
@@ -1629,19 +1750,24 @@ table th background-color 제거
   height: 100%;
   z-index: 2147483647;
 }
-.sun-editor .se-file-browser button,
+.sun-editor .se-file-browser label,
 .sun-editor .se-file-browser input,
-.sun-editor .se-file-browser label {
+.sun-editor .se-file-browser button {
   font-size: 14px;
   line-height: 1.5;
   color: #111;
   margin: 0;
 }
 .sun-editor .se-file-browser .se-file-browser-back {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background-color: #222;
   opacity: 0.5;
 }
-.sun-editor .se-file-browser .se-file-browser-back,
 .sun-editor .se-file-browser .se-file-browser-inner {
   position: absolute;
   display: block;
@@ -1664,15 +1790,16 @@ table th background-color 제거
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
+/* --- browser - header */
 .sun-editor .se-file-browser .se-file-browser-header {
   height: auto;
   min-height: 50px;
-  padding: 6px 15px;
+  padding: 6px 15px 6px 15px;
   border-bottom: 1px solid #e5e5e5;
 }
 .sun-editor .se-file-browser .se-file-browser-header .se-file-browser-close {
   float: right;
-  font-weight: 700;
+  font-weight: bold;
   text-shadow: 0 1px 0 #fff;
   -webkit-appearance: none;
   filter: alpha(opacity=100);
@@ -1684,11 +1811,12 @@ table th background-color 제거
 }
 .sun-editor .se-file-browser .se-file-browser-header .se-file-browser-title {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: bold;
   margin: 0;
   padding: 0;
   line-height: 2.2;
 }
+/* --- browser - header - tags */
 .sun-editor .se-file-browser .se-file-browser-tags {
   display: block;
   width: 100%;
@@ -1727,6 +1855,7 @@ table th background-color 제거
 .sun-editor .se-file-browser .se-file-browser-tags a.on:active {
   background-color: #c7deff;
 }
+/* --- browser - body */
 .sun-editor .se-file-browser .se-file-browser-body {
   position: relative;
   height: auto;
@@ -1748,12 +1877,15 @@ table th background-color 제거
     width: 600px;
   }
 }
+/* --- browser - column */
 .sun-editor .se-file-browser .se-file-browser-list .se-file-item-column {
   position: relative;
   display: block;
   height: auto;
   float: left;
 }
+
+/* --- browser --- custom - "se-image-list" - column */
 .sun-editor .se-file-browser .se-file-browser-list.se-image-list .se-file-item-column {
   width: calc(25% - 20px);
   margin: 0 10px;
@@ -1768,6 +1900,7 @@ table th background-color 제거
     width: calc(50% - 20px);
   }
 }
+/* --- browser --- custom - "se-image-list" - item */
 .sun-editor .se-file-browser .se-file-browser-list.se-image-list .se-file-item-img {
   position: relative;
   display: block;
@@ -1800,7 +1933,7 @@ table th background-color 제거
   z-index: 1;
   font-size: 13px;
   color: #fff;
-  left: 0;
+  left: 0px;
   bottom: 0;
   padding: 5px 10px;
   background-color: transparent;
@@ -1817,6 +1950,8 @@ table th background-color 제거
   background-color: #333;
   opacity: 0.6;
 }
+
+/** --- notice */
 .sun-editor .se-notice {
   position: absolute;
   top: 0;
@@ -1842,6 +1977,8 @@ table th background-color 제거
   float: right;
   padding: 7px;
 }
+
+/** --- tooltip */
 .sun-editor .se-tooltip {
   position: relative;
   overflow: visible;
@@ -1885,14 +2022,15 @@ table th background-color 제거
   white-space: nowrap;
   cursor: auto;
 }
-.sun-editor .se-tooltip .se-tooltip-inner .se-tooltip-text:after {
+.sun-editor .se-tooltip .se-tooltip-inner .se-tooltip-text::after {
   content: '';
   position: absolute;
   bottom: 100%;
   left: 50%;
   margin-left: -5px;
-  border: 5px solid transparent;
-  border-bottom-color: #333;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
 }
 .sun-editor .se-tooltip:hover .se-tooltip-inner {
   visibility: visible;
@@ -1903,51 +2041,75 @@ table th background-color 제거
 }
 .sun-editor .se-tooltip .se-tooltip-inner .se-tooltip-text .se-shortcut > .se-shortcut-key {
   display: inline;
-  font-weight: 700;
+  font-weight: bold;
 }
+
+/** --- RTL ---------------------------------------------------------- */
+/* tray */
 .sun-editor.se-rtl .se-btn-tray {
   direction: rtl;
 }
 .sun-editor.se-rtl .se-btn-select svg {
   margin: auto 1px;
 }
+
+/* button--- */
+/* button - select text */
 .sun-editor.se-rtl .se-btn-select .txt {
   flex: auto;
   text-align: right;
   direction: rtl;
 }
+/* button - se-menu-list */
 .sun-editor.se-rtl .se-btn-list {
   text-align: right;
 }
 .sun-editor.se-rtl .se-btn-list > .se-list-icon {
   margin: -1px 0 0 10px;
 }
-.sun-editor.se-rtl .se-menu-list:not(.se-menu-dir-fix),
+/* button - se-menu-list - li */
+.sun-editor.se-rtl .se-menu-list:not(.se-menu-dir-fix) {
+  float: right;
+}
 .sun-editor.se-rtl .se-menu-list:not(.se-menu-dir-fix) li {
   float: right;
 }
+
+/* menu list--- */
 .sun-editor.se-rtl .se-list-layer * {
   direction: rtl;
 }
+/* menu list - format block */
 .sun-editor.se-rtl .se-list-layer.se-list-format ul blockquote {
   padding: 0 7px 0 0;
   border-right-width: 5px;
   border-left-width: 0;
 }
+/* menu list - color picker */
 .sun-editor.se-rtl .se-list-layer .se-selector-color .se-color-pallet li {
   float: right;
 }
+
+/* submenu layer - checked list */
 .sun-editor.se-rtl .se-list-inner .se-list-checked li button > .se-svg {
   float: right;
   padding: 6px 0 0 6px;
 }
-.sun-editor.se-rtl .se-tooltip .se-tooltip-inner .se-tooltip-text,
+
+/* placeholder */
 .sun-editor.se-rtl .se-wrapper .se-placeholder {
+  direction: rtl;
+}
+
+/* tooltip */
+.sun-editor.se-rtl .se-tooltip .se-tooltip-inner .se-tooltip-text {
   direction: rtl;
 }
 .sun-editor.se-rtl .se-tooltip .se-tooltip-inner .se-tooltip-text .se-shortcut {
   direction: ltr;
 }
+
+/* dialog--- */
 .sun-editor.se-rtl .se-dialog * {
   direction: rtl;
 }
@@ -1955,16 +2117,21 @@ table th background-color 제거
   margin-left: 0;
   margin-right: 4px;
 }
+/* dialog - header */
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-dialog-header .se-dialog-close {
   float: left;
 }
-.sun-editor.se-rtl .se-dialog-tabs button,
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-dialog-header .se-modal-title {
+  float: right;
+}
+/* dialog - tabs */
+.sun-editor.se-rtl .se-dialog-tabs button {
   float: right;
 }
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-dialog-size-text {
   padding-right: 34px;
 }
+/* dialog - footer */
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-dialog-footer .se-btn-primary {
   float: left;
 }
@@ -1976,37 +2143,52 @@ table th background-color 제거
 }
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-dialog-form-footer label:first-child {
   margin-left: 16px;
-  margin-right: 0;
+  margin-right: 0px;
 }
+/* dialog - footer - link preview*/
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-anchor-rel-preview {
   margin-left: 4px;
   text-align: right;
 }
+
+/* anchor module */
 .sun-editor.se-rtl .se-dialog .se-dialog-inner .se-anchor-rel-btn {
   float: right;
 }
+
+/* fileBrowser--- */
 .sun-editor.se-rtl .se-file-browser * {
   direction: rtl;
 }
+/* fileBrowser - header */
 .sun-editor.se-rtl .se-file-browser .se-file-browser-tags {
   text-align: right;
 }
 .sun-editor.se-rtl .se-file-browser .se-file-browser-tags a {
-  margin: 8px 8px 0;
+  margin: 8px 8px 0 8px;
 }
 .sun-editor.se-rtl .se-file-browser .se-file-browser-header .se-file-browser-close {
   float: left;
 }
-.sun-editor.se-rtl .se-controller .se-btn-group,
+
+/** controller--- */
+.sun-editor.se-rtl .se-controller .se-btn-group {
+  direction: rtl;
+}
 .sun-editor.se-rtl .se-resizing-container .se-resize-display {
   direction: rtl;
 }
+/** --- RTL ---------------------------------------------------------- */
+
+/** button module float --------------------------------------------- */
 .sun-editor .se-btn-module-border.module-float-left {
   float: left;
 }
 .sun-editor .se-btn-module-border.module-float-right {
   float: right;
 }
+
+/** --- error ---------------------------------------------------------- */
 .sun-editor .se-error {
   color: #d9534f;
 }
@@ -2021,6 +2203,9 @@ textarea.se-error:focus {
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
 }
+
+/** ---------------------------------------------------------- menu items style ---------------------------------------------------------- */
+/** hr menu items */
 .sun-editor hr.__se__solid {
   border-style: solid none none;
 }
@@ -2030,6 +2215,9 @@ textarea.se-error:focus {
 .sun-editor hr.__se__dashed {
   border-style: dashed none none;
 }
+/** ---------------------------------------------------------- menu items style ---------------------------------------------------------- */
+
+/** animation */
 @keyframes blinker {
   50% {
     opacity: 0;
@@ -2039,570 +2227,4 @@ textarea.se-error:focus {
   to {
     transform: rotate(361deg);
   }
-}
-
-/* editable 시작 */
-
-.sun-editor-editable {
-  /* 수정 */
-  font-size: 14px;
-  /* 수정 */
-  color: #e5e5e5;
-  /* 추가 */
-  /* font-weight: 400; */
-  background-color: transparent;
-  line-height: 2;
-  word-break: normal;
-  word-wrap: break-word;
-  margin: 0;
-}
-.sun-editor-editable * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-}
-.sun-editor-editable.se-rtl * {
-  direction: rtl;
-}
-.sun-editor-editable .se-component > figure {
-  direction: ltr;
-}
-.sun-editor-editable audio,
-.sun-editor-editable figcaption,
-.sun-editor-editable figure,
-.sun-editor-editable iframe,
-.sun-editor-editable img,
-.sun-editor-editable td,
-.sun-editor-editable th,
-.sun-editor-editable video {
-  position: relative;
-}
-.sun-editor-editable span {
-  display: inline;
-  vertical-align: baseline;
-  margin: 0;
-  padding: 0;
-}
-.sun-editor-editable span.katex {
-  display: inline-block;
-}
-.sun-editor-editable span.katex * {
-  direction: ltr;
-}
-.sun-editor-editable a {
-  color: #3c7be4;
-  text-decoration: none;
-}
-.sun-editor-editable span[style~='color:'] a {
-  color: inherit;
-}
-.sun-editor-editable a:focus,
-.sun-editor-editable a:hover {
-  cursor: pointer;
-  color: #3c7be4;
-  text-decoration: underline;
-}
-.sun-editor-editable a.on {
-  color: #3c7be4;
-  background-color: #e8f7ff;
-}
-.sun-editor-editable pre {
-  display: block;
-  padding: 8px;
-  margin: 0 0 10px;
-  font-family: monospace;
-  /* color: #666; */
-  line-height: 1.45;
-  /* background-color: #f9f9f9; 
-  border: 1px solid #e1e1e1;
-  border-radius: 2px; */
-  white-space: normal !important;
-  word-wrap: break-word;
-  overflow: visible;
-}
-.sun-editor-editable ol {
-  list-style-type: decimal;
-}
-.sun-editor-editable ol,
-.sun-editor-editable ul {
-  list-style-position: outside;
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 14px;
-}
-.sun-editor-editable ul {
-  list-style-type: disc;
-}
-.sun-editor-editable li {
-  display: list-item;
-  text-align: -webkit-match-parent;
-  margin-bottom: 5px;
-}
-.sun-editor-editable ol ol,
-.sun-editor-editable ol ul,
-.sun-editor-editable ul ol,
-.sun-editor-editable ul ul {
-  margin: 0;
-}
-.sun-editor-editable ol ol,
-.sun-editor-editable ul ol {
-  list-style-type: lower-alpha;
-}
-.sun-editor-editable ol ol ol,
-.sun-editor-editable ul ol ol,
-.sun-editor-editable ul ul ol {
-  list-style-type: upper-roman;
-}
-.sun-editor-editable ol ul,
-.sun-editor-editable ul ul {
-  list-style-type: circle;
-}
-.sun-editor-editable ol ol ul,
-.sun-editor-editable ol ul ul,
-.sun-editor-editable ul ul ul {
-  list-style-type: square;
-}
-.sun-editor-editable sub,
-.sun-editor-editable sup {
-  font-size: 75%;
-  line-height: 0;
-}
-.sun-editor-editable sub {
-  vertical-align: sub;
-}
-.sun-editor-editable sup {
-  vertical-align: super;
-}
-.sun-editor-editable p {
-  display: block;
-  margin: 0 0 1rem;
-}
-.sun-editor-editable div {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-.sun-editor-editable blockquote {
-  display: block;
-  font-family: inherit;
-  font-size: inherit;
-  color: #999;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0 5px 0 20px;
-  border: solid #b1b1b1;
-  border-width: 0 0 0 5px;
-}
-.sun-editor-editable blockquote blockquote {
-  border-color: #c1c1c1;
-}
-.sun-editor-editable blockquote blockquote blockquote {
-  border-color: #d1d1d1;
-}
-.sun-editor-editable blockquote blockquote blockquote blockquote {
-  border-color: #e1e1e1;
-}
-.sun-editor-editable.se-rtl blockquote {
-  padding-left: 5px;
-  padding-right: 20px;
-  border-left-width: 0;
-  border-right-width: 5px;
-}
-.sun-editor-editable h1 {
-  font-size: 2em;
-  margin-block-start: 0.67em;
-  margin-block-end: 0.67em;
-}
-.sun-editor-editable h1,
-.sun-editor-editable h2 {
-  display: block;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  font-weight: 700;
-}
-.sun-editor-editable h2 {
-  font-size: 1.5em;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-}
-.sun-editor-editable h3 {
-  font-size: 1.17em;
-  margin-block-start: 0.75em;
-  margin-block-end: 0.75em;
-}
-.sun-editor-editable h3,
-.sun-editor-editable h4 {
-  display: block;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  font-weight: 700;
-}
-.sun-editor-editable h4 {
-  font-size: 1em;
-  margin-block-start: 1.33em;
-  margin-block-end: 1.33em;
-}
-.sun-editor-editable h5 {
-  font-size: 0.83em;
-  margin-block-start: 1.67em;
-  margin-block-end: 1.67em;
-}
-.sun-editor-editable h5,
-.sun-editor-editable h6 {
-  display: block;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  font-weight: 700;
-}
-.sun-editor-editable h6 {
-  font-size: 0.67em;
-  margin-block-start: 2.33em;
-  margin-block-end: 2.33em;
-}
-.sun-editor-editable hr {
-  display: flex;
-  border-width: 1px 0 0;
-  border-color: #262626;
-  border-image: initial;
-  height: 1px;
-  margin-bottom: 0.75rem;
-}
-.sun-editor-editable hr.__se__solid {
-  border-style: solid none none;
-}
-.sun-editor-editable hr.__se__dotted {
-  border-style: dotted none none;
-}
-.sun-editor-editable hr.__se__dashed {
-  border-style: dashed none none;
-}
-.sun-editor-editable hr.on {
-  border-color: #4592ff;
-  -webkit-box-shadow: 0 0 0 0.1rem #c7deff;
-  box-shadow: 0 0 0 0.1rem #c7deff;
-}
-.sun-editor-editable table {
-  display: table;
-  table-layout: auto !important;
-  border: 1px solid #ccc;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 0 10px;
-  background-color: transparent;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-.sun-editor-editable.se-rtl table {
-  margin: 0 0 10px auto;
-}
-.sun-editor-editable table thead {
-  border-bottom: 2px solid #333;
-}
-.sun-editor-editable table tr {
-  border: 1px solid #efefef;
-}
-.sun-editor-editable table th {
-  /* 임의로 수정 */
-  background-color: #333;
-}
-.sun-editor-editable table td,
-.sun-editor-editable table th {
-  /* 가끔 html에 스타일이 수동으로 들어간 경우가 있어서 임시 조치 */
-  background-color: transparent !important;
-  border: 1px solid #404040;
-  padding: 0.4em;
-  background-clip: padding-box;
-}
-.sun-editor-editable table.se-table-size-auto {
-  width: auto !important;
-}
-.sun-editor-editable table.se-table-size-100 {
-  width: 100% !important;
-}
-.sun-editor-editable table.se-table-layout-auto {
-  table-layout: auto !important;
-}
-.sun-editor-editable table.se-table-layout-fixed {
-  table-layout: fixed !important;
-}
-.sun-editor-editable table td.se-table-selected-cell,
-.sun-editor-editable table th.se-table-selected-cell {
-  outline: 1px double #4592ff;
-}
-.sun-editor-editable.se-disabled * {
-  user-select: none;
-  -o-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-.sun-editor-editable .se-component {
-  display: flex;
-  padding: 1px;
-  margin: 0 0 10px;
-}
-.sun-editor-editable[contenteditable='true'] .se-component {
-  outline: 1px dashed #e1e1e1;
-}
-.sun-editor-editable[contenteditable='true'] .se-component.se-component-copy {
-  -webkit-box-shadow: 0 0 0 0.2rem #80bdff;
-  box-shadow: 0 0 0 0.2rem #3f9dff;
-  transition:
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
-}
-.sun-editor-editable .__se__float-left {
-  float: left;
-  margin-right: 4px;
-}
-.sun-editor-editable .__se__float-right {
-  float: right;
-  margin-left: 4px;
-}
-.sun-editor-editable .__se__float-center {
-  float: center;
-}
-.sun-editor-editable .__se__float-none {
-  float: none;
-}
-.sun-editor-editable audio,
-.sun-editor-editable iframe,
-.sun-editor-editable img,
-.sun-editor-editable video {
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-}
-.sun-editor-editable[contenteditable='true']:not(.se-read-only) figure:after {
-  position: absolute;
-  content: '';
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  cursor: default;
-  display: block;
-  background: transparent;
-}
-.sun-editor-editable[contenteditable='true'] figure a,
-.sun-editor-editable[contenteditable='true'] figure iframe,
-.sun-editor-editable[contenteditable='true'] figure img,
-.sun-editor-editable[contenteditable='true'] figure video {
-  z-index: 0;
-}
-.sun-editor-editable[contenteditable='true'] figure figcaption {
-  display: block;
-  z-index: 2;
-}
-.sun-editor-editable[contenteditable='true'] figure figcaption:focus {
-  border-color: #80bdff;
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem #c7deff;
-  box-shadow: 0 0 0 0.2rem #c7deff;
-}
-.sun-editor-editable .se-image-container,
-.sun-editor-editable .se-video-container {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-}
-.sun-editor-editable figure {
-  display: block;
-  outline: none;
-  padding: 0;
-  margin: 0;
-}
-.sun-editor-editable .__se__float-center figure,
-.sun-editor-editable .__se__float-left figure,
-.sun-editor-editable .__se__float-right figure {
-  margin: auto !important;
-}
-.sun-editor-editable figure figcaption {
-  padding: 1em 0.5em;
-  margin: 0;
-  background-color: #f9f9f9;
-  outline: none;
-}
-.sun-editor-editable figure figcaption p {
-  line-height: 2;
-  margin: 0;
-}
-.sun-editor-editable .se-image-container a img {
-  padding: 1px;
-  margin: 1px;
-  outline: 1px solid #4592ff;
-}
-.sun-editor-editable .se-video-container iframe,
-.sun-editor-editable .se-video-container video {
-  outline: 1px solid #9e9e9e;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 0;
-  width: 100%;
-  height: 100%;
-}
-.sun-editor-editable .se-video-container figure {
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-}
-.sun-editor-editable audio {
-  width: 300px;
-  height: 54px;
-}
-.sun-editor-editable audio.active {
-  outline: 2px solid #80bdff;
-}
-.sun-editor-editable.se-show-block div,
-.sun-editor-editable.se-show-block h1,
-.sun-editor-editable.se-show-block h2,
-.sun-editor-editable.se-show-block h3,
-.sun-editor-editable.se-show-block h4,
-.sun-editor-editable.se-show-block h5,
-.sun-editor-editable.se-show-block h6,
-.sun-editor-editable.se-show-block li,
-.sun-editor-editable.se-show-block ol,
-.sun-editor-editable.se-show-block p,
-.sun-editor-editable.se-show-block pre,
-.sun-editor-editable.se-show-block ul {
-  border: 1px dashed #3f9dff !important;
-  padding: 14px 8px 8px !important;
-}
-.sun-editor-editable.se-show-block ol,
-.sun-editor-editable.se-show-block ul {
-  border: 1px dashed #d539ff !important;
-}
-.sun-editor-editable.se-show-block pre {
-  border: 1px dashed #27c022 !important;
-}
-.se-show-block p {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPAQMAAAAF7dc0AAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAaSURBVAjXY/j/gwGCPvxg+F4BQiAGDP1HQQByxxw0gqOzIwAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.se-show-block div {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAPAQMAAAAxlBYoAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAmSURBVAjXY/j//wcDDH+8XsHwDYi/hwNx1A8w/nYLKH4XoQYJAwCXnSgcl2MOPgAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.se-show-block h1 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPAQMAAAA4f7ZSAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAfSURBVAjXY/j/v4EBhr+9B+LzEPrDeygfhI8j1CBhAEhmJGY4Rf6uAAAAAElFTkSuQmCC')
-    no-repeat;
-}
-.se-show-block h2 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPAQMAAAA4f7ZSAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAmSURBVAjXY/j/v4EBhr+dB+LtQPy9geEDEH97D8T3gbgdoQYJAwA51iPuD2haEAAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.se-show-block h3 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPAQMAAAA4f7ZSAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAiSURBVAjXY/j/v4EBhr+dB+LtQPy9geHDeQgN5p9HqEHCADeWI+69VG2MAAAAAElFTkSuQmCC')
-    no-repeat;
-}
-.se-show-block h4 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAPAQMAAADTSA1RAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAiSURBVAjXY/j//wADDH97DsTXIfjDdiDdDMTfIRhZHRQDAKJOJ6L+K3y7AAAAAElFTkSuQmCC')
-    no-repeat;
-}
-.se-show-block h5 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPAQMAAAA4f7ZSAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAlSURBVAjXY/j/v4EBhr+1A/F+IO5vYPiwHUh/B2IQfR6hBgkDABlWIy5uM+9GAAAAAElFTkSuQmCC')
-    no-repeat;
-}
-.se-show-block h6 {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPAQMAAAA4f7ZSAAAABlBMVEWAgID////n1o2sAAAAAnRSTlP/AOW3MEoAAAAiSURBVAjXY/j/v4EBhr+dB+LtQLy/geFDP5S9HSKOrA6KAR9GIza1ptJnAAAAAElFTkSuQmCC')
-    no-repeat;
-}
-.se-show-block li {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA7SURBVDhPYxgFcNDQ0PAfykQBIHEYhgoRB/BpwCfHBKWpBkaggYxQGgOgBzyQD1aLLA4TGwWDGjAwAACR3RcEU9Ui+wAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.se-show-block ol {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPYxgFcNDQ0PAfhKFcFIBLHCdA1oBNM0kGEmMAPgOZoDTVANUNxAqQvURMECADRiiNAWCagDSGGhyW4DRrMAEGBgAu0SX6WpGgjAAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.se-show-block ul {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA1SURBVDhPYxgFDA0NDf+hTBSALI5LDQgwQWmqgVEDKQcsUBoF4ItFGEBXA+QzQpmDGjAwAAA8DQ4Lni6gdAAAAABJRU5ErkJggg==')
-    no-repeat;
-}
-.sun-editor-editable .__se__p-bordered,
-.sun-editor .__se__p-bordered {
-  border-top: 1px solid #b1b1b1;
-  border-bottom: 1px solid #b1b1b1;
-  padding: 4px 0;
-}
-.sun-editor-editable .__se__p-spaced,
-.sun-editor .__se__p-spaced {
-  letter-spacing: 1px;
-}
-.sun-editor-editable .__se__p-neon,
-.sun-editor .__se__p-neon {
-  font-weight: 200;
-  font-style: italic;
-  background: #000;
-  color: #fff;
-  padding: 6px 4px;
-  border: 2px solid #fff;
-  border-radius: 6px;
-  text-transform: uppercase;
-  animation: neonFlicker 1.5s infinite alternate;
-}
-@keyframes neonFlicker {
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  to {
-    text-shadow:
-      -0.2rem -0.2rem 1rem #fff,
-      0.2rem 0.2rem 1rem #fff,
-      0 0 2px #f40,
-      0 0 4px #f40,
-      0 0 6px #f40,
-      0 0 8px #f40,
-      0 0 10px #f40;
-    box-shadow:
-      0 0 0.5px #fff,
-      inset 0 0 0.5px #fff,
-      0 0 2px #08f,
-      inset 0 0 2px #08f,
-      0 0 4px #08f,
-      inset 0 0 4px #08f;
-  }
-  20%,
-  24%,
-  55% {
-    text-shadow: none;
-    box-shadow: none;
-  }
-}
-.sun-editor-editable .__se__t-shadow,
-.sun-editor .__se__t-shadow {
-  text-shadow:
-    -0.2rem -0.2rem 1rem #fff,
-    0.2rem 0.2rem 1rem #fff,
-    0 0 0.2rem #999,
-    0 0 0.4rem #888,
-    0 0 0.6rem #777,
-    0 0 0.8rem #666,
-    0 0 1rem #555;
-}
-.sun-editor-editable .__se__t-code,
-.sun-editor .__se__t-code {
-  font-family: monospace;
-  color: #666;
-  background-color: rgba(27, 31, 35, 0.05);
-  border-radius: 6px;
-  padding: 0.2em 0.4em;
 }

@@ -47,7 +47,7 @@ export default function AlertModal({
 }
 
 function AlertMessage({ message }: { message: string }) {
-  return <p className="mt-1 mb-6">{message}</p>;
+  return <p className="text-neutral-800 mt-1 mb-6">{message}</p>;
 }
 
 function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {

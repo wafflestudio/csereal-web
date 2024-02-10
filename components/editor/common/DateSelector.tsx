@@ -20,7 +20,7 @@ export default function DateSelector({
         <MuiDateSelector
           date={date}
           setDate={(date) => {
-            setDate(date);
+            date && setDate(date);
             closeModal();
           }}
           className="bg-white"

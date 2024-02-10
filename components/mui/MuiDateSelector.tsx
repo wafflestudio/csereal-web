@@ -1,14 +1,10 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider, DateCalendar } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ko';
+import { useRef } from 'react';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
 
 export default function MuiDateSelector({
   date,
@@ -17,10 +13,13 @@ export default function MuiDateSelector({
   enablePast,
 }: {
   date: Date;
-  setDate: (date: Date) => void;
+  setDate: (date?: Date) => void;
   className?: string;
   enablePast?: boolean;
 }) {
+  const ref = useRef(null);
+  useOutClickAlerter(ref, () => setDate());
+
   const shouldDisableDate = (day: Dayjs) => {
     if (enablePast) return false;
 
@@ -36,20 +35,19 @@ export default function MuiDateSelector({
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <LocalizationProvider adapterLocale="ko" dateAdapter={AdapterDayjs}>
-        <DateCalendar
-          className={className}
-          value={dayjs(date)}
-          views={['day']}
-          onChange={(value) => {
-            const date = value?.toDate();
-            date && setDate(date);
-          }}
-          shouldDisableDate={shouldDisableDate}
-          showDaysOutsideCurrentMonth
-        />
-      </LocalizationProvider>
-    </ThemeProvider>
+    <LocalizationProvider adapterLocale="ko" dateAdapter={AdapterDayjs}>
+      <DateCalendar
+        ref={ref}
+        className={className}
+        value={dayjs(date)}
+        views={['day']}
+        onChange={(value) => {
+          const date = value?.toDate();
+          date && setDate(date);
+        }}
+        shouldDisableDate={shouldDisableDate}
+        showDaysOutsideCurrentMonth
+      />
+    </LocalizationProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
 
@@ -15,7 +15,7 @@ export default function Dropdown({ contents, selectedIndex, onClick, borderStyle
 
   useOutClickAlerter(
     ref,
-    useCallback(() => setExpanded((x) => false), []),
+    useCallback(() => setExpanded(false), []),
   );
 
   const toggleExpanded = () => setExpanded((x) => !x);
@@ -52,7 +52,7 @@ function DropdownButton({
   toggleExpanded,
   contents,
   selectedIndex,
-  borderStyle = 'border-neutral-300',
+  borderStyle = 'border-neutral-200',
 }: {
   expanded: boolean;
   toggleExpanded: () => void;
@@ -64,6 +64,7 @@ function DropdownButton({
     <button
       className={`
             flex items-center gap-4 py-[.3125rem] pr-[.3125rem] pl-[.625rem] border
+            bg-white
             ${expanded ? 'rounded-t-sm' : 'rounded-sm'}
             ${borderStyle}
         `}
@@ -72,7 +73,7 @@ function DropdownButton({
         toggleExpanded();
       }}
     >
-      <p className="text-sm font-normal">{contents[selectedIndex]}</p>
+      <p className="text-md font-normal">{contents[selectedIndex]}</p>
       <span className="material-symbols-rounded text-base">
         {expanded ? 'expand_less' : 'expand_more'}
       </span>
@@ -85,7 +86,7 @@ function DropdownListWithScroll({
   contents,
   handleClick,
   selectedIndex,
-  borderStyle = `border-neutral-300`,
+  borderStyle = `border-neutral-200`,
 }: {
   className: string;
   contents: string[];

@@ -1,12 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-    logging: {
-      level: 'verbose',
-    },
-  },
 
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -91,9 +85,9 @@ const nextConfig = {
       },
     ];
   },
-
 };
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withNextIntl = require('next-intl/plugin')(
   // This is the default (also the `src` folder is supported out of the box)
   './i18n.ts',
