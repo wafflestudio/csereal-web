@@ -1,20 +1,23 @@
 import {
   getMockResearchCenters,
+  getMockResearchDescription,
   getMockResearchGroups,
   getMockResearchLab,
   getMockSimpleResearchLabs,
   getMockTopConferenceList,
 } from '@/data/research';
 
-import {
-  ResearchCenter,
-  ResearchGroups,
-  ResearchLab,
-  SimpleResearchLab,
-  TopConferenceList,
-} from '@/types/research';
+// import {
+//   ResearchCenter,
+//   ResearchGroups,
+//   ResearchLab,
+//   SimpleResearchLab,
+//   TopConferenceList,
+// } from '@/types/research';
 
-import { getRequest } from '.';
+// import { getRequest } from '.';
+
+export const getResearchDescription = getMockResearchDescription;
 
 export const getResearchGroups = getMockResearchGroups;
 
