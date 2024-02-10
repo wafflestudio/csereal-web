@@ -30,9 +30,7 @@ export default function MajorCategoryPageLayout({
       <div className="max-w-[80rem] pt-12 pb-[4.5rem] px-[6.25rem]">
         <div className="text-neutral-500 text-[20px] font-light">{subtitle}</div>
         <div className="text-white text-[64px] font-semibold tracking-wide mb-8">{title}</div>
-        <div>
-          <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} />
-        </div>
+        <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} />
       </div>
       <div className="bg-neutral-900 pt-10 pb-[12.5rem] px-[6.25rem]">
         <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)]">
@@ -60,7 +58,7 @@ function DetailItem({ title, description, href }: DetailItemProps) {
   return (
     <Link href={href}>
       <div className="w-[300px] h-[160px] bg-neutral-100 px-7 py-6 hover:bg-main-orange-dark flex flex-col justify-between">
-        <div className="">
+        <div>
           <h3 className="text-neutral-800 text-[20px] font-medium mb-[16px]">{title}</h3>
           <p className="text-neutral-800 text-[16px]">{description}</p>
         </div>
