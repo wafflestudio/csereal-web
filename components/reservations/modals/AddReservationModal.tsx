@@ -1,11 +1,7 @@
 'use client';
 
 import Link from 'next-intl/link';
-import { FormEventHandler, ReactNode, useReducer, useState } from 'react';
-
-import { NetworkError } from '@/apis';
-
-import { postReservation } from '@/apis/reservation';
+import { ReactNode } from 'react';
 
 import Dropdown from '@/components/common/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
@@ -14,77 +10,15 @@ import BasicButton from '@/components/reservations/BasicButton';
 
 import useModal from '@/hooks/useModal';
 
-import { ReservationPostBody } from '@/types/reservation';
+import { isSameDay } from '@/utils/date';
 
-import { refreshPage } from '@/utils/refreshPage';
-import { errorToast, infoToast } from '@/utils/toast';
+import getOptimalEndTime from './getOptimalEndTime';
+import useAddReservation from './useAddReservation';
 
 export default function AddReservationModal({ roomId }: { roomId: number }) {
   const { closeModal } = useModal();
-  const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const [body, setBody] = useState<ReservationPostBody>(getDefaultBodyValue(roomId));
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-
-    const canSubmit =
-      privacyChecked &&
-      body.title !== '' &&
-      body.contactEmail !== '' &&
-      body.professor !== '' &&
-      body.purpose !== '';
-
-    if (!canSubmit) {
-      infoToast('모든 필수 정보를 입력해주세요');
-      return;
-    }
-    try {
-      await postReservation(body);
-      // TODO: revalidate같은거 써서 좀 더 예쁘게
-      refreshPage();
-    } catch (e) {
-      if (e instanceof NetworkError) {
-        if (e.statusCode === 409) {
-          errorToast('해당 위치에 이미 예약이 존재합니다.');
-        } else {
-          errorToast(e.message);
-        }
-      } else if (e instanceof Error) {
-        errorToast(e.message);
-      } else {
-        errorToast('알 수 없는 에러');
-      }
-    }
-  };
-
-  const buildBodyValueSetter =
-    <T extends keyof ReservationPostBody>(key: T) =>
-    (value: ReservationPostBody[T]) =>
-      setBody((body) => ({ ...body, [key]: value }));
-
-  // 날짜 선택 모달용
-  const setDate = (date: Date) => {
-    let newStartTime = new Date(body.startTime);
-    newStartTime.setFullYear(date.getFullYear());
-    newStartTime.setMonth(date.getMonth());
-    newStartTime.setDate(date.getDate());
-
-    // 오늘을 선택헀으면 예약 불가 시간 필터링
-    if (isSameDay(newStartTime, new Date())) {
-      newStartTime = convertToFastestStartTime(newStartTime);
-    }
-
-    const endTime = getOptimalEndTime(
-      new Date(body.startTime),
-      new Date(body.endTime),
-      newStartTime,
-    );
-
-    const startTimeSetter = buildBodyValueSetter('startTime');
-    const endTimeSetter = buildBodyValueSetter('endTime');
-    startTimeSetter(newStartTime.toISOString());
-    endTimeSetter(endTime.toISOString());
-  };
+  const { handleSubmit, body, setBody, setDate, privacyChecked, togglePrivacyChecked } =
+    useAddReservation(roomId);
 
   return (
     <ModalFrame onClose={closeModal}>
@@ -104,15 +38,15 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
               <StartTimePicker
                 startDate={new Date(body.startTime)}
                 endDate={new Date(body.endTime)}
-                setStartDate={(x) => buildBodyValueSetter('startTime')(x.toISOString())}
-                setEndDate={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
+                setStartDate={(x) => setBody('startTime', x.toISOString())}
+                setEndDate={(x) => setBody('endTime', x.toISOString())}
               />
             </InputWithLabel>
             <InputWithLabel title="사용 시간">
               <DurationPicker
                 startTime={new Date(body.startTime)}
                 endTime={new Date(body.endTime)}
-                setEndTime={(x) => buildBodyValueSetter('endTime')(x.toISOString())}
+                setEndTime={(x) => setBody('endTime', x.toISOString())}
               />
             </InputWithLabel>
           </div>
@@ -123,7 +57,7 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
                 .fill(0)
                 .map((_, i) => i + 1 + '회')}
               selectedIndex={body.recurringWeeks - 1}
-              onClick={(x) => buildBodyValueSetter('recurringWeeks')(x + 1)}
+              onClick={(x) => setBody('recurringWeeks', x + 1)}
             />
           </InputWithLabel>
         </div>
@@ -133,28 +67,28 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
             type="text"
             title="단체 이름"
             text={body.title}
-            setText={buildBodyValueSetter('title')}
+            setText={(x) => setBody('title', x)}
           />
           <RequiredTextInputFieldset
             type="email"
             title="연락가능 이메일"
             text={body.contactEmail}
-            setText={buildBodyValueSetter('contactEmail')}
+            setText={(x) => setBody('contactEmail', x)}
           />
           <RequiredTextInputFieldset
             type="tel"
             title="연락가능 전화번호"
             text={body.contactPhone}
-            setText={buildBodyValueSetter('contactPhone')}
+            setText={(x) => setBody('contactPhone', x)}
           />
           <RequiredTextInputFieldset
             type="text"
             title="지도교수"
             text={body.professor}
-            setText={buildBodyValueSetter('professor')}
+            setText={(x) => setBody('professor', x)}
           />
 
-          <PurposeTextInputFieldset text={body.purpose} setText={buildBodyValueSetter('purpose')} />
+          <PurposeTextInputFieldset text={body.purpose} setText={(x) => setBody('purpose', x)} />
 
           <div className="flex itmes-center gap-1 text-normal text-neutral-500">
             <span className="material-symbols-outlined text-base my-auto">error</span>
@@ -388,84 +322,5 @@ const PrivacyFieldset = ({
         </Link>
       </div>
     </fieldset>
-  );
-};
-
-const getDefaultBodyValue = (roomId: number): ReservationPostBody => {
-  const startTime = convertToFastestStartTime(new Date());
-
-  const endTime = new Date(startTime);
-  endTime.setTime(endTime.getTime() + 30 * 60 * 1000);
-
-  return {
-    roomId,
-    startTime: startTime.toISOString(),
-    endTime: endTime.toISOString(),
-    recurringWeeks: 1,
-    title: '',
-    contactEmail: '',
-    contactPhone: '',
-    professor: '',
-    purpose: '',
-  };
-};
-
-// date 이후 시점 중 가장 빠른 유효 startTime을 반환
-const convertToFastestStartTime = (date: Date) => {
-  let startTime = new Date(date);
-
-  // 과거면 현재로 변경
-  const now = new Date();
-  if (startTime < now) startTime = now;
-
-  startTime.setSeconds(0);
-  startTime.setMilliseconds(0);
-
-  // 가장 가까운 30분 혹은 0분으로 올림
-  if (30 < startTime.getMinutes()) {
-    startTime = new Date(startTime.getTime() + 30 * 60 * 1000);
-    startTime.setMinutes(0);
-  } else {
-    startTime.setMinutes(30);
-  }
-
-  // 가장 늦은 시작 시간인 오후 10시 30분보다 늦다면 다음날 8시로 설정
-  if (
-    startTime.getHours() < 8 ||
-    23 <= startTime.getHours() ||
-    (startTime.getHours() === 22 && 30 < startTime.getMinutes())
-  ) {
-    startTime = new Date(startTime.getTime() + 24 * 60 * 60 * 1000);
-    startTime.setHours(8);
-    startTime.setMinutes(0);
-  }
-  return startTime;
-};
-
-// 기존 사용 시간을 최대한 유지한 채 새로운 startDate에 맞는 새로운 endDate를 반환
-const getOptimalEndTime = (prevStartDate: Date, prevEndDate: Date, newStartDate: Date): Date => {
-  // 사용 시간을 가능한 유지시킴
-  const previousDiff = prevEndDate.getTime() - prevStartDate.getTime();
-  let newEndDate = new Date(newStartDate);
-  newEndDate.setTime(newStartDate.getTime() + previousDiff);
-
-  // 유지시켰는데 오후 11시 이후면 오후 11시로 고정
-  if (
-    newEndDate.getDate() != newStartDate.getDate() ||
-    (23 <= newEndDate.getHours() && 0 < newEndDate.getMinutes())
-  ) {
-    newEndDate = new Date(newStartDate);
-    newEndDate.setHours(23);
-    newEndDate.setMinutes(0);
-  }
-
-  return newEndDate;
-};
-
-const isSameDay = (lhs: Date, rhs: Date) => {
-  return (
-    lhs.getFullYear() === rhs.getFullYear() &&
-    lhs.getMonth() === rhs.getMonth() &&
-    lhs.getDate() === rhs.getDate()
   );
 };
