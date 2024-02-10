@@ -13,6 +13,10 @@ import {
 
 import { careerStat, clubs, directions, facilities, futureCompanies } from './objects';
 
+export const getMockAboutDescription = async (): Promise<string> => {
+  return '<p>소개글이 없어요<p>';
+};
+
 export const getMockOverview = async (): Promise<Overview> => {
   return {
     description: await readFile('data/htmls/overview.txt', { encoding: 'utf-8' }),

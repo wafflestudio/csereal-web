@@ -1,4 +1,5 @@
 import {
+  getMockAboutDescription,
   getMockClubs,
   getMockContact,
   getMockDirections,
@@ -8,6 +9,8 @@ import {
   getMockHistory,
   getMockOverview,
 } from '@/data/about';
+
+export const getAboutDescription = getMockAboutDescription;
 
 export const getOverview = getMockOverview;
 
