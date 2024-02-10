@@ -26,6 +26,8 @@
       'Segoe UI Emoji',
       'Segoe UI Symbol',
       sans-serif;
+
+    -webkit-font-smoothing: antialiased;
   }
 }
 
