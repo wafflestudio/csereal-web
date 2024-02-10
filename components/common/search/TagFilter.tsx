@@ -26,7 +26,7 @@ export default function TagFilter({
 
   return (
     <div className="flex row-span-1 col-span-full">
-      <h5 className="text-md font-bold font-yoon whitespace-nowrap mr-6 text-neutral-700 tracking-wide">
+      <h5 className="text-md font-bold whitespace-nowrap mr-6 text-neutral-800 tracking-wide">
         태그
       </h5>
       <div className={`grow grid ${gridStyle} gap-x-7 gap-y-2.5`}>

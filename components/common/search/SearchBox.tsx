@@ -1,4 +1,4 @@
-import { FormEvent, useReducer, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
@@ -22,7 +22,7 @@ export default function SearchBox({
   disabled = false,
   setSearchParams,
 }: SearchBoxProps) {
-  const [expanded, toggleExpanded] = useReducer((x) => !x, true);
+  // const [expanded, toggleExpanded] = useReducer((x) => !x, true);
   const [keyword, setKeyword] = useState<string>(initKeyword);
   const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
 
@@ -44,20 +44,18 @@ export default function SearchBox({
   };
 
   return (
-    <div className={`mb-6 w-full ${disabled && 'opacity-30'}`}>
-      <SearchHeader disabled={disabled} expanded={expanded} toggleExpanded={toggleExpanded} />
-      {expanded && (
-        <SearchForm
-          disabled={disabled}
-          onSubmit={search}
-          tags={tags}
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-          keyword={keyword}
-          setKeyword={setKeyword}
-        />
-      )}
-      <StraightNode double={true} margin="mt-6 mb-3" />
+    <div className={`mb-9 w-full ${disabled && 'opacity-30'}`}>
+      {/* <SearchHeader disabled={disabled} expanded={expanded} toggleExpanded={toggleExpanded} /> */}
+      <SearchForm
+        disabled={disabled}
+        onSubmit={search}
+        tags={tags}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+        keyword={keyword}
+        setKeyword={setKeyword}
+      />
+      <StraightNode double={true} margin="mt-9 mb-3" />
       <SelectedTags
         tags={initTags}
         deleteTag={deleteTag}
@@ -68,22 +66,22 @@ export default function SearchBox({
   );
 }
 
-interface SearchHeaderProps {
-  disabled: boolean;
-  expanded: boolean;
-  toggleExpanded: () => void;
-}
+// interface SearchHeaderProps {
+//   disabled: boolean;
+//   expanded: boolean;
+//   toggleExpanded: () => void;
+// }
 
-function SearchHeader({ disabled, expanded, toggleExpanded }: SearchHeaderProps) {
-  const iconName = expanded ? 'expand_less' : 'expand_more';
+// function SearchHeader({ disabled, expanded, toggleExpanded }: SearchHeaderProps) {
+//   const iconName = expanded ? 'expand_less' : 'expand_more';
 
-  return (
-    <h4
-      className={`flex items-center gap-1 ${disabled ? 'cursor-default' : 'cursor-pointer'} w-fit`}
-      onClick={() => !disabled && toggleExpanded()}
-    >
-      <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
-      <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
-    </h4>
-  );
-}
+//   return (
+//     <h4
+//       className={`flex items-center gap-1 ${disabled ? 'cursor-default' : 'cursor-pointer'} w-fit`}
+//       onClick={() => !disabled && toggleExpanded()}
+//     >
+//       <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
+//       <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
+//     </h4>
+//   );
+// }

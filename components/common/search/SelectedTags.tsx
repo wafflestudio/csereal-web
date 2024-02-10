@@ -10,7 +10,7 @@ interface SelectedTagsProps {
 export default function SelectedTags({ tags, deleteTag, resetTags, disabled }: SelectedTagsProps) {
   return (
     <div className="flex justify-between items-start gap-3 px-2.5">
-      <Tags tags={tags.length ? tags : ['전체']} deleteTag={deleteTag} />
+      <Tags tags={tags.length ? tags : ['전체']} deleteTag={deleteTag} disabled={disabled} />
       {tags.length > 0 && <TagResetButton onClick={resetTags} disabled={disabled} />}
     </div>
   );
@@ -18,14 +18,20 @@ export default function SelectedTags({ tags, deleteTag, resetTags, disabled }: S
 
 interface TagsProps {
   tags: string[];
+  disabled: boolean;
   deleteTag: (tag: string) => void;
 }
 
-function Tags({ tags, deleteTag }: TagsProps) {
+function Tags({ tags, disabled, deleteTag }: TagsProps) {
   return (
     <div className={`flex flex-wrap items-center gap-2.5`}>
       {tags.map((tag) => (
-        <Tag key={tag} tag={tag} onDelete={tag === '전체' ? undefined : deleteTag} />
+        <Tag
+          key={tag}
+          tag={tag}
+          onDelete={tag === '전체' ? undefined : deleteTag}
+          disabled={disabled}
+        />
       ))}
     </div>
   );
@@ -40,7 +46,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-xs whitespace-nowrap"
+      className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-[13px] whitespace-nowrap"
       disabled={disabled}
     >
       <span className="material-symbols-outlined scale-x-[-1] font-light text-base">refresh</span>

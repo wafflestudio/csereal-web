@@ -24,7 +24,7 @@ export default function SearchForm({
 }: SearchFormProps) {
   return (
     <form
-      className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-y-7 pt-4 pl-3 pr-2.5 min-w-max"
+      className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-y-5 p-6 min-w-max bg-neutral-100"
       onSubmit={onSubmit}
     >
       <TagFilter
@@ -42,7 +42,7 @@ export default function SearchForm({
 function SearchButton({ disabled }: { disabled: boolean }) {
   return (
     <button
-      className="col-start-3 px-3 py-[0.1875rem] rounded-[0.0625rem] bg-neutral-200 enabled:hover:bg-neutral-300 font-yoon font-bold text-xs tracking-[0.02em]"
+      className="col-start-3 px-3 py-[0.1875rem] rounded-[0.0625rem] bg-neutral-200 enabled:hover:bg-neutral-300 font-semibold text-xs tracking-wider"
       disabled={disabled}
     >
       결과 보기
