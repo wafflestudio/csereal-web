@@ -10,6 +10,7 @@
   html,
   body {
     @apply h-full;
+
     font-family:
       'Pretendard Variable',
       Pretendard,
@@ -29,10 +30,6 @@
 
     -webkit-font-smoothing: antialiased;
   }
-}
-
-:root {
-  color-scheme: dark;
 }
 
 /* 출처  */

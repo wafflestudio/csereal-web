@@ -52,9 +52,9 @@ function DotList() {
     <div className="flex flex-col items-center mt-[3.38rem]">
       {mainSegmentNode.children?.map((node, idx) => {
         return isAncestorNode(node, cur) ? (
-          <DotFill key={idx} className="mb-[2.2rem] -translate-y-2" />
+          <DotFill key={idx} className="mb-[2.72rem]" />
         ) : (
-          <DotEmpty key={idx} className="mb-12" />
+          <DotEmpty key={idx} className="mb-[2.72rem]" />
         );
       })}
     </div>
@@ -106,7 +106,7 @@ function NavListRow({
   const color = highlight ? 'text-white' : 'text-neutral-500';
   return (
     <li
-      className={`text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap`}
+      className={`text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap leading-5`}
       onMouseEnter={onMouseEnter}
     >
       <Link href={href} className="block">

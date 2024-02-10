@@ -18,16 +18,24 @@ export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode
 interface NavTreeProps {
   node: SegmentNode;
   curNode: SegmentNode;
-  isRoot?: boolean;
+  depth?: number;
 }
 
-function NavTree({ node, isRoot = false, curNode }: NavTreeProps) {
+function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
+  const marginBottom = depth === 0 ? '1.75rem' : '1.5rem';
+
   return (
     <>
-      {!isRoot && <NavTreeRow segmentNode={node} highlight={curNode === node} />}
-      <div className="ml-5">
-        {node.children?.map((child, i) => <NavTree key={i} node={child} curNode={curNode} />)}
-      </div>
+      {depth !== 0 && (
+        <NavTreeRow segmentNode={node} highlight={curNode === node} marginBottom={marginBottom} />
+      )}
+      {node.children !== null && 0 < node.children.length && (
+        <div className="ml-5 mb-11">
+          {node.children.map((child, i) => (
+            <NavTree key={i} node={child} curNode={curNode} depth={depth + 1} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
