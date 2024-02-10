@@ -1,3 +1,5 @@
+'use client';
+
 import { revalidateNewsTag } from '@/actions/newsActions';
 import { useRouter } from '@/navigation';
 
