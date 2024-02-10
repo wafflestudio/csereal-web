@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 
-
 import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/navigation';
