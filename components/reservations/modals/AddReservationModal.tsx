@@ -79,7 +79,7 @@ const BottomButton = ({
 }) => {
   return (
     <div className="flex justify-end h-[1.875rem] gap-2">
-      <BasicButton className="w-[2.75rem]" onClick={closeModal}>
+      <BasicButton className="w-[2.75rem] text-md" onClick={closeModal}>
         취소
       </BasicButton>
       <BasicButton type="submit" className="w-[4.25rem]" disabled={!canSubmit}>

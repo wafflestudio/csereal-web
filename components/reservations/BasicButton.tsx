@@ -9,7 +9,7 @@ export default function BasicButton({
   return (
     <button
       type={type}
-      className={`bg-white text-neutral-700 disabled:text-neutral-300 rounded-sm border border-neutral-200 ${className}`}
+      className={`text-xs bg-white text-neutral-700 disabled:text-neutral-300 rounded-sm border border-neutral-200 ${className}`}
       {...props}
     >
       {children}
