@@ -10,6 +10,8 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import { getPath } from '@/utils/page';
 
+import Header from '../header/Header';
+
 interface GuidePageLayoutProps {
   title?: string;
   subtitle?: string;
@@ -27,12 +29,13 @@ export default function MajorCategoryPageLayout({
 
   return (
     <div className="bg-neutral-850">
+      <Header />
       <div className="max-w-[80rem] pt-12 pb-[4.5rem] px-[6.25rem]">
         <div className="text-neutral-500 text-[20px] font-light">{subtitle}</div>
         <div className="text-white text-[64px] font-semibold tracking-wide mb-8">{title}</div>
         <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} />
       </div>
-      <div className="bg-neutral-900 pt-10 pb-[12.5rem] px-[6.25rem]">
+      <div className="bg-neutral-900 pt-20 pb-[13.75rem] px-[6.25rem]">
         <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)]">
           {currentPage.children!.map((subpage, index) => (
             <DetailItem
