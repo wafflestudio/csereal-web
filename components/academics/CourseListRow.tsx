@@ -16,7 +16,7 @@ export const COURSE_ROW_ITEM_WIDTH = {
 
 export default function CourseListRow({ course }: { course: Course }) {
   return (
-    <li className="flex items-center h-14 text-xs [&>span]:px-3">
+    <li className="flex items-center h-14 text-md [&>span]:px-4">
       <NameCell name={course.name} course={course} />
       <ClassificationCell classification={course.classification} />
       <CodeCell code={course.code} />

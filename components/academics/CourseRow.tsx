@@ -1,9 +1,10 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { Course, SortOption } from '@/types/academics';
 
 import CourseCard from './CourseCard';
-import { useRef } from 'react';
 
 interface CourseRowProps {
   courses: Course[];
@@ -26,7 +27,7 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
 
   return (
     <div className="flex items-center group">
-      <ArrowButton iconName=" navigate_before" onClick={() => scrollHorizontally('left')} />
+      <ArrowButton iconName="navigate_before" onClick={() => scrollHorizontally('left')} />
       <div className="styled-scrollbar overflow-y-hidden overflow-x-auto py-3" ref={carouselRef}>
         <div className="flex gap-5">
           {courses.map((course) => (
@@ -34,7 +35,7 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
           ))}
         </div>
       </div>
-      <ArrowButton iconName=" navigate_next" onClick={() => scrollHorizontally('right')} />
+      <ArrowButton iconName="navigate_next" onClick={() => scrollHorizontally('right')} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function CourseList({ courses, selectedOption }: CourseListProps)
   return (
     <div className="border-b border-neutral-200 px-5">
       <CourseListHeader />
-      <ul className="divide-y divide-neutral-200 divide-dashed font-noto ">
+      <ul className="divide-y divide-neutral-200 divide-dashed">
         {sortedCourses.map((course) => (
           <CourseListRow course={course} key={course.code} />
         ))}
