@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { ResearchGroup } from '@/types/research';
@@ -16,9 +15,9 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
     <div className="bg-[#fafafa] pl-[100px] pr-[350px] pt-[50px] pb-[100px]">
       <h2 className="font-bold text-[24px] leading-loose mb-[18px]">{group.name} 연구 그룹</h2>
       <div className="bg-white p-[40px] w-[780px]">
-        <HTMLViewer htmlContent={group.description} margin="mb-9 ml-2.5" />
+        <HTMLViewer htmlContent={group.description} />
       </div>
-      <div className="relative h-[200px] mt-[24px]">
+      <div className="relative h-[200px] mt-6">
         <Image
           src={group.imageURL}
           alt={`${group.name}_연구그룹_사진`}

@@ -30,9 +30,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
         <CurvedVerticalNode grow={false} />
         <div className="pt-[0.6875rem] pl-1.5">
           <Link href={getPath(rootTab)} className="text-neutral-800 hover:text-main-orange">
-            <h3 className="inline font-semibold text-[16px] whitespace-nowrap">
-              {t(rootTab.name)}
-            </h3>
+            <h3 className="inline font-semibold text-base whitespace-nowrap">{t(rootTab.name)}</h3>
           </Link>
           <ul className="mt-4">
             {subTabs.map((tab) => (
@@ -55,7 +53,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
 
   return (
     <li
-      className={`w-fit text-[13px] mb-3.5 ${
+      className={`w-fit text-sm mb-3.5 ${
         isCurrent ? 'font-bold text-main-orange tracking-wider' : 'text-neutral-700'
       }`}
       style={{ marginLeft }}
