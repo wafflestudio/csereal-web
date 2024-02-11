@@ -1,10 +1,13 @@
 'use client';
 
-import { MutableRefObject, Suspense, lazy } from 'react';
+import { MutableRefObject, lazy } from 'react';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
 import plugins from 'suneditor/src/plugins';
 
+// TODO
+// 정말 왜그러는지 모르겠는데 lazy + typeof window 조합으로만 빌드가 됨
+// 건들지 말..것..
 const SunEditor = lazy(() => import('suneditor-react'));
 
 import './suneditor.css';
@@ -18,7 +21,7 @@ export default function SunEditorWrapper({
   initialContent?: string;
 }) {
   return (
-    <Suspense fallback={<SunEditorFallback />}>
+    typeof window !== 'undefined' && (
       <SunEditor
         getSunEditorInstance={(x) => (editorRef.current = x)}
         setDefaultStyle={`padding: 1rem;`}
@@ -39,25 +42,26 @@ export default function SunEditorWrapper({
           // imageUploadUrl: `${BASE_URL}/file/upload`,
         }}
       />
-    </Suspense>
+    )
   );
 }
 
-const SunEditorFallback = () => {
-  return (
-    <div className="animate-pulse flex flex-col mx-[3.75rem] mt-3 h-[400px]">
-      <div className="flex flex-col gap-2">
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
-      </div>
-      <div className="flex flex-1 flex-col gap-2 w-3/5 mt-4">
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
-      </div>
-    </div>
-  );
-};
+// Suspense 쓰도록 고칠 때까지 삭제
+// const SunEditorFallback = () => {
+//   return (
+//     <div className="animate-pulse flex flex-col mx-[3.75rem] mt-3 h-[400px]">
+//       <div className="flex flex-col gap-2">
+//         <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
+//         <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
+//       </div>
+//       <div className="flex flex-1 flex-col gap-2 w-3/5 mt-4">
+//         <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
+//         <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
+//         <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // https://github.com/JiHong88/SunEditor/issues/199
 export const isContentEmpty = (editor: SunEditorCore) => {
