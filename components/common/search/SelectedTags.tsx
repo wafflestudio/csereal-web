@@ -46,7 +46,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-[13px] whitespace-nowrap"
+      className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400 text-sm whitespace-nowrap"
       disabled={disabled}
     >
       <span className="material-symbols-outlined scale-x-[-1] font-light text-base">refresh</span>

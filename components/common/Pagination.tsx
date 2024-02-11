@@ -82,7 +82,7 @@ function PaginationArrow({ iconName, num, disabled, movePageNumber }: Pagination
 
   return (
     <li className={arrowStyle} onClick={() => disabled || movePageNumber(num)}>
-      <span className="material-symbols-rounded font-light text-[24px]">{iconName}</span>
+      <span className="material-symbols-rounded font-light text-2xl">{iconName}</span>
     </li>
   );
 }
@@ -103,7 +103,7 @@ function PaginationNumber({ num, isSelected, disabled, movePageNumber }: Paginat
       className={`flex items-center justify-center px-2 ${cursorStyle} ${textStyle}`}
       onClick={() => !isSelected && !disabled && movePageNumber(num)}
     >
-      <span className={`text-[14px] ${isSelected && 'font-bold underline'}`}>{num}</span>
+      <span className={`text-md ${isSelected && 'font-bold underline'}`}>{num}</span>
     </li>
   );
 }

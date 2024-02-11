@@ -22,7 +22,6 @@ export default function SearchBox({
   disabled = false,
   setSearchParams,
 }: SearchBoxProps) {
-  // const [expanded, toggleExpanded] = useReducer((x) => !x, true);
   const [keyword, setKeyword] = useState<string>(initKeyword);
   const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
 
@@ -45,7 +44,6 @@ export default function SearchBox({
 
   return (
     <div className={`mb-9 w-full ${disabled && 'opacity-30'}`}>
-      {/* <SearchHeader disabled={disabled} expanded={expanded} toggleExpanded={toggleExpanded} /> */}
       <SearchForm
         disabled={disabled}
         onSubmit={search}
@@ -65,23 +63,3 @@ export default function SearchBox({
     </div>
   );
 }
-
-// interface SearchHeaderProps {
-//   disabled: boolean;
-//   expanded: boolean;
-//   toggleExpanded: () => void;
-// }
-
-// function SearchHeader({ disabled, expanded, toggleExpanded }: SearchHeaderProps) {
-//   const iconName = expanded ? 'expand_less' : 'expand_more';
-
-//   return (
-//     <h4
-//       className={`flex items-center gap-1 ${disabled ? 'cursor-default' : 'cursor-pointer'} w-fit`}
-//       onClick={() => !disabled && toggleExpanded()}
-//     >
-//       <span className="text-md font-bold font-yoon text-neutral-700 tracking-wide">검색</span>
-//       <span className="material-symbols-outlined font-semibold text-neutral-700">{iconName}</span>
-//     </h4>
-//   );
-// }

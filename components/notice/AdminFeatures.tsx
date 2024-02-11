@@ -98,7 +98,7 @@ function SelectedCountStatus({ count }: { count: number }) {
       <span className="material-symbols-rounded text-neutral-500 text-lg font-extralight">
         check_box
       </span>
-      <span className="text-neutral-500 text-[13px] tracking-wide">{count}개 게시물 선택</span>
+      <span className="text-neutral-500 text-sm tracking-wide">{count}개 게시물 선택</span>
     </div>
   );
 }
