@@ -22,8 +22,11 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
   return (
-    <div className="absolute top-[172px] right-[60px] h-[80%]">
-      <div className="flex row-span-full col-start-2 mt-[3.25rem] sticky top-16" style={{ height }}>
+    <div className="absolute top-0 right-[60px] h-full">
+      <div
+        className="flex row-span-full col-start-2 mt-[3.25rem] mb-8 sticky top-20"
+        style={{ height }}
+      >
         <CurvedVerticalNode grow={false} />
         <div className="pt-[0.6875rem] pl-1.5">
           <Link href={getPath(rootTab)} className="text-neutral-800 hover:text-main-orange">
