@@ -18,7 +18,7 @@ export const main: SegmentNode = {
 export const about: SegmentNode = {
   name: '소개',
   segment: 'about',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -90,7 +90,7 @@ export const directions: SegmentNode = {
 export const community: SegmentNode = {
   name: '소식',
   segment: 'community',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -130,7 +130,7 @@ export const facultyRecruitment: SegmentNode = {
 export const people: SegmentNode = {
   name: '구성원',
   segment: 'people',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -162,7 +162,7 @@ export const staff: SegmentNode = {
 export const research: SegmentNode = {
   name: '연구',
   segment: 'research',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -202,7 +202,7 @@ export const topConferenceList: SegmentNode = {
 export const admissions: SegmentNode = {
   name: '입학',
   segment: 'admissions',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -290,7 +290,7 @@ export const internationalScholarships: SegmentNode = {
 export const academics: SegmentNode = {
   name: '학사 및 교과',
   segment: 'academics',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };
@@ -402,7 +402,7 @@ export const graduateScholarship: SegmentNode = {
 export const reservations: SegmentNode = {
   name: '시설 예약',
   segment: 'reservations',
-  isPage: false,
+  isPage: true,
   parent: main,
   children: [],
 };

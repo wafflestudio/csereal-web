@@ -34,7 +34,7 @@ export function CurvedHorizontalNodeGray() {
 export function CurvedVerticalNode({ grow = false, length = 'h-full' }: CurvedNodeProps) {
   return (
     <div className={`flex flex-col ${grow ? 'grow' : ''} ${length} w-[25px]`}>
-      <StraightNode grow={false} direction="col" length="h-[32px]" />
+      <StraightNode grow={false} direction="col" length="h-[36px]" />
       <Diagonal
         width="w-[25px]"
         translateX="translate-x-[5.1px]"

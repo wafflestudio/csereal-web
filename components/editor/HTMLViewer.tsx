@@ -3,7 +3,7 @@
 import Autolinker from 'autolinker';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import './common/suneditor-contents.css';
 
@@ -32,9 +32,15 @@ interface HTMLViewerProps {
   // 우측 상단 표시될 요소
   topRightContent?: TopRightImage | TopRightComponent;
   margin?: string;
+  style?: CSSProperties;
 }
 
-export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }: HTMLViewerProps) {
+export default function HTMLViewer({
+  htmlContent,
+  topRightContent,
+  margin = '',
+  style,
+}: HTMLViewerProps) {
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
   const linkedHTML = Autolinker.link(sanitizedHTML);
 
@@ -44,7 +50,11 @@ export default function HTMLViewer({ htmlContent, topRightContent, margin = '' }
         <TopRightImageContent {...topRightContent} />
       )}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
-      <div className="sun-editor-editable" dangerouslySetInnerHTML={{ __html: linkedHTML }} />
+      <div
+        className="sun-editor-editable"
+        dangerouslySetInnerHTML={{ __html: linkedHTML }}
+        style={style}
+      />
     </div>
   );
 }

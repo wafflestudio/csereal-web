@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { NavbarState } from '@/contexts/NavbarContext';
+import { Link } from '@/navigation';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
@@ -11,7 +12,7 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import { SegmentNode, main as mainSegmentNode } from '@/types/page';
 
-import { isAncestorNode } from '@/utils/page';
+import { getPath, isAncestorNode } from '@/utils/page';
 
 export default function NavbarRoot({
   state,
@@ -84,6 +85,7 @@ function NavList({
             key={i}
             highlight={shouldHighlight(child)}
             name={t(child.name)}
+            href={getPath(child)}
             onMouseEnter={() => setState({ type: 'hovered', segmentNode: child })}
           />
         ))}
@@ -95,10 +97,12 @@ function NavList({
 function NavListRow({
   name,
   highlight,
+  href,
   onMouseEnter,
 }: {
   name: string;
   highlight: boolean;
+  href: string;
   onMouseEnter: () => void;
 }) {
   const color = highlight ? 'text-white' : 'text-neutral-500';
@@ -107,7 +111,9 @@ function NavListRow({
       className={`text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap`}
       onMouseEnter={onMouseEnter}
     >
-      {name}
+      <Link href={href} className="block">
+        {name}
+      </Link>
     </li>
   );
 }
