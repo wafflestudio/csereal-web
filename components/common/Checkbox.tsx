@@ -21,13 +21,17 @@ export default function Checkbox({
       }`}
     >
       <span
-        className={`material-symbols-rounded text-neutral-300 group-hover:text-neutral-700 group-active:text-main-orange ${
-          isChecked && 'text-neutral-700'
-        } text-lg font-light`}
+        className={`material-symbols-rounded text-neutral-400 text-lg font-light ${
+          !disabled && 'group-hover:text-neutral-600 group-active:text-main-orange'
+        } ${isChecked && 'text-neutral-600'}`}
       >
         {iconName}
       </span>
-      <span className="font-yoon text-xs text-neutral-700 font-light tracking-wide group-active:text-main-orange">
+      <span
+        className={`text-[14px] text-neutral-600 tracking-wide ${
+          !disabled && 'group-active:text-main-orange'
+        }`}
+      >
         {label}
       </span>
       <input

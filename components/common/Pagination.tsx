@@ -27,7 +27,7 @@ export default function Pagination({
 
   return (
     <div className={`flex justify-center ${disabled && 'opacity-30'}`}>
-      <ul className="flex gap-x-[0.3125rem] font-yoon h-[1.375rem] mx-auto text-neutral-700 tracking-wide">
+      <ul className="flex gap-x-2 h-6 mx-auto text-neutral-800 tracking-wide">
         <PaginationArrow
           iconName="keyboard_double_arrow_left"
           num={1}
@@ -82,7 +82,7 @@ function PaginationArrow({ iconName, num, disabled, movePageNumber }: Pagination
 
   return (
     <li className={arrowStyle} onClick={() => disabled || movePageNumber(num)}>
-      <span className="material-symbols-rounded font-light text-xl">{iconName}</span>
+      <span className="material-symbols-rounded font-light text-2xl">{iconName}</span>
     </li>
   );
 }
@@ -103,7 +103,7 @@ function PaginationNumber({ num, isSelected, disabled, movePageNumber }: Paginat
       className={`flex items-center justify-center px-2 ${cursorStyle} ${textStyle}`}
       onClick={() => !isSelected && !disabled && movePageNumber(num)}
     >
-      <span className={`text-xs ${isSelected && 'font-bold underline'}`}>{num}</span>
+      <span className={`text-md ${isSelected && 'font-bold underline'}`}>{num}</span>
     </li>
   );
 }

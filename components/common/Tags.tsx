@@ -40,11 +40,19 @@ interface TagProps {
   tag: string;
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
+  disabled?: boolean;
   onClick?: (tag: string) => void;
   onDelete?: (tag: string) => void;
 }
 
-export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelete }: TagProps) {
+export function Tag({
+  tag,
+  hoverStyle,
+  defaultStyle = 'orange',
+  disabled = false,
+  onClick,
+  onDelete,
+}: TagProps) {
   const tagClass =
     'flex items-center pl-2.5 h-[24px] border rounded-[1.875rem] text-[13px] whitespace-nowrap duration-200';
   const defaultClass = DEFAULT_STYLE[defaultStyle];
@@ -59,8 +67,14 @@ export function Tag({ tag, hoverStyle, defaultStyle = 'orange', onClick, onDelet
     >
       <span className={onDelete ? '' : 'pr-2.5'}>{tag}</span>
       {onDelete && (
-        <button className="flex items-center h-full pl-1 pr-2.5 text-main-orange hover:text-neutral-400 active:text-main-orange ">
-          <span className="material-symbols-outlined  text-xs" onClick={() => onDelete(tag)}>
+        <button
+          className={`flex items-center h-full pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}
+          disabled={disabled}
+        >
+          <span
+            className="material-symbols-outlined text-xs"
+            onClick={() => !disabled && onDelete(tag)}
+          >
             close
           </span>
         </button>

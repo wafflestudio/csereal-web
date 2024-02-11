@@ -31,11 +31,9 @@ export default function NoticeListRow({
 }: NoticeListRowProps) {
   return (
     <li
-      className={`flex items-center h-10 py-2.5 ${
-        post.isPinned ? 'font-noto font-bold' : 'font-noto-demi'
-      } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-100')} ${
-        isSelected && 'bg-neutral-100'
-      } `}
+      className={`flex items-center text-[14px] h-11 py-2.5 ${post.isPinned && 'font-semibold'} ${
+        !isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')
+      } ${isSelected && 'bg-neutral-100'} `}
     >
       {isEditMode && (
         <CheckboxCell

@@ -27,9 +27,9 @@ export default function NoticeList({
   };
 
   return posts.length ? (
-    <div className="mt-6 mb-8 mx-2.5 text-xs border-y border-neutral-200">
+    <div className="mt-9 mb-10 mx-2.5 border-y border-neutral-200">
       <NoticeListHeader isEditMode={isEditMode} />
-      <ul className={`font-noto ${isEditMode && 'divide-y divide-neutral-200 divide-dashed'}`}>
+      <ul className={`${isEditMode && 'divide-y divide-neutral-200 divide-dashed'}`}>
         {posts.map((post, i) => (
           <NoticeListRow
             key={i}
