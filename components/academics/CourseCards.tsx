@@ -13,9 +13,10 @@ export default function CourseCards({ courses, selectedOption }: CourseCardProps
   return (
     courses.length > 0 && (
       <div className="mt-6 flex flex-col gap-8">
-        {sortedCourses.map((courses, i) => (
-          <CourseRow courses={courses} selectedOption={selectedOption} key={i} />
-        ))}
+        {sortedCourses.map((courses, i) => {
+          if (courses.length == 0) return;
+          return <CourseRow courses={courses} selectedOption={selectedOption} key={i} />;
+        })}
       </div>
     )
   );

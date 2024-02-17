@@ -24,8 +24,8 @@ function CourseHeader({ course }: { course: Course }) {
   return (
     <h4 className="flex items-center gap-2">
       <BookmarkIcon />
-      <span className="font-noto font-bold">{course.name}</span>
-      <div className="flex items-center text-neutral-600 text-xs divide-x divide-neutral-200 [&_span]:px-2">
+      <span className="font-bold">{course.name}</span>
+      <div className="flex items-center pt-1 text-neutral-600 text-sm divide-x divide-neutral-200 [&_span]:px-2">
         <span>{course.code}</span>
         <span>{course.classification}</span>
         <span>{course.credit}학점</span>
@@ -36,5 +36,5 @@ function CourseHeader({ course }: { course: Course }) {
 }
 
 function CourseBody({ content }: { content: string }) {
-  return <p className="text-sm leading-loose">{content}</p>;
+  return <p className="text-md leading-loose">{content}</p>;
 }

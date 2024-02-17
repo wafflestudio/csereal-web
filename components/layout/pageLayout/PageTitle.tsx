@@ -25,10 +25,10 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 
   return (
     <div
-      className={`bg-neutral-900 pt-[54px]`}
+      className="pt-[54px]"
       style={{
-        paddingLeft: PAGE_TITLE_LEFT_MARGIN_PX + 'px',
-        paddingRight: PAGE_TITLE_LEFT_MARGIN_PX + 'px',
+        paddingLeft: PAGE_TITLE_LEFT_MARGIN_PX,
+        paddingRight: PAGE_TITLE_LEFT_MARGIN_PX,
       }}
     >
       <div

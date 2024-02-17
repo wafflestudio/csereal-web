@@ -23,7 +23,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
   };
 
   return (
-    <div className={selectedOption.view === '카드형' ? 'w-[840px]' : 'w-[664px]'}>
+    <div className={selectedOption.view === '카드형' ? 'w-[970px]' : 'w-[720px]'}>
       <h4 className="mt-14 mb-8 text-[17px] font-bold pl-5">교과목 정보</h4>
       <CourseToolbar
         viewOption={selectedOption.view}

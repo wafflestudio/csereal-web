@@ -8,6 +8,7 @@ import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import PageTitle from './PageTitle';
+import Header from '../header/Header';
 
 interface PageLayoutProps {
   title?: string | JSX.Element;
@@ -39,16 +40,20 @@ export default function PageLayout({
 
   return (
     <div className="relative bg-neutral-900">
+      <Header />
       <PageTitle
         title={title}
         currentPage={currentPage}
         titleType={titleType}
         margin={titleMargin ?? ''}
       />
-      <div className={'bg-white pl-[100px] pr-[350px] pt-[44px] pb-[150px]'} style={bodyStyle}>
+      <div
+        className={'bg-white pl-[100px] pr-[350px] pt-[44px] pb-[150px] relative'}
+        style={bodyStyle}
+      >
         {children}
+        <SubNavbar currentTab={currentPage} />
       </div>
-      <SubNavbar currentTab={currentPage} />
     </div>
   );
 }

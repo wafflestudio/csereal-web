@@ -9,6 +9,7 @@ import { MainContents } from '@/types/main';
 import ImportantPosts from './ImportantPosts';
 import Notices from './Notices';
 import SlideScreen from './SlideScreen';
+import Header from '../layout/header/Header';
 
 interface MainPageContentProps {
   data: MainContents;
@@ -20,6 +21,7 @@ export default function MainPageContent({ data }: MainPageContentProps) {
   return (
     <>
       <div ref={ref}>
+        <Header />
         <SlideScreen slides={data.slides} />
         <div className="flex justify-between mt-[60px]">
           <ImportantPosts posts={data.importants} />
