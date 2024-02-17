@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

@@ -8,8 +8,8 @@ interface KeywordInputProps {
 
 export default function KeywordInput({ keyword, setKeyword, disabled = false }: KeywordInputProps) {
   return (
-    <div className="col-start-1 flex items-center">
-      <h5 className="font-yoon text-md font-bold mr-3 whitespace-nowrap tracking-wide">검색어</h5>
+    <div className="flex items-center">
+      <h5 className="text-md font-bold mr-7 whitespace-nowrap tracking-wide">검색</h5>
       <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
     </div>
   );
@@ -24,40 +24,20 @@ interface InputProps {
 function Input({ keyword, disabled, onChange }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const resetKeyword = () => {
-    onChange('');
-    inputRef.current?.focus();
-  };
-
   return (
-    <div className="relative w-fit">
+    <div className="relative bg-white flex items-center justify-between h-[1.875rem] w-[13.5rem] rounded-sm pr-3">
       <input
         type="text"
         id="search"
         ref={inputRef}
-        className={`${
-          keyword ? 'pl-1.5 pr-6' : 'px-1.5'
-        } w-[13.5rem] h-[1.875rem] rounded-sm text-[13px] tracking-wide bg-white autofill-bg-white outline-none`}
+        className={`rounded-sm px-2 w-full text-sm tracking-wide bg-transparent autofill-bg-white outline-none`}
         value={keyword}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
       />
-      {keyword && !disabled && <ResetKeywordButton onClick={resetKeyword} />}
+      <button className="material-symbols-rounded text-[1.25rem] font-light text-neutral-800 hover:text-neutral-500">
+        search
+      </button>
     </div>
-  );
-}
-
-interface ResetKeywordButtonProps {
-  onClick: () => void;
-}
-
-function ResetKeywordButton({ onClick }: ResetKeywordButtonProps) {
-  return (
-    <span
-      className="material-symbols-outlined absolute top-[8px] right-1.5 text-neutral-400 hover:text-neutral-700 text-md cursor-pointer"
-      onClick={onClick}
-    >
-      close
-    </span>
   );
 }
