@@ -31,7 +31,7 @@ export default function SeminarSearchBar({ keyword, setSearchParams }: SeminarSe
         <input
           type="text"
           id="search"
-          className="outline-none rounded-sm w-full text-sm px-2 bg-transparent tracking-wide autofill-bg-white"
+          className="outline-none rounded-sm w-full text-sm px-2 bg-transparent tracking-wide autofill-bg-neutral-100"
           value={text}
           onChange={handleChange}
         />
