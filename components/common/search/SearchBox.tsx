@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
@@ -23,43 +23,24 @@ export default function SearchBox({
   setSearchParams,
 }: SearchBoxProps) {
   const [keyword, setKeyword] = useState<string>(initKeyword);
-  const [selectedTags, setSelectedTags] = useState<string[]>(initTags);
 
-  const search = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const info: SearchInfo = { purpose: 'search', keyword, tag: selectedTags };
+  const search = (tags?: string[]) => {
+    const info: SearchInfo = { purpose: 'search', keyword, tag: tags ?? initTags };
     setSearchParams(info);
-  };
-
-  const resetTags = () => {
-    setSelectedTags([]);
-    setSearchParams({ purpose: 'search', keyword });
-  };
-
-  const deleteTag = (targetTag: string) => {
-    const filteredTags = selectedTags.filter((tag) => tag !== targetTag);
-    setSelectedTags(filteredTags);
-    setSearchParams({ purpose: 'search', keyword, tag: filteredTags });
   };
 
   return (
     <div className={`mb-9 w-full ${disabled && 'opacity-30'}`}>
       <SearchForm
         disabled={disabled}
-        onSubmit={search}
+        search={search}
         tags={tags}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
+        selectedTags={initTags}
         keyword={keyword}
         setKeyword={setKeyword}
       />
       <StraightNode double={true} margin="mt-9 mb-3" />
-      <SelectedTags
-        tags={initTags}
-        deleteTag={deleteTag}
-        resetTags={resetTags}
-        disabled={disabled}
-      />
+      <SelectedTags tags={initTags} search={search} disabled={disabled} />
     </div>
   );
 }

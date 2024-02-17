@@ -1,27 +1,20 @@
-import { SetStateAction } from 'react';
-
 import Checkbox from '../Checkbox';
 
 interface TagFilterProps {
   tags: string[];
   selectedTags: string[];
-  setSelectedTags: React.Dispatch<SetStateAction<string[]>>;
   disabled: boolean;
+  searchTags: (tags: string[]) => void;
 }
 
 // TODO: 나중에 태그 확정되면 반응형 추가해서 수정
 const gridStyle = 'grid-cols-[repeat(6,_max-content)]';
 
-export default function TagFilter({
-  tags,
-  selectedTags,
-  setSelectedTags,
-  disabled,
-}: TagFilterProps) {
+export default function TagFilter({ tags, selectedTags, disabled, searchTags }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
-      ? setSelectedTags((prev) => [...prev, tag])
-      : setSelectedTags(selectedTags.filter((t) => t !== tag));
+      ? searchTags([...selectedTags, tag])
+      : searchTags(selectedTags.filter((t) => t !== tag));
   };
 
   return (
