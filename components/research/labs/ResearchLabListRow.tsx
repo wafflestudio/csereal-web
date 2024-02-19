@@ -11,12 +11,12 @@ import { SimpleResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';
 
 export const LAB_ROW_ITEM_WIDTH = {
-  name: 'w-56',
-  professor: 'w-[6.75rem]',
-  location: 'w-[11.75rem]',
-  tel: 'w-28',
-  acronym: 'w-[4.5rem]',
-  introMaterial: 'w-[4.75rem]',
+  name: 'w-[14.5rem]',
+  professor: 'w-[6.875rem]',
+  location: 'w-[12.5rem]',
+  tel: 'w-[7.5rem]',
+  acronym: 'w-20',
+  introMaterial: 'w-[5.625rem]',
 } as const;
 
 const laboratoriesPath = getPath(researchLabs);
@@ -24,7 +24,7 @@ const facultyPath = getPath(faculty);
 
 export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) {
   return (
-    <li className="flex items-center h-14 text-xs [&>span]:px-3">
+    <li className="flex items-center h-14 text-sm pl-2 [&>span]:px-3 tracking-[0.02em]">
       <NameCell name={lab.name} id={lab.id} />
       <ProfessorsCell professors={lab.professors} />
       <LocationCell location={lab.location} />
@@ -54,7 +54,7 @@ function ProfessorsCell({ professors }: { professors: { id: number; name: string
     <span className={`${LAB_ROW_ITEM_WIDTH.professor} text-neutral-400`}>
       {professors.map((info, i) => (
         <Fragment key={info.id}>
-          <Link href={`${facultyPath}/${info.id}`} className="hover:text-neutral-700">
+          <Link href={`${facultyPath}/${info.id}`} className="hover:text-neutral-800">
             {info.name}
           </Link>
           {i !== professors.length - 1 && ', '}
@@ -94,7 +94,7 @@ function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="material-symbols-outlined text-[1.25rem] text-neutral-400  hover:text-neutral-700">
+          <span className="material-symbols-outlined text-[1.25rem] text-neutral-400  hover:text-neutral-800">
             draft
           </span>
         </a>
@@ -107,7 +107,7 @@ function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-700" />
+          <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-800" />
         </a>
       )}
     </span>

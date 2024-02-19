@@ -23,8 +23,8 @@ function RoadMapTitle() {
     <h4 className="flex items-center gap-2">
       <SignPostIcon className="fill-main-orange" />
       <span className="align-bottom">
-        <span className="font-bold text-[18px]">교과목 로드맵 </span>
-        <span className="text-neutral-600 text-[13px]">(선수 교과목)</span>
+        <span className="font-bold text-lg">교과목 로드맵 </span>
+        <span className="text-neutral-600 text-sm">(선수 교과목)</span>
       </span>
     </h4>
   );
@@ -43,7 +43,7 @@ function RoadMapDescription() {
 
 function RoadMap() {
   return (
-    <div className="relative h-[430px] min-h-[310px]">
+    <div className="relative h-[31.25rem] min-h-[19.375rem]">
       <Image src={roadmap} alt="교과목_로드맵" priority fill objectFit="contain" />
     </div>
   );
