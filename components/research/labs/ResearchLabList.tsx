@@ -9,7 +9,7 @@ interface ResearchLabListProps {
 
 export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   return (
-    <div className="w-[48.75rem] border-y border-neutral-200">
+    <div className="w-[52.5rem] border-y border-neutral-200">
       <ResearchLabListHeader />
       <ul className="divide-y divide-neutral-200 divide-dashed">
         {labInfos.map((lab) => (
