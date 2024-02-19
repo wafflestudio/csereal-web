@@ -6,16 +6,6 @@ import {
   getMockUndergraduateScholarshipList,
 } from '@/data/serverObjects';
 
-import {
-  Curriculum,
-  DegreeRequirements,
-  GeneralStudiesRequirements,
-  Scholarship,
-  ScholarshipList,
-} from '@/types/academics';
-
-import { getRequest } from '.';
-
 export const getDegreeRequirements = getMockDegreeRequirements;
 
 export const getCurriculum = getMockCurriculum;

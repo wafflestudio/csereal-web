@@ -37,7 +37,11 @@ export interface GeneralStudiesRequirements {
     changes: string[];
     progress: string;
   }[];
-  description: string;
+  generalStudies: {
+    id: number;
+    year: number;
+    description: string;
+  }[];
 }
 
 export interface ScholarshipList {

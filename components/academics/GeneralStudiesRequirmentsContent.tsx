@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer } from 'react';
 
 import { GeneralStudiesRequirements } from '@/types/academics';
@@ -8,7 +10,7 @@ import PageLayout from '../layout/pageLayout/PageLayout';
 export default function GeneralStudiesRequirementsPageContent({
   overview,
   subjectChanges,
-  description,
+  generalStudies,
 }: GeneralStudiesRequirements) {
   return (
     <PageLayout titleType="big">
@@ -31,8 +33,17 @@ export default function GeneralStudiesRequirementsPageContent({
         </div>
         <div className="flex flex-col mt-5">
           <ContentTitle title={'[학번별] 영역별 교양과목 학점 배분 구조표'} />
-          <Accordion title="2020학번부터 적용" />
-          <HTMLViewer htmlContent={description} margin="mt-5" />
+          <div className="flex flex-col gap-3 mt-5">
+            {generalStudies.map((information) => (
+              <Accordion
+                key={information.id}
+                title={`${information.year}학번부터 적용`}
+                content={information.description}
+              />
+            ))}
+          </div>
+
+          {/* <HTMLViewer htmlContent={description} margin="mt-5" /> */}
         </div>
       </div>
     </PageLayout>
@@ -87,19 +98,28 @@ function SubjectChanges({ status, time, additionalInfos, changes, progress }: Su
 
 interface AccordionProps {
   title: string;
+  content: string;
 }
 
-function Accordion({ title }: AccordionProps) {
+function Accordion({ title, content }: AccordionProps) {
   const [isExpanded, toggleExpand] = useReducer((x) => !x, false);
 
   return (
-    <div className="rounded overflow-hidden border-b border-neutral-200">
-      <h4 className="bg-neutral-100 px-4 py-[6px] flex items-center gap-1" onClick={toggleExpand}>
+    <div className="rounded overflow-hidden border-b border-neutral-200 bg-[#efefef]">
+      <h4
+        className="bg-neutral-100 px-4 py-[6px] flex items-center gap-1 cursor-pointer"
+        onClick={toggleExpand}
+      >
         <span className="material-symbols-outlined font-light text-[36px] text-main-orange">
           {isExpanded ? 'expand_less' : 'expand_more'}
         </span>
         <span className="font-medium tracking-[0.02em]">{title}</span>
       </h4>
+      {isExpanded && (
+        <div className="m-5 bg-white">
+          <HTMLViewer htmlContent={content} />
+        </div>
+      )}
     </div>
   );
 }

@@ -415,7 +415,106 @@ export const getMockGeneralStudiesRequirements = async (): Promise<GeneralStudie
           '2004학년도 이전 입학자중 전공으로 교양 ‘공학수학1·2’ ‘ 컴퓨터의 기초’ 및 ‘컴퓨터원리’ 교과목을 처음 이수하거나 재이수 하는 경우 전공으로 인정함.',
       },
     ],
-    description: await readFile('data/htmls/generalStudiesRequirements.txt', { encoding: 'utf-8' }),
+    generalStudies: [
+      {
+        id: 1,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2020.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2020,
+      },
+      {
+        id: 2,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2019.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2019,
+      },
+      {
+        id: 3,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2018.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2018,
+      },
+      {
+        id: 4,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2017.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2017,
+      },
+      {
+        id: 5,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2016.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2016,
+      },
+      {
+        id: 6,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2015.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2015,
+      },
+      {
+        id: 7,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2014.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2014,
+      },
+      {
+        id: 8,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2013.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2013,
+      },
+      {
+        id: 9,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2012.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2012,
+      },
+      {
+        id: 10,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2011.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2011,
+      },
+      {
+        id: 11,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2010.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2010,
+      },
+      {
+        id: 12,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2009.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2009,
+      },
+      {
+        id: 13,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2008.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2008,
+      },
+      {
+        id: 14,
+        description: await readFile('data/htmls/generalStudies/generalStudies_2007.txt', {
+          encoding: 'utf-8',
+        }),
+        year: 2007,
+      },
+    ],
   };
 };
 
