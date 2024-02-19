@@ -1,38 +1,31 @@
-import { Tag } from '../Tags';
+import Tags from '../Tags';
 
 interface SelectedTagsProps {
   tags: string[];
-  deleteTag: (tag: string) => void;
-  resetTags: () => void;
+  search: (tags: string[]) => void;
   disabled: boolean;
 }
 
-export default function SelectedTags({ tags, deleteTag, resetTags, disabled }: SelectedTagsProps) {
+export default function SelectedTags({ tags, search, disabled }: SelectedTagsProps) {
+  const isTagExist = tags.length > 0;
+
+  const deleteTag = (targetTag: string) => {
+    const filteredTags = tags.filter((tag) => tag !== targetTag);
+    search(filteredTags);
+  };
+
+  const resetTags = () => {
+    search([]);
+  };
+
   return (
     <div className="flex justify-between items-start gap-3 px-2.5">
-      <Tags tags={tags.length ? tags : ['전체']} deleteTag={deleteTag} disabled={disabled} />
+      <Tags
+        tags={isTagExist ? tags : ['전체']}
+        onDelete={isTagExist ? deleteTag : undefined}
+        disabled={disabled}
+      />
       {tags.length > 0 && <TagResetButton onClick={resetTags} disabled={disabled} />}
-    </div>
-  );
-}
-
-interface TagsProps {
-  tags: string[];
-  disabled: boolean;
-  deleteTag: (tag: string) => void;
-}
-
-function Tags({ tags, disabled, deleteTag }: TagsProps) {
-  return (
-    <div className={`flex flex-wrap items-center gap-2.5`}>
-      {tags.map((tag) => (
-        <Tag
-          key={tag}
-          tag={tag}
-          onDelete={tag === '전체' ? undefined : deleteTag}
-          disabled={disabled}
-        />
-      ))}
     </div>
   );
 }

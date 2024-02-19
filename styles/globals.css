@@ -71,21 +71,32 @@
   .autofill-bg-white:-webkit-autofill:hover,
   .autofill-bg-white:-webkit-autofill:focus,
   .autofill-bg-white:-webkit-autofill:active {
-    -webkit-text-fill-color: #e5e5e5 !important;
-    -webkit-box-shadow: 0 0 0px 1000px #141212 inset;
-    box-shadow: 0 0 0px 1000px #141212 inset;
+    -webkit-text-fill-color: #262626 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+    box-shadow: 0 0 0px 1000px #ffffff inset;
     transition: background-color 5000s ease-in-out 0s;
-    caret-color: #e5e5e5;
+    caret-color: #262626;
+  }
+
+  .autofill-bg-neutral-100:-webkit-autofill,
+  .autofill-bg-neutral-100:-webkit-autofill:hover,
+  .autofill-bg-neutral-100:-webkit-autofill:focus,
+  .autofill-bg-neutral-100:-webkit-autofill:active {
+    -webkit-text-fill-color: #262626 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #f5f5f5 inset;
+    box-shadow: 0 0 0px 1000px #f5f5f5 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #262626;
   }
 
   .autofill-bg-neutral-200:-webkit-autofill,
   .autofill-bg-neutral-200:-webkit-autofill:hover,
   .autofill-bg-neutral-200:-webkit-autofill:focus,
   .autofill-bg-neutral-200:-webkit-autofill:active {
-    -webkit-text-fill-color: #e5e5e5 !important;
-    -webkit-box-shadow: 0 0 0px 1000px #262626 inset;
-    box-shadow: 0 0 0px 1000px #262626 inset;
+    -webkit-text-fill-color: #262626 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #e5e5e5 inset;
+    box-shadow: 0 0 0px 1000px #e5e5e5 inset;
     transition: background-color 5000s ease-in-out 0s;
-    caret-color: #e5e5e5;
+    caret-color: #262626;
   }
 }

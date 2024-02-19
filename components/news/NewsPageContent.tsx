@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -42,7 +40,7 @@ export default function NewsPageContent({
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-4 mt-10 mb-8 mx-2.5">
+      <div className="flex flex-col gap-4 mt-10 mb-8 mx-16">
         {searchList.length > 0 ? (
           searchList.map((post) => (
             <NewsRow

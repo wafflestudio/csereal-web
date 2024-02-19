@@ -23,18 +23,22 @@ export default function SeminarSearchBar({ keyword, setSearchParams }: SeminarSe
   };
 
   return (
-    <form className="flex w-fit" onSubmit={searchText}>
-      <input
-        type="text"
-        id="search"
-        className="outline-none border border-neutral-300 rounded-l-sm text-xs w-[13.5rem] h-8 px-2 bg-transparent placeholder:text-neutral-300 tracking-[0.02em] autofill-bg-white"
-        placeholder="세미나 키워드"
-        value={text}
-        onChange={handleChange}
-      />
-      <button className="flex justify-center items-center py-[.1875rem] px-3 h-8 border-y border-r border-neutral-300 rounded-r-sm font-bold text-xs tracking-[0.02em]">
+    <form className="flex w-fit gap-5 items-center" onSubmit={searchText}>
+      <label htmlFor="search" className="font-bold">
         검색
-      </button>
+      </label>
+      <div className="rounded-sm bg-neutral-100 flex items-center w-60 h-[1.875rem] pr-3">
+        <input
+          type="text"
+          id="search"
+          className="outline-none rounded-sm w-full text-sm px-2 bg-transparent tracking-wide autofill-bg-neutral-100"
+          value={text}
+          onChange={handleChange}
+        />
+        <button className="material-symbols-rounded text-[1.25rem] font-light text-neutral-800 hover:text-neutral-500">
+          search
+        </button>
+      </div>
     </form>
   );
 }
