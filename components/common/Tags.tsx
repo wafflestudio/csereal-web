@@ -6,9 +6,19 @@ interface TagsProps {
   tags: string[];
   margin?: string;
   searchPath?: string;
+  disabled?: boolean;
+  onClick?: (tag: string) => void;
+  onDelete?: (tag: string) => void;
 }
 
-export default function Tags({ tags, margin = '', searchPath }: TagsProps) {
+export default function Tags({
+  tags,
+  margin = '',
+  searchPath,
+  disabled,
+  onClick,
+  onDelete,
+}: TagsProps) {
   return (
     <div className={`flex flex-wrap items-center gap-2.5 ${margin}`}>
       {searchPath
@@ -17,7 +27,9 @@ export default function Tags({ tags, margin = '', searchPath }: TagsProps) {
               <Tag tag={tag} hoverStyle="fill" />
             </Link>
           ))
-        : tags.map((tag) => <Tag key={tag} tag={tag} />)}
+        : tags.map((tag) => (
+            <Tag key={tag} tag={tag} disabled={disabled} onClick={onClick} onDelete={onDelete} />
+          ))}
     </div>
   );
 }
@@ -70,13 +82,9 @@ export function Tag({
         <button
           className={`flex items-center h-full pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}
           disabled={disabled}
+          onClick={() => !disabled && onDelete(tag)}
         >
-          <span
-            className="material-symbols-outlined text-xs"
-            onClick={() => !disabled && onDelete(tag)}
-          >
-            close
-          </span>
+          <span className="material-symbols-outlined text-xs">close</span>
         </button>
       )}
     </span>

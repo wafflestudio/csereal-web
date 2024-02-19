@@ -1,4 +1,7 @@
 import { Link } from '@/navigation';
+import Calendar from '@/public/image/calendar.svg';
+import Distance from '@/public/image/distance.svg';
+import Person from '@/public/image/person.svg';
 
 import { seminar } from '@/types/page';
 
@@ -36,7 +39,7 @@ export default function SeminarRow({
   return (
     <article
       className={`flex py-[1.2rem] border-neutral-200 ${
-        !isYearLast && !hideDivider ? 'border-t-[1px]' : null
+        !isYearLast && !hideDivider ? 'border-t' : null
       }`}
     >
       <ImageCell imageURL={imageURL} href={seminarPostPath} />
@@ -65,7 +68,7 @@ function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
     <Link href={href} className="hover:underline">
-      <h3 className="font-noto text-md font-bold mb-[.63rem] leading-5">{title}</h3>
+      <h3 className="font-bold mb-5">{title}</h3>
     </Link>
   );
 }
@@ -80,13 +83,11 @@ function HostInformationCell({
   href: string;
 }) {
   return (
-    <Link href={href} className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
-      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-        person
-      </span>
-      <span className="text-xs font-normal text-neutral-500">{host}</span>
-      <span className="text-xs font-normal w-5 text-center text-neutral-500">|</span>
-      <span className="text-xs font-normal text-neutral-500">{company}</span>
+    <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
+      <Person />
+      <span className="text-md font-normal text-neutral-500">{host}</span>
+      <VerticalDivider />
+      <span className="text-md font-normal text-neutral-500">{company}</span>
     </Link>
   );
 }
@@ -101,17 +102,18 @@ function DateAndLocationCell({
   href: string;
 }) {
   return (
-    <Link href={href} className="hover:cursor-pointer flex flex-row leading-[1.63rem] items-center">
-      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-        calendar_month
-      </span>
-      <span className="text-xs font-normal mr-2 text-neutral-500">{formatDateWithDays(date)}</span>
-      <span className="material-symbols-rounded font-light text-lg cursor-default mr-1 text-neutral-400">
-        distance
-      </span>
-      <span className="text-xs font-normal text-neutral-500">{location}</span>
+    <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
+      <Calendar />
+      <span className="text-md font-normal text-neutral-500">{formatDateWithDays(date)}</span>
+      <VerticalDivider />
+      <Distance />
+      <span className="text-md font-normal text-neutral-500">{location}</span>
     </Link>
   );
+}
+
+function VerticalDivider() {
+  return <span className="text-md font-normal w-5 text-center text-neutral-500">|</span>;
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
