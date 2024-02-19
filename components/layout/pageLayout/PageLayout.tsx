@@ -13,7 +13,7 @@ import Header from '../header/Header';
 interface PageLayoutProps {
   title?: string | JSX.Element;
   titleType: 'big' | 'small';
-  titleMargin: string; // tailwind class
+  titleMargin?: string; // tailwind class
   bodyStyle?: CSSProperties;
   children: ReactNode;
 }
@@ -30,7 +30,7 @@ interface PageLayoutProps {
 export default function PageLayout({
   title,
   titleType,
-  titleMargin,
+  titleMargin = 'mb-[44px]',
   bodyStyle,
   children,
 }: PageLayoutProps) {
@@ -45,10 +45,10 @@ export default function PageLayout({
         title={title}
         currentPage={currentPage}
         titleType={titleType}
-        margin={titleMargin ?? ''}
+        margin={titleMargin}
       />
       <div
-        className={'bg-white pl-[100px] pr-[350px] pt-[44px] pb-[150px] relative'}
+        className={'bg-white pl-[100px] pr-[360px] pt-[44px] pb-[150px] relative'}
         style={bodyStyle}
       >
         {children}
