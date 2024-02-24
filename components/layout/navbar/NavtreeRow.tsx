@@ -39,7 +39,10 @@ function HighlightedRow({
 }) {
   return (
     <div className="flex items-center" style={{ marginBottom }}>
-      <Link href={href} className="text-md mr-4 font-medium text-main-orange shrink-0">
+      <Link
+        href={href}
+        className="text-md mr-4 font-medium text-main-orange shrink-0 h-[1.0625rem]"
+      >
         <FormattedText text={text} />
       </Link>
       <StraightNode />
@@ -59,7 +62,7 @@ function LinkRow({
   return (
     <Link
       href={href}
-      className="block text-md leading-5 font-medium mb-6 text-white hover:text-main-orange"
+      className="block text-md leading-5 font-medium mb-6 text-white hover:text-main-orange h-[1.0625rem]"
       style={{ marginBottom }}
     >
       <FormattedText text={text} />
@@ -69,7 +72,10 @@ function LinkRow({
 
 function TextRow({ text, marginBottom }: { text: string; marginBottom: string }) {
   return (
-    <p className="block text-md leading-5 font-medium mb-6 text-white" style={{ marginBottom }}>
+    <p
+      className="block text-md leading-5 font-medium mb-6 text-white h-[1.0625rem]"
+      style={{ marginBottom }}
+    >
       <FormattedText text={text} />
     </p>
   );
