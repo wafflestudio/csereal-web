@@ -25,16 +25,17 @@ import {
 
 import useModal from '@/hooks/useModal';
 
-import useFooterDesignMode, { FooterMode } from './useFooterToDesignMode';
+import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 
 export default function Footer() {
   const mode = useFooterDesignMode();
 
   const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
+  const borderTop = mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
   return (
-    <footer>
+    <footer className={`border-t-2 ${borderTop}`}>
       <div className={`${topBg} px-[3.75rem] py-10 flex`}>
         <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />

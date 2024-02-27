@@ -13,24 +13,36 @@ import { getPath } from '@/utils/page';
 type NavTreeRowProps = {
   segmentNode: SegmentNode;
   highlight: boolean;
+  marginBottom: string;
 };
 
-export default function NavTreeRow({ segmentNode, highlight }: NavTreeRowProps) {
+export default function NavTreeRow({ segmentNode, highlight, marginBottom }: NavTreeRowProps) {
   const href = getPath(segmentNode);
 
   if (highlight) {
-    return <HighlightedRow href={href} text={segmentNode.name} />;
+    return <HighlightedRow href={href} text={segmentNode.name} marginBottom={marginBottom} />;
   } else if (segmentNode.isPage) {
-    return <LinkRow href={href} text={segmentNode.name} />;
+    return <LinkRow href={href} text={segmentNode.name} marginBottom={marginBottom} />;
   } else {
-    return <TextRow text={segmentNode.name} />;
+    return <TextRow text={segmentNode.name} marginBottom={marginBottom} />;
   }
 }
 
-function HighlightedRow({ href, text }: { href: string; text: string }) {
+function HighlightedRow({
+  href,
+  text,
+  marginBottom,
+}: {
+  href: string;
+  text: string;
+  marginBottom: string;
+}) {
   return (
-    <div className="flex items-center mb-6">
-      <Link href={href} className="text-md mr-4 font-medium text-main-orange shrink-0">
+    <div className="flex items-center" style={{ marginBottom }}>
+      <Link
+        href={href}
+        className="text-md mr-4 font-medium text-main-orange shrink-0 h-[1.0625rem]"
+      >
         <FormattedText text={text} />
       </Link>
       <StraightNode />
@@ -38,17 +50,32 @@ function HighlightedRow({ href, text }: { href: string; text: string }) {
   );
 }
 
-function LinkRow({ href, text }: { href: string; text: string }) {
+function LinkRow({
+  href,
+  text,
+  marginBottom,
+}: {
+  href: string;
+  text: string;
+  marginBottom: string;
+}) {
   return (
-    <Link href={href} className="block text-md font-medium mb-6 text-white hover:text-main-orange ">
+    <Link
+      href={href}
+      className="block text-md leading-5 font-medium mb-6 text-white hover:text-main-orange h-[1.0625rem]"
+      style={{ marginBottom }}
+    >
       <FormattedText text={text} />
     </Link>
   );
 }
 
-function TextRow({ text }: { text: string }) {
+function TextRow({ text, marginBottom }: { text: string; marginBottom: string }) {
   return (
-    <p className="block text-md font-medium mb-6 text-white">
+    <p
+      className="block text-md leading-5 font-medium mb-6 text-white h-[1.0625rem]"
+      style={{ marginBottom }}
+    >
       <FormattedText text={text} />
     </p>
   );
@@ -64,7 +91,7 @@ const FormattedText = ({ text }: { text: string }) => {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="text-xs">{text.slice(idx)}</span>
+      <span className="text-xs leading-5 font-medium">{text.slice(idx)}</span>
     </>
   );
 };
