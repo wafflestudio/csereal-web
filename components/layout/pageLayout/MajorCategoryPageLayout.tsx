@@ -1,6 +1,5 @@
 'use client';
 
-// import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
@@ -17,17 +16,21 @@ interface GuidePageLayoutProps {
   title?: string;
   subtitle?: string;
   description?: string;
+  twoDimensional?: boolean;
 }
 
 export default function MajorCategoryPageLayout({
   title,
   subtitle = '',
   description = '',
+  twoDimensional = false,
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
   title ||= t(currentPage.name);
-  const [selectedCategory, setSelectedCategory] = useState(currentPage.children?.[0] ?? null);
+  const [selectedCategory, setSelectedCategory] = useState(
+    twoDimensional ? currentPage.children?.[0] ?? null : null,
+  );
   const router = useRouter();
 
   return (
@@ -35,8 +38,10 @@ export default function MajorCategoryPageLayout({
       <Header />
       <div className="max-w-[80rem] pt-12 pb-[4.5rem] px-[6.25rem]">
         <div className="text-neutral-500 text-[20px] font-light">{subtitle}</div>
-        <div className="text-white text-[64px] font-semibold tracking-wide mb-8">{title}</div>
-        <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} />
+        <div className="text-white text-[64px] font-semibold tracking-wide">{title}</div>
+        {description && (
+          <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} margin="mt-8" />
+        )}
       </div>
       <div className="bg-neutral-900 pt-20  pb-[11.25rem] px-[6.25rem]">
         <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)] mb-10">
@@ -75,7 +80,7 @@ interface DetailItemProps {
   description: string;
   hasArrow: boolean;
   bgColor: string;
-  hoverColor: string;
+  hoverColor?: string;
   onClick: () => void;
 }
 
@@ -87,7 +92,7 @@ function DetailItem({
   hoverColor,
   onClick,
 }: DetailItemProps) {
-  const hoverBgColor = `hover:${hoverColor}`;
+  const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
   return (
     <div
       className={`w-[300px] h-[160px] ${bgColor} px-7 py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer`}
@@ -124,7 +129,6 @@ function RootItem({ title, description, isPage, isSelected, onClick }: RootItemP
       onClick={onClick}
       hasArrow={isPage}
       bgColor={isSelected ? 'bg-main-orange-dark' : 'bg-neutral-100'}
-      hoverColor="bg-main-orange-dark"
     />
   );
 }
