@@ -100,7 +100,7 @@ function DetailItem({
     >
       <div>
         <h3 className="text-neutral-800 text-[20px] font-medium mb-[16px]">{title}</h3>
-        <p className="text-neutral-800 text-[16px]">{description}</p>
+        <p className="text-neutral-800">{description}</p>
       </div>
       {hasArrow && (
         <div className="text-end">
