@@ -10,6 +10,7 @@
   html,
   body {
     @apply h-full;
+
     font-family:
       'Pretendard Variable',
       Pretendard,
@@ -26,11 +27,9 @@
       'Segoe UI Emoji',
       'Segoe UI Symbol',
       sans-serif;
-  }
-}
 
-:root {
-  color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 /* 출처  */

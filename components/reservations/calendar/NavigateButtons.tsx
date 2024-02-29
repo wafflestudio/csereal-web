@@ -30,7 +30,7 @@ export function SelectDayButton({ date }: { date: Date }) {
   return (
     <div>
       <BasicButton
-        className="h-full px-[0.625rem] flex gap-1 items-center justify-center"
+        className="h-full px-[0.625rem] flex gap-1 items-center justify-center w-24"
         onClick={toggleCalendar}
       >
         {isDateToday ? (
