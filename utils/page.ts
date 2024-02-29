@@ -1,4 +1,4 @@
-import { SegmentNode, admin, main } from '@/types/page';
+import { SegmentNode, main } from '@/types/page';
 
 export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
   if (!(location && location !== main)) return [];

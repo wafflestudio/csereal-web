@@ -10,6 +10,7 @@ import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import { getPath } from '@/utils/page';
 
+import ENG_NAMES from '../../../messages/en.json';
 import Header from '../header/Header';
 
 interface GuidePageLayoutProps {
@@ -84,14 +85,7 @@ interface DetailItemProps {
   onClick: () => void;
 }
 
-function DetailItem({
-  title,
-  description,
-  hasArrow,
-  bgColor,
-  hoverColor,
-  onClick,
-}: DetailItemProps) {
+function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailItemProps) {
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
   return (
     <div
@@ -99,8 +93,10 @@ function DetailItem({
       onClick={onClick}
     >
       <div>
-        <h3 className="text-neutral-800 text-[20px] font-medium mb-[16px]">{title}</h3>
-        <p className="text-neutral-800">{description}</p>
+        <h3 className="text-neutral-800 text-[20px] font-medium mb-2.5">{title}</h3>
+        <p className="text-neutral-800">
+          {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
+        </p>
       </div>
       {hasArrow && (
         <div className="text-end">
