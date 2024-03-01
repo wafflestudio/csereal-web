@@ -38,12 +38,12 @@ export default function SeminarRow({
 
   return (
     <article
-      className={`flex flex-col sm:flex-row py-[1.2rem] border-neutral-200 ${
+      className={`flex flex-col sm:flex-row py-[1.2rem] gap-4 sm:gap-5 border-neutral-200 ${
         !isYearLast && !hideDivider ? 'border-t' : null
       }`}
     >
       <ImageCell imageURL={imageURL} href={seminarPostPath} />
-      <div className="flex flex-col items-start pl-5 break-all">
+      <div className="flex flex-col gap-1 sm:gap-0 items-start break-all">
         <TitleCell title={title} href={seminarPostPath} />
         <HostInformationCell host={host} company={company} href={seminarPostPath} />
         <DateAndLocationCell date={date} location={location} href={seminarPostPath} />
@@ -56,7 +56,7 @@ function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }
   return (
     <Link
       href={href}
-      className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
+      className={`flex items-center justify-center h-[160px] w-[160px] sm:h-[6.25rem] sm:w-[6.25rem] relative ${
         !imageURL && 'bg-neutral-100'
       }`}
     >
@@ -68,7 +68,7 @@ function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
     <Link href={href} className="hover:underline">
-      <h3 className="font-bold mb-5">{title}</h3>
+      <h3 className="font-bold mb-1 sm:mb-5">{title}</h3>
     </Link>
   );
 }
@@ -83,11 +83,11 @@ function HostInformationCell({
   href: string;
 }) {
   return (
-    <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
+    <Link href={href} className="cursor-pointer flex flex-wrap gap-0.5 items-center">
       <Person />
-      <span className="text-md font-normal text-neutral-500">{host}</span>
+      <Text text={host} />
       <VerticalDivider />
-      <span className="text-md font-normal text-neutral-500">{company}</span>
+      <Text text={company} />
     </Link>
   );
 }
@@ -104,16 +104,20 @@ function DateAndLocationCell({
   return (
     <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
       <Calendar />
-      <span className="text-md font-normal text-neutral-500">{formatDateWithDays(date)}</span>
+      <Text text={formatDateWithDays(date)} />
       <VerticalDivider />
       <Distance />
-      <span className="text-md font-normal text-neutral-500">{location}</span>
+      <Text text={location} />
     </Link>
   );
 }
 
+function Text({ text }: { text: string }) {
+  return <span className="text-md font-normal text-neutral-500">{text}</span>;
+}
+
 function VerticalDivider() {
-  return <span className="text-md font-normal w-5 text-center text-neutral-500">|</span>;
+  return <span className="text-md font-normal w-4 sm:w-5 text-center text-neutral-500">|</span>;
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
