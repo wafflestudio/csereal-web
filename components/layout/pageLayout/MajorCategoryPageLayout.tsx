@@ -29,9 +29,10 @@ export default function MajorCategoryPageLayout({
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
   title ||= t(currentPage.name);
-  const [selectedCategory, setSelectedCategory] = useState(
-    twoDimensional ? currentPage.children?.[0] ?? null : null,
-  );
+  const initSelectedCategory = twoDimensional
+    ? currentPage.children!.find((seg) => !seg.isPage)
+    : null;
+  const [selectedCategory, setSelectedCategory] = useState(initSelectedCategory);
   const router = useRouter();
 
   return (
@@ -55,7 +56,7 @@ export default function MajorCategoryPageLayout({
           !description && 'pb-16'
         } sm:pt-20 sm:pb-[11.25rem] sm:px-[6.25rem]`}
       >
-        <div className="grid gap-5 grid-cols-[repeat(2,_1fr)] sm:gap-10 sm:grid-cols-[repeat(auto-fill,_300px)] sm:mb-10">
+        <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] mb-5 sm:mb-10">
           {currentPage.children!.map((subpage, index) => (
             <RootItem
               key={index}
@@ -70,7 +71,7 @@ export default function MajorCategoryPageLayout({
           ))}
         </div>
         {selectedCategory && !selectedCategory.isPage && (
-          <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)] mb-10">
+          <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] sm:mb-10">
             {selectedCategory.children!.map((subpage, index) => (
               <LeafItem
                 key={index}
