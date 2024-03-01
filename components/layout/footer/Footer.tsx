@@ -30,19 +30,23 @@ import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 export default function Footer() {
   const mode = useFooterDesignMode();
 
-  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-900';
+  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
   const borderTop = mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
   return (
     <footer className={`border-t-2 ${borderTop}`}>
-      <div className={`${topBg} px-[3.75rem] py-10 flex`}>
+      <div
+        className={`${topBg} px-6 py-9 sm:px-[3.75rem] sm:py-10 grid gap-y-8 grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] sm:flex`}
+      >
         <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
         <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" mode={mode} />
         <LinkGroup groupName="More" links={moreLinks} width="w-[8rem]" mode={mode} />
       </div>
-      <div className={`${bottomBg} px-[3.75rem] py-8 flex justify-between items-center`}>
+      <div
+        className={`${bottomBg} py-[30px] px-5 sm:px-[3.75rem] sm:py-8 flex flex-col sm:flex-row justify-between sm:items-center`}
+      >
         <FooterBottomLeft />
         <FooterBottomRight />
       </div>
@@ -60,15 +64,17 @@ type LinkGroupProps = {
 function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   const t = useTranslations('Footer');
 
-  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-white';
+  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
 
   return (
     <section className={width}>
-      <h3 className={`${titleColor} text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}>
+      <h3
+        className={`${titleColor} text-sm sm:text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}
+      >
         {t(groupName)}
       </h3>
 
-      <ul className="text-neutral-500 text-sm font-normal flex flex-col gap-[0.63rem]">
+      <ul className="text-neutral-300 font-light sm:text-neutral-500 text-sm sm:font-normal flex flex-col gap-[0.63rem]">
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
@@ -84,8 +90,8 @@ function FooterBottomLeft() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="text-neutral-500 text-sm">
-      <div className="flex [&>a]:font-bold gap-[1ch]">
+    <div className="text-neutral-500 text-xs sm:text-sm">
+      <div className="flex [&>a]:font-bold gap-[1ch] mb-2.5 sm:mb-0 ">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
@@ -104,7 +110,8 @@ function FooterBottomLeft() {
           CSEREAL
         </span>
         <br />
-        Copyright © Department of CSE, SNU. All Rights Reserved.
+        <span className="whitespace-nowrap">© Department of CSE, SNU.</span>
+        <span className="whitespace-nowrap"> All Rights Reserved.</span>
       </p>
     </div>
   );
@@ -112,7 +119,7 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="flex items-center gap-7">
+    <div className="flex items-center gap-7 mt-7 sm:mt-0">
       <Link href={snucomLink}>
         <SnucomIcon />
       </Link>

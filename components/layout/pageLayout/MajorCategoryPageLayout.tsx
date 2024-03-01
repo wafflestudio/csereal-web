@@ -29,23 +29,34 @@ export default function MajorCategoryPageLayout({
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
   title ||= t(currentPage.name);
-  const [selectedCategory, setSelectedCategory] = useState(
-    twoDimensional ? currentPage.children?.[0] ?? null : null,
-  );
+  const initSelectedCategory = twoDimensional
+    ? currentPage.children!.find((seg) => !seg.isPage)
+    : null;
+  const [selectedCategory, setSelectedCategory] = useState(initSelectedCategory);
   const router = useRouter();
 
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-[80rem] py-12 px-[6.25rem]">
-        <div className="text-neutral-500 text-[20px] font-light">{subtitle}</div>
-        <div className="text-white text-[64px] font-semibold tracking-wide">{title}</div>
+      <div className="max-w-[80rem] px-5 py-8 sm:pt-12 sm:pb-[4.5rem] sm:px-[6.25rem]">
+        <div className="text-neutral-500 text:sm sm:text-[20px] font-light mb-2">{subtitle}</div>
+        <div className="text-white text-[32px] sm:text-[64px] font-semibold tracking-wide">
+          {title}
+        </div>
         {description && (
-          <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} margin="mt-8 mb-6" />
+          <HTMLViewer
+            htmlContent={description}
+            style={{ color: '#f5f5f5' }}
+            margin="mt-8 mb-6 hidden sm:block"
+          />
         )}
       </div>
-      <div className="bg-neutral-900 pt-20  pb-[11.25rem] px-[6.25rem]">
-        <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)] mb-10">
+      <div
+        className={`bg-neutral-900 px-5 pt-7 ${
+          !description && 'pb-16'
+        } sm:pt-20 sm:pb-[11.25rem] sm:px-[6.25rem]`}
+      >
+        <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] mb-5 sm:mb-10">
           {currentPage.children!.map((subpage, index) => (
             <RootItem
               key={index}
@@ -60,7 +71,7 @@ export default function MajorCategoryPageLayout({
           ))}
         </div>
         {selectedCategory && !selectedCategory.isPage && (
-          <div className="grid gap-10 grid-cols-[repeat(auto-fill,_300px)] mb-10">
+          <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] sm:mb-10">
             {selectedCategory.children!.map((subpage, index) => (
               <LeafItem
                 key={index}
@@ -72,6 +83,14 @@ export default function MajorCategoryPageLayout({
           </div>
         )}
       </div>
+      {description && (
+        <div className="sm:hidden px-5 pt-6 pb-24">
+          <HTMLViewer
+            htmlContent={description}
+            style={{ color: '#a3a3a3', fontWeight: 300, fontSize: 13 }}
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -89,18 +108,20 @@ function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailIte
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
   return (
     <div
-      className={`w-[300px] h-[160px] ${bgColor} px-7 py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer`}
+      className={`h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer`}
       onClick={onClick}
     >
       <div>
-        <h3 className="text-neutral-800 text-[20px] font-medium mb-2.5">{title}</h3>
-        <p className="text-neutral-800">
+        <h3 className="text-neutral-800 text-md sm:text-[20px] font-medium mb-[2.5px] sm:mb-2.5">
+          {title}
+        </h3>
+        <p className="text-neutral-800 text-[11px] sm:text-base">
           {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
         </p>
       </div>
       {hasArrow && (
         <div className="text-end">
-          <span className="material-symbols-outlined font-extralight text-[32px] text-neutral-800">
+          <span className="material-symbols-outlined font-extralight text-[18px] sm:text-[32px] text-neutral-800">
             arrow_forward
           </span>
         </div>
