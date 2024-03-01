@@ -38,11 +38,11 @@ export default function Header() {
         </div>
       </div>
       <HeaderRight />
-      <button onClick={toggleNav} className="flex justify-center items-center">
+      <button onClick={toggleNav} className="sm:hidden flex justify-center items-center">
         {isNavOpen ? (
           <span className="material-symbols-outlined text-white font-light">close</span>
         ) : (
-          <Menu className="sm:hidden cursor-pointer" />
+          <Menu className="cursor-pointer" />
         )}
       </button>
     </header>
