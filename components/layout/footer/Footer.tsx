@@ -68,7 +68,9 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
 
   return (
     <section className={width}>
-      <h3 className={`${titleColor} text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}>
+      <h3
+        className={`${titleColor} text-sm sm:text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}
+      >
         {t(groupName)}
       </h3>
 
@@ -88,7 +90,7 @@ function FooterBottomLeft() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="text-neutral-500 text-sm">
+    <div className="text-neutral-500 text-xs sm:text-sm">
       <div className="flex [&>a]:font-bold gap-[1ch] mb-2.5 sm:mb-0 ">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
