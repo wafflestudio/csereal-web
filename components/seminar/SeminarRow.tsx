@@ -38,7 +38,7 @@ export default function SeminarRow({
 
   return (
     <article
-      className={`flex py-[1.2rem] border-neutral-200 ${
+      className={`flex flex-col sm:flex-row py-[1.2rem] border-neutral-200 ${
         !isYearLast && !hideDivider ? 'border-t' : null
       }`}
     >

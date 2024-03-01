@@ -24,13 +24,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div
-      className="pt-[54px]"
-      style={{
-        paddingLeft: PAGE_TITLE_LEFT_MARGIN_PX,
-        paddingRight: PAGE_TITLE_LEFT_MARGIN_PX,
-      }}
-    >
+    <div className="pt-[54px] px-5 sm:px-[100px]">
       <div
         className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin}`}
       >

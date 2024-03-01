@@ -30,7 +30,7 @@ interface PageLayoutProps {
 export default function PageLayout({
   title,
   titleType,
-  titleMargin = 'mb-[44px]',
+  titleMargin = 'mb-6 sm:mb-11',
   bodyStyle,
   children,
 }: PageLayoutProps) {
@@ -48,7 +48,9 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className={'bg-white pl-[100px] pr-[360px] pt-[44px] pb-[150px] relative'}
+        className={
+          'bg-white px-5 py-7 sm:pl-[100px] sm:pr-[360px] sm:pt-[44px] sm:pb-[150px] relative'
+        }
         style={bodyStyle}
       >
         {children}

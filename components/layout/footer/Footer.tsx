@@ -65,6 +65,7 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   const t = useTranslations('Footer');
 
   const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
+  const itemColor = mode === 'light' ? 'text-neutral-500' : 'text-neutral-300 sm:text-neutral-500';
 
   return (
     <section className={width}>
@@ -74,7 +75,7 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
         {t(groupName)}
       </h3>
 
-      <ul className="text-neutral-300 font-light sm:text-neutral-500 text-sm sm:font-normal flex flex-col gap-[0.63rem]">
+      <ul className={`${itemColor} font-light text-sm sm:font-normal flex flex-col gap-[0.63rem]`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
