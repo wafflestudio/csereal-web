@@ -44,7 +44,9 @@ export default function Footer() {
         <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" mode={mode} />
         <LinkGroup groupName="More" links={moreLinks} width="w-[8rem]" mode={mode} />
       </div>
-      <div className={`${bottomBg} px-[3.75rem] py-8 flex justify-between items-center`}>
+      <div
+        className={`${bottomBg} py-[30px] px-5 sm:px-[3.75rem] sm:py-8 flex flex-col sm:flex-row justify-between sm:items-center`}
+      >
         <FooterBottomLeft />
         <FooterBottomRight />
       </div>
@@ -87,7 +89,7 @@ function FooterBottomLeft() {
 
   return (
     <div className="text-neutral-500 text-sm">
-      <div className="flex [&>a]:font-bold gap-[1ch]">
+      <div className="flex [&>a]:font-bold gap-[1ch] mb-2.5 sm:mb-0 ">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
@@ -106,7 +108,8 @@ function FooterBottomLeft() {
           CSEREAL
         </span>
         <br />
-        Copyright © Department of CSE, SNU. All Rights Reserved.
+        <span className="whitespace-nowrap">© Department of CSE, SNU.</span>
+        <span className="whitespace-nowrap"> All Rights Reserved.</span>
       </p>
     </div>
   );
@@ -114,7 +117,7 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="flex items-center gap-7">
+    <div className="flex items-center gap-7 mt-7 sm:mt-0">
       <Link href={snucomLink}>
         <SnucomIcon />
       </Link>
