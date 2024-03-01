@@ -1,6 +1,7 @@
 'use-client';
 
 import { useTranslations } from 'next-intl';
+import { useReducer } from 'react';
 
 import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
@@ -20,6 +21,7 @@ const LOGOUT_URL = BASE_URL + '/logout';
 
 export default function Header() {
   const goToMainPage = () => (window.location.href = '/');
+  const [isNavOpen, toggleNav] = useReducer((x) => !x, false);
 
   return (
     <header
@@ -36,7 +38,13 @@ export default function Header() {
         </div>
       </div>
       <HeaderRight />
-      <Menu className="sm:hidden" />
+      <button onClick={toggleNav} className="flex justify-center items-center">
+        {isNavOpen ? (
+          <span className="material-symbols-outlined text-white font-light">close</span>
+        ) : (
+          <Menu className="sm:hidden cursor-pointer" />
+        )}
+      </button>
     </header>
   );
 }
