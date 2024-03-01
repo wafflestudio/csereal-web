@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-[#1f2021] h-[68px] px-5 sm:h-auto sm:px-[3.75rem] sm:pt-12 sm:pb-[2.44rem] items-center flex justify-between`}
+      className={`h-[68px] px-5 sm:h-auto sm:px-[3.75rem] sm:pt-12 sm:pb-[2.44rem] items-center flex justify-between`}
     >
       <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo className="hidden sm:block" />
