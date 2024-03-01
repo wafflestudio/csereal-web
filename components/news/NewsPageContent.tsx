@@ -40,7 +40,7 @@ export default function NewsPageContent({
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-4 mt-10 mb-8 mx-16">
+      <div className="flex flex-col gap-5 mt-10 mb-8 sm:mx-16">
         {searchList.length > 0 ? (
           searchList.map((post) => (
             <NewsRow
