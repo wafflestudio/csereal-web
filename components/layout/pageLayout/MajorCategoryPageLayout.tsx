@@ -30,9 +30,11 @@ export default function MajorCategoryPageLayout({
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-[80rem] pt-12 pb-[4.5rem] px-[6.25rem]">
-        <div className="text-neutral-500 text-[20px] font-light">{subtitle}</div>
-        <div className="text-white text-[64px] font-semibold tracking-wide mb-8">{title}</div>
+      <div className="max-w-[80rem] px-5 py-8 sm:pt-12 sm:pb-[4.5rem] sm:px-[6.25rem]">
+        <div className="text-neutral-500 text-sm sm:text-[20px] font-light">{subtitle}</div>
+        <div className="text-white text-[32px] sm:text-[64px] font-semibold tracking-wide mb-8">
+          {title}
+        </div>
         <HTMLViewer htmlContent={description} style={{ color: '#f5f5f5' }} />
       </div>
       <div className="bg-neutral-900 pt-20 pb-[13.75rem] px-[6.25rem]">
