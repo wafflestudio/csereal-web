@@ -6,6 +6,10 @@ import { BASE_URL } from '@/apis';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/navigation';
 import HeaderLogo from '@/public/image/header/header_logo.svg';
+import HeaderSubText from '@/public/image/header/header_sub_text.svg';
+import HeaderText from '@/public/image/header/header_text.svg';
+import Menu from '@/public/image/header/menu.svg';
+import SNULogo from '@/public/image/SNU_Logo.svg';
 
 import useLanguage from '@/hooks/useLanguage';
 
@@ -18,11 +22,21 @@ export default function Header() {
   const goToMainPage = () => (window.location.href = '/');
 
   return (
-    <header className={`bg-[#1f2021] px-[3.75rem] pt-12 pb-[2.44rem] flex justify-between`}>
+    <header
+      className={`bg-[#1f2021] h-[68px] px-5 sm:h-auto sm:px-[3.75rem] sm:pt-12 sm:pb-[2.44rem] items-center flex justify-between`}
+    >
       <div onClick={goToMainPage} className="cursor-pointer">
-        <HeaderLogo />
+        <HeaderLogo className="hidden sm:block" />
+        <div className="sm:hidden flex gap-4 items-center">
+          <SNULogo className="fill-white" width="34" height="35" />
+          <div className="flex flex-col gap-1">
+            <HeaderText />
+            <HeaderSubText />
+          </div>
+        </div>
       </div>
       <HeaderRight />
+      <Menu className="sm:hidden" />
     </header>
   );
 }
@@ -36,7 +50,7 @@ function HeaderRight() {
   const langButtonText = isEnglish ? '한국어' : 'ENG';
 
   return (
-    <div className="flex flex-col justify-between gap-[0.94rem] items-end">
+    <div className="hidden sm:flex flex-col justify-between gap-[0.94rem] items-end">
       <div className="font-yoon text-xs font-normal flex items-center gap-3 text-white">
         {user?.isStaff && (
           <>

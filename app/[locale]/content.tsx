@@ -10,7 +10,7 @@ import { main } from '@/types/page';
 
 export default function Content({ children }: PropsWithChildren) {
   const node = useCurrentSegmentNode();
-  const ml = node === main ? `ml-[11rem]` : 'ml-[6.25rem]';
+  const ml = node === main ? `sm:ml-[11rem]` : 'sm:ml-[6.25rem]';
 
   return (
     <div className={`flex flex-col flex-1 ${ml}`}>

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
 export default function ImageWithFallback(props: ImageWithFallbackProps) {
-  const { src, ...rest } = props;
+  const { ...rest } = props;
   const [error, setError] = useState(false);
 
   if (error || !props.src) {
@@ -17,7 +17,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
         }`}
         style={{ width: props.width, height: props.height }}
       >
-        <SnuLogo className="fill-neutral-300" />
+        <SnuLogo className="fill-neutral-300" width="45" height="47" />
       </div>
     );
   }
