@@ -32,16 +32,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
           searchList.map((post, index) => (
             <div key={post.id}>
               {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
-              <SeminarRow
-                id={post.id}
-                title={post.title}
-                host={post.name}
-                company={post.affiliation}
-                date={new Date(post.startDate)}
-                location={post.location}
-                imageURL={post.imageURL}
-                isYearLast={post.isYearLast}
-              />
+              <SeminarRow seminar={post} hideDivider={false} />
             </div>
           ))
         ) : (

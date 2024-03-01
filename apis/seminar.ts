@@ -1,4 +1,4 @@
-import { PATCHSeminarBody, POSTSeminarBody, Seminar, SeminarList } from '@/types/seminar';
+import { PATCHSeminarBody, POSTSeminarBody } from '@/types/seminar';
 
 import { patchRequest, postRequest } from '.';
 

@@ -16,7 +16,7 @@ import {
 } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NewsTags } from '@/constants/tag';
+import { NEWS_TAGS } from '@/constants/tag';
 
 import { News } from '@/types/news';
 import { news } from '@/types/page';
@@ -87,7 +87,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
   return (
     <PageLayout title="새 소식 편집" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
-        tags={NewsTags}
+        tags={NEWS_TAGS}
         showMainImage
         showIsSlide
         showIsImportant

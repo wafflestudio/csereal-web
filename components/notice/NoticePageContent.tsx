@@ -7,7 +7,7 @@ import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NoticeList from '@/components/notice/NoticeList';
 
-import { NoticeTags } from '@/constants/tag';
+import { NOTICE_TAGS } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
@@ -62,7 +62,7 @@ export default function NoticePageContent({
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]" bodyStyle={{ paddingTop: 54 }}>
       <SearchBox
-        tags={NoticeTags}
+        tags={NOTICE_TAGS}
         initTags={tags}
         initKeyword={keyword ?? ''}
         disabled={isEditMode}

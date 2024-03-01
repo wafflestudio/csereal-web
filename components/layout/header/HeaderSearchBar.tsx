@@ -35,7 +35,7 @@ function useSearch() {
   const searchText = () => {
     const query = text.trim();
     if (query) {
-      router.push(`/search?query=${query}`);
+      router.push(`/search?keyword=${query}`);
     }
   };
 

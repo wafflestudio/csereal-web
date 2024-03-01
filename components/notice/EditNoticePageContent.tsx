@@ -15,9 +15,7 @@ import {
 } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NoticeTags } from '@/constants/tag';
-
-import useModal from '@/hooks/useModal';
+import { NOTICE_TAGS } from '@/constants/tag';
 
 import { Notice } from '@/types/notice';
 import { notice } from '@/types/page';
@@ -26,14 +24,11 @@ import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { errorToast, successToast } from '@/utils/toast';
 
-import AlertModal from '../modal/AlertModal';
-
 const noticePath = getPath(notice);
 
 export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
-  const [_, startTransition] = useTransition();
-  const { openModal } = useModal();
+  const [, startTransition] = useTransition();
 
   const initialContent: PostEditorContent = {
     title: data.title,
@@ -92,7 +87,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   return (
     <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
-        tags={NoticeTags}
+        tags={NOTICE_TAGS}
         showIsPinned
         showIsImportant
         actions={{

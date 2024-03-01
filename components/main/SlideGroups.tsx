@@ -61,7 +61,7 @@ function Slide({ slide }: SlideProps) {
           src={slide.imageURL}
           alt={`${slide.title}_이미지`}
           fill
-          objectFit="cover"
+          className="object-cover"
         />
       </Link>
       <div className="flex flex-col items-end p-2.5 h-[128px] border-x border-b border-neutral-150">

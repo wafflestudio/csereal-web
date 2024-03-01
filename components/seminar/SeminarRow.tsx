@@ -4,111 +4,77 @@ import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
 
 import { seminar } from '@/types/page';
+import { SeminarPreview } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
 
 import ImageWithFallback from '../common/ImageWithFallback';
 
 export interface SeminarRowProps {
-  id: number;
-  title: string;
-  host: string;
-  company: string;
-  date: Date;
-  location: string;
-  imageURL: string | null;
-  isYearLast: boolean;
-  hideDivider?: boolean;
+  seminar: SeminarPreview;
+  hideDivider: boolean;
 }
 
 const seminarPath = getPath(seminar);
 
 export default function SeminarRow({
-  id,
-  title,
-  host,
-  company,
-  date,
-  location,
-  imageURL,
-  isYearLast,
+  seminar: { id, isYearLast, imageURL, title, name, affiliation, startDate, location },
   hideDivider,
 }: SeminarRowProps) {
   const seminarPostPath = `${seminarPath}/${id}`;
 
   return (
-    <article
-      className={`flex py-[1.2rem] border-neutral-200 ${
+    <Link
+      href={seminarPostPath}
+      className={`group flex py-[1.2rem] border-neutral-200 ${
         !isYearLast && !hideDivider ? 'border-t' : null
       }`}
     >
-      <ImageCell imageURL={imageURL} href={seminarPostPath} />
-      <div className="flex flex-col items-start pl-5 break-all">
-        <TitleCell title={title} href={seminarPostPath} />
-        <HostInformationCell host={host} company={company} href={seminarPostPath} />
-        <DateAndLocationCell date={date} location={location} href={seminarPostPath} />
+      <ImageCell imageURL={imageURL} />
+      <div className="pl-5">
+        <TitleCell title={title} />
+        <HostInformationCell host={name} company={affiliation} />
+        <DateAndLocationCell date={new Date(startDate)} location={location} />
       </div>
-    </article>
-  );
-}
-
-function ImageCell({ imageURL, href }: { imageURL: string | null; href: string }) {
-  return (
-    <Link
-      href={href}
-      className={`flex items-center justify-center h-[6.25rem] w-[6.25rem] relative ${
-        !imageURL && 'bg-neutral-100'
-      }`}
-    >
-      <ImageWithFallback alt="대표 이미지" src={imageURL} fill className="object-cover" />
     </Link>
   );
 }
 
-function TitleCell({ title, href }: { title: string; href: string }) {
+function ImageCell({ imageURL }: { imageURL: string | null }) {
   return (
-    <Link href={href} className="hover:underline">
-      <h3 className="font-bold mb-5">{title}</h3>
-    </Link>
+    // title에 밀리는 것을 막기 위해 shrink-0 사용
+    <div className={'h-[6.25rem] w-[6.25rem] relative shrink-0'}>
+      <ImageWithFallback alt="대표 이미지" fill src={imageURL} className="object-cover" />
+    </div>
   );
 }
 
-function HostInformationCell({
-  host,
-  company,
-  href,
-}: {
-  host: string;
-  company: string;
-  href: string;
-}) {
+function TitleCell({ title }: { title: string }) {
   return (
-    <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
+    <h3 className="group-hover:underline font-bold mb-5 max-w-[calc(100% - 6.25rem)]">{title}</h3>
+  );
+}
+
+function HostInformationCell({ host, company }: { host: string; company: string }) {
+  return (
+    <div className="hover:cursor-pointer flex gap-0.5 items-center">
       <Person />
       <span className="text-md font-normal text-neutral-500">{host}</span>
       <VerticalDivider />
       <span className="text-md font-normal text-neutral-500">{company}</span>
-    </Link>
+    </div>
   );
 }
 
-function DateAndLocationCell({
-  date,
-  location,
-  href,
-}: {
-  date: Date;
-  location: string;
-  href: string;
-}) {
+function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
   return (
-    <Link href={href} className="hover:cursor-pointer flex gap-0.5 items-center">
+    <div className="hover:cursor-pointer flex gap-0.5 items-center">
       <Calendar />
       <span className="text-md font-normal text-neutral-500">{formatDateWithDays(date)}</span>
       <VerticalDivider />
       <Distance />
       <span className="text-md font-normal text-neutral-500">{location}</span>
-    </Link>
+    </div>
   );
 }
 

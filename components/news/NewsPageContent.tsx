@@ -5,7 +5,7 @@ import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import NewsRow from '@/components/news/NewsRow';
 
-import { NewsTags } from '@/constants/tag';
+import { NEWS_TAGS } from '@/constants/tag';
 
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
@@ -35,7 +35,7 @@ export default function NewsPageContent({
     <PageLayout titleType="big" titleMargin="mb-6">
       <SearchBox
         key={tags + ''}
-        tags={NewsTags}
+        tags={NEWS_TAGS}
         initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}

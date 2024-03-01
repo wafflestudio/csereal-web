@@ -35,14 +35,13 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
 }
 
 interface ImageWithFallbackProps {
-  alt: string;
   src: string | null | undefined;
-  className?: string;
-  sizes?: string;
+  alt: string;
   width?: number | `${number}` | undefined;
   height?: number | `${number}` | undefined;
+
+  className?: string;
+  sizes?: string;
   fill?: boolean | undefined;
   priority?: boolean | undefined;
-  loading?: 'eager' | 'lazy' | undefined;
-  objectFit?: 'cover' | 'contain';
 }
