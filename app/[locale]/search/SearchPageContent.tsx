@@ -16,6 +16,7 @@ import { SEARCH_TAGS } from '@/constants/tag';
 import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 import { main, news, notice, seminar } from '@/types/page';
+import { NoticeSearchResult, NewsSearchResult } from '@/types/search';
 import { SeminarList } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';

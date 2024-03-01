@@ -79,13 +79,7 @@ export default function NewsRow({
       </div>
 
       <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">
-        <ImageWithFallback
-          alt="포스트 대표 이미지"
-          src={imageURL}
-          fill
-          className="object-fill"
-          sizes="12.5rem"
-        />
+        <ImageWithFallback alt="포스트 대표 이미지" src={imageURL} fill className="object-cover" />
       </Link>
     </article>
   );
