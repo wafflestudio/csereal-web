@@ -30,13 +30,15 @@ import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 export default function Footer() {
   const mode = useFooterDesignMode();
 
-  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-900';
+  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
   const borderTop = mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
   return (
     <footer className={`border-t-2 ${borderTop}`}>
-      <div className={`${topBg} px-[3.75rem] py-10 flex`}>
+      <div
+        className={`${topBg} px-6 py-9 sm:px-[3.75rem] sm:py-10 grid gap-y-8 grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] sm:flex`}
+      >
         <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
         <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" mode={mode} />
@@ -60,7 +62,7 @@ type LinkGroupProps = {
 function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   const t = useTranslations('Footer');
 
-  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-white';
+  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
 
   return (
     <section className={width}>
@@ -68,7 +70,7 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
         {t(groupName)}
       </h3>
 
-      <ul className="text-neutral-500 text-sm font-normal flex flex-col gap-[0.63rem]">
+      <ul className="text-neutral-300 font-light sm:text-neutral-500 text-sm sm:font-normal flex flex-col gap-[0.63rem]">
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
