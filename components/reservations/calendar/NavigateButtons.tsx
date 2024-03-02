@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import MuiDateSelector from '../../mui/MuiDateSelector';
 import BasicButton from '../BasicButton';
@@ -51,6 +51,7 @@ export function SelectDayButton({ date }: { date: Date }) {
               date && querySetter(date);
               toggleCalendar();
             }}
+            enablePast
           />
         )}
       </div>

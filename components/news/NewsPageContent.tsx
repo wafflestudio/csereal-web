@@ -7,11 +7,10 @@ import NewsRow from '@/components/news/NewsRow';
 
 import { NEWS_TAGS } from '@/constants/tag';
 
-import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-
 import { NewsPreviewList } from '@/types/news';
 import { news } from '@/types/page';
 
+import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import { getPath } from '@/utils/page';
 
 import AdminFeatures from './AdminFeatures';

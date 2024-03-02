@@ -23,7 +23,7 @@ import {
   privacyPath,
 } from '@/constants/footer';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 

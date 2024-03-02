@@ -12,7 +12,7 @@ import HeaderText from '@/public/image/header/header_text.svg';
 import Menu from '@/public/image/header/menu.svg';
 import SNULogo from '@/public/image/SNU_Logo.svg';
 
-import useLanguage from '@/hooks/useLanguage';
+import useLanguage from '@/utils/hooks/useLanguage';
 
 import HeaderSearchBar from './HeaderSearchBar';
 

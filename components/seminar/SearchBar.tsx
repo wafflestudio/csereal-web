@@ -2,7 +2,7 @@
 
 import { useState, ChangeEventHandler, FormEvent } from 'react';
 
-import { SearchInfo } from '@/hooks/useCustomSearchParams';
+import { SearchInfo } from '@/utils/hooks/useCustomSearchParams';
 
 interface SeminarSearchBarProps {
   keyword?: string;

@@ -6,9 +6,10 @@ import SeminarSearchBar from '@/components/seminar/SearchBar';
 import SeminarRow from '@/components/seminar/SeminarRow';
 import SeminarYear from '@/components/seminar/SeminarYear';
 
-import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-
 import { SeminarList } from '@/types/seminar';
+
+import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+
 
 import AdminFeatures from './AdminFeatures';
 import LoginStaffVisible from '../common/LoginStaffVisible';

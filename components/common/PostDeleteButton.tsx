@@ -1,20 +1,19 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { newsDeleteAction } from '@/actions/newsActions';
 import { noticeDeleteAction } from '@/actions/noticeActions';
 import { seminarDeleteAction } from '@/actions/seminarActions';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import { errorToast, successToast } from '../../utils/toast';
 import AlertModal from '../modal/AlertModal';
 
 export default function PostDeleteButton({ postType, id }: { postType: string; id: string }) {
   const { openModal } = useModal();
-  const [_, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   const idInNumber = +id;
   if (Number.isNaN(idInNumber)) {

@@ -6,8 +6,7 @@ import React, { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 
 import ENG_NAMES from '../../../messages/en.json';

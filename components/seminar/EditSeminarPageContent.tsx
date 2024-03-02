@@ -8,8 +8,6 @@ import { editSeminar } from '@/apis/seminar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import useModal from '@/hooks/useModal';
-
 import { seminar } from '@/types/page';
 import { Seminar } from '@/types/seminar';
 
@@ -20,13 +18,11 @@ import { errorToast } from '@/utils/toast';
 import { isLocalFile, isLocalImage, isUploadedFile } from '../editor/PostEditorProps';
 import SeminarEditor from '../editor/SeminarEditor';
 import { SeminarEditorContent } from '../editor/SeminarEditorProps';
-import AlertModal from '../modal/AlertModal';
 
 const seminarPath = getPath(seminar);
 
 export default function EditSeminarPageContent({ id, data }: { id: number; data: Seminar }) {
   const router = useRouter();
-  const { openModal } = useModal();
 
   const initialContent: SeminarEditorContent = {
     title: data.title,

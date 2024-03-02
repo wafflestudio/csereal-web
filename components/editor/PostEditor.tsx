@@ -5,7 +5,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorWrapper, { isContentEmpty } from '@/components/editor/common/SunEditorWrapper';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';

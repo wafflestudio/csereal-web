@@ -4,9 +4,10 @@ import { PropsWithChildren } from 'react';
 
 import Footer from '@/components/layout/footer/Footer';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
 import { main } from '@/types/page';
+
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+
 
 export default function Content({ children }: PropsWithChildren) {
   const node = useCurrentSegmentNode();

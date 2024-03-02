@@ -5,7 +5,7 @@ import React, { CSSProperties, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
 import PageTitle from './PageTitle';
 import Header from '../header/Header';

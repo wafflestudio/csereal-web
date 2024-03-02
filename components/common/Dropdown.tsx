@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
+import { useOutClickAlerter } from '@/utils/hooks/useOutClickAlerter';
 
 interface DropdownProps {
   contents: string[];

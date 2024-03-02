@@ -1,4 +1,4 @@
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import ModalFrame from './ModalFrame';
 
@@ -7,8 +7,6 @@ const MEMBERS = [
   { part: 'Frontend Developer', members: ['이성열', '임찬솔'] },
   { part: 'Backend Developer', members: ['김준형', '우혁준', '조성규'] },
 ];
-
-const MAIL = 'csereal.waffle@gmail.com';
 
 export default function CserealModal() {
   const { closeModal } = useModal();

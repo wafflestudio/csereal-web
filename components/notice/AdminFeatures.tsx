@@ -2,10 +2,9 @@
 
 import { batchDeleteAction, batchUnpinAction } from '@/actions/noticeActions';
 
-import useModal from '@/hooks/useModal';
-
 import { notice } from '@/types/page';
 
+import useModal from '@/utils/hooks/useModal';
 import { getPath } from '@/utils/page';
 import { errorToast, successToast } from '@/utils/toast';
 

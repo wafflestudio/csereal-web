@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ko';
 import { useRef } from 'react';
 
-import { useOutClickAlerter } from '@/hooks/useOutClickAlerter';
+import { useOutClickAlerter } from '@/utils/hooks/useOutClickAlerter';
 
 export default function MuiDateSelector({
   date,

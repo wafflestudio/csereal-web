@@ -9,9 +9,10 @@ import NoticeList from '@/components/notice/NoticeList';
 
 import { NOTICE_TAGS } from '@/constants/tag';
 
-import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
-
 import { NoticePreviewList } from '@/types/notice';
+
+import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+
 
 import AdminFeatures from './AdminFeatures';
 import LoginStaffVisible from '../common/LoginStaffVisible';
