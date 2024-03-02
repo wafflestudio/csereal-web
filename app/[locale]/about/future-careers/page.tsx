@@ -10,7 +10,7 @@ export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
-      <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
+      <p className="text-md font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
         {description}
       </p>
       <CareerStat stat={stat} />
@@ -25,7 +25,7 @@ function CareerCompanies({ companies }: { companies: FutureCareers['companies'] 
       <h3 className="text-base font-noto font-bold leading-[1.625rem] mb-[0.8rem]">
         졸업생 창업 기업
       </h3>
-      <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
+      <div className="text-md font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
         <ol>
           {companies.map((company, index) => (
