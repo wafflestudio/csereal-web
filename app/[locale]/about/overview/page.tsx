@@ -7,6 +7,8 @@ import Attachment from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+// 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일
+// 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function OverviewPage() {
   return (
     <PageLayout titleType="big" titleMargin="mb-9" removeChildPadding>
