@@ -6,10 +6,10 @@ import LocationGuide from '@/components/directions/LocationGuide';
 import LocationMap from '@/components/directions/LocationMap';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { directions } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
+import { directions } from '@/utils/segmentNode';
 
 interface DirectionsPageProps {
   searchParams: { selected?: string };

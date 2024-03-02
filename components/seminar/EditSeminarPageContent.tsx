@@ -8,11 +8,11 @@ import { editSeminar } from '@/apis/seminar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { seminar } from '@/types/page';
 import { Seminar } from '@/types/seminar';
 
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { seminar } from '@/utils/segmentNode';
 import { errorToast } from '@/utils/toast';
 
 import { isLocalFile, isLocalImage, isUploadedFile } from '../editor/PostEditorProps';

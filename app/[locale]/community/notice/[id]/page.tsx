@@ -7,11 +7,11 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { notice } from '@/types/page';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 interface NoticePostPageProps {
   params: { id: string };

@@ -8,10 +8,11 @@ import NewsRow from '@/components/news/NewsRow';
 import { NEWS_TAGS } from '@/constants/tag';
 
 import { NewsPreviewList } from '@/types/news';
-import { news } from '@/types/page';
+
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 import AdminFeatures from './AdminFeatures';
 import LoginStaffVisible from '../common/LoginStaffVisible';

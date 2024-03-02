@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 
 import { batchDeleteNotice, batchUnpinNotice, deleteNotice } from '@/apis/noticeServer';
 
-import { notice } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
+
 
 const noticePath = getPath(notice);
 

@@ -4,10 +4,10 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ClubDetails from '@/components/studentClubs/ClubDetails';
 
-import { studentClubs } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
+import { studentClubs } from '@/utils/segmentNode';
 
 interface StudentClubsPageProps {
   searchParams: { selected?: string };

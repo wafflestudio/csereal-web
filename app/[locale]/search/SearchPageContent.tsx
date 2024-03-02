@@ -13,12 +13,12 @@ import SeminarRow from '@/components/seminar/SeminarRow';
 
 import { SEARCH_TAGS } from '@/constants/tag';
 
-import { main, news, notice, seminar } from '@/types/page';
 import { NoticeSearchResult, NewsSearchResult } from '@/types/search';
 import { SeminarList } from '@/types/seminar';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import { getPath } from '@/utils/page';
+import { main, news, notice, seminar } from '@/utils/segmentNode';
 
 const newsPath = getPath(news);
 const noticePath = getPath(notice);

@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 
 import { deleteNews } from '@/apis/newsServer';
 
-import { news } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
+
 
 const newsPath = getPath(news);
 

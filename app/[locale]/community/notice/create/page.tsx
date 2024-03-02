@@ -12,10 +12,10 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
 
-import { notice } from '@/types/page';
 
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 const noticePath = getPath(notice);
 

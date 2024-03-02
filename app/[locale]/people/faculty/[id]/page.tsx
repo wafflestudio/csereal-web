@@ -7,9 +7,9 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import FacultyInfoWithImage from '@/components/people/FacultyInfoWithImage';
 import PeopleInfoList from '@/components/people/PeopleInfoList';
 
-import { researchLabs } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { researchLabs } from '@/utils/segmentNode';
+
 
 const labUrl = getPath(researchLabs);
 

@@ -1,6 +1,5 @@
-import { SegmentNode } from '@/types/page';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import { SegmentNode } from '@/utils/segmentNode';
 
 
 import NavTreeRow from './NavtreeRow';

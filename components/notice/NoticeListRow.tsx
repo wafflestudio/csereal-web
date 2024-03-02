@@ -5,9 +5,10 @@ import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
 import { NoticePreview } from '@/types/notice';
-import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
+
 
 interface NoticeListRowProps {
   post: NoticePreview;

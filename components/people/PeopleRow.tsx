@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 import { Link } from '@/navigation';
 
-import { emeritusFaculty, faculty, researchLabs, staff } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { emeritusFaculty, faculty, researchLabs, staff } from '@/utils/segmentNode';
+
 
 export interface PeopleRowProps {
   type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';

@@ -19,10 +19,11 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NEWS_TAGS } from '@/constants/tag';
 
 import { News } from '@/types/news';
-import { news } from '@/types/page';
+
 
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 const newsPath = getPath(news);
 

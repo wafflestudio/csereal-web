@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
 import { NoticeMain } from '@/types/main';
-import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
+
 
 interface NoticeListMainProps {
   selectedNotices: NoticeMain[];

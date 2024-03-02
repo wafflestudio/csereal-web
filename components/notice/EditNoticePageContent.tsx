@@ -18,10 +18,11 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NOTICE_TAGS } from '@/constants/tag';
 
 import { Notice } from '@/types/notice';
-import { notice } from '@/types/page';
+
 
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 import { errorToast, successToast } from '@/utils/toast';
 
 const noticePath = getPath(notice);

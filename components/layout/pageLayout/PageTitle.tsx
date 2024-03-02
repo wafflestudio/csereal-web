@@ -8,10 +8,10 @@ import { Link } from '@/navigation';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 
-import { SegmentNode } from '@/types/page';
 
 import { getLocationLog, getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
+import { SegmentNode } from '@/utils/segmentNode';
 
 interface PageTitleProps {
   title: string | JSX.Element;

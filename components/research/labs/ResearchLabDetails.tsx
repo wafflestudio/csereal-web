@@ -6,11 +6,11 @@ import PentagonShort from '@/public/image/pentagon_short.svg';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import { researchGroups } from '@/types/page';
 import { ResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 

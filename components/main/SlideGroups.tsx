@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
 import { SlideMain } from '@/types/main';
-import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
+
 
 import ImageWithFallback from '../common/ImageWithFallback';
 

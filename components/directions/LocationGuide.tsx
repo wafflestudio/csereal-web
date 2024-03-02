@@ -1,8 +1,8 @@
 import { Link } from '@/navigation';
 
-import { staff } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { staff } from '@/utils/segmentNode';
+
 
 const staffPath = getPath(staff);
 

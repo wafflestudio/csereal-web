@@ -6,11 +6,11 @@ import { useState } from 'react';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { researchCenters } from '@/types/page';
 import { ResearchCenter } from '@/types/research';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
+import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 

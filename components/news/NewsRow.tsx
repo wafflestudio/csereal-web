@@ -2,9 +2,9 @@ import { Link } from '@/navigation';
 
 import Tags from '@/components/common/Tags';
 
-import { news } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
+
 
 import ImageWithFallback from '../common/ImageWithFallback';
 

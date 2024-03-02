@@ -12,10 +12,11 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { ADMIN_MENU, ImportantPreview, SlidePreview } from '@/types/admin';
-import { admin } from '@/types/page';
+
 
 import { getPath } from '@/utils/page';
 import { replaceDashWithSpace } from '@/utils/replaceCharacter';
+import { admin } from '@/utils/segmentNode';
 
 interface AdminPageProps {
   searchParams: { selected?: string; page?: string };

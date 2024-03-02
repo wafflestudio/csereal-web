@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 
 import { deleteSeminar } from '@/apis/seminarServer';
 
-import { seminar } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { seminar } from '@/utils/segmentNode';
+
 
 const seminarPath = getPath(seminar);
 

@@ -3,10 +3,10 @@ import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
 
-import { seminar } from '@/types/page';
 import { SeminarPreview } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
+import { seminar } from '@/utils/segmentNode';
 
 import ImageWithFallback from '../common/ImageWithFallback';
 
