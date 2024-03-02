@@ -2,7 +2,7 @@ import { Link } from '@/navigation';
 
 import { AdjPostInfo } from '@/types/post';
 
-import LoginStaffVisible from './LoginStaffVisible';
+import LoginStaffVisible from './auth/LoginStaffVisible';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostType = 'notice' | 'seminar' | 'news';

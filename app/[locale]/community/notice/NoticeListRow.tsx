@@ -9,7 +9,6 @@ import { NoticePreview } from '@/types/notice';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 
-
 interface NoticeListRowProps {
   post: NoticePreview;
   isEditMode: boolean;

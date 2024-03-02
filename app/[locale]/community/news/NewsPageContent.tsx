@@ -1,21 +1,21 @@
 'use client';
 
+import NewsRow from '@/app/[locale]/community/news/NewsRow';
+
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import NewsRow from '@/components/news/NewsRow';
 
 import { NEWS_TAGS } from '@/constants/tag';
 
 import { NewsPreviewList } from '@/types/news';
-
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../common/LoginStaffVisible';
+import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);

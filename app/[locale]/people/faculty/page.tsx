@@ -2,9 +2,10 @@ export const dynamic = 'force-dynamic';
 
 import { getFacultyList } from '@/apis/people';
 
+import PeopleRow from '@/app/[locale]/people/PeopleRow';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import PeopleRow from '@/components/people/PeopleRow';
 
 export default async function FacultyPage() {
   const { description, facultyList } = await getFacultyList();

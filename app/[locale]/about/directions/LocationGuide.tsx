@@ -3,7 +3,6 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 
-
 const staffPath = getPath(staff);
 
 export default function LocationGuide() {

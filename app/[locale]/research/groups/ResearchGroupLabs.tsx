@@ -5,7 +5,6 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
-
 export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: string }[] }) {
   return (
     <div className="mt-[40px]">

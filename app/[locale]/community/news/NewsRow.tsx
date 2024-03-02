@@ -5,8 +5,7 @@ import Tags from '@/components/common/Tags';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-
-import ImageWithFallback from '../common/ImageWithFallback';
+import ImageWithFallback from '../../../../components/common/ImageWithFallback';
 
 export interface NewsRowProps {
   href: string;

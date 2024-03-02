@@ -7,12 +7,11 @@ import { getImportants, getSlides } from '@/apis/admin';
 
 import ImportantManagement from '@/components/admin/important/ImportantManagement';
 import SlideManagement from '@/components/admin/slide/SlideManagement';
-import LoginStaffVisible from '@/components/common/LoginStaffVisible';
+import LoginStaffVisible from '@/components/common/auth/LoginStaffVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { ADMIN_MENU, ImportantPreview, SlidePreview } from '@/types/admin';
-
 
 import { getPath } from '@/utils/page';
 import { replaceDashWithSpace } from '@/utils/replaceCharacter';

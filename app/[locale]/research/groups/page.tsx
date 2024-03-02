@@ -7,7 +7,7 @@ import { getResearchGroups } from '@/apis/research';
 // import SelectionList from '@/components/common/selection/SelectionList';
 // import PageLayout from '@/components/layout/pageLayout/PageLayout';
 // import ResearchGroupDetails from '@/components/research/groups/ResearchGroupDetails';
-import ResearchGroupsPageContent from '@/components/research/groups/ResearchGroupsPageContent';
+import ResearchGroupsPageContent from '@/app/[locale]/research/groups/ResearchGroupsPageContent';
 
 // import { researchGroups } from '@/types/page';
 // import { ResearchGroup } from '@/types/research';
@@ -21,7 +21,9 @@ interface ResearchGroupsPageProps {
 
 // const researchGroupsPath = getPath(researchGroups);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function ResearchGroupsPage({ searchParams }: ResearchGroupsPageProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { description, groups } = await getResearchGroups();
   return <ResearchGroupsPageContent groups={groups} />;
 }

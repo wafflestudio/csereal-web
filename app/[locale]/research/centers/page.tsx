@@ -7,7 +7,7 @@ import { getResearchCenters } from '@/apis/research';
 // import SelectionList from '@/components/common/selection/SelectionList';
 // import PageLayout from '@/components/layout/pageLayout/PageLayout';
 // import ResearchCenterDetails from '@/components/research/centers/ResearchCenterDetails';
-import ResearchCentersPageContent from '@/components/research/centers/ResearchCentersPageContent';
+import ResearchCentersPageContent from '@/app/[locale]/research/centers/ResearchCentersPageContent';
 
 // import { researchCenters } from '@/types/page';
 // import { ResearchCenter } from '@/types/research';
@@ -21,6 +21,7 @@ interface ResearchCentersPageProps {
 
 // const researchCentersPath = getPath(researchCenters);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function ResearchCentersPage({ searchParams }: ResearchCentersPageProps) {
   const centers = await getResearchCenters();
   return <ResearchCentersPageContent centers={centers} />;

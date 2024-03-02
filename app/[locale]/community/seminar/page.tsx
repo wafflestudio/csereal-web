@@ -1,6 +1,6 @@
 import { getSeminarPosts } from '@/actions/seminarServer';
 
-import SeminarContent from '@/components/seminar/SeminarPageContent';
+import SeminarContent from '@/app/[locale]/community/seminar/SeminarPageContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 

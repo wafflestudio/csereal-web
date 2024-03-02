@@ -8,7 +8,7 @@ import { SeminarPreview } from '@/types/seminar';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 
-import ImageWithFallback from '../common/ImageWithFallback';
+import ImageWithFallback from '../../../../components/common/ImageWithFallback';
 
 export interface SeminarRowProps {
   seminar: SeminarPreview;

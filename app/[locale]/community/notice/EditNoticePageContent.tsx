@@ -1,98 +1,95 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
-import { newsDeleteAction, revalidateNewsTag } from '@/actions/newsActions';
+import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
 
-import { patchNews } from '@/apis/news';
+import { patchNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
   PostEditorContent,
   isLocalFile,
-  isLocalImage,
   isUploadedFile,
-  postEditorDefaultValue,
 } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NEWS_TAGS } from '@/constants/tag';
+import { NOTICE_TAGS } from '@/constants/tag';
 
-import { News } from '@/types/news';
+import { Notice } from '@/types/notice';
 
-
-import { validateNewsForm } from '@/utils/formValidation';
+import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import { notice } from '@/utils/segmentNode';
+import { errorToast, successToast } from '@/utils/toast';
 
-const newsPath = getPath(news);
+const noticePath = getPath(notice);
 
-export default function EditNewsPageContent({ id, data }: { id: number; data: News }) {
+export default function EditNoticePageContent({ id, data }: { id: number; data: Notice }) {
   const router = useRouter();
+  const [, startTransition] = useTransition();
 
   const initialContent: PostEditorContent = {
-    ...postEditorDefaultValue,
-
     title: data.title,
     titleForMain: data.titleForMain ?? '',
     description: data.description,
-    isPrivate: data.isPrivate,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
 
     tags: data.tags,
-    mainImage: data.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
-    isSlide: data.isSlide,
+    isPrivate: data.isPrivate,
     isImportant: data.isImportant,
+    isPinned: data.isPinned,
+
+    mainImage: null,
+    isSlide: false,
+
+    date: new Date().toISOString(),
   };
 
-  const handleCancel = () => router.push(`${newsPath}/${id}`);
+  const handleCancel = () => router.push(`${noticePath}/${id}`);
 
   const handleComplete = async (content: PostEditorContent) => {
-    validateNewsForm(content);
+    validateNoticeForm(content);
 
     const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
     const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-
-    const mainImage =
-      content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
 
     const deleteIds = data.attachments
       .map((x) => x.id)
       .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
 
-    await patchNews(id, {
+    await patchNotice(id, {
       request: {
         title: content.title,
         titleForMain: content.titleForMain ? content.titleForMain : null,
         description: content.description,
         isPrivate: content.isPrivate,
-        isSlide: content.isSlide,
+        isPinned: content.isPinned,
         isImportant: content.isImportant,
         tags: content.tags,
         deleteIds,
-        date: content.date,
       },
-      mainImage,
       newAttachments: localAttachments,
     });
 
-    revalidateNewsTag();
-    router.replace(`${newsPath}/${id}`);
+    revalidateNoticeTag();
+    router.replace(`${noticePath}/${id}`);
   };
 
   const handleDelete = async () => {
-    await newsDeleteAction(id);
-    router.replace(newsPath);
+    startTransition(async () => {
+      const result = await noticeDeleteAction(id);
+      result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+    });
   };
 
   return (
-    <PageLayout title="새 소식 편집" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
-        tags={NEWS_TAGS}
-        showMainImage
-        showIsSlide
+        tags={NOTICE_TAGS}
+        showIsPinned
         showIsImportant
-        showDate
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,

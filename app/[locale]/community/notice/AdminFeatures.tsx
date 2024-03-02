@@ -2,14 +2,13 @@
 
 import { batchDeleteAction, batchUnpinAction } from '@/actions/noticeActions';
 
-
 import useModal from '@/utils/hooks/useModal';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 import { errorToast, successToast } from '@/utils/toast';
 
 import { BatchButton, CreateButton, EditButton } from './NoticeButtons';
-import AlertModal from '../modal/AlertModal';
+import AlertModal from '../../../../components/modal/AlertModal';
 
 interface AdminFeaturesProps {
   isEditMode: boolean;

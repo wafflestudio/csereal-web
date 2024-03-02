@@ -1,18 +1,18 @@
 'use client';
 
+import SeminarSearchBar from '@/app/[locale]/community/seminar/SearchBar';
+import SeminarRow from '@/app/[locale]/community/seminar/SeminarRow';
+import SeminarYear from '@/app/[locale]/community/seminar/SeminarYear';
+
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import SeminarSearchBar from '@/components/seminar/SearchBar';
-import SeminarRow from '@/components/seminar/SeminarRow';
-import SeminarYear from '@/components/seminar/SeminarYear';
 
 import { SeminarList } from '@/types/seminar';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
-
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../common/LoginStaffVisible';
+import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const postsCountPerPage = 10;
 

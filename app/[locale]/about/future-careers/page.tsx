@@ -1,6 +1,7 @@
 import { getFutureCareeres } from '@/apis/about';
 
-import CareerStat from '@/components/futureCareers/CareerStat';
+import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { FutureCareers } from '@/types/about';

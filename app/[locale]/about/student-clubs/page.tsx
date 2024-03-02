@@ -1,9 +1,9 @@
 import { getClubs } from '@/apis/about';
 
+import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
+
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ClubDetails from '@/components/studentClubs/ClubDetails';
-
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';

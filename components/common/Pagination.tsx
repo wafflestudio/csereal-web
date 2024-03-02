@@ -22,7 +22,7 @@ export default function Pagination({
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
   const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1));
 
-  // // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
+  // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
   if (NUM_PAGES < currentPage) setCurrentPage(NUM_PAGES);
 
   return (

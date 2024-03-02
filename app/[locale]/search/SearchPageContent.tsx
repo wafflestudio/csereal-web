@@ -4,12 +4,14 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 
+import NewsRow from '@/app/[locale]/community/news/NewsRow';
+import SeminarRow from '@/app/[locale]/community/seminar/SeminarRow';
+import NoticeRow from '@/app/[locale]/search/NoticeRow';
+
 import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
-import NewsRow from '@/components/news/NewsRow';
-import NoticeRow from '@/components/search/NoticeRow';
-import SeminarRow from '@/components/seminar/SeminarRow';
+
 
 import { SEARCH_TAGS } from '@/constants/tag';
 

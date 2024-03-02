@@ -1,4 +1,4 @@
-import LoginUserVisible from '@/components/common/LoginUserVisible';
+import LoginUserVisible from '@/components/common/auth/LoginUserVisible';
 
 import {
   ChangeDateButton,

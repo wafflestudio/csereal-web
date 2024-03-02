@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 
-import { CurvedVerticalNode } from '../common/Nodes';
+import { CurvedVerticalNode } from '../../../components/common/Nodes';
 
 export interface SearchSubNavProps {
   total: number;

@@ -7,12 +7,11 @@ import Distance from '@/public/image/distance.svg';
 
 import { Facilities } from '@/types/about';
 
-import HTMLViewer from '../editor/HTMLViewer';
+import HTMLViewer from '../../../../components/editor/HTMLViewer';
 
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
 
-  hoveredIndex ||= 0;
   return (
     <div className="flex flex-col">
       {facilities.facilitiesList.map((post, index) => (
@@ -22,7 +21,7 @@ export default function FacilitesList({ facilities }: { facilities: Facilities }
             description={post.description}
             location={post.location}
             imageURL={post.imageURL}
-            isColor={hoveredIndex === index}
+            isColor={hoveredIndex === null || hoveredIndex === index}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           />

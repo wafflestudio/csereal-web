@@ -1,6 +1,6 @@
 import { getSeminarPost } from '@/actions/seminarServer';
 
-import EditSeminarPageContent from '@/components/seminar/EditSeminarPageContent';
+import EditSeminarPageContent from '@/app/[locale]/community/seminar/EditSeminarPageContent';
 
 interface EditNoticePageProps {
   params: { id: string };

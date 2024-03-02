@@ -15,9 +15,13 @@ import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 import { errorToast } from '@/utils/toast';
 
-import { isLocalFile, isLocalImage, isUploadedFile } from '../editor/PostEditorProps';
-import SeminarEditor from '../editor/SeminarEditor';
-import { SeminarEditorContent } from '../editor/SeminarEditorProps';
+import {
+  isLocalFile,
+  isLocalImage,
+  isUploadedFile,
+} from '../../../../components/editor/PostEditorProps';
+import SeminarEditor from '../../../../components/editor/SeminarEditor';
+import { SeminarEditorContent } from '../../../../components/editor/SeminarEditorProps';
 
 const seminarPath = getPath(seminar);
 

@@ -2,10 +2,11 @@
 
 import { useReducer } from 'react';
 
+import NoticeList from '@/app/[locale]/community/notice/NoticeList';
+
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import NoticeList from '@/components/notice/NoticeList';
 
 import { NOTICE_TAGS } from '@/constants/tag';
 
@@ -13,9 +14,8 @@ import { NoticePreviewList } from '@/types/notice';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
-
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../common/LoginStaffVisible';
+import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const POST_LIMIT = 20;
 

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 
-
 const seminarPath = getPath(seminar);
 
 export default function AdminFeatures() {
