@@ -5,7 +5,6 @@ import { SlideMain } from '@/types/main';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-
 import ImageWithFallback from '../common/ImageWithFallback';
 
 interface SlideGroupsProps {

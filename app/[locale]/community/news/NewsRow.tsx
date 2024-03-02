@@ -1,11 +1,10 @@
 import { Link } from '@/navigation';
 
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
-
-import ImageWithFallback from '../../../../components/common/ImageWithFallback';
 
 export interface NewsRowProps {
   href: string;
@@ -45,39 +44,50 @@ export default function NewsRow({
 
   return (
     <article
-      className={`text-neutral-700 flex pb-6 ${
-        hideDivider ? '' : 'border-neutral-200 border-b-[1px]'
+      className={`text-neutral-700 flex flex-col-reverse sm:flex-row pb-5 ${
+        hideDivider ? '' : 'border-neutral-100 border-b'
       }`}
     >
-      <div className="flex flex-col flex-1 mr-[2.5rem] justify-between p-1">
-        <Link href={href} className="hover:underline font-noto ">
-          <h3 className="text-base font-bold mb-[.69rem]">{title}</h3>
-        </Link>
+      <div className="flex flex-col flex-1 mr-[3.75rem] break-keep justify-between">
+        <time className="mt-5 mb-2.5 sm:hidden text-md text-neutral-800">{dateStr}</time>
 
-        <Link href={href} className="hover:cursor-pointer grow">
-          <p className="text-md leading-[160%] text-justify [text-align-last:left] font-normal text-neutral-500 mb-[.69rem] line-clamp-2 tracking-[0.01rem]">
-            {descriptionBold ? (
-              <>
-                {description.slice(0, descriptionBold.startIndex)}
-                <span className="font-noto font-bold">
-                  {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
-                </span>
-                {description.slice(descriptionBold.endIndex)}
-              </>
-            ) : (
-              description
-            )}
-          </p>
-        </Link>
+        <div className="flex flex-col items-start">
+          <Link href={href} className="hover:underline">
+            <h3 className="text-base font-bold mb-2.5">{title}</h3>
+          </Link>
 
-        <div className="w-full flex justify-between items-center mt-auto">
+          <Link href={href} className="hover:cursor-pointer">
+            <p className="text-md font-normal text-neutral-500 mb-3 sm:mb-8 line-clamp-3 leading-[1.6]">
+              {descriptionBold ? (
+                <>
+                  {description.slice(0, descriptionBold.startIndex)}
+                  <span className="font-bold">
+                    {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
+                  </span>
+                  {description.slice(descriptionBold.endIndex)}
+                </>
+              ) : (
+                description
+              )}
+            </p>
+          </Link>
+        </div>
+        <div className="flex justify-between items-center sm:gap-2.5">
           <Tags tags={tags} searchPath={newsPath} />
-          <time className="text-md text-neutral-500">{dateStr}</time>
+          <time className="hidden sm:inline self-end text-sm leading-[26px] text-neutral-800 whitespace-nowrap">
+            {dateStr}
+          </time>
         </div>
       </div>
 
-      <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">
-        <ImageWithFallback alt="포스트 대표 이미지" src={imageURL} fill className="object-cover" />
+      <Link href={href} className="h-[280px] sm:h-[9.375rem] aspect-[4/3] relative flex">
+        <ImageWithFallback
+          alt="포스트 대표 이미지"
+          src={imageURL}
+          fill
+          className="object-fill"
+          sizes="12.5rem"
+        />
       </Link>
     </article>
   );

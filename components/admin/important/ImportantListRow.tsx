@@ -6,7 +6,6 @@ import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
-
 interface ImportantListRowProps {
   index: number;
   post: ImportantPreview;

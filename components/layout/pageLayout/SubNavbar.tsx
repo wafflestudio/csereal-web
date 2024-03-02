@@ -7,7 +7,6 @@ import { CurvedVerticalNode } from '@/components/common/Nodes';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 
-
 interface SubNavbarProps {
   currentTab: SegmentNode;
 }
@@ -22,7 +21,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
   return (
-    <div className="absolute top-0 right-[80px] h-full">
+    <div className="hidden sm:block absolute top-0 right-[80px] h-full">
       <div
         className="flex row-span-full col-start-2 mt-[3.25rem] mb-8 sticky top-20"
         style={{ height }}

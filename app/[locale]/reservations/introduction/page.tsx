@@ -3,7 +3,6 @@ import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-
 import { getPath } from '@/utils/page';
 import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 import { reservationIntroduction } from '@/utils/segmentNode';

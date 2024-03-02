@@ -12,7 +12,6 @@ import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 
-
 import { SEARCH_TAGS } from '@/constants/tag';
 
 import { NoticeSearchResult, NewsSearchResult } from '@/types/search';

@@ -19,7 +19,7 @@ interface PageLayoutProps {
 }
 
 export const PAGE_PADDING_LEFT_PX = 100;
-export const PAGE_PADDING_RIGHT_PX = 350;
+export const PAGE_PADDING_RIGHT_PX = 360;
 export const PAGE_PADDING_TOP_PX = 44;
 export const PAGE_PADDING_BOTTOM_PX = 150;
 
@@ -35,7 +35,7 @@ export const PAGE_PADDING_BOTTOM_PX = 150;
 export default function PageLayout({
   title,
   titleType,
-  titleMargin = 'mb-[44px]',
+  titleMargin = 'mb-6 sm:mb-11',
   bodyStyle,
   children,
 }: PageLayoutProps) {
@@ -53,7 +53,9 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className="bg-white relative pl-[100px] pr-[360px] pt-[44px] pb-[150px]"
+        className={
+          'bg-white px-5 py-7 sm:pl-[100px] sm:pr-[360px] sm:pt-[44px] sm:pb-[150px] relative'
+        }
         style={bodyStyle}
       >
         {children}

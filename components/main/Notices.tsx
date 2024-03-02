@@ -8,7 +8,6 @@ import { NoticeCategoryType, NoticeListMainType } from '@/types/main';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 
-
 import NoticeCategory from './NoticeCategory';
 import NoticeListMain from './NoticeListMain';
 

@@ -6,7 +6,6 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { SegmentNode, main } from '@/utils/segmentNode';
 
-
 export type NavbarState =
   | {
       // 접힌 상태

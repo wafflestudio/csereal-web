@@ -25,13 +25,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
   const titleStyle = titleType === 'big' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div
-      className="pt-[54px]"
-      style={{
-        paddingLeft: PAGE_TITLE_LEFT_MARGIN_PX,
-        paddingRight: PAGE_TITLE_LEFT_MARGIN_PX,
-      }}
-    >
+    <div className="pt-[54px] px-5 sm:px-[100px]">
       <div
         className={`w-fit min-w-[15.625rem] max-w-[51.875rem] row-start-1 col-start-1 ${margin}`}
       >
@@ -39,7 +33,9 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
           <Breadcrumb currentPage={currentPage} />
           <CurvedHorizontalNodeGray />
         </div>
-        <h3 className={`mr-[100px] ${titleStyle} text-[32px] break-keep text-white tracking-wide`}>
+        <h3
+          className={`mr-[100px] ${titleStyle} text-[24px] sm:text-[32px] break-keep text-white tracking-wide `}
+        >
           {title}
         </h3>
       </div>
@@ -83,7 +79,7 @@ interface LoactionText {
 }
 
 function LocationText({ path, name, isCurrent }: LoactionText) {
-  const textStyle = 'text-[14px] font-yoon font-normal tracking-[.02em]';
+  const textStyle = 'text-md font-normal tracking-[.02em]';
 
   return isCurrent ? (
     <button className={`${textStyle} hover:text-main-orange`} onClick={refreshPage}>

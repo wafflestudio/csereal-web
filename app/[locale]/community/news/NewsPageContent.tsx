@@ -2,6 +2,7 @@
 
 import NewsRow from '@/app/[locale]/community/news/NewsRow';
 
+import LoginStaffVisible from '@/components/common/auth/LoginStaffVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -15,7 +16,6 @@ import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);
@@ -40,7 +40,7 @@ export default function NewsPageContent({
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-6 mt-10 mb-8 mx-16">
+      <div className="flex flex-col gap-5 mt-10 mb-8 sm:mx-16">
         {searchList.length > 0 ? (
           searchList.map((post) => (
             <NewsRow

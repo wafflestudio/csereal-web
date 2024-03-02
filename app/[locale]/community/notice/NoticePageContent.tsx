@@ -4,6 +4,7 @@ import { useReducer } from 'react';
 
 import NoticeList from '@/app/[locale]/community/notice/NoticeList';
 
+import LoginStaffVisible from '@/components/common/auth/LoginStaffVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -15,7 +16,6 @@ import { NoticePreviewList } from '@/types/notice';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const POST_LIMIT = 20;
 

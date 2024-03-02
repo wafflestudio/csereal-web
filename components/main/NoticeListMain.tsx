@@ -5,7 +5,6 @@ import { NoticeMain } from '@/types/main';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 
-
 interface NoticeListMainProps {
   selectedNotices: NoticeMain[];
 }

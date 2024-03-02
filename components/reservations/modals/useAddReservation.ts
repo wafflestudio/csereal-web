@@ -3,7 +3,6 @@ import { useReducer, useState, FormEventHandler } from 'react';
 import { postReservation } from '@/actions/reservation';
 import { NetworkError } from '@/apis';
 
-
 import { ReservationPostBody } from '@/types/reservation';
 
 import { isSameDay } from '@/utils/date';

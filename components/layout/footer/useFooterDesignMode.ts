@@ -11,7 +11,6 @@ import {
   reservations,
 } from '@/utils/segmentNode';
 
-
 export type FooterMode = 'light' | 'dark';
 
 // TODO: 페이지별 모드 적용하기

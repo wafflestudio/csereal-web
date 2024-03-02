@@ -12,7 +12,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
 
-
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';

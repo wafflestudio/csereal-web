@@ -6,7 +6,6 @@ import { SlidePreview } from '@/types/admin';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-
 interface SlideListRowProps {
   index: number;
   post: SlidePreview;

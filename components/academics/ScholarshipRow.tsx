@@ -4,7 +4,6 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
-
 export interface ScholarshipRowProps {
   id: number;
   name: string;

@@ -9,7 +9,6 @@ import { StraightNode } from '@/components/common/Nodes';
 import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 
-
 type NavTreeRowProps = {
   segmentNode: SegmentNode;
   highlight: boolean;

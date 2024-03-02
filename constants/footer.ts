@@ -17,7 +17,6 @@ import {
   privacyPolicy,
 } from '@/utils/segmentNode';
 
-
 export interface FooterLink {
   href: string;
   title: string;

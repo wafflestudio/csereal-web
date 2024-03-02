@@ -1,7 +1,6 @@
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { SegmentNode } from '@/utils/segmentNode';
 
-
 import NavTreeRow from './NavtreeRow';
 
 export default function NavbarDetail({ segmentNode }: { segmentNode: SegmentNode }) {
