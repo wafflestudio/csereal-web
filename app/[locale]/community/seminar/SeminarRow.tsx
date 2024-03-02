@@ -1,6 +1,6 @@
 import { Link } from '@/navigation';
+import Distance from '@/public/image/about/distance.svg';
 import Calendar from '@/public/image/calendar.svg';
-import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
 
 import { SeminarPreview } from '@/types/seminar';

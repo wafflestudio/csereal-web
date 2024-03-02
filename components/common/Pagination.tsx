@@ -16,14 +16,14 @@ export default function Pagination({
   setCurrentPage,
   disabled = false,
 }: PaginationProps) {
-  const NUM_PAGES = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
+  const numPages = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
   const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
 
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
-  const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, NUM_PAGES - firstNum + 1));
+  const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, numPages - firstNum + 1));
 
   // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
-  if (NUM_PAGES < currentPage) setCurrentPage(NUM_PAGES);
+  if (numPages < currentPage) setCurrentPage(numPages);
 
   return (
     <div className={`flex justify-center ${disabled && 'opacity-30'}`}>
@@ -40,27 +40,29 @@ export default function Pagination({
           disabled={firstNum === 1 || disabled}
           movePageNumber={setCurrentPage}
         />
-        {Array(paginationNumberCnt)
-          .fill(firstNum)
-          .map((num, i) => (
-            <PaginationNumber
-              num={num + i}
-              isSelected={currentPage === num + i}
-              disabled={disabled}
-              movePageNumber={setCurrentPage}
-              key={i}
-            />
-          ))}
+        <div className="flex gap-x-2 px-2">
+          {Array(paginationNumberCnt)
+            .fill(firstNum)
+            .map((num, i) => (
+              <PaginationNumber
+                num={num + i}
+                isSelected={currentPage === num + i}
+                disabled={disabled}
+                movePageNumber={setCurrentPage}
+                key={i}
+              />
+            ))}
+        </div>
         <PaginationArrow
           iconName="navigate_next"
           num={firstNum + PAGE_LIMIT}
-          disabled={firstNum + PAGE_LIMIT > NUM_PAGES || disabled}
+          disabled={firstNum + PAGE_LIMIT > numPages || disabled}
           movePageNumber={setCurrentPage}
         />
         <PaginationArrow
           iconName="keyboard_double_arrow_right"
-          num={currentPage === 1 ? MAX_PAGE : NUM_PAGES}
-          disabled={currentPage === NUM_PAGES || disabled}
+          num={currentPage === 1 ? MAX_PAGE : numPages}
+          disabled={currentPage === numPages || disabled}
           movePageNumber={setCurrentPage}
         />
       </ul>

@@ -20,7 +20,6 @@
   word-wrap: break-word;
   /* padding: 16px; */ /* 수정됨 */
   margin: 0;
-  text-align: justify; /* 수정됨 */
 }
 
 .sun-editor-editable * {
@@ -178,6 +177,7 @@
 .sun-editor-editable p {
   display: block;
   margin: 0 0 10px;
+  text-align: justify; /* 수정됨 */
 }
 
 /* div */

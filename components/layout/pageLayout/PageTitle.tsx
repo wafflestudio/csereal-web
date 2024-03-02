@@ -8,7 +8,6 @@ import { Link } from '@/navigation';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 
-
 import { getLocationLog, getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
 import { SegmentNode } from '@/utils/segmentNode';
@@ -40,7 +39,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
           <Breadcrumb currentPage={currentPage} />
           <CurvedHorizontalNodeGray />
         </div>
-        <h3 className={`mr-[100px] ${titleStyle} text-[32px] break-keep text-white tracking-wide `}>
+        <h3 className={`mr-[100px] ${titleStyle} text-[32px] break-keep text-white tracking-wide`}>
           {title}
         </h3>
       </div>

@@ -12,7 +12,7 @@ export default function Content({ children }: PropsWithChildren) {
   const ml = node === main ? `sm:ml-[11rem]` : 'sm:ml-[6.25rem]';
 
   return (
-    <main className={`flex flex-col w-[100vh - 5rem] h-full overflow-scroll ${ml}`}>
+    <main className={`flex flex-col h-full overflow-scroll ${ml}`}>
       {children}
       <Footer />
     </main>

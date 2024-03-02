@@ -18,6 +18,11 @@ interface PageLayoutProps {
   children: ReactNode;
 }
 
+export const PAGE_PADDING_LEFT_PX = 100;
+export const PAGE_PADDING_RIGHT_PX = 350;
+export const PAGE_PADDING_TOP_PX = 44;
+export const PAGE_PADDING_BOTTOM_PX = 150;
+
 /**
  * 본문 기본 스타일
  * padding-left: 100px

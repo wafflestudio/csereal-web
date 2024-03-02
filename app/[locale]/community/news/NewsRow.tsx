@@ -45,36 +45,35 @@ export default function NewsRow({
 
   return (
     <article
-      className={`text-neutral-700 flex pb-4 ${
+      className={`text-neutral-700 flex pb-6 ${
         hideDivider ? '' : 'border-neutral-200 border-b-[1px]'
       }`}
     >
-      <div className="flex flex-col flex-1 mr-[3.75rem] break-keep justify-between">
-        <div className="flex flex-col items-start">
-          <Link href={href} className="hover:underline font-noto ">
-            <h3 className="text-md font-bold mb-[.69rem]">{title}</h3>
-          </Link>
+      <div className="flex flex-col flex-1 mr-[2.5rem] justify-between p-1">
+        <Link href={href} className="hover:underline font-noto ">
+          <h3 className="text-base font-bold mb-[.69rem]">{title}</h3>
+        </Link>
 
-          <Link href={href} className="hover:cursor-pointer">
-            <p className="text-xs font-normal text-neutral-500 mb-[.69rem] line-clamp-3">
-              {descriptionBold ? (
-                <>
-                  {description.slice(0, descriptionBold.startIndex)}
-                  <span className="font-noto font-bold">
-                    {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
-                  </span>
-                  {description.slice(descriptionBold.endIndex)}
-                </>
-              ) : (
-                description
-              )}
-            </p>
-          </Link>
+        <Link href={href} className="hover:cursor-pointer grow">
+          <p className="text-md leading-[160%] text-justify [text-align-last:left] font-normal text-neutral-500 mb-[.69rem] line-clamp-2 tracking-[0.01rem]">
+            {descriptionBold ? (
+              <>
+                {description.slice(0, descriptionBold.startIndex)}
+                <span className="font-noto font-bold">
+                  {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
+                </span>
+                {description.slice(descriptionBold.endIndex)}
+              </>
+            ) : (
+              description
+            )}
+          </p>
+        </Link>
 
-          <Tags margin="mb-[.69rem]" tags={tags} searchPath={newsPath} />
+        <div className="w-full flex justify-between items-center mt-auto">
+          <Tags tags={tags} searchPath={newsPath} />
+          <time className="text-md text-neutral-500">{dateStr}</time>
         </div>
-
-        <time className="self-end text-xs text-neutral-500">{dateStr}</time>
       </div>
 
       <Link href={href} className="h-[9.375rem] aspect-[4/3] relative flex">

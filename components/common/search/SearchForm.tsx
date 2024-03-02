@@ -22,7 +22,7 @@ export default function SearchForm({
 }: SearchFormProps) {
   return (
     <form
-      className="flex flex-col gap-5 p-6  bg-neutral-100"
+      className="flex flex-col gap-5 p-6  bg-neutral-50 rounded-sm"
       onSubmit={(e) => {
         e.preventDefault();
         search();

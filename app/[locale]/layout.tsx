@@ -36,7 +36,10 @@ export default async function RootLayout({
   unstable_setRequestLocale(params.locale);
 
   return (
-    <html lang={params.locale} className="text-neutral-800 font-normal bg-white sm:min-w-[1000px]">
+    <html
+      lang={params.locale}
+      className="text-neutral-800 font-normal bg-neutral-900 sm:min-w-[1000px]"
+    >
       <body>
         <ContextProviders locale={params.locale}>
           <Navbar />
