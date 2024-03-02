@@ -2,8 +2,7 @@ import { MouseEventHandler, useState } from 'react';
 
 import AlertModal from '@/components/modal/AlertModal';
 
-import useModal from '@/hooks/useModal';
-
+import useModal from '@/utils/hooks/useModal';
 import { errorToast } from '@/utils/toast';
 
 export interface EditAction<T> {
@@ -160,7 +159,7 @@ const buildPostHandler = <T,>(
   return handler;
 };
 
-const buildDeleteHandler = <T,>(
+const buildDeleteHandler = (
   requesting: boolean,
   setRequesting: (val: boolean) => void,
   onDelete: () => Promise<void>,

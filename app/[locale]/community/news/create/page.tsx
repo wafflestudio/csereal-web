@@ -9,12 +9,11 @@ import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NewsTags } from '@/constants/tag';
-
-import { news } from '@/types/page';
+import { NEWS_TAGS } from '@/constants/tag';
 
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 const newsPath = getPath(news);
 
@@ -53,7 +52,7 @@ export default function NewsCreatePage() {
   return (
     <PageLayout title="새 소식 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
-        tags={NewsTags}
+        tags={NEWS_TAGS}
         showMainImage
         showIsSlide
         showIsImportant

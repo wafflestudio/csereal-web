@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Curriculum } from '@/types/academics';
 
-import Dropdown from '../common/Dropdown';
+import Dropdown from '../common/form/Dropdown';
 import HTMLViewer from '../editor/HTMLViewer';
 
 export default function CurriculumBody({ data }: { data: Curriculum[] }) {
@@ -21,7 +21,7 @@ export default function CurriculumBody({ data }: { data: Curriculum[] }) {
           />
         </div>
       </div>
-      <HTMLViewer htmlContent={data[selectedcurriculumIndex].description} margin="mt-7" />
+      <HTMLViewer htmlContent={data[selectedcurriculumIndex].description} className="mt-7" />
     </>
   );
 }

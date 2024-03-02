@@ -10,12 +10,11 @@ import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { NoticeTags } from '@/constants/tag';
-
-import { notice } from '@/types/page';
+import { NOTICE_TAGS } from '@/constants/tag';
 
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 const noticePath = getPath(notice);
 
@@ -47,7 +46,7 @@ export default function NoticeCreatePage() {
   return (
     <PageLayout title="공지사항 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
       <PostEditor
-        tags={NoticeTags}
+        tags={NOTICE_TAGS}
         showIsPinned
         showIsImportant
         actions={{

@@ -3,9 +3,8 @@
 import { usePathname } from 'next/navigation';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
-import { SegmentNode, main } from '@/types/page';
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import { SegmentNode, main } from '@/utils/segmentNode';
 
 export type NavbarState =
   | {

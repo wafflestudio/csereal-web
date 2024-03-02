@@ -2,8 +2,9 @@ export const dynamic = 'force-static';
 
 import { getResearchLabs } from '@/apis/research';
 
+import ResearchLabList from '@/app/[locale]/research/labs/ResearchLabList';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ResearchLabList from '@/components/research/labs/ResearchLabList';
 
 export default async function ResearchLabsPage() {
   const labInformations = await getResearchLabs();

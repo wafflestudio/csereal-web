@@ -1,4 +1,4 @@
-import Checkbox from '../Checkbox';
+import Checkbox from '../form/Checkbox';
 
 interface TagFilterProps {
   tags: string[];
@@ -6,9 +6,6 @@ interface TagFilterProps {
   disabled: boolean;
   searchTags: (tags: string[]) => void;
 }
-
-// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
-const gridStyle = 'grid-cols-[repeat(6,_max-content)]';
 
 export default function TagFilter({ tags, selectedTags, disabled, searchTags }: TagFilterProps) {
   const toggleCheck = (tag: string, isChecked: boolean) => {
@@ -20,7 +17,7 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
   return (
     <div>
       <h5 className="mb-3 mr-6 text-md font-bold whitespace-nowrap tracking-wide">태그</h5>
-      <div className={`grow grid ${gridStyle} gap-x-7 gap-y-2.5 pl-2.5`}>
+      <div className={`flex flex-wrap gap-x-7 gap-y-2.5 pl-2.5`}>
         {tags.map((tag) => (
           <Checkbox
             key={tag}

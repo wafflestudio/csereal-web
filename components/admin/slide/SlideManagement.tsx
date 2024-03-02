@@ -10,10 +10,9 @@ import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import useModal from '@/hooks/useModal';
-
 import { ADMIN_MENU, SlidePreview } from '@/types/admin';
 
+import useModal from '@/utils/hooks/useModal';
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 import { errorToast, successToast } from '@/utils/toast';
 

@@ -11,7 +11,7 @@ export default async function UndergraduateGuidePage() {
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
       <GuideContent />
-      <HTMLViewer htmlContent={data.description} margin="mt-7" />
+      <HTMLViewer htmlContent={data.description} className="mt-7" />
     </PageLayout>
   );
 }

@@ -1,6 +1,7 @@
 import { getFutureCareeres } from '@/apis/about';
 
-import CareerStat from '@/components/futureCareers/CareerStat';
+import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { FutureCareers } from '@/types/about';
@@ -9,7 +10,7 @@ export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();
   return (
     <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
-      <p className="text-sm font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
+      <p className="text-md font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
         {description}
       </p>
       <CareerStat stat={stat} />
@@ -24,7 +25,7 @@ function CareerCompanies({ companies }: { companies: FutureCareers['companies'] 
       <h3 className="text-base font-noto font-bold leading-[1.625rem] mb-[0.8rem]">
         졸업생 창업 기업
       </h3>
-      <div className="text-xs font-normal border-y-[1px] border-neutral-200 inline-block">
+      <div className="text-sm font-normal border-y-[1px] border-neutral-200 inline-block">
         <CompanyTableHeader />
         <ol>
           {companies.map((company, index) => (
@@ -36,7 +37,7 @@ function CareerCompanies({ companies }: { companies: FutureCareers['companies'] 
   );
 }
 
-const TABLE_COLUMN_SIZE = ['w-12', 'w-[12.5rem]', 'w-80', 'w-20'];
+const TABLE_COLUMN_SIZE = ['w-[3.5rem]', 'w-[12.5rem]', 'w-80', 'w-20'];
 
 function CompanyTableHeader() {
   return (

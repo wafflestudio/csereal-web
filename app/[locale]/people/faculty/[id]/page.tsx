@@ -2,14 +2,14 @@ import { Link } from '@/navigation';
 
 import { getFaculty } from '@/apis/people';
 
+import FacultyInfoWithImage from '@/app/[locale]/people/FacultyInfoWithImage';
+import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
+
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import FacultyInfoWithImage from '@/components/people/FacultyInfoWithImage';
-import PeopleInfoList from '@/components/people/PeopleInfoList';
-
-import { researchLabs } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { researchLabs } from '@/utils/segmentNode';
 
 const labUrl = getPath(researchLabs);
 

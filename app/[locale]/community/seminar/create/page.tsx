@@ -11,10 +11,9 @@ import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { seminar } from '@/types/page';
-
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { seminar } from '@/utils/segmentNode';
 
 const seminarPath = getPath(seminar);
 

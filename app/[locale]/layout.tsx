@@ -36,18 +36,17 @@ export default async function RootLayout({
   unstable_setRequestLocale(params.locale);
 
   return (
-    <html lang={params.locale}>
-      <body className="text-neutral-800 font-normal bg-white min-w-fit flex">
-        <div className="flex flex-1 flex-col sm:min-w-[1000px]">
-          <div className="flex grow h-[calc(100vh-5rem)]">
-            <ContextProviders locale={params.locale}>
-              <Navbar />
-              <Content>{children}</Content>
-              <ModalContainer />
-              <Toaster />
-            </ContextProviders>
-          </div>
-        </div>
+    <html
+      lang={params.locale}
+      className="text-neutral-800 font-normal bg-neutral-900 sm:min-w-[1000px]"
+    >
+      <body>
+        <ContextProviders locale={params.locale}>
+          <Navbar />
+          <Content>{children}</Content>
+          <ModalContainer />
+          <Toaster />
+        </ContextProviders>
       </body>
     </html>
   );

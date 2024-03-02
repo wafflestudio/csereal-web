@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 
+import { getSeminarPost } from '@/actions/seminarServer';
 import { Link } from '@/navigation';
-
-import { getSeminarPost } from '@/apis/seminarServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -11,11 +10,11 @@ import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { seminar } from '@/types/page';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+import { seminar } from '@/utils/segmentNode';
 
 interface SeminarPostPageProps {
   params: { id: string };

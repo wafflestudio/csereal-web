@@ -49,9 +49,9 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
 };
 
 export const checkError = (response: Response) => {
-  if (!response.ok) {
-    throw new NetworkError(response.status);
-  }
+  if (response.ok) return;
+
+  throw new NetworkError(response.status);
 };
 
 export class NetworkError extends Error {

@@ -1,17 +1,22 @@
-import { getNoticePostDetail } from '@/apis/noticeServer';
+import { getNoticePostDetail } from '@/actions/noticeServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import PageLayout, {
+  PAGE_PADDING_BOTTOM_PX,
+  PAGE_PADDING_LEFT_PX,
+  PAGE_PADDING_RIGHT_PX,
+  PAGE_PADDING_TOP_PX,
+} from '@/components/layout/pageLayout/PageLayout';
 
-import { notice } from '@/types/page';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 interface NoticePostPageProps {
   params: { id: string };
@@ -41,23 +46,44 @@ export default async function NoticePostPage({
   const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, noticePath);
 
   return (
-    <PageLayout title={currPost?.title ?? ''} titleType="small" titleMargin="mb-5">
-      <div className="mb-10 text-xs font-yoon text-neutral-400">
-        글쓴이: {currPost.author}, 작성시각:{' '}
-        {currPost && formatFullDate(new Date(currPost.createdAt))}
+    <PageLayout titleType="big" titleMargin="mb-5" bodyStyle={{ padding: 0 }}>
+      <Header title={currPost.title} author={currPost.author} dateStr={currPost.createdAt} />
+      <div
+        className="bg-neutral-50 pt-9"
+        style={{
+          paddingLeft: PAGE_PADDING_LEFT_PX,
+          paddingRight: PAGE_PADDING_RIGHT_PX,
+          paddingBottom: PAGE_PADDING_BOTTOM_PX,
+        }}
+      >
+        {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
+        <HTMLViewer htmlContent={currPost?.description || ''} className="mt-4 mb-10" />
+        <StraightNode />
+        <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
+        <AdjPostNav
+          prevPost={prevPostPreview}
+          nextPost={nextPostPreview}
+          postType="notice"
+          id={rawId}
+          margin="mt-12"
+        />
       </div>
-      {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-      <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10" />
-      <StraightNode />
-      <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
-      <AdjPostNav
-        prevPost={prevPostPreview}
-        nextPost={nextPostPreview}
-        postType="notice"
-        id={rawId}
-        margin="mt-12"
-      />
     </PageLayout>
+  );
+}
+
+function Header({ title, author, dateStr }: { title: string; author: string; dateStr: string }) {
+  return (
+    <div
+      className="flex flex-col mb-9 gap-4"
+      style={{ paddingTop: PAGE_PADDING_TOP_PX, paddingLeft: PAGE_PADDING_LEFT_PX }}
+    >
+      <h2 className="text-[1.25rem] font-semibold">{title}</h2>
+      <div className="flex gap-5 text-sm text-neutral-500 font-normal tracking-wide">
+        <p>글쓴이: {author}</p>
+        <p>작성 시각: {formatFullDate(new Date(dateStr))}</p>
+      </div>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-interface NoticeSearchResult {
+export interface NoticeSearchResult {
   total: number;
   results: {
     id: number;
@@ -10,7 +10,7 @@ interface NoticeSearchResult {
   }[];
 }
 
-interface NewsSearchResult {
+export interface NewsSearchResult {
   total: number;
   results: {
     id: number;
@@ -23,4 +23,3 @@ interface NewsSearchResult {
     imageUrl: string | null;
   }[];
 }
-

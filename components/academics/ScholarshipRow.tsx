@@ -1,9 +1,8 @@
 'use client';
 import { Link } from '@/navigation';
 
-import { graduateScholarship, undergraduateScholarship } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
 export interface ScholarshipRowProps {
   id: number;

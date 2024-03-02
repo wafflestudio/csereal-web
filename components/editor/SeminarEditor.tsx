@@ -18,7 +18,7 @@ import {
   SeminarSpeaker,
   getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
-import Checkbox from '../common/Checkbox';
+import Checkbox from '../common/form/Checkbox';
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();

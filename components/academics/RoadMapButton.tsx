@@ -2,7 +2,7 @@
 
 import SignPostIcon from '@/public/image/signpost_icon.svg';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import RoadMapModal from './RoadMapModal';
 

@@ -29,6 +29,9 @@
       sans-serif;
 
     -webkit-font-smoothing: antialiased;
+
+    /* 피그마와 줄높이가 다른 문제 조정 */
+    line-height: 1.2;
   }
 }
 

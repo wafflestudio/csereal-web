@@ -1,13 +1,13 @@
 import { getClubs } from '@/apis/about';
 
+import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
+
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ClubDetails from '@/components/studentClubs/ClubDetails';
-
-import { studentClubs } from '@/types/page';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
+import { studentClubs } from '@/utils/segmentNode';
 
 interface StudentClubsPageProps {
   searchParams: { selected?: string };
@@ -20,11 +20,11 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   const selectedClub = findSelectedItem(
     clubs,
     decodeURI(searchParams.selected ?? ''),
-    clubs[0]?.name,
+    '와플스튜디오',
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big" titleMargin="mb-9" bodyStyle={{ paddingTop: 0 }}>
       <SelectionList
         names={clubs.map((club) => club.name)}
         selectedItemName={selectedClub?.name ?? ''}

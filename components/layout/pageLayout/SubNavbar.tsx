@@ -4,9 +4,8 @@ import { Link } from '@/navigation';
 
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 
-import { SegmentNode } from '@/types/page';
-
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
 
 interface SubNavbarProps {
   currentTab: SegmentNode;

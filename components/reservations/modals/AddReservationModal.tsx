@@ -5,7 +5,7 @@ import { Link } from '@/navigation';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BasicButton from '@/components/reservations/BasicButton';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/utils/hooks/useModal';
 
 import BottomForm from './MiddleForm';
 import TopForm from './TopForm';
