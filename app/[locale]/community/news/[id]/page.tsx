@@ -1,4 +1,4 @@
-import { getNewsPostDetail } from '@/apis/newsServer';
+import { getNewsPostDetail } from '@/actions/newsServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';

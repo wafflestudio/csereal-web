@@ -1,4 +1,4 @@
-import { getSeminarPost } from '@/apis/seminarServer';
+import { getSeminarPost } from '@/actions/seminarServer';
 
 import EditSeminarPageContent from '@/components/seminar/EditSeminarPageContent';
 

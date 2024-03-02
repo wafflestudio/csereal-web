@@ -6,7 +6,7 @@ import {
   deleteAllRecurringReservation,
   deleteSingleReservation,
   getReservation,
-} from '@/apis/reservation';
+} from '@/actions/reservation';
 
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';

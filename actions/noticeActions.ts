@@ -3,11 +3,10 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { batchDeleteNotice, batchUnpinNotice, deleteNotice } from '@/apis/noticeServer';
+import { batchDeleteNotice, batchUnpinNotice, deleteNotice } from '@/actions/noticeServer';
 
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
-
 
 const noticePath = getPath(notice);
 

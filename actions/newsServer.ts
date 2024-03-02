@@ -1,7 +1,7 @@
 import { News, NewsPreviewList } from '@/types/news';
 import { PostSearchQueryParams } from '@/types/post';
 
-import { deleteRequest, getRequest } from './serverIndex';
+import { deleteRequest, getRequest } from '../apis/serverIndex';
 
 const newsPath = '/news';
 

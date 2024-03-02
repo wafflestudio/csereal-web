@@ -4,7 +4,7 @@ import { cookies } from 'next/dist/client/components/headers';
 
 import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
 
-import { deleteRequest, getRequest, postRequest } from '.';
+import { deleteRequest, getRequest, postRequest } from '../apis';
 
 const reservationPath = '/reservation';
 

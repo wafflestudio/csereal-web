@@ -3,11 +3,10 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteNews } from '@/apis/newsServer';
+import { deleteNews } from '@/actions/newsServer';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
-
 
 const newsPath = getPath(news);
 

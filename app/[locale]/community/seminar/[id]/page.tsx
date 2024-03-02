@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
+import { getSeminarPost } from '@/actions/seminarServer';
 import { Link } from '@/navigation';
 
-import { getSeminarPost } from '@/apis/seminarServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';

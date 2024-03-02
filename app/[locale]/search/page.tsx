@@ -1,5 +1,6 @@
+import { getSeminarPosts } from '@/actions/seminarServer';
+
 import { getNewsSearch, getNoticeSearch } from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminarServer';
 
 import SearchPageContent from './SearchPageContent';
 
