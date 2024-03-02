@@ -15,7 +15,6 @@ interface PageLayoutProps {
   titleType: 'big' | 'small';
   titleMargin?: string; // tailwind class
   bodyStyle?: CSSProperties;
-  removeChildPadding?: boolean;
   children: ReactNode;
 }
 
@@ -33,7 +32,6 @@ export default function PageLayout({
   titleType,
   titleMargin = 'mb-[44px]',
   bodyStyle,
-  removeChildPadding,
   children,
 }: PageLayoutProps) {
   const t = useTranslations('Nav');
@@ -50,9 +48,7 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className={`bg-white relative ${
-          !removeChildPadding && 'pl-[100px] pr-[360px] pt-[44px] pb-[150px]'
-        }`}
+        className="bg-white relative pl-[100px] pr-[360px] pt-[44px] pb-[150px]"
         style={bodyStyle}
       >
         {children}

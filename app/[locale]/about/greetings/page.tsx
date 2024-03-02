@@ -10,7 +10,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function GreetingsPage() {
   return (
-    <PageLayout titleType="big" titleMargin="mb-9" removeChildPadding>
+    <PageLayout titleType="big" titleMargin="mb-9" bodyStyle={{ padding: 0 }}>
       <div className="flex gap-12 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem] items-start">
         <HTMLViewer htmlContent={description} className="w-[37.5rem] shrink-0" />
         <Image src={greetings.src} alt="학교 전경" width={212} height={280} />

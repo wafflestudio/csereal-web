@@ -25,7 +25,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
   const kilobyte = Math.round(bytes / 100);
   return (
     <a
-      className="text-xs font-normal hover:underline w-fit"
+      className="text-sm font-normal hover:underline w-fit"
       href={url}
       download={name}
       target="_blank"

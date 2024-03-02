@@ -33,6 +33,10 @@
   line-height: 2; /* 수정됨 */
 }
 
+.sun-editor-editable strong {
+  font-weight: bold;
+}
+
 /* RTL - editable */
 .sun-editor-editable.se-rtl * {
   direction: rtl;
@@ -245,7 +249,7 @@
   display: block;
   font-size: 1.17em;
   margin-block-start: 1em;
-  margin-block-end: 1em;
+  /* margin-block-end: 1em; */ /* 수정됨 */
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
@@ -285,10 +289,14 @@
 .sun-editor-editable hr {
   display: flex;
   border-width: 1px 0 0;
-  border-color: black;
+  border-color: #e5e5e5; /* 수정됨 */
   border-image: initial;
   height: 1px;
+
+  margin-top: 0.625rem; /* 수정됨 */
+  margin-bottom: 0.875rem; /* 수정됨 */
 }
+
 .sun-editor-editable hr.__se__solid {
   border-style: solid none none;
 }
