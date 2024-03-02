@@ -21,7 +21,7 @@ export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
       <HTMLViewer
         htmlContent={lab.description}
         topRightContent={{ type: 'component', content: <ResearchLabInfo lab={lab} /> }}
-        margin="mt-6"
+        className="mt-6"
       />
     </div>
   );

@@ -33,7 +33,7 @@ export default function DegreeRequirementsBody({ data }: { data: DegreeRequireme
         </div>
         <DegreeRequirementsContent />
       </div>
-      <HTMLViewer htmlContent={description} margin="mt-7" />
+      <HTMLViewer htmlContent={description} className="mt-7" />
     </>
   );
 }

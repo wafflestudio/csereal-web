@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-
-import Autolinker from 'autolinker';
+import { Autolinker } from 'autolinker';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
@@ -31,21 +29,21 @@ interface HTMLViewerProps {
   htmlContent: string;
   // 우측 상단 표시될 요소
   topRightContent?: TopRightImage | TopRightComponent;
-  margin?: string;
+  className?: string;
   style?: CSSProperties;
 }
 
 export default function HTMLViewer({
   htmlContent,
   topRightContent,
-  margin = '',
+  className = '',
   style,
 }: HTMLViewerProps) {
   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
   const linkedHTML = Autolinker.link(sanitizedHTML);
 
   return (
-    <div className={`flow-root ${margin} `}>
+    <div className={`flow-root ${className} `}>
       {(topRightContent?.type === 'image' || topRightContent?.type === 'imageUnoptimized') && (
         <TopRightImageContent {...topRightContent} />
       )}
@@ -71,6 +69,7 @@ function TopRightImageContent(props: TopRightImage) {
     const { url, width } = props;
     return (
       <div className="relative float-right ml-[28px] mb-[20px]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={url} alt="대표 이미지" className="object-contain" width={width} />
       </div>
     );

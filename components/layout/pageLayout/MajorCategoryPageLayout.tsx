@@ -49,7 +49,7 @@ export default function MajorCategoryPageLayout({
           <HTMLViewer
             htmlContent={description}
             style={{ color: '#f5f5f5', maxWidth: 960 }}
-            margin="mt-8 mb-6 hidden sm:block"
+            className="mt-8 mb-6 hidden sm:block"
           />
         )}
       </div>

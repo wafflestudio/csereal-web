@@ -49,7 +49,7 @@ export default function GraduateCourseChangesPage() {
       />
       {selectedChanges &&
         selectedChanges.map((change) => (
-          <HTMLViewer htmlContent={change.description} margin="mt-12" key={change.year} />
+          <HTMLViewer htmlContent={change.description} className="mt-12" key={change.year} />
         ))}
     </PageLayout>
   );

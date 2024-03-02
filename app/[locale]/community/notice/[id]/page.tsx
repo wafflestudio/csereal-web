@@ -47,7 +47,7 @@ export default async function NoticePostPage({
         {currPost && formatFullDate(new Date(currPost.createdAt))}
       </div>
       {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-      <HTMLViewer htmlContent={currPost?.description || ''} margin="mt-4 mb-10" />
+      <HTMLViewer htmlContent={currPost?.description || ''} className="mt-4 mb-10" />
       <StraightNode />
       <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
       <AdjPostNav

@@ -12,7 +12,7 @@ export default function ClubDetails({ club }: { club: Club }) {
         topRightContent={
           club.imageURL ? { type: 'image', width: 320, height: 200, url: club.imageURL } : undefined
         }
-        margin="ml-2.5"
+        className="ml-2.5"
       />
     </div>
   );

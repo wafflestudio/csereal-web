@@ -6,7 +6,7 @@ export default function DirectionsDetails({ direction }: { direction: Direction 
   return (
     <div>
       <DirectionsTitle name={direction.name} />
-      <HTMLViewer htmlContent={direction.description} margin="ml-2.5" />
+      <HTMLViewer htmlContent={direction.description} className="ml-2.5" />
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function CurriculumBody({ data }: { data: Curriculum[] }) {
           />
         </div>
       </div>
-      <HTMLViewer htmlContent={data[selectedcurriculumIndex].description} margin="mt-7" />
+      <HTMLViewer htmlContent={data[selectedcurriculumIndex].description} className="mt-7" />
     </>
   );
 }
