@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
-import { SearchInfo } from '@/hooks/useCustomSearchParams';
+import { SearchInfo } from '@/utils/hooks/useCustomSearchParams';
 
 import SearchForm from './SearchForm';
 import SelectedTags from './SelectedTags';

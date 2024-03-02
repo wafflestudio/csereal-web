@@ -1,4 +1,4 @@
-import { getNewsPostDetail } from '@/apis/newsServer';
+import { getNewsPostDetail } from '@/actions/newsServer';
 
 import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
@@ -7,11 +7,11 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { news } from '@/types/page';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 interface NewsPostPageProps {
   params: { id: string };
@@ -33,7 +33,7 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
       {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
       <HTMLViewer
         htmlContent={currPost.description}
-        margin="mt-4"
+        className="mt-4"
         topRightContent={
           currPost.imageURL
             ? { type: 'imageUnoptimized', url: currPost.imageURL, width: 320 }

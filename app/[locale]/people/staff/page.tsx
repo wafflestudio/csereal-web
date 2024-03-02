@@ -2,8 +2,9 @@ export const dynamic = 'force-dynamic';
 
 import { getStaffList } from '@/apis/people';
 
+import PeopleRow from '@/app/[locale]/people/PeopleRow';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import PeopleRow from '@/components/people/PeopleRow';
 
 export default async function StaffPage() {
   const { staffList } = await getStaffList();

@@ -2,9 +2,10 @@ import { Link } from '@/navigation';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
 import { SlidePreview } from '@/types/admin';
-import { news } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
+
 
 interface SlideListRowProps {
   index: number;

@@ -1,15 +1,15 @@
 import { getDirections } from '@/apis/about';
 
-import SelectionList from '@/components/common/selection/SelectionList';
-import DirectionsDetails from '@/components/directions/DirectionsDetails';
-import LocationGuide from '@/components/directions/LocationGuide';
-import LocationMap from '@/components/directions/LocationMap';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import DirectionsDetails from '@/app/[locale]/about/directions/DirectionsDetails';
+import LocationGuide from '@/app/[locale]/about/directions/LocationGuide';
+import LocationMap from '@/app/[locale]/about/directions/LocationMap';
 
-import { directions } from '@/types/page';
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
+import { directions } from '@/utils/segmentNode';
 
 interface DirectionsPageProps {
   searchParams: { selected?: string };

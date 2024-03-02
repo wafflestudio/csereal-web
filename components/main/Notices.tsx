@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { NoticeCategoryType, NoticeListMainType } from '@/types/main';
-import { notice } from '@/types/page';
 
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
+
 
 import NoticeCategory from './NoticeCategory';
 import NoticeListMain from './NoticeListMain';

@@ -1,4 +1,4 @@
-export const NoticeTags = [
+export const NOTICE_TAGS = [
   '수업',
   '장학',
   '학사(학부)',
@@ -14,7 +14,7 @@ export const NoticeTags = [
   'foreign',
 ];
 
-export const NewsTags = [
+export const NEWS_TAGS = [
   '행사',
   '연구',
   '수상',
@@ -26,3 +26,5 @@ export const NewsTags = [
   '진로',
   '과거 미분류',
 ];
+
+export const SEARCH_TAGS = ['소개', '소식', '구성원', '연구', '입학', '학사 및 교과', '시설 예약'];

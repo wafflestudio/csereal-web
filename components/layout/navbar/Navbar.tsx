@@ -2,9 +2,9 @@
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import { main } from '@/utils/segmentNode';
 
-import { main } from '@/types/page';
 
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';

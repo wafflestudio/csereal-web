@@ -2,9 +2,10 @@ import { Link } from '@/navigation';
 
 import { getEmeritusFaculty } from '@/apis/people';
 
+import PeopleImageWithAnimation from '@/app/[locale]/people/PeopleImageWithAnimation';
+import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import PeopleImageWithAnimation from '@/components/people/PeopleImageWithAnimation';
-import PeopleInfoList from '@/components/people/PeopleInfoList';
 
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
   const data = await getEmeritusFaculty(params.id);

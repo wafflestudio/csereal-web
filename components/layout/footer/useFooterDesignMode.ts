@@ -1,5 +1,4 @@
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import {
   SegmentNode,
   about,
@@ -10,7 +9,8 @@ import {
   people,
   research,
   reservations,
-} from '@/types/page';
+} from '@/utils/segmentNode';
+
 
 export type FooterMode = 'light' | 'dark';
 

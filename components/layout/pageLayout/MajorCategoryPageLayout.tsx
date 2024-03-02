@@ -6,8 +6,7 @@ import React, { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 
 import ENG_NAMES from '../../../messages/en.json';
@@ -28,10 +27,13 @@ export default function MajorCategoryPageLayout({
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
+
   title ||= t(currentPage.name);
   const initSelectedCategory = twoDimensional
     ? currentPage.children!.find((seg) => !seg.isPage)
     : null;
+
+  // 학사 및 교과 등에서 소분류 선택 처리용 state
   const [selectedCategory, setSelectedCategory] = useState(initSelectedCategory);
   const router = useRouter();
 
@@ -46,8 +48,8 @@ export default function MajorCategoryPageLayout({
         {description && (
           <HTMLViewer
             htmlContent={description}
-            style={{ color: '#f5f5f5' }}
-            margin="mt-8 mb-6 hidden sm:block"
+            style={{ color: '#f5f5f5', maxWidth: 960 }}
+            className="mt-8 mb-6 hidden sm:block"
           />
         )}
       </div>
@@ -56,11 +58,11 @@ export default function MajorCategoryPageLayout({
           !description && 'pb-16'
         } sm:pt-20 sm:pb-[11.25rem] sm:px-[6.25rem]`}
       >
-        <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] mb-5 sm:mb-10">
+        <div className="grid gap-9 sm:gap-9 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] mb-5 sm:mb-10">
           {currentPage.children!.map((subpage, index) => (
             <RootItem
               key={index}
-              title={subpage.name}
+              title={t(subpage.name)}
               description={subpage.description ?? ''}
               onClick={() =>
                 subpage.isPage ? router.push(getPath(subpage)) : setSelectedCategory(subpage)
@@ -70,6 +72,7 @@ export default function MajorCategoryPageLayout({
             />
           ))}
         </div>
+
         {selectedCategory && !selectedCategory.isPage && (
           <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] sm:mb-10">
             {selectedCategory.children!.map((subpage, index) => (
@@ -89,41 +92,6 @@ export default function MajorCategoryPageLayout({
             htmlContent={description}
             style={{ color: '#a3a3a3', fontWeight: 300, fontSize: 13 }}
           />
-        </div>
-      )}
-    </div>
-  );
-}
-
-interface DetailItemProps {
-  title: string;
-  description: string;
-  hasArrow: boolean;
-  bgColor: string;
-  hoverColor?: string;
-  onClick: () => void;
-}
-
-function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailItemProps) {
-  const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
-  return (
-    <div
-      className={`h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer`}
-      onClick={onClick}
-    >
-      <div>
-        <h3 className="text-neutral-800 text-md sm:text-[20px] font-medium mb-[2.5px] sm:mb-2.5">
-          {title}
-        </h3>
-        <p className="text-neutral-800 text-[11px] sm:text-base">
-          {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
-        </p>
-      </div>
-      {hasArrow && (
-        <div className="text-end">
-          <span className="material-symbols-outlined font-extralight text-[18px] sm:text-[32px] text-neutral-800">
-            arrow_forward
-          </span>
         </div>
       )}
     </div>
@@ -165,5 +133,40 @@ function LeafItem({ title, description, onClick }: LeafItemProps) {
       bgColor="bg-neutral-400"
       hoverColor="bg-neutral-500"
     />
+  );
+}
+
+interface DetailItemProps {
+  title: string;
+  description: string;
+  hasArrow: boolean;
+  bgColor: string;
+  hoverColor?: string;
+  onClick: () => void;
+}
+
+function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailItemProps) {
+  const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
+  return (
+    <div
+      className={`group h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer duration-300`}
+      onClick={onClick}
+    >
+      <div>
+        <h3 className="text-neutral-800 text-md sm:text-[20px] font-medium mb-[0.625rem] sm:mb-2.5">
+          {title}
+        </h3>
+        <p className="text-neutral-800 text-[11px] sm:text-base">
+          {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
+        </p>
+      </div>
+      {hasArrow && (
+        <div className="text-end">
+          <span className="material-symbols-outlined font-extralight text-[18px] sm:text-[32px] text-neutral-800 group-hover:translate-x-[10px] duration-300">
+            arrow_forward
+          </span>
+        </div>
+      )}
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+import { getPath } from '@/utils/page';
 import {
   SegmentNode,
   overview,
@@ -14,9 +15,8 @@ import {
   contact,
   directions,
   privacyPolicy,
-} from '@/types/page';
+} from '@/utils/segmentNode';
 
-import { getPath } from '@/utils/page';
 
 export interface FooterLink {
   href: string;

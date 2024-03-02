@@ -6,9 +6,9 @@ import { Link } from '@/navigation';
 
 import { StraightNode } from '@/components/common/Nodes';
 
-import { SegmentNode } from '@/types/page';
-
 import { getPath } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
+
 
 type NavTreeRowProps = {
   segmentNode: SegmentNode;

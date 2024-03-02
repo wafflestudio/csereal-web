@@ -1,3 +1,5 @@
+import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
+
 import { getRequest } from '.';
 
 export const getNoticeSearch = (params: {

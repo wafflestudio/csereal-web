@@ -2,8 +2,9 @@ export const dynamic = 'force-static';
 
 import { getResearchLab } from '@/apis/research';
 
+import ResearchLabDetails from '@/app/[locale]/research/labs/ResearchLabDetails';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ResearchLabDetails from '@/components/research/labs/ResearchLabDetails';
 
 interface LabDetailPageProps {
   params: { id: string };

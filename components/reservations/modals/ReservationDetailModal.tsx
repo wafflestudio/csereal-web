@@ -6,15 +6,14 @@ import {
   deleteAllRecurringReservation,
   deleteSingleReservation,
   getReservation,
-} from '@/apis/reservation';
+} from '@/actions/reservation';
 
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
-import useModal from '@/hooks/useModal';
-
 import { Reservation } from '@/types/reservation';
 
+import useModal from '@/utils/hooks/useModal';
 import { refreshPage } from '@/utils/refreshPage';
 import { errorToast, successToast } from '@/utils/toast';
 

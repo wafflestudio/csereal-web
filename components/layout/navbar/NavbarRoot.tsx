@@ -6,11 +6,9 @@ import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
-
-import { SegmentNode, main as mainSegmentNode } from '@/types/page';
-
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
+import { SegmentNode, main as mainSegmentNode } from '@/utils/segmentNode';
 
 export default function NavbarRoot({
   state,
@@ -48,7 +46,9 @@ function SNUButton() {
 function DotList() {
   const cur = useCurrentSegmentNode();
   const dotArr =
-    mainSegmentNode.children?.map((node) => (isAncestorNode(node, cur) ? 'fill' : 'empty')) ?? [];
+    mainSegmentNode.children?.map((node) =>
+      isAncestorNode(node, cur) || node === cur ? 'fill' : 'empty',
+    ) ?? [];
   const mt = dotArr[0] === 'fill' ? 'mt-[2.7rem]' : 'mt-[3.38rem]';
 
   return (

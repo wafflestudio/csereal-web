@@ -2,7 +2,7 @@ import { Link } from '@/navigation';
 
 import { AdjPostInfo } from '@/types/post';
 
-import LoginStaffVisible from './LoginStaffVisible';
+import LoginStaffVisible from './auth/LoginStaffVisible';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostType = 'notice' | 'seminar' | 'news';
@@ -24,8 +24,8 @@ export default function AdjPostNav({
 }: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
-      <Row post={nextPost} type="next" />
-      <Row post={prevPost} type="prev" />
+      {nextPost && <Row post={nextPost} type="next" />}
+      {prevPost && <Row post={prevPost} type="prev" />}
       <div className="flex justify-end mt-6">
         <LoginStaffVisible>
           {id && (
@@ -43,15 +43,13 @@ export default function AdjPostNav({
 
 type RowType = 'next' | 'prev';
 
-function Row({ post, type }: { post?: AdjPostInfo; type: RowType }) {
+function Row({ post, type }: { post: AdjPostInfo; type: RowType }) {
   return (
-    post && (
-      <Link className="group flex items-center w-fit" href={post.href}>
-        <RowIcon type={type} />
-        <RowDescription type={type} />
-        <RowPostTitle title={post.title} />
-      </Link>
-    )
+    <Link className="group flex items-center w-fit" href={post.href}>
+      <RowIcon type={type} />
+      <RowDescription type={type} />
+      <RowPostTitle title={post.title} />
+    </Link>
   );
 }
 

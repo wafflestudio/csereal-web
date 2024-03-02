@@ -13,7 +13,7 @@ export default async function GraduateGuidePage() {
     <PageLayout titleType="big" titleMargin="mb-5">
       {data.attachments.length > 0 && <Attachments files={data.attachments} />}
       <GuideContent className="mt-9" />
-      <HTMLViewer htmlContent={data.description} margin="mt-7" />
+      <HTMLViewer htmlContent={data.description} className="mt-7" />
     </PageLayout>
   );
 }

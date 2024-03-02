@@ -7,7 +7,7 @@ import DegreeRequirementsContent from '@/public/image/undergraduate_degree_requi
 import { DegreeRequirements } from '@/types/academics';
 
 import Attachments from '../common/Attachments';
-import Dropdown from '../common/Dropdown';
+import Dropdown from '../common/form/Dropdown';
 import { StraightNode } from '../common/Nodes';
 import HTMLViewer from '../editor/HTMLViewer';
 
@@ -33,7 +33,7 @@ export default function DegreeRequirementsBody({ data }: { data: DegreeRequireme
         </div>
         <DegreeRequirementsContent />
       </div>
-      <HTMLViewer htmlContent={description} margin="mt-7" />
+      <HTMLViewer htmlContent={description} className="mt-7" />
     </>
   );
 }

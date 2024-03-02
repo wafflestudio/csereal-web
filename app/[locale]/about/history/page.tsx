@@ -1,4 +1,4 @@
-import history_image from '@/public/image/history_image.png';
+import history_image from '@/public/image/about/history.png';
 
 import { getHistory } from '@/apis/about';
 

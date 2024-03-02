@@ -1,24 +1,11 @@
 import { getTopConferenceList } from '@/apis/research';
 
+import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ConferenceListTable from '@/components/research/topConferenceList/ConferenceListTable';
-
-const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
-
-// const formatDateWithDot = (date: Date) => {
-//   const year = date.getFullYear();
-//   const month = date.getMonth() + 1;
-//   const day = date.getDate();
-//   const dayOfWeek = date.getDay();
-
-//   return `${year}.${month}.${day}(${DAYS[dayOfWeek]})`;
-// };
 
 export default async function TopConferenceListPage() {
   const { modifiedAt, author, conferenceList } = await getTopConferenceList();
-
-  //   const modifiedDate = formatDateWithDot(modifiedAt);
-  const modifiedDate = modifiedAt;
 
   return (
     <PageLayout titleType="big" titleMargin="mb-9">
@@ -30,7 +17,7 @@ export default async function TopConferenceListPage() {
           본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다.
         </p>
         <p className="text-sm leading-[26px]">
-          수정날짜: {modifiedDate}(작성자: {author})
+          수정날짜: {modifiedAt}(작성자: {author})
         </p>
         <ConferenceListTable conferenceList={conferenceList} />
       </div>

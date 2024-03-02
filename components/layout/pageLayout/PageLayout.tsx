@@ -5,7 +5,7 @@ import React, { CSSProperties, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 
-import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
 import PageTitle from './PageTitle';
 import Header from '../header/Header';
@@ -17,6 +17,11 @@ interface PageLayoutProps {
   bodyStyle?: CSSProperties;
   children: ReactNode;
 }
+
+export const PAGE_PADDING_LEFT_PX = 100;
+export const PAGE_PADDING_RIGHT_PX = 350;
+export const PAGE_PADDING_TOP_PX = 44;
+export const PAGE_PADDING_BOTTOM_PX = 150;
 
 /**
  * 본문 기본 스타일
@@ -48,7 +53,7 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className={'bg-white pl-[100px] pr-[360px] pt-[44px] pb-[150px] relative'}
+        className="bg-white relative pl-[100px] pr-[360px] pt-[44px] pb-[150px]"
         style={bodyStyle}
       >
         {children}

@@ -1,4 +1,4 @@
-import { getWeeklyReservation } from '@/apis/reservation';
+import { getWeeklyReservation } from '@/actions/reservation';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import ReservationCalendar from '@/components/reservations/ReservationCalendar';

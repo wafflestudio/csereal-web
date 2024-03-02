@@ -1,6 +1,6 @@
-import { getNoticePostDetail } from '@/apis/noticeServer';
+import { getNoticePostDetail } from '@/actions/noticeServer';
 
-import EditNoticePageContent from '@/components/notice/EditNoticePageContent';
+import EditNoticePageContent from '@/app/[locale]/community/notice/EditNoticePageContent';
 
 interface EditNoticePageProps {
   params: { id: string };
