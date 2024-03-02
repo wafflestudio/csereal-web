@@ -17,10 +17,10 @@ interface NoticeListRowProps {
 }
 
 export const NOTICE_ROW_CELL_WIDTH = {
-  check: 'w-[3.125rem]',
-  pin: 'w-[3.125rem]',
-  title: 'w-[35.625rem]',
-  date: 'w-auto',
+  check: 'sm:w-[3.125rem]',
+  pin: 'sm:w-[3.125rem]',
+  title: 'sm:w-[35.625rem]',
+  date: 'sm:w-auto',
 } as const;
 
 export default function NoticeListRow({
@@ -31,9 +31,11 @@ export default function NoticeListRow({
 }: NoticeListRowProps) {
   return (
     <li
-      className={`flex items-center text-[14px] h-11 py-2.5 ${post.isPinned && 'font-semibold'} ${
-        !isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')
-      } ${isSelected && 'bg-neutral-100'} `}
+      className={`flex flex-col gap-2.5 sm:gap-0 sm:flex-row sm:items-center text-[14px] sm:h-11 py-6 sm:py-2.5 px-7 sm:px-0 sm:pr-4 ${
+        post.isPinned && 'font-semibold'
+      } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
+        isSelected && 'bg-neutral-100'
+      } `}
     >
       {isEditMode && (
         <CheckboxCell
@@ -41,12 +43,13 @@ export default function NoticeListRow({
           toggleCheck={() => toggleSelected(post.id, isSelected)}
         />
       )}
-      <PrivateOrPinCell isPrivate={post.isPrivate} isPinned={post.isPinned} />
+      <PrivateOrPinCell isPrivate={post.isPrivate} isPinned={true} />
       <TitleCell
         title={post.title}
         hasAttachment={post.hasAttachment}
         id={post.id}
         isEditMode={isEditMode}
+        isPinned={post.isPinned}
       />
       <DateCell date={post.createdAt} />
     </li>
@@ -60,7 +63,7 @@ interface CheckboxCellProps {
 
 function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.check} flex justify-center`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.check} hidden sm:flex justify-center`}>
       {isChecked ? (
         <CheckboxOrange className="cursor-pointer" onClick={toggleCheck} />
       ) : (
@@ -77,7 +80,7 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
 
 function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinned: boolean }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.pin} px-[0.8125rem] shrink-0`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.pin} sm:px-[0.8125rem] shrink-0`}>
       {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
   );
@@ -88,11 +91,12 @@ interface TitleCellProps {
   hasAttachment: boolean;
   id: number;
   isEditMode: boolean;
+  isPinned: boolean;
 }
 
 const noticePath = getPath(notice);
 
-function TitleCell({ title, hasAttachment, id, isEditMode }: TitleCellProps) {
+function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCellProps) {
   if (isEditMode) {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
@@ -104,12 +108,16 @@ function TitleCell({ title, hasAttachment, id, isEditMode }: TitleCellProps) {
     );
   } else {
     return (
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} sm:pl-3`}>
         <Link
           href={`${noticePath}/${id}`}
-          className="flex max-w-fit items-center gap-1.5 hover:text-main-orange"
+          className="font-semibold sm:font-normal flex max-w-fit items-center gap-1.5 hover:text-main-orange"
         >
-          <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
+          <span
+            className={`${
+              isPinned && 'text-main-orange sm:text-neutral-800'
+            } sm:whitespace-nowrap text-ellipsis overflow-hidden tracking-wide`}
+          >
             {title}
           </span>
           {hasAttachment && <ClipIcon className="shrink-0" />}
@@ -121,7 +129,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode }: TitleCellProps) {
 
 function DateCell({ date }: { date: string }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.date} pl-8 tracking-wide`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.date} sm:pl-8 tracking-wide`}>
       {formatDate(new Date(date))}
     </span>
   );
