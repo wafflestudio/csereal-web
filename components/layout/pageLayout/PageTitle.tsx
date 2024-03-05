@@ -79,7 +79,7 @@ interface LoactionText {
 }
 
 function LocationText({ path, name, isCurrent }: LoactionText) {
-  const textStyle = 'text-md font-normal tracking-[.02em]';
+  const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
 
   return isCurrent ? (
     <button className={`${textStyle} hover:text-main-orange`} onClick={refreshPage}>
