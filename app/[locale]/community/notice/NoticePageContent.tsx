@@ -14,10 +14,11 @@ import { NOTICE_TAGS } from '@/constants/tag';
 import { NoticePreviewList } from '@/types/notice';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import useResponsive from '@/utils/hooks/useResponsive';
 
 import AdminFeatures from './AdminFeatures';
 
-const POST_LIMIT = 20;
+const POST_LIMIT = 20; // TODO: 모바일 크기에서는 10으로 축소
 
 type ReducerAction =
   | {
@@ -48,6 +49,7 @@ export default function NoticePageContent({
   data: NoticePreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const { screenType } = useResponsive();
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const [isEditMode, toggleEditMode] = useReducer((editMode) => {
     changeSelectedIds({ type: 'RESET' });
@@ -78,6 +80,7 @@ export default function NoticePageContent({
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
+        pageLimit={screenType == 'desktop' ? 10 : 5}
         currentPage={page}
         setCurrentPage={setCurrentPage}
         disabled={isEditMode}

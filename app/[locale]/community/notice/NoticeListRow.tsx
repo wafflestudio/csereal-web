@@ -19,8 +19,8 @@ interface NoticeListRowProps {
 export const NOTICE_ROW_CELL_WIDTH = {
   check: 'sm:w-[3.125rem]',
   pin: 'sm:w-[3.125rem]',
-  title: 'sm:w-[35.625rem]',
-  date: 'sm:w-auto',
+  title: 'sm:max-w-full',
+  date: 'sm:w-auto sm:min-w-[7.125rem]',
 } as const;
 
 export default function NoticeListRow({
@@ -80,7 +80,11 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
 
 function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinned: boolean }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.pin} sm:px-[0.8125rem] shrink-0`}>
+    <span
+      className={`${NOTICE_ROW_CELL_WIDTH.pin} ${
+        !(isPrivate || isPinned) && 'hidden sm:inline-flex'
+      } sm:px-[0.8125rem] shrink-0`}
+    >
       {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
   );
@@ -108,10 +112,10 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
     );
   } else {
     return (
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} sm:pl-3`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} sm:pl-3 grow min-w-0`}>
         <Link
           href={`${noticePath}/${id}`}
-          className="font-semibold sm:font-normal flex max-w-fit items-center gap-1.5 hover:text-main-orange"
+          className="font-semibold sm:font-normal flex items-center gap-1.5 hover:text-main-orange"
         >
           <span
             className={`${
