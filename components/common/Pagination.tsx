@@ -1,7 +1,9 @@
 interface PaginationProps {
   totalPostsCount: number;
+  /** 한 페이지에 보여줄 글 개수 */
   postsCountPerPage: number;
   currentPage: number;
+  /** 페이지네이션 바에 보여줄 페이지 개수 */
   pageLimit?: number;
   setCurrentPage(pageNum: number): void;
   disabled?: boolean;
@@ -11,9 +13,9 @@ const MAX_PAGE = 10000; // totalPostsCount 실제값이 아닌 추정치가 왔�
 
 export default function Pagination({
   totalPostsCount,
-  postsCountPerPage /* 한 페이지에 보여줄 글 개수 */,
+  postsCountPerPage,
   currentPage,
-  pageLimit = 10 /* 페이지네이션 바에 보여줄 페이지 개수 */,
+  pageLimit = 10,
   setCurrentPage,
   disabled = false,
 }: PaginationProps) {

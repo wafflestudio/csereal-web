@@ -49,6 +49,7 @@ export default function NoticePageContent({
   data: NoticePreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const { screenType } = useResponsive();
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const [isEditMode, toggleEditMode] = useReducer((editMode) => {
     changeSelectedIds({ type: 'RESET' });
@@ -58,8 +59,6 @@ export default function NoticePageContent({
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', pageNum });
   };
-
-  const { screenType } = useResponsive();
 
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
@@ -81,8 +80,8 @@ export default function NoticePageContent({
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
-        currentPage={page}
         pageLimit={screenType == 'desktop' ? 10 : 5}
+        currentPage={page}
         setCurrentPage={setCurrentPage}
         disabled={isEditMode}
       />

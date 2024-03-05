@@ -4,20 +4,22 @@ import SeminarSearchBar from '@/app/[locale]/community/seminar/SearchBar';
 import SeminarRow from '@/app/[locale]/community/seminar/SeminarRow';
 import SeminarYear from '@/app/[locale]/community/seminar/SeminarYear';
 
+import LoginStaffVisible from '@/components/common/auth/LoginStaffVisible';
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { SeminarList } from '@/types/seminar';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import useResponsive from '@/utils/hooks/useResponsive';
 
 import AdminFeatures from './AdminFeatures';
-import LoginStaffVisible from '../../../../components/common/auth/LoginStaffVisible';
 
 const postsCountPerPage = 10;
 
 export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
   const { page, keyword, setSearchParams } = useCustomSearchParams();
+  const { screenType } = useResponsive();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', pageNum });
@@ -43,6 +45,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
       <Pagination
         totalPostsCount={total ?? 0}
         postsCountPerPage={postsCountPerPage}
+        pageLimit={screenType == 'desktop' ? 10 : 5}
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />

@@ -12,6 +12,7 @@ import { NEWS_TAGS } from '@/constants/tag';
 import { NewsPreviewList } from '@/types/news';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
@@ -26,6 +27,7 @@ export default function NewsPageContent({
   data: NewsPreviewList;
 }) {
   const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const { screenType } = useResponsive();
 
   const setCurrentPage = (pageNum: number) => {
     setSearchParams({ purpose: 'navigation', pageNum });
@@ -60,6 +62,7 @@ export default function NewsPageContent({
       <Pagination
         totalPostsCount={total}
         postsCountPerPage={POST_LIMIT}
+        pageLimit={screenType == 'desktop' ? 10 : 5}
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />
