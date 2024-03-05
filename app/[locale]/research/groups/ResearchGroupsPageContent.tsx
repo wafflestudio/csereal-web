@@ -31,12 +31,12 @@ export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPage
 
   return (
     <PageLayout titleType="big" titleMargin="mb-[44px]" bodyStyle={{ padding: 0 }}>
-      <div className="pl-[100px] pr-[350px]">
+      <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <SelectionList
           names={groups.map((group) => group.name)}
           selectedItemName={selectedGroup?.name ?? ''}
           path={researchGroupsPath}
-          listGridColumnClass="grid-cols-[13.25rem_8.75rem_13.75rem_14.5rem]"
+          listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_236px,_auto))]"
           setSelected={setSelected}
         />
       </div>

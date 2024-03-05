@@ -12,7 +12,7 @@ interface ResearchGroupDetailProps {
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
-    <div className="bg-neutral-100 pt-8 pb-9 sm:pl-[100px] sm:pr-[350px]  sm:pt-[50px] sm:pb-[100px]">
+    <div className="bg-neutral-100 pt-8 pb-9 sm:pl-[100px] sm:pr-[340px] sm:pt-[50px] sm:pb-[100px]">
       <h2 className="mb-6 sm:mb-[18px] ml-8 mr-7 sm:mx-0 font-bold text-base sm:text-[24px] leading-loose whitespace-nowrap">
         {group.name} 연구 그룹
       </h2>
