@@ -14,10 +14,11 @@ import { NOTICE_TAGS } from '@/constants/tag';
 import { NoticePreviewList } from '@/types/notice';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import useResponsive from '@/utils/hooks/useResponsive';
 
 import AdminFeatures from './AdminFeatures';
 
-const POST_LIMIT = 20;
+const POST_LIMIT = 20; // TODO: 모바일 크기에서는 10으로 축소
 
 type ReducerAction =
   | {
@@ -58,6 +59,8 @@ export default function NoticePageContent({
     setSearchParams({ purpose: 'navigation', pageNum });
   };
 
+  const { screenType } = useResponsive();
+
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
   return (
@@ -79,6 +82,7 @@ export default function NoticePageContent({
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
         currentPage={page}
+        pageLimit={screenType == 'desktop' ? 10 : 5}
         setCurrentPage={setCurrentPage}
         disabled={isEditMode}
       />

@@ -80,7 +80,11 @@ function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
 
 function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinned: boolean }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.pin} sm:px-[0.8125rem] shrink-0`}>
+    <span
+      className={`${NOTICE_ROW_CELL_WIDTH.pin} ${
+        !(isPrivate || isPinned) && 'hidden sm:inline-flex'
+      } sm:px-[0.8125rem] shrink-0`}
+    >
       {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
   );

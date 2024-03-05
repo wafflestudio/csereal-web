@@ -1,26 +1,27 @@
 interface PaginationProps {
   totalPostsCount: number;
-  postsCountPerPage: number; // 한번에 보여줄 글 개수
+  postsCountPerPage: number;
   currentPage: number;
+  pageLimit?: number;
   setCurrentPage(pageNum: number): void;
   disabled?: boolean;
 }
 
-const PAGE_LIMIT = 10; // 페이지네이션 바에 한번에 보여줄 페이지 개수
 const MAX_PAGE = 10000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
 
 export default function Pagination({
   totalPostsCount,
-  postsCountPerPage,
+  postsCountPerPage /* 한 페이지에 보여줄 글 개수 */,
   currentPage,
+  pageLimit = 10 /* 페이지네이션 바에 보여줄 페이지 개수 */,
   setCurrentPage,
   disabled = false,
 }: PaginationProps) {
   const numPages = Math.ceil((totalPostsCount || 1) / postsCountPerPage); // 전체 페이지 개수
-  const firstNum = currentPage - ((currentPage - 1) % PAGE_LIMIT); // 페이지네이션 시작 번호
+  const firstNum = currentPage - ((currentPage - 1) % pageLimit); // 페이지네이션 시작 번호
 
   // fetch하는 동안 NUM_PAGES가 1이 되기에 최솟값이 1이도록 처리
-  const paginationNumberCnt = Math.max(1, Math.min(PAGE_LIMIT, numPages - firstNum + 1));
+  const paginationNumberCnt = Math.max(1, Math.min(pageLimit, numPages - firstNum + 1));
 
   // 페이지 범위 넘어가면 마지막 페이지로 리다이렉트
   if (numPages < currentPage) setCurrentPage(numPages);
@@ -55,8 +56,8 @@ export default function Pagination({
         </div>
         <PaginationArrow
           iconName="navigate_next"
-          num={firstNum + PAGE_LIMIT}
-          disabled={firstNum + PAGE_LIMIT > numPages || disabled}
+          num={firstNum + pageLimit}
+          disabled={firstNum + pageLimit > numPages || disabled}
           movePageNumber={setCurrentPage}
         />
         <PaginationArrow
