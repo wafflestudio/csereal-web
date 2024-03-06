@@ -31,7 +31,7 @@ export default function ResearchCentersPageContent({ centers }: { centers: Resea
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}
         path={researchCentersPath}
-        listGridColumnClass="grid-cols-[12.5rem_13.75rem_12.5rem]"
+        listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_200px,_auto))]"
         setSelected={setSelected}
       />
       {selectedCenter ? (

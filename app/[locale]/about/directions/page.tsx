@@ -38,7 +38,6 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
           names={directionList.map((d) => d.name)}
           selectedItemName={selectedDirection?.name ?? ''}
           path={directionsPath}
-          listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
         />
         {selectedDirection ? (
           <DirectionsDetails direction={selectedDirection} />

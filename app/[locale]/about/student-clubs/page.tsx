@@ -29,7 +29,6 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
         names={clubs.map((club) => club.name)}
         selectedItemName={selectedClub?.name ?? ''}
         path={clubPath}
-        listGridColumnClass="grid-cols-[repeat(4,_12.5rem)]"
       />
       {selectedClub ? (
         <ClubDetails club={selectedClub} />

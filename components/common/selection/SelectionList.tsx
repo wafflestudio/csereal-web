@@ -14,7 +14,8 @@ interface SelectionListProps {
   names: readonly string[];
   selectedItemName: string;
   path: string;
-  listGridColumnClass?: string; // tailwind class
+  /** lg:grid-cols-[repeat(auto-fit,_minmax({itemWidth}px,_auto))] */
+  listGridColumnClass?: string;
   listItemPadding?: string; // tailwlind class
   setSelected?: Dispatch<SetStateAction<string>>;
 }
@@ -23,16 +24,17 @@ export default function SelectionList({
   names,
   selectedItemName,
   path,
-  listGridColumnClass = 'grid-cols-[repeat(4,_max-content)]',
+  listGridColumnClass = 'lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]',
   listItemPadding = '',
   setSelected,
 }: SelectionListProps) {
   const selectItem = (itemName: string) => {
     setSelected?.(itemName);
   };
+  const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 
   return (
-    <ul className={`grid ${listGridColumnClass} gap-3 mb-9 pt-[44px]`}>
+    <ul className={`grid ${gridStyle} gap-3 mb-6 sm:mb-9 pt-7 sm:pt-[44px]`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
@@ -56,7 +58,7 @@ interface SelectionItemProps {
 }
 
 function SelectionItem({ name, isSelected, path, padding, selectItem }: SelectionItemProps) {
-  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-sm tracking-wide font-yoon ${padding}`;
+  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-[15px] tracking-wide font-yoon ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.3)';
