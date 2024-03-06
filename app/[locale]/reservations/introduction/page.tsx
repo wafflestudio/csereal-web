@@ -19,16 +19,12 @@ export default function ReservationIntroductionPage({
   const itemName = isSearchParamValid(temp) ? temp : names[0];
 
   return (
-    <PageLayout
-      titleType="big"
-      titleMargin="mb-[2.25rem]"
-      bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}
-    >
+    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}>
       <SelectionList
         names={names}
         selectedItemName={itemName}
         path={path}
-        listGridColumnClass="grid-cols-[repeat(4,_10rem)]"
+        listGridColumnClass="lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]"
       />
       <SelectionTitle animationKey={itemName}>{itemName}</SelectionTitle>
       <HTMLViewer htmlContent={htmlContents[itemName]} />

@@ -10,7 +10,7 @@ export default async function UndergraduateScholarshipListPage() {
   const { description, scholarship } = await getUndergraduateScholarshipList();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer htmlContent={description} className="mt-7" />
       <div className="flex flex-col mt-10 font-noto">
         <h3 className="text-[20px] font-bold leading-10 border-b-[1px] pb-2 border-b-neutral-200">

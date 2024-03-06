@@ -46,7 +46,7 @@ export default function UndergraduateCourseChangesPage() {
   const selectedChanges = getSelectedChanges(selectedYear, data ?? []);
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-14">
+    <PageLayout titleType="big">
       <TimeLine
         timeSpots={TIME_SPOTS}
         selectedYear={selectedYear}

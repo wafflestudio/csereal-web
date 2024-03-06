@@ -9,7 +9,7 @@ import { FutureCareers } from '@/types/about';
 export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();
   return (
-    <PageLayout titleType="big" titleMargin="mb-[2.31rem]">
+    <PageLayout titleType="big">
       <p className="text-md font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
         {description}
       </p>

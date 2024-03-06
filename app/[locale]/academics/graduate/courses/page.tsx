@@ -10,7 +10,7 @@ export default async function GraduateCoursePage() {
   const chunckedCourses = data ? chunkCourse(data) : [];
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[44px]">
+    <PageLayout titleType="big">
       {chunckedCourses.length > 0 && (
         <div className="flex flex-col gap-8 w-[970px]">
           {chunckedCourses.map((courses, i) => (

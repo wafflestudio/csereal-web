@@ -7,7 +7,7 @@ export default async function UndergraduateEarlyAdmission() {
   const data = await getUndergraduateEarlyAdmission();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer htmlContent={data?.description ?? ''} />
     </PageLayout>
   );

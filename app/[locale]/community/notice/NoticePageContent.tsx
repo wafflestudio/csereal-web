@@ -63,7 +63,7 @@ export default function NoticePageContent({
   // edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[44px]" bodyStyle={{ paddingTop: 54 }}>
+    <PageLayout titleType="big" bodyStyle={{ paddingTop: 54 }}>
       <SearchBox
         tags={NOTICE_TAGS}
         initTags={tags}

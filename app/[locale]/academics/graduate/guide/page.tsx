@@ -10,7 +10,7 @@ export default async function GraduateGuidePage() {
   const data = await getAcademicsGuide('graduate');
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-5">
+    <PageLayout titleType="big">
       {data.attachments.length > 0 && <Attachments files={data.attachments} />}
       <GuideContent className="mt-9" />
       <HTMLViewer htmlContent={data.description} className="mt-7" />

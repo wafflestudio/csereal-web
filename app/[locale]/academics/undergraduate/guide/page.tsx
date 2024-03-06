@@ -9,7 +9,7 @@ export default async function UndergraduateGuidePage() {
   const data = await getAcademicsGuide('undergraduate');
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <GuideContent />
       <HTMLViewer htmlContent={data.description} className="mt-7" />
     </PageLayout>

@@ -7,7 +7,7 @@ export default async function ContactPage() {
   const { description, imageURL } = await getContact();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer
         htmlContent={description}
         topRightContent={{ type: 'image', url: imageURL, width: 240, height: 360 }}

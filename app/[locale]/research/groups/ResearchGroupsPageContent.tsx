@@ -30,7 +30,7 @@ export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPage
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[44px]" bodyStyle={{ padding: 0 }}>
+    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
       <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <SelectionList
           names={groups.map((group) => group.name)}

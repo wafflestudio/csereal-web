@@ -10,7 +10,7 @@ export default async function ResearchLabsPage() {
   const labInformations = await getResearchLabs();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <ResearchLabList labInfos={labInformations} />
     </PageLayout>
   );
