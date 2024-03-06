@@ -28,7 +28,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-[3.25rem]">
+    <PageLayout titleType="big">
       <div className="mb-12">
         <LocationGuide />
         <LocationMap />

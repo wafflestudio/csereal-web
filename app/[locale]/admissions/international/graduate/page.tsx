@@ -3,7 +3,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function InternationalGraduateAdmissionPage() {
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer htmlContent={htmlContent} />
     </PageLayout>
   );

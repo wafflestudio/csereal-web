@@ -7,7 +7,7 @@ export default async function UndergraduateRegularAdmission() {
   const data = await getUndergraduateRegularAdmission();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer htmlContent={data?.description ?? ''} />
     </PageLayout>
   );

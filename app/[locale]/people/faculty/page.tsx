@@ -10,7 +10,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function FacultyPage() {
   const { description, facultyList } = await getFacultyList();
   return (
-    <PageLayout title="교수진" titleType="big" titleMargin="mb-9">
+    <PageLayout title="교수진" titleType="big">
       <div className="flex flex-col">
         {description ? (
           <div>

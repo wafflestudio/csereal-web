@@ -17,7 +17,7 @@ export default async function UndergradutecurriculumPage({
   const data = await getCurriculum();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-8">
+    <PageLayout titleType="big" titleMargin="mb-[44px]">
       <div className="flex flex-col">
         <div className="relative">
           <Link

@@ -26,7 +26,7 @@ export default function ResearchCentersPageContent({ centers }: { centers: Resea
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9" bodyStyle={{ paddingTop: 0 }}>
+    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
       <SelectionList
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}

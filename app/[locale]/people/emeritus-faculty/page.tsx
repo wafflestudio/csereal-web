@@ -9,7 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function EmeritusFacultyPage() {
   const facultyList = await getEmeritusFacultyList();
   return (
-    <PageLayout title="역대 교수진" titleType="big" titleMargin="mb-9">
+    <PageLayout title="역대 교수진" titleType="big">
       <div className="grid grid-cols-4 gap-14">
         {facultyList.map((emeritusFaculty, index) => (
           <PeopleRow

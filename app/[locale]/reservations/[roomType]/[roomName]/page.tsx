@@ -8,26 +8,16 @@ interface RoomReservationProps {
   searchParams: { selectedDate?: string };
 }
 
-const TITLE_BOTTOM_MARGIN = 'mb-[2.75rem]';
-
 // TODO: 에러 처리 페이지 디자인
 export default async function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
   const roomId = roomNameToId[params.roomName];
   if (roomId === undefined) {
-    return (
-      <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
-        존재하지 않는 시설 아이디입니다.
-      </PageLayout>
-    );
+    return <PageLayout titleType="big">존재하지 않는 시설 아이디입니다.</PageLayout>;
   }
 
   const date = searchParams.selectedDate ? new Date(searchParams.selectedDate) : new Date();
   if (isNaN(date.valueOf())) {
-    return (
-      <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
-        유효하지 않은 날짜입니다.
-      </PageLayout>
-    );
+    return <PageLayout titleType="big">유효하지 않은 날짜입니다.</PageLayout>;
   }
 
   const startOfWeek = getStartOfWeek(date);
@@ -40,7 +30,7 @@ export default async function RoomReservationPage({ params, searchParams }: Room
   });
 
   return (
-    <PageLayout titleType="big" titleMargin={TITLE_BOTTOM_MARGIN}>
+    <PageLayout titleType="big">
       <ReservationCalendar
         startDate={startOfWeek}
         selectedDate={date}

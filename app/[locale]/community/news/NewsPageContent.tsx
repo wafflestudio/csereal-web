@@ -34,7 +34,7 @@ export default function NewsPageContent({
   };
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-6">
+    <PageLayout titleType="big">
       <SearchBox
         key={tags + ''}
         tags={NEWS_TAGS}

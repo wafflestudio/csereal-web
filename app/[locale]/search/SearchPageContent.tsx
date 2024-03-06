@@ -42,7 +42,7 @@ export default function SearchPageContent({ notice, news, seminar }: SearchConte
       <Header />
 
       {/* TODO: 임시로 넣은  currentPage={main} 대책 세우기*/}
-      <PageTitle title={'통합 검색'} titleType="big" margin="mb-12" currentPage={main} />
+      <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
 
       <div className={'bg-white pl-[100px] pr-[360px] pt-[44px] pb-[150px] relative'}>
         <SearchBox

@@ -8,7 +8,7 @@ export default async function TopConferenceListPage() {
   const { modifiedAt, author, conferenceList } = await getTopConferenceList();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <div className="flex flex-col text-neutral-700">
         <h3 className="font-noto font-bold text-base leading-8 mb-5">
           서울대학교 공과대학 컴퓨터공학부 Top Conference List

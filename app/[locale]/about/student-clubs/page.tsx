@@ -24,7 +24,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   );
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9" bodyStyle={{ paddingTop: 0 }}>
+    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
       <SelectionList
         names={clubs.map((club) => club.name)}
         selectedItemName={selectedClub?.name ?? ''}

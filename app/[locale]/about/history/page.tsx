@@ -9,7 +9,7 @@ export default async function History() {
   const resp = await getHistory();
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-9">
+    <PageLayout titleType="big">
       <HTMLViewer
         htmlContent={resp.description}
         topRightContent={{ type: 'image', width: 320, height: 360, url: history_image.src }}
