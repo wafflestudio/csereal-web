@@ -23,7 +23,7 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
   return (
     <div className="hidden sm:block absolute top-0 right-[80px] h-full">
       <div
-        className="flex row-span-full col-start-2 mt-[3.25rem] mb-8 sticky top-20"
+        className="flex row-span-full col-start-2 mt-[3.25rem] mb-8 sticky top-[52px]"
         style={{ height }}
       >
         <CurvedVerticalNode grow={false} />
