@@ -12,11 +12,11 @@ interface ResearchGroupDetailProps {
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
-    <div className="bg-neutral-100 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
-      <h2 className="mb-6 ml-8 mr-7 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
+    <div className="bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
+      <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
         {group.name} 연구 그룹
       </h2>
-      <div className="mx-7 max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]">
+      <div className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]">
         <HTMLViewer htmlContent={group.description} />
       </div>
       <div className="relative mt-6 h-[200px]">
