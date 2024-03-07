@@ -25,11 +25,11 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-[#2d2d30] sm:bg-transparent h-[68px] px-5 sm:h-auto sm:px-[3.75rem] sm:pt-12 sm:pb-[2.44rem] items-center flex justify-between`}
+      className={`flex h-[68px] items-center justify-between bg-[#2d2d30] px-5 sm:h-auto sm:bg-transparent sm:px-[3.75rem] sm:pb-[2.44rem] sm:pt-12`}
     >
       <div onClick={goToMainPage} className="cursor-pointer">
         <HeaderLogo className="hidden sm:block" />
-        <div className="sm:hidden flex gap-4 items-center">
+        <div className="flex items-center gap-4 sm:hidden">
           <SNULogo className="fill-white" width="34" height="35" />
           <div className="flex flex-col gap-1">
             <HeaderText />
@@ -38,9 +38,9 @@ export default function Header() {
         </div>
       </div>
       <HeaderRight />
-      <button onClick={toggleNav} className="sm:hidden flex justify-center items-center">
+      <button onClick={toggleNav} className="flex items-center justify-center sm:hidden">
         {isNavOpen ? (
-          <span className="material-symbols-outlined text-white font-light">close</span>
+          <span className="material-symbols-outlined font-light text-white">close</span>
         ) : (
           <Menu className="cursor-pointer" />
         )}
@@ -58,8 +58,8 @@ function HeaderRight() {
   const langButtonText = isEnglish ? '한국어' : 'ENG';
 
   return (
-    <div className="hidden sm:flex flex-col justify-between gap-[0.94rem] items-end">
-      <div className="font-yoon text-xs font-normal flex items-center gap-3 text-white">
+    <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
+      <div className="font-yoon flex items-center gap-3 text-xs font-normal text-white">
         {user?.isStaff && (
           <>
             <Link href={'/admin'} className="hover:text-main-orange">
@@ -72,7 +72,7 @@ function HeaderRight() {
         {/* prefetch를 막기 위해 Link가 아닌 anchor를 사용합니다.  */}
         <a
           href={user ? LOGOUT_URL : LOGIN_URL}
-          className="hover:text-main-orange text-sm font-normal"
+          className="text-sm font-normal hover:text-main-orange"
         >
           {t(user ? '로그아웃' : '로그인')}
         </a>
@@ -81,7 +81,7 @@ function HeaderRight() {
 
         <button
           onClick={changeLanguage}
-          className="hover:text-main-orange text-sm font-normal tracking-[0.025rem]"
+          className="text-sm font-normal tracking-[0.025rem] hover:text-main-orange"
         >
           {langButtonText}
         </button>
@@ -92,5 +92,5 @@ function HeaderRight() {
 }
 
 function Divider() {
-  return <div className="bg-white w-[0.03125rem] h-3" />;
+  return <div className="h-3 w-[0.03125rem] bg-white" />;
 }

@@ -71,8 +71,8 @@ const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) 
         e.preventDefault();
         onClick();
       }}
-      className={`rounded-sm border border-neutral-700 h-[1.875rem]
-            outline-none text-xs hover:bg-neutral-100 px-4`}
+      className={`h-[1.875rem] rounded-sm border border-neutral-700
+            px-4 text-xs outline-none hover:bg-neutral-100`}
     >
       {text}
     </button>

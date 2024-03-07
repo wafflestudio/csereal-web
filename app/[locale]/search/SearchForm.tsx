@@ -20,15 +20,15 @@ export default function SearchForm({ query }: { query: string }) {
   };
 
   return (
-    <form className="flex w-fit mt-6" onSubmit={searchText}>
+    <form className="mt-6 flex w-fit" onSubmit={searchText}>
       <input
         type="text"
         id="search"
-        className="outline-none border border-neutral-300 rounded-l-sm text-xs w-[13.5rem] h-8 px-2 bg-transparent placeholder:text-neutral-300 tracking-[0.02em] autofill-bg-white"
+        className="autofill-bg-white h-8 w-[13.5rem] rounded-l-sm border border-neutral-300 bg-transparent px-2 text-xs tracking-[0.02em] outline-none placeholder:text-neutral-300"
         value={text}
         onChange={handleChange}
       />
-      <button className="flex justify-center items-center py-[.1875rem] px-3 h-8 border-y border-r border-neutral-300 rounded-r-sm font-yoon font-bold text-xs tracking-[0.02em]">
+      <button className="font-yoon flex h-8 items-center justify-center rounded-r-sm border-y border-r border-neutral-300 px-3 py-[.1875rem] text-xs font-bold tracking-[0.02em]">
         검색
       </button>
     </form>

@@ -12,7 +12,7 @@ interface CourseDetailModalProps {
 export default function CourseDetailModal({ course, onClose }: CourseDetailModalProps) {
   return (
     <ModalFrame onClose={onClose}>
-      <div className="relative flex flex-col gap-4 p-6 w-fit max-w-[768px] bg-neutral-100 border-t-2 border-b rounded-t-sm border-main-orange overflow-auto styled-scrollbar overflow-x-hidden">
+      <div className="styled-scrollbar relative flex w-fit max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-100 p-6">
         <CourseHeader course={course} />
         <CourseBody content={course.description} />
       </div>
@@ -25,7 +25,7 @@ function CourseHeader({ course }: { course: Course }) {
     <h4 className="flex items-center gap-2">
       <BookmarkIcon />
       <span className="font-bold">{course.name}</span>
-      <div className="flex items-center pt-1 text-neutral-600 text-sm divide-x divide-neutral-200 [&_span]:px-2">
+      <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
         <span>{course.code}</span>
         <span>{course.classification}</span>
         <span>{course.credit}학점</span>

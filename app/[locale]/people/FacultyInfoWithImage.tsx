@@ -20,11 +20,11 @@ export default function FacultyInfoWithImage({
   imageURL,
 }: FacultyInfoWithImageProps) {
   return (
-    <div className="relative float-right w-[348px] h-[374px]">
+    <div className="relative float-right h-[374px] w-[348px]">
       <PeopleImageWithAnimation imageURL={imageURL} />
-      <div className="w-64 h-[196px] absolute bottom-0 left-0 z-10">
-        <div className="w-full h-full absolute">
-          <div className="flex flex-col text-neutral-600 font-noto font-medium text-sm gap-[9px] p-5 bg-white">
+      <div className="absolute bottom-0 left-0 z-10 h-[196px] w-64">
+        <div className="absolute h-full w-full">
+          <div className="font-noto flex flex-col gap-[9px] bg-white p-5 text-sm font-medium text-neutral-600">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
             {phone && <FacultyInfoWithSymbols symbol="phone_in_talk" content={phone} />}
             {fax && <FacultyInfoWithSymbols symbol="print" content={fax} />}
@@ -32,9 +32,9 @@ export default function FacultyInfoWithImage({
             {website && <FacultyInfoWithSymbols symbol="captive_portal" content={website} />}
           </div>
         </div>
-        <div className="relative h-full w-full z-[-1]">
+        <div className="relative z-[-1] h-full w-full">
           <div
-            className="h-full w-full absolute bottom-[-8px] right-[-17px] animate-fadeIn"
+            className="absolute bottom-[-8px] right-[-17px] h-full w-full animate-fadeIn"
             style={{
               background:
                 'repeating-linear-gradient(-45deg, transparent, transparent 5px, #E9390B 5px, #E9390B 6px)',
@@ -53,7 +53,7 @@ interface FacultyInfoWithSymbols {
 
 const FacultyInfoWithSymbols = ({ symbol, content }: FacultyInfoWithSymbols) => {
   return (
-    <div className="flex flex-row break-all gap-[6px]">
+    <div className="flex flex-row gap-[6px] break-all">
       <span className="material-symbols-rounded text-[20px] font-light">{symbol}</span>
       {symbol === 'mail' ? (
         <Link href={`mailto:${content}`} className="text-link hover:underline">

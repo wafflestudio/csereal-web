@@ -10,7 +10,7 @@ export default function AdminFeatures() {
     <div className="flex justify-end">
       <Link
         href={`${newsPath}/create`}
-        className="ml-4 px-[0.875rem] py-2 rounded-[0.0625rem] bg-neutral-200 hover:bg-neutral-300 text-xs tracking-[0.02em] font-bold"
+        className="ml-4 rounded-[0.0625rem] bg-neutral-200 px-[0.875rem] py-2 text-xs font-bold tracking-[0.02em] hover:bg-neutral-300"
       >
         새 게시글
       </Link>

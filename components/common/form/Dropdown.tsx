@@ -63,8 +63,8 @@ function DropdownButton({
   return (
     <button
       className={`
-            flex items-center gap-4 py-[.3125rem] pr-[.3125rem] pl-[.625rem] border
-            bg-white
+            flex items-center gap-4 border bg-white py-[.3125rem] pl-[.625rem]
+            pr-[.3125rem]
             ${expanded ? 'rounded-t-sm' : 'rounded-sm'}
             ${borderStyle}
         `}
@@ -96,12 +96,12 @@ function DropdownListWithScroll({
 }) {
   return (
     <div
-      className={`absolute top-0 left-0 right-0 border-x border-b rounded-bl-sm rounded-br-sm bg-white max-h-[168px] styled-scrollbar overflow-y-scroll overscroll-contain transition duration-200 origin-top ${className} ${borderStyle}`}
+      className={`styled-scrollbar absolute left-0 right-0 top-0 max-h-[168px] origin-top overflow-y-scroll overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white transition duration-200 ${className} ${borderStyle}`}
     >
       {contents.map((content, index) => (
         <button
           key={index}
-          className={`w-full h-7 text-left text-sm font-normal pl-[.62rem] hover:bg-neutral-200 ${
+          className={`h-7 w-full pl-[.62rem] text-left text-sm font-normal hover:bg-neutral-200 ${
             selectedIndex === index && 'text-main-orange'
           } focus:border focus:border-neutral-400`}
           onClick={(e) => {

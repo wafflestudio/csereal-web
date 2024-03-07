@@ -23,7 +23,7 @@ export default function MainPageContent({ data }: MainPageContentProps) {
       <div ref={ref}>
         <Header />
         <SlideScreen slides={data.slides} />
-        <div className="flex justify-between mt-[60px]">
+        <div className="mt-[60px] flex justify-between">
           <ImportantPosts posts={data.importants} />
           <Notices notices={data.notices} />
         </div>
@@ -42,12 +42,12 @@ function ScrollSign({ hide }: { hide: boolean }) {
         navbarState.type === 'closed'
           ? 'left-[calc(50vw+50px-25px)]'
           : 'left-[calc(50vw+86px-25px)]'
-      }  z-30 w-[50px] flex flex-col items-center fixed bottom-2.5 ${
+      }  fixed bottom-2.5 z-30 flex w-[50px] flex-col items-center ${
         hide && 'opacity-0'
-      } transition-opacity duration-200 pointer-events-none`}
+      } pointer-events-none transition-opacity duration-200`}
     >
-      <span className="text-xs text-main-orange font-yoon font-bold animate-pulse">SCROLL</span>
-      <span className="material-symbols-outlined text-[48px] text-main-orange font-extralight">
+      <span className="font-yoon animate-pulse text-xs font-bold text-main-orange">SCROLL</span>
+      <span className="material-symbols-outlined text-[48px] font-extralight text-main-orange">
         keyboard_double_arrow_down
       </span>
     </div>

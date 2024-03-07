@@ -11,7 +11,7 @@ export default function CurriculumBody({ data }: { data: Curriculum[] }) {
   const [selectedcurriculumIndex, setSelectedcurriculumIndex] = useState(0);
   return (
     <>
-      <div className="flex flex-col mt-8">
+      <div className="mt-8 flex flex-col">
         <div className="flex flex-row items-center gap-2">
           <p className="font-noto text-sm font-normal">입학연도</p>
           <Dropdown

@@ -75,7 +75,7 @@ export function Tag({
       <span className={onDelete ? '' : 'pr-2.5'}>{tag}</span>
       {onDelete && (
         <button
-          className={`flex items-center h-full pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}
+          className={`flex h-full items-center pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}
           disabled={disabled}
           onClick={() => !disabled && onDelete(tag)}
         >

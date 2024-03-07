@@ -21,11 +21,11 @@ export default function BatchAction({
 
 function SelectedPostsCount({ count }: { count: number }) {
   return (
-    <div className="flex items-center gap-1 mr-6">
-      <span className="material-symbols-rounded text-neutral-500 text-lg font-extralight">
+    <div className="mr-6 flex items-center gap-1">
+      <span className="material-symbols-rounded text-lg font-extralight text-neutral-500">
         check_box
       </span>
-      <span className="text-neutral-500 text-xs tracking-wide">{count}개 게시물 선택</span>
+      <span className="text-xs tracking-wide text-neutral-500">{count}개 게시물 선택</span>
     </div>
   );
 }
@@ -39,7 +39,7 @@ interface BatchButtonProps {
 function BatchButton({ disabled, onClick, children }: BatchButtonProps) {
   return (
     <button
-      className="px-[0.875rem] h-[2.1875rem] border border-neutral-200 bg-neutral-100 rounded-[0.0625rem] text-neutral-500 text-xs font-medium tracking-[0.02em] disabled:bg-neutral-50 disabled:text-neutral-300"
+      className="h-[2.1875rem] rounded-[0.0625rem] border border-neutral-200 bg-neutral-100 px-[0.875rem] text-xs font-medium tracking-[0.02em] text-neutral-500 disabled:bg-neutral-50 disabled:text-neutral-300"
       onClick={onClick}
       disabled={disabled}
     >

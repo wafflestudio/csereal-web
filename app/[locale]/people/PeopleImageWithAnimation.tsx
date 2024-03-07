@@ -6,9 +6,9 @@ export interface PeopleImageWithAnimationProps {
 
 export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAnimationProps) {
   return (
-    <div className="w-[186px] h-[248px] absolute top-0 right-0 ">
+    <div className="absolute right-0 top-0 h-[248px] w-[186px] ">
       <div
-        className="absolute w-full h-full z-20"
+        className="absolute z-20 h-full w-full"
         style={{
           filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
         }}
@@ -17,7 +17,7 @@ export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAn
           alt="대표 이미지"
           src={imageURL}
           fill
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
           sizes="186px, 248px"
           style={{
             clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
@@ -26,7 +26,7 @@ export default function PeopleImageWithAnimation({ imageURL }: PeopleImageWithAn
       </div>
       <div className="relative h-full w-full">
         <div
-          className="h-full w-full absolute bottom-[-17px] left-[-17px] animate-fadeIn"
+          className="absolute bottom-[-17px] left-[-17px] h-full w-full animate-fadeIn"
           style={{
             background:
               'repeating-linear-gradient(-45deg, black, black 5px, #E9390B 5px, #E9390B 6px)',

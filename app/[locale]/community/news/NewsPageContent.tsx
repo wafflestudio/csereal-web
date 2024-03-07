@@ -42,7 +42,7 @@ export default function NewsPageContent({
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="flex flex-col gap-5 mt-10 mb-8 sm:mx-16">
+      <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-16">
         {searchList.length > 0 ? (
           searchList.map((post) => (
             <NewsRow
@@ -56,7 +56,7 @@ export default function NewsPageContent({
             />
           ))
         ) : (
-          <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
+          <p className="mx-2.5 mb-8 mt-6">검색 결과가 존재하지 않습니다.</p>
         )}
       </div>
       <Pagination

@@ -26,7 +26,7 @@ export default function AdjPostNav({
     <div className={`flex flex-col ${margin}`}>
       {nextPost && <Row post={nextPost} type="next" />}
       {prevPost && <Row post={prevPost} type="prev" />}
-      <div className="flex justify-end mt-6">
+      <div className="mt-6 flex justify-end">
         <LoginStaffVisible>
           {id && (
             <>
@@ -45,7 +45,7 @@ type RowType = 'next' | 'prev';
 
 function Row({ post, type }: { post: AdjPostInfo; type: RowType }) {
   return (
-    <Link className="group flex items-center w-fit" href={post.href}>
+    <Link className="group flex w-fit items-center" href={post.href}>
       <RowIcon type={type} />
       <RowDescription type={type} />
       <RowPostTitle title={post.title} />
@@ -65,7 +65,7 @@ function RowIcon({ type }: { type: RowType }) {
 function RowDescription({ type }: { type: RowType }) {
   const description = type == 'next' ? '다음 글' : '이전 글';
   return (
-    <p className="font-yoon text-xs font-medium mr-3 flex-shrink-0 text-main-orange">
+    <p className="font-yoon mr-3 flex-shrink-0 text-xs font-medium text-main-orange">
       {description}
     </p>
   );
@@ -76,7 +76,7 @@ function RowPostTitle({ title }: { title?: string }) {
     <p
       className={`
       ${title ? 'group-hover:underline' : ''} 
-      font-yoon text-xs font-normal line-clamp-1
+      font-yoon line-clamp-1 text-xs font-normal
       `}
     >
       {title ?? '(없음)'}
@@ -88,7 +88,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center text-white text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-700 hover:border-neutral-500 font-bold"
+      className="font-noto flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-700 px-[17px] text-sm font-bold text-white hover:border-neutral-500 hover:bg-neutral-500"
     >
       목록
     </Link>
@@ -99,7 +99,7 @@ function PostEditLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center mr-3 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 hover:bg-neutral-500 font-noto font-bold text-sm text-neutral-500 hover:text-white tracking-[0.02em]"
+      className="font-noto mr-3 flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.02em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
     >
       편집
     </Link>

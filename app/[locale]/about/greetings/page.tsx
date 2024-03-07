@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function GreetingsPage() {
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <div className="flex gap-12 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem] items-start">
+      <div className="flex items-start gap-12 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem]">
         <HTMLViewer htmlContent={description} className="w-[37.5rem] shrink-0" />
         <Image src={greetings.src} alt="학교 전경" width={212} height={280} />
       </div>

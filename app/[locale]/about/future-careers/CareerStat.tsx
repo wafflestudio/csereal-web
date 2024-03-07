@@ -13,15 +13,15 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex gap-2 items-center mb-[0.8rem]">
-        <h3 className="text-base font-noto font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
+      <div className="mb-[0.8rem] flex items-center gap-2">
+        <h3 className="font-noto text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
         <Dropdown
           contents={Object.keys(stat).reverse()}
           selectedIndex={selectedCareerStatIndex}
           onClick={setSelectedCareerStatIndex}
         />
       </div>
-      <div className="w-[21.3rem] h-[14rem] flex flex-col text-xs font-normal justify-stretch border-y-[1px] border-y-neutral-300 mb-9">
+      <div className="mb-9 flex h-[14rem] w-[21.3rem] flex-col justify-stretch border-y-[1px] border-y-neutral-300 text-xs font-normal">
         <StatTableHeader />
         {stat[2021 - selectedCareerStatIndex].map((arr, index) => (
           <StatTableHeaderRow key={index} rowName={careerStatRows[index]} values={arr} />
@@ -36,7 +36,7 @@ function StatTableHeader() {
     <div className="flex flex-1 border-b-[1px] border-b-neutral-300 bg-neutral-100">
       <div className="flex-1" />
       {careerStatCols.map((colName) => (
-        <div key={colName} className="flex justify-center items-center w-[5rem]">
+        <div key={colName} className="flex w-[5rem] items-center justify-center">
           <p className="text-sm">{colName}</p>
         </div>
       ))}
@@ -47,11 +47,11 @@ function StatTableHeader() {
 function StatTableHeaderRow({ rowName, values }: { rowName: string; values: number[] }) {
   return (
     <div className={`flex flex-1 flex-row border-b border-neutral-200 last:border-0`}>
-      <div className="flex w-[6.25rem] bg-neutral-100 justify-center items-center text-sm">
+      <div className="flex w-[6.25rem] items-center justify-center bg-neutral-100 text-sm">
         {rowName}
       </div>
       {values.map((value, index) => (
-        <div key={index} className="flex flex-1 justify-center items-center text-md">
+        <div key={index} className="flex flex-1 items-center justify-center text-md">
           {value}
         </div>
       ))}

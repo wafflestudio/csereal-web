@@ -19,7 +19,7 @@ export default function SelectedTags({ tags, search, disabled }: SelectedTagsPro
   };
 
   return (
-    <div className="flex justify-between items-start gap-3 px-2.5">
+    <div className="flex items-start justify-between gap-3 px-2.5">
       <Tags
         tags={isTagExist ? tags : ['전체']}
         onDelete={isTagExist ? deleteTag : undefined}
@@ -42,8 +42,8 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
       className="flex items-center gap-[0.125rem] text-main-orange enabled:hover:text-neutral-400"
       disabled={disabled}
     >
-      <span className="material-symbols-outlined scale-x-[-1] font-light text-base">refresh</span>
-      <span className="text-md whitespace-nowrap">태그 초기화</span>
+      <span className="material-symbols-outlined scale-x-[-1] text-base font-light">refresh</span>
+      <span className="whitespace-nowrap text-md">태그 초기화</span>
     </button>
   );
 }

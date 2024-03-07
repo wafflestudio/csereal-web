@@ -37,7 +37,7 @@ export default function Footer() {
   return (
     <footer className={`border-t-2 ${borderTop}`}>
       <div
-        className={`${topBg} px-6 py-9 sm:px-[3.75rem] sm:py-10 grid gap-y-8 grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] sm:flex`}
+        className={`${topBg} grid grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] gap-y-8 px-6 py-9 sm:flex sm:px-[3.75rem] sm:py-10`}
       >
         <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
@@ -45,7 +45,7 @@ export default function Footer() {
         <LinkGroup groupName="More" links={moreLinks} width="w-[8rem]" mode={mode} />
       </div>
       <div
-        className={`${bottomBg} py-[30px] px-5 sm:px-[3.75rem] sm:py-8 flex flex-col sm:flex-row justify-between sm:items-center`}
+        className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] sm:flex-row sm:items-center sm:px-[3.75rem] sm:py-8`}
       >
         <FooterBottomLeft />
         <FooterBottomRight />
@@ -70,12 +70,12 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} text-sm sm:text-[0.9375rem] font-medium mb-[.44rem] tracking-[0.025rem]`}
+        className={`${titleColor} mb-[.44rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
       >
         {t(groupName)}
       </h3>
 
-      <ul className={`${itemColor} font-light text-sm sm:font-normal flex flex-col gap-[0.63rem]`}>
+      <ul className={`${itemColor} flex flex-col gap-[0.63rem] text-sm font-light sm:font-normal`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
@@ -91,8 +91,8 @@ function FooterBottomLeft() {
   const t = useTranslations('Footer');
 
   return (
-    <div className="text-neutral-500 text-xs sm:text-sm">
-      <div className="flex [&>a]:font-bold gap-[1ch] mb-2.5 sm:mb-0 ">
+    <div className="text-xs text-neutral-500 sm:text-sm">
+      <div className="mb-2.5 flex gap-[1ch] sm:mb-0 [&>a]:font-bold ">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
@@ -100,7 +100,7 @@ function FooterBottomLeft() {
         <Link href={directionsPath}>{t('찾아오시는 길')}</Link>
       </div>
 
-      <address className="not-italic mb-[1.37rem]">{t('address')}</address>
+      <address className="mb-[1.37rem] not-italic">{t('address')}</address>
 
       <p>
         Powered by{' '}
@@ -120,7 +120,7 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="flex flex-wrap sm:flex-nowrap items-center gap-7 mt-7 sm:mt-0">
+    <div className="mt-7 flex flex-wrap items-center gap-7 sm:mt-0 sm:flex-nowrap">
       <Link href={snucomLink} className="w-[86px] sm:w-[111px]">
         <SnucomIcon />
       </Link>

@@ -90,9 +90,9 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 
 function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
   return (
-    <div className="flex items-center mb-4 justify-between">
+    <div className="mb-4 flex items-center justify-between">
       <Tag tag={sortedProperties[0]} />
-      <span className="text-xs text-neutral-500 whitespace-nowrap ml-2">
+      <span className="ml-2 whitespace-nowrap text-xs text-neutral-500">
         <span className="mr-2">{sortedProperties[1]}</span>
         <span>{sortedProperties[2]}</span>
       </span>
@@ -103,8 +103,8 @@ function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
 function CardTitle({ name, code }: { name: string; code: string }) {
   return (
     <h2 className="mb-2 whitespace-nowrap">
-      <span className="font-bold text-base mr-2 leading-normal">{name}</span>
-      <span className="text-xs text-neutral-500 leading-normal">{code}</span>
+      <span className="mr-2 text-base font-bold leading-normal">{name}</span>
+      <span className="text-xs leading-normal text-neutral-500">{code}</span>
     </h2>
   );
 }
@@ -112,7 +112,7 @@ function CardTitle({ name, code }: { name: string; code: string }) {
 function CardContentPreview({ description }: { description: string }) {
   return (
     <div className="flex">
-      <p className="grow w-0 line-clamp-2 text-xs text-neutral-500 leading-normal">{description}</p>
+      <p className="line-clamp-2 w-0 grow text-xs leading-normal text-neutral-500">{description}</p>
     </div>
   );
 }

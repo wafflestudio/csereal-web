@@ -61,14 +61,14 @@ function TopRightImageContent(props: TopRightImage) {
   if (props.type === 'image') {
     const { url, width, height } = props;
     return (
-      <div className="relative float-right ml-[28px] mb-[28px]" style={{ width, height }}>
+      <div className="relative float-right mb-[28px] ml-[28px]" style={{ width, height }}>
         <Image src={url} alt="대표 이미지" fill className="object-contain" sizes={`${width}px`} />
       </div>
     );
   } else {
     const { url, width } = props;
     return (
-      <div className="relative float-right ml-[28px] mb-[20px]">
+      <div className="relative float-right mb-[20px] ml-[28px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={url} alt="대표 이미지" className="object-contain" width={width} />
       </div>

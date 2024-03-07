@@ -14,7 +14,7 @@ interface SlideGroupsProps {
 
 export default function SlideGroups({ currentIndex, slideGroups }: SlideGroupsProps) {
   return (
-    <div className="relative w-[840.5px] h-[244px]">
+    <div className="relative h-[244px] w-[840.5px]">
       {slideGroups.map((slides, i) => (
         <SlideGroup key={i} slides={slides} show={i === currentIndex} />
       ))}
@@ -30,8 +30,8 @@ interface SlideGroupProps {
 function SlideGroup({ slides, show }: SlideGroupProps) {
   return (
     <div
-      className={`flex gap-[33.5px] absolute top-0 ${
-        show ? 'opacity-100 z-10' : 'opacity-0'
+      className={`absolute top-0 flex gap-[33.5px] ${
+        show ? 'z-10 opacity-100' : 'opacity-0'
       } transition-opacity duration-700`}
     >
       {slides.map((slide) => (
@@ -55,7 +55,7 @@ function Slide({ slide }: SlideProps) {
     >
       <Link
         href={`${newsPath}/${slide.id}`}
-        className="block w-[185px] h-[116px] overflow-hidden relative"
+        className="relative block h-[116px] w-[185px] overflow-hidden"
       >
         <ImageWithFallback
           src={slide.imageURL}
@@ -64,16 +64,16 @@ function Slide({ slide }: SlideProps) {
           className="object-cover"
         />
       </Link>
-      <div className="flex flex-col items-end p-2.5 h-[128px] border-x border-b border-neutral-150">
-        <h5 className="w-full font-noto mb-1.5 font-bold text-xs line-clamp-2">
+      <div className="border-neutral-150 flex h-[128px] flex-col items-end border-x border-b p-2.5">
+        <h5 className="font-noto mb-1.5 line-clamp-2 w-full text-xs font-bold">
           <Link href={`${newsPath}/${slide.id}`}>{slide.title}</Link>
         </h5>
-        <p className="w-full font-noto font-light text-[10px] h-11 line-clamp-3 cursor-text">
+        <p className="font-noto line-clamp-3 h-11 w-full cursor-text text-[10px] font-light">
           {slide.description}
         </p>
         <Link
           href={`${newsPath}/${slide.id}`}
-          className="grow flex items-end font-noto font-light text-[9px] underline"
+          className="font-noto flex grow items-end text-[9px] font-light underline"
         >
           더보기
         </Link>

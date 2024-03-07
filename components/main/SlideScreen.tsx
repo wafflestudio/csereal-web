@@ -41,7 +41,7 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   };
 
   useEffect(() => {
-    let interval = intervalId || setInterval(moveAutomatically, 4000);
+    const interval = intervalId || setInterval(moveAutomatically, 4000);
 
     return () => {
       clearInterval(interval);
@@ -49,7 +49,7 @@ export default function SlideScreen({ slides }: SlideScreenProps) {
   }, [intervalId, moveAutomatically]);
 
   return (
-    <section className="flex flex-col gap-5 items-center relative mt-[115px]">
+    <section className="relative mt-[115px] flex flex-col items-center gap-5">
       <div className="flex items-center">
         <DoubleArrowButton direction="left" onClick={moveToPrevSlide} />
         <SlideGroups currentIndex={currIndex} slideGroups={result} />

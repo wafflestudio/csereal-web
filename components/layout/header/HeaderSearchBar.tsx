@@ -8,7 +8,7 @@ export default function HeaderSearchBar() {
 
   return (
     <form
-      className="flex justify-center outline-none rounded-[.0625rem] w-[13.5rem] h-[1.875rem] bg-neutral-200 pr-2"
+      className="flex h-[1.875rem] w-[13.5rem] justify-center rounded-[.0625rem] bg-neutral-200 pr-2 outline-none"
       onSubmit={(e) => {
         e.preventDefault();
         searchText();
@@ -17,7 +17,7 @@ export default function HeaderSearchBar() {
       <input
         type="text"
         id="search"
-        className="outline-none text-xs w-full px-2 bg-transparent autofill-bg-neutral-200"
+        className="autofill-bg-neutral-200 w-full bg-transparent px-2 text-xs outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

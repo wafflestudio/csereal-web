@@ -1,14 +1,14 @@
 export default function LoadingFallback() {
   return (
-    <div className="animate-pulse flex flex-col mx-[3.75rem] mt-3">
+    <div className="mx-[3.75rem] mt-3 flex animate-pulse flex-col">
       <div className="flex flex-col gap-2">
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded w-2/5"></div>
+        <div className="h-4 w-2/5 rounded bg-[#ffffff] opacity-30"></div>
+        <div className="h-4 w-2/5 rounded bg-[#ffffff] opacity-30"></div>
       </div>
-      <div className="flex flex-1 flex-col gap-2 w-3/5 mt-4">
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
-        <div className="h-4 bg-[#ffffff] opacity-30 rounded"></div>
+      <div className="mt-4 flex w-3/5 flex-1 flex-col gap-2">
+        <div className="h-4 rounded bg-[#ffffff] opacity-30"></div>
+        <div className="h-4 rounded bg-[#ffffff] opacity-30"></div>
+        <div className="h-4 rounded bg-[#ffffff] opacity-30"></div>
       </div>
     </div>
   );

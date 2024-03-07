@@ -11,7 +11,7 @@ export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   return (
     <div className="sm:border-y sm:border-neutral-200">
       <ResearchLabListHeader />
-      <ul className="sm:divide-y sm:divide-neutral-200 sm:divide-dashed">
+      <ul className="sm:divide-y sm:divide-dashed sm:divide-neutral-200">
         {labInfos.map((lab) => (
           <ResearchLabListRow lab={lab} key={lab.name} />
         ))}
