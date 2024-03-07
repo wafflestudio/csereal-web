@@ -37,7 +37,7 @@ export default function Footer() {
   return (
     <footer className={`border-t-2 ${borderTop}`}>
       <div
-        className={`${topBg} grid grid-cols-[repeat(auto-fill,_minmax(110px,_auto))] gap-y-8 px-6 py-9 sm:flex sm:px-[3.75rem] sm:py-10`}
+        className={`${topBg} grid grid-cols-[repeat(auto-fill,_minmax(120px,_auto))] gap-y-8 px-6 py-9 sm:flex sm:px-[3.75rem] sm:py-10`}
       >
         <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
