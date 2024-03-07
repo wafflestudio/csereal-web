@@ -38,7 +38,7 @@ interface ViewOptionsProps {
 
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
   return (
-    <div className="flex gap-3 text-neutral-400 text-[13px]">
+    <div className="flex gap-3 text-neutral-400 text-md">
       <span
         className={selectedOption === '카드형' ? 'text-neutral-700' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
