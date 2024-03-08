@@ -30,13 +30,13 @@ export default function CalendarContent({
 const RowIndex = () => {
   return (
     <div>
-      <div className="h-[4.0625rem] border-r border-y border-neutral-200 bg-neutral-100" />
+      <div className="h-[4.0625rem] border-y border-r border-neutral-200 bg-neutral-100" />
       {rows.map((x) => (
         <div
           key={x}
-          className="w-[3.75rem] h-12 border-r bg-neutral-100 border-b border-neutral-200 flex justify-center items-center"
+          className="flex h-12 w-[3.75rem] items-center justify-center border-b border-r border-neutral-200 bg-neutral-100"
         >
-          <time className="text-xs text-neutral-800 font-medium">{x}</time>
+          <time className="text-xs font-medium text-neutral-800">{x}</time>
         </div>
       ))}
     </div>

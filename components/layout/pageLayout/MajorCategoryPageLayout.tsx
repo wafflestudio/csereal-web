@@ -37,25 +37,25 @@ export default function MajorCategoryPageLayout({
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-[80rem] px-5 py-8 sm:pt-12 sm:pb-[4.5rem] sm:px-[6.25rem]">
-        <div className="text-neutral-500 text:sm sm:text-[20px] font-light mb-2">{subtitle}</div>
-        <div className="text-white text-[32px] sm:text-[64px] font-semibold tracking-wide">
+      <div className="max-w-[80rem] px-5 py-8 sm:px-[6.25rem] sm:pb-[4.5rem] sm:pt-12">
+        <div className="text:sm mb-2 font-light text-neutral-500 sm:text-[20px]">{subtitle}</div>
+        <div className="text-[32px] font-semibold tracking-wide text-white sm:text-[64px]">
           {title}
         </div>
         {description && (
           <HTMLViewer
             htmlContent={description}
             style={{ color: '#f5f5f5', maxWidth: 960 }}
-            className="mt-8 mb-6 hidden sm:block"
+            className="mb-6 mt-8 hidden sm:block"
           />
         )}
       </div>
       <div
         className={`bg-neutral-900 px-5 pt-7 ${
           !description && 'pb-16'
-        } sm:pt-20 sm:pb-[11.25rem] sm:px-[6.25rem]`}
+        } sm:px-[6.25rem] sm:pb-[11.25rem] sm:pt-20`}
       >
-        <div className="grid gap-9 sm:gap-9 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] mb-5 sm:mb-10">
+        <div className="mb-5 grid grid-cols-[repeat(2,_1fr)] gap-9 sm:mb-10 sm:grid-cols-[repeat(auto-fill,_300px)] sm:gap-9">
           {currentPage.children!.map((subpage, index) => (
             <RootItem
               key={index}
@@ -71,7 +71,7 @@ export default function MajorCategoryPageLayout({
         </div>
 
         {selectedCategory && !selectedCategory.isPage && (
-          <div className="grid gap-5 sm:gap-10 grid-cols-[repeat(2,_1fr)] sm:grid-cols-[repeat(auto-fill,_300px)] sm:mb-10">
+          <div className="grid grid-cols-[repeat(2,_1fr)] gap-5 sm:mb-10 sm:grid-cols-[repeat(auto-fill,_300px)] sm:gap-10">
             {selectedCategory.children!.map((subpage, index) => (
               <LeafItem
                 key={index}
@@ -84,7 +84,7 @@ export default function MajorCategoryPageLayout({
         )}
       </div>
       {description && (
-        <div className="sm:hidden px-5 pt-6 pb-24">
+        <div className="px-5 pb-24 pt-6 sm:hidden">
           <HTMLViewer
             htmlContent={description}
             style={{ color: '#a3a3a3', fontWeight: 300, fontSize: 13 }}
@@ -146,20 +146,20 @@ function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailIte
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
   return (
     <div
-      className={`group h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex flex-col justify-between cursor-pointer duration-300`}
+      className={`group h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex cursor-pointer flex-col justify-between duration-300`}
       onClick={onClick}
     >
       <div>
-        <h3 className="text-neutral-800 text-md sm:text-[20px] font-medium mb-[0.625rem] sm:mb-2.5">
+        <h3 className="mb-[0.625rem] text-md font-medium text-neutral-800 sm:mb-2.5 sm:text-[20px]">
           {title}
         </h3>
-        <p className="text-neutral-800 text-[11px] sm:text-base">
+        <p className="text-[11px] text-neutral-800 sm:text-base">
           {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
         </p>
       </div>
       {hasArrow && (
         <div className="text-end">
-          <span className="material-symbols-outlined font-extralight text-[18px] sm:text-[32px] text-neutral-800 group-hover:translate-x-[10px] duration-300">
+          <span className="material-symbols-outlined text-[18px] font-extralight text-neutral-800 duration-300 group-hover:translate-x-[10px] sm:text-[32px]">
             arrow_forward
           </span>
         </div>

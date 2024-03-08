@@ -44,20 +44,20 @@ export default function NewsRow({
 
   return (
     <article
-      className={`text-neutral-700 flex flex-col-reverse sm:flex-row pb-5 ${
-        hideDivider ? '' : 'border-neutral-100 border-b'
+      className={`flex flex-col-reverse pb-5 text-neutral-700 sm:flex-row ${
+        hideDivider ? '' : 'border-b border-neutral-100'
       }`}
     >
-      <div className="flex flex-col flex-1 mr-8 break-keep justify-between">
-        <time className="mt-5 mb-2.5 sm:hidden text-md text-neutral-800">{dateStr}</time>
+      <div className="mr-8 flex flex-1 flex-col justify-between break-keep">
+        <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">{dateStr}</time>
 
         <div className="flex flex-col items-start">
           <Link href={href} className="hover:underline">
-            <h3 className="text-base font-bold mb-2.5">{title}</h3>
+            <h3 className="mb-2.5 text-base font-bold">{title}</h3>
           </Link>
 
           <Link href={href} className="hover:cursor-pointer">
-            <p className="text-md font-normal text-neutral-500 mb-3 sm:mb-8 line-clamp-3 leading-[1.6]">
+            <p className="mb-3 line-clamp-3 text-md font-normal leading-[1.6] text-neutral-500 sm:mb-8">
               {descriptionBold ? (
                 <>
                   {description.slice(0, descriptionBold.startIndex)}
@@ -72,15 +72,15 @@ export default function NewsRow({
             </p>
           </Link>
         </div>
-        <div className="flex justify-between items-center sm:gap-2.5">
+        <div className="flex items-center justify-between sm:gap-2.5">
           <Tags tags={tags} searchPath={newsPath} />
-          <time className="hidden sm:inline self-end text-sm leading-[26px] text-neutral-800 whitespace-nowrap">
+          <time className="hidden self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:inline">
             {dateStr}
           </time>
         </div>
       </div>
 
-      <Link href={href} className="h-[280px] sm:h-[9.375rem] aspect-[4/3] relative flex">
+      <Link href={href} className="relative flex aspect-[4/3] h-[280px] sm:h-[9.375rem]">
         <ImageWithFallback
           alt="포스트 대표 이미지"
           src={imageURL}

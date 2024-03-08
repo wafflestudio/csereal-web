@@ -111,7 +111,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
 
 function SlideDescription() {
   return (
-    <p className="mb-[2.6875rem] font-yoon text-sm tracking-wide">
+    <p className="font-yoon mb-[2.6875rem] text-sm tracking-wide">
       메인페이지의 슬라이드쇼에는 <strong>{`소식 > 새 소식`}</strong> 중{' '}
       <strong>{`'슬라이드쇼에 표시'`}</strong> 체크박스가 선택된 글들이 올라갑니다. 이 목록에 20개
       이상의 글이 포함되면 자동으로 최신글 20개만 표시되지만, 원활한 유지보수를 위하여 주기적인

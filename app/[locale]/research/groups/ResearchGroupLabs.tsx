@@ -7,8 +7,8 @@ import { researchLabs } from '@/utils/segmentNode';
 
 export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: string }[] }) {
   return (
-    <div className="mt-10 mx-7 sm:mx-0">
-      <h3 className="font-bold text-md sm:text-[20px] mb-[4px] sm:pl-2.5 sm:py-1 leading-loose whitespace-nowrap">
+    <div className="mt-10 sm:mx-0">
+      <h3 className="mb-1 whitespace-nowrap text-md font-bold leading-loose sm:py-1 sm:pl-2.5 sm:text-[20px]">
         연구실
       </h3>
       <ul>
@@ -25,9 +25,9 @@ const labPath = getPath(researchLabs);
 function ResearchGroupLab({ lab }: { lab: { id: number; name: string } }) {
   return (
     <li className="mb-[0.125rem] w-fit whitespace-nowrap">
-      <Link href={`${labPath}/${lab.id}`} className="flex h-7 gap-2.5 sm:px-3 items-center group">
-        <div className="border border-main-orange rounded-full w-2.5 h-2.5 group-hover:bg-main-orange duration-300" />
-        <span className="font-medium text-sm sm:text-md group-hover:text-main-orange duration-300">
+      <Link href={`${labPath}/${lab.id}`} className="group flex h-7 items-center gap-2.5 sm:px-3">
+        <div className="h-2.5 w-2.5 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
+        <span className="text-sm font-medium duration-300 group-hover:text-main-orange sm:text-md">
           {lab.name}
         </span>
       </Link>

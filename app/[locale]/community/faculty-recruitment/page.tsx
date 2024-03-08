@@ -32,13 +32,13 @@ function LatestRecruitmentBanner({
 }: GETFacultyRecruitmentResponse) {
   return (
     <a
-      className="block relative w-[25rem] h-[4.5rem] font-yoon cursor-pointer"
+      className="font-yoon relative block h-[4.5rem] w-[25rem] cursor-pointer"
       href={latestRecruitmentPostHref}
     >
-      <p className="text-base font-bold tracking-[.025rem] absolute top-5 left-6">
+      <p className="absolute left-6 top-5 text-base font-bold tracking-[.025rem]">
         최근 채용 바로가기
       </p>
-      <div className="flex items-center absolute right-5 bottom-[.87rem]">
+      <div className="absolute bottom-[.87rem] right-5 flex items-center">
         <p className="text-xs font-medium tracking-wide">{latestRecruitmentPostTitle}</p>
         <span className="material-symbols-outlined text-base">navigate_next</span>
       </div>

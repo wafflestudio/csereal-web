@@ -22,15 +22,15 @@ export default function SubNavbar({ currentTab }: SubNavbarProps) {
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
   return (
-    <div className="hidden sm:block absolute top-0 right-[80px] h-full">
+    <div className="absolute right-[80px] top-0 hidden h-full sm:block">
       <div
-        className="flex row-span-full col-start-2 mt-[3.25rem] mb-8 sticky top-20"
+        className="sticky top-[52px] col-start-2 row-span-full mb-8 mt-[3.25rem] flex"
         style={{ height }}
       >
         <CurvedVerticalNode grow={false} />
-        <div className="pt-[0.6875rem] pl-1.5">
+        <div className="pl-1.5 pt-[0.6875rem]">
           <Link href={getPath(rootTab)} className="text-neutral-800 hover:text-main-orange">
-            <h3 className="inline font-semibold text-base whitespace-nowrap">{t(rootTab.name)}</h3>
+            <h3 className="inline whitespace-nowrap text-base font-semibold">{t(rootTab.name)}</h3>
           </Link>
           <ul className="mt-4">
             {subTabs.map((tab) => (
@@ -53,13 +53,13 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
 
   return (
     <li
-      className={`w-fit text-sm mb-3.5 ${
-        isCurrent ? 'font-bold text-main-orange tracking-wider' : 'text-neutral-700'
+      className={`mb-3.5 w-fit text-sm ${
+        isCurrent ? 'font-bold tracking-wider text-main-orange' : 'text-neutral-700'
       }`}
       style={{ marginLeft }}
     >
       {tab.isPage ? (
-        <Link href={getPath(tab)} className="hover:text-main-orange whitespace-nowrap">
+        <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">
           <NavLabel text={t(tab.name)} />
         </Link>
       ) : (

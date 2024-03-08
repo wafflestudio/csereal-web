@@ -10,7 +10,7 @@ export default function BottomForm({
   setBody: SetReservationBody;
 }) {
   return (
-    <div className="flex flex-col gap-2 mb-6">
+    <div className="mb-6 flex flex-col gap-2">
       <RequiredTextInputFieldset
         type="text"
         title="단체 이름"
@@ -38,7 +38,7 @@ export default function BottomForm({
 
       <PurposeTextInputFieldset text={body.purpose} setText={(x) => setBody('purpose', x)} />
 
-      <div className="flex itmes-center gap-1 text-neutral-400">
+      <div className="itmes-center flex gap-1 text-neutral-400">
         <span className="material-symbols-outlined my-auto text-base">error</span>
         <p className="font-normal">예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.</p>
       </div>
@@ -58,15 +58,15 @@ const RequiredTextInputFieldset = ({
   setText: (text: string) => void;
 }) => {
   return (
-    <fieldset className="font-normal w-[22rem]">
+    <fieldset className="w-[22rem] font-normal">
       <legend className="mb-1">
         {title}
         <span className="text-main-orange">*</span>
       </legend>
       <input
         type={type}
-        className={`w-full rounded-sm border border-neutral-200 bg-neutral-50 h-[1.75rem]
-            outline-none pl-2 autofill-bg-white`}
+        className={`autofill-bg-white h-[1.75rem] w-full rounded-sm border border-neutral-200
+            bg-neutral-50 pl-2 outline-none`}
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
@@ -90,8 +90,7 @@ const PurposeTextInputFieldset = ({
         사용 목적<span className="text-main-orange">*</span>
       </legend>
       <textarea
-        className={`w-full rounded-sm border border-neutral-200 bg-neutral-50
-            outline-none p-1 h-14 resize-none`}
+        className="h-14 w-full rounded-sm border border-neutral-200 bg-neutral-50 p-1 outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

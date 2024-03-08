@@ -26,12 +26,12 @@ export default function SeminarRow({
   return (
     <Link href={seminarPostPath}>
       <article
-        className={`group flex flex-col sm:flex-row py-[1.2rem] gap-4 sm:gap-5 border-neutral-200 ${
+        className={`group flex flex-col gap-4 border-neutral-200 py-[1.2rem] sm:flex-row sm:gap-5 ${
           !isYearLast && !hideDivider ? 'border-t' : null
         }`}
       >
         <ImageCell imageURL={imageURL} />
-        <div className="flex flex-col gap-1 sm:gap-0 items-start break-all">
+        <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
           <TitleCell title={title} />
           <HostInformationCell host={name} company={affiliation} />
           <DateAndLocationCell date={new Date(startDate)} location={location} />
@@ -45,7 +45,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
   return (
     // title에 밀리는 것을 막기 위해 shrink-0 사용
     <div
-      className={`h-[160px] w-[160px] sm:h-[6.25rem] sm:w-[6.25rem] relative shrink-0 ${
+      className={`relative h-[160px] w-[160px] shrink-0 sm:h-[6.25rem] sm:w-[6.25rem] ${
         !imageURL && 'bg-neutral-100'
       }`}
     >
@@ -55,12 +55,12 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
 }
 
 function TitleCell({ title }: { title: string }) {
-  return <h3 className="group-hover:underline font-bold mb-1 sm:mb-5">{title}</h3>;
+  return <h3 className="mb-1 font-bold group-hover:underline sm:mb-5">{title}</h3>;
 }
 
 function HostInformationCell({ host, company }: { host: string; company: string }) {
   return (
-    <div className="cursor-pointer flex flex-wrap gap-0.5 items-center">
+    <div className="flex cursor-pointer flex-wrap items-center gap-0.5">
       <Person />
       <Text text={host} />
       <VerticalDivider />
@@ -71,7 +71,7 @@ function HostInformationCell({ host, company }: { host: string; company: string 
 
 function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
   return (
-    <div className="hover:cursor-pointer flex gap-0.5 items-center">
+    <div className="flex items-center gap-0.5 hover:cursor-pointer">
       <Calendar />
       <Text text={formatDateWithDays(date)} />
       <VerticalDivider />
@@ -86,7 +86,7 @@ function Text({ text }: { text: string }) {
 }
 
 function VerticalDivider() {
-  return <span className="text-md font-normal w-4 sm:w-5 text-center text-neutral-500">|</span>;
+  return <span className="w-4 text-center text-md font-normal text-neutral-500 sm:w-5">|</span>;
 }
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];

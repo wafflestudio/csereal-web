@@ -8,7 +8,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 export default function RoadMapModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalFrame onClose={onClose}>
-      <div className="relative flex flex-col gap-4 p-6 w-fit max-w-[768px] bg-neutral-100 border-t-2 border-b rounded-t-sm border-main-orange overflow-auto styled-scrollbar overflow-x-hidden">
+      <div className="styled-scrollbar relative flex w-fit max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-100 p-6">
         <RoadMapTitle />
         <RoadMapDescription />
         <RoadMap />
@@ -23,8 +23,8 @@ function RoadMapTitle() {
     <h4 className="flex items-center gap-2">
       <SignPostIcon className="fill-main-orange" />
       <span className="align-bottom">
-        <span className="font-bold text-lg">교과목 로드맵 </span>
-        <span className="text-neutral-600 text-sm">(선수 교과목)</span>
+        <span className="text-lg font-bold">교과목 로드맵 </span>
+        <span className="text-sm text-neutral-600">(선수 교과목)</span>
       </span>
     </h4>
   );
@@ -51,8 +51,8 @@ function RoadMap() {
 
 function CloseButton({ onClick }: { onClick: () => void }) {
   return (
-    <button className="absolute top-3 right-3" onClick={onClick}>
-      <span className="material-symbols-rounded font-light text-neutral-400 text-2xl">close</span>
+    <button className="absolute right-3 top-3" onClick={onClick}>
+      <span className="material-symbols-rounded text-2xl font-light text-neutral-400">close</span>
     </button>
   );
 }

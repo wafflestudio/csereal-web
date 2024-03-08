@@ -39,7 +39,7 @@ function HighlightedRow({
     <div className="flex items-center" style={{ marginBottom }}>
       <Link
         href={href}
-        className="text-md mr-4 font-medium text-main-orange shrink-0 h-[1.0625rem]"
+        className="mr-4 h-[1.0625rem] shrink-0 text-md font-medium text-main-orange"
       >
         <NavLabel text={text} />
       </Link>
@@ -60,7 +60,7 @@ function LinkRow({
   return (
     <Link
       href={href}
-      className="block text-md leading-5 font-medium mb-6 text-white hover:text-main-orange h-[1.0625rem]"
+      className="mb-6 block h-[1.0625rem] text-md font-medium leading-5 text-white hover:text-main-orange"
       style={{ marginBottom }}
     >
       <NavLabel text={text} />
@@ -71,7 +71,7 @@ function LinkRow({
 function TextRow({ text, marginBottom }: { text: string; marginBottom: string }) {
   return (
     <p
-      className="block text-md leading-5 font-medium mb-6 text-white h-[1.0625rem]"
+      className="mb-6 block h-[1.0625rem] text-md font-medium leading-5 text-white"
       style={{ marginBottom }}
     >
       <NavLabel text={text} />

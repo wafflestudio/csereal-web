@@ -12,14 +12,14 @@ interface ResearchGroupDetailProps {
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
-    <div className="bg-neutral-100 pt-8 pb-9 sm:pl-[100px] sm:pr-[320px] sm:pt-[50px] sm:pb-[100px]">
-      <h2 className="mb-6 sm:mb-[18px] ml-8 mr-7 sm:mx-0 font-bold text-base sm:text-[24px] leading-loose whitespace-nowrap">
+    <div className="bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
+      <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
         {group.name} 연구 그룹
       </h2>
-      <div className="bg-white mx-7 sm:mx-0 p-[18px] sm:p-[40px] max-w-[780px]">
+      <div className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]">
         <HTMLViewer htmlContent={group.description} />
       </div>
-      <div className="relative h-[200px] mt-6">
+      <div className="relative mt-6 h-[200px]">
         <Image
           src={group.imageURL}
           alt={`${group.name}_연구그룹_사진`}

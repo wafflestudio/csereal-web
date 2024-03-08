@@ -99,7 +99,7 @@ export default function PostEditor({
       />
 
       <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
-        <div className={`grow grid  gap-x-6 gap-y-2.5 ${gridStyle}`}>
+        <div className={`grid grow  gap-x-6 gap-y-2.5 ${gridStyle}`}>
           {tags.map((tag) => (
             <Checkbox
               key={tag}
@@ -152,7 +152,7 @@ export default function PostEditor({
                   setContentByKey('isSlide')(!content.isSlide);
                 }}
               />
-              <p className="font-yoon text-xs text-neutral-700 font-light tracking-wide">
+              <p className="font-yoon text-xs font-light tracking-wide text-neutral-700">
                 * ‘슬라이드쇼에 표시’ 글은 대표이미지가 첨부되어있는지 확인 바랍니다.
               </p>
             </>
@@ -160,7 +160,7 @@ export default function PostEditor({
         </div>
       </Fieldset>
 
-      <div className="self-end flex gap-3">
+      <div className="flex gap-3 self-end">
         {actions.type === 'CREATE' && (
           <CreateActionButtons {...actions} getContent={getContentWithDescription} />
         )}
@@ -214,7 +214,7 @@ function DateInputFieldSet({ date, setDate }: { date: Date; setDate: (date: Date
   return (
     <Fieldset title="시기" mb="mb-6" titleMb="mb-2" required>
       <button
-        className="border border-neutral-900 rounded-sm text-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2 self-start"
+        className="flex items-center justify-between gap-2 self-start rounded-sm border border-neutral-900 py-[.3125rem] pl-[.625rem] pr-[.3125rem] text-sm font-normal"
         onClick={(e) => {
           e.preventDefault();
           openModal(
@@ -256,7 +256,7 @@ function EditorFieldset({
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="대표 이미지" mb="mb-6" titleMb="mb-2">
-      <label className="font-yoon text-sm font-normal tracking-wide mb-3">
+      <label className="font-yoon mb-3 text-sm font-normal tracking-wide">
         이미지는 글 우측 상단에 표시됩니다.
       </label>
       <ImagePicker file={file} setFile={setFile} />

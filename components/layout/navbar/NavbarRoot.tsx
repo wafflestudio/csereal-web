@@ -22,7 +22,7 @@ export default function NavbarRoot({
   return (
     // 상하로 짧은 경우를 대비해 overflow-scroll
     <div
-      className={`flex flex-col items-center py-[2.88rem] ${width} transition-all duration-300 ease-in-out z-50 bg-[#323235] overflow-scroll no-scrollbar`}
+      className={`flex flex-col items-center py-[2.88rem] ${width} no-scrollbar z-50 overflow-scroll bg-[#323235] transition-all duration-300 ease-in-out`}
       onMouseEnter={() => setState({ type: 'expanded' })}
     >
       <SNUButton />
@@ -83,7 +83,7 @@ function NavList({
 
   return (
     <nav>
-      <ul className="mx-12 mt-12 flex flex-col text-center gap-9">
+      <ul className="mx-12 mt-12 flex flex-col gap-9 text-center">
         {mainSegmentNode.children?.map((child, i) => (
           <NavListRow
             key={i}

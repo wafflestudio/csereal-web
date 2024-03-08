@@ -16,12 +16,12 @@ export default function ConferenceListTable({
   conferenceList: ConferenceListTableProps[];
 }) {
   return (
-    <div className="w-[780px] flex flex-col text-xs mt-8">
-      <div className="flex flex-row w-full h-10 border-y-[1px] border-y-neutral-200">
-        <div className="flex items-center px-3 w-12">연번</div>
-        <div className="flex items-center px-3 w-20">코드</div>
-        <div className="flex items-center px-3 w-28">약칭</div>
-        <div className="flex items-center px-3 w-[540px]">학술대회명칭</div>
+    <div className="mt-8 flex w-[780px] flex-col text-xs">
+      <div className="flex h-10 w-full flex-row border-y-[1px] border-y-neutral-200">
+        <div className="flex w-12 items-center px-3">연번</div>
+        <div className="flex w-20 items-center px-3">코드</div>
+        <div className="flex w-28 items-center px-3">약칭</div>
+        <div className="flex w-[540px] items-center px-3">학술대회명칭</div>
       </div>
       {conferenceList.map((conference, index) => (
         <ConferenceRow conference={conference} index={index + 1} key={conference.id} />
@@ -33,12 +33,12 @@ export default function ConferenceListTable({
 function ConferenceRow({ conference, index }: ConferenceRowProps) {
   return (
     <div
-      className={`flex flex-row w-full break-words items-center leading-[18px] even:bg-neutral-100`}
+      className={`flex w-full flex-row items-center break-words leading-[18px] even:bg-neutral-100`}
     >
-      <div className="flex px-3 py-2.5 w-12 items-center justify-center">{index}</div>
-      <div className="flex px-3 py-2.5 w-20 items-center">{conference.code}</div>
-      <div className="flex px-3 py-2.5 w-28 items-center">{conference.abbreviation}</div>
-      <div className="flex px-3 py-2.5 w-[540px] items-center">{conference.name}</div>
+      <div className="flex w-12 items-center justify-center px-3 py-2.5">{index}</div>
+      <div className="flex w-20 items-center px-3 py-2.5">{conference.code}</div>
+      <div className="flex w-28 items-center px-3 py-2.5">{conference.abbreviation}</div>
+      <div className="flex w-[540px] items-center px-3 py-2.5">{conference.name}</div>
     </div>
   );
 }

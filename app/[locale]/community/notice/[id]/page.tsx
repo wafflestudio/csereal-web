@@ -57,7 +57,7 @@ export default async function NoticePostPage({
         }}
       >
         {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-        <HTMLViewer htmlContent={currPost?.description || ''} className="mt-4 mb-10" />
+        <HTMLViewer htmlContent={currPost?.description || ''} className="mb-10 mt-4" />
         <StraightNode />
         <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
         <AdjPostNav
@@ -75,11 +75,11 @@ export default async function NoticePostPage({
 function Header({ title, author, dateStr }: { title: string; author: string; dateStr: string }) {
   return (
     <div
-      className="flex flex-col mb-9 gap-4"
+      className="mb-9 flex flex-col gap-4"
       style={{ paddingTop: PAGE_PADDING_TOP_PX, paddingLeft: PAGE_PADDING_LEFT_PX }}
     >
       <h2 className="text-[1.25rem] font-semibold">{title}</h2>
-      <div className="flex gap-5 text-sm text-neutral-500 font-normal tracking-wide">
+      <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
         <p>글쓴이: {author}</p>
         <p>작성 시각: {formatFullDate(new Date(dateStr))}</p>
       </div>

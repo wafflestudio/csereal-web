@@ -34,18 +34,18 @@ export interface FacilitiesRowProps {
 function FacilitiesRow({ name, description, location, imageURL, border }: FacilitiesRowProps) {
   return (
     <article
-      className={`text-neutral-700 flex py-[1.2rem] flex-row items-start justify-between break-all ${
+      className={`flex flex-row items-start justify-between break-all py-[1.2rem] text-neutral-700 ${
         border ? 'border-t-[1px] border-neutral-200' : undefined
       }`}
     >
-      <div className="flex flex-col w-[35.5rem]">
-        <h3 className="text-neutral-800 text-base font-noto font-bold mb-[.69rem] leading-5">
+      <div className="flex w-[35.5rem] flex-col">
+        <h3 className="font-noto mb-[.69rem] text-base font-bold leading-5 text-neutral-800">
           {name}
         </h3>
         <HTMLViewer htmlContent={description} />
         <div className="flex items-center gap-[0.12rem]">
           <Distance />
-          <p className="text-md leading-[1.63rem] translate-x-[-2px]">{location}</p>
+          <p className="translate-x-[-2px] text-md leading-[1.63rem]">{location}</p>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   const src = `/image/facilities/${imageURL}-color.png`;
 
   return (
-    <div className="w-60 h-40 relative">
+    <div className="relative h-40 w-60">
       <Image alt="대표 이미지" src={src} fill sizes="10rem" />
     </div>
   );

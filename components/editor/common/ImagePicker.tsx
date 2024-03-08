@@ -18,10 +18,10 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
   return (
     <>
       <label
-        className={`rounded-sm border-[1px] border-neutral-700
-            h-[1.875rem] px-[.62rem] mb-3
-            flex items-center
-            text-xs self-start 
+        className={`mb-3 flex h-[1.875rem]
+            items-center self-start rounded-sm
+            border-[1px] border-neutral-700
+            px-[.62rem] text-xs 
             hover:bg-neutral-100`}
       >
         {`이미지 ${file ? '변경' : '업로드'}`}
@@ -67,9 +67,9 @@ const SelectedImageViewer = ({
   return (
     <div
       className={`
-    relative flex self-start gap-3
-    pt-2 pr-4 pb-2 pl-2 
-    bg-neutral-50 rounded-sm border-[1px] border-neutral-200`}
+    relative flex gap-3 self-start
+    rounded-sm border-[1px] border-neutral-200 bg-neutral-50 
+    pb-2 pl-2 pr-4 pt-2`}
     >
       <Image
         src={imageURL}
@@ -80,7 +80,7 @@ const SelectedImageViewer = ({
         // 참고: https://github.com/vercel/next.js/issues/40762
         style={{ width: IMAGE_WIDTH, height: imageHeight }}
       />
-      <div className="flex flex-col justify-between items-start">
+      <div className="flex flex-col items-start justify-between">
         <p className="text-xs">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
         <button className="text-xs underline" onClick={handleDeleteBlob}>
           삭제

@@ -5,12 +5,12 @@ export default function NoticeListHeader({ isEditMode }: { isEditMode: boolean }
 
   return (
     <h5
-      className={`h-11 ${paddingLeft} hidden sm:flex text-[15px] pr-4 items-center border-b border-neutral-200 text-neutral-800`}
+      className={`h-11 ${paddingLeft} hidden items-center border-b border-neutral-200 pr-4 text-[15px] text-neutral-800 sm:flex`}
     >
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} grow pl-3 tracking-wide whitespace-nowrap`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} grow whitespace-nowrap pl-3 tracking-wide`}>
         제목
       </span>
-      <span className={`${NOTICE_ROW_CELL_WIDTH.date} pl-8 tracking-wide whitespace-nowrap`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.date} whitespace-nowrap pl-8 tracking-wide`}>
         날짜
       </span>
     </h5>

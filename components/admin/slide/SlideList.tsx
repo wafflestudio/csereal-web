@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
 import { SlidePreview } from '@/types/admin';
 
@@ -21,9 +21,9 @@ export default function SlideList({ posts, selectedPostIds, changeSelectedIds }:
   };
 
   return (
-    <div className="mb-8 mx-2.5">
+    <div className="mx-2.5 mb-8">
       <SlideListHeader />
-      <ul className={`divide-y divide-neutral-200 divide-dashed border-b border-neutral-300`}>
+      <ul className={`divide-y divide-dashed divide-neutral-200 border-b border-neutral-300`}>
         {posts.map((post, i) => (
           <SlideListRow
             key={i}

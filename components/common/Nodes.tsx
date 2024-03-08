@@ -5,14 +5,12 @@ interface CurvedNodeProps {
   double?: boolean;
 }
 
-// width 최소 65px (원 10px + 대각선 꼬리 55px)
+/** width 최소 65px (원 10px + 대각선 꼬리 55px) */
 export function CurvedHorizontalNode({ grow = false, length = 'w-auto' }: CurvedNodeProps) {
   return (
     <div className={`flex ${grow ? 'grow' : ''} ${length} items-center`}>
       <StraightNode grow={true} direction="row" />
       <Diagonal width="w-[90px]" />
-      {/* <span className="w-[200px] border-t border-main-orange translate-x-[-18.5px] translate-y-[43.3px]"></span> */}
-      {/* <Straight direction="row" translateX="translate-x-[300px]" translateY="translate-y-[10px]" /> */}
     </div>
   );
 }
@@ -21,12 +19,10 @@ export function CurvedHorizontalNodeGray() {
   return (
     <div className={`flex grow items-center`}>
       <div className={`flex w-full items-center`}>
-        <div className="border border-neutral-600 rounded-full w-2.5 h-2.5" />
-        <div className={`grow border-neutral-600 border-t`} />
+        <div className="h-2.5 w-2.5 rounded-full border border-neutral-600" />
+        <div className={`grow border-t border-neutral-600`} />
       </div>
-      <div className={`origin-top-left rotate-45 border-t border-neutral-600 h-0 w-[90px]`} />
-      {/* <span className="w-[200px] border-t border-main-orange translate-x-[-18.5px] translate-y-[43.3px]"></span> */}
-      {/* <Straight direction="row" translateX="translate-x-[300px]" translateY="translate-y-[10px]" /> */}
+      <div className={`h-0 w-[90px] origin-top-left rotate-45 border-t border-neutral-600`} />
     </div>
   );
 }
@@ -70,8 +66,10 @@ interface StraightNodeProps {
   margin?: string; // tailwind
 }
 
-// straight node width, height 최소 10px (원 크기)
-// 가로일 때 width, 세로일 때 height 명시 권장 (기본값: 그 방향으로 최대한 늘어남)
+/**
+ * straight node width, height 최소 10px (원 크기)
+ * 가로일 때 width, 세로일 때 height 명시 권장 (기본값: 그 방향으로 최대한 늘어남)
+ */
 export function StraightNode({
   grow = false,
   direction = 'row',
@@ -93,24 +91,26 @@ export function StraightNode({
   );
 }
 
-// tailwind class 그대로 쓰면 됨
+/** tailwind class 그대로 쓰면 됨 */
 interface DiagonalProps {
   width: string;
   translateX?: string;
   translateY?: string;
 }
 
-// 우하향
+/** 우하향 */
 function Diagonal({ width, translateX = '', translateY = '' }: DiagonalProps) {
   return (
     <div
-      className={`origin-top-left rotate-45 border-t border-main-orange h-0 ${width} ${translateX} ${translateY}`}
+      className={`h-0 origin-top-left rotate-45 border-t border-main-orange ${width} ${translateX} ${translateY}`}
     />
   );
 }
 
-// 수평선을 원하면 부모 요소 flex-direction: row
-// 수직선을 원하면 부모 요소 flex-direction: column
+/**
+ * 수평선을 원하면 부모 요소 flex-direction: row
+ * 수직선을 원하면 부모 요소 flex-direction: column
+ */
 interface StraightProps {
   direction?: 'row' | 'col';
   translateX?: string;
@@ -128,5 +128,5 @@ function Straight({ direction = 'row', translateX = '', translateY = '' }: Strai
 }
 
 function Circle() {
-  return <div className="border border-main-orange rounded-full w-2.5 h-2.5" />;
+  return <div className="h-2.5 w-2.5 rounded-full border border-main-orange" />;
 }

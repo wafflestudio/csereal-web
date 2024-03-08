@@ -13,7 +13,7 @@ export default function CserealModal() {
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="flex flex-col pt-[98px] pb-[103px] w-[53.25rem] font-noto bg-white shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
+      <div className="font-noto flex w-[53.25rem] flex-col bg-white pb-[103px] pt-[98px] shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
         <TeamName />
         <Members />
         <Contact />
@@ -24,7 +24,7 @@ export default function CserealModal() {
 
 function TeamName() {
   return (
-    <h1 className="mx-auto mb-5 text-3xl text-main-orange tracking-[0.02em]">
+    <h1 className="mx-auto mb-5 text-3xl tracking-[0.02em] text-main-orange">
       <span className="font-noto font-light">Team </span>
       <span className="font-noto font-bold">CSEREAL</span>
     </h1>
@@ -33,7 +33,7 @@ function TeamName() {
 
 function Members() {
   return (
-    <div className="ml-[201px] mr-[158px] flex gap-11 mb-[46px]">
+    <div className="mb-[46px] ml-[201px] mr-[158px] flex gap-11">
       {MEMBERS.map((info) => (
         <Part part={info.part} members={info.members} key={info.part} />
       ))}
@@ -44,10 +44,10 @@ function Members() {
 function Part({ part, members }: { part: string; members: string[] }) {
   return (
     <div>
-      <h4 className="whitespace-nowrap mb-2.5 font-noto font-bold text-main-orange text-base text-center tracking-[0.02em]">
+      <h4 className="font-noto mb-2.5 whitespace-nowrap text-center text-base font-bold tracking-[0.02em] text-main-orange">
         {part}
       </h4>
-      <p className="whitespace-nowrap flex justify-center gap-[1.0625rem] font-yoon font-normal text-md tracking-[0.02em]">
+      <p className="font-yoon flex justify-center gap-[1.0625rem] whitespace-nowrap text-md font-normal tracking-[0.02em]">
         {members.map((member) => (
           <span key={member}>{member}</span>
         ))}
@@ -59,10 +59,10 @@ function Part({ part, members }: { part: string; members: string[] }) {
 function Contact() {
   return (
     <div className="mx-auto">
-      <h4 className="font-noto font-light mb-[7px] text-main-orange text-base text-center tracking-[0.02em]">
+      <h4 className="font-noto mb-[7px] text-center text-base font-light tracking-[0.02em] text-main-orange">
         Contact Us
       </h4>
-      <span className="font-yoon font-normal font-md tracking-[0.02em]">
+      <span className="font-yoon font-md font-normal tracking-[0.02em]">
         csereal.waffle@gmail.com
       </span>
     </div>

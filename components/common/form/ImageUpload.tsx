@@ -43,7 +43,7 @@ const ImageUpload = ({ onImageSelect }: ImageUploadProps) => {
         <div>
           <Image src={previewImage as string} alt="Preview" width={200} height={200} />
           <button
-            className="mt-2 px-4 py-2 border text-xs rounded-lg hover:bg-red-600"
+            className="hover:bg-red-600 mt-2 rounded-lg border px-4 py-2 text-xs"
             onClick={handleImageRemove}
           >
             삭제
@@ -51,7 +51,7 @@ const ImageUpload = ({ onImageSelect }: ImageUploadProps) => {
         </div>
       ) : (
         <button
-          className="px-4 py-2 border rounded-lg text-xs hover:bg-blue-600"
+          className="hover:bg-blue-600 rounded-lg border px-4 py-2 text-xs"
           onClick={handleButtonClick}
         >
           이미지 선택

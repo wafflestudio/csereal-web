@@ -30,7 +30,7 @@ export function SelectDayButton({ date }: { date: Date }) {
   return (
     <div>
       <BasicButton
-        className="h-full px-[0.625rem] flex gap-1 items-center justify-center w-24"
+        className="flex h-full w-24 items-center justify-center gap-1 px-[0.625rem]"
         onClick={toggleCalendar}
       >
         {isDateToday ? (
@@ -45,7 +45,7 @@ export function SelectDayButton({ date }: { date: Date }) {
       <div className="relative">
         {showCalendar && (
           <MuiDateSelector
-            className="absolute border-neutral-300 border top-2 z-10 bg-white"
+            className="absolute top-2 z-10 border border-neutral-300 bg-white"
             date={date}
             setDate={(date) => {
               date && querySetter(date);
@@ -71,7 +71,7 @@ export function ChangeDateButton({
 
   return (
     <BasicButton className="w-[1.875rem]" onClick={handleClick}>
-      <span className="material-symbols-rounded text-xl font-light align-middle">{symbolName}</span>
+      <span className="material-symbols-rounded align-middle text-xl font-light">{symbolName}</span>
     </BasicButton>
   );
 }

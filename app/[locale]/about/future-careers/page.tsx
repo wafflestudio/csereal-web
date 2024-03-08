@@ -10,7 +10,7 @@ export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();
   return (
     <PageLayout titleType="big">
-      <p className="text-md font-normal leading-[1.625rem] mb-9 break-keep whitespace-pre-wrap">
+      <p className="mb-9 whitespace-pre-wrap break-keep text-md font-normal leading-[1.625rem]">
         {description}
       </p>
       <CareerStat stat={stat} />
@@ -22,10 +22,10 @@ export default async function GreetingsPage() {
 function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
   return (
     <div>
-      <h3 className="text-base font-noto font-bold leading-[1.625rem] mb-[0.8rem]">
+      <h3 className="font-noto mb-[0.8rem] text-base font-bold leading-[1.625rem]">
         졸업생 창업 기업
       </h3>
-      <div className="text-sm font-normal border-y-[1px] border-neutral-200 inline-block">
+      <div className="inline-block border-y-[1px] border-neutral-200 text-sm font-normal">
         <CompanyTableHeader />
         <ol>
           {companies.map((company, index) => (
@@ -63,7 +63,7 @@ function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
       <p className={'pl-5 ' + TABLE_COLUMN_SIZE[0]}>{index}</p>
       <p className={'pl-3 ' + TABLE_COLUMN_SIZE[1]}>{name}</p>
       <a
-        className={'text-link pl-3 hover:underline ' + TABLE_COLUMN_SIZE[2]}
+        className={'pl-3 text-link hover:underline ' + TABLE_COLUMN_SIZE[2]}
         href={url}
         target="_blank"
       >

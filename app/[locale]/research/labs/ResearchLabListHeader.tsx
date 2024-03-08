@@ -4,7 +4,7 @@ import { LAB_ROW_ITEM_WIDTH } from './ResearchLabListRow';
 
 export default function ResearchLabListHeader() {
   return (
-    <h5 className="flex items-center h-10 text-sm font-medium bg-neutral-100 pl-2 [&>span]:px-3 tracking-[0.02em]">
+    <h5 className="hidden h-10 items-center whitespace-nowrap bg-neutral-100 pl-2 text-sm font-medium tracking-[0.02em] sm:flex [&>span]:px-3">
       <span className={LAB_ROW_ITEM_WIDTH.name}>연구실</span>
       <span className={LAB_ROW_ITEM_WIDTH.professor}>지도교수</span>
       <span className={LAB_ROW_ITEM_WIDTH.location}>연구실 위치</span>

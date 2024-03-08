@@ -12,8 +12,8 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
   if (error || !props.src) {
     return (
       <div
-        className={`flex flex-1 justify-center items-center bg-neutral-100 ${
-          props.fill && 'w-full h-full'
+        className={`flex flex-1 items-center justify-center bg-neutral-100 ${
+          props.fill && 'h-full w-full'
         }`}
         style={{ width: props.width, height: props.height }}
       >

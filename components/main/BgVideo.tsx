@@ -1,6 +1,6 @@
 export default function BgVideo() {
   return (
-    <section className="absolute flex w-full justify-center top-[-70px]">
+    <section className="absolute top-[-70px] flex w-full justify-center">
       <video
         id="background-video"
         loop

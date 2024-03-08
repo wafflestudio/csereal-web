@@ -23,15 +23,15 @@ export default function SeminarSearchBar({ keyword, setSearchParams }: SeminarSe
   };
 
   return (
-    <form className="flex w-fit gap-5 items-center" onSubmit={searchText}>
+    <form className="flex w-fit items-center gap-5" onSubmit={searchText}>
       <label htmlFor="search" className="font-bold">
         검색
       </label>
-      <div className="rounded-sm bg-neutral-100 flex items-center w-60 h-[1.875rem] pr-3">
+      <div className="flex h-[1.875rem] w-60 items-center rounded-sm bg-neutral-100 pr-3">
         <input
           type="text"
           id="search"
-          className="outline-none rounded-sm w-full text-sm px-2 bg-transparent tracking-wide autofill-bg-neutral-100"
+          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none"
           value={text}
           onChange={handleChange}
         />

@@ -16,7 +16,7 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
 
   return (
     <div>
-      <h5 className="mb-3 mr-6 text-md font-bold whitespace-nowrap tracking-wide">태그</h5>
+      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">태그</h5>
       <div className={`flex flex-wrap gap-x-7 gap-y-2.5 pl-2.5`}>
         {tags.map((tag) => (
           <Checkbox

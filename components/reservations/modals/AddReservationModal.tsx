@@ -19,10 +19,10 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
   return (
     <ModalFrame onClose={closeModal}>
       <form
-        className="bg-neutral-100 text-md text-neutral-700 px-7 pt-7 pb-6 border-main-orange border-t-[3px] border-b"
+        className="border-b border-t-[3px] border-main-orange bg-neutral-100 px-7 pb-6 pt-7 text-md text-neutral-700"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-xl mb-7 font-bold">시설 예약</h2>
+        <h2 className="mb-7 text-xl font-bold">시설 예약</h2>
 
         <TopForm body={body} setBody={setBody} setDate={setDate} />
         <BottomForm body={body} setBody={setBody} />
@@ -42,13 +42,15 @@ const PrivacyFieldset = ({
   toggleChecked: () => void;
 }) => {
   return (
-    <fieldset className="flex flex-col mb-6 font-normal">
+    <fieldset className="mb-6 flex flex-col font-normal">
+      <legend className="mb-1">개인정보 수집 및 이용동의</legend>
+
       <div className="flex items-center gap-5">
         <div
-          className="flex items-center gap-1 hover:cursor-pointer select-none"
+          className="flex select-none items-center gap-1 hover:cursor-pointer"
           onClick={toggleChecked}
         >
-          <span className="material-symbols-outlined text-neutral-500 text-base">
+          <span className="material-symbols-outlined text-base text-neutral-500">
             {checked ? 'check_box' : 'check_box_outline_blank'}
           </span>
           <p>
@@ -58,7 +60,7 @@ const PrivacyFieldset = ({
 
         <Link className="text-neutral-400" href="/reservations/privacy-policy" target="_blank">
           보러가기
-          <span className="material-symbols-outlined text-base translate-y-[3px]">
+          <span className="material-symbols-outlined translate-y-[3px] text-base">
             chevron_right
           </span>
         </Link>
@@ -75,7 +77,7 @@ const BottomButton = ({
   canSubmit: boolean;
 }) => {
   return (
-    <div className="flex justify-end h-[1.875rem] gap-2">
+    <div className="flex h-[1.875rem] justify-end gap-2">
       <BasicButton className="w-[2.75rem] text-md" onClick={closeModal}>
         취소
       </BasicButton>

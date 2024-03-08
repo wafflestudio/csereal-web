@@ -26,7 +26,7 @@ interface DotProps {
 function Dot({ index, fill, changeIndex }: DotProps) {
   return (
     <button
-      className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+      className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
         fill ? 'bg-main-orange' : 'bg-neutral-600'
       }`}
       onClick={() => changeIndex(index)}

@@ -31,7 +31,7 @@ export default function NoticeListRow({
 }: NoticeListRowProps) {
   return (
     <li
-      className={`flex flex-col gap-2.5 sm:gap-0 sm:flex-row sm:items-center text-[14px] sm:h-11 py-6 sm:py-2.5 px-7 sm:px-0 sm:pr-4 ${
+      className={`flex flex-col gap-2.5 px-7 py-6 text-[14px] sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 sm:pr-4 ${
         post.isPinned && 'font-semibold'
       } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
         isSelected && 'bg-neutral-100'
@@ -63,7 +63,7 @@ interface CheckboxCellProps {
 
 function CheckboxCell({ isChecked, toggleCheck }: CheckboxCellProps) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.check} hidden sm:flex justify-center`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.check} hidden justify-center sm:flex`}>
       {isChecked ? (
         <CheckboxOrange className="cursor-pointer" onClick={toggleCheck} />
       ) : (
@@ -83,7 +83,7 @@ function PrivateOrPinCell({ isPrivate, isPinned }: { isPrivate: boolean; isPinne
     <span
       className={`${NOTICE_ROW_CELL_WIDTH.pin} ${
         !(isPrivate || isPinned) && 'hidden sm:inline-flex'
-      } sm:px-[0.8125rem] shrink-0`}
+      } shrink-0 sm:px-[0.8125rem]`}
     >
       {isPrivate ? <LockIcon /> : isPinned && <PinIcon />}
     </span>
@@ -103,8 +103,8 @@ const noticePath = getPath(notice);
 function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCellProps) {
   if (isEditMode) {
     return (
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} pl-3 flex gap-1.5`}>
-        <span className="whitespace-nowrap text-ellipsis overflow-hidden tracking-wide">
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} flex gap-1.5 pl-3`}>
+        <span className="overflow-hidden text-ellipsis whitespace-nowrap tracking-wide">
           {title}
         </span>
         {hasAttachment && <ClipIcon className="shrink-0" />}
@@ -112,15 +112,15 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
     );
   } else {
     return (
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} sm:pl-3 grow min-w-0`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}>
         <Link
           href={`${noticePath}/${id}`}
-          className="font-semibold sm:font-normal flex items-center gap-1.5 hover:text-main-orange"
+          className="flex items-center gap-1.5 font-semibold hover:text-main-orange sm:font-normal"
         >
           <span
             className={`${
               isPinned && 'text-main-orange sm:text-neutral-800'
-            } sm:whitespace-nowrap text-ellipsis overflow-hidden tracking-wide`}
+            } overflow-hidden text-ellipsis tracking-wide sm:whitespace-nowrap`}
           >
             {title}
           </span>
@@ -133,7 +133,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
 
 function DateCell({ date }: { date: string }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.date} sm:pl-8 tracking-wide`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.date} tracking-wide sm:pl-8`}>
       {formatDate(new Date(date))}
     </span>
   );

@@ -21,9 +21,9 @@ export default function Notices({ notices }: NoticesMainProps) {
   const [selectedCategory, setSeletedCategory] = useState<NoticeCategoryType>('전체');
 
   return (
-    <section className="relative w-[345px] mr-[264px] px-3 py-1">
-      <div className="flex gap-[0.9375rem] items-center mb-3">
-        <h4 className="font-bold text-main-orange tracking-wide">공지사항</h4>
+    <section className="relative mr-[264px] w-[345px] px-3 py-1">
+      <div className="mb-3 flex items-center gap-[0.9375rem]">
+        <h4 className="font-bold tracking-wide text-main-orange">공지사항</h4>
         <NoticeCategory selected={selectedCategory} setSelected={setSeletedCategory} />
       </div>
       <NoticeListMain selectedNotices={notices[convertKrCategoryToEn(selectedCategory)]} />
@@ -45,7 +45,7 @@ function MoreNoticesButton({ selectedCategory }: MoreNoticesButtonProps) {
   return (
     <Link
       href={href}
-      className="absolute top-[150px] px-1 right-[-4px] text-xs text-neutral-500 hover:text-main-orange"
+      className="absolute right-[-4px] top-[150px] px-1 text-xs text-neutral-500 hover:text-main-orange"
     >
       더보기
     </Link>

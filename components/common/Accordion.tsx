@@ -13,12 +13,12 @@ export default function Accordion({ title, content }: AccordionProps) {
   const [isExpanded, toggleExpand] = useReducer((x) => !x, false);
 
   return (
-    <div className="rounded overflow-hidden border-b border-neutral-200 bg-[#efefef]">
+    <div className="overflow-hidden rounded border-b border-neutral-200 bg-[#efefef]">
       <h4
-        className="bg-neutral-100 px-4 py-[6px] flex items-center gap-1 cursor-pointer"
+        className="flex cursor-pointer items-center gap-1 bg-neutral-100 px-4 py-[6px]"
         onClick={toggleExpand}
       >
-        <span className="material-symbols-outlined font-light text-[36px] text-main-orange">
+        <span className="material-symbols-outlined text-[36px] font-light text-main-orange">
           {isExpanded ? 'expand_less' : 'expand_more'}
         </span>
         <span className="font-medium tracking-[0.02em]">{title}</span>

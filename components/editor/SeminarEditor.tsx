@@ -96,7 +96,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
         }}
       />
 
-      <div className="self-end flex gap-3">
+      <div className="flex gap-3 self-end">
         {actions.type === 'CREATE' && (
           <CreateActionButtons {...actions} getContent={getContentWithDescription} />
         )}
@@ -189,7 +189,7 @@ function ScheduleFieldset({
 
   return (
     <div>
-      <div className="flex gap-2 mt-4 mb-2">
+      <div className="mb-2 mt-4 flex gap-2">
         <Checkbox
           label="하루 종일"
           isChecked={allDay}
@@ -217,7 +217,7 @@ function ScheduleFieldset({
           }}
         />
       </div>
-      <div className="flex mb-4 gap-8">
+      <div className="mb-4 flex gap-8">
         <Fieldset title="시작 일시" titleMb="mb-[.54rem]" required grow={false}>
           <DateSelector
             date={values.startDate}
@@ -258,7 +258,7 @@ function SpeakerFieldsetGroup({
 }) {
   return (
     <div className="mb-10">
-      <legend className="font-yoon text-sm font-medium tracking-wide mb-3">연사 정보</legend>
+      <legend className="font-yoon mb-3 text-sm font-medium tracking-wide">연사 정보</legend>
       <div className="flex flex-col gap-4">
         <div className="flex gap-5">
           <Fieldset title="이름" titleMb="mb-2" required>
@@ -321,7 +321,7 @@ function SpeakerIntroductionEditorFieldset({
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="연사 사진" mb="mb-6" titleMb="mb-2">
-      <label className="font-yoon text-sm font-normal tracking-wide mb-3 whitespace-pre-wrap">
+      <label className="font-yoon mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide">
         {`필수는 아니지만, 없을 경우 대체 이미지가 표시되니 가급적 첨부 바랍니다.
 이미지는 글 우측 상단에 표시됩니다.`}
       </label>

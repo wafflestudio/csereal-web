@@ -16,7 +16,7 @@ export default function CalendarColumn({
   reservations: ReservationPreview[];
 }) {
   return (
-    <div className="flex flex-col items-stretch w-[6.25rem]">
+    <div className="flex w-[6.25rem] flex-col items-stretch">
       <ColumnIndex selected={selected} date={date} />
       <div className="relative">
         <ColumnBackground selected={selected} />
@@ -32,9 +32,9 @@ const ColumnIndex = ({ selected, date }: { selected: boolean; date: Date }) => {
   return (
     <div
       className={`
-        flex flex-col justify-between
-        h-[4.0625rem] px-3 py-[0.62rem]
-        border-t border-r border-b border-neutral-200 
+        flex h-[4.0625rem] flex-col
+        justify-between border-b border-r
+        border-t border-neutral-200 px-3 py-[0.62rem] 
         ${selected ? 'bg-neutral-200' : 'bg-neutral-100'}
         `}
     >
@@ -70,7 +70,7 @@ const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }
     >
       {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
       <p
-        className="flex item-center text-xs font-medium"
+        className="item-center flex text-xs font-medium"
         style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
       >
         {reservation.title}
@@ -86,7 +86,7 @@ const CalendarCellTitle = ({ startTime, endTime }: { startTime: Date; endTime: D
 
   return (
     <p
-      className="flex items-center text-xs font-bold text-neutral-800 mt-[2px]"
+      className="mt-[2px] flex items-center text-xs font-bold text-neutral-800"
       style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
     >
       {timeText}

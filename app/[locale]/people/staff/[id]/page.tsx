@@ -16,33 +16,33 @@ export default async function StaffMemberPage({ params }: { params: { id: number
         title={
           <div className="flex flex-row items-end">
             <p>{data.name}</p>
-            <p className="text-neutral-500 text-md font-normal ml-2 leading-7">{data.role}</p>
+            <p className="ml-2 text-md font-normal leading-7 text-neutral-500">{data.role}</p>
           </div>
         }
         titleType="big"
         titleMargin="mb-9"
       >
-        <div className="flow-root relative mb-32">
+        <div className="relative mb-32 flow-root">
           <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
-            <article className="text-neutral-700 flex flex-col mb-7">
+            <article className="mb-7 flex flex-col text-neutral-700">
               <h3 className="font-noto text-base font-bold leading-8">주요 업무</h3>
               <ul className="list-inside list-disc">
                 {data.office && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                  <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                    <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                     <p>위치: {data.office}</p>
                   </li>
                 )}
                 {data.phone && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                  <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                    <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                     <p>전화: {data.phone}</p>
                   </li>
                 )}
                 {data.email && (
-                  <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                    <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                  <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                    <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                     <p>
                       이메일:
                       <Link

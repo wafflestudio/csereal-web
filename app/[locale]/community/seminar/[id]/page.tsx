@@ -32,15 +32,15 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
-      <div className="mb-9 text-sm font-yoon text-neutral-700 leading-[1.63rem] flow-root break-all">
+      <div className="font-yoon mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
         {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
 
-        <div className="relative float-right ml-7 mt-4 mb-7 w-60 h-60">
+        <div className="relative float-right mb-7 ml-7 mt-4 h-60 w-60">
           <ImageWithFallback
             src={currPost.imageURL ?? undefined}
             alt="대표 이미지"
             fill
-            className="object-cover flex-1"
+            className="flex-1 object-cover"
             sizes="240px"
           />
         </div>
@@ -64,14 +64,14 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
         {currPost.description && (
           <>
-            <div className="font-bold  mt-12">요약</div>
+            <div className="mt-12  font-bold">요약</div>
             <HTMLViewer htmlContent={currPost.description} />
           </>
         )}
 
         {currPost.introduction && (
           <>
-            <div className="font-bold  mt-12">연사 소개</div>
+            <div className="mt-12  font-bold">연사 소개</div>
             <HTMLViewer htmlContent={currPost.introduction} />
           </>
         )}

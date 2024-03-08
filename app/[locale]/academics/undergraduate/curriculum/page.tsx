@@ -22,9 +22,9 @@ export default async function UndergradutecurriculumPage({
         <div className="relative">
           <Link
             href={`/${params.locale}/academics/undergraduate/courses`}
-            className={`absolute flex flex-row text-sm h-10 p-4 items-center text-center peer text-main-orange hover:text-[#141212] duration-300`}
+            className={`peer absolute flex h-10 flex-row items-center p-4 text-center text-sm text-main-orange duration-300 hover:text-[#141212]`}
           >
-            <span className="font-yoon tracking-[-0.019em] mr-2 font-medium">
+            <span className="font-yoon mr-2 font-medium tracking-[-0.019em]">
               교과목 정보, 선수 교과목 로드맵
             </span>
             <span className="material-symbols-outlined text-[20px] font-light">navigate_next</span>

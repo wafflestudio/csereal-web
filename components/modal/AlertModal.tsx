@@ -24,7 +24,7 @@ export default function AlertModal({
   return (
     <ModalFrame onClose={closeModal}>
       <form
-        className="px-10 py-6 bg-white"
+        className="bg-white px-10 py-6"
         action={() => {
           onConfirm();
           closeModal();
@@ -47,13 +47,13 @@ export default function AlertModal({
 }
 
 function AlertMessage({ message }: { message: string }) {
-  return <p className="text-neutral-800 mt-1 mb-6">{message}</p>;
+  return <p className="mb-6 mt-1 text-neutral-800">{message}</p>;
 }
 
 function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {
   return (
     <button
-      className={`px-[17px] h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 hover:bg-neutral-200 font-noto font--bold text-xs text-neutral-500 hover:text-neutral-700`}
+      className={`font-noto font--bold h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 px-[17px] text-xs text-neutral-500 hover:bg-neutral-200 hover:text-neutral-700`}
       onClick={onClick}
       type="button"
     >
@@ -67,7 +67,7 @@ function ConfirmButton({ text }: { text: string }) {
 
   return (
     <button
-      className={`ml-2.5 px-[17px] h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 hover:bg-neutral-500 font-bold text-xs text-white`}
+      className={`ml-2.5 h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 px-[17px] text-xs font-bold text-white hover:bg-neutral-500`}
       disabled={pending}
       type="submit"
     >
