@@ -1,41 +1,16 @@
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { getRequest, patchRequest } from './serverIndex';
+import { patchRequest } from './common/server';
 
-// export const getSlides = (pageNum: number) =>
-//   getRequest(
-//     '/admin/slide',
-//     { pageNum },
-//     {
-//       next: { tags: ['slide'] },
-//     },
-//   ) as Promise<{
-//     slides: SlidePreview[];
-//     total: number;
-//   }>;
-
-// export const getImportants = (pageNum: number) =>
-//   getRequest(
-//     '/admin/important',
-//     { pageNum },
-//     {
-//       next: { tags: ['important'] },
-//     },
-//   ) as Promise<{
-//     importants: ImportantPreview[];
-//     total: number;
-//   }>;
-
-export const getSlides = async (
-  page: number,
-): Promise<{ slides: SlidePreview[]; total: number }> => ({
+export const getSlides = async (): Promise<{ slides: SlidePreview[]; total: number }> => ({
   slides: [],
   total: 0,
 });
 
-export const getImportants = async (
-  page: number,
-): Promise<{ importants: ImportantPreview[]; total: number }> => ({
+export const getImportants = async (): Promise<{
+  importants: ImportantPreview[];
+  total: number;
+}> => ({
   importants: [],
   total: 0,
 });

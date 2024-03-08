@@ -1,7 +1,7 @@
 import { NoticePreviewList, Notice } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
-import { deleteRequest, getRequest, patchRequest } from '../apis/serverIndex';
+import { deleteRequest, getRequest, patchRequest } from '../apis/common/server';
 
 const noticePath = '/notice';
 

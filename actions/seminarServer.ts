@@ -1,7 +1,7 @@
 import { PostSearchQueryParams } from '@/types/post';
 import { SeminarList, Seminar } from '@/types/seminar';
 
-import { deleteRequest, getRequest } from '../apis/serverIndex';
+import { deleteRequest, getRequest } from '../apis/common/server';
 
 const seminarPath = '/seminar';
 
