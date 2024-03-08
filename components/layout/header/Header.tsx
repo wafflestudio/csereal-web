@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Link } from '@/navigation';
 import HeaderLogoSVG from '@/public/image/header/header_logo.svg';
 import HeaderSubTextSVG from '@/public/image/header/header_sub_text.svg';
@@ -13,7 +15,12 @@ export default function Header() {
       className={`flex h-[68px] items-center justify-between bg-[#2d2d30] px-5 sm:h-auto sm:bg-transparent sm:px-[3.75rem] sm:pb-[2.44rem] sm:pt-12`}
     >
       <HeaderLeft />
-      <HeaderRight />
+
+      {/* 에러 없애기 위해 Suspense 추가 */}
+      {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
+      <Suspense>
+        <HeaderRight />
+      </Suspense>
 
       <MobileNavButton />
     </header>

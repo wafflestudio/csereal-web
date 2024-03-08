@@ -3,7 +3,7 @@ import { useEffect, RefObject } from 'react';
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-export const useOutClickAlerter = (ref: RefObject<HTMLElement>, f: () => void) => {
+export const useClickOutside = (ref: RefObject<HTMLElement>, f: () => void) => {
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (ref.current === null) return;

@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ko';
 import { useRef } from 'react';
 
-import { useOutClickAlerter } from '@/utils/hooks/useOutClickAlerter';
+import { useClickOutside } from '@/utils/hooks/useClickOutside';
 
 export default function MuiDateSelector({
   date,
@@ -18,7 +18,7 @@ export default function MuiDateSelector({
   enablePast?: boolean;
 }) {
   const ref = useRef(null);
-  useOutClickAlerter(ref, () => setDate());
+  useClickOutside(ref, () => setDate());
 
   const shouldDisableDate = (day: Dayjs) => {
     if (enablePast) return false;

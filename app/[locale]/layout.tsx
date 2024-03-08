@@ -1,4 +1,5 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -20,6 +21,12 @@ export const metadata = {
   description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
 };
 
+// i18n의 Static rendering 관련 에러 제거 위해 추가
+export function generateStaticParams() {
+  const locales = ['en', 'ko'];
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -27,6 +34,9 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  // i18n의 Static rendering 관련 에러 제거 위해 추가
+  unstable_setRequestLocale(params.locale);
+
   return (
     <html
       lang={params.locale}
