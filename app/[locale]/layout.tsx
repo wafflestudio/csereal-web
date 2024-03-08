@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
+import SessionContextProvider from '@/contexts/SessionContext';
 
 import Footer from '@/components/layout/footer/Footer';
 import Navbar from '@/components/layout/navbar/Navbar';
@@ -55,11 +56,13 @@ function ContextProviders({ locale, children }: { locale: string; children: Reac
 
   return (
     <SWRProvider>
-      <ModalContextProvider>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </ModalContextProvider>
+      <SessionContextProvider>
+        <ModalContextProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ModalContextProvider>
+      </SessionContextProvider>
     </SWRProvider>
   );
 }

@@ -7,7 +7,7 @@ import { getImportants, getSlides } from '@/apis/admin';
 
 import ImportantManagement from '@/components/admin/important/ImportantManagement';
 import SlideManagement from '@/components/admin/slide/SlideManagement';
-import StaffVisible from '@/components/common/auth/StaffVisible';
+import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -72,7 +72,7 @@ interface AdminPageLayoutProps {
 function AdminPageLayout({ selectedMenu, children }: AdminPageLayoutProps) {
   return (
     <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
-      <StaffVisible fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
+      <LoginVisible staff fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
         <SelectionList
           names={Object.values(ADMIN_MENU)}
           selectedItemName={selectedMenu}
@@ -80,7 +80,7 @@ function AdminPageLayout({ selectedMenu, children }: AdminPageLayoutProps) {
           listGridColumnClass="grid-cols-[200px_220px]"
         />
         {children}
-      </StaffVisible>
+      </LoginVisible>
     </PageLayout>
   );
 }

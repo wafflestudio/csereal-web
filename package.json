@@ -22,7 +22,6 @@
     "dayjs": "^1.11.9",
     "eslint-config-next": "^14.1.0",
     "isomorphic-dompurify": "^1.8.0",
-    "js-cookie": "^3.0.5",
     "next": "^14.1.0",
     "next-intl": "^3.7.0",
     "postcss": "8.4.24",

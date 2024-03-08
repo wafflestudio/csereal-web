@@ -4,7 +4,7 @@ import SeminarSearchBar from '@/app/[locale]/community/seminar/SearchBar';
 import SeminarRow from '@/app/[locale]/community/seminar/SeminarRow';
 import SeminarYear from '@/app/[locale]/community/seminar/SeminarYear';
 
-import StaffVisible from '@/components/common/auth/StaffVisible';
+import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -49,9 +49,9 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />
-      <StaffVisible>
+      <LoginVisible staff>
         <AdminFeatures />
-      </StaffVisible>
+      </LoginVisible>
     </PageLayout>
   );
 }

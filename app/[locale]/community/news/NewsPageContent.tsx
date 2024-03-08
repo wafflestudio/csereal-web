@@ -2,7 +2,7 @@
 
 import NewsRow from '@/app/[locale]/community/news/NewsRow';
 
-import StaffVisible from '@/components/common/auth/StaffVisible';
+import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -66,9 +66,9 @@ export default function NewsPageContent({
         currentPage={page}
         setCurrentPage={setCurrentPage}
       />
-      <StaffVisible>
+      <LoginVisible staff>
         <AdminFeatures />
-      </StaffVisible>
+      </LoginVisible>
     </PageLayout>
   );
 }

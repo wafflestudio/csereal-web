@@ -5,6 +5,12 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
 
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+
   // react-svgr 설정
   // https://react-svgr.com/docs/next/
   webpack(config) {

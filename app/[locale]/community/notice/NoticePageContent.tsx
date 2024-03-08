@@ -4,7 +4,7 @@ import { useReducer } from 'react';
 
 import NoticeList from '@/app/[locale]/community/notice/NoticeList';
 
-import StaffVisible from '@/components/common/auth/StaffVisible';
+import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -85,7 +85,7 @@ export default function NoticePageContent({
         setCurrentPage={setCurrentPage}
         disabled={isEditMode}
       />
-      <StaffVisible>
+      <LoginVisible staff>
         <AdminFeatures
           isEditMode={isEditMode}
           toggleEditMode={toggleEditMode}
@@ -94,7 +94,7 @@ export default function NoticePageContent({
             changeSelectedIds({ type: 'RESET' });
           }}
         />
-      </StaffVisible>
+      </LoginVisible>
     </PageLayout>
   );
 }

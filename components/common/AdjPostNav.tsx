@@ -2,7 +2,7 @@ import { Link } from '@/navigation';
 
 import { AdjPostInfo } from '@/types/post';
 
-import StaffVisible from './auth/StaffVisible';
+import LoginVisible from './LoginVisible';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostType = 'notice' | 'seminar' | 'news';
@@ -27,14 +27,14 @@ export default function AdjPostNav({
       {nextPost && <Row post={nextPost} type="next" />}
       {prevPost && <Row post={prevPost} type="prev" />}
       <div className="mt-6 flex justify-end">
-        <StaffVisible>
+        <LoginVisible staff>
           {id && (
             <>
               <PostDeleteButton postType={postType} id={id} />
               <PostEditLink href={`/community/${postType}/${id}/edit`} />
             </>
           )}
-        </StaffVisible>
+        </LoginVisible>
         <PostListLink href={`/community/${postType}`} />
       </div>
     </div>
