@@ -16,9 +16,9 @@ export default function SearchSubNav({ total, nodes }: SearchSubNavProps) {
     <div className="sticky top-16 col-start-2 mt-[3.25rem] flex w-[11.25rem]">
       <CurvedVerticalNode grow={false} />
       <div className="pl-1.5 pt-[0.6875rem]">
-        <h3 className="font-yoon text-sm font-bold text-neutral-600">{t('통합 검색')}</h3>
+        <h3 className="text-sm font-bold text-neutral-600">{t('통합 검색')}</h3>
         <div className="ml-3 flex flex-col gap-3">
-          <p className="font-yoon mt-[1.15rem] text-sm font-bold text-main-orange">
+          <p className="mt-[1.15rem] text-sm font-bold text-main-orange">
             {t('전체')}({total})
           </p>
           {nodes.map((node, idx) => (
@@ -51,7 +51,7 @@ const SearchSubNavNode = (props: SearchSubNavNodeProps) => {
   if (type === 'INTERNAL') {
     return (
       <div>
-        <p className="font-yoon text-xs text-neutral-600">
+        <p className="text-xs text-neutral-600">
           {t(title)}({size})
         </p>
         <div className="mt-3 flex flex-col gap-3 pl-3">
@@ -63,7 +63,7 @@ const SearchSubNavNode = (props: SearchSubNavNodeProps) => {
     );
   } else {
     return (
-      <Link className="font-yoon text-xs text-neutral-600 hover:text-main-orange" href={props.href}>
+      <Link className="text-xs text-neutral-600 hover:text-main-orange" href={props.href}>
         {t(title)}({size})
       </Link>
     );

@@ -2,7 +2,7 @@ import { Link } from '@/navigation';
 
 import { AdjPostInfo } from '@/types/post';
 
-import LoginStaffVisible from './auth/LoginStaffVisible';
+import LoginVisible from './LoginVisible';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostType = 'notice' | 'seminar' | 'news';
@@ -27,14 +27,14 @@ export default function AdjPostNav({
       {nextPost && <Row post={nextPost} type="next" />}
       {prevPost && <Row post={prevPost} type="prev" />}
       <div className="mt-6 flex justify-end">
-        <LoginStaffVisible>
+        <LoginVisible staff>
           {id && (
             <>
               <PostDeleteButton postType={postType} id={id} />
               <PostEditLink href={`/community/${postType}/${id}/edit`} />
             </>
           )}
-        </LoginStaffVisible>
+        </LoginVisible>
         <PostListLink href={`/community/${postType}`} />
       </div>
     </div>
@@ -56,7 +56,7 @@ function Row({ post, type }: { post: AdjPostInfo; type: RowType }) {
 function RowIcon({ type }: { type: RowType }) {
   const iconName = type == 'next' ? 'expand_less' : 'expand_more';
   return (
-    <span className="material-symbols-rounded text-yoon font-normal  text-main-orange">
+    <span className="material-symbols-rounded text-yoon font-normal text-main-orange">
       {iconName}
     </span>
   );
@@ -64,11 +64,7 @@ function RowIcon({ type }: { type: RowType }) {
 
 function RowDescription({ type }: { type: RowType }) {
   const description = type == 'next' ? '다음 글' : '이전 글';
-  return (
-    <p className="font-yoon mr-3 flex-shrink-0 text-xs font-medium text-main-orange">
-      {description}
-    </p>
-  );
+  return <p className="mr-3 flex-shrink-0 text-md font-medium text-main-orange">{description}</p>;
 }
 
 function RowPostTitle({ title }: { title?: string }) {
@@ -76,7 +72,7 @@ function RowPostTitle({ title }: { title?: string }) {
     <p
       className={`
       ${title ? 'group-hover:underline' : ''} 
-      font-yoon line-clamp-1 text-xs font-normal
+      line-clamp-1 text-md font-normal
       `}
     >
       {title ?? '(없음)'}
@@ -88,7 +84,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="font-noto flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-700 px-[17px] text-sm font-bold text-white hover:border-neutral-500 hover:bg-neutral-500"
+      className={`flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-bold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500`}
     >
       목록
     </Link>
@@ -99,7 +95,7 @@ function PostEditLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="font-noto mr-3 flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.02em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
+      className="mr-3 flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.1em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
     >
       편집
     </Link>

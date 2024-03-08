@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-import { BASE_URL, checkError } from '@/apis';
+import { BASE_URL, checkError } from '@/apis/common/client';
 
 import { objToQueryString } from '@/utils/convertParams';
 

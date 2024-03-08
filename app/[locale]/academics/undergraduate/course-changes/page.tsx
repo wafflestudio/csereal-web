@@ -31,8 +31,6 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
 ];
 
 const getSelectedChanges = (selectedYear: number, data: CourseChange[]) => {
-  console.log('선택 연도', selectedYear);
-  console.log(data);
   if (selectedYear <= YEAR_LIMIT) return data.filter((d) => d.year <= YEAR_LIMIT);
 
   const change = data.find((d) => d.year === selectedYear);

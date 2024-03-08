@@ -65,15 +65,15 @@ function Slide({ slide }: SlideProps) {
         />
       </Link>
       <div className="border-neutral-150 flex h-[128px] flex-col items-end border-x border-b p-2.5">
-        <h5 className="font-noto mb-1.5 line-clamp-2 w-full text-xs font-bold">
+        <h5 className=" mb-1.5 line-clamp-2 w-full text-xs font-bold">
           <Link href={`${newsPath}/${slide.id}`}>{slide.title}</Link>
         </h5>
-        <p className="font-noto line-clamp-3 h-11 w-full cursor-text text-[10px] font-light">
+        <p className=" line-clamp-3 h-11 w-full cursor-text text-[10px] font-light">
           {slide.description}
         </p>
         <Link
           href={`${newsPath}/${slide.id}`}
-          className="font-noto flex grow items-end text-[9px] font-light underline"
+          className=" flex grow items-end text-[9px] font-light underline"
         >
           더보기
         </Link>

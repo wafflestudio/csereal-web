@@ -36,7 +36,7 @@ export default async function FacultyPage() {
             ))}
         </div>
         <div className="mt-20">
-          <h3 className="font-noto mb-11 text-[20px] font-bold">객원교수</h3>
+          <h3 className=" mb-11 text-[20px] font-bold">객원교수</h3>
           {facultyList
             .filter((faculty) => faculty.status === 'VISITING')
             .map((faculty, index) => (

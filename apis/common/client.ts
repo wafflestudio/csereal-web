@@ -57,7 +57,7 @@ export const checkError = (response: Response) => {
 export class NetworkError extends Error {
   statusCode: number;
   constructor(statusCode: number) {
-    super(`네트워크 에러\nstatus: ${statusCode}`);
+    super(`${statusCode} 에러`);
     this.statusCode = statusCode;
   }
 }

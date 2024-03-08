@@ -99,7 +99,7 @@ const GrayButton = ({
 }) => (
   <button
     className={`
-              font-noto rounded-[.0625rem] border-[1px] border-neutral-200 bg-neutral-100
+               rounded-[.0625rem] border-[1px] border-neutral-200 bg-neutral-100
               px-[.875rem] py-[.34rem]
               text-xs font-medium leading-[1.5rem] text-neutral-500  enabled:hover:bg-neutral-200
               ${disabled && `opacity-30`}
@@ -122,7 +122,7 @@ const BlackButton = ({
 }) => (
   <button
     className={`
-              font-noto rounded-[.0625rem] bg-neutral-700 
+               rounded-[.0625rem] bg-neutral-700 
               px-[.875rem] py-[.34rem]
               text-xs font-bold leading-[1.5rem] text-white enabled:hover:bg-neutral-500
               ${disabled && `opacity-30`}

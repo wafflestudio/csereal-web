@@ -1,9 +1,8 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
 import { Link } from '@/navigation';
 
+import NavLabel from '@/components/common/NavLabel';
 import { StraightNode } from '@/components/common/Nodes';
 
 import { getPath } from '@/utils/page';
@@ -42,7 +41,7 @@ function HighlightedRow({
         href={href}
         className="mr-4 h-[1.0625rem] shrink-0 text-md font-medium text-main-orange"
       >
-        <FormattedText text={text} />
+        <NavLabel text={text} />
       </Link>
       <StraightNode />
     </div>
@@ -64,7 +63,7 @@ function LinkRow({
       className="mb-6 block h-[1.0625rem] text-md font-medium leading-5 text-white hover:text-main-orange"
       style={{ marginBottom }}
     >
-      <FormattedText text={text} />
+      <NavLabel text={text} />
     </Link>
   );
 }
@@ -75,22 +74,7 @@ function TextRow({ text, marginBottom }: { text: string; marginBottom: string })
       className="mb-6 block h-[1.0625rem] text-md font-medium leading-5 text-white"
       style={{ marginBottom }}
     >
-      <FormattedText text={text} />
+      <NavLabel text={text} />
     </p>
   );
 }
-
-// 예약 부분의 '301-417 (20석)'에서 괄호 부분이 작도록 처리합니다.
-const FormattedText = ({ text }: { text: string }) => {
-  const t = useTranslations('Nav');
-
-  const idx = text.indexOf('(');
-  if (idx === -1) return t(text);
-
-  return (
-    <>
-      {text.slice(0, idx)}
-      <span className="text-xs font-medium leading-5">{text.slice(idx)}</span>
-    </>
-  );
-};

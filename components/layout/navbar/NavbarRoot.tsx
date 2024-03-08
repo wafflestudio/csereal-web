@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { NavbarState } from '@/contexts/NavbarContext';
+import { useNavbarContext } from '@/contexts/NavbarContext';
 import { Link } from '@/navigation';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
@@ -10,75 +10,62 @@ import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
 import { SegmentNode, main as mainSegmentNode } from '@/utils/segmentNode';
 
-export default function NavbarRoot({
-  state,
-  setState,
-}: {
-  state: NavbarState;
-  setState: (state: NavbarState) => void;
-}) {
-  const width = state.type === 'closed' ? `w-[6.25rem]` : `w-[11rem]`;
+export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
+export const NAVBAR_EXPANDED_WIDTH_REM = 11;
+
+export default function NavbarRoot() {
+  const { navbarState, setNavbarState } = useNavbarContext();
+  const width = navbarState.type === 'closed' ? NAVBAR_CLOSED_WIDTH_REM : NAVBAR_EXPANDED_WIDTH_REM;
 
   return (
-    // 상하로 짧은 경우를 대비해 overflow-scroll
+    // 상하로 화면이 좁은 경우를 대비해 overflow-scroll
     <div
-      className={`flex flex-col items-center py-[2.88rem] ${width} no-scrollbar z-50 overflow-scroll bg-[#323235] transition-all duration-300 ease-in-out`}
-      onMouseEnter={() => setState({ type: 'expanded' })}
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-[#323235] py-[2.88rem] transition-all duration-300 ease-in-out`}
+      onMouseEnter={() => setNavbarState({ type: 'expanded' })}
+      style={{ width: `${width}rem` }}
     >
-      <SNUButton />
-      {state.type === 'closed' ? <DotList /> : <NavList state={state} setState={setState} />}
+      <Link href="/">
+        <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
+      </Link>
+
+      {navbarState.type === 'closed' ? <DotList /> : <NavList />}
     </div>
-  );
-}
-
-function SNUButton() {
-  const refreshPage = () => {
-    window.location.href = '/';
-  };
-
-  return (
-    <button onClick={refreshPage}>
-      <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
-    </button>
   );
 }
 
 function DotList() {
   const cur = useCurrentSegmentNode();
-  const dotArr =
-    mainSegmentNode.children?.map((node) =>
-      isAncestorNode(node, cur) || node === cur ? 'fill' : 'empty',
-    ) ?? [];
-  const mt = dotArr[0] === 'fill' ? 'mt-[2.7rem]' : 'mt-[3.38rem]';
+  const isDotFilled = (node: SegmentNode) => isAncestorNode(node, cur) || node === cur;
+
+  const dotArr = mainSegmentNode.children.map(isDotFilled);
+  const getDotMargin = (filled: boolean, idx: number) => {
+    if (dotArr[idx + 1]) return 'mb-[2.2rem]';
+    return filled ? 'mb-[2.2rem]' : 'mb-[2.7rem]';
+  };
 
   return (
-    <div className={`flex flex-col items-center ${mt}`}>
-      {dotArr.map((dotType, idx) => {
-        let mb = dotType === 'fill' ? 'mb-[2.2rem]' : 'mb-[2.7rem]';
-        if (dotArr[idx + 1] === 'fill') mb = 'mb-[2.2rem]';
-
-        return dotType === 'fill' ? (
-          <DotFill key={idx} className={mb} />
+    <div className={`flex flex-col items-center ${dotArr[0] ? 'mt-[2.7rem]' : 'mt-[3.38rem]'}`}>
+      {dotArr.map((filled, idx) =>
+        filled ? (
+          <DotFill key={idx} className={getDotMargin(filled, idx)} />
         ) : (
-          <DotEmpty key={idx} className={mb} />
-        );
-      })}
+          <DotEmpty key={idx} className={getDotMargin(filled, idx)} />
+        ),
+      )}
     </div>
   );
 }
 
-function NavList({
-  state,
-  setState,
-}: {
-  state: NavbarState;
-  setState: (state: NavbarState) => void;
-}) {
+function NavList() {
+  const { navbarState, setNavbarState } = useNavbarContext();
+
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
 
   const shouldHighlight = (child: SegmentNode) => {
-    return state.type === 'hovered' ? child === state.segmentNode : isAncestorNode(child, cur);
+    return navbarState.type === 'hovered'
+      ? child === navbarState.segmentNode
+      : isAncestorNode(child, cur);
   };
 
   return (
@@ -90,7 +77,7 @@ function NavList({
             highlight={shouldHighlight(child)}
             name={t(child.name)}
             href={getPath(child)}
-            onMouseEnter={() => setState({ type: 'hovered', segmentNode: child })}
+            onMouseEnter={() => setNavbarState({ type: 'hovered', segmentNode: child })}
           />
         ))}
       </ul>

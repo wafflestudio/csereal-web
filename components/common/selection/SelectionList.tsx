@@ -61,7 +61,7 @@ interface SelectionItemProps {
 }
 
 function SelectionItem({ name, isSelected, path, padding, selectItem }: SelectionItemProps) {
-  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-[15px] tracking-wide font-yoon ${padding}`;
+  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-[15px] tracking-wide ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.3)';

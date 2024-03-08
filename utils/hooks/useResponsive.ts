@@ -10,12 +10,12 @@ export default function useResponsive() {
   const [screenType, setScreenType] = useState<ScreenType>('desktop');
 
   const handleResize = useCallback(() => {
-    if (window.innerWidth < BREAK_POINT.sm && screenType !== 'mobile') {
+    if (window.innerWidth < BREAK_POINT.sm) {
       setScreenType('mobile');
-    } else if (window.innerWidth >= BREAK_POINT.sm && screenType !== 'desktop') {
+    } else if (window.innerWidth >= BREAK_POINT.sm) {
       setScreenType('desktop');
     }
-  }, [screenType]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);

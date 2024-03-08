@@ -1,6 +1,6 @@
 import { PATCHSeminarBody, POSTSeminarBody } from '@/types/seminar';
 
-import { patchRequest, postRequest } from '.';
+import { patchRequest, postRequest } from './common/client';
 
 const seminarPath = '/seminar';
 

@@ -31,7 +31,7 @@ export default function SlideListRow({
 }: SlideListRowProps) {
   return (
     <li
-      className={`font-noto flex h-10 items-center py-2.5 text-xs tracking-wide ${
+      className={` flex h-10 items-center py-2.5 text-xs tracking-wide ${
         isSelected && 'bg-neutral-100'
       }`}
     >

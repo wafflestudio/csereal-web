@@ -54,7 +54,7 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
           />,
         )
       }
-      className="font-noto mr-3 h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.02em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
+      className=" mr-3 h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.02em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
     >
       삭제
     </button>

@@ -152,7 +152,7 @@ export default function PostEditor({
                   setContentByKey('isSlide')(!content.isSlide);
                 }}
               />
-              <p className="font-yoon text-xs font-light tracking-wide text-neutral-700">
+              <p className="text-xs font-light tracking-wide text-neutral-700">
                 * ‘슬라이드쇼에 표시’ 글은 대표이미지가 첨부되어있는지 확인 바랍니다.
               </p>
             </>
@@ -256,7 +256,7 @@ function EditorFieldset({
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="대표 이미지" mb="mb-6" titleMb="mb-2">
-      <label className="font-yoon mb-3 text-sm font-normal tracking-wide">
+      <label className="mb-3 text-sm font-normal tracking-wide">
         이미지는 글 우측 상단에 표시됩니다.
       </label>
       <ImagePicker file={file} setFile={setFile} />

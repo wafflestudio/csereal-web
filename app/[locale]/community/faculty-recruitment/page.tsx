@@ -32,7 +32,7 @@ function LatestRecruitmentBanner({
 }: GETFacultyRecruitmentResponse) {
   return (
     <a
-      className="font-yoon relative block h-[4.5rem] w-[25rem] cursor-pointer"
+      className="relative block h-[4.5rem] w-[25rem] cursor-pointer"
       href={latestRecruitmentPostHref}
     >
       <p className="absolute left-6 top-5 text-base font-bold tracking-[.025rem]">

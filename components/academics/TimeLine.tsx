@@ -41,7 +41,7 @@ function TimeSpot({ year, isSelected, onChange, margin, isLast }: TimeSpotProps)
       }`}
     >
       <Circle highlight={isSelected} />
-      <span className="font-yoon flex items-center text-sm tracking-[0.02em] text-main-orange">
+      <span className="flex items-center text-sm tracking-[0.02em] text-main-orange">
         {year}
         {isLast && (
           <span className="material-symbols-rounded text-base font-light">arrow_downward</span>

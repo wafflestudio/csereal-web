@@ -115,7 +115,7 @@ const SectionTitle = ({ title, size }: { title: string; size: number }) => {
   const t = useTranslations('Nav');
   return (
     <div className="flex">
-      <div className="font-noto inline border-b border-neutral-300 pb-[.59rem] text-[1.25rem] font-bold leading-loose text-neutral-700">
+      <div className=" inline border-b border-neutral-300 pb-[.59rem] text-[1.25rem] font-bold leading-loose text-neutral-700">
         <p className="px-[10px]">
           {t(title)}({size})
         </p>
@@ -133,7 +133,7 @@ const SectionSubtitle = ({ title, size }: { title: string; size: number }) => {
   return (
     <div className="mt-7 flex items-center gap-2">
       <div className="h-[.625rem] w-[.625rem] rounded-full border border-main-orange" />
-      <h3 className="font-noto text-base font-bold leading-loose text-neutral-700">
+      <h3 className=" text-base font-bold leading-loose text-neutral-700">
         {t(title)}({size})
       </h3>
     </div>
@@ -143,10 +143,7 @@ const SectionSubtitle = ({ title, size }: { title: string; size: number }) => {
 const MoreResultLink = ({ href }: { href: string }) => {
   const t = useTranslations('Nav');
   return (
-    <Link
-      href={href}
-      className="font-noto text-middle flex items-center self-end text-xs text-main-orange"
-    >
+    <Link href={href} className=" text-middle flex items-center self-end text-xs text-main-orange">
       {t('결과 더보기')}
       <span className="material-symbols-outlined text-sm">chevron_right</span>
     </Link>

@@ -87,7 +87,7 @@ function CategoryCell({ category }: { category: string }) {
 
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
-    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title} font-noto pl-3 font-medium`}>
+    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title}  pl-3 font-medium`}>
       <Link
         href={href}
         className="flex max-w-fit items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap hover:underline"

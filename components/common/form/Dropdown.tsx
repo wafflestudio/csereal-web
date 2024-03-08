@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { useOutClickAlerter } from '@/utils/hooks/useOutClickAlerter';
+import { useClickOutside } from '@/utils/hooks/useClickOutside';
 
 interface DropdownProps {
   contents: string[];
@@ -13,7 +13,7 @@ export default function Dropdown({ contents, selectedIndex, onClick, borderStyle
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useOutClickAlerter(
+  useClickOutside(
     ref,
     useCallback(() => setExpanded(false), []),
   );

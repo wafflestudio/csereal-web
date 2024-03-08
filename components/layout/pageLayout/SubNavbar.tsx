@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 
+import NavLabel from '@/components/common/NavLabel';
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
@@ -59,7 +60,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">
-          {t(tab.name)}
+          <NavLabel text={tab.name} />
         </Link>
       ) : (
         <span className="whitespace-nowrap">{t(tab.name)}</span>

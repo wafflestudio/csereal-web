@@ -40,7 +40,7 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
             : undefined
         }
       />
-      <time className="font-noto mt-12 block text-end text-sm font-bold">{dateStr}</time>
+      <time className=" mt-12 block text-end text-sm font-bold">{dateStr}</time>
       <StraightNode margin="mt-[2.4375rem]" />
       <Tags tags={currPost.tags} margin="mt-3 ml-6" searchPath={newsPath} />
       <AdjPostNav
