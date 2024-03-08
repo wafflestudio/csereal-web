@@ -4,7 +4,7 @@ import { COURSE_ROW_ITEM_WIDTH } from './CourseListRow';
 
 export default function CourseListHeader() {
   return (
-    <h5 className="flex items-center h-11 text-md border-y border-neutral-100 bg-neutral-100 [&>span]:px-4">
+    <h5 className="flex h-11 items-center border-y border-neutral-100 bg-neutral-100 text-md [&>span]:px-4">
       <span className={COURSE_ROW_ITEM_WIDTH.name}>교과목명</span>
       <span className={COURSE_ROW_ITEM_WIDTH.classification}>교과목 구분</span>
       <span className={COURSE_ROW_ITEM_WIDTH.code}>교과목 번호</span>

@@ -15,7 +15,7 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
     today.getDate() !== date.getDate();
 
   return (
-    <div className="flex items-stretch justify-between h-[1.875rem] mb-6">
+    <div className="mb-6 flex h-[1.875rem] items-stretch justify-between">
       <div className="flex items-stretch gap-2">
         <SelectDayButton date={date} />
         <ChangeDateButton targetDate={addDayToDate(date, -7)} symbolName="navigate_before" />

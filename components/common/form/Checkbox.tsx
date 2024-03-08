@@ -16,19 +16,19 @@ export default function Checkbox({
   return (
     <label
       htmlFor={label}
-      className={`group flex items-center gap-1 whitespace-nowrap w-fit h-5 ${
+      className={`group flex h-5 w-fit items-center gap-1 whitespace-nowrap ${
         !disabled && 'cursor-pointer'
       }`}
     >
       <span
-        className={`material-symbols-rounded text-neutral-400 text-lg font-light ${
+        className={`material-symbols-rounded text-lg font-light text-neutral-400 ${
           !disabled && 'group-hover:text-neutral-600 group-active:text-main-orange'
         } ${isChecked && 'text-neutral-600'}`}
       >
         {iconName}
       </span>
       <span
-        className={`text-[14px] text-neutral-600 tracking-wide ${
+        className={`text-[14px] tracking-wide text-neutral-600 ${
           !disabled && 'group-active:text-main-orange'
         }`}
       >

@@ -30,7 +30,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
       <div className="flex flex-row items-center gap-6">
         <SeminarSearchBar keyword={keyword} setSearchParams={setSearchParams} />
       </div>
-      <div className="flex flex-col mt-10 mb-8 border-neutral-200 border-b-[1px]">
+      <div className="mb-8 mt-10 flex flex-col border-b-[1px] border-neutral-200">
         {searchList.length > 0 ? (
           searchList.map((post, index) => (
             <div key={post.id}>
@@ -39,7 +39,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
             </div>
           ))
         ) : (
-          <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
+          <p className="mx-2.5 mb-8 mt-6">검색 결과가 존재하지 않습니다.</p>
         )}
       </div>
       <Pagination

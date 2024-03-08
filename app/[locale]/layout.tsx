@@ -38,7 +38,7 @@ export default async function RootLayout({
   return (
     <html
       lang={params.locale}
-      className="text-neutral-800 font-normal bg-neutral-900 sm:min-w-[1000px]"
+      className="bg-neutral-900 font-normal text-neutral-800 sm:min-w-[1000px]"
     >
       <body>
         <ContextProviders locale={params.locale}>

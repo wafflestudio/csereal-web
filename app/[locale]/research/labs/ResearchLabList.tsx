@@ -9,9 +9,9 @@ interface ResearchLabListProps {
 
 export default function ResearchLabList({ labInfos }: ResearchLabListProps) {
   return (
-    <div className="w-[52.5rem] border-y border-neutral-200">
+    <div className="sm:border-y sm:border-neutral-200">
       <ResearchLabListHeader />
-      <ul className="divide-y divide-neutral-200 divide-dashed">
+      <ul className="sm:divide-y sm:divide-dashed sm:divide-neutral-200">
         {labInfos.map((lab) => (
           <ResearchLabListRow lab={lab} key={lab.name} />
         ))}

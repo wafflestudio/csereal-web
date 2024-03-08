@@ -12,11 +12,11 @@ interface Attachment {
 
 export default function Attachments({ files }: AttachmentProps) {
   return (
-    <div className="relative flex flex-col gap-2 w-[40rem] mt-5 mb-6 px-4 py-3 bg-white rounded-sm border border-neutral-300">
+    <div className="relative mb-6 mt-5 flex w-[40rem] flex-col gap-2 rounded-sm border border-neutral-300 bg-white px-4 py-3">
       {files.map((file, index) => (
         <AttachmentAnchor key={index} {...file} />
       ))}
-      <Clip className="absolute top-[-1.5rem] right-3" />
+      <Clip className="absolute right-3 top-[-1.5rem]" />
     </div>
   );
 }
@@ -25,7 +25,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
   const kilobyte = Math.round(bytes / 100);
   return (
     <a
-      className="text-sm font-normal hover:underline w-fit"
+      className="w-fit text-sm font-normal hover:underline"
       href={url}
       download={name}
       target="_blank"

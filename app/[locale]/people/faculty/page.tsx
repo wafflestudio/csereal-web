@@ -17,7 +17,7 @@ export default async function FacultyPage() {
             <HTMLViewer htmlContent={description} />
           </div>
         ) : null}
-        <div className="grid grid-cols-4 gap-14 mt-12">
+        <div className="mt-12 grid grid-cols-4 gap-14">
           {facultyList
             .filter((faculty) => faculty.status === 'ACTIVE')
             .map((faculty, index) => (
@@ -36,7 +36,7 @@ export default async function FacultyPage() {
             ))}
         </div>
         <div className="mt-20">
-          <h3 className="font-noto font-bold text-[20px] mb-11">객원교수</h3>
+          <h3 className="font-noto mb-11 text-[20px] font-bold">객원교수</h3>
           {facultyList
             .filter((faculty) => faculty.status === 'VISITING')
             .map((faculty, index) => (

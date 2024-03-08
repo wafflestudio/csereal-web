@@ -9,7 +9,7 @@ export default async function UndergraduateGeneralStudiesRequirementsPage() {
   return (
     <PageLayout titleType="big">
       <div className="flex flex-col">
-        <p className="text-md leading-loose bg-neutral-100 mb-10 px-6 py-5">{overview}</p>
+        <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">{overview}</p>
         <div className="flex flex-col">
           <ContentTitle title={'교양 교과과정 변경 내역'} />
           <div className="mt-2.5">
@@ -25,9 +25,9 @@ export default async function UndergraduateGeneralStudiesRequirementsPage() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col mt-5">
+        <div className="mt-5 flex flex-col">
           <ContentTitle title={'[학번별] 영역별 교양과목 학점 배분 구조표'} />
-          <div className="flex flex-col gap-3 mt-5">
+          <div className="mt-5 flex flex-col gap-3">
             {generalStudies.map((information) => (
               <Accordion
                 key={information.id}
@@ -44,9 +44,9 @@ export default async function UndergraduateGeneralStudiesRequirementsPage() {
 
 function ContentTitle({ title }: { title: string }) {
   return (
-    <div className="flex flex-row leading-8 items-center">
-      <div className="border border-main-orange rounded-full w-2.5 h-2.5" />
-      <h3 className="font-bold text-[17px] ml-2.5 leading-loose">{title}</h3>
+    <div className="flex flex-row items-center leading-8">
+      <div className="h-2.5 w-2.5 rounded-full border border-main-orange" />
+      <h3 className="ml-2.5 text-[17px] font-bold leading-loose">{title}</h3>
     </div>
   );
 }
@@ -61,12 +61,12 @@ interface SubjectChangesProps {
 
 function SubjectChanges({ status, time, additionalInfos, changes, progress }: SubjectChangesProps) {
   return (
-    <div key={time} className="flex flex-col border-l-4 border-neutral-200 pl-5 mb-9 leading-loose">
-      <p className="font-semibold text-[15px] text-neutral-400">{time} 시행 교양 교과과정 변경</p>
-      <h3 className="font-bold text-[17px] mt-3">
+    <div key={time} className="mb-9 flex flex-col border-l-4 border-neutral-200 pl-5 leading-loose">
+      <p className="text-[15px] font-semibold text-neutral-400">{time} 시행 교양 교과과정 변경</p>
+      <h3 className="mt-3 text-[17px] font-bold">
         {status === 'new' ? '교과목 신설' : '교과목 변경'}
       </h3>
-      <div className="flex flex-col mt-2">
+      <div className="mt-2 flex flex-col">
         {additionalInfos &&
           additionalInfos.map((info, index) => (
             <p key={index} className="text-md">
@@ -76,13 +76,13 @@ function SubjectChanges({ status, time, additionalInfos, changes, progress }: Su
       </div>
       <ul className="list-inside list-disc">
         {changes.map((change, index) => (
-          <li className="text-md pl-2 mt-[6px]" key={index}>
+          <li className="mt-[6px] pl-2 text-md" key={index}>
             {change}
           </li>
         ))}
       </ul>
 
-      <h3 className="font-bold text-[17px] mt-6">경과 조치</h3>
+      <h3 className="mt-6 text-[17px] font-bold">경과 조치</h3>
       <p className="text-md font-normal">{progress}</p>
     </div>
   );

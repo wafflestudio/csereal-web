@@ -33,7 +33,7 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
       <ol
         className={`
           self-start
-        bg-neutral-50 rounded-sm border-[1px] border-neutral-200
+        rounded-sm border-[1px] border-neutral-200 bg-neutral-50
       `}
       >
         {files.map((item, idx) => (
@@ -55,10 +55,10 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
 function SelectFileButton({ onChange }: { onChange: ChangeEventHandler<HTMLInputElement> }) {
   return (
     <label
-      className={`rounded-sm border-[1px] border-neutral-700
-            h-[1.875rem] px-[.62rem] mb-3
-            flex items-center
-            text-xs self-start 
+      className={`mb-3 flex h-[1.875rem]
+            items-center self-start rounded-sm
+            border-[1px] border-neutral-700
+            px-[.62rem] text-xs 
             hover:bg-neutral-100`}
     >
       파일 선택

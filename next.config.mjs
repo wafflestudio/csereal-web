@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-    output: 'standalone',
+  output: 'standalone',
 
   // TODO: 아래 옵션 없이 빌드
   eslint: {

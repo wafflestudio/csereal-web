@@ -31,7 +31,7 @@ export default function SlideListRow({
 }: SlideListRowProps) {
   return (
     <li
-      className={`flex items-center h-10 py-2.5 font-noto text-xs tracking-wide ${
+      className={`font-noto flex h-10 items-center py-2.5 text-xs tracking-wide ${
         isSelected && 'bg-neutral-100'
       }`}
     >
@@ -75,7 +75,7 @@ function TitleCell({ title, id }: { title: string; id: number }) {
     <span className={`${SLIDE_ROW_CELL_WIDTH.title} pl-3 font-medium`}>
       <Link
         href={`${newsPath}/${id}`}
-        className="flex max-w-fit items-center gap-1.5 hover:underline whitespace-nowrap text-ellipsis overflow-hidden"
+        className="flex max-w-fit items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap hover:underline"
       >
         {title}
       </Link>
@@ -90,7 +90,7 @@ function DateCell({ date }: { date: string }) {
 function EditCell({ id }: { id: number }) {
   return (
     <span className={`${SLIDE_ROW_CELL_WIDTH.edit} pl-3`}>
-      <Link href={`${newsPath}/${id}/edit`} className="hover:underline cursor-pointer">
+      <Link href={`${newsPath}/${id}/edit`} className="cursor-pointer hover:underline">
         편집
       </Link>
     </span>

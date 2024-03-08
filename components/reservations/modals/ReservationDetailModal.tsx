@@ -41,7 +41,7 @@ export default function ReservationModalButton({
 
   return (
     <button
-      className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
+      className={`absolute flex w-full flex-col items-center bg-[#ff6914]`}
       style={{ height, top }}
       onClick={handleClick}
     >
@@ -66,18 +66,18 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="bg-neutral-100 p-7 border-main-orange border-t-[3px] border-b">
-        <div className="flex items-center justify-between mb-5">
+      <div className="border-b border-t-[3px] border-main-orange bg-neutral-100 p-7">
+        <div className="mb-5 flex items-center justify-between">
           <h2 className="text-xl font-bold text-neutral-800">{reservation.title}</h2>
           <span
-            className="material-symbols-outlined text-2xl font-light cursor-pointe text-neutral-300"
+            className="material-symbols-outlined cursor-pointe text-2xl font-light text-neutral-300"
             onClick={closeModal}
           >
             close
           </span>
         </div>
 
-        <div className="flex flex-col gap-6 mb-[2.19rem]">
+        <div className="mb-[2.19rem] flex flex-col gap-6">
           <p className="text-neutral-800">{reservation.purpose ?? '예약 목적 미기입'}</p>
 
           <div className="flex flex-col gap-1">
@@ -90,7 +90,7 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
           <Row title="예약 위치" body={reservation.roomLocation} />
 
           <div className="flex flex-col gap-1">
-            <p className="text-md text-neutral-400 font-normal">예약자 정보</p>
+            <p className="text-md font-normal text-neutral-400">예약자 정보</p>
             <Row title="계정" body={reservation.userName} />
             <Row title="이메일" body={reservation.contactEmail} />
             <Row title="핸드폰" body={reservation.contactPhone} />
@@ -145,7 +145,7 @@ const DeleteButtons = ({
   };
 
   return (
-    <div className="flex gap-2 h-[1.875rem] ml-[3.94rem]">
+    <div className="ml-[3.94rem] flex h-[1.875rem] gap-2">
       <BasicButton
         className="px-[.62rem]"
         onClick={() =>

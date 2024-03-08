@@ -24,7 +24,7 @@ const NODES: { Component: React.ReactNode; location: 'top' | 'bottom' }[] = [
 
 export default function ShortCuts({ shortCuts }: ShortCutsProps) {
   return (
-    <section className="relative flex justify-center h-[615px]">
+    <section className="relative flex h-[615px] justify-center">
       {shortCuts.map((shortcut, i) => (
         <ShortCutBox
           key={shortcut.title}
@@ -47,20 +47,20 @@ interface ShortCutBoxProps {
 
 function ShortCutBox({ title, href, location, nodes }: ShortCutBoxProps) {
   return (
-    <div className={`absolute flex flex-col gap-2 items-center ${location}`}>
+    <div className={`absolute flex flex-col items-center gap-2 ${location}`}>
       {nodes.location === 'top' && nodes.Component}
       <Link
         href={href}
-        className={`px-3 py-2.5 h-[60px] bg-[#1E1E1E80] hover:bg-[#26262680] shadow-[1px_1px_3px_0_rgba(255,255,255,0.05)_inset,_-1px_-1px_4px_0_rgba(0,0,0,0.4)_inset] backdrop-blur-[2.5px] flex flex-col justify-between rounded-sm w-fit`}
+        className={`flex h-[60px] w-fit flex-col justify-between rounded-sm bg-[#1E1E1E80] px-3 py-2.5 shadow-[1px_1px_3px_0_rgba(255,255,255,0.05)_inset,_-1px_-1px_4px_0_rgba(0,0,0,0.4)_inset] backdrop-blur-[2.5px] hover:bg-[#26262680]`}
       >
-        <span className="min-w-[8.4375rem] font-yoon font-bold text-sm text-main-orange tracking-wide">
+        <span className="font-yoon min-w-[8.4375rem] text-sm font-bold tracking-wide text-main-orange">
           {title}
         </span>
-        <span className="min-w-[8.4375rem] flex items-center justify-end scale-90 origin-right">
-          <span className="font-yoon font-medium text-[10px] text-main-orange tracking-wide">
+        <span className="flex min-w-[8.4375rem] origin-right scale-90 items-center justify-end">
+          <span className="font-yoon text-[10px] font-medium tracking-wide text-main-orange">
             바로가기
           </span>
-          <span className="material-symbols-outlined font-light text-md text-main-orange pt-[2px]">
+          <span className="material-symbols-outlined pt-[2px] text-md font-light text-main-orange">
             navigate_next
           </span>
         </span>

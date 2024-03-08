@@ -23,7 +23,7 @@ export default function TopForm({
   setDate: (date: Date) => void;
 }) {
   return (
-    <div className="flex flex-col items-start gap-1 mb-6">
+    <div className="mb-6 flex flex-col items-start gap-1">
       <InputWithLabel title="예약 날짜">
         <DateInput date={new Date(body.startTime)} setDate={setDate} />
       </InputWithLabel>
@@ -96,7 +96,7 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
   return (
     <div>
       <button
-        className="bg-white border border-neutral-200 rounded-sm font-normal flex items-center justify-between py-[.3125rem] pr-[.3125rem] pl-[.625rem] gap-2"
+        className="flex items-center justify-between gap-2 rounded-sm border border-neutral-200 bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem] font-normal"
         onClick={handleClick}
       >
         {labelStr}

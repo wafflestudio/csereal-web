@@ -30,7 +30,7 @@ export default function Pagination({
 
   return (
     <div className={`flex justify-center ${disabled && 'opacity-30'}`}>
-      <ul className="flex gap-x-2 h-6 mx-auto text-neutral-800 tracking-wide">
+      <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-800">
         <PaginationArrow
           iconName="keyboard_double_arrow_left"
           num={1}
@@ -87,7 +87,7 @@ function PaginationArrow({ iconName, num, disabled, movePageNumber }: Pagination
 
   return (
     <li className={arrowStyle} onClick={() => disabled || movePageNumber(num)}>
-      <span className="material-symbols-rounded font-light text-2xl">{iconName}</span>
+      <span className="material-symbols-rounded text-2xl font-light">{iconName}</span>
     </li>
   );
 }

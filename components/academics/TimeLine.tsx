@@ -8,8 +8,8 @@ interface TimeLineProps {
 
 export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: TimeLineProps) {
   return (
-    <div className="relative h-[38px] w-[48.75rem] flex">
-      <div className="absolute w-[calc(100%-14px)] h-[0.8px] bg-main-orange mt-[7px] ml-[14px]" />
+    <div className="relative flex h-[38px] w-[48.75rem]">
+      <div className="absolute ml-[14px] mt-[7px] h-[0.8px] w-[calc(100%-14px)] bg-main-orange" />
       {timeSpots.map((spot) => (
         <TimeSpot
           year={spot.year}
@@ -36,15 +36,15 @@ function TimeSpot({ year, isSelected, onChange, margin, isLast }: TimeSpotProps)
   return (
     <label
       htmlFor={`${year}`}
-      className={`z-10 group top-0 w-[1.875rem] h-full flex flex-col justify-between items-center ${margin} ${
+      className={`group top-0 z-10 flex h-full w-[1.875rem] flex-col items-center justify-between ${margin} ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
     >
       <Circle highlight={isSelected} />
-      <span className="flex items-center font-yoon text-main-orange text-sm tracking-[0.02em]">
+      <span className="font-yoon flex items-center text-sm tracking-[0.02em] text-main-orange">
         {year}
         {isLast && (
-          <span className="material-symbols-rounded font-light text-base">arrow_downward</span>
+          <span className="material-symbols-rounded text-base font-light">arrow_downward</span>
         )}
       </span>
       <input

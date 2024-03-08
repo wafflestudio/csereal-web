@@ -10,7 +10,7 @@ export default async function StaffPage() {
   const { staffList } = await getStaffList();
   return (
     <PageLayout title="행정직원" titleType="big">
-      <div className="grid grid-cols-4 gap-14 mb-10">
+      <div className="mb-10 grid grid-cols-4 gap-14">
         {staffList.map((staff, index) => (
           <PeopleRow
             type="STAFF"

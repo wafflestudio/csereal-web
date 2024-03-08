@@ -18,7 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className={`hidden absolute top-0 bottom-0 sm:flex z-50`} onMouseLeave={handleMouseLeave}>
+    <div className={`absolute bottom-0 top-0 z-50 hidden sm:flex`} onMouseLeave={handleMouseLeave}>
       <NavbarRoot state={navbarState} setState={setNavbarState} />
       {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
     </div>

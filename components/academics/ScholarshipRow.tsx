@@ -14,15 +14,15 @@ const graduateScholarshipPath = getPath(graduateScholarship);
 
 export function ScholarshipRow({ id, name, type }: ScholarshipRowProps) {
   return (
-    <li className="w-fit my-1">
+    <li className="my-1 w-fit">
       <Link
         href={`${
           type === 'GRADUATE' ? graduateScholarshipPath : undergraduateScholarshipPath
         }/${id}`}
-        className="flex h-7 gap-2.5 px-3 items-center group"
+        className="group flex h-7 items-center gap-2.5 px-3"
       >
-        <div className="border border-main-orange rounded-full w-2.5 h-2.5 group-hover:bg-main-orange duration-300" />
-        <span className="font-medium text-sm group-hover:text-main-orange duration-300">
+        <div className="h-2.5 w-2.5 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
+        <span className="text-sm font-medium duration-300 group-hover:text-main-orange">
           {name}
         </span>
       </Link>

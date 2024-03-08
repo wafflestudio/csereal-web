@@ -9,14 +9,14 @@ import { reservations } from '@/utils/segmentNode';
 
 export default function ReservationPrivacyPolicy() {
   return (
-    <div className="grid grid-rows-[auto_1fr] grid-cols-auto mx-[3.75rem] gap-x-10 justify-center">
+    <div className="grid-cols-auto mx-[3.75rem] grid grid-rows-[auto_1fr] justify-center gap-x-10">
       <PageTitle
         title={'개인정보 수집 및 이용동의'}
         currentPage={reservations}
         titleType="big"
         margin="mb-8"
       />
-      <div className="w-[52.5rem] row-start-2 col-start-1">
+      <div className="col-start-1 row-start-2 w-[52.5rem]">
         <HTMLViewer htmlContent={htmlContent} />
       </div>
     </div>

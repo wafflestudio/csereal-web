@@ -14,7 +14,10 @@ interface SelectionListProps {
   names: readonly string[];
   selectedItemName: string;
   path: string;
-  /** lg:grid-cols-[repeat(auto-fit,_minmax({itemWidth}px,_auto))] */
+  /**
+   * 반응형 고려해서 그리드 스타일 넣어줘야 함
+   * 아래는 예시
+   * lg:grid-cols-[repeat(auto-fit,_minmax({itemWidth}px,_auto))] */
   listGridColumnClass?: string;
   listItemPadding?: string; // tailwlind class
   setSelected?: Dispatch<SetStateAction<string>>;
@@ -34,7 +37,7 @@ export default function SelectionList({
   const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 
   return (
-    <ul className={`grid ${gridStyle} gap-3 mb-6 sm:mb-9 pt-7 sm:pt-[44px]`}>
+    <ul className={`grid ${gridStyle} mb-6 gap-3 pt-7 sm:mb-9 sm:pt-[44px]`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
@@ -73,7 +76,7 @@ function SelectionItem({ name, isSelected, path, padding, selectItem }: Selectio
           triangleDropShadow={dropShadow}
           width="w-full"
         >
-          <span className={`${itemCommonStyle} text-neutral-50 font-medium`}>{name}</span>
+          <span className={`${itemCommonStyle} font-medium text-neutral-50`}>{name}</span>
         </CornerFoldedRectangle>
       ) : (
         <CornerFoldedRectangle
@@ -86,7 +89,7 @@ function SelectionItem({ name, isSelected, path, padding, selectItem }: Selectio
         >
           <Link
             href={`${path}?selected=${replaceSpaceWithDash(name)}`}
-            className={`${itemCommonStyle} text-neutral-500 hover:text-neutral-800 transition-all duration-300`}
+            className={`${itemCommonStyle} text-neutral-500 transition-all duration-300 hover:text-neutral-800`}
             scroll={false}
           >
             <div className={`${itemCommonStyle} inline-block`} onClick={() => selectItem?.(name)}>

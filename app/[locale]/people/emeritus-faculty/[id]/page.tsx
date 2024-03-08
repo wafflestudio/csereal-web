@@ -21,7 +21,7 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
         title={
           <div className="flex flex-row items-end">
             <p>{data.name}</p>
-            <p className="text-neutral-500 text-md font-normal ml-2 leading-7">
+            <p className="ml-2 text-md font-normal leading-7 text-neutral-500">
               {data.academicRank}
             </p>
           </div>
@@ -29,23 +29,23 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
         titleType="big"
         titleMargin="mb-9"
       >
-        <div className="flow-root relative mb-10">
+        <div className="relative mb-10 flow-root">
           <PeopleImageWithAnimation imageURL={data.imageURL} />
           <div className="break-all">
             {(data.office || data.email || data.website) && (
-              <article className="text-neutral-700 flex flex-col mb-7">
+              <article className="mb-7 flex flex-col text-neutral-700">
                 <>
                   <h3 className="font-noto text-base font-bold leading-8">연락처 정보</h3>
                   <ul className="list-inside list-disc">
                     {data.office && (
-                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                         <p>교수실: {data.office}</p>
                       </li>
                     )}
                     {data.email && (
-                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                         <p>
                           이메일:
                           <Link
@@ -58,8 +58,8 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
                       </li>
                     )}
                     {data.website && (
-                      <li className="flex items-center space-x-2 px-2 text-sm font-normal leading-[26px] mr-[1px]">
-                        <div className="w-[3px] h-[3px] bg-neutral-950 rounded-full"></div>
+                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
+                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
                         <p>
                           웹사이트:
                           <Link className="ml-1 text-link hover:underline" href={`${data.website}`}>
@@ -76,7 +76,7 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
             {data.researchAreas && (
               <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
             )}
-            <div className="mb-7 font-noto font-medium text-sm text-neutral-700">
+            <div className="font-noto mb-7 text-sm font-medium text-neutral-700">
               재직 기간: {careerTime.startTime} - {careerTime.endTime}
             </div>
           </div>

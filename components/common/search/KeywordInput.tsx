@@ -9,7 +9,7 @@ interface KeywordInputProps {
 export default function KeywordInput({ keyword, setKeyword, disabled = false }: KeywordInputProps) {
   return (
     <div className="flex items-center">
-      <h5 className="text-md font-bold mr-7 whitespace-nowrap tracking-wide">검색</h5>
+      <h5 className="mr-7 whitespace-nowrap text-md font-bold tracking-wide">검색</h5>
       <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
     </div>
   );
@@ -25,12 +25,12 @@ function Input({ keyword, disabled, onChange }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="relative bg-white flex items-center justify-between h-[1.875rem] w-[13.5rem] rounded-sm pr-3">
+    <div className="relative flex h-[1.875rem] w-[13.5rem] items-center justify-between rounded-sm bg-white pr-3">
       <input
         type="text"
         id="search"
         ref={inputRef}
-        className={`rounded-sm px-2 w-full text-sm tracking-wide bg-transparent autofill-bg-white outline-none`}
+        className={`autofill-bg-white w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none`}
         value={keyword}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}

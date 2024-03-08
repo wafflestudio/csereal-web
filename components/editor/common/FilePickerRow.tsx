@@ -11,8 +11,8 @@ interface FileRowProps {
 
 export default function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
-    <li className="flex items-center h-8 px-3 border-b-[1px] border-dashed border-neutral-200 last:border-none">
-      <p className="text-xs mr-4">{file.file.name}</p>
+    <li className="flex h-8 items-center border-b-[1px] border-dashed border-neutral-200 px-3 last:border-none">
+      <p className="mr-4 text-xs">{file.file.name}</p>
       <button className="ml-auto" onClick={deleteFile}>
         <ClearIcon />
       </button>

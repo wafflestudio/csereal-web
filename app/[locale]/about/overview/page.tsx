@@ -12,7 +12,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function OverviewPage() {
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <div className="flex gap-10 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem] items-start">
+      <div className="flex items-start gap-10 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem]">
         <HTMLViewer htmlContent={description} className="w-[37.5rem] shrink-0" />
         <Image
           src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
@@ -21,9 +21,9 @@ export default async function OverviewPage() {
           height={213}
         />
       </div>
-      <div className="pt-10 pl-[6.25rem] pb-[7.88rem]">
-        <h2 className="text-base font-semibold mb-6">학부 소개 책자</h2>
-        <div className="flex gap-6 mb-10">
+      <div className="pb-[7.88rem] pl-[6.25rem] pt-10">
+        <h2 className="mb-6 text-base font-semibold">학부 소개 책자</h2>
+        <div className="mb-10 flex gap-6">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />
         </div>

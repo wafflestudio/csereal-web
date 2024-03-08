@@ -44,7 +44,7 @@ export default function SearchPageContent({ notice, news, seminar }: SearchConte
       {/* TODO: 임시로 넣은  currentPage={main} 대책 세우기*/}
       <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
 
-      <div className={'bg-white pl-[100px] pr-[360px] pt-[44px] pb-[150px] relative'}>
+      <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
         <SearchBox
           tags={SEARCH_TAGS}
           initTags={tags}
@@ -53,12 +53,12 @@ export default function SearchPageContent({ notice, news, seminar }: SearchConte
         />
 
         {/* 검색 결과 */}
-        <div className="flex flex-col w-[52.5rem] row-start-2 col-start-1">
+        <div className="col-start-1 row-start-2 flex w-[52.5rem] flex-col">
           <SectionTitle title="소식" size={total} />
 
           {/* 공지사항 */}
           <SectionSubtitle title="공지사항" size={notice.total} />
-          <div className="flex flex-col gap-6 mt-[.88rem] ml-5 mr-10">
+          <div className="ml-5 mr-10 mt-[.88rem] flex flex-col gap-6">
             {notice.results.slice(0, 2).map((notice) => (
               <NoticeRow
                 key={notice.id}
@@ -78,7 +78,7 @@ export default function SearchPageContent({ notice, news, seminar }: SearchConte
 
           {/* 새소식 */}
           <SectionSubtitle title="새 소식" size={news.total} />
-          <div className="flex flex-col gap-6 mt-[.88rem] ml-5 mr-10">
+          <div className="ml-5 mr-10 mt-[.88rem] flex flex-col gap-6">
             {news.results.slice(0, 2).map((news) => (
               <NewsRow
                 key={news.id}
@@ -98,7 +98,7 @@ export default function SearchPageContent({ notice, news, seminar }: SearchConte
 
           {/* 세미나 */}
           <SectionSubtitle title="세미나" size={seminar.total} />
-          <div className="flex flex-col gap-[0.3rem] ml-5 mr-10">
+          <div className="ml-5 mr-10 flex flex-col gap-[0.3rem]">
             {seminar.searchList.slice(0, 2).map((seminar) => (
               <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
             ))}
@@ -115,14 +115,14 @@ const SectionTitle = ({ title, size }: { title: string; size: number }) => {
   const t = useTranslations('Nav');
   return (
     <div className="flex">
-      <div className="font-noto border-b border-neutral-300 inline pb-[.59rem] text-[1.25rem] font-bold text-neutral-700 leading-loose">
+      <div className="font-noto inline border-b border-neutral-300 pb-[.59rem] text-[1.25rem] font-bold leading-loose text-neutral-700">
         <p className="px-[10px]">
           {t(title)}({size})
         </p>
       </div>
-      <div className="flex self-end h-5">
-        <div className="self-end border-b border-neutral-300 rotate-[-45deg] origin-bottom-left w-[1.7rem]" />
-        <div className="self-start border-t border-neutral-300 w-[10rem] translate-x-[-0.53rem]" />
+      <div className="flex h-5 self-end">
+        <div className="w-[1.7rem] origin-bottom-left rotate-[-45deg] self-end border-b border-neutral-300" />
+        <div className="w-[10rem] translate-x-[-0.53rem] self-start border-t border-neutral-300" />
       </div>
     </div>
   );
@@ -131,9 +131,9 @@ const SectionTitle = ({ title, size }: { title: string; size: number }) => {
 const SectionSubtitle = ({ title, size }: { title: string; size: number }) => {
   const t = useTranslations('Nav');
   return (
-    <div className="mt-7 flex gap-2 items-center">
-      <div className="rounded-full w-[.625rem] h-[.625rem] border border-main-orange" />
-      <h3 className="text-neutral-700 font-noto text-base font-bold leading-loose">
+    <div className="mt-7 flex items-center gap-2">
+      <div className="h-[.625rem] w-[.625rem] rounded-full border border-main-orange" />
+      <h3 className="font-noto text-base font-bold leading-loose text-neutral-700">
         {t(title)}({size})
       </h3>
     </div>
@@ -145,7 +145,7 @@ const MoreResultLink = ({ href }: { href: string }) => {
   return (
     <Link
       href={href}
-      className="text-main-orange font-noto text-xs text-middle flex items-center self-end"
+      className="font-noto text-middle flex items-center self-end text-xs text-main-orange"
     >
       {t('결과 더보기')}
       <span className="material-symbols-outlined text-sm">chevron_right</span>
@@ -153,4 +153,4 @@ const MoreResultLink = ({ href }: { href: string }) => {
   );
 };
 
-const Divider = () => <div className="border-b border-neutral-300 mt-7" />;
+const Divider = () => <div className="mt-7 border-b border-neutral-300" />;

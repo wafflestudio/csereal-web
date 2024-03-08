@@ -26,9 +26,9 @@ export default function DegreeRequirementsBody({ data }: { data: DegreeRequireme
         </div>
         <Attachments files={[data[selectedDegreeRequirementsIndex].attachment]} />
       </div>
-      <div className="flex flex-col mt-6">
-        <div className="flex flex-col w-[200px] mb-4">
-          <h3 className="font-noto text-lg font-bold pl-3 mb-2">공통: 졸업사정 유의사항</h3>
+      <div className="mt-6 flex flex-col">
+        <div className="mb-4 flex w-[200px] flex-col">
+          <h3 className="font-noto mb-2 pl-3 text-lg font-bold">공통: 졸업사정 유의사항</h3>
           <StraightNode />
         </div>
         <DegreeRequirementsContent />

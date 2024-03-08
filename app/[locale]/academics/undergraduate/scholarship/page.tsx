@@ -12,8 +12,8 @@ export default async function UndergraduateScholarshipListPage() {
   return (
     <PageLayout titleType="big">
       <HTMLViewer htmlContent={description} className="mt-7" />
-      <div className="flex flex-col mt-10 font-noto">
-        <h3 className="text-[20px] font-bold leading-10 border-b-[1px] pb-2 border-b-neutral-200">
+      <div className="font-noto mt-10 flex flex-col">
+        <h3 className="border-b-[1px] border-b-neutral-200 pb-2 text-[20px] font-bold leading-10">
           장학금 종류
         </h3>
         <ul className="mt-2">

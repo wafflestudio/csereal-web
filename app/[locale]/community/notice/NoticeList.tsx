@@ -27,9 +27,9 @@ export default function NoticeList({
   };
 
   return posts.length ? (
-    <div className="mt-9 mb-10 mx-2.5 border-y border-neutral-200">
+    <div className="mx-2.5 mb-10 mt-9 border-y border-neutral-200">
       <NoticeListHeader isEditMode={isEditMode} />
-      <ul className={`${isEditMode && 'divide-y divide-neutral-200 divide-dashed'}`}>
+      <ul className={`${isEditMode && 'divide-y divide-dashed divide-neutral-200'}`}>
         {posts.map((post, i) => (
           <NoticeListRow
             key={i}
@@ -42,6 +42,6 @@ export default function NoticeList({
       </ul>
     </div>
   ) : (
-    <p className="mt-6 mb-8 mx-2.5">검색 결과가 존재하지 않습니다.</p>
+    <p className="mx-2.5 mb-8 mt-6">검색 결과가 존재하지 않습니다.</p>
   );
 }

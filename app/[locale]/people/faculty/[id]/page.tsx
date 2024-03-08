@@ -22,7 +22,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
         title={
           <div className="flex flex-row items-end">
             <p>{data.name}</p>
-            <p className="text-neutral-500 text-md font-normal ml-2 leading-7">
+            <p className="ml-2 text-md font-normal leading-7 text-neutral-500">
               {data.academicRank}
             </p>
           </div>
@@ -30,7 +30,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
         titleType="big"
         titleMargin="mb-9"
       >
-        <div className="flow-root relative mb-10">
+        <div className="relative mb-10 flow-root">
           <FacultyInfoWithImage
             office={data.office}
             phone={data.phone}
@@ -41,10 +41,10 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
           />
           <div className="flex flex-row">
             <CurvedHorizontalSmallNode />
-            <div className=" border-b-[1px] pb-[5px] pr-2 border-b-main-orange -translate-x-[7.15px] translate-y-[1.5px]">
+            <div className=" -translate-x-[7.15px] translate-y-[1.5px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
               <Link
                 href={`${labUrl}/${data.labId}`}
-                className="font-noto font-medium text-sm leading-5 text-neutral-700 hover:text-main-orange cursor-pointer"
+                className="font-noto cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
               >
                 {data?.labName}
               </Link>
