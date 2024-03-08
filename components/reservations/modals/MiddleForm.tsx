@@ -91,7 +91,7 @@ const PurposeTextInputFieldset = ({
       </legend>
       <textarea
         className={`w-full rounded-sm border border-neutral-200 bg-neutral-50
-            outline-none p-1 h-14`}
+            outline-none p-1 h-14 resize-none`}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

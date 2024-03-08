@@ -8,6 +8,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
 
 import ENG_NAMES from '../../../messages/en.json';
 import Header from '../header/Header';
@@ -16,25 +17,21 @@ interface GuidePageLayoutProps {
   title?: string;
   subtitle?: string;
   description?: string;
-  twoDimensional?: boolean;
 }
 
+// TODO: RootItem을 클릭했을 때 LeafItem이 보이도록 자동 스크롤
 export default function MajorCategoryPageLayout({
   title,
   subtitle = '',
   description = '',
-  twoDimensional = false,
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
 
   title ||= t(currentPage.name);
-  const initSelectedCategory = twoDimensional
-    ? currentPage.children!.find((seg) => !seg.isPage)
-    : null;
 
   // 학사 및 교과 등에서 소분류 선택 처리용 state
-  const [selectedCategory, setSelectedCategory] = useState(initSelectedCategory);
+  const [selectedCategory, setSelectedCategory] = useState<SegmentNode | null>(null);
   const router = useRouter();
 
   return (

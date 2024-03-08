@@ -41,7 +41,7 @@ export default function ReservationModalButton({
 
   return (
     <button
-      className={`absolute bg-[#ff6914] w-full flex flex-col items-center`}
+      className={`absolute bg-[#ff6914cc] w-full flex flex-col items-center`}
       style={{ height, top }}
       onClick={handleClick}
     >
@@ -70,7 +70,7 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-bold text-neutral-800">{reservation.title}</h2>
           <span
-            className="material-symbols-outlined text-2xl font-light cursor-pointe text-neutral-300"
+            className="material-symbols-outlined text-2xl font-light cursor-pointer text-neutral-500 hover:text-neutral-800"
             onClick={closeModal}
           >
             close
@@ -80,7 +80,7 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
         <div className="flex flex-col gap-6 mb-[2.19rem]">
           <p className="text-neutral-800">{reservation.purpose ?? '예약 목적 미기입'}</p>
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-[6px]">
             <Row title="예약 날짜" body={reservationDateStr} />
             <Row title="시작 시간" body={formatTime(new Date(reservation.startTime))} />
             <Row title="종료 시간" body={formatTime(new Date(reservation.endTime))} />
@@ -89,11 +89,11 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
 
           <Row title="예약 위치" body={reservation.roomLocation} />
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-[6px]">
             <p className="text-md text-neutral-400 font-normal">예약자 정보</p>
-            <Row title="계정" body={reservation.userName} />
-            <Row title="이메일" body={reservation.contactEmail} />
-            <Row title="핸드폰" body={reservation.contactPhone} />
+            <Row title="계정" body={hypenIfEmpty(reservation.userName)} />
+            <Row title="이메일" body={hypenIfEmpty(reservation.contactEmail)} />
+            <Row title="핸드폰" body={hypenIfEmpty(reservation.contactPhone)} />
           </div>
         </div>
 
@@ -147,7 +147,7 @@ const DeleteButtons = ({
   return (
     <div className="flex gap-2 h-[1.875rem] ml-[3.94rem]">
       <BasicButton
-        className="px-[.62rem]"
+        className="px-[.62rem] text-md"
         onClick={() =>
           openModal(
             <AlertModal
@@ -161,7 +161,7 @@ const DeleteButtons = ({
         반복 예약 전체 삭제
       </BasicButton>
       <BasicButton
-        className="px-[.62rem]"
+        className="px-[.62rem] text-md"
         onClick={() =>
           openModal(
             <AlertModal
@@ -187,3 +187,5 @@ const toastError = (error: unknown) => {
     errorToast('알 수 없는 문제가 발생했습니다.');
   }
 };
+
+const hypenIfEmpty = (str: string | null) => (str === '' || str === null ? '-' : str);

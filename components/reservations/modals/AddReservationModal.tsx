@@ -43,9 +43,7 @@ const PrivacyFieldset = ({
 }) => {
   return (
     <fieldset className="flex flex-col mb-6 font-normal">
-      <legend className="mb-1">개인정보 수집 및 이용동의</legend>
-
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-5">
         <div
           className="flex items-center gap-1 hover:cursor-pointer select-none"
           onClick={toggleChecked}
@@ -54,16 +52,15 @@ const PrivacyFieldset = ({
             {checked ? 'check_box' : 'check_box_outline_blank'}
           </span>
           <p>
-            개인정보 수집이용에 관한 사항(필수)<span className="text-main-orange">*</span>
+            개인정보 수집 및 이용동의<span className="text-main-orange">*</span>
           </p>
         </div>
 
-        <Link
-          className="text-neutral-400 flex items-center"
-          href="/reservations/privacy-policy"
-          target="_blank"
-        >
-          <span className="material-symbols-outlined text-base">chevron_right</span>
+        <Link className="text-neutral-400" href="/reservations/privacy-policy" target="_blank">
+          보러가기
+          <span className="material-symbols-outlined text-base translate-y-[3px]">
+            chevron_right
+          </span>
         </Link>
       </div>
     </fieldset>

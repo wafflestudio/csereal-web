@@ -64,11 +64,7 @@ function RowIcon({ type }: { type: RowType }) {
 
 function RowDescription({ type }: { type: RowType }) {
   const description = type == 'next' ? '다음 글' : '이전 글';
-  return (
-    <p className="font-yoon text-xs font-medium mr-3 flex-shrink-0 text-main-orange">
-      {description}
-    </p>
-  );
+  return <p className="text-md font-medium mr-3 flex-shrink-0 text-main-orange">{description}</p>;
 }
 
 function RowPostTitle({ title }: { title?: string }) {
@@ -76,7 +72,7 @@ function RowPostTitle({ title }: { title?: string }) {
     <p
       className={`
       ${title ? 'group-hover:underline' : ''} 
-      font-yoon text-xs font-normal line-clamp-1
+      text-md font-normal line-clamp-1
       `}
     >
       {title ?? '(없음)'}
@@ -88,7 +84,10 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center text-white text-sm font-noto bg-neutral-700 hover:bg-neutral-500 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-700 hover:border-neutral-500 font-bold"
+      className={`flex items-center 
+      text-white text-md 
+      bg-neutral-800 hover:bg-neutral-500 px-[15px] h-[35px] rounded-[0.0625rem] 
+      border border-neutral-700 hover:border-neutral-500 font-bold tracking-[0.1rem]`}
     >
       목록
     </Link>
@@ -99,7 +98,7 @@ function PostEditLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center mr-3 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 hover:bg-neutral-500 font-noto font-bold text-sm text-neutral-500 hover:text-white tracking-[0.02em]"
+      className="flex items-center mr-3 px-[17px] h-[35px] rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 hover:bg-neutral-500 font-bold text-sm text-neutral-500 hover:text-white tracking-[0.1em]"
     >
       편집
     </Link>
