@@ -1,12 +1,10 @@
-import { notFound } from 'next/navigation';
-import { NextIntlClientProvider } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
-import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
-import SessionContextProvider from '@/contexts/SessionContext';
+import { NavbarContextProvider } from '@/contexts/NavbarContext';
+import { SessionContextProvider } from '@/contexts/SessionContext';
 
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
@@ -28,9 +26,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
-  unstable_setRequestLocale(params.locale);
-
   return (
     <html
       lang={params.locale}
@@ -38,7 +33,10 @@ export default async function RootLayout({
     >
       <body>
         <ContextProviders locale={params.locale}>
-          <Navbar />
+          <NavbarContextProvider>
+            <Navbar />
+          </NavbarContextProvider>
+
           <Content>{children}</Content>
           <ModalContainer />
           <Toaster />
@@ -48,24 +46,17 @@ export default async function RootLayout({
   );
 }
 
-async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  const messages = useMessages();
 
   return (
     <SWRProvider>
       <SessionContextProvider>
-        <NavbarContextProviderWrapper>
-          <ModalContextProvider>
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              {children}
-            </NextIntlClientProvider>
-          </ModalContextProvider>
-        </NavbarContextProviderWrapper>
+        <ModalContextProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ModalContextProvider>
       </SessionContextProvider>
     </SWRProvider>
   );

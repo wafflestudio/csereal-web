@@ -10,6 +10,10 @@ interface SessionContextData {
   isLoading: boolean;
 }
 
+export interface User {
+  isStaff: boolean;
+}
+
 const SessionContext = createContext<SessionContextData>({
   user: undefined,
   isLoading: true,
@@ -17,11 +21,7 @@ const SessionContext = createContext<SessionContextData>({
 
 export const useSessionContext = () => useContext(SessionContext);
 
-export interface User {
-  isStaff: boolean;
-}
-
-export default function SessionContextProvider({ children }: PropsWithChildren) {
+export function SessionContextProvider({ children }: PropsWithChildren) {
   const { data, isLoading, error } = useSWR<User>('/user/is-staff', getRequest);
 
   const user = useMemo(() => {
@@ -36,7 +36,3 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
 
   return <SessionContext.Provider value={{ user, isLoading }}>{children}</SessionContext.Provider>;
 }
-
-const deleteCookie = (key: string) => {
-  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-};
