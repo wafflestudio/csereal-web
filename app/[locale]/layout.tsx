@@ -6,12 +6,13 @@ import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import { SessionContextProvider } from '@/contexts/SessionContext';
 
+import Footer from '@/components/layout/footer/Footer';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
 import '@/styles/globals.css';
 
-import Content from './content';
+import MarginedMain from './MarginedMain';
 import { SWRProvider } from './swr-provider';
 
 export const metadata = {
@@ -37,7 +38,11 @@ export default async function RootLayout({
             <Navbar />
           </NavbarContextProvider>
 
-          <Content>{children}</Content>
+          <MarginedMain>
+            {children}
+            <Footer />
+          </MarginedMain>
+
           <ModalContainer />
           <Toaster />
         </ContextProviders>
