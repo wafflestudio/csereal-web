@@ -9,14 +9,24 @@ interface ResearchCenterDetailProps {
   center: ResearchCenter;
 }
 
-export default function ResearchCenterDetails({ center }: ResearchCenterDetailProps) {
+export default function ResearchCenterDetails({
+  center: { name, description, imageURL, websiteURL },
+}: ResearchCenterDetailProps) {
   return (
     <div>
-      <ResearchCenterTitle name={center.name} link={center.websiteURL} />
+      <ResearchCenterTitle name={name} link={websiteURL} />
+      {/* <div className="relative mx-2.5 mb-7 h-fit w-full">
+        <ImageWithFallback
+          alt={`${name}_이미지`}
+          src={imageURL}
+          className="object-contain sm:hidden"
+          fill
+        />
+      </div> */}
       <HTMLViewer
-        htmlContent={center.description}
-        topRightContent={{ type: 'image', width: 320, height: 160, url: center.imageURL }}
-        className="ml-2.5"
+        htmlContent={description}
+        topRightContent={{ type: 'image', width: 320, height: 160, url: imageURL }}
+        className="mx-2.5"
       />
     </div>
   );

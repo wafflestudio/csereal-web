@@ -54,7 +54,7 @@ export default function PageLayout({
       />
       <div
         className={
-          'relative bg-white px-5 py-7 sm:pb-[150px] sm:pl-[100px] sm:pr-[360px] sm:pt-[44px]'
+          'relative bg-white px-5 pb-10 pt-7 sm:pb-[150px] sm:pl-[100px] sm:pr-[360px] sm:pt-[44px]'
         }
         style={bodyStyle}
       >
