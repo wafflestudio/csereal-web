@@ -1,3 +1,5 @@
+import LoginVisible from '@/components/common/LoginVisible';
+
 import {
   ChangeDateButton,
   MakeReservationButton,
@@ -20,10 +22,9 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
         <ChangeDateButton targetDate={addDayToDate(date, 7)} symbolName="navigate_next" />
         {showTodayButton && <TodayButton />}
       </div>
-      {/* TODO: 임시로 주석 처리 */}
-      {/* <LoginUserVisible> */}
-      <MakeReservationButton roomId={roomId} />
-      {/* </LoginUserVisible> */}
+      <LoginVisible>
+        <MakeReservationButton roomId={roomId} />
+      </LoginVisible>
     </div>
   );
 }

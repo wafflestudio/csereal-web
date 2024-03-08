@@ -35,6 +35,7 @@ export default async function RootLayout({
   params: { locale: string };
 }) {
   // i18n의 Static rendering 관련 에러 제거 위해 추가
+  // unstable인데 왜 안쓰면 빌드 안시켜줌??????
   unstable_setRequestLocale(params.locale);
 
   return (

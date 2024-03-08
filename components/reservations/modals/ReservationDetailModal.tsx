@@ -8,6 +8,7 @@ import {
   getReservation,
 } from '@/actions/reservation';
 
+import LoginVisible from '@/components/common/LoginVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
@@ -97,10 +98,9 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
           </div>
         </div>
 
-        {/* TODO: 관리자 계정 얻을 때까지 주석 처리 */}
-        {/* <LoginStaffVisible> */}
-        <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
-        {/* </LoginStaffVisible> */}
+        <LoginVisible staff>
+          <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
+        </LoginVisible>
       </div>
     </ModalFrame>
   );
