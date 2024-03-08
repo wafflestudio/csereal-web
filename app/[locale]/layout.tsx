@@ -21,10 +21,6 @@ export const metadata = {
   description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
 };
 
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ko' }];
-}
-
 export default async function RootLayout({
   children,
   params,
