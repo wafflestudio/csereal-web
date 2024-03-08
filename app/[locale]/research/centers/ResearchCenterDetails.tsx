@@ -1,9 +1,12 @@
 import LinkIcon from '@/public/image/link_icon.svg';
 
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { ResearchCenter } from '@/types/research';
+
+import useResponsive from '@/utils/hooks/useResponsive';
 
 interface ResearchCenterDetailProps {
   center: ResearchCenter;
@@ -12,20 +15,21 @@ interface ResearchCenterDetailProps {
 export default function ResearchCenterDetails({
   center: { name, description, imageURL, websiteURL },
 }: ResearchCenterDetailProps) {
+  const { screenType } = useResponsive();
+
   return (
     <div>
       <ResearchCenterTitle name={name} link={websiteURL} />
-      {/* <div className="relative mx-2.5 mb-7 h-fit w-full">
-        <ImageWithFallback
-          alt={`${name}_이미지`}
-          src={imageURL}
-          className="object-contain sm:hidden"
-          fill
-        />
-      </div> */}
+      <div className="relative mx-2.5 mb-7 aspect-[4/3] sm:hidden">
+        <ImageWithFallback alt={`${name}_이미지`} src={imageURL} className="object-contain" fill />
+      </div>
       <HTMLViewer
         htmlContent={description}
-        topRightContent={{ type: 'image', width: 320, height: 160, url: imageURL }}
+        topRightContent={
+          screenType === 'desktop'
+            ? { type: 'image', width: 320, height: 160, url: imageURL }
+            : undefined
+        }
         className="mx-2.5"
       />
     </div>

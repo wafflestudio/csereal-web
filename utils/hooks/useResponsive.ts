@@ -7,7 +7,7 @@ const BREAK_POINT = {
 type ScreenType = 'mobile' | 'desktop';
 
 export default function useResponsive() {
-  const [screenType, setScreenType] = useState<ScreenType>('desktop');
+  const [screenType, setScreenType] = useState<ScreenType | null>(null);
 
   const handleResize = useCallback(() => {
     if (window.innerWidth < BREAK_POINT.sm && screenType !== 'mobile') {
