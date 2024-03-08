@@ -60,7 +60,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">
-          <NavLabel text={t(tab.name)} />
+          <NavLabel text={tab.name} />
         </Link>
       ) : (
         <span className="whitespace-nowrap">{t(tab.name)}</span>

@@ -28,6 +28,7 @@ export default function MajorCategoryPageLayout({
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
 
+  // TODO: messages.json에 번역 파일 추가
   title ||= t(currentPage.name);
 
   // 학사 및 교과 등에서 소분류 선택 처리용 state
