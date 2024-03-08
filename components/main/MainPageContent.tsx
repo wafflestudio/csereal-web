@@ -46,7 +46,7 @@ function ScrollSign({ hide }: { hide: boolean }) {
         hide && 'opacity-0'
       } pointer-events-none transition-opacity duration-200`}
     >
-      <span className="font-yoon animate-pulse text-xs font-bold text-main-orange">SCROLL</span>
+      <span className="animate-pulse text-xs font-bold text-main-orange">SCROLL</span>
       <span className="material-symbols-outlined text-[48px] font-extralight text-main-orange">
         keyboard_double_arrow_down
       </span>

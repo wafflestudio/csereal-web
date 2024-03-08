@@ -32,7 +32,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
   return (
     <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
-      <div className="font-yoon mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
+      <div className="mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
         {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
 
         <div className="relative float-right mb-7 ml-7 mt-4 h-60 w-60">

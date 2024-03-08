@@ -12,7 +12,7 @@ export default async function GraduateScholarshipListPage() {
   return (
     <PageLayout titleType="big">
       <HTMLViewer htmlContent={description} className="mt-7" />
-      <div className="font-noto mt-10 flex flex-col">
+      <div className=" mt-10 flex flex-col">
         <h3 className="border-b-[1px] border-b-neutral-200 pb-2 text-[20px] font-bold leading-10">
           장학금 종류
         </h3>

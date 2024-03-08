@@ -59,7 +59,7 @@ function HeaderRight() {
 
   return (
     <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
-      <div className="font-yoon flex items-center gap-3 text-xs font-normal text-white">
+      <div className="flex items-center gap-3 text-xs font-normal text-white">
         {user?.isStaff && (
           <>
             <Link href={'/admin'} className="hover:text-main-orange">

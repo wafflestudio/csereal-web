@@ -53,13 +53,11 @@ function ShortCutBox({ title, href, location, nodes }: ShortCutBoxProps) {
         href={href}
         className={`flex h-[60px] w-fit flex-col justify-between rounded-sm bg-[#1E1E1E80] px-3 py-2.5 shadow-[1px_1px_3px_0_rgba(255,255,255,0.05)_inset,_-1px_-1px_4px_0_rgba(0,0,0,0.4)_inset] backdrop-blur-[2.5px] hover:bg-[#26262680]`}
       >
-        <span className="font-yoon min-w-[8.4375rem] text-sm font-bold tracking-wide text-main-orange">
+        <span className="min-w-[8.4375rem] text-sm font-bold tracking-wide text-main-orange">
           {title}
         </span>
         <span className="flex min-w-[8.4375rem] origin-right scale-90 items-center justify-end">
-          <span className="font-yoon text-[10px] font-medium tracking-wide text-main-orange">
-            바로가기
-          </span>
+          <span className="text-[10px] font-medium tracking-wide text-main-orange">바로가기</span>
           <span className="material-symbols-outlined pt-[2px] text-md font-light text-main-orange">
             navigate_next
           </span>

@@ -39,9 +39,7 @@ function FacilitiesRow({ name, description, location, imageURL, border }: Facili
       }`}
     >
       <div className="flex w-[35.5rem] flex-col">
-        <h3 className="font-noto mb-[.69rem] text-base font-bold leading-5 text-neutral-800">
-          {name}
-        </h3>
+        <h3 className=" mb-[.69rem] text-base font-bold leading-5 text-neutral-800">{name}</h3>
         <HTMLViewer htmlContent={description} />
         <div className="flex items-center gap-[0.12rem]">
           <Distance />

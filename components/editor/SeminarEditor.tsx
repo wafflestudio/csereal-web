@@ -258,7 +258,7 @@ function SpeakerFieldsetGroup({
 }) {
   return (
     <div className="mb-10">
-      <legend className="font-yoon mb-3 text-sm font-medium tracking-wide">연사 정보</legend>
+      <legend className="mb-3 text-sm font-medium tracking-wide">연사 정보</legend>
       <div className="flex flex-col gap-4">
         <div className="flex gap-5">
           <Fieldset title="이름" titleMb="mb-2" required>
@@ -321,7 +321,7 @@ function SpeakerIntroductionEditorFieldset({
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="연사 사진" mb="mb-6" titleMb="mb-2">
-      <label className="font-yoon mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide">
+      <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide">
         {`필수는 아니지만, 없을 경우 대체 이미지가 표시되니 가급적 첨부 바랍니다.
 이미지는 글 우측 상단에 표시됩니다.`}
       </label>

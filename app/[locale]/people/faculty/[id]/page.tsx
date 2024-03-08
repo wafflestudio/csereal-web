@@ -44,7 +44,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
             <div className=" -translate-x-[7.15px] translate-y-[1.5px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
               <Link
                 href={`${labUrl}/${data.labId}`}
-                className="font-noto cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
+                className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
               >
                 {data?.labName}
               </Link>

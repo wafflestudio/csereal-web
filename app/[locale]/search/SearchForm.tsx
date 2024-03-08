@@ -28,7 +28,7 @@ export default function SearchForm({ query }: { query: string }) {
         value={text}
         onChange={handleChange}
       />
-      <button className="font-yoon flex h-8 items-center justify-center rounded-r-sm border-y border-r border-neutral-300 px-3 py-[.1875rem] text-xs font-bold tracking-[0.02em]">
+      <button className="flex h-8 items-center justify-center rounded-r-sm border-y border-r border-neutral-300 px-3 py-[.1875rem] text-xs font-bold tracking-[0.02em]">
         검색
       </button>
     </form>

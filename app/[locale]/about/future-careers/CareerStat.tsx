@@ -14,7 +14,7 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="mb-[0.8rem] flex items-center gap-2">
-        <h3 className="font-noto text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
+        <h3 className=" text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
         <Dropdown
           contents={Object.keys(stat).reverse()}
           selectedIndex={selectedCareerStatIndex}

@@ -68,7 +68,7 @@ export default function PeopleRow({
         {academicRank && (
           <div className="relative mb-1 flex w-full flex-row items-end gap-1 pb-2">
             <Link href={href} className="hover:cursor-pointer ">
-              <p className="font-noto text-md font-bold">{name}</p>
+              <p className=" text-md font-bold">{name}</p>
             </Link>
             <AcademicRankText academicRank={academicRank} />
             <span className="absolute bottom-0 inline-block w-full border-b border-neutral-200" />
@@ -78,7 +78,7 @@ export default function PeopleRow({
         {role && (
           <div className="relative mb-1 flex w-full flex-col border-b-[1px] border-neutral-200 pb-1">
             <Link href={href} className="hover:cursor-pointer ">
-              <p className="font-noto text-md font-bold leading-5">{name}</p>
+              <p className=" text-md font-bold leading-5">{name}</p>
             </Link>
             <p className="leading-6 text-neutral-500">{role}</p>
             <span className="absolute bottom-0 inline-block w-full border-b border-neutral-200" />

@@ -35,7 +35,7 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
             {(data.office || data.email || data.website) && (
               <article className="mb-7 flex flex-col text-neutral-700">
                 <>
-                  <h3 className="font-noto text-base font-bold leading-8">연락처 정보</h3>
+                  <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
                   <ul className="list-inside list-disc">
                     {data.office && (
                       <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
@@ -76,7 +76,7 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
             {data.researchAreas && (
               <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
             )}
-            <div className="font-noto mb-7 text-sm font-medium text-neutral-700">
+            <div className=" mb-7 text-sm font-medium text-neutral-700">
               재직 기간: {careerTime.startTime} - {careerTime.endTime}
             </div>
           </div>

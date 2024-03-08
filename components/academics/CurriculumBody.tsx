@@ -13,7 +13,7 @@ export default function CurriculumBody({ data }: { data: Curriculum[] }) {
     <>
       <div className="mt-8 flex flex-col">
         <div className="flex flex-row items-center gap-2">
-          <p className="font-noto text-sm font-normal">입학연도</p>
+          <p className=" text-sm font-normal">입학연도</p>
           <Dropdown
             contents={data.map((item) => item.year.toString())}
             selectedIndex={selectedcurriculumIndex}

@@ -19,7 +19,7 @@ export default function Fieldset({
 }: FieldsetProps) {
   return (
     <fieldset className={`flex flex-col ${mb ?? ''} ${grow && 'flex-1'}`}>
-      <legend className={`font-yoon text-sm font-medium tracking-wide ${titleMb}`}>
+      <legend className={`text-sm font-medium tracking-wide ${titleMb}`}>
         {title}
         {required && <span className="text-main-orange">*</span>}
       </legend>
