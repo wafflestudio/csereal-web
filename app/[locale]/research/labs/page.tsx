@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { getResearchLabs } from '@/apis/research';
 
 import ResearchLabList from '@/app/[locale]/research/labs/ResearchLabList';
