@@ -43,6 +43,9 @@ export default async function RootLayout({
       lang={params.locale}
       className="bg-neutral-900 font-normal text-neutral-800 sm:min-w-[1000px]"
     >
+      <head>
+        <link rel="icon" href="/icon" type="image/png" sizes="32x32" />
+      </head>
       <body>
         <ContextProviders locale={params.locale}>
           <NavbarContextProvider>
