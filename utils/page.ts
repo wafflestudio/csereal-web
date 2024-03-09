@@ -1,7 +1,9 @@
 import { SegmentNode, main } from '@/utils/segmentNode';
 
 export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
-  if (!(location && location !== main)) return [];
+  if (location === null) return [];
+  if (location === main) return [];
+
   return [...getLocationLog(location.parent), location];
 };
 
