@@ -1,5 +1,6 @@
 'use client';
 
+import Pentagon200 from '@/public/image/pentagon_200.svg';
 import SignPostIcon from '@/public/image/signpost_icon.svg';
 
 import useModal from '@/utils/hooks/useModal';
@@ -11,11 +12,16 @@ export default function RoadMapButton() {
 
   return (
     <button
-      className="flex items-center gap-2 rounded-sm bg-neutral-500 py-2.5 pl-4 pr-5 text-[0.9375rem] font-medium text-white shadow-[2px_2px_3px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_4px_0_rgba(0,0,0,0.10)_inset] outline-none hover:bg-neutral-600 active:bg-neutral-700"
+      className="group relative h-11 w-[200px]"
       onClick={() => openModal(<RoadMapModal onClose={closeModal} />)}
     >
-      <SignPostIcon className="fill-white" />
-      <span>교과목 로드맵 보기</span>
+      <div className="absolute flex h-full w-full items-center justify-center gap-2 pr-2">
+        <SignPostIcon className="fill-main-orange duration-300 group-hover:fill-white" />
+        <span className="text-[15px] font-medium text-main-orange duration-300 group-hover:text-white">
+          교과목 로드맵 보기
+        </span>
+      </div>
+      <Pentagon200 className="text-white duration-300 group-hover:text-main-orange" />
     </button>
   );
 }
