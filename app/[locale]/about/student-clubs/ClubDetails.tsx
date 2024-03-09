@@ -10,7 +10,9 @@ export default function ClubDetails({ club }: { club: Club }) {
       <HTMLViewer
         htmlContent={club.description}
         topRightContent={
-          club.imageURL ? { type: 'image', width: 320, height: 200, url: club.imageURL } : undefined
+          club.imageURL
+            ? { type: 'image', widthPX: 320, heightPX: 200, url: club.imageURL }
+            : undefined
         }
         className="ml-2.5"
       />

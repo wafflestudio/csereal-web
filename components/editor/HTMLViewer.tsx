@@ -8,15 +8,13 @@ type TopRightImage =
   | {
       type: 'image';
       url: string;
-      // px 단위
-      width: number;
-      // px 단위
-      height: number;
+      widthPX: number;
+      heightPX: number;
     }
   | {
       type: 'imageUnoptimized';
       url: string;
-      width: number;
+      widthPX: number;
     };
 
 interface TopRightComponent {
@@ -58,14 +56,14 @@ export default function HTMLViewer({
 
 function TopRightImageContent(props: TopRightImage) {
   if (props.type === 'image') {
-    const { url, width, height } = props;
+    const { url, widthPX: width, heightPX: height } = props;
     return (
       <div className="relative float-right mb-[28px] ml-[28px]" style={{ width, height }}>
         <Image src={url} alt="대표 이미지" fill className="object-contain" sizes={`${width}px`} />
       </div>
     );
   } else {
-    const { url, width } = props;
+    const { url, widthPX: width } = props;
     return (
       <div className="relative float-right mb-[20px] ml-[28px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}

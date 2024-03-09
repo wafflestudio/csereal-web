@@ -12,7 +12,7 @@ export default async function History() {
     <PageLayout titleType="big">
       <HTMLViewer
         htmlContent={resp.description}
-        topRightContent={{ type: 'image', width: 320, height: 360, url: history_image.src }}
+        topRightContent={{ type: 'image', widthPX: 320, heightPX: 360, url: history_image.src }}
       />
     </PageLayout>
   );

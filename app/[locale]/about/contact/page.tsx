@@ -14,8 +14,8 @@ export default async function ContactPage() {
         topRightContent={{
           type: 'image',
           url: `https://cse-dev-waffle.bacchus.io/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd`,
-          width: 240,
-          height: 360,
+          widthPX: 240,
+          heightPX: 360,
         }}
       />
     </PageLayout>

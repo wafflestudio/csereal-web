@@ -6,39 +6,31 @@ export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
   init?: RequestInit,
-) => {
+): Promise<T> => {
   const queryString = objToQueryString(params);
-  const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  const response = await fetch(fetchUrl, {
-    ...init,
-    method: 'GET',
-    credentials: 'include',
-  });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}${queryString}`, 'GET', init);
+  return await resp.json();
 };
 
-export const postRequest = async <T = unknown>(url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'POST', credentials: 'include' });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
+export const postRequest = async <T = unknown>(url: string, init?: RequestInit): Promise<T> => {
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}`, 'POST', init);
+  return await resp.json();
 };
 
-export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'PATCH', credentials: 'include' });
-  checkError(response);
-  if (response.headers.get('content-type')) {
-    const responseData = await response.json();
-    return responseData as T;
-  }
+export const patchRequest = async <T = unknown>(
+  url: string,
+  init?: RequestInit,
+): Promise<T | null> => {
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}`, 'PATCH', init);
+  return resp.headers.get('content-type') ? await resp.json() : null;
 };
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const response = await fetch(fetchUrl, { ...init, method: 'DELETE', credentials: 'include' });
-  checkError(response);
+  await fetchWithCredentials(`${BASE_URL}${url}`, 'DELETE', init);
+};
+
+const fetchWithCredentials = async (url: string, method: string, init?: RequestInit) => {
+  const resp = await fetch(url, { ...init, method, credentials: 'include' });
+  checkError(resp);
+  return resp;
 };

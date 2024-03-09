@@ -19,7 +19,7 @@ export default function ResearchCenterDetails({
         htmlContent={description}
         className="mx-2.5"
         {...(imageURL
-          ? { topRightContent: { type: 'image', width: 320, height: 160, url: imageURL } }
+          ? { topRightContent: { type: 'image', widthPX: 320, heightPX: 160, url: imageURL } }
           : {})}
       />
     </div>

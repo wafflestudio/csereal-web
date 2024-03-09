@@ -36,7 +36,7 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
         className="mt-4"
         topRightContent={
           currPost.imageURL
-            ? { type: 'imageUnoptimized', url: currPost.imageURL, width: 320 }
+            ? { type: 'imageUnoptimized', url: currPost.imageURL, widthPX: 320 }
             : undefined
         }
       />
