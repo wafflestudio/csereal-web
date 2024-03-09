@@ -12,8 +12,8 @@ import {
   isLocalFile,
   isLocalImage,
   isUploadedFile,
-  postEditorDefaultValue,
-} from '@/components/editor/PostEditorProps';
+  defaultContent,
+} from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NEWS_TAGS } from '@/constants/tag';
@@ -30,7 +30,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
-    ...postEditorDefaultValue,
+    ...defaultContent,
 
     title: data.title,
     titleForMain: data.titleForMain ?? '',

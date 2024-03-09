@@ -1,5 +1,7 @@
 import { CreateAction, EditAction } from './common/ActionButtons';
 
+// 첨부파일
+
 export type PostEditorFile = LocalFile | UploadedFile;
 
 export interface LocalFile {
@@ -22,6 +24,8 @@ export const isLocalFile = (file: PostEditorFile): file is LocalFile => file.typ
 export const isUploadedFile = (file: PostEditorFile): file is UploadedFile =>
   file.type === 'UPLOADED_FILE';
 
+// 이미지
+
 export type PostEditorImage = LocalImage | UploadedImage | null;
 
 export interface LocalImage {
@@ -36,6 +40,8 @@ export interface UploadedImage {
 
 export const isLocalImage = (image: LocalImage | UploadedImage): image is LocalImage =>
   image.type === 'LOCAL_IMAGE';
+
+// Content
 
 export interface PostEditorContent {
   title: string;
@@ -62,7 +68,7 @@ export interface PostEditorProps {
   initialContent?: PostEditorContent;
 }
 
-export const postEditorDefaultValue: PostEditorContent = {
+export const defaultContent: PostEditorContent = {
   title: '',
   titleForMain: '',
   description: '',

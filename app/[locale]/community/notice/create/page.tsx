@@ -7,7 +7,7 @@ import { revalidateNoticeTag } from '@/actions/noticeActions';
 import { postNotice } from '@/apis/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
+import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
@@ -26,7 +26,6 @@ export default function NoticeCreatePage() {
   const handleComplete = async (content: PostEditorContent) => {
     validateNoticeForm(content);
 
-    const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
     await postNotice({
       request: {
         title: content.title,
@@ -37,14 +36,15 @@ export default function NoticeCreatePage() {
         isImportant: content.isImportant,
         tags: content.tags,
       },
-      attachments,
+      attachments: content.attachments.filter(isLocalFile).map((x) => x.file),
     });
+
     revalidateNoticeTag();
     router.replace(noticePath);
   };
 
   return (
-    <PageLayout title="공지사항 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="공지사항 작성" titleType="big" titleMargin="mb-[2.75rem]">
       <PostEditor
         tags={NOTICE_TAGS}
         showIsPinned

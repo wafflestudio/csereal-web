@@ -12,7 +12,7 @@ import {
   PostEditorContent,
   isLocalFile,
   isUploadedFile,
-} from '@/components/editor/PostEditorProps';
+} from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';

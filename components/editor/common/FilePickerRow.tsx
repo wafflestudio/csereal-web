@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 
 import ClearIcon from '@/public/image/clear_icon.svg';
 
-import { PostEditorFile } from '../PostEditorProps';
+import { PostEditorFile } from '../PostEditorTypes';
 
 interface FileRowProps {
   file: PostEditorFile;

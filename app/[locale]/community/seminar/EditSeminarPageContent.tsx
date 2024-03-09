@@ -19,7 +19,7 @@ import {
   isLocalFile,
   isLocalImage,
   isUploadedFile,
-} from '../../../../components/editor/PostEditorProps';
+} from '../../../../components/editor/PostEditorTypes';
 import SeminarEditor from '../../../../components/editor/SeminarEditor';
 import { SeminarEditorContent } from '../../../../components/editor/SeminarEditorProps';
 

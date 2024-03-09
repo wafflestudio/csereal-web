@@ -1,4 +1,4 @@
-import { PostEditorContent } from '@/components/editor/PostEditorProps';
+import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 
 export const validateNoticeForm = (content: PostEditorContent) => {

@@ -1,9 +1,8 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
-
-import SunEditorWrapper from '@/components/editor/common/SunEditorWrapper';
 
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
@@ -11,6 +10,7 @@ import DateSelector from './common/DateSelector';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+import SunEditorFallback from './common/SunEditorFallback';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
@@ -19,6 +19,11 @@ import {
   getSeminarEditorDefaultValue,
 } from './SeminarEditorProps';
 import Checkbox from '../common/form/Checkbox';
+
+const SunEditorWrapper = dynamic(() => import('@/components/editor/common/SunEditorWrapper'), {
+  ssr: false,
+  loading: () => <SunEditorFallback />,
+});
 
 export default function SeminarEditor({ actions, initialContent }: SeminarEditorProps) {
   const summaryEditorRef = useRef<SunEditorCore>();

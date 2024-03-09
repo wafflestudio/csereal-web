@@ -6,7 +6,7 @@ import { revalidateSeminarTag } from '@/actions/seminarActions';
 
 import { postSeminar } from '@/apis/seminar';
 
-import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
+import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
