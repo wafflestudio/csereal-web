@@ -28,7 +28,7 @@ export default function PeopleCell({
       <Link
         href={href}
         className="relative h-48 w-36"
-        // style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
+        style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
       >
         <Image src={imageURL} alt="프로필 사진" className="object-cover" fill quality={25} />
       </Link>
@@ -36,8 +36,8 @@ export default function PeopleCell({
         <div
           className={`relative flex w-full flex-row gap-2 pb-2.5 ${titleNewline ? 'flex-col' : ''}`}
         >
-          <Link href={href} className="hover:cursor-pointer">
-            <p className="text-[18px] font-bold">{title}</p>
+          <Link href={href} className="text-[18px] font-bold hover:cursor-pointer">
+            {title}
           </Link>
           <AcademicRankText academicRank={subtitle} />
           <HoverAnimationUnderline />
