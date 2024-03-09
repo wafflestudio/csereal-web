@@ -37,7 +37,7 @@ export default function SelectionList({
   const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 
   return (
-    <ul className={`grid ${gridStyle} mb-6 gap-3 pt-7 sm:mb-9 sm:pt-[44px]`}>
+    <ul className={`grid ${gridStyle} mb-6 gap-3 pt-7 sm:mb-9 sm:pt-11`}>
       {names.map((name) => (
         <SelectionItem
           key={name}
