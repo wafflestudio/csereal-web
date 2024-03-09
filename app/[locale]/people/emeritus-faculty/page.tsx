@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { getEmeritusFacultyList } from '@/apis/people';
 
-import PeopleRow from '@/app/[locale]/people/PeopleRow';
+import PeopleCell from '@/app/[locale]/people/PeopleRow';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -11,9 +11,9 @@ export default async function EmeritusFacultyPage() {
 
   return (
     <PageLayout title="역대 교수진" titleType="big">
-      <div className="grid grid-cols-4 gap-14">
+      <div className="grid grid-cols-[repeat(auto-fit,_144px)] gap-14">
         {facultyList.map((emeritusFaculty, index) => (
-          <PeopleRow
+          <PeopleCell
             type="EMIRITUS_FACULTY"
             key={index}
             id={emeritusFaculty.id}

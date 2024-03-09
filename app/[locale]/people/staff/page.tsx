@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { getStaffList } from '@/apis/people';
 
-import PeopleRow from '@/app/[locale]/people/PeopleRow';
+import PeopleCell from '@/app/[locale]/people/PeopleRow';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -11,9 +11,9 @@ export default async function StaffPage() {
 
   return (
     <PageLayout title="행정직원" titleType="big">
-      <div className="mb-10 grid grid-cols-4 gap-14">
+      <div className="grid grid-cols-[repeat(auto-fit,_144px)] gap-14">
         {staffList.map((staff, index) => (
-          <PeopleRow
+          <PeopleCell
             type="STAFF"
             key={index}
             id={staff.id}

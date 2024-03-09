@@ -5,7 +5,7 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, researchLabs, staff } from '@/utils/segmentNode';
 
-export interface PeopleRowProps {
+export interface PeopleCellProps {
   type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
   id: number;
   name: string;
@@ -30,7 +30,7 @@ const hrefList = {
   STAFF: staffPath,
 };
 
-export default function PeopleRow({
+export default function PeopleCell({
   type,
   id,
   name,
@@ -42,7 +42,7 @@ export default function PeopleRow({
   role,
   office,
   imageURL,
-}: PeopleRowProps) {
+}: PeopleCellProps) {
   const href = `${hrefList[type]}/${id}`;
 
   return (

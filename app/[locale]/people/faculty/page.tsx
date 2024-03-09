@@ -1,22 +1,19 @@
 import { getActiveFacultyList } from '@/apis/people';
 
-import PeopleRow from '@/app/[locale]/people/PeopleRow';
+import PeopleCell from '@/app/[locale]/people/PeopleRow';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function FacultyPage() {
-  const { description, professors } = await getActiveFacultyList();
+  const { professors } = await getActiveFacultyList();
 
   return (
     <PageLayout title="교수진" titleType="big">
-      <HTMLViewer htmlContent={description} />
-
-      <div className="mt-12 grid grid-cols-4 gap-14">
+      <div className="grid grid-cols-[repeat(auto-fit,_144px)] gap-14">
         {professors
           .filter((x) => x.academicRank !== '특임교수') // TODO: 백엔드 status값 반영 전 임시 코드
           .map((faculty, index) => (
-            <PeopleRow
+            <PeopleCell
               key={index}
               type="FACULTY"
               id={faculty.id}
@@ -36,7 +33,7 @@ export default async function FacultyPage() {
         {professors
           .filter((x) => x.academicRank === '특임교수') // TODO: 백엔드 status값 반영 전 임시 코드
           .map((faculty, index) => (
-            <PeopleRow
+            <PeopleCell
               key={index}
               type="FACULTY"
               id={faculty.id}
