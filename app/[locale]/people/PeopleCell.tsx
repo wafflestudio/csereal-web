@@ -5,8 +5,10 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, researchLabs, staff } from '@/utils/segmentNode';
 
-export interface PeopleRowProps {
-  type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
+export type PeopleType = 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
+
+export interface PeopleCellProps {
+  type: PeopleType;
   id: number;
   name: string;
   academicRank?: string;
@@ -30,7 +32,7 @@ const hrefList = {
   STAFF: staffPath,
 };
 
-export default function PeopleRow({
+export default function PeopleCell({
   type,
   id,
   name,
@@ -42,11 +44,11 @@ export default function PeopleRow({
   role,
   office,
   imageURL,
-}: PeopleRowProps) {
+}: PeopleCellProps) {
   const href = `${hrefList[type]}/${id}`;
 
   return (
-    <article className="group flex w-36 flex-col gap-3 text-xs text-neutral-700">
+    <article className="group flex w-fit flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
       <Link
         href={href}
         className="relative h-48 w-36"
@@ -60,16 +62,13 @@ export default function PeopleRow({
           fill
           className="object-cover"
           sizes="144px, 192px"
-          style={{
-            clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-          }}
         />
       </Link>
       <div className="flex flex-col items-start break-keep">
         {academicRank && (
-          <div className="relative mb-1 flex w-full flex-row items-end gap-1 pb-2">
-            <Link href={href} className="hover:cursor-pointer ">
-              <p className=" text-md font-bold">{name}</p>
+          <div className="relative flex w-full flex-row items-end gap-2 pb-2.5">
+            <Link href={href} className="hover:cursor-pointer">
+              <p className="text-[18px] font-bold">{name}</p>
             </Link>
             <AcademicRankText academicRank={academicRank} />
             <span className="absolute bottom-0 inline-block w-full border-b border-neutral-200" />
@@ -77,31 +76,25 @@ export default function PeopleRow({
           </div>
         )}
         {role && (
-          <div className="relative mb-1 flex w-full flex-col border-b-[1px] border-neutral-200 pb-1">
-            <Link href={href} className="hover:cursor-pointer ">
-              <p className=" text-md font-bold leading-5">{name}</p>
+          <div className="border-b-px relative flex w-full flex-col border-neutral-200 pb-2.5">
+            <Link href={href} className="hover:cursor-pointer">
+              <p className="text-[18px] font-bold leading-5">{name}</p>
             </Link>
             <p className="leading-6 text-neutral-500">{role}</p>
             <span className="absolute bottom-0 inline-block w-full border-b border-neutral-200" />
             <span className="absolute bottom-0 inline-block w-0 border-b border-main-orange transition-all duration-700 ease-out group-hover:w-full" />
           </div>
         )}
-        <div className="mt-1 flex flex-col items-start gap-[0.37rem] break-keep">
-          {labId !== undefined && labName !== undefined && (
-            <Link
-              href={`${labLink}/${labId}`}
-              className="items-center leading-[1.1rem] hover:underline"
-            >
+        <div className="mt-2.5 flex flex-col items-start gap-2 break-keep">
+          {labId && labName && (
+            <Link href={`${labLink}/${labId}`} className="items-center hover:underline">
               <p>{labName}</p>
             </Link>
           )}
-          {office && <p className="items-center leading-[1.1rem]">{office}</p>}
-          {phone && <p className="leading-[1.1rem]">{phone}</p>}
+          {office && <p className="items-center">{office}</p>}
+          {phone && <p>{phone}</p>}
           {email && (
-            <Link
-              href={`mailto:${email}`}
-              className="items-center leading-[1.1rem] hover:underline"
-            >
+            <Link href={`mailto:${email}`} className="items-center hover:underline">
               <p>{email}</p>
             </Link>
           )}
@@ -114,7 +107,7 @@ export default function PeopleRow({
 // 괄호 안 문자는 폰트 크기 작게
 function AcademicRankText({ academicRank }: { academicRank: string }) {
   return (
-    <p className="flex items-end text-neutral-500">
+    <p className="mb-px flex items-end text-neutral-500">
       {splitParenthesis(academicRank).map((rank, i) =>
         i === 0 ? (
           <span key={rank}>{rank}</span>

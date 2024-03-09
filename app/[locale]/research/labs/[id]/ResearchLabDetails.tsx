@@ -13,7 +13,7 @@ import { getPath } from '@/utils/page';
 import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 import { researchGroups } from '@/utils/segmentNode';
 
-import ResearchLabInfo from '../ResesarchLabInfo';
+import ResearchLabInfo from './ResesarchLabInfo';
 
 export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
   const { screenType } = useResponsive();
