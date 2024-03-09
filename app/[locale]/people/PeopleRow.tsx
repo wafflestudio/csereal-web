@@ -5,8 +5,10 @@ import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, researchLabs, staff } from '@/utils/segmentNode';
 
+export type PeopleType = 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
+
 export interface PeopleCellProps {
-  type: 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
+  type: PeopleType;
   id: number;
   name: string;
   academicRank?: string;
@@ -46,7 +48,7 @@ export default function PeopleCell({
   const href = `${hrefList[type]}/${id}`;
 
   return (
-    <article className="group flex w-36 flex-col gap-3 text-xs text-neutral-700">
+    <article className="group flex w-fit flex-row gap-5 text-xs sm:w-36 sm:flex-col sm:gap-3">
       <Link
         href={href}
         className="relative h-48 w-36"
