@@ -2,8 +2,8 @@ import { Link } from '@/navigation';
 
 import { getStaff } from '@/apis/people';
 
-import PeopleImageWithAnimation from '@/app/[locale]/people/PeopleImageWithAnimation';
-import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
+import PeopleImageWithAnimation from '@/app/[locale]/people/helper/PeopleImageWithAnimation';
+import PeopleInfoList from '@/app/[locale]/people/helper/PeopleInfoList';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

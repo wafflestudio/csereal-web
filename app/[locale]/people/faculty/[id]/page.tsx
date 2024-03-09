@@ -2,8 +2,8 @@ import { Link } from '@/navigation';
 
 import { getFaculty } from '@/apis/people';
 
-import FacultyInfoWithImage from '@/app/[locale]/people/FacultyInfoWithImage';
-import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
+import FacultyInfoWithImage from '@/app/[locale]/people/helper/FacultyInfoWithImage';
+import PeopleInfoList from '@/app/[locale]/people/helper/PeopleInfoList';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
