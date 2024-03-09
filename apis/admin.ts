@@ -1,6 +1,6 @@
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { getRequest } from '.';
+import { getRequest } from './network/client';
 
 export const getSlides = (pageNum: number) =>
   getRequest(

@@ -1,21 +1,21 @@
+export type ResearchGroupList = {
+  description: string;
+  groups: ResearchGroup[];
+};
+
 export interface ResearchGroup {
   id: number;
   name: string;
   description: string;
-  imageURL: string;
+  imageURL: string | null;
   labs: { id: number; name: string }[];
-}
-
-export interface ResearchGroups {
-  description: string;
-  groups: ResearchGroup[];
 }
 
 export interface ResearchCenter {
   id: number;
   name: string;
   description: string;
-  imageURL: string;
+  imageURL: string | null;
   websiteURL: string;
 }
 
@@ -26,7 +26,8 @@ export interface SimpleResearchLab {
   location: string;
   tel: string;
   acronym: string;
-  introductionMaterials: { pdf: string | null; youtube: string | null };
+  pdf: string | null;
+  youtube: string | null;
 }
 
 export interface ResearchLab extends SimpleResearchLab {

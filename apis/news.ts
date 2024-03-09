@@ -1,6 +1,6 @@
 import { PATCHNewsBody, POSTNewsBody } from '@/types/news';
 
-import { patchRequest, postRequest } from '.';
+import { patchRequest, postRequest } from './network/client';
 
 const newsPath = '/news';
 

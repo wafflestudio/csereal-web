@@ -13,7 +13,7 @@ export default function CserealModal() {
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="font-noto flex w-[53.25rem] flex-col bg-white pb-[103px] pt-[98px] shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
+      <div className=" flex w-[53.25rem] flex-col bg-white pb-[103px] pt-[98px] shadow-[0_0_30px_8px_rgba(0,0,0,0.25)]">
         <TeamName />
         <Members />
         <Contact />
@@ -25,8 +25,8 @@ export default function CserealModal() {
 function TeamName() {
   return (
     <h1 className="mx-auto mb-5 text-3xl tracking-[0.02em] text-main-orange">
-      <span className="font-noto font-light">Team </span>
-      <span className="font-noto font-bold">CSEREAL</span>
+      <span className=" font-light">Team </span>
+      <span className=" font-bold">CSEREAL</span>
     </h1>
   );
 }
@@ -44,10 +44,10 @@ function Members() {
 function Part({ part, members }: { part: string; members: string[] }) {
   return (
     <div>
-      <h4 className="font-noto mb-2.5 whitespace-nowrap text-center text-base font-bold tracking-[0.02em] text-main-orange">
+      <h4 className=" mb-2.5 whitespace-nowrap text-center text-base font-bold tracking-[0.02em] text-main-orange">
         {part}
       </h4>
-      <p className="font-yoon flex justify-center gap-[1.0625rem] whitespace-nowrap text-md font-normal tracking-[0.02em]">
+      <p className="flex justify-center gap-[1.0625rem] whitespace-nowrap text-md font-normal tracking-[0.02em]">
         {members.map((member) => (
           <span key={member}>{member}</span>
         ))}
@@ -59,12 +59,10 @@ function Part({ part, members }: { part: string; members: string[] }) {
 function Contact() {
   return (
     <div className="mx-auto">
-      <h4 className="font-noto mb-[7px] text-center text-base font-light tracking-[0.02em] text-main-orange">
+      <h4 className=" mb-[7px] text-center text-base font-light tracking-[0.02em] text-main-orange">
         Contact Us
       </h4>
-      <span className="font-yoon font-md font-normal tracking-[0.02em]">
-        csereal.waffle@gmail.com
-      </span>
+      <span className="font-md font-normal tracking-[0.02em]">csereal.waffle@gmail.com</span>
     </div>
   );
 }

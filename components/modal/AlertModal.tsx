@@ -53,7 +53,7 @@ function AlertMessage({ message }: { message: string }) {
 function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {
   return (
     <button
-      className={`font-noto font--bold h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 px-[17px] text-xs text-neutral-500 hover:bg-neutral-200 hover:text-neutral-700`}
+      className={` font--bold h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 px-[17px] text-xs text-neutral-500 hover:bg-neutral-200 hover:text-neutral-700`}
       onClick={onClick}
       type="button"
     >

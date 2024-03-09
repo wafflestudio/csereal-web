@@ -1,4 +1,4 @@
-import LoginUserVisible from '@/components/common/auth/LoginUserVisible';
+import LoginVisible from '@/components/common/LoginVisible';
 
 import {
   ChangeDateButton,
@@ -22,9 +22,9 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
         <ChangeDateButton targetDate={addDayToDate(date, 7)} symbolName="navigate_next" />
         {showTodayButton && <TodayButton />}
       </div>
-      <LoginUserVisible>
+      <LoginVisible>
         <MakeReservationButton roomId={roomId} />
-      </LoginUserVisible>
+      </LoginVisible>
     </div>
   );
 }

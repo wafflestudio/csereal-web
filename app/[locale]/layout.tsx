@@ -1,19 +1,19 @@
-import { notFound } from 'next/navigation';
-import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
-import NavbarContextProviderWrapper from '@/contexts/NavbarContextWrapper';
+import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
 
+import Footer from '@/components/layout/footer/Footer';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
 import '@/styles/globals.css';
 
-import Content from './content';
+import MarginedMain from './MarginedMain';
 import { SWRProvider } from './swr-provider';
 
 export const metadata = {
@@ -21,8 +21,10 @@ export const metadata = {
   description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
 };
 
+// i18n의 Static rendering 관련 에러 제거 위해 추가
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ko' }];
+  const locales = ['en', 'ko'];
+  return locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({
@@ -32,7 +34,8 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
+  // i18n의 Static rendering 관련 에러 제거 위해 추가
+  // unstable인데 왜 안쓰면 빌드 안시켜줌??????
   unstable_setRequestLocale(params.locale);
 
   return (
@@ -42,8 +45,15 @@ export default async function RootLayout({
     >
       <body>
         <ContextProviders locale={params.locale}>
-          <Navbar />
-          <Content>{children}</Content>
+          <NavbarContextProvider>
+            <Navbar />
+          </NavbarContextProvider>
+
+          <MarginedMain>
+            {children}
+            <Footer />
+          </MarginedMain>
+
           <ModalContainer />
           <Toaster />
         </ContextProviders>
@@ -52,24 +62,17 @@ export default async function RootLayout({
   );
 }
 
-async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  const messages = useMessages();
 
   return (
     <SWRProvider>
       <SessionContextProvider>
-        <NavbarContextProviderWrapper>
-          <ModalContextProvider>
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              {children}
-            </NextIntlClientProvider>
-          </ModalContextProvider>
-        </NavbarContextProviderWrapper>
+        <ModalContextProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ModalContextProvider>
       </SessionContextProvider>
     </SWRProvider>
   );

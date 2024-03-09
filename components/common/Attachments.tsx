@@ -1,16 +1,14 @@
 import Clip from '@/public/image/clip.svg';
 
-interface AttachmentProps {
-  files: Attachment[];
-}
-
 interface Attachment {
   name: string;
   bytes: number;
   url: string;
 }
 
-export default function Attachments({ files }: AttachmentProps) {
+export default function Attachments({ files }: { files: Attachment[] }) {
+  if (files.length === 0) return <></>;
+
   return (
     <div className="relative mb-6 mt-5 flex w-[40rem] flex-col gap-2 rounded-sm border border-neutral-300 bg-white px-4 py-3">
       {files.map((file, index) => (

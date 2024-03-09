@@ -1,42 +1,67 @@
 'use client';
 
-import React, { createContext, PropsWithChildren, useContext, useMemo } from 'react';
-import useSWR from 'swr';
+import React, {
+  createContext,
+  useContext,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
-import { getRequest } from '@/apis';
+import { getIsStaff, getMockAuth, removeAuth } from '@/actions/sessionActions';
+import { useRouter } from '@/navigation';
 
-interface SessionContextData {
-  user?: User;
-  isLoading: boolean;
-}
+import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
-const SessionContext = createContext<SessionContextData>({
-  user: undefined,
-  isLoading: true,
+export type UserState = 'logout' | 'non-staff' | 'staff';
+
+type SessionContextData = {
+  state: UserState;
+  logout: () => Promise<void>;
+  login: () => Promise<void>;
+};
+
+export const SessionContext = createContext<SessionContextData>({
+  state: 'logout',
+  logout: async () => {},
+  login: async () => {},
 });
 
 export const useSessionContext = () => useContext(SessionContext);
 
-export interface User {
-  isStaff: boolean;
-}
-
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const { data, isLoading, error } = useSWR<User>('/user/is-staff', getRequest);
+  const router = useRouter();
+  const [state, setState] = useState<UserState>('logout');
 
-  const user = useMemo(() => {
-    if (data?.isStaff === undefined || error) {
-      return undefined;
+  const refresh = useCallback(async () => {
+    const resp = await getIsStaff();
+    setState(resp);
+  }, []);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
+
+  const login = useCallback(async () => {
+    if (process.env.NODE_ENV === 'production') {
+      router.push(LOGIN_URL);
     } else {
-      return {
-        isStaff: data.isStaff,
-      };
+      await getMockAuth();
     }
-  }, [data?.isStaff, error]);
+    await refresh();
+  }, [refresh, router]);
 
-  return <SessionContext.Provider value={{ user, isLoading }}>{children}</SessionContext.Provider>;
+  const logout = useCallback(async () => {
+    if (process.env.NODE_ENV === 'production') {
+      router.push(LOGOUT_URL);
+    } else {
+      removeAuth();
+    }
+    await refresh();
+  }, [refresh, router]);
+
+  return (
+    <SessionContext.Provider value={{ state, login, logout }}>{children}</SessionContext.Provider>
+  );
 }
-
-const deleteCookie = (key: string) => {
-  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-};

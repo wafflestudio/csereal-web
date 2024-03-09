@@ -6,7 +6,7 @@ import ImageWithFallback from './ImageWithFallback';
 import HTMLViewer from '../editor/HTMLViewer';
 
 interface ContentWithImageProps {
-  imageURL?: string;
+  imageURL?: string | null;
   content: string;
   containerClassName?: string;
 }

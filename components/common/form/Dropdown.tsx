@@ -1,7 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { useOutClickAlerter } from '@/utils/hooks/useOutClickAlerter';
+import { useClickOutside } from '@/utils/hooks/useClickOutside';
 
+// TODO: onClick을 인덱스 기반에서 값 기반으로 사용하는 옵션
 interface DropdownProps {
   contents: string[];
   selectedIndex: number;
@@ -13,7 +14,7 @@ export default function Dropdown({ contents, selectedIndex, onClick, borderStyle
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useOutClickAlerter(
+  useClickOutside(
     ref,
     useCallback(() => setExpanded(false), []),
   );

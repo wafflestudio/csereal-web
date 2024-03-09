@@ -17,13 +17,13 @@ export interface Reservation {
   professor: string;
   purpose?: string;
   // 영어 이름
-  roomName: string;
+  roomName: string | null;
   // 방 주소
   roomLocation: string;
 
-  userName: string;
-  contactEmail: string;
-  contactPhone: string;
+  userName: string | null;
+  contactEmail: string | null;
+  contactPhone: string | null;
 }
 
 export interface ReservationPostBody {

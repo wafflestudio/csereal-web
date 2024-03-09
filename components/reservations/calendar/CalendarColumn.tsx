@@ -70,7 +70,7 @@ const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }
     >
       {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
       <p
-        className="itemd-center flex text-xs font-medium"
+        className="item-center flex text-xs font-medium"
         style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
       >
         {reservation.title}
@@ -86,7 +86,7 @@ const CalendarCellTitle = ({ startTime, endTime }: { startTime: Date; endTime: D
 
   return (
     <p
-      className="flex items-center text-xs font-bold text-neutral-700"
+      className="mt-[2px] flex items-center text-xs font-bold text-neutral-800"
       style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
     >
       {timeText}
@@ -111,8 +111,6 @@ const getReservationCellLayout = (startTime: Date, endTime: Date) => {
   );
   const topOffset =
     ((startTime.getTime() - topTime.getTime()) / THIRTY_MIN_IN_MILLISEC) * UNIT_HEIGHT_IN_REM;
-
-  console.log(startTime, topTime, topOffset);
 
   return { topOffset, unitCnt };
 };

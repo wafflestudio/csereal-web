@@ -1,5 +1,3 @@
-'use client';
-
 import { Fragment } from 'react';
 
 import { Link } from '@/navigation';
@@ -33,11 +31,7 @@ export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) 
       <LocationCell location={lab.location} />
       <TelephoneCell tel={lab.tel} />
       <AcronymCell acronym={lab.acronym} />
-      <IntroMaterialsCell
-        labName={lab.name}
-        pdf={lab.introductionMaterials.pdf}
-        youtube={lab.introductionMaterials.youtube}
-      />
+      <IntroMaterialsCell labName={lab.name} pdf={lab.pdf} youtube={lab.youtube} />
     </li>
   );
 }

@@ -38,14 +38,14 @@ type HoverStyle = 'fill' | 'orange';
 type DefaultStyle = 'orange' | 'gray' | 'fill';
 
 const HOVER_STYLE: { [key in HoverStyle]: string } = {
-  fill: 'font-noto hover:bg-main-orange hover:border-main-orange hover:text-white',
+  fill: ' hover:bg-main-orange hover:border-main-orange hover:text-white',
   orange: 'hover:bg-white hover:border-main-orange hover:text-main-orange',
 };
 
 const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
   orange: 'bg-white border-main-orange text-main-orange ',
   gray: 'bg-white border-neutral-400 text-neutral-400',
-  fill: 'font-noto bg-main-orange border-main-orange text-white',
+  fill: ' bg-main-orange border-main-orange text-white',
 };
 
 interface TagProps {

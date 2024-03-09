@@ -48,7 +48,7 @@ export default function NewsRow({
         hideDivider ? '' : 'border-b border-neutral-100'
       }`}
     >
-      <div className="mr-[3.75rem] flex flex-1 flex-col justify-between break-keep">
+      <div className="mr-8 flex flex-1 flex-col justify-between break-keep">
         <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">{dateStr}</time>
 
         <div className="flex flex-col items-start">

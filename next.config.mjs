@@ -1,19 +1,18 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
 
-  // TODO: 아래 옵션 없이 빌드
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
   },
 
+  // react-svgr 설정
+  // https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
@@ -98,5 +97,7 @@ const nextConfig = {
     ];
   },
 };
+
+const withNextIntl = createNextIntlPlugin();
 
 export default withNextIntl(nextConfig);

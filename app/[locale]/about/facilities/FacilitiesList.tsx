@@ -9,13 +9,13 @@ import HTMLViewer from '../../../../components/editor/HTMLViewer';
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {
   return (
     <div className="flex flex-col">
-      {facilities.facilitiesList.map((post, index) => (
+      {facilities.map((post, index) => (
         <FacilitiesRow
           key={index}
           name={post.name}
           description={post.description}
-          location={post.location}
-          imageURL={post.imageURL}
+          location={post.locations.join(', ')}
+          imageURL={post.imageURL ?? ''} // TODO: imageURL이 non-null되면 수정
           border={index !== 0}
         />
       ))}
@@ -39,9 +39,7 @@ function FacilitiesRow({ name, description, location, imageURL, border }: Facili
       }`}
     >
       <div className="flex w-[35.5rem] flex-col">
-        <h3 className="font-noto mb-[.69rem] text-base font-bold leading-5 text-neutral-800">
-          {name}
-        </h3>
+        <h3 className=" mb-[.69rem] text-base font-bold leading-5 text-neutral-800">{name}</h3>
         <HTMLViewer htmlContent={description} />
         <div className="flex items-center gap-[0.12rem]">
           <Distance />
@@ -55,11 +53,9 @@ function FacilitiesRow({ name, description, location, imageURL, border }: Facili
 }
 
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
-  const src = `/image/facilities/${imageURL}-color.png`;
-
   return (
     <div className="relative h-40 w-60">
-      <Image alt="대표 이미지" src={src} fill sizes="10rem" />
+      <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" />
     </div>
   );
 }

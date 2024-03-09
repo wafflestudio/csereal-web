@@ -2,7 +2,7 @@ export interface SegmentNode {
   name: string;
   segment: string;
   isPage: boolean;
-  children: SegmentNode[] | null;
+  children: SegmentNode[];
   parent: SegmentNode | null;
   description?: string | null;
 }
@@ -28,7 +28,7 @@ export const overview: SegmentNode = {
   segment: 'overview',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const greetings: SegmentNode = {
@@ -36,7 +36,7 @@ export const greetings: SegmentNode = {
   segment: 'greetings',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const history: SegmentNode = {
@@ -44,7 +44,7 @@ export const history: SegmentNode = {
   segment: 'history',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const futureCareers: SegmentNode = {
@@ -52,7 +52,7 @@ export const futureCareers: SegmentNode = {
   segment: 'future-careers',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const studentClubs: SegmentNode = {
@@ -60,7 +60,7 @@ export const studentClubs: SegmentNode = {
   segment: 'student-clubs',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const facilities: SegmentNode = {
@@ -68,7 +68,7 @@ export const facilities: SegmentNode = {
   segment: 'facilities',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const contact: SegmentNode = {
@@ -76,7 +76,7 @@ export const contact: SegmentNode = {
   segment: 'contact',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const directions: SegmentNode = {
@@ -84,7 +84,7 @@ export const directions: SegmentNode = {
   segment: 'directions',
   isPage: true,
   parent: about,
-  children: null,
+  children: [],
 };
 
 export const community: SegmentNode = {
@@ -100,7 +100,7 @@ export const notice: SegmentNode = {
   segment: 'notice',
   isPage: true,
   parent: community,
-  children: null,
+  children: [],
 };
 
 export const news: SegmentNode = {
@@ -108,7 +108,7 @@ export const news: SegmentNode = {
   segment: 'news',
   isPage: true,
   parent: community,
-  children: null,
+  children: [],
 };
 
 export const seminar: SegmentNode = {
@@ -116,7 +116,7 @@ export const seminar: SegmentNode = {
   segment: 'seminar',
   isPage: true,
   parent: community,
-  children: null,
+  children: [],
 };
 
 export const facultyRecruitment: SegmentNode = {
@@ -124,7 +124,7 @@ export const facultyRecruitment: SegmentNode = {
   segment: 'faculty-recruitment',
   isPage: true,
   parent: community,
-  children: null,
+  children: [],
 };
 
 export const people: SegmentNode = {
@@ -140,7 +140,7 @@ export const faculty: SegmentNode = {
   segment: 'faculty',
   isPage: true,
   parent: people,
-  children: null,
+  children: [],
 };
 
 export const emeritusFaculty: SegmentNode = {
@@ -148,7 +148,7 @@ export const emeritusFaculty: SegmentNode = {
   segment: 'emeritus-faculty',
   isPage: true,
   parent: people,
-  children: null,
+  children: [],
 };
 
 export const staff: SegmentNode = {
@@ -156,7 +156,7 @@ export const staff: SegmentNode = {
   segment: 'staff',
   isPage: true,
   parent: people,
-  children: null,
+  children: [],
 };
 
 export const research: SegmentNode = {
@@ -172,7 +172,7 @@ export const researchGroups: SegmentNode = {
   segment: 'groups',
   isPage: true,
   parent: research,
-  children: null,
+  children: [],
 };
 
 export const researchCenters: SegmentNode = {
@@ -180,7 +180,7 @@ export const researchCenters: SegmentNode = {
   segment: 'centers',
   isPage: true,
   parent: research,
-  children: null,
+  children: [],
 };
 
 export const researchLabs: SegmentNode = {
@@ -188,7 +188,7 @@ export const researchLabs: SegmentNode = {
   segment: 'labs',
   isPage: true,
   parent: research,
-  children: null,
+  children: [],
 };
 
 export const topConferenceList: SegmentNode = {
@@ -196,7 +196,7 @@ export const topConferenceList: SegmentNode = {
   segment: 'top-conference-list',
   isPage: true,
   parent: research,
-  children: null,
+  children: [],
 };
 
 export const admissions: SegmentNode = {
@@ -220,7 +220,7 @@ export const undergraduateEarlyAdmission: SegmentNode = {
   segment: 'early-admission',
   isPage: true,
   parent: undergraduateAdmission,
-  children: null,
+  children: [],
 };
 
 export const undergraduateRegularAdmission: SegmentNode = {
@@ -228,7 +228,7 @@ export const undergraduateRegularAdmission: SegmentNode = {
   segment: 'regular-admission',
   isPage: true,
   parent: undergraduateAdmission,
-  children: null,
+  children: [],
 };
 
 export const graduateAdmission: SegmentNode = {
@@ -244,7 +244,7 @@ export const graduateRegularAdmission: SegmentNode = {
   segment: 'regular-admission',
   isPage: true,
   parent: graduateAdmission,
-  children: null,
+  children: [],
 };
 
 export const internationalAdmission: SegmentNode = {
@@ -308,7 +308,7 @@ export const undergraduateGuide: SegmentNode = {
   segment: 'guide',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const undergraduateCourses: SegmentNode = {
@@ -316,7 +316,7 @@ export const undergraduateCourses: SegmentNode = {
   segment: 'courses',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const curriculum: SegmentNode = {
@@ -324,7 +324,7 @@ export const curriculum: SegmentNode = {
   segment: 'curriculum',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const generalStudies: SegmentNode = {
@@ -332,7 +332,7 @@ export const generalStudies: SegmentNode = {
   segment: 'general-studies-requirements',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const degree: SegmentNode = {
@@ -340,7 +340,7 @@ export const degree: SegmentNode = {
   segment: 'degree-requirements',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const undergraduateCourseChanges: SegmentNode = {
@@ -348,7 +348,7 @@ export const undergraduateCourseChanges: SegmentNode = {
   segment: 'course-changes',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const undergraduateScholarship: SegmentNode = {
@@ -356,7 +356,7 @@ export const undergraduateScholarship: SegmentNode = {
   segment: 'scholarship',
   isPage: true,
   parent: undergraduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const graduateAcademics: SegmentNode = {
@@ -372,7 +372,7 @@ export const graduateGuide: SegmentNode = {
   segment: 'guide',
   isPage: true,
   parent: graduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const graduateCourses: SegmentNode = {
@@ -380,7 +380,7 @@ export const graduateCourses: SegmentNode = {
   segment: 'courses',
   isPage: true,
   parent: graduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const graduateCourseChanges: SegmentNode = {
@@ -388,7 +388,7 @@ export const graduateCourseChanges: SegmentNode = {
   segment: 'course-changes',
   isPage: true,
   parent: graduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const graduateScholarship: SegmentNode = {
@@ -396,7 +396,7 @@ export const graduateScholarship: SegmentNode = {
   segment: 'scholarship',
   isPage: true,
   parent: graduateAcademics,
-  children: null,
+  children: [],
 };
 
 export const reservations: SegmentNode = {
@@ -428,7 +428,7 @@ export const bldg301room417: SegmentNode = {
   segment: '301-417',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Maldives: SegmentNode = {
@@ -436,7 +436,7 @@ export const bldg301Maldives: SegmentNode = {
   segment: '301-521',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Hawaii: SegmentNode = {
@@ -444,7 +444,7 @@ export const bldg301Hawaii: SegmentNode = {
   segment: '301-551-4',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Baekdu: SegmentNode = {
@@ -452,7 +452,7 @@ export const bldg301Baekdu: SegmentNode = {
   segment: '301-552-1',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Alps: SegmentNode = {
@@ -460,7 +460,7 @@ export const bldg301Alps: SegmentNode = {
   segment: '301-552-2',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Santorini: SegmentNode = {
@@ -468,7 +468,7 @@ export const bldg301Santorini: SegmentNode = {
   segment: '301-552-3',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301Jeju: SegmentNode = {
@@ -476,7 +476,7 @@ export const bldg301Jeju: SegmentNode = {
   segment: '301-553-6',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg301ProfMeeting: SegmentNode = {
@@ -484,7 +484,7 @@ export const bldg301ProfMeeting: SegmentNode = {
   segment: '301-317',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg302room308: SegmentNode = {
@@ -492,7 +492,7 @@ export const bldg302room308: SegmentNode = {
   segment: '302-308',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg302room309first: SegmentNode = {
@@ -500,7 +500,7 @@ export const bldg302room309first: SegmentNode = {
   segment: '302-309-1',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg302room309second: SegmentNode = {
@@ -508,7 +508,7 @@ export const bldg302room309second: SegmentNode = {
   segment: '302-309-2',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg302room309third: SegmentNode = {
@@ -516,7 +516,7 @@ export const bldg302room309third: SegmentNode = {
   segment: '302-309-3',
   isPage: true,
   parent: seminarRoom,
-  children: null,
+  children: [],
 };
 
 export const labRoom: SegmentNode = {
@@ -532,7 +532,7 @@ export const softwareLab: SegmentNode = {
   segment: '302-311-1',
   isPage: true,
   parent: labRoom,
-  children: null,
+  children: [],
 };
 
 export const hardwareLab: SegmentNode = {
@@ -540,7 +540,7 @@ export const hardwareLab: SegmentNode = {
   segment: '302-310-2',
   isPage: true,
   parent: labRoom,
-  children: null,
+  children: [],
 };
 
 export const lectureRoom: SegmentNode = {
@@ -556,7 +556,7 @@ export const bldg302room208: SegmentNode = {
   segment: '302-208',
   isPage: true,
   parent: lectureRoom,
-  children: null,
+  children: [],
 };
 
 export const bldg302room209: SegmentNode = {
@@ -564,7 +564,7 @@ export const bldg302room209: SegmentNode = {
   segment: '302-209',
   isPage: true,
   parent: lectureRoom,
-  children: null,
+  children: [],
 };
 
 main.children = [about, community, people, research, admissions, academics, reservations];

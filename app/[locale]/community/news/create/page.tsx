@@ -23,6 +23,7 @@ export default function NewsCreatePage() {
   const handleCancel = () => router.push(newsPath);
 
   const handleComplete = async (content: PostEditorContent) => {
+    // HTML 생성을 위한 로그
     console.log(content.description);
     validateNewsForm(content);
 

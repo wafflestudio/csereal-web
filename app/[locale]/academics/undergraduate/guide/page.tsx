@@ -1,5 +1,3 @@
-import GuideContent from '@/public/image/undergraduate_guide_contents.svg';
-
 import { getAcademicsGuide } from '@/apis/academics';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -10,8 +8,7 @@ export default async function UndergraduateGuidePage() {
 
   return (
     <PageLayout titleType="big">
-      <GuideContent />
-      <HTMLViewer htmlContent={data.description} className="mt-7" />
+      <HTMLViewer htmlContent={data.description} />
     </PageLayout>
   );
 }

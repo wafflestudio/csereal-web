@@ -90,8 +90,7 @@ const PurposeTextInputFieldset = ({
         사용 목적<span className="text-main-orange">*</span>
       </legend>
       <textarea
-        className={`h-14 w-full rounded-sm border border-neutral-200
-            bg-neutral-50 p-1 outline-none`}
+        className="h-14 w-full rounded-sm border border-neutral-200 bg-neutral-50 p-1 outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

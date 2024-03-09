@@ -24,7 +24,7 @@ export default function FacultyInfoWithImage({
       <PeopleImageWithAnimation imageURL={imageURL} />
       <div className="absolute bottom-0 left-0 z-10 h-[196px] w-64">
         <div className="absolute h-full w-full">
-          <div className="font-noto flex flex-col gap-[9px] bg-white p-5 text-sm font-medium text-neutral-600">
+          <div className=" flex flex-col gap-[9px] bg-white p-5 text-sm font-medium text-neutral-600">
             {office && <FacultyInfoWithSymbols symbol="distance" content={office} />}
             {phone && <FacultyInfoWithSymbols symbol="phone_in_talk" content={phone} />}
             {fax && <FacultyInfoWithSymbols symbol="print" content={fax} />}

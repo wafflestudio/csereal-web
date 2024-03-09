@@ -8,18 +8,18 @@ import { main } from '@/utils/segmentNode';
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';
 
+// 네비바 컴포넌트들은 모두 interactivity가 크므로 CSR 처리합니다.
 export default function Navbar() {
   const { navbarState, setNavbarState } = useNavbarContext();
   const node = useCurrentSegmentNode();
 
   const handleMouseLeave = () => {
-    if (node === main) setNavbarState({ type: 'expanded' });
-    else setNavbarState({ type: 'closed' });
+    setNavbarState({ type: node === main ? 'expanded' : 'closed' });
   };
 
   return (
     <div className={`absolute bottom-0 top-0 z-50 hidden sm:flex`} onMouseLeave={handleMouseLeave}>
-      <NavbarRoot state={navbarState} setState={setNavbarState} />
+      <NavbarRoot />
       {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
     </div>
   );

@@ -1,30 +1,20 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { SegmentNode, main } from '@/utils/segmentNode';
 
 export type NavbarState =
-  | {
-      // 접힌 상태
-      type: 'closed';
-    }
-  | {
-      // 펼쳐진 상태
-      type: 'expanded';
-    }
-  | {
-      // 세부 페이지 보이는 상태
-      type: 'hovered';
-      segmentNode: SegmentNode;
-    };
+  | { type: 'closed' }
+  | { type: 'expanded' }
+  | { type: 'hovered'; segmentNode: SegmentNode };
 
-interface NavbarContextContent {
+type NavbarContextContent = {
   navbarState: NavbarState;
   setNavbarState: (state: NavbarState) => void;
-}
+};
 
 const NavbarContext = createContext<NavbarContextContent>({
   navbarState: { type: 'closed' },
@@ -38,6 +28,12 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const [navbarState, setNavbarState] = useState<NavbarState>({
     type: node === main ? 'expanded' : 'closed',
   });
+
+  useEffect(() => {
+    // 메인 화면에서는 펼쳐져 있습니다.
+    // 페이지 이동시 접습니다.
+    setNavbarState({ type: node === main ? 'expanded' : 'closed' });
+  }, [node]);
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>
