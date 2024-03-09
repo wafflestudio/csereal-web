@@ -16,11 +16,7 @@ import ResearchGroupDetails from './ResearchGroupDetails';
 
 const researchGroupsPath = getPath(researchGroups);
 
-interface ResearchGroupsPageContentProps {
-  groups: ResearchGroup[];
-}
-
-export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPageContentProps) {
+export default function ResearchGroupsPageContent({ groups }: { groups: ResearchGroup[] }) {
   const searchParams = useSearchParams();
   const [selected, setSelected] = useState<string>(searchParams.get('selected') ?? '');
   const selectedGroup = findSelectedItem<ResearchGroup>(
@@ -44,7 +40,7 @@ export default function ResearchGroupsPageContent({ groups }: ResearchGroupsPage
         <ResearchGroupDetails group={selectedGroup} />
       ) : (
         <p>
-          <b>{`'${selected}'`}</b> 연구그룹은 존재하지 않습니다.
+          <b>{selected}</b> 연구그룹은 존재하지 않습니다.
         </p>
       )}
     </PageLayout>

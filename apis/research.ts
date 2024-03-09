@@ -1,15 +1,15 @@
 import {
   getMockResearchCenters,
-  getMockResearchDescription,
-  getMockResearchGroups,
   getMockResearchLab,
   getMockSimpleResearchLabs,
   getMockTopConferenceList,
 } from '@/data/research';
 
-export const getResearchDescription = getMockResearchDescription;
+import { ResearchGroupList } from '@/types/research';
 
-export const getResearchGroups = getMockResearchGroups;
+import { getRequest } from './network/server';
+
+export const getResearchGroups = () => getRequest<ResearchGroupList>('/research/groups');
 
 export const getResearchCenters = getMockResearchCenters;
 

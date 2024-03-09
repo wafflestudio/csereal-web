@@ -19,15 +19,17 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
       <div className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]">
         <HTMLViewer htmlContent={group.description} />
       </div>
-      <div className="relative mt-6 h-[200px]">
-        <Image
-          src={group.imageURL}
-          alt={`${group.name}_연구그룹_사진`}
-          priority
-          fill
-          objectFit="contain"
-        />
-      </div>
+      {group.imageURL !== null && (
+        <div className="relative mt-6 h-[200px]">
+          <Image
+            src={group.imageURL}
+            alt={`${group.name}_연구그룹_사진`}
+            priority
+            fill
+            objectFit="contain"
+          />
+        </div>
+      )}
       <ResearchGroupLabs labs={group.labs} />
     </div>
   );

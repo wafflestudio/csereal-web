@@ -1,14 +1,14 @@
+export type ResearchGroupList = {
+  description: string;
+  groups: ResearchGroup[];
+};
+
 export interface ResearchGroup {
   id: number;
   name: string;
   description: string;
-  imageURL: string;
+  imageURL: string | null;
   labs: { id: number; name: string }[];
-}
-
-export interface ResearchGroups {
-  description: string;
-  groups: ResearchGroup[];
 }
 
 export interface ResearchCenter {
