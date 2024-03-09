@@ -12,32 +12,25 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
-import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
-import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
-
 interface SeminarPostPageProps {
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }
 
-const seminarPath = getPath(seminar);
-
 export default async function SeminarPostPage({ params, searchParams }: SeminarPostPageProps) {
   const id = parseInt(params.id);
   if (Number.isNaN(id)) throw new Error('/seminar/[id]: id가 숫자가 아닙니다.');
 
-  const currPost = await getSeminarPost(parseInt(params.id), searchParams);
-  const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, seminarPath);
+  const seminar = await getSeminarPost(parseInt(params.id), searchParams);
 
   return (
-    <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
+    <PageLayout title={seminar.title} titleType="small" titleMargin="mb-5">
       <div className="mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
-        {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
+        {seminar.attachments.length !== 0 && <Attachments files={seminar.attachments} />}
 
         <div className="relative float-right mb-7 ml-7 mt-4 h-60 w-60">
           <ImageWithFallback
-            src={currPost.imageURL ?? undefined}
+            src={seminar.imageURL ?? undefined}
             alt="대표 이미지"
             fill
             className="flex-1 object-cover"
@@ -47,44 +40,38 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
         <div>
           {'이름: '}
-          <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
+          <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
         </div>
 
-        <div>{currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}</div>
+        <div>{seminar.speakerTitle && <p>직함: {seminar.speakerTitle}</p>}</div>
         <div>
           {'소속: '}
-          <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
+          <LinkOrText href={seminar.affiliationURL}>{seminar.affiliation}</LinkOrText>
         </div>
 
-        <div className="mt-10">주최: {currPost.host}</div>
+        <div className="mt-10">주최: {seminar.host}</div>
 
-        <div>일시: {formatStartEndDate(currPost.startDate, currPost.endDate)}</div>
+        <div>일시: {formatStartEndDate(seminar.startDate, seminar.endDate)}</div>
 
-        <div>장소: {currPost.location}</div>
+        <div>장소: {seminar.location}</div>
 
-        {currPost.description && (
+        {seminar.description && (
           <>
             <div className="mt-12  font-bold">요약</div>
-            <HTMLViewer htmlContent={currPost.description} />
+            <HTMLViewer htmlContent={seminar.description} />
           </>
         )}
 
-        {currPost.introduction && (
+        {seminar.introduction && (
           <>
             <div className="mt-12  font-bold">연사 소개</div>
-            <HTMLViewer htmlContent={currPost.introduction} />
+            <HTMLViewer htmlContent={seminar.introduction} />
           </>
         )}
       </div>
 
       <StraightNode />
-      <AdjPostNav
-        prevPost={prevPostPreview}
-        nextPost={nextPostPreview}
-        postType="seminar"
-        id={params.id}
-        margin="mt-12"
-      />
+      <AdjPostNav post={seminar} postType="seminar" id={params.id} margin="mt-12" />
     </PageLayout>
   );
 }

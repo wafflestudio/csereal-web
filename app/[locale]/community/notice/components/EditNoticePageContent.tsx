@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
-import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
+import { deleteNoticeAction, revalidateNoticeTag } from '@/actions/noticeActions';
 
 import { patchNotice } from '@/apis/notice';
 
@@ -79,7 +79,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
 
   const handleDelete = async () => {
     startTransition(async () => {
-      const result = await noticeDeleteAction(id);
+      const result = await deleteNoticeAction(id);
       result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
     });
   };

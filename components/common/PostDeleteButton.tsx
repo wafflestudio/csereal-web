@@ -3,7 +3,7 @@
 import { useTransition } from 'react';
 
 import { newsDeleteAction } from '@/actions/newsActions';
-import { noticeDeleteAction } from '@/actions/noticeActions';
+import { deleteNoticeAction } from '@/actions/noticeActions';
 import { seminarDeleteAction } from '@/actions/seminarActions';
 
 import useModal from '@/utils/hooks/useModal';
@@ -25,7 +25,7 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
     startTransition(async () => {
       switch (postType) {
         case 'notice': {
-          const result = await noticeDeleteAction(idInNumber);
+          const result = await deleteNoticeAction(idInNumber);
           result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
           break;
         }

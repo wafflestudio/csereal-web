@@ -13,7 +13,7 @@ import AlertModal from '@/components/modal/AlertModal';
 import { ADMIN_MENU, SlidePreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';

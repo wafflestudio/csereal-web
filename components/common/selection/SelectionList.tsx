@@ -8,7 +8,7 @@ import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/ind
 
 import { COLOR_THEME } from '@/constants/color';
 
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {
   names: readonly string[];
