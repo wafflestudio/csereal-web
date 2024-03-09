@@ -1,5 +1,3 @@
-export const dynamic = 'force-static';
-
 import { getResearchLab } from '@/apis/research';
 
 import ResearchLabDetails from '@/app/[locale]/research/labs/ResearchLabDetails';
@@ -18,12 +16,4 @@ export default async function ResearchLabDetailPage({ params }: LabDetailPagePro
       <ResearchLabDetails lab={lab} />
     </PageLayout>
   );
-}
-
-export async function generateStaticParams() {
-  return Array(33)
-    .fill(0)
-    .map((_, i) => ({
-      id: i + '',
-    }));
 }

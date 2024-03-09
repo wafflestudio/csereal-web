@@ -10,9 +10,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
   const data = await getEmeritusFaculty(params.id);
 
-  //   const startTime = `${data.startDate.getFullYear()}년 ${data.startDate.getMonth() + 1}월`;
-  //   const endTime = `${data.endDate.getFullYear()}년 ${data.endDate.getMonth() + 1}월`;
-  //   const careerTime = { startTime, endTime };
   const careerTime = { startTime: data.startDate, endTime: data.endDate };
 
   return (

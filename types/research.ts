@@ -26,7 +26,8 @@ export interface SimpleResearchLab {
   location: string;
   tel: string;
   acronym: string;
-  introductionMaterials: { pdf: string | null; youtube: string | null };
+  pdf: string | null;
+  youtube: string | null;
 }
 
 export interface ResearchLab extends SimpleResearchLab {

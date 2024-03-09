@@ -1,10 +1,10 @@
 import {
-  getMockResearchLab,
-  getMockSimpleResearchLabs,
-  getMockTopConferenceList,
-} from '@/data/research';
-
-import { ResearchCenter, ResearchGroupList } from '@/types/research';
+  ResearchCenter,
+  ResearchGroupList,
+  ResearchLab,
+  SimpleResearchLab,
+  TopConferenceList,
+} from '@/types/research';
 
 import { getRequest } from './network/server';
 
@@ -12,8 +12,8 @@ export const getResearchGroups = () => getRequest<ResearchGroupList>('/research/
 
 export const getResearchCenters = () => getRequest<ResearchCenter[]>('/research/centers');
 
-export const getResearchLabs = getMockSimpleResearchLabs;
+export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
 
-export const getResearchLab = getMockResearchLab;
+export const getResearchLabs = () => getRequest<SimpleResearchLab[]>('/research/labs');
 
-export const getTopConferenceList = getMockTopConferenceList;
+export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference');

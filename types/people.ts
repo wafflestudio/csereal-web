@@ -1,5 +1,7 @@
+// 교수진
 export interface SimpleFaculty {
   id: number;
+  status: 'ACTIVE' | 'INACTIVE' | 'VISITING';
   name: string;
   imageURL: string;
   academicRank: string;
@@ -7,12 +9,11 @@ export interface SimpleFaculty {
   email?: string;
   labId?: number;
   labName?: string;
-  status?: 'ACTIVE' | 'VISITING';
 }
 
 export interface FacultyList {
   description: string;
-  facultyList: SimpleFaculty[];
+  professors: SimpleFaculty[];
 }
 
 export interface Faculty extends SimpleFaculty {
@@ -24,6 +25,7 @@ export interface Faculty extends SimpleFaculty {
   careers?: string[];
 }
 
+// 역대 교수진
 export interface SimpleEmiritusFaculty {
   id: number;
   name: string;
@@ -42,6 +44,7 @@ export interface EmiritusFaculty extends SimpleEmiritusFaculty {
   educations: string[];
 }
 
+// 행정직원
 export interface SimpleStaff {
   id: number;
   name: string;
@@ -50,10 +53,6 @@ export interface SimpleStaff {
   office: string;
   phone: string;
   email: string;
-}
-
-export interface StaffList {
-  staffList: SimpleStaff[];
 }
 
 export interface Staff extends SimpleStaff {
