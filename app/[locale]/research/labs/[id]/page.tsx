@@ -1,6 +1,6 @@
 import { getResearchLab } from '@/apis/research';
 
-import ResearchLabDetails from '@/app/[locale]/research/labs/ResearchLabDetails';
+import ResearchLabDetails from '@/app/[locale]/research/labs/[id]/ResearchLabDetails';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
