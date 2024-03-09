@@ -53,11 +53,9 @@ function FacilitiesRow({ name, description, location, imageURL, border }: Facili
 }
 
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
-  const src = `/image/facilities/${imageURL}-color.png`;
-
   return (
     <div className="relative h-40 w-60">
-      <Image alt="대표 이미지" src={src} fill sizes="10rem" />
+      <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" />
     </div>
   );
 }
