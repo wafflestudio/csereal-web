@@ -24,6 +24,7 @@ export const postNotice = async (formData: FormData) => {
 // PATCH
 
 export const patchNotice = async (id: number, formData: FormData) => {
+  console.log(formData.get('newAttachments'));
   await patchRequest(`/notice/${id}`, { body: formData });
 };
 

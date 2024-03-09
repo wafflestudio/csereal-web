@@ -1,48 +1,15 @@
-import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
-import { COLOR_THEME } from '@/constants/color';
 
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 
 export default async function FacultyRecruitment() {
-  //   const res = await fetch(BASE_URL) as GETFacultyRecruitmentResponse;
   const res = await mockNetwork();
 
   return (
     <PageLayout titleType="big">
-      <CornerFoldedRectangle
-        radius={0.25} // 4px
-        colorTheme={COLOR_THEME.darkGray}
-        triangleLength={1.75} // 28px
-        triangleDropShadow="drop-shadow(0px 4px 3px rgba(0,0,0,0.55))"
-        animationType="unfolding"
-      >
-        <LatestRecruitmentBanner {...res} />
-      </CornerFoldedRectangle>
       <HTMLViewer htmlContent={res.description} />
     </PageLayout>
-  );
-}
-
-function LatestRecruitmentBanner({
-  latestRecruitmentPostTitle,
-  latestRecruitmentPostHref,
-}: GETFacultyRecruitmentResponse) {
-  return (
-    <a
-      className="relative block h-[4.5rem] w-[25rem] cursor-pointer"
-      href={latestRecruitmentPostHref}
-    >
-      <p className="absolute left-6 top-5 text-base font-bold tracking-[.025rem]">
-        최근 채용 바로가기
-      </p>
-      <div className="absolute bottom-[.87rem] right-5 flex items-center">
-        <p className="text-xs font-medium tracking-wide">{latestRecruitmentPostTitle}</p>
-        <span className="material-symbols-outlined text-base">navigate_next</span>
-      </div>
-    </a>
   );
 }
 
