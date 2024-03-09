@@ -1,4 +1,4 @@
-import PeopleCell, { PeopleCellProps, PeopleType } from './PeopleRow';
+import PeopleCell, { PeopleCellProps, PeopleType } from './PeopleCell';
 
 export default function PeopleGrid<T extends Partial<PeopleCellProps>>({
   people,
