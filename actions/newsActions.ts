@@ -1,14 +1,26 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix가 붙음
 
-import { deleteNews } from '@/actions/newsServer';
+import { deleteNews, patchNews, postNews } from '@/apis/news';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
 const newsPath = getPath(news);
+
+export const postNewsAction = async (formData: FormData) => {
+  await postNews(formData);
+  revalidateNewsTag();
+  redirect(newsPath);
+};
+
+export const patchNewsAction = async (id: number, formData: FormData) => {
+  await patchNews(id, formData);
+  revalidateNewsTag();
+  redirect(`${newsPath}/${id}`);
+};
 
 export const newsDeleteAction = async (id: number) => {
   try {

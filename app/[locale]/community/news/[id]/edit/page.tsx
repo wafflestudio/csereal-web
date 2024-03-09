@@ -1,6 +1,6 @@
-import { getNewsPostDetail } from '@/actions/newsServer';
+import { getNewsDetail } from '@/apis/news';
 
-import EditNewsPageContent from '@/app/[locale]/community/news/helper/EditNewsPageContent';
+import EditNewsPageContent from './EditNewsPageContent';
 
 interface EditNewsPageProps {
   params: { id: string };
@@ -10,6 +10,6 @@ export default async function EditNewsPage({ params: { id: rawId } }: EditNewsPa
   const id = +rawId;
   if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 
-  const data = await getNewsPostDetail(id, {});
+  const data = await getNewsDetail(id, {});
   return <EditNewsPageContent id={id} data={data} />;
 }

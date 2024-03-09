@@ -1,9 +1,7 @@
 'use client';
 
-import { revalidateNewsTag } from '@/actions/newsActions';
+import { postNewsAction } from '@/actions/newsActions';
 import { useRouter } from '@/navigation';
-
-import { postNews } from '@/apis/news';
 
 import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
@@ -24,25 +22,8 @@ export default function NewsCreatePage() {
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNewsForm(content);
-
-    await postNews({
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isSlide: content.isSlide,
-        isImportant: content.isImportant,
-        tags: content.tags,
-        date: content.date,
-      },
-      mainImage:
-        content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null,
-      attachments: content.attachments.filter(isLocalFile).map((x) => x.file),
-    });
-
-    revalidateNewsTag();
-    router.replace(newsPath);
+    const formData = contentToFormData(content);
+    await postNewsAction(formData);
   };
 
   return (
@@ -62,3 +43,38 @@ export default function NewsCreatePage() {
     </PageLayout>
   );
 }
+
+const contentToFormData = (content: PostEditorContent) => {
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isSlide: content.isSlide,
+          isImportant: content.isImportant,
+          tags: content.tags,
+          date: content.date,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  if (content.mainImage && isLocalImage(content.mainImage)) {
+    formData.append('mainImage', content.mainImage.file);
+  }
+
+  for (const attachment of content.attachments.filter(isLocalFile).map((x) => x.file)) {
+    formData.append('attachments', attachment);
+  }
+
+  return formData;
+};

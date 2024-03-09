@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix가 붙음
 
 import {
   batchDeleteNotice,

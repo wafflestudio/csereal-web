@@ -1,4 +1,4 @@
-import { getNewsPostDetail } from '@/actions/newsServer';
+import { getNewsDetail } from '@/apis/news';
 
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
@@ -21,7 +21,7 @@ interface NewsPostPageProps {
 const newsPath = getPath(news);
 
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
-  const news = await getNewsPostDetail(parseInt(params.id), searchParams);
+  const news = await getNewsDetail(parseInt(params.id), searchParams);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
