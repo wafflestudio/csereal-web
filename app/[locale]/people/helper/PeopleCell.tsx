@@ -30,13 +30,7 @@ export default function PeopleCell({
         className="relative h-48 w-36"
         style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
       >
-        <Image
-          alt="대표 이미지"
-          src={imageURL}
-          fill
-          className="object-cover"
-          sizes="144px, 192px"
-        />
+        <Image src={imageURL} alt="프로필 사진" className="object-cover" fill quality={25} />
       </Link>
       <div className="flex flex-col items-start break-keep">
         <div
