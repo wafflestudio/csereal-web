@@ -26,7 +26,7 @@ export const postNoticeAction = async (formData: FormData) => {
 export const patchNoticeAction = async (id: number, formData: FormData) => {
   await patchNotice(id, formData);
   revalidateNoticeTag();
-  redirect(noticePath);
+  redirect(`${noticePath}/${id}`);
 };
 
 export const deleteNoticeAction = async (id: number) => {

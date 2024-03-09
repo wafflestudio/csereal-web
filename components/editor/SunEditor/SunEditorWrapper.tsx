@@ -8,8 +8,6 @@ import './suneditor.css';
 import './suneditor-contents.css';
 import SunEditor from 'suneditor-react';
 
-import { BASE_URL } from '@/apis/network/common';
-
 // TODO
 // 정말 왜그러는지 모르겠는데 lazy + typeof window 조합으로만 빌드가 됨
 // 건들지 말..것..
@@ -40,7 +38,8 @@ export default function SunEditorWrapper({
             ['lineHeight', 'align', 'horizontalRule', 'list'],
             ['table', 'link', 'image', 'preview'],
           ],
-          imageUploadUrl: `${BASE_URL}/file/upload`,
+          //   TODO: URL 논의
+          //   imageUploadUrl: `${BASE_URL}/v1/file/upload`,
         }}
       />
     </Suspense>
