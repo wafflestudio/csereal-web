@@ -1,6 +1,6 @@
-import { getSeminarPost } from '@/actions/seminarServer';
+import { getSeminarPost } from '@/apis/seminar';
 
-import EditSeminarPageContent from '@/app/[locale]/community/seminar/EditSeminarPageContent';
+import EditSeminarPageContent from '@/app/[locale]/community/seminar/[id]/edit/EditSeminarPageContent';
 
 interface EditNoticePageProps {
   params: { id: string };
@@ -11,5 +11,6 @@ export default async function EditSeminarPage({ params: { id: rawId } }: EditNot
   if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 
   const data = await getSeminarPost(id, {});
+
   return <EditSeminarPageContent id={id} data={data} />;
 }

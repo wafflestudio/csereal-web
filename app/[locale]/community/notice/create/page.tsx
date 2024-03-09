@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { postNoticeAction } from '@/actions/noticeActions';
+import { postNoticeAction } from '@/actions/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorTypes';

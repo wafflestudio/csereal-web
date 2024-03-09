@@ -34,3 +34,15 @@ export const formatNewsPostDateStr = (str: string) => {
     date.getMonth() + 1
   }월 ${date.getDate()}일 ${date.toLocaleString('ko-KR', { weekday: 'long' })}`;
 };
+
+export const formatSeminarDateStr = (date: Date) => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = date.getDay();
+
+  return `${month}/${day} (${DAYS[dayOfWeek]}) ${padZero(date.getHours())}:${padZero(
+    date.getMinutes(),
+  )}`;
+};
+
+const padZero = (str: number) => (str + '').padStart(2, '0');

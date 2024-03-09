@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/noticeActions';
+import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/notice';
 
 import AlertModal from '@/components/modal/AlertModal';
 

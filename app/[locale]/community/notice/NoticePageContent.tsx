@@ -14,8 +14,8 @@ import { NoticePreviewList } from '@/types/notice';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import AdminFeatures from './AdminFeatures';
-import { usePostSelect } from './usePostSelect';
+import AdminFeatures from './helper/AdminFeatures';
+import { usePostSelect } from './helper/usePostSelect';
 
 const POST_LIMIT = 20; // TODO: 모바일 크기에서는 10으로 축소
 

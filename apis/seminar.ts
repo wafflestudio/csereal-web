@@ -1,47 +1,34 @@
-import { PATCHSeminarBody, POSTSeminarBody } from '@/types/seminar';
+'use server';
 
-import { patchRequest, postRequest } from './network/client';
+import { PostSearchQueryParams } from '@/types/post';
+import { Seminar, SeminarList } from '@/types/seminar';
+
+import { postRequest, patchRequest, getRequest, deleteRequest } from './network/server';
 
 const seminarPath = '/seminar';
 
-export const postSeminar = async (body: POSTSeminarBody) => {
-  const formData = new FormData();
+// GET
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
+export const getSeminarPosts = async (params: PostSearchQueryParams) => {
+  return await getRequest<SeminarList>(seminarPath, params, { next: { tags: ['seminar'] } });
+};
 
-  if (body.image) {
-    formData.append('mainImage', body.image);
-  }
+export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
+  return await getRequest<Seminar>(`${seminarPath}/${id}`, params, { next: { tags: ['seminar'] } });
+};
 
-  for (const attachment of body.attachments) {
-    formData.append('attachments', attachment);
-  }
+// POST
 
+export const postSeminar = async (formData: FormData) => {
   await postRequest(seminarPath, { body: formData });
 };
 
-export const editSeminar = async (id: number, body: PATCHSeminarBody) => {
-  const formData = new FormData();
+// PATCH
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
-
-  if (body.image) {
-    formData.append('newMainImage', body.image);
-  }
-
-  for (const attachment of body.newAttachments) {
-    formData.append('newAttachments', attachment);
-  }
-
+export const patchSeminar = async (id: number, formData: FormData) => {
   await patchRequest(`${seminarPath}/${id}`, { body: formData });
 };
+
+// DELETE
+
+export const deleteSeminar = async (id: number) => deleteRequest(`${seminarPath}/${id}`);

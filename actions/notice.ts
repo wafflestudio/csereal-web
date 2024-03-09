@@ -29,6 +29,16 @@ export const patchNoticeAction = async (id: number, formData: FormData) => {
   redirect(noticePath);
 };
 
+export const deleteNoticeAction = async (id: number) => {
+  try {
+    await deleteNotice(id);
+    revalidateNoticeTag();
+  } catch (error) {
+    return { message: errorToStr(error) };
+  }
+  redirect(noticePath);
+};
+
 export const batchDeleteNoticeAction = async (ids: Set<number>) => {
   try {
     await batchDeleteNotice(ids);
@@ -45,16 +55,6 @@ export const unpinNoticeAction = async (ids: Set<number>) => {
   } catch (error) {
     return { message: errorToStr(error) };
   }
-};
-
-export const deleteNoticeAction = async (id: number) => {
-  try {
-    await deleteNotice(id);
-    revalidateNoticeTag();
-  } catch (error) {
-    return { message: errorToStr(error) };
-  }
-  redirect(noticePath);
 };
 
 export const revalidateNoticeTag = () => {

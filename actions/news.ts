@@ -22,7 +22,7 @@ export const patchNewsAction = async (id: number, formData: FormData) => {
   redirect(`${newsPath}/${id}`);
 };
 
-export const newsDeleteAction = async (id: number) => {
+export const deleteNewsAction = async (id: number) => {
   try {
     await deleteNews(id);
     revalidateNewsTag();

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
-import { deleteNoticeAction, patchNoticeAction } from '@/actions/noticeActions';
+import { deleteNoticeAction, patchNoticeAction } from '@/actions/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {

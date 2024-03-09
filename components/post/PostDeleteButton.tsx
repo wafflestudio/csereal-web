@@ -2,9 +2,9 @@
 
 import { useTransition } from 'react';
 
-import { newsDeleteAction } from '@/actions/newsActions';
-import { deleteNoticeAction } from '@/actions/noticeActions';
-import { seminarDeleteAction } from '@/actions/seminarActions';
+import { deleteNewsAction } from '@/actions/news';
+import { deleteNoticeAction } from '@/actions/notice';
+import { deleteSeminarAction } from '@/actions/seminar';
 
 import useModal from '@/utils/hooks/useModal';
 
@@ -30,12 +30,12 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
           break;
         }
         case 'news': {
-          const result = await newsDeleteAction(idInNumber);
+          const result = await deleteNewsAction(idInNumber);
           result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
           break;
         }
         case 'seminar': {
-          const result = await seminarDeleteAction(idInNumber);
+          const result = await deleteSeminarAction(idInNumber);
           result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
           break;
         }

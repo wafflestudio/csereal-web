@@ -2,9 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { revalidateSeminarTag } from '@/actions/seminarActions';
-
-import { postSeminar } from '@/apis/seminar';
+import { postSeminarAction } from '@/actions/seminar';
 
 import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
@@ -24,37 +22,8 @@ export default function SeminarCreatePage() {
 
   const handleComplete = async (content: SeminarEditorContent) => {
     validateSeminarForm(content);
-
-    const image =
-      content.speaker.image && isLocalImage(content.speaker.image)
-        ? content.speaker.image.file
-        : null;
-    const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-
-    await postSeminar({
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        introduction: content.speaker.description,
-        name: content.speaker.name,
-        speakerURL: content.speaker.nameURL,
-        speakerTitle: content.speaker.title,
-        affiliation: content.speaker.organization,
-        affiliationURL: content.speaker.organizationURL,
-        startDate: content.schedule.startDate.toISOString(),
-        endDate: content.schedule.endDate?.toISOString() ?? null,
-        location: content.location,
-        host: content.host,
-        isPrivate: content.isPrivate,
-        isImportant: content.isImportant,
-      },
-      image,
-      attachments,
-    });
-
-    revalidateSeminarTag();
-    router.replace(seminarPath);
+    const formData = contentToFormData(content);
+    postSeminarAction(formData);
   };
 
   return (
@@ -69,3 +38,51 @@ export default function SeminarCreatePage() {
     </PageLayout>
   );
 }
+
+const contentToFormData = (content: SeminarEditorContent) => {
+  const image =
+    content.speaker.image && isLocalImage(content.speaker.image)
+      ? content.speaker.image.file
+      : null;
+  const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          introduction: content.speaker.description,
+          name: content.speaker.name,
+          speakerURL: content.speaker.nameURL,
+          speakerTitle: content.speaker.title,
+          affiliation: content.speaker.organization,
+          affiliationURL: content.speaker.organizationURL,
+          startDate: content.schedule.startDate.toISOString(),
+          endDate: content.schedule.endDate?.toISOString() ?? null,
+          location: content.location,
+          host: content.host,
+          isPrivate: content.isPrivate,
+          isImportant: content.isImportant,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  if (image) {
+    formData.append('mainImage', image);
+  }
+
+  for (const attachment of attachments) {
+    formData.append('attachments', attachment);
+  }
+
+  return formData;
+};

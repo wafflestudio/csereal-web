@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 import { useSWRConfig } from 'swr';
 
-import { batchUnimportantAction } from '@/actions/adminActions';
+import { batchUnimportantAction } from '@/actions/admin';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';

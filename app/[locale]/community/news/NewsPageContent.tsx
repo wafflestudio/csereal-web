@@ -16,7 +16,7 @@ import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-import AdminFeatures from './AdminFeatures';
+import AdminFeatures from './helper/AdminFeatures';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);

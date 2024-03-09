@@ -1,6 +1,6 @@
 'use client';
 
-import { postNewsAction } from '@/actions/newsActions';
+import { postNewsAction } from '@/actions/news';
 import { useRouter } from '@/navigation';
 
 import PostEditor from '@/components/editor/PostEditor';

@@ -1,6 +1,6 @@
 import { getNewsPosts } from '@/apis/news';
 
-import NewsPageContent from '@/app/[locale]/community/news/helper/NewsPageContent';
+import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 

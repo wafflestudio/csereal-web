@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
-import { getSeminarPost } from '@/actions/seminarServer';
 import { Link } from '@/navigation';
+
+import { getSeminarPost } from '@/apis/seminar';
 
 import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
@@ -73,7 +74,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
         )}
 
         <StraightNode margin="mt-10" />
-        <PostFooter post={seminar} postType="notice" id={params.id} margin="mt-12" />
+        <PostFooter post={seminar} postType="seminar" id={params.id} margin="mt-12" />
       </div>
     </PageLayout>
   );

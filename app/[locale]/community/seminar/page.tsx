@@ -1,6 +1,6 @@
-import { getSeminarPosts } from '@/actions/seminarServer';
+import { getSeminarPosts } from '@/apis/seminar';
 
-import SeminarContent from '@/app/[locale]/community/seminar/SeminarPageContent';
+import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -10,5 +10,6 @@ interface SeminarPageParams {
 
 export default async function SeminarPage({ searchParams }: SeminarPageParams) {
   const data = await getSeminarPosts(searchParams);
+
   return <SeminarContent data={data} />;
 }

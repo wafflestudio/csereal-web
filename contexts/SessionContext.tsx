@@ -9,7 +9,7 @@ import React, {
   useState,
 } from 'react';
 
-import { getIsStaff, getMockAuth, removeAuth } from '@/actions/sessionActions';
+import { getIsStaff, getMockAuth, removeAuth } from '@/actions/session';
 import { useRouter } from '@/navigation';
 
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
