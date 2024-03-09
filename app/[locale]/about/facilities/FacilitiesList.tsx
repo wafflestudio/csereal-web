@@ -9,13 +9,13 @@ import HTMLViewer from '../../../../components/editor/HTMLViewer';
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {
   return (
     <div className="flex flex-col">
-      {facilities.facilitiesList.map((post, index) => (
+      {facilities.map((post, index) => (
         <FacilitiesRow
           key={index}
           name={post.name}
           description={post.description}
-          location={post.location}
-          imageURL={post.imageURL}
+          location={post.locations.join(', ')}
+          imageURL={post.imageURL ?? ''} // TODO: imageURL이 non-null되면 수정
           border={index !== 0}
         />
       ))}

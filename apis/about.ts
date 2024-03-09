@@ -1,44 +1,19 @@
-import {
-  getMockAboutDescription,
-  getMockClubs,
-  getMockContact,
-  getMockDirections,
-  getMockFacilities,
-  getMockFutureCareers,
-  getMockGreetings,
-  getMockHistory,
-  getMockOverview,
-} from '@/data/about';
+import { AboutContent, Club, Direction, Facilities, FutureCareers } from '@/types/about';
 
-export const getAboutDescription = getMockAboutDescription;
+import { getRequest } from './network/server';
 
-export const getOverview = getMockOverview;
+export const getOverview = () => getRequest<AboutContent>('/about/overview');
 
-export const getGreetings = getMockGreetings;
+export const getGreetings = () => getRequest<AboutContent>('/about/greetings');
 
-export const getHistory = getMockHistory;
+export const getHistory = () => getRequest<AboutContent>('/about/history');
 
-export const getFutureCareeres = getMockFutureCareers;
+export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
 
-export const getClubs = getMockClubs;
+export const getClubs = () => getRequest<Club[]>('/about/student-clubs');
 
-export const getFacilities = getMockFacilities;
+export const getFacilities = () => getRequest<Facilities>('/about/facilities');
 
-export const getContact = getMockContact;
+export const getContact = () => getRequest<AboutContent>('/about/contact');
 
-export const getDirections = getMockDirections;
-
-// const clubPath = '/about/student-clubs';
-
-// export const getClubs = () => getRequest<Club[]>(clubPath);
-
-// export const postClub = (newClub: Club) => postRequest(clubPath, newClub) as Promise<Club>;
-
-// export const patchClub = (id: number, newClub: Partial<Club>) =>
-//   patchRequest(clubPath, newClub) as Promise<Club>;
-
-// export const deleteClub = (id: number) => deleteRequest(clubPath);
-
-// const facilitiesPath = '/facilities';
-
-// export const getDirections = () => getRequest<Direction[]>(/about/directions);
+export const getDirections = () => getRequest<Direction[]>('/about/directions');
