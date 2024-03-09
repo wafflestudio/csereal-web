@@ -9,8 +9,6 @@ import { getRequest } from '@/apis/network/server';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 
 export const getMockAuth = async () => {
-  // TODO: getRequest 함수로 구현
-  // 지금은 /v1이 segment에 없어서 임시로 fetch를 사용해 직접 구현
   const resp = await fetch(`https://cse-dev-waffle.bacchus.io/api/v1/mock-login`, {
     method: 'GET',
   });
@@ -18,7 +16,8 @@ export const getMockAuth = async () => {
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
 
-  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true, secure: true });
+  // TODO: 실 배포시 secure 옵션 주기
+  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true });
 };
 
 export const removeAuth = () => {

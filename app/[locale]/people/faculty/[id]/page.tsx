@@ -2,8 +2,8 @@ import { Link } from '@/navigation';
 
 import { getFaculty } from '@/apis/people';
 
-import FacultyInfoWithImage from '@/app/[locale]/people/FacultyInfoWithImage';
-import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
+import HeaderAndList from '@/app/[locale]/people/helper/HeaderAndList';
+import Profile from '@/app/[locale]/people/helper/Profile';
 
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -11,54 +11,41 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
+import PageTitle from '../../helper/PageTitle';
+
 const labUrl = getPath(researchLabs);
 
 export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
-  const data = await getFaculty(params.id);
+  const faculty = await getFaculty(params.id);
 
   return (
-    data && (
-      <PageLayout
-        title={
-          <div className="flex flex-row items-end">
-            <p>{data.name}</p>
-            <p className="ml-2 text-md font-normal leading-7 text-neutral-500">
-              {data.academicRank}
-            </p>
-          </div>
-        }
-        titleType="big"
-        titleMargin="mb-9"
-      >
-        <div className="relative mb-10 flow-root">
-          <FacultyInfoWithImage
-            office={data.office}
-            phone={data.phone}
-            fax={data.fax}
-            email={data.email}
-            website={data.website}
-            imageURL={data.imageURL}
-          />
-          <div className="flex flex-row">
-            <CurvedHorizontalSmallNode />
-            <div className=" -translate-x-[7.15px] translate-y-[1.5px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
-              <Link
-                href={`${labUrl}/${data.labId}`}
-                className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
-              >
-                {data?.labName}
-              </Link>
-            </div>
-          </div>
-          <div className="mt-8 break-all">
-            <PeopleInfoList title="학력" infoList={data.educations} />
-            {data.researchAreas !== undefined && (
-              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
-            )}
-            {data.careers && <PeopleInfoList title="경력" infoList={data.careers} />}
+    <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
+      <div className="relative mb-10 flow-root">
+        <Profile
+          office={faculty.office}
+          phone={faculty.phone}
+          fax={faculty.fax}
+          email={faculty.email}
+          website={faculty.website}
+          imageURL={faculty.imageURL}
+        />
+        <div className="flex">
+          <CurvedHorizontalSmallNode />
+          <div className=" -translate-x-[7.15px] translate-y-[1.5px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
+            <Link
+              href={`${labUrl}/${faculty.labId}`}
+              className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
+            >
+              {faculty?.labName}
+            </Link>
           </div>
         </div>
-      </PageLayout>
-    )
+        <div className="mt-8 break-all">
+          <HeaderAndList header="학력" list={faculty.educations} />
+          <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
+          <HeaderAndList header="경력" list={faculty.careers ?? []} />
+        </div>
+      </div>
+    </PageLayout>
   );
 }

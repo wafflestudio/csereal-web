@@ -2,83 +2,51 @@ import { Link } from '@/navigation';
 
 import { getEmeritusFaculty } from '@/apis/people';
 
-import PeopleImageWithAnimation from '@/app/[locale]/people/PeopleImageWithAnimation';
-import PeopleInfoList from '@/app/[locale]/people/PeopleInfoList';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
-  const data = await getEmeritusFaculty(params.id);
+import BulletRow from '../../helper/BulletRow';
+import HeaderAndList from '../../helper/HeaderAndList';
+import PageTitle from '../../helper/PageTitle';
+import ProfileImage from '../../helper/ProfileImage';
 
-  const careerTime = { startTime: data.startDate, endTime: data.endDate };
+export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
+  const faculty = await getEmeritusFaculty(params.id);
+  const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
 
   return (
-    data && (
-      <PageLayout
-        title={
-          <div className="flex flex-row items-end">
-            <p>{data.name}</p>
-            <p className="ml-2 text-md font-normal leading-7 text-neutral-500">
-              {data.academicRank}
-            </p>
-          </div>
-        }
-        titleType="big"
-        titleMargin="mb-9"
-      >
-        <div className="relative mb-10 flow-root">
-          <PeopleImageWithAnimation imageURL={data.imageURL} />
-          <div className="break-all">
-            {(data.office || data.email || data.website) && (
-              <article className="mb-7 flex flex-col text-neutral-700">
-                <>
-                  <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
-                  <ul className="list-inside list-disc">
-                    {data.office && (
-                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
-                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
-                        <p>교수실: {data.office}</p>
-                      </li>
-                    )}
-                    {data.email && (
-                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
-                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
-                        <p>
-                          이메일:
-                          <Link
-                            className="ml-1 text-link hover:underline"
-                            href={`mailto:${data.email}`}
-                          >
-                            {data.email}
-                          </Link>
-                        </p>
-                      </li>
-                    )}
-                    {data.website && (
-                      <li className="mr-[1px] flex items-center space-x-2 px-2 text-sm font-normal leading-[26px]">
-                        <div className="h-[3px] w-[3px] rounded-full bg-neutral-950"></div>
-                        <p>
-                          웹사이트:
-                          <Link className="ml-1 text-link hover:underline" href={`${data.website}`}>
-                            {data.website}
-                          </Link>
-                        </p>
-                      </li>
-                    )}
-                  </ul>
-                </>
-              </article>
-            )}
-            <PeopleInfoList title="학력" infoList={data.educations} />
-            {data.researchAreas && (
-              <PeopleInfoList title="연구 분야" infoList={data.researchAreas} />
-            )}
-            <div className=" mb-7 text-sm font-medium text-neutral-700">
-              재직 기간: {careerTime.startTime} - {careerTime.endTime}
-            </div>
-          </div>
+    <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
+      <div className="relative mb-10 flow-root">
+        <ProfileImage imageURL={faculty.imageURL} />
+        {(faculty.office || faculty.email || faculty.website) && (
+          <article className="mb-7 flex flex-col text-neutral-700">
+            <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
+            <ul className="list-inside list-disc">
+              {faculty.office && <BulletRow>교수실: {faculty.office}</BulletRow>}
+              {faculty.email && (
+                <BulletRow>
+                  이메일:
+                  <Link className="ml-1 text-link hover:underline" href={`mailto:${faculty.email}`}>
+                    {faculty.email}
+                  </Link>
+                </BulletRow>
+              )}
+              {faculty.website && (
+                <BulletRow>
+                  웹사이트:
+                  <Link className="ml-1 text-link hover:underline" href={`${faculty.website}`}>
+                    {faculty.website}
+                  </Link>
+                </BulletRow>
+              )}
+            </ul>
+          </article>
+        )}
+        <HeaderAndList header="학력" list={faculty.educations} />
+        <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
+        <div className=" mb-7 text-sm font-medium text-neutral-700">
+          재직 기간: {careerTime.startTime} - {careerTime.endTime}
         </div>
-      </PageLayout>
-    )
+      </div>
+    </PageLayout>
   );
 }
