@@ -1,31 +1,37 @@
 import { Link } from '@/navigation';
 
-import { AdjPostInfo } from '@/types/post';
+import { News } from '@/types/news';
+import { Notice } from '@/types/notice';
+import { Seminar } from '@/types/seminar';
 
-import LoginVisible from './LoginVisible';
 import PostDeleteButton from './PostDeleteButton';
+import LoginVisible from '../common/LoginVisible';
+
+type PostFooterProps = {
+  postType: PostType;
+  post: Notice | News | Seminar;
+  id?: string;
+  margin?: string;
+};
+
+type AdjPost = {
+  id: number;
+  title: string;
+};
 
 type PostType = 'notice' | 'seminar' | 'news';
+type RowType = 'next' | 'prev';
 
-interface AdjPostNavProps {
-  postType: PostType;
-  id?: string;
-  prevPost?: AdjPostInfo;
-  nextPost?: AdjPostInfo;
-  margin?: string;
-}
+export default function PostFooter({ post, margin = '', postType, id }: PostFooterProps) {
+  const nextPost =
+    post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
+  const prevPost =
+    post.prevId && post.prevTitle ? { id: post.prevId, title: post.prevTitle } : null;
 
-export default function AdjPostNav({
-  prevPost,
-  nextPost,
-  margin = '',
-  postType,
-  id,
-}: AdjPostNavProps) {
   return (
     <div className={`flex flex-col ${margin}`}>
-      {nextPost && <Row post={nextPost} type="next" />}
-      {prevPost && <Row post={prevPost} type="prev" />}
+      {nextPost && <Row post={nextPost} type="next" postType={postType} />}
+      {prevPost && <Row post={prevPost} type="prev" postType={postType} />}
       <div className="mt-6 flex justify-end">
         <LoginVisible staff>
           {id && (
@@ -41,11 +47,9 @@ export default function AdjPostNav({
   );
 }
 
-type RowType = 'next' | 'prev';
-
-function Row({ post, type }: { post: AdjPostInfo; type: RowType }) {
+function Row({ post, type, postType }: { post: AdjPost; type: RowType; postType: PostType }) {
   return (
-    <Link className="group flex w-fit items-center" href={post.href}>
+    <Link className="group flex w-fit items-center" href={`/community/${postType}/${post.id}`}>
       <RowIcon type={type} />
       <RowDescription type={type} />
       <RowPostTitle title={post.title} />

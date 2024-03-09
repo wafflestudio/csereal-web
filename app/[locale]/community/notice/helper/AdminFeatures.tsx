@@ -1,49 +1,47 @@
-'use client';
+import { Dispatch } from 'react';
 
-import { batchDeleteAction, batchUnpinAction } from '@/actions/noticeActions';
+import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/notice';
+
+import AlertModal from '@/components/modal/AlertModal';
 
 import useModal from '@/utils/hooks/useModal';
-import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
 import { errorToast, successToast } from '@/utils/toast';
 
-import { BatchButton, CreateButton, EditButton } from './NoticeButtons';
-import AlertModal from '../../../../components/modal/AlertModal';
+import { BatchButton, CreateButton, EditButton } from './EditButtons';
+import { PostSelectAction } from './usePostSelect';
 
 interface AdminFeaturesProps {
   isEditMode: boolean;
   toggleEditMode: () => void;
-  selectedPostIds: Set<number>;
-  resetSelectedPosts: () => void;
+  selectedIds: Set<number>;
+  dispatchIds: Dispatch<PostSelectAction>;
 }
-
-const noticePath = getPath(notice);
 
 export default function AdminFeatures({
   isEditMode,
   toggleEditMode,
-  selectedPostIds,
-  resetSelectedPosts,
+  selectedIds,
+  dispatchIds,
 }: AdminFeaturesProps) {
   const { openModal } = useModal();
 
   const handleBatchDelete = async () => {
-    const result = await batchDeleteAction(selectedPostIds);
+    const result = await batchDeleteNoticeAction(selectedIds);
     if (result?.message) {
       errorToast('공지를 삭제하지 못했습니다: ' + result.message);
     } else {
       successToast('선택된 공지를 삭제했습니다.');
-      resetSelectedPosts();
+      dispatchIds({ type: 'RESET' });
     }
   };
 
   const handleBatchUnpin = async () => {
-    const result = await batchUnpinAction(selectedPostIds);
+    const result = await unpinNoticeAction(selectedIds);
     if (result?.message) {
       errorToast('공지를 고정 해제하지 못했습니다: ' + result.message);
     } else {
       successToast('선택된 공지를 고정 해제했습니다.');
-      resetSelectedPosts();
+      dispatchIds({ type: 'RESET' });
     }
   };
 
@@ -51,9 +49,9 @@ export default function AdminFeatures({
     <div className="mx-2.5 mt-12 flex">
       {isEditMode && (
         <div className="flex items-center gap-4">
-          <SelectedCountStatus count={selectedPostIds.size} />
+          <SelectedCountStatus count={selectedIds.size} />
           <BatchButton
-            disabled={selectedPostIds.size === 0}
+            disabled={selectedIds.size === 0}
             onClick={() =>
               openModal(
                 <AlertModal
@@ -67,7 +65,7 @@ export default function AdminFeatures({
             일괄 삭제
           </BatchButton>
           <BatchButton
-            disabled={selectedPostIds.size === 0}
+            disabled={selectedIds.size === 0}
             onClick={() =>
               openModal(
                 <AlertModal
@@ -84,7 +82,7 @@ export default function AdminFeatures({
       )}
       <div className="ml-auto">
         <EditButton isEditMode={isEditMode} toggleEditMode={toggleEditMode} />
-        <CreateButton mainPath={noticePath} disabled={isEditMode} />
+        <CreateButton disabled={isEditMode} />
       </div>
     </div>
   );

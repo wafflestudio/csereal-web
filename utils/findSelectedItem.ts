@@ -1,4 +1,4 @@
-import { replaceDashWithSpace } from './replaceCharacter';
+import { replaceDashWithSpace } from './string';
 
 export const findSelectedItem = <T extends { name: string }>(
   items: T[],

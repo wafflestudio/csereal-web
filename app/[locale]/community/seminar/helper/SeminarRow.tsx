@@ -7,6 +7,7 @@ import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 import { SeminarPreview } from '@/types/seminar';
 
+import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 
@@ -73,7 +74,7 @@ function DateAndLocationCell({ date, location }: { date: Date; location: string 
   return (
     <div className="flex items-center gap-0.5 hover:cursor-pointer">
       <Calendar />
-      <Text text={formatDateWithDays(date)} />
+      <Text text={formatSeminarDateStr(date)} />
       <VerticalDivider />
       <Distance />
       <Text text={location} />
@@ -88,17 +89,3 @@ function Text({ text }: { text: string }) {
 function VerticalDivider() {
   return <span className="w-4 text-center text-md font-normal text-neutral-500 sm:w-5">|</span>;
 }
-
-const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
-
-const formatDateWithDays = (date: Date) => {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dayOfWeek = date.getDay();
-
-  return `${month}/${day} (${DAYS[dayOfWeek]}) ${padZero(date.getHours())}:${padZero(
-    date.getMinutes(),
-  )}`;
-};
-
-const padZero = (str: number) => (str + '').padStart(2, '0');

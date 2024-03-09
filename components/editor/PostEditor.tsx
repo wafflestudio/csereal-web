@@ -1,24 +1,27 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
-import SunEditorWrapper, { isContentEmpty } from '@/components/editor/common/SunEditorWrapper';
-
 import useModal from '@/utils/hooks/useModal';
+import { isContentEmpty } from '@/utils/post';
 
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import { PostEditorContent, PostEditorProps, postEditorDefaultValue } from './PostEditorProps';
+import { PostEditorContent, PostEditorProps, defaultContent } from './PostEditorTypes';
+import SunEditorFallback from './SunEditor/SunEditorFallback';
 import Checkbox from '../common/form/Checkbox';
 import MuiDateSelector from '../common/MuiDateSelector';
 import ModalFrame from '../modal/ModalFrame';
 
-// TODO: 나중에 태그 확정되면 반응형 추가해서 수정
-const gridStyle = 'grid-cols-[repeat(7,_max-content)]';
+const SunEditorWrapper = dynamic(() => import('@/components/editor/SunEditor/SunEditorWrapper'), {
+  ssr: false,
+  loading: () => <SunEditorFallback />,
+});
 
 export default function PostEditor({
   tags,
@@ -31,23 +34,19 @@ export default function PostEditor({
   initialContent,
 }: PostEditorProps) {
   const editorRef = useRef<SunEditorCore>();
-  // description(HTML)의 경우 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
+
+  // description(HTML)는 useRef를 사용하기에 여기에 최신값이 반영되지 않음 주의
   const [content, setContent] = useState<PostEditorContent>({
-    ...postEditorDefaultValue,
+    ...defaultContent,
     ...initialContent,
   });
 
-  const getContentWithDescription = (): PostEditorContent => {
-    if (editorRef.current) {
-      if (isContentEmpty(editorRef.current)) {
-        return { ...content, description: '' };
-      } else {
-        const description = editorRef.current.getContents(false);
-        return { ...content, description };
-      }
-    } else {
-      return { ...content, description: '' };
-    }
+  const getContent = (): PostEditorContent => {
+    let description = '';
+    if (editorRef.current && !isContentEmpty(editorRef.current))
+      description = editorRef.current.getContents(false);
+
+    return { ...content, description };
   };
 
   const setContentByKey =
@@ -56,13 +55,14 @@ export default function PostEditor({
       setContent((content) => ({ ...content, [key]: value }));
     };
 
-  const toggleCheck = (tag: string, isChecked: boolean) => {
+  const toggleTag = (tag: string, isChecked: boolean) => {
     let nextTags = [...content.tags];
     if (isChecked) nextTags.push(tag);
     else nextTags = nextTags.filter((x) => x !== tag);
     setContentByKey('tags')(nextTags);
   };
 
+  // 아래 설정들이 활성화되어있으면 비공개글일 수 없습니다.
   if (content.isPinned || content.isImportant || content.isSlide) {
     if (content.isPrivate) {
       setContentByKey('isPrivate')(false);
@@ -99,13 +99,13 @@ export default function PostEditor({
       />
 
       <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
-        <div className={`grid grow  gap-x-6 gap-y-2.5 ${gridStyle}`}>
+        <div className="flex grow flex-wrap  gap-x-6 gap-y-2.5">
           {tags.map((tag) => (
             <Checkbox
               key={tag}
               label={tag}
               isChecked={content.tags.includes(tag)}
-              toggleCheck={toggleCheck}
+              toggleCheck={toggleTag}
             />
           ))}
         </div>
@@ -161,12 +161,8 @@ export default function PostEditor({
       </Fieldset>
 
       <div className="flex gap-3 self-end">
-        {actions.type === 'CREATE' && (
-          <CreateActionButtons {...actions} getContent={getContentWithDescription} />
-        )}
-        {actions.type === 'EDIT' && (
-          <EditActionButtons {...actions} getContent={getContentWithDescription} />
-        )}
+        {actions.type === 'CREATE' && <CreateActionButtons {...actions} getContent={getContent} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getContent} />}
       </div>
     </form>
   );

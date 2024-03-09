@@ -4,67 +4,44 @@ import { objToQueryString } from '@/utils/convertParams';
 
 import { BASE_URL, checkError } from './common';
 
-export const getRequest = async <T>(url: string, params: object = {}, init?: RequestInit) => {
+export const getRequest = async <T = unknown>(
+  url: string,
+  params: object = {},
+  init?: RequestInit,
+): Promise<T> => {
   const queryString = objToQueryString(params);
-  const fetchUrl = `${BASE_URL}${url}${queryString}`;
-  const jsessionId = cookies().get('JSESSIONID');
-  const response = await fetch(fetchUrl, {
-    ...init,
-    method: 'GET',
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-      ...init?.headers,
-    },
-  });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData as T;
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}${queryString}`, 'GET', init);
+  return await resp.json();
+};
+
+export const postRequest = async <T = unknown>(url: string, init?: RequestInit): Promise<T> => {
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}`, 'POST', init);
+  return await resp.json();
+};
+
+export const patchRequest = async <T = unknown>(
+  url: string,
+  init?: RequestInit,
+): Promise<T | null> => {
+  const resp = await fetchWithCredentials(`${BASE_URL}${url}`, 'PATCH', init);
+  return resp.headers.get('content-type') ? await resp.json() : null;
 };
 
 export const deleteRequest = async (url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const jsessionId = cookies().get('JSESSIONID');
-  const response = await fetch(fetchUrl, {
-    ...init,
-    method: 'DELETE',
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-      ...init?.headers,
-    },
-  });
-  checkError(response);
+  await fetchWithCredentials(`${BASE_URL}${url}`, 'DELETE', init);
 };
 
-export const postRequest = async (url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
+const fetchWithCredentials = async (url: string, method: string, init?: RequestInit) => {
   const jsessionId = cookies().get('JSESSIONID');
-  const response = await fetch(fetchUrl, {
+  const resp = await fetch(url, {
     ...init,
-    method: 'POST',
+    method,
     headers: {
       Cookie: `JSESSIONID=${jsessionId?.value}`,
       ...init?.headers,
     },
   });
-  checkError(response);
-  const responseData = await response.json();
-  return responseData;
-};
+  checkError(resp);
 
-export const patchRequest = async <T = unknown>(url: string, init?: RequestInit) => {
-  const fetchUrl = `${BASE_URL}${url}`;
-  const jsessionId = cookies().get('JSESSIONID');
-  const response = await fetch(fetchUrl, {
-    ...init,
-    method: 'PATCH',
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-      ...init?.headers,
-    },
-  });
-  checkError(response);
-  if (response.headers.get('content-type')) {
-    const responseData = await response.json();
-    return responseData as T;
-  }
+  return resp;
 };

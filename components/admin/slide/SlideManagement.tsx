@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 import { useSWRConfig } from 'swr';
 
-import { batchUnslideAction } from '@/actions/adminActions';
+import { batchUnslideAction } from '@/actions/admin';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -13,7 +13,7 @@ import AlertModal from '@/components/modal/AlertModal';
 import { ADMIN_MENU, SlidePreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';

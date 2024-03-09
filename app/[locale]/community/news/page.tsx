@@ -1,4 +1,4 @@
-import { getNewsPosts } from '@/actions/newsServer';
+import { getNewsPosts } from '@/apis/news';
 
 import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
 

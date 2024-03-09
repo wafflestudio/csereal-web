@@ -10,8 +10,8 @@ import { ResearchLab } from '@/types/research';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
 import { researchGroups } from '@/utils/segmentNode';
+import { replaceSpaceWithDash } from '@/utils/string';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 

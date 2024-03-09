@@ -1,12 +1,10 @@
 'use client';
 
-import { revalidateNewsTag } from '@/actions/newsActions';
+import { postNewsAction } from '@/actions/news';
 import { useRouter } from '@/navigation';
 
-import { postNews } from '@/apis/news';
-
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent, isLocalFile, isLocalImage } from '@/components/editor/PostEditorProps';
+import { PostEditorContent, isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NEWS_TAGS } from '@/constants/tag';
@@ -23,35 +21,13 @@ export default function NewsCreatePage() {
   const handleCancel = () => router.push(newsPath);
 
   const handleComplete = async (content: PostEditorContent) => {
-    // HTML 생성을 위한 로그
-    console.log(content.description);
     validateNewsForm(content);
-
-    const mainImage =
-      content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
-
-    const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-    await postNews({
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isSlide: content.isSlide,
-        isImportant: content.isImportant,
-        tags: content.tags,
-        date: content.date,
-      },
-      mainImage,
-      attachments,
-    });
-
-    revalidateNewsTag();
-    router.replace(newsPath);
+    const formData = contentToFormData(content);
+    await postNewsAction(formData);
   };
 
   return (
-    <PageLayout title="새 소식 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="새 소식 작성" titleType="big" titleMargin="mb-[2.75rem]">
       <PostEditor
         tags={NEWS_TAGS}
         showMainImage
@@ -67,3 +43,38 @@ export default function NewsCreatePage() {
     </PageLayout>
   );
 }
+
+const contentToFormData = (content: PostEditorContent) => {
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isSlide: content.isSlide,
+          isImportant: content.isImportant,
+          tags: content.tags,
+          date: content.date,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  if (content.mainImage && isLocalImage(content.mainImage)) {
+    formData.append('mainImage', content.mainImage.file);
+  }
+
+  for (const attachment of content.attachments.filter(isLocalFile).map((x) => x.file)) {
+    formData.append('attachments', attachment);
+  }
+
+  return formData;
+};

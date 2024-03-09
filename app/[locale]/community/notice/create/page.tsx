@@ -2,12 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 
-import { revalidateNoticeTag } from '@/actions/noticeActions';
-
-import { postNotice } from '@/apis/notice';
+import { postNoticeAction } from '@/actions/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorProps';
+import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
@@ -25,26 +23,12 @@ export default function NoticeCreatePage() {
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNoticeForm(content);
-
-    const attachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-    await postNotice({
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isPinned: content.isPinned,
-        isImportant: content.isImportant,
-        tags: content.tags,
-      },
-      attachments,
-    });
-    revalidateNoticeTag();
-    router.replace(noticePath);
+    const formData = contentToForm(content);
+    await postNoticeAction(formData);
   };
 
   return (
-    <PageLayout title="공지사항 쓰기" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="공지사항 작성" titleType="big" titleMargin="mb-[2.75rem]">
       <PostEditor
         tags={NOTICE_TAGS}
         showIsPinned
@@ -58,3 +42,34 @@ export default function NoticeCreatePage() {
     </PageLayout>
   );
 }
+
+const contentToForm = (content: PostEditorContent) => {
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isPinned: content.isPinned,
+          isImportant: content.isImportant,
+          tags: content.tags,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  content.attachments
+    .filter(isLocalFile)
+    .map((x) => x.file)
+    .forEach((attachment) => formData.append('attachments', attachment));
+
+  return formData;
+};

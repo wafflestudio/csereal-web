@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 import { useSWRConfig } from 'swr';
 
-import { batchUnimportantAction } from '@/actions/adminActions';
+import { batchUnimportantAction } from '@/actions/admin';
 
 import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
@@ -18,7 +18,7 @@ import {
 } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
-import { replaceSpaceWithDash } from '@/utils/replaceCharacter';
+import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ImportantList from './ImportantList';

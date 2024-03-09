@@ -1,41 +1,47 @@
-import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
+'use server';
 
-import { patchRequest, postRequest } from './network/client';
+import { NoticePreviewList, Notice } from '@/types/notice';
+import { PostSearchQueryParams } from '@/types/post';
+
+import { deleteRequest, getRequest, patchRequest, postRequest } from './network/server';
 
 const noticePath = '/notice';
 
-export const postNotice = async (body: POSTNoticeBody) => {
-  const formData = new FormData();
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
-  for (const attachment of body.attachments) {
-    formData.append('attachments', attachment);
-  }
+// GET
 
-  await postRequest(noticePath, {
-    body: formData,
+export const getNoticePosts = (params: PostSearchQueryParams) =>
+  getRequest(noticePath, params, { next: { tags: ['notice'] } }) as Promise<NoticePreviewList>;
+
+export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
+  getRequest(`${noticePath}/${id}`, params, { next: { tags: ['notice'] } }) as Promise<Notice>;
+
+// POST
+
+export const postNotice = async (formData: FormData) => {
+  await postRequest('/notice', { body: formData });
+};
+
+// PATCH
+
+export const patchNotice = async (id: number, formData: FormData) => {
+  console.log(formData.get('newAttachments'));
+  await patchRequest(`/notice/${id}`, { body: formData });
+};
+
+export const batchUnpinNotice = async (ids: Set<number>) => {
+  await patchRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList: Array.from(ids) }),
   });
 };
 
-export const patchNotice = async (id: number, body: PatchNoticeBody) => {
-  const formData = new FormData();
+// DELETE
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
+export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
 
-  for (const attachment of body.newAttachments) {
-    formData.append('newAttachments', attachment);
-  }
-
-  await patchRequest(`${noticePath}/${id}`, {
-    body: formData,
+export const batchDeleteNotice = async (ids: Set<number>) => {
+  await deleteRequest(noticePath, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idList: Array.from(ids) }),
   });
 };

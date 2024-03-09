@@ -17,7 +17,7 @@ export default function HeaderRight() {
 
   return (
     <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
-      <div className="flex items-center gap-3 text-xs font-normal text-white">
+      <div className="flex items-center gap-3 text-sm font-normal text-white">
         <LoginVisible staff>
           <Link href={'/admin'} className="hover:text-main-orange">
             관리자 메뉴 <div className=""></div>
@@ -29,10 +29,7 @@ export default function HeaderRight() {
 
         <Divider />
 
-        <button
-          onClick={changeLanguage}
-          className="text-sm font-normal tracking-[0.025rem] hover:text-main-orange"
-        >
+        <button onClick={changeLanguage} className="tracking-[0.025rem] hover:text-main-orange">
           {langButtonText}
         </button>
       </div>
@@ -50,11 +47,8 @@ const AuthButton = () => {
   const t = useTranslations('Header');
 
   return (
-    <button
-      onClick={state === 'logout' ? login : logout}
-      className="text-sm font-normal hover:text-main-orange"
-    >
-      {t(state === 'logout' ? '로그인' : '로그아웃')}
+    <button onClick={state === 'logout' ? login : logout} className="hover:text-main-orange">
+      {t(state === 'logout' ? '로그인' : '로그아웃') + '(test)'}
     </button>
   );
 };

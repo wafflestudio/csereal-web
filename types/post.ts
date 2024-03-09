@@ -25,11 +25,6 @@ export interface PostResponse extends Omit<Post, 'attachments'> {
   }[];
 }
 
-export interface AdjPostInfo {
-  title: string;
-  href: string;
-}
-
 export interface PostSearchQueryParams {
   pageNum?: number;
   keyword?: string;

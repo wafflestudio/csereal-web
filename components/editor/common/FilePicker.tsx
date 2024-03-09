@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
 import FilePickerRow from './FilePickerRow';
-import { PostEditorFile } from '../PostEditorProps';
+import { PostEditorFile } from '../PostEditorTypes';
 
 export interface FilePickerProps {
   files: PostEditorFile[];

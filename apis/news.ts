@@ -1,51 +1,32 @@
-import { PATCHNewsBody, POSTNewsBody } from '@/types/news';
+'use server';
 
-import { patchRequest, postRequest } from './network/client';
+import { News, NewsPreviewList } from '@/types/news';
+import { PostSearchQueryParams } from '@/types/post';
+
+import { deleteRequest, getRequest, patchRequest, postRequest } from './network/server';
 
 const newsPath = '/news';
 
-export const postNews = async (body: POSTNewsBody) => {
-  const formData = new FormData();
+// GET
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
+export const getNewsPosts = (params: PostSearchQueryParams) =>
+  getRequest(newsPath, params, { next: { tags: ['news'] } }) as Promise<NewsPreviewList>;
 
-  if (body.mainImage) {
-    formData.append('mainImage', body.mainImage);
-  }
+export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
+  getRequest(`${newsPath}/${id}`, params, { next: { tags: ['news'] } }) as Promise<News>;
 
-  for (const attachment of body.attachments) {
-    formData.append('attachments', attachment);
-  }
+// POST
 
-  await postRequest(newsPath, {
-    body: formData,
-  });
+export const postNews = async (formData: FormData) => {
+  await postRequest(newsPath, { body: formData });
 };
 
-export const patchNews = async (id: number, body: PATCHNewsBody) => {
-  const formData = new FormData();
+// PATCH
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
-
-  if (body.mainImage) {
-    formData.append('newMainImage', body.mainImage);
-  }
-
-  for (const attachment of body.newAttachments) {
-    formData.append('newAttachments', attachment);
-  }
-
-  await patchRequest(`${newsPath}/${id}`, {
-    body: formData,
-  });
+export const patchNews = async (id: number, formData: FormData) => {
+  await patchRequest(`${newsPath}/${id}`, { body: formData });
 };
+
+// DELETE
+
+export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);

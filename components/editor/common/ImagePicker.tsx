@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
-import { LocalImage, PostEditorImage, UploadedImage } from '../PostEditorProps';
+import { LocalImage, PostEditorImage, UploadedImage } from '../PostEditorTypes';
 
 export interface ImagePickerProps {
   file: PostEditorImage;

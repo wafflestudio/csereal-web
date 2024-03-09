@@ -6,9 +6,9 @@ import { patchMultipleImportants, patchMultipleSlides } from '@/apis/adminServer
 
 import { ImportantPostIdentifier } from '@/types/admin';
 
-import { revalidateNewsTag } from './newsActions';
-import { revalidateNoticeTag } from './noticeActions';
-import { revalidateSeminarTag } from './seminarActions';
+import { revalidateNewsTag } from './news';
+import { revalidateNoticeTag } from './notice';
+import { revalidateSeminarTag } from './seminar';
 
 export const batchUnslideAction = async (ids: Set<number>) => {
   try {

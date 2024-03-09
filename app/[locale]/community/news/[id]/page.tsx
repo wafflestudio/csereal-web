@@ -1,15 +1,15 @@
-import { getNewsPostDetail } from '@/actions/newsServer';
+import { getNewsDetail } from '@/apis/news';
 
-import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
+import PostFooter from '@/components/post/PostFooter';
 
 import { PostSearchQueryParams } from '@/types/post';
 
-import { getAdjPostsInfo } from '@/utils/getAdjPostInfo';
+import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
@@ -21,37 +21,26 @@ interface NewsPostPageProps {
 const newsPath = getPath(news);
 
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
-  const currPost = await getNewsPostDetail(parseInt(params.id), searchParams);
-  const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, newsPath);
-  const date = new Date(currPost.date);
-  const dateStr = `${date.getFullYear()}년 ${
-    date.getMonth() + 1
-  }월 ${date.getDate()}일 ${date.toLocaleString('ko-KR', { weekday: 'long' })}`;
+  const news = await getNewsDetail(parseInt(params.id), searchParams);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
       <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
-        {currPost.title}
+        {news.title}
       </h2>
 
       <div
         className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{
-          paddingBottom: PAGE_PADDING_BOTTOM_PX,
-        }}
+        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
       >
-        {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-        <HTMLViewer htmlContent={currPost?.description || ''} className="mb-10" />
-        <time className="mb-3 mt-12 block text-end text-sm font-bold">{dateStr}</time>
+        <Attachments files={news.attachments} />
+        <HTMLViewer htmlContent={news.description} className="mb-10" />
+        <time className="mb-3 mt-12 block text-end text-sm font-bold">
+          {formatNewsPostDateStr(news.date)}
+        </time>
         <StraightNode />
-        <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={newsPath} />
-        <AdjPostNav
-          prevPost={prevPostPreview}
-          nextPost={nextPostPreview}
-          postType="notice"
-          id={params.id}
-          margin="mt-12"
-        />
+        <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
+        <PostFooter post={news} postType="news" id={params.id} margin="mt-12" />
       </div>
     </PageLayout>
   );

@@ -3,16 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
-import { noticeDeleteAction, revalidateNoticeTag } from '@/actions/noticeActions';
-
-import { patchNotice } from '@/apis/notice';
+import { deleteNoticeAction, patchNoticeAction } from '@/actions/notice';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
   PostEditorContent,
   isLocalFile,
   isUploadedFile,
-} from '@/components/editor/PostEditorProps';
+} from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
@@ -51,35 +49,13 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNoticeForm(content);
-
-    const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
-    const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-
-    const deleteIds = data.attachments
-      .map((x) => x.id)
-      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
-
-    await patchNotice(id, {
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isPinned: content.isPinned,
-        isImportant: content.isImportant,
-        tags: content.tags,
-        deleteIds,
-      },
-      newAttachments: localAttachments,
-    });
-
-    revalidateNoticeTag();
-    router.replace(`${noticePath}/${id}`);
+    const formData = contentToFormData(data, content);
+    await patchNoticeAction(id, formData);
   };
 
   const handleDelete = async () => {
     startTransition(async () => {
-      const result = await noticeDeleteAction(id);
+      const result = await deleteNoticeAction(id);
       result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
     });
   };
@@ -101,3 +77,41 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     </PageLayout>
   );
 }
+
+const contentToFormData = (prevNotice: Notice, content: PostEditorContent) => {
+  const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
+  const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+
+  const deleteIds = prevNotice.attachments
+    .map((x) => x.id)
+    .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isPinned: content.isPinned,
+          isImportant: content.isImportant,
+          tags: content.tags,
+          deleteIds,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  for (const attachment of localAttachments) {
+    formData.append('newAttachments', attachment);
+  }
+
+  return formData;
+};

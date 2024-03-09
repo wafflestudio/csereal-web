@@ -14,8 +14,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { ADMIN_MENU, ImportantPreview, SlidePreview } from '@/types/admin';
 
 import { getPath } from '@/utils/page';
-import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 import { admin } from '@/utils/segmentNode';
+import { replaceDashWithSpace } from '@/utils/string';
 
 interface AdminPageProps {
   searchParams: { selected?: string; page?: string };

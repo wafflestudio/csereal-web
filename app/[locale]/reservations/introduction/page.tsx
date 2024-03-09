@@ -4,8 +4,8 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { getPath } from '@/utils/page';
-import { replaceDashWithSpace } from '@/utils/replaceCharacter';
 import { reservationIntroduction } from '@/utils/segmentNode';
+import { replaceDashWithSpace } from '@/utils/string';
 
 const path = getPath(reservationIntroduction);
 

@@ -2,9 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { newsDeleteAction, revalidateNewsTag } from '@/actions/newsActions';
-
-import { patchNews } from '@/apis/news';
+import { deleteNewsAction, patchNewsAction } from '@/actions/news';
 
 import PostEditor from '@/components/editor/PostEditor';
 import {
@@ -12,8 +10,8 @@ import {
   isLocalFile,
   isLocalImage,
   isUploadedFile,
-  postEditorDefaultValue,
-} from '@/components/editor/PostEditorProps';
+  defaultContent,
+} from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NEWS_TAGS } from '@/constants/tag';
@@ -30,7 +28,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
   const router = useRouter();
 
   const initialContent: PostEditorContent = {
-    ...postEditorDefaultValue,
+    ...defaultContent,
 
     title: data.title,
     titleForMain: data.titleForMain ?? '',
@@ -48,39 +46,12 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNewsForm(content);
-
-    const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
-    const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-
-    const mainImage =
-      content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
-
-    const deleteIds = data.attachments
-      .map((x) => x.id)
-      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
-
-    await patchNews(id, {
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isSlide: content.isSlide,
-        isImportant: content.isImportant,
-        tags: content.tags,
-        deleteIds,
-        date: content.date,
-      },
-      mainImage,
-      newAttachments: localAttachments,
-    });
-
-    revalidateNewsTag();
-    router.replace(`${newsPath}/${id}`);
+    const formData = contentToFormData(data, content);
+    await patchNewsAction(id, formData);
   };
 
   const handleDelete = async () => {
-    await newsDeleteAction(id);
+    await deleteNewsAction(id);
     router.replace(newsPath);
   };
 
@@ -103,3 +74,49 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     </PageLayout>
   );
 }
+
+const contentToFormData = (prevNews: News, content: PostEditorContent) => {
+  const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
+  const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+
+  const mainImage =
+    content.mainImage && isLocalImage(content.mainImage) ? content.mainImage.file : null;
+
+  const deleteIds = prevNews.attachments
+    .map((x) => x.id)
+    .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isSlide: content.isSlide,
+          isImportant: content.isImportant,
+          tags: content.tags,
+          deleteIds,
+          date: content.date,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  if (mainImage) {
+    formData.append('newMainImage', mainImage);
+  }
+
+  for (const attachment of localAttachments) {
+    formData.append('newAttachments', attachment);
+  }
+
+  return formData;
+};

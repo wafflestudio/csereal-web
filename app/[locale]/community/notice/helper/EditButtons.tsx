@@ -1,5 +1,10 @@
 import { Link } from '@/navigation';
 
+import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
+
+const noticePath = getPath(notice);
+
 interface BatchButtonProps {
   disabled: boolean;
   onClick: () => void;
@@ -35,14 +40,9 @@ export function EditButton({ isEditMode, toggleEditMode }: EditButtonProps) {
   );
 }
 
-interface CreateButtonProps {
-  mainPath: string;
-  disabled: boolean;
-}
-
-export function CreateButton({ mainPath, disabled }: CreateButtonProps) {
+export function CreateButton({ disabled }: { disabled: boolean }) {
   return (
-    <Link href={`${mainPath}/create`}>
+    <Link href={`${noticePath}/create`}>
       <button
         type="button"
         className="ml-4 h-[2.1875rem] rounded-[0.0625rem] bg-neutral-800 px-3 text-xs font-semibold leading-loose tracking-wider text-white enabled:hover:bg-neutral-300 disabled:opacity-30"

@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 
-import NewsRow from '@/app/[locale]/community/news/NewsRow';
-import SeminarRow from '@/app/[locale]/community/seminar/SeminarRow';
+import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
+import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import NoticeRow from '@/app/[locale]/search/NoticeRow';
 
 import SearchBox from '@/components/common/search/SearchBox';

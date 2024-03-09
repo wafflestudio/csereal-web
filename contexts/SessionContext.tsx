@@ -9,10 +9,7 @@ import React, {
   useState,
 } from 'react';
 
-import { getIsStaff, getMockAuth, removeAuth } from '@/actions/sessionActions';
-import { useRouter } from '@/navigation';
-
-import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
+import { getIsStaff, getMockAuth, removeAuth } from '@/actions/session';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -31,7 +28,6 @@ export const SessionContext = createContext<SessionContextData>({
 export const useSessionContext = () => useContext(SessionContext);
 
 export default function SessionContextProvider({ children }: PropsWithChildren) {
-  const router = useRouter();
   const [state, setState] = useState<UserState>('logout');
 
   const refresh = useCallback(async () => {
@@ -44,22 +40,16 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [refresh]);
 
   const login = useCallback(async () => {
-    if (process.env.NODE_ENV === 'production') {
-      router.push(LOGIN_URL);
-    } else {
-      await getMockAuth();
-    }
+    // TODO: 실제 배포시 LOGIN_URL, LOGOUT_URL 사용
+    await getMockAuth();
     await refresh();
-  }, [refresh, router]);
+  }, [refresh]);
 
   const logout = useCallback(async () => {
-    if (process.env.NODE_ENV === 'production') {
-      router.push(LOGOUT_URL);
-    } else {
-      removeAuth();
-    }
+    // TODO: 실제 배포시 LOGIN_URL, LOGOUT_URL 사용
+    removeAuth();
     await refresh();
-  }, [refresh, router]);
+  }, [refresh]);
 
   return (
     <SessionContext.Provider value={{ state, login, logout }}>{children}</SessionContext.Provider>

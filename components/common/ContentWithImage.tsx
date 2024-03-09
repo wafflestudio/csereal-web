@@ -29,7 +29,7 @@ export default function ContentWithImage({
         htmlContent={content}
         topRightContent={
           imageURL && screenType === 'desktop'
-            ? { type: 'image', width: 320, height: 200, url: imageURL }
+            ? { type: 'image', widthPX: 320, heightPX: 200, url: imageURL }
             : undefined
         }
       />
