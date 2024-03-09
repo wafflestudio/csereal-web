@@ -8,7 +8,7 @@ import { postSeminar } from '@/apis/seminar';
 
 import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
-import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
+import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { validateSeminarForm } from '@/utils/formValidation';

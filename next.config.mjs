@@ -11,6 +11,13 @@ const nextConfig = {
     },
   },
 
+  experimental: {
+    serverActions: {
+      // 게시물 작성시 첨부파일 지원 목적
+      bodySizeLimit: '10mb',
+    },
+  },
+
   // react-svgr 설정
   // https://react-svgr.com/docs/next/
   webpack(config) {

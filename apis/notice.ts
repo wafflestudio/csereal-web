@@ -1,6 +1,6 @@
 'use server';
 
-import { NoticePreviewList, Notice, POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
+import { NoticePreviewList, Notice } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from './network/server';
@@ -17,37 +17,13 @@ export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =
 
 // POST
 
-export const postNotice = async (body: POSTNoticeBody) => {
-  const formData = new FormData();
-
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
-
-  body.attachments.forEach((attachment) => formData.append('attachments', attachment));
-
+export const postNotice = async (formData: FormData) => {
   await postRequest('/notice', { body: formData });
 };
 
 // PATCH
 
-export const patchNotice = async (id: number, body: PatchNoticeBody) => {
-  const formData = new FormData();
-
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(body.request)], {
-      type: 'application/json',
-    }),
-  );
-
-  for (const attachment of body.newAttachments) {
-    formData.append('newAttachments', attachment);
-  }
-
+export const patchNotice = async (id: number, formData: FormData) => {
   await patchRequest(`/notice/${id}`, { body: formData });
 };
 

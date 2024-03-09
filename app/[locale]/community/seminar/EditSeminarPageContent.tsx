@@ -21,7 +21,7 @@ import {
   isUploadedFile,
 } from '../../../../components/editor/PostEditorTypes';
 import SeminarEditor from '../../../../components/editor/SeminarEditor';
-import { SeminarEditorContent } from '../../../../components/editor/SeminarEditorProps';
+import { SeminarEditorContent } from '../../../../components/editor/SeminarEditorTypes';
 
 const seminarPath = getPath(seminar);
 

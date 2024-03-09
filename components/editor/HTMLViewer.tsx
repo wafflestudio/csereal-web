@@ -2,7 +2,7 @@ import { Autolinker } from 'autolinker';
 import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
 
-import './common/suneditor-contents.css';
+import './SunEditor/suneditor-contents.css';
 
 type TopRightImage =
   | {

@@ -1,5 +1,5 @@
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
-import { SeminarEditorContent } from '@/components/editor/SeminarEditorProps';
+import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 
 export const validateNoticeForm = (content: PostEditorContent) => {
   if (content.title === '') {

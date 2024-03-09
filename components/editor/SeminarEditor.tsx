@@ -10,17 +10,17 @@ import DateSelector from './common/DateSelector';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import SunEditorFallback from './common/SunEditorFallback';
 import {
   SeminarEditorContent,
   SeminarEditorProps,
   SeminarSchedule,
   SeminarSpeaker,
   getSeminarEditorDefaultValue,
-} from './SeminarEditorProps';
+} from './SeminarEditorTypes';
+import SunEditorFallback from './SunEditor/SunEditorFallback';
 import Checkbox from '../common/form/Checkbox';
 
-const SunEditorWrapper = dynamic(() => import('@/components/editor/common/SunEditorWrapper'), {
+const SunEditorWrapper = dynamic(() => import('@/components/editor/SunEditor/SunEditorWrapper'), {
   ssr: false,
   loading: () => <SunEditorFallback />,
 });

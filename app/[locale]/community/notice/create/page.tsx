@@ -2,9 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { revalidateNoticeTag } from '@/actions/noticeActions';
-
-import { postNotice } from '@/apis/notice';
+import { postNoticeAction } from '@/actions/noticeActions';
 
 import PostEditor from '@/components/editor/PostEditor';
 import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorTypes';
@@ -25,22 +23,8 @@ export default function NoticeCreatePage() {
 
   const handleComplete = async (content: PostEditorContent) => {
     validateNoticeForm(content);
-
-    await postNotice({
-      request: {
-        title: content.title,
-        titleForMain: content.titleForMain ? content.titleForMain : null,
-        description: content.description,
-        isPrivate: content.isPrivate,
-        isPinned: content.isPinned,
-        isImportant: content.isImportant,
-        tags: content.tags,
-      },
-      attachments: content.attachments.filter(isLocalFile).map((x) => x.file),
-    });
-
-    revalidateNoticeTag();
-    router.replace(noticePath);
+    const formData = contentToForm(content);
+    await postNoticeAction(formData);
   };
 
   return (
@@ -58,3 +42,34 @@ export default function NoticeCreatePage() {
     </PageLayout>
   );
 }
+
+const contentToForm = (content: PostEditorContent) => {
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob(
+      [
+        JSON.stringify({
+          title: content.title,
+          titleForMain: content.titleForMain ? content.titleForMain : null,
+          description: content.description,
+          isPrivate: content.isPrivate,
+          isPinned: content.isPinned,
+          isImportant: content.isImportant,
+          tags: content.tags,
+        }),
+      ],
+      {
+        type: 'application/json',
+      },
+    ),
+  );
+
+  content.attachments
+    .filter(isLocalFile)
+    .map((x) => x.file)
+    .forEach((attachment) => formData.append('attachments', attachment));
+
+  return formData;
+};
