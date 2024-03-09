@@ -15,18 +15,12 @@ export default function ResearchCenterDetails({
   return (
     <div>
       <ResearchCenterTitle name={name} link={websiteURL} />
-      {/* <div className="relative mx-2.5 mb-7 h-fit w-full">
-        <ImageWithFallback
-          alt={`${name}_이미지`}
-          src={imageURL}
-          className="object-contain sm:hidden"
-          fill
-        />
-      </div> */}
       <HTMLViewer
         htmlContent={description}
-        topRightContent={{ type: 'image', width: 320, height: 160, url: imageURL }}
         className="mx-2.5"
+        {...(imageURL
+          ? { topRightContent: { type: 'image', width: 320, height: 160, url: imageURL } }
+          : {})}
       />
     </div>
   );

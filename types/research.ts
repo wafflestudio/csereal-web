@@ -15,7 +15,7 @@ export interface ResearchCenter {
   id: number;
   name: string;
   description: string;
-  imageURL: string;
+  imageURL: string | null;
   websiteURL: string;
 }
 

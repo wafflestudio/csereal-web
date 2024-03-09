@@ -1,14 +1,7 @@
-import {
-  ResearchCenter,
-  ResearchLab,
-  SimpleResearchLab,
-  TopConferenceList,
-} from '@/types/research';
+import { ResearchLab, SimpleResearchLab, TopConferenceList } from '@/types/research';
 
-import { researchCentersData, simpleResearchLabs, tcl } from './objects';
+import { simpleResearchLabs, tcl } from './objects';
 import { researchLabs } from './serverObjects';
-
-export const getMockResearchCenters = async (): Promise<ResearchCenter[]> => researchCentersData;
 
 export const getMockTopConferenceList = async (): Promise<TopConferenceList> => tcl;
 

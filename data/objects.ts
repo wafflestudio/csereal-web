@@ -8,7 +8,7 @@ import {
   Staff,
   StaffList,
 } from '@/types/people';
-import { ResearchCenter, SimpleResearchLab, TopConferenceList } from '@/types/research';
+import { SimpleResearchLab, TopConferenceList } from '@/types/research';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const careerStatCols = ['학부', '석사', '박사'];
@@ -1564,36 +1564,6 @@ export const graduateCourseChangesData: CourseChange[] = [
 ];
 
 /* 연구 */
-
-export const researchCentersData: ResearchCenter[] = [
-  {
-    id: 0,
-    name: '컴퓨터 연구소',
-    description:
-      '<p>서울대학교 컴퓨터연구소는 국내 여러 대학 간의 공동 연구와 산학 협동 체제 구축을 통한 컴퓨터 관련 신기술 및 미래지향적인 컴퓨터 개발 능력의 확보와 전문 연구 인력의 양성을 목적으로 본교를 비롯한 전국 20여 개 대학의 컴퓨터 관련 학과가 참여한 가운데 1989년에 설립되었다. 컴퓨터분야 최첨단 기술의 연구 개발과 전국의 각 대학, 산업체 및 연구소 간의 상호 협력적 연구의 구심점 역할을 하고 있으며, 정보기술(IT)과 관련하여 고급 인력 양성과 계속교육 등을 통하여 국내 컴퓨터 산업의 성장에도 크게 기여하고 있다. 차세대 컴퓨터 개발을 위한 선진 기술의 토착화 및 세계적인 첨단 기술의 선도를 위해 컴퓨터공학 및 컴퓨터과학의 제 분야에 대한 연구를 수행하고 있다.​</p>',
-    imageURL:
-      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--research_center/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%97%B0%EA%B5%AC%EC%86%8C.jpg?itok=ZMrQExO0',
-    websiteURL: 'https://ict.snu.ac.kr/',
-  },
-  {
-    id: 1,
-    name: '컴퓨터 미래 인재 양성 사업단',
-    description:
-      '<p>서울대학교 컴퓨터미래인재양성단(BK21)은 글로벌 리더형 고급 컴퓨터 인재를 육성하기 위한 교육 비전 아래, 혁신적이고 탁월한 학문 가치를 창출할 수 있는 인재를 체계적으로 양성하기 위한 목적으로 설립되었다. 우리 사업단은 서울대학교 공과대학 컴퓨터공학부의 교수, 대학원생 그리고 신진연구인력 등, 구성원을 위한 연구 역량 강화 프로그램을 운영하고 있으며, 학술논문발표, 신기술 개발 및 다양한 산학협력 등 우수한 성과를 바탕으로, 국내외 컴퓨터공학 및 컴퓨터과학 제 분야의 첨단기술을 선도하고 있다. 우리 사업단은 IT 산업의 원동력이 되는 최고급 소프트웨어 전문가, 미래 컴퓨터 기술을 선도할 창의적 차세대 연구자, 컴퓨터 신산업을 창출할 사업가를 지속적으로 양성하기 위하여, 폭넓고 유연한 인재양성 사업을 수행하고 있다.</p><p>■ 장학금 지원프로그램: 한국연구재단/BK21플러스사업/미래기반 창의인재양성 사업</p>',
-    imageURL:
-      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--research_center/bk.png?itok=dZ1PxwkX',
-    websiteURL: 'https://bkcse.snu.ac.kr/', // 삭제된 주소인 것 같음
-  },
-  {
-    id: 2,
-    name: 'AI 연구원',
-    description:
-      '<p>​서울대학교 AI 연구원은 인공지능 및 딥러닝 관련 혁신 연구의 중심지로, 차세대 인공지능 기술 분야에서 세계를 이끄는 연구자들이 모여 대한민국과 전 세계의 과학·기술·경제 흐름을 바꾸는 획기적인 연구를 수행하는 것을 목표로 한다. 연구자들은 컴퓨터 비전, 음성 인식, 자연어 처리, 로봇 공학, 인공지능 비서, 인공 신경망, 머신러닝 소프트웨어 및 하드웨어, 대용량 병렬 처리, 분산 시스템, 컴퓨터 그래픽스, 확률 추론, 베이즈 통계, 통계 물리학, 정보 이론, 뉴로모픽 컴퓨팅, 뇌과학, 인지 과학 등 다양한 분야에서 활약하는 전문가들로 이루어져 있으며, 산·학·연이 서로 협력하여 센터의 중장기 비전을 실현하는 데에 힘쓰고 있다.​<br></p>',
-    imageURL:
-      'https://cse.snu.ac.kr/sites/default/files/styles/medium-large/public/node--research_center/20210824_100327_0.png?itok=-wn7SKLk',
-    websiteURL: 'https://aiis.snu.ac.kr:55568/',
-  },
-];
 
 export const facultyList: SimpleFaculty[] = [
   {
