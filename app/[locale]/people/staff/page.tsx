@@ -3,12 +3,12 @@ import { getStaffList } from '@/apis/people';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { getPath } from '@/utils/page';
-import { faculty } from '@/utils/segmentNode';
+import { staff } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-const facultyPath = getPath(faculty);
+const staffPath = getPath(staff);
 
 export default async function StaffPage() {
   const staffList = await getStaffList();
@@ -18,7 +18,7 @@ export default async function StaffPage() {
     title: staff.name,
     subtitle: staff.role,
     titleNewline: true,
-    href: `${facultyPath}/${staff.id}`,
+    href: `${staffPath}/${staff.id}`,
     content: [
       { text: staff.office },
       { text: staff.phone },

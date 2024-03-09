@@ -50,15 +50,17 @@ export default function PeopleCell({
         </div>
 
         <div className="mt-2.5 flex flex-col items-start gap-2 break-keep">
-          {content.map(({ text, href }, idx) =>
-            href ? (
-              <Link key={idx} href={href} className="items-center hover:underline">
-                <p>{text}</p>
-              </Link>
-            ) : (
-              <p key={idx}>{text}</p>
-            ),
-          )}
+          {content.map(({ text, href }, idx) => {
+            if (href) {
+              return (
+                <Link key={idx} href={href} className="items-center hover:underline">
+                  <p>{text}</p>
+                </Link>
+              );
+            } else {
+              return <p key={idx}>{text}</p>;
+            }
+          })}
         </div>
       </div>
     </article>

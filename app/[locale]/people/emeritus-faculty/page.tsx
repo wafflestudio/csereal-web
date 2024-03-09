@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 import { getEmeritusFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -7,16 +5,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { SimpleEmiritusFaculty } from '@/types/people';
 
 import { getPath } from '@/utils/page';
-import { faculty } from '@/utils/segmentNode';
+import { emeritusFaculty } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-const facultyPath = getPath(faculty);
+const facultyPath = getPath(emeritusFaculty);
 
 export default async function EmeritusFacultyPage() {
   const facultyList = await getEmeritusFacultyList();
-
   const props = facultyList.map(facultyToProp);
 
   return (
