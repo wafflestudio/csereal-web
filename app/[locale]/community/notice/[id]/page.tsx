@@ -30,7 +30,7 @@ export default async function NoticePostPage({
     return (
       <PageLayout titleType="small" titleMargin="mb-5">
         <p>
-          <b>{`'${rawId}'`}</b>는 올바르지 않은 id입니다.
+          <b>{rawId}</b>는 올바르지 않은 id입니다.
         </p>
         <AdjPostNav postType="notice" margin="mt-12" />
       </PageLayout>
@@ -50,7 +50,7 @@ export default async function NoticePostPage({
         }}
       >
         {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-        <HTMLViewer htmlContent={currPost?.description || ''} className="mb-10 mt-4" />
+        <HTMLViewer htmlContent={currPost?.description || ''} className="mb-10" />
         <StraightNode />
         <Tags tags={currPost?.tags || []} margin="mt-3 ml-6" searchPath={noticePath} />
         <AdjPostNav
