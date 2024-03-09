@@ -1,6 +1,6 @@
 import { POSTNoticeBody, PatchNoticeBody } from '@/types/notice';
 
-import { patchRequest, postRequest } from './common/client';
+import { patchRequest, postRequest } from './network/client';
 
 const noticePath = '/notice';
 

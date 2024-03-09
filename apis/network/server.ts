@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 
-import { BASE_URL, checkError } from '@/apis/common/client';
-
 import { objToQueryString } from '@/utils/convertParams';
+
+import { BASE_URL, checkError } from './common';
 
 export const getRequest = async <T>(url: string, params: object = {}, init?: RequestInit) => {
   const queryString = objToQueryString(params);

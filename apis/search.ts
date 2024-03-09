@@ -1,6 +1,6 @@
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
 
-import { getRequest } from './common/client';
+import { getRequest } from './network/client';
 
 export const getNoticeSearch = (params: {
   keyword: string;

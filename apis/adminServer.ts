@@ -1,6 +1,6 @@
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { patchRequest } from './common/server';
+import { patchRequest } from './network/server';
 
 export const getSlides = async (): Promise<{ slides: SlidePreview[]; total: number }> => ({
   slides: [],

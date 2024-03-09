@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
-import SessionContextProvider from '@/contexts/SessionContext';
+import SessionContextProvider from '@/contexts/SessionContextProvider';
 
 import Footer from '@/components/layout/footer/Footer';
 import Navbar from '@/components/layout/navbar/Navbar';

@@ -2,7 +2,7 @@
 
 import { SWRConfig } from 'swr';
 
-import { getRequest } from '@/apis/common/client';
+import { getRequest } from '@/apis/network/client';
 
 export const SWRProvider = ({ children }: { children: React.ReactNode }) => {
   return (
