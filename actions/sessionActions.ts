@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 import { UserState } from '@/contexts/SessionContext';
 
-import { getRequest } from '@/apis/common/server';
+import { getRequest } from '@/apis/network/server';
 
 import { COOKIE_SESSION_ID } from '@/constants/network';
 
@@ -26,7 +26,9 @@ export const removeAuth = () => {
 };
 
 export const getIsStaff = async (): Promise<UserState> => {
-  if (cookies().get(COOKIE_SESSION_ID) === undefined) return 'logout';
+  const id = cookies().get(COOKIE_SESSION_ID);
+  if (id === undefined) return 'logout';
+  if (process.env.NODE_ENV === 'development' && id) return 'staff';
 
   try {
     const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff');

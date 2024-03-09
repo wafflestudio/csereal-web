@@ -8,16 +8,19 @@ import { CurvedVerticalNode } from '@/components/common/Nodes';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 
-interface SubNavbarProps {
-  currentTab: SegmentNode;
-}
+type TreeNode = {
+  name: string;
+  segment: string;
+  isPage: boolean;
+  children: TreeNode[];
+};
 
 const ITEM_HEIGHT = 33;
 const INDENTATION = 16;
 
-export default function SubNavbar({ currentTab }: SubNavbarProps) {
+export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
   const t = useTranslations('Nav');
-  const rootTab = getRootTab(currentTab);
+  const rootTab = getRootTab(currentTab as SegmentNode);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 

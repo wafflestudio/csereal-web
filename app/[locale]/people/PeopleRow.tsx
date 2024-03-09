@@ -24,6 +24,12 @@ const emeritusFacultyPath = getPath(emeritusFaculty);
 const staffPath = getPath(staff);
 const labLink = getPath(researchLabs);
 
+const hrefList = {
+  EMIRITUS_FACULTY: emeritusFacultyPath,
+  FACULTY: facultyPath,
+  STAFF: staffPath,
+};
+
 export default function PeopleRow({
   type,
   id,
@@ -37,11 +43,6 @@ export default function PeopleRow({
   office,
   imageURL,
 }: PeopleRowProps) {
-  const hrefList = {
-    EMIRITUS_FACULTY: emeritusFacultyPath,
-    FACULTY: facultyPath,
-    STAFF: staffPath,
-  };
   const href = `${hrefList[type]}/${id}`;
 
   return (

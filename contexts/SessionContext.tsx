@@ -2,9 +2,9 @@
 
 import React, {
   createContext,
+  useContext,
   PropsWithChildren,
   useCallback,
-  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -12,12 +12,9 @@ import React, {
 import { getIsStaff, getMockAuth, removeAuth } from '@/actions/sessionActions';
 import { useRouter } from '@/navigation';
 
-import { BASE_URL } from '@/apis/common/client';
+import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
-
-const LOGIN_URL = BASE_URL + '/login';
-const LOGOUT_URL = BASE_URL + '/logout';
 
 type SessionContextData = {
   state: UserState;
@@ -25,7 +22,7 @@ type SessionContextData = {
   login: () => Promise<void>;
 };
 
-const SessionContext = createContext<SessionContextData>({
+export const SessionContext = createContext<SessionContextData>({
   state: 'logout',
   logout: async () => {},
   login: async () => {},

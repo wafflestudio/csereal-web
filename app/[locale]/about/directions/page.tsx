@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { getDirections } from '@/apis/about';
 
 import DirectionsDetails from '@/app/[locale]/about/directions/DirectionsDetails';
@@ -21,6 +23,7 @@ const FIND_PATH_URL =
 
 export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const directionList = await getDirections();
+
   const selectedDirection = findSelectedItem(
     directionList,
     searchParams.selected ?? '',
@@ -42,15 +45,19 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
         {selectedDirection ? (
           <DirectionsDetails direction={selectedDirection} />
         ) : (
-          <p>
-            <b>{`'${searchParams.selected}'`}</b>은/는{' '}
-            <a href={FIND_PATH_URL} className="text-link hover:underline">
-              길찾기
-            </a>
-            를 활용해주세요.
-          </p>
+          <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
         )}
       </div>
     </PageLayout>
   );
 }
+
+const NotFoundLabel = ({ children }: { children: ReactNode }) => (
+  <p>
+    <b>{children}</b>은/는{' '}
+    <a href={FIND_PATH_URL} className="text-link hover:underline">
+      길찾기
+    </a>
+    를 활용해주세요.
+  </p>
+);

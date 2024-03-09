@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { getClubs } from '@/apis/about';
 
 import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
@@ -17,6 +19,7 @@ const clubPath = getPath(studentClubs);
 
 export default async function StudentClubsPage({ searchParams }: StudentClubsPageProps) {
   const clubs = await getClubs();
+
   const selectedClub = findSelectedItem(
     clubs,
     decodeURI(searchParams.selected ?? ''),
@@ -33,10 +36,14 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
       {selectedClub ? (
         <ClubDetails club={selectedClub} />
       ) : (
-        <p>
-          <b>{`'${searchParams.selected}'`}</b>은/는 존재하지 않는 동아리입니다.
-        </p>
+        <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
       )}
     </PageLayout>
   );
 }
+
+const NotFoundLabel = ({ children }: { children: ReactNode }) => (
+  <p>
+    <b>{children}</b>은/는 존재하지 않는 동아리입니다.
+  </p>
+);

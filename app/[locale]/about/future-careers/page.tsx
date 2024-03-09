@@ -8,6 +8,7 @@ import { FutureCareers } from '@/types/about';
 
 export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();
+
   return (
     <PageLayout titleType="big">
       <p className="mb-9 whitespace-pre-wrap break-keep text-md font-normal leading-[1.625rem]">
