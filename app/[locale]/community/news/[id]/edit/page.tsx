@@ -1,6 +1,6 @@
 import { getNewsPostDetail } from '@/actions/newsServer';
 
-import EditNewsPageContent from '@/app/[locale]/community/news/EditNewsPageContent';
+import EditNewsPageContent from '@/app/[locale]/community/news/helper/EditNewsPageContent';
 
 interface EditNewsPageProps {
   params: { id: string };

@@ -26,3 +26,11 @@ export const formatPostDateStr = (str: string) => {
 
   return `${yyyy}/${mm}/${dd} (${day}) ${time}`;
 };
+
+export const formatNewsPostDateStr = (str: string) => {
+  const date = new Date(str);
+
+  return `${date.getFullYear()}년 ${
+    date.getMonth() + 1
+  }월 ${date.getDate()}일 ${date.toLocaleString('ko-KR', { weekday: 'long' })}`;
+};

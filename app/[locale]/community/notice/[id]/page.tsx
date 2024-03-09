@@ -5,7 +5,7 @@ import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import AdjPostNav from '@/components/post/AdjPostNav';
+import PostFooter from '@/components/post/PostFooter';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -44,7 +44,7 @@ export default async function NoticePostPage({
         <HTMLViewer htmlContent={notice.description} className="mb-10" />
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
-        <AdjPostNav post={notice} postType="notice" id={rawID} margin="mt-12" />
+        <PostFooter post={notice} postType="notice" id={rawID} margin="mt-12" />
       </div>
     </PageLayout>
   );

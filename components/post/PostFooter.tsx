@@ -4,10 +4,10 @@ import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';
 
+import PostDeleteButton from './PostDeleteButton';
 import LoginVisible from '../common/LoginVisible';
-import PostDeleteButton from '../common/PostDeleteButton';
 
-type AdjPostNavProps = {
+type PostFooterProps = {
   postType: PostType;
   post: Notice | News | Seminar;
   id?: string;
@@ -22,7 +22,7 @@ type AdjPost = {
 type PostType = 'notice' | 'seminar' | 'news';
 type RowType = 'next' | 'prev';
 
-export default function AdjPostNav({ post, margin = '', postType, id }: AdjPostNavProps) {
+export default function PostFooter({ post, margin = '', postType, id }: PostFooterProps) {
   const nextPost =
     post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
   const prevPost =

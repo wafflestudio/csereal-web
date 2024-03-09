@@ -8,7 +8,7 @@ import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import AdjPostNav from '@/components/post/AdjPostNav';
+import PostFooter from '@/components/post/PostFooter';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -73,7 +73,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
         )}
 
         <StraightNode margin="mt-10" />
-        <AdjPostNav post={seminar} postType="notice" id={params.id} margin="mt-12" />
+        <PostFooter post={seminar} postType="notice" id={params.id} margin="mt-12" />
       </div>
     </PageLayout>
   );
