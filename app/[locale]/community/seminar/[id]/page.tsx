@@ -8,7 +8,7 @@ import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -31,60 +31,65 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
   const { prevPostPreview, nextPostPreview } = getAdjPostsInfo(currPost, searchParams, seminarPath);
 
   return (
-    <PageLayout title={currPost.title} titleType="small" titleMargin="mb-5">
-      <div className="mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
+    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
+        {currPost.title}
+      </h2>
+      <div
+        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
+        style={{
+          paddingBottom: PAGE_PADDING_BOTTOM_PX,
+        }}
+      >
         {currPost.attachments.length !== 0 && <Attachments files={currPost.attachments} />}
-
-        <div className="relative float-right mb-7 ml-7 mt-4 h-60 w-60">
-          <ImageWithFallback
-            src={currPost.imageURL ?? undefined}
-            alt="대표 이미지"
-            fill
-            className="flex-1 object-cover"
-            sizes="240px"
-          />
+        <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md leading-loose sm:flex-row">
+          <div className="whitespace-nowrap">
+            <div>
+              {'이름: '}
+              <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
+            </div>
+            <div>{currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}</div>
+            <div>
+              {'소속: '}
+              <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
+            </div>
+            <div className="mt-10">주최: {currPost.host}</div>
+            <div>일시: {formatStartEndDate(currPost.startDate, currPost.endDate)}</div>
+            <div>장소: {currPost.location}</div>
+          </div>
+          <div className="relative mx-7 aspect-square sm:h-60 sm:w-60">
+            <ImageWithFallback
+              alt={`대표_이미지`}
+              src={currPost.imageURL}
+              className="object-contain"
+              fill
+            />
+          </div>
         </div>
-
-        <div>
-          {'이름: '}
-          <LinkOrText href={currPost.speakerURL}>{currPost.name}</LinkOrText>
-        </div>
-
-        <div>{currPost.speakerTitle && <p>직함: {currPost.speakerTitle}</p>}</div>
-        <div>
-          {'소속: '}
-          <LinkOrText href={currPost.affiliationURL}>{currPost.affiliation}</LinkOrText>
-        </div>
-
-        <div className="mt-10">주최: {currPost.host}</div>
-
-        <div>일시: {formatStartEndDate(currPost.startDate, currPost.endDate)}</div>
-
-        <div>장소: {currPost.location}</div>
 
         {currPost.description && (
           <>
-            <div className="mt-12  font-bold">요약</div>
+            <div className="mt-10 font-bold">요약</div>
             <HTMLViewer htmlContent={currPost.description} />
           </>
         )}
 
         {currPost.introduction && (
           <>
-            <div className="mt-12  font-bold">연사 소개</div>
+            <div className="mt-10 font-bold">연사 소개</div>
             <HTMLViewer htmlContent={currPost.introduction} />
           </>
         )}
-      </div>
 
-      <StraightNode />
-      <AdjPostNav
-        prevPost={prevPostPreview}
-        nextPost={nextPostPreview}
-        postType="seminar"
-        id={params.id}
-        margin="mt-12"
-      />
+        <StraightNode margin="mt-10" />
+        <AdjPostNav
+          prevPost={prevPostPreview}
+          nextPost={nextPostPreview}
+          postType="notice"
+          id={params.id}
+          margin="mt-12"
+        />
+      </div>
     </PageLayout>
   );
 }
