@@ -22,7 +22,7 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
       radius={radius}
       triangleLength={triangleLength}
       colorTheme={COLOR_THEME.black}
-      margin="mt-[-64px] mb-11 ml-11"
+      margin="sm:mt-[-64px] sm:mb-11 sm:ml-11"
     >
       <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-5">
         <ProfessorsInfo professors={lab.professors} />
