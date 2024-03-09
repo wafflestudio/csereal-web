@@ -23,7 +23,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
   const selectedClub = findSelectedItem(
     clubs,
     decodeURI(searchParams.selected ?? ''),
-    '와플스튜디오',
+    clubs[0]?.name,
   );
 
   return (

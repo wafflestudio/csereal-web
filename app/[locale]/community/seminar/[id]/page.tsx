@@ -7,7 +7,7 @@ import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import AdjPostNav from '@/components/post/AdjPostNav';
 
 import { PostSearchQueryParams } from '@/types/post';
@@ -24,54 +24,57 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
   const seminar = await getSeminarPost(parseInt(params.id), searchParams);
 
   return (
-    <PageLayout title={seminar.title} titleType="small" titleMargin="mb-5">
-      <div className="mb-9 flow-root break-all text-sm leading-[1.63rem] text-neutral-700">
+    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
+        {seminar.title}
+      </h2>
+      <div
+        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
+        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
+      >
         {seminar.attachments.length !== 0 && <Attachments files={seminar.attachments} />}
-
-        <div className="relative float-right mb-7 ml-7 mt-4 h-60 w-60">
-          <ImageWithFallback
-            src={seminar.imageURL ?? undefined}
-            alt="대표 이미지"
-            fill
-            className="flex-1 object-cover"
-            sizes="240px"
-          />
+        <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md leading-loose sm:flex-row">
+          <div className="whitespace-nowrap">
+            <div>
+              {'이름: '}
+              <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
+            </div>
+            <div>{seminar.speakerTitle && <p>직함: {seminar.speakerTitle}</p>}</div>
+            <div>
+              {'소속: '}
+              <LinkOrText href={seminar.affiliationURL}>{seminar.affiliation}</LinkOrText>
+            </div>
+            <div className="mt-10">주최: {seminar.host}</div>
+            <div>일시: {formatStartEndDate(seminar.startDate, seminar.endDate)}</div>
+            <div>장소: {seminar.location}</div>
+          </div>
+          <div className="relative mx-7 aspect-square sm:h-60 sm:w-60">
+            <ImageWithFallback
+              alt={`대표_이미지`}
+              src={seminar.imageURL}
+              className="object-contain"
+              fill
+            />
+          </div>
         </div>
-
-        <div>
-          {'이름: '}
-          <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
-        </div>
-
-        <div>{seminar.speakerTitle && <p>직함: {seminar.speakerTitle}</p>}</div>
-        <div>
-          {'소속: '}
-          <LinkOrText href={seminar.affiliationURL}>{seminar.affiliation}</LinkOrText>
-        </div>
-
-        <div className="mt-10">주최: {seminar.host}</div>
-
-        <div>일시: {formatStartEndDate(seminar.startDate, seminar.endDate)}</div>
-
-        <div>장소: {seminar.location}</div>
 
         {seminar.description && (
           <>
-            <div className="mt-12  font-bold">요약</div>
+            <div className="mt-10 font-bold">요약</div>
             <HTMLViewer htmlContent={seminar.description} />
           </>
         )}
 
         {seminar.introduction && (
           <>
-            <div className="mt-12  font-bold">연사 소개</div>
+            <div className="mt-10 font-bold">연사 소개</div>
             <HTMLViewer htmlContent={seminar.introduction} />
           </>
         )}
-      </div>
 
-      <StraightNode />
-      <AdjPostNav post={seminar} postType="seminar" id={params.id} margin="mt-12" />
+        <StraightNode margin="mt-10" />
+        <AdjPostNav post={seminar} postType="notice" id={params.id} margin="mt-12" />
+      </div>
     </PageLayout>
   );
 }

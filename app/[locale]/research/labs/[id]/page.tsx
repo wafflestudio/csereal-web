@@ -12,7 +12,7 @@ export default async function ResearchLabDetailPage({ params }: LabDetailPagePro
   const lab = await getResearchLab(parseInt(params.id));
 
   return (
-    <PageLayout title={lab.name} titleType="small" titleMargin="mb-9">
+    <PageLayout title={lab.name} titleType="small">
       <ResearchLabDetails lab={lab} />
     </PageLayout>
   );

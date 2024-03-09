@@ -1,7 +1,7 @@
 import LinkIcon from '@/public/image/link_icon.svg';
 
+import ContentWithImage from '@/components/common/ContentWithImage';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
-import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { ResearchCenter } from '@/types/research';
 
@@ -15,13 +15,7 @@ export default function ResearchCenterDetails({
   return (
     <div>
       <ResearchCenterTitle name={name} link={websiteURL} />
-      <HTMLViewer
-        htmlContent={description}
-        className="mx-2.5"
-        {...(imageURL
-          ? { topRightContent: { type: 'image', widthPX: 320, heightPX: 160, url: imageURL } }
-          : {})}
-      />
+      <ContentWithImage imageURL={imageURL} content={description} containerClassName="px-2.5" />
     </div>
   );
 }

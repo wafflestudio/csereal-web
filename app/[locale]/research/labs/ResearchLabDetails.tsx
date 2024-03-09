@@ -6,6 +6,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { ResearchLab } from '@/types/research';
 
+import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
 import { replaceSpaceWithDash } from '@/utils/string';
@@ -13,13 +14,22 @@ import { replaceSpaceWithDash } from '@/utils/string';
 import ResearchLabInfo from './ResesarchLabInfo';
 
 export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
+  const { screenType } = useResponsive();
+
   return (
     <div>
       <AffiliatedGroup groupName={lab.group} />
+      <div className="mx-2 mb-1 mt-6 flex justify-end sm:hidden">
+        <ResearchLabInfo lab={lab} />
+      </div>
       <HTMLViewer
         htmlContent={lab.description}
-        topRightContent={{ type: 'component', content: <ResearchLabInfo lab={lab} /> }}
-        className="mt-6"
+        topRightContent={
+          screenType === 'desktop'
+            ? { type: 'component', content: <ResearchLabInfo lab={lab} /> }
+            : undefined
+        }
+        className="mt-6 "
       />
     </div>
   );
@@ -36,7 +46,7 @@ function AffiliatedGroup({ groupName }: { groupName: string }) {
     <div className="relative w-fit">
       <Link
         href={affiliatedGroupPath}
-        className={`absolute inline-block ${width} peer h-10 py-2.5 text-center text-sm duration-300 hover:text-white`}
+        className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center text-sm duration-300 hover:text-white`}
       >
         <span className="tracking-[-0.019em]">{groupName} 연구그룹</span>
       </Link>

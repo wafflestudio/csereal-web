@@ -4,12 +4,7 @@ import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout, {
-  PAGE_PADDING_BOTTOM_PX,
-  PAGE_PADDING_LEFT_PX,
-  PAGE_PADDING_RIGHT_PX,
-  PAGE_PADDING_TOP_PX,
-} from '@/components/layout/pageLayout/PageLayout';
+import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import AdjPostNav from '@/components/post/AdjPostNav';
 
 import { PostSearchQueryParams } from '@/types/post';
@@ -37,18 +32,16 @@ export default async function NoticePostPage({
   const notice = await getNoticePostDetail(id, searchParams);
 
   return (
-    <PageLayout titleType="big" titleMargin="mb-5" bodyStyle={{ padding: 0 }}>
+    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
       <Header {...notice} />
       <div
-        className="bg-neutral-50 pt-9"
+        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
         style={{
-          paddingLeft: PAGE_PADDING_LEFT_PX,
-          paddingRight: PAGE_PADDING_RIGHT_PX,
           paddingBottom: PAGE_PADDING_BOTTOM_PX,
         }}
       >
         <Attachments files={notice.attachments} />
-        <HTMLViewer htmlContent={notice.description} className="mb-10 mt-4" />
+        <HTMLViewer htmlContent={notice.description} className="mb-10" />
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
         <AdjPostNav post={notice} postType="notice" id={rawID} margin="mt-12" />
@@ -75,10 +68,7 @@ const Header = ({
   createdAt: string;
 }) => {
   return (
-    <div
-      className="mb-9 flex flex-col gap-4"
-      style={{ paddingTop: PAGE_PADDING_TOP_PX, paddingLeft: PAGE_PADDING_LEFT_PX }}
-    >
+    <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
       <h2 className="text-[1.25rem] font-semibold">{title}</h2>
       <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
         <p>글쓴이: {author}</p>
