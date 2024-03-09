@@ -1,6 +1,6 @@
 'use client';
 
-import NoticeList from '@/app/[locale]/community/notice/components/NoticeList';
+import NoticeList from '@/app/[locale]/community/notice/helper/NoticeList';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';

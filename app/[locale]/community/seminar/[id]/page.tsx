@@ -3,12 +3,12 @@ import { ReactNode } from 'react';
 import { getSeminarPost } from '@/actions/seminarServer';
 import { Link } from '@/navigation';
 
-import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import AdjPostNav from '@/components/post/AdjPostNav';
 
 import { PostSearchQueryParams } from '@/types/post';
 

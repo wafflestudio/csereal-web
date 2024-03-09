@@ -10,7 +10,7 @@ export default function NavLabel({ text }: { text: string }) {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="text-xs leading-5 font-medium">{text.slice(idx)}</span>
+      <span className="text-xs font-medium leading-5">{text.slice(idx)}</span>
     </>
   );
 }

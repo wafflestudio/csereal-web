@@ -1,6 +1,6 @@
 import { getNoticePosts } from '@/apis/notice';
 
-import NoticePageContent from '@/app/[locale]/community/notice/components/NoticePageContent';
+import NoticePageContent from '@/app/[locale]/community/notice/helper/NoticePageContent';
 
 import { PostSearchQueryParams } from '@/types/post';
 

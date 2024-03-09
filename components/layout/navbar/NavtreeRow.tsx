@@ -2,8 +2,8 @@
 
 import { Link } from '@/navigation';
 
-import NavLabel from '@/components/common/NavLabel';
 import { StraightNode } from '@/components/common/Nodes';
+import NavLabel from '@/components/layout/navbar/NavLabel';
 
 import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';

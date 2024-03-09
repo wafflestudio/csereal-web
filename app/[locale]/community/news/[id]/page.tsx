@@ -1,11 +1,11 @@
 import { getNewsPostDetail } from '@/actions/newsServer';
 
-import AdjPostNav from '@/components/common/AdjPostNav';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import AdjPostNav from '@/components/post/AdjPostNav';
 
 import { PostSearchQueryParams } from '@/types/post';
 

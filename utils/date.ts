@@ -9,7 +9,9 @@ export const isSameDay = (lhs: Date, rhs: Date) => {
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 /** e.g. 2023/08/01 (화) 오후 5:09 */
-export const formatPostDateStr = (date: Date) => {
+export const formatPostDateStr = (str: string) => {
+  const date = new Date(str);
+
   const yyyy = String(date.getFullYear()).padStart(4, '0');
   const mm = String(date.getMonth() + 1).padStart(2, '0');
   const dd = String(date.getDate()).padStart(2, '0');

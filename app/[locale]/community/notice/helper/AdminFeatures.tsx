@@ -5,11 +5,9 @@ import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/noticeActi
 import AlertModal from '@/components/modal/AlertModal';
 
 import useModal from '@/utils/hooks/useModal';
-import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
 import { errorToast, successToast } from '@/utils/toast';
 
-import { BatchButton, CreateButton, EditButton } from './NoticeButtons';
+import { BatchButton, CreateButton, EditButton } from './EditButtons';
 import { PostSelectAction } from './usePostSelect';
 
 interface AdminFeaturesProps {
@@ -18,8 +16,6 @@ interface AdminFeaturesProps {
   selectedIds: Set<number>;
   dispatchIds: Dispatch<PostSelectAction>;
 }
-
-const noticePath = getPath(notice);
 
 export default function AdminFeatures({
   isEditMode,
@@ -86,7 +82,7 @@ export default function AdminFeatures({
       )}
       <div className="ml-auto">
         <EditButton isEditMode={isEditMode} toggleEditMode={toggleEditMode} />
-        <CreateButton mainPath={noticePath} disabled={isEditMode} />
+        <CreateButton disabled={isEditMode} />
       </div>
     </div>
   );

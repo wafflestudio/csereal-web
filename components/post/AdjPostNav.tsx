@@ -4,8 +4,8 @@ import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';
 
-import LoginVisible from './LoginVisible';
-import PostDeleteButton from './PostDeleteButton';
+import LoginVisible from '../common/LoginVisible';
+import PostDeleteButton from '../common/PostDeleteButton';
 
 type AdjPostNavProps = {
   postType: PostType;
