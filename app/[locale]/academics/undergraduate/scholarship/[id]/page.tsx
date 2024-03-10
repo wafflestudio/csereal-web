@@ -7,3 +7,11 @@ export default async function UndergraduateScholarshipPage({ params }: { params:
 
   return <ScholarshipDetail scholarship={scholarship} />;
 }
+
+export async function generateStaticParams() {
+  return Array(9)
+    .fill(0)
+    .map((_, i) => ({
+      id: i + '',
+    }));
+}
