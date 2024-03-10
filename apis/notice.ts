@@ -18,7 +18,7 @@ export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =
 // POST
 
 export const postNotice = async (formData: FormData) => {
-  await postRequest('/notice', { body: formData });
+  return postRequest('/notice', { body: formData }) as Promise<{ id: number }>;
 };
 
 // PATCH

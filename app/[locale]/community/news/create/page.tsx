@@ -12,6 +12,7 @@ import { NEWS_TAGS } from '@/constants/tag';
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);
 
@@ -72,9 +73,11 @@ const contentToFormData = (content: PostEditorContent) => {
     formData.append('mainImage', content.mainImage.file);
   }
 
-  for (const attachment of content.attachments.filter(isLocalFile).map((x) => x.file)) {
-    formData.append('attachments', attachment);
-  }
+  encodeFormDataFileName(
+    formData,
+    'attachments',
+    content.attachments.filter(isLocalFile).map((x) => x.file),
+  );
 
   return formData;
 };

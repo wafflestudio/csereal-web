@@ -14,6 +14,7 @@ import { Seminar } from '@/types/seminar';
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast } from '@/utils/toast';
 
 const seminarPath = getPath(seminar);
@@ -124,9 +125,7 @@ const contentToFormData = (prevSeminar: Seminar, content: SeminarEditorContent) 
     formData.append('newMainImage', image);
   }
 
-  for (const attachment of localAttachments) {
-    formData.append('newAttachments', attachment);
-  }
+  encodeFormDataFileName(formData, 'newAttachments', localAttachments);
 
   return formData;
 };

@@ -21,6 +21,7 @@ import { News } from '@/types/news';
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);
 
@@ -110,13 +111,12 @@ const contentToFormData = (prevNews: News, content: PostEditorContent) => {
     ),
   );
 
+  // TOOD: 이미지 이름 깨지는지 확인
   if (mainImage) {
     formData.append('newMainImage', mainImage);
   }
 
-  for (const attachment of localAttachments) {
-    formData.append('newAttachments', attachment);
-  }
+  encodeFormDataFileName(formData, 'newAttachments', localAttachments);
 
   return formData;
 };

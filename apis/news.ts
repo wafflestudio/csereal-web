@@ -18,7 +18,7 @@ export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
 // POST
 
 export const postNews = async (formData: FormData) => {
-  await postRequest(newsPath, { body: formData });
+  return postRequest(newsPath, { body: formData }) as Promise<{ id: number }>;
 };
 
 // PATCH

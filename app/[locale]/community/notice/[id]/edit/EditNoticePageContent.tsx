@@ -20,6 +20,7 @@ import { Notice } from '@/types/notice';
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 const noticePath = getPath(notice);
@@ -109,9 +110,7 @@ const contentToFormData = (prevNotice: Notice, content: PostEditorContent) => {
     ),
   );
 
-  for (const attachment of localAttachments) {
-    formData.append('newAttachments', attachment);
-  }
+  encodeFormDataFileName(formData, 'newAttachments', localAttachments);
 
   return formData;
 };
