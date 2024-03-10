@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-import DegreeRequirementsContent from '@/public/image/undergraduate_degree_requirements.svg';
-
 import { DegreeRequirements } from '@/types/academics';
 
 import Attachments from '../common/Attachments';
@@ -31,7 +29,6 @@ export default function DegreeRequirementsBody({ data }: { data: DegreeRequireme
           <h3 className=" mb-2 pl-3 text-lg font-bold">공통: 졸업사정 유의사항</h3>
           <StraightNode />
         </div>
-        <DegreeRequirementsContent />
       </div>
       <HTMLViewer htmlContent={description} className="mt-7" />
     </>

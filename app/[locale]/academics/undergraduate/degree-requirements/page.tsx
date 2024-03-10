@@ -8,9 +8,7 @@ export default async function UndergraduteDegreeRequirementsPage() {
 
   return (
     <PageLayout titleType="big">
-      <div className="flex flex-col">
-        <DegreeRequirementsBody data={data} />
-      </div>
+      <DegreeRequirementsBody data={data} />
     </PageLayout>
   );
 }
