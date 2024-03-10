@@ -2,7 +2,8 @@ export const dynamic = 'force-static';
 
 import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
 
-import { ScholarshipRow } from '@/components/academics/ScholarshipRow';
+import { ScholarshipRow } from '@/app/[locale]/academics/helper/ScholarshipRow';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

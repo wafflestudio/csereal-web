@@ -5,7 +5,8 @@ import useSWR from 'swr';
 
 import { getCourseChanges } from '@/apis/academics';
 
-import TimeLine from '@/components/academics/TimeLine';
+import TimeLine from '@/app/[locale]/academics/helper/TimeLine';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 

@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import { Course, SortOption, ViewOption } from '@/types/academics';
 
-import CourseCards from './CourseCards';
-import CourseList from './CourseList';
 import CourseToolbar from './CourseToolbar';
+import CourseCards from '../../helper/CourseCards';
+import CourseList from '../../helper/CourseList';
 
 interface CoursePageContentProps {
   courses: Course[];

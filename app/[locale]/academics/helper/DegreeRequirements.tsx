@@ -6,10 +6,10 @@ import DegreeRequirementsContent from '@/public/image/undergraduate_degree_requi
 
 import { DegreeRequirements } from '@/types/academics';
 
-import Attachments from '../common/Attachments';
-import Dropdown from '../common/form/Dropdown';
-import { StraightNode } from '../common/Nodes';
-import HTMLViewer from '../editor/HTMLViewer';
+import Attachments from '../../../../components/common/Attachments';
+import Dropdown from '../../../../components/common/form/Dropdown';
+import { StraightNode } from '../../../../components/common/Nodes';
+import HTMLViewer from '../../../../components/editor/HTMLViewer';
 
 export default function DegreeRequirementsBody({ data }: { data: DegreeRequirements[] }) {
   const [selectedDegreeRequirementsIndex, setSelectedDegreeRequirementsIndex] = useState(0);
