@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useReducer } from 'react';
 
 import { batchUnimportantAction } from '@/actions/admin';
 
@@ -9,20 +8,18 @@ import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import {
-  ADMIN_MENU_SLIDE,
-  ImportantCategory,
-  ImportantPostIdentifier,
-  ImportantPreview,
-} from '@/types/admin';
+import { ADMIN_MENU_SLIDE, ImportantPreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ImportantList from './ImportantList';
+import useImportantSelect from './useImportantSelect';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
+
+const POST_LIMIT = 40;
 
 interface ImportantManagementProps {
   posts: ImportantPreview[];
@@ -30,55 +27,25 @@ interface ImportantManagementProps {
   total: number;
 }
 
-const POST_LIMIT = 40;
-
-type ReducerAction =
-  | {
-      type: 'ADD' | 'DELETE';
-      identifier: { id: number; category: ImportantCategory };
-    }
-  | {
-      type: 'RESET';
-    };
-
-const reducer = (state: ImportantPostIdentifier[], action: ReducerAction) => {
-  switch (action.type) {
-    case 'ADD':
-      return [...state, action.identifier];
-    case 'DELETE':
-      return state.filter(
-        (info) =>
-          !(info.id === action.identifier.id && info.category === action.identifier.category),
-      );
-    case 'RESET':
-      return [];
-    default:
-      throw new Error('undefined action');
-  }
-};
-
 export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
-  const [selectedPostIdentifiers, changeSelectedIdentifiers] = useReducer(reducer, []);
+  const [ids, dispatchIds] = useImportantSelect();
   const { openModal } = useModal();
   const router = useRouter();
 
-  const resetSelectedPosts = () => changeSelectedIdentifiers({ type: 'RESET' });
-
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
-    resetSelectedPosts();
+    dispatchIds({ type: 'RESET' });
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
   const handleBatchUnimportant = async () => {
-    const result = await batchUnimportantAction(selectedPostIdentifiers);
+    const result = await batchUnimportantAction(ids);
     if (result) {
       errorToast('중요 안내를 해제하지 못했습니다.');
-      return;
+    } else {
+      successToast('중요 안내를 해제했습니다.');
+      dispatchIds({ type: 'RESET' });
     }
-
-    successToast('중요 안내를 해제했습니다.');
-    resetSelectedPosts();
   };
 
   return (
@@ -88,8 +55,8 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
       <TotalPostsCount count={total} />
       <ImportantList
         posts={posts}
-        selectedPostIdentifiers={selectedPostIdentifiers}
-        changeSelectedIdentifiers={changeSelectedIdentifiers}
+        selectedPostIdentifiers={ids}
+        changeSelectedIdentifiers={dispatchIds}
       />
       <Pagination
         totalPostsCount={total}
@@ -98,7 +65,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
         setCurrentPage={changePage}
       />
       <BatchAction
-        selectedCount={selectedPostIdentifiers.length}
+        selectedCount={ids.length}
         buttonText="일괄 중요 안내 해제"
         onClickButton={() =>
           openModal(

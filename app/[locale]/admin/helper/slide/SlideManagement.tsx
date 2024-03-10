@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useReducer } from 'react';
 
 import { batchUnslideAction } from '@/actions/admin';
 
@@ -16,8 +15,11 @@ import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';
+import useSlideSelect from './useSlideSelect';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
+
+const POST_LIMIT = 40;
 
 interface SlideManagementProps {
   posts: SlidePreview[];
@@ -25,30 +27,12 @@ interface SlideManagementProps {
   total: number;
 }
 
-const POST_LIMIT = 40;
-
-type ReducerAction = { type: 'ADD' | 'DELETE'; id: number } | { type: 'RESET' };
-
-const reducer = (state: Set<number>, action: ReducerAction) => {
-  switch (action.type) {
-    case 'ADD':
-      return new Set<number>(state.add(action.id));
-    case 'DELETE':
-      state.delete(action.id);
-      return new Set<number>(state);
-    case 'RESET':
-      return new Set<number>();
-    default:
-      throw new Error('undefined action');
-  }
-};
-
 export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
-  const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
+  const [ids, dispatchIds] = useSlideSelect();
   const { openModal } = useModal();
   const router = useRouter();
 
-  const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
+  const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
     const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
@@ -57,14 +41,13 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   };
 
   const handleBatchUnslide = async () => {
-    const result = await batchUnslideAction(selectedPostIds);
+    const result = await batchUnslideAction(ids);
     if (result) {
       errorToast('슬라이드를 해제하지 못했습니다.');
-      return;
+    } else {
+      successToast('슬라이드를 해제했습니다.');
+      resetSelectedPosts();
     }
-
-    successToast('슬라이드를 해제했습니다.');
-    resetSelectedPosts();
   };
 
   return (
@@ -72,11 +55,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <SlideDescription />
       <StraightNode double />
       <TotalPostsCount count={total} />
-      <SlideList
-        posts={posts}
-        selectedPostIds={selectedPostIds}
-        changeSelectedIds={changeSelectedIds}
-      />
+      <SlideList posts={posts} selectedPostIds={ids} changeSelectedIds={dispatchIds} />
       <Pagination
         totalPostsCount={total}
         postsCountPerPage={POST_LIMIT}
@@ -84,7 +63,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
         setCurrentPage={changePage}
       />
       <BatchAction
-        selectedCount={selectedPostIds.size}
+        selectedCount={ids.size}
         buttonText="일괄 슬라이드 해제"
         onClickButton={() =>
           openModal(

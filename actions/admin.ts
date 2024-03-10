@@ -22,7 +22,7 @@ export const batchUnslideAction = async (ids: Set<number>) => {
 
 export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) => {
   try {
-    await patchMultipleImportants(Array.from(infos));
+    await patchMultipleImportants(infos);
   } catch (e) {
     return e;
   }
