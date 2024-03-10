@@ -1,18 +1,6 @@
-'use client';
-
-import { useState } from 'react';
-import useSWR from 'swr';
-
 import { getCourseChanges } from '@/apis/academics';
 
-import TimeLine from '@/app/[locale]/academics/helper/TimeLine';
-
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
-import { CourseChange } from '@/types/academics';
-
-const YEAR_LIMIT = 2010;
+import CourseChanges from '../../helper/CourseChanges';
 
 const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
   { year: 2020 },
@@ -27,28 +15,8 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
   { year: 2010, margin: 'ml-7', isLast: true },
 ];
 
-// TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
-export default function UndergraduateCourseChangesPage() {
-  const { data } = useSWR('undergraduate', getCourseChanges);
+export default async function UndergraduateCourseChangesPage() {
+  const changes = await getCourseChanges('graduate');
 
-  const [year, setYear] = useState(2020);
-  const selectedChanges = getSelectedChanges(year, data ?? []);
-
-  return (
-    <PageLayout titleType="big">
-      <TimeLine timeSpots={TIME_SPOTS} selectedYear={year} setSelectedYear={setYear} />
-      {selectedChanges.map((change) => (
-        <HTMLViewer htmlContent={change.description} className="mt-12" key={change.year} />
-      ))}
-    </PageLayout>
-  );
+  return <CourseChanges changes={changes} yearLimit={2011} timeSpots={TIME_SPOTS} />;
 }
-
-const getSelectedChanges = (year: number, data: CourseChange[]) => {
-  if (year <= YEAR_LIMIT) return data.filter((d) => d.year <= YEAR_LIMIT);
-
-  const change = data.find((d) => d.year === year);
-  return change
-    ? [change]
-    : [{ year, description: `${year}학년도 교과과정 변경 내역은 없습니다.` }];
-};

@@ -7,8 +7,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Course } from '@/types/academics';
 
 export default async function GraduateCoursePage() {
-  const data = await getCourses('graduate');
-  const chunckedCourses = data ? chunkCourse(data) : [];
+  const courstList = await getCourses('graduate');
+  const chunckedCourses = chunkCourse(courstList);
 
   return (
     <PageLayout titleType="big">
@@ -25,12 +25,12 @@ export default async function GraduateCoursePage() {
 
 const chunkCourse = (courses: Course[]) => {
   const chunckedCourses: Course[][] = [];
-  const countPerLine = Math.floor(courses.length / 4);
+  const chunkSize = Math.floor(courses.length / 4);
 
-  chunckedCourses.push(courses.slice(0, countPerLine));
-  chunckedCourses.push(courses.slice(countPerLine, countPerLine * 2));
-  chunckedCourses.push(courses.slice(countPerLine * 2, countPerLine * 3));
-  chunckedCourses.push(courses.slice(countPerLine * 3));
+  chunckedCourses.push(courses.slice(0, chunkSize));
+  chunckedCourses.push(courses.slice(chunkSize, chunkSize * 2));
+  chunckedCourses.push(courses.slice(chunkSize * 2, chunkSize * 3));
+  chunckedCourses.push(courses.slice(chunkSize * 3));
 
   return chunckedCourses;
 };
