@@ -31,7 +31,7 @@ export default function NoticeListRow({
 }: NoticeListRowProps) {
   return (
     <li
-      className={`flex flex-col gap-2.5 px-7 py-6 text-[14px] sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 sm:pr-4 ${
+      className={`flex flex-col gap-2.5 px-7 py-6 text-md sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 sm:pr-4 ${
         post.isPinned && 'font-semibold'
       } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
         isSelected && 'bg-neutral-100'
@@ -115,12 +115,12 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}>
         <Link
           href={`${noticePath}/${id}`}
-          className="flex items-center gap-1.5 font-semibold hover:text-main-orange sm:font-normal"
+          className="flex items-center gap-1.5 font-semibold sm:font-normal"
         >
           <span
             className={`${
-              isPinned && 'text-main-orange sm:text-neutral-800'
-            } overflow-hidden text-ellipsis tracking-wide sm:whitespace-nowrap`}
+              isPinned && 'font-semibold text-main-orange sm:text-neutral-800'
+            } overflow-hidden text-ellipsis tracking-wide hover:text-main-orange sm:whitespace-nowrap`}
           >
             {title}
           </span>

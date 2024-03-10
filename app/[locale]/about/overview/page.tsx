@@ -16,8 +16,8 @@ export default async function OverviewPage() {
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <div className="flex items-start gap-10 bg-neutral-100 py-10 pl-[6.25rem] pr-[22rem]">
-        <HTMLViewer htmlContent={description} className="w-[37.5rem] shrink-0" />
+      <div className="flex flex-col items-start gap-10 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
+        <HTMLViewer htmlContent={description} />
         <Image
           src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
           alt="학교 전경"
@@ -25,7 +25,7 @@ export default async function OverviewPage() {
           height={213}
         />
       </div>
-      <div className="pb-[7.88rem] pl-[6.25rem] pt-10">
+      <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[360px]">
         <h2 className="mb-6 text-base font-semibold">학부 소개 책자</h2>
         <div className="mb-10 flex gap-6">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />

@@ -3,6 +3,7 @@
 import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
 
 import LoginVisible from '@/components/common/LoginVisible';
+import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -35,14 +36,14 @@ export default function NewsPageContent({
   };
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" bodyStyle={{ width: 'fit-content' }}>
       <SearchBox
         tags={NEWS_TAGS}
         initTags={tags}
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-16">
+      <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-2.5">
         {searchList.length === 0 ? (
           <NoSearchResult />
         ) : (
@@ -73,5 +74,3 @@ export default function NewsPageContent({
     </PageLayout>
   );
 }
-
-const NoSearchResult = () => <p className="mx-2.5 mb-8 mt-6">검색 결과가 존재하지 않습니다.</p>;

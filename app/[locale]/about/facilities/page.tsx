@@ -8,7 +8,7 @@ export default async function FacilitiesPage() {
   const facilities = await getFacilities();
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
       <FacilitesList facilities={facilities} />
     </PageLayout>
   );

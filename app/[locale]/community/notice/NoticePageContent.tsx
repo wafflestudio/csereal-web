@@ -17,7 +17,7 @@ import useResponsive from '@/utils/hooks/useResponsive';
 import AdminFeatures from './helper/AdminFeatures';
 import { usePostSelect } from './helper/usePostSelect';
 
-const POST_LIMIT = 20; // TODO: 모바일 크기에서는 10으로 축소
+const POST_LIMIT = 20;
 
 // TODO: edit mode에서 페이지 나가려고 할 때 경고 띄워주기: 변경사항이 저장되지 않았습니다. 정말 나가시겠습니까?
 export default function NoticePageContent({
@@ -36,7 +36,7 @@ export default function NoticePageContent({
   };
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingTop: 54 }}>
+    <PageLayout titleType="big">
       <SearchBox
         tags={NOTICE_TAGS}
         initTags={tags}

@@ -1,14 +1,13 @@
-import Image from 'next/image';
-
 import Distance from '@/public/image/about/distance.svg';
+
+import ImageWithFallback from '@/components/common/ImageWithFallback';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { Facilities } from '@/types/about';
 
-import HTMLViewer from '../../../../components/editor/HTMLViewer';
-
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col divide-y divide-neutral-200 pt-2 sm:pt-6">
       {facilities.map((post, index) => (
         <FacilitiesRow
           key={index}
@@ -16,7 +15,6 @@ export default function FacilitesList({ facilities }: { facilities: Facilities }
           description={post.description}
           location={post.locations.join(', ')}
           imageURL={post.imageURL ?? ''} // TODO: imageURL이 non-null되면 수정
-          border={index !== 0}
         />
       ))}
     </div>
@@ -28,25 +26,19 @@ export interface FacilitiesRowProps {
   description: string;
   location: string;
   imageURL: string;
-  border: boolean;
 }
 
-function FacilitiesRow({ name, description, location, imageURL, border }: FacilitiesRowProps) {
+function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowProps) {
   return (
-    <article
-      className={`flex flex-row items-start justify-between break-all py-[1.2rem] text-neutral-700 ${
-        border ? 'border-t-[1px] border-neutral-200' : undefined
-      }`}
-    >
+    <article className={`flex flex-row items-start justify-between gap-5 py-5`}>
       <div className="flex w-[35.5rem] flex-col">
-        <h3 className=" mb-[.69rem] text-base font-bold leading-5 text-neutral-800">{name}</h3>
+        <h3 className="mb-3 text-base font-bold leading-5">{name}</h3>
         <HTMLViewer htmlContent={description} />
-        <div className="flex items-center gap-[0.12rem]">
-          <Distance />
-          <p className="translate-x-[-2px] text-md leading-[1.63rem]">{location}</p>
+        <div className="flex translate-x-[-4px] items-center gap-px">
+          <Distance className="shrink-0" />
+          <p className="text-md">{location}</p>
         </div>
       </div>
-
       <FacilitiesRowImage imageURL={imageURL} />
     </article>
   );
@@ -55,7 +47,7 @@ function FacilitiesRow({ name, description, location, imageURL, border }: Facili
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   return (
     <div className="relative h-40 w-60">
-      <Image alt="대표 이미지" src={imageURL} fill sizes="10rem" />
+      <ImageWithFallback alt="대표 이미지" src={imageURL} fill sizes="10rem" />
     </div>
   );
 }

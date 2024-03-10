@@ -11,10 +11,10 @@ import {
   researchLabs,
   topConferenceList,
   reservationIntroduction,
-  tentenProposal,
   contact,
   directions,
   privacyPolicy,
+  tentenProject,
 } from '@/utils/segmentNode';
 
 export interface FooterLink {
@@ -41,7 +41,7 @@ export const researchLinks = [
   },
   segmentNodeToLink(topConferenceList),
   {
-    href: getPath(tentenProposal),
+    href: getPath(tentenProject),
     title: '10-10 Project',
   },
 ];

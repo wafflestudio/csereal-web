@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Course, SortOption, ViewOption } from '@/types/academics';
+
+import useResponsive from '@/utils/hooks/useResponsive';
 
 import CourseToolbar from './CourseToolbar';
 import CourseCards from '../../helper/courses/CourseCards';
@@ -17,10 +19,20 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
     view: '카드형',
     sort: '학년',
   });
+  const { screenType } = useResponsive();
+  const hideViewOption = screenType === 'mobile';
 
-  const changeOptions = (type: 'view' | 'sort', option: ViewOption | SortOption) => {
-    setSelectedOption((prev) => ({ ...prev, [type]: option }));
+  const changeOptions = (
+    options: { type: 'view'; option: ViewOption } | { type: 'sort'; option: SortOption },
+  ) => {
+    setSelectedOption((prev) => ({ ...prev, [options.type]: options.option }));
   };
+
+  useEffect(() => {
+    if (hideViewOption) {
+      changeOptions({ type: 'view', option: '목록형' });
+    }
+  }, [hideViewOption]);
 
   return (
     <div className={selectedOption.view === '카드형' ? 'w-[970px]' : 'w-[720px]'}>

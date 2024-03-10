@@ -5,7 +5,9 @@ import { SortOption, ViewOption } from '@/types/academics';
 interface CourseToolbarProps {
   viewOption: ViewOption;
   sortOption: SortOption;
-  changeOptions: (type: 'view' | 'sort', option: ViewOption | SortOption) => void;
+  changeOptions: (
+    options: { type: 'view'; option: ViewOption } | { type: 'sort'; option: SortOption },
+  ) => void;
 }
 
 export default function CourseToolbar({
@@ -21,11 +23,11 @@ export default function CourseToolbar({
     >
       <ViewOptions
         selectedOption={viewOption}
-        changeOption={(option) => changeOptions('view', option)}
+        changeOption={(option) => changeOptions({ type: 'view', option })}
       />
       <SortOptions
         selectedOption={sortOption}
-        changeOption={(option) => changeOptions('sort', option)}
+        changeOption={(option) => changeOptions({ type: 'sort', option })}
       />
     </div>
   );
@@ -38,7 +40,7 @@ interface ViewOptionsProps {
 
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
   return (
-    <div className="flex gap-3 text-md text-neutral-400">
+    <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
       <span
         className={selectedOption === '카드형' ? 'text-neutral-700' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
