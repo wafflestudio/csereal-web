@@ -6,15 +6,19 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNode';
 
+type GradeType = 'GRADUATE' | 'UNDERGRADUATE';
+
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);
 
 export default async function ScholarshipPreview({
   description,
   scholarshipList,
+  type,
 }: {
   description: string;
   scholarshipList: { id: number; name: string }[];
+  type: GradeType;
 }) {
   return (
     <PageLayout titleType="big">
@@ -25,7 +29,7 @@ export default async function ScholarshipPreview({
         </h3>
         <ul className="mt-2">
           {scholarshipList.map((item) => (
-            <ScholarshipRow id={item.id} name={item.name} key={item.id} type="UNDERGRADUATE" />
+            <ScholarshipRow id={item.id} name={item.name} key={item.id} type={type} />
           ))}
         </ul>
       </div>
@@ -36,7 +40,7 @@ export default async function ScholarshipPreview({
 export interface ScholarshipRowProps {
   id: number;
   name: string;
-  type: 'GRADUATE' | 'UNDERGRADUATE';
+  type: GradeType;
 }
 
 export function ScholarshipRow({ id, name, type }: ScholarshipRowProps) {
