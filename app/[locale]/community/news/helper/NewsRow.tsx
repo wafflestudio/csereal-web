@@ -44,7 +44,7 @@ export default function NewsRow({
 
   return (
     <article
-      className={`flex flex-col-reverse pb-5 text-neutral-700 sm:flex-row ${
+      className={`flex flex-col-reverse pb-5 sm:flex-row ${
         hideDivider ? '' : 'border-b border-neutral-100'
       }`}
     >
