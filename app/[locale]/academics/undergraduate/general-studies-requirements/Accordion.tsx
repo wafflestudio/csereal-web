@@ -2,7 +2,7 @@
 
 import { useReducer } from 'react';
 
-import HTMLViewer from '../editor/HTMLViewer';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 interface AccordionProps {
   title: string;
@@ -15,7 +15,7 @@ export default function Accordion({ title, content }: AccordionProps) {
   return (
     <div className="overflow-hidden rounded border-b border-neutral-200 bg-[#efefef]">
       <h4
-        className="flex cursor-pointer items-center gap-1 bg-neutral-100 px-4 py-[6px]"
+        className="flex cursor-pointer select-none items-center gap-1 bg-neutral-100 px-4 py-[6px]"
         onClick={toggleExpand}
       >
         <span className="material-symbols-outlined text-[36px] font-light text-main-orange">
@@ -23,11 +23,9 @@ export default function Accordion({ title, content }: AccordionProps) {
         </span>
         <span className="font-medium tracking-[0.02em]">{title}</span>
       </h4>
-      {isExpanded && (
-        <div className="m-5 bg-white">
-          <HTMLViewer htmlContent={content} />
-        </div>
-      )}
+
+      {/* TODO: 펼쳐질 때 애니메이션 */}
+      {isExpanded && <HTMLViewer htmlContent={content} className="m-5 bg-white" />}
     </div>
   );
 }

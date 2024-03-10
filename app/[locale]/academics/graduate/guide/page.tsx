@@ -9,7 +9,7 @@ export default async function GraduateGuidePage() {
 
   return (
     <PageLayout titleType="big">
-      {data.attachments.length > 0 && <Attachments files={data.attachments} />}
+      <Attachments files={data.attachments} />
       <HTMLViewer htmlContent={data.description} />
     </PageLayout>
   );

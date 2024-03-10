@@ -7,6 +7,7 @@ interface CourseCardProps {
   selectedOption: SortOption;
 }
 
+// TODO: CourseCards가 CourseCard의 배열 형태가 아닌 것 -> rename
 export default function CourseCards({ courses, selectedOption }: CourseCardProps) {
   const sortedCourses = sortCourses(courses ?? [], selectedOption);
 
