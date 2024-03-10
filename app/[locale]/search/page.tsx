@@ -241,6 +241,6 @@ const countSettled = <T extends { total: number }>(result: PromiseSettledResult<
 };
 
 const renderSettled = <T,>(result: PromiseSettledResult<T>, render: (data: T) => ReactNode) => {
-  if (result.status === 'rejected') return <p>네트워크 에러</p>;
+  if (result.status === 'rejected') return <p>{result.reason + ''}</p>;
   else return render(result.value);
 };
