@@ -57,9 +57,8 @@ export default async function SearchPage({
 }
 
 const SearchResult = async ({ keyword }: { keyword: string }) => {
-  // TODO: 단위별 에러 처리(allSettled)
-  const [about, notice, news, seminar, member, research, academics, admissions] = await Promise.all(
-    [
+  const [about, notice, news, seminar, member, research, academics, admissions] =
+    await Promise.allSettled([
       searchAbout({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchNotice({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchNews({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
@@ -68,69 +67,101 @@ const SearchResult = async ({ keyword }: { keyword: string }) => {
       searchResearch({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchAcademics({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchAdmissions({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
-    ],
-  );
+    ]);
 
   return (
     <>
-      <Section title="소개" size={about.total}>
+      <Section title="소개" size={countSettled(about)}>
         <div className="my-4 flex flex-col items-start gap-6">
-          {about.results.map((result) => (
-            <AboutRow key={result.id} preview={result} />
-          ))}
+          {renderSettled(about, (about) =>
+            about.results.map((result) => <AboutRow key={result.id} preview={result} />),
+          )}
         </div>
       </Section>
 
-      <Section title="소식" size={notice.total + news.total + seminar.total}>
-        <SubSection title="공지사항" size={notice.total} href={`${noticePath}?keyword=${keyword}`}>
-          {notice.results.slice(0, 2).map((notice) => (
-            <NoticeRow
-              {...notice}
-              key={notice.id}
-              id={notice.id}
-              title={notice.title}
-              dateStr={notice.createdAt}
-            />
-          ))}
+      <Section
+        title="소식"
+        size={countSettled(notice) + countSettled(news) + countSettled(seminar)}
+      >
+        <SubSection
+          title="공지사항"
+          size={countSettled(notice)}
+          href={`${noticePath}?keyword=${keyword}`}
+        >
+          {renderSettled(notice, (notice) =>
+            notice.results
+              .slice(0, 2)
+              .map((notice) => (
+                <NoticeRow
+                  {...notice}
+                  key={notice.id}
+                  id={notice.id}
+                  title={notice.title}
+                  dateStr={notice.createdAt}
+                />
+              )),
+          )}
         </SubSection>
 
-        <SubSection title="새 소식" size={news.total} href={`${newsPath}?keyword=${keyword}`}>
-          {news.results.slice(0, 2).map((news) => (
-            <NewsRow
-              key={news.id}
-              href={`${newsPath}/${news.id}`}
-              title={news.title}
-              description={news.partialDescription}
-              tags={news.tags}
-              date={new Date(news.date)}
-              imageURL={news.imageUrl}
-              descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
-              hideDivider
-            />
-          ))}
+        <SubSection
+          title="새 소식"
+          size={countSettled(news)}
+          href={`${newsPath}?keyword=${keyword}`}
+        >
+          {renderSettled(news, (news) =>
+            news.results
+              .slice(0, 2)
+              .map((news) => (
+                <NewsRow
+                  key={news.id}
+                  href={`${newsPath}/${news.id}`}
+                  title={news.title}
+                  description={news.partialDescription}
+                  tags={news.tags}
+                  date={new Date(news.date)}
+                  imageURL={news.imageUrl}
+                  descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
+                  hideDivider
+                />
+              )),
+          )}
         </SubSection>
 
-        <SubSection title="세미나" size={seminar.total} href={`${seminarPath}?keyword=${keyword}`}>
-          {seminar.searchList.slice(0, 2).map((seminar) => (
-            <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
-          ))}
+        <SubSection
+          title="세미나"
+          size={countSettled(seminar)}
+          href={`${seminarPath}?keyword=${keyword}`}
+        >
+          {renderSettled(seminar, (seminar) =>
+            seminar.searchList
+              .slice(0, 2)
+              .map((seminar) => <SeminarRow key={seminar.id} seminar={seminar} hideDivider />),
+          )}
         </SubSection>
       </Section>
 
-      <Section title="구성원" size={member.total}>
-        <Tmp>{member.results}</Tmp>
+      <Section title="구성원" size={countSettled(member)}>
+        {renderSettled(member, (x) => (
+          <Tmp>{x.results}</Tmp>
+        ))}
       </Section>
 
-      <Section title="연구" size={research.total}>
-        <Tmp>{research.results}</Tmp>
+      <Section title="연구" size={countSettled(research)}>
+        {renderSettled(research, (x) => (
+          <Tmp>{x.results}</Tmp>
+        ))}
       </Section>
 
-      <Section title="입학" size={admissions.total}>
-        <Tmp>{admissions.results}</Tmp>
+      <Section title="입학" size={countSettled(admissions)}>
+        {renderSettled(admissions, (x) => (
+          <Tmp>{x.results}</Tmp>
+        ))}
       </Section>
 
-      <Section title="학사 및 교과" size={academics.total}>
-        <Tmp>{academics.results}</Tmp>
+      <Section title="학사 및 교과" size={countSettled(academics)}>
+        {renderSettled(academics, (x) => (
+          <Tmp>{x.results}</Tmp>
+        ))}
       </Section>
     </>
   );
@@ -204,3 +235,12 @@ const Divider = () => <div className="mt-7 border-b border-neutral-300" />;
 const Tmp = ({ children }: { children: unknown }) => (
   <p className="whitespace-pre-wrap">{JSON.stringify(children, undefined, 4)}</p>
 );
+
+const countSettled = <T extends { total: number }>(result: PromiseSettledResult<T>) => {
+  return result.status === 'fulfilled' ? result.value.total : 0;
+};
+
+const renderSettled = <T,>(result: PromiseSettledResult<T>, render: (data: T) => ReactNode) => {
+  if (result.status === 'rejected') return <p>네트워크 에러</p>;
+  else return render(result.value);
+};
