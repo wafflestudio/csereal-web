@@ -24,40 +24,41 @@ export default function PeopleCell({
   content,
 }: PeopleCellProps) {
   return (
-    <article className="group flex w-fit flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
-      <Link
-        href={href}
-        className="relative h-48 w-36"
-        style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
-      >
-        <Image src={imageURL} alt="프로필 사진" className="object-cover" fill quality={25} />
-      </Link>
-      <div className="flex flex-col items-start break-keep">
+    <Link href={href}>
+      <article className="group flex w-fit cursor-pointer flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
         <div
-          className={`relative flex w-full flex-row gap-2 pb-2.5 ${titleNewline ? 'flex-col' : ''}`}
+          className="relative h-48 w-36"
+          style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
         >
-          <Link href={href} className="text-[18px] font-bold hover:cursor-pointer">
-            {title}
-          </Link>
-          <AcademicRankText academicRank={subtitle} />
-          <HoverAnimationUnderline />
+          <Image src={imageURL} alt="프로필 사진" className="object-cover" fill quality={25} />
         </div>
+        <div className="flex flex-col items-start break-keep">
+          <div
+            className={`relative flex w-full flex-row gap-2 pb-2.5 ${
+              titleNewline ? 'flex-col' : ''
+            }`}
+          >
+            <span className="text-[18px] font-bold">{title}</span>
+            <AcademicRankText academicRank={subtitle} />
+            <HoverAnimationUnderline />
+          </div>
 
-        <div className="mt-2.5 flex flex-col items-start gap-2 break-keep">
-          {content.map(({ text, href }, idx) => {
-            if (href) {
-              return (
-                <Link key={idx} href={href} className="items-center hover:underline">
-                  <p>{text}</p>
-                </Link>
-              );
-            } else {
-              return <p key={idx}>{text}</p>;
-            }
-          })}
+          <div className="mt-2.5 flex flex-col items-start gap-2 break-keep">
+            {content.map(({ text, href }, idx) => {
+              if (href) {
+                return (
+                  <Link key={idx} href={href} className="items-center hover:underline">
+                    <p>{text}</p>
+                  </Link>
+                );
+              } else {
+                return <p key={idx}>{text}</p>;
+              }
+            })}
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 }
 
