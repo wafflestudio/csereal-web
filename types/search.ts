@@ -98,7 +98,7 @@ export type AcademicsSearchResult = {
 };
 
 // 학사 및 교과??
-// TODO: mainType, postType 채우기
+// TODO: mainType, postType
 
 export type AdmissionsSearchResult = {
   total: number;

@@ -11,16 +11,18 @@ interface SearchBoxProps {
   tags: string[]; // 전체 태그(선택지) 목록
   initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
   initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
-  disabled?: boolean;
   setSearchParams(searchInfo: SearchInfo): void; // useCustomSearchParams의 setSearchParams
+  disabled?: boolean;
+  formOnly?: boolean;
 }
 
 export default function SearchBox({
   tags,
   initTags,
   initKeyword,
-  disabled = false,
   setSearchParams,
+  disabled = false,
+  formOnly = false,
 }: SearchBoxProps) {
   const [keyword, setKeyword] = useState<string>(initKeyword);
 
@@ -39,8 +41,12 @@ export default function SearchBox({
         keyword={keyword}
         setKeyword={setKeyword}
       />
-      <StraightNode double={true} margin="mt-9 mb-3" />
-      <SelectedTags tags={initTags} search={search} disabled={disabled} />
+      {!formOnly && (
+        <>
+          <StraightNode double={true} margin="mt-9 mb-3" />
+          <SelectedTags tags={initTags} search={search} disabled={disabled} />
+        </>
+      )}
     </div>
   );
 }

@@ -3,7 +3,15 @@ import { ReactNode } from 'react';
 
 import { Link } from '@/navigation';
 
-import { searchNews, searchNotice } from '@/apis/search';
+import {
+  searchAbout,
+  searchAcademics,
+  searchAdmissions,
+  searchMember,
+  searchNews,
+  searchNotice,
+  searchResearch,
+} from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
 
 import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
@@ -27,78 +35,103 @@ export default async function SearchPage({
 }: {
   searchParams: { keyword: string };
 }) {
-  const [notice, news, seminar] = await Promise.all([
-    searchNotice({ keyword, number: 5 }),
-    searchNews({ keyword, number: 5 }),
-    getSeminarPosts({ keyword, pageNum: 1 }),
-  ]);
-
-  const total = notice.total + news.total + seminar.total;
-
   return (
     <div className="relative bg-neutral-900">
       <Header />
-
       {/* TODO: 임시로 넣은  currentPage={main} 대책 세우기*/}
       <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
 
       <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
         <SearchBoxWrapper />
 
-        {/* 검색 결과 */}
-        <div className="flex w-[52.5rem] flex-col">
-          <Section title="소식" size={total}>
-            <SubSection
-              title="공지사항"
-              size={notice.total}
-              href={`${noticePath}?keyword=${keyword}`}
-            >
-              {notice.results.slice(0, 2).map((notice) => (
-                <NoticeRow
-                  key={notice.id}
-                  id={notice.id}
-                  title={notice.title}
-                  description={{
-                    content: notice.partialDescription,
-                    boldStartIndex: notice.boldStartIndex,
-                    boldEndIndex: notice.boldEndIndex,
-                  }}
-                  dateStr={notice.createdAt}
-                />
-              ))}
-            </SubSection>
-
-            <SubSection title="새 소식" size={news.total} href={`${newsPath}?keyword=${keyword}`}>
-              {news.results.slice(0, 2).map((news) => (
-                <NewsRow
-                  key={news.id}
-                  href={`${newsPath}/${news.id}`}
-                  title={news.title}
-                  description={news.partialDescription}
-                  tags={news.tags}
-                  date={new Date(news.date)}
-                  imageURL={news.imageUrl}
-                  descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
-                  hideDivider
-                />
-              ))}
-            </SubSection>
-
-            <SubSection
-              title="세미나"
-              size={seminar.total}
-              href={`${seminarPath}?keyword=${keyword}`}
-            >
-              {seminar.searchList.slice(0, 2).map((seminar) => (
-                <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
-              ))}
-            </SubSection>
-          </Section>
+        <div className="flex w-[52.5rem] flex-col gap-10">
+          <SearchResult keyword={keyword} />
         </div>
       </div>
     </div>
   );
 }
+
+const SearchResult = async ({ keyword }: { keyword: string }) => {
+  const [about, notice, news, seminar, member, research, academics, admissions] = await Promise.all(
+    [
+      searchAbout({ keyword, number: 5 }),
+      searchNotice({ keyword, number: 5 }),
+      searchNews({ keyword, number: 5 }),
+      getSeminarPosts({ keyword, pageNum: 1 }),
+      searchMember({ keyword, number: 5 }),
+      searchResearch({ keyword, number: 5 }),
+      searchAcademics({ keyword, number: 5 }),
+      searchAdmissions({ keyword, number: 5 }),
+    ],
+  );
+
+  const total = notice.total + news.total + seminar.total;
+
+  return (
+    <>
+      <Section title="소개" size={about.total}>
+        <Tmp>{about.results}</Tmp>
+      </Section>
+
+      <Section title="소식" size={total}>
+        <SubSection title="공지사항" size={notice.total} href={`${noticePath}?keyword=${keyword}`}>
+          {notice.results.slice(0, 2).map((notice) => (
+            <NoticeRow
+              key={notice.id}
+              id={notice.id}
+              title={notice.title}
+              description={{
+                content: notice.partialDescription,
+                boldStartIndex: notice.boldStartIndex,
+                boldEndIndex: notice.boldEndIndex,
+              }}
+              dateStr={notice.createdAt}
+            />
+          ))}
+        </SubSection>
+
+        <SubSection title="새 소식" size={news.total} href={`${newsPath}?keyword=${keyword}`}>
+          {news.results.slice(0, 2).map((news) => (
+            <NewsRow
+              key={news.id}
+              href={`${newsPath}/${news.id}`}
+              title={news.title}
+              description={news.partialDescription}
+              tags={news.tags}
+              date={new Date(news.date)}
+              imageURL={news.imageUrl}
+              descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
+              hideDivider
+            />
+          ))}
+        </SubSection>
+
+        <SubSection title="세미나" size={seminar.total} href={`${seminarPath}?keyword=${keyword}`}>
+          {seminar.searchList.slice(0, 2).map((seminar) => (
+            <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
+          ))}
+        </SubSection>
+      </Section>
+
+      <Section title="구성원" size={member.total}>
+        <Tmp>{member.results}</Tmp>
+      </Section>
+
+      <Section title="연구" size={research.total}>
+        <Tmp>{research.results}</Tmp>
+      </Section>
+
+      <Section title="입학" size={admissions.total}>
+        <Tmp>{admissions.results}</Tmp>
+      </Section>
+
+      <Section title="학사 및 교과" size={academics.total}>
+        <Tmp>{academics.results}</Tmp>
+      </Section>
+    </>
+  );
+};
 
 const Section = ({
   title,
@@ -164,3 +197,7 @@ const MoreResultLink = ({ href }: { href: string }) => {
 };
 
 const Divider = () => <div className="mt-7 border-b border-neutral-300" />;
+
+const Tmp = ({ children }: { children: unknown }) => (
+  <p className="whitespace-pre-wrap">{JSON.stringify(children, undefined, 4)}</p>
+);

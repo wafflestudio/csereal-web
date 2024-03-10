@@ -14,6 +14,7 @@ export default function SearchBoxWrapper() {
       initTags={tags}
       initKeyword={keyword ?? ''}
       setSearchParams={setSearchParams}
+      formOnly
     />
   );
 }
