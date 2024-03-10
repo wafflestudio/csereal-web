@@ -1,4 +1,4 @@
-import { getNewsSearch, getNoticeSearch } from '@/apis/search';
+import { getNewsByKeyword, getNoticeByKeyword } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
 
 import SearchPageContent from './SearchPageContent';
@@ -11,8 +11,8 @@ interface SearchPageProps {
 
 export default async function SearchPage({ searchParams: { keyword } }: SearchPageProps) {
   const [noticeSearchResult, newsSearchResult, seminarSearchResult] = await Promise.all([
-    getNoticeSearch({ keyword, number: 2 }),
-    getNewsSearch({ keyword, number: 2 }),
+    getNoticeByKeyword({ keyword, number: 2 }),
+    getNewsByKeyword({ keyword, number: 2 }),
     getSeminarPosts({ keyword, pageNum: 1 }),
   ]);
 
