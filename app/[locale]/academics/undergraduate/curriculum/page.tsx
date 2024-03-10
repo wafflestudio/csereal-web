@@ -2,18 +2,19 @@ export const dynamic = 'force-static';
 
 import { getCurriculum } from '@/apis/academicsServer';
 
-import CurriculumBody from '@/components/academics/CurriculumBody';
-import RoadMapButton from '@/components/academics/RoadMapButton';
+import RoadMapButton from '@/app/[locale]/academics/helper/RoadMapButton';
+import CurriculumBody from '@/app/[locale]/academics/undergraduate/curriculum/CurriculumBody';
+
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function UndergradutecurriculumPage() {
-  const data = await getCurriculum();
+  const curriculumList = await getCurriculum();
 
   return (
     <PageLayout titleType="big">
       <div className="flex flex-col">
         <RoadMapButton />
-        <CurriculumBody data={data} />
+        <CurriculumBody curriculumList={curriculumList} />
       </div>
     </PageLayout>
   );

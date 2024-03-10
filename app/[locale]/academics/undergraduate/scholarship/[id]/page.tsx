@@ -1,24 +1,11 @@
-export const dynamic = 'force-static';
-
 import { getScholarship } from '@/apis/academicsServer';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import ScholarshipDetail from '../../../helper/ScholarshipDetail';
 
 export default async function UndergraduateScholarshipPage({ params }: { params: { id: string } }) {
-  const { name, description } = await getScholarship(parseInt(params.id), 'undergraduate');
+  const scholarship = await getScholarship(parseInt(params.id), 'undergraduate');
 
-  return (
-    // 타이틀이 긴 경우 정규표현식으로 괄호 내부 내용을 제거
-    // ex) 교외장학금 (현송문화재단, 유한재단, ...) -> 교외장학금
-    <PageLayout
-      title={name.length > 20 ? name.replace(/\([^)]*\)/g, '') : name}
-      titleType="big"
-      titleMargin="mb-8"
-    >
-      <HTMLViewer htmlContent={description} />
-    </PageLayout>
-  );
+  return <ScholarshipDetail scholarship={scholarship} />;
 }
 
 export async function generateStaticParams() {
