@@ -11,7 +11,7 @@ import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
 import {
-  ADMIN_MENU,
+  ADMIN_MENU_SLIDE,
   ImportantCategory,
   ImportantPostIdentifier,
   ImportantPreview,
@@ -67,20 +67,21 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   const resetSelectedPosts = () => changeSelectedIdentifiers({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
-    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
+    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
     resetSelectedPosts();
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
   const handleBatchUnimportant = async () => {
     const result = await batchUnimportantAction(selectedPostIdentifiers);
-    if (result?.error) {
+    if (result) {
       errorToast('중요 안내를 해제하지 못했습니다.');
-    } else {
-      successToast('중요 안내를 해제했습니다.');
-      resetSelectedPosts();
-      mutate('/admin');
+      return;
     }
+
+    successToast('중요 안내를 해제했습니다.');
+    resetSelectedPosts();
+    mutate('/admin');
   };
 
   return (

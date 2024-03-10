@@ -10,7 +10,7 @@ import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import { ADMIN_MENU, SlidePreview } from '@/types/admin';
+import { ADMIN_MENU_SLIDE, SlidePreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
 import { replaceSpaceWithDash } from '@/utils/string';
@@ -60,20 +60,21 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
-    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
+    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
     resetSelectedPosts();
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
   const handleBatchUnslide = async () => {
     const result = await batchUnslideAction(selectedPostIds);
-    if (result?.error) {
+    if (result) {
       errorToast('슬라이드를 해제하지 못했습니다.');
-    } else {
-      successToast('슬라이드를 해제했습니다.');
-      resetSelectedPosts();
-      mutate('/admin');
+      return;
     }
+
+    successToast('슬라이드를 해제했습니다.');
+    resetSelectedPosts();
+    mutate('/admin');
   };
 
   return (

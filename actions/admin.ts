@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { patchMultipleImportants, patchMultipleSlides } from '@/apis/adminServer';
+import { patchMultipleImportants, patchMultipleSlides } from '@/apis/admin';
 
 import { ImportantPostIdentifier } from '@/types/admin';
 
@@ -13,25 +13,23 @@ import { revalidateSeminarTag } from './seminar';
 export const batchUnslideAction = async (ids: Set<number>) => {
   try {
     await patchMultipleSlides(Array.from(ids));
-    revalidateSlideTag();
-    revalidateNewsTag();
-  } catch (error) {
-    console.log(error instanceof Error ? error.message : error);
-    return { error };
+  } catch (e) {
+    return e;
   }
+  revalidateSlideTag();
+  revalidateNewsTag();
 };
 
 export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) => {
   try {
     await patchMultipleImportants(Array.from(infos));
-    revalidateImportantTag();
-    revalidateNoticeTag();
-    revalidateNewsTag();
-    revalidateSeminarTag();
-  } catch (error) {
-    console.log(error instanceof Error ? error.message : error);
-    return { error };
+  } catch (e) {
+    return e;
   }
+  revalidateImportantTag();
+  revalidateNoticeTag();
+  revalidateNewsTag();
+  revalidateSeminarTag();
 };
 
 const revalidateSlideTag = () => {
