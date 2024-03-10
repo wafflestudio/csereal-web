@@ -3,8 +3,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function InternationalScholarshipPage() {
   return (
-    <PageLayout titleType="big">
-      <HTMLViewer htmlContent={htmlContent} />
+    <PageLayout titleType="big" bodyStyle={{ paddingBottom: 0 }}>
+      <HTMLViewer htmlContent={htmlContent} className="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );
 }
