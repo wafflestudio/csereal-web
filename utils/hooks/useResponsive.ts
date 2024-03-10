@@ -10,7 +10,6 @@ export default function useResponsive() {
   const [screenType, setScreenType] = useState<ScreenType>('desktop');
 
   const handleResize = useCallback(() => {
-    console.log('Adfasdf');
     if (window.innerWidth < BREAK_POINT.sm) {
       setScreenType('mobile');
     } else if (window.innerWidth >= BREAK_POINT.sm) {
