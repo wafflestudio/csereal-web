@@ -1,6 +1,6 @@
 import { getCourses } from '@/apis/academics';
 
-import CourseRow from '@/app/[locale]/academics/helper/CourseRow';
+import CourseRow from '@/app/[locale]/academics/helper/courses/CourseRow';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
