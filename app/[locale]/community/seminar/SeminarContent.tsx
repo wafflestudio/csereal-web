@@ -5,6 +5,7 @@ import SeminarSearchBar from '@/app/[locale]/community/seminar/helper/SeminarSea
 import SeminarYear from '@/app/[locale]/community/seminar/helper/SeminarYear';
 
 import LoginVisible from '@/components/common/LoginVisible';
+import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -59,5 +60,3 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
     </PageLayout>
   );
 }
-
-const NoSearchResult = () => <p className="mx-2.5 mb-8 mt-6">검색 결과가 존재하지 않습니다.</p>;

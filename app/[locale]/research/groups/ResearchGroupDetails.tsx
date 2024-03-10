@@ -21,7 +21,7 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
         className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
       />
       {group.imageURL !== null && (
-        <div className="relative ml-20 mt-6 aspect-[2/1] w-[60vw] max-w-[800px]">
+        <div className="relative ml-20 mt-10 aspect-[2/1] w-[60vw] max-w-[800px]">
           {/* TODO: 이미지 반응형 */}
           <Image
             src={group.imageURL}

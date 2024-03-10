@@ -641,7 +641,7 @@ export const admin: SegmentNode = {
 export const tentenProject: SegmentNode = {
   name: '10-10 Project',
   segment: '10-10-project',
-  isPage: false,
+  isPage: true,
   parent: null,
   children: [],
 };

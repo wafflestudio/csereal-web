@@ -28,7 +28,7 @@ export default function CourseRow({ courses, selectedOption }: CourseRowProps) {
   return (
     <div className="group flex items-center">
       <ArrowButton iconName="navigate_before" onClick={() => scrollHorizontally('left')} />
-      <div className="styled-scrollbar overflow-x-auto overflow-y-hidden py-3" ref={carouselRef}>
+      <div className="no-scrollbar overflow-x-auto overflow-y-hidden py-3" ref={carouselRef}>
         <div className="flex gap-5">
           {courses.map((course) => (
             <CourseCard course={course} selectedOption={selectedOption} key={course.code} />
@@ -47,7 +47,7 @@ interface ArrowButtonProps {
 
 function ArrowButton({ iconName, onClick }: ArrowButtonProps) {
   return (
-    <button className="invisible group-hover:visible" onClick={onClick}>
+    <button className="opacity-0 duration-300 group-hover:opacity-100" onClick={onClick}>
       <span className="material-symbols-rounded text-[44px] font-light text-main-orange">
         {iconName}
       </span>
