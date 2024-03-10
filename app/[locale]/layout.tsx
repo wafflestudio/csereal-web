@@ -14,7 +14,6 @@ import ModalContainer from '@/components/modal/ModalContainer';
 import '@/styles/globals.css';
 
 import MarginedMain from './MarginedMain';
-import { SWRProvider } from './swr-provider';
 
 export const metadata = {
   title: '서울대학교 컴퓨터공학부',
@@ -66,14 +65,12 @@ function ContextProviders({ locale, children }: { locale: string; children: Reac
   const messages = useMessages();
 
   return (
-    <SWRProvider>
-      <SessionContextProvider>
-        <ModalContextProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </ModalContextProvider>
-      </SessionContextProvider>
-    </SWRProvider>
+    <SessionContextProvider>
+      <ModalContextProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </ModalContextProvider>
+    </SessionContextProvider>
   );
 }

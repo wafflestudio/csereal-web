@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
-import { useSWRConfig } from 'swr';
 
 import { batchUnimportantAction } from '@/actions/admin';
 
@@ -62,7 +61,6 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   const [selectedPostIdentifiers, changeSelectedIdentifiers] = useReducer(reducer, []);
   const { openModal } = useModal();
   const router = useRouter();
-  const { mutate } = useSWRConfig();
 
   const resetSelectedPosts = () => changeSelectedIdentifiers({ type: 'RESET' });
 
@@ -81,7 +79,6 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
 
     successToast('중요 안내를 해제했습니다.');
     resetSelectedPosts();
-    mutate('/admin');
   };
 
   return (

@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useReducer } from 'react';
-import { useSWRConfig } from 'swr';
 
 import { batchUnslideAction } from '@/actions/admin';
 
@@ -28,14 +27,7 @@ interface SlideManagementProps {
 
 const POST_LIMIT = 40;
 
-type ReducerAction =
-  | {
-      type: 'ADD' | 'DELETE';
-      id: number;
-    }
-  | {
-      type: 'RESET';
-    };
+type ReducerAction = { type: 'ADD' | 'DELETE'; id: number } | { type: 'RESET' };
 
 const reducer = (state: Set<number>, action: ReducerAction) => {
   switch (action.type) {
@@ -55,7 +47,6 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
   const { openModal } = useModal();
   const router = useRouter();
-  const { mutate } = useSWRConfig();
 
   const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
 
@@ -74,7 +65,6 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
 
     successToast('슬라이드를 해제했습니다.');
     resetSelectedPosts();
-    mutate('/admin');
   };
 
   return (
