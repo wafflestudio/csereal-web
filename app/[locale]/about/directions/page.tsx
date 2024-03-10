@@ -32,18 +32,16 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
         <LocationGuide />
         <LocationMap />
       </div>
-      <div>
-        <SelectionList
-          names={directionList.map((d) => d.name)}
-          selectedItemName={selectedDirection?.name ?? ''}
-          path={directionsPath}
-        />
-        {selectedDirection ? (
-          <DirectionsDetails direction={selectedDirection} />
-        ) : (
-          <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
-        )}
-      </div>
+      <SelectionList
+        names={directionList.map((d) => d.name)}
+        selectedItemName={selectedDirection?.name ?? ''}
+        path={directionsPath}
+      />
+      {selectedDirection ? (
+        <DirectionsDetails direction={selectedDirection} />
+      ) : (
+        <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
+      )}
     </PageLayout>
   );
 }

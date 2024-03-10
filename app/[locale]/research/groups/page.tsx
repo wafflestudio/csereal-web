@@ -23,6 +23,7 @@ export default async function ResearchGroupsPage({
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      {/* TODO: 외부 div 스타일링 SelectionList에서 표현 */}
       <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <SelectionList
           names={groups.map((group) => group.name)}
