@@ -89,17 +89,15 @@ const SearchResult = async ({ keyword }: { keyword: string }) => {
           href={`${noticePath}?keyword=${keyword}`}
         >
           {renderSettled(notice, (notice) =>
-            notice.results
-              .slice(0, 2)
-              .map((notice) => (
-                <NoticeRow
-                  {...notice}
-                  key={notice.id}
-                  id={notice.id}
-                  title={notice.title}
-                  dateStr={notice.createdAt}
-                />
-              )),
+            notice.results.map((notice) => (
+              <NoticeRow
+                {...notice}
+                key={notice.id}
+                id={notice.id}
+                title={notice.title}
+                dateStr={notice.createdAt}
+              />
+            )),
           )}
         </SubSection>
 
@@ -109,21 +107,19 @@ const SearchResult = async ({ keyword }: { keyword: string }) => {
           href={`${newsPath}?keyword=${keyword}`}
         >
           {renderSettled(news, (news) =>
-            news.results
-              .slice(0, 2)
-              .map((news) => (
-                <NewsRow
-                  key={news.id}
-                  href={`${newsPath}/${news.id}`}
-                  title={news.title}
-                  description={news.partialDescription}
-                  tags={news.tags}
-                  date={new Date(news.date)}
-                  imageURL={news.imageUrl}
-                  descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
-                  hideDivider
-                />
-              )),
+            news.results.map((news) => (
+              <NewsRow
+                key={news.id}
+                href={`${newsPath}/${news.id}`}
+                title={news.title}
+                description={news.partialDescription}
+                tags={news.tags}
+                date={new Date(news.date)}
+                imageURL={news.imageUrl}
+                descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
+                hideDivider
+              />
+            )),
           )}
         </SubSection>
 
