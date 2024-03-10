@@ -1,8 +1,3 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -16,14 +11,14 @@ import ResearchCenterDetails from './ResearchCenterDetails';
 
 const researchCentersPath = getPath(researchCenters);
 
-export default function ResearchCentersPageContent({ centers }: { centers: ResearchCenter[] }) {
-  const searchParams = useSearchParams();
-  const [selected, setSelected] = useState<string>(searchParams.get('selected') ?? '');
-  const selectedCenter = findSelectedItem<ResearchCenter>(
-    centers,
-    decodeURI(selected ?? ''),
-    centers[0]?.name,
-  );
+export default function ResearchCentersPageContent({
+  centers,
+  selected,
+}: {
+  centers: ResearchCenter[];
+  selected?: string;
+}) {
+  const selectedCenter = findSelectedItem<ResearchCenter>(centers, selected);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
@@ -32,7 +27,6 @@ export default function ResearchCentersPageContent({ centers }: { centers: Resea
         selectedItemName={selectedCenter?.name ?? ''}
         path={researchCentersPath}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_200px,_auto))]"
-        setSelected={setSelected}
       />
       {selectedCenter ? (
         <ResearchCenterDetails center={selectedCenter} />

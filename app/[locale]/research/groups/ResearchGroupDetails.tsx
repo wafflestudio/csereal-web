@@ -20,13 +20,13 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
         <HTMLViewer htmlContent={group.description} />
       </div>
       {group.imageURL !== null && (
-        <div className="relative mt-6 h-[200px]">
+        <div className="relative ml-20 mt-6 h-[18.3125rem] w-[48.75rem]">
           <Image
             src={group.imageURL}
             alt={`${group.name}_연구그룹_사진`}
-            priority
             fill
-            objectFit="contain"
+            sizes="800px" // TOOD: 이게 맞나?
+            className="object-cover"
           />
         </div>
       )}

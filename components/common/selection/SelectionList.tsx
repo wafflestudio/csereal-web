@@ -1,7 +1,5 @@
 'use client';
 
-import { Dispatch, SetStateAction } from 'react';
-
 import { Link } from '@/navigation';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
@@ -20,7 +18,7 @@ interface SelectionListProps {
    * lg:grid-cols-[repeat(auto-fit,_minmax({itemWidth}px,_auto))] */
   listGridColumnClass?: string;
   listItemPadding?: string; // tailwlind class
-  setSelected?: Dispatch<SetStateAction<string>>;
+  setSelected?: (value: string) => void;
 }
 
 export default function SelectionList({

@@ -1,8 +1,47 @@
 import { getResearchGroups } from '@/apis/research';
 
-import ResearchGroupsPageContent from '@/app/[locale]/research/groups/ResearchGroupsPageContent';
+import SelectionList from '@/components/common/selection/SelectionList';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function ResearchGroupsPage() {
+import { ResearchGroup } from '@/types/research';
+
+import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getPath } from '@/utils/page';
+import { researchGroups } from '@/utils/segmentNode';
+
+import ResearchGroupDetails from './ResearchGroupDetails';
+
+const researchGroupsPath = getPath(researchGroups);
+
+export default async function ResearchGroupsPage({
+  searchParams,
+}: {
+  searchParams: { selected?: string };
+}) {
   const { groups } = await getResearchGroups();
-  return <ResearchGroupsPageContent groups={groups} />;
+  const selectedGroup = findSelectedItem<ResearchGroup>(groups, searchParams.selected);
+
+  return (
+    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
+        <SelectionList
+          names={groups.map((group) => group.name)}
+          selectedItemName={selectedGroup?.name ?? ''}
+          path={researchGroupsPath}
+          listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_236px,_auto))]"
+        />
+      </div>
+      {selectedGroup ? (
+        <ResearchGroupDetails group={selectedGroup} />
+      ) : (
+        <Fallback selected={selectedGroup} />
+      )}
+    </PageLayout>
+  );
 }
+
+const Fallback = ({ selected }: { selected: string }) => (
+  <p>
+    <b>{selected}</b> 연구그룹은 존재하지 않습니다.
+  </p>
+);
