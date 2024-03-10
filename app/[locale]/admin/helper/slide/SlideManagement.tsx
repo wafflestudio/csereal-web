@@ -1,8 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useReducer } from 'react';
-import { useSWRConfig } from 'swr';
 
 import { batchUnslideAction } from '@/actions/admin';
 
@@ -10,15 +8,18 @@ import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import { ADMIN_MENU, SlidePreview } from '@/types/admin';
+import { ADMIN_MENU_SLIDE, SlidePreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';
+import useSlideSelect from './useSlideSelect';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
+
+const POST_LIMIT = 40;
 
 interface SlideManagementProps {
   posts: SlidePreview[];
@@ -26,53 +27,26 @@ interface SlideManagementProps {
   total: number;
 }
 
-const POST_LIMIT = 40;
-
-type ReducerAction =
-  | {
-      type: 'ADD' | 'DELETE';
-      id: number;
-    }
-  | {
-      type: 'RESET';
-    };
-
-const reducer = (state: Set<number>, action: ReducerAction) => {
-  switch (action.type) {
-    case 'ADD':
-      return new Set<number>(state.add(action.id));
-    case 'DELETE':
-      state.delete(action.id);
-      return new Set<number>(state);
-    case 'RESET':
-      return new Set<number>();
-    default:
-      throw new Error('undefined action');
-  }
-};
-
 export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
-  const [selectedPostIds, changeSelectedIds] = useReducer(reducer, new Set<number>());
+  const [ids, dispatchIds] = useSlideSelect();
   const { openModal } = useModal();
   const router = useRouter();
-  const { mutate } = useSWRConfig();
 
-  const resetSelectedPosts = () => changeSelectedIds({ type: 'RESET' });
+  const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
 
   const changePage = (newPage: number) => {
-    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU.slide);
+    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
     resetSelectedPosts();
     router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
   };
 
   const handleBatchUnslide = async () => {
-    const result = await batchUnslideAction(selectedPostIds);
-    if (result?.error) {
+    const result = await batchUnslideAction(ids);
+    if (result) {
       errorToast('슬라이드를 해제하지 못했습니다.');
     } else {
       successToast('슬라이드를 해제했습니다.');
       resetSelectedPosts();
-      mutate('/admin');
     }
   };
 
@@ -81,11 +55,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <SlideDescription />
       <StraightNode double />
       <TotalPostsCount count={total} />
-      <SlideList
-        posts={posts}
-        selectedPostIds={selectedPostIds}
-        changeSelectedIds={changeSelectedIds}
-      />
+      <SlideList posts={posts} selectedPostIds={ids} changeSelectedIds={dispatchIds} />
       <Pagination
         totalPostsCount={total}
         postsCountPerPage={POST_LIMIT}
@@ -93,7 +63,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
         setCurrentPage={changePage}
       />
       <BatchAction
-        selectedCount={selectedPostIds.size}
+        selectedCount={ids.size}
         buttonText="일괄 슬라이드 해제"
         onClickButton={() =>
           openModal(
