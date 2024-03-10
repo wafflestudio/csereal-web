@@ -10,7 +10,7 @@ import {
 
 import { getRequest } from './network/server';
 
-type SearchParam = { keyword: string; number: number };
+type SearchParam = { keyword: string; number: number; amount?: number };
 
 export const searchAbout = (params: SearchParam) =>
   getRequest('/about/search/top', params) as Promise<AboutSearchResult>;

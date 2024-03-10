@@ -2,22 +2,24 @@
 
 export type AboutSearchResult = {
   total: number;
-  results: {
-    id: 0;
-    name: string;
-    aboutPostType:
-      | 'OVERVIEW'
-      | 'GREETINGS'
-      | 'HISTORY'
-      | 'FUTURE_CAREERS'
-      | 'CONTACT'
-      | 'STUDENT_CLUBS'
-      | 'FACILITIES'
-      | 'DIRECTIONS';
-    partialDescription: string;
-    boldStartIndex: number;
-    boldEndIndex: number;
-  }[];
+  results: AboutPreview[];
+};
+
+export type AboutPreview = {
+  id: 0;
+  name: string;
+  aboutPostType:
+    | 'OVERVIEW'
+    | 'GREETINGS'
+    | 'HISTORY'
+    | 'FUTURE_CAREERS'
+    | 'CONTACT'
+    | 'STUDENT_CLUBS'
+    | 'FACILITIES'
+    | 'DIRECTIONS';
+  partialDescription: string;
+  boldStartIndex: number;
+  boldEndIndex: number;
 };
 
 // 소식 탭

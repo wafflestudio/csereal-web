@@ -24,11 +24,15 @@ import PageTitle from '@/components/layout/pageLayout/PageTitle';
 import { getPath } from '@/utils/page';
 import { main, news, notice, seminar } from '@/utils/segmentNode';
 
+import AboutRow from './AboutRow';
+import OrangeCircle from './OrangeCircle';
 import SearchBoxWrapper from './SearchBoxWrapper';
 
 const newsPath = getPath(news);
 const noticePath = getPath(notice);
 const seminarPath = getPath(seminar);
+
+const DESCRIPTION_CHAR_CNT = 200;
 
 export default async function SearchPage({
   searchParams: { keyword },
@@ -53,39 +57,38 @@ export default async function SearchPage({
 }
 
 const SearchResult = async ({ keyword }: { keyword: string }) => {
+  // TODO: 단위별 에러 처리(allSettled)
   const [about, notice, news, seminar, member, research, academics, admissions] = await Promise.all(
     [
-      searchAbout({ keyword, number: 5 }),
-      searchNotice({ keyword, number: 5 }),
-      searchNews({ keyword, number: 5 }),
+      searchAbout({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
+      searchNotice({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
+      searchNews({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       getSeminarPosts({ keyword, pageNum: 1 }),
-      searchMember({ keyword, number: 5 }),
-      searchResearch({ keyword, number: 5 }),
-      searchAcademics({ keyword, number: 5 }),
-      searchAdmissions({ keyword, number: 5 }),
+      searchMember({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
+      searchResearch({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
+      searchAcademics({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
+      searchAdmissions({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
     ],
   );
-
-  const total = notice.total + news.total + seminar.total;
 
   return (
     <>
       <Section title="소개" size={about.total}>
-        <Tmp>{about.results}</Tmp>
+        <div className="my-4 flex flex-col items-start gap-6">
+          {about.results.map((result) => (
+            <AboutRow key={result.id} preview={result} />
+          ))}
+        </div>
       </Section>
 
-      <Section title="소식" size={total}>
+      <Section title="소식" size={notice.total + news.total + seminar.total}>
         <SubSection title="공지사항" size={notice.total} href={`${noticePath}?keyword=${keyword}`}>
           {notice.results.slice(0, 2).map((notice) => (
             <NoticeRow
+              {...notice}
               key={notice.id}
               id={notice.id}
               title={notice.title}
-              description={{
-                content: notice.partialDescription,
-                boldStartIndex: notice.boldStartIndex,
-                boldEndIndex: notice.boldEndIndex,
-              }}
               dateStr={notice.createdAt}
             />
           ))}
@@ -174,7 +177,7 @@ const SubSection = ({
   return (
     <>
       <div className="mt-7 flex items-center gap-2">
-        <div className="h-[.625rem] w-[.625rem] rounded-full border border-main-orange" />
+        <OrangeCircle />
         <h3 className=" text-base font-bold leading-loose text-neutral-700">
           {t(title)}({size})
         </h3>
