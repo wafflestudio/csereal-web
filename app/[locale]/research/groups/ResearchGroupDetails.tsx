@@ -16,17 +16,19 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
       <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
         {group.name} 연구 그룹
       </h2>
-      <div className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]">
-        <HTMLViewer htmlContent={group.description} />
-      </div>
+      <HTMLViewer
+        htmlContent={group.description}
+        className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
+      />
       {group.imageURL !== null && (
-        <div className="relative mt-6 h-[200px]">
+        <div className="relative ml-20 mt-6 aspect-[2/1] w-[60vw] max-w-[800px]">
+          {/* TODO: 이미지 반응형 */}
           <Image
             src={group.imageURL}
             alt={`${group.name}_연구그룹_사진`}
-            priority
             fill
-            objectFit="contain"
+            sizes="800px" // TOOD: 이게 맞나?
+            className="object-cover"
           />
         </div>
       )}

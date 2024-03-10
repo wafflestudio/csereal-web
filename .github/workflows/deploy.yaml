@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - refactor/people
+      - refactor/research
 
 jobs:
   build:

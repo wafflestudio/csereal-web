@@ -13,10 +13,10 @@ export default function ResearchCenterDetails({
   center: { name, description, imageURL, websiteURL },
 }: ResearchCenterDetailProps) {
   return (
-    <div>
+    <>
       <ResearchCenterTitle name={name} link={websiteURL} />
       <ContentWithImage imageURL={imageURL} content={description} containerClassName="px-2.5" />
-    </div>
+    </>
   );
 }
 
@@ -26,7 +26,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
       <a
         href={link}
         target="_blank"
-        className="group flex items-center gap-1"
+        className="group flex cursor-pointer items-center gap-1"
         rel="noopener noreferrer"
       >
         <span>{name}</span>

@@ -24,11 +24,7 @@ const FIND_PATH_URL =
 export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const directionList = await getDirections();
 
-  const selectedDirection = findSelectedItem(
-    directionList,
-    searchParams.selected ?? '',
-    directionList[0]?.name,
-  );
+  const selectedDirection = findSelectedItem(directionList, searchParams.selected);
 
   return (
     <PageLayout titleType="big">
@@ -36,18 +32,16 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
         <LocationGuide />
         <LocationMap />
       </div>
-      <div>
-        <SelectionList
-          names={directionList.map((d) => d.name)}
-          selectedItemName={selectedDirection?.name ?? ''}
-          path={directionsPath}
-        />
-        {selectedDirection ? (
-          <DirectionsDetails direction={selectedDirection} />
-        ) : (
-          <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
-        )}
-      </div>
+      <SelectionList
+        names={directionList.map((d) => d.name)}
+        selectedItemName={selectedDirection?.name ?? ''}
+        path={directionsPath}
+      />
+      {selectedDirection ? (
+        <DirectionsDetails direction={selectedDirection} />
+      ) : (
+        <NotFoundLabel>{searchParams.selected}</NotFoundLabel>
+      )}
     </PageLayout>
   );
 }

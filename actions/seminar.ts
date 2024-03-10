@@ -7,16 +7,19 @@ import { deleteSeminar, patchSeminar, postSeminar } from '@/apis/seminar';
 
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);
 
 export const postSeminarAction = async (formData: FormData) => {
-  await postSeminar(formData);
+  decodeFormDataFileName(formData, 'attachments');
+  const resp = await postSeminar(formData);
   revalidateSeminarTag();
-  redirect(seminarPath);
+  redirect(`${seminarPath}/${resp.id}`);
 };
 
 export const patchSeminarAction = async (id: number, formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await patchSeminar(id, formData);
   revalidateSeminarTag();
   redirect(`${seminarPath}/${id}`);

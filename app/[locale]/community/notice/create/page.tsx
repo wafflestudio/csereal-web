@@ -13,6 +13,7 @@ import { NOTICE_TAGS } from '@/constants/tag';
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);
 
@@ -66,10 +67,11 @@ const contentToForm = (content: PostEditorContent) => {
     ),
   );
 
-  content.attachments
-    .filter(isLocalFile)
-    .map((x) => x.file)
-    .forEach((attachment) => formData.append('attachments', attachment));
+  encodeFormDataFileName(
+    formData,
+    'attachments',
+    content.attachments.filter(isLocalFile).map((x) => x.file),
+  );
 
   return formData;
 };

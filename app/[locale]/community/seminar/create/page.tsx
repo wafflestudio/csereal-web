@@ -12,6 +12,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
+import { encodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);
 
@@ -80,9 +81,7 @@ const contentToFormData = (content: SeminarEditorContent) => {
     formData.append('mainImage', image);
   }
 
-  for (const attachment of attachments) {
-    formData.append('attachments', attachment);
-  }
+  encodeFormDataFileName(formData, 'attachments', attachments);
 
   return formData;
 };

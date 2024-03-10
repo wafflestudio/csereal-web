@@ -7,16 +7,19 @@ import { deleteNews, patchNews, postNews } from '@/apis/news';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);
 
 export const postNewsAction = async (formData: FormData) => {
-  await postNews(formData);
+  decodeFormDataFileName(formData, 'attachments');
+  const resp = await postNews(formData);
   revalidateNewsTag();
-  redirect(newsPath);
+  redirect(`${newsPath}/${resp.id}`);
 };
 
 export const patchNewsAction = async (id: number, formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await patchNews(id, formData);
   revalidateNewsTag();
   redirect(`${newsPath}/${id}`);

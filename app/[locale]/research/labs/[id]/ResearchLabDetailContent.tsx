@@ -15,7 +15,7 @@ import { replaceSpaceWithDash } from '@/utils/string';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 
-export default function ResearchLabDetails({ lab }: { lab: ResearchLab }) {
+export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) {
   const { screenType } = useResponsive();
 
   return (

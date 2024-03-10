@@ -35,6 +35,7 @@ const getAdminData = async (selectedMenu: string, pageNum: number) => {
 export default function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
   const selectedMenu = selected ? replaceDashWithSpace(selected) : DEFAULT_MENU;
   const pageNum = (page && parseInt(page)) || 1;
+
   const { data } = useSWR(['/admin', selectedMenu, pageNum], () =>
     getAdminData(selectedMenu, pageNum),
   );

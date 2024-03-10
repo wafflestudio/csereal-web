@@ -8,7 +8,7 @@ export default async function UndergraduateRegularAdmission() {
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data?.description ?? ''} />
+      <HTMLViewer htmlContent={data.description} />
     </PageLayout>
   );
 }

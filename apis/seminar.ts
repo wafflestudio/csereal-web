@@ -10,17 +10,21 @@ const seminarPath = '/seminar';
 // GET
 
 export const getSeminarPosts = async (params: PostSearchQueryParams) => {
-  return await getRequest<SeminarList>(seminarPath, params, { next: { tags: ['seminar'] } });
+  return getRequest(seminarPath, params, {
+    next: { tags: ['seminar'] },
+  }) as Promise<SeminarList>;
 };
 
 export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
-  return await getRequest<Seminar>(`${seminarPath}/${id}`, params, { next: { tags: ['seminar'] } });
+  return getRequest(`${seminarPath}/${id}`, params, {
+    next: { tags: ['seminar'] },
+  }) as Promise<Seminar>;
 };
 
 // POST
 
 export const postSeminar = async (formData: FormData) => {
-  await postRequest(seminarPath, { body: formData });
+  return postRequest(seminarPath, { body: formData }) as Promise<{ id: number }>;
 };
 
 // PATCH

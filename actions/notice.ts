@@ -14,16 +14,19 @@ import {
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);
 
 export const postNoticeAction = async (formData: FormData) => {
-  await postNotice(formData);
+  decodeFormDataFileName(formData, 'attachments');
+  const resp = await postNotice(formData);
   revalidateNoticeTag();
-  redirect(noticePath);
+  redirect(`${noticePath}/${resp.id}`);
 };
 
 export const patchNoticeAction = async (id: number, formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await patchNotice(id, formData);
   revalidateNoticeTag();
   redirect(`${noticePath}/${id}`);
