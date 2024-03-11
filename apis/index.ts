@@ -56,7 +56,7 @@ const fetchWithRetry = async (
     if (e instanceof NetworkError) throw e;
     if (remain === 0) throw e;
 
-    console.error(`fetchWithRetry: ${e}`);
+    console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
     return await fetchWithRetry(url, method, init, remain - 1);
   }
 };

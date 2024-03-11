@@ -27,7 +27,6 @@ export const removeAuth = () => {
 export const getIsStaff = async (): Promise<UserState> => {
   const id = cookies().get(COOKIE_SESSION_ID);
   if (id === undefined) return 'logout';
-  if (process.env.NODE_ENV === 'development' && id) return 'staff';
 
   try {
     const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff', undefined, {
