@@ -19,15 +19,15 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="mb-[0.8rem] flex items-center gap-2">
-        <h3 className=" text-base font-bold leading-[1.625rem]">졸업생 진로 현황</h3>
+      <div className="flex items-center gap-2">
+        <h3 className="text-base font-bold">졸업생 진로 현황</h3>
         <Dropdown
           contents={stat.map((x) => x.year.toString())}
           selectedIndex={idx}
           onClick={setIdx}
         />
       </div>
-      <div className="mb-9 flex h-[14rem] w-[21.3rem] flex-col justify-stretch border-y-[1px] border-y-neutral-300 text-xs font-normal">
+      <div className="mb-9 flex h-[14rem] flex-col justify-stretch border-y-[1px] border-y-neutral-300 text-xs font-normal sm:w-[432px]">
         <TableHeader />
         {careerStatRows.map((company, index) => {
           return (
@@ -49,10 +49,10 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
 
 function TableHeader() {
   return (
-    <div className="flex flex-1 border-b-[1px] border-b-neutral-300 bg-neutral-100">
-      <div className="flex-1" />
+    <div className="flex flex-1 border-b border-b-neutral-300 bg-neutral-100">
+      <div className="w-[6.25rem]" />
       {careerStatCols.map((colName) => (
-        <div key={colName} className="flex w-[5rem] items-center justify-center">
+        <div key={colName} className="flex flex-1 items-center justify-center">
           <p className="text-sm">{colName}</p>
         </div>
       ))}
