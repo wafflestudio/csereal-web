@@ -16,7 +16,8 @@ export default async function SeminarPage({ searchParams }: SeminarPageParams) {
 
   // TODO: searchParams를 사용했음에도 dynamic-render가 안되어 pageNum이 반영안됨
   // 따라서 cookies를 호출해 강제로 설정
-  cookies();
+  console.log(cookies().size);
+  console.log(searchParams);
 
   // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
   return (
