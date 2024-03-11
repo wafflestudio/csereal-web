@@ -1,12 +1,14 @@
+import { getInternationalScholarships } from '@/apis/admission';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function InternationalScholarshipPage() {
+  const { description } = await getInternationalScholarships();
+
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingBottom: 0 }}>
-      <HTMLViewer htmlContent={htmlContent} className="pb-16 sm:pb-[220px]" />
+      <HTMLViewer htmlContent={description} className="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );
 }
-
-const htmlContent = `<p>Students may apply for the programs before or during the admission application period or may apply after admitted at SNU.<br></p><p>Please visit headquarter and OIA site for more details.</p><ul><li>Scholarship info. at headquarter site(under graduate): <a rel="nofollow" href="http://en.snu.ac.kr/apply/under/scholarships/before-application">http://en.snu.ac.kr/apply/under/scholarships/before-application</a></li><li>Scholarship info. at headquarter site (graduate): <a rel="nofollow" href="http://en.snu.ac.kr/apply/graduate/scholarships/before-application">http://en.snu.ac.kr/apply/graduate/scholarships/before-application</a></li><li>Scholarship info. at OIA site: <a rel="nofollow" href="http://oia.snu.ac.kr/page/scholarships.php">http://oia.snu.ac.kr/page/scholarships.php</a></li></ul>`;
