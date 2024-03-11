@@ -46,7 +46,7 @@ const fetchWithRetry = async (
   url: string,
   method: string,
   init?: CredentialRequestInit,
-  remain: number = 5,
+  remain: number = 10,
 ): Promise<Response> => {
   if (method !== 'GET') return _fetch(url, method, init);
 
@@ -57,7 +57,7 @@ const fetchWithRetry = async (
     if (remain === 0) throw e;
 
     console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
-    await delay(1000);
+    await delay(3000);
     return await fetchWithRetry(url, method, init, remain - 1);
   }
 };
