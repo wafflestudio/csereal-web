@@ -2,9 +2,8 @@
 
 import { cookies } from 'next/headers';
 
+import { getRequest } from '@/apis';
 import { UserState } from '@/contexts/SessionContext';
-
-import { getRequest } from '@/apis/network/server';
 
 import { COOKIE_SESSION_ID } from '@/constants/network';
 

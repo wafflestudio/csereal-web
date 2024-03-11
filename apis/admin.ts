@@ -2,7 +2,7 @@
 
 import { ImportantPreview, SlidePreview } from '@/types/admin';
 
-import { getRequest, patchRequest } from './network/server';
+import { getRequest, patchRequest } from '.';
 
 // GET
 

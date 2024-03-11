@@ -8,7 +8,7 @@ import {
   ResearchSearchResult,
 } from '@/types/search';
 
-import { getRequest } from './network/server';
+import { getRequest } from '.';
 
 type SearchParam = { keyword: string; number: number; amount?: number };
 

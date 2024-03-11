@@ -1,6 +1,8 @@
+import { cookies } from 'next/headers';
+
 import { objToQueryString } from '@/utils/convertParams';
 
-import { BASE_URL, checkError } from './common';
+export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -30,7 +32,30 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
 };
 
 const fetchWithCredentials = async (url: string, method: string, init?: RequestInit) => {
-  const resp = await fetch(url, { ...init, method, credentials: 'include' });
+  const jsessionId = cookies().get('JSESSIONID');
+  const resp = await fetch(url, {
+    ...init,
+    method,
+    headers: {
+      Cookie: `JSESSIONID=${jsessionId?.value}`,
+      ...init?.headers,
+    },
+  });
   checkError(resp);
+
   return resp;
 };
+
+export const checkError = (response: Response) => {
+  if (response.ok) return;
+
+  throw new NetworkError(response.status);
+};
+
+export class NetworkError extends Error {
+  statusCode: number;
+  constructor(statusCode: number) {
+    super(`${statusCode} 에러`);
+    this.statusCode = statusCode;
+  }
+}

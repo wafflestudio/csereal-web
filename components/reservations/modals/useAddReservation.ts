@@ -1,8 +1,7 @@
 import { useReducer, useState, FormEventHandler } from 'react';
 
 import { postReservation } from '@/actions/reservation';
-
-import { NetworkError } from '@/apis/network/common';
+import { NetworkError } from '@/apis';
 
 import { ReservationPostBody } from '@/types/reservation';
 

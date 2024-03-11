@@ -6,7 +6,7 @@ import {
   TopConferenceList,
 } from '@/types/research';
 
-import { getRequest } from './network/server';
+import { getRequest } from '.';
 
 export const getResearchGroups = () => getRequest<ResearchGroupList>('/research/groups');
 
