@@ -2,9 +2,7 @@ import { cookies } from 'next/headers';
 
 import { objToQueryString } from '@/utils/convertParams';
 
-import { NetworkError, checkError } from './error';
-
-export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+import { BASE_URL, NetworkError, checkError } from './common';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
 

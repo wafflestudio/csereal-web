@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/apis';
+import { BASE_URL } from '@/apis/common';
 
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 

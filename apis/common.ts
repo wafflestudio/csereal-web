@@ -1,3 +1,5 @@
+export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+
 export class NetworkError extends Error {
   statusCode: number;
   constructor(statusCode: number) {

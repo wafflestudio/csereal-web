@@ -31,8 +31,6 @@ export default async function NoticePostPage({
 
   const notice = await getNoticePostDetail(id, searchParams);
 
-  console.log(notice);
-
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
       <Header {...notice} />
