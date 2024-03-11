@@ -43,7 +43,7 @@ export default function NewsPageContent({
         initKeyword={keyword ?? ''}
         setSearchParams={setSearchParams}
       />
-      <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-2.5">
+      <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
         {searchList.length === 0 ? (
           <NoSearchResult />
         ) : (
