@@ -1,6 +1,6 @@
 import { AboutContent, Club, Direction, Facilities, FutureCareers } from '@/types/about';
 
-import { getRequest } from './network/server';
+import { getRequest } from '.';
 
 export const getOverview = () => getRequest<AboutContent>('/about/overview');
 

@@ -4,11 +4,15 @@ import { revalidateTag } from 'next/cache';
 
 import { patchMultipleImportants, patchMultipleSlides } from '@/apis/admin';
 
-import { ImportantPostIdentifier } from '@/types/admin';
+import {
+  FETCH_TAG_IMPORANT,
+  FETCH_TAG_NEWS,
+  FETCH_TAG_NOTICE,
+  FETCH_TAG_SEMINAR,
+  FETCH_TAG_SLIDE,
+} from '@/constants/network';
 
-import { revalidateNewsTag } from './news';
-import { revalidateNoticeTag } from './notice';
-import { revalidateSeminarTag } from './seminar';
+import { ImportantPostIdentifier } from '@/types/admin';
 
 export const batchUnslideAction = async (ids: Set<number>) => {
   try {
@@ -16,8 +20,11 @@ export const batchUnslideAction = async (ids: Set<number>) => {
   } catch (e) {
     return e;
   }
-  revalidateSlideTag();
-  revalidateNewsTag();
+
+  revalidateTag(FETCH_TAG_SLIDE);
+  revalidateTag(FETCH_TAG_NEWS);
+  revalidateTag(FETCH_TAG_NOTICE);
+  revalidateTag(FETCH_TAG_SEMINAR);
 };
 
 export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) => {
@@ -26,16 +33,9 @@ export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) =
   } catch (e) {
     return e;
   }
-  revalidateImportantTag();
-  revalidateNoticeTag();
-  revalidateNewsTag();
-  revalidateSeminarTag();
-};
 
-const revalidateSlideTag = () => {
-  revalidateTag('slide');
-};
-
-const revalidateImportantTag = () => {
-  revalidateTag('important');
+  revalidateTag(FETCH_TAG_IMPORANT);
+  revalidateTag(FETCH_TAG_NEWS);
+  revalidateTag(FETCH_TAG_NOTICE);
+  revalidateTag(FETCH_TAG_SEMINAR);
 };

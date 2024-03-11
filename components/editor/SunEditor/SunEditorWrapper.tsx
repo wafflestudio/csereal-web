@@ -1,6 +1,6 @@
 'use client';
 
-import { MutableRefObject, Suspense } from 'react';
+import { MutableRefObject } from 'react';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
 import plugins from 'suneditor/src/plugins';
@@ -8,9 +8,7 @@ import './suneditor.css';
 import './suneditor-contents.css';
 import SunEditor from 'suneditor-react';
 
-// TODO
-// 정말 왜그러는지 모르겠는데 lazy + typeof window 조합으로만 빌드가 됨
-// 건들지 말..것..
+import { BASE_URL } from '@/apis/common';
 
 export default function SunEditorWrapper({
   editorRef,
@@ -20,28 +18,26 @@ export default function SunEditorWrapper({
   initialContent?: string;
 }) {
   return (
-    <Suspense>
-      <SunEditor
-        getSunEditorInstance={(x) => (editorRef.current = x)}
-        setDefaultStyle={`padding: 1rem;`}
-        height="400px"
-        lang={ko}
-        defaultValue={initialContent}
-        setOptions={{
-          plugins,
-          buttonList: [
-            ['undo', 'redo'],
-            ['fontSize', 'formatBlock'],
-            ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-            '/', // Line break
-            ['fontColor', 'hiliteColor'],
-            ['lineHeight', 'align', 'horizontalRule', 'list'],
-            ['table', 'link', 'image', 'preview'],
-          ],
-          //   TODO: URL 논의
-          //   imageUploadUrl: `${BASE_URL}/v1/file/upload`,
-        }}
-      />
-    </Suspense>
+    <SunEditor
+      getSunEditorInstance={(x) => (editorRef.current = x)}
+      setDefaultStyle={`padding: 1rem;`}
+      height="400px"
+      lang={ko}
+      defaultValue={initialContent}
+      setOptions={{
+        plugins,
+        buttonList: [
+          ['undo', 'redo'],
+          ['fontSize', 'formatBlock'],
+          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+          '/', // Line break
+          ['fontColor', 'hiliteColor'],
+          ['lineHeight', 'align', 'horizontalRule', 'list'],
+          ['table', 'link', 'image', 'preview'],
+        ],
+        //   TODO: URL 논의
+        imageUploadUrl: `${BASE_URL}/api/v1/file/upload`,
+      }}
+    />
   );
 }

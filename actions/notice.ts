@@ -11,6 +11,8 @@ import {
   postNotice,
 } from '@/apis/notice';
 
+import { FETCH_TAG_NOTICE } from '@/constants/network';
+
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
@@ -21,21 +23,23 @@ const noticePath = getPath(notice);
 export const postNoticeAction = async (formData: FormData) => {
   decodeFormDataFileName(formData, 'attachments');
   const resp = await postNotice(formData);
-  revalidateNoticeTag();
+
+  revalidateTag(FETCH_TAG_NOTICE);
   redirect(`${noticePath}/${resp.id}`);
 };
 
 export const patchNoticeAction = async (id: number, formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');
   await patchNotice(id, formData);
-  revalidateNoticeTag();
+
+  revalidateTag(FETCH_TAG_NOTICE);
   redirect(`${noticePath}/${id}`);
 };
 
 export const deleteNoticeAction = async (id: number) => {
   try {
     await deleteNotice(id);
-    revalidateNoticeTag();
+    revalidateTag(FETCH_TAG_NOTICE);
   } catch (error) {
     return { message: errorToStr(error) };
   }
@@ -45,7 +49,7 @@ export const deleteNoticeAction = async (id: number) => {
 export const batchDeleteNoticeAction = async (ids: Set<number>) => {
   try {
     await batchDeleteNotice(ids);
-    revalidateNoticeTag();
+    revalidateTag(FETCH_TAG_NOTICE);
   } catch (error) {
     return { message: errorToStr(error) };
   }
@@ -54,12 +58,8 @@ export const batchDeleteNoticeAction = async (ids: Set<number>) => {
 export const unpinNoticeAction = async (ids: Set<number>) => {
   try {
     await batchUnpinNotice(ids);
-    revalidateNoticeTag();
+    revalidateTag(FETCH_TAG_NOTICE);
   } catch (error) {
     return { message: errorToStr(error) };
   }
-};
-
-export const revalidateNoticeTag = () => {
-  revalidateTag('notice');
 };

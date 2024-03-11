@@ -2,10 +2,10 @@
 
 export default function ErrorFallback({ error }: { error: Error & { digest?: string } }) {
   return (
-    <div className="mx-[3.75rem] mt-3 flex flex-col items-start">
-      <p className="mb-4">문제가 발생했습니다 :(</p>
-      <i>{error.message}</i>
-      <i className="mb-4">digest: {error.digest ?? '없음'}</i>
+    <div className="flex grow flex-col items-start justify-center p-12 text-base text-white">
+      <p className="mb-4">
+        {error.message} ({error.digest})
+      </p>
       <button className="underline" onClick={() => location.reload()}>
         새로고침
       </button>

@@ -1,10 +1,12 @@
 'use server';
 
-import { cookies } from 'next/dist/client/components/headers';
+import { revalidateTag } from 'next/cache';
+
+import { FETCH_TAG_RESERVATION } from '@/constants/network';
 
 import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
 
-import { deleteRequest, getRequest, postRequest } from '../apis/network/server';
+import { deleteRequest, getRequest, postRequest } from '../apis';
 
 const reservationPath = '/reservation';
 
@@ -12,7 +14,9 @@ export const postReservation = async (body: ReservationPostBody) => {
   await postRequest(reservationPath, {
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
+    jsessionID: true,
   });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };
 
 export const getWeeklyReservation = async (params: {
@@ -21,12 +25,8 @@ export const getWeeklyReservation = async (params: {
   month: number;
   day: number;
 }) => {
-  const jsessionId = cookies().get('JSESSIONID');
   return (await getRequest(`${reservationPath}/week`, params, {
-    credentials: 'include',
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-    },
+    jsessionID: true,
   })) as ReservationPreview[];
 };
 
@@ -35,9 +35,11 @@ export const getReservation = async (id: number) => {
 };
 
 export const deleteSingleReservation = async (id: number) => {
-  await deleteRequest(`${reservationPath}/${id}`);
+  await deleteRequest(`${reservationPath}/${id}`, { jsessionID: true });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };
 
 export const deleteAllRecurringReservation = async (id: string) => {
-  await deleteRequest(`${reservationPath}/recurring/${id}`);
+  await deleteRequest(`${reservationPath}/recurring/${id}`, { jsessionID: true });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };

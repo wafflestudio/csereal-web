@@ -7,7 +7,7 @@ import {
   Staff,
 } from '@/types/people';
 
-import { getRequest } from './network/server';
+import { getRequest } from '.';
 
 export const getActiveFacultyList = () => getRequest<FacultyList>('/professor/active');
 

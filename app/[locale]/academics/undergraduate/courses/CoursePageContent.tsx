@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Course, SortOption, ViewOption } from '@/types/academics';
 
@@ -28,11 +28,9 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
     setSelectedOption((prev) => ({ ...prev, [options.type]: options.option }));
   };
 
-  useEffect(() => {
-    if (hideViewOption) {
-      changeOptions({ type: 'view', option: '목록형' });
-    }
-  }, [hideViewOption]);
+  if (hideViewOption && selectedOption.view !== '목록형') {
+    changeOptions({ type: 'view', option: '목록형' });
+  }
 
   return (
     <div className={selectedOption.view === '카드형' ? 'w-[970px]' : 'w-[720px]'}>

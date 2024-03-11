@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
@@ -11,5 +13,10 @@ interface SeminarPageParams {
 export default async function SeminarPage({ searchParams }: SeminarPageParams) {
   const data = await getSeminarPosts(searchParams);
 
-  return <SeminarContent data={data} />;
+  // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+  return (
+    <Suspense>
+      <SeminarContent data={data} />
+    </Suspense>
+  );
 }
