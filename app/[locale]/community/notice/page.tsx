@@ -1,3 +1,4 @@
+// TODO: searchParams를 사용했으므로 자동 dynamic 처리되어야할 것 같은데 안되어 추가
 export const dynamic = 'force-dynamic';
 
 import { Suspense } from 'react';
