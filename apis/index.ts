@@ -57,6 +57,7 @@ const fetchWithRetry = async (
     if (remain === 0) throw e;
 
     console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
+    await delay(1000);
     return await fetchWithRetry(url, method, init, remain - 1);
   }
 };
@@ -82,3 +83,5 @@ const _fetch = async (url: string, method: string, init?: CredentialRequestInit)
     return resp;
   }
 };
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
