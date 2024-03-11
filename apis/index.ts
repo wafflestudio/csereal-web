@@ -6,32 +6,37 @@ import { NetworkError, checkError } from './error';
 
 export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
 
+type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
+
 // REST request
 
 export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
-  init?: RequestInit,
+  init?: CredentialRequestInit,
 ): Promise<T> => {
   const queryString = objToQueryString(params);
   const resp = await fetchWithRetry(`${BASE_URL}${url}${queryString}`, 'GET', init);
   return await resp.json();
 };
 
-export const postRequest = async <T = unknown>(url: string, init?: RequestInit): Promise<T> => {
+export const postRequest = async <T = unknown>(
+  url: string,
+  init?: CredentialRequestInit,
+): Promise<T> => {
   const resp = await fetchWithRetry(`${BASE_URL}${url}`, 'POST', init);
   return await resp.json();
 };
 
 export const patchRequest = async <T = unknown>(
   url: string,
-  init?: RequestInit,
+  init?: CredentialRequestInit,
 ): Promise<T | null> => {
   const resp = await fetchWithRetry(`${BASE_URL}${url}`, 'PATCH', init);
   return resp.headers.get('content-type') ? await resp.json() : null;
 };
 
-export const deleteRequest = async (url: string, init?: RequestInit) => {
+export const deleteRequest = async (url: string, init?: CredentialRequestInit) => {
   await fetchWithRetry(`${BASE_URL}${url}`, 'DELETE', init);
 };
 
@@ -39,20 +44,21 @@ export const deleteRequest = async (url: string, init?: RequestInit) => {
  * 학교 서버가 간헐적으로 첫 요청에서 ECONNRESET이 뜨는 경우가 있어 한 번 더 요청.
  * 안전을 위해 멱등성이 있는 GET 요청에 대해서만 retry
  */
-const fetchWithRetry = async (url: string, method: string, init?: RequestInit) => {
+const fetchWithRetry = async (url: string, method: string, init?: CredentialRequestInit) => {
   if (method !== 'GET') return fetchWithCredentials(url, method, init);
 
+  const f = init?.jsessionID ? fetchWithCredentials : fetch;
+
   try {
-    return await fetchWithCredentials(url, method, init);
+    return await f(url, method, init);
   } catch (e) {
     if (e instanceof NetworkError) throw e;
-
     console.error(`fetchWithRetry: ${e}`);
-    return fetchWithCredentials(url, method, init);
+    return f(url, method, init);
   }
 };
 
-const fetchWithCredentials = async (url: string, method: string, init?: RequestInit) => {
+const fetchWithCredentials = async (url: string, method: string, init?: CredentialRequestInit) => {
   const jsessionId = cookies().get('JSESSIONID');
   const resp = await fetch(url, {
     ...init,

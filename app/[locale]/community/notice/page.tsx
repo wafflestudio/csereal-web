@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { getNoticePosts } from '@/apis/notice';
 
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
@@ -10,5 +12,10 @@ interface NoticePageParams {
 
 export default async function NoticePage({ searchParams }: NoticePageParams) {
   const data = await getNoticePosts(searchParams);
-  return <NoticePageContent data={data} />;
+  return (
+    // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    <Suspense>
+      <NoticePageContent data={data} />
+    </Suspense>
+  );
 }

@@ -18,30 +18,33 @@ export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =
 // POST
 
 export const postNotice = async (formData: FormData) => {
-  return postRequest('/notice', { body: formData }) as Promise<{ id: number }>;
+  return postRequest('/notice', { body: formData, jsessionID: true }) as Promise<{ id: number }>;
 };
 
 // PATCH
 
 export const patchNotice = async (id: number, formData: FormData) => {
   console.log(formData.get('newAttachments'));
-  await patchRequest(`/notice/${id}`, { body: formData });
+  await patchRequest(`/notice/${id}`, { body: formData, jsessionID: true });
 };
 
 export const batchUnpinNotice = async (ids: Set<number>) => {
   await patchRequest(noticePath, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ idList: Array.from(ids) }),
+    jsessionID: true,
   });
 };
 
 // DELETE
 
-export const deleteNotice = (id: number) => deleteRequest(`${noticePath}/${id}`);
+export const deleteNotice = (id: number) =>
+  deleteRequest(`${noticePath}/${id}`, { jsessionID: true });
 
 export const batchDeleteNotice = async (ids: Set<number>) => {
   await deleteRequest(noticePath, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ idList: Array.from(ids) }),
+    jsessionID: true,
   });
 };

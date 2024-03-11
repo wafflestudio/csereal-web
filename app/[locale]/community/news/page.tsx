@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { getNewsPosts } from '@/apis/news';
 
 import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
@@ -10,5 +12,10 @@ interface NewsPageParams {
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
   const data = await getNewsPosts(searchParams);
-  return <NewsPageContent data={data} />;
+  return (
+    // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    <Suspense>
+      <NewsPageContent data={data} />
+    </Suspense>
+  );
 }

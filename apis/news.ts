@@ -18,15 +18,15 @@ export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
 // POST
 
 export const postNews = async (formData: FormData) => {
-  return postRequest(newsPath, { body: formData }) as Promise<{ id: number }>;
+  return postRequest(newsPath, { body: formData, jsessionID: true }) as Promise<{ id: number }>;
 };
 
 // PATCH
 
 export const patchNews = async (id: number, formData: FormData) => {
-  await patchRequest(`${newsPath}/${id}`, { body: formData });
+  await patchRequest(`${newsPath}/${id}`, { body: formData, jsessionID: true });
 };
 
 // DELETE
 
-export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`);
+export const deleteNews = (id: number) => deleteRequest(`${newsPath}/${id}`, { jsessionID: true });
