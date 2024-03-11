@@ -31,6 +31,7 @@ export const getIsStaff = async (): Promise<UserState> => {
   try {
     const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff', undefined, {
       cache: 'no-store',
+      jsessionID: true,
     });
     return resp.isStaff ? 'staff' : 'non-staff';
   } catch {

@@ -1,3 +1,6 @@
+// TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
+export const dynamic = 'force-dynamic';
+
 import { Suspense } from 'react';
 
 import { getNewsPosts } from '@/apis/news';
