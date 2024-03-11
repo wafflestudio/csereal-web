@@ -1,3 +1,6 @@
+// TODO: searchParams를 사용했으므로 자동 dynamic 처리되어야할 것 같은데 안되어 추가
+export const dynamic = 'force-dynamic';
+
 import { Suspense } from 'react';
 
 import { getNewsPosts } from '@/apis/news';
@@ -12,10 +15,11 @@ interface NewsPageParams {
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
   const data = await getNewsPosts(searchParams);
+
   return (
     // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
     <Suspense>
-      <NewsPageContent data={data} />
+      <NewsPageContent data={data} key={searchParams + ''} />
     </Suspense>
   );
 }
