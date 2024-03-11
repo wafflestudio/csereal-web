@@ -57,7 +57,7 @@ const fetchWithRetry = async (
     if (remain === 0) throw e;
 
     console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
-    await delay(3000);
+    await delay(100 * 1.5 ** (10 - remain));
     return await fetchWithRetry(url, method, init, remain - 1);
   }
 };
