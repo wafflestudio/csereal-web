@@ -1,4 +1,5 @@
-import { cookies } from 'next/headers';
+export const dynamic = 'force-dynamic';
+
 import { Suspense } from 'react';
 
 import { getNewsPosts } from '@/apis/news';
@@ -13,10 +14,6 @@ interface NewsPageParams {
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
   const data = await getNewsPosts(searchParams);
-
-  // TODO: searchParams를 사용했음에도 dynamic-render가 안되어 pageNum이 반영안됨
-  // 따라서 cookies를 호출해 강제로 설정
-  cookies();
 
   return (
     // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
