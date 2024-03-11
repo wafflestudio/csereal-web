@@ -50,13 +50,13 @@ const fetchWithRetry = async (
   if (method !== 'GET') return _fetch(url, method, init);
 
   try {
-    return _fetch(url, method, init);
+    return await _fetch(url, method, init);
   } catch (e) {
     if (e instanceof NetworkError) throw e;
     console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
 
     await delay(3000);
-    return _fetch(url, method, init);
+    return await _fetch(url, method, init);
   }
 };
 
