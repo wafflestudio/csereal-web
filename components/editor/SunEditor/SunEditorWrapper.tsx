@@ -10,10 +10,6 @@ import SunEditor from 'suneditor-react';
 
 import { BASE_URL } from '@/apis/common';
 
-// TODO
-// 정말 왜그러는지 모르겠는데 lazy + typeof window 조합으로만 빌드가 됨
-// 건들지 말..것..
-
 export default function SunEditorWrapper({
   editorRef,
   initialContent,

@@ -42,41 +42,43 @@ export const deleteRequest = async (url: string, init?: CredentialRequestInit) =
  * 학교 서버가 간헐적으로 첫 요청에서 ECONNRESET이 뜨는 경우가 있어 한 번 더 요청.
  * 안전을 위해 멱등성이 있는 GET 요청에 대해서만 retry
  */
-const fetchWithRetry = async (url: string, method: string, init?: CredentialRequestInit) => {
-  const f = init?.jsessionID ? fetchWithCredentials : fetchWithoutCredentials;
-
-  if (method !== 'GET') return f(url, method, init);
-
-  try {
-    return await f(url, method, init);
-  } catch (e) {
-    if (e instanceof NetworkError) throw e;
-    console.error(`fetchWithRetry: ${e}`);
-    return f(url, method, init);
-  }
-};
-
-const fetchWithoutCredentials = async (
+const fetchWithRetry = async (
   url: string,
   method: string,
   init?: CredentialRequestInit,
-) => {
-  const resp = await fetch(url, { ...init, method });
-  checkError(resp);
-  return resp;
+  remain: number = 5,
+): Promise<Response> => {
+  if (method !== 'GET') return _fetch(url, method, init);
+
+  try {
+    return await _fetch(url, method, init);
+  } catch (e) {
+    if (e instanceof NetworkError) throw e;
+    if (remain === 0) throw e;
+
+    console.error(`fetchWithRetry: ${e}`);
+    return await fetchWithRetry(url, method, init, remain - 1);
+  }
 };
 
-const fetchWithCredentials = async (url: string, method: string, init?: CredentialRequestInit) => {
-  const jsessionId = cookies().get('JSESSIONID');
-  const resp = await fetch(url, {
-    ...init,
-    method,
-    headers: {
-      Cookie: `JSESSIONID=${jsessionId?.value}`,
-      ...init?.headers,
-    },
-  });
-  checkError(resp);
+const _fetch = async (url: string, method: string, init?: CredentialRequestInit) => {
+  if (init?.jsessionID) {
+    const jsessionId = cookies().get('JSESSIONID');
+    const resp = await fetch(url, {
+      ...init,
+      method,
+      headers: {
+        Cookie: `JSESSIONID=${jsessionId?.value}`,
+        ...init?.headers,
+      },
+    });
+    checkError(resp);
 
-  return resp;
+    return resp;
+  } else {
+    const resp = await fetch(url, { ...init, method });
+    checkError(resp);
+
+    return resp;
+  }
 };
