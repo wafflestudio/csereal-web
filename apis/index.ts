@@ -45,9 +45,9 @@ export const deleteRequest = async (url: string, init?: CredentialRequestInit) =
  * 안전을 위해 멱등성이 있는 GET 요청에 대해서만 retry
  */
 const fetchWithRetry = async (url: string, method: string, init?: CredentialRequestInit) => {
-  if (method !== 'GET') return fetchWithCredentials(url, method, init);
+  const f = init?.jsessionID ? fetchWithCredentials : fetchWithoutCredentials;
 
-  const f = init?.jsessionID ? fetchWithCredentials : fetch;
+  if (method !== 'GET') return f(url, method, init);
 
   try {
     return await f(url, method, init);
@@ -56,6 +56,16 @@ const fetchWithRetry = async (url: string, method: string, init?: CredentialRequ
     console.error(`fetchWithRetry: ${e}`);
     return f(url, method, init);
   }
+};
+
+const fetchWithoutCredentials = async (
+  url: string,
+  method: string,
+  init?: CredentialRequestInit,
+) => {
+  const resp = await fetch(url, { ...init, method });
+  checkError(resp);
+  return resp;
 };
 
 const fetchWithCredentials = async (url: string, method: string, init?: CredentialRequestInit) => {

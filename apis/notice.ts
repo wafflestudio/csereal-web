@@ -1,5 +1,7 @@
 'use server';
 
+import { FETCH_TAG_NOTICE } from '@/constants/network';
+
 import { NoticePreviewList, Notice } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -10,10 +12,14 @@ const noticePath = '/notice';
 // GET
 
 export const getNoticePosts = (params: PostSearchQueryParams) =>
-  getRequest(noticePath, params, { next: { tags: ['notice'] } }) as Promise<NoticePreviewList>;
+  getRequest(noticePath, params, {
+    next: { tags: [FETCH_TAG_NOTICE] },
+  }) as Promise<NoticePreviewList>;
 
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
-  getRequest(`${noticePath}/${id}`, params, { next: { tags: ['notice'] } }) as Promise<Notice>;
+  getRequest(`${noticePath}/${id}`, params, {
+    next: { tags: [FETCH_TAG_NOTICE] },
+  }) as Promise<Notice>;
 
 // POST
 
@@ -23,10 +29,8 @@ export const postNotice = async (formData: FormData) => {
 
 // PATCH
 
-export const patchNotice = async (id: number, formData: FormData) => {
-  console.log(formData.get('newAttachments'));
-  await patchRequest(`/notice/${id}`, { body: formData, jsessionID: true });
-};
+export const patchNotice = (id: number, formData: FormData) =>
+  patchRequest(`/notice/${id}`, { body: formData, jsessionID: true });
 
 export const batchUnpinNotice = async (ids: Set<number>) => {
   await patchRequest(noticePath, {

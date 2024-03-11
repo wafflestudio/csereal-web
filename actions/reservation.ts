@@ -1,5 +1,9 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
+
+import { FETCH_TAG_RESERVATION } from '@/constants/network';
+
 import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
 
 import { deleteRequest, getRequest, postRequest } from '../apis';
@@ -12,6 +16,7 @@ export const postReservation = async (body: ReservationPostBody) => {
     headers: { 'Content-Type': 'application/json' },
     jsessionID: true,
   });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };
 
 export const getWeeklyReservation = async (params: {
@@ -31,8 +36,10 @@ export const getReservation = async (id: number) => {
 
 export const deleteSingleReservation = async (id: number) => {
   await deleteRequest(`${reservationPath}/${id}`, { jsessionID: true });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };
 
 export const deleteAllRecurringReservation = async (id: string) => {
   await deleteRequest(`${reservationPath}/recurring/${id}`, { jsessionID: true });
+  revalidateTag(FETCH_TAG_RESERVATION);
 };

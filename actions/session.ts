@@ -29,7 +29,9 @@ export const getIsStaff = async (): Promise<UserState> => {
   if (process.env.NODE_ENV === 'development' && id) return 'staff';
 
   try {
-    const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff');
+    const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff', undefined, {
+      cache: 'no-store',
+    });
     return resp.isStaff ? 'staff' : 'non-staff';
   } catch {
     // removeAuth();

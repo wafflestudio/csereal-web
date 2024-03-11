@@ -1,5 +1,7 @@
 'use server';
 
+import { FETCH_TAG_NEWS } from '@/constants/network';
+
 import { News, NewsPreviewList } from '@/types/news';
 import { PostSearchQueryParams } from '@/types/post';
 
@@ -10,10 +12,10 @@ const newsPath = '/news';
 // GET
 
 export const getNewsPosts = (params: PostSearchQueryParams) =>
-  getRequest(newsPath, params, { next: { tags: ['news'] } }) as Promise<NewsPreviewList>;
+  getRequest(newsPath, params, { next: { tags: [FETCH_TAG_NEWS] } }) as Promise<NewsPreviewList>;
 
 export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
-  getRequest(`${newsPath}/${id}`, params, { next: { tags: ['news'] } }) as Promise<News>;
+  getRequest(`${newsPath}/${id}`, params, { next: { tags: [FETCH_TAG_NEWS] } }) as Promise<News>;
 
 // POST
 
