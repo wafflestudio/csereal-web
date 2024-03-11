@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 next start",
-    "lint": "next lint",
-    "prepare": "husky"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "20.4.0",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.19",
     "@mui/material": "^5.14.5",
     "@mui/x-date-pickers": "^6.11.2",
     "autolinker": "^4.0.0",
@@ -26,13 +29,11 @@
     "sharp": "^0.32.5",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
-    "tailwindcss": "3.3.2"
+    "tailwindcss": "3.3.2",
+    "file-loader": "^6.2.0",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/node": "20.4.0",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.19",
-    "@svgr/webpack": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
@@ -40,11 +41,9 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "file-loader": "^6.2.0",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
     "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.5.12",
-    "typescript": "^5.3.3"
+    "prettier-plugin-tailwindcss": "^0.5.12"
   }
 }
