@@ -29,8 +29,8 @@ export const getCourseChanges = (type: 'undergraduate' | 'graduate') =>
 export const getScholarshipList = (type: string) =>
   getRequest<ScholarshipList>(`/academics/${type}/scholarship`);
 
-export const getScholarship = (type: string, id: number) =>
-  getRequest<Scholarship>(`/academics/${type}/scholarship/${id}`);
+export const getScholarship = (id: number) =>
+  getRequest<Scholarship>(`/academics/scholarship/${id}`);
 
 export const getDegreeRequirements = () =>
   getRequest<DegreeRequirements>(`/academics/undergraduate/degree-requirements`);
