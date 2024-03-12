@@ -1,14 +1,14 @@
-import { getMockGraduateScholarshipList } from '@/data/serverObjects';
+import { getScholarshipList } from '@/apis/academics';
 
 import ScholarshipPreview from '../../helper/ScholarshipPreview';
 
 export default async function GraduateScholarshipListPage() {
-  const data = await getMockGraduateScholarshipList();
+  const data = await getScholarshipList('graduate');
 
   return (
     <ScholarshipPreview
       description={data.description}
-      scholarshipList={data.scholarship}
+      scholarshipList={data.scholarships}
       type="GRADUATE"
     />
   );

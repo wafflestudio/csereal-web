@@ -46,7 +46,7 @@ export interface GeneralStudiesRequirements {
 
 export interface ScholarshipList {
   description: string;
-  scholarship: Pick<Scholarship, 'id' | 'name'>[];
+  scholarships: Pick<Scholarship, 'id' | 'name'>[];
 }
 
 export interface Scholarship {
@@ -65,7 +65,6 @@ export interface DegreeRequirements {
 }
 
 export interface Curriculum {
-  id: number;
   description: string;
   year: number;
 }
