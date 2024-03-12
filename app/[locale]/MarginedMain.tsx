@@ -22,7 +22,7 @@ export default function MarginedMain({ children }: { children: ReactNode }) {
   }
 
   return (
-    <main className="flex h-full flex-col overflow-scroll" style={{ marginLeft }}>
+    <main className="flex flex-col overflow-scroll" style={{ marginLeft }}>
       {children}
     </main>
   );

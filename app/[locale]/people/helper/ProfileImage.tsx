@@ -1,6 +1,9 @@
 import Image from 'next/image';
 
-export default function ProfileImage({ imageURL }: { imageURL: string }) {
+// TODO: Image -> ImageFallback으로 수정
+export default function ProfileImage({ imageURL }: { imageURL: string | null }) {
+  if (imageURL === null) return <></>;
+
   return (
     <Image
       alt="대표 이미지"

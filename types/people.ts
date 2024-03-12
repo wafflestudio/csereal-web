@@ -48,7 +48,7 @@ export interface EmiritusFaculty extends SimpleEmiritusFaculty {
 export interface SimpleStaff {
   id: number;
   name: string;
-  imageURL: string;
+  imageURL: string | null;
   role: string;
   office: string;
   phone: string;
