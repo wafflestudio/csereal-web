@@ -3,8 +3,6 @@ import { getResearchGroups } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { ResearchGroup } from '@/types/research';
-
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
@@ -19,7 +17,7 @@ export default async function ResearchGroupsPage({
   searchParams: { selected?: string };
 }) {
   const { groups } = await getResearchGroups();
-  const selectedGroup = findSelectedItem<ResearchGroup>(groups, searchParams.selected);
+  const selectedGroup = findSelectedItem(groups, searchParams.selected);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>

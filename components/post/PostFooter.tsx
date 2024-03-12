@@ -32,7 +32,7 @@ export default function PostFooter({ post, margin = '', postType, id }: PostFoot
     <div className={`flex flex-col ${margin}`}>
       {nextPost && <Row post={nextPost} type="next" postType={postType} />}
       {prevPost && <Row post={prevPost} type="prev" postType={postType} />}
-      <div className="mt-6 flex justify-end">
+      <div className="mt-16 flex justify-end">
         <LoginVisible staff>
           {id && (
             <>
@@ -49,7 +49,10 @@ export default function PostFooter({ post, margin = '', postType, id }: PostFoot
 
 function Row({ post, type, postType }: { post: AdjPost; type: RowType; postType: PostType }) {
   return (
-    <Link className="group flex w-fit items-center" href={`/community/${postType}/${post.id}`}>
+    <Link
+      className="group mb-[2px] flex w-fit items-center"
+      href={`/community/${postType}/${post.id}`}
+    >
       <RowIcon type={type} />
       <RowDescription type={type} />
       <RowPostTitle title={post.title} />
@@ -88,7 +91,7 @@ function PostListLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className={`flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-bold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500`}
+      className={`flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-semibold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500`}
     >
       목록
     </Link>
@@ -99,7 +102,7 @@ function PostEditLink({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="mr-3 flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-500 bg-neutral-100 px-[17px] text-sm font-bold tracking-[0.1em] text-neutral-500 hover:bg-neutral-500 hover:text-white"
+      className="mr-3 flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-300 bg-neutral-100 px-[17px] text-md font-semibold tracking-[0.1em] text-neutral-500 hover:bg-neutral-200"
     >
       편집
     </Link>

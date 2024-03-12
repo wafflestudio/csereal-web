@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import { batchUnslideAction } from '@/actions/admin';
 
-import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
@@ -41,7 +40,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   };
 
   const handleBatchUnslide = async () => {
-    const result = await batchUnslideAction(ids);
+    const result = await batchUnslideAction([...ids]);
     if (result) {
       errorToast('슬라이드를 해제하지 못했습니다.');
     } else {
@@ -53,7 +52,6 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
   return (
     <div>
       <SlideDescription />
-      <StraightNode double />
       <TotalPostsCount count={total} />
       <SlideList posts={posts} selectedPostIds={ids} changeSelectedIds={dispatchIds} />
       <Pagination
@@ -81,7 +79,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
 
 function SlideDescription() {
   return (
-    <p className="mb-[2.6875rem] text-sm tracking-wide">
+    <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">
       메인페이지의 슬라이드쇼에는 <strong>{`소식 > 새 소식`}</strong> 중{' '}
       <strong>{`'슬라이드쇼에 표시'`}</strong> 체크박스가 선택된 글들이 올라갑니다. 이 목록에 20개
       이상의 글이 포함되면 자동으로 최신글 20개만 표시되지만, 원활한 유지보수를 위하여 주기적인

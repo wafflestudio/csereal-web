@@ -54,13 +54,7 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
 
 function SelectFileButton({ onChange }: { onChange: ChangeEventHandler<HTMLInputElement> }) {
   return (
-    <label
-      className={`mb-3 flex h-[1.875rem]
-            items-center self-start rounded-sm
-            border-[1px] border-neutral-700
-            px-[.62rem] text-xs 
-            hover:bg-neutral-100`}
-    >
+    <label className="mb-3 flex h-[1.875rem] cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
       파일 선택
       <input type="file" className="hidden" onChange={onChange} />
     </label>

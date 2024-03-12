@@ -59,7 +59,7 @@ function TopRightImageContent(props: TopRightImage) {
     const { url, widthPX: width, heightPX: height } = props;
     return (
       <div className="relative float-right mb-[28px] ml-[28px]" style={{ width, height }}>
-        <Image src={url} alt="대표 이미지" fill className="object-contain" sizes={`${width}px`} />
+        <Image src={url} alt="대표 이미지" fill className="object-cover" sizes={`${width}px`} />
       </div>
     );
   } else {

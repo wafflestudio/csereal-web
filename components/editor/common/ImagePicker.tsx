@@ -17,13 +17,7 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
 
   return (
     <>
-      <label
-        className={`mb-3 flex h-[1.875rem]
-            items-center self-start rounded-sm
-            border-[1px] border-neutral-700
-            px-[.62rem] text-xs 
-            hover:bg-neutral-100`}
-      >
+      <label className="mb-3 flex h-[1.875rem] cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
         {`이미지 ${file ? '변경' : '업로드'}`}
         {/* SelectedImageViewer쪽 svg 처리가 애매해서(귀찮아서) accept=image/* 사용 안함 */}
         <input type="file" accept=".png, .jpg, .jpeg" className="hidden" onChange={handleChange} />

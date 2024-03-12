@@ -28,7 +28,7 @@ export default function SeminarCreatePage() {
   };
 
   return (
-    <PageLayout title={'세미나 쓰기'} titleType="small" titleMargin="mb-3">
+    <PageLayout title="세미나 작성" titleType="big" titleMargin="mb-[2.25rem]">
       <SeminarEditor
         actions={{
           type: 'CREATE',

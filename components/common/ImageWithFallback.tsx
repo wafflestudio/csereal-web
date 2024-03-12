@@ -17,7 +17,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
         }`}
         style={{ width: props.width, height: props.height }}
       >
-        <SnuLogo className="fill-neutral-300" width="45" height="47" />
+        <SnuLogo className="fill-neutral-200" width="60" height="60" />
       </div>
     );
   }

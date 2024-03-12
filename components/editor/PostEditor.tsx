@@ -98,7 +98,7 @@ export default function PostEditor({
         }}
       />
 
-      <Fieldset title="태그" mb="mb-6" titleMb="mb-3">
+      <Fieldset title="태그" mb="mb-8" titleMb="mb-3">
         <div className="flex grow flex-wrap  gap-x-6 gap-y-2.5">
           {tags.map((tag) => (
             <Checkbox
@@ -170,7 +170,7 @@ export default function PostEditor({
 
 function TitleFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="제목" mb="mb-6" titleMb="mb-2" required>
+    <Fieldset title="제목" mb="mb-8" titleMb="mb-2" required>
       <BasicTextInput
         placeholder="제목을 입력하세요."
         value={value}
@@ -189,7 +189,7 @@ function TitleForMainFieldset({
   onChange: (text: string) => void;
 }) {
   return (
-    <Fieldset title="메인-중요 안내용 제목" mb="mb-6" titleMb="mb-2">
+    <Fieldset title="메인-중요 안내용 제목" mb="mb-8" titleMb="mb-2">
       <BasicTextInput
         placeholder="미입력시 제목과 동일하게 표시됩니다."
         value={value}
@@ -208,9 +208,9 @@ function DateInputFieldSet({ date, setDate }: { date: Date; setDate: (date: Date
   )}.${(date.getDate() + '').padStart(2, '0')}.`;
 
   return (
-    <Fieldset title="시기" mb="mb-6" titleMb="mb-2" required>
+    <Fieldset title="시기" mb="mb-8" titleMb="mb-2" required>
       <button
-        className="flex items-center justify-between gap-2 self-start rounded-sm border border-neutral-900 py-[.3125rem] pl-[.625rem] pr-[.3125rem] text-sm font-normal"
+        className="flex items-center justify-between gap-2 self-start rounded-sm border border-neutral-300 py-[.3125rem] pl-[.625rem] pr-[.3125rem] text-sm font-normal"
         onClick={(e) => {
           e.preventDefault();
           openModal(

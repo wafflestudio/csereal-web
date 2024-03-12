@@ -85,7 +85,7 @@ export default function NewsRow({
           alt="포스트 대표 이미지"
           src={imageURL}
           fill
-          className="object-fill"
+          className="object-cover"
           sizes="12.5rem"
         />
       </Link>

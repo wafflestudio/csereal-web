@@ -38,7 +38,7 @@ export default function ImportantListRow({
 
   return (
     <li
-      className={`flex h-10 items-center py-2.5 text-xs tracking-wide ${
+      className={`flex items-center py-[12px] text-md tracking-wide ${
         isSelected && 'bg-neutral-100'
       }`}
     >
@@ -66,10 +66,7 @@ function CheckboxCell({ isChecked = true, toggleCheck }: CheckboxCellProps) {
       {isChecked ? (
         <CheckboxOrange className="cursor-pointer" onClick={toggleCheck} />
       ) : (
-        <span
-          className="material-symbols-rounded cursor-pointer text-[1.25rem] font-light"
-          onClick={toggleCheck}
-        >
+        <span className="material-symbols-rounded cursor-pointer font-light" onClick={toggleCheck}>
           check_box_outline_blank
         </span>
       )}
@@ -107,7 +104,7 @@ function DateCell({ date }: { date: string }) {
 function EditCell({ href }: { href: string }) {
   return (
     <span className={`${IMPORTANT_ROW_CELL_WIDTH.edit} pl-3`}>
-      <Link href={href} className="cursor-pointer hover:underline">
+      <Link href={href} className="cursor-pointer font-medium text-main-orange hover:underline">
         편집
       </Link>
     </span>

@@ -42,7 +42,7 @@ function NameCell({ name, id }: { name: string; id: number }) {
       className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 whitespace-nowrap text-base font-semibold 
       sm:whitespace-normal sm:text-sm sm:font-normal`}
     >
-      <Link className="hover:text-main-orange" href={`${laboratoriesPath}/${id}`}>
+      <Link className="text-neutral-900 hover:text-main-orange" href={`${laboratoriesPath}/${id}`}>
         {name}
       </Link>
     </span>
@@ -52,15 +52,12 @@ function NameCell({ name, id }: { name: string; id: number }) {
 function ProfessorsCell({ professors }: { professors: { id: number; name: string }[] }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md text-neutral-800 sm:text-sm sm:text-neutral-400`}
+      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md text-neutral-800  sm:text-sm sm:text-neutral-900`}
     >
       <span className="sm:hidden">지도교수: </span>
       {professors.map((info, i) => (
         <Fragment key={info.id}>
-          <Link
-            href={`${facultyPath}/${info.id}`}
-            className="hover:text-main-orange sm:hover:text-neutral-800"
-          >
+          <Link href={`${facultyPath}/${info.id}`} className="hover:text-main-orange">
             {info.name}
           </Link>
           {i !== professors.length - 1 && ', '}
@@ -72,18 +69,18 @@ function ProfessorsCell({ professors }: { professors: { id: number; name: string
 
 function LocationCell({ location }: { location: string }) {
   return (
-    <span className={`${LAB_ROW_ITEM_WIDTH.location} col-span-3 text-neutral-400`}>{location}</span>
+    <span className={`${LAB_ROW_ITEM_WIDTH.location} col-span-3 text-neutral-500`}>{location}</span>
   );
 }
 
 function TelephoneCell({ tel }: { tel: string }) {
-  return <span className={`${LAB_ROW_ITEM_WIDTH.tel} text-neutral-400`}>{tel}</span>;
+  return <span className={`${LAB_ROW_ITEM_WIDTH.tel} text-neutral-500`}>{tel}</span>;
 }
 
 function AcronymCell({ acronym }: { acronym: string }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.acronym} -order-2 col-span-2 row-span-1 text-main-orange sm:order-none sm:text-neutral-400`}
+      className={`${LAB_ROW_ITEM_WIDTH.acronym} -order-2 col-span-2 row-span-1 text-main-orange sm:order-none sm:text-neutral-500`}
     >
       {acronym}
     </span>

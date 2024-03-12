@@ -37,7 +37,7 @@ export default function ImportantList({
   return (
     <div className="mx-2.5 mb-8">
       <ImportantListHeader />
-      <ul className={`divide-y divide-dashed divide-neutral-200 border-b border-neutral-300`}>
+      <ul className={`divide-y divide-dashed divide-neutral-200 border-b border-neutral-200`}>
         {posts.map((post, i) => (
           <ImportantListRow
             key={i}
