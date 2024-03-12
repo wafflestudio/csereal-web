@@ -18,7 +18,10 @@ export default function Navbar() {
   };
 
   return (
-    <div className={`absolute bottom-0 top-0 z-50 hidden sm:flex`} onMouseLeave={handleMouseLeave}>
+    <div
+      className={`fixed bottom-0 left-0 top-0 z-50 hidden sm:flex`}
+      onMouseLeave={handleMouseLeave}
+    >
       <NavbarRoot />
       <NavbarDetail />
     </div>
