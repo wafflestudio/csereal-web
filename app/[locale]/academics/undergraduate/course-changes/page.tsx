@@ -16,7 +16,7 @@ const TIME_SPOTS: { year: number; margin?: string; isLast?: boolean }[] = [
 ];
 
 export default async function UndergraduateCourseChangesPage() {
-  const changes = await getCourseChanges('graduate');
+  const changes = await getCourseChanges('undergraduate');
 
   return <CourseChanges changes={changes} yearLimit={2011} timeSpots={TIME_SPOTS} />;
 }

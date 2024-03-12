@@ -13,7 +13,7 @@ export default async function GraduateCoursePage() {
   return (
     <PageLayout titleType="big">
       {chunckedCourses.length > 0 && (
-        <div className="flex w-[970px] flex-col gap-8">
+        <div className="flex max-w-[880px] flex-col gap-8">
           {chunckedCourses.map((courses, i) => (
             <CourseRow courses={courses} selectedOption="학년" key={i} />
           ))}

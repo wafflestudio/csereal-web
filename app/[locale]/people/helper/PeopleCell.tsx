@@ -37,6 +37,7 @@ export default function PeopleCell({
           className="h-[192px] w-[144px] object-cover"
           width={144}
           height={192}
+          quality={50}
         />
       </Link>
       <div className="flex flex-col items-start break-keep">

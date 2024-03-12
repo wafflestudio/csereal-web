@@ -33,7 +33,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
   }
 
   return (
-    <div className="w-[880px]">
+    <div className="max-w-[880px]">
       <h4 className="mb-8 mt-14 pl-5 text-[17px] font-bold">교과목 정보</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
