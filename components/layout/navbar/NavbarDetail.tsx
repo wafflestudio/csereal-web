@@ -3,7 +3,7 @@ import { useNavbarContext } from '@/contexts/NavbarContext';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { SegmentNode } from '@/utils/segmentNode';
 
-import NavTreeRow from './NavtreeRow';
+import NavTreeLabel from './NavtreeRow';
 
 export default function NavbarDetail() {
   const { navbarState } = useNavbarContext();
@@ -31,7 +31,7 @@ function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
   return (
     <>
       {depth !== 0 && (
-        <NavTreeRow segmentNode={node} highlight={curNode === node} marginBottom={marginBottom} />
+        <NavTreeLabel segmentNode={node} highlight={curNode === node} marginBottom={marginBottom} />
       )}
       {node.children !== null && 0 < node.children.length && (
         <div className="mb-11 ml-5">

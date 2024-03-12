@@ -8,6 +8,7 @@ import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
 
 import Footer from '@/components/layout/footer/Footer';
+import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
@@ -42,9 +43,10 @@ export default async function RootLayout({
       lang={params.locale}
       className="bg-neutral-900 font-normal text-neutral-800 sm:min-w-[1000px]"
     >
-      <body>
+      <body className="relative">
         <ContextProviders locale={params.locale}>
           <Navbar />
+          <MobileNav />
 
           <MarginedMain>
             {children}
