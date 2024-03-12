@@ -33,6 +33,7 @@ export default function PeopleCell({
         <ImageWithFallback
           src={imageURL}
           alt={`${title} 프로필`}
+          // 이유는 모르겠지만 여기에도 w, h를 명시해야 object-cover가 동작
           className="h-[192px] w-[144px] object-cover"
           width={144}
           height={192}
