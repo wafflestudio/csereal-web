@@ -44,9 +44,7 @@ export default async function RootLayout({
     >
       <body>
         <ContextProviders locale={params.locale}>
-          <NavbarContextProvider>
-            <Navbar />
-          </NavbarContextProvider>
+          <Navbar />
 
           <MarginedMain>
             {children}
@@ -67,9 +65,11 @@ function ContextProviders({ locale, children }: { locale: string; children: Reac
   return (
     <SessionContextProvider>
       <ModalContextProvider>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <NavbarContextProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </NavbarContextProvider>
       </ModalContextProvider>
     </SessionContextProvider>
   );
