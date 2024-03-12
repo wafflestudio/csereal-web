@@ -1,14 +1,14 @@
-import { getUndergraduateScholarshipList } from '@/apis/academicsServer';
+import { getScholarshipList } from '@/apis/academics';
 
 import ScholarshipPreview from '../../helper/ScholarshipPreview';
 
 export default async function UndergraduateScholarshipListPage() {
-  const data = await getUndergraduateScholarshipList();
+  const data = await getScholarshipList('undergraduate');
 
   return (
     <ScholarshipPreview
       description={data.description}
-      scholarshipList={data.scholarship}
+      scholarshipList={data.scholarships}
       type="UNDERGRADUATE"
     />
   );

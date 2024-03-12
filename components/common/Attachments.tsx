@@ -1,6 +1,6 @@
 import Clip from '@/public/image/clip.svg';
 
-interface Attachment {
+export interface Attachment {
   name: string;
   bytes: number;
   url: string;
