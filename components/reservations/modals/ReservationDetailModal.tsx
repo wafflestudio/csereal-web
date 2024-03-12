@@ -42,7 +42,7 @@ export default function ReservationModalButton({
 
   return (
     <button
-      className={`absolute flex w-full flex-col items-center bg-[#ff6914]`}
+      className={`absolute flex w-full flex-col items-center bg-[#ff6914cc]`}
       style={{ height, top }}
       onClick={handleClick}
     >
