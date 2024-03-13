@@ -56,20 +56,21 @@ export default function NewsRow({
             <h3 className="mb-2.5 text-base font-bold">{title}</h3>
           </Link>
 
-          <Link href={href} className="hover:cursor-pointer">
-            <p className="mb-3 line-clamp-3 text-md font-normal leading-[1.6] text-neutral-500 sm:mb-8">
-              {descriptionBold ? (
-                <>
-                  {description.slice(0, descriptionBold.startIndex)}
-                  <span className="font-bold">
-                    {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
-                  </span>
-                  {description.slice(descriptionBold.endIndex)}
-                </>
-              ) : (
-                description
-              )}
-            </p>
+          <Link
+            href={href}
+            className="mb-3 line-clamp-3 break-all text-md font-normal leading-[1.6] text-neutral-500 hover:cursor-pointer sm:mb-8"
+          >
+            {descriptionBold ? (
+              <>
+                {description.slice(0, descriptionBold.startIndex)}
+                <span className="font-bold">
+                  {description.slice(descriptionBold.startIndex, descriptionBold.endIndex)}
+                </span>
+                {description.slice(descriptionBold.endIndex)}
+              </>
+            ) : (
+              description
+            )}
           </Link>
         </div>
 
@@ -81,7 +82,7 @@ export default function NewsRow({
         </div>
       </div>
 
-      <Link href={href} className="relative flex aspect-[4/3] h-[280px] sm:h-[9.375rem]">
+      <Link href={href} className="relative flex aspect-[4/3] sm:h-[9.375rem]">
         <ImageWithFallback
           alt="포스트 대표 이미지"
           src={imageURL}
