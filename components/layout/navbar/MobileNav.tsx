@@ -9,7 +9,8 @@ import { isAncestorNode } from '@/utils/page';
 import { SegmentNode, main } from '@/utils/segmentNode';
 
 import NavTreeLabel from './NavtreeRow';
-import { HEADER_HEIGHT_PX } from '../header/Header';
+
+const HEADER_HEIGHT_PX = 68;
 
 export default function MobileNav() {
   const { navbarState } = useNavbarContext();
