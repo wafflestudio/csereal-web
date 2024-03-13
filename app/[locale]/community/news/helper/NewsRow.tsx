@@ -44,7 +44,7 @@ export default function NewsRow({
 
   return (
     <article
-      className={`flex flex-col-reverse pb-5 sm:flex-row ${
+      className={`flex flex-col-reverse pb-5 sm:flex-row s${
         hideDivider ? '' : 'border-b border-neutral-100'
       }`}
     >
@@ -72,6 +72,7 @@ export default function NewsRow({
             </p>
           </Link>
         </div>
+
         <div className="flex items-center justify-between sm:gap-2.5">
           <Tags tags={tags} searchPath={newsPath} />
           <time className="hidden self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:inline">
