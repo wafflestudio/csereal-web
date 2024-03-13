@@ -25,7 +25,7 @@ export default function NoticePageContent({
 }: {
   data: NoticePreviewList;
 }) {
-  const { page, keyword = '', tags, setSearchParams } = useCustomSearchParams();
+  const { page, setSearchParams } = useCustomSearchParams();
   const { selectedIds, dispatchIds, editMode, toggleEditMode } = usePostSelect();
 
   const { screenType } = useResponsive();
@@ -37,13 +37,7 @@ export default function NoticePageContent({
 
   return (
     <PageLayout titleType="big">
-      <SearchBox
-        tags={NOTICE_TAGS}
-        initTags={tags}
-        initKeyword={keyword}
-        disabled={editMode}
-        setSearchParams={setSearchParams}
-      />
+      <SearchBox tags={NOTICE_TAGS} disabled={editMode} />
       <NoticeList
         posts={posts}
         isEditMode={editMode}

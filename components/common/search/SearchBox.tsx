@@ -2,29 +2,20 @@ import { useState } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
-import { SearchInfo } from '@/utils/hooks/useCustomSearchParams';
+import { SearchInfo, useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 import SearchForm from './SearchForm';
 import SelectedTags from './SelectedTags';
 
 interface SearchBoxProps {
   tags: string[]; // 전체 태그(선택지) 목록
-  initTags: string[]; // 처음에 선택된 태그들 (useCustomSearchParams의 tags)
-  initKeyword: string; // 초기 검색 키워드 (useCustomSearchParams의 keyword)
-  setSearchParams(searchInfo: SearchInfo): void; // useCustomSearchParams의 setSearchParams
   disabled?: boolean;
   formOnly?: boolean;
 }
 
-export default function SearchBox({
-  tags,
-  initTags,
-  initKeyword,
-  setSearchParams,
-  disabled = false,
-  formOnly = false,
-}: SearchBoxProps) {
-  const [keyword, setKeyword] = useState<string>(initKeyword);
+export default function SearchBox({ tags, disabled = false, formOnly = false }: SearchBoxProps) {
+  const { tags: initTags, keyword: initKeyword, setSearchParams } = useCustomSearchParams();
+  const [keyword, setKeyword] = useState(initKeyword ?? '');
 
   const search = (tags?: string[]) => {
     const info: SearchInfo = { purpose: 'search', keyword, tag: tags ?? initTags };

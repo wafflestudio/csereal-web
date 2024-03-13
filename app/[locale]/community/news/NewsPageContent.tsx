@@ -27,7 +27,7 @@ export default function NewsPageContent({
 }: {
   data: NewsPreviewList;
 }) {
-  const { page, keyword, tags, setSearchParams } = useCustomSearchParams();
+  const { page, setSearchParams } = useCustomSearchParams();
   const { screenType } = useResponsive();
   const pageLimit = screenType === 'desktop' ? 10 : 5;
 
@@ -37,12 +37,7 @@ export default function NewsPageContent({
 
   return (
     <PageLayout titleType="big" bodyStyle={{ width: 'fit-content' }}>
-      <SearchBox
-        tags={NEWS_TAGS}
-        initTags={tags}
-        initKeyword={keyword ?? ''}
-        setSearchParams={setSearchParams}
-      />
+      <SearchBox tags={NEWS_TAGS} />
       <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
         {searchList.length === 0 ? (
           <NoSearchResult />

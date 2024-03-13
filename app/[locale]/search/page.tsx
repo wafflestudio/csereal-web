@@ -18,15 +18,17 @@ import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import NoticeRow from '@/app/[locale]/search/NoticeRow';
 
+import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
+
+import { SEARCH_TAGS } from '@/constants/tag';
 
 import { getPath } from '@/utils/page';
 import { main, news, notice, seminar } from '@/utils/segmentNode';
 
 import AboutRow from './AboutRow';
 import OrangeCircle from './OrangeCircle';
-import SearchBoxWrapper from './SearchBoxWrapper';
 
 const newsPath = getPath(news);
 const noticePath = getPath(notice);
@@ -46,7 +48,7 @@ export default async function SearchPage({
       <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
 
       <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
-        <SearchBoxWrapper />
+        <SearchBox tags={SEARCH_TAGS} />
 
         <div className="flex w-[52.5rem] flex-col gap-10">
           <SearchResult keyword={keyword} />
