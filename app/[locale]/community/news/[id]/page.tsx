@@ -1,50 +1,22 @@
-// TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
-export const dynamic = 'force-dynamic';
+import { Suspense } from 'react';
 
-import { getNewsDetail } from '@/apis/news';
-
-import Attachments from '@/components/common/Attachments';
-import { StraightNode } from '@/components/common/Nodes';
-import Tags from '@/components/common/Tags';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout, { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import PostFooter from '@/components/post/PostFooter';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
-import { formatNewsPostDateStr } from '@/utils/date';
-import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import NewsViewer from './NewsViewer';
 
 interface NewsPostPageProps {
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }
 
-const newsPath = getPath(news);
-
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
-  const news = await getNewsDetail(parseInt(params.id), searchParams);
-
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
-        {news.title}
-      </h2>
-
-      <div
-        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
-      >
-        <Attachments files={news.attachments} />
-        <HTMLViewer htmlContent={news.description} className="mb-10" />
-        <time className="mb-3 mt-12 block text-end text-sm font-bold">
-          {formatNewsPostDateStr(news.date)}
-        </time>
-        <StraightNode />
-        <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
-        <PostFooter post={news} postType="news" id={params.id} margin="mt-12" />
-      </div>
+      <Suspense>
+        <NewsViewer id={parseInt(params.id)} searchParams={searchParams} />
+      </Suspense>
     </PageLayout>
   );
 }
