@@ -314,7 +314,7 @@
 
 /* table */
 .sun-editor-editable table {
-  display: table;
+  display: block;
   table-layout: auto !important;
   border: 1px solid rgb(204, 204, 204);
   width: 100%;
@@ -323,6 +323,9 @@
   background-color: transparent;
   border-spacing: 0;
   border-collapse: collapse;
+
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 /* RTL - table */
