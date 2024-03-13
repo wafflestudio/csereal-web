@@ -18,10 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <div
-      className="sticky bottom-0 top-0 z-50 shrink-0"
-      style={{ width: `${NAVBAR_CLOSED_WIDTH_REM}rem` }}
-    >
+    <div className={`sticky bottom-0 top-0 z-50 shrink-0 sm:w-[${NAVBAR_CLOSED_WIDTH_REM}rem]`}>
       <div
         className={`absolute bottom-0 left-0 top-0 hidden sm:flex`}
         onMouseLeave={handleMouseLeave}

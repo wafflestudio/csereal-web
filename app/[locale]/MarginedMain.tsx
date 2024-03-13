@@ -9,7 +9,5 @@ export default function MarginedMain({ children }: { children: ReactNode }) {
   const node = useCurrentSegmentNode();
   const marginLeft = node === mainNode ? `sm:ml-[4.75rem]` : '';
 
-  return (
-    <main className={`ml-0 flex grow flex-col overflow-scroll ${marginLeft}`}>{children}</main>
-  );
+  return <main className={`flex grow flex-col overflow-scroll ${marginLeft}`}>{children}</main>;
 }
