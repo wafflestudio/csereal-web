@@ -43,7 +43,7 @@ export default async function RootLayout({
       lang={params.locale}
       className="bg-neutral-900 font-normal text-neutral-950 sm:min-w-[1000px]"
     >
-      <body>
+      <body className="relative flex">
         <ContextProviders locale={params.locale}>
           <Navbar />
           <MobileNav />
