@@ -314,9 +314,10 @@
 
 /* table */
 .sun-editor-editable table {
-  display: block;
+  display: block; /* 수정됨 */
   table-layout: auto !important;
-  border: 1px solid rgb(204, 204, 204);
+  /* 수정됨 */
+  /* border: 1px solid rgb(204, 204, 204);  */
   width: 100%;
   max-width: 100%;
   margin: 0 0 10px;

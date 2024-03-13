@@ -5,7 +5,7 @@ import brochure2 from '@/public/image/about/brochure2.png';
 
 import { getOverview } from '@/apis/about';
 
-import Attachment from '@/components/common/Attachments';
+import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -32,7 +32,7 @@ export default async function OverviewPage() {
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />
         </div>
-        <Attachment files={attachments} />
+        <Attachments files={attachments} />
       </div>
     </PageLayout>
   );

@@ -22,9 +22,7 @@ export default function MobileNav() {
       style={{ top: HEADER_HEIGHT_PX }}
     >
       <MobileNavList />
-      <div className="relative grow">
-        <MobileNavDetail />
-      </div>
+      <MobileNavDetail />
     </div>
   );
 }
@@ -67,8 +65,10 @@ function MobileNavDetail() {
   if (navbarState.type !== 'hovered') return <></>;
 
   return (
-    <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-[#1f2021] pl-[3.75rem] pt-10">
-      <NavTree node={navbarState.segmentNode} curNode={curNode} />
+    <div className="relative grow">
+      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-[#1f2021] pl-[3.75rem] pt-10">
+        <NavTree node={navbarState.segmentNode} curNode={curNode} />
+      </div>
     </div>
   );
 }
