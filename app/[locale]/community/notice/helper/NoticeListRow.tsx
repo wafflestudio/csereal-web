@@ -19,7 +19,7 @@ interface NoticeListRowProps {
 export const NOTICE_ROW_CELL_WIDTH = {
   check: 'sm:w-[3.125rem]',
   pin: 'sm:w-[3.125rem]',
-  title: 'sm:max-w-full',
+  title: 'sm:w-[18.75rem]',
   date: 'sm:w-auto sm:min-w-[7.125rem]',
 } as const;
 
@@ -31,7 +31,7 @@ export default function NoticeListRow({
 }: NoticeListRowProps) {
   return (
     <li
-      className={`flex flex-col gap-2.5 px-7 py-6 text-md sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 sm:pr-4 ${
+      className={`flex flex-col gap-2.5 px-7 py-6 text-md sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 ${
         post.isPinned && 'font-semibold'
       } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
         isSelected && 'bg-neutral-100'
@@ -133,7 +133,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
 
 function DateCell({ date }: { date: string }) {
   return (
-    <span className={`${NOTICE_ROW_CELL_WIDTH.date} tracking-wide sm:pl-8`}>
+    <span className={`${NOTICE_ROW_CELL_WIDTH.date} tracking-wide sm:pl-8 sm:pr-10`}>
       {formatDate(new Date(date))}
     </span>
   );
