@@ -26,7 +26,7 @@ export interface PostResponse extends Omit<Post, 'attachments'> {
 }
 
 export interface PostSearchQueryParams {
-  pageNum?: number;
+  pageNum?: string;
   keyword?: string;
   tag?: string[] | string;
 }

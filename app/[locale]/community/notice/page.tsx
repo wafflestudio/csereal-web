@@ -7,6 +7,8 @@ import { getNoticePosts } from '@/apis/notice';
 
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
 
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 interface NoticePageParams {
@@ -17,9 +19,12 @@ export default async function NoticePage({ searchParams }: NoticePageParams) {
   const data = await getNoticePosts(searchParams);
 
   return (
-    // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-    <Suspense>
-      <NoticePageContent data={data} />
-    </Suspense>
+    <PageLayout titleType="big">
+      {/* TODO: fallback */}
+      {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
+      <Suspense>
+        <NoticePageContent data={data} />
+      </Suspense>
+    </PageLayout>
   );
 }

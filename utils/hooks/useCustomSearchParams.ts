@@ -22,7 +22,8 @@ export function useCustomSearchParams(initPath?: string) {
 
   const moveToNewPathWithQuery = (queryString: string) => {
     const pathWithQuery = `${initPath || pathname}${queryString}`;
-    router.push(pathWithQuery);
+    // 검색 중 상단으로 스크롤되는 것 방지
+    router.push(pathWithQuery, { scroll: false });
   };
 
   const setSearchParams = (searchInfo: SearchInfo) => {

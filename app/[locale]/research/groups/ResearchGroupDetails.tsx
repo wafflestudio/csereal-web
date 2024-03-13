@@ -22,13 +22,13 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
       />
       {group.imageURL !== null && (
         // TODO: 반응형
-        <div className="relative mt-10 aspect-[2/1] w-[720px] self-end">
+        <div className="relative mt-10 aspect-[2/1] w-[80%] max-w-[720px] self-end">
           {/* TODO: 이미지 반응형 */}
           <Image
             src={group.imageURL}
             alt={`${group.name}_연구그룹_사진`}
             fill
-            sizes="800px" // TOOD: 이게 맞나?
+            sizes="800px" // TODO: 이게 맞나?
             className="object-cover"
           />
         </div>

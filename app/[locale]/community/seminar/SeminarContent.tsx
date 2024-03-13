@@ -1,36 +1,27 @@
-'use client';
+import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import SeminarSearchBar from '@/app/[locale]/community/seminar/helper/SeminarSearchBar';
 import SeminarYear from '@/app/[locale]/community/seminar/helper/SeminarYear';
 
-import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { SeminarList } from '@/types/seminar';
-
-import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
-import useResponsive from '@/utils/hooks/useResponsive';
-
-import AdminFeatures from './helper/AdminFeatures';
+import { PostSearchQueryParams } from '@/types/post';
 
 const POSTS_COUNT_PER_PAGE = 10;
 
-export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
-  const { page, keyword, setSearchParams } = useCustomSearchParams();
-  const { screenType } = useResponsive();
-  const pageLimit = screenType == 'desktop' ? 10 : 5;
-
-  const setCurrentPage = (pageNum: number) => {
-    setSearchParams({ purpose: 'navigation', pageNum });
-  };
+export default async function SeminarContent({
+  searchParams,
+}: {
+  searchParams: PostSearchQueryParams;
+}) {
+  const { searchList, total } = await getSeminarPosts(searchParams);
 
   return (
-    <PageLayout titleType="big">
+    <>
       <div className="flex flex-row items-center gap-6">
-        <SeminarSearchBar keyword={keyword} setSearchParams={setSearchParams} />
+        <SeminarSearchBar />
       </div>
 
       <div className="mb-8 mt-10 flex flex-col border-b-[1px] border-neutral-200">
@@ -46,17 +37,7 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
         )}
       </div>
 
-      <Pagination
-        totalPostsCount={total}
-        postsCountPerPage={POSTS_COUNT_PER_PAGE}
-        pageLimit={pageLimit}
-        currentPage={page}
-        setCurrentPage={setCurrentPage}
-      />
-
-      <LoginVisible staff>
-        <AdminFeatures />
-      </LoginVisible>
-    </PageLayout>
+      <Pagination totalPostsCount={total} postsCountPerPage={POSTS_COUNT_PER_PAGE} />
+    </>
   );
 }

@@ -17,6 +17,7 @@ export default function Attachments({ files }: { files: Attachment[] }) {
         {files.map((file, index) => (
           <AttachmentAnchor key={index} {...file} />
         ))}
+
         <Clip className="absolute right-2 top-[-1.5rem]" />
       </div>
     </div>

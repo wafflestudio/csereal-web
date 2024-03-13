@@ -44,9 +44,9 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
 const PageContent = async ({ selected, pageNum }: { selected: string; pageNum: number }) => {
   if (selected === '슬라이드쇼 관리') {
     const { slides, total } = await getSlides(pageNum);
-    return <SlideManagement posts={slides} total={total} page={pageNum} />;
+    return <SlideManagement posts={slides} total={total} />;
   } else {
     const { importants, total } = await getImportants(pageNum);
-    return <ImportantManagement posts={importants} total={total} page={pageNum} />;
+    return <ImportantManagement posts={importants} total={total} />;
   }
 };
