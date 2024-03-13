@@ -18,7 +18,7 @@ export default function MobileNav() {
 
   return (
     <div
-      className={`absolute bottom-0 left-0 right-0 z-50 flex h-[100vh] sm:hidden`}
+      className={`absolute bottom-0 left-0 right-0 z-50 flex h-[100vh] sm:hidden`} // 화면을 덮기 위해 h-[100vh] 필요
       style={{ top: HEADER_HEIGHT_PX }}
     >
       <MobileNavList />
@@ -40,14 +40,14 @@ function MobileNavList() {
   };
 
   return (
-    <nav className="bg-[#323235] px-12 pt-10">
+    <nav className="min-w-[100px] grow-[6.25] basis-0 bg-[#323235] pt-10">
       <ul className="flex flex-col gap-9 text-center">
         {main.children?.map((child, i) => (
           <li
             key={i}
-            className={`text-[0.9375rem] font-medium ${
+            className={`text-sm font-medium ${
               shouldHighlight(child) ? 'text-white' : 'text-neutral-500'
-            } cursor-pointer whitespace-nowrap leading-[1.125rem]`}
+            } cursor-pointer whitespace-nowrap leading-5`}
             onClick={() => setNavbarState({ type: 'hovered', segmentNode: child })}
           >
             {t(child.name)}
@@ -65,8 +65,8 @@ function MobileNavDetail() {
   if (navbarState.type !== 'hovered') return <></>;
 
   return (
-    <div className="relative grow">
-      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-[#1f2021] pl-[3.75rem] pt-10">
+    <div className="relative grow-[13.6875] basis-0">
+      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-[#1f2021] pl-10 pt-10">
         <NavTree node={navbarState.segmentNode} curNode={curNode} />
       </div>
     </div>
@@ -85,7 +85,12 @@ function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
   return (
     <>
       {depth !== 0 && (
-        <NavTreeLabel segmentNode={node} highlight={curNode === node} marginBottom={marginBottom} />
+        <NavTreeLabel
+          segmentNode={node}
+          highlight={curNode === node}
+          marginBottom={marginBottom}
+          fontSize={depth === 1 ? 'text-md' : 'text-sm'}
+        />
       )}
       {0 < node.children.length && (
         <div className="mb-11 ml-5">
