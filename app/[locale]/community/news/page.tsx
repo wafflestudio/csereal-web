@@ -21,7 +21,7 @@ interface NewsPageParams {
 
 export default function NewsPage({ searchParams }: NewsPageParams) {
   return (
-    <PageLayout titleType="big" bodyStyle={{ width: 'fit-content' }}>
+    <PageLayout titleType="big">
       <SearchBox tags={NEWS_TAGS} />
       {/* TODO: fallback */}
       <Suspense>
