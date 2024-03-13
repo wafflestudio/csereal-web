@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 
+import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
@@ -14,7 +15,7 @@ interface NewsPostPageProps {
 export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <Suspense>
+      <Suspense fallback={<PostFallback />}>
         <NewsViewer id={parseInt(params.id)} searchParams={searchParams} />
       </Suspense>
     </PageLayout>

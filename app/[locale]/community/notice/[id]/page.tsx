@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 
+import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
@@ -22,7 +23,7 @@ export default async function NoticePostPage({
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <Suspense>
+      <Suspense fallback={<PostFallback />}>
         <NoticeViewer id={id} searchParams={searchParams} />
       </Suspense>
     </PageLayout>

@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 

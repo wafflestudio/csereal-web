@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 
+import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
@@ -17,7 +18,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <Suspense>
+      <Suspense fallback={<PostFallback />}>
         <SeminarViewer id={id} searchParams={searchParams} />
       </Suspense>
     </PageLayout>

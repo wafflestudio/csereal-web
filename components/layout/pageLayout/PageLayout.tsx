@@ -44,7 +44,7 @@ export default function PageLayout({
   title ||= t(currentPage.name);
 
   return (
-    <div className="relative bg-neutral-900">
+    <div className="relative flex grow flex-col bg-neutral-900">
       <Header />
       <PageTitle
         title={title}
@@ -54,7 +54,7 @@ export default function PageLayout({
       />
       <div
         className={
-          'relative bg-white px-5 pb-16 pt-7 sm:pb-[150px] sm:pl-[100px] sm:pr-[360px] sm:pt-11'
+          'relative flex grow flex-col bg-white px-5 pb-16 pt-7 sm:pb-[150px] sm:pl-[100px] sm:pr-[360px] sm:pt-11'
         }
         style={bodyStyle}
       >
