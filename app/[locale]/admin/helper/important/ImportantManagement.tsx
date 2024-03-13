@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import { batchUnimportantAction } from '@/actions/admin';
 
-import { StraightNode } from '@/components/common/Nodes';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
@@ -51,7 +50,6 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
   return (
     <div>
       <ImportantDescription />
-      <StraightNode double />
       <TotalPostsCount count={total} />
       <ImportantList
         posts={posts}
@@ -83,7 +81,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
 
 function ImportantDescription() {
   return (
-    <p className="mb-7 text-sm tracking-wide">
+    <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">
       메인페이지의 중요 안내에는 <strong>{`소식 > 공지사항, 새 소식, 세미나`}</strong> 중{' '}
       <strong>{`'중요 안내에 표시'`}</strong> 체크박스가 선택된 글들이 올라갑니다.
       <br />이 목록에 2개 이상의 글이 포함되면 자동으로 최신글 2개만 표시되지만, 원활한 유지보수를

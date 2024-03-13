@@ -70,12 +70,12 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} mb-[.44rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
+        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
       >
         {t(groupName)}
       </h3>
 
-      <ul className={`${itemColor} flex flex-col gap-[0.63rem] text-sm font-light sm:font-normal`}>
+      <ul className={`${itemColor} flex flex-col gap-[0.625rem] text-sm font-light sm:font-normal`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href}>{t(link.title)}</Link>
@@ -92,7 +92,7 @@ function FooterBottomLeft() {
 
   return (
     <div className="text-xs text-neutral-500 sm:text-sm">
-      <div className="mb-2.5 flex gap-[1ch] sm:mb-0 [&>a]:font-bold ">
+      <div className="mb-1 flex gap-[1ch] [&>a]:font-bold ">
         <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
         <span>|</span>
         <Link href={contactPath}>{t('학부 연락처')}</Link>
@@ -102,7 +102,7 @@ function FooterBottomLeft() {
 
       <address className="mb-[1.37rem] not-italic">{t('address')}</address>
 
-      <p>
+      <p className="leading-[1.125rem]">
         Powered by{' '}
         <span
           className="cursor-pointer hover:underline"
@@ -120,7 +120,7 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="mt-7 flex flex-wrap items-center gap-7 sm:mt-0 sm:flex-nowrap">
+    <div className="mt-7 flex flex-col gap-7 sm:mt-0 sm:flex-row sm:items-center">
       <Link href={snucomLink} className="w-[86px] sm:w-[111px]">
         <SnucomIcon />
       </Link>

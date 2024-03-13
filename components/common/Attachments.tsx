@@ -6,15 +6,19 @@ export interface Attachment {
   url: string;
 }
 
+// TODO: 여러 맥락에서 사용되므로 마진 prop으로 건네주기
 export default function Attachments({ files }: { files: Attachment[] }) {
   if (files.length === 0) return <></>;
 
   return (
-    <div className="relative mb-6 mt-5 flex flex-col gap-2 rounded-sm border border-neutral-300 bg-white px-4 py-3">
-      {files.map((file, index) => (
-        <AttachmentAnchor key={index} {...file} />
-      ))}
-      <Clip className="absolute right-3 top-[-1.5rem]" />
+    // 좌측 정렬을 위한 wrapper div
+    <div className="flex flex-col items-start">
+      <div className="relative mb-11 mt-5 flex flex-col gap-2 self-start rounded-sm border border-neutral-200 bg-white py-3 pl-4 pr-[10rem]">
+        {files.map((file, index) => (
+          <AttachmentAnchor key={index} {...file} />
+        ))}
+        <Clip className="absolute right-2 top-[-1.5rem]" />
+      </div>
     </div>
   );
 }

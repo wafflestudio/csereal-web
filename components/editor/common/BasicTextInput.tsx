@@ -14,8 +14,8 @@ export default function BasicTextInput({
   return (
     <input
       type="text"
-      className={`${maxWidth} autofill-bg-white h-[1.875rem] rounded-sm border border-neutral-900
-            bg-white pl-2 text-xs outline-none`}
+      className={`${maxWidth} autofill-bg-white h-8 rounded-sm border border-neutral-300
+            bg-white pl-2 text-sm outline-none`}
       placeholder={placeholder}
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}

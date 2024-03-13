@@ -55,13 +55,15 @@ export interface Scholarship {
   description: string;
 }
 export interface DegreeRequirements {
-  id: number;
-  year: number;
-  attachment: {
-    name: string;
-    url: string;
-    bytes: number;
-  };
+  description: string;
+  yearList: {
+    year: number;
+    attachment: {
+      name: string;
+      url: string;
+      bytes: number;
+    };
+  }[];
 }
 
 export interface Curriculum {

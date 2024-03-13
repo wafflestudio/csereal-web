@@ -7,7 +7,7 @@ import Dropdown from '@/components/common/form/Dropdown';
 
 import { DegreeRequirements } from '@/types/academics';
 
-export default function PdfPicker({ data }: { data: DegreeRequirements[] }) {
+export default function PdfPicker({ data }: { data: DegreeRequirements['yearList'] }) {
   const [index, setIndex] = useState(0);
 
   return (

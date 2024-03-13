@@ -12,7 +12,7 @@ interface ResearchGroupDetailProps {
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
   return (
-    <div className="bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
+    <div className="flex flex-col bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
       <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
         {group.name} 연구 그룹
       </h2>
@@ -21,7 +21,8 @@ export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps
         className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
       />
       {group.imageURL !== null && (
-        <div className="relative ml-20 mt-10 aspect-[2/1] w-[60vw] max-w-[800px]">
+        // TODO: 반응형
+        <div className="relative mt-10 aspect-[2/1] w-[720px] self-end">
           {/* TODO: 이미지 반응형 */}
           <Image
             src={group.imageURL}

@@ -43,8 +43,6 @@ const PrivacyFieldset = ({
 }) => {
   return (
     <fieldset className="mb-6 flex flex-col font-normal">
-      <legend className="mb-1">개인정보 수집 및 이용동의</legend>
-
       <div className="flex items-center gap-5">
         <div
           className="flex select-none items-center gap-1 hover:cursor-pointer"

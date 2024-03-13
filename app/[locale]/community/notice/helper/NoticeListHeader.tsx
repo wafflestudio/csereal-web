@@ -10,7 +10,9 @@ export default function NoticeListHeader({ isEditMode }: { isEditMode: boolean }
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} grow whitespace-nowrap pl-3 tracking-wide`}>
         제목
       </span>
-      <span className={`${NOTICE_ROW_CELL_WIDTH.date} whitespace-nowrap pl-8 tracking-wide`}>
+      <span
+        className={`${NOTICE_ROW_CELL_WIDTH.date} whitespace-nowrap pl-8 tracking-wide xl:pr-8`}
+      >
         날짜
       </span>
     </h5>

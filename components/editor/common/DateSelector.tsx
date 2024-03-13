@@ -45,7 +45,7 @@ export default function DateSelector({
                 newDate.setHours(idx);
                 setDate(newDate);
               }}
-              borderStyle="border-neutral-700"
+              borderStyle="border-neutral-300"
             />
             <Dropdown
               contents={minuteDropdownContent}
@@ -55,7 +55,7 @@ export default function DateSelector({
                 newDate.setMinutes(idx * 15);
                 setDate(newDate);
               }}
-              borderStyle="border-neutral-700"
+              borderStyle="border-neutral-300"
             />
           </div>
         )}
@@ -71,8 +71,8 @@ const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) 
         e.preventDefault();
         onClick();
       }}
-      className={`h-[1.875rem] rounded-sm border border-neutral-700
-            px-4 text-xs outline-none hover:bg-neutral-100`}
+      className={`h-[1.875rem] rounded-sm border border-neutral-300
+            px-4 text-md outline-none hover:bg-neutral-100`}
     >
       {text}
     </button>

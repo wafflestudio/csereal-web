@@ -56,7 +56,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
 }
 
 function TitleCell({ title }: { title: string }) {
-  return <h3 className="mb-1 font-bold group-hover:underline sm:mb-5">{title}</h3>;
+  return <h3 className="mb-1 grow font-bold group-hover:underline sm:mb-5">{title}</h3>;
 }
 
 function HostInformationCell({ host, company }: { host: string; company: string }) {

@@ -1,11 +1,11 @@
-import Image from 'next/image';
-
 import { Link } from '@/navigation';
+
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 export type PeopleType = 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
 
 export interface PeopleCellProps {
-  imageURL: string;
+  imageURL: string | null;
 
   title: string;
   subtitle: string;
@@ -27,10 +27,18 @@ export default function PeopleCell({
     <article className="group flex w-fit flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
       <Link
         href={href}
-        className="relative h-48 w-36 cursor-pointer"
+        className="relative h-48 w-36 cursor-pointer overflow-hidden"
         style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
       >
-        <Image src={imageURL} alt="프로필 사진" className="object-cover" fill quality={25} />
+        <ImageWithFallback
+          src={imageURL}
+          alt={`${title} 프로필`}
+          // 이유는 모르겠지만 여기에도 w, h를 명시해야 object-cover가 동작
+          className="h-[192px] w-[144px] object-cover"
+          width={144}
+          height={192}
+          quality={50}
+        />
       </Link>
       <div className="flex flex-col items-start break-keep">
         <Link

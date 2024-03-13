@@ -14,11 +14,13 @@ const noticePath = '/notice';
 export const getNoticePosts = (params: PostSearchQueryParams) =>
   getRequest(noticePath, params, {
     next: { tags: [FETCH_TAG_NOTICE] },
+    jsessionID: true,
   }) as Promise<NoticePreviewList>;
 
 export const getNoticePostDetail = (id: number, params: PostSearchQueryParams) =>
   getRequest(`${noticePath}/${id}`, params, {
     next: { tags: [FETCH_TAG_NOTICE] },
+    jsessionID: true,
   }) as Promise<Notice>;
 
 // POST

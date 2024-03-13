@@ -10,7 +10,7 @@ import NavbarRoot from './NavbarRoot';
 
 // 네비바 컴포넌트들은 모두 interactivity가 크므로 CSR 처리합니다.
 export default function Navbar() {
-  const { navbarState, setNavbarState } = useNavbarContext();
+  const { setNavbarState } = useNavbarContext();
   const node = useCurrentSegmentNode();
 
   const handleMouseLeave = () => {
@@ -18,9 +18,12 @@ export default function Navbar() {
   };
 
   return (
-    <div className={`absolute bottom-0 top-0 z-50 hidden sm:flex`} onMouseLeave={handleMouseLeave}>
+    <div
+      className={`fixed bottom-0 left-0 top-0 z-50 hidden sm:flex`}
+      onMouseLeave={handleMouseLeave}
+    >
       <NavbarRoot />
-      {navbarState.type === 'hovered' && <NavbarDetail segmentNode={navbarState.segmentNode} />}
+      <NavbarDetail />
     </div>
   );
 }

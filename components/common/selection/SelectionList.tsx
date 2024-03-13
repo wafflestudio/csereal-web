@@ -18,7 +18,6 @@ interface SelectionListProps {
    * lg:grid-cols-[repeat(auto-fit,_minmax({itemWidth}px,_auto))] */
   listGridColumnClass?: string;
   listItemPadding?: string; // tailwlind class
-  setSelected?: (value: string) => void;
 }
 
 export default function SelectionList({
@@ -27,11 +26,7 @@ export default function SelectionList({
   path,
   listGridColumnClass = 'lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]',
   listItemPadding = '',
-  setSelected,
 }: SelectionListProps) {
-  const selectItem = (itemName: string) => {
-    setSelected?.(itemName);
-  };
   const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 
   return (
@@ -43,7 +38,6 @@ export default function SelectionList({
           name={name}
           isSelected={name === selectedItemName}
           padding={listItemPadding}
-          selectItem={selectItem}
         />
       ))}
     </ul>
@@ -55,11 +49,10 @@ interface SelectionItemProps {
   isSelected: boolean;
   path: string;
   padding: string;
-  selectItem?: (itemName: string) => void;
 }
 
-function SelectionItem({ name, isSelected, path, padding, selectItem }: SelectionItemProps) {
-  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-[15px] tracking-wide ${padding}`;
+function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) {
+  const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-md tracking-wide ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.3)';
@@ -90,9 +83,7 @@ function SelectionItem({ name, isSelected, path, padding, selectItem }: Selectio
             className={`${itemCommonStyle} text-neutral-500 transition-all duration-300 hover:text-neutral-800`}
             scroll={false}
           >
-            <div className={`${itemCommonStyle} inline-block`} onClick={() => selectItem?.(name)}>
-              {name}
-            </div>
+            {name}
           </Link>
         </CornerFoldedRectangle>
       )}

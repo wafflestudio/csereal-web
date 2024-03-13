@@ -10,7 +10,7 @@ export default function BatchAction({
   onClickButton,
 }: BatchActionProps) {
   return (
-    <div className="mt-[3.25rem] flex items-center">
+    <div className="ml-[25px] mt-[3.25rem] flex items-center">
       <SelectedPostsCount count={selectedCount} />
       <BatchButton disabled={selectedCount === 0} onClick={onClickButton}>
         {buttonText}
@@ -25,7 +25,7 @@ function SelectedPostsCount({ count }: { count: number }) {
       <span className="material-symbols-rounded text-lg font-extralight text-neutral-500">
         check_box
       </span>
-      <span className="text-xs tracking-wide text-neutral-500">{count}개 게시물 선택</span>
+      <span className="text-md tracking-wide text-neutral-500">{count}개 게시물 선택</span>
     </div>
   );
 }

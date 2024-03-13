@@ -23,11 +23,12 @@ export default async function OverviewPage() {
           alt="학교 전경"
           width={320}
           height={213}
+          className="shrink-0 object-cover"
         />
       </div>
       <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[360px]">
         <h2 className="mb-6 text-base font-semibold">학부 소개 책자</h2>
-        <div className="mb-10 flex gap-6">
+        <div className="mb-10 flex flex-col gap-6 sm:flex-row">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />
         </div>

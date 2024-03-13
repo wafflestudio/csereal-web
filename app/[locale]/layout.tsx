@@ -8,6 +8,7 @@ import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
 
 import Footer from '@/components/layout/footer/Footer';
+import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 
@@ -40,13 +41,12 @@ export default async function RootLayout({
   return (
     <html
       lang={params.locale}
-      className="bg-neutral-900 font-normal text-neutral-800 sm:min-w-[1000px]"
+      className="bg-neutral-900 font-normal text-neutral-950 sm:min-w-[1000px]"
     >
       <body>
         <ContextProviders locale={params.locale}>
-          <NavbarContextProvider>
-            <Navbar />
-          </NavbarContextProvider>
+          <Navbar />
+          <MobileNav />
 
           <MarginedMain>
             {children}
@@ -67,9 +67,11 @@ function ContextProviders({ locale, children }: { locale: string; children: Reac
   return (
     <SessionContextProvider>
       <ModalContextProvider>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <NavbarContextProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </NavbarContextProvider>
       </ModalContextProvider>
     </SessionContextProvider>
   );

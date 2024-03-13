@@ -115,7 +115,7 @@ export default function SeminarEditor({ actions, initialContent }: SeminarEditor
 
 function TitleFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="제목" mb="mb-10" titleMb="mb-2" required>
+    <Fieldset title="제목" mb="mb-8" titleMb="mb-2" required>
       <BasicTextInput
         placeholder="제목을 입력하세요."
         value={value}
@@ -134,7 +134,7 @@ function TitleForMainFieldset({
   onChange: (text: string) => void;
 }) {
   return (
-    <Fieldset title="메인-중요 안내용 제목" mb="mb-6" titleMb="mb-2">
+    <Fieldset title="메인-중요 안내용 제목" mb="mb-8" titleMb="mb-2">
       <BasicTextInput
         placeholder="미입력시 제목과 동일하게 표시됩니다."
         value={value}
@@ -193,7 +193,7 @@ function ScheduleFieldset({
   const allDay = startDate.getTime() === midnight.getTime() && endDate === null;
 
   return (
-    <div>
+    <div className="mb-6">
       <div className="mb-2 mt-4 flex gap-2">
         <Checkbox
           label="하루 종일"
@@ -263,7 +263,7 @@ function SpeakerFieldsetGroup({
 }) {
   return (
     <div className="mb-10">
-      <legend className="mb-3 text-sm font-medium tracking-wide">연사 정보</legend>
+      <legend className="mb-3 text-base font-medium tracking-wide">연사 정보</legend>
       <div className="flex flex-col gap-4">
         <div className="flex gap-5">
           <Fieldset title="이름" titleMb="mb-2" required>
@@ -326,7 +326,7 @@ function SpeakerIntroductionEditorFieldset({
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="연사 사진" mb="mb-6" titleMb="mb-2">
-      <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide">
+      <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
         {`필수는 아니지만, 없을 경우 대체 이미지가 표시되니 가급적 첨부 바랍니다.
 이미지는 글 우측 상단에 표시됩니다.`}
       </label>

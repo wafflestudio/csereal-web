@@ -27,7 +27,7 @@ export default async function ScholarshipPreview({
         <h3 className="border-b-[1px] border-b-neutral-200 pb-2 text-[20px] font-bold leading-10">
           장학금 종류
         </h3>
-        <ul className="mt-2">
+        <ul className="mt-4">
           {scholarshipList.map((item) => (
             <ScholarshipRow id={item.id} name={item.name} key={item.id} type={type} />
           ))}
@@ -53,7 +53,7 @@ export function ScholarshipRow({ id, name, type }: ScholarshipRowProps) {
         className="group flex items-center gap-2.5 px-3"
       >
         <div className="h-2.5 w-2.5 shrink-0 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
-        <span className="text-sm font-medium duration-300 group-hover:text-main-orange">
+        <span className="text-md font-medium duration-300 group-hover:text-main-orange">
           {name}
         </span>
       </Link>

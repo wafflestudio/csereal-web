@@ -14,7 +14,7 @@ import {
 
 import { ImportantPostIdentifier } from '@/types/admin';
 
-export const batchUnslideAction = async (ids: Set<number>) => {
+export const batchUnslideAction = async (ids: number[]) => {
   try {
     await patchMultipleSlides(Array.from(ids));
   } catch (e) {

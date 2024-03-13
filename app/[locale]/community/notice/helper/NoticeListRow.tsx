@@ -103,7 +103,7 @@ const noticePath = getPath(notice);
 function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCellProps) {
   if (isEditMode) {
     return (
-      <span className={`${NOTICE_ROW_CELL_WIDTH.title} flex gap-1.5 pl-3`}>
+      <span className={`${NOTICE_ROW_CELL_WIDTH.title} flex grow gap-1.5 pl-3`}>
         <span className="overflow-hidden text-ellipsis whitespace-nowrap tracking-wide">
           {title}
         </span>

@@ -17,7 +17,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
         }`}
         style={{ width: props.width, height: props.height }}
       >
-        <SnuLogo className="fill-neutral-300" width="45" height="47" />
+        <SnuLogo className="fill-neutral-200" width="60" height="60" />
       </div>
     );
   }
@@ -34,6 +34,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
   );
 }
 
+// TODO: 더 나은 타입 선언 방법 찾기. next/images와 일치하는게 이상적
 interface ImageWithFallbackProps {
   src: string | null | undefined;
   alt: string;
@@ -44,4 +45,5 @@ interface ImageWithFallbackProps {
   sizes?: string;
   fill?: boolean | undefined;
   priority?: boolean | undefined;
+  quality?: number;
 }

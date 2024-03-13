@@ -18,7 +18,7 @@ export default async function GreetingsPage() {
       <div className="flex flex-col items-start gap-12 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
         <HTMLViewer htmlContent={description} />
         {/* TODO: 레이아웃이 바뀌어 사진은 백엔드에서 가져오지 않는데 어떻게 처리할지 고민 필요 */}
-        <Image src={greetings.src} alt="학부장" width={212} height={280} />
+        <Image src={greetings.src} alt="학부장" width={212} height={280} className="shrink-0" />
       </div>
     </PageLayout>
   );
