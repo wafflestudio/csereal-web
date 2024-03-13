@@ -1,20 +1,23 @@
-'use client';
+import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import SeminarSearchBar from '@/app/[locale]/community/seminar/helper/SeminarSearchBar';
 import SeminarYear from '@/app/[locale]/community/seminar/helper/SeminarYear';
 
-import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 
-import { SeminarList } from '@/types/seminar';
-
-import AdminFeatures from './helper/AdminFeatures';
+import { PostSearchQueryParams } from '@/types/post';
 
 const POSTS_COUNT_PER_PAGE = 10;
 
-export default function SeminarContent({ data: { searchList, total } }: { data: SeminarList }) {
+export default async function SeminarContent({
+  searchParams,
+}: {
+  searchParams: PostSearchQueryParams;
+}) {
+  const { searchList, total } = await getSeminarPosts(searchParams);
+
   return (
     <>
       <div className="flex flex-row items-center gap-6">
@@ -35,10 +38,6 @@ export default function SeminarContent({ data: { searchList, total } }: { data: 
       </div>
 
       <Pagination totalPostsCount={total} postsCountPerPage={POSTS_COUNT_PER_PAGE} />
-
-      <LoginVisible staff>
-        <AdminFeatures />
-      </LoginVisible>
     </>
   );
 }

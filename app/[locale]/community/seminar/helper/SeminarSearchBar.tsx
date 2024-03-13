@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, ChangeEventHandler, FormEvent } from 'react';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
