@@ -5,14 +5,10 @@ import NoticeList from '@/app/[locale]/community/notice/helper/NoticeList';
 import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { NOTICE_TAGS } from '@/constants/tag';
 
 import { NoticePreviewList } from '@/types/notice';
-
-import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
-import useResponsive from '@/utils/hooks/useResponsive';
 
 import AdminFeatures from './helper/AdminFeatures';
 import { usePostSelect } from './helper/usePostSelect';
@@ -25,19 +21,11 @@ export default function NoticePageContent({
 }: {
   data: NoticePreviewList;
 }) {
-  const { page, setSearchParams } = useCustomSearchParams();
   const { selectedIds, dispatchIds, editMode, toggleEditMode } = usePostSelect();
 
-  const { screenType } = useResponsive();
-  const pageLimit = screenType == 'desktop' ? 10 : 5;
-
-  const setCurrentPage = (pageNum: number) => {
-    setSearchParams({ purpose: 'navigation', pageNum });
-  };
-
   return (
-    <PageLayout titleType="big">
-      <SearchBox tags={NOTICE_TAGS} disabled={editMode} />
+    <>
+      <SearchBox tags={NOTICE_TAGS} disabled={false} />
       <NoticeList
         posts={posts}
         isEditMode={editMode}
@@ -47,9 +35,6 @@ export default function NoticePageContent({
       <Pagination
         totalPostsCount={totalPostsCount}
         postsCountPerPage={POST_LIMIT}
-        pageLimit={pageLimit}
-        currentPage={page}
-        setCurrentPage={setCurrentPage}
         disabled={editMode}
       />
 
@@ -61,6 +46,6 @@ export default function NoticePageContent({
           dispatchIds={dispatchIds}
         />
       </LoginVisible>
-    </PageLayout>
+    </>
   );
 }

@@ -1,16 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { batchUnimportantAction } from '@/actions/admin';
 
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import { ADMIN_MENU_SLIDE, ImportantPreview } from '@/types/admin';
+import { ImportantPreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
-import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ImportantList from './ImportantList';
@@ -22,20 +19,12 @@ const POST_LIMIT = 40;
 
 interface ImportantManagementProps {
   posts: ImportantPreview[];
-  page: number;
   total: number;
 }
 
-export default function ImportantManagement({ posts, page, total }: ImportantManagementProps) {
+export default function ImportantManagement({ posts, total }: ImportantManagementProps) {
   const [ids, dispatchIds] = useImportantSelect();
   const { openModal } = useModal();
-  const router = useRouter();
-
-  const changePage = (newPage: number) => {
-    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
-    dispatchIds({ type: 'RESET' });
-    router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
-  };
 
   const handleBatchUnimportant = async () => {
     const result = await batchUnimportantAction(ids);
@@ -56,12 +45,7 @@ export default function ImportantManagement({ posts, page, total }: ImportantMan
         selectedPostIdentifiers={ids}
         changeSelectedIdentifiers={dispatchIds}
       />
-      <Pagination
-        totalPostsCount={total}
-        postsCountPerPage={POST_LIMIT}
-        currentPage={page}
-        setCurrentPage={changePage}
-      />
+      <Pagination totalPostsCount={total} postsCountPerPage={POST_LIMIT} />
       <BatchAction
         selectedCount={ids.length}
         buttonText="일괄 중요 안내 해제"

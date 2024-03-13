@@ -64,7 +64,7 @@ const SearchResult = async ({ keyword }: { keyword: string }) => {
       searchAbout({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchNotice({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchNews({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
-      getSeminarPosts({ keyword, pageNum: 1 }),
+      getSeminarPosts({ keyword, pageNum: '1' }),
       searchMember({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchResearch({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),
       searchAcademics({ keyword, number: 5, amount: DESCRIPTION_CHAR_CNT }),

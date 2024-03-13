@@ -7,6 +7,8 @@ import { getNewsPosts } from '@/apis/news';
 
 import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
 
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 interface NewsPageParams {
@@ -17,9 +19,11 @@ export default async function NewsPage({ searchParams }: NewsPageParams) {
   const data = await getNewsPosts(searchParams);
 
   return (
-    // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-    <Suspense>
-      <NewsPageContent data={data} key={searchParams + ''} />
-    </Suspense>
+    <PageLayout titleType="big" bodyStyle={{ width: 'fit-content' }}>
+      {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
+      <Suspense>
+        <NewsPageContent data={data} />
+      </Suspense>
+    </PageLayout>
   );
 }
