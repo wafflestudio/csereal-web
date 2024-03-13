@@ -20,6 +20,7 @@ export default async function NoticePage({ searchParams }: NoticePageParams) {
 
   return (
     <PageLayout titleType="big">
+      {/* TODO: fallback */}
       {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
       <Suspense>
         <NoticePageContent data={data} />

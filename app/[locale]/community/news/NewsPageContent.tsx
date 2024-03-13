@@ -1,32 +1,27 @@
-'use client';
+import { getNewsPosts } from '@/apis/news';
 
 import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
 
-import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
-import SearchBox from '@/components/common/search/SearchBox';
 
-import { NEWS_TAGS } from '@/constants/tag';
-
-import { NewsPreviewList } from '@/types/news';
+import { PostSearchQueryParams } from '@/types/post';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-import AdminFeatures from './helper/AdminFeatures';
-
 const POST_LIMIT = 10;
 const newsPath = getPath(news);
 
-export default function NewsPageContent({
-  data: { searchList, total },
+export default async function NewsPageContent({
+  searchParams,
 }: {
-  data: NewsPreviewList;
+  searchParams: PostSearchQueryParams;
 }) {
+  const { searchList, total } = await getNewsPosts(searchParams);
+
   return (
     <>
-      <SearchBox tags={NEWS_TAGS} />
       <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
         {searchList.length === 0 ? (
           <NoSearchResult />
@@ -45,10 +40,6 @@ export default function NewsPageContent({
         )}
       </div>
       <Pagination totalPostsCount={total} postsCountPerPage={POST_LIMIT} />
-
-      <LoginVisible staff>
-        <AdminFeatures />
-      </LoginVisible>
     </>
   );
 }

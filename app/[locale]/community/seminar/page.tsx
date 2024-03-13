@@ -19,6 +19,7 @@ interface SeminarPageParams {
 export default async function SeminarPage({ searchParams }: SeminarPageParams) {
   return (
     <PageLayout titleType="big">
+      {/* TODO: fallback */}
       <Suspense>
         <SeminarContent searchParams={searchParams} />
       </Suspense>
