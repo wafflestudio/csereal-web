@@ -6,7 +6,6 @@ import { Course, SortOption, ViewOption } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
-// import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
 import CourseRow from '../../helper/courses/CourseRow';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
@@ -34,16 +33,18 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
   }
 
   return (
-    <div className="max-w-[880px]">
-      <h4 className="mb-8 mt-14 pl-5 text-[17px] font-bold">교과목 정보</h4>
+    <>
+      <h4 className="mb-8 pl-5 text-[17px] font-bold">교과목 정보</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
+        hideSortOption
+        hideViewOption={hideViewOption}
         changeOptions={changeOptions}
       />
       {selectedOption.view === '카드형' ? (
         courses.length > 0 && (
-          <div className="flex max-w-[880px] flex-col gap-8">
+          <div className="flex flex-col gap-8">
             {chunkCourse(courses).map((courseRow, i) => (
               <CourseRow courses={courseRow} selectedOption="학년" key={i} />
             ))}
@@ -52,7 +53,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
       ) : (
         <CourseList courses={courses} selectedOption={selectedOption.sort} />
       )}
-    </div>
+    </>
   );
 }
 
