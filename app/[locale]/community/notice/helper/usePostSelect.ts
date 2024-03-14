@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer } from 'react';
 
 export type PostSelectAction = { type: 'TOGGLE'; id: number } | { type: 'RESET' };

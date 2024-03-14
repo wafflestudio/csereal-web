@@ -1,16 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { batchUnslideAction } from '@/actions/admin';
 
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 
-import { ADMIN_MENU_SLIDE, SlidePreview } from '@/types/admin';
+import { SlidePreview } from '@/types/admin';
 
 import useModal from '@/utils/hooks/useModal';
-import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 import SlideList from './SlideList';
@@ -22,22 +19,14 @@ const POST_LIMIT = 40;
 
 interface SlideManagementProps {
   posts: SlidePreview[];
-  page: number;
   total: number;
 }
 
-export default function SlideManagement({ posts, page, total }: SlideManagementProps) {
+export default function SlideManagement({ posts, total }: SlideManagementProps) {
   const [ids, dispatchIds] = useSlideSelect();
   const { openModal } = useModal();
-  const router = useRouter();
 
   const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
-
-  const changePage = (newPage: number) => {
-    const selectedMenuWithDash = replaceSpaceWithDash(ADMIN_MENU_SLIDE);
-    resetSelectedPosts();
-    router.push(`/admin?selected=${selectedMenuWithDash}&page=${newPage}`);
-  };
 
   const handleBatchUnslide = async () => {
     const result = await batchUnslideAction([...ids]);
@@ -54,12 +43,7 @@ export default function SlideManagement({ posts, page, total }: SlideManagementP
       <SlideDescription />
       <TotalPostsCount count={total} />
       <SlideList posts={posts} selectedPostIds={ids} changeSelectedIds={dispatchIds} />
-      <Pagination
-        totalPostsCount={total}
-        postsCountPerPage={POST_LIMIT}
-        currentPage={page}
-        setCurrentPage={changePage}
-      />
+      <Pagination totalPostsCount={total} postsCountPerPage={POST_LIMIT} />
       <BatchAction
         selectedCount={ids.size}
         buttonText="일괄 슬라이드 해제"

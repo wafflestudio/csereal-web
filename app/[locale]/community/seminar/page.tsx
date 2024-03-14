@@ -3,23 +3,29 @@ export const dynamic = 'force-dynamic';
 
 import { Suspense } from 'react';
 
-import { getSeminarPosts } from '@/apis/seminar';
-
 import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
 
+import LoginVisible from '@/components/common/LoginVisible';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
 import { PostSearchQueryParams } from '@/types/post';
+
+import AdminFeatures from './helper/AdminFeatures';
 
 interface SeminarPageParams {
   searchParams: PostSearchQueryParams;
 }
 
 export default async function SeminarPage({ searchParams }: SeminarPageParams) {
-  const data = await getSeminarPosts(searchParams);
-
-  // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
   return (
-    <Suspense>
-      <SeminarContent data={data} />
-    </Suspense>
+    <PageLayout titleType="big">
+      {/* TODO: fallback */}
+      <Suspense>
+        <SeminarContent searchParams={searchParams} />
+      </Suspense>
+      <LoginVisible staff>
+        <AdminFeatures />
+      </LoginVisible>
+    </PageLayout>
   );
 }
