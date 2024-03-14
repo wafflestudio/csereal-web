@@ -2,7 +2,7 @@ import history_image from '@/public/image/about/history.png';
 
 import { getHistory } from '@/apis/about';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import ContentWithImage from '@/components/common/ContentWithImage';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function History() {
@@ -10,9 +10,11 @@ export default async function History() {
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer
-        htmlContent={resp.description}
-        topRightContent={{ type: 'image', widthPX: 320, heightPX: 360, url: history_image.src }}
+      <ContentWithImage
+        content={resp.description}
+        imageURL={history_image.src}
+        imageWidth={320}
+        imageHeight={360}
       />
     </PageLayout>
   );

@@ -16,17 +16,20 @@ export default async function OverviewPage() {
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <div className="flex flex-col items-start gap-10 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
-        <HTMLViewer htmlContent={description} />
-        <Image
-          src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
-          alt="학교 전경"
-          width={320}
-          height={213}
-          className="shrink-0 object-cover"
-        />
+      <div className="flex flex-col-reverse items-start gap-6 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:gap-10 sm:py-11 sm:pl-[6.25rem] sm:pr-[22.5rem]">
+        <HTMLViewer htmlContent={description} className="sm:w-[20rem] sm:grow" />
+        {/* image 크기를 반응형으로 줄이기 위해 필요한 wrapper div */}
+        <div>
+          <Image
+            src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
+            alt="학교 전경"
+            width={320}
+            height={216}
+            className="object-contain"
+          />
+        </div>
       </div>
-      <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[360px]">
+      <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[22.5rem]">
         <h2 className="mb-6 text-base font-semibold">학부 소개 책자</h2>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />

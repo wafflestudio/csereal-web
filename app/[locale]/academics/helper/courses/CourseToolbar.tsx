@@ -5,6 +5,8 @@ import { SortOption, ViewOption } from '@/types/academics';
 interface CourseToolbarProps {
   viewOption: ViewOption;
   sortOption: SortOption;
+  hideViewOption?: boolean;
+  hideSortOption?: boolean;
   changeOptions: (
     options: { type: 'view'; option: ViewOption } | { type: 'sort'; option: SortOption },
   ) => void;
@@ -13,6 +15,8 @@ interface CourseToolbarProps {
 export default function CourseToolbar({
   viewOption,
   sortOption,
+  hideViewOption = false,
+  hideSortOption = false,
   changeOptions,
 }: CourseToolbarProps) {
   return (
@@ -21,14 +25,18 @@ export default function CourseToolbar({
         viewOption === '카드형' ? 'pr-11' : 'pr-5'
       }`}
     >
-      <ViewOptions
-        selectedOption={viewOption}
-        changeOption={(option) => changeOptions({ type: 'view', option })}
-      />
-      <SortOptions
-        selectedOption={sortOption}
-        changeOption={(option) => changeOptions({ type: 'sort', option })}
-      />
+      {hideViewOption || (
+        <ViewOptions
+          selectedOption={viewOption}
+          changeOption={(option) => changeOptions({ type: 'view', option })}
+        />
+      )}
+      {hideSortOption || (
+        <SortOptions
+          selectedOption={sortOption}
+          changeOption={(option) => changeOptions({ type: 'sort', option })}
+        />
+      )}
     </div>
   );
 }
@@ -40,16 +48,16 @@ interface ViewOptionsProps {
 
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
   return (
-    <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
+    <div className="flex gap-3 text-md text-neutral-400">
       <span
-        className={selectedOption === '카드형' ? 'text-neutral-700' : 'cursor-pointer'}
+        className={selectedOption === '카드형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
       >
         카드형
       </span>
       <span>|</span>
       <span
-        className={selectedOption === '목록형' ? 'text-neutral-700' : 'cursor-pointer'}
+        className={selectedOption === '목록형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('목록형')}
       >
         목록형
