@@ -5,7 +5,7 @@ import brochure2 from '@/public/image/about/brochure2.png';
 
 import { getOverview } from '@/apis/about';
 
-import Attachment from '@/components/common/Attachments';
+import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -16,7 +16,7 @@ export default async function OverviewPage() {
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
-      <div className="flex flex-col items-start gap-10 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
+      <div className="flex flex-col-reverse items-start gap-6 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:gap-10 sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
         <HTMLViewer htmlContent={description} />
         <Image
           src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
@@ -32,7 +32,7 @@ export default async function OverviewPage() {
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />
         </div>
-        <Attachment files={attachments} />
+        <Attachments files={attachments} />
       </div>
     </PageLayout>
   );
