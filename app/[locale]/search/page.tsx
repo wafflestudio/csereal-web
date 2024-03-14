@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 
 import { Link } from '@/navigation';
 
@@ -48,10 +48,12 @@ export default async function SearchPage({
       <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
 
       <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
-        <SearchBox tags={SEARCH_TAGS} />
+        <SearchBox tags={SEARCH_TAGS} key={keyword} />
 
         <div className="flex w-[52.5rem] flex-col gap-10">
-          <SearchResult keyword={keyword} />
+          <Suspense>
+            <SearchResult keyword={keyword} />
+          </Suspense>
         </div>
       </div>
     </div>
