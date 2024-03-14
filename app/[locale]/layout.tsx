@@ -40,7 +40,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
-      <body className="h-fit w-full overflow-scroll sm:w-fit sm:min-w-[1000px]">
+      <body className="h-fit w-full overflow-scroll sm:w-fit sm:min-w-[max(100%,1000px)]">
         <ContextProviders locale={params.locale}>
           <Navbar />
           <MobileNav />

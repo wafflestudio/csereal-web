@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import {
   Dispatch,
   ReactNode,
@@ -11,9 +10,10 @@ import {
   useState,
 } from 'react';
 
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import { usePathname } from '@/navigation';
+
 import useResponsive from '@/utils/hooks/useResponsive';
-import { SegmentNode, main } from '@/utils/segmentNode';
+import { SegmentNode } from '@/utils/segmentNode';
 
 export type NavbarState =
   | { type: 'closed' }
@@ -32,11 +32,13 @@ const NavbarContext = createContext<NavbarContextContent>({
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const pathName = usePathname();
-  const node = useCurrentSegmentNode();
+  const isMain = pathName === '/' || pathName === '/en';
   const { screenType } = useResponsive();
 
+  console.log(pathName);
+
   const [navbarState, setNavbarState] = useState<NavbarState>({
-    type: node === main ? 'expanded' : 'closed',
+    type: isMain ? 'expanded' : 'closed',
   });
 
   useEffect(() => {
@@ -47,8 +49,8 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
     }
 
     // 데스크톱에서는 메인에서 펼쳐져있습니다.
-    setNavbarState(node === main ? { type: 'expanded' } : { type: 'closed' });
-  }, [node, screenType]);
+    setNavbarState(isMain ? { type: 'expanded' } : { type: 'closed' });
+  }, [isMain, screenType]);
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>
