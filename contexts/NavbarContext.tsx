@@ -12,6 +12,7 @@ import {
 
 import { usePathname } from '@/navigation';
 
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { SegmentNode } from '@/utils/segmentNode';
 
@@ -32,17 +33,17 @@ const NavbarContext = createContext<NavbarContextContent>({
 
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const pathName = usePathname();
-  const isMain = pathName === '/' || pathName === '/en';
+  const node = useCurrentSegmentNode();
   const { screenType } = useResponsive();
 
-  console.log(pathName);
+  const isMain = pathName === '/' || pathName === '/en';
 
   const [navbarState, setNavbarState] = useState<NavbarState>({
     type: isMain ? 'expanded' : 'closed',
   });
 
   useEffect(() => {
-    // 모바일에서는 페이지 이동시 접습니다.
+    // 모바일에서는 페이지 이동시 항상 접습니다.
     if (screenType === 'mobile') {
       setNavbarState({ type: 'closed' });
       return;
@@ -50,7 +51,7 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
 
     // 데스크톱에서는 메인에서 펼쳐져있습니다.
     setNavbarState(isMain ? { type: 'expanded' } : { type: 'closed' });
-  }, [isMain, screenType]);
+  }, [isMain, screenType, node]); // 페이지 이동시 접기 위해 node를 deps에 추가합니다.
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>
