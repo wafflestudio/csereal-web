@@ -42,14 +42,14 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
   return (
     <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
       <span
-        className={selectedOption === '카드형' ? 'text-neutral-700' : 'cursor-pointer'}
+        className={selectedOption === '카드형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
       >
         카드형
       </span>
       <span>|</span>
       <span
-        className={selectedOption === '목록형' ? 'text-neutral-700' : 'cursor-pointer'}
+        className={selectedOption === '목록형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('목록형')}
       >
         목록형

@@ -6,8 +6,9 @@ import { Course, SortOption, ViewOption } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import CourseCards from '../../helper/courses/CourseCards';
+// import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
+import CourseRow from '../../helper/courses/CourseRow';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
 
 interface CoursePageContentProps {
@@ -41,10 +42,28 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
         changeOptions={changeOptions}
       />
       {selectedOption.view === '카드형' ? (
-        <CourseCards courses={courses} selectedOption={selectedOption.sort} />
+        courses.length > 0 && (
+          <div className="flex max-w-[880px] flex-col gap-8">
+            {chunkCourse(courses).map((courseRow, i) => (
+              <CourseRow courses={courseRow} selectedOption="학년" key={i} />
+            ))}
+          </div>
+        )
       ) : (
         <CourseList courses={courses} selectedOption={selectedOption.sort} />
       )}
     </div>
   );
 }
+
+const chunkCourse = (courses: Course[]) => {
+  const chunckedCourses: Course[][] = [];
+  const chunkSize = Math.floor(courses.length / 4);
+
+  chunckedCourses.push(courses.slice(0, chunkSize));
+  chunckedCourses.push(courses.slice(chunkSize, chunkSize * 2));
+  chunckedCourses.push(courses.slice(chunkSize * 2, chunkSize * 3));
+  chunckedCourses.push(courses.slice(chunkSize * 3));
+
+  return chunckedCourses;
+};

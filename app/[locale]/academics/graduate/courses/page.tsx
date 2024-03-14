@@ -6,12 +6,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Course } from '@/types/academics';
 
+import CoursePageContent from './CoursePageContent';
+
 export default async function GraduateCoursePage() {
-  const courstList = await getCourses('graduate');
-  const chunckedCourses = chunkCourse(courstList);
+  const courseList = await getCourses('graduate');
+  const chunckedCourses = chunkCourse(courseList);
 
   return (
     <PageLayout titleType="big">
+      <CoursePageContent courses={courseList} />
       {chunckedCourses.length > 0 && (
         <div className="flex max-w-[880px] flex-col gap-8">
           {chunckedCourses.map((courses, i) => (
