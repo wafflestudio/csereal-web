@@ -6,8 +6,8 @@ import { Course, SortOption, ViewOption } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
+import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
-import CourseRow from '../../helper/courses/CourseRow';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
 
 interface CoursePageContentProps {
@@ -43,13 +43,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
         changeOptions={changeOptions}
       />
       {selectedOption.view === '카드형' ? (
-        courses.length > 0 && (
-          <div className="flex flex-col gap-8">
-            {chunkCourse(courses).map((courseRow, i) => (
-              <CourseRow courses={courseRow} selectedOption="학년" key={i} />
-            ))}
-          </div>
-        )
+        <CourseCards courses={chunkCourse(courses)} selectedOption="학년" />
       ) : (
         <CourseList courses={courses} selectedOption={selectedOption.sort} />
       )}

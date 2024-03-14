@@ -30,7 +30,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
   const { openModal, closeModal } = useModal();
 
   return (
-    <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>
+    <span className={`${COURSE_ROW_ITEM_WIDTH.name} whitespace-nowrap`}>
       <button onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}>
         {name}
       </button>
@@ -40,7 +40,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
 
 function ClassificationCell({ classification }: { classification: string }) {
   return (
-    <span className={`${COURSE_ROW_ITEM_WIDTH.classification} text-neutral-400`}>
+    <span className={`${COURSE_ROW_ITEM_WIDTH.classification} whitespace-nowrap text-neutral-400`}>
       {classification}
     </span>
   );
@@ -55,5 +55,9 @@ function CreditCell({ credit }: { credit: number }) {
 }
 
 function GradeCell({ grade }: { grade: string }) {
-  return <span className={`${COURSE_ROW_ITEM_WIDTH.grade} text-neutral-400`}>{grade}</span>;
+  return (
+    <span className={`${COURSE_ROW_ITEM_WIDTH.grade} whitespace-nowrap text-neutral-400`}>
+      {grade}
+    </span>
+  );
 }
