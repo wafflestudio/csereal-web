@@ -1,32 +1,22 @@
 'use client';
 
-import { useState } from 'react';
-
-import { Course, SortOption, ViewOption } from '@/types/academics';
+import { Course } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
 import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
+import useCourseToolbar from '../../helper/courses/useCourseToolbar';
 
 interface CoursePageContentProps {
   courses: Course[];
 }
 
 export default function CoursePageContent({ courses }: CoursePageContentProps) {
-  const [selectedOption, setSelectedOption] = useState<{ view: ViewOption; sort: SortOption }>({
-    view: '카드형',
-    sort: '학년',
-  });
+  const { selectedOption, changeOptions } = useCourseToolbar();
   const { screenType } = useResponsive();
   const hideViewOption = screenType === 'mobile';
-
-  const changeOptions = (
-    options: { type: 'view'; option: ViewOption } | { type: 'sort'; option: SortOption },
-  ) => {
-    setSelectedOption((prev) => ({ ...prev, [options.type]: options.option }));
-  };
 
   if (hideViewOption && selectedOption.view !== '목록형') {
     changeOptions({ type: 'view', option: '목록형' });
