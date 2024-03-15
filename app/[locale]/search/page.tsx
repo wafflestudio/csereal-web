@@ -8,7 +8,11 @@ import { SEARCH_TAGS } from '@/constants/tag';
 
 import { main } from '@/utils/segmentNode';
 
-import SearchResult from './SearchResult';
+import AboutSection from './AboutSection';
+import AcademicSection from './AcademicSection';
+import AdmissionSection from './AdmissionSection';
+import CommunitySection from './CommunitySection';
+import ResearchSection from './ResearchSection';
 
 export default async function SearchPage({
   searchParams: { keyword },
@@ -23,13 +27,16 @@ export default async function SearchPage({
 
       <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
         <SearchBox tags={SEARCH_TAGS} key={keyword} />
-
-        <Suspense fallback={<SearchResultFallback />}>
-          <SearchResult keyword={keyword} />
-        </Suspense>
+        <div className="flex w-[52.5rem] grow flex-col gap-20">
+          <Suspense>
+            <AboutSection keyword={keyword} />
+            <CommunitySection keyword={keyword} />
+            <ResearchSection keyword={keyword} />
+            <AdmissionSection keyword={keyword} />
+            <AcademicSection keyword={keyword} />
+          </Suspense>
+        </div>
       </div>
     </div>
   );
 }
-
-const SearchResultFallback = () => <div className="grow" />;

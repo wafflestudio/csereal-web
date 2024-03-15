@@ -7,16 +7,14 @@ import { researchCenters, researchLabs, topConferenceList } from '@/utils/segmen
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
-import { DESCRIPTION_CHAR_CNT } from './SearchResult';
 
 export default async function ResearchSection({ keyword }: { keyword: string }) {
-  const about = await searchResearch({ keyword, number: 3, amount: DESCRIPTION_CHAR_CNT });
-  console.log(about);
+  const research = await searchResearch({ keyword, number: 3, amount: 200 });
 
   return (
-    <Section title="연구" size={about.total}>
+    <Section title="연구" size={research.total}>
       <div className="flex flex-col gap-7">
-        {about.results.map((result) => {
+        {research.results.map((result) => {
           const node = toNode(result.researchType);
 
           return (

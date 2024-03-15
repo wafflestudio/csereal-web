@@ -8,10 +8,9 @@ import { getSeminarPosts } from '@/apis/seminar';
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
+import NoticeRow from './helper/NoticeRow';
 import OrangeCircle from './helper/OrangeCircle';
 import Section from './helper/Section';
-import NoticeRow from './NoticeRow';
-import { DESCRIPTION_CHAR_CNT } from './SearchResult';
 import NewsRow from '../community/news/helper/NewsRow';
 import SeminarRow from '../community/seminar/helper/SeminarRow';
 
@@ -21,8 +20,8 @@ const seminarPath = getPath(seminar);
 
 export default async function CommunitySection({ keyword }: { keyword: string }) {
   const [notice, news, seminar] = await Promise.all([
-    searchNotice({ keyword, number: 3, amount: DESCRIPTION_CHAR_CNT }),
-    searchNews({ keyword, number: 3, amount: DESCRIPTION_CHAR_CNT }),
+    searchNotice({ keyword, number: 3, amount: 200 }),
+    searchNews({ keyword, number: 3, amount: 200 }),
     getSeminarPosts({ keyword, pageNum: '1' }),
   ]);
 

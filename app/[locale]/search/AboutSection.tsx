@@ -16,10 +16,9 @@ import {
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
-import { DESCRIPTION_CHAR_CNT } from './SearchResult';
 
 export default async function AboutSection({ keyword }: { keyword: string }) {
-  const about = await searchAbout({ keyword, number: 3, amount: DESCRIPTION_CHAR_CNT });
+  const about = await searchAbout({ keyword, number: 3, amount: 200 });
 
   return (
     <Section title="소개" size={about.total}>
