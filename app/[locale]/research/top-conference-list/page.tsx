@@ -1,10 +1,14 @@
+import { getTopConferenceList } from '@/apis/research';
+
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function TopConferenceListPage() {
-  // TODO: api 반영되면 적용
-  //   const { modifiedAt, author, conferenceList } = await getTopConferenceList();
+  const { modifiedAt, author, conferenceList } = await getTopConferenceList();
+
+  // TODO: 왜 기본값이 한국이 아닌지 알아내기
+  const dateStr = new Date(modifiedAt).toLocaleDateString('ko-KR');
 
   return (
     <PageLayout titleType="big">
@@ -16,9 +20,11 @@ export default async function TopConferenceListPage() {
           본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다.
         </p>
         <p className="text-md leading-[26px]">
-          수정날짜: {'modifiedAt'}(작성자: {'author'})
+          수정날짜: {dateStr}
+          <br />
+          작성자: {author}
         </p>
-        <ConferenceListTable conferenceList={[]} />
+        <ConferenceListTable conferenceList={conferenceList} />
       </div>
     </PageLayout>
   );
