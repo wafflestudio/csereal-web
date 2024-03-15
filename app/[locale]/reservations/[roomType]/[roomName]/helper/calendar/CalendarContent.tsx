@@ -1,15 +1,30 @@
+'use client';
+
 import { ReservationPreview } from '@/types/reservation';
 
+import { isSameDay } from '@/utils/date';
+import useResponsive from '@/utils/hooks/useResponsive';
+
 import CalendarColumn from './CalendarColumn';
+import useResponsiveRow from '../useResponsiveRow';
 
 export default function CalendarContent({
-  startDate,
-  reservations,
+  desktopStartDate,
+  mobileStartDate,
+  desktopReservations,
+  mobileReservations,
 }: {
-  startDate: Date;
-  reservations: ReservationPreview[];
+  desktopStartDate: Date;
+  mobileStartDate: Date;
+  desktopReservations: ReservationPreview[];
+  mobileReservations: ReservationPreview[];
 }) {
-  const dates = getNextSevenDays(startDate);
+  const { screenType } = useResponsive();
+  const reservations = screenType === 'desktop' ? desktopReservations : mobileReservations;
+  const startDate = screenType === 'desktop' ? desktopStartDate : mobileStartDate;
+
+  const columnCnt = useResponsiveRow();
+  const dates = getNextDays(startDate, columnCnt);
   const today = new Date();
 
   return (
@@ -43,8 +58,8 @@ const RowIndex = () => {
   );
 };
 
-const getNextSevenDays = (date: Date) => {
-  return Array(7)
+const getNextDays = (date: Date, cnt: number) => {
+  return Array(cnt)
     .fill(0)
     .map((_, i) => {
       const temp = new Date(date);
@@ -57,14 +72,6 @@ const isReservationInDate = (reservation: ReservationPreview, date: Date): boole
   return (
     isSameDay(new Date(reservation.startTime), date) &&
     isSameDay(new Date(reservation.endTime), date)
-  );
-};
-
-const isSameDay = (date1: Date, date2: Date) => {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
   );
 };
 

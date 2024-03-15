@@ -1,7 +1,8 @@
-import { getWeeklyReservation } from '@/actions/reservation';
+import { Suspense } from 'react';
+
+import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import ReservationCalendar from '@/components/reservations/ReservationCalendar';
 
 interface RoomReservationProps {
   params: { roomType: string; roomName: string };
@@ -20,34 +21,14 @@ export default async function RoomReservationPage({ params, searchParams }: Room
     return <PageLayout titleType="big">유효하지 않은 날짜입니다.</PageLayout>;
   }
 
-  const startOfWeek = getStartOfWeek(date);
-
-  const reservations = await getWeeklyReservation({
-    roomId,
-    year: startOfWeek.getFullYear(),
-    month: startOfWeek.getMonth() + 1,
-    day: startOfWeek.getDate(),
-  });
-
   return (
     <PageLayout titleType="big">
-      <ReservationCalendar
-        startDate={startOfWeek}
-        selectedDate={date}
-        reservations={reservations}
-        roomId={roomId}
-      />
+      <Suspense>
+        <ReservationCalendar roomId={roomId} selectedDate={date} />
+      </Suspense>
     </PageLayout>
   );
 }
-
-/** 일주일의 시작을 월요일로 간주 */
-const getStartOfWeek = (date: Date) => {
-  const ret = new Date(date);
-  const diff = (date.getDay() || 7) - 1;
-  ret.setDate(ret.getDate() - diff);
-  return ret;
-};
 
 const roomNameToId: { [roomName: string]: number } = {
   // 세미나실

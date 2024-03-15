@@ -5,7 +5,7 @@ import { useReducer } from 'react';
 
 import useModal from '@/utils/hooks/useModal';
 
-import MuiDateSelector from '../../common/MuiDateSelector';
+import MuiDateSelector from '../../../../../../../components/common/MuiDateSelector';
 import BasicButton from '../BasicButton';
 import AddReservationModal from '../modals/AddReservationModal';
 
