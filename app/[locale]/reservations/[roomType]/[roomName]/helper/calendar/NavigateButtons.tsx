@@ -9,6 +9,7 @@ import MuiDateSelector from '../../../../../../../components/common/MuiDateSelec
 import BasicButton from '../BasicButton';
 import AddReservationModal from '../modals/AddReservationModal';
 
+// TODO: button -> Link 수정
 export function SelectDayButton({ date }: { date: Date }) {
   const querySetter = useDateQuery();
   const [showCalendar, toggleCalendar] = useReducer((x) => !x, false);
@@ -107,6 +108,6 @@ const useDateQuery = () => {
     const str = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
       .map((x) => (x + '').padStart(2, '0'))
       .join('-');
-    router.push(`${pathname}?selectedDate=${str}`);
+    router.push(`${pathname}?selectedDate=${str}`, { scroll: false });
   };
 };
