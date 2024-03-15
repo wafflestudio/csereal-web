@@ -14,6 +14,7 @@ export default async function ReservationCalendar({
 }: ReservationCalendarProps) {
   const startOfWeek = getStartOfWeek(selectedDate);
 
+  // TODO: 중복되는 정보 fetch 최적화
   const [desktopReservations, mobileReservations] = await Promise.all([
     getWeeklyReservation({
       roomId,

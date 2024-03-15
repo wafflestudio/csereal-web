@@ -16,4 +16,4 @@ export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research
 
 export const getResearchLabs = () => getRequest<SimpleResearchLab[]>('/research/labs');
 
-export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference');
+export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference/page');
