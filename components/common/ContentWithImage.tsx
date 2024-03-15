@@ -9,12 +9,16 @@ interface ContentWithImageProps {
   imageURL?: string | null;
   content: string;
   containerClassName?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 export default function ContentWithImage({
   imageURL,
   content,
   containerClassName,
+  imageWidth,
+  imageHeight,
 }: ContentWithImageProps) {
   const { screenType } = useResponsive();
 
@@ -29,7 +33,12 @@ export default function ContentWithImage({
         htmlContent={content}
         topRightContent={
           imageURL && screenType === 'desktop'
-            ? { type: 'image', widthPX: 320, heightPX: 200, url: imageURL }
+            ? {
+                type: 'image',
+                widthPX: imageWidth ?? 320,
+                heightPX: imageHeight ?? 200,
+                url: imageURL,
+              }
             : undefined
         }
       />

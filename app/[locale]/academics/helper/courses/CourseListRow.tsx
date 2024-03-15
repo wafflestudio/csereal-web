@@ -16,7 +16,7 @@ export const COURSE_ROW_ITEM_WIDTH = {
 
 export default function CourseListRow({ course }: { course: Course }) {
   return (
-    <li className="flex h-14 items-center text-md [&>span]:px-4">
+    <li className="flex h-14 items-center px-4 text-md">
       <NameCell name={course.name} course={course} />
       <ClassificationCell classification={course.classification} />
       <CodeCell code={course.code} />
@@ -31,7 +31,10 @@ function NameCell({ name, course }: { name: string; course: Course }) {
 
   return (
     <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>
-      <button onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}>
+      <button
+        className="text-left"
+        onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}
+      >
         {name}
       </button>
     </span>
@@ -40,7 +43,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
 
 function ClassificationCell({ classification }: { classification: string }) {
   return (
-    <span className={`${COURSE_ROW_ITEM_WIDTH.classification} text-neutral-400`}>
+    <span className={`${COURSE_ROW_ITEM_WIDTH.classification} whitespace-nowrap text-neutral-400`}>
       {classification}
     </span>
   );
@@ -51,9 +54,13 @@ function CodeCell({ code }: { code: string }) {
 }
 
 function CreditCell({ credit }: { credit: number }) {
-  return <span className={`${COURSE_ROW_ITEM_WIDTH.credit} text-neutral-400`}>{credit}</span>;
+  return <span className={`${COURSE_ROW_ITEM_WIDTH.credit} pl-2 text-neutral-400`}>{credit}</span>;
 }
 
 function GradeCell({ grade }: { grade: string }) {
-  return <span className={`${COURSE_ROW_ITEM_WIDTH.grade} text-neutral-400`}>{grade}</span>;
+  return (
+    <span className={`${COURSE_ROW_ITEM_WIDTH.grade} whitespace-nowrap text-neutral-400`}>
+      {grade}
+    </span>
+  );
 }

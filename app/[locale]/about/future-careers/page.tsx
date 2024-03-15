@@ -59,7 +59,7 @@ interface CompanyTableRowProps {
 function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
   return (
     <li className="grid grid-cols-[22px,_auto,_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
-      <p className={`text-sm text-neutral-400 sm:pl-5 ${TABLE_COLUMN_SIZE[0]}`}>{index}</p>
+      <p className={`text-sm text-neutral-400 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}>{index}</p>
       <p className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[1]}`}>
         {name}
       </p>
