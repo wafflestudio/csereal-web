@@ -65,12 +65,14 @@ export type MemberSearchResult = {
 
 // 연구 탭
 
+export type ResearchType = 'RESEARCH' | 'LAB' | 'CONFERENCE';
+
 export type ResearchSearchResult = {
   total: number;
   results: {
     id: 0;
     name: string;
-    researchType: 'RESEARCH' | 'LAB' | 'CONFERENCE';
+    researchType: ResearchType;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;
@@ -79,36 +81,37 @@ export type ResearchSearchResult = {
 
 // 입학 탭
 
+export type AcademicType =
+  | 'GUIDE'
+  | 'GENERAL_STUDIES_REQUIREMENTS'
+  | 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
+  | 'CURRICULUM'
+  | 'DEGREE_REQUIREMENTS'
+  | 'DEGREE_REQUIREMENTS_YEAR_LIST'
+  | 'COURSE_CHANGES'
+  | 'SCHOLARSHIP';
+
 export type AcademicsSearchResult = {
   total: number;
   results: {
     id: 0;
     name: string;
-    academicsType:
-      | 'GUIDE'
-      | 'GENERAL_STUDIES_REQUIREMENTS'
-      | 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
-      | 'CURRICULUM'
-      | 'DEGREE_REQUIREMENTS'
-      | 'DEGREE_REQUIREMENTS_YEAR_LIST'
-      | 'COURSE_CHANGES'
-      | 'SCHOLARSHIP';
+    academicsType: AcademicType;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;
   }[];
 };
 
-// 학사 및 교과??
-// TODO: mainType, postType
+// 학사 및 교과
 
 export type AdmissionsSearchResult = {
   total: number;
-  results: {
+  admissions: {
     id: 0;
     name: string;
-    mainType: 'OVERVIEW';
-    postType: 'OVERVIEW';
+    mainType: string;
+    postType: string;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;

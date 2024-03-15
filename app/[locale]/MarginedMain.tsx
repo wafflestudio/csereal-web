@@ -2,12 +2,12 @@
 
 import { ReactNode } from 'react';
 
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import { main as mainNode } from '@/utils/segmentNode';
+import { usePathname } from '@/navigation';
 
 export default function MarginedMain({ children }: { children: ReactNode }) {
-  const node = useCurrentSegmentNode();
-  const marginLeft = node === mainNode ? `sm:ml-[4.75rem]` : '';
+  const pathName = usePathname();
+  const isMain = pathName === '/';
+  const paddingLeft = isMain ? `sm:pl-[11rem]` : 'sm:pl-[6.25rem]';
 
-  return <main className={`flex grow flex-col overflow-scroll ${marginLeft}`}>{children}</main>;
+  return <main className={`flex min-h-full min-w-full flex-col ${paddingLeft}`}>{children}</main>;
 }

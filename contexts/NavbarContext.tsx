@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import {
   Dispatch,
   ReactNode,
@@ -11,9 +10,11 @@ import {
   useState,
 } from 'react';
 
+import { usePathname } from '@/navigation';
+
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
-import { SegmentNode, main } from '@/utils/segmentNode';
+import { SegmentNode } from '@/utils/segmentNode';
 
 export type NavbarState =
   | { type: 'closed' }
@@ -35,20 +36,22 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const node = useCurrentSegmentNode();
   const { screenType } = useResponsive();
 
+  const isMain = pathName === '/' || pathName === '/en';
+
   const [navbarState, setNavbarState] = useState<NavbarState>({
-    type: node === main ? 'expanded' : 'closed',
+    type: isMain ? 'expanded' : 'closed',
   });
 
   useEffect(() => {
-    // 모바일에서는 페이지 이동시 접습니다.
+    // 모바일에서는 페이지 이동시 항상 접습니다.
     if (screenType === 'mobile') {
       setNavbarState({ type: 'closed' });
       return;
     }
 
     // 데스크톱에서는 메인에서 펼쳐져있습니다.
-    setNavbarState(node === main ? { type: 'expanded' } : { type: 'closed' });
-  }, [node, screenType]);
+    setNavbarState(isMain ? { type: 'expanded' } : { type: 'closed' });
+  }, [isMain, screenType, node]); // 페이지 이동시 접기 위해 node를 deps에 추가합니다.
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>

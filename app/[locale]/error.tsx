@@ -14,7 +14,7 @@ export default function Error({
       <p className="mb-4">
         {error.digest}: {error.message}
       </p>
-      <button className="underline" onClick={reset}>
+      <button className="underline" onClick={() => reset()}>
         새로고침
       </button>
     </PageLayout>

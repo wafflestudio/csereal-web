@@ -23,7 +23,6 @@ const FIND_PATH_URL =
 
 export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const directionList = await getDirections();
-
   const selectedDirection = findSelectedItem(directionList, searchParams.selected);
 
   return (

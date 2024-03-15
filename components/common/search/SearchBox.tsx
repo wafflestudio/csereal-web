@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
-import { SearchInfo, useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 import SearchForm from './SearchForm';
 import SelectedTags from './SelectedTags';
@@ -18,10 +18,13 @@ interface SearchBoxProps {
 export default function SearchBox({ tags, disabled = false, formOnly = false }: SearchBoxProps) {
   const { tags: initTags, keyword: initKeyword, setSearchParams } = useCustomSearchParams();
   const [keyword, setKeyword] = useState(initKeyword ?? '');
+  const [, startTransition] = useTransition();
 
   const search = (tags?: string[]) => {
-    const info: SearchInfo = { purpose: 'search', keyword, tag: tags ?? initTags };
-    setSearchParams(info);
+    // TODO: startTrnaisition이 의미있는지 확인
+    startTransition(() => {
+      setSearchParams({ purpose: 'search', keyword, tag: tags ?? initTags });
+    });
   };
 
   return (

@@ -39,11 +39,8 @@ export default async function RootLayout({
   unstable_setRequestLocale(params.locale);
 
   return (
-    <html
-      lang={params.locale}
-      className="bg-neutral-900 font-normal text-neutral-950 sm:min-w-[1000px]"
-    >
-      <body className="relative flex">
+    <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
+      <body className="sm:min-w-[1000px]">
         <ContextProviders locale={params.locale}>
           <Navbar />
           <MobileNav />
