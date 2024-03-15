@@ -13,7 +13,6 @@ export const getRequest = async <T = unknown>(
   params: object = {},
   init?: CredentialRequestInit,
 ): Promise<T> => {
-  //   await new Promise((resolve) => setTimeout(resolve, 30000));
   const queryString = objToQueryString(params);
   const resp = await fetchWithRetry(`${BASE_URL}${url}${queryString}`, 'GET', init);
   return await resp.json();
