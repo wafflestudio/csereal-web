@@ -6,7 +6,12 @@ const BREAK_POINT = {
 
 type ScreenType = 'mobile' | 'desktop';
 
-const getScreenType = (): ScreenType => (window.innerWidth < BREAK_POINT.sm ? 'mobile' : 'desktop');
+const getScreenType = (): ScreenType =>
+  typeof window === 'object'
+    ? window.innerWidth < BREAK_POINT.sm
+      ? 'mobile'
+      : 'desktop'
+    : 'desktop';
 
 export default function useResponsive() {
   const [screenType, setScreenType] = useState<ScreenType>(getScreenType());
