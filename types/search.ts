@@ -65,12 +65,14 @@ export type MemberSearchResult = {
 
 // 연구 탭
 
+export type ResearchType = 'RESEARCH' | 'LAB' | 'CONFERENCE';
+
 export type ResearchSearchResult = {
   total: number;
   results: {
     id: 0;
     name: string;
-    researchType: 'RESEARCH' | 'LAB' | 'CONFERENCE';
+    researchType: ResearchType;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;

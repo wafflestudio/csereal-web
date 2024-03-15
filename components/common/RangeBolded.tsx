@@ -8,9 +8,11 @@ export default function RangeBolded({
   boldEndIndex: number;
 }) {
   return (
-    <p className="line-clamp-1 text-md font-normal text-neutral-700">
+    <p className="line-clamp-1 text-md font-normal text-neutral-500">
       {partialDescription.slice(0, boldStartIndex)}
-      <span className="font-bold">{partialDescription.slice(boldStartIndex, boldEndIndex)}</span>
+      <span className="font-bold text-neutral-950">
+        {partialDescription.slice(boldStartIndex, boldEndIndex)}
+      </span>
       {partialDescription.slice(boldEndIndex)}
     </p>
   );
