@@ -6,19 +6,13 @@ const BREAK_POINT = {
 
 type ScreenType = 'mobile' | 'desktop';
 
+const getScreenType = (): ScreenType => (window.innerWidth < BREAK_POINT.sm ? 'mobile' : 'desktop');
+
 export default function useResponsive() {
-  const [screenType, setScreenType] = useState<ScreenType>('desktop');
+  const [screenType, setScreenType] = useState<ScreenType>(getScreenType());
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < BREAK_POINT.sm) {
-        setScreenType('mobile');
-      } else if (window.innerWidth >= BREAK_POINT.sm) {
-        setScreenType('desktop');
-      }
-    };
-
-    handleResize(); // resize 이벤트가 발생하지 않는 맨 처음 현재 환경을 파악하기 위해 실행
+    const handleResize = () => setScreenType(getScreenType());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
