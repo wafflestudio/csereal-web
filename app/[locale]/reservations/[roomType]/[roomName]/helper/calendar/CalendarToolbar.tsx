@@ -1,3 +1,5 @@
+'use client';
+
 import LoginVisible from '@/components/common/LoginVisible';
 
 import {
@@ -6,10 +8,13 @@ import {
   SelectDayButton,
   TodayButton,
 } from './NavigateButtons';
+import useResponsiveRow from '../useResponsiveRow';
 
 export default function Toolbar({ date, roomId }: { date: Date; roomId: number }) {
+  const offset = useResponsiveRow();
+
   const today = new Date();
-  const showTodayButton =
+  const todayButtonVisible =
     today.getFullYear() !== date.getFullYear() ||
     today.getMonth() !== date.getMonth() ||
     today.getDate() !== date.getDate();
@@ -18,9 +23,9 @@ export default function Toolbar({ date, roomId }: { date: Date; roomId: number }
     <div className="mb-6 flex h-[1.875rem] items-stretch justify-between">
       <div className="flex items-stretch gap-2">
         <SelectDayButton date={date} />
-        <ChangeDateButton targetDate={addDayToDate(date, -7)} symbolName="navigate_before" />
-        <ChangeDateButton targetDate={addDayToDate(date, 7)} symbolName="navigate_next" />
-        {showTodayButton && <TodayButton />}
+        <ChangeDateButton targetDate={addDayToDate(date, -offset)} symbolName="navigate_before" />
+        <ChangeDateButton targetDate={addDayToDate(date, offset)} symbolName="navigate_next" />
+        {todayButtonVisible && <TodayButton />}
       </div>
       <LoginVisible>
         <MakeReservationButton roomId={roomId} />

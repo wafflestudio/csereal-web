@@ -11,15 +11,16 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
+    "@mui/x-date-pickers": "^6.11.2",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "20.4.0",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.19",
-    "@mui/material": "^5.14.5",
-    "@mui/x-date-pickers": "^6.11.2",
     "autolinker": "^4.0.0",
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.9",
+    "file-loader": "^6.2.0",
     "next": "^14.1.0",
     "next-intl": "^3.7.0",
     "postcss": "8.4.24",
@@ -30,7 +31,6 @@
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
     "tailwindcss": "3.3.2",
-    "file-loader": "^6.2.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

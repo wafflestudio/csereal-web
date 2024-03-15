@@ -2,8 +2,9 @@
 
 import { Link } from '@/navigation';
 
+import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
+
 import ModalFrame from '@/components/modal/ModalFrame';
-import BasicButton from '@/components/reservations/BasicButton';
 
 import useModal from '@/utils/hooks/useModal';
 
