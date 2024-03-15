@@ -7,7 +7,7 @@ import { usePathname } from '@/navigation';
 export default function MarginedMain({ children }: { children: ReactNode }) {
   const pathName = usePathname();
   const isMain = pathName === '/';
-  const marginLeft = isMain ? `sm:ml-[11rem]` : 'sm:ml-[6.25rem]';
+  const paddingLeft = isMain ? `sm:pl-[11rem]` : 'sm:pl-[6.25rem]';
 
-  return <main className={`flex grow flex-col overflow-auto ${marginLeft}`}>{children}</main>;
+  return <main className={`flex min-h-full min-w-full flex-col ${paddingLeft}`}>{children}</main>;
 }
