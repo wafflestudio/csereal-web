@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 
 const BREAK_POINT = {
   sm: 640 /* mobile min-width: 640px */,
@@ -6,21 +6,7 @@ const BREAK_POINT = {
 
 type ScreenType = 'mobile' | 'desktop';
 
-const getScreenType = (): ScreenType =>
-  typeof window === 'object'
-    ? window.innerWidth < BREAK_POINT.sm
-      ? 'mobile'
-      : 'desktop'
-    : 'desktop';
-
-export default function useResponsive() {
-  const [screenType, setScreenType] = useState<ScreenType>(getScreenType());
-
-  useEffect(() => {
-    const handleResize = () => setScreenType(getScreenType());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return { screenType };
+export default function useResponsive(): { screenType: ScreenType } {
+  const matches = useMediaQuery(`(min-width: ${BREAK_POINT.sm}px)`);
+  return { screenType: matches ? 'desktop' : 'mobile' };
 }
