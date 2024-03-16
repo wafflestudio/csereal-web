@@ -43,13 +43,16 @@ export default function CalendarContent({
 }
 
 const RowIndex = () => {
+  const { screenType } = useResponsive();
+  const rows = screenType === 'desktop' ? desktopRows : mobileRows;
+
   return (
     <div>
       <div className="h-[4.0625rem] border-y border-r border-neutral-200 bg-neutral-100" />
-      {rows.map((x) => (
+      {rows.map((x, idx) => (
         <div
-          key={x}
-          className="flex h-12 w-[3.75rem] items-center justify-center border-b border-r border-neutral-200 bg-neutral-100"
+          key={idx}
+          className="flex h-12 items-center justify-center border-b border-r border-neutral-200 bg-neutral-100 px-4"
         >
           <time className="text-xs font-medium text-neutral-800">{x}</time>
         </div>
@@ -75,7 +78,17 @@ const isReservationInDate = (reservation: ReservationPreview, date: Date): boole
   );
 };
 
-const rows = [
+const mobileRows = [
+  ...Array(4)
+    .fill(0)
+    .map((_, x) => x + 8 + ''),
+  '12',
+  ...Array(10)
+    .fill(0)
+    .map((_, x) => x + 1 + ''),
+];
+
+const desktopRows = [
   ...Array(4)
     .fill(0)
     .map((_, x) => x + 8 + 'AM'),
