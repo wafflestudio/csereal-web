@@ -3,7 +3,12 @@ import { searchResearch } from '@/apis/search';
 import { ResearchType } from '@/types/search';
 
 import { getPath } from '@/utils/page';
-import { researchCenters, researchLabs, topConferenceList } from '@/utils/segmentNode';
+import {
+  researchCenters,
+  researchGroups,
+  researchLabs,
+  topConferenceList,
+} from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
@@ -35,24 +40,30 @@ export default async function ResearchSection({ keyword }: { keyword: string }) 
 const toNode = (postType: ResearchType) => {
   switch (postType) {
     case 'CONFERENCE':
-      return topConferenceList; // TODO: 맞는지 확인 필요
+      return topConferenceList;
     case 'LAB':
       return researchLabs;
-    case 'RESEARCH':
+    case 'RESEARCH_CENTER':
       return researchCenters;
+    case 'RESEARCH_GROUP':
+      return researchGroups;
   }
 };
 
 const labPath = getPath(researchLabs);
 const centerPath = getPath(researchCenters);
+const groupPath = getPath(researchGroups);
+const conferencePath = getPath(topConferenceList);
 
 const toURL = (postType: ResearchType, id: number, name: string) => {
   switch (postType) {
     case 'CONFERENCE':
-      return ''; // TODO
+      return conferencePath;
     case 'LAB':
       return `${labPath}/${id}`;
-    case 'RESEARCH':
+    case 'RESEARCH_CENTER':
       return `${centerPath}?selected=${name}`;
+    case 'RESEARCH_GROUP':
+      return `${groupPath}?selected=${name}`;
   }
 };

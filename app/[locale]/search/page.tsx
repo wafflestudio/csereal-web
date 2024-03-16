@@ -20,14 +20,15 @@ export default async function SearchPage({
   searchParams: { keyword: string };
 }) {
   return (
-    <div className="relative bg-neutral-900">
+    // TODO: page layout 사용한 방식으로 변경
+    // 현재는 SubNav의 차이 때문에 코드 복붙
+    <div className="flex grow flex-col bg-neutral-900">
       <Header />
-      {/* TODO: 임시로 넣은  currentPage={main} 대책 세우기*/}
-      <PageTitle title={'통합 검색'} titleType="big" margin="mb-11" currentPage={main} />
-
-      <div className={'relative bg-white pb-[150px] pl-[100px] pr-[360px] pt-[44px]'}>
+      {/* TODO: 임시로 넣은 main 교체 */}
+      <PageTitle title={'통합 검색'} currentPage={main} titleType={'big'} margin={'mb-11'} />
+      <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
         <SearchBox tags={SEARCH_TAGS} key={keyword} />
-        <div className="flex w-[52.5rem] grow flex-col gap-20">
+        <div className="flex grow flex-col gap-20">
           <Suspense>
             <AboutSection keyword={keyword} />
             <CommunitySection keyword={keyword} />
@@ -36,6 +37,7 @@ export default async function SearchPage({
             <AcademicSection keyword={keyword} />
           </Suspense>
         </div>
+        {/* <SubNavbar currentTab={currentPage} /> */}
       </div>
     </div>
   );

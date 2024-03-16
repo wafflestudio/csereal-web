@@ -65,7 +65,7 @@ export type MemberSearchResult = {
 
 // 연구 탭
 
-export type ResearchType = 'RESEARCH' | 'LAB' | 'CONFERENCE';
+export type ResearchType = 'RESEARCH_GROUP' | 'RESEARCH_CENTER' | 'LAB' | 'CONFERENCE';
 
 export type ResearchSearchResult = {
   total: number;
