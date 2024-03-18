@@ -95,12 +95,15 @@ export type AcademicType =
   | 'COURSE_CHANGES'
   | 'SCHOLARSHIP';
 
+export type StudentType = 'GRADUATE' | 'UNDERGRADUATE' | null;
+
 export type AcademicsSearchResult = {
   total: number;
   results: {
     id: 0;
     name: string;
-    academicsType: AcademicType;
+    academicType: AcademicType;
+    studentType: StudentType;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;
