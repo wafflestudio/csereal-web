@@ -8,8 +8,9 @@ import { getSeminarPosts } from '@/apis/seminar';
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
+import CircleTitle from './helper/CircleTitle';
+import Divider from './helper/Divider';
 import NoticeRow from './helper/NoticeRow';
-import OrangeCircle from './helper/OrangeCircle';
 import Section from './helper/Section';
 import NewsRow from '../community/news/helper/NewsRow';
 import SeminarRow from '../community/seminar/helper/SeminarRow';
@@ -31,6 +32,7 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         title="공지사항"
         size={notice.total}
         href={`${noticePath}?keyword=${keyword}`}
+        divider
       >
         {notice.results.map((notice) => (
           <NoticeRow
@@ -43,12 +45,11 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         ))}
       </CommunitySubSection>
 
-      <Divider />
-
       <CommunitySubSection
         title="새 소식"
         size={news.total}
         href={`${newsPath}?keyword=${keyword}`}
+        divider
       >
         {news.results.map((news) => (
           <NewsRow
@@ -64,8 +65,6 @@ export default async function CommunitySection({ keyword }: { keyword: string })
           />
         ))}
       </CommunitySubSection>
-
-      <Divider />
 
       <CommunitySubSection
         title="세미나"
@@ -84,24 +83,23 @@ const CommunitySubSection = ({
   title,
   size,
   href,
+  divider,
   children,
 }: {
   title: string;
   size: number;
   href: string;
+  divider?: boolean;
   children: ReactNode;
 }) => {
-  const t = useTranslations('Nav');
+  if (size === 0) return <></>;
+
   return (
     <>
-      <div className="flex items-center gap-2">
-        <OrangeCircle />
-        <h3 className=" text-[1.0625rem] font-bold leading-loose text-neutral-700">
-          {t(title)}({size})
-        </h3>
-      </div>
-      <div className="ml-5 mr-10 mt-[.88rem] flex flex-col gap-6">{children}</div>
+      <CircleTitle title={title} size={size} />
+      <div className="ml-5 mr-10 mt-8 flex flex-col gap-9">{children}</div>
       <MoreResultLink href={href} />
+      {divider && <Divider />}
     </>
   );
 };
@@ -111,12 +109,10 @@ const MoreResultLink = ({ href }: { href: string }) => {
   return (
     <Link
       href={href}
-      className="text-middle mr-4 mt-10 flex items-center self-end text-xs text-main-orange"
+      className="text-middle mr-4 mt-10 flex items-center self-end text-md font-medium text-main-orange"
     >
       {t('결과 더보기')}
       <span className="material-symbols-outlined text-sm">chevron_right</span>
     </Link>
   );
 };
-
-const Divider = () => <div className="my-10 border-b border-neutral-300" />;

@@ -19,10 +19,10 @@ const noticePath = getPath(notice);
 export default function NoticeRow({ id, title, dateStr, ...description }: NoticeRowProps) {
   const date = new Date(dateStr);
   return (
-    <Link className="flex flex-col gap-[.69rem]" href={`${noticePath}/${id}`}>
-      <h3 className=" text-md font-bold leading-none text-neutral-700">{title}</h3>
+    <Link className="flex flex-col gap-[.62rem]" href={`${noticePath}/${id}`}>
+      <h3 className="text-base font-bold leading-none text-neutral-950">{title}</h3>
       <RangeBolded {...description} />
-      <time className="text-xs font-bold leading-none text-main-orange">
+      <time className="text-md font-medium leading-none text-main-orange">
         {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
       </time>
     </Link>

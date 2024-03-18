@@ -22,7 +22,7 @@ export default async function AboutSection({ keyword }: { keyword: string }) {
 
   return (
     <Section title="소개" size={about.total}>
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-9">
         {about.results.map((result) => {
           const node = aboutPostTypeToNode(result.aboutPostType);
 

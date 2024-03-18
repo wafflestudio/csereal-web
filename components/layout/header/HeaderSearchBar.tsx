@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function HeaderSearchBar() {
   const { text, setText, searchText } = useSearch();
@@ -31,6 +31,13 @@ export default function HeaderSearchBar() {
 function useSearch() {
   const [text, setText] = useState('');
   const router = useRouter();
+
+  const params = useSearchParams();
+  const keyword = params.get('keyword');
+
+  useEffect(() => {
+    if (keyword) setText(keyword);
+  }, [keyword]);
 
   const searchText = () => {
     const query = text.trim();

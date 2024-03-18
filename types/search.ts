@@ -52,15 +52,19 @@ export type NewsSearchResult = {
 
 // 구성원 탭
 
+export type MemberType = 'PROFESSOR' | 'STAFF';
+
+export type Member = {
+  id: 0;
+  name: string;
+  academicRankOrRole: string;
+  imageURL: string;
+  memberType: MemberType;
+};
+
 export type MemberSearchResult = {
   total: number;
-  results: {
-    id: 0;
-    name: string;
-    academicRankOrRole: string;
-    imageURL: string;
-    memberType: 'PROFESSOR' | 'STAFF';
-  }[];
+  results: Member[];
 };
 
 // 연구 탭
