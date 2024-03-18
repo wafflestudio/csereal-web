@@ -23,7 +23,7 @@ export default async function MemberSection({ keyword }: { keyword: string }) {
     <Section title="구성원" size={resp.total}>
       {professorList.length !== 0 && (
         <>
-          <CircleTitle title="교수진" size={professorList.length} />
+          <CircleTitle title="교수진" />
           <div className="ml-5 mt-7 flex gap-12">
             {professorList.slice(0, 3).map((result) => {
               return <MemberCell key={result.id} {...result} />;
@@ -34,7 +34,7 @@ export default async function MemberSection({ keyword }: { keyword: string }) {
       {professorList.length !== 0 && staffList.length !== 0 && <Divider />}
       {staffList.length !== 0 && (
         <>
-          <CircleTitle title="행정직원" size={staffList.length} />
+          <CircleTitle title="행정직원" />
           <div className="ml-5 mt-7 flex gap-12">
             {staffList.slice(0, 3).map((result) => {
               return <MemberCell key={result.id} {...result} />;

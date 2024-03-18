@@ -1,11 +1,12 @@
-export default function CircleTitle({ title, size }: { title: string; size: number }) {
+export default function CircleTitle({ title, size }: { title: string; size?: number }) {
   // TODO: 번역 적용
   // const t = useTranslations();
   return (
     <div className="flex items-center gap-2">
       <OrangeCircle />
       <h3 className=" text-[1.0625rem] font-semibold leading-loose text-neutral-950">
-        {title}({size})
+        {title}
+        {size ? `(${size})` : ''}
       </h3>
     </div>
   );
