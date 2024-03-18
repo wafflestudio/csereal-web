@@ -23,8 +23,8 @@ const facultyPath = getPath(faculty);
 export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) {
   return (
     <li
-      className="grid grid-cols-[auto,_1fr] grid-rows-5 items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 
-    sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:gap-0 sm:px-0 sm:py-0  sm:pl-2 sm:odd:bg-white sm:[&>span]:px-3"
+      className="grid grid-cols-[auto,_1fr] grid-rows-5 items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 sm:mx-0 
+    sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white"
     >
       <NameCell name={lab.name} id={lab.id} />
       <ProfessorsCell professors={lab.professors} />

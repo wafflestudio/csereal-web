@@ -7,7 +7,7 @@ import useModal from '@/utils/hooks/useModal';
 import CourseDetailModal from './CourseDetailModal';
 
 export const COURSE_ROW_ITEM_WIDTH = {
-  name: 'w-[16rem]',
+  name: 'w-[16rem] pr-2',
   classification: 'w-[10rem]',
   code: 'w-[13rem]',
   credit: 'w-[6rem]',
