@@ -1,8 +1,7 @@
 import { searchAcademics } from '@/apis/search';
 
-import { AcademicType } from '@/types/search';
-
-import { undergraduateAcademics } from '@/utils/segmentNode';
+import { getPath } from '@/utils/page';
+import { undergraduateGuide } from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
@@ -14,12 +13,13 @@ export default async function AcademicSection({ keyword }: { keyword: string }) 
     <Section title="학사 및 교과" size={academic.total}>
       <div className="flex flex-col gap-7">
         {academic.results.map((result) => {
-          const node = toNode(result.academicsType);
+          // TODO
+          const node = undergraduateGuide;
 
           return (
             <BasicRow
               key={result.id}
-              href={toURL(result.academicsType, result.id, result.name)}
+              href={getPath(node)}
               title={result.name}
               node={node}
               {...result}
@@ -30,15 +30,3 @@ export default async function AcademicSection({ keyword }: { keyword: string }) 
     </Section>
   );
 }
-
-const toNode = (postType: AcademicType) => {
-  postType;
-  return undergraduateAcademics;
-};
-
-const toURL = (postType: AcademicType, id: number, name: string) => {
-  postType;
-  id;
-  name;
-  return '';
-};

@@ -52,20 +52,24 @@ export type NewsSearchResult = {
 
 // 구성원 탭
 
+export type MemberType = 'PROFESSOR' | 'STAFF';
+
+export type Member = {
+  id: 0;
+  name: string;
+  academicRankOrRole: string;
+  imageURL: string;
+  memberType: MemberType;
+};
+
 export type MemberSearchResult = {
   total: number;
-  results: {
-    id: 0;
-    name: string;
-    academicRankOrRole: string;
-    imageURL: string;
-    memberType: 'PROFESSOR' | 'STAFF';
-  }[];
+  results: Member[];
 };
 
 // 연구 탭
 
-export type ResearchType = 'RESEARCH' | 'LAB' | 'CONFERENCE';
+export type ResearchType = 'RESEARCH_GROUP' | 'RESEARCH_CENTER' | 'LAB' | 'CONFERENCE';
 
 export type ResearchSearchResult = {
   total: number;
@@ -91,12 +95,15 @@ export type AcademicType =
   | 'COURSE_CHANGES'
   | 'SCHOLARSHIP';
 
+export type StudentType = 'GRADUATE' | 'UNDERGRADUATE' | null;
+
 export type AcademicsSearchResult = {
   total: number;
   results: {
     id: 0;
     name: string;
-    academicsType: AcademicType;
+    academicType: AcademicType;
+    studentType: StudentType;
     partialDescription: string;
     boldStartIndex: number;
     boldEndIndex: number;

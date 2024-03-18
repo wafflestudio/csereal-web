@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/TCL
+      - fix/image
 
 jobs:
   build:
@@ -44,6 +44,5 @@ jobs:
           script: |
             docker stop csereal_nextjs_image
             docker rm csereal_nextjs_image
-            docker system prune -f
             docker pull ghcr.io/wafflestudio/csereal_nextjs_image:latest
             docker run -d -p 3000:3000 --name csereal_nextjs_image ghcr.io/wafflestudio/csereal_nextjs_image

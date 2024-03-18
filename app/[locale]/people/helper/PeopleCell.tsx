@@ -38,6 +38,9 @@ export default function PeopleCell({
           width={144}
           height={192}
           quality={50}
+          // 화면 이동시 flickering을 막기 위해 추가
+          // https://github.com/vercel/next.js/discussions/20991
+          priority
         />
       </Link>
       <div className="flex flex-col items-start break-keep">

@@ -40,7 +40,7 @@ const toNode = (mainType: string, postType: string) => {
     .find((x) => x.segment === _mainType)
     ?.children.find((x) => x.segment === _postType);
 
-  if (target === undefined) throw new Error();
+  if (target === undefined) return admissions;
 
   return target;
 };
