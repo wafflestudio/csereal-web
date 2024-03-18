@@ -30,7 +30,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
   const { openModal, closeModal } = useModal();
 
   return (
-    <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>
+    <span className={`${COURSE_ROW_ITEM_WIDTH.name} pr-2`}>
       <button
         className="text-left"
         onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}
