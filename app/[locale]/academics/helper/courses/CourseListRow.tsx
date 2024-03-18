@@ -7,7 +7,7 @@ import useModal from '@/utils/hooks/useModal';
 import CourseDetailModal from './CourseDetailModal';
 
 export const COURSE_ROW_ITEM_WIDTH = {
-  name: 'w-[16rem] pr-2',
+  name: 'w-[16rem]',
   classification: 'w-[10rem]',
   code: 'w-[13rem]',
   credit: 'w-[6rem]',
@@ -30,7 +30,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
   const { openModal, closeModal } = useModal();
 
   return (
-    <span className={`${COURSE_ROW_ITEM_WIDTH.name}`}>
+    <span className={`${COURSE_ROW_ITEM_WIDTH.name} pr-2`}>
       <button
         className="text-left"
         onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}
