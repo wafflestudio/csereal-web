@@ -53,7 +53,7 @@ const Header = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
-      <h2 className="text-[1.25rem] font-semibold">{title}</h2>
+      <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
         <p>글쓴이: {author}</p>
         <p>작성 시각: {formatPostDateStr(createdAt)}</p>

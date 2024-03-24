@@ -23,7 +23,7 @@ export default async function SeminarViewer({ id, searchParams }: SeminarPostPag
 
   return (
     <>
-      <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
+      <h2 className="px-5 py-9 text-[1.25rem] font-semibold leading-[1.4] sm:pl-[100px] sm:pr-[340px]">
         {seminar.title}
       </h2>
       <div
