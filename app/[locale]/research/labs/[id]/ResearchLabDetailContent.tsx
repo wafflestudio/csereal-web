@@ -31,7 +31,7 @@ export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) 
             ? { type: 'component', content: <ResearchLabInfo lab={lab} /> }
             : undefined
         }
-        className="mt-6 "
+        className="mt-6"
       />
     </div>
   );

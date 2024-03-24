@@ -10,6 +10,7 @@ type TopRightImage =
       url: string;
       widthPX: number;
       heightPX: number;
+      marginTopPx?: number;
     }
   | {
       type: 'imageUnoptimized';
@@ -40,7 +41,7 @@ export default function HTMLViewer({
   const linkedHTML = Autolinker.link(htmlContent);
 
   return (
-    <div className={`flow-root ${className} `}>
+    <div className={`flow-root ${className}`}>
       {(topRightContent?.type === 'image' || topRightContent?.type === 'imageUnoptimized') && (
         <TopRightImageContent {...topRightContent} />
       )}
@@ -56,9 +57,12 @@ export default function HTMLViewer({
 
 function TopRightImageContent(props: TopRightImage) {
   if (props.type === 'image') {
-    const { url, widthPX: width, heightPX: height } = props;
+    const { url, widthPX: width, heightPX: height, marginTopPx: marginTop } = props;
     return (
-      <div className="relative float-right mb-[28px] ml-[28px]" style={{ width, height }}>
+      <div
+        className="relative float-right mb-[28px] ml-[28px]"
+        style={{ width, height, marginTop }}
+      >
         <Image src={url} alt="대표 이미지" fill className="object-cover" sizes={`${width}px`} />
       </div>
     );

@@ -16,7 +16,9 @@ export default async function ContactPage() {
           url: `https://cse-dev-waffle.bacchus.io/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd`,
           widthPX: 240,
           heightPX: 360,
+          marginTopPx: 28,
         }}
+        className="mt-[-1.5rem]"
       />
     </PageLayout>
   );
