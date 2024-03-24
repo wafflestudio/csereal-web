@@ -120,7 +120,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
           <span
             className={`${
               isPinned && 'font-semibold text-main-orange sm:text-neutral-800'
-            } overflow-hidden text-ellipsis tracking-wide hover:text-main-orange sm:whitespace-nowrap`}
+            } overflow-hidden text-ellipsis text-base tracking-wide hover:text-main-orange sm:whitespace-nowrap sm:text-md`}
           >
             {title}
           </span>

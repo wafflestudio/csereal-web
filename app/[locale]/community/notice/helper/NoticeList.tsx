@@ -24,7 +24,7 @@ export default function NoticeList({
   if (posts.length === 0) return <NoSearchResult />;
 
   return (
-    <div className="mx-2.5 mb-10 mt-9 border-y border-neutral-200">
+    <div className="mb-10 mt-9 border-y border-neutral-200 sm:mx-2.5">
       <NoticeListHeader isEditMode={isEditMode} />
       <ul className={`${isEditMode && 'divide-y divide-dashed divide-neutral-200'}`}>
         {posts.map((post) => (
