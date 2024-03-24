@@ -11,15 +11,12 @@ export default function Attachments({ files }: { files: Attachment[] }) {
   if (files.length === 0) return <></>;
 
   return (
-    // 좌측 정렬을 위한 wrapper div
-    <div className="flex flex-col items-start">
-      <div className="relative mb-11 mt-5 flex flex-col gap-2 self-start rounded-sm border border-neutral-200 bg-white py-3 pl-4 pr-[10rem]">
-        {files.map((file, index) => (
-          <AttachmentAnchor key={index} {...file} />
-        ))}
+    <div className="relative mb-9 mt-3 flex flex-col gap-2 self-start rounded-sm border border-neutral-200 bg-white py-3 pl-4 pr-20 sm:mb-11 sm:mt-5 sm:w-auto sm:max-w-fit sm:pr-[10rem] ">
+      {files.map((file, index) => (
+        <AttachmentAnchor key={index} {...file} />
+      ))}
 
-        <Clip className="absolute right-2 top-[-1.5rem]" />
-      </div>
+      <Clip className="absolute right-2 top-[-1.5rem]" />
     </div>
   );
 }
