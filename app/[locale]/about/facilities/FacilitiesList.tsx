@@ -1,4 +1,4 @@
-import Distance from '@/public/image/about/distance.svg';
+import Distance from '@/public/image/distance.svg';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -34,9 +34,9 @@ function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowP
       <div className="flex w-[35.5rem] flex-col">
         <h3 className="mb-3 text-base font-bold leading-5">{name}</h3>
         <HTMLViewer htmlContent={description} />
-        <div className="flex translate-x-[-4px] items-center gap-px">
+        <div className="flex translate-x-[-4px] items-start gap-px">
           <Distance className="shrink-0" />
-          <p className="text-md">{location}</p>
+          <p className="pt-0.5 text-md text-neutral-500">{location}</p>
         </div>
       </div>
       <FacilitiesRowImage imageURL={imageURL} />
