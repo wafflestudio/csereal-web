@@ -9,8 +9,9 @@ interface ContentWithImageProps {
   imageURL?: string | null;
   content: string;
   containerClassName?: string;
-  imageWidth?: number;
-  imageHeight?: number;
+  imageWidth: number;
+  imageHeight: number;
+  imageMarginBottom?: number;
 }
 
 export default function ContentWithImage({
@@ -19,24 +20,31 @@ export default function ContentWithImage({
   containerClassName,
   imageWidth,
   imageHeight,
+  imageMarginBottom,
 }: ContentWithImageProps) {
   const { screenType } = useResponsive();
 
   return (
     <div className={containerClassName}>
-      {imageURL && (
-        <div className="relative mb-7 aspect-[4/3] sm:hidden">
-          <ImageWithFallback alt={`대표_이미지`} src={imageURL} className="object-contain" fill />
+      {screenType === 'mobile' && imageURL && (
+        <div className="relative mb-7 w-full" style={{ marginBottom: imageMarginBottom }}>
+          <ImageWithFallback
+            alt={`대표_이미지`}
+            src={imageURL}
+            width={imageWidth}
+            height={imageHeight}
+            className="w-full object-contain"
+          />
         </div>
       )}
       <HTMLViewer
         htmlContent={content}
         topRightContent={
-          imageURL && screenType === 'desktop'
+          screenType === 'desktop' && imageURL
             ? {
                 type: 'image',
-                widthPX: imageWidth ?? 320,
-                heightPX: imageHeight ?? 200,
+                widthPX: imageWidth,
+                heightPX: imageHeight,
                 url: imageURL,
               }
             : undefined
