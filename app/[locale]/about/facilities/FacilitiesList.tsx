@@ -1,4 +1,4 @@
-import Distance from '@/public/image/about/distance.svg';
+import Distance from '@/public/image/distance.svg';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -30,13 +30,13 @@ export interface FacilitiesRowProps {
 
 function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowProps) {
   return (
-    <article className={`flex flex-row items-start justify-between gap-5 py-5`}>
+    <article className={`flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row`}>
       <div className="flex w-[35.5rem] flex-col">
         <h3 className="mb-3 text-base font-bold leading-5">{name}</h3>
         <HTMLViewer htmlContent={description} />
-        <div className="flex translate-x-[-4px] items-center gap-px">
+        <div className="flex translate-x-[-4px] items-start gap-px">
           <Distance className="shrink-0" />
-          <p className="text-md">{location}</p>
+          <p className="pt-0.5 text-md text-neutral-500">{location}</p>
         </div>
       </div>
       <FacilitiesRowImage imageURL={imageURL} />
@@ -46,7 +46,7 @@ function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowP
 
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   return (
-    <div className="relative h-40 w-60 shrink-0">
+    <div className="relative h-44 w-full shrink-0 sm:w-60">
       <ImageWithFallback alt="대표 이미지" src={imageURL} fill sizes="10rem" />
     </div>
   );

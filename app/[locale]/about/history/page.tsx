@@ -15,6 +15,7 @@ export default async function History() {
         imageURL={history_image.src}
         imageWidth={320}
         imageHeight={360}
+        imageMarginBottom={0}
       />
     </PageLayout>
   );

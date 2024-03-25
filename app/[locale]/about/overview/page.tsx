@@ -19,13 +19,13 @@ export default async function OverviewPage() {
       <div className="flex flex-col-reverse items-start gap-6 bg-neutral-100 px-5 pb-12 pt-7 sm:flex-row sm:gap-10 sm:py-11 sm:pl-[6.25rem] sm:pr-[22.5rem]">
         <HTMLViewer htmlContent={description} className="sm:w-[20rem] sm:grow" />
         {/* image 크기를 반응형으로 줄이기 위해 필요한 wrapper div */}
-        <div>
+        <div className="w-full sm:w-auto">
           <Image
             src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
             alt="학교 전경"
             width={320}
             height={216}
-            className="object-contain"
+            className="w-full object-contain sm:w-80"
           />
         </div>
       </div>

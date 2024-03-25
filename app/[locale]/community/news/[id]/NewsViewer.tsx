@@ -28,23 +28,28 @@ export default async function NewsViewer({ id, searchParams }: NewsPostPageProps
 
   return (
     <>
-      <h2 className="px-5 py-9 text-[1.25rem] font-semibold sm:pl-[100px] sm:pr-[340px]">
-        {news.title}
-      </h2>
-
+      <Header title={news.title} createdAt={news.createdAt} />
       <div
         className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
         style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
       >
         <Attachments files={news.attachments} />
         <HTMLViewer htmlContent={news.description} className="mb-10" />
-        <time className="mb-3 mt-12 block text-end text-sm font-bold">
-          {formatNewsPostDateStr(news.date)}
-        </time>
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
         <PostFooter post={news} postType="news" id={id.toString()} margin="mt-12" />
       </div>
     </>
+  );
+}
+
+function Header({ title, createdAt }: { title: string; createdAt: string }) {
+  return (
+    <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
+      <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
+      <time className="text-sm font-normal tracking-wide text-neutral-500">
+        작성 일자: {formatNewsPostDateStr(createdAt)}
+      </time>
+    </div>
   );
 }

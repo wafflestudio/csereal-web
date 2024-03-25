@@ -15,7 +15,13 @@ export default function ResearchCenterDetails({
   return (
     <>
       <ResearchCenterTitle name={name} link={websiteURL} />
-      <ContentWithImage imageURL={imageURL} content={description} containerClassName="px-2.5" />
+      <ContentWithImage
+        imageURL={imageURL}
+        content={description}
+        containerClassName="px-2.5"
+        imageWidth={320}
+        imageHeight={200}
+      />
     </>
   );
 }
