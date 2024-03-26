@@ -26,6 +26,7 @@ import AcademicSection from './AcademicSection';
 import AdmissionSection from './AdmissionSection';
 import CommunitySection from './CommunitySection';
 import NoSearchResultError from './helper/NoSearchResultError';
+import SearchSubNavbar, { TreeNode } from './helper/SearchSubNavbar';
 import MemberSection from './MemberSection';
 import ResearchSection from './ResearchSection';
 
@@ -36,6 +37,7 @@ export default async function SearchPage({
 }: {
   searchParams: { keyword?: string; tag?: string[] };
 }) {
+  // 검색어 길이 예외 처리
   if (keyword === undefined || keyword.length < 2) {
     return (
       <SearchPageLayout>
@@ -57,13 +59,44 @@ export default async function SearchPage({
   const academic = await searchAcademics({ keyword, number: 3, amount: 200 });
 
   let total = 0;
-  if (isSectionVisible('소개', tag)) total += about.total;
-  if (isSectionVisible('소식', tag)) total += notice.total + news.total + seminar.total;
-  if (isSectionVisible('구성원', tag)) total += member.total;
-  if (isSectionVisible('연구', tag)) total += research.total;
-  if (isSectionVisible('입학', tag)) total += admission.total;
-  if (isSectionVisible('학사 및 교과', tag)) total += academic.total;
+  const node: TreeNode[] = [];
+  if (isSectionVisible('소개', tag)) {
+    total += about.total;
+    about.total && node.push({ name: `소개(${about.total})` });
+  }
+  if (isSectionVisible('소식', tag)) {
+    const sectionTotal = notice.total + news.total + seminar.total;
+    total += sectionTotal;
+    sectionTotal &&
+      node.push({
+        name: `소식(${sectionTotal})`,
+        children: [
+          { name: `공지사항(${notice.total})` },
+          { name: `새 소식(${news.total})` },
+          { name: `세미나(${seminar.total})` },
+        ],
+      });
+  }
+  if (isSectionVisible('구성원', tag)) {
+    total += member.total;
+    member.total && node.push({ name: `구성원(${member.total})` });
+  }
+  if (isSectionVisible('연구', tag)) {
+    total += research.total;
+    research.total && node.push({ name: `연구(${research.total})` });
+  }
+  if (isSectionVisible('입학', tag)) {
+    total += admission.total;
+    admission.total && node.push({ name: `입학(${admission.total})` });
+  }
+  if (isSectionVisible('학사 및 교과', tag)) {
+    total += academic.total;
+    academic.total && node.push({ name: `학사 및 교과(${academic.total})` });
+  }
 
+  node.unshift({ name: `전체(${total})`, bold: true });
+
+  // 검색 결과 없음 예외 처리
   if (total === 0) {
     return (
       <SearchPageLayout>
@@ -73,7 +106,7 @@ export default async function SearchPage({
   }
 
   return (
-    <SearchPageLayout>
+    <SearchPageLayout node={node}>
       <p className="mb-14 ml-[0.62rem]  text-md text-neutral-500">{total}개의 검색결과</p>
       <div className="flex grow flex-col gap-20">
         {isSectionVisible('소개', tag) && <AboutSection about={about} />}
@@ -89,7 +122,15 @@ export default async function SearchPage({
   );
 }
 
-const SearchPageLayout = ({ keyword, children }: { keyword?: string; children: ReactNode }) => {
+const SearchPageLayout = ({
+  keyword,
+  node,
+  children,
+}: {
+  keyword?: string;
+  node?: TreeNode[];
+  children: ReactNode;
+}) => {
   return (
     <div className="flex grow flex-col bg-neutral-900">
       <Header />
@@ -98,7 +139,7 @@ const SearchPageLayout = ({ keyword, children }: { keyword?: string; children: R
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
         <SearchBox tags={SEARCH_TAGS} key={keyword} formOnly />
         {children}
-        {/* <SubNavbar currentTab={currentPage} /> */}
+        {node !== undefined && <SearchSubNavbar node={node} />}
       </div>
     </div>
   );
