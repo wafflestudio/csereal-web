@@ -1,6 +1,6 @@
 import { getContact } from '@/apis/about';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import ContentWithImage from '@/components/common/ContentWithImage';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function ContactPage() {
@@ -8,17 +8,14 @@ export default async function ContactPage() {
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer
-        htmlContent={description}
-        // TODO: 이미지 본문에 넣기
-        topRightContent={{
-          type: 'image',
-          url: `https://cse-dev-waffle.bacchus.io/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd`,
-          widthPX: 240,
-          heightPX: 360,
-          marginTopPx: 28,
-        }}
-        className="mt-[-1.5rem]"
+      <ContentWithImage
+        content={description}
+        imageURL="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd"
+        imageWidth={240}
+        imageHeight={360}
+        imageMarginTop={28}
+        growWidth={false}
+        htmlViewerClassName="mt-[-1.5rem]"
       />
     </PageLayout>
   );
