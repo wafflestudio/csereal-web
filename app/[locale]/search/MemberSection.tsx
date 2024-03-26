@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
-import { searchMember } from '@/apis/search';
-
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 
-import { Member } from '@/types/search';
+import { Member, MemberSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
 import { faculty, staff } from '@/utils/segmentNode';
@@ -13,14 +11,12 @@ import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
 import Section from './helper/Section';
 
-export default async function MemberSection({ keyword }: { keyword: string }) {
-  const resp = await searchMember({ keyword, number: 10, amount: 200 });
-
-  const professorList = resp.results.filter((x) => x.memberType === 'PROFESSOR');
-  const staffList = resp.results.filter((x) => x.memberType === 'STAFF');
+export default async function MemberSection({ member }: { member: MemberSearchResult }) {
+  const professorList = member.results.filter((x) => x.memberType === 'PROFESSOR');
+  const staffList = member.results.filter((x) => x.memberType === 'STAFF');
 
   return (
-    <Section title="구성원" size={resp.total}>
+    <Section title="구성원" size={member.total}>
       {professorList.length !== 0 && (
         <>
           <CircleTitle title="교수진" />

@@ -1,6 +1,4 @@
-import { searchResearch } from '@/apis/search';
-
-import { ResearchType } from '@/types/search';
+import { ResearchSearchResult, ResearchType } from '@/types/search';
 
 import { getPath } from '@/utils/page';
 import {
@@ -13,9 +11,7 @@ import {
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
 
-export default async function ResearchSection({ keyword }: { keyword: string }) {
-  const research = await searchResearch({ keyword, number: 3, amount: 200 });
-
+export default async function ResearchSection({ research }: { research: ResearchSearchResult }) {
   return (
     <Section title="연구" size={research.total}>
       <div className="flex flex-col gap-7">

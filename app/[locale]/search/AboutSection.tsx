@@ -1,6 +1,4 @@
-import { searchAbout } from '@/apis/search';
-
-import { AboutPreview } from '@/types/search';
+import { AboutPreview, AboutSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
 import {
@@ -17,9 +15,7 @@ import {
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
 
-export default async function AboutSection({ keyword }: { keyword: string }) {
-  const about = await searchAbout({ keyword, number: 3, amount: 200 });
-
+export default async function AboutSection({ about }: { about: AboutSearchResult }) {
   return (
     <Section title="소개" size={about.total}>
       <div className="flex flex-col gap-9">

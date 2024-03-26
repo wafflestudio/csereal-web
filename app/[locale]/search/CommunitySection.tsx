@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
-import { searchNews, searchNotice } from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminar';
+import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
+import { SeminarList } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
@@ -19,20 +19,24 @@ const newsPath = getPath(news);
 const noticePath = getPath(notice);
 const seminarPath = getPath(seminar);
 
-export default async function CommunitySection({ keyword }: { keyword: string }) {
-  const [notice, news, seminar] = await Promise.all([
-    searchNotice({ keyword, number: 3, amount: 200 }),
-    searchNews({ keyword, number: 3, amount: 200 }),
-    getSeminarPosts({ keyword, pageNum: '1' }),
-  ]);
-
+export default async function CommunitySection({
+  keyword,
+  notice,
+  news,
+  seminar,
+}: {
+  keyword: string;
+  notice: NoticeSearchResult;
+  news: NewsSearchResult;
+  seminar: SeminarList;
+}) {
   return (
     <Section title="소식" size={notice.total + news.total + seminar.total}>
       <CommunitySubSection
         title="공지사항"
         size={notice.total}
         href={`${noticePath}?keyword=${keyword}`}
-        divider
+        divider={notice.total != 0 || seminar.total != 0}
       >
         {notice.results.map((notice) => (
           <NoticeRow
@@ -49,7 +53,7 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         title="새 소식"
         size={news.total}
         href={`${newsPath}?keyword=${keyword}`}
-        divider
+        divider={seminar.total != 0}
       >
         {news.results.map((news) => (
           <NewsRow

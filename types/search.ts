@@ -86,28 +86,36 @@ export type ResearchSearchResult = {
 // 입학 탭
 
 export type AcademicType =
-  | 'GUIDE'
+  | 'GUIDE' // 안내
   | 'GENERAL_STUDIES_REQUIREMENTS'
   | 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
-  | 'CURRICULUM'
+  | 'CURRICULUM' // 전공 이수 표준 형태
   | 'DEGREE_REQUIREMENTS'
   | 'DEGREE_REQUIREMENTS_YEAR_LIST'
-  | 'COURSE_CHANGES'
+  | 'COURSE_CHANGES' // 교과목변경내역
+  | 'SCHOLARSHIP'; // 사용 안함. PostType을 대신 사용
+
+export type PostType =
+  | 'ACADEMICS'
+  | 'COURSE' // 교과과정
   | 'SCHOLARSHIP';
 
-export type StudentType = 'GRADUATE' | 'UNDERGRADUATE' | null;
+export type StudentType = 'UNDERGRADUATE' | 'GRADUATE';
+
+export type Academic = {
+  id: 0;
+  name: string;
+  academicType: AcademicType;
+  postType: PostType;
+  studentType: StudentType;
+  partialDescription: string;
+  boldStartIndex: number;
+  boldEndIndex: number;
+};
 
 export type AcademicsSearchResult = {
   total: number;
-  results: {
-    id: 0;
-    name: string;
-    academicType: AcademicType;
-    studentType: StudentType;
-    partialDescription: string;
-    boldStartIndex: number;
-    boldEndIndex: number;
-  }[];
+  results: Academic[];
 };
 
 // 학사 및 교과
