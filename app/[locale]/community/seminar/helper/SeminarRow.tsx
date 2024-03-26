@@ -13,24 +13,18 @@ import { seminar } from '@/utils/segmentNode';
 
 export interface SeminarRowProps {
   seminar: SeminarPreview;
-  hideDivider: boolean;
 }
 
 const seminarPath = getPath(seminar);
 
 export default function SeminarRow({
-  seminar: { id, isYearLast, imageURL, title, name, affiliation, startDate, location },
-  hideDivider,
+  seminar: { id, imageURL, title, name, affiliation, startDate, location },
 }: SeminarRowProps) {
   const seminarPostPath = `${seminarPath}/${id}`;
 
   return (
     <Link href={seminarPostPath}>
-      <article
-        className={`group flex flex-col gap-4 border-neutral-200 py-[1.2rem] sm:flex-row sm:gap-5 ${
-          !isYearLast && !hideDivider ? 'border-t' : null
-        }`}
-      >
+      <article className="group flex flex-col gap-4 sm:flex-row sm:gap-5">
         <ImageCell imageURL={imageURL} />
         <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
           <TitleCell title={title} />

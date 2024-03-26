@@ -32,12 +32,15 @@ export default async function SearchPage({
       <PageTitle title={'통합 검색'} currentPage={main} titleType={'big'} margin={'mb-11'} />
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
         <SearchBox tags={SEARCH_TAGS} key={keyword} />
+
         {keyword === undefined || keyword.length < 2 ? (
           <KeywordShortError />
         ) : (
           <SearchResult keyword={keyword} tag={tag} />
         )}
+
         <NoSearchResultError tag={tag} />
+
         {/* <SubNavbar currentTab={currentPage} /> */}
       </div>
     </div>
@@ -54,7 +57,7 @@ const KeywordShortError = () => {
 };
 
 // MEMO: Blocking을 막기 위해 각 섹션에서 독립적으로 fetch합니다
-// 검색결과 없음을 나타내는 컴포넌트에서도 중복되는 fetch를 하지만 하나의 렌더에서 fetch는 캐싱된다고 알고 있어서 괜찮을 것 같습니다(확인 필요)
+// 검색결과 없음을 나타내는 컴포넌트에서도 동일한 fetch를 하지만 하나의 렌더에서 fetch는 캐싱된다고 알고 있어서 괜찮을 것 같습니다(확인 필요)
 const SearchResult = ({ keyword, tag }: { keyword: string; tag?: string[] }) => {
   return (
     <div className="flex grow flex-col gap-20">

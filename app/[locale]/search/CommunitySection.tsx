@@ -10,9 +10,9 @@ import { news, notice, seminar } from '@/utils/segmentNode';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
+import NewsRow from './helper/NewsRow';
 import NoticeRow from './helper/NoticeRow';
 import Section from './helper/Section';
-import NewsRow from '../community/news/helper/NewsRow';
 import SeminarRow from '../community/seminar/helper/SeminarRow';
 
 const newsPath = getPath(news);
@@ -56,12 +56,9 @@ export default async function CommunitySection({ keyword }: { keyword: string })
             key={news.id}
             href={`${newsPath}/${news.id}`}
             title={news.title}
-            description={news.partialDescription}
-            tags={news.tags}
+            description={news}
             date={new Date(news.date)}
             imageURL={news.imageUrl}
-            descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
-            hideDivider
           />
         ))}
       </CommunitySubSection>
@@ -72,7 +69,7 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         href={`${seminarPath}?keyword=${keyword}`}
       >
         {seminar.searchList.slice(0, 3).map((seminar) => (
-          <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
+          <SeminarRow key={seminar.id} seminar={seminar} />
         ))}
       </CommunitySubSection>
     </Section>
@@ -97,7 +94,7 @@ const CommunitySubSection = ({
   return (
     <>
       <CircleTitle title={title} size={size} />
-      <div className="ml-5 mr-10 mt-8 flex flex-col gap-9">{children}</div>
+      <div className="ml-5 mr-10 mt-8 flex flex-col gap-7">{children}</div>
       <MoreResultLink href={href} />
       {divider && <Divider />}
     </>

@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
@@ -29,10 +31,14 @@ export default async function SeminarContent({
           <NoSearchResult />
         ) : (
           searchList.map((post, index) => (
-            <div key={post.id}>
+            <Fragment key={post.id}>
               {post.isYearLast && <SeminarYear index={index} startDate={post.startDate} />}
-              <SeminarRow seminar={post} hideDivider={false} />
-            </div>
+              <div
+                className={`border-neutral-200 py-[1.2rem] ${!post.isYearLast ? 'border-t' : null}`}
+              >
+                <SeminarRow seminar={post} />
+              </div>
+            </Fragment>
           ))
         )}
       </div>
