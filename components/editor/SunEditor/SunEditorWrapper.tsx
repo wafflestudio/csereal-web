@@ -7,8 +7,9 @@ import plugins from 'suneditor/src/plugins';
 import './suneditor.css';
 import './suneditor-contents.css';
 import SunEditor from 'suneditor-react';
+import { SunEditorReactProps } from 'suneditor-react/dist/types/SunEditorReactProps';
 
-import { BASE_URL } from '@/apis/common';
+import { postImage } from '@/apis/image';
 
 export default function SunEditorWrapper({
   editorRef,
@@ -36,8 +37,28 @@ export default function SunEditorWrapper({
           ['table', 'link', 'image', 'preview'],
         ],
         //   TODO: URL 논의
-        imageUploadUrl: `${BASE_URL}/api/v1/file/upload`,
+        // imageUploadUrl: `${BASE_URL}/api/v1/file/upload`,
       }}
+      onImageUploadBefore={handleImageUploadBefore}
     />
   );
 }
+
+const handleImageUploadBefore: SunEditorReactProps['onImageUploadBefore'] = (
+  files,
+  info,
+  uploadHandler,
+) => {
+  const formData = new FormData();
+  files.forEach((file, idx) => {
+    const ext = file.name.split('.').pop();
+    const newFile = new File([file], `file-${idx}.${ext}`);
+    formData.append(newFile.name, newFile);
+  });
+
+  postImage(formData)
+    .then((resp) => uploadHandler(resp))
+    .catch((reason) => uploadHandler(reason + ''));
+
+  return undefined;
+};
