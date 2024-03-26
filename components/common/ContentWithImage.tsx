@@ -12,6 +12,10 @@ interface ContentWithImageProps {
   imageWidth: number;
   imageHeight: number;
   imageMarginBottom?: number;
+  imageMarginTop?: number;
+  growWidth?: boolean;
+  imageClassName?: string;
+  htmlViewerClassName?: string;
 }
 
 export default function ContentWithImage({
@@ -21,6 +25,9 @@ export default function ContentWithImage({
   imageWidth,
   imageHeight,
   imageMarginBottom,
+  imageMarginTop,
+  growWidth = true,
+  htmlViewerClassName,
 }: ContentWithImageProps) {
   const { screenType } = useResponsive();
 
@@ -33,7 +40,7 @@ export default function ContentWithImage({
             src={imageURL}
             width={imageWidth}
             height={imageHeight}
-            className="w-full object-contain"
+            className={`${growWidth && 'w-full'} object-contain`}
           />
         </div>
       )}
@@ -46,9 +53,11 @@ export default function ContentWithImage({
                 widthPX: imageWidth,
                 heightPX: imageHeight,
                 url: imageURL,
+                marginTopPx: imageMarginTop,
               }
             : undefined
         }
+        className={htmlViewerClassName}
       />
     </div>
   );
