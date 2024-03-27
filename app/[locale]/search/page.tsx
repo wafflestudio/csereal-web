@@ -39,7 +39,7 @@ export default async function SearchPage({
   // 검색 결과 없음 예외 처리
   if (total === 0) {
     return (
-      <SearchPageLayout>
+      <SearchPageLayout node={node}>
         <NoSearchResultError />
       </SearchPageLayout>
     );

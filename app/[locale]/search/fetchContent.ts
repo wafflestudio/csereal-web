@@ -61,7 +61,11 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
 
   // 서브네비 구성
   const node: TreeNode[] = [];
-  node.push({ name: `전체`, size: tag && total, bold: noTag });
+  node.push({
+    name: `전체`,
+    size: tag === undefined || tag.length === 0 ? total : undefined,
+    bold: noTag,
+  });
   node.push({
     name: `소개`,
     size: sectionContent[0]?.total,
