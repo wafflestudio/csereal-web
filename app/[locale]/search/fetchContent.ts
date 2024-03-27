@@ -33,6 +33,7 @@ type SectionContent = [
   academics?: AcademicsSearchResult,
 ];
 
+// TOOD: 리팩터링
 export default async function fetchContent(keyword: string, tag?: string[]) {
   const noTag = tag === undefined || tag.length === 0;
 

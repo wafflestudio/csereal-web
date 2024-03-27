@@ -36,8 +36,6 @@ export default function SunEditorWrapper({
           ['lineHeight', 'align', 'horizontalRule', 'list'],
           ['table', 'link', 'image', 'preview'],
         ],
-        //   TODO: URL 논의
-        // imageUploadUrl: `${BASE_URL}/api/v1/file/upload`,
       }}
       onImageUploadBefore={handleImageUploadBefore}
     />

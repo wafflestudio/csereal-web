@@ -8,8 +8,6 @@ export const postImage = async (formData: FormData) => {
     jsessionID: true,
   })) as ImageUploadResponse;
 
-  console.log(resp);
-
   return resp;
 };
 
