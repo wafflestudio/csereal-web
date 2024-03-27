@@ -16,7 +16,7 @@ type BasicRowProps = {
 export default function BasicRow({ href, title, node, ...description }: BasicRowProps) {
   return (
     <Link className="ml-5 flex flex-col gap-[0.63rem]" href={href}>
-      <h3 className="text-base font-bold">{title}</h3>
+      <h3 className="text-base font-bold hover:underline">{title}</h3>
       <RangeBolded {...description} />
       <p className="text-md font-medium text-main-orange hover:underline">{`${node.parent?.name} > ${node?.name}`}</p>
     </Link>

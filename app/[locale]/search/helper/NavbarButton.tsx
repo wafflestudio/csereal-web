@@ -6,16 +6,16 @@ import { TreeNode } from './SearchSubNavbar';
 
 export default function NavbarButton({ node, style }: { node: TreeNode; style: CSSProperties }) {
   return (
-    <p
+    <button
       onClick={() => scrollToSection(`nav_${node.name}`)}
-      className={`block text-sm ${node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'} ${
-        node.size === undefined || node.size === 0 ? 'pointer-events-none' : ''
-      }`}
+      className={`block text-left text-sm ${
+        node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'
+      } ${node.size === undefined || node.size === 0 ? 'pointer-events-none' : ''}`}
       style={style}
     >
       {node.name}
       {node.size !== undefined && `(${node.size})`}
-    </p>
+    </button>
   );
 }
 
@@ -24,5 +24,5 @@ const scrollToSection = (id: string) => {
   if (target === null) return;
 
   const pos = target.getBoundingClientRect();
-  window.scrollTo({ left: pos.left, top: pos.top + window.scrollY - 100, behavior: 'smooth' });
+  window.scrollTo({ top: pos.top + window.scrollY - 100, behavior: 'smooth' });
 };

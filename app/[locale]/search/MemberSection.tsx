@@ -49,7 +49,7 @@ const MemberCell = ({ name, academicRankOrRole, imageURL, memberType, id }: Memb
   const href = `${memberType === 'PROFESSOR' ? facultyPath : staffPath}/${id}`;
 
   return (
-    <Link className="flex flex-col gap-3" href={href}>
+    <Link className="group flex flex-col gap-3" href={href}>
       <ImageWithFallback
         src={imageURL}
         alt={`${name} 프로필`}
@@ -64,7 +64,9 @@ const MemberCell = ({ name, academicRankOrRole, imageURL, memberType, id }: Memb
         }}
       />
       <div className="flex items-end gap-1">
-        <h3 className="text-[1.04169rem] font-bold text-neutral-950">{name}</h3>
+        <h3 className="text-[1.04169rem] font-bold text-neutral-950 group-hover:underline">
+          {name}
+        </h3>
         <p className="text-md font-normal text-neutral-500">{academicRankOrRole}</p>
       </div>
     </Link>

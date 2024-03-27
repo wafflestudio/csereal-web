@@ -15,7 +15,7 @@ export default function Section({
 
   return (
     <div className="flex flex-col" id={`nav_${title.replace(' ', '_')}`}>
-      <div className="mb-[2.88rem] flex">
+      <div className="mb-8 flex">
         <h3 className="inline border-b-2 border-neutral-200 pb-[.59rem] pl-[.63rem] pr-[.63rem] text-[1.25rem] font-semibold leading-loose text-neutral-950">
           {t(title)}({size})
         </h3>

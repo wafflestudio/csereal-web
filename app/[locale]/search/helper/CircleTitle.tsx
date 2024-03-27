@@ -2,7 +2,7 @@ export default function CircleTitle({ title, size }: { title: string; size?: num
   // TODO: 번역 적용
   // const t = useTranslations();
   return (
-    <div className="flex items-center gap-2">
+    <div className="ml-[0.8rem] flex items-center gap-2">
       <OrangeCircle />
       <h3 className=" text-[1.0625rem] font-semibold leading-loose text-neutral-950">
         {title}
