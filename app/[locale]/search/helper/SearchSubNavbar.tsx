@@ -33,12 +33,14 @@ export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
   );
 }
 
-function SubTab({ node }: { node: TreeNode }) {
+const SubTab = ({ node }: { node: TreeNode }) => {
   return (
     <>
       <Link
         href={`#nav_${node.name}`}
-        className={`text-sm ${node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'}`}
+        className={`text-sm ${node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'} ${
+          node.size === undefined || node.size === 0 ? 'pointer-events-none' : ''
+        }`}
         style={{ marginLeft: INDENTATION }}
       >
         {node.name}
@@ -47,7 +49,9 @@ function SubTab({ node }: { node: TreeNode }) {
       {node.children?.map((childNode, idx) => (
         <Link
           href={`#nav_${childNode.name}`}
-          className={`text-sm text-neutral-700`}
+          className={`text-sm text-neutral-700 ${
+            childNode.size === undefined || childNode.size === 0 ? 'pointer-events-none' : ''
+          }`}
           key={idx}
           style={{ marginLeft: INDENTATION * 2 }}
         >
@@ -57,4 +61,4 @@ function SubTab({ node }: { node: TreeNode }) {
       ))}
     </>
   );
-}
+};
