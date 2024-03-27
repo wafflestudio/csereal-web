@@ -1,4 +1,4 @@
-import { searchAdmissions } from '@/apis/search';
+import { AdmissionsSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
 import { admissions } from '@/utils/segmentNode';
@@ -6,9 +6,11 @@ import { admissions } from '@/utils/segmentNode';
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
 
-export default async function AdmissionSection({ keyword }: { keyword: string }) {
-  const admission = await searchAdmissions({ keyword, number: 3, amount: 200 });
-
+export default async function AdmissionSection({
+  admission,
+}: {
+  admission: AdmissionsSearchResult;
+}) {
   return (
     <Section title="입학" size={admission.total}>
       <div className="flex flex-col gap-7">

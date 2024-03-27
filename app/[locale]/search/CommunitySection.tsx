@@ -2,37 +2,41 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
-import { searchNews, searchNotice } from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminar';
+import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
+import { SeminarList } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
+import NewsRow from './helper/NewsRow';
 import NoticeRow from './helper/NoticeRow';
 import Section from './helper/Section';
-import NewsRow from '../community/news/helper/NewsRow';
 import SeminarRow from '../community/seminar/helper/SeminarRow';
 
 const newsPath = getPath(news);
 const noticePath = getPath(notice);
 const seminarPath = getPath(seminar);
 
-export default async function CommunitySection({ keyword }: { keyword: string }) {
-  const [notice, news, seminar] = await Promise.all([
-    searchNotice({ keyword, number: 3, amount: 200 }),
-    searchNews({ keyword, number: 3, amount: 200 }),
-    getSeminarPosts({ keyword, pageNum: '1' }),
-  ]);
-
+export default async function CommunitySection({
+  keyword,
+  notice,
+  news,
+  seminar,
+}: {
+  keyword: string;
+  notice: NoticeSearchResult;
+  news: NewsSearchResult;
+  seminar: SeminarList;
+}) {
   return (
     <Section title="소식" size={notice.total + news.total + seminar.total}>
       <CommunitySubSection
         title="공지사항"
         size={notice.total}
         href={`${noticePath}?keyword=${keyword}`}
-        divider
+        divider={news.total != 0 || seminar.total != 0}
       >
         {notice.results.map((notice) => (
           <NoticeRow
@@ -49,19 +53,16 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         title="새 소식"
         size={news.total}
         href={`${newsPath}?keyword=${keyword}`}
-        divider
+        divider={seminar.total != 0}
       >
         {news.results.map((news) => (
           <NewsRow
             key={news.id}
             href={`${newsPath}/${news.id}`}
             title={news.title}
-            description={news.partialDescription}
-            tags={news.tags}
+            description={news}
             date={new Date(news.date)}
             imageURL={news.imageUrl}
-            descriptionBold={{ startIndex: news.boldStartIndex, endIndex: news.boldEndIndex }}
-            hideDivider
           />
         ))}
       </CommunitySubSection>
@@ -72,7 +73,7 @@ export default async function CommunitySection({ keyword }: { keyword: string })
         href={`${seminarPath}?keyword=${keyword}`}
       >
         {seminar.searchList.slice(0, 3).map((seminar) => (
-          <SeminarRow key={seminar.id} seminar={seminar} hideDivider />
+          <SeminarRow key={seminar.id} seminar={seminar} />
         ))}
       </CommunitySubSection>
     </Section>
@@ -97,7 +98,9 @@ const CommunitySubSection = ({
   return (
     <>
       <CircleTitle title={title} size={size} />
-      <div className="ml-5 mr-10 mt-8 flex flex-col gap-9">{children}</div>
+      <div className="ml-5 mr-10 mt-8 flex flex-col gap-7" id={`nav_${title.replace(' ', '_')}`}>
+        {children}
+      </div>
       <MoreResultLink href={href} />
       {divider && <Divider />}
     </>

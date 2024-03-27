@@ -34,7 +34,15 @@ export default async function NewsViewer({ id, searchParams }: NewsPostPageProps
         style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
       >
         <Attachments files={news.attachments} />
-        <HTMLViewer htmlContent={news.description} className="mb-10" />
+        <HTMLViewer
+          htmlContent={news.description}
+          topRightContent={
+            news.imageURL
+              ? { type: 'image', url: news.imageURL, widthPX: 320, heightPX: 240 }
+              : undefined
+          }
+          className="mb-10"
+        />
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
         <PostFooter post={news} postType="news" id={id.toString()} margin="mt-12" />
