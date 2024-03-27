@@ -98,7 +98,7 @@ const CommunitySubSection = ({
   return (
     <>
       <CircleTitle title={title} size={size} />
-      <div className="ml-5 mr-10 mt-8 flex flex-col gap-7" id={`nav_${title}`}>
+      <div className="ml-5 mr-10 mt-8 flex flex-col gap-7" id={`nav_${title.replace(' ', '_')}`}>
         {children}
       </div>
       <MoreResultLink href={href} />

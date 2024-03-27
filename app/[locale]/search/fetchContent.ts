@@ -45,9 +45,7 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
     isSectionVisible('구성원', tag)
       ? searchMember({ keyword, number: 10, amount: 200 })
       : undefined,
-    isSectionVisible('연구', tag)
-      ? searchResearch({ keyword, number: 10, amount: 200 })
-      : undefined,
+    isSectionVisible('연구', tag) ? searchResearch({ keyword, number: 3, amount: 200 }) : undefined,
     isSectionVisible('입학', tag)
       ? searchAdmissions({ keyword, number: 3, amount: 200 })
       : undefined,

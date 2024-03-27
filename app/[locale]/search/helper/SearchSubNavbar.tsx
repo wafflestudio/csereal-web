@@ -1,6 +1,6 @@
-import { Link } from '@/navigation';
-
 import { CurvedVerticalNode } from '@/components/common/Nodes';
+
+import NavbarButton from './NavbarButton';
 
 export type TreeNode = {
   name: string;
@@ -9,7 +9,7 @@ export type TreeNode = {
   bold?: boolean;
 };
 
-const INDENTATION = 16;
+export const INDENTATION = 16;
 
 // TODO: 번역
 export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
@@ -36,28 +36,9 @@ export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
 const SubTab = ({ node }: { node: TreeNode }) => {
   return (
     <>
-      <Link
-        href={`#nav_${node.name}`}
-        className={`text-sm ${node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'} ${
-          node.size === undefined || node.size === 0 ? 'pointer-events-none' : ''
-        }`}
-        style={{ marginLeft: INDENTATION }}
-      >
-        {node.name}
-        {node.size !== undefined && `(${node.size})`}
-      </Link>
+      <NavbarButton node={node} style={{ marginLeft: INDENTATION }} />
       {node.children?.map((childNode, idx) => (
-        <Link
-          href={`#nav_${childNode.name}`}
-          className={`text-sm text-neutral-700 ${
-            childNode.size === undefined || childNode.size === 0 ? 'pointer-events-none' : ''
-          }`}
-          key={idx}
-          style={{ marginLeft: INDENTATION * 2 }}
-        >
-          {childNode.name}
-          {childNode.size !== undefined && `(${childNode.size})`}
-        </Link>
+        <NavbarButton node={childNode} key={idx} style={{ marginLeft: INDENTATION * 2 }} />
       ))}
     </>
   );
