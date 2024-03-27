@@ -2,6 +2,9 @@ import { Academic, AcademicsSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
 import {
+  curriculum,
+  degree,
+  generalStudies,
   graduateCourseChanges,
   graduateCourses,
   graduateGuide,
@@ -15,13 +18,12 @@ import {
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
 
+// TODO: 장학 제도 등 상세 페이지로 연결
 export default async function AcademicSection({ academic }: { academic: AcademicsSearchResult }) {
   return (
     <Section title="학사 및 교과" size={academic.total}>
       <div className="flex flex-col gap-7">
         {academic.results.map((result) => {
-          console.log(result);
-          // TODO
           const node = toNode(result);
 
           return (
@@ -40,25 +42,47 @@ export default async function AcademicSection({ academic }: { academic: Academic
 }
 
 const toNode = (academic: Academic) => {
-  // 학부/대학원 공통
+  // 공통
+
+  // 학부/대학원 안내
   if (academic.academicType === 'GUIDE')
     return academic.studentType === 'UNDERGRADUATE' ? undergraduateGuide : graduateGuide;
 
+  // 교과과정
   if (academic.postType === 'COURSE')
     return academic.studentType === 'UNDERGRADUATE' ? undergraduateCourses : graduateCourses;
 
-  if (academic.academicType === 'CURRICULUM')
+  // 교과목 변경 내역
+  if (academic.academicType === 'COURSE_CHANGES')
     return academic.studentType === 'UNDERGRADUATE'
       ? undergraduateCourseChanges
       : graduateCourseChanges;
 
+  // 장학 제도
   if (academic.postType === 'SCHOLARSHIP')
     return academic.studentType === 'UNDERGRADUATE'
       ? undergraduateScholarship
       : graduateScholarship;
 
   // 학부 전용
-  // TODO
 
-  return undergraduateGuide;
+  // 전공이수표준형태
+  if (academic.academicType === 'CURRICULUM') return curriculum;
+
+  // 필수 교양 과목
+  if (
+    academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS' ||
+    academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
+  )
+    return generalStudies;
+
+  // 졸업 규정
+  if (
+    academic.academicType === 'DEGREE_REQUIREMENTS' ||
+    academic.academicType === 'DEGREE_REQUIREMENTS_YEAR_LIST'
+  )
+    return degree;
+
+  // TODO: fallback 없애기
+  return undergraduateCourses;
 };

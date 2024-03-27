@@ -36,7 +36,7 @@ export default async function CommunitySection({
         title="공지사항"
         size={notice.total}
         href={`${noticePath}?keyword=${keyword}`}
-        divider={notice.total != 0 || seminar.total != 0}
+        divider={news.total != 0 || seminar.total != 0}
       >
         {notice.results.map((notice) => (
           <NoticeRow
