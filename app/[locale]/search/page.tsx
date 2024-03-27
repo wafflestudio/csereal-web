@@ -2,17 +2,6 @@ import { ReactNode } from 'react';
 
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 
-import {
-  searchAbout,
-  searchAcademics,
-  searchAdmissions,
-  searchMember,
-  searchNews,
-  searchNotice,
-  searchResearch,
-} from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminar';
-
 import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
@@ -25,13 +14,12 @@ import AboutSection from './AboutSection';
 import AcademicSection from './AcademicSection';
 import AdmissionSection from './AdmissionSection';
 import CommunitySection from './CommunitySection';
+import fetchContent from './fetchContent';
 import NoSearchResultError from './helper/NoSearchResultError';
 import SearchSubNavbar, { TreeNode } from './helper/SearchSubNavbar';
 import MemberSection from './MemberSection';
 import ResearchSection from './ResearchSection';
 
-// TODO: page layout 사용한 방식으로 변경
-// 현재는 SubNav의 차이 때문에 코드 복붙
 export default async function SearchPage({
   searchParams: { keyword, tag },
 }: {
@@ -46,55 +34,7 @@ export default async function SearchPage({
     );
   }
 
-  // TODO: 필요한 정보만 fetch
-  const about = await searchAbout({ keyword, number: 3, amount: 200 });
-  const [notice, news, seminar] = await Promise.all([
-    searchNotice({ keyword, number: 3, amount: 200 }),
-    searchNews({ keyword, number: 3, amount: 200 }),
-    getSeminarPosts({ keyword, pageNum: '1' }),
-  ]);
-  const member = await searchMember({ keyword, number: 10, amount: 200 });
-  const research = await searchResearch({ keyword, number: 3, amount: 200 });
-  const admission = await searchAdmissions({ keyword, number: 3, amount: 200 });
-  const academic = await searchAcademics({ keyword, number: 3, amount: 200 });
-
-  let total = 0;
-  const node: TreeNode[] = [];
-  if (isSectionVisible('소개', tag)) {
-    total += about.total;
-    about.total && node.push({ name: `소개(${about.total})` });
-  }
-  if (isSectionVisible('소식', tag)) {
-    const sectionTotal = notice.total + news.total + seminar.total;
-    total += sectionTotal;
-    sectionTotal &&
-      node.push({
-        name: `소식(${sectionTotal})`,
-        children: [
-          { name: `공지사항(${notice.total})` },
-          { name: `새 소식(${news.total})` },
-          { name: `세미나(${seminar.total})` },
-        ],
-      });
-  }
-  if (isSectionVisible('구성원', tag)) {
-    total += member.total;
-    member.total && node.push({ name: `구성원(${member.total})` });
-  }
-  if (isSectionVisible('연구', tag)) {
-    total += research.total;
-    research.total && node.push({ name: `연구(${research.total})` });
-  }
-  if (isSectionVisible('입학', tag)) {
-    total += admission.total;
-    admission.total && node.push({ name: `입학(${admission.total})` });
-  }
-  if (isSectionVisible('학사 및 교과', tag)) {
-    total += academic.total;
-    academic.total && node.push({ name: `학사 및 교과(${academic.total})` });
-  }
-
-  node.unshift({ name: `전체(${total})`, bold: true });
+  const { sectionContent, total, node } = await fetchContent(keyword, tag);
 
   // 검색 결과 없음 예외 처리
   if (total === 0) {
@@ -109,19 +49,26 @@ export default async function SearchPage({
     <SearchPageLayout node={node}>
       <p className="mb-14 ml-[0.62rem]  text-md text-neutral-500">{total}개의 검색결과</p>
       <div className="flex grow flex-col gap-20">
-        {isSectionVisible('소개', tag) && <AboutSection about={about} />}
-        {isSectionVisible('소식', tag) && (
-          <CommunitySection keyword={keyword} notice={notice} news={news} seminar={seminar} />
+        {sectionContent[0] && <AboutSection about={sectionContent[0]} />}
+        {sectionContent[1] && (
+          <CommunitySection
+            keyword={keyword}
+            notice={sectionContent[1]}
+            news={sectionContent[2]!}
+            seminar={sectionContent[3]!}
+          />
         )}
-        {isSectionVisible('구성원', tag) && <MemberSection member={member} />}
-        {isSectionVisible('연구', tag) && <ResearchSection research={research} />}
-        {isSectionVisible('입학', tag) && <AdmissionSection admission={admission} />}
-        {isSectionVisible('학사 및 교과', tag) && <AcademicSection academic={academic} />}
+        {sectionContent[4] && <MemberSection member={sectionContent[4]} />}
+        {sectionContent[5] && <ResearchSection research={sectionContent[5]} />}
+        {sectionContent[6] && <AdmissionSection admission={sectionContent[6]} />}
+        {sectionContent[7] && <AcademicSection academic={sectionContent[7]} />}
       </div>
     </SearchPageLayout>
   );
 }
 
+// TODO: page layout 사용한 방식으로 변경
+// 현재는 SubNav의 차이 때문에 코드 복붙
 const SearchPageLayout = ({
   keyword,
   node,
@@ -153,8 +100,3 @@ const KeywordShortError = () => {
     </div>
   );
 };
-
-const isSectionVisible = (
-  sectionName: '소개' | '소식' | '구성원' | '연구' | '입학' | '학사 및 교과',
-  tagList?: string[],
-) => tagList === undefined || tagList.length === 0 || tagList.includes(sectionName);
