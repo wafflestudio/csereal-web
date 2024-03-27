@@ -61,9 +61,10 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
 
   // 서브네비 구성
   const node: TreeNode[] = [];
-  node.push({ name: `전체${emptyIfZero(total)}`, bold: noTag });
+  node.push({ name: `전체`, size: tag && total, bold: noTag });
   node.push({
-    name: `소개${emptyIfZero(sectionContent[0]?.total)}`,
+    name: `소개`,
+    size: sectionContent[0]?.total,
     bold: !noTag && sectionContent[0] !== undefined,
   });
 
@@ -72,29 +73,34 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
   const seminarTotal = sectionContent[3]?.total;
   const sectionTotal = noticeTotal && (noticeTotal ?? 0) + (newsTotal ?? 0) + (seminarTotal ?? 0);
   node.push({
-    name: `소식${emptyIfZero(sectionTotal)}`,
+    name: `소식`,
+    size: sectionTotal,
     children: [
-      { name: `공지사항${emptyIfZero(noticeTotal)}` },
-      { name: `새 소식${emptyIfZero(newsTotal)}` },
-      { name: `세미나${emptyIfZero(seminarTotal)}` },
+      { name: `공지사항`, size: noticeTotal },
+      { name: `새 소식`, size: newsTotal },
+      { name: `세미나`, size: seminarTotal },
     ],
     bold: !noTag && sectionContent[1] !== undefined,
   });
 
   node.push({
-    name: `구성원${emptyIfZero(sectionContent[4]?.total)}`,
+    name: `구성원`,
+    size: sectionContent[4]?.total,
     bold: !noTag && sectionContent[4] !== undefined,
   });
   node.push({
-    name: `연구${emptyIfZero(sectionContent[5]?.total)}`,
+    name: `연구`,
+    size: sectionContent[5]?.total,
     bold: !noTag && sectionContent[5] !== undefined,
   });
   node.push({
-    name: `입학${emptyIfZero(sectionContent[6]?.total)}`,
+    name: `입학`,
+    size: sectionContent[6]?.total,
     bold: !noTag && sectionContent[6] !== undefined,
   });
   node.push({
-    name: `학사 및 교과${emptyIfZero(sectionContent[7]?.total)}`,
+    name: `학사 및 교과`,
+    size: sectionContent[7]?.total,
     bold: !noTag && sectionContent[7] !== undefined,
   });
 
@@ -105,5 +111,3 @@ const isSectionVisible = (
   sectionName: '소개' | '소식' | '구성원' | '연구' | '입학' | '학사 및 교과',
   tagList?: string[],
 ) => tagList === undefined || tagList.length === 0 || tagList.includes(sectionName);
-
-const emptyIfZero = (val?: number) => (val === undefined ? '' : `(${val})`);

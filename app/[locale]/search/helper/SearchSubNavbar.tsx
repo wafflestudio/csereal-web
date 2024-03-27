@@ -1,7 +1,10 @@
+import { Link } from '@/navigation';
+
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 
 export type TreeNode = {
   name: string;
+  size?: number;
   children?: TreeNode[];
   bold?: boolean;
 };
@@ -33,20 +36,24 @@ export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
 function SubTab({ node }: { node: TreeNode }) {
   return (
     <>
-      <li
+      <Link
+        href={`#nav_${node.name}`}
         className={`text-sm ${node.bold ? 'font-bold text-main-orange' : 'text-neutral-700'}`}
         style={{ marginLeft: INDENTATION }}
       >
         {node.name}
-      </li>
+        {node.size !== undefined && `(${node.size})`}
+      </Link>
       {node.children?.map((childNode, idx) => (
-        <li
+        <Link
+          href={`#nav_${childNode.name}`}
           className={`text-sm text-neutral-700`}
           key={idx}
           style={{ marginLeft: INDENTATION * 2 }}
         >
           {childNode.name}
-        </li>
+          {childNode.size !== undefined && `(${childNode.size})`}
+        </Link>
       ))}
     </>
   );

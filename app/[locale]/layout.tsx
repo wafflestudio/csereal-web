@@ -39,7 +39,11 @@ export default async function RootLayout({
   unstable_setRequestLocale(params.locale);
 
   return (
-    <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
+    <html
+      lang={params.locale}
+      // Anchor에서 #를 통한 스크롤을 부드럽게 하기 위해 scroll-smooth 추가
+      className="scroll-smooth bg-neutral-900 font-normal text-neutral-950"
+    >
       <body className="sm:min-w-[1000px]">
         <ContextProviders locale={params.locale}>
           <Navbar />
