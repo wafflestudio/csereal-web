@@ -20,7 +20,7 @@ export default async function MemberSection({ member }: { member: MemberSearchRe
       {professorList.length !== 0 && (
         <>
           <CircleTitle title="교수진" />
-          <div className="ml-5 mt-7 flex gap-12">
+          <div className="ml-5 mt-7 flex flex-wrap gap-10 sm:gap-12">
             {professorList.slice(0, 3).map((result) => {
               return <MemberCell key={result.id} {...result} />;
             })}
@@ -31,7 +31,7 @@ export default async function MemberSection({ member }: { member: MemberSearchRe
       {staffList.length !== 0 && (
         <>
           <CircleTitle title="행정직원" />
-          <div className="ml-5 mt-7 flex gap-12">
+          <div className="ml-5 mt-7 flex flex-wrap gap-10 sm:gap-12">
             {staffList.slice(0, 3).map((result) => {
               return <MemberCell key={result.id} {...result} />;
             })}
