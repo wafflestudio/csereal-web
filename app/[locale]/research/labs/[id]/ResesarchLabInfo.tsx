@@ -12,7 +12,7 @@ import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';
 
 export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
-  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25)';
+  const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25))';
   const triangleLength = 2.5; // 20px
   const radius = 0.125; // 2px
 

@@ -47,7 +47,7 @@ export default async function SearchPage({
 
   return (
     <SearchPageLayout node={node}>
-      <p className="mb-14 ml-[0.62rem]  text-md text-neutral-500">{total}개의 검색결과</p>
+      <p className="mb-11 ml-3 text-md  text-neutral-500 sm:mb-14">{total}개의 검색결과</p>
       <div className="flex grow flex-col gap-20">
         {sectionContent[0] && <AboutSection about={sectionContent[0]} />}
         {sectionContent[1] && (

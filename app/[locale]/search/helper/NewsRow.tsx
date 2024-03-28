@@ -30,8 +30,8 @@ export default function NewsRow({
   });
 
   return (
-    <article className="flex gap-6">
-      <Link href={href} className="relative flex aspect-[4/3] h-[9.375rem]">
+    <article className="flex flex-col gap-5 sm:flex-row sm:gap-6">
+      <Link href={href} className="relative flex aspect-[4/3] sm:h-[9.375rem]">
         <ImageWithFallback
           alt="포스트 대표 이미지"
           src={imageURL}
@@ -40,7 +40,11 @@ export default function NewsRow({
           sizes="12.5rem"
         />
       </Link>
-      <div className="mr-8 flex flex-col justify-between">
+      <div className="flex flex-col justify-between gap-2.5 sm:gap-0">
+        <time className="whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:order-last">
+          {dateStr}
+        </time>
+
         <div className="flex flex-col items-start">
           <Link href={href} className="hover:underline">
             <h3 className="mb-2.5 text-base font-bold">{title}</h3>
@@ -59,8 +63,6 @@ export default function NewsRow({
             </p>
           </Link>
         </div>
-
-        <time className="whitespace-nowrap text-sm leading-[26px] text-neutral-800">{dateStr}</time>
       </div>
     </article>
   );
