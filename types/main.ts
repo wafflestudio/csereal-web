@@ -1,38 +1,33 @@
-import { ImportantCategory } from './admin';
+export type MainResponse = {
+  slides: MainNews[];
+  notices: AllMainNotice;
+  importants: MainImportant[];
+};
 
-export const NOTICE_CATEGORY = ['전체', '장학', '학부', '대학원'] as const;
-
-export type NoticeCategoryType = (typeof NOTICE_CATEGORY)[number];
-
-export interface ImportantPostMain {
-  category: ImportantCategory;
+export type MainNews = {
   id: number;
   title: string;
   description: string;
-}
-
-export interface NoticeListMainType {
-  all: NoticeMain[];
-  scholarship: NoticeMain[];
-  undergraduate: NoticeMain[];
-  graduate: NoticeMain[];
-}
-
-export interface NoticeMain {
-  createdAt: string;
-  title: string;
-  id: number;
-}
-
-export interface SlideMain {
-  id: number;
-  title: string;
   imageURL: string;
-  description: string;
-}
+  createdAt: string;
+};
 
-export interface MainContents {
-  slides: SlideMain[];
-  notices: NoticeListMainType;
-  importants: ImportantPostMain[];
-}
+export type AllMainNotice = {
+  all: MainNotice[];
+  scholarship: MainNotice[];
+  undergraduate: MainNotice[];
+  graduate: MainNotice[];
+};
+
+export type MainNotice = {
+  id: number;
+  title: string;
+  createdAt: string;
+};
+
+export type MainImportant = {
+  id: number;
+  title: string;
+  description: string;
+  category: 'notice' | 'news';
+};
