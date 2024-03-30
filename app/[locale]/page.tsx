@@ -70,7 +70,7 @@ const NewsSection = ({ newsList }: { newsList: MainNews[] }) => {
 const NewsCard = ({ news }: { news: MainNews }) => (
   <Link
     href={`/community/news/${news.id}`}
-    className="flex h-[17.3rem] w-[13.8rem] flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] "
+    className="flex h-[19rem] w-[13.8rem] flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] "
   >
     <div className="relative h-[6.25rem] w-full">
       <Image src={news.imageURL} fill alt="" className="object-cover" />
