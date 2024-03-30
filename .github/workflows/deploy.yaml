@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/search
+      - fix/fetch
 
 jobs:
   build:
