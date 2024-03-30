@@ -45,4 +45,16 @@ export const formatSeminarDateStr = (date: Date) => {
   )}`;
 };
 
+export const formatMainNewsDateStr = (str: string) => {
+  const date = new Date(str);
+
+  return `${date.getFullYear()}.${padZero(date.getMonth() + 1)}.${padZero(date.getDate())}.`;
+};
+
+export const formatMainNoticeDateStr = (str: string) => {
+  const date = new Date(str);
+
+  return `${padZero(date.getMonth() + 1)}/${padZero(date.getDate())} (${DAYS[date.getDay()]})`;
+};
+
 const padZero = (str: number) => (str + '').padStart(2, '0');
