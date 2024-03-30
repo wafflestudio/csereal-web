@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 
 import DownArrow from '@/public/image/main/down_arrow.svg';
 import RightArrow from '@/public/image/main/right_arrow.svg';
+import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
 
 import { getMain } from '@/apis/main';
 
@@ -18,6 +19,7 @@ import {
   faculty,
   facultyRecruitment,
   graduateScholarship,
+  news,
   topConferenceList,
   undergraduateScholarship,
 } from '@/utils/segmentNode';
@@ -46,7 +48,16 @@ const MainSection = () => (
 
 const NewsSection = ({ newsList }: { newsList: MainNews[] }) => {
   return (
-    <div className="bg-neutral-100 pb-[2.5rem] pt-[5rem]">
+    <div className="relative bg-neutral-100 pb-[5.5rem] pt-[5rem]">
+      <div className="absolute left-[3.81rem] top-[5rem] flex flex-col gap-2">
+        <h3 className="text-[1.75rem] font-medium text-neutral-950">새 소식</h3>
+        <Link
+          className="flex items-center gap-1 text-base font-normal text-[#E65615]"
+          href={getPath(news)}
+        >
+          더보기 <SmallRightArrow />
+        </Link>
+      </div>
       <div className="no-scrollbar flex justify-center gap-8">
         {newsList.slice(0, 4).map((news) => (
           <NewsCard news={news} key={news.id} />
@@ -66,7 +77,7 @@ const NewsCard = ({ news }: { news: MainNews }) => (
     </div>
 
     <div className="px-[0.87rem] pt-[0.88rem]">
-      <h3 className="line-clamp-1 text-[0.9375rem] font-semibold text-neutral-900">{news.title}</h3>
+      <h3 className="line-clamp-2 text-[0.9375rem] font-semibold text-neutral-900">{news.title}</h3>
       <time className="mt-3 block text-sm font-normal text-neutral-500">
         {formatMainNewsDateStr(news.createdAt)}
       </time>
@@ -95,12 +106,30 @@ const ImportantSection = ({ importantList }: { importantList: MainImportant[] })
             <p className="line-clamp-1 text-sm font-normal text-neutral-800">
               {important.description}
             </p>
+            <ImportantSectionArrow />
           </Link>
         );
       })}
     </div>
   );
 };
+
+const ImportantSectionArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    className="absolute bottom-[0.87rem] right-[0.87rem]"
+  >
+    <path
+      d="M14.0076 5L23 13.9924M23 13.9924L14.0076 23M23 13.9924L5 13.9924"
+      stroke="#0A0A0A"
+      stroke-width="1.5"
+    />
+  </svg>
+);
 
 const LinkSection = () => {
   return (
