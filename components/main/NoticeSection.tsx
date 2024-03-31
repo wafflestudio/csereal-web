@@ -8,8 +8,10 @@ import Plus from '@/public/image/main/plus.svg';
 import { AllMainNotice } from '@/types/main';
 
 import { formatMainNoticeDateStr } from '@/utils/date';
+import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
-export default function NoticeSection({ notice }: { notice: AllMainNotice }) {
+export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');
 
   return (
@@ -37,13 +39,13 @@ export default function NoticeSection({ notice }: { notice: AllMainNotice }) {
               대학원
             </NoticeSectionButton>
           </div>
-          <Link className="flex text-base font-normal text-[#E65817]" href="/notice">
+          <Link className="flex text-base font-normal text-[#E65817]" href={getPath(notice)}>
             <Plus /> 더보기
           </Link>
         </div>
 
         <div className="mt-6 flex flex-col gap-4">
-          {notice[tag].map((notice) => (
+          {allMainNotice[tag].map((notice) => (
             <Link
               key={notice.id}
               className="line-clamp-1 flex justify-between text-base font-normal text-white"
