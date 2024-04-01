@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, {
   createContext,
   useContext,
@@ -10,6 +11,8 @@ import React, {
 } from 'react';
 
 import { getIsStaff, getMockAuth, removeAuth } from '@/actions/session';
+
+import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -29,6 +32,7 @@ export const useSessionContext = () => useContext(SessionContext);
 
 export default function SessionContextProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<UserState>('logout');
+  const router = useRouter();
 
   const refresh = useCallback(async () => {
     const resp = await getIsStaff();
@@ -40,16 +44,24 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [refresh]);
 
   const login = useCallback(async () => {
-    // TODO: 실제 배포시 LOGIN_URL, LOGOUT_URL 사용
-    await getMockAuth();
+    if (process.env.NODE_ENV === 'development') {
+      await getMockAuth();
+    } else {
+      router.push(LOGIN_URL);
+    }
+
     await refresh();
-  }, [refresh]);
+  }, [refresh, router]);
 
   const logout = useCallback(async () => {
-    // TODO: 실제 배포시 LOGIN_URL, LOGOUT_URL 사용
-    removeAuth();
+    if (process.env.NODE_ENV === 'development') {
+      removeAuth();
+    } else {
+      router.push(LOGOUT_URL);
+    }
+
     await refresh();
-  }, [refresh]);
+  }, [refresh, router]);
 
   return (
     <SessionContext.Provider value={{ state, login, logout }}>{children}</SessionContext.Provider>

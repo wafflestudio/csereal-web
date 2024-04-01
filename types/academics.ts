@@ -58,11 +58,11 @@ export interface DegreeRequirements {
   description: string;
   yearList: {
     year: number;
-    attachment: {
+    attachments: {
       name: string;
       url: string;
       bytes: number;
-    };
+    }[];
   }[];
 }
 
