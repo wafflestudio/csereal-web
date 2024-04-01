@@ -15,6 +15,7 @@ interface PageLayoutProps {
   titleType: 'big' | 'small';
   titleMargin?: string; // tailwind class
   bodyStyle?: CSSProperties;
+  hideNavbar?: boolean;
   children: ReactNode;
 }
 
@@ -37,6 +38,7 @@ export default function PageLayout({
   titleType,
   titleMargin = 'mb-6 sm:mb-11',
   bodyStyle,
+  hideNavbar,
   children,
 }: PageLayoutProps) {
   const t = useTranslations('Nav');
@@ -57,7 +59,7 @@ export default function PageLayout({
         style={bodyStyle}
       >
         {children}
-        <SubNavbar currentTab={currentPage} />
+        {hideNavbar !== true && <SubNavbar currentTab={currentPage} />}
       </div>
     </div>
   );
