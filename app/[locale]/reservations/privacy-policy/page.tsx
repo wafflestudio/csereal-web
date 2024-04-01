@@ -1,23 +1,13 @@
 'use client';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageTitle from '@/components/layout/pageLayout/PageTitle';
-
-import { reservations } from '@/utils/segmentNode';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function ReservationPrivacyPolicy() {
   return (
-    <div className="grid-cols-auto mx-[3.75rem] grid grid-rows-[auto_1fr] justify-center gap-x-10">
-      <PageTitle
-        title={'개인정보 수집 및 이용동의'}
-        currentPage={reservations}
-        titleType="big"
-        margin="mb-8"
-      />
-      <div className="col-start-1 row-start-2 w-[52.5rem]">
-        <HTMLViewer htmlContent={htmlContent} />
-      </div>
-    </div>
+    <PageLayout title="개인정보처리방침" titleType="big" titleMargin="mb-9" hideNavbar>
+      <HTMLViewer htmlContent={htmlContent} />
+    </PageLayout>
   );
 }
 
