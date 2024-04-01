@@ -1,4 +1,3 @@
-// TODO: 디자인 적용
 export default async function RootLayout({
   children,
   params,

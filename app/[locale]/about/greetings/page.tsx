@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import Image from 'next/image';
 
 import greetings from '@/public/image/about/greetings.jpg';

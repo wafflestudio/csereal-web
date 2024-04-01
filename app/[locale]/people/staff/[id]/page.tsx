@@ -3,12 +3,12 @@ import { Link } from '@/navigation';
 import { getStaff } from '@/apis/people';
 
 import HeaderAndList from '@/app/[locale]/people/helper/HeaderAndList';
-import ProfileImage from '@/app/[locale]/people/helper/ProfileImage';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import BulletRow from '../../helper/BulletRow';
 import PageTitle from '../../helper/PageTitle';
+import ProfileImage from '../../helper/ProfileImage';
 
 export default async function StaffMemberPage({ params }: { params: { id: number } }) {
   const staff = await getStaff(params.id);

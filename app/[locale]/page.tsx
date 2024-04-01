@@ -4,11 +4,11 @@ import { ReactNode } from 'react';
 
 import DownArrow from '@/public/image/main/down_arrow.svg';
 import RightArrow from '@/public/image/main/right_arrow.svg';
-import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
 
 import { getMain } from '@/apis/main';
 
 import Header from '@/components/layout/header/Header';
+import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
 
 import { MainImportant, MainNews } from '@/types/main';
@@ -19,10 +19,11 @@ import {
   faculty,
   facultyRecruitment,
   graduateScholarship,
-  news,
   topConferenceList,
   undergraduateScholarship,
 } from '@/utils/segmentNode';
+
+const NEWS_CARD_WIDTH_REM = 13.8;
 
 export default async function MainPage() {
   const data = await getMain();
@@ -31,9 +32,13 @@ export default async function MainPage() {
     <>
       <Header />
       <MainSection />
-      <NewsSection newsList={data.slides} />
+      <NewsSection>
+        {data.slides.map((news) => (
+          <NewsCard news={news} key={news.id} />
+        ))}
+      </NewsSection>
       <ImportantSection importantList={data.importants} />
-      <NoticeSection notice={data.notices} />
+      <NoticeSection allMainNotice={data.notices} />
       <LinkSection />
     </>
   );
@@ -46,31 +51,11 @@ const MainSection = () => (
   </div>
 );
 
-const NewsSection = ({ newsList }: { newsList: MainNews[] }) => {
-  return (
-    <div className="relative bg-neutral-100 pb-[5.5rem] pt-[5rem]">
-      <div className="absolute left-[3.81rem] top-[5rem] flex flex-col gap-2">
-        <h3 className="text-[1.75rem] font-medium text-neutral-950">새 소식</h3>
-        <Link
-          className="flex items-center gap-1 text-base font-normal text-[#E65615]"
-          href={getPath(news)}
-        >
-          더보기 <SmallRightArrow />
-        </Link>
-      </div>
-      <div className="no-scrollbar flex justify-center gap-8">
-        {newsList.slice(0, 4).map((news) => (
-          <NewsCard news={news} key={news.id} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
 const NewsCard = ({ news }: { news: MainNews }) => (
   <Link
     href={`/community/news/${news.id}`}
-    className="flex h-[19rem] w-[13.8rem] flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] "
+    style={{ width: `${NEWS_CARD_WIDTH_REM}rem` }}
+    className="flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]"
   >
     <div className="relative h-[6.25rem] w-full">
       <Image src={news.imageURL} fill alt="" className="object-cover" />

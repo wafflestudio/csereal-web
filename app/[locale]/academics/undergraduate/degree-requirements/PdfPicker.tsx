@@ -20,7 +20,7 @@ export default function PdfPicker({ data }: { data: DegreeRequirements['yearList
           onClick={setIndex}
         />
       </div>
-      <Attachments files={[data[index].attachment]} />
+      <Attachments files={[data[index].attachments[0]]} />
     </div>
   );
 }

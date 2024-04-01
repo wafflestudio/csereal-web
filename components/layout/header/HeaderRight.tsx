@@ -48,7 +48,7 @@ const AuthButton = () => {
 
   return (
     <button onClick={state === 'logout' ? login : logout} className="hover:text-main-orange">
-      {t(state === 'logout' ? '로그인' : '로그아웃') + '(test)'}
+      {t(state === 'logout' ? '로그인' : '로그아웃')}
     </button>
   );
 };

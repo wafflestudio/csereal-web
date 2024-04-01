@@ -1,4 +1,4 @@
-import Attachment from '@/components/common/Attachments';
+import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -8,7 +8,7 @@ export default async function PrivacyPolicyPage() {
       {/* TODO: PR 합친 후 매직 넘버 없애기 */}
       <div className="mr-[300px]" style={{ marginLeft: '100px' }}>
         <HTMLViewer htmlContent={htmlContent} />
-        <Attachment files={[file]} />
+        <Attachments files={[file]} />
       </div>
     </PageLayout>
   );
