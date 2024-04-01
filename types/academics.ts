@@ -30,13 +30,7 @@ export interface CourseChange {
 
 export interface GeneralStudiesRequirements {
   overview: string;
-  subjectChanges: {
-    status: 'new' | 'change';
-    time: string;
-    additionalInfos?: string[];
-    changes: string[];
-    progress: string;
-  }[];
+  subjectChanges: string;
   generalStudies: {
     id: number;
     year: number;

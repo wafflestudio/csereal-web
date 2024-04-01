@@ -16,8 +16,10 @@ export const getMockAuth = async () => {
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
 
-  // TODO: 실 배포시 secure 옵션 주기
-  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true });
+  cookies().set(COOKIE_SESSION_ID, value, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  });
 };
 
 export const removeAuth = () => {

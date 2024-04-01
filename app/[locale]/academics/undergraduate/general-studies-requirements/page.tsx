@@ -1,13 +1,14 @@
-import { getGeneralStudiesRequirements } from '@/apis/academicsServer';
+import { getGeneralStudiesRequirements } from '@/apis/academics';
 
 import Accordion from '@/app/[locale]/academics/undergraduate/general-studies-requirements/Accordion';
 
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import SubjectChanges from './SubjectChanges';
-
 export default async function UndergraduateGeneralStudiesRequirements() {
-  const { overview, subjectChanges, generalStudies } = await getGeneralStudiesRequirements();
+  const { overview, subjectChanges, generalStudies } = await getGeneralStudiesRequirements(
+    'undergraduate',
+  );
 
   return (
     <PageLayout titleType="big">
@@ -16,7 +17,7 @@ export default async function UndergraduateGeneralStudiesRequirements() {
 
         <ContentTitle title={'교양 교과과정 변경 내역'} />
         <div className="mb-5 mt-2.5">
-          {subjectChanges?.map((change, idx) => <SubjectChanges key={idx} {...change} />)}
+          <HTMLViewer htmlContent={subjectChanges} />
         </div>
 
         <ContentTitle title={'[학번별] 영역별 교양과목 학점 배분 구조표'} />
