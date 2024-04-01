@@ -1,11 +1,8 @@
-import Image from 'next/image';
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 
-// TODO: Image -> ImageFallback으로 수정
 export default function ProfileImage({ imageURL }: { imageURL: string | null }) {
-  if (imageURL === null) return <></>;
-
   return (
-    <Image
+    <ImageWithFallback
       alt="대표 이미지"
       src={imageURL}
       width={200}

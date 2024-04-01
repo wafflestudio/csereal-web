@@ -13,9 +13,10 @@ interface ProfileProps {
 
 export default function Profile({ office, phone, fax, email, website, imageURL }: ProfileProps) {
   return (
-    <div className="relative float-right flex flex-col gap-5">
+    <div className="relative float-right">
       <ProfileImage imageURL={imageURL} />
-      <div className=" flex flex-col gap-[9px] bg-white text-sm font-medium text-neutral-600">
+
+      <div className="mt-5 flex flex-col gap-[9px] bg-white text-sm font-medium text-neutral-600">
         <FacultyInfoWithSymbols symbol="distance" label={office} />
         <FacultyInfoWithSymbols symbol="phone_in_talk" label={phone} />
         <FacultyInfoWithSymbols symbol="print" label={fax} />
