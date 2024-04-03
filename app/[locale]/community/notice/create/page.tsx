@@ -23,6 +23,7 @@ export default function NoticeCreatePage() {
   const handleCancel = () => router.push(noticePath);
 
   const handleComplete = async (content: PostEditorContent) => {
+    console.log(content.description);
     validateNoticeForm(content);
     const formData = contentToForm(content);
     await postNoticeAction(formData);
