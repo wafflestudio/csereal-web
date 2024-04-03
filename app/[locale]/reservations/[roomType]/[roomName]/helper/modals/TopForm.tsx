@@ -48,7 +48,7 @@ export default function TopForm({
 
       <InputWithLabel title="매주 반복">
         <Dropdown
-          contents={Array(14)
+          contents={Array(20)
             .fill(0)
             .map((_, i) => i + 1 + '')}
           selectedIndex={body.recurringWeeks - 1}
