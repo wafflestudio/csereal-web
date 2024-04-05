@@ -1,3 +1,5 @@
+import { ElementType, PropsWithChildren } from 'react';
+
 import { Link } from '@/navigation';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
@@ -28,8 +30,10 @@ export default function SeminarRow({
         <ImageCell imageURL={imageURL} />
         <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
           <TitleCell title={title} />
-          <HostInformationCell host={name} company={affiliation} />
-          <DateAndLocationCell date={new Date(startDate)} location={location} />
+          <div className="flex flex-col gap-0.5">
+            <HostInformationCell host={name} company={affiliation} />
+            <DateAndLocationCell date={new Date(startDate)} location={location} />
+          </div>
         </div>
       </article>
     </Link>
@@ -40,7 +44,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
   return (
     // title에 밀리는 것을 막기 위해 shrink-0 사용
     <div
-      className={`relative h-[160px] w-[160px] shrink-0 sm:h-[6.25rem] sm:w-[6.25rem] ${
+      className={`relative h-[10rem] w-[10rem] shrink-0 sm:h-[6.25rem] sm:w-[6.25rem] ${
         !imageURL && 'bg-neutral-100'
       }`}
     >
@@ -55,9 +59,11 @@ function TitleCell({ title }: { title: string }) {
 
 function HostInformationCell({ host, company }: { host: string; company: string }) {
   return (
-    <div className="flex cursor-pointer flex-wrap items-center gap-0.5">
-      <Person />
-      <Text text={host} />
+    <div className="flex cursor-pointer flex-wrap gap-x-0.5">
+      <IconTextWrapper>
+        <IconWrapper IconComponent={Person} />
+        <Text text={host} />
+      </IconTextWrapper>
       <VerticalDivider />
       <Text text={company} />
     </div>
@@ -66,18 +72,30 @@ function HostInformationCell({ host, company }: { host: string; company: string 
 
 function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
   return (
-    <div className="flex items-center gap-0.5 hover:cursor-pointer">
-      <Calendar />
-      <Text text={formatSeminarDateStr(date)} />
+    <div className="flex flex-wrap gap-0.5 hover:cursor-pointer">
+      <IconTextWrapper>
+        <IconWrapper IconComponent={Calendar} />
+        <Text text={formatSeminarDateStr(date)} />
+      </IconTextWrapper>
       <VerticalDivider />
-      <Distance />
-      <Text text={location} />
+      <IconTextWrapper>
+        <IconWrapper IconComponent={Distance} />
+        <Text text={location} />
+      </IconTextWrapper>
     </div>
   );
 }
 
+function IconTextWrapper({ children }: PropsWithChildren) {
+  return <div className="flex items-start gap-0.5 hover:cursor-pointer">{children}</div>;
+}
+
+function IconWrapper({ IconComponent }: { IconComponent: ElementType }) {
+  return <IconComponent className="shrink-0 -translate-y-0.5" />;
+}
+
 function Text({ text }: { text: string }) {
-  return <span className="text-md font-normal text-neutral-500">{text}</span>;
+  return <span className="pt-0 text-md font-normal text-neutral-500">{text}</span>;
 }
 
 function VerticalDivider() {
