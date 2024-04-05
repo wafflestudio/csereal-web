@@ -1,5 +1,5 @@
-import ContentWithImage from '@/components/common/ContentWithImage';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
+import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { Club } from '@/types/about';
 
@@ -11,12 +11,19 @@ export default function ClubDetails({
   return (
     <div>
       <ClubTitle name={name} engName={engName} />
-      <ContentWithImage
-        imageURL={imageURL}
-        content={description}
-        containerClassName="px-2.5"
-        imageWidth={320}
-        imageHeight={200}
+      <HTMLViewer
+        htmlContent={description}
+        topRightContent={
+          imageURL
+            ? {
+                type: 'image',
+                widthPX: 320,
+                heightPX: 200,
+                url: imageURL,
+                mobileFullWidth: true,
+              }
+            : undefined
+        }
       />
     </div>
   );
