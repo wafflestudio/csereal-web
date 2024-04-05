@@ -26,13 +26,15 @@ export default async function SearchPage({
   searchParams: { keyword?: string; tag?: string[] };
 }) {
   // 검색어 길이 예외 처리
-  if (keyword === undefined || keyword.length < 2) {
+  // 모바일에서는 네비바에서 검색창으로 이동하는데, 이 경우 keyword.length가 0이므로 0일 때는 아무것도 띄우지 않는다.
+  if (keyword === undefined) return <SearchPageLayout />;
+
+  if (keyword.length < 2)
     return (
       <SearchPageLayout>
         <KeywordShortError />
       </SearchPageLayout>
     );
-  }
 
   const { sectionContent, total, node } = await fetchContent(keyword, tag);
 
@@ -76,7 +78,7 @@ const SearchPageLayout = ({
 }: {
   keyword?: string;
   node?: TreeNode[];
-  children: ReactNode;
+  children?: ReactNode;
 }) => {
   return (
     <div className="flex grow flex-col bg-neutral-900">
