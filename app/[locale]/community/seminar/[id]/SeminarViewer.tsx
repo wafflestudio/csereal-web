@@ -31,8 +31,8 @@ export default async function SeminarViewer({ id, searchParams }: SeminarPostPag
         style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
       >
         {seminar.attachments.length !== 0 && <Attachments files={seminar.attachments} />}
-        <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md leading-loose sm:flex-row">
-          <div className="whitespace-nowrap">
+        <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
+          <div className="flex flex-col gap-3">
             <div>
               {'이름: '}
               <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>

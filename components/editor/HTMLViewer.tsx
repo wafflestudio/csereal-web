@@ -1,22 +1,8 @@
 import { Autolinker } from 'autolinker';
-import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
 
 import './SunEditor/suneditor-contents.css';
-
-type TopRightImage =
-  | {
-      type: 'image';
-      url: string;
-      widthPX: number;
-      heightPX: number;
-      marginTopPx?: number;
-    }
-  | {
-      type: 'imageUnoptimized';
-      url: string;
-      widthPX: number;
-    };
+import TopRightImageContent, { TopRightImage } from './TopRightImageContent';
 
 interface TopRightComponent {
   type: 'component';
@@ -53,28 +39,6 @@ export default function HTMLViewer({
       />
     </div>
   );
-}
-
-function TopRightImageContent(props: TopRightImage) {
-  if (props.type === 'image') {
-    const { url, widthPX: width, heightPX: height, marginTopPx: marginTop } = props;
-    return (
-      <div
-        className="relative float-right mb-[28px] ml-[28px]"
-        style={{ width, height, marginTop }}
-      >
-        <Image src={url} alt="대표 이미지" fill className="object-cover" sizes={`${width}px`} />
-      </div>
-    );
-  } else {
-    const { url, widthPX: width } = props;
-    return (
-      <div className="relative float-right mb-[20px] ml-[28px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={url} alt="대표 이미지" className="object-contain" width={width} />
-      </div>
-    );
-  }
 }
 
 function TopRightComponent({ content }: TopRightComponent) {

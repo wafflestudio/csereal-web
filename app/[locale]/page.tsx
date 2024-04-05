@@ -46,8 +46,8 @@ export default async function MainPage() {
 
 const MainSection = () => (
   // 헤더 높이 빼기
-  <div className="relative h-[calc(95vh-147px)]">
-    <DownArrow className="absolute bottom-[5rem] left-[50%] -translate-x-[50%] animate-arrowBounce" />
+  <div className="relative flex h-[calc(95vh-147px)] justify-center">
+    <DownArrow className="absolute bottom-[5rem] animate-arrowBounce " />
   </div>
 );
 
@@ -75,7 +75,7 @@ const NewsCard = ({ news }: { news: MainNews }) => (
 
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
-    <div className="mx-[7.5rem] mt-[4.06rem] flex gap-7">
+    <div className="grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.06rem] sm:grid-cols-2 sm:gap-7">
       {importantList.map((important) => {
         const href = `community/${important.category}/${important.id}`;
 
@@ -83,7 +83,7 @@ const ImportantSection = ({ importantList }: { importantList: MainImportant[] })
           <Link
             key={important.id}
             href={href}
-            className="relative flex h-[7.5rem] w-[50%] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
+            className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
           >
             <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
               {important.title}
