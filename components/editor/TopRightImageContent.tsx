@@ -20,7 +20,7 @@ export type TopRightImage =
     };
 
 export default function TopRightImageContent(props: TopRightImage) {
-  const { screenType } = useResponsive();
+  const { isMobile } = useResponsive();
 
   if (props.type === 'image') {
     const { url, widthPX: width, heightPX: height, marginTopPx: marginTop } = props;
@@ -28,7 +28,7 @@ export default function TopRightImageContent(props: TopRightImage) {
       <div
         className="relative mb-7 w-full sm:float-right sm:ml-7 sm:w-auto"
         style={{
-          width: screenType === 'mobile' && props.mobileFullWidth ? undefined : width,
+          width: isMobile && props.mobileFullWidth ? undefined : width,
           marginTop,
         }}
       >

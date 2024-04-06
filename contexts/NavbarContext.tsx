@@ -34,7 +34,7 @@ const NavbarContext = createContext<NavbarContextContent>({
 export function NavbarContextProvider({ children }: { children: ReactNode }) {
   const pathName = usePathname();
   const node = useCurrentSegmentNode();
-  const { screenType } = useResponsive();
+  const { isMobile } = useResponsive();
 
   const isMain = pathName === '/' || pathName === '/en';
 
@@ -44,14 +44,14 @@ export function NavbarContextProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // 모바일에서는 페이지 이동시 항상 접습니다.
-    if (screenType === 'mobile') {
+    if (isMobile) {
       setNavbarState({ type: 'closed' });
       return;
     }
 
     // 데스크톱에서는 메인에서 펼쳐져있습니다.
     setNavbarState(isMain ? { type: 'expanded' } : { type: 'closed' });
-  }, [isMain, screenType, node]); // 페이지 이동시 접기 위해 node를 deps에 추가합니다.
+  }, [isMain, isMobile, node]); // 페이지 이동시 접기 위해 node를 deps에 추가합니다.
 
   return (
     <NavbarContext.Provider value={{ navbarState, setNavbarState }} key={pathName}>

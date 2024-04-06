@@ -19,9 +19,9 @@ export default function CalendarContent({
   desktopReservations: ReservationPreview[];
   mobileReservations: ReservationPreview[];
 }) {
-  const { screenType } = useResponsive();
-  const reservations = screenType === 'desktop' ? desktopReservations : mobileReservations;
-  const startDate = screenType === 'desktop' ? desktopStartDate : mobileStartDate;
+  const { isMobile } = useResponsive();
+  const reservations = isMobile ? mobileReservations : desktopReservations;
+  const startDate = isMobile ? mobileStartDate : desktopStartDate;
 
   const columnCnt = useResponsiveRow();
   const dates = getNextDays(startDate, columnCnt);
@@ -43,8 +43,8 @@ export default function CalendarContent({
 }
 
 const RowIndex = () => {
-  const { screenType } = useResponsive();
-  const rows = screenType === 'desktop' ? desktopRows : mobileRows;
+  const { isMobile } = useResponsive();
+  const rows = isMobile ? mobileRows : desktopRows;
 
   return (
     <div>
