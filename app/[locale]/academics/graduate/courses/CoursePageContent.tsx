@@ -15,10 +15,9 @@ interface CoursePageContentProps {
 
 export default function CoursePageContent({ courses }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
-  const { screenType } = useResponsive();
-  const hideViewOption = screenType === 'mobile';
+  const { isMobile } = useResponsive();
 
-  if (hideViewOption && selectedOption.view !== '목록형') {
+  if (isMobile && selectedOption.view !== '목록형') {
     changeOptions({ type: 'view', option: '목록형' });
   }
 
@@ -29,7 +28,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
         hideSortOption
-        hideViewOption={hideViewOption}
+        hideViewOption={isMobile}
         changeOptions={changeOptions}
       />
       {selectedOption.view === '카드형' ? (

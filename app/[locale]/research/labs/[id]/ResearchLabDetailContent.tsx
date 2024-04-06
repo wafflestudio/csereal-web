@@ -16,7 +16,7 @@ import { replaceSpaceWithDash } from '@/utils/string';
 import ResearchLabInfo from './ResesarchLabInfo';
 
 export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) {
-  const { screenType } = useResponsive();
+  const { isMobile } = useResponsive();
 
   return (
     <div>
@@ -27,9 +27,7 @@ export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) 
       <HTMLViewer
         htmlContent={lab.description}
         topRightContent={
-          screenType === 'desktop'
-            ? { type: 'component', content: <ResearchLabInfo lab={lab} /> }
-            : undefined
+          isMobile ? undefined : { type: 'component', content: <ResearchLabInfo lab={lab} /> }
         }
         className="mt-6"
       />

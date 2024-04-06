@@ -16,6 +16,8 @@ interface PaginationProps {
 }
 
 const MAX_PAGE = 10000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
+const DESKTOP_PAGE_NUM_COUNT = 10;
+const MOBILE_PAGE_NUM_COUNT = 10;
 
 export default function Pagination({
   totalPostsCount,
@@ -24,11 +26,10 @@ export default function Pagination({
 }: PaginationProps) {
   const router = useRouter();
   const { page } = useCustomSearchParams();
-
-  const { screenType } = useResponsive();
+  const { isMobile } = useResponsive();
   // 페이지네이션 바에 보여줄 페이지 개수
   // TODO: 외부에서 설정 가능하게?
-  const pageLimit = screenType == 'desktop' ? 10 : 5;
+  const pageLimit = isMobile ? MOBILE_PAGE_NUM_COUNT : DESKTOP_PAGE_NUM_COUNT;
 
   const pathname = usePathname();
   const searchParams = useSearchParams();

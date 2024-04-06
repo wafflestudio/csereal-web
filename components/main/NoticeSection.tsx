@@ -14,7 +14,7 @@ import { notice } from '@/utils/segmentNode';
 
 export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');
-  const { screenType } = useResponsive();
+  const { isMobile } = useResponsive();
 
   return (
     <div className="relative mt-16 bg-[#212121] sm:mx-[7.75rem] sm:mt-[5.5rem] sm:h-[28rem]">
@@ -41,7 +41,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
               대학원
             </NoticeSectionButton>
           </div>
-          {screenType === 'desktop' && (
+          {!isMobile && (
             <Link className="flex text-base font-normal text-[#E65817]" href={getPath(notice)}>
               <Plus /> 더보기
             </Link>
@@ -60,7 +60,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
             </Link>
           ))}
         </div>
-        {screenType === 'mobile' && (
+        {isMobile && (
           <Link
             className="ml-auto mt-6 flex text-base font-normal text-[#E65817]"
             href={getPath(notice)}
