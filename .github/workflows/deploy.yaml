@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - qa
+      - qa2
 
 jobs:
   build:

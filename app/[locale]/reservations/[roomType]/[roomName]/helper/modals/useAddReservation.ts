@@ -2,12 +2,11 @@ import { useState, FormEventHandler } from 'react';
 
 import { postReservation } from '@/actions/reservation';
 
-import { NetworkError } from '@/apis/common';
-
 import { ReservationPostBody } from '@/types/reservation';
 
 import { isSameDay } from '@/utils/date';
 import { refreshPage } from '@/utils/refreshPage';
+import { handleServerAction } from '@/utils/serverActionError';
 import { infoToast, errorToast } from '@/utils/toast';
 
 import getOptimalEndTime from './getOptimalEndTime';
@@ -30,7 +29,7 @@ export default function useAddReservation(roomId: number) {
     }
 
     try {
-      await postReservation(body);
+      handleServerAction(await postReservation(body));
       // TODO: revalidate같은거 써서 좀 더 예쁘게
       refreshPage();
     } catch (e) {
@@ -103,14 +102,12 @@ const checkSubmit = (body: ReservationPostBody) => {
 };
 
 const handleError = (e: unknown) => {
-  if (e instanceof NetworkError) {
-    if (e.statusCode === 409) {
+  if (e instanceof Error) {
+    if (e.message === '409') {
       errorToast('해당 위치에 이미 예약이 존재합니다.');
     } else {
       errorToast(e.message);
     }
-  } else if (e instanceof Error) {
-    errorToast(e.message);
   } else {
     errorToast('알 수 없는 에러');
   }
