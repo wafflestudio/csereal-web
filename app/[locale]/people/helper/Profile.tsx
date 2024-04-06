@@ -13,7 +13,7 @@ interface ProfileProps {
 
 export default function Profile({ office, phone, fax, email, website, imageURL }: ProfileProps) {
   return (
-    <div className="relative float-right">
+    <div className="relative mb-8 sm:float-right">
       <ProfileImage imageURL={imageURL} />
 
       <div className="mt-5 flex flex-col gap-[9px] bg-white text-sm font-medium text-neutral-600">
