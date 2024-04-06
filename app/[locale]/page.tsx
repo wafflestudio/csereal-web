@@ -1,7 +1,4 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
-
-import RightArrow from '@/public/image/main/right_arrow.svg';
 
 import { getMain } from '@/apis/main';
 
@@ -81,34 +78,71 @@ const ImportantSectionArrow = () => (
 
 const LinkSection = () => {
   return (
-    <div className="mx-[7.81rem] mb-[25rem] mt-[8.69rem] flex gap-[8rem]">
-      <div className="flex flex-1 flex-col gap-8">
-        <h3 className="text-2xl font-medium text-white">바로가기</h3>
-        <div className="flex flex-col">
-          <LinkWithArrow href={getPath(topConferenceList)}>Top Conference List</LinkWithArrow>
-          <LinkWithArrow href={getPath(facultyRecruitment)}>신임교수초빙</LinkWithArrow>
-          <LinkWithArrow href={getPath(faculty)}>구성원</LinkWithArrow>
+    <div className="mx-6 mb-[4.75rem] mt-[60px] flex flex-col gap-[4rem] sm:mx-[7.81rem] sm:mb-[12rem] sm:mt-[90px] sm:flex-row sm:gap-[8rem]">
+      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">바로가기</h3>
+        <div className="flex flex-col gap-5">
+          <LinkWithArrow href={getPath(topConferenceList)} title="Top Conference List" />
+          <LinkWithArrow href={getPath(facultyRecruitment)} title="신임교수초빙" />
+          <LinkWithArrow href={getPath(faculty)} title="구성원" subtitle="Faculty" />
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-8">
-        <h3 className="text-2xl font-medium text-white">장학제도</h3>
-        <div className="flex flex-col">
-          <LinkWithArrow href={getPath(graduateScholarship)}>대학원</LinkWithArrow>
-          <LinkWithArrow href={getPath(undergraduateScholarship)}>학부</LinkWithArrow>
+
+      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">장학제도</h3>
+        <div className="flex flex-col gap-5">
+          <LinkWithArrow
+            href={getPath(graduateScholarship)}
+            title="학부"
+            subtitle="Undergraduate"
+          />
+          <LinkWithArrow
+            href={getPath(undergraduateScholarship)}
+            title="대학원"
+            subtitle="Graduate"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const LinkWithArrow = ({ href, children }: { href: string; children: ReactNode }) => {
+const LinkWithArrow = ({
+  href,
+  title,
+  subtitle,
+}: {
+  href: string;
+  title: string;
+  subtitle?: string;
+}) => {
   return (
     <Link
       href={href}
-      className="flex h-16 items-center justify-between border-l-[5px] border-[#E65817] pl-9 text-lg font-semibold text-white"
+      className="flex h-10 items-center justify-between border-l-[5px] border-[#E65817] pl-7"
     >
-      {children}
+      <div className="flex items-end gap-3">
+        <p className="text-base font-medium text-white sm:text-lg sm:font-semibold">{title}</p>
+        <p className="text-xs font-medium text-white sm:font-semibold">{subtitle}</p>
+      </div>
       <RightArrow />
     </Link>
   );
 };
+
+const RightArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    className="sm:h-[40px] sm:w-[40px]"
+  >
+    <path
+      d="M12.011 4.28529L19.7188 11.9931M19.7188 11.9931L12.011 19.7139M19.7188 11.9931L4.29018 11.9931"
+      stroke="white"
+      stroke-width="1.5"
+    />
+  </svg>
+);

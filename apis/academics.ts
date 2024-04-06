@@ -25,7 +25,7 @@ export const getCurriculum = () =>
   getRequest('/academics/undergraduate/curriculum') as Promise<Curriculum[]>;
 
 export const getCourseChanges = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/curriculum`) as Promise<CourseChange[]>;
+  getRequest(`/academics/${type}/course-changes`) as Promise<CourseChange[]>;
 
 export const getScholarshipList = (type: string) =>
   getRequest<ScholarshipList>(`/academics/${type}/scholarship`);
