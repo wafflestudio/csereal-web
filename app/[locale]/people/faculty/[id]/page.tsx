@@ -17,8 +17,12 @@ import PageTitle from '../../helper/PageTitle';
 
 const labUrl = getPath(researchLabs);
 
-export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
-  const faculty = await getFaculty(params.id);
+export default async function FacultyMemberPage({
+  params,
+}: {
+  params: { id: number; locale: 'ko' | 'en' };
+}) {
+  const faculty = await getFaculty('ko', params.id);
   if (faculty.status !== 'ACTIVE') notFound();
 
   return (
