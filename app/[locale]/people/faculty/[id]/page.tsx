@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { Link } from '@/navigation';
 
 import { getFaculty } from '@/apis/people';
@@ -17,6 +19,7 @@ const labUrl = getPath(researchLabs);
 
 export default async function FacultyMemberPage({ params }: { params: { id: number } }) {
   const faculty = await getFaculty(params.id);
+  if (faculty.status !== 'ACTIVE') notFound();
 
   return (
     <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
