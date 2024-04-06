@@ -26,7 +26,7 @@ export default function CourseChanges({ changes, yearLimit, timeSpotsList }: Cou
   const { isDesktopWide } = useResponsive();
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout titleType="big" bodyStyle={{ minHeight: '600px' }}>
       <div className="flex flex-col gap-7">
         {isDesktopWide ? (
           <TimeLine
