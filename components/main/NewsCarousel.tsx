@@ -1,11 +1,7 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 import { MainNews } from '@/types/main';
 
-import { formatMainNewsDateStr } from '@/utils/date';
-
-import { CARD_WIDTH_REM, CARD_GAP_REM, WIDTH_REM } from './constants';
+import { CARD_GAP_REM, WIDTH_REM } from './constants';
+import NewsCard from './NewsCard';
 import useCarousel from './useCarousel';
 
 export default function NewsCarousel({ news }: { news: MainNews[] }) {
@@ -16,7 +12,7 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
     <div className="flex flex-col items-center pb-10">
       <div
         className="mx-auto overflow-x-hidden pb-10 pt-[5rem]"
-        style={{ width: `${WIDTH_REM}rem` }}
+        style={{ width: `${WIDTH_REM - CARD_GAP_REM}rem` }}
       >
         <div
           className="flex transition-transform duration-700"
@@ -70,30 +66,6 @@ const PageIndicator = ({
     </div>
   );
 };
-
-const NewsCard = ({ shadow, news }: { shadow: boolean; news: MainNews }) => (
-  <Link
-    href={`/community/news/${news.id}`}
-    style={{ width: `${CARD_WIDTH_REM}rem` }}
-    className={`flex h-[19rem] shrink-0 flex-col bg-neutral-50 ${
-      shadow ? 'shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]' : ''
-    }`}
-  >
-    <div className="relative h-[6.25rem] w-full">
-      <Image src={news.imageURL} fill alt="" className="object-cover" />
-    </div>
-
-    <div className="px-[0.87rem] pt-[0.88rem]">
-      <h3 className="line-clamp-2 text-[0.9375rem] font-semibold text-neutral-900">{news.title}</h3>
-      <time className="mt-3 block text-sm font-normal text-neutral-500">
-        {formatMainNewsDateStr(news.createdAt)}
-      </time>
-      <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
-        {news.description}
-      </p>
-    </div>
-  </Link>
-);
 
 const CapsuleIcon = ({ current }: { current: boolean }) => (
   <div
