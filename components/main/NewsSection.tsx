@@ -1,14 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { ReactNode } from 'react';
 
 import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
+
+import { MainNews } from '@/types/main';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
-export default function NewsSection({ children }: { children: ReactNode }) {
+import NewsCarousel from './NewsCarousel';
+
+export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   return (
     <div className="relative bg-neutral-100">
       <div className="absolute left-[3.81rem] top-[5rem] z-10 flex flex-col gap-2">
@@ -21,9 +24,7 @@ export default function NewsSection({ children }: { children: ReactNode }) {
         </Link>
       </div>
 
-      <div className="ml-[12.56rem] flex gap-8 overflow-x-scroll pb-[5.5rem] pr-[7.5rem] pt-[5rem]">
-        {children}
-      </div>
+      <NewsCarousel news={mainNews} />
     </div>
   );
 }
