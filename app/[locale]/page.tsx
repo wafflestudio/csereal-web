@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
@@ -11,9 +10,8 @@ import Header from '@/components/layout/header/Header';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
 
-import { MainImportant, MainNews } from '@/types/main';
+import { MainImportant } from '@/types/main';
 
-import { formatMainNewsDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 import {
   faculty,
@@ -23,8 +21,6 @@ import {
   undergraduateScholarship,
 } from '@/utils/segmentNode';
 
-const NEWS_CARD_WIDTH_REM = 13.8;
-
 export default async function MainPage() {
   const data = await getMain();
 
@@ -32,11 +28,7 @@ export default async function MainPage() {
     <>
       <Header />
       <MainSection />
-      <NewsSection>
-        {data.slides.map((news) => (
-          <NewsCard news={news} key={news.id} />
-        ))}
-      </NewsSection>
+      <NewsSection mainNews={data.slides} />
       <ImportantSection importantList={data.importants} />
       <NoticeSection allMainNotice={data.notices} />
       <LinkSection />
@@ -49,28 +41,6 @@ const MainSection = () => (
   <div className="relative flex h-[calc(95vh-147px)] justify-center">
     <DownArrow className="absolute bottom-[5rem] animate-arrowBounce " />
   </div>
-);
-
-const NewsCard = ({ news }: { news: MainNews }) => (
-  <Link
-    href={`/community/news/${news.id}`}
-    style={{ width: `${NEWS_CARD_WIDTH_REM}rem` }}
-    className="flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]"
-  >
-    <div className="relative h-[6.25rem] w-full">
-      <Image src={news.imageURL} fill alt="" className="object-cover" />
-    </div>
-
-    <div className="px-[0.87rem] pt-[0.88rem]">
-      <h3 className="line-clamp-2 text-[0.9375rem] font-semibold text-neutral-900">{news.title}</h3>
-      <time className="mt-3 block text-sm font-normal text-neutral-500">
-        {formatMainNewsDateStr(news.createdAt)}
-      </time>
-      <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
-        {news.description}
-      </p>
-    </div>
-  </Link>
 );
 
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
