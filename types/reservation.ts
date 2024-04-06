@@ -38,4 +38,6 @@ export interface ReservationPostBody {
   contactPhone: string;
   professor: string;
   purpose: string;
+
+  agreed: boolean;
 }

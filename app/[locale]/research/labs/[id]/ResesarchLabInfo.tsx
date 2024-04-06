@@ -28,7 +28,7 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
         <ProfessorsInfo professors={lab.professors} />
         <LocationInfo location={lab.location} />
         <TelephoneInfo tel={lab.tel} />
-        <WebsiteInfo url={lab.websiteURL} />
+        {lab.websiteURL !== null && <WebsiteInfo url={lab.websiteURL} />}
       </ul>
     </CornerFoldedRectangle>
   );
@@ -54,19 +54,19 @@ function ProfessorsInfo({ professors }: { professors: { id: number; name: string
   );
 }
 
-function LocationInfo({ location }: { location: string }) {
+function LocationInfo({ location }: { location: string | null }) {
   return (
     <li className="flex gap-1 text-sm">
       <span className="whitespace-nowrap">랩실: </span>
-      <span>{location}</span>
+      <span>{location ?? '-'}</span>
     </li>
   );
 }
 
-function TelephoneInfo({ tel }: { tel: string }) {
+function TelephoneInfo({ tel }: { tel: string | null }) {
   return (
     <li className="flex grow gap-1 text-sm">
-      <span className="whitespace-nowrap">전화: {tel}</span>
+      <span className="whitespace-nowrap">전화: {tel ?? '-'}</span>
     </li>
   );
 }

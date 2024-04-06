@@ -13,8 +13,7 @@ import TopForm from './TopForm';
 import useAddReservation from './useAddReservation';
 
 export default function AddReservationModal({ roomId }: { roomId: number }) {
-  const { handleSubmit, body, setBody, setDate, privacyChecked, togglePrivacyChecked, canSubmit } =
-    useAddReservation(roomId);
+  const { handleSubmit, body, setBody, setDate, canSubmit } = useAddReservation(roomId);
   const { closeModal } = useModal();
 
   return (
@@ -27,7 +26,10 @@ export default function AddReservationModal({ roomId }: { roomId: number }) {
 
         <TopForm body={body} setBody={setBody} setDate={setDate} />
         <BottomForm body={body} setBody={setBody} />
-        <PrivacyFieldset checked={privacyChecked} toggleChecked={togglePrivacyChecked} />
+        <PrivacyFieldset
+          checked={body.agreed}
+          toggleChecked={() => setBody('agreed', !body.agreed)}
+        />
 
         <BottomButton closeModal={closeModal} canSubmit={canSubmit} />
       </form>

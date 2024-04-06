@@ -2,16 +2,23 @@ import { useState, useCallback, useEffect } from 'react';
 
 import { MainNews } from '@/types/main';
 
-import { CARD_CNT, AUTO_SCROLL_MS, WIDTH_REM } from './constants';
+import { AUTO_SCROLL_MS } from './constants';
+import { useCarouselLayout } from './useCarouselLayout';
 
 export default function useCarousel(news: MainNews[]) {
   const [page, _setPage] = useState(1);
-  const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
-
-  const pageCnt = Math.ceil(news.length / CARD_CNT);
-  const offsetREM = WIDTH_REM * page;
-
   // TODO: 타입 이게 맞나?
+  const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
+  const { cardCnt, widthREM } = useCarouselLayout();
+  const pageCnt = Math.ceil(news.length / cardCnt);
+  const offsetREM = widthREM * page;
+
+  // 반응형으로 페이지 수 바뀌었을 때 처리
+  useEffect(() => {
+    _setPage((page) => {
+      return pageCnt - 1 < page ? pageCnt - 1 : page;
+    });
+  }, [pageCnt]);
 
   const isScroll = intervalID !== null;
 

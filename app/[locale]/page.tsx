@@ -1,12 +1,9 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
-
-import DownArrow from '@/public/image/main/down_arrow.svg';
-import RightArrow from '@/public/image/main/right_arrow.svg';
 
 import { getMain } from '@/apis/main';
 
 import Header from '@/components/layout/header/Header';
+import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
 
@@ -25,23 +22,16 @@ export default async function MainPage() {
   const data = await getMain();
 
   return (
-    <>
+    <div className="sm:min-w-[1024px]">
       <Header />
-      <MainSection />
+      <GraphicSection />
       <NewsSection mainNews={data.slides} />
       <ImportantSection importantList={data.importants} />
       <NoticeSection allMainNotice={data.notices} />
       <LinkSection />
-    </>
+    </div>
   );
 }
-
-const MainSection = () => (
-  // 헤더 높이 빼기
-  <div className="relative flex h-[calc(95vh-147px)] justify-center">
-    <DownArrow className="absolute bottom-[5rem] animate-arrowBounce" />
-  </div>
-);
 
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
@@ -81,41 +71,78 @@ const ImportantSectionArrow = () => (
     <path
       d="M14.0076 5L23 13.9924M23 13.9924L14.0076 23M23 13.9924L5 13.9924"
       stroke="#0A0A0A"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     />
   </svg>
 );
 
 const LinkSection = () => {
   return (
-    <div className="mx-[7.81rem] mb-[25rem] mt-[8.69rem] flex gap-[8rem]">
-      <div className="flex flex-1 flex-col gap-8">
-        <h3 className="text-2xl font-medium text-white">바로가기</h3>
-        <div className="flex flex-col">
-          <LinkWithArrow href={getPath(topConferenceList)}>Top Conference List</LinkWithArrow>
-          <LinkWithArrow href={getPath(facultyRecruitment)}>신임교수초빙</LinkWithArrow>
-          <LinkWithArrow href={getPath(faculty)}>구성원</LinkWithArrow>
+    <div className="mx-6 mb-[7rem] mt-[60px] flex flex-col gap-[4rem] sm:mx-[7.81rem] sm:mb-[12rem] sm:mt-[90px] sm:flex-row sm:gap-[8rem]">
+      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">바로가기</h3>
+        <div className="flex flex-col gap-5">
+          <LinkWithArrow href={getPath(topConferenceList)} title="Top Conference List" />
+          <LinkWithArrow href={getPath(facultyRecruitment)} title="신임교수초빙" />
+          <LinkWithArrow href={getPath(faculty)} title="구성원" subtitle="Faculty" />
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-8">
-        <h3 className="text-2xl font-medium text-white">장학제도</h3>
-        <div className="flex flex-col">
-          <LinkWithArrow href={getPath(graduateScholarship)}>대학원</LinkWithArrow>
-          <LinkWithArrow href={getPath(undergraduateScholarship)}>학부</LinkWithArrow>
+
+      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">장학제도</h3>
+        <div className="flex flex-col gap-5">
+          <LinkWithArrow
+            href={getPath(graduateScholarship)}
+            title="학부"
+            subtitle="Undergraduate"
+          />
+          <LinkWithArrow
+            href={getPath(undergraduateScholarship)}
+            title="대학원"
+            subtitle="Graduate"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const LinkWithArrow = ({ href, children }: { href: string; children: ReactNode }) => {
+const LinkWithArrow = ({
+  href,
+  title,
+  subtitle,
+}: {
+  href: string;
+  title: string;
+  subtitle?: string;
+}) => {
   return (
     <Link
       href={href}
-      className="flex h-16 items-center justify-between border-l-[5px] border-[#E65817] pl-9 text-lg font-semibold text-white"
+      className="group flex h-10 items-center justify-between border-l-[5px] border-[#E65817] pl-7 duration-300"
     >
-      {children}
+      <div className="flex items-end gap-3 text-white group-hover:text-main-orange">
+        <p className="text-base font-medium sm:text-lg sm:font-semibold">{title}</p>
+        <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
+      </div>
       <RightArrow />
     </Link>
   );
 };
+
+const RightArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    className="duration-300 group-hover:translate-x-[10px] sm:h-[40px] sm:w-[40px]"
+  >
+    <path
+      d="M12.011 4.28529L19.7188 11.9931M19.7188 11.9931L12.011 19.7139M19.7188 11.9931L4.29018 11.9931"
+      stroke="white"
+      stroke-width="1.5"
+      className="group-hover:fill-main-orange"
+    />
+  </svg>
+);

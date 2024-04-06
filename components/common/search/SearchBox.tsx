@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
 
@@ -19,6 +19,10 @@ export default function SearchBox({ tags, disabled = false, formOnly = false }: 
   const { tags: initTags, keyword: initKeyword, setSearchParams } = useCustomSearchParams();
   const [keyword, setKeyword] = useState(initKeyword ?? '');
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    setKeyword(initKeyword ?? '');
+  }, [initKeyword]);
 
   const search = (tags?: string[]) => {
     // TODO: startTrnaisition이 의미있는지 확인

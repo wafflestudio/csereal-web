@@ -17,7 +17,7 @@ export default function NewsCard({ shadow, news }: { shadow: boolean; news: Main
       }`}
     >
       <div className="relative h-[6.25rem] w-full">
-        <Image src={news.imageURL} fill alt="" className="object-cover" />
+        <Image src={news.imageURL} fill alt="" className="object-cover" sizes="100px" />
       </div>
 
       <div className="px-[0.87rem] pt-[0.88rem]">

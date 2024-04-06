@@ -24,7 +24,8 @@ export default function HTMLViewer({
   style,
 }: HTMLViewerProps) {
   // TODO: 서버에서 link 처리
-  const linkedHTML = Autolinker.link(htmlContent);
+  // 400.XXX를 막기 위해 tldMatches false처리
+  const linkedHTML = Autolinker.link(htmlContent, { urls: { tldMatches: false } });
 
   return (
     <div className={`flow-root ${className}`}>

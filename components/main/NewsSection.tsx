@@ -17,7 +17,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   const { isMobile } = useResponsive();
 
   return (
-    <div className="relative flex flex-col gap-[1.625rem] bg-neutral-100 pb-12 pl-5 pt-8 sm:block sm:min-w-[1336px] sm:p-0">
+    <div className="relative flex flex-col gap-[1.625rem] overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-[60px] sm:py-10 sm:pl-[60px] sm:pr-[150px] sm:pt-[72px]">
       <Header />
       {isMobile ? <NewsCarouselMobile news={mainNews} /> : <NewsCarousel news={mainNews} />}
     </div>
@@ -26,7 +26,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
 
 function Header() {
   return (
-    <div className="flex flex-col gap-2 sm:absolute sm:left-[3.81rem] sm:top-[5rem] sm:z-10">
+    <div className="flex flex-col gap-2">
       <h3 className="whitespace-nowrap text-[1.25rem] font-semibold text-neutral-950 sm:text-[1.75rem] sm:font-medium">
         새 소식
       </h3>

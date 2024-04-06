@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
@@ -33,6 +34,7 @@ export default function MobileNav() {
 
 function MobileNavList() {
   const { navbarState, setNavbarState } = useNavbarContext();
+  const [search, setSearch] = useState(false);
 
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
@@ -60,22 +62,49 @@ function MobileNavList() {
       </ul>
 
       <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-500">
-        <Link href="/search" onClick={() => setNavbarState({ type: 'closed' })}>
+        <button onClick={() => setSearch(true)}>
           <SearchIcon />
-        </Link>
+        </button>
         <AuthButton />
         <LangButton />
       </div>
+      {search && <SearchPage />}
     </nav>
   );
 }
+
+const SearchPage = () => {
+  const router = useRouter();
+  const [text, setText] = useState('');
+
+  const search = () => router.push(`/search?keyword=${text}`);
+
+  return (
+    <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-[#1F2021]">
+      <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">
+        <input
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+          onKeyDown={(e) => e.key === 'Enter' && search()}
+          className="h-8 w-full bg-transparent text-md text-white outline-none placeholder:text-neutral-500"
+          placeholder="검색어를 입력해주세요"
+        />
+        <button onClick={search}>
+          <SearchIcon />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const AuthButton = () => {
   const { state, login, logout } = useSessionContext();
 
   return (
     <button onClick={state === 'logout' ? login : logout} className="mt-6">
-      {state === 'logout' ? 'LOGOUT' : 'LOGIN'}
+      {state === 'logout' ? 'LOGIN' : 'LOGOUT'}
     </button>
   );
 };
