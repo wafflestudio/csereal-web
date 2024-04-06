@@ -23,7 +23,7 @@ export default async function FacultyMemberPage({ params }: { params: { id: numb
 
   return (
     <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
-      <div className="relative mb-10 flow-root">
+      <div className="relative mb-10 sm:flow-root">
         <Profile
           office={faculty.office}
           phone={faculty.phone}
