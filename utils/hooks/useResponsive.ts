@@ -2,10 +2,10 @@ import { useMediaQuery } from '@mui/material';
 
 // px
 const BREAK_POINT = {
-  sm: 640 /* mobile */,
-  md: 768 /* tablet */,
-  lg: 1024 /* desktop */,
-  xl: 1280 /* wide desktop */,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
 };
 
 /**
@@ -16,14 +16,19 @@ const BREAK_POINT = {
  * @returns boolean value variables [is{status}]
  */
 export default function useResponsive() {
+  const isNotMobile = useMediaQuery(`(min-width: ${BREAK_POINT.sm}px)`);
+
   const isMobile = useMediaQuery(`(max-width: ${BREAK_POINT.sm - 1}px)`);
+
   const isTablet = useMediaQuery(
-    `(min-width: ${BREAK_POINT.md}px) and (max-width:${BREAK_POINT.lg - 1}px)`,
+    `(min-width: ${BREAK_POINT.sm}px) and (max-width:${BREAK_POINT.lg - 1}px)`,
   );
+
   const isDesktop = useMediaQuery(
     `(min-width: ${BREAK_POINT.lg}px) and (max-width:${BREAK_POINT.xl - 1}px)`,
   );
+
   const isDesktopWide = useMediaQuery(`(min-width: ${BREAK_POINT.xl}px)`);
 
-  return { isMobile, isTablet, isDesktop, isDesktopWide };
+  return { isNotMobile, isMobile, isTablet, isDesktop, isDesktopWide };
 }
