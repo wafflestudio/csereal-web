@@ -71,22 +71,14 @@ export default async function SearchPage({
 
 // TODO: page layout 사용한 방식으로 변경
 // 현재는 SubNav의 차이 때문에 코드 복붙
-const SearchPageLayout = ({
-  keyword,
-  node,
-  children,
-}: {
-  keyword?: string;
-  node?: TreeNode[];
-  children?: ReactNode;
-}) => {
+const SearchPageLayout = ({ node, children }: { node?: TreeNode[]; children?: ReactNode }) => {
   return (
     <div className="flex grow flex-col bg-neutral-900">
       <Header />
       {/* TODO: 임시로 넣은 main 교체 */}
       <PageTitle title={'통합 검색'} currentPage={main} titleType={'big'} margin={'mb-11'} />
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
-        <SearchBox tags={SEARCH_TAGS} key={keyword} formOnly />
+        <SearchBox tags={SEARCH_TAGS} formOnly />
         {children}
         {node !== undefined && <SearchSubNavbar node={node} />}
       </div>
