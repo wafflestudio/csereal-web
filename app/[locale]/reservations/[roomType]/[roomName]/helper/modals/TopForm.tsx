@@ -171,7 +171,8 @@ const DurationPicker = ({
   const startTimeInMinute = startTime.getHours() * 60 + startTime.getMinutes();
 
   // 최대 3시간이라서 최대값은 6
-  const remainingOptionCnt = Math.min(6, (endOfDayInMinute - startTimeInMinute) / 30);
+  // const remainingOptionCnt = Math.min(6, (endOfDayInMinute - startTimeInMinute) / 30);
+  const remainingOptionCnt = (endOfDayInMinute - startTimeInMinute) / 30;
 
   const contents = Array(remainingOptionCnt)
     .fill(0)
