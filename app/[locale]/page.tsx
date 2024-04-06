@@ -119,11 +119,11 @@ const LinkWithArrow = ({
   return (
     <Link
       href={href}
-      className="flex h-10 items-center justify-between border-l-[5px] border-[#E65817] pl-7"
+      className="group flex h-10 items-center justify-between border-l-[5px] border-[#E65817] pl-7 duration-300"
     >
-      <div className="flex items-end gap-3">
-        <p className="text-base font-medium text-white sm:text-lg sm:font-semibold">{title}</p>
-        <p className="text-xs font-medium text-white sm:font-semibold">{subtitle}</p>
+      <div className="flex items-end gap-3 text-white group-hover:text-main-orange">
+        <p className="text-base font-medium sm:text-lg sm:font-semibold">{title}</p>
+        <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
       </div>
       <RightArrow />
     </Link>
@@ -136,13 +136,13 @@ const RightArrow = () => (
     width="24"
     height="24"
     viewBox="0 0 24 24"
-    fill="none"
-    className="sm:h-[40px] sm:w-[40px]"
+    className="duration-300 group-hover:translate-x-[10px] sm:h-[40px] sm:w-[40px]"
   >
     <path
       d="M12.011 4.28529L19.7188 11.9931M19.7188 11.9931L12.011 19.7139M19.7188 11.9931L4.29018 11.9931"
       stroke="white"
       stroke-width="1.5"
+      className="group-hover:fill-main-orange"
     />
   </svg>
 );

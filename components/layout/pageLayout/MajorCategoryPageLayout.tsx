@@ -145,6 +145,7 @@ interface DetailItemProps {
 
 function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailItemProps) {
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
+
   return (
     <div
       className={`group h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex cursor-pointer flex-col justify-between duration-300`}
