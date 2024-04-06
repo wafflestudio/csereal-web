@@ -17,7 +17,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   const { isMobile } = useResponsive();
 
   return (
-    <div className="relative flex flex-col gap-[1.625rem] overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-[60px] sm:py-10 sm:pl-[60px] sm:pr-[150px]">
+    <div className="relative flex flex-col gap-[1.625rem] overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-[60px] sm:py-10 sm:pl-[60px] sm:pr-[150px] sm:pt-[72px]">
       <Header />
       {isMobile ? <NewsCarouselMobile news={mainNews} /> : <NewsCarousel news={mainNews} />}
     </div>

@@ -1,4 +1,4 @@
-import { useReducer, useState, FormEventHandler } from 'react';
+import { useState, FormEventHandler } from 'react';
 
 import { postReservation } from '@/actions/reservation';
 
@@ -19,8 +19,7 @@ export type SetReservationBody = <T extends keyof ReservationPostBody>(
 
 export default function useAddReservation(roomId: number) {
   const [body, _setBody] = useState<ReservationPostBody>(() => getDefaultBodyValue(roomId));
-  const [privacyChecked, togglePrivacyChecked] = useReducer((x) => !x, false);
-  const canSubmit = checkSubmit(privacyChecked, body);
+  const canSubmit = checkSubmit(body);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -69,8 +68,6 @@ export default function useAddReservation(roomId: number) {
     body,
     setBody,
     setDate,
-    privacyChecked,
-    togglePrivacyChecked,
     canSubmit,
   };
 }
@@ -91,12 +88,13 @@ const getDefaultBodyValue = (roomId: number): ReservationPostBody => {
     contactPhone: '',
     professor: '',
     purpose: '',
+    agreed: false,
   };
 };
 
-const checkSubmit = (privacyChecked: boolean, body: ReservationPostBody) => {
+const checkSubmit = (body: ReservationPostBody) => {
   return (
-    privacyChecked &&
+    body.agreed &&
     body.title !== '' &&
     body.contactEmail !== '' &&
     body.professor !== '' &&

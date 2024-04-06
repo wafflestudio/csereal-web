@@ -25,14 +25,14 @@ export default async function MainPage() {
   const data = await getMain();
 
   return (
-    <>
+    <div className="sm:min-w-[1024px]">
       <Header />
       <MainSection />
       <NewsSection mainNews={data.slides} />
       <ImportantSection importantList={data.importants} />
       <NoticeSection allMainNotice={data.notices} />
       <LinkSection />
-    </>
+    </div>
   );
 }
 
