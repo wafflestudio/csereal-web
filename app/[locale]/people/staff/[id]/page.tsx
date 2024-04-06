@@ -23,7 +23,7 @@ export default async function StaffMemberPage({ params }: { params: { id: number
         <HeaderAndList header="주요 업무" list={staff.tasks} />
         <div>
           <ProfileImage imageURL={staff.imageURL} />
-          <article className="mb-7 flex flex-col text-neutral-700">
+          <article className="mb-7 mt-2 flex flex-col text-neutral-700">
             <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
             <ul className="list-inside list-disc">
               <BulletRow>위치: {staff.office}</BulletRow>

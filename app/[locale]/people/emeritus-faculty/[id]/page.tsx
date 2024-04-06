@@ -26,7 +26,7 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
         <div>
           <ProfileImage imageURL={faculty.imageURL} />
           {(faculty.office || faculty.email || faculty.website) && (
-            <article className="mb-7 flex flex-col text-neutral-700">
+            <article className="mb-7 mt-2 flex flex-col  text-neutral-700">
               <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
               <ul className="list-inside list-disc">
                 {faculty.office && <BulletRow>교수실: {faculty.office}</BulletRow>}
