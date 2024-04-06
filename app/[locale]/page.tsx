@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-import DownArrow from '@/public/image/main/down_arrow.svg';
 import RightArrow from '@/public/image/main/right_arrow.svg';
 
 import { getMain } from '@/apis/main';
 
 import Header from '@/components/layout/header/Header';
+import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
 
@@ -27,7 +27,7 @@ export default async function MainPage() {
   return (
     <div className="sm:min-w-[1024px]">
       <Header />
-      <MainSection />
+      <GraphicSection />
       <NewsSection mainNews={data.slides} />
       <ImportantSection importantList={data.importants} />
       <NoticeSection allMainNotice={data.notices} />
@@ -35,13 +35,6 @@ export default async function MainPage() {
     </div>
   );
 }
-
-const MainSection = () => (
-  // 헤더 높이 빼기
-  <div className="relative flex h-[calc(95vh-147px)] justify-center">
-    <DownArrow className="absolute bottom-[5rem] animate-arrowBounce" />
-  </div>
-);
 
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
@@ -81,7 +74,7 @@ const ImportantSectionArrow = () => (
     <path
       d="M14.0076 5L23 13.9924M23 13.9924L14.0076 23M23 13.9924L5 13.9924"
       stroke="#0A0A0A"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     />
   </svg>
 );
