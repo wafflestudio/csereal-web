@@ -1,18 +1,20 @@
 import { MainNews } from '@/types/main';
 
-import { CARD_GAP_REM, WIDTH_REM } from './constants';
+import { CARD_GAP_REM } from './constants';
 import NewsCard from './NewsCard';
 import useCarousel from './useCarousel';
+import { useCarouselLayout } from './useCarouselLayout';
 
 export default function NewsCarousel({ news }: { news: MainNews[] }) {
   const { offsetREM, pageCnt, setPage, page, isScroll, startScroll, stopScroll } =
     useCarousel(news);
+  const { widthREM } = useCarouselLayout();
 
   return (
-    <div className="flex flex-col items-center pb-10">
+    <div className="flex flex-col items-center">
       <div
-        className="mx-auto overflow-x-hidden pb-10 pt-[5rem]"
-        style={{ width: `${WIDTH_REM - CARD_GAP_REM}rem` }}
+        className="mx-auto overflow-x-hidden pb-10"
+        style={{ width: `${widthREM - CARD_GAP_REM}rem` }}
       >
         <div
           className="flex transition-transform duration-700"

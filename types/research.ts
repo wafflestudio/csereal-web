@@ -23,16 +23,16 @@ export interface SimpleResearchLab {
   id: number;
   name: string;
   professors: { id: number; name: string }[];
-  location: string;
-  tel: string;
+  location: string | null;
+  tel: string | null;
   acronym: string;
-  pdf: string | null;
+  pdf: { url: string } | null;
   youtube: string | null;
 }
 
 export interface ResearchLab extends SimpleResearchLab {
   description: string;
-  websiteURL: string;
+  websiteURL: string | null;
   group: string;
 }
 
