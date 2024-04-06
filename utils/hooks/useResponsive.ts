@@ -9,7 +9,7 @@ export default function useResponsive(): {
   isMobile: boolean;
   isDesktopWide: boolean;
 } {
-  const isMobile = useMediaQuery(`(min-width: ${BREAK_POINT.sm}px)`);
+  const isMobile = !useMediaQuery(`(min-width: ${BREAK_POINT.sm}px)`);
   const isDesktopWide = useMediaQuery(`(min-width: ${BREAK_POINT.xl}px)`);
 
   return { isMobile, isDesktopWide };
