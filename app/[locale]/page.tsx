@@ -39,7 +39,7 @@ export default async function MainPage() {
 const MainSection = () => (
   // 헤더 높이 빼기
   <div className="relative flex h-[calc(95vh-147px)] justify-center">
-    <DownArrow className="absolute bottom-[5rem] animate-arrowBounce " />
+    <DownArrow className="absolute bottom-[5rem] animate-arrowBounce" />
   </div>
 );
 

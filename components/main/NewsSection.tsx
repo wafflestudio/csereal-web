@@ -13,7 +13,7 @@ import NewsCarousel from './NewsCarousel';
 
 export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   return (
-    <div className="relative bg-neutral-100">
+    <div className="relative bg-neutral-100 sm:min-w-[1336px]">
       <div className="absolute left-[3.81rem] top-[5rem] z-10 flex flex-col gap-2">
         <h3 className="text-[1.75rem] font-medium text-neutral-950">새 소식</h3>
         <Link
