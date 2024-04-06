@@ -120,14 +120,14 @@ function FooterBottomLeft() {
 
 function FooterBottomRight() {
   return (
-    <div className="mt-7 flex flex-col gap-7 sm:mt-0 sm:flex-row sm:items-center">
-      <Link href={snucomLink} className="w-[86px] sm:w-[111px]">
+    <div className="mt-7 flex flex-wrap gap-7 sm:mt-0 sm:flex-nowrap sm:items-center">
+      <Link href={snucomLink}>
         <SnucomIcon />
       </Link>
-      <Link href={snuEngLink} className="w-[92px] sm:w-[126px]">
+      <Link href={snuEngLink}>
         <SnuEngineeringIcon />
       </Link>
-      <Link href={snuLink} className="w-[113px] sm:w-[159px]">
+      <Link href={snuLink}>
         <SnuLogoWithText />
       </Link>
     </div>
