@@ -75,7 +75,7 @@ const NewsCard = ({ news }: { news: MainNews }) => (
 
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
-    <div className="grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.06rem] sm:grid-cols-2 sm:gap-7">
+    <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.0625rem] sm:grid-cols-2 sm:gap-7">
       {importantList.map((important) => {
         const href = `community/${important.category}/${important.id}`;
 
