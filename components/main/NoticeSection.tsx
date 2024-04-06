@@ -18,7 +18,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
 
   return (
     <div className="relative mt-16 bg-[#212121] sm:mx-[7.75rem] sm:mt-[5.5rem] sm:h-[28rem]">
-      <div className="flex flex-col px-5 pb-[1.625rem] pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-[33rem] sm:p-0">
+      <div className="flex flex-col px-7 pb-[1.625rem] pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-[33rem] sm:p-0">
         <h3 className="text-[1.75rem] font-semibold text-white">공지사항</h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
           <div className="flex gap-[0.875rem]">

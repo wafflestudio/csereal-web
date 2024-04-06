@@ -67,7 +67,7 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
 
   return (
     <ModalFrame onClose={closeModal}>
-      <div className="border-b border-t-[3px] border-main-orange bg-neutral-100 p-7">
+      <div className="min-w-[341px] border-b border-t-[3px] border-main-orange bg-neutral-100 p-7">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-xl font-bold text-neutral-800">{reservation.title}</h2>
           <span
