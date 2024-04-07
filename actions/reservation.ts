@@ -6,18 +6,19 @@ import { FETCH_TAG_RESERVATION } from '@/constants/network';
 
 import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
 
+import { withErrorHandler } from './errorHandler';
 import { deleteRequest, getRequest, postRequest } from '../apis';
 
 const reservationPath = '/reservation';
 
-export const postReservation = async (body: ReservationPostBody) => {
+export const postReservation = withErrorHandler(async (body: ReservationPostBody) => {
   await postRequest(reservationPath, {
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
     jsessionID: true,
   });
   revalidateTag(FETCH_TAG_RESERVATION);
-};
+});
 
 export const getWeeklyReservation = async (params: {
   roomId: number;

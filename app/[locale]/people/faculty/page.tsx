@@ -13,8 +13,8 @@ import PeopleGrid from '../helper/PeopleGrid';
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
-export default async function FacultyPage() {
-  const { professors } = await getActiveFacultyList();
+export default async function FacultyPage({ params }: { params: { locale: 'ko' | 'en' } }) {
+  const { professors } = await getActiveFacultyList(params.locale);
 
   const normal = professors
     .filter((x) => x.academicRank !== '특임교수') // TODO: 백엔드 status값 반영 전 임시 코드

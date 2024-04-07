@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 import { objToQueryString } from '@/utils/convertParams';
 
-import { BASE_URL, NetworkError, checkError } from './common';
+import { BASE_URL, checkError } from './common';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
 
@@ -53,7 +53,6 @@ const fetchWithRetry = async (
   try {
     return await _fetch(url, method, init);
   } catch (e) {
-    if (e instanceof NetworkError) throw e;
     if (remain === 0) throw e;
 
     console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);

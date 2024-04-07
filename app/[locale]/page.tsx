@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { getMain } from '@/apis/main';
@@ -22,8 +23,12 @@ export default async function MainPage() {
   const data = await getMain();
 
   return (
-    <div className="sm:min-w-[1024px]">
+    <div className="relative sm:min-w-[1024px]">
       <Header />
+      <div className="absolute left-0 right-0 top-0 -z-50 hidden aspect-[1336/800] sm:block">
+        {/* 자글자글해져서 unoptimized */}
+        <Image src="/image/main/background.png" fill alt="" className="object-cover" unoptimized />
+      </div>
       <GraphicSection />
       <NewsSection mainNews={data.slides} />
       <ImportantSection importantList={data.importants} />
@@ -137,7 +142,7 @@ const RightArrow = () => (
     <path
       d="M12.011 4.28529L19.7188 11.9931M19.7188 11.9931L12.011 19.7139M19.7188 11.9931L4.29018 11.9931"
       stroke="white"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       className="group-hover:fill-main-orange"
     />
   </svg>
