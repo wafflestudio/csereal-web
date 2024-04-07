@@ -8,7 +8,7 @@ import { UserState } from '@/contexts/SessionContext';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 
 export const getMockAuth = async () => {
-  const resp = await fetch(`https://cse-dev-waffle.bacchus.io/api/v1/mock-login`, {
+  const resp = await fetch(`https://cse.snu.ac.kr/api/v1/mock-login`, {
     method: 'GET',
     cache: 'no-store',
   });

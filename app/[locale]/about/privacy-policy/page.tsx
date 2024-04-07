@@ -16,6 +16,6 @@ const htmlContent =
 
 const file = {
   name: '「서울대학교 개인정보 처리방침」 전문.pdf',
-  url: 'https://cse-dev-waffle.bacchus.io/sites/default/files/node--page/「서울대학교%20개인정보%20처리방침」%20전문%20%281%29.pdf',
+  url: 'https://cse.snu.ac.kr/sites/default/files/node--page/「서울대학교%20개인정보%20처리방침」%20전문%20%281%29.pdf',
   bytes: 322.92 * 1000,
 };
