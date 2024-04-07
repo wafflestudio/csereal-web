@@ -12,7 +12,7 @@ interface CourseDetailModalProps {
 export default function CourseDetailModal({ course, onClose }: CourseDetailModalProps) {
   return (
     <ModalFrame onClose={onClose}>
-      <div className="styled-scrollbar relative flex w-fit max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-100 p-6">
+      <div className="styled-scrollbar relative flex w-fit max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-50 p-6">
         <CourseHeader course={course} />
         <CourseBody content={course.description} />
       </div>
