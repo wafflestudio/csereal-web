@@ -1,3 +1,5 @@
+import './style.css';
+
 import { getCurriculum } from '@/apis/academics';
 
 import RoadMapButton from '@/app/[locale]/academics/helper/RoadMapButton';

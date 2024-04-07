@@ -1,0 +1,5 @@
+/* TODO: 안맞는 줄간격을 조절하기 위한 흑마법 */
+.sun-editor-editable table tbody tr td div {
+  margin-bottom: 5px;
+  text-align: center;
+}

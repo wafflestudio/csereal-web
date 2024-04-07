@@ -21,7 +21,6 @@ const laboratoriesPath = getPath(researchLabs);
 const facultyPath = getPath(faculty);
 
 export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) {
-  console.log(lab);
   return (
     <li
       className="grid grid-cols-[auto,_1fr] grid-rows-5 items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 
