@@ -44,7 +44,10 @@ const ImportantSection = ({ importantList }: { importantList: MainImportant[] })
       {importantList.slice(1).map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}
-      <div className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]">
+      <Link
+        href="https://computingcommons.snu.ac.kr/"
+        className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
+      >
         <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
           SNU Computing Commons 건축기금 모금
         </h3>
@@ -52,7 +55,7 @@ const ImportantSection = ({ importantList }: { importantList: MainImportant[] })
           서울대학교 발전재단 X 컴퓨터공학부
         </p>
         <ImportantSectionArrow />
-      </div>
+      </Link>
     </div>
   );
 };

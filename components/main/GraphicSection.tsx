@@ -7,7 +7,13 @@ export default function GraphicSection() {
   // 헤더 높이 빼기
   return (
     <div className="relative flex w-fit min-w-full flex-col items-center justify-between gap-[50px] pb-[67px] pt-[60px] sm:flex-row-reverse sm:justify-center sm:gap-[75px] sm:pb-[170px] sm:pt-[80px] xl:gap-[125px]">
-      <Image src="/image/main/background.png" alt="" className="object-cover" unoptimized fill />
+      <Image
+        src="/image/main/background.png"
+        alt=""
+        className="object-cover sm:hidden"
+        unoptimized
+        fill
+      />
       <DownArrow className="bottom-[5rem] left-1/2 hidden -translate-x-1/2 animate-arrowBounce sm:absolute" />
       <Image
         src="/image/main/mainGraphic.png"

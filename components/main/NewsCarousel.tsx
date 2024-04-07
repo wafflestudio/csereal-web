@@ -23,8 +23,8 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
             gap: `${CARD_GAP_REM}rem`,
           }}
         >
-          {news.map((news, idx) => (
-            <NewsCard key={news.id} news={news} shadow={idx % 4 !== 0} />
+          {news.map((news) => (
+            <NewsCard key={news.id} news={news} />
           ))}
         </div>
       </div>
