@@ -1,4 +1,7 @@
-export const BASE_URL = 'https://cse-dev-waffle.bacchus.io/api/v1';
+export const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
+    : 'https://csereal-prod.bacchus.io/api/v1';
 
 export const checkError = (response: Response) => {
   if (response.ok) return;
