@@ -111,8 +111,12 @@ const htmlContent = `<h2>1. Executive Summary</h2>
   /></a>
 </p>
 <h2>References</h2>
+
 <hr class="__se__solid" />
+<p>
 <a href="/10-10-project/manager" rel="nofollow">professor-soonhoi-ha</a>
+</p>
+
 <p>
   <a
     href="https://docs.google.com/document/d/1WmpKLWIv_xjwFv4VFOItJ4vuhfAPi-67JRCl6pszHoI"
@@ -120,11 +124,11 @@ const htmlContent = `<h2>1. Executive Summary</h2>
     >Curricula vitae</a
   >
 </p>
-<p>
-  Team Organization and Participants:&nbsp;<a
-    href="/10-10-project/professors"
+
+<p><a
+    href="/10-10-project/participants"
     rel="nofollow"
-    >professors</a
+    >Team Organization and Participants</a
   >
 </p>
 `;
