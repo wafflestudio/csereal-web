@@ -1,9 +1,7 @@
-import { BASE_URL } from '@/apis/common';
-
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 
-export const LOGIN_URL = BASE_URL + '/login';
-export const LOGOUT_URL = BASE_URL + '/logout';
+export const LOGIN_URL = 'https://cse.snu.ac.kr/api/v1/login';
+export const LOGOUT_URL = 'https://cse.snu.ac.kr/api/v1/logout';
 
 // TODO: fine-grained cache로 바꾸기
 export const FETCH_TAG_IMPORANT = 'important';
