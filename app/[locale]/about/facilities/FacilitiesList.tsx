@@ -47,7 +47,7 @@ function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowP
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   return (
     <div className="relative h-44 w-full shrink-0 sm:w-60">
-      <ImageWithFallback alt="대표 이미지" src={imageURL} fill sizes="10rem" />
+      <ImageWithFallback alt="대표 이미지" src={imageURL} fill className="object-cover" />
     </div>
   );
 }
