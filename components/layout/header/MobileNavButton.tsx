@@ -36,7 +36,7 @@ const useMobileNav = () => {
       if (state.type === 'closed') {
         main.scrollTo(0, 0);
         main.style.overflow = 'hidden';
-        main.style.height = '100vh';
+        main.style.height = '100%';
         return { type: 'hovered', segmentNode: nodeToOpen || about };
       } else {
         main.style.overflow = '';
