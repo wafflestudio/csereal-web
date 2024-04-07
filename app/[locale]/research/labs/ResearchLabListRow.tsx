@@ -39,7 +39,7 @@ export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) 
 function NameCell({ name, id }: { name: string; id: number }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 whitespace-nowrap text-base font-semibold 
+      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-semibold 
       sm:whitespace-normal sm:text-sm sm:font-normal`}
     >
       <Link className="text-neutral-900 hover:text-main-orange" href={`${laboratoriesPath}/${id}`}>
