@@ -92,15 +92,11 @@ const LinkSection = () => {
         <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">장학제도</h3>
         <div className="flex flex-col gap-5">
           <LinkWithArrow
-            href={getPath(graduateScholarship)}
+            href={getPath(undergraduateScholarship)}
             title="학부"
             subtitle="Undergraduate"
           />
-          <LinkWithArrow
-            href={getPath(undergraduateScholarship)}
-            title="대학원"
-            subtitle="Graduate"
-          />
+          <LinkWithArrow href={getPath(graduateScholarship)} title="대학원" subtitle="Graduate" />
         </div>
       </div>
     </div>
