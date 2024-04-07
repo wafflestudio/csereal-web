@@ -23,7 +23,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <>
-      <h4 className="mb-8 pl-5 text-[17px] font-bold">교과목 정보</h4>
+      <h4 className="mb-2 text-[17px] font-bold sm:mb-8 sm:pl-5">교과목 정보</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
