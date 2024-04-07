@@ -23,7 +23,7 @@ export default async function MainPage() {
   const data = await getMain();
 
   return (
-    <div className="relative sm:min-w-fit">
+    <div className="relative w-full">
       <Header />
       <div className="absolute left-0 right-0 top-0 -z-50 hidden aspect-[1336/800] sm:block">
         {/* 자글자글해져서 unoptimized */}
