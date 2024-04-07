@@ -22,7 +22,7 @@ export default function CourseDetailModal({ course, onClose }: CourseDetailModal
 
 function CourseHeader({ course }: { course: Course }) {
   return (
-    <h4 className="flex items-center gap-2">
+    <h4 className="flex flex-wrap items-center gap-2">
       <BookmarkIcon />
       <span className="font-bold">{course.name}</span>
       <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
