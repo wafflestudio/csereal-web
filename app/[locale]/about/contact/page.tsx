@@ -4,7 +4,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function ContactPage() {
-  const { description } = await getContact();
+  const { description, imageURL } = await getContact();
 
   return (
     <PageLayout titleType="big">
@@ -15,7 +15,7 @@ export default async function ContactPage() {
           widthPX: 240,
           heightPX: 360,
           marginTopPx: 28,
-          url: 'https://cse-dev-waffle.bacchus.io/sites/default/files/styles/scale-width-220/public/node--contact/301.jpg?itok=zbUgVCfd',
+          url: imageURL,
         }}
         className="mt-[-1.5rem]"
       />

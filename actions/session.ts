@@ -16,10 +16,7 @@ export const getMockAuth = async () => {
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
 
-  cookies().set(COOKIE_SESSION_ID, value, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  });
+  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true });
 };
 
 export const removeAuth = () => {
@@ -35,6 +32,7 @@ export const getIsStaff = async (): Promise<UserState> => {
       cache: 'no-store',
       jsessionID: true,
     });
+
     return resp.isStaff ? 'staff' : 'non-staff';
   } catch {
     removeAuth();

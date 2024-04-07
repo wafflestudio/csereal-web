@@ -11,6 +11,9 @@ const nextConfig = {
     serverActions: {
       // 게시물 작성시 첨부파일 지원 목적
       bodySizeLimit: '10mb',
+
+      // https://github.com/vercel/next.js/issues/58295
+      allowedOrigins: ['csereal-prod.bacchus.io:443', 'csereal-prod.bacchus.io', 'cse.snu.ac.kr'],
     },
   },
 
