@@ -41,9 +41,9 @@ export default function useCarousel(news: MainNews[]) {
     (page: number) => {
       stopScroll();
       _setPage(page);
-      startScroll();
+      if (isScroll) startScroll();
     },
-    [startScroll, stopScroll],
+    [isScroll, startScroll, stopScroll],
   );
 
   useEffect(() => {

@@ -135,7 +135,14 @@ const LinkWithArrow = ({
         <p className="text-base font-medium sm:text-lg sm:font-semibold">{title}</p>
         <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
       </div>
-      <Image src="/image/main/right_arrow.png" width={24} height={24} alt="" sizes="24w" />
+      <Image
+        src="/image/main/right_arrow.png"
+        width={24}
+        height={24}
+        alt=""
+        sizes="24w"
+        className="duration-300 group-hover:translate-x-2"
+      />
     </Link>
   );
 };
