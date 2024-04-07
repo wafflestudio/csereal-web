@@ -41,28 +41,32 @@ export default async function MainPage() {
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
     <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.0625rem] sm:grid-cols-2 sm:gap-7">
-      {importantList.map((important) => {
-        const href = `community/${important.category}/${important.id}`;
-
-        return (
-          <Link
-            key={important.id}
-            href={href}
-            className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
-          >
-            <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
-              {important.title}
-            </h3>
-            <p className="line-clamp-1 text-sm font-normal text-neutral-800">
-              {important.description}
-            </p>
-            <ImportantSectionArrow />
-          </Link>
-        );
-      })}
+      {importantList.slice(1).map((important) => (
+        <ImportantBanner key={important.id} important={important} />
+      ))}
+      <div className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]">
+        <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
+          SNU Computing Commons 건축기금 모금
+        </h3>
+        <p className="line-clamp-1 text-sm font-normal text-neutral-800">
+          서울대학교 발전재단 X 컴퓨터공학부
+        </p>
+        <ImportantSectionArrow />
+      </div>
     </div>
   );
 };
+
+const ImportantBanner = ({ important }: { important: MainImportant }) => (
+  <Link
+    href={`community/${important.category}/${important.id}`}
+    className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
+  >
+    <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">{important.title}</h3>
+    <p className="line-clamp-1 text-sm font-normal text-neutral-800">{important.description}</p>
+    <ImportantSectionArrow />
+  </Link>
+);
 
 const ImportantSectionArrow = () => (
   <svg
