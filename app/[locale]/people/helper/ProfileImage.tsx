@@ -12,7 +12,6 @@ export default function ProfileImage({ imageURL }: { imageURL: string | null }) 
       style={{
         clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
         filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
-        marginTop: '8px',
       }}
     />
   );
