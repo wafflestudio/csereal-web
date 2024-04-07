@@ -17,7 +17,7 @@ interface PaginationProps {
 
 const MAX_PAGE = 10000; // totalPostsCount 실제값이 아닌 추정치가 왔을 경우 사용할 마지막 페이지 번호
 const DESKTOP_PAGE_NUM_COUNT = 10;
-const MOBILE_PAGE_NUM_COUNT = 10;
+const MOBILE_PAGE_NUM_COUNT = 5;
 
 export default function Pagination({
   totalPostsCount,
