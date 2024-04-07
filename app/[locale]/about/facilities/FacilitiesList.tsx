@@ -31,7 +31,7 @@ export interface FacilitiesRowProps {
 function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowProps) {
   return (
     <article className={`flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row`}>
-      <div className="flex w-[35.5rem] flex-col">
+      <div className="flex flex-col sm:w-[35.5rem]">
         <h3 className="mb-3 text-base font-bold leading-5">{name}</h3>
         <HTMLViewer htmlContent={description} />
         <div className="flex translate-x-[-4px] items-start gap-px">
