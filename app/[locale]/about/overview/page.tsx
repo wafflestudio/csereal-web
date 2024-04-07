@@ -12,7 +12,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 // 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function OverviewPage() {
-  const { description, attachments } = await getOverview();
+  const { description, attachments, imageURL } = await getOverview();
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -21,7 +21,7 @@ export default async function OverviewPage() {
         {/* image 크기를 반응형으로 줄이기 위해 필요한 wrapper div */}
         <div className="w-full sm:w-auto">
           <Image
-            src="https://cse-dev-waffle.bacchus.io/sites/default/files/styles/medium-larger/public/node--page/301302.jpg?itok=96k1IsL0"
+            src={imageURL}
             alt="학교 전경"
             width={320}
             height={216}
