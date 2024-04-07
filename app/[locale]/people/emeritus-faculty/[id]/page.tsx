@@ -15,18 +15,10 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
 
   return (
     <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
-      <div className="relative mb-10 flex flex-col-reverse sm:flex-row sm:gap-10">
-        <div>
-          <HeaderAndList header="학력" list={faculty.educations} />
-          <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
-          <div className=" mb-7 text-sm font-medium text-neutral-700">
-            재직 기간: {careerTime.startTime} - {careerTime.endTime}
-          </div>
-        </div>
-        <div>
-          <ProfileImage imageURL={faculty.imageURL} />
+      <div className="relative mb-10 flex flex-col-reverse items-start sm:flex-row sm:gap-[3.75rem]">
+        <div className="mt-6 sm:mt-0">
           {(faculty.office || faculty.email || faculty.website) && (
-            <article className="mb-7 mt-2 flex flex-col  text-neutral-700">
+            <article className="mb-6 flex flex-col  text-neutral-700">
               <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
               <ul className="list-inside list-disc">
                 {faculty.office && <BulletRow>교수실: {faculty.office}</BulletRow>}
@@ -52,7 +44,13 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
               </ul>
             </article>
           )}
+          <HeaderAndList header="학력" list={faculty.educations} />
+          <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
+          <div className=" mb-7 text-sm font-medium text-neutral-700">
+            재직 기간: {careerTime.startTime} - {careerTime.endTime}
+          </div>
         </div>
+        <ProfileImage imageURL={faculty.imageURL} />
       </div>
     </PageLayout>
   );
