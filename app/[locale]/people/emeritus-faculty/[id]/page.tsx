@@ -15,7 +15,8 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
 
   return (
     <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
-      <div className="relative mb-10 flex flex-col-reverse items-start sm:flex-row sm:gap-[3.75rem]">
+      <div className="relative mb-10 flex flex-col items-start sm:flex-row sm:gap-[3.75rem]">
+        <ProfileImage imageURL={faculty.imageURL} />
         <div className="mt-6 sm:mt-0">
           {(faculty.office || faculty.email || faculty.website) && (
             <article className="mb-6 flex flex-col  text-neutral-700">
@@ -50,7 +51,6 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
             재직 기간: {careerTime.startTime} - {careerTime.endTime}
           </div>
         </div>
-        <ProfileImage imageURL={faculty.imageURL} />
       </div>
     </PageLayout>
   );

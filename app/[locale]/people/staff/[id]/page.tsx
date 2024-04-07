@@ -19,7 +19,8 @@ export default async function StaffMemberPage({ params }: { params: { id: number
       titleType="big"
       titleMargin="mb-9"
     >
-      <div className="relative mb-32 flex flex-col-reverse items-start sm:flex-row sm:gap-[3.75rem]">
+      <div className="relative mb-32 flex flex-col items-start sm:flex-row sm:gap-[3.75rem]">
+        <ProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">
           <article className="mb-6 flex flex-col text-neutral-700">
             <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
@@ -36,7 +37,6 @@ export default async function StaffMemberPage({ params }: { params: { id: number
           </article>
           <HeaderAndList header="주요 업무" list={staff.tasks} />
         </div>
-        <ProfileImage imageURL={staff.imageURL} />
       </div>
     </PageLayout>
   );
