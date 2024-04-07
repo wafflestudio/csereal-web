@@ -16,16 +16,18 @@ export default function ConferenceListTable({
   conferenceList: ConferenceListTableProps[];
 }) {
   return (
-    <div className="mt-8 flex w-[780px] flex-col text-sm">
-      <div className="flex h-10 w-full flex-row border-y-[1px] border-y-neutral-200">
-        <div className="flex w-12 items-center px-3">연번</div>
-        <div className="flex w-20 items-center px-3">코드</div>
-        <div className="flex w-28 items-center px-3">약칭</div>
-        <div className="flex w-[540px] items-center px-3">학술대회명칭</div>
+    <div className="overflow-x-scroll">
+      <div className="mt-8 flex w-[780px] flex-col text-sm">
+        <div className="flex h-10 w-full flex-row border-y-[1px] border-y-neutral-200">
+          <div className="flex w-12 items-center px-3">연번</div>
+          <div className="flex w-20 items-center px-3">코드</div>
+          <div className="flex w-28 items-center px-3">약칭</div>
+          <div className="flex w-[540px] items-center px-3">학술대회명칭</div>
+        </div>
+        {conferenceList.map((conference, index) => (
+          <ConferenceRow conference={conference} index={index + 1} key={conference.id} />
+        ))}
       </div>
-      {conferenceList.map((conference, index) => (
-        <ConferenceRow conference={conference} index={index + 1} key={conference.id} />
-      ))}
     </div>
   );
 }

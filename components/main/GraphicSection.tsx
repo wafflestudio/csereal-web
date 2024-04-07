@@ -15,7 +15,7 @@ export default function GraphicSection() {
         height={416}
         alt=""
         sizes="1024px"
-        className="z-50 h-[12.5rem] w-[80%] object-contain sm:mr-[26px] sm:w-[26rem] xl:mr-[52px]"
+        className="z-10 h-[12.5rem] w-[80%] object-contain sm:mr-[26px] sm:w-[26rem] xl:mr-[52px]"
       />
       <div className="flex -translate-y-1 flex-col items-center gap-[18px] sm:h-[12.5rem] sm:shrink-0 sm:items-start sm:justify-between">
         <SloganP className="hidden sm:block">서울대학교 컴퓨터공학부는</SloganP>

@@ -23,7 +23,7 @@ export default async function MainPage() {
   const data = await getMain();
 
   return (
-    <div className="relative sm:min-w-[1024px]">
+    <div className="relative sm:min-w-fit">
       <Header />
       <div className="absolute left-0 right-0 top-0 -z-50 hidden aspect-[1336/800] sm:block">
         {/* 자글자글해져서 unoptimized */}
@@ -63,7 +63,9 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => (
     className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
   >
     <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">{important.title}</h3>
-    <p className="line-clamp-1 text-sm font-normal text-neutral-800">{important.description}</p>
+    <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-800">
+      {important.description}
+    </p>
     <ImportantSectionArrow />
   </Link>
 );
@@ -130,24 +132,7 @@ const LinkWithArrow = ({
         <p className="text-base font-medium sm:text-lg sm:font-semibold">{title}</p>
         <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
       </div>
-      <RightArrow />
+      <Image src="/image/main/right_arrow.png" width={24} height={24} alt="" sizes="24w" />
     </Link>
   );
 };
-
-const RightArrow = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    className="duration-300 group-hover:translate-x-[10px] sm:h-[40px] sm:w-[40px]"
-  >
-    <path
-      d="M12.011 4.28529L19.7188 11.9931M19.7188 11.9931L12.011 19.7139M19.7188 11.9931L4.29018 11.9931"
-      stroke="white"
-      strokeWidth="1.5"
-      className="group-hover:fill-main-orange"
-    />
-  </svg>
-);
