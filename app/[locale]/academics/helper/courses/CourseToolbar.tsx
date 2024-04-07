@@ -21,7 +21,7 @@ export default function CourseToolbar({
 }: CourseToolbarProps) {
   return (
     <div
-      className={`mb-5 flex items-center justify-between pl-5 ${
+      className={`mb-5 flex items-center justify-between sm:pl-5 ${
         viewOption === '카드형' ? 'pr-11' : 'pr-5'
       }`}
     >
