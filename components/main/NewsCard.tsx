@@ -7,14 +7,12 @@ import { formatMainNewsDateStr } from '@/utils/date';
 
 import { CARD_WIDTH_REM } from './constants';
 
-export default function NewsCard({ shadow, news }: { shadow: boolean; news: MainNews }) {
+export default function NewsCard({ news }: { news: MainNews }) {
   return (
     <Link
       href={`/community/news/${news.id}`}
       style={{ width: `${CARD_WIDTH_REM}rem` }}
-      className={`flex h-[19rem] shrink-0 flex-col bg-neutral-50 ${
-        shadow ? 'shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]' : ''
-      }`}
+      className="flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]"
     >
       <div className="relative h-[6.25rem] w-full">
         <Image src={news.imageURL} fill alt="" className="object-cover" sizes="100px" />
