@@ -23,7 +23,7 @@ const facultyPath = getPath(faculty);
 export default function ResearchLabListRow({ lab }: { lab: SimpleResearchLab }) {
   return (
     <li
-      className="grid grid-cols-[auto,_1fr] grid-rows-5 items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 
+      className="grid-rows-auto grid grid-cols-[auto,_1fr] items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 
     sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white"
     >
       <NameCell name={lab.name} id={lab.id} />
@@ -69,12 +69,22 @@ function ProfessorsCell({ professors }: { professors: { id: number; name: string
 
 function LocationCell({ location }: { location: string }) {
   return (
-    <span className={`${LAB_ROW_ITEM_WIDTH.location} col-span-3 text-neutral-500`}>{location}</span>
+    <span
+      className={`${LAB_ROW_ITEM_WIDTH.location} ${
+        !location && 'hidden sm:inline'
+      } col-span-3 text-neutral-500`}
+    >
+      {location}
+    </span>
   );
 }
 
 function TelephoneCell({ tel }: { tel: string }) {
-  return <span className={`${LAB_ROW_ITEM_WIDTH.tel} text-neutral-500`}>{tel}</span>;
+  return (
+    <span className={`${LAB_ROW_ITEM_WIDTH.tel} ${!tel && 'hidden sm:inline'} text-neutral-500`}>
+      {tel}
+    </span>
+  );
 }
 
 function AcronymCell({ acronym }: { acronym: string }) {
@@ -95,7 +105,11 @@ interface LabIntroMaterialsProps {
 
 function IntroMaterialsCell({ labName, pdf, youtube }: LabIntroMaterialsProps) {
   return (
-    <span className={`${LAB_ROW_ITEM_WIDTH.introMaterial} col-span-3 flex items-center gap-3`}>
+    <span
+      className={`${LAB_ROW_ITEM_WIDTH.introMaterial} ${
+        !pdf && !youtube && 'hidden sm:inline'
+      } col-span-3 flex items-center gap-3`}
+    >
       {pdf && (
         <a
           href={pdf}
