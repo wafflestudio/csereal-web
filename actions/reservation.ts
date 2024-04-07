@@ -32,7 +32,9 @@ export const getWeeklyReservation = async (params: {
 };
 
 export const getReservation = async (id: number) => {
-  return getRequest(`${reservationPath}/${id}`) as Promise<Reservation>;
+  return getRequest(`${reservationPath}/${id}`, undefined, {
+    jsessionID: true,
+  }) as Promise<Reservation>;
 };
 
 export const deleteSingleReservation = async (id: number) => {
