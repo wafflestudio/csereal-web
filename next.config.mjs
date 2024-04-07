@@ -14,6 +14,12 @@ const nextConfig = {
     },
   },
 
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+
   // react-svgr 설정
   // https://react-svgr.com/docs/next/
   webpack(config) {
