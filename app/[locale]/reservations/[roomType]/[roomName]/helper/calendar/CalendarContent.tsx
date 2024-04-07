@@ -28,7 +28,7 @@ export default function CalendarContent({
   const today = new Date();
 
   return (
-    <div className="flex w-fit border-b border-neutral-200">
+    <div className="flex border-b border-neutral-200">
       <RowIndex />
       {dates.map((date) => (
         <CalendarColumn
