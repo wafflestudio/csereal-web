@@ -10,6 +10,7 @@ interface SearchFormProps {
   selectedTags: string[];
   keyword: string;
   setKeyword: Dispatch<SetStateAction<string>>;
+  checkboxWidthPx?: number;
 }
 
 export default function SearchForm({

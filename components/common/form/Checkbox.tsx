@@ -28,7 +28,7 @@ export default function Checkbox({
         {iconName}
       </span>
       <span
-        className={`text-[14px] tracking-wide text-neutral-600 ${
+        className={`text-md tracking-wide text-neutral-600 ${
           !disabled && 'group-active:text-main-orange'
         }`}
       >
