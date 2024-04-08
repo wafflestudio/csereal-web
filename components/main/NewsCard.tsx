@@ -15,7 +15,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
       className="flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]"
     >
       <div className="relative h-[6.25rem] w-full">
-        <Image src={news.imageURL} fill alt="" className="object-cover" sizes="100px" />
+        <Image src={news.imageURL} fill alt="" className="object-cover" sizes="220w" />
       </div>
 
       <div className="px-[0.87rem] pt-[0.88rem]">
