@@ -12,7 +12,13 @@ const nextConfig = {
       bodySizeLimit: '10mb',
 
       // https://github.com/vercel/next.js/issues/58295
-      allowedOrigins: ['csereal-prod.bacchus.io:443', 'csereal-prod.bacchus.io', 'cse.snu.ac.kr'],
+      allowedOrigins: [
+        'csereal-prod.bacchus.io:443',
+        'csereal-prod.bacchus.io',
+        'cse.snu.ac.kr',
+        'cse.snu.ac.kr:443',
+        'id.snucse.org',
+      ],
     },
   },
 
