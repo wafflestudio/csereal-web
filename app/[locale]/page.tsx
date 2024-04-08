@@ -41,7 +41,7 @@ export default async function MainPage() {
 const ImportantSection = ({ importantList }: { importantList: MainImportant[] }) => {
   return (
     <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.0625rem] sm:grid-cols-2 sm:gap-7">
-      {importantList.slice(0, 1).map((important) => (
+      {importantList.map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}
       <Link
