@@ -28,7 +28,7 @@ export const getSeminarPost = async (id: number, params: PostSearchQueryParams) 
 // POST
 
 export const postSeminar = async (formData: FormData) => {
-  return postRequest(seminarPath, { body: formData }) as Promise<{ id: number }>;
+  return postRequest(seminarPath, { body: formData, jsessionID: true }) as Promise<{ id: number }>;
 };
 
 // PATCH
