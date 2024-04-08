@@ -33,8 +33,8 @@ export const deleteSeminarAction = async (id: number) => {
   try {
     await deleteSeminar(id);
     revalidateTag(FETCH_TAG_SEMINAR);
-    redirect(seminarPath);
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
   }
+  redirect(seminarPath);
 };
