@@ -14,8 +14,6 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
       : searchTags(selectedTags.filter((t) => t !== tag));
   };
 
-  console.log(tags);
-
   return (
     <div>
       <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">태그</h5>
