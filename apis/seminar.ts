@@ -34,9 +34,10 @@ export const postSeminar = async (formData: FormData) => {
 // PATCH
 
 export const patchSeminar = async (id: number, formData: FormData) => {
-  await patchRequest(`${seminarPath}/${id}`, { body: formData });
+  await patchRequest(`${seminarPath}/${id}`, { body: formData, jsessionID: true });
 };
 
 // DELETE
 
-export const deleteSeminar = async (id: number) => deleteRequest(`${seminarPath}/${id}`);
+export const deleteSeminar = async (id: number) =>
+  deleteRequest(`${seminarPath}/${id}`, { jsessionID: true });
