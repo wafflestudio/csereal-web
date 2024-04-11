@@ -30,7 +30,6 @@ export interface CourseChange {
 
 export interface GeneralStudiesRequirements {
   overview: string;
-  subjectChanges: string;
   generalStudies: {
     id: number;
     year: number;
