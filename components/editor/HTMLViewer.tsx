@@ -29,9 +29,7 @@ export default function HTMLViewer({
 
   return (
     <div className={`flow-root ${className}`}>
-      {(topRightContent?.type === 'image' || topRightContent?.type === 'imageUnoptimized') && (
-        <TopRightImageContent {...topRightContent} />
-      )}
+      {topRightContent?.type === 'image' && <TopRightImageContent {...topRightContent} />}
       {topRightContent?.type === 'component' && <TopRightComponent {...topRightContent} />}
       <div
         className="sun-editor-editable"
