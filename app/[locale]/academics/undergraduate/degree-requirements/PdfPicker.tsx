@@ -10,6 +10,8 @@ import { DegreeRequirements } from '@/types/academics';
 export default function PdfPicker({ data }: { data: DegreeRequirements['yearList'] }) {
   const [index, setIndex] = useState(0);
 
+  if (data === undefined) return <></>;
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-center gap-2">

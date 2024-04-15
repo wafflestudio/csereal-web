@@ -1,5 +1,6 @@
 import { getDegreeRequirements } from '@/apis/academics';
 
+import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -7,11 +8,12 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import PdfPicker from './PdfPicker';
 
 export default async function UndergraduteDegreeRequirementsPage() {
-  const { description, yearList } = await getDegreeRequirements();
+  const { description, yearList, attachments } = await getDegreeRequirements();
 
   return (
     <PageLayout titleType="big">
       <PdfPicker data={yearList} />
+      <Attachments files={attachments ?? []} />
       <div className="mb-4 mt-6 flex w-[200px] flex-col">
         <h3 className=" mb-2 pl-3 text-lg font-bold">공통: 졸업사정 유의사항</h3>
         <StraightNode />
