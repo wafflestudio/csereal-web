@@ -26,7 +26,8 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
     <Image
       {...rest}
       alt={rest.alt}
-      src={props.src}
+      // src에 가끔 공백문자등이 있는데 처리 안해주면 서버에서 400 에러가 뜸
+      src={encodeURI(props.src)}
       onError={() => {
         setError(true);
       }}
