@@ -44,18 +44,7 @@ const ImportantSection = ({ importantList }: { importantList: MainImportant[] })
       {importantList.map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}
-      <Link
-        href="https://computingcommons.snu.ac.kr/"
-        className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[#E65817] px-[1.75rem] pt-[1.63rem]"
-      >
-        <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
-          SNU Computing Commons 건축기금 모금
-        </h3>
-        <p className="line-clamp-1 text-sm font-normal text-neutral-800">
-          서울대학교 발전재단 X 컴퓨터공학부
-        </p>
-        <ImportantSectionArrow />
-      </Link>
+      <CharityBanner />
     </div>
   );
 };
@@ -68,6 +57,21 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => (
     <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">{important.title}</h3>
     <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-800">
       {important.description}
+    </p>
+    <ImportantSectionArrow />
+  </Link>
+);
+
+const CharityBanner = () => (
+  <Link
+    href="https://computingcommons.snu.ac.kr/"
+    className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-[url(/image/main/charity.png)] bg-cover px-[1.75rem] pt-[1.63rem]"
+  >
+    <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
+      SNU Computing Commons 건축기금 모금
+    </h3>
+    <p className="line-clamp-1 text-sm font-normal text-neutral-800">
+      서울대학교 발전재단 X 컴퓨터공학부
     </p>
     <ImportantSectionArrow />
   </Link>
