@@ -185,7 +185,7 @@ const hypenIfEmpty = (str: string | null) => (str === '' || str === null ? '-' :
 
 const handleServerError = (e: unknown) => {
   if (e instanceof Error) {
-    if (e.message === '403') {
+    if (e.message === '401') {
       errorToast('권한이 없습니다.');
     } else {
       errorToast(e.message);
