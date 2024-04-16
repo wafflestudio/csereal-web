@@ -37,12 +37,12 @@ export const getReservation = async (id: number) => {
   }) as Promise<Reservation>;
 };
 
-export const deleteSingleReservation = async (id: number) => {
+export const deleteSingleReservation = withErrorHandler(async (id: number) => {
   await deleteRequest(`${reservationPath}/${id}`, { jsessionID: true });
   revalidateTag(FETCH_TAG_RESERVATION);
-};
+});
 
-export const deleteAllRecurringReservation = async (id: string) => {
+export const deleteAllRecurringReservation = withErrorHandler(async (id: string) => {
   await deleteRequest(`${reservationPath}/recurring/${id}`, { jsessionID: true });
   revalidateTag(FETCH_TAG_RESERVATION);
-};
+});

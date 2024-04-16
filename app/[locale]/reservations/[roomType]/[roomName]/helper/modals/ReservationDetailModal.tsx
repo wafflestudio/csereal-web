@@ -16,6 +16,7 @@ import { Reservation } from '@/types/reservation';
 
 import useModal from '@/utils/hooks/useModal';
 import { refreshPage } from '@/utils/refreshPage';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BasicButton from '../BasicButton';
@@ -126,21 +127,21 @@ const DeleteButtons = ({
 
   const handleDeleteAll = async () => {
     try {
-      await deleteAllRecurringReservation(recurrenceId);
+      handleServerAction(await deleteAllRecurringReservation(recurrenceId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
-      toastError(error);
+      handleServerError(error);
     }
   };
 
   const handleDelete = async () => {
     try {
-      await deleteSingleReservation(reservationId);
+      handleServerAction(await deleteSingleReservation(reservationId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
-      toastError(error);
+      handleServerError(error);
     }
   };
 
@@ -180,12 +181,16 @@ const DeleteButtons = ({
 
 const padZero = (x: number) => (x + '').padStart(2, '0');
 
-const toastError = (error: unknown) => {
-  if (error instanceof Error) {
-    errorToast(error.message);
+const hypenIfEmpty = (str: string | null) => (str === '' || str === null ? '-' : str);
+
+const handleServerError = (e: unknown) => {
+  if (e instanceof Error) {
+    if (e.message === '403') {
+      errorToast('권한이 없습니다.');
+    } else {
+      errorToast(e.message);
+    }
   } else {
-    errorToast('알 수 없는 문제가 발생했습니다.');
+    errorToast('알 수 없는 에러');
   }
 };
-
-const hypenIfEmpty = (str: string | null) => (str === '' || str === null ? '-' : str);
