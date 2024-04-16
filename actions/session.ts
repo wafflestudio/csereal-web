@@ -19,7 +19,7 @@ export const getMockAuth = async () => {
   cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true });
 };
 
-export const removeAuth = () => {
+export const removeAuth = async () => {
   cookies().delete(COOKIE_SESSION_ID);
 };
 

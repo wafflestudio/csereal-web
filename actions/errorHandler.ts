@@ -1,7 +1,5 @@
 // https://github.com/vercel/next.js/discussions/49506
 
-'use server';
-
 import { isDynamicUsageError } from 'next/dist/export/helpers/is-dynamic-usage-error';
 
 import { CustomError } from '@/utils/serverActionError';

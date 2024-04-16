@@ -98,7 +98,7 @@ function ReservationDetailModal({ reservation }: { reservation: Reservation }) {
           </div>
         </div>
 
-        <LoginVisible staff>
+        <LoginVisible>
           <DeleteButtons reservationId={reservation.id} recurrenceId={reservation.recurrenceId} />
         </LoginVisible>
       </div>
