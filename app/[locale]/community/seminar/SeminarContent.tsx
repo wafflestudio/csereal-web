@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { Fragment } from 'react';
 
 import { getSeminarPosts } from '@/apis/seminar';
@@ -11,6 +12,8 @@ import Pagination from '@/components/common/Pagination';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { validatePageNum } from '@/utils/validatePageNum';
+
 const POSTS_COUNT_PER_PAGE = 10;
 
 export default async function SeminarContent({
@@ -18,6 +21,10 @@ export default async function SeminarContent({
 }: {
   searchParams: PostSearchQueryParams;
 }) {
+  if (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) {
+    notFound();
+  }
+
   const { searchList, total } = await getSeminarPosts(searchParams);
 
   return (
