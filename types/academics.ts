@@ -49,21 +49,11 @@ export interface Scholarship {
 }
 export interface DegreeRequirements {
   description: string;
-  attachments?: {
+  attachments: {
     id: number;
     url: string;
     name: string;
     bytes: number;
-  }[];
-
-  // TODO: 마이그레이션 이후 삭제
-  yearList?: {
-    year: number;
-    attachments: {
-      name: string;
-      url: string;
-      bytes: number;
-    }[];
   }[];
 }
 
