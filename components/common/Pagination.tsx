@@ -97,12 +97,14 @@ interface PaginationArrowProps {
 }
 
 function PaginationArrow({ iconName, disabled, href }: PaginationArrowProps) {
-  const arrowStyle = disabled
-    ? 'cursor-default text-neutral-400 pointer-events-none'
-    : 'cursor-pointer hover:text-main-orange';
-
-  return (
-    <Link className={arrowStyle} href={href}>
+  return disabled ? (
+    <span
+      className={`material-symbols-rounded pointer-events-none cursor-default text-2xl font-light text-neutral-400`}
+    >
+      {iconName}
+    </span>
+  ) : (
+    <Link className="cursor-pointer hover:text-main-orange" href={href}>
       <span className="material-symbols-rounded text-2xl font-light">{iconName}</span>
     </Link>
   );
