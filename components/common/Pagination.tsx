@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
-import { Link, useRouter } from '@/navigation';
+import { Link, usePathname, useRouter } from '@/navigation';
 
 import { urlSearchParamsToString } from '@/utils/convertParams';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
