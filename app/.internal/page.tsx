@@ -24,7 +24,7 @@ const content = `<p><strong style="font-size: large;">&nbsp; &nbsp; &nbsp; &nbsp
 </tr>
 <tr>
 <td class="xl115" style="text-align: center;" width="142" height="41">기획위원회<br /> (strategy &amp; planning)</td>
-<td class="xl116" style="text-align: left; width: 740px;">&nbsp;*이광근, 김선, 김지홍, 김형주, 문병로, 문봉기, 박근수, 염헌영, 이상구, 장병탁, 전화숙, 하순회</td>
+<td class="xl116" style="text-align: left; width: 740px;">&nbsp;*이광근, 김선, 김지홍, 김형주, 문병로, 문봉기, 박근수, 이상구, 장병탁, 전화숙, 하순회</td>
 <td class="xl114" style="text-align: center;">cmt_sp</td>
 </tr>
 <tr>
