@@ -16,13 +16,8 @@ const labPath = getPath(researchLabs);
 export default async function FacultyPage({ params }: { params: { locale: 'ko' | 'en' } }) {
   const { professors } = await getActiveFacultyList(params.locale);
 
-  const normal = professors
-    .filter((x) => x.academicRank !== '특임교수') // TODO: 백엔드 status값 반영 전 임시 코드
-    .map(facultyToProp);
-
-  const special = professors
-    .filter((x) => x.academicRank === '특임교수' || x.academicRank === '') // TODO: 백엔드 status값 반영 전 임시 코드
-    .map(facultyToProp);
+  const normal = professors.filter((x) => x.status !== 'VISITING').map(facultyToProp);
+  const special = professors.filter((x) => x.status === 'VISITING').map(facultyToProp);
 
   return (
     <PageLayout title="교수진" titleType="big">
