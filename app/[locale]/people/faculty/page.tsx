@@ -21,7 +21,7 @@ export default async function FacultyPage({ params }: { params: { locale: 'ko' |
     .map(facultyToProp);
 
   const special = professors
-    .filter((x) => x.academicRank === '특임교수') // TODO: 백엔드 status값 반영 전 임시 코드
+    .filter((x) => x.academicRank === '특임교수' || x.academicRank === '') // TODO: 백엔드 status값 반영 전 임시 코드
     .map(facultyToProp);
 
   return (
