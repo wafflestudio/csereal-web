@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
@@ -41,11 +40,6 @@ export default async function RootLayout({
 
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
-      {/* TODO: 콘솔에 찍히는 에러 확인 */}
-      <Script
-        type="module"
-        src="https://8fl3k30sy0.execute-api.ap-northeast-2.amazonaws.com/v1/api/fontstream/djs/?sid=gAAAAABmERKxhfDey2qfPcjgFRkqpXwpei80obWPEPGgtzmc1srWnLLM7CwF6IB-jSHY8hwosajn3Gf6fF78x40vCqY73IHI7gAfsQB5_s3rFFOXAIfEzDO8pPh1kuI-MOAQIB06VNZirmAuXXAk8G0AkXFglUB3D2qkZZBWIBYEoezeYy5qE-kChjhuabFzkXxUNpfRrIdlFm4DhZTLr1SjdGNKgJx15nlvFpAX6PqeRNKoS6uL4Ye8346heclwa_f8pdXV9-0G"
-      />
       <body className="sm:min-w-[1200px]">
         <ContextProviders locale={params.locale}>
           <Navbar />

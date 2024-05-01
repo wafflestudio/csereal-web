@@ -1,7 +1,10 @@
+import { Gowun_Batang } from 'next/font/google';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
 import DownArrow from '@/public/image/main/down_arrow.svg';
+
+const gowunBatang = Gowun_Batang({ weight: '400', subsets: ['latin', 'latin-ext', 'vietnamese'] });
 
 export default function GraphicSection() {
   // 헤더 높이 빼기
@@ -34,7 +37,5 @@ export default function GraphicSection() {
 }
 
 const SloganP = ({ className, children }: { className: string; children: ReactNode }) => (
-  <p className={`text-[1.8rem] text-white ${className}`} style={{ fontFamily: 'Sandoll Jeongche' }}>
-    {children}
-  </p>
+  <p className={`text-[1.8rem] text-white ${className} ${gowunBatang.className}`}>{children}</p>
 );
