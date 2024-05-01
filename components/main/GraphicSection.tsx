@@ -1,10 +1,10 @@
-import { Gowun_Batang } from 'next/font/google';
+import localFont from 'next/font/local';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
 import DownArrow from '@/public/image/main/down_arrow.svg';
 
-const gowunBatang = Gowun_Batang({ weight: '400', subsets: ['latin', 'latin-ext', 'vietnamese'] });
+const gowunBatang = localFont({ src: './GowunBatang-Regular.ttf' });
 
 export default function GraphicSection() {
   // 헤더 높이 빼기
