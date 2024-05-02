@@ -1,3 +1,13 @@
-User-Agent: *
+# *
+User-agent: *
 Allow: /
-Disallow: /admin/
+Disallow: /admin
+Disallow: /community/notice/create
+Disallow: /community/news/create
+Disallow: /community/seminar/create
+
+# Host
+Host: https://cse.snu.ac.kr
+
+# Sitemaps
+Sitemap: https://cse.snu.ac.kr/sitemap.xml
