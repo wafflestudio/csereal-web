@@ -1,3 +1,6 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 import { getFutureCareeres } from '@/apis/about';
 
 import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
@@ -5,6 +8,15 @@ import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { FutureCareers } from '@/types/about';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('졸업생 진로'),
+    description: '서울대학교 컴퓨터공학부 졸업생 진로 페이지입니다.',
+  };
+}
 
 export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();

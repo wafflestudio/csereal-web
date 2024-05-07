@@ -1,4 +1,6 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 
 import greetings from '@/public/image/about/greetings.jpg';
 
@@ -6,6 +8,15 @@ import { getGreetings } from '@/apis/about';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('학부장 인사말'),
+    description: '서울대학교 컴퓨터공학부 학부장 인사말 페이지입니다.',
+  };
+}
 
 // 학부 소개 페이지 - 학부장 인사말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
