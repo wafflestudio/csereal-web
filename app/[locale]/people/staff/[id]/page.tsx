@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function StaffMemberPage({ params }: { params: { id: number } }) {
-  const staff = await getStaff(params.id);
+  const staff = await getData(params.id);
 
   return (
     <PageLayout

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
-  const faculty = await getEmeritusFaculty(params.id);
+  const faculty = await getData(params.id);
   const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
 
   return (
