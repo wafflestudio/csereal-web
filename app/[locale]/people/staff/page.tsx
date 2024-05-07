@@ -1,3 +1,6 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 import { getStaffList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -7,6 +10,15 @@ import { staff } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('행정직원'),
+    description: '서울대학교 컴퓨터공학부 행정직원 페이지입니다.',
+  };
+}
 
 const staffPath = getPath(staff);
 

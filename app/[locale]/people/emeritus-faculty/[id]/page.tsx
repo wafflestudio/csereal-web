@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { Link } from '@/navigation';
 
 import { getEmeritusFaculty } from '@/apis/people';
@@ -8,6 +10,15 @@ import BulletRow from '../../helper/BulletRow';
 import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const faculty = await getData(parseInt(params.id));
+
+  return {
+    title: `${faculty.name}`,
+    description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
+  };
+}
 
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
   const faculty = await getEmeritusFaculty(params.id);
@@ -54,4 +65,10 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
       </div>
     </PageLayout>
   );
+}
+
+async function getData(id: number) {
+  const faculty = await getEmeritusFaculty(id);
+
+  return faculty;
 }

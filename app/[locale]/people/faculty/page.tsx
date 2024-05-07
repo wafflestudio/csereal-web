@@ -1,3 +1,6 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 import { getActiveFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -9,6 +12,15 @@ import { faculty, researchLabs } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('교수진'),
+    description: '서울대학교 컴퓨터공학부 교수진 페이지입니다.',
+  };
+}
 
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);

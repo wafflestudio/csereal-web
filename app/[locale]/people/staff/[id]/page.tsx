@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { Link } from '@/navigation';
 
 import { getStaff } from '@/apis/people';
@@ -9,6 +11,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import BulletRow from '../../helper/BulletRow';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const staff = await getData(parseInt(params.id));
+
+  return {
+    title: `${staff.name}`,
+    description: `서울대학교 컴퓨터공학부 ${staff.name} 행정직원 페이지입니다.`,
+  };
+}
 
 export default async function StaffMemberPage({ params }: { params: { id: number } }) {
   const staff = await getStaff(params.id);
@@ -40,4 +51,10 @@ export default async function StaffMemberPage({ params }: { params: { id: number
       </div>
     </PageLayout>
   );
+}
+
+async function getData(id: number) {
+  const staff = await getStaff(id);
+
+  return staff;
 }
