@@ -1,5 +1,6 @@
+import { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -16,10 +17,17 @@ import '@/styles/globals.css';
 
 import MarginedMain from './MarginedMain';
 
-export const metadata = {
-  title: '서울대학교 컴퓨터공학부',
-  description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Title');
+
+  return {
+    title: {
+      default: t('서울대학교 컴퓨터공학부'),
+      template: `%s | ${t('서울대학교 컴퓨터공학부')}`,
+    },
+    description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
+  };
+}
 
 // i18n의 Static rendering 관련 에러 제거 위해 추가
 export function generateStaticParams() {
