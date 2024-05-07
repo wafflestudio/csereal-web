@@ -1,9 +1,21 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 import { getDegreeRequirements } from '@/apis/academics';
 
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('졸업 규정'),
+    description: '서울대학교 컴퓨터공학부 졸업 규정(학부) 페이지입니다.',
+  };
+}
 
 export default async function UndergraduteDegreeRequirementsPage() {
   const { description, attachments } = await getDegreeRequirements();
