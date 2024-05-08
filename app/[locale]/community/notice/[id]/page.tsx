@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }): Promise<Metadata> {
-  const notice = await getData(parseInt(params.id), searchParams);
+  const notice = await getNoticePostDetail(parseInt(params.id), searchParams);
 
   return {
     title: `${notice.title}`,
@@ -39,7 +39,7 @@ export default async function NoticePostPage({
   // ID가 잘못된 경우 예외 처리
   if (Number.isNaN(id)) return <InvalidIDFallback rawID={rawID} />;
 
-  const notice = await getData(id, searchParams);
+  const notice = await getNoticePostDetail(id, searchParams);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -58,9 +58,3 @@ const InvalidIDFallback = ({ rawID }: { rawID: string }) => (
     </p>
   </PageLayout>
 );
-
-async function getData(id: number, searchParams: PostSearchQueryParams) {
-  const notice = await getNoticePostDetail(id, searchParams);
-
-  return notice;
-}

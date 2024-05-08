@@ -12,8 +12,8 @@ import BulletRow from '../../helper/BulletRow';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const staff = await getData(parseInt(params.id));
+export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
+  const staff = await getStaff(params.id);
 
   return {
     title: `${staff.name}`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function StaffMemberPage({ params }: { params: { id: number } }) {
-  const staff = await getData(params.id);
+  const staff = await getStaff(params.id);
 
   return (
     <PageLayout
@@ -51,10 +51,4 @@ export default async function StaffMemberPage({ params }: { params: { id: number
       </div>
     </PageLayout>
   );
-}
-
-async function getData(id: number) {
-  const staff = await getStaff(id);
-
-  return staff;
 }

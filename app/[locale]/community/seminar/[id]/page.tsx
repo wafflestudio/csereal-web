@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }): Promise<Metadata> {
-  const seminar = await getData(parseInt(params.id), searchParams);
+  const seminar = await getSeminarPost(parseInt(params.id), searchParams);
 
   return {
     title: `${seminar.title}`,
@@ -34,7 +34,7 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
   const id = parseInt(params.id);
   if (Number.isNaN(id)) throw new Error('/seminar/[id]: id가 숫자가 아닙니다.');
 
-  const seminar = await getData(id, searchParams);
+  const seminar = await getSeminarPost(id, searchParams);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -43,10 +43,4 @@ export default async function SeminarPostPage({ params, searchParams }: SeminarP
       </Suspense>
     </PageLayout>
   );
-}
-
-async function getData(id: number, searchParams: PostSearchQueryParams) {
-  const seminar = await getSeminarPost(id, searchParams);
-
-  return seminar;
 }

@@ -5,7 +5,7 @@ import { getScholarship } from '@/apis/academics';
 import ScholarshipDetail from '../../../helper/ScholarshipDetail';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const scholarship = await getData(parseInt(params.id));
+  const scholarship = await getScholarship(parseInt(params.id));
 
   return {
     title: `${scholarship.name}`,
@@ -14,13 +14,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function UndergraduateScholarshipPage({ params }: { params: { id: string } }) {
-  const scholarship = await getData(parseInt(params.id));
+  const scholarship = await getScholarship(parseInt(params.id));
 
   return <ScholarshipDetail scholarship={scholarship} />;
-}
-
-async function getData(id: number) {
-  const scholarship = await getScholarship(id);
-
-  return scholarship;
 }

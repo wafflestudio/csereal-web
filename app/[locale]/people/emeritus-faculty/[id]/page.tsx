@@ -11,8 +11,8 @@ import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const faculty = await getData(parseInt(params.id));
+export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
+  const faculty = await getEmeritusFaculty(params.id);
 
   return {
     title: `${faculty.name}`,
@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
-  const faculty = await getData(params.id);
+  const faculty = await getEmeritusFaculty(params.id);
+
   const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
 
   return (
@@ -65,10 +66,4 @@ export default async function EmeritusFacultyMemberPage({ params }: { params: { 
       </div>
     </PageLayout>
   );
-}
-
-async function getData(id: number) {
-  const faculty = await getEmeritusFaculty(id);
-
-  return faculty;
 }

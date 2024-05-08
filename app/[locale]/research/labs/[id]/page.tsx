@@ -7,7 +7,7 @@ import ResearchLabDetailContent from '@/app/[locale]/research/labs/[id]/Research
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const lab = await getData(parseInt(params.id));
+  const lab = await getResearchLab(parseInt(params.id));
 
   return {
     title: `${lab.name}`,
@@ -20,17 +20,11 @@ interface LabDetailPageProps {
 }
 
 export default async function ResearchLabDetail({ params }: LabDetailPageProps) {
-  const lab = await getData(parseInt(params.id));
+  const lab = await getResearchLab(parseInt(params.id));
 
   return (
     <PageLayout title={lab.name} titleType="small">
       <ResearchLabDetailContent lab={lab} />
     </PageLayout>
   );
-}
-
-async function getData(id: number) {
-  const lab = await getResearchLab(id);
-
-  return lab;
 }

@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { id: string };
   searchParams: PostSearchQueryParams;
 }): Promise<Metadata> {
-  const news = await getData(parseInt(params.id), searchParams);
+  const news = await getNewsDetail(parseInt(params.id), searchParams);
 
   return {
     title: `${news.title}`,
@@ -34,7 +34,7 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
   const id = parseInt(params.id);
   if (Number.isNaN(id)) throw new Error('/news/[id]: id가 숫자가 아닙니다.');
 
-  const news = await getData(id, searchParams);
+  const news = await getNewsDetail(id, searchParams);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -43,10 +43,4 @@ export default async function NewsPostPage({ params, searchParams }: NewsPostPag
       </Suspense>
     </PageLayout>
   );
-}
-
-async function getData(id: number, searchParams: PostSearchQueryParams) {
-  const news = await getNewsDetail(id, searchParams);
-
-  return news;
 }

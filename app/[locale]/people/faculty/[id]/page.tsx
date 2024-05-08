@@ -16,8 +16,8 @@ import { researchLabs } from '@/utils/segmentNode';
 
 import PageTitle from '../../helper/PageTitle';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const faculty = await getData(parseInt(params.id));
+export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
+  const faculty = await getFaculty('ko', params.id);
 
   return {
     title: `${faculty.name}`,
@@ -32,7 +32,8 @@ export default async function FacultyMemberPage({
 }: {
   params: { id: number; locale: 'ko' | 'en' };
 }) {
-  const faculty = await getData(params.id);
+  const faculty = await getFaculty('ko', params.id);
+
   if (faculty.status !== 'ACTIVE') notFound();
 
   return (
@@ -65,10 +66,4 @@ export default async function FacultyMemberPage({
       </div>
     </PageLayout>
   );
-}
-
-async function getData(id: number) {
-  const faculty = await getFaculty('ko', id);
-
-  return faculty;
 }
