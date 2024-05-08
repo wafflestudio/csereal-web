@@ -21,6 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Title');
 
   return {
+    metadataBase: new URL('https://cse.snu.ac.kr'),
     title: {
       default: t('서울대학교 컴퓨터공학부'),
       template: `%s | ${t('서울대학교 컴퓨터공학부')}`,
