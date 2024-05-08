@@ -1,3 +1,6 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 import SelectionList from '@/components/common/selection/SelectionList';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -6,6 +9,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { reservationIntroduction } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return {
+    title: t('시설 예약 안내'),
+    description: '서울대학교 컴퓨터공학부 시설 예약 안내 페이지입니다.',
+  };
+}
 
 const path = getPath(reservationIntroduction);
 

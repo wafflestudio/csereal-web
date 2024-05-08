@@ -1,8 +1,22 @@
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { roomType: string; roomName: string };
+}): Promise<Metadata> {
+  const { roomName } = params;
+
+  return {
+    title: `${roomName} 예약`,
+    description: `서울대학교 컴퓨터공학부 ${roomName} 예약 페이지입니다.`,
+  };
+}
 
 interface RoomReservationProps {
   params: { roomType: string; roomName: string };
