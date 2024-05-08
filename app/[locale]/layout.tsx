@@ -26,6 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${t('서울대학교 컴퓨터공학부')}`,
     },
     description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
+    openGraph: {
+      images: ['/image/main/mainGraphic.png'],
+    },
   };
 }
 

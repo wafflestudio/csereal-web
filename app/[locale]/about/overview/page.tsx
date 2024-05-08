@@ -13,17 +13,21 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Nav');
+  const { imageURL } = await getData();
 
   return {
     title: t('학부 소개'),
     description: '서울대학교 컴퓨터공학부 학부 소개 페이지입니다.',
+    openGraph: {
+      images: [imageURL],
+    },
   };
 }
 
 // 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function OverviewPage() {
-  const { description, attachments, imageURL } = await getOverview();
+  const { description, attachments, imageURL } = await getData();
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -50,4 +54,10 @@ export default async function OverviewPage() {
       </div>
     </PageLayout>
   );
+}
+
+async function getData() {
+  const overview = await getOverview();
+
+  return overview;
 }
