@@ -44,6 +44,5 @@ export interface TopConferenceList {
     code: string;
     abbreviation: string;
     name: string;
-    ackIf: number | null;
   }[];
 }
