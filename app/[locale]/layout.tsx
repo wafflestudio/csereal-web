@@ -17,11 +17,17 @@ import '@/styles/globals.css';
 
 import MarginedMain from './MarginedMain';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Title');
+const PROD_URL = 'https://cse.snu.ac.kr';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'Title' });
 
   return {
-    metadataBase: new URL('https://cse.snu.ac.kr'),
+    metadataBase: new URL(PROD_URL),
     title: {
       default: t('서울대학교 컴퓨터공학부'),
       template: `%s | ${t('서울대학교 컴퓨터공학부')}`,
