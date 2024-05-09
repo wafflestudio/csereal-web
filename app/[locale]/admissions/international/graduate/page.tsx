@@ -1,18 +1,25 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import { getInternationalgraduate } from '@/apis/admission';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
+import { getMetadata } from '@/utils/metadata';
+import { internationalGraduateAdmission } from '@/utils/segmentNode';
 
-  return {
-    title: t('Graduate'),
-    description: 'Dept. of Computer Science and Engineering, SNU Graduate page',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({
+    locale,
+    node: internationalGraduateAdmission,
+    metadata: {
+      description: `Dept. of Computer Science and Engineering, SNU ${internationalGraduateAdmission.name} page`,
+    },
+  });
 }
 
 export default async function InternationalGraduateAdmissionPage() {

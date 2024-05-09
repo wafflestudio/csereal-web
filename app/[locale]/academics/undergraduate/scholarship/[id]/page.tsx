@@ -2,15 +2,23 @@ import { Metadata } from 'next';
 
 import { getScholarship } from '@/apis/academics';
 
+import { getMetadata } from '@/utils/metadata';
+import { undergraduateScholarship } from '@/utils/segmentNode';
+
 import ScholarshipDetail from '../../../helper/ScholarshipDetail';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const scholarship = await getScholarship(parseInt(params.id));
+export async function generateMetadata({
+  params: { locale, id },
+}: {
+  params: { locale: string; id: string };
+}): Promise<Metadata> {
+  const scholarship = await getScholarship(parseInt(id));
 
-  return {
-    title: `${scholarship.name}`,
-    description: '서울대학교 컴퓨터공학부 장학금 안내 페이지입니다.',
-  };
+  return await getMetadata({
+    locale,
+    node: undergraduateScholarship,
+    metadata: { title: `${scholarship.name}` },
+  });
 }
 
 export default async function UndergraduateScholarshipPage({ params }: { params: { id: string } }) {

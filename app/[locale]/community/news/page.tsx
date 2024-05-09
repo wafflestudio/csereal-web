@@ -2,7 +2,6 @@
 export const dynamic = 'force-dynamic';
 
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
@@ -15,15 +14,17 @@ import { NEWS_TAGS } from '@/constants/tag';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { news } from '@/utils/segmentNode';
+
 import AdminFeatures from './helper/AdminFeatures';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
-
-  return {
-    title: t('새 소식'),
-    description: '서울대학교 컴퓨터공학부 새 소식 목록 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: news });
 }
 
 interface NewsPageParams {

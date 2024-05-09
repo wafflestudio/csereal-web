@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
 
 import brochure1 from '@/public/image/about/brochure1.png';
 import brochure2 from '@/public/image/about/brochure2.png';
@@ -11,17 +10,21 @@ import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
+import { getMetadata } from '@/utils/metadata';
+import { overview } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
   const { imageURL } = await getOverview();
 
-  return {
-    title: t('학부 소개'),
-    description: '서울대학교 컴퓨터공학부 학부 소개 페이지입니다.',
-    openGraph: {
-      images: [imageURL],
-    },
-  };
+  return await getMetadata({
+    locale,
+    node: overview,
+    metadata: { openGraph: { images: [imageURL] } },
+  });
 }
 
 // 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일

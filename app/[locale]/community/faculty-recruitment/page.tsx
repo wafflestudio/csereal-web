@@ -1,7 +1,20 @@
+import { Metadata } from 'next';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { GETFacultyRecruitmentResponse } from '@/types/post';
+
+import { getMetadata } from '@/utils/metadata';
+import { facultyRecruitment } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: facultyRecruitment });
+}
 
 export default async function FacultyRecruitment() {
   const res = await mockNetwork();

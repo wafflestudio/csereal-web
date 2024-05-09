@@ -3,7 +3,6 @@ export const dynamic = 'force-dynamic';
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import { getNoticePosts } from '@/apis/notice';
@@ -14,17 +13,17 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { notice } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validatePageNum';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
-
-  return {
-    title: t('공지사항'),
-    description: '서울대학교 컴퓨터공학부 공지사항 목록 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: notice });
 }
-
 interface NoticePageParams {
   searchParams: PostSearchQueryParams;
 }

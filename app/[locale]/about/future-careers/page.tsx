@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import { getFutureCareeres } from '@/apis/about';
 
@@ -9,13 +8,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { FutureCareers } from '@/types/about';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
+import { getMetadata } from '@/utils/metadata';
+import { futureCareers } from '@/utils/segmentNode';
 
-  return {
-    title: t('졸업생 진로'),
-    description: '서울대학교 컴퓨터공학부 졸업생 진로 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: futureCareers });
 }
 
 export default async function GreetingsPage() {

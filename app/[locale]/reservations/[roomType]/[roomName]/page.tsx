@@ -5,17 +5,22 @@ import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomNam
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { roomType: string; roomName: string };
-}): Promise<Metadata> {
-  const { roomName } = params;
+import { getMetadata } from '@/utils/metadata';
 
-  return {
-    title: `${roomName} 예약`,
-    description: `서울대학교 컴퓨터공학부 ${roomName} 예약 페이지입니다.`,
-  };
+export async function generateMetadata({
+  params: { locale, roomName },
+}: {
+  params: { locale: string; roomName: string };
+}): Promise<Metadata> {
+  console.log(locale);
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${roomName} ${locale === 'ko' ? '예약' : 'reservation'}`,
+      description: `서울대학교 컴퓨터공학부 ${roomName} 예약 페이지입니다.`,
+    },
+  });
 }
 
 interface RoomReservationProps {

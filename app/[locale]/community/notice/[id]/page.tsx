@@ -8,21 +8,27 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { notice } from '@/utils/segmentNode';
+
 import NoticeViewer from './NoticeViewer';
 
 export async function generateMetadata({
-  params,
+  params: { locale, id },
   searchParams,
 }: {
-  params: { id: string };
+  params: { locale: string; id: string };
   searchParams: PostSearchQueryParams;
 }): Promise<Metadata> {
-  const notice = await getNoticePostDetail(parseInt(params.id), searchParams);
+  const noticePost = await getNoticePostDetail(parseInt(id), searchParams);
 
-  return {
-    title: `${notice.title}`,
-    description: `서울대학교 컴퓨터공학부 공지사항 페이지입니다.`,
-  };
+  return await getMetadata({
+    locale,
+    node: notice,
+    metadata: {
+      title: `${noticePost.title}`,
+    },
+  });
 }
 
 interface NoticePostPageProps {

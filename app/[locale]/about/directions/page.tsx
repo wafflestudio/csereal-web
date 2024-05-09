@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
 import { getDirections } from '@/apis/about';
@@ -12,16 +11,16 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
-
-  return {
-    title: t('찾아오는 길'),
-    description: '서울대학교 컴퓨터공학부 찾아오는 길 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: directions });
 }
 
 interface DirectionsPageProps {

@@ -11,18 +11,26 @@ import Profile from '@/app/[locale]/people/helper/Profile';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
 import PageTitle from '../../helper/PageTitle';
 
-export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
-  const faculty = await getFaculty('ko', params.id);
+export async function generateMetadata({
+  params: { locale, id },
+}: {
+  params: { locale: string; id: number };
+}): Promise<Metadata> {
+  const faculty = await getFaculty('ko', id);
 
-  return {
-    title: `${faculty.name}`,
-    description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
-  };
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${faculty.name}`,
+      description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
+    },
+  });
 }
 
 const labUrl = getPath(researchLabs);

@@ -1,17 +1,18 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import { getScholarshipList } from '@/apis/academics';
 
+import { getMetadata } from '@/utils/metadata';
+import { graduateScholarship } from '@/utils/segmentNode';
+
 import ScholarshipPreview from '../../helper/ScholarshipPreview';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
-
-  return {
-    title: t('장학 제도'),
-    description: '서울대학교 컴퓨터공학부 장학 제도(대학원) 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: graduateScholarship });
 }
 
 export default async function GraduateScholarshipListPage() {

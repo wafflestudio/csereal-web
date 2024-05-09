@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import { getGeneralStudiesRequirements } from '@/apis/academics';
 
@@ -7,13 +6,15 @@ import Accordion from '@/app/[locale]/academics/undergraduate/general-studies-re
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
+import { getMetadata } from '@/utils/metadata';
+import { generalStudies } from '@/utils/segmentNode';
 
-  return {
-    title: t('필수 교양 과목'),
-    description: '서울대학교 컴퓨터공학부 필수 교양 과목(학부) 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: generalStudies });
 }
 
 export default async function UndergraduateGeneralStudiesRequirements() {

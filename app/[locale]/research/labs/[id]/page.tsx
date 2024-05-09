@@ -6,13 +6,22 @@ import ResearchLabDetailContent from '@/app/[locale]/research/labs/[id]/Research
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const lab = await getResearchLab(parseInt(params.id));
+import { getMetadata } from '@/utils/metadata';
 
-  return {
-    title: `${lab.name}`,
-    description: `서울대학교 컴퓨터공학부 ${lab.name} 페이지입니다.`,
-  };
+export async function generateMetadata({
+  params: { locale, id },
+}: {
+  params: { locale: string; id: string };
+}): Promise<Metadata> {
+  const lab = await getResearchLab(parseInt(id));
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${lab.name}`,
+      description: `서울대학교 컴퓨터공학부 ${lab.name} 페이지입니다.`,
+    },
+  });
 }
 
 interface LabDetailPageProps {

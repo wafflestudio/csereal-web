@@ -8,21 +8,27 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { news } from '@/utils/segmentNode';
+
 import NewsViewer from './NewsViewer';
 
 export async function generateMetadata({
-  params,
+  params: { locale, id },
   searchParams,
 }: {
-  params: { id: string };
+  params: { locale: string; id: string };
   searchParams: PostSearchQueryParams;
 }): Promise<Metadata> {
-  const news = await getNewsDetail(parseInt(params.id), searchParams);
+  const newsPost = await getNewsDetail(parseInt(id), searchParams);
 
-  return {
-    title: `${news.title}`,
-    description: `서울대학교 컴퓨터공학부 새소식 페이지입니다.`,
-  };
+  return await getMetadata({
+    locale,
+    node: news,
+    metadata: {
+      title: `${newsPost.title}`,
+    },
+  });
 }
 
 interface NewsPostPageProps {

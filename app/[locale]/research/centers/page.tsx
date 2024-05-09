@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import { getResearchCenters } from '@/apis/research';
 
@@ -9,18 +8,18 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { ResearchCenter } from '@/types/research';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
-
-  return {
-    title: t('연구 센터'),
-    description: '서울대학교 컴퓨터공학부 연구 센터 페이지입니다.',
-  };
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: researchCenters });
 }
 
 const researchCentersPath = getPath(researchCenters);
