@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { Link } from '@/navigation';
 
 import { getStaff } from '@/apis/people';
@@ -14,11 +12,7 @@ import BulletRow from '../../helper/BulletRow';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
 
-export async function generateMetadata({
-  params: { locale, id },
-}: {
-  params: { locale: string; id: number };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale, id } }: StaffMemberPageProps) {
   const staff = await getStaff(id);
 
   return await getMetadata({
@@ -30,7 +24,11 @@ export async function generateMetadata({
   });
 }
 
-export default async function StaffMemberPage({ params }: { params: { id: number } }) {
+interface StaffMemberPageProps {
+  params: { id: number; locale: string };
+}
+
+export default async function StaffMemberPage({ params }: StaffMemberPageProps) {
   const staff = await getStaff(params.id);
 
   return (

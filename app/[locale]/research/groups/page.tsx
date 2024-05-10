@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getResearchGroups } from '@/apis/research';
 
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -12,11 +10,7 @@ import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: researchGroups });
 }
 

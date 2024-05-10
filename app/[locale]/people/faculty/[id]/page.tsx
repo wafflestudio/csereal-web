@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { Link } from '@/navigation';
@@ -17,11 +16,7 @@ import { researchLabs } from '@/utils/segmentNode';
 
 import PageTitle from '../../helper/PageTitle';
 
-export async function generateMetadata({
-  params: { locale, id },
-}: {
-  params: { locale: string; id: number };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale, id } }: FacultyMemberPageProps) {
   const faculty = await getFaculty('ko', id);
 
   return await getMetadata({
@@ -35,11 +30,11 @@ export async function generateMetadata({
 
 const labUrl = getPath(researchLabs);
 
-export default async function FacultyMemberPage({
-  params,
-}: {
+interface FacultyMemberPageProps {
   params: { id: number; locale: 'ko' | 'en' };
-}) {
+}
+
+export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
   const faculty = await getFaculty('ko', params.id);
 
   if (faculty.status !== 'ACTIVE') notFound();

@@ -1,19 +1,14 @@
-import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
-
 import { getTopConferenceList } from '@/apis/research';
 
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Nav');
+import { getMetadata } from '@/utils/metadata';
+import { topConferenceList } from '@/utils/segmentNode';
 
-  return {
-    title: t('Top Conference List'),
-    description: '서울대학교 컴퓨터공학부 Top Conference List 페이지입니다.',
-  };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: topConferenceList });
 }
 
 export default async function TopConferenceListPage() {

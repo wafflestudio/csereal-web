@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getResearchLabs } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -10,11 +8,7 @@ import { researchLabs } from '@/utils/segmentNode';
 import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: researchLabs });
 }
 

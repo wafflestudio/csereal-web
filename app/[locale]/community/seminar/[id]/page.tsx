@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { getSeminarPost } from '@/apis/seminar';
@@ -16,10 +15,7 @@ import SeminarViewer from './SeminarViewer';
 export async function generateMetadata({
   params: { locale, id },
   searchParams,
-}: {
-  params: { locale: string; id: string };
-  searchParams: PostSearchQueryParams;
-}): Promise<Metadata> {
+}: SeminarPostPageProps) {
   const seminarPost = await getSeminarPost(parseInt(id), searchParams);
 
   return await getMetadata({
@@ -32,7 +28,7 @@ export async function generateMetadata({
 }
 
 interface SeminarPostPageProps {
-  params: { id: string };
+  params: { id: string; locale: string };
   searchParams: PostSearchQueryParams;
 }
 

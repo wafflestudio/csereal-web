@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getActiveFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -13,18 +11,18 @@ import { faculty, researchLabs } from '@/utils/segmentNode';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: FacultyPageProps) {
   return await getMetadata({ locale, node: faculty });
 }
 
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
-export default async function FacultyPage({ params }: { params: { locale: 'ko' | 'en' } }) {
+interface FacultyPageProps {
+  params: { locale: 'ko' | 'en' };
+}
+
+export default async function FacultyPage({ params }: FacultyPageProps) {
   const { professors } = await getActiveFacultyList(params.locale);
 
   const normal = professors.filter((x) => x.status !== 'VISITING').map(facultyToProp);

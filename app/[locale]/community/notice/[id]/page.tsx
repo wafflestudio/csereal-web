@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { getNoticePostDetail } from '@/apis/notice';
@@ -16,10 +15,7 @@ import NoticeViewer from './NoticeViewer';
 export async function generateMetadata({
   params: { locale, id },
   searchParams,
-}: {
-  params: { locale: string; id: string };
-  searchParams: PostSearchQueryParams;
-}): Promise<Metadata> {
+}: NoticePostPageProps) {
   const noticePost = await getNoticePostDetail(parseInt(id), searchParams);
 
   return await getMetadata({
@@ -32,7 +28,7 @@ export async function generateMetadata({
 }
 
 interface NoticePostPageProps {
-  params: { id: string };
+  params: { id: string; locale: string };
   searchParams: PostSearchQueryParams;
 }
 

@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getEmeritusFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -13,11 +11,7 @@ import { emeritusFaculty } from '@/utils/segmentNode';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: emeritusFaculty });
 }
 

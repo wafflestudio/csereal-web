@@ -15,9 +15,7 @@ import ProfileImage from '../../helper/ProfileImage';
 
 export async function generateMetadata({
   params: { locale, id },
-}: {
-  params: { locale: string; id: number };
-}): Promise<Metadata> {
+}: EmeritusFacultyMemberPageProps): Promise<Metadata> {
   const faculty = await getEmeritusFaculty(id);
 
   return await getMetadata({
@@ -29,7 +27,13 @@ export async function generateMetadata({
   });
 }
 
-export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
+interface EmeritusFacultyMemberPageProps {
+  params: { id: number; locale: string };
+}
+
+export default async function EmeritusFacultyMemberPage({
+  params,
+}: EmeritusFacultyMemberPageProps) {
   const faculty = await getEmeritusFaculty(params.id);
 
   const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };

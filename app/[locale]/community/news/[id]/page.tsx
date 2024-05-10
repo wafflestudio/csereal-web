@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { getNewsDetail } from '@/apis/news';
@@ -16,10 +15,7 @@ import NewsViewer from './NewsViewer';
 export async function generateMetadata({
   params: { locale, id },
   searchParams,
-}: {
-  params: { locale: string; id: string };
-  searchParams: PostSearchQueryParams;
-}): Promise<Metadata> {
+}: NewsPostPageProps) {
   const newsPost = await getNewsDetail(parseInt(id), searchParams);
 
   return await getMetadata({
@@ -32,7 +28,7 @@ export async function generateMetadata({
 }
 
 interface NewsPostPageProps {
-  params: { id: string };
+  params: { id: string; locale: string };
   searchParams: PostSearchQueryParams;
 }
 

@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getStaffList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -11,11 +9,7 @@ import { staff } from '@/utils/segmentNode';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: staff });
 }
 

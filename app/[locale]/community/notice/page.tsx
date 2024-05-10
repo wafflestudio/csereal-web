@@ -1,7 +1,6 @@
 // TODO: searchParams를 사용했으므로 자동 dynamic 처리되어야할 것 같은데 안되어 추가
 export const dynamic = 'force-dynamic';
 
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -17,11 +16,7 @@ import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validatePageNum';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: notice });
 }
 interface NoticePageParams {
