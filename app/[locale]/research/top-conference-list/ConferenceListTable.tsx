@@ -3,7 +3,6 @@ export interface ConferenceListTableProps {
   code: string;
   abbreviation: string;
   name: string;
-  ackIf: number | null;
 }
 
 export interface ConferenceRowProps {
@@ -43,7 +42,6 @@ function ConferenceRow({ conference, index }: ConferenceRowProps) {
       <div className="flex w-20 items-center px-3 py-2.5">{conference.code}</div>
       <div className="flex w-28 items-center px-3 py-2.5">{conference.abbreviation}</div>
       <div className="flex w-[540px] items-center px-3 py-2.5">{conference.name}</div>
-      <div className="flex w-16 items-center justify-center px-3 py-2.5">{conference.ackIf}</div>
     </div>
   );
 }

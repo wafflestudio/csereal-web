@@ -29,7 +29,7 @@ export default function GraphicSection() {
       <div className="flex -translate-y-1 flex-col items-center gap-[18px] sm:h-[12.5rem] sm:shrink-0 sm:items-start sm:justify-between">
         <SloganP className="hidden sm:block">서울대학교 컴퓨터공학부는</SloganP>
         <SloganP className="">창의와 지식을 융합하여</SloganP>
-        <SloganP className="">컴퓨터기술의</SloganP>
+        <SloganP className="">컴퓨터 기술의</SloganP>
         <SloganP className="">진화를 선도합니다.</SloganP>
       </div>
     </div>
