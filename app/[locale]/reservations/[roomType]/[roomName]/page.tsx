@@ -12,7 +12,6 @@ export async function generateMetadata({
 }: {
   params: { locale: string; roomName: string };
 }): Promise<Metadata> {
-  console.log(locale);
 
   return await getMetadata({
     locale,
