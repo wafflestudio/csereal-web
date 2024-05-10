@@ -6,10 +6,15 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { ResearchCenter } from '@/types/research';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: researchCenters });
+}
 
 const researchCentersPath = getPath(researchCenters);
 

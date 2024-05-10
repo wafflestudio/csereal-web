@@ -1,5 +1,3 @@
-import { getNoticePostDetail } from '@/apis/notice';
-
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -7,22 +5,19 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 
-import { PostSearchQueryParams } from '@/types/post';
+import { Notice } from '@/types/notice';
 
 import { formatPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 
 interface NoticePostPageProps {
-  id: number;
-  searchParams: PostSearchQueryParams;
+  notice: Notice;
 }
 
 const noticePath = getPath(notice);
 
-export default async function NoticeViewer({ id, searchParams }: NoticePostPageProps) {
-  const notice = await getNoticePostDetail(id, searchParams);
-
+export default async function NoticeViewer({ notice }: NoticePostPageProps) {
   return (
     <>
       <Header {...notice} />
@@ -36,7 +31,7 @@ export default async function NoticeViewer({ id, searchParams }: NoticePostPageP
         <HTMLViewer htmlContent={notice.description} className="mb-10" />
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
-        <PostFooter post={notice} postType="notice" id={id.toString()} margin="mt-12" />
+        <PostFooter post={notice} postType="notice" id={notice.id.toString()} margin="mt-12" />
       </div>
     </>
   );

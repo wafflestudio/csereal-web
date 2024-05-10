@@ -1,5 +1,12 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 
+import { getMetadata } from '@/utils/metadata';
+import { about } from '@/utils/segmentNode';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: about });
+}
+
 export default async function AboutPage() {
   return (
     <MajorCategoryPageLayout

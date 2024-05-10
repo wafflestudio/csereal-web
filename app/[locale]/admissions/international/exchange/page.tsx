@@ -1,7 +1,26 @@
+import { Metadata } from 'next';
+
 import { getInternationalExchangeVisiting } from '@/apis/admission';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { exchangeVisitingProgram } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({
+    locale,
+    node: exchangeVisitingProgram,
+    metadata: {
+      description: `Dept. of Computer Science and Engineering, SNU ${exchangeVisitingProgram.name} page`,
+    },
+  });
+}
 
 export default async function InternationalExchangePage() {
   const { description } = await getInternationalExchangeVisiting();

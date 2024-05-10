@@ -1,9 +1,22 @@
+import { Metadata } from 'next';
+
 import history_image from '@/public/image/about/history.png';
 
 import { getHistory } from '@/apis/about';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { history } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: history });
+}
 
 export default async function History() {
   const resp = await getHistory();

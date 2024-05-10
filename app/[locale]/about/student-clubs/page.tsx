@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 import { getClubs } from '@/apis/about';
@@ -8,8 +9,17 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: studentClubs });
+}
 
 interface StudentClubsPageProps {
   searchParams: { selected?: string };

@@ -1,9 +1,22 @@
+import { Metadata } from 'next';
+
 import { getDegreeRequirements } from '@/apis/academics';
 
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { degree } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: degree });
+}
 
 export default async function UndergraduteDegreeRequirementsPage() {
   const { description, attachments } = await getDegreeRequirements();

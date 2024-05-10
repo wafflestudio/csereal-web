@@ -2,8 +2,6 @@ import { ReactNode } from 'react';
 
 import { Link } from '@/navigation';
 
-import { getSeminarPost } from '@/apis/seminar';
-
 import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
@@ -11,16 +9,13 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 
-import { PostSearchQueryParams } from '@/types/post';
+import { Seminar } from '@/types/seminar';
 
 interface SeminarPostPageProps {
-  id: number;
-  searchParams: PostSearchQueryParams;
+  seminar: Seminar;
 }
 
-export default async function SeminarViewer({ id, searchParams }: SeminarPostPageProps) {
-  const seminar = await getSeminarPost(id, searchParams);
-
+export default async function SeminarViewer({ seminar }: SeminarPostPageProps) {
   return (
     <>
       <h2 className="px-5 py-9 text-[1.25rem] font-semibold leading-[1.4] sm:pl-[100px] sm:pr-[340px]">
@@ -71,7 +66,7 @@ export default async function SeminarViewer({ id, searchParams }: SeminarPostPag
         )}
 
         <StraightNode margin="mt-10" />
-        <PostFooter post={seminar} postType="seminar" id={id.toString()} margin="mt-12" />
+        <PostFooter post={seminar} postType="seminar" id={seminar.id.toString()} margin="mt-12" />
       </div>
     </>
   );

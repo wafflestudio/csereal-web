@@ -1,11 +1,22 @@
+import { Metadata } from 'next';
+
 import SelectionList from '@/components/common/selection/SelectionList';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { reservationIntroduction } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: reservationIntroduction });
+}
 
 const path = getPath(reservationIntroduction);
 

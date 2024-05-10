@@ -1,11 +1,23 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 
-import greetings from '@/public/image/about/greetings.jpg';
+import greetingsImg from '@/public/image/about/greetings.jpg';
 
 import { getGreetings } from '@/apis/about';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { greetings } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: greetings });
+}
 
 // 학부 소개 페이지 - 학부장 인사말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
@@ -19,7 +31,7 @@ export default async function GreetingsPage() {
         {/* TODO: 레이아웃이 바뀌어 사진은 백엔드에서 가져오지 않는데 어떻게 처리할지 고민 필요 */}
         {/* image 크기를 반응형으로 줄이기 위해 필요한 wrapper div */}
         <div>
-          <Image src={greetings.src} alt="학부장" width={212} height={280} />
+          <Image src={greetingsImg.src} alt="학부장" width={212} height={280} />
         </div>
       </div>
     </PageLayout>

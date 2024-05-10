@@ -1,8 +1,6 @@
 // TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
 export const dynamic = 'force-dynamic';
 
-import { getNewsDetail } from '@/apis/news';
-
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -10,22 +8,19 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 
-import { PostSearchQueryParams } from '@/types/post';
+import { News } from '@/types/news';
 
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 
 interface NewsPostPageProps {
-  id: number;
-  searchParams: PostSearchQueryParams;
+  news: News;
 }
 
 const newsPath = getPath(news);
 
-export default async function NewsViewer({ id, searchParams }: NewsPostPageProps) {
-  const news = await getNewsDetail(id, searchParams);
-
+export default async function NewsViewer({ news }: NewsPostPageProps) {
   return (
     <>
       <Header title={news.title} createdAt={news.createdAt} />
@@ -45,7 +40,7 @@ export default async function NewsViewer({ id, searchParams }: NewsPostPageProps
         />
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
-        <PostFooter post={news} postType="news" id={id.toString()} margin="mt-12" />
+        <PostFooter post={news} postType="news" id={news.id.toString()} margin="mt-12" />
       </div>
     </>
   );

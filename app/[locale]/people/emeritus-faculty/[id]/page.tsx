@@ -1,16 +1,41 @@
+import { Metadata } from 'next';
+
 import { Link } from '@/navigation';
 
 import { getEmeritusFaculty } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { getMetadata } from '@/utils/metadata';
+
 import BulletRow from '../../helper/BulletRow';
 import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
 
-export default async function EmeritusFacultyMemberPage({ params }: { params: { id: number } }) {
+export async function generateMetadata({
+  params: { locale, id },
+}: EmeritusFacultyMemberPageProps): Promise<Metadata> {
+  const faculty = await getEmeritusFaculty(id);
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${faculty.name}`,
+      description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
+    },
+  });
+}
+
+interface EmeritusFacultyMemberPageProps {
+  params: { id: number; locale: string };
+}
+
+export default async function EmeritusFacultyMemberPage({
+  params,
+}: EmeritusFacultyMemberPageProps) {
   const faculty = await getEmeritusFaculty(params.id);
+
   const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
 
   return (

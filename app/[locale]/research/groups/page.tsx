@@ -4,10 +4,15 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: researchGroups });
+}
 
 const researchGroupsPath = getPath(researchGroups);
 

@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
@@ -8,6 +10,7 @@ import PageTitle from '@/components/layout/pageLayout/PageTitle';
 
 import { SEARCH_TAGS } from '@/constants/tag';
 
+import { getMetadata } from '@/utils/metadata';
 import { main } from '@/utils/segmentNode';
 
 import AboutSection from './AboutSection';
@@ -19,6 +22,22 @@ import NoSearchResultError from './helper/NoSearchResultError';
 import SearchSubNavbar, { TreeNode } from './helper/SearchSubNavbar';
 import MemberSection from './MemberSection';
 import ResearchSection from './ResearchSection';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const t = await getTranslations('Nav');
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: t('통합 검색'),
+      description: '서울대학교 컴퓨터공학부 통합 검색 페이지입니다.',
+    },
+  });
+}
 
 export default async function SearchPage({
   searchParams: { keyword, tag },

@@ -10,19 +10,33 @@ import Profile from '@/app/[locale]/people/helper/Profile';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
 import PageTitle from '../../helper/PageTitle';
 
+export async function generateMetadata({ params: { locale, id } }: FacultyMemberPageProps) {
+  const faculty = await getFaculty('ko', id);
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${faculty.name}`,
+      description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
+    },
+  });
+}
+
 const labUrl = getPath(researchLabs);
 
-export default async function FacultyMemberPage({
-  params,
-}: {
+interface FacultyMemberPageProps {
   params: { id: number; locale: 'ko' | 'en' };
-}) {
+}
+
+export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
   const faculty = await getFaculty('ko', params.id);
+
   if (faculty.status !== 'ACTIVE') notFound();
 
   return (

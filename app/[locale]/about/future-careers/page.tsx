@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { getFutureCareeres } from '@/apis/about';
 
 import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
@@ -5,6 +7,17 @@ import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { FutureCareers } from '@/types/about';
+
+import { getMetadata } from '@/utils/metadata';
+import { futureCareers } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: futureCareers });
+}
 
 export default async function GreetingsPage() {
   const { description, stat, companies } = await getFutureCareeres();

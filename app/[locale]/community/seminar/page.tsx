@@ -10,7 +10,14 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { seminar } from '@/utils/segmentNode';
+
 import AdminFeatures from './helper/AdminFeatures';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: seminar });
+}
 
 interface SeminarPageParams {
   searchParams: PostSearchQueryParams;

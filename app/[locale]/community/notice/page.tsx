@@ -12,8 +12,13 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { notice } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validatePageNum';
 
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: notice });
+}
 interface NoticePageParams {
   searchParams: PostSearchQueryParams;
 }

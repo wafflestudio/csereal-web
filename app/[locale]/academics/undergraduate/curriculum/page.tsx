@@ -1,4 +1,4 @@
-import './style.css';
+import { Metadata } from 'next';
 
 import { getCurriculum } from '@/apis/academics';
 
@@ -6,6 +6,19 @@ import RoadMapButton from '@/app/[locale]/academics/helper/RoadMapButton';
 import CurriculumBody from '@/app/[locale]/academics/undergraduate/curriculum/CurriculumBody';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { curriculum } from '@/utils/segmentNode';
+
+import './style.css';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return await getMetadata({ locale, node: curriculum });
+}
 
 export default async function UndergradutecurriculumPage() {
   const curriculumList = await getCurriculum();

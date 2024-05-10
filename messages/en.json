@@ -1,4 +1,8 @@
 {
+  "Title": {
+    "서울대학교 컴퓨터공학부": "Dept. of Computer Science and Engineering, SNU"
+  },
+
   "Nav": {
     "홈": "Home",
 
@@ -9,6 +13,7 @@
     "입학": "Admissions",
     "학사 및 교과": "Academics",
     "시설 예약": "Reservations",
+
     "학부 소개": "Department Overview",
     "학부장 인사말": "Greetings from the Head",
     "연혁": "History",

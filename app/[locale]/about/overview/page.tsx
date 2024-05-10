@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 
 import brochure1 from '@/public/image/about/brochure1.png';
@@ -8,6 +9,23 @@ import { getOverview } from '@/apis/about';
 import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { getMetadata } from '@/utils/metadata';
+import { overview } from '@/utils/segmentNode';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { imageURL } = await getOverview();
+
+  return await getMetadata({
+    locale,
+    node: overview,
+    metadata: { openGraph: { images: [imageURL] } },
+  });
+}
 
 // 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음

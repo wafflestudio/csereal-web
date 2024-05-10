@@ -6,11 +6,29 @@ import HeaderAndList from '@/app/[locale]/people/helper/HeaderAndList';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { getMetadata } from '@/utils/metadata';
+
 import BulletRow from '../../helper/BulletRow';
 import PageTitle from '../../helper/PageTitle';
 import ProfileImage from '../../helper/ProfileImage';
 
-export default async function StaffMemberPage({ params }: { params: { id: number } }) {
+export async function generateMetadata({ params: { locale, id } }: StaffMemberPageProps) {
+  const staff = await getStaff(id);
+
+  return await getMetadata({
+    locale,
+    metadata: {
+      title: `${staff.name}`,
+      description: `서울대학교 컴퓨터공학부 ${staff.name} 행정직원 페이지입니다.`,
+    },
+  });
+}
+
+interface StaffMemberPageProps {
+  params: { id: number; locale: string };
+}
+
+export default async function StaffMemberPage({ params }: StaffMemberPageProps) {
   const staff = await getStaff(params.id);
 
   return (

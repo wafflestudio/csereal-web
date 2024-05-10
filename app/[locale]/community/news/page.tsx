@@ -13,7 +13,14 @@ import { NEWS_TAGS } from '@/constants/tag';
 
 import { PostSearchQueryParams } from '@/types/post';
 
+import { getMetadata } from '@/utils/metadata';
+import { news } from '@/utils/segmentNode';
+
 import AdminFeatures from './helper/AdminFeatures';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: news });
+}
 
 interface NewsPageParams {
   searchParams: PostSearchQueryParams;
