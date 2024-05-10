@@ -17,7 +17,7 @@ export async function generateMetadata({
   return await getMetadata({
     locale,
     node: graduateScholarship,
-    metadata: { title: `${scholarship.name}` },
+    metadata: { title: scholarship.name },
   });
 }
 
