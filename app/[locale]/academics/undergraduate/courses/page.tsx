@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getCourses } from '@/apis/academics';
 
 import RoadMapButton from '@/app/[locale]/academics/helper/RoadMapButton';
@@ -12,11 +10,7 @@ import { Course } from '@/types/academics';
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateGuide } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateGuide });
 }
 
