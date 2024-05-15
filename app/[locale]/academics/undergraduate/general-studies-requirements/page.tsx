@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getGeneralStudiesRequirements } from '@/apis/academics';
 
 import Accordion from '@/app/[locale]/academics/undergraduate/general-studies-requirements/Accordion';
@@ -9,11 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { generalStudies } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: generalStudies });
 }
 

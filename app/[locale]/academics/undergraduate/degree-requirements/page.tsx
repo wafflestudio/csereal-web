@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getDegreeRequirements } from '@/apis/academics';
 
 import Attachments from '@/components/common/Attachments';
@@ -10,11 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { degree } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: degree });
 }
 

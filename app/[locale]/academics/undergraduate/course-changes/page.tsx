@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { getCourseChanges } from '@/apis/academics';
 
 import { getMetadata } from '@/utils/metadata';
@@ -7,11 +5,7 @@ import { undergraduateCourseChanges } from '@/utils/segmentNode';
 
 import CourseChanges from '../../helper/CourseChanges';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateCourseChanges });
 }
 
