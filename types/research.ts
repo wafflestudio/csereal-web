@@ -41,7 +41,6 @@ export interface TopConferenceList {
   author: string;
   conferenceList: {
     id: number;
-    code: string;
     abbreviation: string;
     name: string;
   }[];
