@@ -41,6 +41,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
     mainImage: data.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
     isSlide: data.isSlide,
     isImportant: data.isImportant,
+    date: data.date,
   };
 
   const handleCancel = () => router.push(`${newsPath}/${id}`);
