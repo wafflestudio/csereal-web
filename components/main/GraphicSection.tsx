@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 import DownArrow from '@/public/image/main/down_arrow.svg';
 
-const gowunBatang = localFont({ src: './GowunBatang-Regular.ttf' });
+const gowunBatang = localFont({ src: './GowunBatang-Regular.woff2' });
 
 export default function GraphicSection() {
   // 헤더 높이 빼기

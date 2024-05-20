@@ -3,7 +3,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export const metadata = {
-  title: { default: '개인정보처리방침' },
+  title: '개인정보처리방침',
   description: '서울대학교 컴퓨터공학부 개인정보처리방침 페이지입니다.',
 };
 
