@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import { MainNews } from '@/types/main';
 
-import { animateScrollTo } from './animateScrollTo';
+import { animateScrollLeft } from './animateScrollTo';
 import { CARD_GAP_REM } from './constants';
 import NewsCard from './NewsCard';
 import useCarousel from './useCarousel';
@@ -15,9 +15,9 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (containerRef.current) {
-      animateScrollTo(containerRef.current, offsetREM * 16, 700);
-    }
+    if (containerRef.current === null) return;
+
+    return animateScrollLeft(containerRef.current, offsetREM * 16);
   }, [offsetREM]);
 
   return (
