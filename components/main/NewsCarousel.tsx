@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react';
+
 import { MainNews } from '@/types/main';
 
+import { animateScrollTo } from './animateScrollTo';
 import { CARD_GAP_REM } from './constants';
 import NewsCard from './NewsCard';
 import useCarousel from './useCarousel';
@@ -9,24 +12,24 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
   const { offsetREM, pageCnt, setPage, page, isScroll, startScroll, stopScroll } =
     useCarousel(news);
   const { widthREM } = useCarouselLayout();
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      animateScrollTo(containerRef.current, offsetREM * 16, 700);
+    }
+  }, [offsetREM]);
 
   return (
     <div className="flex flex-col items-center">
       <div
-        className="mx-auto overflow-x-hidden pb-10"
-        style={{ width: `${widthREM - CARD_GAP_REM}rem` }}
+        className="no-scrollbar mx-auto flex overflow-x-hidden pb-10"
+        style={{ width: `${widthREM - CARD_GAP_REM}rem`, gap: `${CARD_GAP_REM}rem` }}
+        ref={containerRef}
       >
-        <div
-          className="flex transition-transform duration-700"
-          style={{
-            transform: `translateX(-${offsetREM}rem)`,
-            gap: `${CARD_GAP_REM}rem`,
-          }}
-        >
-          {news.map((news) => (
-            <NewsCard key={news.id} news={news} />
-          ))}
-        </div>
+        {news.map((news) => (
+          <NewsCard key={news.id} news={news} />
+        ))}
       </div>
       <PageIndicator
         page={page}
