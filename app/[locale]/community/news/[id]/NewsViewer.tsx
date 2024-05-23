@@ -23,7 +23,7 @@ const newsPath = getPath(news);
 export default async function NewsViewer({ news }: NewsPostPageProps) {
   return (
     <>
-      <Header title={news.title} createdAt={news.createdAt} />
+      <Header title={news.title} date={news.date} />
       <div
         className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
         style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
@@ -46,12 +46,12 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
   );
 }
 
-function Header({ title, createdAt }: { title: string; createdAt: string }) {
+function Header({ title, date }: { title: string; date: string }) {
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
       <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <time className="text-sm font-normal tracking-wide text-neutral-500">
-        작성 일자: {formatNewsPostDateStr(createdAt)}
+        {formatNewsPostDateStr(date)}
       </time>
     </div>
   );

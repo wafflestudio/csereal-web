@@ -6,6 +6,7 @@ export interface NewsPreview {
   createdAt: string;
   isPrivate: boolean;
   imageURL: string | null;
+  date: string;
 }
 
 export interface NewsPreviewList {

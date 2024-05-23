@@ -46,7 +46,6 @@ export default async function NoticePostPage({
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
       <Suspense fallback={<PostFallback />}>
-        {/* <NoticeViewer id={id} searchParams={searchParams} /> */}
         <NoticeViewer notice={notice} />
       </Suspense>
     </PageLayout>

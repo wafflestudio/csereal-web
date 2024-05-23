@@ -47,7 +47,15 @@ function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowP
 function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   return (
     <div className="relative h-44 w-full shrink-0 sm:w-60">
-      <ImageWithFallback alt="대표 이미지" src={imageURL} fill className="object-cover" />
+      {/* 학부장님 피드백이 있기도 했고, 이미지 비중이 큰 페이지라서 quality를 낮추고 priority 설정 */}
+      <ImageWithFallback
+        alt="대표 이미지"
+        src={imageURL}
+        fill
+        className="object-cover"
+        quality={30}
+        priority
+      />
     </div>
   );
 }

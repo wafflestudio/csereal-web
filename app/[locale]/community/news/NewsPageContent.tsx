@@ -39,7 +39,7 @@ export default async function NewsPageContent({
             title={post.title}
             description={post.description}
             tags={post.tags}
-            date={new Date(post.createdAt)}
+            date={new Date(post.date)}
             imageURL={post.imageURL}
           />
         ))}

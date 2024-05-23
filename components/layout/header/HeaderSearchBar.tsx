@@ -3,15 +3,17 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { usePathname } from '@/navigation';
+
 export default function HeaderSearchBar() {
-  const { text, setText, searchText } = useSearch();
+  const { text, setText, search } = useSearch();
 
   return (
     <form
       className="flex h-[1.875rem] w-[13.5rem] justify-center rounded-[.0625rem] bg-neutral-200 pr-2 outline-none"
       onSubmit={(e) => {
         e.preventDefault();
-        searchText();
+        search();
       }}
     >
       <input
@@ -32,19 +34,22 @@ function useSearch() {
   const [text, setText] = useState('');
   const router = useRouter();
 
-  const params = useSearchParams();
-  const keyword = params.get('keyword');
+  // 필요시 text와 keyword를 동기화
+  const keyword = useSearchParams().get('keyword');
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (keyword) setText(keyword);
-  }, [keyword]);
+    if (keyword && pathname === '/search') {
+      setText(keyword);
+    }
+  }, [keyword, pathname]);
 
-  const searchText = () => {
+  const search = () => {
     const query = text.trim();
-    if (query) {
+    if (query !== '') {
       router.push(`/search?keyword=${query}`);
     }
   };
 
-  return { text, setText, searchText };
+  return { text, setText, search };
 }

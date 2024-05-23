@@ -20,6 +20,7 @@
     "@types/react-dom": "^18.2.19",
     "autolinker": "^4.0.0",
     "autoprefixer": "10.4.14",
+    "bezier-easing": "^2.1.0",
     "dayjs": "^1.11.9",
     "file-loader": "^6.2.0",
     "next": "^14.2.3",
