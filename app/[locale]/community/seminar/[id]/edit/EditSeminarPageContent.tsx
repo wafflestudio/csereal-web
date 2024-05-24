@@ -34,7 +34,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
     speaker: {
       name: data.name ?? '',
       nameURL: data.speakerURL,
-      title: data.title,
+      title: data.speakerTitle,
       organization: data.affiliation ?? '',
       organizationURL: data.affiliationURL,
       description: data.introduction ?? '',
