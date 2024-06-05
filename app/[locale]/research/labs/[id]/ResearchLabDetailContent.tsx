@@ -48,7 +48,7 @@ function AffiliatedGroup({ groupName }: { groupName: string }) {
         href={affiliatedGroupPath}
         className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center text-sm duration-300 hover:text-white`}
       >
-        <span className="tracking-[-0.019em]">{groupName} 연구스트림</span>
+        <span className="tracking-[-0.019em]">{groupName} 스트림</span>
       </Link>
       <div className="text-white peer-hover:text-main-orange">
         {groupName.length < LENGTH_BOUNDARY ? (

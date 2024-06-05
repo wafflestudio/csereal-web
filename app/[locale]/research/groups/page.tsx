@@ -46,6 +46,6 @@ export default async function ResearchGroupsPage({
 
 const Fallback = ({ selected }: { selected: string }) => (
   <p>
-    <b>{selected}</b> 연구스트림은 존재하지 않습니다.
+    <b>{selected}</b> 스트림은 존재하지 않습니다.
   </p>
 );
