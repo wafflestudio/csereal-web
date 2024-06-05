@@ -160,7 +160,7 @@ export const staff: SegmentNode = {
 };
 
 export const research: SegmentNode = {
-  name: '연구',
+  name: '연구·교육',
   segment: 'research',
   isPage: true,
   parent: main,
@@ -168,7 +168,7 @@ export const research: SegmentNode = {
 };
 
 export const researchGroups: SegmentNode = {
-  name: '연구 그룹',
+  name: '연구·교육 스트림',
   segment: 'groups',
   isPage: true,
   parent: research,

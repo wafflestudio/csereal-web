@@ -45,6 +45,6 @@ export default async function ResearchCentersPage({
 
 const Fallback = ({ selected }: { selected: string }) => (
   <p>
-    <b>{selected}</b> 연구그룹은 존재하지 않습니다.
+    <b>{selected}</b> 연구센터는 존재하지 않습니다.
   </p>
 );
