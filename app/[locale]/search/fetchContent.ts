@@ -46,7 +46,9 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
     isSectionVisible('구성원', tag)
       ? searchMember({ keyword, number: 10, amount: 200 })
       : undefined,
-    isSectionVisible('연구', tag) ? searchResearch({ keyword, number: 3, amount: 200 }) : undefined,
+    isSectionVisible('연구·교육', tag)
+      ? searchResearch({ keyword, number: 3, amount: 200 })
+      : undefined,
     isSectionVisible('입학', tag)
       ? searchAdmissions({ keyword, number: 3, amount: 200 })
       : undefined,
@@ -92,7 +94,7 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
     bold: !noTag && sectionContent[4] !== undefined,
   });
   node.push({
-    name: `연구`,
+    name: `연구·교육`,
     size: sectionContent[5]?.total,
     bold: !noTag && sectionContent[5] !== undefined,
   });
@@ -111,6 +113,6 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
 }
 
 const isSectionVisible = (
-  sectionName: '소개' | '소식' | '구성원' | '연구' | '입학' | '학사 및 교과',
+  sectionName: '소개' | '소식' | '구성원' | '연구·교육' | '입학' | '학사 및 교과',
   tagList?: string[],
 ) => tagList === undefined || tagList.length === 0 || tagList.includes(sectionName);

@@ -13,7 +13,7 @@ import Section from './helper/Section';
 
 export default async function ResearchSection({ research }: { research: ResearchSearchResult }) {
   return (
-    <Section title="연구" size={research.total}>
+    <Section title="연구·교육" size={research.total}>
       <div className="flex flex-col gap-7">
         {research.results.map((result) => {
           const node = toNode(result.researchType);
