@@ -11,7 +11,7 @@ export const NOTICE_TAGS = [
   '교환학생/유학',
   '외부행사/프로그램',
   '내부행사/프로그램',
-  'foreign',
+  'international',
 ];
 
 export const NEWS_TAGS = [
