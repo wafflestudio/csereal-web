@@ -9,9 +9,9 @@ import { COLOR_THEME } from '@/constants/color';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {
-  names: readonly string[];
+  names: readonly { ko: string; en?: string }[] | readonly string[];
   selectedItemName: string;
-  path: string;
+  rootPath: string;
   /**
    * 반응형 고려해서 그리드 스타일 넣어줘야 함
    * 아래는 예시
@@ -23,7 +23,7 @@ interface SelectionListProps {
 export default function SelectionList({
   names,
   selectedItemName,
-  path,
+  rootPath,
   listGridColumnClass = 'lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]',
   listItemPadding = '',
 }: SelectionListProps) {
@@ -31,15 +31,25 @@ export default function SelectionList({
 
   return (
     <ul className={`grid ${gridStyle} mb-6 gap-3 pt-7 sm:mb-9 sm:pt-11`}>
-      {names.map((name) => (
-        <SelectionItem
-          key={name}
-          path={path}
-          name={name}
-          isSelected={name === selectedItemName}
-          padding={listItemPadding}
-        />
-      ))}
+      {names.map((name) =>
+        typeof name === 'string' ? (
+          <SelectionItem
+            key={name}
+            href={`${rootPath}?selected=${replaceSpaceWithDash(name)}`}
+            name={name}
+            isSelected={name === selectedItemName}
+            padding={listItemPadding}
+          />
+        ) : (
+          <SelectionItem
+            key={name.ko}
+            href={`${rootPath}?selected=${replaceSpaceWithDash(name.en || name.ko)}`}
+            name={name.ko}
+            isSelected={name.ko === selectedItemName}
+            padding={listItemPadding}
+          />
+        ),
+      )}
     </ul>
   );
 }
@@ -47,11 +57,11 @@ export default function SelectionList({
 interface SelectionItemProps {
   name: string;
   isSelected: boolean;
-  path: string;
+  href: string;
   padding: string;
 }
 
-function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) {
+function SelectionItem({ name, isSelected, href: href, padding }: SelectionItemProps) {
   const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-md tracking-wide ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
@@ -79,7 +89,7 @@ function SelectionItem({ name, isSelected, path, padding }: SelectionItemProps) 
           width="w-full"
         >
           <Link
-            href={`${path}?selected=${replaceSpaceWithDash(name)}`}
+            href={href}
             className={`${itemCommonStyle} text-neutral-500 transition-all duration-300 hover:text-neutral-800`}
             scroll={false}
           >

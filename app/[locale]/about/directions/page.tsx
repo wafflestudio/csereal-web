@@ -44,7 +44,7 @@ export default async function DirectionsPage({ searchParams }: DirectionsPagePro
       <SelectionList
         names={directionList.map((d) => d.name)}
         selectedItemName={selectedDirection?.name ?? ''}
-        path={directionsPath}
+        rootPath={directionsPath}
       />
       {selectedDirection ? (
         <DirectionsDetails direction={selectedDirection} />

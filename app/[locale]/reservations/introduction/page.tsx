@@ -34,7 +34,7 @@ export default function ReservationIntroductionPage({
       <SelectionList
         names={names}
         selectedItemName={itemName}
-        path={path}
+        rootPath={path}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]"
       />
       <SelectionTitle animationKey={itemName}>{itemName}</SelectionTitle>

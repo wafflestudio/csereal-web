@@ -1,6 +1,6 @@
 import { replaceDashWithSpace } from './string';
 
-export const findSelectedItem = <T extends { name: string }>(
+export const findSelectedItem = <T extends { name: string; engName?: string }>(
   items: T[],
   dashedItemName?: string,
 ) => {
@@ -9,7 +9,7 @@ export const findSelectedItem = <T extends { name: string }>(
   if (dashedItemName === undefined) return defaultItem;
 
   const selectedName = replaceDashWithSpace(dashedItemName);
-  const item = items.find((item) => item.name === selectedName);
+  const item = items.find((item) => [item.name, item.engName].includes(selectedName));
 
   return item ?? defaultItem;
 };

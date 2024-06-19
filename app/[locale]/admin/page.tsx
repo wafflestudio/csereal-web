@@ -32,7 +32,7 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
         <SelectionList
           names={['슬라이드쇼 관리', '중요 안내 관리']}
           selectedItemName={selectedMenu}
-          path={adminPath}
+          rootPath={adminPath}
           listGridColumnClass="grid-cols-[200px_220px]"
         />
         <PageContent selected={selectedMenu} pageNum={pageNum} />

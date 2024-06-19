@@ -31,7 +31,7 @@ export default async function ResearchCentersPage({
       <SelectionList
         names={centers.map((center) => center.name)}
         selectedItemName={selectedCenter?.name ?? ''}
-        path={researchCentersPath}
+        rootPath={researchCentersPath}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_200px,_auto))]"
       />
       {selectedCenter ? (

@@ -31,7 +31,7 @@ export default async function ResearchGroupsPage({
         <SelectionList
           names={groups.map((group) => group.name)}
           selectedItemName={selectedGroup?.name ?? ''}
-          path={researchGroupsPath}
+          rootPath={researchGroupsPath}
           listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_236px,_auto))]"
         />
       </div>
