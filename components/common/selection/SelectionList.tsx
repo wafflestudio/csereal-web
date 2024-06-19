@@ -61,7 +61,7 @@ interface SelectionItemProps {
   padding: string;
 }
 
-function SelectionItem({ name, isSelected, href: href, padding }: SelectionItemProps) {
+function SelectionItem({ name, isSelected, href, padding }: SelectionItemProps) {
   const itemCommonStyle = `flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-md tracking-wide ${padding}`;
   const triangleLength = 1.25; // 20px
   const radius = 0.125; // 2px
