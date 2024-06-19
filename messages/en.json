@@ -127,6 +127,8 @@
   },
 
   "Tag": {
+    "전체": "all",
+
     "수업": "lecture",
     "장학": "scholarship",
     "학사(학부)": "bachelor's (undergraduate)",
