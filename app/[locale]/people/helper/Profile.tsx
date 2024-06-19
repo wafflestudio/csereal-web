@@ -10,8 +10,6 @@ interface ProfileProps {
 }
 
 export default function Profile({ office, phone, fax, email, website, imageURL }: ProfileProps) {
-  console.log(office);
-  console.log(website);
   return (
     <div className="relative mb-8 sm:float-right">
       <ProfileImage imageURL={imageURL} />
