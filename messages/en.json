@@ -139,6 +139,17 @@
     "교환학생/유학": "exchange students/study abroad",
     "외부행사/프로그램": "external events/programs",
     "내부행사/프로그램": "internal events/programs",
-    "international": "international"
+    "international": "international",
+
+    "행사": "event",
+    "연구": "research",
+    "수상": "award",
+    "채용": "job",
+    "칼럼": "column",
+    "강연": "lecture",
+    "교육": "education",
+    "인터뷰": "interview",
+    "진로": "career",
+    "과거 미분류": "past uncategorized"
   }
 }
