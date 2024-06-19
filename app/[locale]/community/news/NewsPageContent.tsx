@@ -1,5 +1,3 @@
-import { useTranslations } from 'next-intl';
-
 import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
 
 import LoginVisible from '@/components/common/LoginVisible';
@@ -24,12 +22,9 @@ export default function NewsPageContent({
 }: {
   data: NewsPreviewList;
 }) {
-  const t = useTranslations('Tag');
-  const translatedTags = NEWS_TAGS.map((tag) => t(tag));
-
   return (
     <>
-      <SearchBox tags={translatedTags} />
+      <SearchBox tags={NEWS_TAGS} />
 
       {searchList.length > 0 ? (
         <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">

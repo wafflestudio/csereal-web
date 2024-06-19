@@ -1,4 +1,4 @@
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import Checkbox from '../form/Checkbox';
 
@@ -10,6 +10,8 @@ interface TagFilterProps {
 }
 
 export default function TagFilter({ tags, selectedTags, disabled, searchTags }: TagFilterProps) {
+  const t = useTranslations('Tag');
+
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
       ? searchTags([...selectedTags, tag])
@@ -25,15 +27,18 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
         className={`gap-x-7 gap-y-2.5 pl-2.5`}
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(auto-fill, minmax(${calculateWidth(tags, locale)}px, auto))`,
+          gridTemplateColumns: `repeat(auto-fill, minmax(${calculateWidth(
+            tags.map((tag) => t(tag)),
+            locale,
+          )}px, auto))`,
         }}
       >
         {tags.map((tag) => (
           <Checkbox
             key={tag}
-            label={tag}
+            label={t(tag)}
             isChecked={selectedTags.includes(tag)}
-            toggleCheck={toggleCheck}
+            toggleCheck={() => toggleCheck(tag, !selectedTags.includes(tag))}
             disabled={disabled}
           />
         ))}

@@ -1,7 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
 import NoticeList from '@/app/[locale]/community/notice/helper/NoticeList';
 
 import LoginVisible from '@/components/common/LoginVisible';
@@ -24,12 +22,10 @@ export default function NoticePageContent({
   data: NoticePreviewList;
 }) {
   const { selectedIds, dispatchIds, editMode, toggleEditMode } = usePostSelect();
-  const t = useTranslations('Tag');
-  const translatedTags = NOTICE_TAGS.map((tag) => t(tag));
 
   return (
     <>
-      <SearchBox tags={translatedTags} disabled={editMode} />
+      <SearchBox tags={NOTICE_TAGS} disabled={editMode} />
       <NoticeList
         posts={posts}
         isEditMode={editMode}
