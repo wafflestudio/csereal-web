@@ -1,5 +1,3 @@
-import { Link } from '@/navigation';
-
 import ProfileImage from './ProfileImage';
 
 interface ProfileProps {
@@ -12,6 +10,8 @@ interface ProfileProps {
 }
 
 export default function Profile({ office, phone, fax, email, website, imageURL }: ProfileProps) {
+  console.log(office);
+  console.log(website);
   return (
     <div className="relative mb-8 sm:float-right">
       <ProfileImage imageURL={imageURL} />
@@ -42,9 +42,9 @@ const FacultyInfoWithSymbols = ({ symbol, label, href }: SymbolAndLabel) => {
     <div className="flex items-center gap-[6px] break-all">
       <span className="material-symbols-rounded text-[20px] font-light">{symbol}</span>
       {href ? (
-        <Link href={href} className="text-link hover:underline">
+        <a target="_blank" href={href} className="text-link hover:underline">
           {label}
-        </Link>
+        </a>
       ) : (
         <p>{label?.length && 0 < label?.length ? label : '-'}</p>
       )}
