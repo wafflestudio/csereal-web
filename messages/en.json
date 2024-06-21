@@ -152,6 +152,24 @@
     "교육": "education",
     "인터뷰": "interview",
     "진로": "career",
-    "과거 미분류": "past uncategorized"
+    "과거 미분류": "past uncategorized",
+
+    "학년": "grade",
+    "교과목 구분": "classification",
+    "학점": "credit",
+
+    "1학년": "freshman",
+    "2학년": "sophomore",
+    "3학년": "junior",
+    "4학년": "senior",
+
+    "전공필수": "required major",
+    "전공선택": "elective major",
+    "교양": "liberal arts",
+
+    "1학점": "1 credit",
+    "2학점": "2 credits",
+    "3학점": "3 credits",
+    "4학점": "4 credits"
   }
 }
