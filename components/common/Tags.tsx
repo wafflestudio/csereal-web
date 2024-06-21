@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Link } from '@/navigation';
 
 interface TagsProps {
@@ -70,9 +72,11 @@ export function Tag({
   const defaultClass = DEFAULT_STYLE[defaultStyle];
   const hoverClass = hoverStyle ? `${HOVER_STYLE[hoverStyle]} cursor-pointer` : '';
 
+  const t = useTranslations('Tag');
+
   return (
     <span className={`${tagClass} ${defaultClass} ${hoverClass}`} onClick={() => onClick?.(tag)}>
-      <span className={onDelete ? '' : 'pr-2.5'}>{tag}</span>
+      <span className={onDelete ? '' : 'pr-2.5'}>{t(tag)}</span>
       {onDelete && (
         <button
           className={`flex h-full items-center pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}

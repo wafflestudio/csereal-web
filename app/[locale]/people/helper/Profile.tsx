@@ -1,5 +1,3 @@
-import { Link } from '@/navigation';
-
 import ProfileImage from './ProfileImage';
 
 interface ProfileProps {
@@ -42,9 +40,10 @@ const FacultyInfoWithSymbols = ({ symbol, label, href }: SymbolAndLabel) => {
     <div className="flex items-center gap-[6px] break-all">
       <span className="material-symbols-rounded text-[20px] font-light">{symbol}</span>
       {href ? (
-        <Link href={href} className="text-link hover:underline">
+        // 외부링크 a태그 사용, 새창에서 열리도록 target="_blank" 추가
+        <a target="_blank" href={href} className="text-link hover:underline">
           {label}
-        </Link>
+        </a>
       ) : (
         <p>{label?.length && 0 < label?.length ? label : '-'}</p>
       )}

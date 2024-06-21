@@ -6,8 +6,9 @@ import { StraightNode } from '@/components/common/Nodes';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
-import SearchForm from './SearchForm';
+import KeywordInput from './KeywordInput';
 import SelectedTags from './SelectedTags';
+import TagFilter from './TagFilter';
 
 interface SearchBoxProps {
   tags: string[]; // 전체 태그(선택지) 목록
@@ -33,14 +34,17 @@ export default function SearchBox({ tags, disabled = false, formOnly = false }: 
 
   return (
     <div className={`mb-9 w-full ${disabled && 'opacity-30'}`}>
-      <SearchForm
-        disabled={disabled}
-        search={search}
-        tags={tags}
-        selectedTags={initTags}
-        keyword={keyword}
-        setKeyword={setKeyword}
-      />
+      <form
+        className="flex flex-col gap-5 rounded-sm bg-neutral-50 p-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+          search();
+        }}
+      >
+        <TagFilter tags={tags} selectedTags={initTags} disabled={disabled} searchTags={search} />
+        <KeywordInput keyword={keyword} setKeyword={setKeyword} disabled={disabled} />
+      </form>
+
       {!formOnly && (
         <>
           <StraightNode double={true} margin="mt-9 mb-3" />

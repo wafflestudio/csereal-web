@@ -1,3 +1,5 @@
+import { useLocale, useTranslations } from 'next-intl';
+
 import Checkbox from '../form/Checkbox';
 
 interface TagFilterProps {
@@ -8,11 +10,15 @@ interface TagFilterProps {
 }
 
 export default function TagFilter({ tags, selectedTags, disabled, searchTags }: TagFilterProps) {
+  const t = useTranslations('Tag');
+
   const toggleCheck = (tag: string, isChecked: boolean) => {
     isChecked
       ? searchTags([...selectedTags, tag])
       : searchTags(selectedTags.filter((t) => t !== tag));
   };
+
+  const locale = useLocale();
 
   return (
     <div>
@@ -21,15 +27,18 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
         className={`gap-x-7 gap-y-2.5 pl-2.5`}
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(auto-fill, minmax(${calculateWidth(tags)}px, auto))`,
+          gridTemplateColumns: `repeat(auto-fill, minmax(${calculateWidth(
+            tags.map((tag) => t(tag)),
+            locale,
+          )}px, auto))`,
         }}
       >
         {tags.map((tag) => (
           <Checkbox
             key={tag}
-            label={tag}
+            label={t(tag)}
             isChecked={selectedTags.includes(tag)}
-            toggleCheck={toggleCheck}
+            toggleCheck={() => toggleCheck(tag, !selectedTags.includes(tag))}
             disabled={disabled}
           />
         ))}
@@ -38,13 +47,13 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
   );
 }
 
-const WIDTH_PER_LETTER = 12;
+const calculateWidth = (words: string[], locale: string) => {
+  const widthPerLetter = locale === 'ko' ? 12 : 7;
 
-const calculateWidth = (words: string[]) => {
   let longestLength = 0;
   for (const word of words) {
     if (word.length > longestLength) longestLength = word.length;
   }
 
-  return WIDTH_PER_LETTER * longestLength;
+  return widthPerLetter * longestLength;
 };
