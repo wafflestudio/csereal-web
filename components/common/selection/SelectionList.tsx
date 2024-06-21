@@ -9,7 +9,7 @@ import { COLOR_THEME } from '@/constants/color';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {
-  names: readonly { ko: string; en?: string }[] | readonly string[];
+  names: readonly { ko: string; en?: string }[];
   selectedItemName: string;
   rootPath: string;
   /**

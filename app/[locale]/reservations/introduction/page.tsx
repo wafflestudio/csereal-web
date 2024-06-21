@@ -32,7 +32,7 @@ export default function ReservationIntroductionPage({
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}>
       <SelectionList
-        names={names}
+        names={names.map((name) => ({ ko: name }))}
         selectedItemName={itemName}
         rootPath={path}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]"
