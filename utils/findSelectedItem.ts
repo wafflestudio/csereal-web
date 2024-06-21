@@ -9,7 +9,7 @@ export const findSelectedItem = <T extends { name: string; engName?: string }>(
   if (dashedItemName === undefined) return defaultItem;
 
   const selectedName = replaceDashWithSpace(dashedItemName);
-  const item = items.find((item) => [item.name, item.engName].includes(selectedName));
+  const item = items.find((item) => item.name === selectedName || item.engName === selectedName);
 
   return item ?? defaultItem;
 };
