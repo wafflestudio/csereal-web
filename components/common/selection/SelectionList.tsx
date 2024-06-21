@@ -1,5 +1,7 @@
 'use client';
 
+import { useLocale } from 'next-intl';
+
 import { Link } from '@/navigation';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
@@ -10,7 +12,7 @@ import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {
   names: readonly { ko: string; en?: string }[];
-  selectedItemName: string;
+  selectedItemNameKo: string;
   rootPath: string;
   /**
    * 반응형 고려해서 그리드 스타일 넣어줘야 함
@@ -22,34 +24,26 @@ interface SelectionListProps {
 
 export default function SelectionList({
   names,
-  selectedItemName,
+  selectedItemNameKo,
   rootPath,
   listGridColumnClass = 'lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]',
   listItemPadding = '',
 }: SelectionListProps) {
+  const locale = useLocale() as 'ko' | 'en';
+
   const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 
   return (
     <ul className={`grid ${gridStyle} mb-6 gap-3 pt-7 sm:mb-9 sm:pt-11`}>
-      {names.map((name) =>
-        typeof name === 'string' ? (
-          <SelectionItem
-            key={name}
-            href={`${rootPath}?selected=${replaceSpaceWithDash(name)}`}
-            name={name}
-            isSelected={name === selectedItemName}
-            padding={listItemPadding}
-          />
-        ) : (
-          <SelectionItem
-            key={name.ko}
-            href={`${rootPath}?selected=${replaceSpaceWithDash(name.en || name.ko)}`}
-            name={name.ko}
-            isSelected={name.ko === selectedItemName}
-            padding={listItemPadding}
-          />
-        ),
-      )}
+      {names.map((name) => (
+        <SelectionItem
+          key={name.ko}
+          href={`${rootPath}?selected=${replaceSpaceWithDash(name.en || name.ko)}`} // 주소는 영문명 우선
+          name={name[locale] ?? name.ko}
+          isSelected={name.ko === selectedItemNameKo}
+          padding={listItemPadding}
+        />
+      ))}
     </ul>
   );
 }

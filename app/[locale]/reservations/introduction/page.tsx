@@ -25,15 +25,15 @@ export default function ReservationIntroductionPage({
 }: {
   searchParams: { selected?: string };
 }) {
-  const selected = (searchParams.selected ||= names[0]);
+  const selected = (searchParams.selected ||= names[0].ko);
   const temp = replaceDashWithSpace(selected);
-  const itemName = isSearchParamValid(temp) ? temp : names[0];
+  const itemName = isSearchParamValid(temp) ? temp : names[0].ko;
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}>
       <SelectionList
-        names={names.map((name) => ({ ko: name }))}
-        selectedItemName={itemName}
+        names={names}
+        selectedItemNameKo={itemName}
         rootPath={path}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]"
       />
@@ -43,10 +43,14 @@ export default function ReservationIntroductionPage({
   );
 }
 
-const names = ['세미나실 예약', '실습실 예약', '공과대학 강의실 예약'] as const;
+const names = [
+  { ko: '세미나실 예약' },
+  { ko: '실습실 예약' },
+  { ko: '공과대학 강의실 예약' },
+] as const;
 
-const isSearchParamValid = (searchParam: string): searchParam is (typeof names)[number] => {
-  return names.findIndex((x) => x === searchParam) !== -1;
+const isSearchParamValid = (searchParam: string): searchParam is (typeof names)[number]['ko'] => {
+  return names.findIndex((x) => x.ko === searchParam) !== -1;
 };
 
 const htmlContents = {

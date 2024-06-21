@@ -35,7 +35,7 @@ export default async function StudentClubsPage({ searchParams }: StudentClubsPag
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
       <SelectionList
         names={clubs.map((club) => ({ ko: club.name, en: club.engName }))}
-        selectedItemName={selectedClub?.name ?? ''}
+        selectedItemNameKo={selectedClub?.name ?? ''}
         rootPath={clubPath}
       />
       {selectedClub ? (

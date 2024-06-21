@@ -31,7 +31,7 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
       <LoginVisible staff fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
         <SelectionList
           names={[{ ko: '슬라이드쇼 관리' }, { ko: '중요 안내 관리' }]}
-          selectedItemName={selectedMenu}
+          selectedItemNameKo={selectedMenu}
           rootPath={adminPath}
           listGridColumnClass="grid-cols-[200px_220px]"
         />
