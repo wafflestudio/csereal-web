@@ -29,9 +29,9 @@ export default async function ResearchCentersPage({
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
       <SelectionList
-        names={centers.map((center) => center.name)}
-        selectedItemName={selectedCenter?.name ?? ''}
-        path={researchCentersPath}
+        names={centers.map((center) => ({ ko: center.name }))}
+        selectedItemNameKo={selectedCenter?.name ?? ''}
+        rootPath={researchCentersPath}
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_200px,_auto))]"
       />
       {selectedCenter ? (

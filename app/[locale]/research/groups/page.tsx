@@ -29,9 +29,9 @@ export default async function ResearchGroupsPage({
       {/* TODO: 외부 div 스타일링 SelectionList에서 표현 */}
       <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <SelectionList
-          names={groups.map((group) => group.name)}
-          selectedItemName={selectedGroup?.name ?? ''}
-          path={researchGroupsPath}
+          names={groups.map((group) => ({ ko: group.name }))}
+          selectedItemNameKo={selectedGroup?.name ?? ''}
+          rootPath={researchGroupsPath}
           listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_236px,_auto))]"
         />
       </div>

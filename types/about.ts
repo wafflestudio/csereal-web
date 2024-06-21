@@ -45,6 +45,5 @@ export interface Contact {
 
 export interface Direction {
   name: string;
-  engName: string;
   description: string;
 }
