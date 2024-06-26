@@ -28,7 +28,7 @@ export default function NewsCreatePage() {
   };
 
   return (
-    <PageLayout title="새 소식 작성" titleType="big" titleMargin="mb-[2.75rem]">
+    <PageLayout title="새 소식 작성" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <PostEditor
         tags={NEWS_TAGS}
         showMainImage

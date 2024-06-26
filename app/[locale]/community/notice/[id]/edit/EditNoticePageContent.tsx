@@ -62,7 +62,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   };
 
   return (
-    <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="공지사항 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <PostEditor
         tags={NOTICE_TAGS}
         showIsPinned
