@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
 
@@ -25,16 +26,18 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
 }
 
 function Header() {
+  const t = useTranslations('Nav');
+
   return (
     <div className="flex flex-col gap-2">
       <h3 className="whitespace-nowrap text-[1.25rem] font-semibold text-neutral-950 sm:text-[1.75rem] sm:font-medium">
-        새 소식
+        {t(news.name)}
       </h3>
       <Link
         className="hidden items-center gap-1 text-base font-normal text-[#E65615] sm:flex"
         href={getPath(news)}
       >
-        더보기 <SmallRightArrow />
+        {t('더보기')} <SmallRightArrow />
       </Link>
     </div>
   );
