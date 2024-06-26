@@ -8,7 +8,8 @@ import {
 
 import { getRequest } from '.';
 
-export const getResearchGroups = () => getRequest<ResearchGroupList>('/research/groups');
+export const getResearchGroups = (locale: 'ko' | 'en') =>
+  getRequest<ResearchGroupList>('/research/groups', { language: locale });
 
 export const getResearchCenters = () => getRequest<ResearchCenter[]>('/research/centers');
 

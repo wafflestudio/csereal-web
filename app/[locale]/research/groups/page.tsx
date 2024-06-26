@@ -17,11 +17,13 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 const researchGroupsPath = getPath(researchGroups);
 
 export default async function ResearchGroupsPage({
+  params: { locale },
   searchParams,
 }: {
+  params: { locale: 'ko' | 'en' };
   searchParams: { selected?: string };
 }) {
-  const { groups } = await getResearchGroups();
+  const { groups } = await getResearchGroups(locale);
   const selectedGroup = findSelectedItem(groups, searchParams.selected);
 
   return (
