@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Course } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
@@ -16,6 +18,7 @@ interface CoursePageContentProps {
 export default function CoursePageContent({ courses }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
+  const t = useTranslations('Content');
 
   if (isMobile && selectedOption.view !== '목록형') {
     changeOptions({ type: 'view', option: '목록형' });
@@ -23,7 +26,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <>
-      <h4 className="mb-2 text-[17px] font-bold sm:mb-8 sm:pl-5">교과목 정보</h4>
+      <h4 className="mb-2 text-[17px] font-bold sm:mb-8 sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
