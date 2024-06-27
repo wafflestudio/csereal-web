@@ -56,7 +56,6 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   const logout = useCallback(async () => {
     if (process.env.NODE_ENV === 'development') {
       removeAuth();
-      router.push('/');
     } else {
       router.push(LOGOUT_URL);
     }
