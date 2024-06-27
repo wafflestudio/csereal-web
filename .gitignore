@@ -37,3 +37,6 @@ next-env.d.ts
 .eslintcache
 
 /.vscode
+
+/public/robots.txt
+/public/sitemap*.xml
