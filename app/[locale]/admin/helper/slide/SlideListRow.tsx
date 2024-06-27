@@ -1,10 +1,9 @@
-import { Link } from '@/navigation';
-import CheckboxOrange from '@/public/image/checkbox_orange.svg';
-
 import { SlidePreview } from '@/types/admin';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
+
+import { CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';
 
 interface SlideListRowProps {
   index: number;
@@ -35,74 +34,19 @@ export default function SlideListRow({
         isSelected && 'bg-neutral-100'
       }`}
     >
-      <CheckboxCell isChecked={isSelected} toggleCheck={() => toggleSelected(post.id)} />
-      <IndexCell index={index} />
-      <TitleCell title={post.title} id={post.id} />
-      <DateCell date={post.createdAt} />
-      <EditCell id={post.id} />
+      <CheckboxCell
+        isChecked={isSelected}
+        toggleCheck={() => toggleSelected(post.id)}
+        width={SLIDE_ROW_CELL_WIDTH.check}
+      />
+      <IndexCell index={index} width={SLIDE_ROW_CELL_WIDTH.index} />
+      <TitleCell
+        title={post.title}
+        href={`${newsPath}/${post.id}`}
+        width={SLIDE_ROW_CELL_WIDTH.title}
+      />
+      <DateCell date={post.createdAt} width={SLIDE_ROW_CELL_WIDTH.date} />
+      <EditCell href={`${newsPath}/${post.id}/edit`} width={SLIDE_ROW_CELL_WIDTH.edit} />
     </li>
   );
 }
-
-interface CheckboxCellProps {
-  isChecked: boolean;
-  toggleCheck: () => void;
-}
-
-function CheckboxCell({ isChecked = true, toggleCheck }: CheckboxCellProps) {
-  return (
-    <span className={`${SLIDE_ROW_CELL_WIDTH.check} flex justify-center`}>
-      {isChecked ? (
-        <CheckboxOrange className="cursor-pointer" onClick={toggleCheck} />
-      ) : (
-        <span
-          className="material-symbols-rounded cursor-pointer 
-         font-light"
-          onClick={toggleCheck}
-        >
-          check_box_outline_blank
-        </span>
-      )}
-    </span>
-  );
-}
-
-function IndexCell({ index }: { index: number }) {
-  return <span className={`${SLIDE_ROW_CELL_WIDTH.index} text-center`}>{index}</span>;
-}
-
-function TitleCell({ title, id }: { title: string; id: number }) {
-  return (
-    <span className={`${SLIDE_ROW_CELL_WIDTH.title} min-w-0 grow pl-3 font-medium`}>
-      <Link href={`${newsPath}/${id}`} className="flex items-center gap-1.5  hover:underline">
-        {/* span이 있어야 text-ellipsis 작동 */}
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{title}</span>
-      </Link>
-    </span>
-  );
-}
-
-function DateCell({ date }: { date: string }) {
-  return <span className={`${SLIDE_ROW_CELL_WIDTH.date} pl-8`}>{formatDate(new Date(date))}</span>;
-}
-
-function EditCell({ id }: { id: number }) {
-  return (
-    <span className={`${SLIDE_ROW_CELL_WIDTH.edit} pl-3`}>
-      <Link
-        href={`${newsPath}/${id}/edit`}
-        className="cursor-pointer whitespace-nowrap font-medium text-main-orange hover:underline"
-      >
-        편집
-      </Link>
-    </span>
-  );
-}
-
-const formatDate = (date: Date) => {
-  const yyyy = String(date.getFullYear()).padStart(4, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-
-  return `${yyyy}/${mm}/${dd}`; // e.g. 2023/08/01
-};
