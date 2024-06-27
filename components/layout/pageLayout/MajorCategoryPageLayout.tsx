@@ -61,7 +61,7 @@ export default function MajorCategoryPageLayout({
             <RootItem
               key={index}
               title={t(subpage.name)}
-              description={subpage.description ?? ''}
+              description=""
               onClick={() =>
                 subpage.isPage ? router.push(getPath(subpage)) : setSelectedCategory(subpage)
               }
@@ -77,7 +77,7 @@ export default function MajorCategoryPageLayout({
               <LeafItem
                 key={index}
                 title={subpage.name}
-                description={subpage.description ?? ''}
+                description=""
                 onClick={() => router.push(getPath(subpage))}
               />
             ))}
