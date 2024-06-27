@@ -12,11 +12,11 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
   // 성능 확인 필요
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files === null) return;
+
     const newFiles: LocalFile[] = Array.from(e.target.files, (file) => ({
       type: 'LOCAL_FILE',
       file,
     }));
-
     setFiles((files) => [...files, ...newFiles]);
 
     // 같은 파일에 대해서 선택이 가능하도록 처리
