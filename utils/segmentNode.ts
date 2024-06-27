@@ -4,6 +4,7 @@ export interface SegmentNode {
   isPage: boolean;
   children: SegmentNode[];
   parent: SegmentNode | null;
+  description?: string | null;
 }
 
 export const main: SegmentNode = {
@@ -671,3 +672,13 @@ export const tentenProposal: SegmentNode = {
 
 // 기존 홈페이지 푸터 링크가 propsal로 이동시는 등 proposal 내용이 우선순위라 판단되어 기존과 다르게 0번째로 배치
 tentenProject.children = [tentenProposal, tentenManager, tentenParticipants];
+
+// 개인정보처리방침
+
+export const privacyPolicy: SegmentNode = {
+  name: '개인정보처리방침',
+  segment: 'privacy-policy',
+  isPage: true,
+  parent: about,
+  children: [],
+};
