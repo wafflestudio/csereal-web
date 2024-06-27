@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
 
 import { getFutureCareeres } from '@/apis/about';
 
@@ -34,9 +35,11 @@ export default async function GreetingsPage() {
 }
 
 function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
+  const t = useTranslations('Content');
+
   return (
     <div className="sm:max-w-[780px]">
-      <h3 className="mb-3 text-base font-bold">졸업생 창업 기업</h3>
+      <h3 className="mb-3 text-base font-bold">{t('졸업생 창업 기업')}</h3>
       <div className="border-y border-neutral-200 text-sm font-normal">
         <CompanyTableHeader />
         <ol>
@@ -52,12 +55,14 @@ function CareerCompanies({ companies }: { companies: FutureCareers['companies'] 
 const TABLE_COLUMN_SIZE = ['sm:w-[3.5rem]', 'sm:w-[12.5rem]', 'sm:w-80', 'sm:w-20'];
 
 function CompanyTableHeader() {
+  const t = useTranslations('Content');
+
   return (
     <div className="hidden h-10 items-center gap-3 whitespace-nowrap border-b border-neutral-200 sm:flex sm:px-3">
-      <p className={TABLE_COLUMN_SIZE[0]}>연번</p>
-      <p className={TABLE_COLUMN_SIZE[1]}>창업 기업명</p>
-      <p className={TABLE_COLUMN_SIZE[2]}>홈페이지</p>
-      <p className={TABLE_COLUMN_SIZE[3] + ''}>창업연도</p>
+      <p className={TABLE_COLUMN_SIZE[0]}>{t('연번')}</p>
+      <p className={TABLE_COLUMN_SIZE[1]}>{t('창업 기업명')}</p>
+      <p className={TABLE_COLUMN_SIZE[2]}>{t('홈페이지')}</p>
+      <p className={TABLE_COLUMN_SIZE[3] + ''}>{t('창업연도')}</p>
     </div>
   );
 }

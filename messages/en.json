@@ -179,6 +179,13 @@
   },
 
   "Content": {
+    "학부 소개 책자": "CSE Brochure",
+    "졸업생 진로 현황": "Graduate Career Status",
+    "졸업생 창업 기업": "Graduate Startups",
+    "창업 기업명": "Name",
+    "홈페이지": "Website",
+    "창업연도": "Year Founded",
+
     "교과목 로드맵 보기": "Show Roadmap",
     "교과목 로드맵": "Course Roadmap",
     "선수 교과목": "prerequisite",
