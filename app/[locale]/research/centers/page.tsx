@@ -19,12 +19,18 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 const researchCentersPath = getPath(researchCenters);
 
 export default async function ResearchCentersPage({
+  params: { locale },
   searchParams,
 }: {
+  params: { locale: 'ko' | 'en' };
   searchParams: { selected?: string };
 }) {
-  const centers = await getResearchCenters();
-  const selectedCenter = findSelectedItem<ResearchCenter>(centers, searchParams.selected);
+  const centers = await getResearchCenters(locale);
+  const selectedCenter = findSelectedItem<ResearchCenter>(
+    centers,
+    searchParams.selected,
+    getPath(researchCenters),
+  );
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>

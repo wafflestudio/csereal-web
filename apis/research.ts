@@ -11,7 +11,8 @@ import { getRequest } from '.';
 export const getResearchGroups = (locale: 'ko' | 'en') =>
   getRequest<ResearchGroupList>('/research/groups', { language: locale });
 
-export const getResearchCenters = () => getRequest<ResearchCenter[]>('/research/centers');
+export const getResearchCenters = (locale: 'ko' | 'en') =>
+  getRequest<ResearchCenter[]>('/research/centers', { language: locale });
 
 export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
 
