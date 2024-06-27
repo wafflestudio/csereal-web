@@ -168,18 +168,16 @@ const EndTimePicker = ({
   setEndTime: (date: Date) => void;
 }) => {
   // 예약은 밤 11시까지만 가능
-  const lastEndTimeInMin = 23 * 60;
-  const StartTimeInMin = startTime.getHours() * 60 + startTime.getMinutes();
-  const contentSize = (lastEndTimeInMin - StartTimeInMin) / 30;
+  const firstMin = startTime.getHours() * 60 + startTime.getMinutes();
+  const lastMin = 23 * 60;
+  const contentSize = (lastMin - firstMin) / 30;
 
   // 선택 가능한 날짜 목록
-  const dateList = Array(contentSize)
-    .fill(0)
-    .map((_, i) => {
-      const date = new Date(startTime);
-      date.setMinutes(date.getMinutes() + (i + 1) * 30);
-      return date;
-    });
+  const dateList = [...Array(contentSize).keys()].map((i) => {
+    const date = new Date(startTime);
+    date.setMinutes(date.getMinutes() + (i + 1) * 30);
+    return date;
+  });
 
   // 드롭다운에 띄울 문자열 목록
   const format = (num: number) => num.toString().padStart(2, '0');
