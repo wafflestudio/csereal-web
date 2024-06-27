@@ -17,6 +17,7 @@ export const getResearchCenters = (locale: Locale) =>
 
 export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
 
-export const getResearchLabs = () => getRequest<SimpleResearchLab[]>('/research/labs');
+export const getResearchLabs = (locale: Locale) =>
+  getRequest<SimpleResearchLab[]>('/research/labs', { language: locale });
 
 export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference/page');
