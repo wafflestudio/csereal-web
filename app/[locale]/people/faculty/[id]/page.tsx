@@ -10,6 +10,8 @@ import Profile from '@/app/[locale]/people/helper/Profile';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/common';
+
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
@@ -31,7 +33,7 @@ export async function generateMetadata({ params: { locale, id } }: FacultyMember
 const labUrl = getPath(researchLabs);
 
 interface FacultyMemberPageProps {
-  params: { id: number; locale: 'ko' | 'en' };
+  params: { id: number; locale: Locale };
 }
 
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {

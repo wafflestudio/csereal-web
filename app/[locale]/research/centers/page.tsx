@@ -3,6 +3,7 @@ import { getResearchCenters } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/common';
 import { ResearchCenter } from '@/types/research';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';
@@ -12,7 +13,7 @@ import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
   return await getMetadata({ locale, node: researchCenters });
 }
 
@@ -22,7 +23,7 @@ export default async function ResearchCentersPage({
   params: { locale },
   searchParams,
 }: {
-  params: { locale: 'ko' | 'en' };
+  params: { locale: Locale };
   searchParams: { selected?: string };
 }) {
   const centers = await getResearchCenters(locale);

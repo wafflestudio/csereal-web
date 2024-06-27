@@ -1,3 +1,4 @@
+import { Locale } from '@/types/common';
 import {
   ResearchCenter,
   ResearchGroupList,
@@ -8,10 +9,10 @@ import {
 
 import { getRequest } from '.';
 
-export const getResearchGroups = (locale: 'ko' | 'en') =>
+export const getResearchGroups = (locale: Locale) =>
   getRequest<ResearchGroupList>('/research/groups', { language: locale });
 
-export const getResearchCenters = (locale: 'ko' | 'en') =>
+export const getResearchCenters = (locale: Locale) =>
   getRequest<ResearchCenter[]>('/research/centers', { language: locale });
 
 export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);

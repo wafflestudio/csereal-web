@@ -3,6 +3,8 @@ import { getResearchGroups } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/common';
+
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
@@ -20,7 +22,7 @@ export default async function ResearchGroupsPage({
   params: { locale },
   searchParams,
 }: {
-  params: { locale: 'ko' | 'en' };
+  params: { locale: Locale };
   searchParams: { selected?: string };
 }) {
   const { groups } = await getResearchGroups(locale);
