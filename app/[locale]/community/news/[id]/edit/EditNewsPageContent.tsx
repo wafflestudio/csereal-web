@@ -58,7 +58,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
   };
 
   return (
-    <PageLayout title="새 소식 편집" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="새 소식 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <PostEditor
         tags={NEWS_TAGS}
         showMainImage

@@ -60,7 +60,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   };
 
   return (
-    <PageLayout title="세미나 편집" titleType="big" titleMargin="mb-[2.25rem]">
+    <PageLayout title="세미나 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <SeminarEditor
         actions={{
           type: 'EDIT',

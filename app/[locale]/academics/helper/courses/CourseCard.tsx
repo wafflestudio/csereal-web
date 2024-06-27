@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
@@ -89,12 +90,14 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 }
 
 function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
+  const t = useTranslations('Tag');
+
   return (
     <div className="mb-4 flex items-center justify-between">
       <Tag tag={sortedProperties[0]} />
       <span className="ml-2 whitespace-nowrap text-xs text-neutral-500">
-        <span className="mr-2">{sortedProperties[1]}</span>
-        <span>{sortedProperties[2]}</span>
+        <span className="mr-2">{t(sortedProperties[1])}</span>
+        <span>{t(sortedProperties[2])}</span>
       </span>
     </div>
   );

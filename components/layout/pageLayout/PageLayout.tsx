@@ -38,7 +38,7 @@ export default function PageLayout({
   titleType,
   titleMargin = 'mb-6 sm:mb-11',
   bodyStyle,
-  hideNavbar,
+  hideNavbar = false,
   children,
 }: PageLayoutProps) {
   const t = useTranslations('Nav');
@@ -59,7 +59,7 @@ export default function PageLayout({
         style={bodyStyle}
       >
         {children}
-        {hideNavbar !== true && <SubNavbar currentTab={currentPage} />}
+        {!hideNavbar && <SubNavbar currentTab={currentPage} />}
       </div>
     </div>
   );

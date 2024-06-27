@@ -30,7 +30,7 @@ export default function NoticeCreatePage() {
   };
 
   return (
-    <PageLayout title="공지사항 작성" titleType="big" titleMargin="mb-[2.75rem]">
+    <PageLayout title="공지사항 작성" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <PostEditor
         tags={NOTICE_TAGS}
         showIsPinned
