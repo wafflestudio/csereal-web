@@ -88,7 +88,10 @@
     "검색": "Keyword",
     "통합 검색": "Search",
     "결과 더보기": "more results",
-    "전체": "Total"
+    "전체": "Total",
+
+    "더보기": "More",
+    "바로가기": "Shortcuts"
   },
 
   "Header": {
@@ -131,8 +134,8 @@
 
     "수업": "lecture",
     "장학": "scholarship",
-    "학사(학부)": "bachelor's (undergraduate)",
-    "학사(대학원)": "bachelor's (graduate school)",
+    "학사(학부)": "bachelor(undergraduate)",
+    "학사(대학원)": "bachelor(graduate)",
     "다전공/전과": "double major/transfer",
     "등록/복학/휴학/재입학": "registration/reinstatement/leave of absence/re-enrollment",
     "입학": "admission",
@@ -158,6 +161,7 @@
     "교과목 구분": "classification",
     "학점": "credit",
     "대학원": "graduate",
+    "학부": "undergraduate",
 
     "1학년": "freshman",
     "2학년": "sophomore",
@@ -172,5 +176,19 @@
     "2학점": "2 credits",
     "3학점": "3 credits",
     "4학점": "4 credits"
+  },
+
+  "Content": {
+    "교과목 로드맵 보기": "Show Roadmap",
+    "교과목 로드맵": "Course Roadmap",
+    "선수 교과목": "prerequisite",
+    "교과목 정보": "Course Information",
+    "카드형": "cards",
+    "목록형": "list",
+    "교과목명": "Title",
+    "교과목 구분": "Classification",
+    "교과목 번호": "Code",
+    "학점": "Credit",
+    "학년": "Grade"
   }
 }

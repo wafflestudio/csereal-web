@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { Tag } from '@/components/common/Tags';
 
 import { SortOption, ViewOption } from '@/types/academics';
@@ -47,20 +49,22 @@ interface ViewOptionsProps {
 }
 
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
+  const t = useTranslations('Content');
+
   return (
     <div className="flex gap-3 text-md text-neutral-400">
       <span
         className={selectedOption === '카드형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
       >
-        카드형
+        {t('카드형')}
       </span>
       <span>|</span>
       <span
         className={selectedOption === '목록형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('목록형')}
       >
-        목록형
+        {t('목록형')}
       </span>
     </div>
   );

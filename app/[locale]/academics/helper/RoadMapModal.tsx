@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import roadmap from '@/public/image/roadmap.png';
 import SignPostIcon from '@/public/image/signpost_icon.svg';
@@ -19,12 +20,14 @@ export default function RoadMapModal({ onClose }: { onClose: () => void }) {
 }
 
 function RoadMapTitle() {
+  const t = useTranslations('Content');
+
   return (
     <h4 className="flex items-center gap-2">
       <SignPostIcon className="fill-main-orange" />
       <span className="align-bottom">
-        <span className="text-lg font-bold">교과목 로드맵 </span>
-        <span className="text-sm text-neutral-600">(선수 교과목)</span>
+        <span className="text-lg font-bold">{t('교과목 로드맵')} </span>
+        <span className="text-sm text-neutral-600">({t('선수 교과목')})</span>
       </span>
     </h4>
   );
