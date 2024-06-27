@@ -19,7 +19,7 @@ export const IMPORTANT_ROW_CELL_WIDTH = {
   category: 'w-[6.25rem]',
   title: 'w-[25rem]',
   date: 'w-[9.375rem]',
-  edit: 'w-[4.375rem]',
+  edit: 'w-auto min-w-[4.375rem]',
 } as const;
 
 const importantCategoryPaths = {
@@ -84,12 +84,12 @@ function CategoryCell({ category }: { category: string }) {
 
 function TitleCell({ title, href }: { title: string; href: string }) {
   return (
-    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title}  pl-3 font-medium`}>
+    <span className={`${IMPORTANT_ROW_CELL_WIDTH.title} min-w-0 grow pl-3 font-medium`}>
       <Link
         href={href}
-        className="flex max-w-fit items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap hover:underline"
+        className="flex items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap hover:underline"
       >
-        {title}
+        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{title}</span>
       </Link>
     </span>
   );
@@ -104,7 +104,10 @@ function DateCell({ date }: { date: string }) {
 function EditCell({ href }: { href: string }) {
   return (
     <span className={`${IMPORTANT_ROW_CELL_WIDTH.edit} pl-3`}>
-      <Link href={href} className="cursor-pointer font-medium text-main-orange hover:underline">
+      <Link
+        href={href}
+        className="cursor-pointer whitespace-nowrap font-medium text-main-orange hover:underline"
+      >
         편집
       </Link>
     </span>
