@@ -32,7 +32,6 @@
     "react-hot-toast": "^2.4.1",
     "sharp": "^0.32.5",
     "suneditor": "^2.45.1",
-    "suneditor-react": "^3.6.1",
     "tailwindcss": "3.3.2",
     "typescript": "^5.3.3"
   },
