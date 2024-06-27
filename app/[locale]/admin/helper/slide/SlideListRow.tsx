@@ -18,7 +18,7 @@ export const SLIDE_ROW_CELL_WIDTH = {
   index: 'w-[3.125rem]',
   title: 'w-[31.25rem]',
   date: 'w-[9.375rem]',
-  edit: 'w-[4.375rem]',
+  edit: 'w-auto min-w-[4.375rem]',
 } as const;
 
 const newsPath = getPath(news);
@@ -31,7 +31,7 @@ export default function SlideListRow({
 }: SlideListRowProps) {
   return (
     <li
-      className={`flex items-center py-[12px] text-md tracking-wide ${
+      className={`flex flex-nowrap items-center py-[12px] text-md tracking-wide ${
         isSelected && 'bg-neutral-100'
       }`}
     >
@@ -73,12 +73,10 @@ function IndexCell({ index }: { index: number }) {
 
 function TitleCell({ title, id }: { title: string; id: number }) {
   return (
-    <span className={`${SLIDE_ROW_CELL_WIDTH.title} pl-3 font-medium`}>
-      <Link
-        href={`${newsPath}/${id}`}
-        className="flex max-w-fit items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap hover:underline"
-      >
-        {title}
+    <span className={`${SLIDE_ROW_CELL_WIDTH.title} min-w-0 grow pl-3 font-medium`}>
+      <Link href={`${newsPath}/${id}`} className="flex items-center gap-1.5  hover:underline">
+        {/* span이 있어야 text-ellipsis 작동 */}
+        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{title}</span>
       </Link>
     </span>
   );
@@ -93,7 +91,7 @@ function EditCell({ id }: { id: number }) {
     <span className={`${SLIDE_ROW_CELL_WIDTH.edit} pl-3`}>
       <Link
         href={`${newsPath}/${id}/edit`}
-        className="cursor-pointer font-medium text-main-orange hover:underline"
+        className="cursor-pointer whitespace-nowrap font-medium text-main-orange hover:underline"
       >
         편집
       </Link>
