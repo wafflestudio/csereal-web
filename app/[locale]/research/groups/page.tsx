@@ -24,7 +24,7 @@ export default async function ResearchGroupsPage({
   searchParams: { selected?: string };
 }) {
   const { groups } = await getResearchGroups(locale);
-  const selectedGroup = findSelectedItem(groups, searchParams.selected);
+  const selectedGroup = findSelectedItem(groups, searchParams.selected, getPath(researchGroups));
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
