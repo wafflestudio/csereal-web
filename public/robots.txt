@@ -5,6 +5,9 @@ Disallow: /admin
 Disallow: /community/notice/create
 Disallow: /community/news/create
 Disallow: /community/seminar/create
+Disallow: /en/community/notice/create
+Disallow: /en/community/news/create
+Disallow: /en/community/seminar/create
 
 # Host
 Host: https://cse.snu.ac.kr
