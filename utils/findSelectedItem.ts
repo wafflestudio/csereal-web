@@ -5,7 +5,7 @@ import { replaceDashWithSpace } from './string';
 export const findSelectedItem = <T extends { name: string; engName?: string }>(
   items: T[],
   selectedItemName?: string,
-  pathname?: string,
+  fallbackPathname?: string,
 ) => {
   const defaultItem = items[0];
 
@@ -15,12 +15,12 @@ export const findSelectedItem = <T extends { name: string; engName?: string }>(
   const item = items.find(
     (item) =>
       replaceDashWithSpace(item.name) === selectedName ||
-      replaceDashWithSpace(item.engName ?? '') === selectedName,
+      (item.engName && replaceDashWithSpace(item.engName)) === selectedName,
   ); // Human-Centered Computing 같은 코너 케이스가 있으므로 기존 이름도 dash 전부 제거하고 비교
 
   // 다른 언어로 바뀌거나 존재하지 않는 쿼리가 들어오는 등 알맞은 아이템이 없을 경우 기본 주소로 리다이렉트
-  if (!item && pathname) {
-    redirect(pathname);
+  if (!item && fallbackPathname) {
+    redirect(fallbackPathname);
   }
 
   return item ?? defaultItem;

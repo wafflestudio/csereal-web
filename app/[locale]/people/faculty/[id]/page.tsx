@@ -10,7 +10,7 @@ import Profile from '@/app/[locale]/people/helper/Profile';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';

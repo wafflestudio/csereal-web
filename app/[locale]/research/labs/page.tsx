@@ -2,7 +2,7 @@ import { getResearchLabs } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 
 import { getMetadata } from '@/utils/metadata';
 import { researchLabs } from '@/utils/segmentNode';

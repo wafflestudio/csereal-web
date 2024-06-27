@@ -8,7 +8,7 @@ import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/ind
 
 import { COLOR_THEME } from '@/constants/color';
 
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 
 import { replaceSpaceWithDash } from '@/utils/string';
 

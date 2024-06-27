@@ -2,7 +2,7 @@ import { getActiveFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 import { SimpleFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';

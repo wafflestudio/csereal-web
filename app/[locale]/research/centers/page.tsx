@@ -3,7 +3,7 @@ import { getResearchCenters } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 import { ResearchCenter } from '@/types/research';
 
 import { findSelectedItem } from '@/utils/findSelectedItem';

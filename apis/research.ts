@@ -1,4 +1,4 @@
-import { Locale } from '@/types/common';
+import { Locale } from '@/types/locale';
 import {
   ResearchCenter,
   ResearchGroupList,
