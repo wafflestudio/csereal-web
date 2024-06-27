@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
@@ -11,10 +12,12 @@ interface ResearchGroupDetailProps {
 }
 
 export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
+  const t = useTranslations('Content');
+
   return (
     <div className="flex flex-col bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
       <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
-        {group.name} 스트림
+        {group.name} {t('스트림')}
       </h2>
       <HTMLViewer
         htmlContent={group.description}
