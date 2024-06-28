@@ -179,6 +179,8 @@
   },
 
   "Content": {
+    "서울대학교 공과대학 컴퓨터공학부": "SNU CSE",
+
     "교과목 로드맵 보기": "Show Roadmap",
     "교과목 로드맵": "Course Roadmap",
     "선수 교과목": "prerequisite",
@@ -189,6 +191,20 @@
     "교과목 구분": "Classification",
     "교과목 번호": "Code",
     "학점": "Credit",
-    "학년": "Grade"
+    "학년": "Grade",
+
+    "스트림": "Stream",
+    "연구실": "Laboratories",
+    "지도교수": "Professors",
+    "연구실 위치": "Location",
+    "전화": "Telephone",
+    "약자": "Acronym",
+    "소개 자료": "Information",
+    "연번": "No.",
+    "약칭": "Abbreviation",
+    "학술대회 명칭": "Title",
+    "수정 날짜": "Last Updated",
+    "작성자": "Author",
+    "본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다": "This list is subject to change over time and depending on circumstances"
   }
 }

@@ -1,15 +1,19 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Link } from '@/navigation';
 
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
 export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: string }[] }) {
+  const t = useTranslations('Content');
+
   return (
     <div className="mt-10 sm:mx-0">
       <h3 className="mb-1 whitespace-nowrap text-md font-bold leading-loose sm:py-1 sm:pl-2.5 sm:text-[20px]">
-        연구실
+        {t('연구실')}
       </h3>
       <ul>
         {labs.map((lab) => (
