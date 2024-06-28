@@ -1,4 +1,4 @@
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/navigation';
 
 import { SegmentNode, admin, main, tentenProject } from '@/utils/segmentNode';
 

@@ -66,5 +66,8 @@
         "newlines-between": "always"
       }
     ]
+  },
+  "env": {
+    "es6": true
   }
 }

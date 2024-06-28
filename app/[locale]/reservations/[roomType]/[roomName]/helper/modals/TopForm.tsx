@@ -37,8 +37,8 @@ export default function TopForm({
             setEndDate={(x) => setBody('endTime', x.toISOString())}
           />
         </InputWithLabel>
-        <InputWithLabel title="사용 시간">
-          <DurationPicker
+        <InputWithLabel title="종료 시간">
+          <EndTimePicker
             startTime={new Date(body.startTime)}
             endTime={new Date(body.endTime)}
             setEndTime={(x) => setBody('endTime', x.toISOString())}
@@ -158,7 +158,7 @@ const StartTimePicker = ({
   return <Dropdown contents={contentsInStr} selectedIndex={selectedIndex} onClick={handleClick} />;
 };
 
-const DurationPicker = ({
+const EndTimePicker = ({
   startTime,
   endTime,
   setEndTime,
@@ -167,29 +167,24 @@ const DurationPicker = ({
   endTime: Date;
   setEndTime: (date: Date) => void;
 }) => {
-  const endOfDayInMinute = 23 * 60; // 예약은 밤 11시까지만 가능
-  const startTimeInMinute = startTime.getHours() * 60 + startTime.getMinutes();
+  // 예약은 밤 11시까지만 가능
+  const firstMin = startTime.getHours() * 60 + startTime.getMinutes();
+  const lastMin = 23 * 60;
+  const contentSize = (lastMin - firstMin) / 30;
 
-  // 최대 3시간이라서 최대값은 6
-  // const remainingOptionCnt = Math.min(6, (endOfDayInMinute - startTimeInMinute) / 30);
-  const remainingOptionCnt = (endOfDayInMinute - startTimeInMinute) / 30;
+  // 선택 가능한 날짜 목록
+  const dateList = [...Array(contentSize).keys()].map((i) => {
+    const date = new Date(startTime);
+    date.setMinutes(date.getMinutes() + (i + 1) * 30);
+    return date;
+  });
 
-  const contents = Array(remainingOptionCnt)
-    .fill(0)
-    .map((_, i) => {
-      const minutes = (i + 1) * 30;
-      if (minutes % 60 === 0) return minutes / 60 + '시간';
-      else return minutes + '분';
-    });
+  // 드롭다운에 띄울 문자열 목록
+  const format = (num: number) => num.toString().padStart(2, '0');
+  const strList = dateList.map((date) => `${format(date.getHours())}:${format(date.getMinutes())}`);
 
-  const endTimeInMinute = endTime.getHours() * 60 + endTime.getMinutes();
-  const selectedIndex = (endTimeInMinute - startTimeInMinute) / 30 - 1;
+  const idx = dateList.findIndex((date) => date.getTime() === endTime.getTime());
+  const handleClick = (idx: number) => setEndTime(dateList[idx]);
 
-  const handleClick = (idx: number) => {
-    const newEndTime = new Date(startTime);
-    newEndTime.setTime(startTime.getTime() + (idx + 1) * 30 * 60 * 1000);
-    setEndTime(newEndTime);
-  };
-
-  return <Dropdown contents={contents} selectedIndex={selectedIndex} onClick={handleClick} />;
+  return <Dropdown contents={strList} selectedIndex={idx} onClick={handleClick} />;
 };
