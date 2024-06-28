@@ -6,10 +6,9 @@ import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 
-import { NavTreeNode, main as mainSegmentNode } from '@/constants/navTreeNode';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
+import { SegmentNode, main as mainSegmentNode } from '@/utils/segmentNode';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
 export const NAVBAR_EXPANDED_WIDTH_REM = 11;
@@ -36,7 +35,7 @@ export default function NavbarRoot() {
 
 function DotList() {
   const cur = useCurrentSegmentNode();
-  const isDotFilled = (node: NavTreeNode) => isAncestorNode(node, cur) || node === cur;
+  const isDotFilled = (node: SegmentNode) => isAncestorNode(node, cur) || node === cur;
 
   const dotArr = mainSegmentNode.children.map(isDotFilled);
   const getDotMargin = (filled: boolean, idx: number) => {
@@ -63,7 +62,7 @@ function NavList() {
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
 
-  const shouldHighlight = (child: NavTreeNode) => {
+  const shouldHighlight = (child: SegmentNode) => {
     return navbarState.type === 'hovered'
       ? child === navbarState.segmentNode
       : isAncestorNode(child, cur);

@@ -7,13 +7,12 @@ import { ReactNode, useState } from 'react';
 
 import Plus from '@/public/image/main/plus.svg';
 
-import { notice } from '@/constants/navTreeNode';
-
 import { AllMainNotice } from '@/types/main';
 
 import { formatMainNoticeDateStr } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');

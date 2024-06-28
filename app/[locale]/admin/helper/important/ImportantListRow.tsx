@@ -1,11 +1,10 @@
 import { Link } from '@/navigation';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
-import { news, notice, seminar } from '@/constants/navTreeNode';
-
 import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
 
 import { getPath } from '@/utils/page';
+import { news, notice, seminar } from '@/utils/segmentNode';
 
 interface ImportantListRowProps {
   index: number;

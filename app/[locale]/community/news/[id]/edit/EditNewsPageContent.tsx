@@ -14,13 +14,13 @@ import {
 } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { news } from '@/constants/navTreeNode';
 import { NEWS_TAGS } from '@/constants/tag';
 
 import { News } from '@/types/news';
 
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

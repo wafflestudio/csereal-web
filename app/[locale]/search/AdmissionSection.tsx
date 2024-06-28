@@ -1,8 +1,7 @@
-import { admissions } from '@/constants/navTreeNode';
-
 import { AdmissionsSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
+import { admissions } from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';

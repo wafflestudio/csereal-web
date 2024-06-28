@@ -13,13 +13,13 @@ import {
 } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { notice } from '@/constants/navTreeNode';
 import { NOTICE_TAGS } from '@/constants/tag';
 
 import { Notice } from '@/types/notice';
 
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 

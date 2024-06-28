@@ -7,11 +7,10 @@ import { useState } from 'react';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
 
-import { NavTreeNode, main } from '@/constants/navTreeNode';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
+import { SegmentNode, main } from '@/utils/segmentNode';
 
 import MobileNavDetail from './MobileNavDetail';
 
@@ -40,7 +39,7 @@ function MobileNavList() {
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
 
-  const shouldHighlight = (child: NavTreeNode) => {
+  const shouldHighlight = (child: SegmentNode) => {
     return navbarState.type === 'hovered'
       ? child === navbarState.segmentNode
       : isAncestorNode(child, cur);

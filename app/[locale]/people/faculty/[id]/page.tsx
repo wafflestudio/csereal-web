@@ -10,10 +10,9 @@ import Profile from '@/app/[locale]/people/helper/Profile';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { researchLabs } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
+import { researchLabs } from '@/utils/segmentNode';
 
 import PageTitle from '../../helper/PageTitle';
 

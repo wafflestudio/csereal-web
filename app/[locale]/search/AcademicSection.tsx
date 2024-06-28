@@ -1,3 +1,6 @@
+import { Academic, AcademicsSearchResult } from '@/types/search';
+
+import { getPath } from '@/utils/page';
 import {
   curriculum,
   degree,
@@ -10,11 +13,7 @@ import {
   undergraduateCourses,
   undergraduateGuide,
   undergraduateScholarship,
-} from '@/constants/navTreeNode';
-
-import { Academic, AcademicsSearchResult } from '@/types/search';
-
-import { getPath } from '@/utils/page';
+} from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';

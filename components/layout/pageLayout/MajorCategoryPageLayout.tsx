@@ -6,10 +6,9 @@ import React, { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import { NavTreeNode } from '@/constants/navTreeNode';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
 
 import ENG_NAMES from '../../../messages/en.json';
 import Header from '../header/Header';
@@ -33,7 +32,7 @@ export default function MajorCategoryPageLayout({
   title ||= t(currentPage.name);
 
   // 학사 및 교과 등에서 소분류 선택 처리용 state
-  const [selectedCategory, setSelectedCategory] = useState<NavTreeNode | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SegmentNode | null>(null);
   const router = useRouter();
 
   return (
@@ -62,6 +61,7 @@ export default function MajorCategoryPageLayout({
             <RootItem
               key={index}
               title={t(subpage.name)}
+              description=""
               onClick={() =>
                 subpage.isPage ? router.push(getPath(subpage)) : setSelectedCategory(subpage)
               }
@@ -77,6 +77,7 @@ export default function MajorCategoryPageLayout({
               <LeafItem
                 key={index}
                 title={subpage.name}
+                description=""
                 onClick={() => router.push(getPath(subpage))}
               />
             ))}
@@ -97,15 +98,17 @@ export default function MajorCategoryPageLayout({
 
 interface RootItemProps {
   title: string;
+  description: string;
   isPage: boolean;
   isSelected?: boolean;
   onClick: () => void;
 }
 
-function RootItem({ title, isPage, isSelected, onClick }: RootItemProps) {
+function RootItem({ title, description, isPage, isSelected, onClick }: RootItemProps) {
   return (
     <DetailItem
       title={title}
+      description={description}
       onClick={onClick}
       hasArrow={isPage}
       bgColor={isSelected ? 'bg-main-orange-dark' : 'bg-neutral-100'}
@@ -114,13 +117,15 @@ function RootItem({ title, isPage, isSelected, onClick }: RootItemProps) {
 }
 interface LeafItemProps {
   title: string;
+  description: string;
   onClick: () => void;
 }
 
-function LeafItem({ title, onClick }: LeafItemProps) {
+function LeafItem({ title, description, onClick }: LeafItemProps) {
   return (
     <DetailItem
       title={title}
+      description={description}
       onClick={onClick}
       hasArrow
       bgColor="bg-neutral-400"
@@ -131,6 +136,7 @@ function LeafItem({ title, onClick }: LeafItemProps) {
 
 interface DetailItemProps {
   title: string;
+  description: string;
   hasArrow: boolean;
   bgColor: string;
   hoverColor?: string;

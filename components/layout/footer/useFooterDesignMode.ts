@@ -1,5 +1,6 @@
+import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import {
-  NavTreeNode,
+  SegmentNode,
   about,
   academics,
   admissions,
@@ -8,9 +9,7 @@ import {
   people,
   research,
   reservations,
-} from '@/constants/navTreeNode';
-
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+} from '@/utils/segmentNode';
 
 export type FooterMode = 'light' | 'dark';
 
@@ -20,7 +19,7 @@ export default function useFooterDesignMode(): FooterMode {
   return pageWithDarkMode.includes(node) ? 'dark' : 'light';
 }
 
-const pageWithDarkMode: NavTreeNode[] = [
+const pageWithDarkMode: SegmentNode[] = [
   main,
   about,
   community,

@@ -1,8 +1,7 @@
 import { Link } from '@/navigation';
 
-import { notice } from '@/constants/navTreeNode';
-
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 const noticePath = getPath(notice);
 

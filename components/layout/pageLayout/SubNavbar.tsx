@@ -5,9 +5,8 @@ import { Link } from '@/navigation';
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
 
-import { NavTreeNode } from '@/constants/navTreeNode';
-
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
 
 type TreeNode = {
   name: string;
@@ -21,7 +20,7 @@ const INDENTATION = 16;
 
 export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
   const t = useTranslations('Nav');
-  const rootTab = getRootTab(currentTab as NavTreeNode);
+  const rootTab = getRootTab(currentTab as SegmentNode);
   const subTabs = getAllSubTabs(rootTab);
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
@@ -51,7 +50,7 @@ export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
   );
 }
 
-function SubTab({ tab, isCurrent }: { tab: NavTreeNode; isCurrent: boolean }) {
+function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
   const t = useTranslations('Nav');
   const marginLeft = `${(getDepth(tab) - 1) * INDENTATION}px`;
 

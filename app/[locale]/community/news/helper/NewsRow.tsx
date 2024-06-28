@@ -3,9 +3,8 @@ import { Link } from '@/navigation';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
 
-import { news } from '@/constants/navTreeNode';
-
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 export interface NewsRowProps {
   href: string;

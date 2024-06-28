@@ -12,15 +12,14 @@ import {
 
 import { usePathname } from '@/navigation';
 
-import { NavTreeNode } from '@/constants/navTreeNode';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
+import { SegmentNode } from '@/utils/segmentNode';
 
 export type NavbarState =
   | { type: 'closed' }
   | { type: 'expanded' }
-  | { type: 'hovered'; segmentNode: NavTreeNode };
+  | { type: 'hovered'; segmentNode: SegmentNode };
 
 type NavbarContextContent = {
   navbarState: NavbarState;

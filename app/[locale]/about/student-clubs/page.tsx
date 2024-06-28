@@ -8,11 +8,10 @@ import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { studentClubs } from '@/constants/navTreeNode';
-
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
+import { studentClubs } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

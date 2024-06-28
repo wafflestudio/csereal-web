@@ -8,14 +8,13 @@ import { Link } from '@/navigation';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 
-import { NavTreeNode } from '@/constants/navTreeNode';
-
 import { getLocationLog, getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
+import { SegmentNode } from '@/utils/segmentNode';
 
 interface PageTitleProps {
   title: string | JSX.Element;
-  currentPage: NavTreeNode;
+  currentPage: SegmentNode;
   titleType: 'big' | 'small';
   margin: string;
 }
@@ -44,9 +43,9 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
   );
 }
 
-function Breadcrumb({ currentPage }: { currentPage: NavTreeNode }) {
+function Breadcrumb({ currentPage }: { currentPage: SegmentNode }) {
   const t = useTranslations('Nav');
-  const log: NavTreeNode[] = getLocationLog(currentPage);
+  const log: SegmentNode[] = getLocationLog(currentPage);
   const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (e.g. 공지목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
 
   return log.length ? (

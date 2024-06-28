@@ -8,12 +8,11 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 
-import { news } from '@/constants/navTreeNode';
-
 import { News } from '@/types/news';
 
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 interface NewsPostPageProps {
   news: News;

@@ -11,11 +11,11 @@ import {
   postNotice,
 } from '@/apis/notice';
 
-import { notice } from '@/constants/navTreeNode';
 import { FETCH_TAG_NOTICE } from '@/constants/network';
 
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);

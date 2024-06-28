@@ -2,11 +2,10 @@ import Link from 'next/link';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 
-import { faculty, staff } from '@/constants/navTreeNode';
-
 import { Member, MemberSearchResult } from '@/types/search';
 
 import { getPath } from '@/utils/page';
+import { faculty, staff } from '@/utils/segmentNode';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';

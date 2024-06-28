@@ -2,9 +2,8 @@ import { Metadata } from 'next';
 
 import { getScholarshipList } from '@/apis/academics';
 
-import { graduateScholarship } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
+import { graduateScholarship } from '@/utils/segmentNode';
 
 import ScholarshipPreview from '../../helper/ScholarshipPreview';
 

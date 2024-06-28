@@ -5,12 +5,11 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 
-import { notice } from '@/constants/navTreeNode';
-
 import { Notice } from '@/types/notice';
 
 import { formatPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
+import { notice } from '@/utils/segmentNode';
 
 interface NoticePostPageProps {
   notice: Notice;

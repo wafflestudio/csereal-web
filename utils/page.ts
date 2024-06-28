@@ -1,18 +1,18 @@
-import { NavTreeNode, main } from '@/constants/navTreeNode';
+import { SegmentNode, main } from '@/utils/segmentNode';
 
-export const getLocationLog = (location: NavTreeNode | null): NavTreeNode[] => {
+export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
   if (location === null) return [];
   if (location === main) return [];
 
   return [...getLocationLog(location.parent), location];
 };
 
-export const getPath = (location: NavTreeNode | null): string => {
+export const getPath = (location: SegmentNode | null): string => {
   if (!(location && location !== main)) return '';
   return `${getPath(location.parent)}/${location.segment}`;
 };
 
-export const getRootTab = (currTab: NavTreeNode): NavTreeNode => {
+export const getRootTab = (currTab: SegmentNode): SegmentNode => {
   let root = currTab;
   while (root.parent && root.parent !== main) {
     root = root.parent;
@@ -20,10 +20,10 @@ export const getRootTab = (currTab: NavTreeNode): NavTreeNode => {
   return root;
 };
 
-export const getAllSubTabs = (rootTab: NavTreeNode): NavTreeNode[] => {
+export const getAllSubTabs = (rootTab: SegmentNode): SegmentNode[] => {
   if (!rootTab.children) return [];
 
-  const subtabs: NavTreeNode[] = [];
+  const subtabs: SegmentNode[] = [];
   for (const subtab of rootTab.children) {
     subtabs.push(subtab);
     subtabs.push(...getAllSubTabs(subtab));
@@ -31,7 +31,7 @@ export const getAllSubTabs = (rootTab: NavTreeNode): NavTreeNode[] => {
   return subtabs;
 };
 
-export const getDepth = (tab: NavTreeNode): number => {
+export const getDepth = (tab: SegmentNode): number => {
   let depth = 0;
   let curr = tab;
   while (curr.parent !== null) {
@@ -41,7 +41,7 @@ export const getDepth = (tab: NavTreeNode): number => {
   return depth;
 };
 
-export const isAncestorNode = (parent: NavTreeNode, child: NavTreeNode) => {
+export const isAncestorNode = (parent: SegmentNode, child: SegmentNode) => {
   while (child.parent) {
     if (child.parent === parent) return true;
     child = child.parent;

@@ -2,9 +2,8 @@ import { Link } from '@/navigation';
 
 import RangeBolded from '@/components/common/RangeBolded';
 
-import { NavTreeNode } from '@/constants/navTreeNode';
-
 import { getPath } from '@/utils/page';
+import { SegmentNode } from '@/utils/segmentNode';
 
 type BasicRowProps = {
   href: string;
@@ -12,7 +11,7 @@ type BasicRowProps = {
   partialDescription: string;
   boldStartIndex: number;
   boldEndIndex: number;
-  node: NavTreeNode;
+  node: SegmentNode;
 };
 
 export default function BasicRow({ href, title, node, ...description }: BasicRowProps) {

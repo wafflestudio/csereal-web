@@ -2,9 +2,8 @@ import { Metadata } from 'next';
 
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 
-import { reservations } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
+import { reservations } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

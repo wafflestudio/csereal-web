@@ -6,11 +6,10 @@ import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { futureCareers } from '@/constants/navTreeNode';
-
 import { FutureCareers } from '@/types/about';
 
 import { getMetadata } from '@/utils/metadata';
+import { futureCareers } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

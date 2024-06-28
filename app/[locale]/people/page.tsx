@@ -1,8 +1,7 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 
-import { people } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
+import { people } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: people });

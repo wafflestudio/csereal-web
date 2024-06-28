@@ -6,12 +6,11 @@ import PentagonShort from '@/public/image/pentagon_short.svg';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
-import { researchGroups } from '@/constants/navTreeNode';
-
 import { ResearchLab } from '@/types/research';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
+import { researchGroups } from '@/utils/segmentNode';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 import ResearchLabInfo from './ResesarchLabInfo';

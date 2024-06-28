@@ -5,12 +5,12 @@ import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 
-import { news } from '@/constants/navTreeNode';
 import { NEWS_TAGS } from '@/constants/tag';
 
 import { NewsPreviewList } from '@/types/news';
 
 import { getPath } from '@/utils/page';
+import { news } from '@/utils/segmentNode';
 
 import AdminFeatures from './helper/AdminFeatures';
 

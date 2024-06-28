@@ -2,10 +2,9 @@ import { getStaffList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { staff } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
+import { staff } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';

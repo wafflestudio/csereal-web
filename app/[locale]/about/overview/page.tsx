@@ -10,9 +10,8 @@ import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { overview } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
+import { overview } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

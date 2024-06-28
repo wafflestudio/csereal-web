@@ -1,8 +1,7 @@
 import { getCourseChanges } from '@/apis/academics';
 
-import { undergraduateCourseChanges } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
+import { undergraduateCourseChanges } from '@/utils/segmentNode';
 
 import CourseChanges from '../../helper/CourseChanges';
 

@@ -5,10 +5,9 @@ import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { reservationIntroduction } from '@/constants/navTreeNode';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
+import { reservationIntroduction } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
 export async function generateMetadata({
