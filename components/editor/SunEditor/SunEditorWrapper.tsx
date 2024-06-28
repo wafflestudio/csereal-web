@@ -4,6 +4,7 @@ import { MutableRefObject, useEffect, useState } from 'react';
 import suneditor from 'suneditor';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
+import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
 import './suneditor.css';
 import './suneditor-contents.css';
@@ -21,25 +22,9 @@ export default function SunEditorWrapper({
 
   useEffect(() => {
     if (div === null) return;
-    const editor = suneditor.create(div, {
-      defaultStyle: 'padding: 1rem',
-      minHeight: '400px',
-      lang: ko,
-      plugins,
-      buttonList: [
-        ['undo', 'redo'],
-        ['fontSize', 'formatBlock'],
-        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-        '/', // Line break
-        ['fontColor', 'hiliteColor'],
-        ['lineHeight', 'align', 'horizontalRule', 'list'],
-        ['table', 'link', 'image', 'preview'],
-      ],
-      imageMultipleFile: true,
-    });
 
+    const editor = suneditor.create(div, options);
     editor.onImageUploadBefore = handleImageUploadBefore;
-
     if (initialContent) editor.setContents(initialContent);
 
     editorRef.current = editor;
@@ -63,4 +48,21 @@ const handleImageUploadBefore = (files, info, core, uploadHandler) => {
     .catch((reason) => uploadHandler(reason + ''));
 
   return undefined;
+};
+
+const options: SunEditorOptions = {
+  defaultStyle: 'padding: 1rem',
+  minHeight: '400px',
+  lang: ko,
+  plugins,
+  buttonList: [
+    ['undo', 'redo'],
+    ['fontSize', 'formatBlock'],
+    ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+    '/', // Line break
+    ['fontColor', 'hiliteColor'],
+    ['lineHeight', 'align', 'horizontalRule', 'list'],
+    ['table', 'link', 'image', 'preview'],
+  ],
+  imageMultipleFile: true,
 };
