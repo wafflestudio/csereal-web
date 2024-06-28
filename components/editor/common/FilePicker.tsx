@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
 import FilePickerRow from './FilePickerRow';
-import { PostEditorFile } from '../PostEditorTypes';
+import { LocalFile, PostEditorFile } from '../PostEditorTypes';
 
 export interface FilePickerProps {
   files: PostEditorFile[];
@@ -11,11 +11,16 @@ export interface FilePickerProps {
 export default function FilePicker({ files, setFiles }: FilePickerProps) {
   // 성능 확인 필요
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (!e.target.files || e.target.files.length === 0) return;
+    if (e.target.files === null) return;
 
-    const file = e.target.files[0];
-    setFiles((files) => [...files, { type: 'LOCAL_FILE', file }]);
-    // stackoverflow.com/questions/12030686/html-input-file-selection-event-not-firing-upon-selecting-the-same-file
+    const newFiles: LocalFile[] = Array.from(e.target.files, (file) => ({
+      type: 'LOCAL_FILE',
+      file,
+    }));
+    setFiles((files) => [...files, ...newFiles]);
+
+    // 같은 파일에 대해서 선택이 가능하도록 처리
+    // https://stackoverflow.com/a/12102992
     e.target.value = '';
   };
 
@@ -56,7 +61,7 @@ function SelectFileButton({ onChange }: { onChange: ChangeEventHandler<HTMLInput
   return (
     <label className="mb-3 flex h-[1.875rem] cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
       파일 선택
-      <input type="file" className="hidden" onChange={onChange} />
+      <input type="file" className="hidden" onChange={onChange} multiple />
     </label>
   );
 }
