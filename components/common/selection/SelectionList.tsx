@@ -8,6 +8,8 @@ import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/ind
 
 import { COLOR_THEME } from '@/constants/color';
 
+import { Locale } from '@/types/locale';
+
 import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {
@@ -29,7 +31,7 @@ export default function SelectionList({
   listGridColumnClass = 'lg:grid-cols-[repeat(auto-fit,_minmax(200px,_auto))]',
   listItemPadding = '',
 }: SelectionListProps) {
-  const locale = useLocale() as 'ko' | 'en';
+  const locale = useLocale() as Locale;
 
   const gridStyle = `grid-cols-[repeat(2,_1fr)] ${listGridColumnClass}`;
 

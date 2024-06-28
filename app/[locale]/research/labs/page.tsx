@@ -2,18 +2,24 @@ import { getResearchLabs } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/locale';
+
 import { getMetadata } from '@/utils/metadata';
 import { researchLabs } from '@/utils/segmentNode';
 
 import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+interface ResearchLabPageProps {
+  params: { locale: Locale };
+}
+
+export async function generateMetadata({ params: { locale } }: ResearchLabPageProps) {
   return await getMetadata({ locale, node: researchLabs });
 }
 
-export default async function ResearchLabsPage() {
-  const labInformations = await getResearchLabs();
+export default async function ResearchLabsPage({ params: { locale } }: ResearchLabPageProps) {
+  const labInformations = await getResearchLabs(locale);
 
   return (
     <PageLayout titleType="big">

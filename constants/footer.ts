@@ -13,7 +13,6 @@ import {
   reservationIntroduction,
   contact,
   directions,
-  privacyPolicy,
   tentenProject,
 } from '@/utils/segmentNode';
 
@@ -65,7 +64,7 @@ export const moreLinks: FooterLink[] = [
   },
 ];
 
-export const privacyPath = getPath(privacyPolicy);
+export const privacyPath = '/privacy-policy';
 
 export const contactPath = getPath(contact);
 
