@@ -10,10 +10,11 @@ import LocationMap from '@/app/[locale]/about/directions/LocationMap';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { directions } from '@/constants/navTreeNode';
+
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { directions } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

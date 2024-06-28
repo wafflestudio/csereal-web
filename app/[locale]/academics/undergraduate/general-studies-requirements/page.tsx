@@ -4,8 +4,9 @@ import Accordion from '@/app/[locale]/academics/undergraduate/general-studies-re
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { generalStudies } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { generalStudies } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: generalStudies });

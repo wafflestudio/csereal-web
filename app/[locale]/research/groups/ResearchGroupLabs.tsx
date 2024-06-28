@@ -2,8 +2,9 @@
 
 import { Link } from '@/navigation';
 
+import { researchLabs } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
 
 export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: string }[] }) {
   return (

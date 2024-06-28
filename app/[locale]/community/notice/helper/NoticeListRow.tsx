@@ -4,10 +4,11 @@ import ClipIcon from '@/public/image/clip_icon.svg';
 import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 
+import { notice } from '@/constants/navTreeNode';
+
 import { NoticePreview } from '@/types/notice';
 
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
 
 interface NoticeListRowProps {
   post: NoticePreview;

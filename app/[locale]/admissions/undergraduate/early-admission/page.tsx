@@ -5,8 +5,9 @@ import { getUndergraduateEarlyAdmission } from '@/apis/admission';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { undergraduateEarlyAdmission } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateEarlyAdmission } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

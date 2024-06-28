@@ -3,10 +3,11 @@ import { Metadata } from 'next';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { facultyRecruitment } from '@/constants/navTreeNode';
+
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { facultyRecruitment } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

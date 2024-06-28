@@ -1,8 +1,9 @@
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { greetings } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { greetings } from '@/utils/segmentNode';
 
 export default async function TenTenManager() {
   return (

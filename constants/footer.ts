@@ -1,6 +1,5 @@
-import { getPath } from '@/utils/page';
 import {
-  SegmentNode,
+  NavTreeNode,
   overview,
   faculty,
   undergraduateGuide,
@@ -14,14 +13,16 @@ import {
   contact,
   directions,
   tentenProject,
-} from '@/utils/segmentNode';
+} from '@/constants/navTreeNode';
+
+import { getPath } from '@/utils/page';
 
 export interface FooterLink {
   href: string;
   title: string;
 }
 
-const segmentNodeToLink = (node: SegmentNode): FooterLink => ({
+const segmentNodeToLink = (node: NavTreeNode): FooterLink => ({
   href: getPath(node),
   title: node.name,
 });

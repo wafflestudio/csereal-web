@@ -5,10 +5,11 @@ import { getNewsDetail } from '@/apis/news';
 import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { news } from '@/constants/navTreeNode';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { news } from '@/utils/segmentNode';
 
 import NewsViewer from './NewsViewer';
 

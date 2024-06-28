@@ -5,10 +5,11 @@ import CoursePageContent from '@/app/[locale]/academics/undergraduate/courses/Co
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { undergraduateGuide } from '@/constants/navTreeNode';
+
 import { Course } from '@/types/academics';
 
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateGuide } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateGuide });

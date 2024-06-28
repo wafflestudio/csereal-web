@@ -6,8 +6,9 @@ import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { graduateGuide } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { graduateGuide } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

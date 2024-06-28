@@ -3,8 +3,9 @@ import Link from 'next/link';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { undergraduateScholarship, graduateScholarship } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNode';
 
 type GradeType = 'GRADUATE' | 'UNDERGRADUATE';
 

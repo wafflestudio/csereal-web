@@ -5,8 +5,9 @@ import CurriculumBody from '@/app/[locale]/academics/undergraduate/curriculum/Cu
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { curriculum } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { curriculum } from '@/utils/segmentNode';
 
 import './style.css';
 

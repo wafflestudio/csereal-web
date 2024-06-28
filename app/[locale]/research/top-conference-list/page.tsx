@@ -4,8 +4,9 @@ import ConferenceListTable from '@/app/[locale]/research/top-conference-list/Con
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { topConferenceList } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { topConferenceList } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: topConferenceList });

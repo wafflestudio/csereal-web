@@ -2,11 +2,12 @@ import { getActiveFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { faculty, researchLabs } from '@/constants/navTreeNode';
+
 import { SimpleFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/utils/segmentNode';
 
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';

@@ -1,7 +1,8 @@
 import { useNavbarContext } from '@/contexts/NavbarContext';
 
+import { NavTreeNode } from '@/constants/navTreeNode';
+
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import { SegmentNode } from '@/utils/segmentNode';
 
 import NavTreeLabel from './NavtreeRow';
 
@@ -21,8 +22,8 @@ export default function MobileNavDetail() {
 }
 
 interface NavTreeProps {
-  node: SegmentNode;
-  curNode: SegmentNode;
+  node: NavTreeNode;
+  curNode: NavTreeNode;
   depth?: number;
 }
 

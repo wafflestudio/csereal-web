@@ -1,12 +1,12 @@
-export interface SegmentNode {
+export interface NavTreeNode {
   name: string;
   segment: string;
   isPage: boolean;
-  children: SegmentNode[];
-  parent: SegmentNode | null;
+  children: NavTreeNode[];
+  parent: NavTreeNode | null;
 }
 
-export const main: SegmentNode = {
+export const main: NavTreeNode = {
   name: '홈',
   segment: '',
   isPage: true,
@@ -14,7 +14,7 @@ export const main: SegmentNode = {
   children: [],
 };
 
-export const about: SegmentNode = {
+export const about: NavTreeNode = {
   name: '소개',
   segment: 'about',
   isPage: true,
@@ -22,7 +22,7 @@ export const about: SegmentNode = {
   children: [],
 };
 
-export const overview: SegmentNode = {
+export const overview: NavTreeNode = {
   name: '학부 소개',
   segment: 'overview',
   isPage: true,
@@ -30,7 +30,7 @@ export const overview: SegmentNode = {
   children: [],
 };
 
-export const greetings: SegmentNode = {
+export const greetings: NavTreeNode = {
   name: '학부장 인사말',
   segment: 'greetings',
   isPage: true,
@@ -38,7 +38,7 @@ export const greetings: SegmentNode = {
   children: [],
 };
 
-export const history: SegmentNode = {
+export const history: NavTreeNode = {
   name: '연혁',
   segment: 'history',
   isPage: true,
@@ -46,7 +46,7 @@ export const history: SegmentNode = {
   children: [],
 };
 
-export const futureCareers: SegmentNode = {
+export const futureCareers: NavTreeNode = {
   name: '졸업생 진로',
   segment: 'future-careers',
   isPage: true,
@@ -54,7 +54,7 @@ export const futureCareers: SegmentNode = {
   children: [],
 };
 
-export const studentClubs: SegmentNode = {
+export const studentClubs: NavTreeNode = {
   name: '동아리 소개',
   segment: 'student-clubs',
   isPage: true,
@@ -62,7 +62,7 @@ export const studentClubs: SegmentNode = {
   children: [],
 };
 
-export const facilities: SegmentNode = {
+export const facilities: NavTreeNode = {
   name: '시설 안내',
   segment: 'facilities',
   isPage: true,
@@ -70,7 +70,7 @@ export const facilities: SegmentNode = {
   children: [],
 };
 
-export const contact: SegmentNode = {
+export const contact: NavTreeNode = {
   name: '연락처',
   segment: 'contact',
   isPage: true,
@@ -78,7 +78,7 @@ export const contact: SegmentNode = {
   children: [],
 };
 
-export const directions: SegmentNode = {
+export const directions: NavTreeNode = {
   name: '찾아오는 길',
   segment: 'directions',
   isPage: true,
@@ -86,7 +86,7 @@ export const directions: SegmentNode = {
   children: [],
 };
 
-export const community: SegmentNode = {
+export const community: NavTreeNode = {
   name: '소식',
   segment: 'community',
   isPage: true,
@@ -94,7 +94,7 @@ export const community: SegmentNode = {
   children: [],
 };
 
-export const notice: SegmentNode = {
+export const notice: NavTreeNode = {
   name: '공지사항',
   segment: 'notice',
   isPage: true,
@@ -102,7 +102,7 @@ export const notice: SegmentNode = {
   children: [],
 };
 
-export const news: SegmentNode = {
+export const news: NavTreeNode = {
   name: '새 소식',
   segment: 'news',
   isPage: true,
@@ -110,7 +110,7 @@ export const news: SegmentNode = {
   children: [],
 };
 
-export const seminar: SegmentNode = {
+export const seminar: NavTreeNode = {
   name: '세미나',
   segment: 'seminar',
   isPage: true,
@@ -118,7 +118,7 @@ export const seminar: SegmentNode = {
   children: [],
 };
 
-export const facultyRecruitment: SegmentNode = {
+export const facultyRecruitment: NavTreeNode = {
   name: '신임교수초빙',
   segment: 'faculty-recruitment',
   isPage: true,
@@ -126,7 +126,7 @@ export const facultyRecruitment: SegmentNode = {
   children: [],
 };
 
-export const people: SegmentNode = {
+export const people: NavTreeNode = {
   name: '구성원',
   segment: 'people',
   isPage: true,
@@ -134,7 +134,7 @@ export const people: SegmentNode = {
   children: [],
 };
 
-export const faculty: SegmentNode = {
+export const faculty: NavTreeNode = {
   name: '교수진',
   segment: 'faculty',
   isPage: true,
@@ -142,7 +142,7 @@ export const faculty: SegmentNode = {
   children: [],
 };
 
-export const emeritusFaculty: SegmentNode = {
+export const emeritusFaculty: NavTreeNode = {
   name: '역대 교수진',
   segment: 'emeritus-faculty',
   isPage: true,
@@ -150,7 +150,7 @@ export const emeritusFaculty: SegmentNode = {
   children: [],
 };
 
-export const staff: SegmentNode = {
+export const staff: NavTreeNode = {
   name: '행정직원',
   segment: 'staff',
   isPage: true,
@@ -158,7 +158,7 @@ export const staff: SegmentNode = {
   children: [],
 };
 
-export const research: SegmentNode = {
+export const research: NavTreeNode = {
   name: '연구·교육',
   segment: 'research',
   isPage: true,
@@ -166,7 +166,7 @@ export const research: SegmentNode = {
   children: [],
 };
 
-export const researchGroups: SegmentNode = {
+export const researchGroups: NavTreeNode = {
   name: '연구·교육 스트림',
   segment: 'groups',
   isPage: true,
@@ -174,7 +174,7 @@ export const researchGroups: SegmentNode = {
   children: [],
 };
 
-export const researchCenters: SegmentNode = {
+export const researchCenters: NavTreeNode = {
   name: '연구 센터',
   segment: 'centers',
   isPage: true,
@@ -182,7 +182,7 @@ export const researchCenters: SegmentNode = {
   children: [],
 };
 
-export const researchLabs: SegmentNode = {
+export const researchLabs: NavTreeNode = {
   name: '연구실 목록',
   segment: 'labs',
   isPage: true,
@@ -190,7 +190,7 @@ export const researchLabs: SegmentNode = {
   children: [],
 };
 
-export const topConferenceList: SegmentNode = {
+export const topConferenceList: NavTreeNode = {
   name: 'Top Conference List',
   segment: 'top-conference-list',
   isPage: true,
@@ -198,7 +198,7 @@ export const topConferenceList: SegmentNode = {
   children: [],
 };
 
-export const admissions: SegmentNode = {
+export const admissions: NavTreeNode = {
   name: '입학',
   segment: 'admissions',
   isPage: true,
@@ -206,7 +206,7 @@ export const admissions: SegmentNode = {
   children: [],
 };
 
-export const undergraduateAdmission: SegmentNode = {
+export const undergraduateAdmission: NavTreeNode = {
   name: '학부',
   segment: 'undergraduate',
   isPage: false,
@@ -214,7 +214,7 @@ export const undergraduateAdmission: SegmentNode = {
   children: [],
 };
 
-export const undergraduateEarlyAdmission: SegmentNode = {
+export const undergraduateEarlyAdmission: NavTreeNode = {
   name: '수시 모집',
   segment: 'early-admission',
   isPage: true,
@@ -222,7 +222,7 @@ export const undergraduateEarlyAdmission: SegmentNode = {
   children: [],
 };
 
-export const undergraduateRegularAdmission: SegmentNode = {
+export const undergraduateRegularAdmission: NavTreeNode = {
   name: '정시 모집',
   segment: 'regular-admission',
   isPage: true,
@@ -230,7 +230,7 @@ export const undergraduateRegularAdmission: SegmentNode = {
   children: [],
 };
 
-export const graduateAdmission: SegmentNode = {
+export const graduateAdmission: NavTreeNode = {
   name: '대학원',
   segment: 'graduate',
   isPage: false,
@@ -238,7 +238,7 @@ export const graduateAdmission: SegmentNode = {
   children: [],
 };
 
-export const graduateRegularAdmission: SegmentNode = {
+export const graduateRegularAdmission: NavTreeNode = {
   name: '전기/후기 모집',
   segment: 'regular-admission',
   isPage: true,
@@ -246,7 +246,7 @@ export const graduateRegularAdmission: SegmentNode = {
   children: [],
 };
 
-export const internationalAdmission: SegmentNode = {
+export const internationalAdmission: NavTreeNode = {
   name: 'International',
   segment: 'international',
   isPage: false,
@@ -254,7 +254,7 @@ export const internationalAdmission: SegmentNode = {
   children: [],
 };
 
-export const internationalUndergraduateAdmission: SegmentNode = {
+export const internationalUndergraduateAdmission: NavTreeNode = {
   name: 'Undergraduate',
   segment: 'undergraduate',
   isPage: true,
@@ -262,7 +262,7 @@ export const internationalUndergraduateAdmission: SegmentNode = {
   children: [],
 };
 
-export const internationalGraduateAdmission: SegmentNode = {
+export const internationalGraduateAdmission: NavTreeNode = {
   name: 'Graduate',
   segment: 'graduate',
   isPage: true,
@@ -270,7 +270,7 @@ export const internationalGraduateAdmission: SegmentNode = {
   children: [],
 };
 
-export const exchangeVisitingProgram: SegmentNode = {
+export const exchangeVisitingProgram: NavTreeNode = {
   name: 'Exchange/Visiting Program',
   segment: 'exchange',
   isPage: true,
@@ -278,7 +278,7 @@ export const exchangeVisitingProgram: SegmentNode = {
   children: [],
 };
 
-export const internationalScholarships: SegmentNode = {
+export const internationalScholarships: NavTreeNode = {
   name: 'Scholarships',
   segment: 'scholarships',
   isPage: true,
@@ -286,7 +286,7 @@ export const internationalScholarships: SegmentNode = {
   children: [],
 };
 
-export const academics: SegmentNode = {
+export const academics: NavTreeNode = {
   name: '학사 및 교과',
   segment: 'academics',
   isPage: true,
@@ -294,7 +294,7 @@ export const academics: SegmentNode = {
   children: [],
 };
 
-export const undergraduateAcademics: SegmentNode = {
+export const undergraduateAcademics: NavTreeNode = {
   name: '학부',
   segment: 'undergraduate',
   isPage: false,
@@ -302,7 +302,7 @@ export const undergraduateAcademics: SegmentNode = {
   children: [],
 };
 
-export const undergraduateGuide: SegmentNode = {
+export const undergraduateGuide: NavTreeNode = {
   name: '학부 안내',
   segment: 'guide',
   isPage: true,
@@ -310,7 +310,7 @@ export const undergraduateGuide: SegmentNode = {
   children: [],
 };
 
-export const undergraduateCourses: SegmentNode = {
+export const undergraduateCourses: NavTreeNode = {
   name: '교과과정',
   segment: 'courses',
   isPage: true,
@@ -318,7 +318,7 @@ export const undergraduateCourses: SegmentNode = {
   children: [],
 };
 
-export const curriculum: SegmentNode = {
+export const curriculum: NavTreeNode = {
   name: '전공 이수 표준 형태',
   segment: 'curriculum',
   isPage: true,
@@ -326,7 +326,7 @@ export const curriculum: SegmentNode = {
   children: [],
 };
 
-export const generalStudies: SegmentNode = {
+export const generalStudies: NavTreeNode = {
   name: '필수 교양 과목',
   segment: 'general-studies-requirements',
   isPage: true,
@@ -334,7 +334,7 @@ export const generalStudies: SegmentNode = {
   children: [],
 };
 
-export const degree: SegmentNode = {
+export const degree: NavTreeNode = {
   name: '졸업 규정',
   segment: 'degree-requirements',
   isPage: true,
@@ -342,7 +342,7 @@ export const degree: SegmentNode = {
   children: [],
 };
 
-export const undergraduateCourseChanges: SegmentNode = {
+export const undergraduateCourseChanges: NavTreeNode = {
   name: '교과목 변경 내역',
   segment: 'course-changes',
   isPage: true,
@@ -350,7 +350,7 @@ export const undergraduateCourseChanges: SegmentNode = {
   children: [],
 };
 
-export const undergraduateScholarship: SegmentNode = {
+export const undergraduateScholarship: NavTreeNode = {
   name: '장학 제도',
   segment: 'scholarship',
   isPage: true,
@@ -358,7 +358,7 @@ export const undergraduateScholarship: SegmentNode = {
   children: [],
 };
 
-export const graduateAcademics: SegmentNode = {
+export const graduateAcademics: NavTreeNode = {
   name: '대학원',
   segment: 'graduate',
   isPage: false,
@@ -366,7 +366,7 @@ export const graduateAcademics: SegmentNode = {
   children: [],
 };
 
-export const graduateGuide: SegmentNode = {
+export const graduateGuide: NavTreeNode = {
   name: '대학원 안내',
   segment: 'guide',
   isPage: true,
@@ -374,7 +374,7 @@ export const graduateGuide: SegmentNode = {
   children: [],
 };
 
-export const graduateCourses: SegmentNode = {
+export const graduateCourses: NavTreeNode = {
   name: '교과과정',
   segment: 'courses',
   isPage: true,
@@ -382,7 +382,7 @@ export const graduateCourses: SegmentNode = {
   children: [],
 };
 
-export const graduateCourseChanges: SegmentNode = {
+export const graduateCourseChanges: NavTreeNode = {
   name: '교과목 변경 내역',
   segment: 'course-changes',
   isPage: true,
@@ -390,7 +390,7 @@ export const graduateCourseChanges: SegmentNode = {
   children: [],
 };
 
-export const graduateScholarship: SegmentNode = {
+export const graduateScholarship: NavTreeNode = {
   name: '장학 제도',
   segment: 'scholarship',
   isPage: true,
@@ -398,7 +398,7 @@ export const graduateScholarship: SegmentNode = {
   children: [],
 };
 
-export const reservations: SegmentNode = {
+export const reservations: NavTreeNode = {
   name: '시설 예약',
   segment: 'reservations',
   isPage: true,
@@ -406,7 +406,7 @@ export const reservations: SegmentNode = {
   children: [],
 };
 
-export const reservationIntroduction: SegmentNode = {
+export const reservationIntroduction: NavTreeNode = {
   name: '시설 예약 안내',
   segment: 'introduction',
   isPage: true,
@@ -414,7 +414,7 @@ export const reservationIntroduction: SegmentNode = {
   children: [],
 };
 
-export const seminarRoom: SegmentNode = {
+export const seminarRoom: NavTreeNode = {
   name: '세미나실 예약',
   segment: 'seminar-room',
   isPage: false,
@@ -422,7 +422,7 @@ export const seminarRoom: SegmentNode = {
   children: [],
 };
 
-export const bldg301room417: SegmentNode = {
+export const bldg301room417: NavTreeNode = {
   name: '301-417 (20석)',
   segment: '301-417',
   isPage: true,
@@ -430,7 +430,7 @@ export const bldg301room417: SegmentNode = {
   children: [],
 };
 
-export const bldg301Maldives: SegmentNode = {
+export const bldg301Maldives: NavTreeNode = {
   name: '301-MALDIVES (301-521, 11석)',
   segment: '301-521',
   isPage: true,
@@ -438,7 +438,7 @@ export const bldg301Maldives: SegmentNode = {
   children: [],
 };
 
-export const bldg301Hawaii: SegmentNode = {
+export const bldg301Hawaii: NavTreeNode = {
   name: '301-HAWAII (301-551-4, 20석)',
   segment: '301-551-4',
   isPage: true,
@@ -446,7 +446,7 @@ export const bldg301Hawaii: SegmentNode = {
   children: [],
 };
 
-export const bldg301Baekdu: SegmentNode = {
+export const bldg301Baekdu: NavTreeNode = {
   name: '301-BAEKDU (301-552-1, 4석)',
   segment: '301-552-1',
   isPage: true,
@@ -454,7 +454,7 @@ export const bldg301Baekdu: SegmentNode = {
   children: [],
 };
 
-export const bldg301Alps: SegmentNode = {
+export const bldg301Alps: NavTreeNode = {
   name: '301-ALPS (301-552-2, 5석)',
   segment: '301-552-2',
   isPage: true,
@@ -462,7 +462,7 @@ export const bldg301Alps: SegmentNode = {
   children: [],
 };
 
-export const bldg301Santorini: SegmentNode = {
+export const bldg301Santorini: NavTreeNode = {
   name: '301-SANTORINI (301-552-3, 4석)',
   segment: '301-552-3',
   isPage: true,
@@ -470,7 +470,7 @@ export const bldg301Santorini: SegmentNode = {
   children: [],
 };
 
-export const bldg301Jeju: SegmentNode = {
+export const bldg301Jeju: NavTreeNode = {
   name: '301-JEJU (301-553-6, 6석)',
   segment: '301-553-6',
   isPage: true,
@@ -478,7 +478,7 @@ export const bldg301Jeju: SegmentNode = {
   children: [],
 };
 
-export const bldg301ProfMeeting: SegmentNode = {
+export const bldg301ProfMeeting: NavTreeNode = {
   name: '301-교수회의실 (301-317, 20석)',
   segment: '301-317',
   isPage: true,
@@ -486,7 +486,7 @@ export const bldg301ProfMeeting: SegmentNode = {
   children: [],
 };
 
-export const bldg302room308: SegmentNode = {
+export const bldg302room308: NavTreeNode = {
   name: '302-308 (46석)',
   segment: '302-308',
   isPage: true,
@@ -494,7 +494,7 @@ export const bldg302room308: SegmentNode = {
   children: [],
 };
 
-export const bldg302room309first: SegmentNode = {
+export const bldg302room309first: NavTreeNode = {
   name: '302-309-1 (48석)',
   segment: '302-309-1',
   isPage: true,
@@ -502,7 +502,7 @@ export const bldg302room309first: SegmentNode = {
   children: [],
 };
 
-export const bldg302room309second: SegmentNode = {
+export const bldg302room309second: NavTreeNode = {
   name: '302-309-2 (8석)',
   segment: '302-309-2',
   isPage: true,
@@ -510,7 +510,7 @@ export const bldg302room309second: SegmentNode = {
   children: [],
 };
 
-export const bldg302room309third: SegmentNode = {
+export const bldg302room309third: NavTreeNode = {
   name: '302-309-3 (8석)',
   segment: '302-309-3',
   isPage: true,
@@ -518,7 +518,7 @@ export const bldg302room309third: SegmentNode = {
   children: [],
 };
 
-export const labRoom: SegmentNode = {
+export const labRoom: NavTreeNode = {
   name: '실습실 예약',
   segment: 'lab',
   isPage: false,
@@ -526,7 +526,7 @@ export const labRoom: SegmentNode = {
   children: [],
 };
 
-export const softwareLab: SegmentNode = {
+export const softwareLab: NavTreeNode = {
   name: '소프트웨어 실습실 (302-311-1, 102석)',
   segment: '302-311-1',
   isPage: true,
@@ -534,7 +534,7 @@ export const softwareLab: SegmentNode = {
   children: [],
 };
 
-export const hardwareLab: SegmentNode = {
+export const hardwareLab: NavTreeNode = {
   name: '하드웨어 실습실 (302-310-2, 30석)',
   segment: '302-310-2',
   isPage: true,
@@ -542,7 +542,7 @@ export const hardwareLab: SegmentNode = {
   children: [],
 };
 
-export const lectureRoom: SegmentNode = {
+export const lectureRoom: NavTreeNode = {
   name: '공과대학 강의실 예약',
   segment: 'lecture-room',
   isPage: false,
@@ -550,7 +550,7 @@ export const lectureRoom: SegmentNode = {
   children: [],
 };
 
-export const bldg302room208: SegmentNode = {
+export const bldg302room208: NavTreeNode = {
   name: '302-208 (116석)',
   segment: '302-208',
   isPage: true,
@@ -558,7 +558,7 @@ export const bldg302room208: SegmentNode = {
   children: [],
 };
 
-export const bldg302room209: SegmentNode = {
+export const bldg302room209: NavTreeNode = {
   name: '302-209 (90석)',
   segment: '302-209',
   isPage: true,
@@ -627,7 +627,7 @@ lectureRoom.children = [bldg302room208, bldg302room209];
 
 // 관리자
 
-export const admin: SegmentNode = {
+export const admin: NavTreeNode = {
   name: '관련 페이지', // 관리자 페이지 사이드바는 상위 항목 이름이 '관련 페이지'
   segment: 'admin',
   isPage: true,
@@ -637,7 +637,7 @@ export const admin: SegmentNode = {
 
 // 10-10
 
-export const tentenProject: SegmentNode = {
+export const tentenProject: NavTreeNode = {
   name: '10-10 Project',
   segment: '10-10-project',
   isPage: true,
@@ -645,7 +645,7 @@ export const tentenProject: SegmentNode = {
   children: [],
 };
 
-export const tentenManager: SegmentNode = {
+export const tentenManager: NavTreeNode = {
   name: 'Manager',
   segment: 'manager',
   isPage: true,
@@ -653,7 +653,7 @@ export const tentenManager: SegmentNode = {
   children: [],
 };
 
-export const tentenParticipants: SegmentNode = {
+export const tentenParticipants: NavTreeNode = {
   name: 'Participants(Professors)',
   segment: 'participants',
   isPage: true,
@@ -661,7 +661,7 @@ export const tentenParticipants: SegmentNode = {
   children: [],
 };
 
-export const tentenProposal: SegmentNode = {
+export const tentenProposal: NavTreeNode = {
   name: 'Proposal',
   segment: 'proposal',
   isPage: true,

@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation';
 
 import { deleteSeminar, patchSeminar, postSeminar } from '@/apis/seminar';
 
+import { seminar } from '@/constants/navTreeNode';
 import { FETCH_TAG_SEMINAR } from '@/constants/network';
 
 import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);

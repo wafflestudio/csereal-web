@@ -8,10 +8,10 @@ import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
 
+import { main } from '@/constants/navTreeNode';
 import { SEARCH_TAGS } from '@/constants/tag';
 
 import { getMetadata } from '@/utils/metadata';
-import { main } from '@/utils/segmentNode';
 
 import AboutSection from './AboutSection';
 import AcademicSection from './AcademicSection';

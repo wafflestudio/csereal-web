@@ -2,8 +2,9 @@ import { Link } from '@/navigation';
 
 import RangeBolded from '@/components/common/RangeBolded';
 
+import { notice } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
 
 interface NoticeRowProps {
   id: number;

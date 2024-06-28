@@ -9,16 +9,17 @@ import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
 
-import { MainImportant } from '@/types/main';
-
-import { getPath } from '@/utils/page';
 import {
   degree,
   faculty,
   facultyRecruitment,
   generalStudies,
   topConferenceList,
-} from '@/utils/segmentNode';
+} from '@/constants/navTreeNode';
+
+import { MainImportant } from '@/types/main';
+
+import { getPath } from '@/utils/page';
 
 export default async function MainPage() {
   const data = await getMain();

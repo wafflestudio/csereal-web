@@ -5,8 +5,9 @@ import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { degree } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { degree } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: degree });

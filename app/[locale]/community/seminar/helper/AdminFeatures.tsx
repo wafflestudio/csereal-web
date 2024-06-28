@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
+import { seminar } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
 
 const seminarPath = getPath(seminar);
 

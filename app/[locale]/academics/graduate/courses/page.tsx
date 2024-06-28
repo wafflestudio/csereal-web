@@ -4,8 +4,9 @@ import { getCourses } from '@/apis/academics';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { graduateCourses } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { graduateCourses } from '@/utils/segmentNode';
 
 import CoursePageContent from './CoursePageContent';
 

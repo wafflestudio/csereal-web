@@ -10,10 +10,11 @@ import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { notice } from '@/constants/navTreeNode';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { notice } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validatePageNum';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {

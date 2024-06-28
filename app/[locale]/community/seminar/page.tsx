@@ -8,10 +8,11 @@ import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { seminar } from '@/constants/navTreeNode';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { seminar } from '@/utils/segmentNode';
 
 import AdminFeatures from './helper/AdminFeatures';
 

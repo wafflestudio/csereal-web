@@ -6,8 +6,9 @@ import FacilitesList from '@/app/[locale]/about/facilities/FacilitiesList';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { facilities } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { facilities } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

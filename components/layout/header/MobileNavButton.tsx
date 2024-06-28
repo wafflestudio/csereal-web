@@ -3,8 +3,9 @@
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import MenuSVG from '@/public/image/header/menu.svg';
 
+import { NavTreeNode, about, main as mainNode } from '@/constants/navTreeNode';
+
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import { SegmentNode, about, main as mainNode } from '@/utils/segmentNode';
 
 export default function MobileNavButton() {
   const { navbarState, toggle } = useMobileNav();
@@ -26,7 +27,7 @@ const useMobileNav = () => {
 
   const toggle = () => {
     // 현재 페이지의 상세 네비를 펼침
-    let nodeToOpen: SegmentNode | null = node;
+    let nodeToOpen: NavTreeNode | null = node;
     while (nodeToOpen && nodeToOpen.parent !== mainNode) nodeToOpen = nodeToOpen?.parent;
 
     // TODO: DOM을 직접 건들이지 않고 스크롤 방지 구현

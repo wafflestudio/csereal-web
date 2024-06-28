@@ -5,11 +5,12 @@ import { Link } from '@/navigation';
 import { StraightNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
 
+import { NavTreeNode } from '@/constants/navTreeNode';
+
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/utils/segmentNode';
 
 type NavTreeRowProps = {
-  segmentNode: SegmentNode;
+  segmentNode: NavTreeNode;
   highlight: boolean;
   marginBottom: string;
   fontSize?: string;

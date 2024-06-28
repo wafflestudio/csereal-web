@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
+import { news, notice, seminar } from '@/constants/navTreeNode';
+
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
 import { SeminarList } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
-import { news, notice, seminar } from '@/utils/segmentNode';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';

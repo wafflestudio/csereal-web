@@ -5,10 +5,11 @@ import { getSeminarPost } from '@/apis/seminar';
 import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { seminar } from '@/constants/navTreeNode';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { seminar } from '@/utils/segmentNode';
 
 import SeminarViewer from './SeminarViewer';
 

@@ -3,10 +3,11 @@ import { getResearchGroups } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { researchGroups } from '@/constants/navTreeNode';
+
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 

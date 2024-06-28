@@ -1,6 +1,3 @@
-import { AboutPreview, AboutSearchResult } from '@/types/search';
-
-import { getPath } from '@/utils/page';
 import {
   overview,
   greetings,
@@ -10,7 +7,11 @@ import {
   contact,
   directions,
   history,
-} from '@/utils/segmentNode';
+} from '@/constants/navTreeNode';
+
+import { AboutPreview, AboutSearchResult } from '@/types/search';
+
+import { getPath } from '@/utils/page';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';

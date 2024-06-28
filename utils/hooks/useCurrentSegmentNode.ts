@@ -1,8 +1,8 @@
 import { usePathname } from 'next/navigation';
 
-import { SegmentNode, admin, main, tentenProject } from '@/utils/segmentNode';
+import { NavTreeNode, admin, main, tentenProject } from '@/constants/navTreeNode';
 
-export default function useCurrentSegmentNode(): SegmentNode {
+export default function useCurrentSegmentNode(): NavTreeNode {
   const pathname = usePathname();
   const segments = pathname.split('/');
   segments.shift(); // 맨 앞의 공백 제거
@@ -21,7 +21,7 @@ export default function useCurrentSegmentNode(): SegmentNode {
 }
 
 /** 매칭되는 SegmentNode가 없는 경우 그나마 가까운 SegmentNode를 반환 */
-const findCurrentSegmentNode = (curNode: SegmentNode, segments: string[]): SegmentNode => {
+const findCurrentSegmentNode = (curNode: NavTreeNode, segments: string[]): NavTreeNode => {
   if (segments.length === 0) return curNode;
 
   const nextNode = curNode.children?.find((x) => x.segment === segments[0]);

@@ -8,8 +8,9 @@ import { getGreetings } from '@/apis/about';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { greetings } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { greetings } from '@/utils/segmentNode';
 
 export async function generateMetadata({
   params: { locale },

@@ -3,8 +3,9 @@ import { getContact } from '@/apis/about';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { contact } from '@/constants/navTreeNode';
+
 import { getMetadata } from '@/utils/metadata';
-import { contact } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: contact });

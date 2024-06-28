@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix�
 
 import { deleteNews, patchNews, postNews } from '@/apis/news';
 
+import { news } from '@/constants/navTreeNode';
 import { FETCH_TAG_NEWS } from '@/constants/network';
 
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

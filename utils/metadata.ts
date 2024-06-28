@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-import { SegmentNode } from './segmentNode';
+import { NavTreeNode } from '../constants/navTreeNode';
 
 /**
  * @param locale (required) current page locale (get from page params)
@@ -15,7 +15,7 @@ export const getMetadata = async ({
   metadata, // 이것저것 더 추가할 때를 대비해서 한번에 받는 옵션 넣어둠
 }: {
   locale: string;
-  node?: SegmentNode;
+  node?: NavTreeNode;
   metadata?: Metadata;
 }): Promise<Metadata> => {
   const t = await getTranslations({ locale, namespace: 'Nav' });

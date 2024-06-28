@@ -10,10 +10,11 @@ import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { news } from '@/constants/navTreeNode';
+
 import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
-import { news } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validatePageNum';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
