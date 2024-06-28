@@ -23,7 +23,7 @@ export default function SunEditorWrapper({
     if (div === null) return;
     const editor = suneditor.create(div, {
       defaultStyle: 'padding: 1rem',
-      height: '400px',
+      minHeight: '400px',
       lang: ko,
       plugins,
       buttonList: [
@@ -35,6 +35,7 @@ export default function SunEditorWrapper({
         ['lineHeight', 'align', 'horizontalRule', 'list'],
         ['table', 'link', 'image', 'preview'],
       ],
+      imageMultipleFile: true,
     });
 
     editor.onImageUploadBefore = handleImageUploadBefore;
@@ -48,7 +49,7 @@ export default function SunEditorWrapper({
 }
 
 // @ts-expect-error suneditor 내부 타입
-const handleImageUploadBefore = (files, info, uploadHandler) => {
+const handleImageUploadBefore = (files, info, core, uploadHandler) => {
   const formData = new FormData();
   // @ts-expect-error suneditor 내부 타입
   files.forEach((file, idx) => {
