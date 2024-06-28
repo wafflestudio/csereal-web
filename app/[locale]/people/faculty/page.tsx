@@ -2,6 +2,7 @@ import { getActiveFacultyList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/locale';
 import { SimpleFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
@@ -19,7 +20,7 @@ const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
 interface FacultyPageProps {
-  params: { locale: 'ko' | 'en' };
+  params: { locale: Locale };
 }
 
 export default async function FacultyPage({ params }: FacultyPageProps) {

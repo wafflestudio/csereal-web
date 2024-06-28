@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 export interface ConferenceListTableProps {
   id: number;
   abbreviation: string;
@@ -14,13 +16,15 @@ export default function ConferenceListTable({
 }: {
   conferenceList: ConferenceListTableProps[];
 }) {
+  const t = useTranslations('Content');
+
   return (
     <div className="overflow-x-scroll">
       <div className="mt-8 flex w-[720px] flex-col text-sm">
         <div className="flex h-10 w-full flex-row border-y-[1px] border-y-neutral-200">
-          <div className="flex w-12 items-center justify-center px-3">연번</div>
-          <div className="flex w-28 items-center px-3">약칭</div>
-          <div className="flex w-[540px] items-center px-3">학술대회명칭</div>
+          <div className="flex w-12 items-center justify-center px-3">{t('연번')}</div>
+          <div className="flex w-28 items-center px-3">{t('약칭')}</div>
+          <div className="flex w-[540px] items-center px-3">{t('학술대회 명칭')}</div>
         </div>
         {conferenceList.map((conference, index) => (
           <ConferenceRow conference={conference} index={index + 1} key={conference.id} />

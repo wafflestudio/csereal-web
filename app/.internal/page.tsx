@@ -101,6 +101,14 @@ const content = `<p><strong style="font-size: large;">&nbsp; &nbsp; &nbsp; &nbsp
 <td class="xl115" width="142" height="41">행정실 직원</td>
 <td class="xl114">staff</td>
 </tr>
+<tr>
+<td class="xl115" width="142" height="41">교수님 전체</td>
+<td class="xl114">prof</td>
+</tr>
+<tr>
+<td class="xl115" width="142" height="41">교수님 비서</td>
+<td class="xl114">pa</td>
+</tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
