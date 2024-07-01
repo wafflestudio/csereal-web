@@ -1,13 +1,13 @@
 'use client';
 
-import { MutableRefObject } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
+import suneditor from 'suneditor';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
+import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
 import './suneditor.css';
 import './suneditor-contents.css';
-import SunEditor from 'suneditor-react';
-import { SunEditorReactProps } from 'suneditor-react/dist/types/SunEditorReactProps';
 
 import { postImage } from '@/apis/image';
 
@@ -18,36 +18,25 @@ export default function SunEditorWrapper({
   editorRef: MutableRefObject<SunEditorCore | undefined>;
   initialContent?: string;
 }) {
-  return (
-    <SunEditor
-      getSunEditorInstance={(x) => (editorRef.current = x)}
-      setDefaultStyle={`padding: 1rem;`}
-      height="400px"
-      lang={ko}
-      defaultValue={initialContent}
-      setOptions={{
-        plugins,
-        buttonList: [
-          ['undo', 'redo'],
-          ['fontSize', 'formatBlock'],
-          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-          '/', // Line break
-          ['fontColor', 'hiliteColor'],
-          ['lineHeight', 'align', 'horizontalRule', 'list'],
-          ['table', 'link', 'image', 'preview'],
-        ],
-      }}
-      onImageUploadBefore={handleImageUploadBefore}
-    />
-  );
+  const [div, setDiv] = useState<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (div === null) return;
+
+    const editor = suneditor.create(div, options);
+    editor.onImageUploadBefore = handleImageUploadBefore;
+    if (initialContent) editor.setContents(initialContent);
+
+    editorRef.current = editor;
+  }, [div, editorRef, initialContent]);
+
+  return <div ref={setDiv} />;
 }
 
-const handleImageUploadBefore: SunEditorReactProps['onImageUploadBefore'] = (
-  files,
-  info,
-  uploadHandler,
-) => {
+// @ts-expect-error suneditor 내부 타입
+const handleImageUploadBefore = (files, info, core, uploadHandler) => {
   const formData = new FormData();
+  // @ts-expect-error suneditor 내부 타입
   files.forEach((file, idx) => {
     const ext = file.name.split('.').pop();
     const newFile = new File([file], `file-${idx}.${ext}`);
@@ -59,4 +48,21 @@ const handleImageUploadBefore: SunEditorReactProps['onImageUploadBefore'] = (
     .catch((reason) => uploadHandler(reason + ''));
 
   return undefined;
+};
+
+const options: SunEditorOptions = {
+  defaultStyle: 'padding: 1rem',
+  minHeight: '400px',
+  lang: ko,
+  plugins,
+  buttonList: [
+    ['undo', 'redo'],
+    ['fontSize', 'formatBlock'],
+    ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+    '/', // Line break
+    ['fontColor', 'hiliteColor'],
+    ['lineHeight', 'align', 'horizontalRule', 'list'],
+    ['table', 'link', 'image', 'preview'],
+  ],
+  imageMultipleFile: true,
 };
