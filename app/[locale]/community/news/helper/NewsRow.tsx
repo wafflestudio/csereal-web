@@ -1,7 +1,6 @@
-import { Link } from '@/navigation';
-
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
+import PaginatedLink from '@/components/post/PaginatedLink';
 
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
@@ -52,11 +51,11 @@ export default function NewsRow({
         <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">{dateStr}</time>
 
         <div className="flex flex-col items-start">
-          <Link href={href} className="hover:underline">
+          <PaginatedLink href={href} className="hover:underline">
             <h3 className="mb-2.5 text-base font-bold">{title}</h3>
-          </Link>
+          </PaginatedLink>
 
-          <Link
+          <PaginatedLink
             href={href}
             className="mb-3 line-clamp-3 break-all text-md font-normal leading-[1.6] text-neutral-500 hover:cursor-pointer sm:mb-8"
           >
@@ -71,7 +70,7 @@ export default function NewsRow({
             ) : (
               description
             )}
-          </Link>
+          </PaginatedLink>
         </div>
 
         <div className="flex items-center justify-between sm:gap-2.5">
@@ -82,7 +81,7 @@ export default function NewsRow({
         </div>
       </div>
 
-      <Link href={href} className="relative flex aspect-[4/3] sm:h-[9.375rem]">
+      <PaginatedLink href={href} className="relative flex aspect-[4/3] sm:h-[9.375rem]">
         <ImageWithFallback
           alt="포스트 대표 이미지"
           src={imageURL}
@@ -90,7 +89,7 @@ export default function NewsRow({
           className="object-cover"
           sizes="12.5rem"
         />
-      </Link>
+      </PaginatedLink>
     </article>
   );
 }

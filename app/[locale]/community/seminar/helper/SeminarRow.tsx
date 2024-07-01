@@ -1,11 +1,11 @@
 import { ElementType, PropsWithChildren } from 'react';
 
-import { Link } from '@/navigation';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
+import PaginatedLink from '@/components/post/PaginatedLink';
 
 import { SeminarPreview } from '@/types/seminar';
 
@@ -25,7 +25,7 @@ export default function SeminarRow({
   const seminarPostPath = `${seminarPath}/${id}`;
 
   return (
-    <Link href={seminarPostPath}>
+    <PaginatedLink href={seminarPostPath}>
       <article className="group flex flex-col gap-4 sm:flex-row sm:gap-5">
         <ImageCell imageURL={imageURL} />
         <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
@@ -36,7 +36,7 @@ export default function SeminarRow({
           </div>
         </div>
       </article>
-    </Link>
+    </PaginatedLink>
   );
 }
 

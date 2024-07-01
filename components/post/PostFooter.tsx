@@ -4,6 +4,7 @@ import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';
 
+import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';
 import LoginVisible from '../common/LoginVisible';
 
@@ -89,12 +90,12 @@ function RowPostTitle({ title }: { title?: string }) {
 
 function PostListLink({ href }: { href: string }) {
   return (
-    <Link
+    <PaginatedLink
       href={href}
       className="flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-semibold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500"
     >
       목록
-    </Link>
+    </PaginatedLink>
   );
 }
 
