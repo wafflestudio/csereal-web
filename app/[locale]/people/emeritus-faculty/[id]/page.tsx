@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 import { Link } from '@/navigation';
 
@@ -34,6 +35,7 @@ interface EmeritusFacultyMemberPageProps {
 export default async function EmeritusFacultyMemberPage({
   params,
 }: EmeritusFacultyMemberPageProps) {
+  const t = await getTranslations('Content');
   const faculty = await getEmeritusFaculty(params.id);
 
   const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
@@ -45,12 +47,16 @@ export default async function EmeritusFacultyMemberPage({
         <div className="mt-6 sm:mt-0">
           {(faculty.office || faculty.email || faculty.website) && (
             <article className="mb-6 flex flex-col  text-neutral-700">
-              <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
+              <h3 className=" text-base font-bold leading-8">{t('연락처')}</h3>
               <ul className="list-inside list-disc">
-                {faculty.office && <BulletRow>교수실: {faculty.office}</BulletRow>}
+                {faculty.office && (
+                  <BulletRow>
+                    {t('교수실')}: {faculty.office}
+                  </BulletRow>
+                )}
                 {faculty.email && (
                   <BulletRow>
-                    이메일:
+                    {t('이메일')}:
                     <Link
                       className="ml-1 text-link hover:underline"
                       href={`mailto:${faculty.email}`}
@@ -61,7 +67,7 @@ export default async function EmeritusFacultyMemberPage({
                 )}
                 {faculty.website && (
                   <BulletRow>
-                    웹사이트:
+                    {t('웹사이트')}:
                     <Link className="ml-1 text-link hover:underline" href={`${faculty.website}`}>
                       {faculty.website}
                     </Link>
@@ -70,10 +76,10 @@ export default async function EmeritusFacultyMemberPage({
               </ul>
             </article>
           )}
-          <HeaderAndList header="학력" list={faculty.educations} />
-          <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
+          <HeaderAndList header={t('학력')} list={faculty.educations} />
+          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
           <div className=" mb-7 text-sm font-medium text-neutral-700">
-            재직 기간: {careerTime.startTime} - {careerTime.endTime}
+            {t('재직 기간')}: {careerTime.startTime} - {careerTime.endTime}
           </div>
         </div>
       </div>

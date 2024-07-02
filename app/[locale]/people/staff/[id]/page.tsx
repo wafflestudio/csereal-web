@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Link } from '@/navigation';
 
 import { getStaff } from '@/apis/people';
@@ -30,6 +32,7 @@ interface StaffMemberPageProps {
 
 export default async function StaffMemberPage({ params }: StaffMemberPageProps) {
   const staff = await getStaff(params.id);
+  const t = await getTranslations('Content');
 
   return (
     <PageLayout
@@ -41,19 +44,23 @@ export default async function StaffMemberPage({ params }: StaffMemberPageProps) 
         <ProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">
           <article className="mb-6 flex flex-col text-neutral-700">
-            <h3 className=" text-base font-bold leading-8">연락처 정보</h3>
+            <h3 className=" text-base font-bold leading-8">{t('연락처')}</h3>
             <ul className="list-inside list-disc">
-              <BulletRow>위치: {staff.office}</BulletRow>
-              <BulletRow>전화: {staff.phone}</BulletRow>
               <BulletRow>
-                이메일:
+                {t('위치')}: {staff.office}
+              </BulletRow>
+              <BulletRow>
+                {t('전화')}: {staff.phone}
+              </BulletRow>
+              <BulletRow>
+                {t('이메일')}:
                 <Link className="ml-1 text-link hover:underline" href={`mailto:${staff.email}`}>
                   {staff.email}
                 </Link>
               </BulletRow>
             </ul>
           </article>
-          <HeaderAndList header="주요 업무" list={staff.tasks} />
+          <HeaderAndList header={t('주요 업무')} list={staff.tasks} />
         </div>
       </div>
     </PageLayout>
