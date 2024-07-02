@@ -20,6 +20,7 @@ export async function generateMetadata({ params: { locale, id } }: StaffMemberPa
     metadata: {
       title: `${staff.name}`,
       description: `서울대학교 컴퓨터공학부 ${staff.name} 행정직원 페이지입니다.`,
+      robots: { noimageindex: true },
     },
   });
 }
