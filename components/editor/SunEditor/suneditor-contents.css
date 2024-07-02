@@ -331,8 +331,11 @@
 
   /* 수정됨 */
   overflow: scroll;
-  /* 수정됨 */
-  white-space: nowrap;
+}
+
+.sun-editor-editable table td > * {
+  width: max-content;
+  max-width: 400px;
 }
 
 /* RTL - table */

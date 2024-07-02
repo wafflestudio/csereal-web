@@ -3,6 +3,8 @@ import { getResearchGroups } from '@/apis/research';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Locale } from '@/types/locale';
+
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
@@ -17,12 +19,14 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 const researchGroupsPath = getPath(researchGroups);
 
 export default async function ResearchGroupsPage({
+  params: { locale },
   searchParams,
 }: {
+  params: { locale: Locale };
   searchParams: { selected?: string };
 }) {
-  const { groups } = await getResearchGroups();
-  const selectedGroup = findSelectedItem(groups, searchParams.selected);
+  const { groups } = await getResearchGroups(locale);
+  const selectedGroup = findSelectedItem(groups, searchParams.selected, getPath(researchGroups));
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
