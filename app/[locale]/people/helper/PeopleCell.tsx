@@ -83,7 +83,7 @@ const HoverAnimationUnderline = () => (
 // 괄호 안 문자는 폰트 크기 작게
 function AcademicRankText({ academicRank }: { academicRank: string }) {
   return (
-    <p className="mb-px flex items-end text-neutral-500">
+    <p className="mb-px flex flex-wrap items-end text-neutral-500">
       {academicRank.split('(').map((rank, i) =>
         i === 0 ? (
           <span key={rank}>{rank}</span>
