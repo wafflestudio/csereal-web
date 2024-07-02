@@ -1,8 +1,8 @@
-import { getInternal } from '../../apis/internal';
+import React from 'react';
 
-// import HTMLViewer from '../../components/editor/HTMLViewer';
+import { getInternal } from '@/apis/internal';
+
 import InternalContent from './InternalContent';
-import Header from '../../components/layout/header/Header';
 
 export default async function InternalPage() {
   const { description } = await getInternal();

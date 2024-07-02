@@ -1,17 +1,18 @@
 'use client';
 
+import React from 'react';
+import { useReducer, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useReducer, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
-import { putInternalAction } from '../../actions/internal';
+import { putInternalAction } from '@/actions/internal';
 
-import LoginVisible from '../../components/common/LoginVisible';
-import HTMLViewer from '../../components/editor/HTMLViewer';
-import SunEditorFallback from '../../components/editor/SunEditor/SunEditorFallback';
+import LoginVisible from '@/components/common/LoginVisible';
+import HTMLViewer from '@/components/editor/HTMLViewer';
+import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';
 
-import { isContentEmpty } from '../../utils/post';
-import { errorToast, successToast } from '../../utils/toast';
+import { isContentEmpty } from '@/utils/post';
+import { errorToast, successToast } from '@/utils/toast';
 
 const SunEditorWrapper = dynamic(
   () => import('../../components/editor/SunEditor/SunEditorWrapper'),
@@ -47,10 +48,22 @@ export default function InternalContent({ description }: { description: string }
 
   return (
     <>
-      <button onClick={toggleEditMode}>{isEditMode ? '취소' : '편집'}</button>
+      <LoginVisible staff>
+        <button
+          onClick={toggleEditMode}
+          className="rounded-[.0625rem] border-[1px] border-neutral-200 bg-neutral-100 px-[.875rem] py-[.34rem] text-sm font-medium leading-[1.5rem] text-neutral-500  enabled:hover:bg-neutral-200"
+        >
+          {isEditMode ? '취소' : '편집'}
+        </button>
+      </LoginVisible>
       {isEditMode ? (
         <div>
-          <button onClick={handleComplete}>수정</button>
+          <button
+            onClick={handleComplete}
+            className="my-2.5 rounded-[.0625rem] bg-neutral-700 px-[.875rem] py-[.34rem] text-sm font-bold leading-[1.5rem] text-white enabled:hover:bg-neutral-500"
+          >
+            수정
+          </button>
           <SunEditorWrapper editorRef={editorRef} initialContent={description} />
         </div>
       ) : (
