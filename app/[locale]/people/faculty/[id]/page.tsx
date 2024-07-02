@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
 import { Link } from '@/navigation';
 
@@ -37,6 +38,7 @@ interface FacultyMemberPageProps {
 }
 
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
+  const t = await getTranslations('Content');
   const faculty = await getFaculty('ko', params.id);
 
   if (faculty.status !== 'ACTIVE') notFound();
@@ -64,9 +66,9 @@ export default async function FacultyMemberPage({ params }: FacultyMemberPagePro
           </div>
         </div>
         <div className="mt-8 break-all">
-          <HeaderAndList header="학력" list={faculty.educations} />
-          <HeaderAndList header="연구 분야" list={faculty.researchAreas ?? []} />
-          <HeaderAndList header="경력" list={faculty.careers ?? []} />
+          <HeaderAndList header={t('학력')} list={faculty.educations} />
+          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
+          <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
         </div>
       </div>
     </PageLayout>

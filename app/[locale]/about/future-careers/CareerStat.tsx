@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import Dropdown from '@/components/common/form/Dropdown';
@@ -11,6 +12,7 @@ export const careerStatCols = ['학부', '석사', '박사'];
 
 export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   const [idx, setIdx] = useState(0);
+  const t = useTranslations('Content');
 
   const year = stat[idx].year;
   const yearStat = stat.find((x) => x.year === year);
@@ -20,7 +22,7 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <h3 className="text-base font-bold">졸업생 진로 현황</h3>
+        <h3 className="text-base font-bold">{t('졸업생 진로 현황')}</h3>
         <Dropdown
           contents={stat.map((x) => x.year.toString())}
           selectedIndex={idx}
