@@ -169,7 +169,7 @@ function LocationFieldset({
   return (
     <Fieldset title="장소" mb="mb-4" titleMb="mb-2" required>
       <BasicTextInput
-        placeholder="제목을 입력하세요."
+        placeholder="장소를 입력하세요."
         value={value}
         onChange={onChange}
         maxWidth="max-w-[24.625rem]"

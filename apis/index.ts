@@ -34,6 +34,14 @@ export const patchRequest = async <T = unknown>(
   return resp.headers.get('content-type') ? await resp.json() : null;
 };
 
+export const putRequest = async <T = unknown>(
+  url: string,
+  init?: CredentialRequestInit,
+): Promise<T | null> => {
+  const resp = await fetchWithRetry(`${BASE_URL}${url}`, 'PUT', init);
+  return resp.headers.get('content-type') ? await resp.json() : null;
+};
+
 export const deleteRequest = async (url: string, init?: CredentialRequestInit) => {
   await fetchWithRetry(`${BASE_URL}${url}`, 'DELETE', init);
 };

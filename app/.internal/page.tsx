@@ -1,9 +1,15 @@
-import HTMLViewer from '../../components/editor/HTMLViewer';
+import { getInternal } from '../../apis/internal';
 
-export default function InternalPage() {
+// import HTMLViewer from '../../components/editor/HTMLViewer';
+import InternalContent from './InternalContent';
+import Header from '../../components/layout/header/Header';
+
+export default async function InternalPage() {
+  const { description } = await getInternal();
+
   return (
     <div className="m-10 min-w-[720px]">
-      <HTMLViewer htmlContent={content} />
+      <InternalContent description={description} />
     </div>
   );
 }

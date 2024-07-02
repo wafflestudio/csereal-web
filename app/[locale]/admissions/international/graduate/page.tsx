@@ -25,6 +25,8 @@ export async function generateMetadata({
 export default async function InternationalGraduateAdmissionPage() {
   const { description } = await getInternationalgraduate();
 
+  console.log(description);
+
   return (
     <PageLayout titleType="big">
       <HTMLViewer htmlContent={description} />
