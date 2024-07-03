@@ -6,7 +6,7 @@ import { AUTO_SCROLL_MS } from './constants';
 import { useCarouselLayout } from './useCarouselLayout';
 
 export default function useCarousel(news: MainNews[]) {
-  const [page, _setPage] = useState(1);
+  const [page, _setPage] = useState(0);
   // TODO: 타입 이게 맞나?
   const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
   const { cardCnt, widthREM } = useCarouselLayout();
