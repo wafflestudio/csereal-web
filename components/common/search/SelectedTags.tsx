@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import Tags from '../Tags';
 
 interface SelectedTagsProps {
@@ -36,6 +38,8 @@ interface TagResetButtonProps {
 }
 
 function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
+  const t = useTranslations('Content');
+
   return (
     <button
       onClick={onClick}
@@ -43,7 +47,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
       disabled={disabled}
     >
       <span className="material-symbols-outlined scale-x-[-1] text-base font-light">refresh</span>
-      <span className="whitespace-nowrap text-md">태그 초기화</span>
+      <span className="whitespace-nowrap text-md">{t('태그 초기화')}</span>
     </button>
   );
 }

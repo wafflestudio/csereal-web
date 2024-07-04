@@ -1,10 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState, ChangeEventHandler, FormEvent } from 'react';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 export default function SeminarSearchBar() {
+  const t = useTranslations('Content');
   const { keyword: initKeyword, setSearchParams } = useCustomSearchParams();
   const [text, setText] = useState(initKeyword ?? '');
 
@@ -21,7 +23,7 @@ export default function SeminarSearchBar() {
   return (
     <form className="flex w-fit items-center gap-5" onSubmit={searchText}>
       <label htmlFor="search" className="font-bold">
-        검색
+        {t('검색')}
       </label>
       <div className="flex h-[1.875rem] w-60 items-center rounded-sm bg-neutral-100 pr-3">
         <input

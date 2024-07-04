@@ -10,7 +10,11 @@ import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
-  return await getMetadata({ locale, node: staff });
+  return await getMetadata({
+    locale,
+    node: staff,
+    metadata: { robots: { noimageindex: true } },
+  });
 }
 
 const staffPath = getPath(staff);

@@ -22,7 +22,7 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
 
   return (
     <div>
-      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">태그</h5>
+      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">{t('태그')}</h5>
       <div
         className={`gap-x-7 gap-y-2.5 pl-2.5`}
         style={{

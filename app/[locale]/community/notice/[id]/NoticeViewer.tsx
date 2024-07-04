@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
@@ -46,12 +48,18 @@ const Header = ({
   author: string;
   createdAt: string;
 }) => {
+  const t = useTranslations('Content');
+
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
       <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
-        <p>글쓴이: {author}</p>
-        <p>작성 시각: {formatPostDateStr(createdAt)}</p>
+        <p>
+          {t('작성자')}: {author}
+        </p>
+        <p>
+          {t('작성 날짜')}: {formatPostDateStr(createdAt)}
+        </p>
       </div>
     </div>
   );
