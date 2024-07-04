@@ -1,8 +1,9 @@
-import { Link } from '@/navigation';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
+
+import PaginatedLink from '@/components/post/PaginatedLink';
 
 import { NoticePreview } from '@/types/notice';
 
@@ -113,7 +114,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
   } else {
     return (
       <span className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}>
-        <Link
+        <PaginatedLink
           href={`${noticePath}/${id}`}
           className="flex items-center gap-1.5 font-semibold sm:font-normal"
         >
@@ -125,7 +126,7 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
             {title}
           </span>
           {hasAttachment && <ClipIcon className="shrink-0" />}
-        </Link>
+        </PaginatedLink>
       </span>
     );
   }
