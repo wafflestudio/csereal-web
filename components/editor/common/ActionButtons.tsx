@@ -8,7 +8,7 @@ import { errorToast } from '@/utils/toast';
 export interface EditAction<T> {
   type: 'EDIT';
   onCancel: () => void;
-  onDelete: () => Promise<void>;
+  onDelete?: () => Promise<void>;
   /** 성공한 경우가 아니면 반드시 error를 던져야함 */
   onComplete: (content: T) => Promise<void>;
 }
@@ -26,7 +26,8 @@ export function EditActionButtons<T>({
   onDelete,
   onComplete,
   getContent,
-}: EditAction<T> & { getContent: () => T }) {
+  showDelete = true,
+}: EditAction<T> & { getContent: () => T; showDelete?: boolean }) {
   const [requesting, setRequesting] = useState(false);
   const { openModal } = useModal();
 
@@ -40,19 +41,21 @@ export function EditActionButtons<T>({
           openModal(<AlertModal message="편집중인 내용이 사라집니다." onConfirm={onCancel} />);
         }}
       />
-      <BlackButton
-        title="삭제"
-        disabled={requesting}
-        onClick={(e) => {
-          e.preventDefault();
-          openModal(
-            <AlertModal
-              message="게시물을 삭제하시겠습니까?"
-              onConfirm={buildDeleteHandler(requesting, setRequesting, onDelete)}
-            />,
-          );
-        }}
-      />
+      {showDelete && onDelete && (
+        <BlackButton
+          title="삭제"
+          disabled={requesting}
+          onClick={(e) => {
+            e.preventDefault();
+            openModal(
+              <AlertModal
+                message="게시물을 삭제하시겠습니까?"
+                onConfirm={buildDeleteHandler(requesting, setRequesting, onDelete)}
+              />,
+            );
+          }}
+        />
+      )}
       <BlackButton
         title="수정하기"
         disabled={requesting}
@@ -88,7 +91,7 @@ export function CreateActionButtons<T>({
   );
 }
 
-const GrayButton = ({
+export const GrayButton = ({
   title,
   disabled,
   onClick,
