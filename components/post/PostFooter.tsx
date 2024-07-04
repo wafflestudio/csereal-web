@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { Link } from '@/navigation';
 
 import { News } from '@/types/news';
@@ -71,8 +73,12 @@ function RowIcon({ type }: { type: RowType }) {
 }
 
 function RowDescription({ type }: { type: RowType }) {
-  const description = type == 'next' ? '다음 글' : '이전 글';
-  return <p className="mr-3 flex-shrink-0 text-md font-medium text-main-orange">{description}</p>;
+  const t = useTranslations('Content');
+
+  const description = type == 'next' ? '다음글' : '이전글';
+  return (
+    <p className="mr-3 flex-shrink-0 text-md font-medium text-main-orange">{t(description)}</p>
+  );
 }
 
 function RowPostTitle({ title }: { title?: string }) {
@@ -89,12 +95,14 @@ function RowPostTitle({ title }: { title?: string }) {
 }
 
 function PostListLink({ href }: { href: string }) {
+  const t = useTranslations('Content');
+
   return (
     <PaginatedLink
       href={href}
       className="flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-semibold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500"
     >
-      목록
+      {t('목록')}
     </PaginatedLink>
   );
 }
