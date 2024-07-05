@@ -26,8 +26,7 @@ export function EditActionButtons<T>({
   onDelete,
   onComplete,
   getContent,
-  showDelete = true,
-}: EditAction<T> & { getContent: () => T; showDelete?: boolean }) {
+}: EditAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
   const { openModal } = useModal();
 
@@ -41,7 +40,7 @@ export function EditActionButtons<T>({
           openModal(<AlertModal message="편집중인 내용이 사라집니다." onConfirm={onCancel} />);
         }}
       />
-      {showDelete && onDelete && (
+      {onDelete && (
         <BlackButton
           title="삭제"
           disabled={requesting}

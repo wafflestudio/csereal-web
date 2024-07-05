@@ -6,12 +6,9 @@ import { putInternal } from '@/apis/internal';
 
 import { FETCH_TAG_INTERNAL } from '@/constants/network';
 
-export const putInternalAction = async (description: string) => {
-  try {
-    await putInternal(description);
-  } catch (e) {
-    return e;
-  }
+import { withErrorHandler } from './errorHandler';
 
+export const putInternalAction = withErrorHandler(async (description: string) => {
+  await putInternal(description);
   revalidateTag(FETCH_TAG_INTERNAL);
-};
+});

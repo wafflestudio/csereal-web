@@ -34,7 +34,7 @@ const defaultContent: BasicEditorContent = {
 
 export default function BasicEditor({ actions, initialContent }: BasicPostEditorProps) {
   const editorRef = useRef<SunEditorCore>();
-  const [content, setContent] = useState<BasicEditorContent>({
+  const [content] = useState<BasicEditorContent>({
     ...defaultContent,
     ...initialContent,
   });
@@ -53,7 +53,7 @@ export default function BasicEditor({ actions, initialContent }: BasicPostEditor
   return (
     <form className="flex flex-col">
       <div className="mb-6 flex gap-3">
-        <EditActionButtons {...actions} getContent={getContent} showDelete={false} />
+        <EditActionButtons {...actions} getContent={getContent} />
       </div>
       <EditorFieldset editorRef={editorRef} initialContent={content.description} />
     </form>

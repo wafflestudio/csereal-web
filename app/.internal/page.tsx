@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { getInternal } from '@/apis/internal';
 
 import InternalContent from './InternalContent';

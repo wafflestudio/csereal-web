@@ -1,8 +1,10 @@
+import { FETCH_TAG_INTERNAL } from '@/constants/network';
+
 import { getRequest, putRequest } from '.';
 
 export const getInternal = () =>
   getRequest('/internal', undefined, {
-    next: { tags: ['internal'] },
+    next: { tags: [FETCH_TAG_INTERNAL] },
   }) as Promise<{ description: string }>;
 
 export const putInternal = (description: string) =>
