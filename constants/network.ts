@@ -10,3 +10,4 @@ export const FETCH_TAG_NEWS = 'news';
 export const FETCH_TAG_NOTICE = 'notice';
 export const FETCH_TAG_SEMINAR = 'seminar';
 export const FETCH_TAG_RESERVATION = 'reservation';
+export const FETCH_TAG_INTERNAL = 'internal';

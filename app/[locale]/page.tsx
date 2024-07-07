@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+
+import { Link } from '@/navigation';
 
 import { getMain } from '@/apis/main';
 
