@@ -29,7 +29,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "data/objects.ts",
-    "custom.d.ts"
+    "custom.d.ts",
+    "app/.internal/**/*.ts",
+    "app/.internal/**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }
