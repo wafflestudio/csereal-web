@@ -36,7 +36,6 @@ const facultyToProp = (faculty: SimpleEmiritusFaculty): PeopleCellProps => {
     imageURL: faculty.imageURL,
     title: faculty.name,
     subtitle: faculty.academicRank,
-    titleNewline: false,
     href: `${facultyPath}/${faculty.id}`,
     content,
   };
