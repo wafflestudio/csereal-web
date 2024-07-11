@@ -1,8 +1,5 @@
-import { Link } from '@/navigation';
-
 import { getActiveFacultyList } from '@/apis/people';
 
-import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -13,6 +10,7 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
+import CreateButton from '../helper/CreateButton';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -36,7 +34,7 @@ export default async function FacultyPage({ params }: FacultyPageProps) {
   return (
     <PageLayout title="교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton />
+        <CreateButton href={`${facultyPath}/create`} />
       </LoginVisible>
       <PeopleGrid contentList={normal} />
       <h3 className="mb-4 mt-12 text-[20px] font-bold">객원교수</h3>
@@ -65,13 +63,3 @@ const facultyToProp = (faculty: SimpleFaculty): PeopleCellProps => {
     content,
   };
 };
-
-function CreateButton() {
-  return (
-    <div className="mb-9 max-w-[768px] text-right">
-      <Link href={`${facultyPath}/create`} className="inline-block">
-        <BlackButton title="추가하기" />
-      </Link>
-    </div>
-  );
-}

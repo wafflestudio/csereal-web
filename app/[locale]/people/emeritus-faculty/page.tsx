@@ -1,13 +1,15 @@
 import { getEmeritusFacultyList } from '@/apis/people';
 
+import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { SimpleEmiritusFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty } from '@/utils/segmentNode';
+import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 
+import CreateButton from '../helper/CreateButton';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -15,7 +17,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return await getMetadata({ locale, node: emeritusFaculty });
 }
 
-const facultyPath = getPath(emeritusFaculty);
+const emeritusFacultyPath = getPath(emeritusFaculty);
+const facultyPath = getPath(faculty);
 
 export default async function EmeritusFacultyPage() {
   const facultyList = await getEmeritusFacultyList();
@@ -23,6 +26,9 @@ export default async function EmeritusFacultyPage() {
 
   return (
     <PageLayout title="역대 교수진" titleType="big">
+      <LoginVisible staff>
+        <CreateButton href={`${facultyPath}/create`} />
+      </LoginVisible>
       <PeopleGrid contentList={props} />
     </PageLayout>
   );
@@ -36,7 +42,7 @@ const facultyToProp = (faculty: SimpleEmiritusFaculty): PeopleCellProps => {
     imageURL: faculty.imageURL,
     title: faculty.name,
     subtitle: faculty.academicRank,
-    href: `${facultyPath}/${faculty.id}`,
+    href: `${emeritusFacultyPath}/${faculty.id}`,
     content,
   };
 };
