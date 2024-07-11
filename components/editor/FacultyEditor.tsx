@@ -10,11 +10,13 @@ import {
 } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
+import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+import { PostEditorImage } from './PostEditorTypes';
 
 export interface FacultyEditorContent {
   name: string;
   academicRank: string;
-  imageURL: string;
+  image: PostEditorImage | null;
   phone: string;
   email: string;
   office: string;
@@ -66,6 +68,7 @@ export default function FacultyEditor({
         value={content.academicRank}
         onChange={setContentByKey('academicRank')}
       />
+      <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset value={content.labName} onChange={() => {}} />
@@ -155,13 +158,24 @@ function AcademicRankFieldset({
   onChange: (text: string) => void;
 }) {
   return (
-    <Fieldset title="직함" mb="mb-5" titleMb="mb-2" required>
+    <Fieldset title="직함" mb="mb-10" titleMb="mb-2" required>
       <BasicTextInput
         value={value}
         onChange={onChange}
         maxWidth="max-w-[30rem]"
         placeholder="예: 교수, 조교수, 명예교수 등"
       />
+    </Fieldset>
+  );
+}
+
+function ImageFieldset({ file, setFile }: ImagePickerProps) {
+  return (
+    <Fieldset title="사진" mb="mb-12" titleMb="mb-2">
+      <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
+        3:4 비율의 증명사진이 가장 적합합니다.
+      </label>
+      <ImagePicker file={file} setFile={setFile} />
     </Fieldset>
   );
 }
@@ -244,7 +258,7 @@ export const getFacultyEditorDefaultValue = (): FacultyEditorContent => {
   return {
     name: '',
     academicRank: '',
-    imageURL: '',
+    image: null,
     phone: '',
     email: '',
     office: '',
