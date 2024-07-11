@@ -29,16 +29,24 @@ export interface FacultyEditorContent {
   endDate: string;
 }
 
+type FacultyStatus = 'ACTIVE' | 'INACTIVE' | 'VISITING';
+
 interface FacultyEditorProps {
   actions: EditAction<FacultyEditorContent> | CreateAction<FacultyEditorContent>;
   initialContent?: FacultyEditorContent;
+  initialFacultyStatus: FacultyStatus;
 }
 
-export default function FacultyEditor({ actions, initialContent }: FacultyEditorProps) {
+export default function FacultyEditor({
+  actions,
+  initialContent,
+  initialFacultyStatus,
+}: FacultyEditorProps) {
   const [content, setContent] = useState<FacultyEditorContent>({
     ...getFacultyEditorDefaultValue(),
     ...initialContent,
   });
+  const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
 
   const setContentByKey =
     <T extends keyof FacultyEditorContent>(key: T) =>
@@ -48,6 +56,11 @@ export default function FacultyEditor({ actions, initialContent }: FacultyEditor
 
   return (
     <form className="flex flex-col">
+      <FacultyStatusFieldset
+        selected={facultyStatus}
+        onChange={(text: string) => setFacultyStatus(text as FacultyStatus)}
+      />
+
       <NameFieldset value={content.name} onChange={setContentByKey('name')} />
       <AcademicRankFieldset
         value={content.academicRank}
@@ -75,6 +88,54 @@ export default function FacultyEditor({ actions, initialContent }: FacultyEditor
         {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
       </div>
     </form>
+  );
+}
+
+const facultyStatusToKo = (value: FacultyStatus) => {
+  if (value === 'ACTIVE') return '교수';
+  else if (value === 'VISITING') return '객원 교수';
+  else return '역대 교수';
+};
+
+function StatusRadio({
+  value,
+  checked,
+  onChange,
+}: {
+  value: FacultyStatus;
+  checked: boolean;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <label className="mb- flex cursor-pointer gap-1 text-md font-medium tracking-wide">
+      <input
+        type="radio"
+        name="status"
+        value={value}
+        checked={checked}
+        className="h-3.5 w-3.5 appearance-none rounded-full border-2 border-neutral-300 checked:border-[3px] checked:border-white checked:bg-main-orange checked:shadow-[0_0_0_1.3px_#ff6914] hover:border-main-orange checked:hover:border-white"
+        onChange={(e) => onChange(e.target.value)}
+      />
+      <span>{facultyStatusToKo(value)}</span>
+    </label>
+  );
+}
+
+function FacultyStatusFieldset({
+  selected,
+  onChange,
+}: {
+  selected: FacultyStatus;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="구분" mb="mb-11" titleMb="mb-2" required>
+      <div className="flex gap-3">
+        <StatusRadio value="ACTIVE" checked={selected === 'ACTIVE'} onChange={onChange} />
+        <StatusRadio value="VISITING" checked={selected === 'VISITING'} onChange={onChange} />
+        <StatusRadio value="INACTIVE" checked={selected === 'INACTIVE'} onChange={onChange} />
+      </div>
+    </Fieldset>
   );
 }
 

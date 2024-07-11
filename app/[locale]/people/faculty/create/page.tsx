@@ -25,6 +25,7 @@ export default function FacultyCreatePage() {
     <PageLayout title="교수진 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <FacultyEditor
         actions={{ type: 'CREATE', onCancel: handleCancel, onComplete: handleComplete }}
+        initialFacultyStatus="ACTIVE"
       />
     </PageLayout>
   );
