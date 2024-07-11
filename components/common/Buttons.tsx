@@ -6,7 +6,7 @@ export function GrayButton({
   onClick,
 }: {
   title: string;
-  disabled: boolean;
+  disabled?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
@@ -28,8 +28,8 @@ export function BlackButton({
   onClick,
 }: {
   title: string;
-  disabled: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <button
