@@ -1,3 +1,4 @@
+import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 
@@ -31,5 +32,14 @@ export const validateSeminarForm = (content: SeminarEditorContent) => {
   }
   if (content.speaker.organization === '') {
     throw new Error('소속을 입력해주세요');
+  }
+};
+
+export const validateFacultyForm = (content: FacultyEditorContent) => {
+  if (!content.name) {
+    throw new Error('이름을 입력해주세요');
+  }
+  if (!content.academicRank) {
+    throw new Error('직함을 입력해주세요');
   }
 };
