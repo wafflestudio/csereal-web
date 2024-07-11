@@ -4,10 +4,10 @@
 
 // import { putInternalAction } from '@/actions/internal';
 
+// import { GrayButton } from '@/components/common/Buttons';
 // import LoginVisible from '@/components/common/LoginVisible';
 // import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-// import { GrayButton } from '@/components/editor/common/ActionButtons';
 
 // import { errorToast, successToast } from '@/utils/toast';
 // import { handleServerAction } from '@/utils/serverActionError';
@@ -38,7 +38,7 @@ export default function InternalContent({ description }: { description: string }
   // ) : (
   //   <>
   //     <LoginVisible staff>
-  //       <GrayButton title="편집" onClick={toggleEditMode} disabled={false} />
+  // <GrayButton title="편집" onClick={toggleEditMode} disabled={false} />
   //     </LoginVisible>
   //     <HTMLViewer htmlContent={description} />
   //   </>
