@@ -3,6 +3,7 @@ export interface BasicTextInputProps {
   onChange: (text: string) => void;
   maxWidth: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 export default function BasicTextInput({
@@ -10,6 +11,7 @@ export default function BasicTextInput({
   onChange,
   placeholder,
   maxWidth,
+  disabled,
 }: BasicTextInputProps) {
   return (
     <input
@@ -19,6 +21,7 @@ export default function BasicTextInput({
       placeholder={placeholder}
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
     />
   );
 }

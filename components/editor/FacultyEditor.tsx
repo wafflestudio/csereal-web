@@ -9,6 +9,7 @@ import {
   EditActionButtons,
 } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
+import DateSelector from './common/DateSelector';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorImage } from './PostEditorTypes';
@@ -27,8 +28,8 @@ export interface FacultyEditorContent {
   careers: string[];
   labId: number;
   labName: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }
 
 type FacultyStatus = 'ACTIVE' | 'INACTIVE' | 'VISITING';
@@ -68,10 +69,30 @@ export default function FacultyEditor({
         value={content.academicRank}
         onChange={setContentByKey('academicRank')}
       />
+
+      <Section title="재직 기간" mb="mb-12" titleMb="mb-2">
+        <div className={`flex w-[400px] ${facultyStatus !== 'INACTIVE' && 'opacity-30'}`}>
+          <DateFieldset
+            title="시작 날짜"
+            value={content.startDate}
+            onChange={setContentByKey('startDate')}
+          />
+          <DateFieldset
+            title="종료 날짜"
+            value={content.endDate}
+            onChange={setContentByKey('endDate')}
+          />
+        </div>
+      </Section>
+
       <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
-        <LabFieldset value={content.labName} onChange={() => {}} />
+        <LabFieldset
+          value={content.labName}
+          onChange={() => {}}
+          disabled={facultyStatus === 'INACTIVE'}
+        />
       </Section>
 
       <Section title="연락처 정보" titleMb="mb-3">
@@ -116,7 +137,7 @@ function StatusRadio({
         name="status"
         value={value}
         checked={checked}
-        className="h-3.5 w-3.5 appearance-none rounded-full border-2 border-neutral-300 checked:border-[3px] checked:border-white checked:bg-main-orange checked:shadow-[0_0_0_1.3px_#ff6914] hover:border-main-orange checked:hover:border-white"
+        className="h-3.5 w-3.5 cursor-pointer appearance-none rounded-full border-2 border-neutral-300 checked:border-[3px] checked:border-white checked:bg-main-orange checked:shadow-[0_0_0_1.3px_#ff6914] hover:border-main-orange checked:hover:border-white"
         onChange={(e) => onChange(e.target.value)}
       />
       <span>{facultyStatusToKo(value)}</span>
@@ -169,6 +190,22 @@ function AcademicRankFieldset({
   );
 }
 
+function DateFieldset({
+  title,
+  value,
+  onChange,
+}: {
+  title: string;
+  value: Date;
+  onChange: (date: Date) => void;
+}) {
+  return (
+    <Fieldset title={title} titleMb="mb-2">
+      <DateSelector date={value} setDate={onChange} hideTime enablePast />
+    </Fieldset>
+  );
+}
+
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
     <Fieldset title="사진" mb="mb-12" titleMb="mb-2">
@@ -180,10 +217,23 @@ function ImageFieldset({ file, setFile }: ImagePickerProps) {
   );
 }
 
-function LabFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
+function LabFieldset({
+  value,
+  onChange,
+  disabled,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+  disabled: boolean;
+}) {
   return (
-    <Fieldset title="연구실" mb="mb-5" titleMb="mb-2">
-      <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[20rem]" />
+    <Fieldset title="연구실" mb="mb-5" titleMb="mb-2" className={disabled ? 'opacity-30' : ''}>
+      <BasicTextInput
+        value={value}
+        onChange={onChange}
+        maxWidth="max-w-[20rem]"
+        disabled={disabled}
+      />
     </Fieldset>
   );
 }
@@ -241,7 +291,7 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
 interface SectionProps {
   title: string;
   mb?: string;
-  titleMb?: string;
+  titleMb: string;
   children: ReactNode;
 }
 
@@ -269,7 +319,7 @@ export const getFacultyEditorDefaultValue = (): FacultyEditorContent => {
     careers: [],
     labId: 0,
     labName: '',
-    startDate: '',
-    endDate: '',
+    startDate: new Date(),
+    endDate: new Date(),
   };
 };

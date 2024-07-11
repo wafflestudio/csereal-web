@@ -8,10 +8,12 @@ export default function DateSelector({
   date,
   setDate,
   hideTime = false,
+  enablePast,
 }: {
   date: Date;
   setDate: (date: Date) => void;
   hideTime?: boolean;
+  enablePast?: boolean;
 }) {
   const { openModal, closeModal } = useModal();
   const openCalendar = () => {
@@ -24,6 +26,7 @@ export default function DateSelector({
             closeModal();
           }}
           className="bg-white"
+          enablePast={enablePast}
         />
       </ModalFrame>,
     );

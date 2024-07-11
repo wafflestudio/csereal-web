@@ -40,7 +40,7 @@ export default function MuiDateSelector({
         ref={ref}
         className={className}
         value={dayjs(date)}
-        views={['day']}
+        views={['day', 'month', 'year']}
         onChange={(value) => {
           const date = value?.toDate();
           date && setDate(date);
