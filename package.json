@@ -24,7 +24,7 @@
     "dayjs": "^1.11.9",
     "file-loader": "^6.2.0",
     "next": "^14.2.3",
-    "next-intl": "^3.7.0",
+    "next-intl": "3.5.1",
     "next-sitemap": "^4.2.3",
     "postcss": "8.4.24",
     "react": "^18.2.0",
