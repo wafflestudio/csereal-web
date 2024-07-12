@@ -69,7 +69,8 @@ export function CreateActionButtons<T>({
   onCancel,
   onComplete,
   getContent,
-}: CreateAction<T> & { getContent: () => T }) {
+  completeButtonText = '게시하기',
+}: CreateAction<T> & { getContent: () => T; completeButtonText?: string }) {
   const [requesting, setRequesting] = useState(false);
 
   return (
@@ -83,7 +84,7 @@ export function CreateActionButtons<T>({
         }}
       />
       <BlackButton
-        title="게시하기"
+        title={completeButtonText}
         disabled={requesting}
         onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
       />

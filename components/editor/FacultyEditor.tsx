@@ -12,6 +12,7 @@ import {
 } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
+import DynamicInputList from './common/DynamicInputList';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorImage } from './PostEditorTypes';
@@ -25,9 +26,9 @@ export interface FacultyEditorContent {
   office: string;
   fax: string;
   website: string;
-  educations: string[];
-  researchAreas: string[];
-  careers: string[];
+  educations: { id: number; value: string }[];
+  researchAreas: { id: number; text: string }[];
+  careers: { id: number; text: string }[];
   labId: number;
   labName: string;
   startDate: Date;
@@ -58,6 +59,13 @@ export default function FacultyEditor({
       setContent((content) => ({ ...content, [key]: value }));
     };
 
+  const setEducations = (value: { id: number; value: string }[]) => {
+    setContent((prev) => ({
+      ...prev,
+      educations: value,
+    }));
+  };
+
   return (
     <form className="flex flex-col">
       <FacultyStatusFieldset
@@ -71,8 +79,8 @@ export default function FacultyEditor({
         onChange={setContentByKey('academicRank')}
       />
 
-      <Section title="재직 기간" mb="mb-12" titleMb="mb-2">
-        <div className={`flex w-[400px] ${!isInactiveFaculty && 'opacity-30'}`}>
+      <Section title="재직 기간" mb="mb-12" titleMb="mb-2" disabled={!isInactiveFaculty}>
+        <div className="flex w-[400px]">
           <DateFieldset
             title="시작 날짜"
             value={content.startDate}
@@ -92,6 +100,7 @@ export default function FacultyEditor({
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset value={content.labName} onChange={() => {}} disabled={isInactiveFaculty} />
+        <EducationsFieldset educations={content.educations} setEducations={setEducations} />
       </Section>
 
       <Section title="연락처 정보" titleMb="mb-3">
@@ -106,7 +115,11 @@ export default function FacultyEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons {...actions} getContent={() => content} />
+          <CreateActionButtons
+            {...actions}
+            getContent={() => content}
+            completeButtonText="추가하기"
+          />
         )}
         {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
       </div>
@@ -232,8 +245,26 @@ function LabFieldset({
       <BasicTextInput
         value={value}
         onChange={onChange}
-        maxWidth="max-w-[20rem]"
+        maxWidth="max-w-[25rem]"
         disabled={disabled}
+      />
+    </Fieldset>
+  );
+}
+
+function EducationsFieldset({
+  educations,
+  setEducations,
+}: {
+  educations: { id: number; value: string }[];
+  setEducations: (newEducations: { id: number; value: string }[]) => void;
+}) {
+  return (
+    <Fieldset title="학력" mb="mb-5" titleMb="mb-2">
+      <DynamicInputList
+        list={educations}
+        setList={setEducations}
+        placeholder="예: 서울대학교 컴퓨터공학 학사 (2003)"
       />
     </Fieldset>
   );
@@ -293,12 +324,13 @@ interface SectionProps {
   title: string;
   mb?: string;
   titleMb: string;
+  disabled?: boolean;
   children: ReactNode;
 }
 
-function Section({ title, mb, titleMb, children }: SectionProps) {
+function Section({ title, mb, titleMb, disabled, children }: SectionProps) {
   return (
-    <div className={mb}>
+    <div className={`${mb} ${disabled && 'opacity-30'}`}>
       <div className={`mb-3 text-md font-semibold tracking-wide ${titleMb}`}>{title}</div>
       {children}
     </div>
