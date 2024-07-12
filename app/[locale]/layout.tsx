@@ -36,6 +36,7 @@ export async function generateMetadata({
     openGraph: {
       images: ['/image/main/mainGraphic.png'],
     },
+    robots: 'noindex',
   };
 }
 
