@@ -2,6 +2,8 @@
 
 import { ReactNode, useState } from 'react';
 
+import { FacultyStatus } from '@/types/people';
+
 import {
   CreateAction,
   CreateActionButtons,
@@ -32,8 +34,6 @@ export interface FacultyEditorContent {
   endDate: Date;
 }
 
-type FacultyStatus = 'ACTIVE' | 'INACTIVE' | 'VISITING';
-
 interface FacultyEditorProps {
   actions: EditAction<FacultyEditorContent> | CreateAction<FacultyEditorContent>;
   initialContent?: FacultyEditorContent;
@@ -50,6 +50,7 @@ export default function FacultyEditor({
     ...initialContent,
   });
   const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
+  const isInactiveFaculty = facultyStatus === 'INACTIVE';
 
   const setContentByKey =
     <T extends keyof FacultyEditorContent>(key: T) =>
@@ -71,16 +72,18 @@ export default function FacultyEditor({
       />
 
       <Section title="재직 기간" mb="mb-12" titleMb="mb-2">
-        <div className={`flex w-[400px] ${facultyStatus !== 'INACTIVE' && 'opacity-30'}`}>
+        <div className={`flex w-[400px] ${!isInactiveFaculty && 'opacity-30'}`}>
           <DateFieldset
             title="시작 날짜"
             value={content.startDate}
             onChange={setContentByKey('startDate')}
+            disabled={!isInactiveFaculty}
           />
           <DateFieldset
             title="종료 날짜"
             value={content.endDate}
             onChange={setContentByKey('endDate')}
+            disabled={!isInactiveFaculty}
           />
         </div>
       </Section>
@@ -88,11 +91,7 @@ export default function FacultyEditor({
       <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
-        <LabFieldset
-          value={content.labName}
-          onChange={() => {}}
-          disabled={facultyStatus === 'INACTIVE'}
-        />
+        <LabFieldset value={content.labName} onChange={() => {}} disabled={isInactiveFaculty} />
       </Section>
 
       <Section title="연락처 정보" titleMb="mb-3">
@@ -194,14 +193,16 @@ function DateFieldset({
   title,
   value,
   onChange,
+  disabled,
 }: {
   title: string;
   value: Date;
   onChange: (date: Date) => void;
+  disabled: boolean;
 }) {
   return (
     <Fieldset title={title} titleMb="mb-2">
-      <DateSelector date={value} setDate={onChange} hideTime enablePast />
+      <DateSelector date={value} setDate={onChange} hideTime enablePast disabled={disabled} />
     </Fieldset>
   );
 }

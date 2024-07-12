@@ -1,7 +1,9 @@
+export type FacultyStatus = 'ACTIVE' | 'INACTIVE' | 'VISITING';
+
 // 교수진
 export interface SimpleFaculty {
   id: number;
-  status: 'ACTIVE' | 'INACTIVE' | 'VISITING';
+  status: FacultyStatus;
   name: string;
   imageURL: string;
   academicRank: string;

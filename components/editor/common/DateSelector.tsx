@@ -8,12 +8,14 @@ export default function DateSelector({
   date,
   setDate,
   hideTime = false,
-  enablePast,
+  enablePast = false,
+  disabled = false,
 }: {
   date: Date;
   setDate: (date: Date) => void;
   hideTime?: boolean;
   enablePast?: boolean;
+  disabled?: boolean;
 }) {
   const { openModal, closeModal } = useModal();
   const openCalendar = () => {
@@ -35,7 +37,7 @@ export default function DateSelector({
   return (
     <div>
       <div className="flex gap-[.62rem]">
-        <BorderButton text={formatDate(date)} onClick={openCalendar} />
+        <BorderButton text={formatDate(date)} onClick={openCalendar} disabled={disabled} />
         {!hideTime && (
           <div className="flex gap-1">
             <Dropdown
@@ -67,7 +69,15 @@ export default function DateSelector({
   );
 }
 
-const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) => {
+const BorderButton = ({
+  text,
+  onClick,
+  disabled,
+}: {
+  text: string;
+  onClick: () => void;
+  disabled: boolean;
+}) => {
   return (
     <button
       onClick={(e) => {
@@ -76,6 +86,7 @@ const BorderButton = ({ text, onClick }: { text: string; onClick: () => void }) 
       }}
       className={`h-[1.875rem] rounded-sm border border-neutral-300
             px-4 text-md outline-none hover:bg-neutral-100`}
+      disabled={disabled}
     >
       {text}
     </button>
