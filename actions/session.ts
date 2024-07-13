@@ -16,7 +16,7 @@ export const getMockAuth = async () => {
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
 
-  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true });
+  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
 };
 
 export const removeAuth = async () => {
