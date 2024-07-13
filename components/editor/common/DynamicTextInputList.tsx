@@ -33,16 +33,14 @@ export default function DynamicTextInputList({
 
   return (
     <div>
-      <div className="mb-2.5 flex gap-3">
-        <InputWithButton
-          inputValue={newInput}
-          placeholder={placeholder}
-          buttonText="추가"
-          onChangeInput={setNewInput}
-          onClickButton={handleAdd}
-          bgColor="bg-neutral-50"
-        />
-      </div>
+      <InputWithButton
+        inputValue={newInput}
+        placeholder={placeholder}
+        buttonText="추가"
+        onChangeInput={setNewInput}
+        onClickButton={handleAdd}
+        bgColor="bg-neutral-50"
+      />
       {list.map((item) => (
         <InputWithButton
           key={item.id}

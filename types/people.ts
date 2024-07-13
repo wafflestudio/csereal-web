@@ -1,4 +1,5 @@
-export type FacultyStatus = 'ACTIVE' | 'INACTIVE' | 'VISITING';
+export const FACULTY_STATUS = ['ACTIVE', 'INACTIVE', 'VISITING'] as const;
+export type FacultyStatus = (typeof FACULTY_STATUS)[number];
 
 // 교수진
 export interface SimpleFaculty {

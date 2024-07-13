@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from 'react';
 
-import { FacultyStatus } from '@/types/people';
+import { FACULTY_STATUS, FacultyStatus } from '@/types/people';
 
 import {
   CreateAction,
@@ -10,6 +10,7 @@ import {
   EditAction,
   EditActionButtons,
 } from './common/ActionButtons';
+import BasicRadioInput from './common/BasicRadioInput';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
 import DynamicTextInputList from './common/DynamicTextInputList';
@@ -72,7 +73,7 @@ export default function FacultyEditor({
         onChange={setContentByKey('academicRank')}
       />
 
-      <Section title="재직 기간" mb="mb-12" titleMb="mb-2" disabled={!isInactiveFaculty}>
+      <Section title="재직 기간" mb="mb-10" titleMb="mb-2" disabled={!isInactiveFaculty}>
         <div className="flex w-[400px]">
           <DateFieldset
             title="시작 날짜"
@@ -134,30 +135,6 @@ const facultyStatusToKo = (value: FacultyStatus) => {
   else return '역대 교수';
 };
 
-function StatusRadio({
-  value,
-  checked,
-  onChange,
-}: {
-  value: FacultyStatus;
-  checked: boolean;
-  onChange: (text: string) => void;
-}) {
-  return (
-    <label className="mb- flex cursor-pointer gap-1 text-md font-medium tracking-wide">
-      <input
-        type="radio"
-        name="status"
-        value={value}
-        checked={checked}
-        className="h-3.5 w-3.5 cursor-pointer appearance-none rounded-full border-2 border-neutral-300 checked:border-[3px] checked:border-white checked:bg-main-orange checked:shadow-[0_0_0_1.3px_#ff6914] hover:border-main-orange checked:hover:border-white"
-        onChange={(e) => onChange(e.target.value)}
-      />
-      <span>{facultyStatusToKo(value)}</span>
-    </label>
-  );
-}
-
 function FacultyStatusFieldset({
   selected,
   onChange,
@@ -168,9 +145,16 @@ function FacultyStatusFieldset({
   return (
     <Fieldset title="구분" mb="mb-11" titleMb="mb-2" required>
       <div className="flex gap-3">
-        <StatusRadio value="ACTIVE" checked={selected === 'ACTIVE'} onChange={onChange} />
-        <StatusRadio value="VISITING" checked={selected === 'VISITING'} onChange={onChange} />
-        <StatusRadio value="INACTIVE" checked={selected === 'INACTIVE'} onChange={onChange} />
+        {FACULTY_STATUS.map((status) => (
+          <BasicRadioInput
+            key={status}
+            value={status}
+            label={facultyStatusToKo(status)}
+            name="status"
+            checked={selected === status}
+            onChange={onChange}
+          />
+        ))}
       </div>
     </Fieldset>
   );
@@ -261,7 +245,7 @@ function EducationsFieldset({
   setEducations: (newEducations: { id: number; value: string }[]) => void;
 }) {
   return (
-    <Fieldset title="학력" mb="mb-5" titleMb="mb-2">
+    <Fieldset title="학력" mb="mb-2.5" titleMb="mb-2">
       <DynamicTextInputList
         list={educations}
         setList={setEducations}
@@ -279,7 +263,7 @@ function ResearchAreasFieldset({
   setResearchAreas: (newAreas: { id: number; value: string }[]) => void;
 }) {
   return (
-    <Fieldset title="연구 분야" mb="mb-5" titleMb="mb-2">
+    <Fieldset title="연구 분야" mb="mb-2.5" titleMb="mb-2">
       <DynamicTextInputList
         list={researchAreas}
         setList={setResearchAreas}
@@ -297,7 +281,7 @@ function CareersFieldset({
   setCareers: (newCareers: { id: number; value: string }[]) => void;
 }) {
   return (
-    <Fieldset title="경력" mb="mb-5" titleMb="mb-2">
+    <Fieldset title="경력" mb="mb-2.5" titleMb="mb-2">
       <DynamicTextInputList
         list={careers}
         setList={setCareers}
