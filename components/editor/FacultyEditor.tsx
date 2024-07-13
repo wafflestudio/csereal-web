@@ -12,7 +12,7 @@ import {
 } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
-import DynamicInputList from './common/DynamicInputList';
+import DynamicTextInputList from './common/DynamicTextInputList';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorImage } from './PostEditorTypes';
@@ -27,8 +27,8 @@ export interface FacultyEditorContent {
   fax: string;
   website: string;
   educations: { id: number; value: string }[];
-  researchAreas: { id: number; text: string }[];
-  careers: { id: number; text: string }[];
+  researchAreas: { id: number; value: string }[];
+  careers: { id: number; value: string }[];
   labId: number;
   labName: string;
   startDate: Date;
@@ -58,13 +58,6 @@ export default function FacultyEditor({
     (value: FacultyEditorContent[T]) => {
       setContent((content) => ({ ...content, [key]: value }));
     };
-
-  const setEducations = (value: { id: number; value: string }[]) => {
-    setContent((prev) => ({
-      ...prev,
-      educations: value,
-    }));
-  };
 
   return (
     <form className="flex flex-col">
@@ -100,7 +93,15 @@ export default function FacultyEditor({
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset value={content.labName} onChange={() => {}} disabled={isInactiveFaculty} />
-        <EducationsFieldset educations={content.educations} setEducations={setEducations} />
+        <EducationsFieldset
+          educations={content.educations}
+          setEducations={setContentByKey('educations')}
+        />
+        <ResearchAreasFieldset
+          researchAreas={content.researchAreas}
+          setResearchAreas={setContentByKey('researchAreas')}
+        />
+        <CareersFieldset careers={content.careers} setCareers={setContentByKey('careers')} />
       </Section>
 
       <Section title="연락처 정보" titleMb="mb-3">
@@ -261,10 +262,46 @@ function EducationsFieldset({
 }) {
   return (
     <Fieldset title="학력" mb="mb-5" titleMb="mb-2">
-      <DynamicInputList
+      <DynamicTextInputList
         list={educations}
         setList={setEducations}
         placeholder="예: 서울대학교 컴퓨터공학 학사 (2003)"
+      />
+    </Fieldset>
+  );
+}
+
+function ResearchAreasFieldset({
+  researchAreas,
+  setResearchAreas,
+}: {
+  researchAreas: { id: number; value: string }[];
+  setResearchAreas: (newAreas: { id: number; value: string }[]) => void;
+}) {
+  return (
+    <Fieldset title="연구 분야" mb="mb-5" titleMb="mb-2">
+      <DynamicTextInputList
+        list={researchAreas}
+        setList={setResearchAreas}
+        placeholder="예: 스마트 디바이스 최적화"
+      />
+    </Fieldset>
+  );
+}
+
+function CareersFieldset({
+  careers,
+  setCareers,
+}: {
+  careers: { id: number; value: string }[];
+  setCareers: (newCareers: { id: number; value: string }[]) => void;
+}) {
+  return (
+    <Fieldset title="경력" mb="mb-5" titleMb="mb-2">
+      <DynamicTextInputList
+        list={careers}
+        setList={setCareers}
+        placeholder="예: 2015.09. - 현재: 전임교수, 서울대학교 컴퓨터공학부"
       />
     </Fieldset>
   );

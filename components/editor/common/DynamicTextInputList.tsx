@@ -2,13 +2,17 @@ import { useState } from 'react';
 
 import BasicTextInput from './BasicTextInput';
 
-interface DynamicInputListProps {
+interface DynamicTextInputListProps {
   list: { id: number; value: string }[];
   setList: (newList: { id: number; value: string }[]) => void;
   placeholder: string;
 }
 
-export default function DynamicInputList({ list, setList, placeholder }: DynamicInputListProps) {
+export default function DynamicTextInputList({
+  list,
+  setList,
+  placeholder,
+}: DynamicTextInputListProps) {
   const [newInput, setNewInput] = useState('');
 
   const handleAdd = () => {
