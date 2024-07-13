@@ -1,9 +1,9 @@
 import Header from '@/components/layout/header/Header';
 
-import { NOT_FOUND_DISABLED } from '@/constants/audit';
+import { AUDIT_404_DISABLED } from '@/constants/audit';
 
 export default function NotFound() {
-  if (NOT_FOUND_DISABLED) return null;
+  if (AUDIT_404_DISABLED) return null;
 
   return (
     <>

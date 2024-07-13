@@ -1,1 +1,2 @@
-export const NOT_FOUND_DISABLED = false;
+export const AUDIT_404_DISABLED = false;
+export const AUDIT_LOCALE_COOKIE_DISABLED = true;
