@@ -1,7 +1,7 @@
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 
-export const LOGIN_URL = 'https://cse.snu.ac.kr/api/v1/login';
-export const LOGOUT_URL = 'https://cse.snu.ac.kr/api/v1/logout';
+export const LOGIN_URL = '/api/v1/login';
+export const LOGOUT_URL = '/api/v1/logout';
 
 // TODO: fine-grained cache로 바꾸기
 export const FETCH_TAG_IMPORANT = 'important';
