@@ -20,6 +20,13 @@ import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorImage } from './PostEditorTypes';
 
 export interface FacultyEditorContent {
+  ko: FacultyEditorContentDetail;
+  en: FacultyEditorContentDetail;
+}
+
+export interface FacultyEditorContentDetail {
+  status: FacultyStatus;
+  language: Locale;
   name: string;
   academicRank: string;
   image: PostEditorImage | null;
@@ -32,14 +39,13 @@ export interface FacultyEditorContent {
   researchAreas: { id: number; value: string }[];
   careers: { id: number; value: string }[];
   labId: number;
-  labName: string;
   startDate: Date;
   endDate: Date;
 }
 
 interface FacultyEditorProps {
   actions: EditAction<FacultyEditorContent> | CreateAction<FacultyEditorContent>;
-  initialContent?: { ko: FacultyEditorContent; en: FacultyEditorContent };
+  initialContent?: FacultyEditorContent;
   initialFacultyStatus: FacultyStatus;
   initialLangauge: Locale;
 }
@@ -53,19 +59,23 @@ export default function FacultyEditor({
   const [language, setLanguage] = useState<Locale>(initialLangauge);
   const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
   const isInactiveFaculty = facultyStatus === 'INACTIVE';
-  const [contentAll, setContentAll] = useState<{
-    ko: FacultyEditorContent;
-    en: FacultyEditorContent;
-  }>({
-    ko: { ...getFacultyEditorDefaultValue() },
-    en: { ...getFacultyEditorDefaultValue() },
+  const [contentAll, setContentAll] = useState<FacultyEditorContent>({
+    ...getFacultyEditorDefaultValue(),
     ...initialContent,
   });
   const content = contentAll[language];
 
+  // status는 한영 공통이므로 마지막에 따로 처리
+  const getcontent = (): FacultyEditorContent => {
+    return {
+      ko: { ...contentAll.ko, status: facultyStatus },
+      en: { ...contentAll.en, status: facultyStatus },
+    };
+  };
+
   const setContentByKey =
-    <T extends keyof FacultyEditorContent>(key: T) =>
-    (value: FacultyEditorContent[T]) => {
+    <T extends keyof FacultyEditorContentDetail>(key: T) =>
+    (value: FacultyEditorContentDetail[T]) => {
       setContentAll((content) => ({
         ...content,
         [language]: { ...content[language], [key]: value },
@@ -104,7 +114,7 @@ export default function FacultyEditor({
       <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
-        <LabFieldset value={content.labName} onChange={() => {}} disabled={isInactiveFaculty} />
+        <LabFieldset value={'임시'} onChange={() => {}} disabled={isInactiveFaculty} />
         <EducationsFieldset
           educations={content.educations}
           setEducations={setContentByKey('educations')}
@@ -128,13 +138,9 @@ export default function FacultyEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons
-            {...actions}
-            getContent={() => content}
-            completeButtonText="추가하기"
-          />
+          <CreateActionButtons {...actions} getContent={getcontent} completeButtonText="추가하기" />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getcontent} />}
       </div>
     </form>
   );
@@ -396,7 +402,9 @@ function Section({ title, mb, titleMb, disabled, children }: SectionProps) {
 }
 
 export const getFacultyEditorDefaultValue = (): FacultyEditorContent => {
-  return {
+  const contentDetailDefaultValue: FacultyEditorContentDetail = {
+    status: 'ACTIVE',
+    language: 'ko',
     name: '',
     academicRank: '',
     image: null,
@@ -409,8 +417,12 @@ export const getFacultyEditorDefaultValue = (): FacultyEditorContent => {
     researchAreas: [],
     careers: [],
     labId: 0,
-    labName: '',
     startDate: new Date(),
     endDate: new Date(),
+  };
+
+  return {
+    ko: contentDetailDefaultValue,
+    en: { ...contentDetailDefaultValue, language: 'en' },
   };
 };

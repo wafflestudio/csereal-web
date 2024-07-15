@@ -36,10 +36,10 @@ export const validateSeminarForm = (content: SeminarEditorContent) => {
 };
 
 export const validateFacultyForm = (content: FacultyEditorContent) => {
-  if (!content.name) {
-    throw new Error('이름을 입력해주세요');
+  if (!(content.ko.name && content.ko.academicRank)) {
+    throw new Error('필수 입력을 완료해주세요');
   }
-  if (!content.academicRank) {
-    throw new Error('직함을 입력해주세요');
+  if (!(content.en.name && content.en.academicRank)) {
+    throw new Error('영문 정보도 입력해주세요');
   }
 };

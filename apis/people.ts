@@ -2,12 +2,15 @@ import {
   EmiritusFaculty,
   Faculty,
   FacultyList,
+  FacultyStatus,
   SimpleEmiritusFaculty,
   SimpleStaff,
   Staff,
 } from '@/types/people';
 
-import { getRequest } from '.';
+import { deleteRequest, getRequest, postRequest, putRequest } from '.';
+
+const facultyPath = '/professor';
 
 export const getActiveFacultyList = (locale: 'en' | 'ko') =>
   getRequest<FacultyList>('/professor/active', { language: locale });
@@ -23,3 +26,17 @@ export const getEmeritusFaculty = (id: number) => getRequest<EmiritusFaculty>(`/
 export const getStaffList = () => getRequest<SimpleStaff[]>('/staff');
 
 export const getStaff = (id: number) => getRequest<Staff>(`/staff/${id}`);
+
+export const postFaculty = async (formData: FormData) => {
+  return postRequest(facultyPath, { body: formData, jsessionID: true }) as Promise<{
+    id: number;
+    status: FacultyStatus;
+  }>;
+};
+
+export const putFaculty = async (id: number, formData: FormData) => {
+  await putRequest(`${facultyPath}/${id}`, { body: formData, jsessionID: true });
+};
+
+export const deleteFaculty = async (id: number) =>
+  deleteRequest(`${facultyPath}/${id}`, { jsessionID: true });
