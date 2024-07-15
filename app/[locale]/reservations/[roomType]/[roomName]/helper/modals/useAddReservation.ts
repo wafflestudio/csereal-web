@@ -103,12 +103,19 @@ const checkSubmit = (body: ReservationPostBody) => {
 
 const handleError = (e: unknown) => {
   if (e instanceof Error) {
-    if (e.message === '409') {
-      errorToast('해당 위치에 이미 예약이 존재합니다.');
-    } else if (e.message === '401') {
-      errorToast('관리자만 예약을 추가할 수 있습니다.');
-    } else {
-      errorToast(e.message);
+    switch (e.message) {
+      case '409':
+        errorToast('해당 위치에 이미 예약이 존재합니다.');
+        break;
+      case '403':
+        errorToast('대학원생은 교수 회의실을 예약할 수 없습니다.');
+        break;
+      case '401':
+        errorToast('관리자만 예약을 추가할 수 있습니다.');
+        break;
+      default:
+        errorToast(e.message);
+        break;
     }
   } else {
     errorToast('알 수 없는 에러');
