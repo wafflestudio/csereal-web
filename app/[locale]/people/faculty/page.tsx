@@ -34,7 +34,7 @@ export default async function FacultyPage({ params }: FacultyPageProps) {
   return (
     <PageLayout title="교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton href={`${facultyPath}/create`} />
+        <CreateButton pathname={`${facultyPath}/create`} status="ACTIVE" />
       </LoginVisible>
       <PeopleGrid contentList={normal} />
       <h3 className="mb-4 mt-12 text-[20px] font-bold">객원교수</h3>

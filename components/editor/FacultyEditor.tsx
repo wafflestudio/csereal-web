@@ -2,7 +2,8 @@
 
 import { ReactNode, useState } from 'react';
 
-import { FACULTY_STATUS, FacultyStatus } from '@/types/people';
+import { Locale, LOCALE, localeToKo } from '@/types/locale';
+import { FACULTY_STATUS, FacultyStatus, facultyStatusToKo } from '@/types/people';
 
 import {
   CreateAction,
@@ -38,34 +39,44 @@ export interface FacultyEditorContent {
 
 interface FacultyEditorProps {
   actions: EditAction<FacultyEditorContent> | CreateAction<FacultyEditorContent>;
-  initialContent?: FacultyEditorContent;
+  initialContent?: { ko: FacultyEditorContent; en: FacultyEditorContent };
   initialFacultyStatus: FacultyStatus;
+  initialLangauge: Locale;
 }
 
 export default function FacultyEditor({
   actions,
   initialContent,
   initialFacultyStatus,
+  initialLangauge,
 }: FacultyEditorProps) {
-  const [content, setContent] = useState<FacultyEditorContent>({
-    ...getFacultyEditorDefaultValue(),
-    ...initialContent,
-  });
+  const [language, setLanguage] = useState<Locale>(initialLangauge);
   const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
   const isInactiveFaculty = facultyStatus === 'INACTIVE';
+  const [contentAll, setContentAll] = useState<{
+    ko: FacultyEditorContent;
+    en: FacultyEditorContent;
+  }>({
+    ko: { ...getFacultyEditorDefaultValue() },
+    en: { ...getFacultyEditorDefaultValue() },
+    ...initialContent,
+  });
+  const content = contentAll[language];
 
   const setContentByKey =
     <T extends keyof FacultyEditorContent>(key: T) =>
     (value: FacultyEditorContent[T]) => {
-      setContent((content) => ({ ...content, [key]: value }));
+      setContentAll((content) => ({
+        ...content,
+        [language]: { ...content[language], [key]: value },
+      }));
     };
 
   return (
     <form className="flex flex-col">
-      <FacultyStatusFieldset
-        selected={facultyStatus}
-        onChange={(text: string) => setFacultyStatus(text as FacultyStatus)}
-      />
+      <FacultyStatusFieldset selected={facultyStatus} onChange={setFacultyStatus} />
+
+      <LangauageFieldset selected={language} onChange={setLanguage} />
 
       <NameFieldset value={content.name} onChange={setContentByKey('name')} />
       <AcademicRankFieldset
@@ -129,18 +140,12 @@ export default function FacultyEditor({
   );
 }
 
-const facultyStatusToKo = (value: FacultyStatus) => {
-  if (value === 'ACTIVE') return '교수';
-  else if (value === 'VISITING') return '객원 교수';
-  else return '역대 교수';
-};
-
 function FacultyStatusFieldset({
   selected,
   onChange,
 }: {
   selected: FacultyStatus;
-  onChange: (text: string) => void;
+  onChange: (status: FacultyStatus) => void;
 }) {
   return (
     <Fieldset title="구분" mb="mb-11" titleMb="mb-2" required>
@@ -157,6 +162,38 @@ function FacultyStatusFieldset({
         ))}
       </div>
     </Fieldset>
+  );
+}
+
+function LangauageFieldset({
+  selected,
+  onChange,
+}: {
+  selected: Locale;
+  onChange: (language: Locale) => void;
+}) {
+  return (
+    <div className="mb-9 flex gap-3">
+      {LOCALE.map((language) => (
+        <span key={language}>
+          <input
+            id={language}
+            type="radio"
+            name="language"
+            value={language}
+            checked={selected === language}
+            className="peer appearance-none"
+            onChange={() => onChange(language)}
+          />
+          <label
+            htmlFor={language}
+            className="cursor-pointer pb-1 font-semibold text-neutral-300 peer-checked:border-b-2 peer-checked:border-b-neutral-800 peer-checked:text-neutral-800"
+          >
+            {localeToKo(language)}
+          </label>
+        </span>
+      ))}
+    </div>
   );
 }
 

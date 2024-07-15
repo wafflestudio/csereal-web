@@ -1,6 +1,17 @@
 export const FACULTY_STATUS = ['ACTIVE', 'INACTIVE', 'VISITING'] as const;
 export type FacultyStatus = (typeof FACULTY_STATUS)[number];
 
+export const facultyStatusToKo = (status: FacultyStatus) => {
+  switch (status) {
+    case 'ACTIVE':
+      return '교수';
+    case 'VISITING':
+      return '객원 교수';
+    case 'INACTIVE':
+      return '역대 교수';
+  }
+};
+
 // 교수진
 export interface SimpleFaculty {
   id: number;
