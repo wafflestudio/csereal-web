@@ -15,8 +15,7 @@ const facultyPath = '/professor';
 export const getActiveFacultyList = (locale: 'en' | 'ko') =>
   getRequest<FacultyList>('/professor/active', { language: locale });
 
-export const getFaculty = (locale: 'en' | 'ko', id: number) =>
-  getRequest<Faculty>(`/professor/${id}`, { language: locale });
+export const getFaculty = (id: number) => getRequest<Faculty>(`/professor/${id}`);
 
 export const getEmeritusFacultyList = () =>
   getRequest<SimpleEmiritusFaculty[]>('/professor/inactive');

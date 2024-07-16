@@ -1,9 +1,12 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+
+import { getResearchLabsAction } from '@/actions/research';
 
 import { Locale, LOCALE, localeToKo } from '@/types/locale';
 import { FACULTY_STATUS, FacultyStatus, facultyStatusToKo } from '@/types/people';
+import { SimpleResearchLab } from '@/types/research';
 
 import {
   CreateAction,
@@ -18,6 +21,7 @@ import DynamicTextInputList from './common/DynamicTextInputList';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorImage } from './PostEditorTypes';
+import Dropdown from '../common/form/Dropdown';
 
 export interface FacultyEditorContent {
   ko: FacultyEditorContentDetail;
@@ -38,7 +42,7 @@ export interface FacultyEditorContentDetail {
   educations: { id: number; value: string }[];
   researchAreas: { id: number; value: string }[];
   careers: { id: number; value: string }[];
-  labId: number;
+  labId: number | null;
   startDate: Date;
   endDate: Date;
 }
@@ -64,6 +68,10 @@ export default function FacultyEditor({
     ...initialContent,
   });
   const content = contentAll[language];
+  const [labs, setLabs] = useState<{ ko: SimpleResearchLab[]; en: SimpleResearchLab[] }>({
+    ko: [],
+    en: [],
+  });
 
   // status는 한영 공통이므로 마지막에 따로 처리
   const getcontent = (): FacultyEditorContent => {
@@ -81,6 +89,16 @@ export default function FacultyEditor({
         [language]: { ...content[language], [key]: value },
       }));
     };
+
+  useEffect(() => {
+    (async () => {
+      const [koRes, enRes] = await Promise.all([
+        getResearchLabsAction('ko'),
+        getResearchLabsAction('en'),
+      ]);
+      setLabs({ ko: koRes, en: enRes });
+    })();
+  }, []);
 
   return (
     <form className="flex flex-col">
@@ -114,7 +132,12 @@ export default function FacultyEditor({
       <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
-        <LabFieldset value={'임시'} onChange={() => {}} disabled={isInactiveFaculty} />
+        <LabFieldset
+          labs={labs[language]}
+          selected={content.labId}
+          onChange={setContentByKey('labId')}
+          disabled={isInactiveFaculty}
+        />
         <EducationsFieldset
           educations={content.educations}
           setEducations={setContentByKey('educations')}
@@ -260,21 +283,29 @@ function ImageFieldset({ file, setFile }: ImagePickerProps) {
 }
 
 function LabFieldset({
-  value,
+  labs,
+  selected,
   onChange,
   disabled,
 }: {
-  value: string;
-  onChange: (text: string) => void;
+  labs: SimpleResearchLab[];
+  selected: number | null;
+  onChange: (id: number | null) => void;
   disabled: boolean;
 }) {
+  const getSelectedIndex = () => {
+    const idx = labs.findIndex((e) => e.id === selected);
+    return idx === -1 ? 0 : idx + 1;
+  };
+
   return (
     <Fieldset title="연구실" mb="mb-5" titleMb="mb-2" className={disabled ? 'opacity-30' : ''}>
-      <BasicTextInput
-        value={value}
-        onChange={onChange}
-        maxWidth="max-w-[25rem]"
-        disabled={disabled}
+      <Dropdown
+        contents={['선택 안 함', ...labs.map((lab) => lab.name)]}
+        selectedIndex={getSelectedIndex()}
+        onClick={(i) => {
+          onChange(i === 0 ? null : labs[i - 1].id);
+        }}
       />
     </Fieldset>
   );

@@ -16,7 +16,7 @@ export default function CurriculumBody({ curriculumList }: { curriculumList: Cur
   return (
     <>
       <div className="mt-8 flex flex-row items-center gap-2">
-        <p className=" text-sm font-normal">입학연도</p>
+        <p className="text-sm font-normal">입학연도</p>
         <Dropdown contents={dropdownContents} selectedIndex={index} onClick={setIndex} />
       </div>
       <HTMLViewer htmlContent={html} className="mt-7" />
