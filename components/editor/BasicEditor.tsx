@@ -8,6 +8,8 @@ import { isContentEmpty } from '@/utils/post';
 
 import { EditAction, EditActionButtons } from './common/ActionButtons';
 import Fieldset from './common/Fieldset';
+import FilePicker, { FilePickerProps } from './common/FilePicker';
+import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import { PostEditorFile, PostEditorImage } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -17,13 +19,15 @@ const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
 
 export interface BasicEditorContent {
   description: string;
-  mainImage?: PostEditorImage;
-  attachments?: PostEditorFile[];
+  mainImage: PostEditorImage;
+  attachments: PostEditorFile[];
 }
 
 interface BasicPostEditorProps {
   actions: EditAction<BasicEditorContent>;
   initialContent: BasicEditorContent;
+  showMainImage?: boolean;
+  showAttachments?: boolean;
 }
 
 const defaultContent: BasicEditorContent = {
@@ -32,9 +36,14 @@ const defaultContent: BasicEditorContent = {
   attachments: [],
 };
 
-export default function BasicEditor({ actions, initialContent }: BasicPostEditorProps) {
+export default function BasicEditor({
+  actions,
+  initialContent,
+  showMainImage = false,
+  showAttachments = false,
+}: BasicPostEditorProps) {
   const editorRef = useRef<SunEditorCore>();
-  const [content] = useState<BasicEditorContent>({
+  const [content, setContent] = useState<BasicEditorContent>({
     ...defaultContent,
     ...initialContent,
   });
@@ -47,15 +56,28 @@ export default function BasicEditor({ actions, initialContent }: BasicPostEditor
     return { ...content, description };
   };
 
-  // TODO: mainImage 관련 로직
-  // TODO: attachments 관련 로직
-
   return (
     <form className="flex flex-col">
       <div className="mb-6 flex gap-3">
         <EditActionButtons {...actions} getContent={getContent} />
       </div>
       <EditorFieldset editorRef={editorRef} initialContent={content.description} />
+      {showMainImage && (
+        <ImageFieldset
+          file={content.mainImage}
+          setFile={(file) => {
+            setContent((prev) => ({ ...prev, mainImage: file }));
+          }}
+        />
+      )}
+      {showAttachments && (
+        <FileFieldset
+          files={content.attachments}
+          setFiles={(dispatch) => {
+            setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
+          }}
+        />
+      )}
     </form>
   );
 }
@@ -70,6 +92,25 @@ function EditorFieldset({
   return (
     <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
       <SunEditorWrapper editorRef={editorRef} initialContent={initialContent} />
+    </Fieldset>
+  );
+}
+
+function ImageFieldset({ file, setFile }: ImagePickerProps) {
+  return (
+    <Fieldset title="사진" mb="mb-12" titleMb="mb-2">
+      <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
+        글 우측 상단에 들어가는 이미지입니다.
+      </label>
+      <ImagePicker file={file} setFile={setFile} />
+    </Fieldset>
+  );
+}
+
+function FileFieldset({ files, setFiles }: FilePickerProps) {
+  return (
+    <Fieldset title="첨부파일" mb="mb-6" titleMb="mb-3">
+      <FilePicker files={files} setFiles={setFiles} />
     </Fieldset>
   );
 }
