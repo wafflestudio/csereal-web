@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { getIsStaff } from './actions/session';
+import { AUDIT_LOCALE_COOKIE_DISABLED } from './constants/audit';
 import { LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware({
@@ -12,6 +13,8 @@ const handleI18nRouting = createMiddleware({
   defaultLocale: 'ko',
 
   localePrefix: 'as-needed',
+
+  localeDetection: !AUDIT_LOCALE_COOKIE_DISABLED,
 });
 
 const isAuthRequired = (pathname: string) => {

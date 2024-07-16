@@ -64,7 +64,7 @@ export const moreLinks: FooterLink[] = [
   },
 ];
 
-export const privacyPath = '/privacy-policy';
+export const privacyPath = 'https://www.snu.ac.kr/personal_information';
 
 export const contactPath = getPath(contact);
 
