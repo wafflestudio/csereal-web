@@ -3,9 +3,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
     img-src 'self' blob: data:;
-    font-src 'self';
+    font-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
