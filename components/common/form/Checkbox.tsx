@@ -32,7 +32,7 @@ export default function Checkbox({
           !disabled && 'group-active:text-main-orange'
         }`}
       >
-        {convertStrToHtmlCode(label)}
+        {label}
       </span>
       <input
         type="checkbox"
@@ -47,12 +47,3 @@ export default function Checkbox({
     </label>
   );
 }
-
-const convertStrToHtmlCode = (text: string) => {
-  switch (text) {
-    case '(':
-      return '&#40;';
-    default:
-      return text;
-  }
-};
