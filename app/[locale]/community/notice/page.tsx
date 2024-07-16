@@ -28,6 +28,9 @@ export default async function NoticePage({ searchParams }: NoticePageParams) {
     notFound();
   }
 
+  console.log(searchParams);
+
+  console.log(searchParams.pageNum);
   const data = await getNoticePosts(searchParams);
 
   return (

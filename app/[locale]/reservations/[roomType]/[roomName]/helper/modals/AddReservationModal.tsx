@@ -59,7 +59,12 @@ const PrivacyFieldset = ({
           </p>
         </div>
 
-        <Link className="text-neutral-400" href="/reservations/privacy-policy" target="_blank">
+        <Link
+          className="text-neutral-400"
+          href="/reservations/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           보러가기
           <span className="material-symbols-outlined translate-y-[3px] text-base">
             chevron_right
