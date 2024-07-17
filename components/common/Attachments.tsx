@@ -29,6 +29,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
       href={url}
       download={name}
       target="_blank"
+      rel="noopener noreferrer"
     >
       <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
       <span>({kilobyte / 10}KB)</span>
