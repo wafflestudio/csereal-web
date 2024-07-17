@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getResearchLabsAction } from '@/actions/research';
 
@@ -20,6 +20,7 @@ import DateSelector from './common/DateSelector';
 import DynamicTextInputList from './common/DynamicTextInputList';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+import Section from './common/Section';
 import { PostEditorImage } from './PostEditorTypes';
 import Dropdown from '../common/form/Dropdown';
 
@@ -412,23 +413,6 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
     <Fieldset title="웹사이트 URL" mb="mb-5" titleMb="mb-2">
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[25rem]" />
     </Fieldset>
-  );
-}
-
-interface SectionProps {
-  title: string;
-  mb?: string;
-  titleMb: string;
-  disabled?: boolean;
-  children: ReactNode;
-}
-
-function Section({ title, mb, titleMb, disabled, children }: SectionProps) {
-  return (
-    <div className={`${mb} ${disabled && 'opacity-30'}`}>
-      <div className={`mb-3 text-md font-semibold tracking-wide ${titleMb}`}>{title}</div>
-      {children}
-    </div>
   );
 }
 

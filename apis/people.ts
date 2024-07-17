@@ -11,6 +11,7 @@ import {
 import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 
 const facultyPath = '/professor';
+const staffPath = '/staff';
 
 export const getActiveFacultyList = (locale: 'en' | 'ko') =>
   getRequest<FacultyList>('/professor/active', { language: locale });
@@ -39,3 +40,16 @@ export const putFaculty = async (id: number, formData: FormData) => {
 
 export const deleteFaculty = async (id: number) =>
   deleteRequest(`${facultyPath}/${id}`, { jsessionID: true });
+
+export const postStaff = async (formData: FormData) => {
+  return postRequest(staffPath, { body: formData, jsessionID: true }) as Promise<{
+    id: number;
+  }>;
+};
+
+export const putStaff = async (id: number, formData: FormData) => {
+  await putRequest(`${staffPath}/${id}`, { body: formData, jsessionID: true });
+};
+
+export const deleteStaff = async (id: number) =>
+  deleteRequest(`${staffPath}/${id}`, { jsessionID: true });
