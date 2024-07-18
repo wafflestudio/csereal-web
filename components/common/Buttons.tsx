@@ -7,7 +7,7 @@ export function GrayButton({
 }: {
   title: string;
   disabled?: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <button

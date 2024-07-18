@@ -12,11 +12,11 @@ import { faculty } from '@/utils/segmentNode';
 const facultyPath = getPath(faculty);
 
 export default function FacultyEditPageContent({
-  locale,
+  language,
   id,
   data,
 }: {
-  locale: Language;
+  language: Language;
   id: { ko: number; en: number };
   data: Faculty;
 }) {
@@ -41,20 +41,21 @@ export default function FacultyEditPageContent({
     endDate: new Date(),
   };
 
-  const handleCancel = () => router.push(`${facultyPath}/${id[locale]}`);
+  const handleCancel = () => router.push(`${facultyPath}/${id[language]}`);
 
   const handleComplete = async () => {};
 
   return (
     <PageLayout title="교수진 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <FacultyEditor
+        // TODO: 영어 데이터 api 정해지면 en도 별도로 생성
         initialContent={{ ko: initialContent, en: initialContent }}
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
           onComplete: handleComplete,
         }}
-        initialLangauge={locale}
+        initialLangauge={language}
         initialFacultyStatus="ACTIVE"
       />
     </PageLayout>

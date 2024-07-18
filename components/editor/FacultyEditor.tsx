@@ -61,10 +61,9 @@ export default function FacultyEditor({
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
   const isInactiveFaculty = facultyStatus === 'INACTIVE';
-  const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>({
-    ...getFacultyEditorDefaultValue(),
-    ...initialContent,
-  });
+  const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>(
+    initialContent || getFacultyEditorDefaultValue(),
+  );
   const currLangContent = content[language];
   const [labs, setLabs] = useState<{ ko: SimpleResearchLab[]; en: SimpleResearchLab[] }>({
     ko: [],
@@ -416,8 +415,8 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-export const getFacultyEditorDefaultValue = (): WithLanguage<FacultyEditorContent> => {
-  const contentDetailDefaultValue: FacultyEditorContent = {
+const getFacultyEditorDefaultValue = (): WithLanguage<FacultyEditorContent> => {
+  const koContentDefaultValue: FacultyEditorContent = {
     status: 'ACTIVE',
     language: 'ko',
     name: '',
@@ -437,7 +436,7 @@ export const getFacultyEditorDefaultValue = (): WithLanguage<FacultyEditorConten
   };
 
   return {
-    ko: contentDetailDefaultValue,
-    en: { ...contentDetailDefaultValue, language: 'en' },
+    ko: koContentDefaultValue,
+    en: { ...koContentDefaultValue, language: 'en' },
   };
 };

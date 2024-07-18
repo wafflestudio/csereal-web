@@ -10,7 +10,7 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 
-import CreateButton from '../helper/CreateButton';
+import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 

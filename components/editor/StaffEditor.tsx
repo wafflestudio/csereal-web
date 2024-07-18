@@ -42,15 +42,12 @@ export default function StaffEditor({
   initialLangauge,
 }: StaffEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
-  const [content, setContent] = useState<WithLanguage<StaffEditorContent>>({
-    ...getStaffEditorDefaultValue(),
-    ...initialContent,
-  });
+  const [content, setContent] = useState<WithLanguage<StaffEditorContent>>(
+    initialContent || getStaffEditorDefaultValue(),
+  );
   const currLangContent = content[language];
 
-  const getcontent = (): WithLanguage<StaffEditorContent> => {
-    return content;
-  };
+  const getcontent = () => content;
 
   const setContentByKey =
     <T extends keyof StaffEditorContent>(key: T) =>

@@ -5,9 +5,7 @@ import { useTranslations } from 'next-intl';
 import { deleteFacultyAction } from '@/actions/people';
 import { Link } from '@/navigation';
 
-import HeaderAndList from '@/app/[locale]/people/helper/HeaderAndList';
-import Profile from '@/app/[locale]/people/helper/Profile';
-
+import LoginVisible from '@/components/common/LoginVisible';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -16,8 +14,10 @@ import { Faculty } from '@/types/people';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
-import DeleteEditButtons from '../../helper/AdminFeatures';
+import { DeleteButton, EditButton } from '../../helper/AdminButtons';
+import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
+import Profile from '../../helper/Profile';
 
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
@@ -56,8 +56,13 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
           <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
           <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
         </div>
-        <DeleteEditButtons onDelete={handleDelete} editHref={`${facultyPath}/${faculty.id}/edit`} />
       </div>
+      <LoginVisible staff>
+        <div className="flex gap-3">
+          <DeleteButton onDelete={handleDelete} />
+          <EditButton href={`${facultyPath}/${faculty.id}/edit`} />
+        </div>
+      </LoginVisible>
     </PageLayout>
   );
 }

@@ -16,5 +16,6 @@ export default async function FacultyEditPage({
 
   const data = await getFaculty(id);
 
-  return <FacultyEditPageContent data={data} locale={locale} id={{ ko: id, en: id }} />;
+  // TODO: 영어 데이터 같이 오는 형식 확정되면 해당 사항 반영해서 data 타입 수정
+  return <FacultyEditPageContent data={data} language={locale} id={{ ko: id, en: id }} />;
 }
