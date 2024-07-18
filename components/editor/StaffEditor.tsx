@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Locale, LOCALE, localeToKo } from '@/types/locale';
+import { Language, LANGUAGE, localeToKo, WithLanguage } from '@/types/language';
 
 import {
   CreateAction,
@@ -18,11 +18,6 @@ import Section from './common/Section';
 import { PostEditorImage } from './PostEditorTypes';
 
 export interface StaffEditorContent {
-  ko: StaffEditorContentDetail;
-  en: StaffEditorContentDetail;
-}
-
-export interface StaffEditorContentDetail {
   language: string;
   name: string;
   role: string;
@@ -34,9 +29,11 @@ export interface StaffEditorContentDetail {
 }
 
 interface StaffEditorProps {
-  actions: EditAction<StaffEditorContent> | CreateAction<StaffEditorContent>;
-  initialContent?: StaffEditorContent;
-  initialLangauge: Locale;
+  actions:
+    | EditAction<WithLanguage<StaffEditorContent>>
+    | CreateAction<WithLanguage<StaffEditorContent>>;
+  initialContent?: WithLanguage<StaffEditorContent>;
+  initialLangauge: Language;
 }
 
 export default function StaffEditor({
@@ -44,21 +41,21 @@ export default function StaffEditor({
   initialContent,
   initialLangauge,
 }: StaffEditorProps) {
-  const [language, setLanguage] = useState<Locale>(initialLangauge);
-  const [contentAll, setContentAll] = useState<StaffEditorContent>({
+  const [language, setLanguage] = useState<Language>(initialLangauge);
+  const [content, setContent] = useState<WithLanguage<StaffEditorContent>>({
     ...getStaffEditorDefaultValue(),
     ...initialContent,
   });
-  const content = contentAll[language];
+  const currLangContent = content[language];
 
-  const getcontent = (): StaffEditorContent => {
-    return contentAll;
+  const getcontent = (): WithLanguage<StaffEditorContent> => {
+    return content;
   };
 
   const setContentByKey =
-    <T extends keyof StaffEditorContentDetail>(key: T) =>
-    (value: StaffEditorContentDetail[T]) => {
-      setContentAll((content) => ({
+    <T extends keyof StaffEditorContent>(key: T) =>
+    (value: StaffEditorContent[T]) => {
+      setContent((content) => ({
         ...content,
         [language]: { ...content[language], [key]: value },
       }));
@@ -68,17 +65,17 @@ export default function StaffEditor({
     <form className="flex flex-col">
       <LangauageFieldset selected={language} onChange={setLanguage} />
 
-      <NameFieldset value={content.name} onChange={setContentByKey('name')} />
-      <RoleFieldset value={content.role} onChange={setContentByKey('role')} />
-      <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
+      <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
+      <RoleFieldset value={currLangContent.role} onChange={setContentByKey('role')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
 
-      <Section title="연락처 정보" titleMb="mb-3">
-        <OfficeFieldset value={content.office} onChange={setContentByKey('office')} />
-        <PhoneFieldset value={content.phone} onChange={setContentByKey('phone')} />
-        <EmailFieldset value={content.email} onChange={setContentByKey('email')} />
+      <Section title="연락처 정보" titleMb="mb-3" mb="mb-12">
+        <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
+        <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
       </Section>
 
-      <TasksFieldset tasks={content.tasks} setTasks={setContentByKey('tasks')} />
+      <TasksFieldset tasks={currLangContent.tasks} setTasks={setContentByKey('tasks')} />
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
@@ -94,12 +91,12 @@ function LangauageFieldset({
   selected,
   onChange,
 }: {
-  selected: Locale;
-  onChange: (language: Locale) => void;
+  selected: Language;
+  onChange: (language: Language) => void;
 }) {
   return (
     <div className="mb-9 flex gap-3">
-      {LOCALE.map((language) => (
+      {LANGUAGE.map((language) => (
         <span key={language}>
           <input
             id={language}
@@ -182,7 +179,7 @@ function PhoneFieldset({ value, onChange }: { value: string; onChange: (text: st
 
 function EmailFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="이메일" mb="mb-5" titleMb="mb-2" required>
+    <Fieldset title="이메일" titleMb="mb-2" required>
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[25rem]" />
     </Fieldset>
   );
@@ -206,8 +203,8 @@ function TasksFieldset({
   );
 }
 
-export const getStaffEditorDefaultValue = (): StaffEditorContent => {
-  const contentDetailDefaultValue: StaffEditorContentDetail = {
+export const getStaffEditorDefaultValue = (): WithLanguage<StaffEditorContent> => {
+  const contentDetailDefaultValue: StaffEditorContent = {
     language: 'ko',
     name: '',
     image: null,

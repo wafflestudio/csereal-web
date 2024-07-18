@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { getResearchLabsAction } from '@/actions/research';
 
-import { Locale, LOCALE, localeToKo } from '@/types/locale';
+import { Language, LANGUAGE, localeToKo, WithLanguage } from '@/types/language';
 import { FACULTY_STATUS, FacultyStatus, facultyStatusToKo } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
@@ -25,13 +25,8 @@ import { PostEditorImage } from './PostEditorTypes';
 import Dropdown from '../common/form/Dropdown';
 
 export interface FacultyEditorContent {
-  ko: FacultyEditorContentDetail;
-  en: FacultyEditorContentDetail;
-}
-
-export interface FacultyEditorContentDetail {
   status: FacultyStatus;
-  language: Locale;
+  language: Language;
   name: string;
   academicRank: string;
   image: PostEditorImage | null;
@@ -49,10 +44,12 @@ export interface FacultyEditorContentDetail {
 }
 
 interface FacultyEditorProps {
-  actions: EditAction<FacultyEditorContent> | CreateAction<FacultyEditorContent>;
-  initialContent?: FacultyEditorContent;
+  actions:
+    | EditAction<WithLanguage<FacultyEditorContent>>
+    | CreateAction<WithLanguage<FacultyEditorContent>>;
+  initialContent?: WithLanguage<FacultyEditorContent>;
   initialFacultyStatus: FacultyStatus;
-  initialLangauge: Locale;
+  initialLangauge: Language;
 }
 
 export default function FacultyEditor({
@@ -61,31 +58,31 @@ export default function FacultyEditor({
   initialFacultyStatus,
   initialLangauge,
 }: FacultyEditorProps) {
-  const [language, setLanguage] = useState<Locale>(initialLangauge);
+  const [language, setLanguage] = useState<Language>(initialLangauge);
   const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
   const isInactiveFaculty = facultyStatus === 'INACTIVE';
-  const [contentAll, setContentAll] = useState<FacultyEditorContent>({
+  const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>({
     ...getFacultyEditorDefaultValue(),
     ...initialContent,
   });
-  const content = contentAll[language];
+  const currLangContent = content[language];
   const [labs, setLabs] = useState<{ ko: SimpleResearchLab[]; en: SimpleResearchLab[] }>({
     ko: [],
     en: [],
   });
 
-  // status는 한영 공통이므로 마지막에 따로 처리
-  const getcontent = (): FacultyEditorContent => {
+  // status는 한영 공통이므로 마지막에 따로 처리 (매번 한영 모두 바꾸는 것보다 한번에 처리하는 게 낫다고 판단)
+  const getcontent = (): WithLanguage<FacultyEditorContent> => {
     return {
-      ko: { ...contentAll.ko, status: facultyStatus },
-      en: { ...contentAll.en, status: facultyStatus },
+      ko: { ...content.ko, status: facultyStatus },
+      en: { ...content.en, status: facultyStatus },
     };
   };
 
   const setContentByKey =
-    <T extends keyof FacultyEditorContentDetail>(key: T) =>
-    (value: FacultyEditorContentDetail[T]) => {
-      setContentAll((content) => ({
+    <T extends keyof FacultyEditorContent>(key: T) =>
+    (value: FacultyEditorContent[T]) => {
+      setContent((content) => ({
         ...content,
         [language]: { ...content[language], [key]: value },
       }));
@@ -107,9 +104,9 @@ export default function FacultyEditor({
 
       <LangauageFieldset selected={language} onChange={setLanguage} />
 
-      <NameFieldset value={content.name} onChange={setContentByKey('name')} />
+      <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <AcademicRankFieldset
-        value={content.academicRank}
+        value={currLangContent.academicRank}
         onChange={setContentByKey('academicRank')}
       />
 
@@ -117,47 +114,50 @@ export default function FacultyEditor({
         <div className="flex w-[400px]">
           <DateFieldset
             title="시작 날짜"
-            value={content.startDate}
+            value={currLangContent.startDate}
             onChange={setContentByKey('startDate')}
             disabled={!isInactiveFaculty}
           />
           <DateFieldset
             title="종료 날짜"
-            value={content.endDate}
+            value={currLangContent.endDate}
             onChange={setContentByKey('endDate')}
             disabled={!isInactiveFaculty}
           />
         </div>
       </Section>
 
-      <ImageFieldset file={content.image} setFile={setContentByKey('image')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset
           labs={labs[language]}
-          selected={content.labId}
+          selected={currLangContent.labId}
           onChange={setContentByKey('labId')}
           disabled={isInactiveFaculty}
         />
         <EducationsFieldset
-          educations={content.educations}
+          educations={currLangContent.educations}
           setEducations={setContentByKey('educations')}
         />
         <ResearchAreasFieldset
-          researchAreas={content.researchAreas}
+          researchAreas={currLangContent.researchAreas}
           setResearchAreas={setContentByKey('researchAreas')}
         />
-        <CareersFieldset careers={content.careers} setCareers={setContentByKey('careers')} />
+        <CareersFieldset
+          careers={currLangContent.careers}
+          setCareers={setContentByKey('careers')}
+        />
       </Section>
 
       <Section title="연락처 정보" titleMb="mb-3">
-        <OfficeFieldset value={content.office} onChange={setContentByKey('office')} />
+        <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
         <div className="flex w-[42rem]">
-          <PhoneFieldset value={content.phone} onChange={setContentByKey('phone')} />
-          <FaxFieldset value={content.fax} onChange={setContentByKey('fax')} />
+          <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
+          <FaxFieldset value={currLangContent.fax} onChange={setContentByKey('fax')} />
         </div>
-        <EmailFieldset value={content.email} onChange={setContentByKey('email')} />
-        <WebsiteFieldset value={content.website} onChange={setContentByKey('website')} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
+        <WebsiteFieldset value={currLangContent.website} onChange={setContentByKey('website')} />
       </Section>
 
       <div className="mt-5 flex gap-3 self-end">
@@ -199,12 +199,12 @@ function LangauageFieldset({
   selected,
   onChange,
 }: {
-  selected: Locale;
-  onChange: (language: Locale) => void;
+  selected: Language;
+  onChange: (language: Language) => void;
 }) {
   return (
     <div className="mb-9 flex gap-3">
-      {LOCALE.map((language) => (
+      {LANGUAGE.map((language) => (
         <span key={language}>
           <input
             id={language}
@@ -416,8 +416,8 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-export const getFacultyEditorDefaultValue = (): FacultyEditorContent => {
-  const contentDetailDefaultValue: FacultyEditorContentDetail = {
+export const getFacultyEditorDefaultValue = (): WithLanguage<FacultyEditorContent> => {
+  const contentDetailDefaultValue: FacultyEditorContent = {
     status: 'ACTIVE',
     language: 'ko',
     name: '',

@@ -3,14 +3,10 @@
 import { postStaffAction } from '@/actions/people';
 import { useRouter } from '@/navigation';
 
-import { isLocalImage } from '@/components/editor/PostEditorTypes';
-import StaffEditor, {
-  StaffEditorContent,
-  StaffEditorContentDetail,
-} from '@/components/editor/StaffEditor';
+import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language, WithLanguage } from '@/types/language';
 
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
@@ -18,17 +14,14 @@ import { staff } from '@/utils/segmentNode';
 
 const staffPath = getPath(staff);
 
-export default function StaffCreatePage({ params: { locale } }: { params: { locale: Locale } }) {
+export default function StaffCreatePage({ params: { locale } }: { params: { locale: Language } }) {
   const router = useRouter();
 
   const handleCancel = () => router.push(staffPath);
 
-  const handleComplete = async (content: StaffEditorContent) => {
-    console.log(content);
+  const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
     validateStaffForm(content);
-    const formDataKo = contentToFormData(content.ko);
-    const formDataEn = contentToFormData(content.en);
-    postStaffAction({ ko: formDataKo, en: formDataEn });
+    postStaffAction();
   };
 
   return (
@@ -40,35 +33,3 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
     </PageLayout>
   );
 }
-
-const contentToFormData = (content: StaffEditorContentDetail) => {
-  const image = content.image && isLocalImage(content.image) ? content.image.file : null;
-
-  const formData = new FormData();
-
-  formData.append(
-    'request',
-    new Blob(
-      [
-        JSON.stringify({
-          language: content.language,
-          name: content.name,
-          role: content.role,
-          phone: content.phone,
-          email: content.email,
-          office: content.office,
-          tasks: content.tasks.map((task) => task.value),
-        }),
-      ],
-      {
-        type: 'application/json',
-      },
-    ),
-  );
-
-  if (image) {
-    formData.append('mainImage', image);
-  }
-
-  return formData;
-};

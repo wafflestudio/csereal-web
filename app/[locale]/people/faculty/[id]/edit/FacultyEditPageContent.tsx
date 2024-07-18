@@ -1,9 +1,9 @@
 import { useRouter } from '@/navigation';
 
-import FacultyEditor, { FacultyEditorContentDetail } from '@/components/editor/FacultyEditor';
+import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 import { Faculty } from '@/types/people';
 
 import { getPath } from '@/utils/page';
@@ -16,13 +16,13 @@ export default function FacultyEditPageContent({
   id,
   data,
 }: {
-  locale: Locale;
+  locale: Language;
   id: { ko: number; en: number };
   data: Faculty;
 }) {
   const router = useRouter();
 
-  const initialContent: FacultyEditorContentDetail = {
+  const initialContent: FacultyEditorContent = {
     name: data.name,
     academicRank: data.academicRank,
     careers: data.careers?.map((career, i) => ({ id: i, value: career })) ?? [],

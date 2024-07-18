@@ -1,16 +1,8 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
 
-import {
-  deleteFaculty,
-  deleteStaff,
-  postFaculty,
-  postStaff,
-  putFaculty,
-  putStaff,
-} from '@/apis/people';
+import { redirect } from '@/navigation';
 
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
 
@@ -23,42 +15,33 @@ const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
 const staffPath = getPath(staff);
 
-export const postFacultyAction = withErrorHandler(
-  async (formData: { ko: FormData; en: FormData }) => {
-    const [koResp] = await Promise.all([postFaculty(formData.ko), postFaculty(formData.en)]);
-    revalidateTag(FETCH_TAG_FACULTY);
-    redirect(`${koResp.status === 'INACTIVE' ? emeritusFacultyPath : facultyPath}/${koResp.id}`);
-  },
-);
+export const postFacultyAction = withErrorHandler(async () => {
+  const mockResp = { status: 'ACTIVE', id: 3 }; // 임시
+  revalidateTag(FETCH_TAG_FACULTY);
+  redirect(`${mockResp.status === 'INACTIVE' ? emeritusFacultyPath : facultyPath}/${mockResp.id}`);
+});
 
-export const putFacultyAction = withErrorHandler(async (id: number, formData: FormData) => {
-  await putFaculty(id, formData);
+export const putFacultyAction = withErrorHandler(async (id: number) => {
   revalidateTag(FETCH_TAG_FACULTY);
   redirect(`${facultyPath}/${id}`);
 });
 
-export const deleteFacultyAction = withErrorHandler(async (id: { ko: number; en: number }) => {
-  await Promise.all([deleteFaculty(id.ko), deleteFaculty(id.en)]);
+export const deleteFacultyAction = withErrorHandler(async () => {
   revalidateTag(FETCH_TAG_FACULTY);
   redirect(facultyPath);
 });
 
-export const postStaffAction = withErrorHandler(
-  async (formData: { ko: FormData; en: FormData }) => {
-    await Promise.all([postStaff(formData.ko), postStaff(formData.en)]);
-    revalidateTag(FETCH_TAG_STAFF);
-    redirect(staffPath);
-  },
-);
+export const postStaffAction = withErrorHandler(async () => {
+  revalidateTag(FETCH_TAG_STAFF);
+  redirect(staffPath);
+});
 
-export const putStaffAction = withErrorHandler(async (id: number, formData: FormData) => {
-  await putStaff(id, formData);
+export const putStaffAction = withErrorHandler(async (id: number) => {
   revalidateTag(FETCH_TAG_STAFF);
   redirect(`${staffPath}/${id}`);
 });
 
-export const deleteStaffAction = withErrorHandler(async (id: { ko: number; en: number }) => {
-  await Promise.all([deleteStaff(id.ko), deleteStaff(id.en)]);
+export const deleteStaffAction = withErrorHandler(async () => {
   revalidateTag(FETCH_TAG_STAFF);
   redirect(staffPath);
 });

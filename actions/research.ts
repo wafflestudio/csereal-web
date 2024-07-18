@@ -2,8 +2,8 @@
 
 import { getResearchLabs } from '@/apis/research';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 
-export const getResearchLabsAction = async (locale: Locale) => {
+export const getResearchLabsAction = async (locale: Language) => {
   return await getResearchLabs(locale);
 };

@@ -3,7 +3,7 @@ import { getActiveFacultyList } from '@/apis/people';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
@@ -22,7 +22,7 @@ const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
 interface FacultyPageProps {
-  params: { locale: Locale };
+  params: { locale: Language };
 }
 
 export default async function FacultyPage({ params }: FacultyPageProps) {

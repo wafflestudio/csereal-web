@@ -1,3 +1,4 @@
+import { Language } from '@/types/language';
 import {
   EmiritusFaculty,
   Faculty,
@@ -13,17 +14,18 @@ import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 const facultyPath = '/professor';
 const staffPath = '/staff';
 
-export const getActiveFacultyList = (locale: 'en' | 'ko') =>
-  getRequest<FacultyList>('/professor/active', { language: locale });
+export const getActiveFacultyList = (language: Language) =>
+  getRequest<FacultyList>('/professor/active', { language });
 
 export const getFaculty = (id: number) => getRequest<Faculty>(`/professor/${id}`);
 
-export const getEmeritusFacultyList = () =>
-  getRequest<SimpleEmiritusFaculty[]>('/professor/inactive');
+export const getEmeritusFacultyList = (language: Language) =>
+  getRequest<SimpleEmiritusFaculty[]>('/professor/inactive', { language });
 
 export const getEmeritusFaculty = (id: number) => getRequest<EmiritusFaculty>(`/professor/${id}`);
 
-export const getStaffList = () => getRequest<SimpleStaff[]>('/staff');
+export const getStaffList = (language: Language) =>
+  getRequest<SimpleStaff[]>('/staff', { language });
 
 export const getStaff = (id: number) => getRequest<Staff>(`/staff/${id}`);
 

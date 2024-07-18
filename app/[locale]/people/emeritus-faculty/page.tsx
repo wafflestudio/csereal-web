@@ -3,6 +3,7 @@ import { getEmeritusFacultyList } from '@/apis/people';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Language } from '@/types/language';
 import { SimpleEmiritusFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
@@ -13,15 +14,21 @@ import CreateButton from '../helper/CreateButton';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+interface EmeritusFacultyPageProps {
+  params: { locale: Language };
+}
+
+export async function generateMetadata({ params: { locale } }: EmeritusFacultyPageProps) {
   return await getMetadata({ locale, node: emeritusFaculty });
 }
 
 const emeritusFacultyPath = getPath(emeritusFaculty);
 const facultyPath = getPath(faculty);
 
-export default async function EmeritusFacultyPage() {
-  const facultyList = await getEmeritusFacultyList();
+export default async function EmeritusFacultyPage({
+  params: { locale },
+}: EmeritusFacultyPageProps) {
+  const facultyList = await getEmeritusFacultyList(locale);
   const props = facultyList.map(facultyToProp);
 
   return (

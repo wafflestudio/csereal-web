@@ -1,11 +1,11 @@
 import { getFaculty } from '@/apis/people';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 
 import FacultyEditPageContent from './FacultyEditPageContent';
 
 interface FacultyEditPageProps {
-  params: { id: string; locale: Locale };
+  params: { id: string; locale: Language };
 }
 
 export default async function FacultyEditPage({

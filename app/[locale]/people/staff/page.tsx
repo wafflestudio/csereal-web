@@ -2,6 +2,8 @@ import { getStaffList } from '@/apis/people';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Language } from '@/types/language';
+
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
@@ -9,7 +11,11 @@ import { staff } from '@/utils/segmentNode';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+interface StaffPageProps {
+  params: { locale: Language };
+}
+
+export async function generateMetadata({ params: { locale } }: StaffPageProps) {
   return await getMetadata({
     locale,
     node: staff,
@@ -19,8 +25,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 const staffPath = getPath(staff);
 
-export default async function StaffPage() {
-  const staffList = await getStaffList();
+export default async function StaffPage({ params: { locale } }: StaffPageProps) {
+  const staffList = await getStaffList(locale);
 
   const contentList: PeopleCellProps[] = staffList.map((staff) => ({
     imageURL: staff.imageURL,

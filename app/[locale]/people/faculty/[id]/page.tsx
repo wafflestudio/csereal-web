@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { getFaculty } from '@/apis/people';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 
 import { getMetadata } from '@/utils/metadata';
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale, id } }: FacultyMember
 }
 
 interface FacultyMemberPageProps {
-  params: { id: number; locale: Locale };
+  params: { id: number; locale: Language };
 }
 
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {

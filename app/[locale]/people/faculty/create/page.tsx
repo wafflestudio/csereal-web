@@ -3,14 +3,10 @@
 import { postFacultyAction } from '@/actions/people';
 import { useRouter } from '@/navigation';
 
-import FacultyEditor, {
-  FacultyEditorContent,
-  FacultyEditorContentDetail,
-} from '@/components/editor/FacultyEditor';
-import { isLocalImage } from '@/components/editor/PostEditorTypes';
+import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 
 import { validateFacultyForm } from '@/utils/formValidation';
@@ -24,19 +20,16 @@ export default function FacultyCreatePage({
   params: { locale },
   searchParams: { status = 'ACTIVE' },
 }: {
-  params: { locale: Locale };
+  params: { locale: Language };
   searchParams: { status?: FacultyStatus };
 }) {
   const router = useRouter();
 
   const handleCancel = () => router.push(status === 'INACTIVE' ? emeritusFacultyPath : facultyPath);
 
-  const handleComplete = async (content: FacultyEditorContent) => {
-    console.log(content);
+  const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
-    const formDataKo = contentToFormData(content.ko);
-    const formDataEn = contentToFormData(content.en);
-    postFacultyAction({ ko: formDataKo, en: formDataEn });
+    postFacultyAction();
   };
 
   return (
@@ -49,44 +42,3 @@ export default function FacultyCreatePage({
     </PageLayout>
   );
 }
-
-const contentToFormData = (content: FacultyEditorContentDetail) => {
-  const image = content.image && isLocalImage(content.image) ? content.image.file : null;
-
-  const formData = new FormData();
-  const isInactiveFaculty = content.status === 'INACTIVE';
-
-  formData.append(
-    'request',
-    new Blob(
-      [
-        JSON.stringify({
-          status: content.status,
-          language: content.language,
-          name: content.name,
-          academicRank: content.academicRank,
-          phone: content.phone,
-          email: content.email,
-          office: content.office,
-          fax: content.fax,
-          website: content.website,
-          educations: content.educations.map((edu) => edu.value),
-          researchAreas: content.researchAreas.map((area) => area.value),
-          careers: content.careers.map((career) => career.value),
-          labId: !isInactiveFaculty ? content.labId : undefined,
-          startDate: isInactiveFaculty ? content.startDate.toISOString() : undefined,
-          endDate: isInactiveFaculty ? content.endDate.toISOString() : undefined,
-        }),
-      ],
-      {
-        type: 'application/json',
-      },
-    ),
-  );
-
-  if (image) {
-    formData.append('mainImage', image);
-  }
-
-  return formData;
-};

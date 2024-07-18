@@ -16,17 +16,17 @@ import { Faculty } from '@/types/people';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
-import AdminFeatures from '../../helper/AdminFeatures';
+import DeleteEditButtons from '../../helper/AdminFeatures';
 import PageTitle from '../../helper/PageTitle';
 
 const facultyPath = getPath(faculty);
-const labUrl = getPath(researchLabs);
+const labPath = getPath(researchLabs);
 
 export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty }) {
   const t = useTranslations('Content');
 
   const handleDelete = async () => {
-    return await deleteFacultyAction({ ko: faculty.id, en: faculty.id });
+    return await deleteFacultyAction();
   };
 
   return (
@@ -44,7 +44,7 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
           <CurvedHorizontalSmallNode />
           <div className=" -translate-x-[7.15px] translate-y-[4px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
             <Link
-              href={`${labUrl}/${faculty.labId}`}
+              href={`${labPath}/${faculty.labId}`}
               className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
             >
               {faculty?.labName}
@@ -56,7 +56,7 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
           <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
           <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
         </div>
-        <AdminFeatures onDelete={handleDelete} editHref={`${facultyPath}/${faculty.id}/edit`} />
+        <DeleteEditButtons onDelete={handleDelete} editHref={`${facultyPath}/${faculty.id}/edit`} />
       </div>
     </PageLayout>
   );
