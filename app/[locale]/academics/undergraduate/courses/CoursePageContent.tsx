@@ -35,11 +35,14 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
       />
       {selectedOption.view === '카드형' ? (
         <CourseCards
-          courses={sortCourses(courses, selectedOption.sort)}
+          courses={getSortedCourses(courses, selectedOption.sort)}
           selectedOption={selectedOption.sort}
         />
       ) : (
-        <CourseList courses={courses} selectedOption={selectedOption.sort} />
+        <CourseList
+          courses={flattened(getSortedCourses(courses, selectedOption.sort))}
+          selectedOption={selectedOption.sort}
+        />
       )}
     </>
   );
@@ -51,7 +54,7 @@ const getSortGroupIndexByClassification = (classification: Classification) => {
   else return 2;
 };
 
-const sortCourses = (courses: Course[], sortOption: SortOption) => {
+const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   const sortedCourses: Course[][] = [];
 
   if (sortOption === '학년') {
@@ -69,3 +72,5 @@ const sortCourses = (courses: Course[], sortOption: SortOption) => {
 
   return sortedCourses;
 };
+
+const flattened = <T,>(arr: T[][]) => ([] as T[]).concat(...arr);
