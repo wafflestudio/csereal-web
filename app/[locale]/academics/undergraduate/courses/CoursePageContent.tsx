@@ -39,10 +39,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
           selectedOption={selectedOption.sort}
         />
       ) : (
-        <CourseList
-          courses={flattened(getSortedCourses(courses, selectedOption.sort))}
-          selectedOption={selectedOption.sort}
-        />
+        <CourseList courses={flattened(getSortedCourses(courses, selectedOption.sort))} />
       )}
     </>
   );

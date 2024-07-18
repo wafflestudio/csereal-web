@@ -1,14 +1,9 @@
-import { Course, SortOption } from '@/types/academics';
+import { Course } from '@/types/academics';
 
 import CourseListHeader from './CourseListHeader';
 import CourseListRow from './CourseListRow';
 
-interface CourseListProps {
-  courses: Course[];
-  selectedOption: SortOption;
-}
-
-export default function CourseList({ courses }: CourseListProps) {
+export default function CourseList({ courses }: { courses: Course[] }) {
   return (
     <div className="border-b border-neutral-200 sm:px-5">
       <CourseListHeader />
