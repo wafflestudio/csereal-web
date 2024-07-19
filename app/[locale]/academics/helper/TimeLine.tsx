@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 interface TimeLineProps {
-  timeSpots: { year: number; margin?: string; isLast?: boolean }[];
+  timeSpots: { year: number; isLast?: boolean }[];
   selectedYear: number;
   setSelectedYear: Dispatch<SetStateAction<number>>;
 }
@@ -15,7 +15,6 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
           year={spot.year}
           isSelected={spot.year === selectedYear}
           onChange={() => setSelectedYear(spot.year)}
-          margin={spot.margin}
           isLast={spot.isLast}
           key={spot.year}
         />
@@ -28,15 +27,14 @@ interface TimeSpotProps {
   year: number;
   isSelected: boolean;
   onChange: () => void;
-  margin?: string;
   isLast?: boolean;
 }
 
-function TimeSpot({ year, isSelected, onChange, margin, isLast }: TimeSpotProps) {
+function TimeSpot({ year, isSelected, onChange, isLast }: TimeSpotProps) {
   return (
     <label
       htmlFor={`${year}`}
-      className={`group top-0 z-10 flex h-full w-[1.875rem] flex-col items-center justify-between ${margin} ${
+      className={`group top-0 z-10 mr-7 flex h-full w-[1.875rem] flex-col items-center justify-between ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
     >
