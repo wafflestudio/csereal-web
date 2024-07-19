@@ -1,22 +1,22 @@
 import { Dispatch, SetStateAction } from 'react';
 
 interface TimeLineProps {
-  timeSpots: { year: number; isLast?: boolean }[];
-  selectedYear: number;
-  setSelectedYear: Dispatch<SetStateAction<number>>;
+  spots: number[];
+  selectedSpot: number;
+  setSelectedSpot: Dispatch<SetStateAction<number>>;
 }
 
-export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: TimeLineProps) {
+export default function TimeLine({ spots, selectedSpot, setSelectedSpot }: TimeLineProps) {
   return (
     <div className="relative flex h-[38px] w-full max-w-4xl">
       <div className="absolute ml-[14px] mt-[7px] h-[0.8px] w-[calc(100%-14px)] bg-main-orange" />
-      {timeSpots.map((spot) => (
+      {spots.map((spot, i) => (
         <TimeSpot
-          year={spot.year}
-          isSelected={spot.year === selectedYear}
-          onChange={() => setSelectedYear(spot.year)}
-          isLast={spot.isLast}
-          key={spot.year}
+          spot={spot}
+          isSelected={spot === selectedSpot}
+          onChange={() => setSelectedSpot(spot)}
+          isLast={i === spots.length - 1}
+          key={spot}
         />
       ))}
     </div>
@@ -24,33 +24,33 @@ export default function TimeLine({ timeSpots, selectedYear, setSelectedYear }: T
 }
 
 interface TimeSpotProps {
-  year: number;
+  spot: number;
   isSelected: boolean;
   onChange: () => void;
   isLast?: boolean;
 }
 
-function TimeSpot({ year, isSelected, onChange, isLast }: TimeSpotProps) {
+function TimeSpot({ spot, isSelected, onChange, isLast }: TimeSpotProps) {
   return (
     <label
-      htmlFor={`${year}`}
+      htmlFor={spot.toString()}
       className={`group top-0 z-10 mr-7 flex h-full w-[1.875rem] flex-col items-center justify-between ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
     >
       <Circle highlight={isSelected} />
       <span className="flex items-center text-sm tracking-[0.02em] text-main-orange">
-        {year}
+        {spot}
         {isLast && (
           <span className="material-symbols-rounded text-base font-light">arrow_downward</span>
         )}
       </span>
       <input
         type="radio"
-        id={`${year}`}
+        id={`${spot}`}
         name="year"
         className="hidden"
-        value={year}
+        value={spot}
         checked={isSelected}
         onChange={onChange}
       />

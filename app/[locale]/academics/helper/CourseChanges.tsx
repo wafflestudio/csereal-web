@@ -11,38 +11,36 @@ import { CourseChange } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
-export type TimeSpots = { year: number; margin?: string; isLast?: boolean }[];
+export type TimeSpots = { year: number; isLast?: boolean }[];
 
-type CourseChangesProps = {
-  changes: CourseChange[];
-  yearLimit: number;
-  timeSpotsList: TimeSpots[];
-};
+const YEAR_LIMIT_CNT = 10;
 
-// TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
-export default function CourseChanges({ changes, yearLimit, timeSpotsList }: CourseChangesProps) {
-  const [year, setYear] = useState(2020);
-  const selectedChanges = getSelectedChanges(year, yearLimit, changes);
+export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
   const { isDesktopWide } = useResponsive();
+  const [selectedYear, setSelectedYear] = useState(changes[0].year);
+  const timeLineYears = changes.map((change) => change.year).slice(0, YEAR_LIMIT_CNT);
+  const yearLimit = timeLineYears[timeLineYears.length - 1];
+  const selectedChanges = getSelectedChanges(selectedYear, yearLimit, changes);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ minHeight: '600px' }}>
       <div className="flex flex-col gap-7">
         {isDesktopWide ? (
           <TimeLine
-            timeSpots={timeSpotsList.flat()}
-            selectedYear={year}
-            setSelectedYear={setYear}
+            spots={timeLineYears}
+            selectedSpot={selectedYear}
+            setSelectedSpot={setSelectedYear}
           />
         ) : (
-          timeSpotsList.map((timeSpots, index) => (
-            <TimeLine
-              timeSpots={timeSpots}
-              selectedYear={year}
-              setSelectedYear={setYear}
-              key={index}
-            />
-          ))
+          <TimeLine
+            spots={timeLineYears}
+            selectedSpot={selectedYear}
+            setSelectedSpot={setSelectedYear}
+          />
+
+          // timeSpotsList.map((timeSpots, index) => (
+          //   <TimeLine spots={timeSpots} selectedSpot={year} setSelectedSpot={setYear} key={index} />
+          // ))
         )}
       </div>
       {selectedChanges.map((change) => (
