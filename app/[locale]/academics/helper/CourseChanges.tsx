@@ -9,8 +9,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';
 
-export type TimeSpots = { year: number; isLast?: boolean }[];
-
 const YEAR_LIMIT_CNT = 10;
 
 export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
