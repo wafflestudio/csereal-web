@@ -18,5 +18,5 @@ export async function generateMetadata({
 export default async function GraduateCourseChangesPage() {
   const changes = await getCourseChanges('graduate');
 
-  return <CourseChanges changes={changes ?? []} />;
+  return <CourseChanges changes={changes} />;
 }
