@@ -46,7 +46,7 @@ function TimeSpot({ time, isSelected, onChange, isLast }: TimeSpotProps) {
       <div className="absolute left-5 top-1.5 h-px w-12 bg-main-orange" />
       <input
         type="radio"
-        name="spot"
+        name="time"
         className="hidden"
         value={time}
         checked={isSelected}
