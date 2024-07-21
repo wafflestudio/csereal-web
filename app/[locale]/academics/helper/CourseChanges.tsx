@@ -9,14 +9,11 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';
 
-import useResponsive from '@/utils/hooks/useResponsive';
-
 export type TimeSpots = { year: number; isLast?: boolean }[];
 
-const YEAR_LIMIT_CNT = 7;
+const YEAR_LIMIT_CNT = 10;
 
 export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
-  const { isDesktopWide } = useResponsive();
   const [selectedYear, setSelectedYear] = useState(changes[0].year);
   const timeLineYears = changes.map((change) => change.year).slice(0, YEAR_LIMIT_CNT);
   const yearLimit = timeLineYears[timeLineYears.length - 1];
@@ -24,26 +21,12 @@ export default function CourseChanges({ changes }: { changes: CourseChange[] }) 
 
   return (
     <PageLayout titleType="big" bodyStyle={{ minHeight: '600px' }}>
-      <div className="flex flex-col gap-7">
-        {isDesktopWide ? (
-          <TimeLine
-            spots={timeLineYears}
-            selectedSpot={selectedYear}
-            setSelectedSpot={setSelectedYear}
-          />
-        ) : (
-          <TimeLine
-            spots={timeLineYears}
-            selectedSpot={selectedYear}
-            setSelectedSpot={setSelectedYear}
-          />
-
-          // timeSpotsList.map((timeSpots, index) => (
-          //   <TimeLine spots={timeSpots} selectedSpot={year} setSelectedSpot={setYear} key={index} />
-          // ))
-        )}
-      </div>
-      <div className="mt-12">
+      <TimeLine
+        spots={timeLineYears}
+        selectedSpot={selectedYear}
+        setSelectedSpot={setSelectedYear}
+      />
+      <div className="mt-7">
         {selectedChanges.map((change, i) => (
           <ContentViewer
             description={change.description}
@@ -78,7 +61,7 @@ function ContentViewer({
     <div className="mb-5">
       <button onClick={alwaysExpanded ? undefined : toggleContent} className="flex items-center">
         <span className="font-semibold">
-          {year}학년도{isLast && ' 이하'} 교과과정 변경
+          {year}학년도{isLast && ' 이하'} 교과과정 변경 내역
         </span>
         {!alwaysExpanded && (
           <span className="material-symbols-outlined text-3xl font-light">
