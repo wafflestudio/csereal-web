@@ -1,19 +1,19 @@
 interface TimeLineProps {
-  spots: number[];
-  selectedSpot: number;
-  setSelectedSpot: (year: number) => void;
+  times: number[];
+  selectedTime: number;
+  setSelectedTime: (year: number) => void;
 }
 
-export default function TimeLine({ spots, selectedSpot, setSelectedSpot }: TimeLineProps) {
+export default function TimeLine({ times, selectedTime, setSelectedTime }: TimeLineProps) {
   return (
     <div className="relative flex w-full max-w-4xl flex-wrap">
-      {spots.map((spot, i) => (
+      {times.map((time, i) => (
         <TimeSpot
-          spot={spot}
-          isSelected={spot === selectedSpot}
-          onChange={() => setSelectedSpot(spot)}
-          isLast={i === spots.length - 1}
-          key={spot}
+          time={time}
+          isSelected={time === selectedTime}
+          onChange={() => setSelectedTime(time)}
+          isLast={i === times.length - 1}
+          key={time}
         />
       ))}
     </div>
@@ -21,13 +21,13 @@ export default function TimeLine({ spots, selectedSpot, setSelectedSpot }: TimeL
 }
 
 interface TimeSpotProps {
-  spot: number;
+  time: number;
   isSelected: boolean;
   onChange: () => void;
   isLast?: boolean;
 }
 
-function TimeSpot({ spot, isSelected, onChange, isLast }: TimeSpotProps) {
+function TimeSpot({ time, isSelected, onChange, isLast }: TimeSpotProps) {
   return (
     <label
       className={`group relative mb-7 mr-7 flex h-[38px] items-center ${
@@ -37,7 +37,7 @@ function TimeSpot({ spot, isSelected, onChange, isLast }: TimeSpotProps) {
       <div className="flex h-full w-[1.875rem] flex-col items-center justify-between">
         <Circle highlight={isSelected} />
         <span className="flex items-center text-sm tracking-[0.02em] text-main-orange">
-          {spot}
+          {time}
           {isLast && (
             <span className="material-symbols-rounded text-base font-light">arrow_downward</span>
           )}
@@ -48,7 +48,7 @@ function TimeSpot({ spot, isSelected, onChange, isLast }: TimeSpotProps) {
         type="radio"
         name="spot"
         className="hidden"
-        value={spot}
+        value={time}
         checked={isSelected}
         onChange={onChange}
       />

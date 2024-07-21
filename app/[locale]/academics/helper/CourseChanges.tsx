@@ -22,9 +22,9 @@ export default function CourseChanges({ changes }: { changes: CourseChange[] }) 
   return (
     <PageLayout titleType="big" bodyStyle={{ minHeight: '600px' }}>
       <TimeLine
-        spots={timeLineYears}
-        selectedSpot={selectedYear}
-        setSelectedSpot={setSelectedYear}
+        times={timeLineYears}
+        selectedTime={selectedYear}
+        setSelectedTime={setSelectedYear}
       />
       <div className="mt-7">
         {selectedChanges.map((change, i) => (
