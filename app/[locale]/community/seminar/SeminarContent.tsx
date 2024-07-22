@@ -12,7 +12,7 @@ import Pagination from '@/components/common/Pagination';
 
 import { PostSearchQueryParams } from '@/types/post';
 
-import { validatePageNum } from '@/utils/validatePageNum';
+import { validatePageNum } from '@/utils/validateSearchParams';
 
 const POSTS_COUNT_PER_PAGE = 10;
 

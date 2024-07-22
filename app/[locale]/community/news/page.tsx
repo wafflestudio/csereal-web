@@ -14,7 +14,7 @@ import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
 import { news } from '@/utils/segmentNode';
-import { validatePageNum } from '@/utils/validatePageNum';
+import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: news });
@@ -25,7 +25,10 @@ interface NewsPageParams {
 }
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
-  if (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) {
+  if (
+    (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) ||
+    (searchParams.tag !== undefined && !validateTag('news', searchParams.tag))
+  ) {
     notFound();
   }
 
