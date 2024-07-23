@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 
 import TimeLine from '@/app/[locale]/academics/helper/TimeLine';
 
@@ -9,46 +9,66 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';
 
-import useResponsive from '@/utils/hooks/useResponsive';
+const YEAR_LIMIT_CNT = 10;
 
-export type TimeSpots = { year: number; margin?: string; isLast?: boolean }[];
-
-type CourseChangesProps = {
-  changes: CourseChange[];
-  yearLimit: number;
-  timeSpotsList: TimeSpots[];
-};
-
-// TODO: 연도 추가되어도 타임라인 잘 설정되도록 리팩토링
-export default function CourseChanges({ changes, yearLimit, timeSpotsList }: CourseChangesProps) {
-  const [year, setYear] = useState(2020);
-  const selectedChanges = getSelectedChanges(year, yearLimit, changes);
-  const { isDesktopWide } = useResponsive();
+export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
+  const [selectedYear, setSelectedYear] = useState(changes[0].year);
+  const timeLineYears = changes.map((change) => change.year).slice(0, YEAR_LIMIT_CNT);
+  const yearLimit = timeLineYears[timeLineYears.length - 1];
+  const selectedChanges = getSelectedChanges(selectedYear, yearLimit, changes);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ minHeight: '600px' }}>
-      <div className="flex flex-col gap-7">
-        {isDesktopWide ? (
-          <TimeLine
-            timeSpots={timeSpotsList.flat()}
-            selectedYear={year}
-            setSelectedYear={setYear}
+      <TimeLine
+        times={timeLineYears}
+        selectedTime={selectedYear}
+        setSelectedTime={setSelectedYear}
+      />
+      <div className="mt-7">
+        {selectedChanges.map((change, i) => (
+          <ContentViewer
+            description={change.description}
+            year={change.year}
+            expandDefault={i === 0}
+            alwaysExpanded={selectedChanges.length === 1}
+            isLast={i !== 0 && i === selectedChanges.length - 1}
+            key={change.year}
           />
-        ) : (
-          timeSpotsList.map((timeSpots, index) => (
-            <TimeLine
-              timeSpots={timeSpots}
-              selectedYear={year}
-              setSelectedYear={setYear}
-              key={index}
-            />
-          ))
-        )}
+        ))}
       </div>
-      {selectedChanges.map((change) => (
-        <HTMLViewer htmlContent={change.description} className="mt-12" key={change.year} />
-      ))}
     </PageLayout>
+  );
+}
+
+function ContentViewer({
+  description,
+  year,
+  expandDefault = false,
+  alwaysExpanded = false,
+  isLast = false,
+}: {
+  description: string;
+  year: number;
+  expandDefault?: boolean;
+  alwaysExpanded?: boolean;
+  isLast?: boolean;
+}) {
+  const [isExpanded, toggleContent] = useReducer((x) => !x, expandDefault || alwaysExpanded);
+
+  return (
+    <div className="mb-5">
+      <button onClick={alwaysExpanded ? undefined : toggleContent} className="flex items-center">
+        <span className="font-semibold">
+          {year}학년도{isLast && ' 이하'} 교과과정 변경 내역
+        </span>
+        {!alwaysExpanded && (
+          <span className="material-symbols-outlined text-3xl font-light">
+            {isExpanded ? 'expand_less' : 'expand_more'}
+          </span>
+        )}
+      </button>
+      {isExpanded && <HTMLViewer htmlContent={description} key={year} />}
+    </div>
   );
 }
 
