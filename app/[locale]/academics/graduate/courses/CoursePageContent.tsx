@@ -37,7 +37,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
       {selectedOption.view === '카드형' ? (
         <CourseCards courses={chunkCourse(courses)} selectedOption="학년" />
       ) : (
-        <CourseList courses={courses} selectedOption={selectedOption.sort} />
+        <CourseList courses={courses} />
       )}
     </>
   );

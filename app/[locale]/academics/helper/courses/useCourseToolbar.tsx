@@ -4,7 +4,7 @@ import { SortOption, ViewOption } from '@/types/academics';
 
 export default function useCourseToolbar() {
   const [selectedOption, setSelectedOption] = useState<{ view: ViewOption; sort: SortOption }>({
-    view: '카드형',
+    view: '목록형',
     sort: '학년',
   });
 
