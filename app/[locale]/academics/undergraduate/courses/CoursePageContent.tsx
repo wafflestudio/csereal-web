@@ -39,7 +39,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
           selectedOption={selectedOption.sort}
         />
       ) : (
-        <CourseList courses={flattened(getSortedCourses(courses, selectedOption.sort))} />
+        <CourseList courses={flatten(getSortedCourses(courses, selectedOption.sort))} />
       )}
     </>
   );
@@ -70,4 +70,5 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   return sortedCourses;
 };
 
-const flattened = <T,>(arr: T[][]) => ([] as T[]).concat(...arr);
+// flat 메소드보다 concat 쓰는 게 더 빠르다고 함 https://velog.io/@milkcoke/Javascript-Array.flat-%EC%9D%80-%EB%8A%90%EB%A6%AC%EB%8B%A4
+const flatten = <T,>(arr: T[][]) => ([] as T[]).concat(...arr);
