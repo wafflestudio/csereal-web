@@ -14,7 +14,7 @@ const YEAR_LIMIT_CNT = 10;
 export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
   const [selectedYear, setSelectedYear] = useState(changes[0].year);
   const timeLineYears = changes.map((change) => change.year).slice(0, YEAR_LIMIT_CNT);
-  const yearLimit = timeLineYears[timeLineYears.length - 1];
+  const yearLimit = timeLineYears.at(-1) ?? 0;
   const selectedChanges = getSelectedChanges(selectedYear, yearLimit, changes);
 
   return (
