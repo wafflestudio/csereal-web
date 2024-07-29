@@ -43,10 +43,10 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
   );
 }
 
-const getSortGroupIndexByClassification = (classification: Classification) => {
-  if (classification === '전공필수') return 0;
-  else if (classification === '전공선택') return 1;
-  else return 2;
+const classificationToIndexMap: { [key in Classification]: number } = {
+  전공필수: 0,
+  전공선택: 1,
+  교양: 2,
 };
 
 const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
@@ -58,7 +58,7 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>
-      sortedCourses[getSortGroupIndexByClassification(course.classification)].push(course),
+      sortedCourses[classificationToIndexMap[course.classification]].push(course),
     );
   } else {
     sortedCourses.push([], [], [], []);
