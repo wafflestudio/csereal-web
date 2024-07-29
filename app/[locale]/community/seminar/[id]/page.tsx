@@ -2,9 +2,9 @@ import { Suspense } from 'react';
 
 import { getSeminarPost } from '@/apis/seminar';
 
+import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import InvalidIDFallback from '@/components/post/InvalidIDFallback';
 
 import { PostSearchQueryParams } from '@/types/post';
 
