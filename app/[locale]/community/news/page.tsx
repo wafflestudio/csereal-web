@@ -25,10 +25,7 @@ interface NewsPageParams {
 }
 
 export default async function NewsPage({ searchParams }: NewsPageParams) {
-  if (
-    (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) ||
-    (searchParams.tag !== undefined && !validateTag('news', searchParams.tag))
-  ) {
+  if (!validatePageNum(searchParams.pageNum) || !validateTag('news', searchParams.tag)) {
     notFound();
   }
 
