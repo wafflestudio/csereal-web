@@ -1,6 +1,6 @@
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'https://cse.snu.ac.kr/api/v1'
+    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
     : 'http://localhost:8080/api/v1';
 
 export const checkError = (response: Response) => {
