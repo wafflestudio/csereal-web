@@ -9,6 +9,8 @@ import { getKeys } from '@/types/object';
 import { Faculty, FACULTY_STATUS, FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
+import useEditorContent from '@/utils/hooks/useEditorContent';
+
 import {
   CreateAction,
   CreateActionButtons,
@@ -60,8 +62,9 @@ export default function FacultyEditor({
   initialLangauge,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
-  const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>(
+  const { content, setContent, setContentByKey } = useEditorContent(
     getFacultyEditorDefaultValue(initialFacultyStatus, initialContent),
+    language,
   );
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
@@ -76,15 +79,6 @@ export default function FacultyEditor({
       en: { ...content.en, status },
     }));
   };
-
-  const setContentByKey =
-    <T extends keyof FacultyEditorContent>(key: T) =>
-    (value: FacultyEditorContent[T]) => {
-      setContent((content) => ({
-        ...content,
-        [language]: { ...content[language], [key]: value },
-      }));
-    };
 
   useEffect(() => {
     (async () => {

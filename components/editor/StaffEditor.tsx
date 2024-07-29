@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Language, LANGUAGE, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
 
+import useEditorContent from '@/utils/hooks/useEditorContent';
+
 import {
   CreateAction,
   CreateActionButtons,
@@ -43,19 +45,11 @@ export default function StaffEditor({
   initialLangauge,
 }: StaffEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
-  const [content, setContent] = useState<WithLanguage<StaffEditorContent>>(
+  const { content, setContentByKey } = useEditorContent(
     initialContent || getStaffEditorDefaultValue(),
+    language,
   );
   const currLangContent = content[language];
-
-  const setContentByKey =
-    <T extends keyof StaffEditorContent>(key: T) =>
-    (value: StaffEditorContent[T]) => {
-      setContent((content) => ({
-        ...content,
-        [language]: { ...content[language], [key]: value },
-      }));
-    };
 
   return (
     <form className="flex flex-col">
