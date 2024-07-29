@@ -1,13 +1,8 @@
-export const LANGUAGE = ['ko', 'en'] as const;
-export type Language = (typeof LANGUAGE)[number];
+export const LANGUAGE = {
+  ko: '한국어',
+  en: '영어',
+} as const;
+
+export type Language = keyof typeof LANGUAGE;
 
 export type WithLanguage<T> = { [language in Language]: T };
-
-export const localeToKo = (language: Language) => {
-  switch (language) {
-    case 'ko':
-      return '한국어';
-    case 'en':
-      return '영어';
-  }
-};

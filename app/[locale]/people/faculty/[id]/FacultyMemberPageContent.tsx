@@ -42,7 +42,7 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
         />
         <div className="flex">
           <CurvedHorizontalSmallNode />
-          <div className=" -translate-x-[7.15px] translate-y-[4px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
+          <div className="-translate-x-[7.15px] translate-y-[4px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
             <Link
               href={`${labPath}/${faculty.labId}`}
               className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"

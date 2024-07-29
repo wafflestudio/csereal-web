@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 
 import { getResearchLabsAction } from '@/actions/research';
 
-import { Language, LANGUAGE, localeToKo, WithLanguage } from '@/types/language';
-import { FACULTY_STATUS, FacultyStatus, facultyStatusToKo } from '@/types/people';
+import { Language, LANGUAGE, WithLanguage } from '@/types/language';
+import { getKeys } from '@/types/object';
+import { FACULTY_STATUS, FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
 import {
@@ -179,11 +180,11 @@ function FacultyStatusFieldset({
   return (
     <Fieldset title="구분" mb="mb-11" titleMb="mb-2" required>
       <div className="flex gap-3">
-        {FACULTY_STATUS.map((status) => (
+        {getKeys(FACULTY_STATUS).map((status) => (
           <BasicRadioInput
             key={status}
             value={status}
-            label={facultyStatusToKo(status)}
+            label={FACULTY_STATUS[status]}
             name="status"
             checked={selected === status}
             onChange={onChange}
@@ -203,7 +204,7 @@ function LangauageFieldset({
 }) {
   return (
     <div className="mb-9 flex gap-3">
-      {LANGUAGE.map((language) => (
+      {getKeys(LANGUAGE).map((language) => (
         <span key={language}>
           <input
             id={language}
@@ -218,7 +219,7 @@ function LangauageFieldset({
             htmlFor={language}
             className="cursor-pointer pb-1 font-semibold text-neutral-300 peer-checked:border-b-2 peer-checked:border-b-neutral-800 peer-checked:text-neutral-800"
           >
-            {localeToKo(language)}
+            {LANGUAGE[language]}
           </label>
         </span>
       ))}

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from '@/navigation';
 
 import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';

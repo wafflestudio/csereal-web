@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import { Language, LANGUAGE, localeToKo, WithLanguage } from '@/types/language';
+import { Language, LANGUAGE, WithLanguage } from '@/types/language';
+import { getKeys } from '@/types/object';
 
 import {
   CreateAction,
@@ -93,7 +94,7 @@ function LangauageFieldset({
 }) {
   return (
     <div className="mb-9 flex gap-3">
-      {LANGUAGE.map((language) => (
+      {getKeys(LANGUAGE).map((language) => (
         <span key={language}>
           <input
             id={language}
@@ -108,7 +109,7 @@ function LangauageFieldset({
             htmlFor={language}
             className="cursor-pointer pb-1 font-semibold text-neutral-300 peer-checked:border-b-2 peer-checked:border-b-neutral-800 peer-checked:text-neutral-800"
           >
-            {localeToKo(language)}
+            {LANGUAGE[language]}
           </label>
         </span>
       ))}
