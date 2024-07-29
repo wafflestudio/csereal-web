@@ -67,7 +67,7 @@ function ContentViewer({
           </span>
         )}
       </button>
-      {isExpanded && <HTMLViewer htmlContent={description} key={year} />}
+      {isExpanded && <HTMLViewer htmlContent={description} />}
     </div>
   );
 }
