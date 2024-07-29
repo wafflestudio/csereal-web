@@ -25,7 +25,7 @@ interface NoticePageParams {
 }
 
 export default async function NoticePage({ searchParams }: NoticePageParams) {
-  if (validatePageNum(searchParams.pageNum) || !validateTag('notice', searchParams.tag)) {
+  if (!validatePageNum(searchParams.pageNum) || !validateTag('notice', searchParams.tag)) {
     notFound();
   }
 
