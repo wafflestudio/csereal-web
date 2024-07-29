@@ -26,7 +26,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <>
-      <h4 className="mb-8 mt-14 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
@@ -35,11 +35,11 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
       />
       {selectedOption.view === '카드형' ? (
         <CourseCards
-          courses={sortCourses(courses, selectedOption.sort)}
+          courses={getSortedCourses(courses, selectedOption.sort)}
           selectedOption={selectedOption.sort}
         />
       ) : (
-        <CourseList courses={courses} selectedOption={selectedOption.sort} />
+        <CourseList courses={flatten(getSortedCourses(courses, selectedOption.sort))} />
       )}
     </>
   );
@@ -51,7 +51,7 @@ const getSortGroupIndexByClassification = (classification: Classification) => {
   else return 2;
 };
 
-const sortCourses = (courses: Course[], sortOption: SortOption) => {
+const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   const sortedCourses: Course[][] = [];
 
   if (sortOption === '학년') {
@@ -69,3 +69,6 @@ const sortCourses = (courses: Course[], sortOption: SortOption) => {
 
   return sortedCourses;
 };
+
+// flat 메소드보다 concat 쓰는 게 더 빠르다고 함 https://velog.io/@milkcoke/Javascript-Array.flat-%EC%9D%80-%EB%8A%90%EB%A6%AC%EB%8B%A4
+const flatten = <T,>(arr: T[][]) => ([] as T[]).concat(...arr);

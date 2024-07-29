@@ -1,6 +1,5 @@
 import { getCourses } from '@/apis/academics';
 
-import RoadMapButton from '@/app/[locale]/academics/helper/RoadMapButton';
 import CoursePageContent from '@/app/[locale]/academics/undergraduate/courses/CoursePageContent';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -19,7 +18,7 @@ export default async function UndergraduateCoursePage() {
 
   return (
     <PageLayout titleType="big">
-      <RoadMapButton />
+      {/* 추후 RoadMapButton 복구 */}
       <CoursePageContent courses={data} />
     </PageLayout>
   );

@@ -56,6 +56,7 @@ function CompanyTableRow({ index, name, url, year }: CompanyTableRowProps) {
           `}
         href={url}
         target="_blank"
+        rel="noopener noreferrer"
       >
         {url}
       </a>

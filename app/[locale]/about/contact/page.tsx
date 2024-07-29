@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getContact } from '@/apis/about';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';

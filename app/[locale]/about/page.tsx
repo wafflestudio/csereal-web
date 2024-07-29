@@ -3,6 +3,8 @@ import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategor
 import { getMetadata } from '@/utils/metadata';
 import { about } from '@/utils/segmentNode';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: about });
 }
