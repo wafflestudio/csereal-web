@@ -5,8 +5,9 @@ import { useRouter } from '@/navigation';
 import FacultyEditor from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Language } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
+import { SimpleResearchLab } from '@/types/research';
 
 import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';
@@ -17,10 +18,12 @@ export default function FacultyEditPageContent({
   language,
   id,
   data,
+  labs,
 }: {
   language: Language;
   id: { ko: number; en: number };
   data: Faculty;
+  labs: WithLanguage<SimpleResearchLab[]>;
 }) {
   const router = useRouter();
 
@@ -39,6 +42,7 @@ export default function FacultyEditPageContent({
           onComplete: handleComplete,
         }}
         initialLangauge={language}
+        labs={labs}
       />
     </PageLayout>
   );

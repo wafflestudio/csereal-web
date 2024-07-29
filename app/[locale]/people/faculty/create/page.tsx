@@ -1,44 +1,20 @@
-'use client';
+import { getResearchLabs } from '@/apis/research';
 
-import { postFacultyAction } from '@/actions/people';
-import { useRouter } from '@/navigation';
-
-import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
-import { Language, WithLanguage } from '@/types/language';
+import { Language } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 
-import { validateFacultyForm } from '@/utils/formValidation';
-import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/utils/segmentNode';
+import FacultyCreatePageContent from './FacultyCreatePageContent';
 
-const facultyPath = getPath(faculty);
-const emeritusFacultyPath = getPath(emeritusFaculty);
-
-export default function FacultyCreatePage({
+export default async function FacultyCreatePage({
   params: { locale },
   searchParams: { status = 'ACTIVE' },
 }: {
   params: { locale: Language };
   searchParams: { status?: FacultyStatus };
 }) {
-  const router = useRouter();
-
-  const handleCancel = () => router.push(status === 'INACTIVE' ? emeritusFacultyPath : facultyPath);
-
-  const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
-    validateFacultyForm(content);
-    postFacultyAction();
-  };
+  const [koLabs, enLabs] = await Promise.all([getResearchLabs('ko'), getResearchLabs('en')]);
 
   return (
-    <PageLayout title="교수진 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
-      <FacultyEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onComplete: handleComplete }}
-        initialFacultyStatus={status}
-        initialLangauge={locale}
-      />
-    </PageLayout>
+    <FacultyCreatePageContent language={locale} status={status} labs={{ ko: koLabs, en: enLabs }} />
   );
 }

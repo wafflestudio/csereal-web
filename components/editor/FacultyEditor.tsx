@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { getResearchLabsAction } from '@/actions/research';
+import { useState } from 'react';
 
 import { Language, LANGUAGE, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
@@ -53,6 +51,7 @@ interface FacultyEditorProps {
   initialContent?: Faculty;
   initialFacultyStatus?: FacultyStatus;
   initialLangauge: Language;
+  labs: WithLanguage<SimpleResearchLab[]>;
 }
 
 export default function FacultyEditor({
@@ -60,6 +59,7 @@ export default function FacultyEditor({
   initialContent,
   initialFacultyStatus,
   initialLangauge,
+  labs,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const { content, setContent, setContentByKey } = useEditorContent(
@@ -68,10 +68,6 @@ export default function FacultyEditor({
   );
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
-  const [labs, setLabs] = useState<WithLanguage<SimpleResearchLab[]>>({
-    ko: [],
-    en: [],
-  });
 
   const setFacultyStatus = (status: FacultyStatus) => {
     setContent((content) => ({
@@ -79,17 +75,6 @@ export default function FacultyEditor({
       en: { ...content.en, status },
     }));
   };
-
-  useEffect(() => {
-    (async () => {
-      const [koRes, enRes] = await Promise.all([
-        getResearchLabsAction('ko'),
-        getResearchLabsAction('en'),
-      ]);
-
-      setLabs({ ko: koRes, en: enRes });
-    })();
-  }, []);
 
   return (
     <form className="flex flex-col">
