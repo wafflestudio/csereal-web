@@ -49,6 +49,7 @@ const classificationToIndexMap: { [key in Classification]: number } = {
   교양: 2,
 };
 
+// 기본 정렬 가나다순 보장 (백엔드에서 처리)
 const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   const sortedCourses: Course[][] = [];
 
