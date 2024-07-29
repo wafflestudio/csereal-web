@@ -6,7 +6,7 @@ import { getResearchLabsAction } from '@/actions/research';
 
 import { Language, LANGUAGE, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
-import { FACULTY_STATUS, FacultyStatus } from '@/types/people';
+import { Faculty, FACULTY_STATUS, FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
 import {
@@ -48,7 +48,7 @@ interface FacultyEditorProps {
   actions:
     | EditAction<WithLanguage<FacultyEditorContent>>
     | CreateAction<WithLanguage<FacultyEditorContent>>;
-  initialContent?: WithLanguage<FacultyEditorContent>;
+  initialContent?: Faculty;
   initialFacultyStatus?: FacultyStatus;
   initialLangauge: Language;
 }
@@ -61,7 +61,7 @@ export default function FacultyEditor({
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>(
-    initialContent || getFacultyEditorDefaultValue(initialFacultyStatus),
+    getFacultyEditorDefaultValue(initialFacultyStatus, initialContent),
   );
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
@@ -92,6 +92,7 @@ export default function FacultyEditor({
         getResearchLabsAction('ko'),
         getResearchLabsAction('en'),
       ]);
+
       setLabs({ ko: koRes, en: enRes });
     })();
   }, []);
@@ -418,24 +419,26 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-const getFacultyEditorDefaultValue = (
-  status?: FacultyStatus,
+// TODO: 영어 데이터 처리
+export const getFacultyEditorDefaultValue = (
+  status: FacultyStatus = 'ACTIVE',
+  data?: Faculty,
 ): WithLanguage<FacultyEditorContent> => {
   const koContentDefaultValue: FacultyEditorContent = {
-    status: status ?? 'ACTIVE',
+    status: data?.status ?? status,
     language: 'ko',
-    name: '',
-    academicRank: '',
-    image: null,
-    phone: '',
-    email: '',
-    office: '',
-    fax: '',
-    website: '',
-    educations: [],
-    researchAreas: [],
-    careers: [],
-    labId: 0,
+    name: data?.name ?? '',
+    academicRank: data?.academicRank ?? '',
+    image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
+    phone: data?.phone ?? '',
+    office: data?.office ?? '',
+    fax: data?.fax ?? '',
+    website: data?.website ?? '',
+    email: data?.email ?? '',
+    researchAreas: data?.researchAreas ?? [],
+    educations: data?.educations ?? [],
+    careers: data?.careers ?? [],
+    labId: data?.labId ?? null,
     startDate: new Date(),
     endDate: new Date(),
   };
