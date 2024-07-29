@@ -25,6 +25,7 @@ const labPath = getPath(researchLabs);
 export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty }) {
   const t = useTranslations('Content');
 
+  // TODO: 에러 처리
   const handleDelete = async () => {
     return await deleteFacultyAction();
   };

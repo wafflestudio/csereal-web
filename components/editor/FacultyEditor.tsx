@@ -49,7 +49,7 @@ interface FacultyEditorProps {
     | EditAction<WithLanguage<FacultyEditorContent>>
     | CreateAction<WithLanguage<FacultyEditorContent>>;
   initialContent?: WithLanguage<FacultyEditorContent>;
-  initialFacultyStatus: FacultyStatus;
+  initialFacultyStatus?: FacultyStatus;
   initialLangauge: Language;
 }
 
@@ -60,23 +60,21 @@ export default function FacultyEditor({
   initialLangauge,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
-  const [facultyStatus, setFacultyStatus] = useState<FacultyStatus>(initialFacultyStatus);
-  const isInactiveFaculty = facultyStatus === 'INACTIVE';
   const [content, setContent] = useState<WithLanguage<FacultyEditorContent>>(
-    initialContent || getFacultyEditorDefaultValue(),
+    initialContent || getFacultyEditorDefaultValue(initialFacultyStatus),
   );
   const currLangContent = content[language];
-  const [labs, setLabs] = useState<{ ko: SimpleResearchLab[]; en: SimpleResearchLab[] }>({
+  const isInactiveFaculty = currLangContent.status === 'INACTIVE';
+  const [labs, setLabs] = useState<WithLanguage<SimpleResearchLab[]>>({
     ko: [],
     en: [],
   });
 
-  // status는 한영 공통이므로 마지막에 따로 처리 (매번 한영 모두 바꾸는 것보다 한번에 처리하는 게 낫다고 판단)
-  const getcontent = (): WithLanguage<FacultyEditorContent> => {
-    return {
-      ko: { ...content.ko, status: facultyStatus },
-      en: { ...content.en, status: facultyStatus },
-    };
+  const setFacultyStatus = (status: FacultyStatus) => {
+    setContent((content) => ({
+      ko: { ...content.ko, status },
+      en: { ...content.en, status },
+    }));
   };
 
   const setContentByKey =
@@ -100,7 +98,7 @@ export default function FacultyEditor({
 
   return (
     <form className="flex flex-col">
-      <FacultyStatusFieldset selected={facultyStatus} onChange={setFacultyStatus} />
+      <FacultyStatusFieldset selected={currLangContent.status} onChange={setFacultyStatus} />
 
       <LangauageFieldset selected={language} onChange={setLanguage} />
 
@@ -162,9 +160,13 @@ export default function FacultyEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons {...actions} getContent={getcontent} completeButtonText="추가하기" />
+          <CreateActionButtons
+            {...actions}
+            getContent={() => content}
+            completeButtonText="추가하기"
+          />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getcontent} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
       </div>
     </form>
   );
@@ -416,9 +418,11 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-const getFacultyEditorDefaultValue = (): WithLanguage<FacultyEditorContent> => {
+const getFacultyEditorDefaultValue = (
+  status?: FacultyStatus,
+): WithLanguage<FacultyEditorContent> => {
   const koContentDefaultValue: FacultyEditorContent = {
-    status: 'ACTIVE',
+    status: status ?? 'ACTIVE',
     language: 'ko',
     name: '',
     academicRank: '',

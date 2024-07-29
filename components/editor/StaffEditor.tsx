@@ -48,8 +48,6 @@ export default function StaffEditor({
   );
   const currLangContent = content[language];
 
-  const getcontent = () => content;
-
   const setContentByKey =
     <T extends keyof StaffEditorContent>(key: T) =>
     (value: StaffEditorContent[T]) => {
@@ -77,9 +75,13 @@ export default function StaffEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons {...actions} getContent={getcontent} completeButtonText="추가하기" />
+          <CreateActionButtons
+            {...actions}
+            getContent={() => content}
+            completeButtonText="추가하기"
+          />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getcontent} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
       </div>
     </form>
   );

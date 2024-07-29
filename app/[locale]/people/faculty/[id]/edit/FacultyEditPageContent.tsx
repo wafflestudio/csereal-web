@@ -58,7 +58,6 @@ export default function FacultyEditPageContent({
           onComplete: handleComplete,
         }}
         initialLangauge={language}
-        initialFacultyStatus="ACTIVE"
       />
     </PageLayout>
   );
