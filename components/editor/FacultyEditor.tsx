@@ -36,9 +36,9 @@ export interface FacultyEditorContent {
   office: string;
   fax: string;
   website: string;
-  educations: { id: number; value: string }[];
-  researchAreas: { id: number; value: string }[];
-  careers: { id: number; value: string }[];
+  educations: string[];
+  researchAreas: string[];
+  careers: string[];
   labId: number | null;
   startDate: Date;
   endDate: Date;
@@ -318,8 +318,8 @@ function EducationsFieldset({
   educations,
   setEducations,
 }: {
-  educations: { id: number; value: string }[];
-  setEducations: (newEducations: { id: number; value: string }[]) => void;
+  educations: string[];
+  setEducations: (newEducations: string[]) => void;
 }) {
   return (
     <Fieldset title="학력" mb="mb-2.5" titleMb="mb-2">
@@ -336,8 +336,8 @@ function ResearchAreasFieldset({
   researchAreas,
   setResearchAreas,
 }: {
-  researchAreas: { id: number; value: string }[];
-  setResearchAreas: (newAreas: { id: number; value: string }[]) => void;
+  researchAreas: string[];
+  setResearchAreas: (newAreas: string[]) => void;
 }) {
   return (
     <Fieldset title="연구 분야" mb="mb-2.5" titleMb="mb-2">
@@ -354,8 +354,8 @@ function CareersFieldset({
   careers,
   setCareers,
 }: {
-  careers: { id: number; value: string }[];
-  setCareers: (newCareers: { id: number; value: string }[]) => void;
+  careers: string[];
+  setCareers: (newCareers: string[]) => void;
 }) {
   return (
     <Fieldset title="경력" mb="mb-2.5" titleMb="mb-2">

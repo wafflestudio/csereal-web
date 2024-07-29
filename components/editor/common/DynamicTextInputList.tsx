@@ -3,8 +3,8 @@ import { useState } from 'react';
 import BasicTextInput from './BasicTextInput';
 
 interface DynamicTextInputListProps {
-  list: { id: number; value: string }[];
-  setList: (newList: { id: number; value: string }[]) => void;
+  list: string[];
+  setList: (newList: string[]) => void;
   placeholder: string;
 }
 
@@ -16,18 +16,18 @@ export default function DynamicTextInputList({
   const [newInput, setNewInput] = useState('');
 
   const handleAdd = () => {
-    const newList = [{ id: getUniqueId(list), value: newInput }, ...list];
+    const newList = [newInput, ...list];
     setList(newList);
     setNewInput('');
   };
 
-  const handleChange = (id: number, value: string) => {
-    const newList = list.map((item) => (item.id === id ? { ...item, value } : item));
+  const handleChange = (index: number, value: string) => {
+    const newList = list.map((item, i) => (i === index ? value : item));
     setList(newList);
   };
 
   const handleDelete = (id: number) => {
-    const newList = list.filter((item) => item.id !== id);
+    const newList = list.filter((item, i) => i !== id);
     setList(newList);
   };
 
@@ -41,13 +41,13 @@ export default function DynamicTextInputList({
         onClickButton={handleAdd}
         bgColor="bg-neutral-50"
       />
-      {list.map((item) => (
+      {list.map((item, i) => (
         <InputWithButton
-          key={item.id}
-          inputValue={item.value}
+          key={i}
+          inputValue={item}
           buttonText="삭제"
-          onChangeInput={(value: string) => handleChange(item.id, value)}
-          onClickButton={() => handleDelete(item.id)}
+          onChangeInput={(value: string) => handleChange(i, value)}
+          onClickButton={() => handleDelete(i)}
         />
       ))}
     </div>
@@ -103,7 +103,7 @@ function Button({
   );
 }
 
-const getUniqueId = <T extends { id: number }>(list: T[]) => {
-  if (list.length === 0) return 1;
-  return Math.max(...list.map((item) => item.id)) + 1;
-};
+// const getUniqueId = <T extends { id: number }>(list: T[]) => {
+//   if (list.length === 0) return 1;
+//   return Math.max(...list.map((item) => item.id)) + 1;
+// };

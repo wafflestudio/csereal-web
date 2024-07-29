@@ -25,7 +25,7 @@ export interface StaffEditorContent {
   office: string;
   phone: string;
   email: string;
-  tasks: { id: number; value: string }[];
+  tasks: string[];
   image: PostEditorImage;
 }
 
@@ -189,8 +189,8 @@ function TasksFieldset({
   tasks,
   setTasks,
 }: {
-  tasks: { id: number; value: string }[];
-  setTasks: (newTasks: { id: number; value: string }[]) => void;
+  tasks: string[];
+  setTasks: (newTasks: string[]) => void;
 }) {
   return (
     <Fieldset title="주요 업무" mb="mb-2.5" titleMb="mb-2" required>
