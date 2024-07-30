@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
+import { getSeminarPosts } from '@/apis/seminar';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -16,6 +16,7 @@ import { seminar } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validateSearchParams';
 
 import AdminFeatures from './helper/AdminFeatures';
+import SeminarContent from './SeminarContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: seminar });
@@ -30,11 +31,13 @@ export default async function SeminarPage({ searchParams }: SeminarPageParams) {
     notFound();
   }
 
+  const data = await getSeminarPosts(searchParams);
+
   return (
     <PageLayout titleType="big">
       {/* TODO: fallback */}
       <Suspense>
-        <SeminarContent searchParams={searchParams} />
+        <SeminarContent data={data} />
       </Suspense>
       <LoginVisible staff>
         <AdminFeatures />
