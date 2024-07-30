@@ -52,10 +52,10 @@ export default function BasicEditor({ actions, initialContent }: BasicPostEditor
 
   return (
     <form className="flex flex-col">
-      <div className="mb-6 flex gap-3">
+      <EditorFieldset editorRef={editorRef} initialContent={content.description} />
+      <div className="mb-6 flex justify-end gap-3">
         <EditActionButtons {...actions} getContent={getContent} />
       </div>
-      <EditorFieldset editorRef={editorRef} initialContent={content.description} />
     </form>
   );
 }
