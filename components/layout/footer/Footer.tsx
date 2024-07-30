@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
@@ -29,6 +29,7 @@ import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 
 export default function Footer() {
   const mode = useFooterDesignMode();
+  const locale = useLocale() as 'en' | 'ko'; // TODO: Language 타입 활용
 
   const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
@@ -36,10 +37,13 @@ export default function Footer() {
 
   return (
     <footer className={`border-t-2 ${borderTop}`}>
-      <div
-        className={`${topBg} grid grid-cols-[repeat(auto-fill,_minmax(120px,_auto))] gap-y-8 px-6 py-9 sm:flex sm:px-[3.75rem] sm:py-10`}
-      >
-        <LinkGroup groupName="About" links={aboutLinks} width="w-[7.5rem]" mode={mode} />
+      <div className={`${topBg} flex flex-wrap gap-y-8 px-6 py-9 sm:px-[3.75rem] sm:py-10`}>
+        <LinkGroup
+          groupName="About"
+          links={aboutLinks}
+          width={locale === 'ko' ? 'w-[7.5rem]' : 'w-[10rem]'}
+          mode={mode}
+        />
         <LinkGroup groupName="Resources" links={resourcesLinks} width="w-[8.25rem]" mode={mode} />
         <LinkGroup groupName="Research" links={researchLinks} width="w-[9rem]" mode={mode} />
         <LinkGroup groupName="More" links={moreLinks} width="w-[8rem]" mode={mode} />
@@ -78,7 +82,9 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
       <ul className={`${itemColor} flex flex-col gap-[0.625rem] text-sm font-light sm:font-normal`}>
         {links.map((link, i) => (
           <li key={i}>
-            <Link href={link.href}>{t(link.title)}</Link>
+            <Link href={link.href} className="whitespace-nowrap">
+              {t(link.title)}
+            </Link>
           </li>
         ))}
       </ul>
