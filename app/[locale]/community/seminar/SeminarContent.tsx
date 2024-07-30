@@ -1,7 +1,4 @@
-import { notFound } from 'next/navigation';
 import { Fragment } from 'react';
-
-import { getSeminarPosts } from '@/apis/seminar';
 
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import SeminarSearchBar from '@/app/[locale]/community/seminar/helper/SeminarSearchBar';
@@ -10,23 +7,15 @@ import SeminarYear from '@/app/[locale]/community/seminar/helper/SeminarYear';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 
-import { PostSearchQueryParams } from '@/types/post';
-
-import { validatePageNum } from '@/utils/validateSearchParams';
+import { SeminarPreviewList } from '@/types/seminar';
 
 const POSTS_COUNT_PER_PAGE = 10;
 
-export default async function SeminarContent({
-  searchParams,
+export default function SeminarContent({
+  data: { searchList, total },
 }: {
-  searchParams: PostSearchQueryParams;
+  data: SeminarPreviewList;
 }) {
-  if (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) {
-    notFound();
-  }
-
-  const { searchList, total } = await getSeminarPosts(searchParams);
-
   return (
     <>
       <div className="flex flex-row items-center gap-6">

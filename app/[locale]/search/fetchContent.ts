@@ -18,7 +18,7 @@ import {
   AdmissionsSearchResult,
   AcademicsSearchResult,
 } from '@/types/search';
-import { SeminarList } from '@/types/seminar';
+import { SeminarPreviewList } from '@/types/seminar';
 
 import { TreeNode } from './helper/SearchSubNavbar';
 
@@ -26,7 +26,7 @@ type SectionContent = [
   about?: AboutSearchResult,
   notice?: NoticeSearchResult,
   news?: NewsSearchResult,
-  seminar?: SeminarList,
+  seminar?: SeminarPreviewList,
   member?: MemberSearchResult,
   research?: ResearchSearchResult,
   admission?: AdmissionsSearchResult,

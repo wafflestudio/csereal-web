@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
-import { SeminarList } from '@/types/seminar';
+import { SeminarPreviewList } from '@/types/seminar';
 
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
@@ -28,7 +28,7 @@ export default async function CommunitySection({
   keyword: string;
   notice: NoticeSearchResult;
   news: NewsSearchResult;
-  seminar: SeminarList;
+  seminar: SeminarPreviewList;
 }) {
   return (
     <Section title="소식" size={notice.total + news.total + seminar.total}>

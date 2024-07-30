@@ -3,7 +3,7 @@
 import { FETCH_TAG_SEMINAR } from '@/constants/network';
 
 import { PostSearchQueryParams } from '@/types/post';
-import { Seminar, SeminarList } from '@/types/seminar';
+import { Seminar, SeminarPreviewList } from '@/types/seminar';
 
 import { postRequest, patchRequest, getRequest, deleteRequest } from '.';
 
@@ -15,7 +15,7 @@ export const getSeminarPosts = async (params: PostSearchQueryParams) => {
   return getRequest(seminarPath, params, {
     next: { tags: [FETCH_TAG_SEMINAR] },
     jsessionID: true,
-  }) as Promise<SeminarList>;
+  }) as Promise<SeminarPreviewList>;
 };
 
 export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
