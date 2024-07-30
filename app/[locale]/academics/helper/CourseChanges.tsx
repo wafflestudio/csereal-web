@@ -9,7 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange } from '@/types/academics';
 
-const YEAR_LIMIT_CNT = 5; // 양수
+const YEAR_LIMIT_CNT = 10; // 양수
 
 export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
   const [selectedYear, setSelectedYear] = useState(changes[0].year);
@@ -49,8 +49,8 @@ export default function CourseChanges({ changes }: { changes: CourseChange[] }) 
 function ContentViewer({ description, year }: { description: string; year: number }) {
   return (
     <div className="mb-5">
-      <span className="font-semibold">{year}학년도 교과과정 변경 내역</span>
-      <HTMLViewer htmlContent={description} />
+      <div className="mb-4 font-semibold">{year}학년도 교과과정 변경 내역</div>
+      <ContentHTMLViewer description={description} />
     </div>
   );
 }
@@ -70,17 +70,21 @@ function TogglableContentViewer({
 
   return (
     <div className="mb-5">
-      <button onClick={toggleContent} className="flex items-center">
+      <button onClick={toggleContent} className="mb-4 flex items-center">
+        <span className="material-symbols-outlined text-2xl font-light">
+          {isExpanded ? 'expand_less' : 'expand_more'}
+        </span>
         <span className="font-semibold">
           {year}학년도{isLast && ' 이하'} 교과과정 변경 내역
         </span>
-        <span className="material-symbols-outlined text-3xl font-light">
-          {isExpanded ? 'expand_less' : 'expand_more'}
-        </span>
       </button>
-      {isExpanded && <HTMLViewer htmlContent={description} />}
+      {isExpanded && <ContentHTMLViewer description={description} />}
     </div>
   );
+}
+
+function ContentHTMLViewer({ description }: { description: string }) {
+  return <HTMLViewer htmlContent={description} className="bg-neutral-75 p-5" />;
 }
 
 const getSelectedChanges = (year: number, yearLimit: number, data: CourseChange[]) => {
