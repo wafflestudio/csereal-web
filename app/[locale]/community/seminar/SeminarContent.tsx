@@ -11,7 +11,7 @@ import { SeminarPreviewList } from '@/types/seminar';
 
 const POSTS_COUNT_PER_PAGE = 10;
 
-export default async function SeminarContent({
+export default function SeminarContent({
   data: { searchList, total },
 }: {
   data: SeminarPreviewList;
