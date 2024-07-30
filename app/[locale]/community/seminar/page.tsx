@@ -1,6 +1,7 @@
 // TODO: searchParams를 사용했으므로 자동 dynamic 처리되어야할 것 같은데 안되어 추가
 export const dynamic = 'force-dynamic';
 
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
@@ -12,6 +13,7 @@ import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
 import { seminar } from '@/utils/segmentNode';
+import { validatePageNum } from '@/utils/validateSearchParams';
 
 import AdminFeatures from './helper/AdminFeatures';
 
@@ -24,6 +26,10 @@ interface SeminarPageParams {
 }
 
 export default async function SeminarPage({ searchParams }: SeminarPageParams) {
+  if (!validatePageNum(searchParams.pageNum)) {
+    notFound();
+  }
+
   return (
     <PageLayout titleType="big">
       {/* TODO: fallback */}
