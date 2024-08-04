@@ -1,4 +1,4 @@
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 import {
   ResearchCenter,
   ResearchGroupList,
@@ -9,15 +9,15 @@ import {
 
 import { getRequest } from '.';
 
-export const getResearchGroups = (locale: Locale) =>
-  getRequest<ResearchGroupList>('/research/groups', { language: locale });
+export const getResearchGroups = (language: Language) =>
+  getRequest<ResearchGroupList>('/research/groups', { language });
 
-export const getResearchCenters = (locale: Locale) =>
-  getRequest<ResearchCenter[]>('/research/centers', { language: locale });
+export const getResearchCenters = (language: Language) =>
+  getRequest<ResearchCenter[]>('/research/centers', { language });
 
 export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
 
-export const getResearchLabs = (locale: Locale) =>
-  getRequest<SimpleResearchLab[]>('/research/labs', { language: locale });
+export const getResearchLabs = (language: Language) =>
+  getRequest<SimpleResearchLab[]>('/research/labs', { language });
 
 export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference/page');
