@@ -57,7 +57,7 @@ export default function StaffEditor({
 
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <RoleFieldset value={currLangContent.role} onChange={setContentByKey('role')} />
-      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image', true)} />
 
       <Section title="연락처 정보" titleMb="mb-3" mb="mb-12">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
@@ -136,7 +136,7 @@ function RoleFieldset({ value, onChange }: { value: string; onChange: (text: str
 
 function ImageFieldset({ file, setFile }: ImagePickerProps) {
   return (
-    <Fieldset title="사진" mb="mb-12" titleMb="mb-2">
+    <Fieldset title="사진" mb="mb-12" titleMb="mb-2" required>
       <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
         3:4 비율의 증명사진이 가장 적합합니다.
       </label>

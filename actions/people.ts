@@ -4,6 +4,8 @@ import { revalidateTag } from 'next/cache';
 
 import { redirect } from '@/navigation';
 
+import { postStaff } from '@/apis/people';
+
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
 
 import { getPath } from '@/utils/page';
@@ -31,9 +33,11 @@ export const deleteFacultyAction = withErrorHandler(async () => {
   redirect(facultyPath);
 });
 
-export const postStaffAction = withErrorHandler(async () => {
+export const postStaffAction = withErrorHandler(async (formData: FormData) => {
+  const res = await postStaff(formData);
+
   revalidateTag(FETCH_TAG_STAFF);
-  redirect(staffPath);
+  redirect(`${staffPath}/${res.ko.id}`);
 });
 
 export const putStaffAction = withErrorHandler(async (id: number) => {

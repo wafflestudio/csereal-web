@@ -69,6 +69,7 @@ export default function FacultyEditor({
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
 
+  // status는 공통이므로 항상 동시에 처리
   const setFacultyStatus = (status: FacultyStatus) => {
     setContent((content) => ({
       ko: { ...content.ko, status },

@@ -9,7 +9,7 @@ import {
   Staff,
 } from '@/types/people';
 
-import { deleteRequest, getRequest, postRequest, putRequest } from '.';
+import { deleteRequest, getRequest, postRequest, postRequest2, putRequest } from '.';
 
 const facultyPath = '/professor';
 const staffPath = '/staff';
@@ -44,8 +44,8 @@ export const deleteFaculty = async (id: number) =>
   deleteRequest(`${facultyPath}/${id}`, { jsessionID: true });
 
 export const postStaff = async (formData: FormData) => {
-  return postRequest(staffPath, { body: formData, jsessionID: true }) as Promise<{
-    id: number;
+  return postRequest2(staffPath, { body: formData, jsessionID: true }) as Promise<{
+    ko: { id: number };
   }>;
 };
 
