@@ -1,14 +1,16 @@
 import { getActiveFacultyList } from '@/apis/people';
 
+import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
+import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -20,7 +22,7 @@ const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
 interface FacultyPageProps {
-  params: { locale: Locale };
+  params: { locale: Language };
 }
 
 export default async function FacultyPage({ params }: FacultyPageProps) {
@@ -31,8 +33,10 @@ export default async function FacultyPage({ params }: FacultyPageProps) {
 
   return (
     <PageLayout title="교수진" titleType="big">
+      <LoginVisible staff>
+        <CreateButton pathname={`${facultyPath}/create`} status="ACTIVE" />
+      </LoginVisible>
       <PeopleGrid contentList={normal} />
-
       <h3 className="mb-4 mt-12 text-[20px] font-bold">객원교수</h3>
       <PeopleGrid contentList={special} />
     </PageLayout>
@@ -55,7 +59,6 @@ const facultyToProp = (faculty: SimpleFaculty): PeopleCellProps => {
     imageURL: faculty.imageURL,
     title: faculty.name,
     subtitle: faculty.academicRank,
-    titleNewline: true,
     href: `${facultyPath}/${faculty.id}`,
     content,
   };

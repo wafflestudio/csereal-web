@@ -16,7 +16,7 @@ export default function ModalFrame({ onClose, children }: ModalFrameProps) {
           maxHeight: '85vh',
           borderRadius: 0,
           backgroundColor: 'transparent',
-          color: '#262626', // text-neutra-800
+          color: '#262626', // text-neutral-800
           overflowX: 'hidden',
         },
       }}

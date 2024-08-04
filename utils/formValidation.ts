@@ -1,5 +1,9 @@
+import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
+import { StaffEditorContent } from '@/components/editor/StaffEditor';
+
+import { WithLanguage } from '@/types/language';
 
 export const validateNoticeForm = (content: PostEditorContent) => {
   if (content.title === '') {
@@ -31,5 +35,23 @@ export const validateSeminarForm = (content: SeminarEditorContent) => {
   }
   if (content.speaker.organization === '') {
     throw new Error('소속을 입력해주세요');
+  }
+};
+
+export const validateFacultyForm = (content: WithLanguage<FacultyEditorContent>) => {
+  if (!(content.ko.name && content.ko.academicRank)) {
+    throw new Error('필수 입력을 완료해주세요');
+  }
+  if (!(content.en.name && content.en.academicRank)) {
+    throw new Error('영문 정보도 입력해주세요');
+  }
+};
+
+export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => {
+  if (Object.entries(content.ko).some(([key, value]) => !value && key !== 'image')) {
+    throw new Error('필수 입력을 완료해주세요');
+  }
+  if (Object.entries(content.en).some(([key, value]) => !value && key !== 'image')) {
+    throw new Error('영문 정보도 입력해주세요');
   }
 };

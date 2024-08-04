@@ -1,29 +1,19 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
-
-import { Link } from '@/navigation';
 
 import { getFaculty } from '@/apis/people';
 
-import HeaderAndList from '@/app/[locale]/people/helper/HeaderAndList';
-import Profile from '@/app/[locale]/people/helper/Profile';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 
 import { getMetadata } from '@/utils/metadata';
-import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
 
-import PageTitle from '../../helper/PageTitle';
+import FacultyMemberPageContent from './FacultyMemberPageContent';
 
 export async function generateMetadata({ params }: FacultyMemberPageProps) {
   try {
     const id = parseInt(params.id);
-    const faculty = await getFaculty('ko', id);
+    const faculty = await getFaculty(id);
 
     return await getMetadata({
       locale: params.locale,
@@ -37,50 +27,17 @@ export async function generateMetadata({ params }: FacultyMemberPageProps) {
   }
 }
 
-const labUrl = getPath(researchLabs);
-
 interface FacultyMemberPageProps {
-  params: { id: string; locale: Locale };
+  params: { id: string; locale: Language };
 }
 
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
-  const t = await getTranslations('Content');
-
   try {
     const id = parseInt(params.id);
-    const faculty = await getFaculty('ko', id);
+    const faculty = await getFaculty(id);
     if (faculty.status !== 'ACTIVE') notFound();
 
-    return (
-      <PageLayout title={<PageTitle {...faculty} />} titleType="big" titleMargin="mb-9">
-        <div className="relative mb-10 sm:flow-root">
-          <Profile
-            office={faculty.office}
-            phone={faculty.phone}
-            fax={faculty.fax}
-            email={faculty.email}
-            website={faculty.website}
-            imageURL={faculty.imageURL}
-          />
-          <div className="flex">
-            <CurvedHorizontalSmallNode />
-            <div className=" -translate-x-[7.15px] translate-y-[4px] border-b-[1px] border-b-main-orange pb-[5px] pr-2">
-              <Link
-                href={`${labUrl}/${faculty.labId}`}
-                className=" cursor-pointer text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
-              >
-                {faculty?.labName}
-              </Link>
-            </div>
-          </div>
-          <div className="mt-8 break-all">
-            <HeaderAndList header={t('학력')} list={faculty.educations} />
-            <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
-            <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
-          </div>
-        </div>
-      </PageLayout>
-    );
+    return <FacultyMemberPageContent faculty={faculty} />;
   } catch {
     return <InvalidIDFallback rawID={params.id} />;
   }
