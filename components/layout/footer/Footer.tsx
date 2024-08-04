@@ -23,14 +23,15 @@ import {
   privacyPath,
 } from '@/constants/footer';
 
+import { Language } from '@/types/language';
+
 import useModal from '@/utils/hooks/useModal';
 
 import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 
 export default function Footer() {
   const mode = useFooterDesignMode();
-  const locale = useLocale() as 'en' | 'ko'; // TODO: Language 타입 활용
-
+  const locale = useLocale() as Language;
   const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
   const borderTop = mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
