@@ -14,6 +14,8 @@ import { Staff } from '@/types/people';
 
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast } from '@/utils/toast';
 
 import BulletRow from '../../helper/BulletRow';
 import HeaderAndList from '../../helper/HeaderAndList';
@@ -31,8 +33,16 @@ export default function StaffMemberPageContent({
 }) {
   const t = useTranslations('Content');
 
+  // TODO: staff 수정 후 revalidate
+  // TODO: 한영 리다이렉트
+  // TODO: people 어드민 버튼 common과 통합
+
   const handleDelete = async () => {
-    await deleteStaffAction(ids);
+    try {
+      handleServerAction(await deleteStaffAction(ids));
+    } catch {
+      errorToast('오류가 발생했습니다');
+    }
   };
 
   return (
