@@ -11,6 +11,7 @@ import {
 
 import { getRequest } from '.';
 
+// TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
   getRequest(`/academics/${type}/guide`) as Promise<Guide>;
 

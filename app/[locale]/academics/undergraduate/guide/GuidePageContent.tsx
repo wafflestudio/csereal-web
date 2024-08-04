@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { BlackButton } from '@/components/common/Buttons';
 import BasicEditor from '@/components/editor/BasicEditor';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -35,8 +36,9 @@ export default function GuidePageContent({
         />
       ) : (
         <>
-          {/* TODO: BlackButton으로 변경 */}
-          <button onClick={() => setIsEditMode(true)}>편집</button>
+          <div className="text-right">
+            <BlackButton title="편집" onClick={() => setIsEditMode(true)} />
+          </div>
           <HTMLViewer htmlContent={data.description} />
         </>
       )}
