@@ -4,9 +4,11 @@ import { revalidateTag } from 'next/cache';
 
 import { redirect } from '@/navigation';
 
-import { postStaff } from '@/apis/people';
+import { deleteStaff, postStaff, putStaff } from '@/apis/people';
 
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
+
+import { WithLanguage } from '@/types/language';
 
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, staff } from '@/utils/segmentNode';
@@ -40,12 +42,18 @@ export const postStaffAction = withErrorHandler(async (formData: FormData) => {
   redirect(`${staffPath}/${res.ko.id}`);
 });
 
-export const putStaffAction = withErrorHandler(async (id: number) => {
-  revalidateTag(FETCH_TAG_STAFF);
-  redirect(`${staffPath}/${id}`);
-});
+export const putStaffAction = withErrorHandler(
+  async (ids: WithLanguage<number>, formData: FormData) => {
+    await putStaff(ids, formData);
 
-export const deleteStaffAction = withErrorHandler(async () => {
+    revalidateTag(FETCH_TAG_STAFF);
+    redirect(`${staffPath}/${ids.ko}`);
+  },
+);
+
+export const deleteStaffAction = withErrorHandler(async (ids: WithLanguage<number>) => {
+  await deleteStaff(ids);
+
   revalidateTag(FETCH_TAG_STAFF);
   redirect(staffPath);
 });

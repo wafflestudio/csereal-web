@@ -1,4 +1,4 @@
-import { Language } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 import {
   EmiritusFaculty,
   Faculty,
@@ -9,7 +9,16 @@ import {
   Staff,
 } from '@/types/people';
 
-import { deleteRequest, getRequest, postRequest, postRequest2, putRequest } from '.';
+import {
+  deleteRequest,
+  deleteRequest2,
+  getRequest,
+  getRequest2,
+  postRequest,
+  postRequest2,
+  putRequest,
+  putRequest2,
+} from '.';
 
 const facultyPath = '/professor';
 const staffPath = '/staff';
@@ -27,7 +36,7 @@ export const getEmeritusFaculty = (id: number) => getRequest<EmiritusFaculty>(`/
 export const getStaffList = (language: Language) =>
   getRequest<SimpleStaff[]>('/staff', { language });
 
-export const getStaff = (id: number) => getRequest<Staff>(`/staff/${id}`);
+export const getStaff = (id: number) => getRequest2<WithLanguage<Staff>>(`/staff/${id}`);
 
 export const postFaculty = async (formData: FormData) => {
   return postRequest(facultyPath, { body: formData, jsessionID: true }) as Promise<{
@@ -49,9 +58,9 @@ export const postStaff = async (formData: FormData) => {
   }>;
 };
 
-export const putStaff = async (id: number, formData: FormData) => {
-  await putRequest(`${staffPath}/${id}`, { body: formData, jsessionID: true });
+export const putStaff = async (ids: WithLanguage<number>, formData: FormData) => {
+  await putRequest2(`${staffPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
 };
 
-export const deleteStaff = async (id: number) =>
-  deleteRequest(`${staffPath}/${id}`, { jsessionID: true });
+export const deleteStaff = async (ids: WithLanguage<number>) =>
+  deleteRequest2(`${staffPath}/${ids.ko}/${ids.en}`, { jsessionID: true });

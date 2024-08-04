@@ -1,3 +1,5 @@
+import { Language } from './language';
+
 export const FACULTY_STATUS = {
   ACTIVE: '교수',
   INACTIVE: '역대 교수',
@@ -65,4 +67,5 @@ export interface SimpleStaff {
 
 export interface Staff extends SimpleStaff {
   tasks: string[];
+  language: Language;
 }

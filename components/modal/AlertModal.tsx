@@ -1,3 +1,5 @@
+'use client';
+
 import { useFormStatus } from 'react-dom';
 
 import useModal from '@/utils/hooks/useModal';
