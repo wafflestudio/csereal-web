@@ -6,10 +6,12 @@ import BasicEditor from '@/components/editor/BasicEditor';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Guide } from '@/types/academics';
+
 export default function GuidePageContent({
-  description,
+  data,
 }: {
-  description: string;
+  data: Guide;
   type: 'undergraduate' | 'graduate';
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -20,7 +22,11 @@ export default function GuidePageContent({
     <PageLayout titleType="big">
       {isEditMode ? (
         <BasicEditor
-          initialContent={{ description }}
+          initialContent={{
+            description: data.description,
+            attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
+            mainImage: null,
+          }}
           actions={{
             type: 'EDIT',
             onCancel: () => setIsEditMode(false),
@@ -31,7 +37,7 @@ export default function GuidePageContent({
         <>
           {/* TODO: BlackButton으로 변경 */}
           <button onClick={() => setIsEditMode(true)}>편집</button>
-          <HTMLViewer htmlContent={description} />
+          <HTMLViewer htmlContent={data.description} />
         </>
       )}
     </PageLayout>

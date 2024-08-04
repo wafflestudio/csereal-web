@@ -5,7 +5,7 @@ export const validatePageNum = (pageNumStr?: string) => {
   if (!pageNumStr) return true;
 
   const pageNum = Number.parseInt(pageNumStr);
-  const isValid = !Number.isNaN(pageNum) && pageNum >= 1;
+  const isValid = !Number.isNaN(pageNum) && pageNum >= 1 && pageNum < 99999;
   return isValid;
 };
 

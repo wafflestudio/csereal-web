@@ -1,11 +1,10 @@
-import { Attachment } from '@/components/common/Attachments';
-
 import {
   Course,
   CourseChange,
   Curriculum,
   DegreeRequirements,
   GeneralStudiesRequirements,
+  Guide,
   Scholarship,
   ScholarshipList,
 } from '@/types/academics';
@@ -13,10 +12,7 @@ import {
 import { getRequest } from '.';
 
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/guide`) as Promise<{
-    description: string;
-    attachments: Attachment[];
-  }>;
+  getRequest(`/academics/${type}/guide`) as Promise<Guide>;
 
 export const getCourses = (type: 'undergraduate' | 'graduate') =>
   getRequest(`/academics/${type}/courses`) as Promise<Course[]>;

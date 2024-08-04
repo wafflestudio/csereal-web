@@ -46,7 +46,7 @@ export default function PeopleCell({
       <div className="flex flex-col items-start break-keep">
         <Link
           href={href}
-          className={`relative flex w-full cursor-pointer flex-row gap-2 pb-2.5 ${
+          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2.5 ${
             titleNewline ? 'flex-col' : ''
           }`}
         >

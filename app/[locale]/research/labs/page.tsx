@@ -2,7 +2,7 @@ import { getResearchLabs } from '@/apis/research';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Locale } from '@/types/locale';
+import { Language } from '@/types/language';
 
 import { getMetadata } from '@/utils/metadata';
 import { researchLabs } from '@/utils/segmentNode';
@@ -11,7 +11,7 @@ import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';
 
 interface ResearchLabPageProps {
-  params: { locale: Locale };
+  params: { locale: Language };
 }
 
 export async function generateMetadata({ params: { locale } }: ResearchLabPageProps) {

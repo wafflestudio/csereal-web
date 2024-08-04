@@ -3,6 +3,8 @@ export interface BasicTextInputProps {
   onChange: (text: string) => void;
   maxWidth: string;
   placeholder?: string;
+  disabled?: boolean;
+  bgColor?: string;
 }
 
 export default function BasicTextInput({
@@ -10,15 +12,18 @@ export default function BasicTextInput({
   onChange,
   placeholder,
   maxWidth,
+  disabled,
+  bgColor = 'bg-white',
 }: BasicTextInputProps) {
   return (
     <input
       type="text"
       className={`${maxWidth} autofill-bg-white h-8 rounded-sm border border-neutral-300
-            bg-white pl-2 text-sm outline-none`}
+            ${bgColor} pl-2 text-sm outline-none placeholder:text-neutral-300`}
       placeholder={placeholder}
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
     />
   );
 }

@@ -12,5 +12,5 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 export default async function UndergraduateGuidePage() {
   const data = await getAcademicsGuide('undergraduate');
 
-  return <GuidePageContent description={data.description} type="undergraduate" />;
+  return <GuidePageContent data={data} type="undergraduate" />;
 }
