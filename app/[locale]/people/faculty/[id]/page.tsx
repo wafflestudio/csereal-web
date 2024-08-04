@@ -2,31 +2,43 @@ import { notFound } from 'next/navigation';
 
 import { getFaculty } from '@/apis/people';
 
+import InvalidIDFallback from '@/components/common/InvalidIDFallback';
+
 import { Language } from '@/types/language';
 
 import { getMetadata } from '@/utils/metadata';
 
 import FacultyMemberPageContent from './FacultyMemberPageContent';
 
-export async function generateMetadata({ params: { locale, id } }: FacultyMemberPageProps) {
-  const faculty = await getFaculty(id);
+export async function generateMetadata({ params }: FacultyMemberPageProps) {
+  try {
+    const id = parseInt(params.id);
+    const faculty = await getFaculty(id);
 
-  return await getMetadata({
-    locale,
-    metadata: {
-      title: `${faculty.name}`,
-      description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
-    },
-  });
+    return await getMetadata({
+      locale: params.locale,
+      metadata: {
+        title: `${faculty.name}`,
+        description: `서울대학교 컴퓨터공학부 ${faculty.name} 교수 페이지입니다.`,
+      },
+    });
+  } catch {
+    return {};
+  }
 }
 
 interface FacultyMemberPageProps {
-  params: { id: number; locale: Language };
+  params: { id: string; locale: Language };
 }
 
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
-  const faculty = await getFaculty(params.id);
-  if (faculty.status !== 'ACTIVE') notFound();
+  try {
+    const id = parseInt(params.id);
+    const faculty = await getFaculty(id);
+    if (faculty.status !== 'ACTIVE') notFound();
 
-  return <FacultyMemberPageContent faculty={faculty} />;
+    return <FacultyMemberPageContent faculty={faculty} />;
+  } catch {
+    return <InvalidIDFallback rawID={params.id} />;
+  }
 }

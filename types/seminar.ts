@@ -1,4 +1,4 @@
-export interface SeminarList {
+export interface SeminarPreviewList {
   total: number;
   searchList: SeminarPreview[];
 }

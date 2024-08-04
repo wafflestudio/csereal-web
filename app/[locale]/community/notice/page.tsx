@@ -14,17 +14,18 @@ import { PostSearchQueryParams } from '@/types/post';
 
 import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/utils/segmentNode';
-import { validatePageNum } from '@/utils/validatePageNum';
+import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: notice });
 }
+
 interface NoticePageParams {
   searchParams: PostSearchQueryParams;
 }
 
 export default async function NoticePage({ searchParams }: NoticePageParams) {
-  if (searchParams.pageNum && !validatePageNum(searchParams.pageNum)) {
+  if (!validatePageNum(searchParams.pageNum) || !validateTag('notice', searchParams.tag)) {
     notFound();
   }
 
