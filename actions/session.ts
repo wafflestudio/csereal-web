@@ -23,6 +23,7 @@ export const removeAuth = async () => {
   cookies().delete(COOKIE_SESSION_ID);
 };
 
+// TODO: getUserState로 이름 변경?
 export const getIsStaff = async (): Promise<UserState> => {
   const id = cookies().get(COOKIE_SESSION_ID);
   if (id === undefined) return 'logout';
