@@ -34,8 +34,6 @@ export default function StaffMemberPageContent({
   const t = useTranslations('Content');
 
   // TODO: staff 수정 후 revalidate
-  // TODO: 한영 리다이렉트
-  // TODO: people 어드민 버튼 common과 통합
 
   const handleDelete = async () => {
     try {

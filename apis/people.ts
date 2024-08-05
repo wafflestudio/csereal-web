@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { Language, WithLanguage } from '@/types/language';
 import {
   EmiritusFaculty,
@@ -36,7 +38,14 @@ export const getEmeritusFaculty = (id: number) => getRequest<EmiritusFaculty>(`/
 export const getStaffList = (language: Language) =>
   getRequest<SimpleStaff[]>('/staff', { language });
 
-export const getStaff = (id: number) => getRequest2<WithLanguage<Staff>>(`/staff/${id}`);
+export const getStaff = (id: number) => {
+  try {
+    return getRequest2<WithLanguage<Staff>>(`/staff/${id}`);
+  } catch (e) {
+    console.log('eeee');
+    notFound();
+  }
+};
 
 export const postFaculty = async (formData: FormData) => {
   return postRequest(facultyPath, { body: formData, jsessionID: true }) as Promise<{

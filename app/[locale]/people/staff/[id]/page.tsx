@@ -2,6 +2,8 @@ import { getStaff } from '@/apis/people';
 
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
+import { Language } from '@/types/language';
+
 import { getMetadata } from '@/utils/metadata';
 
 import StaffMemberPageContent from './StaffMemberPageContent';
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: StaffMemberPageProps) {
 }
 
 interface StaffMemberPageProps {
-  params: { id: string; locale: string };
+  params: { id: string; locale: Language };
 }
 
 export default async function StaffMemberPage({ params }: StaffMemberPageProps) {
@@ -33,7 +35,12 @@ export default async function StaffMemberPage({ params }: StaffMemberPageProps) 
     const id = parseInt(params.id);
     const data = await getStaff(id);
 
-    return <StaffMemberPageContent staff={data.ko} ids={{ ko: data.ko.id, en: data.en.id }} />;
+    return (
+      <StaffMemberPageContent
+        staff={data[params.locale]}
+        ids={{ ko: data.ko.id, en: data.en.id }}
+      />
+    );
   } catch {
     return <InvalidIDFallback rawID={params.id} />;
   }
