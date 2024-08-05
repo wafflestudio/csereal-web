@@ -33,8 +33,6 @@ export default function StaffMemberPageContent({
 }) {
   const t = useTranslations('Content');
 
-  // TODO: staff 수정 후 revalidate
-
   const handleDelete = async () => {
     try {
       handleServerAction(await deleteStaffAction(ids));
