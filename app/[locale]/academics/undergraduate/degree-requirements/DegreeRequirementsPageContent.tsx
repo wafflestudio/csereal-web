@@ -2,22 +2,23 @@
 
 import { useState } from 'react';
 
-import { putGuideAction } from '@/actions/academics';
+import { putDegreeRequirementsAction } from '@/actions/academics';
 
 import Attachments from '@/components/common/Attachments';
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
+import { StraightNode } from '@/components/common/Nodes';
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { Guide, StudentType } from '@/types/academics';
+import { DegreeRequirements } from '@/types/academics';
 
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
-export default function GuidePageContent({ data, type }: { data: Guide; type: StudentType }) {
+export default function DegreeRequirementsPageContent({ data }: { data: DegreeRequirements }) {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const handleComplete = async (content: BasicEditorContent) => {
@@ -37,7 +38,7 @@ export default function GuidePageContent({ data, type }: { data: Guide; type: St
     });
 
     try {
-      handleServerAction(await putGuideAction(type, formData));
+      handleServerAction(await putDegreeRequirementsAction(formData));
       setIsEditMode(false);
       window.scrollTo({ top: 0 });
     } catch (e) {
@@ -67,8 +68,13 @@ export default function GuidePageContent({ data, type }: { data: Guide; type: St
               <BlackButton title="편집" onClick={() => setIsEditMode(true)} />
             </div>
           </LoginVisible>
+
           <Attachments files={data.attachments} />
-          <HTMLViewer htmlContent={data.description} />
+          <div className="mb-4 mt-6 flex w-[200px] flex-col">
+            <h3 className=" mb-2 pl-3 text-lg font-bold">공통: 졸업사정 유의사항</h3>
+            <StraightNode />
+          </div>
+          <HTMLViewer htmlContent={data.description} className="mt-7" />
         </>
       )}
     </PageLayout>
