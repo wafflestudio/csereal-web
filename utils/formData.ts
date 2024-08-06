@@ -31,6 +31,7 @@ export const contentToFormData = (content: {
     );
   }
 
+  // TODO: CREATE 요청일 경우 key를 'image'로 변경
   if (image && isLocalImage(image)) {
     formData.append('newImage', image.file);
   }
