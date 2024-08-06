@@ -2,10 +2,13 @@
 
 import { useTranslations } from 'next-intl';
 
+import LoginVisible from '@/components/common/LoginVisible';
+
 import { Classification, Course, SortOption } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
+import AddCourseButton from '../../helper/AddCourseButton';
 import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
@@ -27,6 +30,9 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <>
+      <LoginVisible staff>
+        <AddCourseButton />
+      </LoginVisible>
       <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
