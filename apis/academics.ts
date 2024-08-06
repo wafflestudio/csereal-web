@@ -7,9 +7,10 @@ import {
   Guide,
   Scholarship,
   ScholarshipList,
+  StudentType,
 } from '@/types/academics';
 
-import { getRequest } from '.';
+import { getRequest, putRequest } from '.';
 
 // TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
@@ -35,3 +36,6 @@ export const getDegreeRequirements = () =>
 
 export const getGeneralStudiesRequirements = (type: 'undergraduate' | 'graduate') =>
   getRequest<GeneralStudiesRequirements>(`/academics/${type}/general-studies-requirements`);
+
+export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
+  putRequest(`academics/${type}/guide`, { body: formData, jsessionID: true });
