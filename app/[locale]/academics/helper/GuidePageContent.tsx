@@ -39,6 +39,7 @@ export default function GuidePageContent({ data, type }: { data: Guide; type: St
     try {
       handleServerAction(await putGuideAction(type, formData));
       setIsEditMode(false);
+      window.scrollTo({ top: 0 });
     } catch (e) {
       errorToast('오류가 발생했습니다');
     }
@@ -59,7 +60,6 @@ export default function GuidePageContent({ data, type }: { data: Guide; type: St
             onComplete: handleComplete,
           }}
           showAttachments
-          showLanguage
         />
       ) : (
         <>
@@ -67,8 +67,8 @@ export default function GuidePageContent({ data, type }: { data: Guide; type: St
             <div className="text-right">
               <BlackButton title="편집" onClick={() => setIsEditMode(true)} />
             </div>
-            <Attachments files={data.attachments} />
           </LoginVisible>
+          <Attachments files={data.attachments} />
           <HTMLViewer htmlContent={data.description} />
         </>
       )}

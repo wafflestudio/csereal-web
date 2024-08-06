@@ -2,12 +2,10 @@ import { Metadata } from 'next';
 
 import { getAcademicsGuide } from '@/apis/academics';
 
-import Attachments from '@/components/common/Attachments';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateGuide } from '@/utils/segmentNode';
+
+import GuidePageContent from '../../helper/GuidePageContent';
 
 export async function generateMetadata({
   params: { locale },
@@ -20,10 +18,5 @@ export async function generateMetadata({
 export default async function GraduateGuidePage() {
   const data = await getAcademicsGuide('graduate');
 
-  return (
-    <PageLayout titleType="big">
-      <Attachments files={data.attachments} />
-      <HTMLViewer htmlContent={data.description} />
-    </PageLayout>
-  );
+  return <GuidePageContent data={data} type="graduate" />;
 }

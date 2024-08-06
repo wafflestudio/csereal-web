@@ -3,7 +3,7 @@ import { getAcademicsGuide } from '@/apis/academics';
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateGuide } from '@/utils/segmentNode';
 
-import GuidePageContent from './GuidePageContent';
+import GuidePageContent from '../../helper/GuidePageContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateGuide });

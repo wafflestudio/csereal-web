@@ -1,3 +1,5 @@
+import { FETCH_TAG_GUIDE } from '@/constants/network';
+
 import {
   Course,
   CourseChange,
@@ -14,7 +16,9 @@ import { getRequest, putRequest } from '.';
 
 // TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/guide`) as Promise<Guide>;
+  getRequest(`/academics/${type}/guide`, undefined, {
+    next: { tags: [FETCH_TAG_GUIDE] },
+  }) as Promise<Guide>;
 
 export const getCourses = (type: 'undergraduate' | 'graduate') =>
   getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
