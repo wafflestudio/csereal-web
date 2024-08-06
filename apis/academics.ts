@@ -38,4 +38,4 @@ export const getGeneralStudiesRequirements = (type: 'undergraduate' | 'graduate'
   getRequest<GeneralStudiesRequirements>(`/academics/${type}/general-studies-requirements`);
 
 export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
-  putRequest(`academics/${type}/guide`, { body: formData, jsessionID: true });
+  putRequest(`/academics/${type}/guide`, { body: formData, jsessionID: true });
