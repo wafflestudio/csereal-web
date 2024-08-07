@@ -16,7 +16,9 @@ export default function AddCourseModal({ onClose }: { onClose: () => void }) {
     credit: 3,
     grade: '1학년',
   });
+  const [en, setEn] = useState({ name: '', description: '' });
 
+  // TODO: 훅 사용
   const setContentByKey =
     <K extends keyof Course>(key: K) =>
     (value: Course[K]) => {
@@ -45,10 +47,15 @@ export default function AddCourseModal({ onClose }: { onClose: () => void }) {
             <CreditFieldset selected={course.credit} onChange={setContentByKey('credit')} />
             <GradeField selected={course.grade} onChange={setContentByKey('grade')} />
           </div>
-          <NameFieldset name={course.name} onChange={setContentByKey('name')} />
+          <NameFieldset
+            name={en.name}
+            onChange={(value) => setEn((prev) => ({ ...prev, name: value }))}
+            english
+          />
           <DescriptionFieldset
             description={course.description}
-            onChange={setContentByKey('description')}
+            onChange={(value) => setEn((prev) => ({ ...prev, description: value }))}
+            english
           />
         </div>
         <div className="flex justify-end gap-2">
@@ -71,9 +78,17 @@ function Button({ text, onClick }: { text: string; onClick: () => void }) {
   );
 }
 
-function NameFieldset({ name, onChange }: { name: string; onChange: (value: string) => void }) {
+function NameFieldset({
+  name,
+  onChange,
+  english = false,
+}: {
+  name: string;
+  onChange: (value: string) => void;
+  english?: boolean;
+}) {
   return (
-    <Fieldset title="교과목명" titleMb="mb-1" mb="mb-5" required>
+    <Fieldset title={english ? '(영문) Course Name' : '교과목명'} titleMb="mb-1" mb="mb-5" required>
       <BasicTextInput value={name} onChange={onChange} maxWidth="max-w-[480px]" />
     </Fieldset>
   );
@@ -82,12 +97,19 @@ function NameFieldset({ name, onChange }: { name: string; onChange: (value: stri
 function DescriptionFieldset({
   description,
   onChange,
+  english = false,
 }: {
   description: string;
   onChange: (value: string) => void;
+  english?: boolean;
 }) {
   return (
-    <Fieldset title="교과목 설명" titleMb="mb-1" mb="mb-5" required>
+    <Fieldset
+      title={english ? '(영문) Course Description' : '교과목 설명'}
+      titleMb="mb-1"
+      mb="mb-5"
+      required
+    >
       <textarea
         value={description}
         onChange={(e) => onChange(e.target.value)}
