@@ -8,7 +8,7 @@ import { Classification, Course, SortOption } from '@/types/academics';
 
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import AddCourseButton from '../../helper/AddCourseButton';
+import AddCourseButton from '../../helper/courses/AddCourseButton';
 import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
