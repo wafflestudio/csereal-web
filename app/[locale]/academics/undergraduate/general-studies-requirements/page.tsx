@@ -12,7 +12,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function UndergraduateGeneralStudiesRequirements() {
-  const { generalStudies } = await getGeneralStudiesRequirements('undergraduate');
+  const { generalStudies } = await getGeneralStudiesRequirements();
 
   return (
     <PageLayout titleType="big">

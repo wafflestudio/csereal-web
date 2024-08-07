@@ -36,5 +36,5 @@ export const getScholarship = (id: number) =>
 export const getDegreeRequirements = () =>
   getRequest<DegreeRequirements>(`/academics/undergraduate/degree-requirements`);
 
-export const getGeneralStudiesRequirements = (type: 'undergraduate' | 'graduate') =>
-  getRequest<GeneralStudiesRequirements>(`/academics/${type}/general-studies-requirements`);
+export const getGeneralStudiesRequirements = () =>
+  getRequest<GeneralStudiesRequirements>(`/academics/indergraduate/general-studies-requirements`);
