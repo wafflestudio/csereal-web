@@ -8,11 +8,11 @@ import TimeLine from './TimeLine';
 
 export default function TimelinePageViewer<T extends { year: number; description: string }>({
   contents,
-  getTitle,
+  title,
   yearLimitCount = 10,
 }: {
   contents: T[];
-  getTitle: (year: number, isLast?: boolean) => string;
+  title: { text: string; unit: string };
   yearLimitCount?: number;
 }) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
@@ -31,17 +31,20 @@ export default function TimelinePageViewer<T extends { year: number; description
         {selectedContents.length === 1 ? (
           <ContentViewer
             description={selectedContents[0].description}
-            title={getTitle(selectedContents[0].year)}
+            title={`${selectedContents[0].year}${title.unit} ${title.text}`}
           />
         ) : (
-          selectedContents.map((change, i) => (
-            <TogglableContentViewer
-              description={change.description}
-              expandDefault={i === 0}
-              title={getTitle(change.year, i !== 0 && i === selectedContents.length - 1)}
-              key={change.year}
-            />
-          ))
+          selectedContents.map((change, i) => {
+            const isLast = i !== 0 && i === selectedContents.length - 1;
+            return (
+              <TogglableContentViewer
+                description={change.description}
+                expandDefault={i === 0}
+                title={`${change.year}${title.unit}${isLast ? ' 이하' : ''} ${title.text}`}
+                key={change.year}
+              />
+            );
+          })
         )}
       </div>
     </>
