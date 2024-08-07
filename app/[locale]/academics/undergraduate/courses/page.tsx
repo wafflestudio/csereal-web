@@ -7,10 +7,10 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Course } from '@/types/academics';
 
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateGuide } from '@/utils/segmentNode';
+import { undergraduateCourses } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
-  return await getMetadata({ locale, node: undergraduateGuide });
+  return await getMetadata({ locale, node: undergraduateCourses });
 }
 
 export default async function UndergraduateCoursePage() {
