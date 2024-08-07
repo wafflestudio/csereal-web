@@ -31,7 +31,7 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
   return (
     <>
       <LoginVisible staff>
-        <AddCourseButton />
+        <AddCourseButton studentType="undergraduate" />
       </LoginVisible>
       <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar

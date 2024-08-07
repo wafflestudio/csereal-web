@@ -7,14 +7,21 @@ import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Classification, CLASSIFICATION, Course, Grade, GRADE } from '@/types/academics';
 
-export default function AddCourseModal({ onClose }: { onClose: () => void }) {
+// TODO: StudentType 타입 사용
+export default function AddCourseModal({
+  onClose,
+  studentType,
+}: {
+  onClose: () => void;
+  studentType: 'undergraduate' | 'graduate';
+}) {
   const [course, setCourse] = useState<Course>({
     name: '',
     description: '',
     classification: '전공필수',
     code: '',
     credit: 3,
-    grade: '1학년',
+    grade: studentType === 'graduate' ? '대학원' : '1학년',
   });
   const [en, setEn] = useState({ name: '', description: '' });
 
@@ -45,7 +52,11 @@ export default function AddCourseModal({ onClose }: { onClose: () => void }) {
               onChange={setContentByKey('classification')}
             />
             <CreditFieldset selected={course.credit} onChange={setContentByKey('credit')} />
-            <GradeField selected={course.grade} onChange={setContentByKey('grade')} />
+            <GradeField
+              selected={course.grade}
+              onChange={setContentByKey('grade')}
+              studentType={studentType}
+            />
           </div>
           <NameFieldset
             name={en.name}
@@ -121,7 +132,7 @@ function DescriptionFieldset({
 
 function CodeFieldset({ code, onChange }: { code: string; onChange: (value: string) => void }) {
   return (
-    <Fieldset title="교과목 코드" titleMb="mb-1" grow={false} required>
+    <Fieldset title="교과목 번호" titleMb="mb-1" grow={false} required>
       <BasicTextInput value={code} onChange={onChange} maxWidth="max-w-[140px]" />
     </Fieldset>
   );
@@ -193,11 +204,20 @@ function CreditFieldset({
   );
 }
 
-function GradeField({ selected, onChange }: { selected: Grade; onChange: (value: Grade) => void }) {
+// TODO: StudentType 사용
+function GradeField({
+  selected,
+  onChange,
+  studentType,
+}: {
+  selected: Grade;
+  onChange: (value: Grade) => void;
+  studentType: 'undergraduate' | 'graduate';
+}) {
   return (
     <DropdownFieldset
       title="학년"
-      contents={[...GRADE]} // 그냥 GRDAE는 as const로 되어 있어서 할당 불가
+      contents={studentType === 'undergraduate' ? GRADE.slice(1) : [GRADE[0]]} // 그냥 GRDAE는 as const로 되어 있어서 할당 불가
       selected={selected}
       onChange={onChange}
       width="w-[90px]"

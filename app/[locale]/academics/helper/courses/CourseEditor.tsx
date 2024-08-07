@@ -17,6 +17,7 @@ export default function CourseEditor({
   toggleEditMode: () => void;
 }) {
   const [course, setNewCourse] = useState<Course>(initCourse);
+  const isGraduateCourse = initCourse.grade === '대학원';
 
   const handleComplete = async () => {
     toggleEditMode();
@@ -40,11 +41,13 @@ export default function CourseEditor({
           value={course.name}
           onChange={setContentByKey('name')}
           maxWidth="w-[180px]"
+          placeholder="교과목명"
         />
         <BasicTextInput
           value={course.code}
           onChange={setContentByKey('code')}
           maxWidth="w-[120px]"
+          placeholder="교과목 번호"
         />
         <CustomDropdown
           contents={[...CLASSIFICATION]}
@@ -58,13 +61,17 @@ export default function CourseEditor({
           onChange={setContentByKey('credit')}
         />
         <CustomDropdown
-          contents={[...GRADE]}
+          contents={isGraduateCourse ? [GRADE[0]] : GRADE.slice(1)}
           selected={course.grade}
           onChange={setContentByKey('grade')}
           width="w-[90px]"
         />
       </h4>
-      <TextArea value={course.description} onChange={setContentByKey('description')} />
+      <TextArea
+        value={course.description}
+        onChange={setContentByKey('description')}
+        placeholder="교과목 설명"
+      />
       {/* <EnglishField /> */}
       <div className="flex justify-end gap-2">
         <Button text="취소" onClick={toggleEditMode} />
@@ -144,22 +151,33 @@ function CustomDropdown<T>({
 //           value={name}
 //           onChange={(value) => setEnglish((prev) => ({ ...prev, name: value }))}
 //           maxWidth="w-[180px]"
+//           placeholder="course name"
 //         />
 //       </div>
 //       <TextArea
 //         value={description}
 //         onChange={(value) => setEnglish((prev) => ({ ...prev, name: value }))}
+//         placeholder="course description"
 //       />
 //     </div>
 //   );
 // }
 
-function TextArea({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+function TextArea({
+  value,
+  placeholder,
+  onChange,
+}: {
+  value: string;
+  placeholder?: string;
+  onChange: (value: string) => void;
+}) {
   return (
     <textarea
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className="autofill-bg-white h-20 resize-none rounded-sm border border-neutral-300 p-2 text-md outline-none"
+      placeholder={placeholder}
     />
   );
 }

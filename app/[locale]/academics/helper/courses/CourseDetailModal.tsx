@@ -4,9 +4,13 @@ import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 
 import { GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
+import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Course } from '@/types/academics';
+
+import useModal from '@/utils/hooks/useModal';
+import { errorToast, successToast } from '@/utils/toast';
 
 import CourseEditor from './CourseEditor';
 
@@ -15,11 +19,19 @@ interface CourseDetailModalProps {
   onClose: () => void;
 }
 
+// TODO: DeleteButton 공용 컴포넌트 분리
 export default function CourseDetailModal({ course, onClose }: CourseDetailModalProps) {
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
+  const { openModal } = useModal();
 
   const handleDelete = async () => {
-    toggleEditMode();
+    try {
+      // handleServerAction(await onDelete());
+      successToast('교과목을 삭제했습니다.');
+      onClose();
+    } catch (error) {
+      errorToast('교과목을 삭제하지 못했습니다.');
+    }
   };
 
   return (
@@ -28,7 +40,19 @@ export default function CourseDetailModal({ course, onClose }: CourseDetailModal
         {isEditMode ? (
           <CourseEditor initCourse={course} toggleEditMode={toggleEditMode} />
         ) : (
-          <CourseViewer course={course} onClickDelete={handleDelete} onClickEdit={toggleEditMode} />
+          <CourseViewer
+            course={course}
+            onClickDelete={() =>
+              openModal(
+                <AlertModal
+                  message="교과목을 삭제하시겠습니까?"
+                  confirmText="삭제"
+                  onConfirm={handleDelete}
+                />,
+              )
+            }
+            onClickEdit={toggleEditMode}
+          />
         )}
       </div>
     </ModalFrame>
