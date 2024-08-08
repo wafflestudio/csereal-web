@@ -1,4 +1,4 @@
-import { FETCH_TAG_GUIDE } from '@/constants/network';
+import { FETCH_TAG_DEGREE, FETCH_TAG_GUIDE } from '@/constants/network';
 
 import {
   Course,
@@ -36,7 +36,9 @@ export const getScholarship = (id: number) =>
   getRequest<Scholarship>(`/academics/scholarship/${id}`);
 
 export const getDegreeRequirements = () =>
-  getRequest<DegreeRequirements>(`/academics/undergraduate/degree-requirements`);
+  getRequest<DegreeRequirements>(`/academics/undergraduate/degree-requirements`, undefined, {
+    next: { tags: [FETCH_TAG_DEGREE] },
+  });
 
 export const getGeneralStudiesRequirements = (type: 'undergraduate' | 'graduate') =>
   getRequest<GeneralStudiesRequirements>(`/academics/${type}/general-studies-requirements`);
