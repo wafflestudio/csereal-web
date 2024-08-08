@@ -1,6 +1,6 @@
 'use client';
 
-import { postStaffAction } from '@/actions/people';
+import { putStaffAction } from '@/actions/people';
 import { useRouter } from '@/navigation';
 
 import { isLocalImage } from '@/components/editor/PostEditorTypes';
@@ -9,6 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { LANGUAGE, Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
+import { Staff } from '@/types/people';
 
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
@@ -18,38 +19,47 @@ import { errorToast } from '@/utils/toast';
 
 const staffPath = getPath(staff);
 
-export default function StaffCreatePage({ params: { locale } }: { params: { locale: Language } }) {
+export default function StaffEditPageContent({
+  data,
+  language,
+}: {
+  data: WithLanguage<Staff>;
+  language: Language;
+}) {
   const router = useRouter();
 
-  const handleCancel = () => router.push(staffPath);
+  const handleCancel = () => router.push(`${staffPath}/${data[language].id}`);
 
   const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
     validateStaffForm(content);
-    const formData = contentToFormData(content);
+    const formData = contentToFormData(content, data.ko.imageURL);
 
     try {
-      handleServerAction(await postStaffAction(formData));
+      handleServerAction(await putStaffAction({ ko: data.ko.id, en: data.en.id }, formData));
     } catch {
       errorToast('오류가 발생했습니다');
     }
   };
 
   return (
-    <PageLayout title="행정직원 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
+    <PageLayout title="행정직원 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <StaffEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onComplete: handleComplete }}
-        initialLangauge={locale}
+        initialContent={data}
+        actions={{ type: 'EDIT', onCancel: handleCancel, onComplete: handleComplete }}
+        initialLangauge={language}
       />
     </PageLayout>
   );
 }
 
-const contentToFormData = (content: WithLanguage<StaffEditorContent>) => {
+const contentToFormData = (content: WithLanguage<StaffEditorContent>, prevImage: string | null) => {
   const formData = new FormData();
+
+  const requestObject = getRequestObject(content, Boolean(prevImage && !content.ko.image));
 
   formData.append(
     'request',
-    new Blob([JSON.stringify(getRequestObject(content))], {
+    new Blob([JSON.stringify(requestObject)], {
       type: 'application/json',
     }),
   );
@@ -57,13 +67,13 @@ const contentToFormData = (content: WithLanguage<StaffEditorContent>) => {
   // 이미지는 한영 공통
   const image = content.ko.image;
   if (image && isLocalImage(image)) {
-    formData.append('image', image.file);
+    formData.append('newImage', image.file);
   }
 
   return formData;
 };
 
-const getRequestObject = (content: WithLanguage<StaffEditorContent>) =>
+const getRequestObject = (content: WithLanguage<StaffEditorContent>, removeImage: boolean) =>
   getKeys(LANGUAGE).reduce((acc, lang) => {
     acc[lang] = {
       name: content[lang].name,
@@ -72,6 +82,7 @@ const getRequestObject = (content: WithLanguage<StaffEditorContent>) =>
       phone: content[lang].phone,
       email: content[lang].email,
       tasks: content[lang].tasks,
+      removeImage,
     };
     return acc;
   }, {} as WithLanguage);

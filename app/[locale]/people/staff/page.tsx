@@ -1,5 +1,6 @@
 import { getStaffList } from '@/apis/people';
 
+import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -9,7 +10,6 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 
-import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -46,7 +46,7 @@ export default async function StaffPage({ params: { locale } }: StaffPageProps) 
   return (
     <PageLayout title="행정직원" titleType="big">
       <LoginVisible staff>
-        <CreateButton pathname={`${staffPath}/create`} />
+        <CreateButton href={`${staffPath}/create`} />
       </LoginVisible>
       <PeopleGrid contentList={contentList} />
     </PageLayout>

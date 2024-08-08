@@ -48,10 +48,13 @@ export const validateFacultyForm = (content: WithLanguage<FacultyEditorContent>)
 };
 
 export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => {
-  if (Object.entries(content.ko).some(([key, value]) => !value && key !== 'image')) {
-    throw new Error('필수 입력을 완료해주세요');
+  const isValueEmpty = (value: StaffEditorContent[keyof StaffEditorContent]) =>
+    !value || (Array.isArray(value) && value.length < 1);
+
+  if (Object.entries(content.ko).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
+    throw new Error('모든 정보를 입력해주세요');
   }
-  if (Object.entries(content.en).some(([key, value]) => !value && key !== 'image')) {
+  if (Object.entries(content.en).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
     throw new Error('영문 정보도 입력해주세요');
   }
 };
