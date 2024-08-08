@@ -2,6 +2,8 @@
 
 import { useReducer, useState } from 'react';
 
+import { Link, usePathname } from '@/navigation';
+
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import TimeLine from './TimeLine';
@@ -19,9 +21,11 @@ export default function TimelinePageViewer<T extends { year: number; description
   const timeLineYears = contents.map((change) => change.year).slice(0, yearLimitCount);
   const yearLimit = timeLineYears.at(-1) ?? 0;
   const selectedContents = getSelectedContents(selectedYear, yearLimit, contents);
+  const pathname = usePathname();
 
   return (
     <>
+      <AddButton pathname={pathname} />
       <TimeLine
         times={timeLineYears}
         selectedTime={selectedYear}
@@ -48,6 +52,18 @@ export default function TimelinePageViewer<T extends { year: number; description
         )}
       </div>
     </>
+  );
+}
+
+function AddButton({ pathname }: { pathname: string }) {
+  return (
+    <Link
+      href={`${pathname}/create`}
+      className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+    >
+      <span className="material-symbols-outlined text-xl font-light">add</span>
+      <span className="font-semibold">연도 추가</span>
+    </Link>
   );
 }
 

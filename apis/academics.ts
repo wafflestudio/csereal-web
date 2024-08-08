@@ -10,7 +10,7 @@ import {
   ScholarshipList,
 } from '@/types/academics';
 
-import { getRequest } from '.';
+import { getRequest, putRequest } from '.';
 
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
   getRequest(`/academics/${type}/guide`) as Promise<{
@@ -38,3 +38,10 @@ export const getDegreeRequirements = () =>
 
 export const getGeneralStudiesRequirements = () =>
   getRequest<GeneralStudiesRequirements>(`/academics/indergraduate/general-studies-requirements`);
+
+export const putCurriculum = (data: { year: number; description: string }) =>
+  putRequest(`/academics/undergraduate/curriculum`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
