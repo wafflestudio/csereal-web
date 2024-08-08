@@ -10,7 +10,7 @@ import React, {
   useState,
 } from 'react';
 
-import { getIsStaff, getMockAuth, removeAuth } from '@/actions/session';
+import { getUserState, getMockAuth, removeAuth } from '@/actions/session';
 
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
@@ -35,7 +35,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   const router = useRouter();
 
   const refresh = useCallback(async () => {
-    const resp = await getIsStaff();
+    const resp = await getUserState();
     setState(resp);
   }, []);
 

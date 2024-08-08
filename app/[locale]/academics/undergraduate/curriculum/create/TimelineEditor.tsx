@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import BasicEditor from '@/components/editor/BasicEditor';
+import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 
 interface TimelineEditorProps {
@@ -11,16 +12,14 @@ interface TimelineEditorProps {
   onCancel: () => void;
 }
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function TimelineEditor({
   initialContent,
   onComplete,
   onCancel,
 }: TimelineEditorProps) {
-  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? 2024);
-
-  const handleComplete = async () => {
-    onComplete({ year: 5, description: '' });
-  };
+  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? CURRENT_YEAR);
 
   return (
     <div>
@@ -28,14 +27,12 @@ export default function TimelineEditor({
       <BasicEditor
         initialContent={{
           description: { ko: initialContent?.description ?? '', en: '' },
-          // TODO: 아래 항목 옵션으로 변경되면 삭제
-          mainImage: null,
-          attachments: [],
         }}
         actions={{
           type: 'EDIT',
           onCancel: onCancel,
-          onComplete: handleComplete,
+          onComplete: async (content) =>
+            onComplete({ year: newYear, description: content.description.ko }),
         }}
       />
     </div>
@@ -57,12 +54,10 @@ function YearFieldset({
 
   return (
     <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
-      <input
-        type="number"
-        className={`autofill-bg-white h-8 w-[50px] rounded-sm border border-neutral-300 bg-white pl-2 text-sm outline-none placeholder:text-neutral-300`}
-        placeholder={'연도'}
-        value={year}
-        onChange={(e) => isNumber(e.target.value) && onChange(Number(e.target.value))}
+      <BasicTextInput
+        value={year.toString()}
+        onChange={(text) => isNumber(text) && onChange(Number(text))}
+        maxWidth="w-[55px]"
         disabled={disabled}
       />
     </Fieldset>

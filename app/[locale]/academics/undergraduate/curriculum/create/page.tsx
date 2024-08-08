@@ -1,9 +1,11 @@
 'use client';
 
-import { putCurriculumAction } from '@/actions/academics';
+import { postCurriculumAction } from '@/actions/academics';
 import { useRouter } from '@/navigation';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+
+import { Curriculum } from '@/types/academics';
 
 import { getPath } from '@/utils/page';
 import { curriculum } from '@/utils/segmentNode';
@@ -19,13 +21,13 @@ export default function CurriculumCreatePage() {
 
   const goToOriginalPage = () => router.replace(curriculumPath);
 
-  const handleComplete = async (content: { year: number; description: string }) => {
+  const handleComplete = async (content: Curriculum) => {
     if (!content.description) {
       throw new Error('내용을 입력해주세요');
     }
 
     try {
-      handleServerAction(await putCurriculumAction(content));
+      handleServerAction(await postCurriculumAction(content));
       goToOriginalPage();
     } catch (e) {
       errorToast('오류가 발생했습니다');
@@ -33,7 +35,7 @@ export default function CurriculumCreatePage() {
   };
 
   return (
-    <PageLayout titleType="big">
+    <PageLayout title="전공 이수 표준 형태 추가" titleType="big">
       <TimelineEditor onComplete={handleComplete} onCancel={goToOriginalPage} />
     </PageLayout>
   );

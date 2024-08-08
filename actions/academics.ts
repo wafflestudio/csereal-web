@@ -2,11 +2,16 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { putAcademicsGuide, putCurriculum, putDegreeRequirements } from '@/apis/academics';
+import {
+  postCurriculum,
+  putAcademicsGuide,
+  putCurriculum,
+  putDegreeRequirements,
+} from '@/apis/academics';
 
 import { FETCH_TAG_CURRICULUM, FETCH_TAG_DEGREE, FETCH_TAG_GUIDE } from '@/constants/network';
 
-import { StudentType } from '@/types/academics';
+import { Curriculum, StudentType } from '@/types/academics';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -20,9 +25,12 @@ export const putDegreeRequirementsAction = withErrorHandler(async (formData: For
   revalidateTag(FETCH_TAG_DEGREE);
 });
 
-export const putCurriculumAction = withErrorHandler(
-  async (data: { year: number; description: string }) => {
-    await putCurriculum(data);
-    revalidateTag(FETCH_TAG_CURRICULUM);
-  },
-);
+export const postCurriculumAction = withErrorHandler(async (data: Curriculum) => {
+  await postCurriculum(data);
+  revalidateTag(FETCH_TAG_CURRICULUM);
+});
+
+export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
+  await putCurriculum(data);
+  revalidateTag(FETCH_TAG_CURRICULUM);
+});
