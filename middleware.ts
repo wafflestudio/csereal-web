@@ -22,11 +22,7 @@ const isAuthRequired = (pathname: string) => {
 
   if (pathname.startsWith('/admin')) return true;
 
-  if (pathname.startsWith('/community')) {
-    return pathname.endsWith('create') || pathname.endsWith('edit');
-  } else {
-    return false;
-  }
+  return pathname.endsWith('create') || pathname.endsWith('edit');
 };
 
 export default async function middleware(request: NextRequest) {

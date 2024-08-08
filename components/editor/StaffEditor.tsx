@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { Language, LANGUAGE, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
+import { Staff } from '@/types/people';
 
 import useEditorContent from '@/utils/hooks/useEditorContent';
 
@@ -21,7 +22,6 @@ import Section from './common/Section';
 import { PostEditorImage } from './PostEditorTypes';
 
 export interface StaffEditorContent {
-  language: string;
   name: string;
   role: string;
   office: string;
@@ -35,7 +35,7 @@ interface StaffEditorProps {
   actions:
     | EditAction<WithLanguage<StaffEditorContent>>
     | CreateAction<WithLanguage<StaffEditorContent>>;
-  initialContent?: WithLanguage<StaffEditorContent>;
+  initialContent?: WithLanguage<Staff>;
   initialLangauge: Language;
 }
 
@@ -46,7 +46,7 @@ export default function StaffEditor({
 }: StaffEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const { content, setContentByKey } = useEditorContent(
-    initialContent || getStaffEditorDefaultValue(),
+    getInitialContent(initialContent),
     language,
   );
   const currLangContent = content[language];
@@ -57,7 +57,7 @@ export default function StaffEditor({
 
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <RoleFieldset value={currLangContent.role} onChange={setContentByKey('role')} />
-      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image', true)} />
 
       <Section title="연락처 정보" titleMb="mb-3" mb="mb-12">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
@@ -197,20 +197,21 @@ function TasksFieldset({
   );
 }
 
-export const getStaffEditorDefaultValue = (): WithLanguage<StaffEditorContent> => {
-  const contentDetailDefaultValue: StaffEditorContent = {
-    language: 'ko',
-    name: '',
-    image: null,
-    phone: '',
-    email: '',
-    office: '',
-    tasks: [],
-    role: '',
-  };
-
+const getInitialContent = (initContent?: WithLanguage<Staff>): WithLanguage<StaffEditorContent> => {
   return {
-    ko: contentDetailDefaultValue,
-    en: { ...contentDetailDefaultValue, language: 'en' },
+    ko: getDefaultContentDetail(initContent?.ko),
+    en: getDefaultContentDetail(initContent?.en),
+  };
+};
+
+const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
+  return {
+    name: content?.name ?? '',
+    email: content?.email ?? '',
+    office: content?.office ?? '',
+    phone: content?.phone ?? '',
+    role: content?.role ?? '',
+    tasks: content?.tasks ?? [],
+    image: content?.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
   };
 };
