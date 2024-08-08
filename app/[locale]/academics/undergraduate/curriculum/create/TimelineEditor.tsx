@@ -27,7 +27,7 @@ export default function TimelineEditor({
       <YearFieldset year={newYear} onChange={setNewYear} disabled={Boolean(initialContent)} />
       <BasicEditor
         initialContent={{
-          description: initialContent?.description ?? '',
+          description: { ko: initialContent?.description ?? '', en: '' },
           // TODO: 아래 항목 옵션으로 변경되면 삭제
           mainImage: null,
           attachments: [],

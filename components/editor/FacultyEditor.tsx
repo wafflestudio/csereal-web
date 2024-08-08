@@ -62,23 +62,19 @@ export default function FacultyEditor({
   labs,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
-  const { content, setContent, setContentByKey } = useEditorContent(
+  const { content, setContentByKey } = useEditorContent(
     getFacultyEditorDefaultValue(initialFacultyStatus, initialContent),
     language,
   );
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
 
-  const setFacultyStatus = (status: FacultyStatus) => {
-    setContent((content) => ({
-      ko: { ...content.ko, status },
-      en: { ...content.en, status },
-    }));
-  };
-
   return (
     <form className="flex flex-col">
-      <FacultyStatusFieldset selected={currLangContent.status} onChange={setFacultyStatus} />
+      <FacultyStatusFieldset
+        selected={currLangContent.status}
+        onChange={setContentByKey('status', true)}
+      />
 
       <LangauageFieldset selected={language} onChange={setLanguage} />
 

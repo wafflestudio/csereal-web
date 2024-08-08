@@ -48,7 +48,14 @@ const SelectedImageViewer = ({
 
   if (file.type !== 'LOCAL_IMAGE') {
     // TODO: 업로드된 이미지 예쁘게 보여주기
-    return <Image src={file.url} alt="선택된 이미지" width={100} height={100} />;
+    return (
+      <div className="flex w-fit items-end gap-2 border border-neutral-200 bg-neutral-50 p-2">
+        <Image src={file.url} alt="선택된 이미지" width={100} height={100} />
+        <button className="text-xs underline" onClick={removeFile}>
+          삭제
+        </button>
+      </div>
+    );
   }
 
   const imageURL = URL.createObjectURL(file.file);
@@ -62,7 +69,7 @@ const SelectedImageViewer = ({
     <div
       className={`
     relative flex gap-3 self-start
-    rounded-sm border-[1px] border-neutral-200 bg-neutral-50 
+    rounded-sm border border-neutral-200 bg-neutral-50 
     pb-2 pl-2 pr-4 pt-2`}
     >
       <Image
