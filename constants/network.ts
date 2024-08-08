@@ -17,3 +17,6 @@ export const FETCH_TAG_INTERNAL = 'internal';
 
 export const FETCH_TAG_FACULTY = 'faculty';
 export const FETCH_TAG_STAFF = 'staff';
+
+export const FETCH_TAG_GUIDE = 'guide';
+export const FETCH_TAG_DEGREE = 'degree';

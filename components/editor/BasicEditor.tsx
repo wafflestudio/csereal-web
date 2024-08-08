@@ -4,12 +4,15 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';
 
+import { Language, WithLanguage } from '@/types/language';
+
 import { isContentEmpty } from '@/utils/post';
 
 import { EditAction, EditActionButtons } from './common/ActionButtons';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
+import LangauageFieldset from './common/LanguageFieldset';
 import { PostEditorFile, PostEditorImage } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -17,51 +20,71 @@ const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
   loading: () => <SunEditorFallback />,
 });
 
-export interface BasicEditorContent {
-  description: string;
-  mainImage: PostEditorImage;
-  attachments: PostEditorFile[];
+interface OptionalBasicEditorContent {
+  description: WithLanguage<string>;
+  mainImage?: PostEditorImage;
+  attachments?: PostEditorFile[];
 }
+
+export type BasicEditorContent = Required<OptionalBasicEditorContent>;
 
 interface BasicPostEditorProps {
   actions: EditAction<BasicEditorContent>;
-  initialContent: BasicEditorContent;
+  initialContent: OptionalBasicEditorContent;
   showMainImage?: boolean;
   showAttachments?: boolean;
+  showLanguage?: boolean;
 }
-
-const defaultContent: BasicEditorContent = {
-  description: '',
-  mainImage: null,
-  attachments: [],
-};
 
 export default function BasicEditor({
   actions,
   initialContent,
   showMainImage = false,
   showAttachments = false,
+  showLanguage = false,
 }: BasicPostEditorProps) {
-  const editorRef = useRef<SunEditorCore>();
-  const [content, setContent] = useState<BasicEditorContent>({
-    ...defaultContent,
-    ...initialContent,
-  });
+  const [language, setLanguage] = useState<Language>('ko');
+  const editorRef = { ko: useRef<SunEditorCore>(), en: useRef<SunEditorCore>() };
+  const [content, setContent] = useState<BasicEditorContent>(
+    getEditorInitialContent(initialContent),
+  );
+
+  const getEditorContent = (lang: Language) => {
+    const currEditor = editorRef[lang].current;
+    return currEditor && !isContentEmpty(currEditor) ? currEditor.getContents(false) : '';
+  };
+
+  const updateEditorContent = () => {
+    const editorContent = getEditorContent(language);
+    if (editorContent) {
+      setContent((prev) => ({
+        ...prev,
+        description: { ...prev.description, [language]: editorContent },
+      }));
+    }
+  };
 
   const getContent = () => {
-    let description = '';
-    if (editorRef.current && !isContentEmpty(editorRef.current))
-      description = editorRef.current.getContents(false);
+    const description = {
+      ko: getEditorContent('ko') || (initialContent?.description?.ko ?? ''),
+      en: getEditorContent('en') || (initialContent?.description?.en ?? ''),
+    };
 
     return { ...content, description };
   };
 
+  const changeLanguage = (newLang: Language) => {
+    updateEditorContent(); // 언어 바꾸기 전에 현재 언어 에디터 내용 저장
+    setLanguage(newLang);
+  };
+
   return (
     <form className="flex flex-col">
-      <div className="mb-6 flex gap-3">
-        <EditActionButtons {...actions} getContent={getContent} />
-      </div>
-      <EditorFieldset editorRef={editorRef} initialContent={content.description} />
+      {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
+      <EditorFieldset
+        editorRef={editorRef[language]}
+        initialContent={content.description[language]}
+      />
       {showMainImage && (
         <ImageFieldset
           file={content.mainImage}
@@ -78,6 +101,9 @@ export default function BasicEditor({
           }}
         />
       )}
+      <div className="mb-6 flex justify-end gap-3">
+        <EditActionButtons {...actions} getContent={getContent} />
+      </div>
     </form>
   );
 }
@@ -114,3 +140,11 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
     </Fieldset>
   );
 }
+
+const getEditorInitialContent = (initContent: OptionalBasicEditorContent) => {
+  return {
+    description: initContent.description,
+    mainImage: initContent.mainImage ?? null,
+    attachments: initContent.attachments ?? [],
+  };
+};

@@ -1,21 +1,19 @@
 import { getAcademicsGuide } from '@/apis/academics';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 import { undergraduateGuide } from '@/utils/segmentNode';
+
+import GuidePageContent from '../../helper/GuidePageContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateGuide });
 }
 
+const undergraduateGuidePath = getPath(undergraduateGuide);
+
 export default async function UndergraduateGuidePage() {
   const data = await getAcademicsGuide('undergraduate');
 
-  return (
-    <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data.description} />
-    </PageLayout>
-  );
+  return <GuidePageContent data={data} pathname={undergraduateGuidePath} />;
 }

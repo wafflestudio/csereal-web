@@ -1,6 +1,9 @@
+export type StudentType = 'undergraduate' | 'graduate';
+
 export interface Guide {
   description: string;
   attachments: {
+    id: number;
     name: string;
     url: string;
     bytes: number;

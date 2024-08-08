@@ -11,7 +11,7 @@ import { CourseChange } from '@/types/academics';
 
 const YEAR_LIMIT_CNT = 10; // 양수
 
-export default function CourseChanges({ changes }: { changes: CourseChange[] }) {
+export default function CourseChangesPageContent({ changes }: { changes: CourseChange[] }) {
   const [selectedYear, setSelectedYear] = useState(changes[0].year);
   const timeLineYears = changes.map((change) => change.year).slice(0, YEAR_LIMIT_CNT);
   const yearLimit = timeLineYears.at(-1) ?? 0;
