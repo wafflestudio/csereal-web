@@ -5,6 +5,7 @@ import { useReducer, useState } from 'react';
 import { Link, usePathname } from '@/navigation';
 
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { refreshPage } from '@/utils/refreshPage';
@@ -80,13 +81,15 @@ export default function TimelineViewer<T extends { year: number; description: st
 
 function AddButton({ pathname }: { pathname: string }) {
   return (
-    <Link
-      href={`${pathname}/create`}
-      className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
-    >
-      <span className="material-symbols-outlined text-xl font-light">add</span>
-      <span className="font-semibold">연도 추가</span>
-    </Link>
+    <LoginVisible staff>
+      <Link
+        href={`${pathname}/create`}
+        className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+      >
+        <span className="material-symbols-outlined text-xl font-light">add</span>
+        <span className="font-semibold">연도 추가</span>
+      </Link>
+    </LoginVisible>
   );
 }
 
@@ -98,10 +101,12 @@ function Buttons({
   editHref: string;
 }) {
   return (
-    <div className="mt-7 flex justify-end gap-3">
-      <DeleteButton onDelete={onDelete} />
-      <EditButton href={editHref} />
-    </div>
+    <LoginVisible staff>
+      <div className="mt-7 flex justify-end gap-3">
+        <DeleteButton onDelete={onDelete} />
+        <EditButton href={editHref} />
+      </div>
+    </LoginVisible>
   );
 }
 
