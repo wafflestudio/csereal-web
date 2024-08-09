@@ -11,7 +11,7 @@ import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import TimeLine from './TimeLine';
+import Timeline from './TimeLin';
 
 export default function TimelineViewer<T extends { year: number; description: string }>({
   contents,
@@ -45,7 +45,7 @@ export default function TimelineViewer<T extends { year: number; description: st
   return (
     <>
       <AddButton pathname={pathname} />
-      <TimeLine
+      <Timeline
         times={timeLineYears}
         selectedTime={selectedYear}
         setSelectedTime={setSelectedYear}

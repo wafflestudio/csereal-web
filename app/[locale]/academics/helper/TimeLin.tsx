@@ -4,7 +4,7 @@ interface TimeLineProps {
   setSelectedTime: (year: number) => void;
 }
 
-export default function TimeLine({ times, selectedTime, setSelectedTime }: TimeLineProps) {
+export default function Timeline({ times, selectedTime, setSelectedTime }: TimeLineProps) {
   return (
     <div className="relative flex w-full max-w-4xl flex-wrap">
       {times.map((time, i) => (
