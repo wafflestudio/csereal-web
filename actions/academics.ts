@@ -3,6 +3,7 @@
 import { revalidateTag } from 'next/cache';
 
 import {
+  deleteCurriculum,
   postCurriculum,
   putAcademicsGuide,
   putCurriculum,
@@ -34,3 +35,23 @@ export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => 
   await putCurriculum(data);
   revalidateTag(FETCH_TAG_CURRICULUM);
 });
+
+export const deleteCurriculumAction = withErrorHandler(async (year: number) => {
+  await deleteCurriculum(year);
+  revalidateTag(FETCH_TAG_CURRICULUM);
+});
+
+// export const postCurriculumAction = withErrorHandler(async (data: Curriculum) => {
+//   await postCurriculum(data);
+//   revalidateTag(FETCH_TAG_CURRICULUM);
+// });
+
+// export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
+//   await putCurriculum(data);
+//   revalidateTag(FETCH_TAG_CURRICULUM);
+// });
+
+// export const deleteCurriculumAction = withErrorHandler(async (year: number) => {
+//   await deleteCurriculum(year);
+//   revalidateTag(FETCH_TAG_CURRICULUM);
+// });

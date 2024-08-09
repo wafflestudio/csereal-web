@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { generalStudies } from '@/utils/segmentNode';
 
-import TimelinePageViewer from '../../helper/TimelinePageViewer';
+import TimelineViewer from '../../helper/TimelineViewer';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: generalStudies });
@@ -17,9 +17,10 @@ export default async function UndergraduateGeneralStudiesRequirements() {
   return (
     <PageLayout titleType="big">
       <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">{OVERVIEW}</p>
-      <TimelinePageViewer
+      <TimelineViewer
         contents={generalStudies}
         title={{ text: '영역별 교양과목 학점 배분 구조표', unit: '학번' }}
+        onDelete={async () => {}}
       />
     </PageLayout>
   );

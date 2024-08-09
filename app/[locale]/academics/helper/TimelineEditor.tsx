@@ -12,14 +12,14 @@ interface TimelineEditorProps {
   onCancel: () => void;
 }
 
-const CURRENT_YEAR = new Date().getFullYear();
+const NEXT_YEAR = new Date().getFullYear() + 1;
 
 export default function TimelineEditor({
   initialContent,
   onComplete,
   onCancel,
 }: TimelineEditorProps) {
-  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? CURRENT_YEAR);
+  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? NEXT_YEAR);
 
   return (
     <div>

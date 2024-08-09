@@ -12,7 +12,7 @@ import {
   StudentType,
 } from '@/types/academics';
 
-import { getRequest, postRequest, putRequest } from '.';
+import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 
 // TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
@@ -64,3 +64,6 @@ export const putCurriculum = (data: Curriculum) =>
     body: JSON.stringify({ description: data.description }),
     jsessionID: true,
   });
+
+export const deleteCurriculum = async (year: number) =>
+  deleteRequest(`/academics/undergraduate/curriculum/${year}`, { jsessionID: true });

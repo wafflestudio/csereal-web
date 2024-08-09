@@ -7,15 +7,21 @@ import { Link, usePathname } from '@/navigation';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
+import { refreshPage } from '@/utils/refreshPage';
+import { CustomError, handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
+
 import TimeLine from './TimeLine';
 
-export default function TimelinePageViewer<T extends { year: number; description: string }>({
+export default function TimelineViewer<T extends { year: number; description: string }>({
   contents,
   title,
+  onDelete,
   yearLimitCount = 10,
 }: {
   contents: T[];
   title: { text: string; unit: string };
+  onDelete: (year: number) => Promise<CustomError | void>;
   yearLimitCount?: number;
 }) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
@@ -24,6 +30,16 @@ export default function TimelinePageViewer<T extends { year: number; description
   const selectedContents = getSelectedContents(selectedYear, yearLimit, contents);
   const pathname = usePathname();
 
+  const handleDelete = async () => {
+    try {
+      handleServerAction(await onDelete(selectedYear));
+      successToast(`${selectedYear}년 내용을 삭제했습니다.`);
+      refreshPage();
+    } catch (error) {
+      console.log(error);
+      errorToast('삭제하지 못했습니다.');
+    }
+  };
   return (
     <>
       <AddButton pathname={pathname} />
@@ -53,7 +69,7 @@ export default function TimelinePageViewer<T extends { year: number; description
         )}
       </div>
       <div className="flex justify-end gap-3">
-        <DeleteButton onDelete={async () => {}} />
+        <DeleteButton onDelete={handleDelete} />
         <EditButton href={`${pathname}/edit?year=${selectedYear}`} />
       </div>
     </>
