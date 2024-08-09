@@ -38,7 +38,7 @@ export default function TimelineEditor({
 
     try {
       handleServerAction(await action({ description, year: newYear }));
-      successToast(`${newYear}년 내용을 저장했습니다.`);
+      successToast('저장했습니다.');
       goToOriginalPage();
     } catch (e) {
       errorToast('오류가 발생했습니다');

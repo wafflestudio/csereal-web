@@ -33,7 +33,7 @@ export default function TimelineViewer<T extends { year: number; description: st
   const handleDelete = async () => {
     try {
       handleServerAction(await deleteAction(selectedYear));
-      successToast(`${selectedYear}년 내용을 삭제했습니다.`);
+      successToast('삭제했습니다.');
       refreshPage();
     } catch (error) {
       errorToast('삭제하지 못했습니다.');
