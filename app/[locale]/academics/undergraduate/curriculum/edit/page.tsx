@@ -16,7 +16,7 @@ import TimelineEditor from '../../../helper/TimelineEditor';
 
 const curriculumPath = getPath(curriculum);
 
-export default function CurriculumCreatePage() {
+export default function CurriculumEditPage() {
   const router = useRouter();
 
   const goToOriginalPage = () => router.replace(curriculumPath);
@@ -35,7 +35,7 @@ export default function CurriculumCreatePage() {
   };
 
   return (
-    <PageLayout title="전공 이수 표준 형태 추가" titleType="big">
+    <PageLayout title="전공 이수 표준 형태 삭제" titleType="big">
       <TimelineEditor onComplete={handleComplete} onCancel={goToOriginalPage} />
     </PageLayout>
   );

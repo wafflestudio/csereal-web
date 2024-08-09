@@ -68,9 +68,9 @@ export function DeleteButton({ onDelete }: { onDelete: () => Promise<CustomError
   const handleDelete = async () => {
     try {
       handleServerAction(await onDelete());
-      successToast('구성원을 삭제했습니다.');
+      successToast('삭제했습니다.');
     } catch (error) {
-      errorToast('구성원을 삭제하지 못했습니다.');
+      errorToast('삭제하지 못했습니다.');
     }
   };
 
@@ -79,11 +79,7 @@ export function DeleteButton({ onDelete }: { onDelete: () => Promise<CustomError
       title="삭제"
       onClick={() =>
         openModal(
-          <AlertModal
-            message="구성원을 삭제하시겠습니까?"
-            confirmText="삭제"
-            onConfirm={handleDelete}
-          />,
+          <AlertModal message="삭제하시겠습니까?" confirmText="삭제" onConfirm={handleDelete} />,
         )
       }
     />

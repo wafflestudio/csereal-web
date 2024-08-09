@@ -4,6 +4,7 @@ import { useReducer, useState } from 'react';
 
 import { Link, usePathname } from '@/navigation';
 
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import TimeLine from './TimeLine';
@@ -50,6 +51,10 @@ export default function TimelinePageViewer<T extends { year: number; description
             );
           })
         )}
+      </div>
+      <div className="flex justify-end gap-3">
+        <DeleteButton onDelete={async () => {}} />
+        <EditButton href={`${pathname}/edit?year=${selectedYear}`} />
       </div>
     </>
   );
