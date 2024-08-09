@@ -23,7 +23,14 @@ export const postRequest = async <T = unknown>(
   init?: CredentialRequestInit,
 ): Promise<T> => {
   const resp = await fetchWithRetry(`${BASE_URL}${url}`, 'POST', init);
-  return await resp.json();
+  const isJsonResponse = resp.headers.get('content-type')?.includes('application/json');
+
+  if (isJsonResponse) {
+    return await resp.json();
+  } else {
+    // 응답 본문이 없을 경우, 빈 객체를 반환하거나 적절한 기본값을 설정
+    return {} as T;
+  }
 };
 
 export const patchRequest = async <T = unknown>(

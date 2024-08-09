@@ -3,8 +3,7 @@ import { MouseEventHandler } from 'react';
 import { Link } from '@/navigation';
 
 import useModal from '@/utils/hooks/useModal';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { CustomError } from '@/utils/serverActionError';
 
 import AlertModal from '../modal/AlertModal';
 
@@ -65,25 +64,12 @@ export function CreateButton({ href }: { href: string }) {
 export function DeleteButton({ onDelete }: { onDelete: () => Promise<CustomError | void> }) {
   const { openModal } = useModal();
 
-  const handleDelete = async () => {
-    try {
-      handleServerAction(await onDelete());
-      successToast('구성원을 삭제했습니다.');
-    } catch (error) {
-      errorToast('구성원을 삭제하지 못했습니다.');
-    }
-  };
-
   return (
     <GrayButton
       title="삭제"
       onClick={() =>
         openModal(
-          <AlertModal
-            message="구성원을 삭제하시겠습니까?"
-            confirmText="삭제"
-            onConfirm={handleDelete}
-          />,
+          <AlertModal message="삭제하시겠습니까?" confirmText="삭제" onConfirm={onDelete} />,
         )
       }
     />
