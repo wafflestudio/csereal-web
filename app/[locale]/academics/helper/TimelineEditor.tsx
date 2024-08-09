@@ -2,24 +2,48 @@
 
 import { useState } from 'react';
 
+import { useRouter } from '@/navigation';
+
 import BasicEditor from '@/components/editor/BasicEditor';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 
+import { CustomError, handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
+
 interface TimelineEditorProps {
   initialContent?: { year: number; description: string };
-  onComplete: (content: { year: number; description: string }) => void;
-  onCancel: () => void;
+  action: (data: TimelineContent) => Promise<CustomError | void>;
+  fallbackPathname: string;
 }
 
 const NEXT_YEAR = new Date().getFullYear() + 1;
 
+type TimelineContent = { year: number; description: string };
+
 export default function TimelineEditor({
   initialContent,
-  onComplete,
-  onCancel,
+  action,
+  fallbackPathname,
 }: TimelineEditorProps) {
   const [newYear, setNewYear] = useState<number>(initialContent?.year ?? NEXT_YEAR);
+  const router = useRouter();
+
+  const goToOriginalPage = () => router.replace(fallbackPathname);
+
+  const handleComplete = async (description: string) => {
+    if (!description) {
+      throw new Error('내용을 입력해주세요');
+    }
+
+    try {
+      handleServerAction(await action({ description, year: newYear }));
+      successToast(`${newYear}년 내용을 저장했습니다.`);
+      goToOriginalPage();
+    } catch (e) {
+      errorToast('오류가 발생했습니다');
+    }
+  };
 
   return (
     <div>
@@ -30,9 +54,8 @@ export default function TimelineEditor({
         }}
         actions={{
           type: 'EDIT',
-          onCancel: onCancel,
-          onComplete: async (content) =>
-            onComplete({ year: newYear, description: content.description.ko }),
+          onCancel: goToOriginalPage,
+          onComplete: (content) => handleComplete(content.description.ko),
         }}
       />
     </div>

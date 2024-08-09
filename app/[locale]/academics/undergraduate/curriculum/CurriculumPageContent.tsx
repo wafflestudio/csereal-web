@@ -14,8 +14,8 @@ export default function CurriculumPageContent({ data }: { data: Curriculum[] }) 
       {/* 추후 RoadMapButton 복구 */}
       <TimelineViewer
         contents={data}
-        title={{ text: '전공 교과목 이수 표준 형태', unit: '학번' }}
-        onDelete={deleteCurriculumAction}
+        title={{ text: '전공 이수 표준 형태', unit: '학번' }}
+        deleteAction={deleteCurriculumAction}
       />
     </PageLayout>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { putCurriculumAction } from '@/actions/academics';
+import { postCurriculumAction } from '@/actions/academics';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -11,10 +11,10 @@ import TimelineEditor from '../../../helper/TimelineEditor';
 
 const curriculumPath = getPath(curriculum);
 
-export default function CurriculumEditPage() {
+export default function CurriculumCreatePage() {
   return (
-    <PageLayout title="전공 이수 표준 형태 편집" titleType="big">
-      <TimelineEditor action={putCurriculumAction} fallbackPathname={curriculumPath} />
+    <PageLayout title="필수 교양 과목 추가" titleType="big">
+      <TimelineEditor action={postCurriculumAction} fallbackPathname={curriculumPath} />
     </PageLayout>
   );
 }

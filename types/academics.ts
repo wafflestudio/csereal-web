@@ -31,7 +31,7 @@ export interface CourseChange {
   description: string;
 }
 
-// TODO: overview 삭제하고 내용 리스트만 받도록 백엔드 api 수정될 예정
+// TODO: 삭제 (overview 없이 내용 리스트만 받도록 백엔드 api 수정될 예정)
 export interface GeneralStudiesRequirements {
   overview: string;
   generalStudies: {
@@ -42,7 +42,6 @@ export interface GeneralStudiesRequirements {
 }
 
 export interface GeneralStudiesRequirement {
-  id: number;
   year: number;
   description: string;
 }

@@ -16,12 +16,12 @@ import TimeLine from './TimeLine';
 export default function TimelineViewer<T extends { year: number; description: string }>({
   contents,
   title,
-  onDelete,
+  deleteAction,
   yearLimitCount = 10,
 }: {
   contents: T[];
   title: { text: string; unit: string };
-  onDelete: (year: number) => Promise<CustomError | void>;
+  deleteAction: (year: number) => Promise<CustomError | void>;
   yearLimitCount?: number;
 }) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
@@ -32,14 +32,14 @@ export default function TimelineViewer<T extends { year: number; description: st
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await onDelete(selectedYear));
+      handleServerAction(await deleteAction(selectedYear));
       successToast(`${selectedYear}년 내용을 삭제했습니다.`);
       refreshPage();
     } catch (error) {
-      console.log(error);
       errorToast('삭제하지 못했습니다.');
     }
   };
+
   return (
     <>
       <AddButton pathname={pathname} />
