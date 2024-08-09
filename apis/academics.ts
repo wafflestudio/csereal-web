@@ -1,4 +1,4 @@
-import { FETCH_TAG_DEGREE, FETCH_TAG_GUIDE } from '@/constants/network';
+import { FETCH_TAG_DEGREE, FETCH_TAG_GUIDE, FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
 
 import {
   Course,
@@ -29,8 +29,10 @@ export const getCurriculum = () =>
 export const getCourseChanges = (type: 'undergraduate' | 'graduate') =>
   getRequest(`/academics/${type}/course-changes`) as Promise<CourseChange[]>;
 
-export const getScholarshipList = (type: string) =>
-  getRequest<ScholarshipList>(`/academics/${type}/scholarship`);
+export const getScholarshipList = (type: StudentType) =>
+  getRequest<ScholarshipList>(`/academics/${type}/scholarship`, undefined, {
+    next: { tags: [FETCH_TAG_SCHOLARSHIP] },
+  });
 
 export const getScholarship = (id: number) =>
   getRequest<Scholarship>(`/academics/scholarship/${id}`);
@@ -48,3 +50,9 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
 
 export const putDegreeRequirements = (formData: FormData) =>
   putRequest(`/academics/undergraduate/degree-requirements`, { body: formData, jsessionID: true });
+
+export const putScholarshipGuide = (type: StudentType, description: string) =>
+  putRequest(`/academics/${type}/scholarship`, {
+    body: JSON.stringify({ description }),
+    jsessionID: true,
+  });

@@ -3,10 +3,10 @@ import Link from 'next/link';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { StudentType } from '@/types/academics';
+
 import { getPath } from '@/utils/page';
 import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNode';
-
-type GradeType = 'GRADUATE' | 'UNDERGRADUATE';
 
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);
@@ -18,7 +18,7 @@ export default async function ScholarshipPreview({
 }: {
   description: string;
   scholarshipList: { id: number; name: string }[];
-  type: GradeType;
+  type: StudentType;
 }) {
   return (
     <PageLayout titleType="big">
@@ -40,7 +40,7 @@ export default async function ScholarshipPreview({
 export interface ScholarshipRowProps {
   id: number;
   name: string;
-  type: GradeType;
+  type: StudentType;
 }
 
 export function ScholarshipRow({ id, name, type }: ScholarshipRowProps) {
@@ -48,7 +48,7 @@ export function ScholarshipRow({ id, name, type }: ScholarshipRowProps) {
     <li className="w-fit py-2">
       <Link
         href={`${
-          type === 'GRADUATE' ? graduateScholarshipPath : undergraduateScholarshipPath
+          type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath
         }/${id}`}
         className="group flex items-center gap-2.5 px-3"
       >

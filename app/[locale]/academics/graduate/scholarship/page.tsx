@@ -22,7 +22,7 @@ export default async function GraduateScholarshipListPage() {
     <ScholarshipPreview
       description={data.description}
       scholarshipList={data.scholarships}
-      type="GRADUATE"
+      type="graduate"
     />
   );
 }

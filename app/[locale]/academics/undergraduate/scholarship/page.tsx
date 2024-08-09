@@ -16,7 +16,7 @@ export default async function UndergraduateScholarshipListPage() {
     <ScholarshipPreview
       description={data.description}
       scholarshipList={data.scholarships}
-      type="UNDERGRADUATE"
+      type="undergraduate"
     />
   );
 }
