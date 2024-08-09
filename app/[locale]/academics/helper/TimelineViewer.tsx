@@ -11,7 +11,7 @@ import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import Timeline from './TimeLin';
+import Timeline from './Timeline';
 
 export default function TimelineViewer<T extends { year: number; description: string }>({
   contents,
