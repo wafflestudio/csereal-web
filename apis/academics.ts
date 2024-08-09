@@ -1,4 +1,5 @@
 import {
+  FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
   FETCH_TAG_GENERAL_STUDIES,
@@ -97,9 +98,29 @@ export const putDegreeRequirements = (formData: FormData) =>
   putRequest(`/academics/undergraduate/degree-requirements`, { body: formData, jsessionID: true });
 
 /** 교과목 변경 내역 */
+export const getCourseChanges = (type: StudentType) =>
+  getRequest(`/academics/${type}/course-changes`, undefined, {
+    next: { tags: [FETCH_TAG_COURSE_CHANGES] },
+  }) as Promise<CourseChange[]>;
 
-export const getCourseChanges = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/course-changes`) as Promise<CourseChange[]>;
+export const postCourseChanges = (type: StudentType, data: CourseChange) =>
+  postRequest(`/academics/${type}/course-changes`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...data, name: '교과목 변경 내역' }),
+    jsessionID: true,
+  });
+
+export const putCourseChanges = (type: StudentType, data: CourseChange) =>
+  putRequest(`/academics/${type}/course-changes/${data.year}`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ description: data.description }),
+    jsessionID: true,
+  });
+
+export const deleteCourseChanges = async (type: StudentType, year: number) =>
+  deleteRequest(`/academics/${type}/course-changes/${year}`, {
+    jsessionID: true,
+  });
 
 /** 장학 제도 */
 export const getScholarshipList = (type: string) =>

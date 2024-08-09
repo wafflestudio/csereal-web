@@ -3,24 +3,33 @@
 import { revalidateTag } from 'next/cache';
 
 import {
+  deleteCourseChanges,
   deleteCurriculum,
   deleteGeneralStudies,
+  postCourseChanges,
   postCurriculum,
   postGeneralStudies,
   putAcademicsGuide,
+  putCourseChanges,
   putCurriculum,
   putDegreeRequirements,
   putGeneralStudies,
 } from '@/apis/academics';
 
 import {
+  FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
   FETCH_TAG_GENERAL_STUDIES,
   FETCH_TAG_GUIDE,
 } from '@/constants/network';
 
-import { Curriculum, GeneralStudiesRequirement, StudentType } from '@/types/academics';
+import {
+  CourseChange,
+  Curriculum,
+  GeneralStudiesRequirement,
+  StudentType,
+} from '@/types/academics';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -67,3 +76,25 @@ export const deleteGeneralStudiesAction = withErrorHandler(async (year: number) 
   await deleteGeneralStudies(year);
   revalidateTag(FETCH_TAG_GENERAL_STUDIES);
 });
+
+/** 교과목 변경 내역 */
+export const postCourseChangesAction = withErrorHandler(
+  async (type: StudentType, data: CourseChange) => {
+    await postCourseChanges(type, data);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+  },
+);
+
+export const putCourseChangesAction = withErrorHandler(
+  async (type: StudentType, data: CourseChange) => {
+    await putCourseChanges(type, data);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+  },
+);
+
+export const deleteCourseChangesAction = withErrorHandler(
+  async (type: StudentType, year: number) => {
+    await deleteCourseChanges(type, year);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+  },
+);
