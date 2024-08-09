@@ -12,7 +12,7 @@ import {
   StudentType,
 } from '@/types/academics';
 
-import { getRequest, putRequest } from '.';
+import { getRequest, postRequest, putRequest } from '.';
 
 // TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
@@ -53,6 +53,12 @@ export const putDegreeRequirements = (formData: FormData) =>
 
 export const putScholarshipGuide = (type: StudentType, description: string) =>
   putRequest(`/academics/${type}/scholarship`, {
+    body: JSON.stringify({ description }),
+    jsessionID: true,
+  });
+
+export const postScholarship = (type: StudentType, description: string) =>
+  postRequest(`/academics/${type}/scholarship`, {
     body: JSON.stringify({ description }),
     jsessionID: true,
   });

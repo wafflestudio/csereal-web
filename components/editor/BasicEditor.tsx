@@ -30,7 +30,7 @@ export type BasicEditorContent = Required<OptionalBasicEditorContent>;
 
 interface BasicPostEditorProps {
   actions: EditAction<BasicEditorContent>;
-  initialContent: OptionalBasicEditorContent;
+  initialContent?: OptionalBasicEditorContent;
   showMainImage?: boolean;
   showAttachments?: boolean;
   showLanguage?: boolean;
@@ -141,10 +141,10 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
   );
 }
 
-const getEditorInitialContent = (initContent: OptionalBasicEditorContent) => {
+const getEditorInitialContent = (initContent?: OptionalBasicEditorContent) => {
   return {
-    description: initContent.description,
-    mainImage: initContent.mainImage ?? null,
-    attachments: initContent.attachments ?? [],
+    description: initContent?.description ?? { ko: '', en: '' },
+    mainImage: initContent?.mainImage ?? null,
+    attachments: initContent?.attachments ?? [],
   };
 };

@@ -26,3 +26,10 @@ export const putScholarshipGuideAction = withErrorHandler(
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
   },
 );
+
+export const postScholarshipAction = withErrorHandler(
+  async (type: StudentType, description: string) => {
+    await putScholarshipGuide(type, description);
+    revalidateTag(FETCH_TAG_SCHOLARSHIP);
+  },
+);
