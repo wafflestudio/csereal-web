@@ -1,10 +1,10 @@
-interface TimeLineProps {
+interface TimelineProps {
   times: number[];
   selectedTime: number;
   setSelectedTime: (year: number) => void;
 }
 
-export default function TimeLine({ times, selectedTime, setSelectedTime }: TimeLineProps) {
+export default function Timeline({ times, selectedTime, setSelectedTime }: TimelineProps) {
   return (
     <div className="relative flex w-full max-w-4xl flex-wrap">
       {times.map((time, i) => (

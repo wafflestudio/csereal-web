@@ -20,3 +20,6 @@ export const FETCH_TAG_STAFF = 'staff';
 
 export const FETCH_TAG_GUIDE = 'guide';
 export const FETCH_TAG_DEGREE = 'degree';
+export const FETCH_TAG_CURRICULUM = 'curriculum';
+export const FETCH_TAG_GENERAL_STUDIES = 'generalStudies';
+export const FETCH_TAG_COURSE_CHANGES = 'courseChanges';

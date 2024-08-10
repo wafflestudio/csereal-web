@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { getIsStaff } from './actions/session';
+import { getUserState } from './actions/session';
 import { AUDIT_LOCALE_COOKIE_DISABLED } from './constants/audit';
 import { LOGIN_URL } from './constants/network';
 
@@ -29,7 +29,7 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (isAuthRequired(pathname)) {
-    const isStaff = await getIsStaff();
+    const isStaff = await getUserState();
     if (isStaff !== 'staff') {
       return Response.redirect(new URL(LOGIN_URL));
     }

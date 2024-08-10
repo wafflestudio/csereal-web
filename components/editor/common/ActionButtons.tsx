@@ -57,7 +57,7 @@ export function EditActionButtons<T>({
         />
       )}
       <BlackButton
-        title="수정하기"
+        title="저장하기"
         disabled={requesting}
         onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
       />
