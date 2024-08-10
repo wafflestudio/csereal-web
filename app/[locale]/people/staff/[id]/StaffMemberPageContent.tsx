@@ -15,7 +15,7 @@ import { Staff } from '@/types/people';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 import BulletRow from '../../helper/BulletRow';
 import HeaderAndList from '../../helper/HeaderAndList';
@@ -36,6 +36,7 @@ export default function StaffMemberPageContent({
   const handleDelete = async () => {
     try {
       handleServerAction(await deleteStaffAction(ids));
+      successToast('행정직원을 삭제했습니다.');
     } catch {
       errorToast('오류가 발생했습니다');
     }
