@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 
+import { BlackButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -11,7 +15,7 @@ import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNo
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);
 
-export default async function ScholarshipPreview({
+export default function ScholarshipPreview({
   description,
   scholarshipList,
   type,
@@ -22,6 +26,9 @@ export default async function ScholarshipPreview({
 }) {
   return (
     <PageLayout titleType="big">
+      <LoginVisible staff>
+        <EditButton type={type} />
+      </LoginVisible>
       <HTMLViewer htmlContent={description} />
       <div className=" mt-10 flex flex-col">
         <h3 className="border-b-[1px] border-b-neutral-200 pb-2 text-[20px] font-bold leading-10">
@@ -33,7 +40,32 @@ export default async function ScholarshipPreview({
           ))}
         </ul>
       </div>
+      <LoginVisible staff>
+        <CreateButton type={type} />
+      </LoginVisible>
     </PageLayout>
+  );
+}
+
+function EditButton({ type }: { type: StudentType }) {
+  return (
+    <Link href={`/academics/${type}/scholarship/edit`} className="mb-7 ml-auto block w-fit">
+      <BlackButton title="편집" />
+    </Link>
+  );
+}
+
+function CreateButton({ type }: { type: StudentType }) {
+  return (
+    <Link
+      href={`${
+        type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath
+      }/create`}
+      className="mt-3 flex w-[220px] items-center gap-1.5 rounded-sm border border-main-orange px-2 py-2.5 text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+    >
+      <span className="material-symbols-outlined font-light">add</span>
+      <span className="text-md font-medium">장학금 추가</span>
+    </Link>
   );
 }
 

@@ -1,12 +1,12 @@
 'use client';
 
-import { putScholarshipGuideAction } from '@/actions/academics';
+import { putScholarshipAction } from '@/actions/academics';
 import { useRouter } from '@/navigation';
 
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { StudentType } from '@/types/academics';
+import { Scholarship, StudentType } from '@/types/academics';
 
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
@@ -15,26 +15,33 @@ import { errorToast } from '@/utils/toast';
 
 const academicsPath = getPath(academics);
 
-export default function ScholarshipGuideEditPageContent({
-  description,
+export default function ScholarshipDetailEdit({
   type,
+  scholarship,
 }: {
-  description: string;
   type: StudentType;
+  scholarship: Scholarship;
 }) {
   const router = useRouter();
 
-  const goToScholarshipListPage = () => router.replace(`${academicsPath}/${type}/scholarship`);
+  const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
   // TODO: 아직 백엔드 장학 PUT api 안 나옴
   const handleComplete = async (content: BasicEditorContent) => {
-    if (!content.description.ko) {
+    if (!content.name.ko) {
+      throw new Error('제목을 입력해주세요');
+    } else if (!content.description.ko) {
       throw new Error('내용을 입력해주세요');
     }
 
+    // TODO: 영어 데이터
     try {
-      handleServerAction(await putScholarshipGuideAction(type, content.description.ko));
-      goToScholarshipListPage();
+      handleServerAction(
+        await putScholarshipAction(type, scholarship.id, {
+          name: content.name.ko,
+          description: content.description.ko,
+        }),
+      );
     } catch (e) {
       errorToast('오류가 발생했습니다');
     }
@@ -47,13 +54,15 @@ export default function ScholarshipGuideEditPageContent({
     >
       <BasicEditor
         initialContent={{
-          description: { ko: description, en: description },
+          name: { ko: scholarship.name, en: scholarship.name },
+          description: { ko: scholarship.description, en: scholarship.description },
         }}
         actions={{
           type: 'EDIT',
-          onCancel: goToScholarshipListPage,
+          onCancel: handleCancel,
           onComplete: handleComplete,
         }}
+        showName
       />
     </PageLayout>
   );

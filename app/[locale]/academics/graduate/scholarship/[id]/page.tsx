@@ -30,7 +30,7 @@ export async function generateMetadata({
 export default async function GraduateScholarshipPage({ params }: { params: { id: string } }) {
   try {
     const scholarship = await getScholarship(parseInt(params.id));
-    return <ScholarshipDetail scholarship={scholarship} />;
+    return <ScholarshipDetail scholarship={scholarship} type="graduate" />;
   } catch {
     return <InvalidIDFallback rawID={params.id} />;
   }

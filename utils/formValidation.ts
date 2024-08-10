@@ -58,3 +58,5 @@ export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => 
     throw new Error('영문 정보도 입력해주세요');
   }
 };
+
+// TODO: validateBasicForm

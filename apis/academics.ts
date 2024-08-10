@@ -12,7 +12,7 @@ import {
   StudentType,
 } from '@/types/academics';
 
-import { getRequest, postRequest, putRequest } from '.';
+import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 
 // TODO: language 쿼리 추가
 export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
@@ -57,8 +57,17 @@ export const putScholarshipGuide = (type: StudentType, description: string) =>
     jsessionID: true,
   });
 
-export const postScholarship = (type: StudentType, description: string) =>
-  postRequest(`/academics/${type}/scholarship`, {
-    body: JSON.stringify({ description }),
+export const postScholarship = (type: StudentType, data: { name: string; description: string }) =>
+  postRequest<Scholarship>(`/academics/${type}/scholarshipDetail`, {
+    body: JSON.stringify(data),
     jsessionID: true,
   });
+
+export const putScholarship = async (id: number, data: { name: string; description: string }) =>
+  putRequest<Scholarship>(`/academics/scholarshipDetail`, {
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteScholarship = async (id: number) =>
+  deleteRequest(`/academics/scholarship/${id}`, { jsessionID: true });
