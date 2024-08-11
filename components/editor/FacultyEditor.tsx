@@ -27,7 +27,6 @@ import Dropdown from '../common/form/Dropdown';
 
 export interface FacultyEditorContent {
   status: FacultyStatus;
-  language: Language;
   name: string;
   academicRank: string;
   image: PostEditorImage | null;
@@ -404,7 +403,6 @@ export const getFacultyEditorDefaultValue = (
 ): WithLanguage<FacultyEditorContent> => {
   const koContentDefaultValue: FacultyEditorContent = {
     status: data?.status ?? status,
-    language: 'ko',
     name: data?.name ?? '',
     academicRank: data?.academicRank ?? '',
     image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
@@ -423,6 +421,6 @@ export const getFacultyEditorDefaultValue = (
 
   return {
     ko: koContentDefaultValue,
-    en: { ...koContentDefaultValue, language: 'en' },
+    en: { ...koContentDefaultValue },
   };
 };
