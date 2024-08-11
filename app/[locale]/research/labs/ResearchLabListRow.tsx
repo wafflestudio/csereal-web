@@ -2,9 +2,7 @@ import { Fragment } from 'react';
 
 import { Link } from '@/navigation';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
-
 import { SimpleResearchLab } from '@/types/research';
-
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 

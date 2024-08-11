@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl';
 
 import { Classification, Course, SortOption } from '@/types/academics';
-
 import useResponsive from '@/utils/hooks/useResponsive';
 
 import CourseCards from '../../helper/courses/CourseCards';

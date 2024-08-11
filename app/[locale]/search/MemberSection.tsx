@@ -1,9 +1,7 @@
 import Link from 'next/link';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-
 import { Member, MemberSearchResult } from '@/types/search';
-
 import { getPath } from '@/utils/page';
 import { faculty, staff } from '@/utils/segmentNode';
 

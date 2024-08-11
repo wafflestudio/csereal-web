@@ -3,9 +3,7 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 
 import { getFutureCareeres } from '@/apis/about';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { futureCareers } from '@/utils/segmentNode';
 

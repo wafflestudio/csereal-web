@@ -1,13 +1,14 @@
 'use client';
 
+import './suneditor.css';
+import './suneditor-contents.css';
+
 import { MutableRefObject, useEffect, useState } from 'react';
 import suneditor from 'suneditor';
 import { ko } from 'suneditor/src/lang/';
 import SunEditorCore from 'suneditor/src/lib/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
-import './suneditor.css';
-import './suneditor-contents.css';
 
 import { postImage } from '@/apis/image';
 

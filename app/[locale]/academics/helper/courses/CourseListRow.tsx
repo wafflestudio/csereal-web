@@ -1,7 +1,6 @@
 'use client';
 
 import { Course } from '@/types/academics';
-
 import useModal from '@/utils/hooks/useModal';
 
 import CourseDetailModal from './CourseDetailModal';

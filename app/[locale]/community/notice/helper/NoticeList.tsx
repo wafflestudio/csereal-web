@@ -1,7 +1,6 @@
 import { Dispatch } from 'react';
 
 import NoSearchResult from '@/components/common/NoSearchResult';
-
 import { NoticePreview } from '@/types/notice';
 
 import NoticeListHeader from './NoticeListHeader';

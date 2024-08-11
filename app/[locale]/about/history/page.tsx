@@ -2,13 +2,10 @@ export const dynamic = 'force-dynamic';
 
 import { Metadata } from 'next';
 
-import history_image from '@/public/image/about/history.png';
-
 import { getHistory } from '@/apis/about';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import history_image from '@/public/image/about/history.png';
 import { getMetadata } from '@/utils/metadata';
 import { history } from '@/utils/segmentNode';
 

@@ -1,7 +1,5 @@
-import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-
 import ModalFrame from '@/components/modal/ModalFrame';
-
+import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { Course } from '@/types/academics';
 
 interface CourseDetailModalProps {

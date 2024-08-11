@@ -1,15 +1,12 @@
 'use client';
 
 import { postFacultyAction } from '@/actions/people';
-import { useRouter } from '@/navigation';
-
 import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
-
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';

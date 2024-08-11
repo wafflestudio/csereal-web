@@ -1,11 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getTopConferenceList } from '@/apis/research';
-
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { topConferenceList } from '@/utils/segmentNode';
 

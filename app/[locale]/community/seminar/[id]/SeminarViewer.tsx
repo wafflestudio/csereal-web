@@ -1,15 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
-import { Link } from '@/navigation';
-
 import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
-
+import { Link } from '@/navigation';
 import { Seminar } from '@/types/seminar';
 
 interface SeminarPostPageProps {

@@ -1,14 +1,10 @@
 import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
-
 import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
-
 import { NEWS_TAGS } from '@/constants/tag';
-
 import { NewsPreviewList } from '@/types/news';
-
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 

@@ -15,7 +15,6 @@ import {
   putDegreeRequirements,
   putGeneralStudies,
 } from '@/apis/academics';
-
 import {
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
@@ -23,7 +22,6 @@ import {
   FETCH_TAG_GENERAL_STUDIES,
   FETCH_TAG_GUIDE,
 } from '@/constants/network';
-
 import {
   CourseChange,
   Curriculum,

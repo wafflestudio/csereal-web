@@ -2,29 +2,25 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 
+import CserealModal from '@/components/modal/CserealModal';
+import {
+  aboutLinks,
+  contactPath,
+  directionsPath,
+  FooterLink,
+  moreLinks,
+  privacyPath,
+  researchLinks,
+  resourcesLinks,
+  snucomLink,
+  snuEngLink,
+  snuLink,
+} from '@/constants/footer';
 import { Link } from '@/navigation';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/footer/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/footer/SNUCOM.svg';
-
-import CserealModal from '@/components/modal/CserealModal';
-
-import {
-  aboutLinks,
-  resourcesLinks,
-  researchLinks,
-  moreLinks,
-  FooterLink,
-  snucomLink,
-  snuEngLink,
-  snuLink,
-  contactPath,
-  directionsPath,
-  privacyPath,
-} from '@/constants/footer';
-
 import { Language } from '@/types/language';
-
 import useModal from '@/utils/hooks/useModal';
 
 import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';

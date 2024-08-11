@@ -2,9 +2,7 @@ import { Metadata } from 'next';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { GETFacultyRecruitmentResponse } from '@/types/post';
-
 import { getMetadata } from '@/utils/metadata';
 import { facultyRecruitment } from '@/utils/segmentNode';
 

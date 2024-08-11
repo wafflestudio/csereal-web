@@ -3,7 +3,6 @@
 import { revalidateTag } from 'next/cache';
 
 import { putInternal } from '@/apis/internal';
-
 import { FETCH_TAG_INTERNAL } from '@/constants/network';
 
 import { withErrorHandler } from './errorHandler';

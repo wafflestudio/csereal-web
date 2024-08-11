@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { MainNews } from '@/types/main';
-
 import { formatMainNewsDateStr } from '@/utils/date';
 
 import { CARD_WIDTH_REM } from './constants';

@@ -1,11 +1,8 @@
 import { getResearchCenters } from '@/apis/research';
-
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
-
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';

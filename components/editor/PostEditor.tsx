@@ -7,16 +7,16 @@ import SunEditorCore from 'suneditor/src/lib/core';
 import useModal from '@/utils/hooks/useModal';
 import { isContentEmpty } from '@/utils/post';
 
+import Checkbox from '../common/form/Checkbox';
+import MuiDateSelector from '../common/MuiDateSelector';
+import ModalFrame from '../modal/ModalFrame';
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import { PostEditorContent, PostEditorProps, defaultContent } from './PostEditorTypes';
+import { defaultContent,PostEditorContent, PostEditorProps } from './PostEditorTypes';
 import SunEditorFallback from './SunEditor/SunEditorFallback';
-import Checkbox from '../common/form/Checkbox';
-import MuiDateSelector from '../common/MuiDateSelector';
-import ModalFrame from '../modal/ModalFrame';
 
 const SunEditorWrapper = dynamic(() => import('@/components/editor/SunEditor/SunEditorWrapper'), {
   ssr: false,

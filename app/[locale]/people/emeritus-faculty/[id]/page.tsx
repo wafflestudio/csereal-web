@@ -1,13 +1,10 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-import { Link } from '@/navigation';
-
 import { getEmeritusFaculty } from '@/apis/people';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { Link } from '@/navigation';
 import { getMetadata } from '@/utils/metadata';
 
 import BulletRow from '../../helper/BulletRow';

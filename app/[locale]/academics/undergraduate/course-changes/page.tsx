@@ -1,5 +1,4 @@
 import { getCourseChanges } from '@/apis/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateCourseChanges } from '@/utils/segmentNode';
 

@@ -2,14 +2,10 @@
 
 import { useLocale } from 'next-intl';
 
-import { Link } from '@/navigation';
-
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
-
 import { COLOR_THEME } from '@/constants/color';
-
+import { Link } from '@/navigation';
 import { Language } from '@/types/language';
-
 import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {

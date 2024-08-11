@@ -2,7 +2,6 @@ import { MouseEventHandler, useState } from 'react';
 
 import { BlackButton, GrayButton } from '@/components/common/Buttons';
 import AlertModal from '@/components/modal/AlertModal';
-
 import useModal from '@/utils/hooks/useModal';
 import { errorToast } from '@/utils/toast';
 

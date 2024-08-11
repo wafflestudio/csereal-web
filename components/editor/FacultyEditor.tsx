@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 
-import { Language, LANGUAGE, WithLanguage } from '@/types/language';
+import { LANGUAGE, Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
 import { Faculty, FACULTY_STATUS, FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
-
 import useEditorContent from '@/utils/hooks/useEditorContent';
 
+import Dropdown from '../common/form/Dropdown';
 import {
   CreateAction,
   CreateActionButtons,
@@ -23,7 +23,6 @@ import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import Section from './common/Section';
 import { PostEditorImage } from './PostEditorTypes';
-import Dropdown from '../common/form/Dropdown';
 
 export interface FacultyEditorContent {
   status: FacultyStatus;

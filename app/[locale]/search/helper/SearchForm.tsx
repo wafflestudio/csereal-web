@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState, ChangeEventHandler, FormEventHandler } from 'react';
+import { ChangeEventHandler, FormEventHandler,useState } from 'react';
 
 export default function SearchForm({ query }: { query: string }) {
   const [text, setText] = useState(query);

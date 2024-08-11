@@ -2,9 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({

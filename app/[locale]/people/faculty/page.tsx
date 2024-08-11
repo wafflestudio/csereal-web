@@ -1,11 +1,8 @@
 import { getActiveFacultyList } from '@/apis/people';
-
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';

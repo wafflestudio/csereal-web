@@ -1,13 +1,10 @@
 import { Suspense } from 'react';
 
 import { getNoticePostDetail } from '@/apis/notice';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { PostSearchQueryParams } from '@/types/post';
-
 import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/utils/segmentNode';
 

@@ -1,5 +1,4 @@
 import { ResearchSearchResult, ResearchType } from '@/types/search';
-
 import { getPath } from '@/utils/page';
 import {
   researchCenters,

@@ -1,8 +1,6 @@
-import LinkIcon from '@/public/image/link_icon.svg';
-
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
+import LinkIcon from '@/public/image/link_icon.svg';
 import { ResearchCenter } from '@/types/research';
 
 interface ResearchCenterDetailProps {

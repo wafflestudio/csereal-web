@@ -1,19 +1,16 @@
 'use client';
 
 import { batchUnimportantAction } from '@/actions/admin';
-
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
-
 import { ImportantPreview } from '@/types/admin';
-
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
-import ImportantList from './ImportantList';
-import useImportantSelect from './useImportantSelect';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
+import ImportantList from './ImportantList';
+import useImportantSelect from './useImportantSelect';
 
 const POST_LIMIT = 40;
 

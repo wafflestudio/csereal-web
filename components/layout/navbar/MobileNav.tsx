@@ -6,11 +6,10 @@ import { useState } from 'react';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
-import { SegmentNode, main } from '@/utils/segmentNode';
+import { main,SegmentNode } from '@/utils/segmentNode';
 
 import MobileNavDetail from './MobileNavDetail';
 

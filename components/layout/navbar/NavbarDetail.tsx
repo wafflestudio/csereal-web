@@ -1,5 +1,4 @@
 import { useNavbarContext } from '@/contexts/NavbarContext';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { SegmentNode } from '@/utils/segmentNode';
 

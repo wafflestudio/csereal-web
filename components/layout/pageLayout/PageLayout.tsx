@@ -4,11 +4,10 @@ import { useTranslations } from 'next-intl';
 import React, { CSSProperties, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
-import PageTitle from './PageTitle';
 import Header from '../header/Header';
+import PageTitle from './PageTitle';
 
 interface PageLayoutProps {
   title?: string | JSX.Element;

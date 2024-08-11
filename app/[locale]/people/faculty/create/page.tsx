@@ -1,5 +1,4 @@
 import { getResearchLabs } from '@/apis/research';
-
 import { Language } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 

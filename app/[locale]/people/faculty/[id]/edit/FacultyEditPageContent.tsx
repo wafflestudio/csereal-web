@@ -1,14 +1,11 @@
 'use client';
 
-import { useRouter } from '@/navigation';
-
 import FacultyEditor from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
-
 import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';
 

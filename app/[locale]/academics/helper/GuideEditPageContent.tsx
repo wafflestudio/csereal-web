@@ -1,13 +1,10 @@
 'use client';
 
 import { putGuideAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Guide, StudentType } from '@/types/academics';
-
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';

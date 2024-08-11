@@ -2,7 +2,6 @@ import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
-
 import { WithLanguage } from '@/types/language';
 
 export const validateNoticeForm = (content: PostEditorContent) => {

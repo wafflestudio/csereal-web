@@ -1,17 +1,13 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import { Link } from '@/navigation';
-
 import { getMain } from '@/apis/main';
-
 import Header from '@/components/layout/header/Header';
 import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
-
+import { Link } from '@/navigation';
 import { MainImportant } from '@/types/main';
-
 import { getPath } from '@/utils/page';
 import {
   degree,

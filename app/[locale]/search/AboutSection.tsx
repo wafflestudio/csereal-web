@@ -1,15 +1,14 @@
 import { AboutPreview, AboutSearchResult } from '@/types/search';
-
 import { getPath } from '@/utils/page';
 import {
-  overview,
-  greetings,
-  futureCareers,
-  studentClubs,
-  facilities,
   contact,
   directions,
+  facilities,
+  futureCareers,
+  greetings,
   history,
+  overview,
+  studentClubs,
 } from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';

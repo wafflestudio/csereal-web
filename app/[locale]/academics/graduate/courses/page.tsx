@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
 
 import { getCourses } from '@/apis/academics';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourses } from '@/utils/segmentNode';
 

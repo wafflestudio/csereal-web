@@ -1,5 +1,4 @@
 import { getDegreeRequirements } from '@/apis/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { degree } from '@/utils/segmentNode';
 

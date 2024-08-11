@@ -1,11 +1,7 @@
 import { getCourses } from '@/apis/academics';
-
 import CoursePageContent from '@/app/[locale]/academics/undergraduate/courses/CoursePageContent';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Course } from '@/types/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateGuide } from '@/utils/segmentNode';
 

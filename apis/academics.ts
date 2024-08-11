@@ -5,7 +5,6 @@ import {
   FETCH_TAG_GENERAL_STUDIES,
   FETCH_TAG_GUIDE,
 } from '@/constants/network';
-
 import {
   Course,
   CourseChange,

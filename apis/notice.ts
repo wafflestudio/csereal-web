@@ -1,8 +1,7 @@
 'use server';
 
 import { FETCH_TAG_NOTICE } from '@/constants/network';
-
-import { NoticePreviewList, Notice } from '@/types/notice';
+import { Notice,NoticePreviewList } from '@/types/notice';
 import { PostSearchQueryParams } from '@/types/post';
 
 import { deleteRequest, getRequest, patchRequest, postRequest } from '.';

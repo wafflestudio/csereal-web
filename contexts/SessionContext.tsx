@@ -3,15 +3,14 @@
 import { useRouter } from 'next/navigation';
 import React, {
   createContext,
-  useContext,
   PropsWithChildren,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from 'react';
 
-import { getUserState, getMockAuth, removeAuth } from '@/actions/session';
-
+import { getMockAuth, getUserState, removeAuth } from '@/actions/session';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';

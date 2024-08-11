@@ -2,14 +2,10 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { redirect } from '@/navigation';
-
 import { deleteStaff, postStaff, putStaff } from '@/apis/people';
-
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
-
+import { redirect } from '@/navigation';
 import { WithLanguage } from '@/types/language';
-
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, staff } from '@/utils/segmentNode';
 

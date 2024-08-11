@@ -1,12 +1,9 @@
 'use client';
 
-import { Link } from '@/navigation';
-
 import { BlackButton, GrayButton } from '@/components/common/Buttons';
 import AlertModal from '@/components/modal/AlertModal';
-
+import { Link } from '@/navigation';
 import { FacultyStatus } from '@/types/people';
-
 import useModal from '@/utils/hooks/useModal';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';

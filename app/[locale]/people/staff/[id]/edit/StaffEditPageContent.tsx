@@ -1,16 +1,13 @@
 'use client';
 
 import { putStaffAction } from '@/actions/people';
-import { useRouter } from '@/navigation';
-
 import { isLocalImage } from '@/components/editor/PostEditorTypes';
 import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { LANGUAGE, Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
 import { Staff } from '@/types/people';
-
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';

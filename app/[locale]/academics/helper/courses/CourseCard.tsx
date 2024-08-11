@@ -2,7 +2,6 @@ import { useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
-
 import { Course, SortOption } from '@/types/academics';
 
 interface CourseCardProps {
