@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { deleteFacultyAction } from '@/actions/people';
+// import { deleteFacultyAction } from '@/actions/people';
 import { Link } from '@/navigation';
 
 import LoginVisible from '@/components/common/LoginVisible';
@@ -27,7 +27,7 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
 
   // TODO: 에러 처리
   const handleDelete = async () => {
-    return await deleteFacultyAction();
+    // return await deleteFacultyAction();
   };
 
   return (

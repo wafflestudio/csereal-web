@@ -10,6 +10,7 @@ import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
+import { contentToFormData } from '@/utils/formData';
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
@@ -32,7 +33,9 @@ export default function FacultyCreatePageContent({
 
   const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
-    postFacultyAction();
+    const formData = contentToFormData('CREATE', { requestObject: {} });
+
+    await postFacultyAction(formData, language);
   };
 
   return (

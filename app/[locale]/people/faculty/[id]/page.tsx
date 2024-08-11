@@ -13,7 +13,7 @@ import FacultyMemberPageContent from './FacultyMemberPageContent';
 export async function generateMetadata({ params }: FacultyMemberPageProps) {
   try {
     const id = parseInt(params.id);
-    const faculty = await getFaculty(id);
+    const { [params.locale]: faculty } = await getFaculty(id);
 
     return await getMetadata({
       locale: params.locale,
@@ -34,7 +34,9 @@ interface FacultyMemberPageProps {
 export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
   try {
     const id = parseInt(params.id);
-    const faculty = await getFaculty(id);
+    // TODO: 영어까지 적절히 변경
+    const { ko: faculty } = await getFaculty(id);
+
     if (faculty.status !== 'ACTIVE') notFound();
 
     return <FacultyMemberPageContent faculty={faculty} />;

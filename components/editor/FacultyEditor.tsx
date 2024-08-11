@@ -89,19 +89,19 @@ export default function FacultyEditor({
           <DateFieldset
             title="시작 날짜"
             value={currLangContent.startDate}
-            onChange={setContentByKey('startDate')}
+            onChange={setContentByKey('startDate', true)}
             disabled={!isInactiveFaculty}
           />
           <DateFieldset
             title="종료 날짜"
             value={currLangContent.endDate}
-            onChange={setContentByKey('endDate')}
+            onChange={setContentByKey('endDate', true)}
             disabled={!isInactiveFaculty}
           />
         </div>
       </Section>
 
-      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image', true)} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset
@@ -127,11 +127,14 @@ export default function FacultyEditor({
       <Section title="연락처 정보" titleMb="mb-3">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
         <div className="flex w-[42rem]">
-          <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
-          <FaxFieldset value={currLangContent.fax} onChange={setContentByKey('fax')} />
+          <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone', true)} />
+          <FaxFieldset value={currLangContent.fax} onChange={setContentByKey('fax', true)} />
         </div>
-        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
-        <WebsiteFieldset value={currLangContent.website} onChange={setContentByKey('website')} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email', true)} />
+        <WebsiteFieldset
+          value={currLangContent.website}
+          onChange={setContentByKey('website', true)}
+        />
       </Section>
 
       <div className="mt-5 flex gap-3 self-end">

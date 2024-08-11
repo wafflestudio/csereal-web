@@ -8,6 +8,8 @@ import { getEmeritusFaculty } from '@/apis/people';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Language } from '@/types/language';
+
 import { getMetadata } from '@/utils/metadata';
 
 import BulletRow from '../../helper/BulletRow';
@@ -20,7 +22,7 @@ export async function generateMetadata({
 }: EmeritusFacultyMemberPageProps): Promise<Metadata> {
   try {
     const id = parseInt(params.id);
-    const faculty = await getEmeritusFaculty(id);
+    const { [params.locale]: faculty } = await getEmeritusFaculty(id);
 
     return await getMetadata({
       locale: params.locale,
@@ -35,7 +37,7 @@ export async function generateMetadata({
 }
 
 interface EmeritusFacultyMemberPageProps {
-  params: { id: string; locale: string };
+  params: { id: string; locale: Language };
 }
 
 export default async function EmeritusFacultyMemberPage({
@@ -45,7 +47,8 @@ export default async function EmeritusFacultyMemberPage({
 
   try {
     const id = parseInt(params.id);
-    const faculty = await getEmeritusFaculty(id);
+    // TODO: 영어까지 적절히 변경
+    const { ko: faculty } = await getEmeritusFaculty(id);
 
     const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
 
