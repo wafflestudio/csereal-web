@@ -34,7 +34,7 @@ export interface Faculty extends SimpleFaculty {
 }
 
 // 역대 교수진
-export interface SimpleEmiritusFaculty {
+export interface SimpleEmeritusFaculty {
   id: number;
   name: string;
   imageURL: string;
@@ -42,7 +42,7 @@ export interface SimpleEmiritusFaculty {
   email?: string;
 }
 
-export interface EmiritusFaculty extends SimpleEmiritusFaculty {
+export interface EmeritusFaculty extends SimpleEmeritusFaculty {
   startDate: string;
   endDate: string;
   researchAreas?: string[];

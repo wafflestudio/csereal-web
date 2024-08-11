@@ -1,12 +1,12 @@
-import { FETCH_TAG_STAFF } from '@/constants/network';
+import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
 
 import { Language, WithLanguage } from '@/types/language';
 import {
-  EmiritusFaculty,
+  EmeritusFaculty,
   Faculty,
   FacultyList,
   FacultyStatus,
-  SimpleEmiritusFaculty,
+  SimpleEmeritusFaculty,
   SimpleStaff,
   Staff,
 } from '@/types/people';
@@ -21,15 +21,28 @@ const staffPath = '/staff';
 /* 교수진 */
 
 export const getActiveFacultyList = (language: Language) =>
-  getRequest2<FacultyList>('/professor/active', { language });
+  getRequest2<FacultyList>(
+    '/professor/active',
+    { language },
+    { next: { tags: [FETCH_TAG_FACULTY] } },
+  );
 
-export const getFaculty = (id: number) => getRequest2<WithLanguage<Faculty>>(`/professor/${id}`);
+export const getFaculty = (id: number) =>
+  getRequest2<WithLanguage<Faculty>>(`/professor/${id}`, undefined, {
+    next: { tags: [FETCH_TAG_FACULTY] },
+  });
 
 export const getEmeritusFacultyList = (language: Language) =>
-  getRequest2<SimpleEmiritusFaculty[]>('/professor/inactive', { language });
+  getRequest2<SimpleEmeritusFaculty[]>(
+    '/professor/inactive',
+    { language },
+    { next: { tags: [FETCH_TAG_FACULTY] } },
+  );
 
 export const getEmeritusFaculty = (id: number) =>
-  getRequest2<WithLanguage<EmiritusFaculty>>(`/professor/${id}`);
+  getRequest2<WithLanguage<EmeritusFaculty>>(`/professor/${id}`, undefined, {
+    next: { tags: [FETCH_TAG_FACULTY] },
+  });
 
 export const postFaculty = async (formData: FormData) =>
   postRequest2(facultyPath, { body: formData, jsessionID: true }) as Promise<

@@ -4,7 +4,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Language } from '@/types/language';
-import { SimpleEmiritusFaculty } from '@/types/people';
+import { SimpleEmeritusFaculty } from '@/types/people';
 
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
@@ -41,7 +41,7 @@ export default async function EmeritusFacultyPage({
   );
 }
 
-const facultyToProp = (faculty: SimpleEmiritusFaculty): PeopleCellProps => {
+const facultyToProp = (faculty: SimpleEmeritusFaculty): PeopleCellProps => {
   const content = [];
   if (faculty.email) content.push({ text: faculty.email, href: `mailto:${faculty.email}` });
 
