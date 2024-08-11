@@ -43,6 +43,7 @@ export interface SimpleEmeritusFaculty {
 }
 
 export interface EmeritusFaculty extends SimpleEmeritusFaculty {
+  status: FacultyStatus;
   startDate: string;
   endDate: string;
   researchAreas?: string[];

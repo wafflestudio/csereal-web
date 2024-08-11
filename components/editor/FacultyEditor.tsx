@@ -47,7 +47,7 @@ interface FacultyEditorProps {
   actions:
     | EditAction<WithLanguage<FacultyEditorContent>>
     | CreateAction<WithLanguage<FacultyEditorContent>>;
-  initialContent?: Faculty;
+  initialContent?: WithLanguage<Faculty>;
   initialFacultyStatus?: FacultyStatus;
   initialLangauge: Language;
   labs: WithLanguage<SimpleResearchLab[]>;
@@ -56,13 +56,12 @@ interface FacultyEditorProps {
 export default function FacultyEditor({
   actions,
   initialContent,
-  initialFacultyStatus,
   initialLangauge,
   labs,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const { content, setContentByKey } = useEditorContent(
-    getFacultyEditorDefaultValue(initialFacultyStatus, initialContent),
+    getInitialContent(initialContent),
     language,
   );
   const currLangContent = content[language];
@@ -396,13 +395,18 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-// TODO: 영어 데이터 처리
-export const getFacultyEditorDefaultValue = (
-  status: FacultyStatus = 'ACTIVE',
-  data?: Faculty,
+const getInitialContent = (
+  initContent?: WithLanguage<Faculty>,
 ): WithLanguage<FacultyEditorContent> => {
-  const koContentDefaultValue: FacultyEditorContent = {
-    status: data?.status ?? status,
+  return {
+    ko: getDefaultContentDetail(initContent?.ko),
+    en: getDefaultContentDetail(initContent?.en),
+  };
+};
+
+export const getDefaultContentDetail = (data?: Faculty): FacultyEditorContent => {
+  return {
+    status: data?.status ?? 'ACTIVE',
     name: data?.name ?? '',
     academicRank: data?.academicRank ?? '',
     image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
@@ -417,10 +421,5 @@ export const getFacultyEditorDefaultValue = (
     labId: data?.labId ?? null,
     startDate: new Date(),
     endDate: new Date(),
-  };
-
-  return {
-    ko: koContentDefaultValue,
-    en: { ...koContentDefaultValue },
   };
 };

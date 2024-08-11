@@ -22,13 +22,7 @@ export default async function FacultyEditPage({
     getResearchLabs('en'),
   ]);
 
-  // TODO: 영어 데이터 같이 오는 형식 확정되면 해당 사항 반영해서 data 타입 수정
   return (
-    <FacultyEditPageContent
-      data={faculty.ko} // TODO: 수정
-      labs={{ ko: koLabs, en: enLabs }}
-      language={locale}
-      id={{ ko: id, en: id }}
-    />
+    <FacultyEditPageContent data={faculty} labs={{ ko: koLabs, en: enLabs }} language={locale} />
   );
 }
