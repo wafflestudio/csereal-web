@@ -8,11 +8,14 @@ import {
 
 import { encodeFormDataFileName } from './string';
 
-export const contentToFormData = (content: {
-  requestObject: object;
-  attachments?: PostEditorFile[];
-  image?: PostEditorImage;
-}) => {
+export const contentToFormData = (
+  type: 'CREATE' | 'EDIT',
+  content: {
+    requestObject: object;
+    attachments?: PostEditorFile[];
+    image?: PostEditorImage;
+  },
+) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
 
@@ -31,9 +34,8 @@ export const contentToFormData = (content: {
     );
   }
 
-  // TODO: CREATE 요청일 경우 key를 'image'로 변경
   if (image && isLocalImage(image)) {
-    formData.append('newImage', image.file);
+    formData.append(type === 'CREATE' ? 'image' : 'newImage', image.file);
   }
 
   return formData;
