@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { deleteFacultyAction } from '@/actions/people';
 import { Link } from '@/navigation';
 
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -17,7 +18,6 @@ import { faculty, researchLabs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import { DeleteButton, EditButton } from '../../helper/AdminButtons';
 import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
 import Profile from '../../helper/Profile';
@@ -66,9 +66,9 @@ export default function FacultyMemberPageContent({
           </div>
         </div>
         <div className="mt-8 break-all">
-          <HeaderAndList header={t('학력')} list={faculty.educations ?? []} />
-          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
-          <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
+          <HeaderAndList header={t('학력')} list={faculty.educations} />
+          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
+          <HeaderAndList header={t('경력')} list={faculty.careers} />
         </div>
       </div>
       <LoginVisible staff>

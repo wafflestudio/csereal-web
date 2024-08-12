@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { deleteFacultyAction } from '@/actions/people';
 import { Link } from '@/navigation';
 
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -16,7 +17,6 @@ import { faculty } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import { DeleteButton, EditButton } from '../../helper/AdminButtons';
 import BulletRow from '../../helper/BulletRow';
 import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
@@ -81,7 +81,7 @@ export default function EmeritusFacultyMemberPageContent({
             </article>
           )}
           <HeaderAndList header={t('학력')} list={faculty.educations} />
-          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
+          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
           <div className=" mb-7 text-sm font-medium text-neutral-700">
             {t('재직 기간')}: {careerTime.startTime} - {careerTime.endTime}
           </div>

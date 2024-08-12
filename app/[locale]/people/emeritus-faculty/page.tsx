@@ -1,5 +1,6 @@
 import { getEmeritusFacultyList } from '@/apis/people';
 
+import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -10,7 +11,6 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 
-import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -34,7 +34,7 @@ export default async function EmeritusFacultyPage({
   return (
     <PageLayout title="역대 교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton pathname={`${facultyPath}/create`} status="INACTIVE" />
+        <CreateButton href={`${facultyPath}/create`} />
       </LoginVisible>
       <PeopleGrid contentList={props} />
     </PageLayout>

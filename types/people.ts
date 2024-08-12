@@ -13,10 +13,10 @@ export interface SimpleFaculty {
   name: string;
   imageURL: string;
   academicRank: string;
-  phone?: string;
-  email?: string;
-  labId?: number;
-  labName?: string;
+  phone: string;
+  email: string;
+  labId: number | null;
+  labName: string | null;
 }
 
 export interface FacultyList {
@@ -26,11 +26,11 @@ export interface FacultyList {
 
 export interface Faculty extends SimpleFaculty {
   office: string;
-  fax?: string;
-  website?: string;
+  fax: string;
+  website: string;
   educations: string[];
-  researchAreas?: string[];
-  careers?: string[];
+  researchAreas: string[];
+  careers: string[];
 }
 
 // 역대 교수진
@@ -39,17 +39,17 @@ export interface SimpleEmeritusFaculty {
   name: string;
   imageURL: string;
   academicRank: string;
-  email?: string;
+  email: string;
 }
 
 export interface EmeritusFaculty extends SimpleEmeritusFaculty {
   status: FacultyStatus;
   startDate: string;
   endDate: string;
-  researchAreas?: string[];
-  website?: string;
-  careers?: string[];
-  office?: string;
+  researchAreas: string[];
+  website: string;
+  careers: string[];
+  office: string;
   educations: string[];
 }
 
