@@ -19,12 +19,20 @@ import {
   StudentType,
 } from '@/types/academics';
 
-import { deleteRequest, getRequest, postRequest, putRequest } from '.';
-
-// TODO: language 쿼리 추가
+import {
+  deleteRequest,
+  deleteRequest2,
+  getRequest,
+  getRequest2,
+  postRequest,
+  postRequest2,
+  putRequest,
+  putRequest2,
+} from '.';
 
 /** 학부/대학원 안내 */
-export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
+
+export const getAcademicsGuide = (type: StudentType) =>
   getRequest(`/academics/${type}/guide`, undefined, {
     next: { tags: [FETCH_TAG_GUIDE] },
   }) as Promise<Guide>;
@@ -33,10 +41,28 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
   putRequest(`/academics/${type}/guide`, { body: formData, jsessionID: true });
 
 /** 교과과정 */
-export const getCourses = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
+
+export const getCourses = (type: StudentType) =>
+  getRequest2<Course[]>(`/academics/courses?studentType=${type}`);
+
+export const postCourse = (data: Course) =>
+  postRequest2(`/academics/courses`, {
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCourse = (data: Course) =>
+  putRequest2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteCourse = async (code: string) =>
+  deleteRequest2(`/academics/courses/${code}`, { jsessionID: true });
 
 /* 전공 이수 표준 형태 */
+
 const curriculumUrl = '/academics/undergraduate/curriculum';
 
 export const getCurriculum = () =>

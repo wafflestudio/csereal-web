@@ -1,15 +1,15 @@
 import { useReducer } from 'react';
 
+import { deleteCourseAction } from '@/actions/academics';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 
-import { GrayButton } from '@/components/common/Buttons';
+import { DeleteButton, GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Course, GRADE } from '@/types/academics';
 
-import useModal from '@/utils/hooks/useModal';
+import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import CourseEditor from './CourseEditor';
@@ -19,14 +19,12 @@ interface CourseDetailModalProps {
   onClose: () => void;
 }
 
-// TODO: DeleteButton 공용 컴포넌트 분리
 export default function CourseDetailModal({ course, onClose }: CourseDetailModalProps) {
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
-  const { openModal } = useModal();
 
   const handleDelete = async () => {
     try {
-      // handleServerAction(await onDelete());
+      handleServerAction(await deleteCourseAction(course.code));
       successToast('교과목을 삭제했습니다.');
       onClose();
     } catch (error) {
@@ -40,19 +38,7 @@ export default function CourseDetailModal({ course, onClose }: CourseDetailModal
         {isEditMode ? (
           <CourseEditor initCourse={course} toggleEditMode={toggleEditMode} />
         ) : (
-          <CourseViewer
-            course={course}
-            onClickDelete={() =>
-              openModal(
-                <AlertModal
-                  message="교과목을 삭제하시겠습니까?"
-                  confirmText="삭제"
-                  onConfirm={handleDelete}
-                />,
-              )
-            }
-            onClickEdit={toggleEditMode}
-          />
+          <CourseViewer course={course} onClickDelete={handleDelete} onClickEdit={toggleEditMode} />
         )}
       </div>
     </ModalFrame>
@@ -65,7 +51,7 @@ function CourseViewer({
   onClickEdit,
 }: {
   course: Course;
-  onClickDelete: () => void;
+  onClickDelete: () => Promise<CustomError | void>;
   onClickEdit: () => void;
 }) {
   return (
@@ -74,6 +60,7 @@ function CourseViewer({
       <CourseBody content={course.description} />
       <LoginVisible staff>
         <div className="flex justify-end gap-3">
+          <DeleteButton onDelete={onClickDelete} />
           <GrayButton title="삭제" onClick={onClickDelete} />
           <GrayButton title="편집" onClick={onClickEdit} />
         </div>

@@ -3,13 +3,16 @@
 import { revalidateTag } from 'next/cache';
 
 import {
+  deleteCourse,
   deleteCourseChanges,
   deleteCurriculum,
   deleteGeneralStudies,
+  postCourse,
   postCourseChanges,
   postCurriculum,
   postGeneralStudies,
   putAcademicsGuide,
+  putCourse,
   putCourseChanges,
   putCurriculum,
   putDegreeRequirements,
@@ -17,6 +20,7 @@ import {
 } from '@/apis/academics';
 
 import {
+  FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
@@ -25,6 +29,7 @@ import {
 } from '@/constants/network';
 
 import {
+  Course,
   CourseChange,
   Curriculum,
   GeneralStudiesRequirement,
@@ -98,3 +103,19 @@ export const deleteCourseChangesAction = withErrorHandler(
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
   },
 );
+
+/** 교과과정 */
+export const postCourseAction = withErrorHandler(async (data: Course) => {
+  await postCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const putCourseAction = withErrorHandler(async (data: Course) => {
+  await putCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const deleteCourseAction = withErrorHandler(async (code: string) => {
+  await deleteCourse(code);
+  revalidateTag(FETCH_TAG_COURSE);
+});

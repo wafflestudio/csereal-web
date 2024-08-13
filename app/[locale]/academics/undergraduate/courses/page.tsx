@@ -16,6 +16,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 export default async function UndergraduateCoursePage() {
   const data: Course[] = await getCourses('undergraduate');
 
+  console.log(data);
+
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}
