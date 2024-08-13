@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { postCourseAction } from '@/actions/academics';
 
 import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
@@ -6,6 +6,12 @@ import Fieldset from '@/components/editor/common/Fieldset';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
+import { Language } from '@/types/language';
+
+import { validateCourseForm } from '@/utils/formValidation';
+import useEditorContent from '@/utils/hooks/useEditorContent';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
 
 export default function AddCourseModal({
   onClose,
@@ -14,63 +20,73 @@ export default function AddCourseModal({
   onClose: () => void;
   studentType: StudentType;
 }) {
-  const [course, setCourse] = useState<Course>({
-    name: '',
-    description: '',
-    classification: '전공필수',
+  const { content, setContent, setContentByKey } = useEditorContent<Course>({
     code: '',
     credit: 3,
     grade: studentType === 'graduate' ? 0 : 1,
+    ko: { name: '', description: '', classification: '전공필수' },
+    en: { name: '', description: '', classification: '전공필수' },
   });
-  const [en, setEn] = useState({ name: '', description: '' });
 
-  // TODO: 훅 사용
-  const setContentByKey =
-    <K extends keyof Course>(key: K) =>
-    (value: Course[K]) => {
-      setCourse((prev) => ({
-        ...prev,
-        [key]: value,
-      }));
-    };
+  const setLanguageContent = (
+    key: 'name' | 'description' | 'classification',
+    value: string,
+    language: Language,
+  ) => {
+    setContent((prev) => ({ ...prev, [language]: { ...prev[language], [key]: value } }));
+  };
+
+  const handleSubmit = async () => {
+    validateCourseForm(content);
+
+    try {
+      handleServerAction(await postCourseAction(content));
+      successToast('새 교과목을 추가했습니다.');
+    } catch {
+      errorToast('오류가 발생했습니다');
+    }
+  };
 
   return (
     <ModalFrame onClose={onClose}>
       <div className="styled-scrollbar relative flex w-fit min-w-[500px] max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-100 p-7">
         <h4 className="text-xl font-bold text-neutral-700">교과목 추가</h4>
         <div>
-          <NameFieldset name={course.name} onChange={setContentByKey('name')} />
+          <NameFieldset
+            name={content.ko.name}
+            onChange={(value) => setLanguageContent('name', value, 'ko')}
+          />
           <DescriptionFieldset
-            description={course.description}
-            onChange={setContentByKey('description')}
+            description={content.ko.description}
+            onChange={(value) => setLanguageContent('description', value, 'ko')}
           />
           <div className="mb-10 flex justify-between">
-            <CodeFieldset code={course.code} onChange={setContentByKey('code')} />
+            <CodeFieldset code={content.code} onChange={setContentByKey('code')} />
             <ClassificationFieldset
-              selected={course.classification}
-              onChange={setContentByKey('classification')}
+              selected={content.ko.classification}
+              onChange={(value) => setLanguageContent('classification', value, 'ko')}
             />
-            <CreditFieldset selected={course.credit} onChange={setContentByKey('credit')} />
+            <CreditFieldset selected={content.credit} onChange={setContentByKey('credit')} />
             <GradeField
-              selected={course.grade}
+              selected={content.grade}
               onChange={setContentByKey('grade')}
               studentType={studentType}
             />
           </div>
           <NameFieldset
-            name={en.name}
-            onChange={(value) => setEn((prev) => ({ ...prev, name: value }))}
+            name={content.en.name}
+            onChange={(value) => setLanguageContent('description', value, 'en')}
             english
           />
           <DescriptionFieldset
-            description={course.description}
-            onChange={(value) => setEn((prev) => ({ ...prev, description: value }))}
+            description={content.en.description}
+            onChange={(value) => setLanguageContent('description', value, 'en')}
             english
           />
         </div>
         <div className="flex justify-end gap-2">
           <Button text="취소" onClick={onClose} />
-          <Button text="추가하기" onClick={() => {}} />
+          <Button text="추가하기" onClick={handleSubmit} />
         </div>
       </div>
     </ModalFrame>

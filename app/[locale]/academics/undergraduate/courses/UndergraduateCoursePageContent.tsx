@@ -65,7 +65,7 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>
-      sortedCourses[classificationToIndexMap[course.classification]].push(course),
+      sortedCourses[classificationToIndexMap[course.ko.classification]].push(course),
     );
   } else {
     sortedCourses.push([], [], [], []);

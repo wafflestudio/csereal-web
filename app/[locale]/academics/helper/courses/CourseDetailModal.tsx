@@ -1,3 +1,4 @@
+import { useLocale } from 'next-intl';
 import { useReducer } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
@@ -8,6 +9,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Course, GRADE } from '@/types/academics';
+import { Language } from '@/types/language';
 
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -54,10 +56,12 @@ function CourseViewer({
   onClickDelete: () => Promise<CustomError | void>;
   onClickEdit: () => void;
 }) {
+  const language = useLocale() as Language;
+
   return (
     <>
-      <CourseHeader course={course} />
-      <CourseBody content={course.description} />
+      <CourseHeader course={course} language={language} />
+      <CourseBody content={course[language].description} />
       <LoginVisible staff>
         <div className="flex justify-end gap-3">
           <DeleteButton onDelete={onClickDelete} />
@@ -69,14 +73,14 @@ function CourseViewer({
   );
 }
 
-function CourseHeader({ course }: { course: Course }) {
+function CourseHeader({ course, language }: { course: Course; language: Language }) {
   return (
     <h4 className="flex flex-wrap items-center gap-2">
       <BookmarkIcon />
-      <span className="font-bold">{course.name}</span>
+      <span className="font-bold">{course[language].name}</span>
       <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
         <span>{course.code}</span>
-        <span>{course.classification}</span>
+        <span>{course[language].classification}</span>
         <span>{course.credit}학점</span>
         <span>{GRADE[course.grade]}</span>
       </div>

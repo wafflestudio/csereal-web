@@ -3,6 +3,7 @@ import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 
+import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 
 export const validateNoticeForm = (content: PostEditorContent) => {
@@ -57,4 +58,9 @@ export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => 
   if (Object.entries(content.en).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
     throw new Error('영문 정보도 입력해주세요');
   }
+};
+
+export const validateCourseForm = (content: Course) => {
+  console.log(content);
+  return true;
 };

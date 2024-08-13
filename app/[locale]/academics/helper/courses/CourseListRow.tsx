@@ -1,6 +1,9 @@
 'use client';
 
+import { useLocale } from 'next-intl';
+
 import { Course, GRADE } from '@/types/academics';
+import { Language } from '@/types/language';
 
 import useModal from '@/utils/hooks/useModal';
 
@@ -15,10 +18,12 @@ export const COURSE_ROW_ITEM_WIDTH = {
 } as const;
 
 export default function CourseListRow({ course }: { course: Course }) {
+  const language = useLocale() as Language;
+
   return (
     <li className="grid grid-cols-[auto,_auto,_1fr] grid-rows-3 gap-1 px-7 py-6 text-md odd:bg-neutral-50 sm:flex sm:h-14 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
-      <NameCell name={course.name} course={course} />
-      <ClassificationCell classification={course.classification} />
+      <NameCell name={course[language].name} course={course} />
+      <ClassificationCell classification={course[language].classification} />
       <CodeCell code={course.code} />
       <CreditCell credit={course.credit} />
       <GradeCell grade={course.grade} />

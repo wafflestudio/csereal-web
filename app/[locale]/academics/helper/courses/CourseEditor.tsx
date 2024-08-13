@@ -1,11 +1,12 @@
-import { useState } from 'react';
-
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 
 import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 
 import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
+import { Language } from '@/types/language';
+
+import useEditorContent from '@/utils/hooks/useEditorContent';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -16,63 +17,65 @@ export default function CourseEditor({
   initCourse: Course;
   toggleEditMode: () => void;
 }) {
-  const [course, setNewCourse] = useState<Course>(initCourse);
+  const { content, setContent, setContentByKey } = useEditorContent(initCourse);
   const isGraduateCourse = initCourse.grade === 0;
+
+  const setLanguageContent = (
+    key: 'name' | 'description' | 'classification',
+    value: string,
+    language: Language,
+  ) => {
+    setContent((prev) => ({ ...prev, [language]: { ...prev[language], [key]: value } }));
+  };
 
   const handleComplete = async () => {
     toggleEditMode();
   };
-
-  // TODO: 훅 사용
-  const setContentByKey =
-    <K extends keyof Course>(key: K) =>
-    (value: Course[K]) => {
-      setNewCourse((prev) => ({
-        ...prev,
-        [key]: value,
-      }));
-    };
 
   return (
     <>
       <h4 className="flex flex-wrap items-center gap-2">
         <BookmarkIcon />
         <BasicTextInput
-          value={course.name}
-          onChange={setContentByKey('name')}
+          value={content.ko.name}
+          onChange={(value) => setLanguageContent('name', value, 'ko')}
           maxWidth="w-[180px]"
           placeholder="교과목명"
         />
         <BasicTextInput
-          value={course.code}
+          value={content.code}
           onChange={setContentByKey('code')}
           maxWidth="w-[120px]"
           placeholder="교과목 번호"
         />
         <CustomDropdown
           contents={[...CLASSIFICATION]}
-          selected={course.classification}
-          onChange={setContentByKey('classification')}
+          selected={content.ko.classification}
+          onChange={(value) => setLanguageContent('classification', value, 'ko')}
           width="w-[94px]"
         />
         <CustomDropdown
           contents={CREDIT}
-          selected={course.credit}
+          selected={content.credit}
           onChange={setContentByKey('credit')}
         />
         <CustomDropdown
           contents={isGraduateCourse ? [GRADE[0]] : GRADE.slice(1)}
-          selected={GRADE[course.grade]}
+          selected={GRADE[content.grade]}
           onChange={(value) => setContentByKey('grade')(GRADE.indexOf(value))}
           width="w-[90px]"
         />
       </h4>
       <TextArea
-        value={course.description}
-        onChange={setContentByKey('description')}
+        value={content.ko.description}
+        onChange={(value) => setLanguageContent('description', value, 'ko')}
         placeholder="교과목 설명"
       />
-      {/* <EnglishField /> */}
+      <EnglishField
+        name={content.en.name}
+        description={content.en.description}
+        setContent={(key, value) => setLanguageContent(key, value, 'en')}
+      />
       <div className="flex justify-end gap-2">
         <Button text="취소" onClick={toggleEditMode} />
         <Button text="확인" onClick={handleComplete} dark />
@@ -134,35 +137,6 @@ function CustomDropdown<T>({
   );
 }
 
-// function EnglishField({
-//   name,
-//   description,
-//   setEnglish,
-// }: {
-//   name: string;
-//   description: string;
-//   setEnglish: (value: object) => void;
-// }) {
-//   return (
-//     <div>
-//       <div className="mb-3 flex items-center gap-2.5">
-//         <span className="text-md text-neutral-400">영문</span>
-//         <BasicTextInput
-//           value={name}
-//           onChange={(value) => setEnglish((prev) => ({ ...prev, name: value }))}
-//           maxWidth="w-[180px]"
-//           placeholder="course name"
-//         />
-//       </div>
-//       <TextArea
-//         value={description}
-//         onChange={(value) => setEnglish((prev) => ({ ...prev, name: value }))}
-//         placeholder="course description"
-//       />
-//     </div>
-//   );
-// }
-
 function TextArea({
   value,
   placeholder,
@@ -179,5 +153,34 @@ function TextArea({
       className="autofill-bg-white h-20 resize-none rounded-sm border border-neutral-300 p-2 text-md outline-none"
       placeholder={placeholder}
     />
+  );
+}
+
+function EnglishField({
+  name,
+  description,
+  setContent,
+}: {
+  name: string;
+  description: string;
+  setContent: (key: 'name' | 'description', value: string) => void;
+}) {
+  return (
+    <div>
+      <div className="mb-3 flex items-center gap-2.5">
+        <span className="text-md text-neutral-400">영문</span>
+        <BasicTextInput
+          value={name}
+          onChange={(value) => setContent('name', value)}
+          maxWidth="w-[180px]"
+          placeholder="course name"
+        />
+      </div>
+      <TextArea
+        value={description}
+        onChange={(value) => setContent('description', value)}
+        placeholder="course description"
+      />
+    </div>
   );
 }

@@ -16,12 +16,11 @@ export const CLASSIFICATION = ['전공필수', '전공선택', '교양'] as cons
 export type Classification = (typeof CLASSIFICATION)[number];
 
 export interface Course {
-  name: string;
-  description: string;
-  grade: number;
-  classification: Classification;
-  credit: number;
   code: string;
+  credit: number;
+  grade: number;
+  ko: { name: string; description: string; classification: Classification };
+  en: { name: string; description: string; classification: Classification };
 }
 
 export type SortOption = '학년' | '교과목 구분' | '학점';

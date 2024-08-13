@@ -1,9 +1,10 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
 
 import { Course, GRADE, SortOption } from '@/types/academics';
+import { Language } from '@/types/language';
 
 interface CourseCardProps {
   course: Course;
@@ -11,7 +12,7 @@ interface CourseCardProps {
 }
 
 const getSortedProperties = (course: Course, selectedOption: SortOption) => {
-  const classification = course.classification;
+  const classification = course.ko.classification;
   const grade = GRADE[course.grade];
   const credit = `${course.credit}학점`;
 
@@ -33,6 +34,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
+  const language = useLocale() as Language;
 
   // resize card width
   useEffect(() => {
@@ -82,12 +84,12 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     <div style={cardStyle} onClick={flipCard}>
       <div className={frontStyle} style={{ ...faceStyle }} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
-        <CardTitle name={course.name} code={course.code} />
-        <CardContentPreview description={course.description} />
+        <CardTitle name={course[language].name} code={course.code} />
+        <CardContentPreview description={course[language].description} />
       </div>
       <div className={backStyle} style={{ ...faceStyle }} ref={backRef}>
-        <CardTitle name={course.name} code={course.code} />
-        <CardContent description={course.description} />
+        <CardTitle name={course[language].name} code={course.code} />
+        <CardContent description={course[language].description} />
       </div>
     </div>
   );
