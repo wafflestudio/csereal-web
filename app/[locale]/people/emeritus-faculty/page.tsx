@@ -34,7 +34,7 @@ export default async function EmeritusFacultyPage({
   return (
     <PageLayout title="역대 교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton href={`${facultyPath}/create`} />
+        <CreateButton href={`${facultyPath}/create?status=INACTIVE`} />
       </LoginVisible>
       <PeopleGrid contentList={props} />
     </PageLayout>

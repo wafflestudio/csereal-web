@@ -38,7 +38,7 @@ export default function FacultyMemberPageContent({
     try {
       handleServerAction(await deleteFacultyAction(ids, faculty.status));
       successToast('교수를 삭제했습니다.');
-    } catch {
+    } catch (e) {
       errorToast('오류가 발생했습니다');
     }
   };

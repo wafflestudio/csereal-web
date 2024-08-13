@@ -15,7 +15,6 @@ export default async function FacultyEditPage({
   const id = +rawId;
   if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 
-  // const data = await getFaculty(id);
   const [faculty, koLabs, enLabs] = await Promise.all([
     getFaculty(id),
     getResearchLabs('ko'),

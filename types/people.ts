@@ -31,6 +31,8 @@ export interface Faculty extends SimpleFaculty {
   educations: string[];
   researchAreas: string[];
   careers: string[];
+  startDate: string;
+  endDate: string;
 }
 
 // 역대 교수진

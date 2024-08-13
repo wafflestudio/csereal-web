@@ -56,12 +56,13 @@ interface FacultyEditorProps {
 export default function FacultyEditor({
   actions,
   initialContent,
+  initialFacultyStatus = 'ACTIVE',
   initialLangauge,
   labs,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const { content, setContentByKey } = useEditorContent(
-    getInitialContent(initialContent),
+    getInitialContent(initialFacultyStatus, initialContent),
     language,
   );
   const currLangContent = content[language];
@@ -396,17 +397,21 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
 }
 
 const getInitialContent = (
+  initStatus: FacultyStatus,
   initContent?: WithLanguage<Faculty>,
 ): WithLanguage<FacultyEditorContent> => {
   return {
-    ko: getDefaultContentDetail(initContent?.ko),
-    en: getDefaultContentDetail(initContent?.en),
+    ko: getDefaultContentDetail(initStatus, initContent?.ko),
+    en: getDefaultContentDetail(initStatus, initContent?.en),
   };
 };
 
-export const getDefaultContentDetail = (data?: Faculty): FacultyEditorContent => {
+export const getDefaultContentDetail = (
+  initStatus: FacultyStatus,
+  data?: Faculty,
+): FacultyEditorContent => {
   return {
-    status: data?.status ?? 'ACTIVE',
+    status: data?.status ?? initStatus,
     name: data?.name ?? '',
     academicRank: data?.academicRank ?? '',
     image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
@@ -419,7 +424,7 @@ export const getDefaultContentDetail = (data?: Faculty): FacultyEditorContent =>
     educations: data?.educations ?? [],
     careers: data?.careers ?? [],
     labId: data?.labId ?? null,
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: data?.startDate ? new Date(data.startDate) : new Date(),
+    endDate: data?.endDate ? new Date(data.endDate) : new Date(),
   };
 };
