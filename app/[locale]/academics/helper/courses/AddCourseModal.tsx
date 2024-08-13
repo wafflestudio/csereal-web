@@ -6,12 +6,21 @@ import Fieldset from '@/components/editor/common/Fieldset';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
-import { Language } from '@/types/language';
 
 import { validateCourseForm } from '@/utils/formValidation';
-import useEditorContent from '@/utils/hooks/useEditorContent';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
+import useCourseEditor from './useCourseEditor';
+
+const getInitCourse = (type: StudentType): Course => ({
+  code: '',
+  credit: 3,
+  grade: type === 'graduate' ? 0 : 1,
+  studentType: type,
+  ko: { name: '', description: '', classification: '전공필수' },
+  en: { name: '', description: '', classification: '전공필수' },
+});
 
 export default function AddCourseModal({
   onClose,
@@ -20,30 +29,22 @@ export default function AddCourseModal({
   onClose: () => void;
   studentType: StudentType;
 }) {
-  const { content, setContent, setContentByKey } = useEditorContent<Course>({
-    code: '',
-    credit: 3,
-    grade: studentType === 'graduate' ? 0 : 1,
-    ko: { name: '', description: '', classification: '전공필수' },
-    en: { name: '', description: '', classification: '전공필수' },
-  });
-
-  const setLanguageContent = (
-    key: 'name' | 'description' | 'classification',
-    value: string,
-    language: Language,
-  ) => {
-    setContent((prev) => ({ ...prev, [language]: { ...prev[language], [key]: value } }));
-  };
+  const { content, setContentByKey, setLanguageContent, setClassification } = useCourseEditor(
+    getInitCourse(studentType),
+  );
 
   const handleSubmit = async () => {
-    validateCourseForm(content);
-
     try {
+      validateCourseForm(content);
       handleServerAction(await postCourseAction(content));
       successToast('새 교과목을 추가했습니다.');
-    } catch {
-      errorToast('오류가 발생했습니다');
+      onClose();
+    } catch (e) {
+      if (e instanceof Error) {
+        errorToast(e.message);
+      } else {
+        throw e;
+      }
     }
   };
 
@@ -64,7 +65,7 @@ export default function AddCourseModal({
             <CodeFieldset code={content.code} onChange={setContentByKey('code')} />
             <ClassificationFieldset
               selected={content.ko.classification}
-              onChange={(value) => setLanguageContent('classification', value, 'ko')}
+              onChange={setClassification}
             />
             <CreditFieldset selected={content.credit} onChange={setContentByKey('credit')} />
             <GradeField
@@ -75,7 +76,7 @@ export default function AddCourseModal({
           </div>
           <NameFieldset
             name={content.en.name}
-            onChange={(value) => setLanguageContent('description', value, 'en')}
+            onChange={(value) => setLanguageContent('name', value, 'en')}
             english
           />
           <DescriptionFieldset

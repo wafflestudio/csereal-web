@@ -29,7 +29,7 @@ export default function CourseDetailModal({ course, onClose }: CourseDetailModal
       handleServerAction(await deleteCourseAction(course.code));
       successToast('교과목을 삭제했습니다.');
       onClose();
-    } catch (error) {
+    } catch {
       errorToast('교과목을 삭제하지 못했습니다.');
     }
   };
@@ -65,7 +65,6 @@ function CourseViewer({
       <LoginVisible staff>
         <div className="flex justify-end gap-3">
           <DeleteButton onDelete={onClickDelete} />
-          <GrayButton title="삭제" onClick={onClickDelete} />
           <GrayButton title="편집" onClick={onClickEdit} />
         </div>
       </LoginVisible>

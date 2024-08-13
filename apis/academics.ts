@@ -1,4 +1,5 @@
 import {
+  FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
@@ -43,10 +44,13 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
 /** 교과과정 */
 
 export const getCourses = (type: StudentType) =>
-  getRequest2<Course[]>(`/academics/courses?studentType=${type}`);
+  getRequest2<Course[]>(`/academics/courses?studentType=${type}`, undefined, {
+    next: { tags: [FETCH_TAG_COURSE] },
+  });
 
 export const postCourse = (data: Course) =>
   postRequest2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });

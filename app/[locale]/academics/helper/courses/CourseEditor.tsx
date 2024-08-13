@@ -1,12 +1,16 @@
+import { putCourseAction } from '@/actions/academics';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 
 import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 
 import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
-import { Language } from '@/types/language';
 
-import useEditorContent from '@/utils/hooks/useEditorContent';
+import { validateCourseForm } from '@/utils/formValidation';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
+
+import useCourseEditor from './useCourseEditor';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -17,19 +21,23 @@ export default function CourseEditor({
   initCourse: Course;
   toggleEditMode: () => void;
 }) {
-  const { content, setContent, setContentByKey } = useEditorContent(initCourse);
+  const { content, setContentByKey, setLanguageContent, setClassification } =
+    useCourseEditor(initCourse);
   const isGraduateCourse = initCourse.grade === 0;
 
-  const setLanguageContent = (
-    key: 'name' | 'description' | 'classification',
-    value: string,
-    language: Language,
-  ) => {
-    setContent((prev) => ({ ...prev, [language]: { ...prev[language], [key]: value } }));
-  };
-
-  const handleComplete = async () => {
-    toggleEditMode();
+  const handleSubmit = async () => {
+    try {
+      validateCourseForm(content);
+      handleServerAction(await putCourseAction(content));
+      successToast('교과목을 수정했습니다.');
+      toggleEditMode();
+    } catch (e) {
+      if (e instanceof Error) {
+        errorToast(e.message);
+      } else {
+        throw e;
+      }
+    }
   };
 
   return (
@@ -51,7 +59,7 @@ export default function CourseEditor({
         <CustomDropdown
           contents={[...CLASSIFICATION]}
           selected={content.ko.classification}
-          onChange={(value) => setLanguageContent('classification', value, 'ko')}
+          onChange={setClassification}
           width="w-[94px]"
         />
         <CustomDropdown
@@ -78,7 +86,7 @@ export default function CourseEditor({
       />
       <div className="flex justify-end gap-2">
         <Button text="취소" onClick={toggleEditMode} />
-        <Button text="확인" onClick={handleComplete} dark />
+        <Button text="확인" onClick={handleSubmit} dark />
       </div>
     </>
   );
@@ -150,7 +158,7 @@ function TextArea({
     <textarea
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="autofill-bg-white h-20 resize-none rounded-sm border border-neutral-300 p-2 text-md outline-none"
+      className="autofill-bg-white h-20 w-full resize-none rounded-sm border border-neutral-300 p-2 text-md outline-none placeholder:text-neutral-300"
       placeholder={placeholder}
     />
   );
