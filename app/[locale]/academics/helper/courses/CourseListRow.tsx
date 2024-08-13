@@ -1,6 +1,6 @@
 'use client';
 
-import { Course } from '@/types/academics';
+import { Course, GRADE } from '@/types/academics';
 
 import useModal from '@/utils/hooks/useModal';
 
@@ -72,12 +72,12 @@ function CreditCell({ credit }: { credit: number }) {
   );
 }
 
-function GradeCell({ grade }: { grade: string }) {
+function GradeCell({ grade }: { grade: number }) {
   return (
     <span
       className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
     >
-      {grade}
+      {GRADE[grade]}
     </span>
   );
 }

@@ -10,9 +10,7 @@ export interface Guide {
   }[];
 }
 
-// TODO: number 0, 1, 2, 3, 4로 변경 예정
 export const GRADE = ['대학원', '1학년', '2학년', '3학년', '4학년'] as const;
-export type Grade = (typeof GRADE)[number];
 
 export const CLASSIFICATION = ['전공필수', '전공선택', '교양'] as const;
 export type Classification = (typeof CLASSIFICATION)[number];
@@ -20,7 +18,7 @@ export type Classification = (typeof CLASSIFICATION)[number];
 export interface Course {
   name: string;
   description: string;
-  grade: Grade;
+  grade: number;
   classification: Classification;
   credit: number;
   code: string;

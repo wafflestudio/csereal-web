@@ -1,13 +1,13 @@
 import { getCourses } from '@/apis/academics';
 
-import CoursePageContent from '@/app/[locale]/academics/undergraduate/courses/CoursePageContent';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Course } from '@/types/academics';
 
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateCourses } from '@/utils/segmentNode';
+
+import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: undergraduateCourses });
@@ -19,7 +19,7 @@ export default async function UndergraduateCoursePage() {
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}
-      <CoursePageContent courses={data} />
+      <UndergraduateCoursePageContent courses={data} />
     </PageLayout>
   );
 }

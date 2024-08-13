@@ -17,7 +17,7 @@ export default function CourseEditor({
   toggleEditMode: () => void;
 }) {
   const [course, setNewCourse] = useState<Course>(initCourse);
-  const isGraduateCourse = initCourse.grade === '대학원';
+  const isGraduateCourse = initCourse.grade === 0;
 
   const handleComplete = async () => {
     toggleEditMode();
@@ -62,8 +62,8 @@ export default function CourseEditor({
         />
         <CustomDropdown
           contents={isGraduateCourse ? [GRADE[0]] : GRADE.slice(1)}
-          selected={course.grade}
-          onChange={setContentByKey('grade')}
+          selected={GRADE[course.grade]}
+          onChange={(value) => setContentByKey('grade')(GRADE.indexOf(value))}
           width="w-[90px]"
         />
       </h4>

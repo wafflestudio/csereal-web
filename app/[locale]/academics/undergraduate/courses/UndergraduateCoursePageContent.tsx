@@ -18,7 +18,7 @@ interface CoursePageContentProps {
   courses: Course[];
 }
 
-export default function CoursePageContent({ courses }: CoursePageContentProps) {
+export default function UndergraduateCoursePageContent({ courses }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
   const t = useTranslations('Content');
@@ -61,7 +61,7 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
 
   if (sortOption === '학년') {
     sortedCourses.push([], [], [], []);
-    courses.forEach((course) => sortedCourses[parseInt(course.grade) - 1].push(course));
+    courses.forEach((course) => sortedCourses[course.grade - 1].push(course));
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>

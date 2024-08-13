@@ -5,15 +5,14 @@ import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 import ModalFrame from '@/components/modal/ModalFrame';
 
-import { Classification, CLASSIFICATION, Course, Grade, GRADE } from '@/types/academics';
+import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
 
-// TODO: StudentType 타입 사용
 export default function AddCourseModal({
   onClose,
   studentType,
 }: {
   onClose: () => void;
-  studentType: 'undergraduate' | 'graduate';
+  studentType: StudentType;
 }) {
   const [course, setCourse] = useState<Course>({
     name: '',
@@ -21,7 +20,7 @@ export default function AddCourseModal({
     classification: '전공필수',
     code: '',
     credit: 3,
-    grade: studentType === 'graduate' ? '대학원' : '1학년',
+    grade: studentType === 'graduate' ? 0 : 1,
   });
   const [en, setEn] = useState({ name: '', description: '' });
 
@@ -204,22 +203,21 @@ function CreditFieldset({
   );
 }
 
-// TODO: StudentType 사용
 function GradeField({
   selected,
   onChange,
   studentType,
 }: {
-  selected: Grade;
-  onChange: (value: Grade) => void;
-  studentType: 'undergraduate' | 'graduate';
+  selected: number;
+  onChange: (value: number) => void;
+  studentType: StudentType;
 }) {
   return (
     <DropdownFieldset
       title="학년"
       contents={studentType === 'undergraduate' ? GRADE.slice(1) : [GRADE[0]]} // 그냥 GRDAE는 as const로 되어 있어서 할당 불가
-      selected={selected}
-      onChange={onChange}
+      selected={GRADE[selected]}
+      onChange={(value) => onChange(GRADE.indexOf(value))}
       width="w-[90px]"
     />
   );

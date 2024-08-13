@@ -7,7 +7,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 
-import { Course } from '@/types/academics';
+import { Course, GRADE } from '@/types/academics';
 
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
@@ -91,7 +91,7 @@ function CourseHeader({ course }: { course: Course }) {
         <span>{course.code}</span>
         <span>{course.classification}</span>
         <span>{course.credit}학점</span>
-        <span>{course.grade}</span>
+        <span>{GRADE[course.grade]}</span>
       </div>
     </h4>
   );

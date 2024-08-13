@@ -7,7 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourses } from '@/utils/segmentNode';
 
-import CoursePageContent from './CoursePageContent';
+import GraduateCoursePageContent from './GraduateCoursePageContent';
 
 export async function generateMetadata({
   params: { locale },
@@ -22,7 +22,7 @@ export default async function GraduateCoursePage() {
 
   return (
     <PageLayout titleType="big">
-      <CoursePageContent courses={courseList} />
+      <GraduateCoursePageContent courses={courseList} />
     </PageLayout>
   );
 }

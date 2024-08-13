@@ -3,7 +3,7 @@ import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Tag } from '@/components/common/Tags';
 
-import { Course, SortOption } from '@/types/academics';
+import { Course, GRADE, SortOption } from '@/types/academics';
 
 interface CourseCardProps {
   course: Course;
@@ -11,12 +11,16 @@ interface CourseCardProps {
 }
 
 const getSortedProperties = (course: Course, selectedOption: SortOption) => {
+  const classification = course.classification;
+  const grade = GRADE[course.grade];
+  const credit = `${course.credit}학점`;
+
   if (selectedOption === '교과목 구분') {
-    return [course.classification, course.grade, `${course.credit}학점`];
+    return [classification, grade, credit];
   } else if (selectedOption === '학점') {
-    return [`${course.credit}학점`, course.grade, course.classification];
+    return [credit, grade, classification];
   } else {
-    return [course.grade, course.classification, `${course.credit}학점`];
+    return [grade, classification, credit];
   }
 };
 

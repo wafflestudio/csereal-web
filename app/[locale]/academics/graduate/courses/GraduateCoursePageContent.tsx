@@ -18,7 +18,7 @@ interface CoursePageContentProps {
   courses: Course[];
 }
 
-export default function CoursePageContent({ courses }: CoursePageContentProps) {
+export default function GraduateCoursePageContent({ courses }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
   const t = useTranslations('Content');
