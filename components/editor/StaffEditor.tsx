@@ -68,8 +68,8 @@ export default function StaffEditor({
 
       <Section title="연락처 정보" titleMb="mb-3" mb="mb-12">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
-        <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
-        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
+        <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone', true)} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email', true)} />
       </Section>
 
       <TasksFieldset tasks={currLangContent.tasks} setTasks={setContentByKey('tasks')} />
