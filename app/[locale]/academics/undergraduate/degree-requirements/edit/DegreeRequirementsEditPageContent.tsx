@@ -19,7 +19,7 @@ const degreeRequirementsPath = getPath(degree);
 export default function DegreeRequirementsEditPageContent({ data }: { data: DegreeRequirements }) {
   const router = useRouter();
 
-  const goToOriginalPage = () => router.replace(degreeRequirementsPath);
+  const goToOriginalPage = () => router.push(degreeRequirementsPath);
 
   const handleComplete = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
@@ -55,7 +55,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
         actions={{
           type: 'EDIT',
           onCancel: goToOriginalPage,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
         showAttachments
       />

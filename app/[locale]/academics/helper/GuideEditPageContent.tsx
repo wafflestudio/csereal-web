@@ -19,7 +19,7 @@ const academicsPath = getPath(academics);
 export default function GuideEditPageContent({ data, type }: { data: Guide; type: StudentType }) {
   const router = useRouter();
 
-  const goToGuidePage = () => router.replace(`${academicsPath}/${type}/guide`);
+  const goToGuidePage = () => router.push(`${academicsPath}/${type}/guide`);
 
   const handleComplete = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
@@ -55,7 +55,7 @@ export default function GuideEditPageContent({ data, type }: { data: Guide; type
         actions={{
           type: 'EDIT',
           onCancel: goToGuidePage,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
         showAttachments
       />

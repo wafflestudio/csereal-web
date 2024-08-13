@@ -37,7 +37,7 @@ export default function NoticeCreatePage() {
         actions={{
           type: 'CREATE',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
       />
     </PageLayout>

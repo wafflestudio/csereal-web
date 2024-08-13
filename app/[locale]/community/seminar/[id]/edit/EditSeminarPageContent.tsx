@@ -65,7 +65,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
           onDelete: handleDelete,
         }}
         initialContent={initialContent}
