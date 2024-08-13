@@ -5,7 +5,7 @@ import { getCourseChanges } from '@/apis/academics';
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 
-import CourseChanges from '../../helper/CourseChanges';
+import CourseChangesPageContent from '../../helper/CourseChangesPageContent';
 
 export async function generateMetadata({
   params: { locale },
@@ -18,5 +18,5 @@ export async function generateMetadata({
 export default async function GraduateCourseChangesPage() {
   const changes = await getCourseChanges('graduate');
 
-  return <CourseChanges changes={changes} />;
+  return <CourseChangesPageContent changes={changes} type="graduate" />;
 }
