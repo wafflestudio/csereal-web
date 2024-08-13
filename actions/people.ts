@@ -77,19 +77,19 @@ export const deleteFacultyAction = withErrorHandler(
   },
 );
 
-export const postStaffAction = withErrorHandler(async (formData: FormData) => {
+export const postStaffAction = withErrorHandler(async (formData: FormData, language: Language) => {
   const res = await postStaff(formData);
 
   revalidateTag(FETCH_TAG_STAFF);
-  redirect(`${staffPath}/${res.ko.id}`);
+  redirect(`${staffPath}/${res[language].id}`);
 });
 
 export const putStaffAction = withErrorHandler(
-  async (ids: WithLanguage<number>, formData: FormData) => {
+  async (ids: WithLanguage<number>, formData: FormData, language: Language) => {
     await putStaff(ids, formData);
 
     revalidateTag(FETCH_TAG_STAFF);
-    redirect(`${staffPath}/${ids.ko}`);
+    redirect(`${staffPath}/${ids[language]}`);
   },
 );
 

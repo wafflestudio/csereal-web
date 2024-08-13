@@ -30,6 +30,7 @@ export default function StaffEditPageContent({
   const handleCancel = () => router.push(`${staffPath}/${data[language].id}`);
 
   const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
+    console.log(content);
     validateStaffForm(content);
 
     const requestObject = getRequestObject(
@@ -42,7 +43,9 @@ export default function StaffEditPageContent({
     });
 
     try {
-      handleServerAction(await putStaffAction({ ko: data.ko.id, en: data.en.id }, formData));
+      handleServerAction(
+        await putStaffAction({ ko: data.ko.id, en: data.en.id }, formData, language),
+      );
     } catch {
       errorToast('오류가 발생했습니다');
     }

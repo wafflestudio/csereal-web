@@ -208,12 +208,16 @@ const INIT_STAFF_EDITOR_CONTENT: StaffEditorContent = {
 };
 
 const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
-  return content
-    ? {
-        ...content,
-        image: content.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
-      }
-    : INIT_STAFF_EDITOR_CONTENT;
+  if (content) {
+    const { imageURL, ...editorContent } = content;
+
+    return {
+      ...editorContent, // imageURL 속성 제외한 나머지
+      image: imageURL ? { type: 'UPLOADED_IMAGE', url: imageURL } : null,
+    };
+  }
+
+  return INIT_STAFF_EDITOR_CONTENT;
 };
 
 const getInitialContent = (initContent?: WithLanguage<Staff>): WithLanguage<StaffEditorContent> => {

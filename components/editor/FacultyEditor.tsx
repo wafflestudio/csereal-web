@@ -426,15 +426,15 @@ const getInitialContent = (
 
 export const getDefaultContentDetail = (
   initStatus: FacultyStatus,
-  data?: Faculty,
+  content?: Faculty,
 ): FacultyEditorContent => {
-  const startDate = data?.startDate ? new Date(data.startDate) : new Date();
-  const endDate = data?.endDate ? new Date(data.endDate) : new Date();
+  const startDate = content?.startDate ? new Date(content.startDate) : new Date();
+  const endDate = content?.endDate ? new Date(content.endDate) : new Date();
 
-  return data
+  return content
     ? {
-        ...data,
-        image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
+        ...content,
+        image: content?.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
         startDate,
         endDate,
       }

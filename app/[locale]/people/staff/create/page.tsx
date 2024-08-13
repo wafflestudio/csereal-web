@@ -31,7 +31,7 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
     });
 
     try {
-      handleServerAction(await postStaffAction(formData));
+      handleServerAction(await postStaffAction(formData, locale));
     } catch {
       errorToast('오류가 발생했습니다');
     }
