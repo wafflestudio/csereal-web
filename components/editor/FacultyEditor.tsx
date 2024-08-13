@@ -396,6 +396,24 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
+const INIT_FACULTY_EDITOR_CONTENT: FacultyEditorContent = {
+  status: 'ACTIVE',
+  name: '',
+  academicRank: '',
+  image: null,
+  phone: '',
+  email: '',
+  office: '',
+  fax: '',
+  website: '',
+  educations: [],
+  researchAreas: [],
+  careers: [],
+  labId: null,
+  startDate: new Date(),
+  endDate: new Date(),
+};
+
 const getInitialContent = (
   initStatus: FacultyStatus,
   initContent?: WithLanguage<Faculty>,
@@ -410,21 +428,15 @@ export const getDefaultContentDetail = (
   initStatus: FacultyStatus,
   data?: Faculty,
 ): FacultyEditorContent => {
-  return {
-    status: data?.status ?? initStatus,
-    name: data?.name ?? '',
-    academicRank: data?.academicRank ?? '',
-    image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
-    phone: data?.phone ?? '',
-    office: data?.office ?? '',
-    fax: data?.fax ?? '',
-    website: data?.website ?? '',
-    email: data?.email ?? '',
-    researchAreas: data?.researchAreas ?? [],
-    educations: data?.educations ?? [],
-    careers: data?.careers ?? [],
-    labId: data?.labId ?? null,
-    startDate: data?.startDate ? new Date(data.startDate) : new Date(),
-    endDate: data?.endDate ? new Date(data.endDate) : new Date(),
-  };
+  const startDate = data?.startDate ? new Date(data.startDate) : new Date();
+  const endDate = data?.endDate ? new Date(data.endDate) : new Date();
+
+  return data
+    ? {
+        ...data,
+        image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
+        startDate,
+        endDate,
+      }
+    : { ...INIT_FACULTY_EDITOR_CONTENT, status: initStatus, startDate, endDate };
 };

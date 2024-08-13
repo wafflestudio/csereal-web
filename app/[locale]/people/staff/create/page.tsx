@@ -3,13 +3,12 @@
 import { postStaffAction } from '@/actions/people';
 import { useRouter } from '@/navigation';
 
-import { isLocalImage } from '@/components/editor/PostEditorTypes';
 import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-import { LANGUAGE, Language, WithLanguage } from '@/types/language';
-import { getKeys } from '@/types/object';
+import { Language, WithLanguage } from '@/types/language';
 
+import { contentToFormData } from '@/utils/formData';
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
@@ -25,7 +24,11 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
 
   const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
     validateStaffForm(content);
-    const formData = contentToFormData(content);
+
+    const formData = contentToFormData('CREATE', {
+      requestObject: getRequestObject(content),
+      image: content.ko.image,
+    });
 
     try {
       handleServerAction(await postStaffAction(formData));
@@ -44,34 +47,11 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
   );
 }
 
-const contentToFormData = (content: WithLanguage<StaffEditorContent>) => {
-  const formData = new FormData();
+const getRequestObject = (content: WithLanguage<StaffEditorContent>) => {
+  const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(getRequestObject(content))], {
-      type: 'application/json',
-    }),
-  );
-
-  // 이미지는 한영 공통
-  const image = content.ko.image;
-  if (image && isLocalImage(image)) {
-    formData.append('image', image.file);
-  }
-
-  return formData;
+  return {
+    ko: { ...content.ko, image },
+    en: { ...content.en, image },
+  };
 };
-
-const getRequestObject = (content: WithLanguage<StaffEditorContent>) =>
-  getKeys(LANGUAGE).reduce((acc, lang) => {
-    acc[lang] = {
-      name: content[lang].name,
-      role: content[lang].role,
-      office: content[lang].office,
-      phone: content[lang].phone,
-      email: content[lang].email,
-      tasks: content[lang].tasks,
-    };
-    return acc;
-  }, {} as WithLanguage);

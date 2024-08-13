@@ -197,21 +197,28 @@ function TasksFieldset({
   );
 }
 
+const INIT_STAFF_EDITOR_CONTENT: StaffEditorContent = {
+  name: '',
+  email: '',
+  office: '',
+  phone: '',
+  role: '',
+  tasks: [],
+  image: null,
+};
+
+const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
+  return content
+    ? {
+        ...content,
+        image: content.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
+      }
+    : INIT_STAFF_EDITOR_CONTENT;
+};
+
 const getInitialContent = (initContent?: WithLanguage<Staff>): WithLanguage<StaffEditorContent> => {
   return {
     ko: getDefaultContentDetail(initContent?.ko),
     en: getDefaultContentDetail(initContent?.en),
-  };
-};
-
-const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
-  return {
-    name: content?.name ?? '',
-    email: content?.email ?? '',
-    office: content?.office ?? '',
-    phone: content?.phone ?? '',
-    role: content?.role ?? '',
-    tasks: content?.tasks ?? [],
-    image: content?.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
   };
 };

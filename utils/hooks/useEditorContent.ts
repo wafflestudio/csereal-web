@@ -55,5 +55,5 @@ export default function useEditorContent<T>(
       });
     };
 
-  return { content, setContentByKey, setContent } as const;
+  return { content, setContentByKey, setContent };
 }
