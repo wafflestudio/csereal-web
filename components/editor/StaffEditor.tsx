@@ -51,6 +51,13 @@ export default function StaffEditor({
   );
   const currLangContent = content[language];
 
+  const getContent = (): WithLanguage<StaffEditorContent> => {
+    return {
+      ko: { ...content.ko, tasks: content.ko.tasks.filter((x) => x !== '') },
+      en: { ...content.en, tasks: content.en.tasks.filter((x) => x !== '') },
+    };
+  };
+
   return (
     <form className="flex flex-col">
       <LangauageFieldset selected={language} onChange={setLanguage} />
@@ -69,13 +76,9 @@ export default function StaffEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons
-            {...actions}
-            getContent={() => content}
-            completeButtonText="추가하기"
-          />
+          <CreateActionButtons {...actions} getContent={getContent} completeButtonText="추가하기" />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getContent} />}
       </div>
     </form>
   );

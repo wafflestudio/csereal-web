@@ -68,6 +68,25 @@ export default function FacultyEditor({
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
 
+  const getContent = (): WithLanguage<FacultyEditorContent> => {
+    const filterEmptyValue = (array: string[]) => array.filter((x) => x !== '');
+
+    return {
+      ko: {
+        ...content.ko,
+        careers: filterEmptyValue(content.ko.careers),
+        educations: filterEmptyValue(content.ko.educations),
+        researchAreas: filterEmptyValue(content.ko.researchAreas),
+      },
+      en: {
+        ...content.en,
+        careers: filterEmptyValue(content.en.careers),
+        educations: filterEmptyValue(content.en.educations),
+        researchAreas: filterEmptyValue(content.en.researchAreas),
+      },
+    };
+  };
+
   return (
     <form className="flex flex-col">
       <FacultyStatusFieldset
@@ -138,13 +157,9 @@ export default function FacultyEditor({
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons
-            {...actions}
-            getContent={() => content}
-            completeButtonText="추가하기"
-          />
+          <CreateActionButtons {...actions} getContent={getContent} completeButtonText="추가하기" />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getContent} />}
       </div>
     </form>
   );
