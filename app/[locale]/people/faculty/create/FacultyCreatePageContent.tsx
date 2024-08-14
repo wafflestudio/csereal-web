@@ -10,9 +10,12 @@ import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 
+import { contentToFormData } from '@/utils/formData';
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast } from '@/utils/toast';
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
@@ -32,7 +35,16 @@ export default function FacultyCreatePageContent({
 
   const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
-    postFacultyAction();
+    const formData = contentToFormData('CREATE', {
+      requestObject: getRequestObject(content),
+      image: content.ko.image,
+    });
+
+    try {
+      handleServerAction(await postFacultyAction(formData, language));
+    } catch {
+      errorToast('오류가 발생했습니다');
+    }
   };
 
   return (
@@ -46,3 +58,15 @@ export default function FacultyCreatePageContent({
     </PageLayout>
   );
 }
+
+const getRequestObject = (content: WithLanguage<FacultyEditorContent>) => {
+  // startDate, endDate는 한영 동일
+  const startDate = content.ko.startDate.toISOString();
+  const endDate = content.ko.endDate.toISOString();
+  const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
+
+  return {
+    ko: { ...content.ko, image, startDate, endDate },
+    en: { ...content.en, image, startDate, endDate },
+  };
+};

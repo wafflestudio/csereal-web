@@ -26,7 +26,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
       throw new Error('내용을 입력해주세요');
     }
 
-    const formData = contentToFormData({
+    const formData = contentToFormData('EDIT', {
       requestObject: {
         description: content.description.ko,
         deleteIds: getAttachmentDeleteIds(

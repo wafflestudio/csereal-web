@@ -37,7 +37,7 @@ export default function StaffMemberPageContent({
     try {
       handleServerAction(await deleteStaffAction(ids));
       successToast('행정직원을 삭제했습니다.');
-    } catch {
+    } catch (e) {
       errorToast('오류가 발생했습니다');
     }
   };

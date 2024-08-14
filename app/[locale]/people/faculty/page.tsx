@@ -1,5 +1,6 @@
 import { getActiveFacultyList } from '@/apis/people';
 
+import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
@@ -10,7 +11,6 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
-import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -34,7 +34,7 @@ export default async function FacultyPage({ params }: FacultyPageProps) {
   return (
     <PageLayout title="교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton pathname={`${facultyPath}/create`} status="ACTIVE" />
+        <CreateButton href={`${facultyPath}/create?status=ACTIVE`} />
       </LoginVisible>
       <PeopleGrid contentList={normal} />
       <h3 className="mb-4 mt-12 text-[20px] font-bold">객원교수</h3>

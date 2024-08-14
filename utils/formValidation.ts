@@ -6,6 +6,8 @@ import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 
+import { ValueOf } from './type';
+
 export const validateNoticeForm = (content: PostEditorContent) => {
   if (content.title === '') {
     throw new Error('제목을 입력해주세요');
@@ -49,8 +51,8 @@ export const validateFacultyForm = (content: WithLanguage<FacultyEditorContent>)
 };
 
 export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => {
-  const isValueEmpty = (value: StaffEditorContent[keyof StaffEditorContent]) =>
-    !value || (Array.isArray(value) && value.length < 1);
+  const isValueEmpty = (value: ValueOf<StaffEditorContent>) =>
+    !value || (Array.isArray(value) && value.length === 0);
 
   if (Object.entries(content.ko).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
     throw new Error('모든 정보를 입력해주세요');

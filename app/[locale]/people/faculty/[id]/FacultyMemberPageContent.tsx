@@ -5,16 +5,19 @@ import { useTranslations } from 'next-intl';
 import { deleteFacultyAction } from '@/actions/people';
 import { Link } from '@/navigation';
 
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
 
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
 
-import { DeleteButton, EditButton } from '../../helper/AdminButtons';
 import HeaderAndList from '../../helper/HeaderAndList';
 import PageTitle from '../../helper/PageTitle';
 import Profile from '../../helper/Profile';
@@ -22,12 +25,22 @@ import Profile from '../../helper/Profile';
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);
 
-export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty }) {
+export default function FacultyMemberPageContent({
+  faculty,
+  ids,
+}: {
+  faculty: Faculty;
+  ids: WithLanguage<number>;
+}) {
   const t = useTranslations('Content');
 
-  // TODO: 에러 처리
   const handleDelete = async () => {
-    return await deleteFacultyAction();
+    try {
+      handleServerAction(await deleteFacultyAction(ids, faculty.status));
+      successToast('교수를 삭제했습니다.');
+    } catch (e) {
+      errorToast('오류가 발생했습니다');
+    }
   };
 
   return (
@@ -53,9 +66,9 @@ export default function FacultyMemberPageContent({ faculty }: { faculty: Faculty
           </div>
         </div>
         <div className="mt-8 break-all">
-          <HeaderAndList header={t('학력')} list={faculty.educations ?? []} />
-          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas ?? []} />
-          <HeaderAndList header={t('경력')} list={faculty.careers ?? []} />
+          <HeaderAndList header={t('학력')} list={faculty.educations} />
+          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
+          <HeaderAndList header={t('경력')} list={faculty.careers} />
         </div>
       </div>
       <LoginVisible staff>

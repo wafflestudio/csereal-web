@@ -51,6 +51,13 @@ export default function StaffEditor({
   );
   const currLangContent = content[language];
 
+  const getContent = (): WithLanguage<StaffEditorContent> => {
+    return {
+      ko: { ...content.ko, tasks: content.ko.tasks.filter((x) => x !== '') },
+      en: { ...content.en, tasks: content.en.tasks.filter((x) => x !== '') },
+    };
+  };
+
   return (
     <form className="flex flex-col">
       <LangauageFieldset selected={language} onChange={setLanguage} />
@@ -61,21 +68,17 @@ export default function StaffEditor({
 
       <Section title="연락처 정보" titleMb="mb-3" mb="mb-12">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
-        <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
-        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
+        <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone', true)} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email', true)} />
       </Section>
 
       <TasksFieldset tasks={currLangContent.tasks} setTasks={setContentByKey('tasks')} />
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons
-            {...actions}
-            getContent={() => content}
-            completeButtonText="추가하기"
-          />
+          <CreateActionButtons {...actions} getContent={getContent} completeButtonText="추가하기" />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getContent} />}
       </div>
     </form>
   );
@@ -197,21 +200,32 @@ function TasksFieldset({
   );
 }
 
+const INIT_STAFF_EDITOR_CONTENT: StaffEditorContent = {
+  name: '',
+  email: '',
+  office: '',
+  phone: '',
+  role: '',
+  tasks: [],
+  image: null,
+};
+
+const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
+  if (content) {
+    const { imageURL, ...editorContent } = content;
+
+    return {
+      ...editorContent, // imageURL 속성 제외한 나머지
+      image: imageURL ? { type: 'UPLOADED_IMAGE', url: imageURL } : null,
+    };
+  }
+
+  return INIT_STAFF_EDITOR_CONTENT;
+};
+
 const getInitialContent = (initContent?: WithLanguage<Staff>): WithLanguage<StaffEditorContent> => {
   return {
     ko: getDefaultContentDetail(initContent?.ko),
     en: getDefaultContentDetail(initContent?.en),
-  };
-};
-
-const getDefaultContentDetail = (content?: Staff): StaffEditorContent => {
-  return {
-    name: content?.name ?? '',
-    email: content?.email ?? '',
-    office: content?.office ?? '',
-    phone: content?.phone ?? '',
-    role: content?.role ?? '',
-    tasks: content?.tasks ?? [],
-    image: content?.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
   };
 };
