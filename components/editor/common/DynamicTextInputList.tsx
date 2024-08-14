@@ -26,8 +26,8 @@ export default function DynamicTextInputList({
     setList(newList);
   };
 
-  const handleDelete = (id: number) => {
-    const newList = list.filter((item, i) => i !== id);
+  const handleDelete = (index: number) => {
+    const newList = list.filter((_, i) => i !== index);
     setList(newList);
   };
 
@@ -102,8 +102,3 @@ function Button({
     </button>
   );
 }
-
-// const getUniqueId = <T extends { id: number }>(list: T[]) => {
-//   if (list.length === 0) return 1;
-//   return Math.max(...list.map((item) => item.id)) + 1;
-// };

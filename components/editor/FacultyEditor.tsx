@@ -27,7 +27,6 @@ import Dropdown from '../common/form/Dropdown';
 
 export interface FacultyEditorContent {
   status: FacultyStatus;
-  language: Language;
   name: string;
   academicRank: string;
   image: PostEditorImage | null;
@@ -48,7 +47,7 @@ interface FacultyEditorProps {
   actions:
     | EditAction<WithLanguage<FacultyEditorContent>>
     | CreateAction<WithLanguage<FacultyEditorContent>>;
-  initialContent?: Faculty;
+  initialContent?: WithLanguage<Faculty>;
   initialFacultyStatus?: FacultyStatus;
   initialLangauge: Language;
   labs: WithLanguage<SimpleResearchLab[]>;
@@ -57,17 +56,36 @@ interface FacultyEditorProps {
 export default function FacultyEditor({
   actions,
   initialContent,
-  initialFacultyStatus,
+  initialFacultyStatus = 'ACTIVE',
   initialLangauge,
   labs,
 }: FacultyEditorProps) {
   const [language, setLanguage] = useState<Language>(initialLangauge);
   const { content, setContentByKey } = useEditorContent(
-    getFacultyEditorDefaultValue(initialFacultyStatus, initialContent),
+    getInitialContent(initialFacultyStatus, initialContent),
     language,
   );
   const currLangContent = content[language];
   const isInactiveFaculty = currLangContent.status === 'INACTIVE';
+
+  const getContent = (): WithLanguage<FacultyEditorContent> => {
+    const filterEmptyValue = (array: string[]) => array.filter((x) => x !== '');
+
+    return {
+      ko: {
+        ...content.ko,
+        careers: filterEmptyValue(content.ko.careers),
+        educations: filterEmptyValue(content.ko.educations),
+        researchAreas: filterEmptyValue(content.ko.researchAreas),
+      },
+      en: {
+        ...content.en,
+        careers: filterEmptyValue(content.en.careers),
+        educations: filterEmptyValue(content.en.educations),
+        researchAreas: filterEmptyValue(content.en.researchAreas),
+      },
+    };
+  };
 
   return (
     <form className="flex flex-col">
@@ -89,19 +107,19 @@ export default function FacultyEditor({
           <DateFieldset
             title="시작 날짜"
             value={currLangContent.startDate}
-            onChange={setContentByKey('startDate')}
+            onChange={setContentByKey('startDate', true)}
             disabled={!isInactiveFaculty}
           />
           <DateFieldset
             title="종료 날짜"
             value={currLangContent.endDate}
-            onChange={setContentByKey('endDate')}
+            onChange={setContentByKey('endDate', true)}
             disabled={!isInactiveFaculty}
           />
         </div>
       </Section>
 
-      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image')} />
+      <ImageFieldset file={currLangContent.image} setFile={setContentByKey('image', true)} />
 
       <Section title="연구 정보" mb="mb-12" titleMb="mb-3">
         <LabFieldset
@@ -127,22 +145,21 @@ export default function FacultyEditor({
       <Section title="연락처 정보" titleMb="mb-3">
         <OfficeFieldset value={currLangContent.office} onChange={setContentByKey('office')} />
         <div className="flex w-[42rem]">
-          <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone')} />
-          <FaxFieldset value={currLangContent.fax} onChange={setContentByKey('fax')} />
+          <PhoneFieldset value={currLangContent.phone} onChange={setContentByKey('phone', true)} />
+          <FaxFieldset value={currLangContent.fax} onChange={setContentByKey('fax', true)} />
         </div>
-        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email')} />
-        <WebsiteFieldset value={currLangContent.website} onChange={setContentByKey('website')} />
+        <EmailFieldset value={currLangContent.email} onChange={setContentByKey('email', true)} />
+        <WebsiteFieldset
+          value={currLangContent.website}
+          onChange={setContentByKey('website', true)}
+        />
       </Section>
 
       <div className="mt-5 flex gap-3 self-end">
         {actions.type === 'CREATE' && (
-          <CreateActionButtons
-            {...actions}
-            getContent={() => content}
-            completeButtonText="추가하기"
-          />
+          <CreateActionButtons {...actions} getContent={getContent} completeButtonText="추가하기" />
         )}
-        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={() => content} />}
+        {actions.type === 'EDIT' && <EditActionButtons {...actions} getContent={getContent} />}
       </div>
     </form>
   );
@@ -394,32 +411,47 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-// TODO: 영어 데이터 처리
-export const getFacultyEditorDefaultValue = (
-  status: FacultyStatus = 'ACTIVE',
-  data?: Faculty,
-): WithLanguage<FacultyEditorContent> => {
-  const koContentDefaultValue: FacultyEditorContent = {
-    status: data?.status ?? status,
-    language: 'ko',
-    name: data?.name ?? '',
-    academicRank: data?.academicRank ?? '',
-    image: data?.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
-    phone: data?.phone ?? '',
-    office: data?.office ?? '',
-    fax: data?.fax ?? '',
-    website: data?.website ?? '',
-    email: data?.email ?? '',
-    researchAreas: data?.researchAreas ?? [],
-    educations: data?.educations ?? [],
-    careers: data?.careers ?? [],
-    labId: data?.labId ?? null,
-    startDate: new Date(),
-    endDate: new Date(),
-  };
+const INIT_FACULTY_EDITOR_CONTENT: FacultyEditorContent = {
+  status: 'ACTIVE',
+  name: '',
+  academicRank: '',
+  image: null,
+  phone: '',
+  email: '',
+  office: '',
+  fax: '',
+  website: '',
+  educations: [],
+  researchAreas: [],
+  careers: [],
+  labId: null,
+  startDate: new Date(),
+  endDate: new Date(),
+};
 
+const getInitialContent = (
+  initStatus: FacultyStatus,
+  initContent?: WithLanguage<Faculty>,
+): WithLanguage<FacultyEditorContent> => {
   return {
-    ko: koContentDefaultValue,
-    en: { ...koContentDefaultValue, language: 'en' },
+    ko: getDefaultContentDetail(initStatus, initContent?.ko),
+    en: getDefaultContentDetail(initStatus, initContent?.en),
   };
+};
+
+export const getDefaultContentDetail = (
+  initStatus: FacultyStatus,
+  content?: Faculty,
+): FacultyEditorContent => {
+  const startDate = content?.startDate ? new Date(content.startDate) : new Date();
+  const endDate = content?.endDate ? new Date(content.endDate) : new Date();
+
+  return content
+    ? {
+        ...content,
+        image: content?.imageURL ? { type: 'UPLOADED_IMAGE', url: content.imageURL } : null,
+        startDate,
+        endDate,
+      }
+    : { ...INIT_FACULTY_EDITOR_CONTENT, status: initStatus, startDate, endDate };
 };
