@@ -20,10 +20,11 @@ export async function generateMetadata({ params: { locale } }: CoursePageProps) 
 
 export default async function UndergraduateCoursePage({ params: { locale } }: CoursePageProps) {
   const data: Course[] = await getCourses('undergraduate', locale);
+
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}
-      <UndergraduateCoursePageContent courses={data} />
+      <UndergraduateCoursePageContent courses={data} language={locale} />
     </PageLayout>
   );
 }
