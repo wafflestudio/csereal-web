@@ -8,6 +8,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
 import { getKeys } from '@/types/object';
 
+import { errorToStr } from '@/utils/error';
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -41,11 +42,7 @@ export default function AddCourseModal({
       successToast('새 교과목을 추가했습니다.');
       onClose();
     } catch (e) {
-      if (e instanceof Error) {
-        errorToast(e.message);
-      } else {
-        throw e;
-      }
+      errorToast(errorToStr(e));
     }
   };
 

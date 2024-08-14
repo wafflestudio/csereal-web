@@ -1,11 +1,11 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import { Course, GRADE } from '@/types/academics';
-import { Language } from '@/types/language';
 
 import useModal from '@/utils/hooks/useModal';
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 import CourseDetailModal from './CourseDetailModal';
 
@@ -18,7 +18,7 @@ export const COURSE_ROW_ITEM_WIDTH = {
 } as const;
 
 export default function CourseListRow({ course }: { course: Course }) {
-  const language = useLocale() as Language;
+  const language = useTypedLocale();
 
   return (
     <li className="grid grid-cols-[auto,_auto,_1fr] grid-rows-3 gap-1 px-7 py-6 text-md odd:bg-neutral-50 sm:flex sm:h-14 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">

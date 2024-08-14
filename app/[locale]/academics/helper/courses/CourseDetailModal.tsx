@@ -1,4 +1,4 @@
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useReducer, useState } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
@@ -11,6 +11,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { Course, GRADE } from '@/types/academics';
 import { Language } from '@/types/language';
 
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -22,7 +23,8 @@ interface CourseDetailModalProps {
 }
 
 export default function CourseDetailModal({ initCourse, onClose }: CourseDetailModalProps) {
-  const [course, setCourse] = useState(initCourse); // 수정 이후 바로 업데이트하기 위함
+  // 수정 이후 페이지 새로고침 없이 모달 내용을 업데이트하기 위해 내부 상태로 관리
+  const [course, setCourse] = useState(initCourse);
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
 
   const handleDelete = async () => {
@@ -57,7 +59,7 @@ function CourseViewer({
   onClickDelete: () => Promise<CustomError | void>;
   onClickEdit: () => void;
 }) {
-  const language = useLocale() as Language;
+  const language = useTypedLocale();
 
   return (
     <>
@@ -74,6 +76,8 @@ function CourseViewer({
 }
 
 function CourseHeader({ course, language }: { course: Course; language: Language }) {
+  const t = useTranslations('Tag');
+
   return (
     <h4 className="flex flex-wrap items-center gap-2">
       <BookmarkIcon />
@@ -81,8 +85,8 @@ function CourseHeader({ course, language }: { course: Course; language: Language
       <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
         <span>{course.code}</span>
         <span>{course[language].classification}</span>
-        <span>{course.credit}학점</span>
-        <span>{GRADE[course.grade]}</span>
+        <span>{t(`${course.credit}학점`)}</span>
+        <span>{t(GRADE[course.grade])}</span>
       </div>
     </h4>
   );

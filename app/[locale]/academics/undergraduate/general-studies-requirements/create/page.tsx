@@ -7,7 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { curriculum } from '@/utils/segmentNode';
 
-import TimelineEditor from '../../../helper/TimelineEditor';
+import TimelineEditor from '../../../helper/timeline/TimelineEditor';
 
 const curriculumPath = getPath(curriculum);
 

@@ -13,13 +13,13 @@ import {
 
 import {
   deleteRequest,
-  deleteRequest2,
+  deleteRequestV2,
   getRequest,
-  getRequest2,
+  getRequestV2,
   postRequest,
-  postRequest2,
+  postRequestV2,
   putRequest,
-  putRequest2,
+  putRequestV2,
 } from '.';
 
 const facultyPath = '/professor';
@@ -55,22 +55,22 @@ export const deleteFaculty = async (id: number) =>
 // TODO: /api/v1 v2 통합되면 request 메소드 원래대로 교체
 
 export const getStaffList = (language: Language) =>
-  getRequest2<SimpleStaff[]>('/staff', { language }, { next: { tags: [FETCH_TAG_STAFF] } });
+  getRequestV2<SimpleStaff[]>('/staff', { language }, { next: { tags: [FETCH_TAG_STAFF] } });
 
 export const getStaff = (id: number) =>
-  getRequest2<WithLanguage<Staff>>(`/staff/${id}`, undefined, {
+  getRequestV2<WithLanguage<Staff>>(`/staff/${id}`, undefined, {
     next: { tags: [FETCH_TAG_STAFF] },
   });
 
 export const postStaff = async (formData: FormData) => {
-  return postRequest2(staffPath, { body: formData, jsessionID: true }) as Promise<{
+  return postRequestV2(staffPath, { body: formData, jsessionID: true }) as Promise<{
     ko: { id: number };
   }>;
 };
 
 export const putStaff = async (ids: WithLanguage<number>, formData: FormData) => {
-  await putRequest2(`${staffPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
+  await putRequestV2(`${staffPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
 };
 
 export const deleteStaff = async (ids: WithLanguage<number>) =>
-  deleteRequest2(`${staffPath}/${ids.ko}/${ids.en}`, { jsessionID: true });
+  deleteRequestV2(`${staffPath}/${ids.ko}/${ids.en}`, { jsessionID: true });

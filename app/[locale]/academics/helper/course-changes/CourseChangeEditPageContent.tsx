@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange, StudentType } from '@/types/academics';
 
-import TimelineEditor from './TimelineEditor';
+import TimelineEditor from '../timeline/TimelineEditor';
 
 export default function CourseChangesEditPageContent({
   type,

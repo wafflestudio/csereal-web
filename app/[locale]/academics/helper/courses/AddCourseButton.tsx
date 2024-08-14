@@ -1,13 +1,10 @@
+import { StudentType } from '@/types/academics';
+
 import useModal from '@/utils/hooks/useModal';
 
 import AddCourseModal from './AddCourseModal';
 
-// TODO: StudentType 사용
-export default function AddCourseButton({
-  studentType,
-}: {
-  studentType: 'undergraduate' | 'graduate';
-}) {
+export default function AddCourseButton({ studentType }: { studentType: StudentType }) {
   const { openModal, closeModal } = useModal();
 
   return (

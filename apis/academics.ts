@@ -23,13 +23,13 @@ import { Language } from '@/types/language';
 
 import {
   deleteRequest,
-  deleteRequest2,
+  deleteRequestV2,
   getRequest,
-  getRequest2,
+  getRequestV2,
   postRequest,
-  postRequest2,
+  postRequestV2,
   putRequest,
-  putRequest2,
+  putRequestV2,
 } from '.';
 
 /** 학부/대학원 안내 */
@@ -45,26 +45,26 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
 /** 교과과정 */
 
 export const getCourses = (type: StudentType, language: Language) =>
-  getRequest2<Course[]>(`/academics/courses?studentType=${type}&sort=${language}`, undefined, {
+  getRequestV2<Course[]>(`/academics/courses?studentType=${type}&sort=${language}`, undefined, {
     next: { tags: [FETCH_TAG_COURSE] },
   });
 
 export const postCourse = (data: Course) =>
-  postRequest2(`/academics/courses`, {
+  postRequestV2(`/academics/courses`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const putCourse = (data: Course) =>
-  putRequest2(`/academics/courses`, {
+  putRequestV2(`/academics/courses`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const deleteCourse = async (code: string) =>
-  deleteRequest2(`/academics/courses/${code}`, { jsessionID: true });
+  deleteRequestV2(`/academics/courses/${code}`, { jsessionID: true });
 
 /* 전공 이수 표준 형태 */
 

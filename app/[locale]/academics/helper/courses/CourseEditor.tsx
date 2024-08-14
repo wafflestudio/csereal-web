@@ -7,6 +7,7 @@ import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
 import { getKeys } from '@/types/object';
 
+import { errorToStr } from '@/utils/error';
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -26,7 +27,7 @@ export default function CourseEditor({
 }) {
   const { content, setContentByKey, setLanguageContent, setClassification } =
     useCourseEditor(initCourse);
-  const isGraduateCourse = initCourse.grade === 0;
+  const gradeDropdownContents = initCourse.grade === 0 ? [GRADE[0]] : GRADE.slice(1);
 
   const handleSubmit = async () => {
     try {
@@ -36,11 +37,7 @@ export default function CourseEditor({
       setCourse(content);
       toggleEditMode();
     } catch (e) {
-      if (e instanceof Error) {
-        errorToast(e.message);
-      } else {
-        throw e;
-      }
+      errorToast(errorToStr(e));
     }
   };
 
@@ -72,7 +69,7 @@ export default function CourseEditor({
           onChange={setContentByKey('credit')}
         />
         <CustomDropdown
-          contents={isGraduateCourse ? [GRADE[0]] : GRADE.slice(1)}
+          contents={gradeDropdownContents}
           selected={GRADE[content.grade]}
           onChange={(value) => setContentByKey('grade')(GRADE.indexOf(value))}
           width="w-[90px]"

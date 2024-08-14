@@ -1,8 +1,9 @@
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
 import { Course, GRADE, SortOption } from '@/types/academics';
-import { Language } from '@/types/language';
+
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 interface CourseCardProps {
   course: Course;
@@ -10,19 +11,20 @@ interface CourseCardProps {
 }
 
 const useSortedProperties = (course: Course, selectedOption: SortOption) => {
-  const lang = useLocale() as Language;
+  const lang = useTypedLocale();
   const t = useTranslations('Tag');
 
   const classification = course[lang].classification;
   const grade = t(GRADE[course.grade]);
   const credit = t(`${course.credit}학점`);
 
-  if (selectedOption === '교과목 구분') {
-    return [classification, grade, credit];
-  } else if (selectedOption === '학점') {
-    return [credit, grade, classification];
-  } else {
-    return [grade, classification, credit];
+  switch (selectedOption) {
+    case '교과목 구분':
+      return [classification, grade, credit];
+    case '학점':
+      return [credit, grade, classification];
+    case '학년':
+      return [grade, classification, credit];
   }
 };
 
@@ -35,7 +37,7 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
-  const language = useLocale() as Language;
+  const language = useTypedLocale();
 
   // resize card width
   useEffect(() => {
