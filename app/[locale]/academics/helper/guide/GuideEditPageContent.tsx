@@ -19,9 +19,9 @@ const academicsPath = getPath(academics);
 export default function GuideEditPageContent({ data, type }: { data: Guide; type: StudentType }) {
   const router = useRouter();
 
-  const goToGuidePage = () => router.replace(`${academicsPath}/${type}/guide`);
+  const goToGuidePage = () => router.push(`${academicsPath}/${type}/guide`);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
       throw new Error('내용을 입력해주세요');
     }
@@ -55,7 +55,7 @@ export default function GuideEditPageContent({ data, type }: { data: Guide; type
         actions={{
           type: 'EDIT',
           onCancel: goToGuidePage,
-          onComplete: handleComplete,
+          onSubmit: handleSubmit,
         }}
         showAttachments
       />

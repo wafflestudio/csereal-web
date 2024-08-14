@@ -66,7 +66,7 @@ export default function FacultyEditPageContent({
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
         initialLangauge={language}
         labs={labs}

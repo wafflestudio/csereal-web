@@ -3,6 +3,7 @@ import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 
+import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 
 import { ValueOf } from './type';
@@ -58,5 +59,21 @@ export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => 
   }
   if (Object.entries(content.en).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
     throw new Error('영문 정보도 입력해주세요');
+  }
+};
+
+export const validateCourseForm = (content: Course) => {
+  const { code, ko, en } = content;
+
+  if (!ko.name || !ko.description) {
+    throw new Error('교과목명과 설명을 입력해주세요');
+  }
+
+  if (!code) {
+    throw new Error('교과목 번호를 입력해주세요');
+  }
+
+  if (!en.name || !en.description) {
+    throw new Error('영어 정보도 입력해주세요');
   }
 };

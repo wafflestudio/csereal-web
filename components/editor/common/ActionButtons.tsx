@@ -11,21 +11,21 @@ export interface EditAction<T> {
   onCancel: () => void;
   onDelete?: () => Promise<void>;
   /** 성공한 경우가 아니면 반드시 error를 던져야함 */
-  onComplete: (content: T) => Promise<void>;
+  onSubmit: (content: T) => Promise<void>;
 }
 
 export interface CreateAction<T> {
   type: 'CREATE';
   onCancel: () => void;
   /** 성공한 경우가 아니면 반드시 error를 던져야함 */
-  onComplete: (content: T) => Promise<void>;
+  onSubmit: (content: T) => Promise<void>;
 }
 
 // content 자체를 매번 건네는건 무거울 것 같아 getContent 함수로 전달
 export function EditActionButtons<T>({
   onCancel,
   onDelete,
-  onComplete,
+  onSubmit,
   getContent,
 }: EditAction<T> & { getContent: () => T }) {
   const [requesting, setRequesting] = useState(false);
@@ -59,7 +59,7 @@ export function EditActionButtons<T>({
       <BlackButton
         title="저장하기"
         disabled={requesting}
-        onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
+        onClick={buildPostHandler(requesting, setRequesting, getContent, onSubmit)}
       />
     </>
   );
@@ -67,7 +67,7 @@ export function EditActionButtons<T>({
 
 export function CreateActionButtons<T>({
   onCancel,
-  onComplete,
+  onSubmit,
   getContent,
   completeButtonText = '게시하기',
 }: CreateAction<T> & { getContent: () => T; completeButtonText?: string }) {
@@ -86,7 +86,7 @@ export function CreateActionButtons<T>({
       <BlackButton
         title={completeButtonText}
         disabled={requesting}
-        onClick={buildPostHandler(requesting, setRequesting, getContent, onComplete)}
+        onClick={buildPostHandler(requesting, setRequesting, getContent, onSubmit)}
       />
     </>
   );
@@ -96,14 +96,14 @@ const buildPostHandler = <T,>(
   requesting: boolean,
   setRequesting: (val: boolean) => void,
   getContent: () => T,
-  onComplete: (content: T) => Promise<void>,
+  onSubmit: (content: T) => Promise<void>,
 ) => {
   const handler: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     if (requesting) return;
     try {
       setRequesting(true);
-      await onComplete(getContent());
+      await onSubmit(getContent());
     } catch (e) {
       setRequesting(false);
       if (e instanceof Error) {

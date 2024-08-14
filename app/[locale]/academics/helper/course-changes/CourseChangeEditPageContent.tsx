@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { CourseChange, StudentType } from '@/types/academics';
 
-import TimelineEditor from './TimelineEditor';
+import TimelineEditor from '../timeline/TimelineEditor';
 
 export default function CourseChangesEditPageContent({
   type,
@@ -23,7 +23,7 @@ export default function CourseChangesEditPageContent({
       titleType="big"
     >
       <TimelineEditor
-        action={(data) => putCourseChangesAction(type, data)}
+        submitAction={(data) => putCourseChangesAction(type, data)}
         fallbackPathname={courseChangePath}
         initialContent={initContent}
       />

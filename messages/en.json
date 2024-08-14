@@ -133,6 +133,11 @@
     "태그": "Tags",
     "전체": "all",
 
+    "소개": "about",
+    "소식": "community",
+    "구성원": "people",
+    "학사 및 교과": "academics",
+
     "수업": "lecture",
     "장학": "scholarship",
     "학사(학부)": "bachelor(undergraduate)",
@@ -168,10 +173,6 @@
     "2학년": "sophomore",
     "3학년": "junior",
     "4학년": "senior",
-
-    "전공필수": "required major",
-    "전공선택": "elective major",
-    "교양": "liberal arts",
 
     "1학점": "1 credit",
     "2학점": "2 credits",

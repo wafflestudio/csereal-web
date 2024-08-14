@@ -70,7 +70,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
           onDelete: handleDelete,
         }}
         initialContent={initialContent}

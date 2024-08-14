@@ -1,4 +1,5 @@
 import {
+  FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
@@ -18,13 +19,22 @@ import {
   ScholarshipList,
   StudentType,
 } from '@/types/academics';
+import { Language } from '@/types/language';
 
-import { deleteRequest, getRequest, postRequest, putRequest } from '.';
-
-// TODO: language 쿼리 추가
+import {
+  deleteRequest,
+  deleteRequestV2,
+  getRequest,
+  getRequestV2,
+  postRequest,
+  postRequestV2,
+  putRequest,
+  putRequestV2,
+} from '.';
 
 /** 학부/대학원 안내 */
-export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
+
+export const getAcademicsGuide = (type: StudentType) =>
   getRequest(`/academics/${type}/guide`, undefined, {
     next: { tags: [FETCH_TAG_GUIDE] },
   }) as Promise<Guide>;
@@ -33,10 +43,31 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
   putRequest(`/academics/${type}/guide`, { body: formData, jsessionID: true });
 
 /** 교과과정 */
-export const getCourses = (type: 'undergraduate' | 'graduate') =>
-  getRequest(`/academics/${type}/courses`) as Promise<Course[]>;
+
+export const getCourses = (type: StudentType, language: Language) =>
+  getRequestV2<Course[]>(`/academics/courses?studentType=${type}&sort=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_COURSE] },
+  });
+
+export const postCourse = (data: Course) =>
+  postRequestV2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCourse = (data: Course) =>
+  putRequestV2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteCourse = async (code: string) =>
+  deleteRequestV2(`/academics/courses/${code}`, { jsessionID: true });
 
 /* 전공 이수 표준 형태 */
+
 const curriculumUrl = '/academics/undergraduate/curriculum';
 
 export const getCurriculum = () =>

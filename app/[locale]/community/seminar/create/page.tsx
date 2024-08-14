@@ -33,7 +33,7 @@ export default function SeminarCreatePage() {
         actions={{
           type: 'CREATE',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
       />
     </PageLayout>

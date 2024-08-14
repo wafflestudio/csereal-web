@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
@@ -23,15 +23,14 @@ import {
   privacyPath,
 } from '@/constants/footer';
 
-import { Language } from '@/types/language';
-
 import useModal from '@/utils/hooks/useModal';
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 
 export default function Footer() {
   const mode = useFooterDesignMode();
-  const locale = useLocale() as Language;
+  const locale = useTypedLocale();
   const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
   const borderTop = mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';

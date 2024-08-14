@@ -1,8 +1,11 @@
 'use client';
 
-import { Course } from '@/types/academics';
+import { useTranslations } from 'next-intl';
+
+import { Course, GRADE } from '@/types/academics';
 
 import useModal from '@/utils/hooks/useModal';
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 import CourseDetailModal from './CourseDetailModal';
 
@@ -15,10 +18,12 @@ export const COURSE_ROW_ITEM_WIDTH = {
 } as const;
 
 export default function CourseListRow({ course }: { course: Course }) {
+  const language = useTypedLocale();
+
   return (
     <li className="grid grid-cols-[auto,_auto,_1fr] grid-rows-3 gap-1 px-7 py-6 text-md odd:bg-neutral-50 sm:flex sm:h-14 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
-      <NameCell name={course.name} course={course} />
-      <ClassificationCell classification={course.classification} />
+      <NameCell name={course[language].name} course={course} />
+      <ClassificationCell classification={course[language].classification} />
       <CodeCell code={course.code} />
       <CreditCell credit={course.credit} />
       <GradeCell grade={course.grade} />
@@ -35,7 +40,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
     >
       <button
         className="text-left"
-        onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}
+        onClick={() => openModal(<CourseDetailModal initCourse={course} onClose={closeModal} />)}
       >
         {name}
       </button>
@@ -64,20 +69,24 @@ function CodeCell({ code }: { code: string }) {
 }
 
 function CreditCell({ credit }: { credit: number }) {
+  const t = useTranslations('Tag');
+
   return (
     <span className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-400 sm:order-4 sm:pl-2`}>
       {credit}
-      <span className="sm:hidden">학점</span>
+      <span className="sm:hidden">{t('학점')}</span>
     </span>
   );
 }
 
-function GradeCell({ grade }: { grade: string }) {
+function GradeCell({ grade }: { grade: number }) {
+  const t = useTranslations('Tag');
+
   return (
     <span
       className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
     >
-      {grade}
+      {t(GRADE[grade])}
     </span>
   );
 }

@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import { Curriculum } from '@/types/academics';
 
-import TimelineViewer from '../../helper/TimelineViewer';
+import TimelineViewer from '../../helper/timeline/TimelineViewer';
 
 export default function CurriculumPageContent({ data }: { data: Curriculum[] }) {
   return (

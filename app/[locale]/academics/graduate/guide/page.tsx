@@ -4,7 +4,7 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { graduateGuide } from '@/utils/segmentNode';
 
-import GuidePageContent from '../../helper/GuidePageContent';
+import GuidePageContent from '../../helper/guide/GuidePageContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: graduateGuide });

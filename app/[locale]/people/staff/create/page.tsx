@@ -40,7 +40,7 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
   return (
     <PageLayout title="행정직원 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <StaffEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onComplete: handleComplete }}
+        actions={{ type: 'CREATE', onCancel: handleCancel, onSubmit: handleComplete }}
         initialLangauge={locale}
       />
     </PageLayout>

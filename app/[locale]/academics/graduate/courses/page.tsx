@@ -1,28 +1,28 @@
-import { Metadata } from 'next';
-
 import { getCourses } from '@/apis/academics';
 
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
+import { Language } from '@/types/language';
+
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourses } from '@/utils/segmentNode';
 
-import CoursePageContent from './CoursePageContent';
+import GraduateCoursePageContent from './GraduateCoursePageContent';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+interface CoursePageProps {
+  params: { locale: Language };
+}
+
+export async function generateMetadata({ params: { locale } }: CoursePageProps) {
   return await getMetadata({ locale, node: graduateCourses });
 }
 
-export default async function GraduateCoursePage() {
-  const courseList = await getCourses('graduate');
+export default async function GraduateCoursePage({ params: { locale } }: CoursePageProps) {
+  const courseList = await getCourses('graduate', locale);
 
   return (
     <PageLayout titleType="big">
-      <CoursePageContent courses={courseList} />
+      <GraduateCoursePageContent courses={courseList} />
     </PageLayout>
   );
 }

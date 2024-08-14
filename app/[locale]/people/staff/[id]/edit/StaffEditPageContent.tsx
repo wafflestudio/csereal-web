@@ -54,7 +54,7 @@ export default function StaffEditPageContent({
     <PageLayout title="행정직원 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <StaffEditor
         initialContent={data}
-        actions={{ type: 'EDIT', onCancel: handleCancel, onComplete: handleComplete }}
+        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleComplete }}
         initialLangauge={language}
       />
     </PageLayout>
