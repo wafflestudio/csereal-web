@@ -33,7 +33,7 @@ export default function EmeritusFacultyMemberPageContent({
 }) {
   const t = useTranslations('Content');
 
-  const careerTime = { startTime: faculty.startDate, endTime: faculty.endDate };
+  const careerTimeStr = `${t('재직 기간')}: ${faculty.startDate} - ${faculty.endDate}`;
 
   const handleDelete = async () => {
     try {
@@ -82,9 +82,7 @@ export default function EmeritusFacultyMemberPageContent({
           )}
           <HeaderAndList header={t('학력')} list={faculty.educations} />
           <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
-          <div className=" mb-7 text-sm font-medium text-neutral-700">
-            {t('재직 기간')}: {careerTime.startTime} - {careerTime.endTime}
-          </div>
+          <div className=" mb-7 text-sm font-medium text-neutral-700">{careerTimeStr}</div>
         </div>
       </div>
       <LoginVisible staff>

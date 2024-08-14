@@ -27,22 +27,6 @@ const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
 const staffPath = getPath(staff);
 
-// export const postFacultyAction = withErrorHandler(async () => {
-//   const mockResp = { status: 'ACTIVE', id: 3 }; // 임시
-//   revalidateTag(FETCH_TAG_FACULTY);
-//   redirect(`${mockResp.status === 'INACTIVE' ? emeritusFacultyPath : facultyPath}/${mockResp.id}`);
-// });
-
-// export const putFacultyAction = withErrorHandler(async (id: number) => {
-//   revalidateTag(FETCH_TAG_FACULTY);
-//   redirect(`${facultyPath}/${id}`);
-// });
-
-// export const deleteFacultyAction = withErrorHandler(async () => {
-//   revalidateTag(FETCH_TAG_FACULTY);
-//   redirect(facultyPath);
-// });
-
 const getFacultyPath = (status: FacultyStatus) =>
   status === 'INACTIVE' ? emeritusFacultyPath : facultyPath;
 

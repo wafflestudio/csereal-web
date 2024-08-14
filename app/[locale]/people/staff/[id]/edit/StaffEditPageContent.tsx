@@ -30,7 +30,6 @@ export default function StaffEditPageContent({
   const handleCancel = () => router.push(`${staffPath}/${data[language].id}`);
 
   const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
-    console.log(content);
     validateStaffForm(content);
 
     const requestObject = getRequestObject(

@@ -31,10 +31,11 @@ export default function FacultyEditPageContent({
 }) {
   const router = useRouter();
 
-  const handleCancel = () =>
-    router.push(
-      `${data.ko.status === 'INACTIVE' ? emeritusFacultyPath : facultyPath}/${data[language].id}`,
-    );
+  const handleCancel = () => {
+    const path = data.ko.status === 'INACTIVE' ? emeritusFacultyPath : facultyPath;
+    const id = data[language].id;
+    router.push(`${path}/${id}`);
+  };
 
   const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
