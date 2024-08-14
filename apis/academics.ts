@@ -19,6 +19,7 @@ import {
   ScholarshipList,
   StudentType,
 } from '@/types/academics';
+import { Language } from '@/types/language';
 
 import {
   deleteRequest,
@@ -43,8 +44,8 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
 
 /** 교과과정 */
 
-export const getCourses = (type: StudentType) =>
-  getRequest2<Course[]>(`/academics/courses?studentType=${type}`, undefined, {
+export const getCourses = (type: StudentType, language: Language) =>
+  getRequest2<Course[]>(`/academics/courses?studentType=${type}&sort=${language}`, undefined, {
     next: { tags: [FETCH_TAG_COURSE] },
   });
 

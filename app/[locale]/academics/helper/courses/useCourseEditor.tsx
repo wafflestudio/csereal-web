@@ -1,4 +1,4 @@
-import { Classification, Course } from '@/types/academics';
+import { CLASSIFICATION, Classification, Course } from '@/types/academics';
 import { Language } from '@/types/language';
 
 import useEditorContent from '@/utils/hooks/useEditorContent';
@@ -14,7 +14,7 @@ export default function useCourseEditor(initCourse: Course) {
     setContent((prev) => ({
       ...prev,
       ko: { ...prev.ko, classification: value },
-      en: { ...prev.en, classification: value },
+      en: { ...prev.en, classification: CLASSIFICATION[value] },
     }));
 
   return { content, setContentByKey, setLanguageContent, setClassification };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Course, GRADE } from '@/types/academics';
 import { Language } from '@/types/language';
@@ -69,20 +69,24 @@ function CodeCell({ code }: { code: string }) {
 }
 
 function CreditCell({ credit }: { credit: number }) {
+  const t = useTranslations('Tag');
+
   return (
     <span className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-400 sm:order-4 sm:pl-2`}>
       {credit}
-      <span className="sm:hidden">학점</span>
+      <span className="sm:hidden">{t('학점')}</span>
     </span>
   );
 }
 
 function GradeCell({ grade }: { grade: number }) {
+  const t = useTranslations('Tag');
+
   return (
     <span
       className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
     >
-      {GRADE[grade]}
+      {t(GRADE[grade])}
     </span>
   );
 }

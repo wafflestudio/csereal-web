@@ -1,8 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
-import { Tag } from '@/components/common/Tags';
-
 import { Course, GRADE, SortOption } from '@/types/academics';
 import { Language } from '@/types/language';
 
@@ -11,10 +9,13 @@ interface CourseCardProps {
   selectedOption: SortOption;
 }
 
-const getSortedProperties = (course: Course, selectedOption: SortOption) => {
-  const classification = course.ko.classification;
-  const grade = GRADE[course.grade];
-  const credit = `${course.credit}학점`;
+const useSortedProperties = (course: Course, selectedOption: SortOption) => {
+  const lang = useLocale() as Language;
+  const t = useTranslations('Tag');
+
+  const classification = course[lang].classification;
+  const grade = t(GRADE[course.grade]);
+  const credit = t(`${course.credit}학점`);
 
   if (selectedOption === '교과목 구분') {
     return [classification, grade, credit];
@@ -30,7 +31,7 @@ const LINE_LIMIT = 6;
 const TEXT_SIZE = 11; // px
 
 export default function CourseCard({ course, selectedOption }: CourseCardProps) {
-  const sortedProperties = getSortedProperties(course, selectedOption);
+  const sortedProperties = useSortedProperties(course, selectedOption);
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -96,14 +97,14 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
 }
 
 function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
-  const t = useTranslations('Tag');
-
   return (
     <div className="mb-4 flex items-center justify-between">
-      <Tag tag={sortedProperties[0]} />
+      <div className="flex h-[26px] items-center whitespace-nowrap rounded-[1.875rem] border bg-white px-2.5 text-sm font-medium text-main-orange">
+        {sortedProperties[0]}
+      </div>
       <span className="ml-2 whitespace-nowrap text-xs text-neutral-500">
-        <span className="mr-2">{t(sortedProperties[1])}</span>
-        <span>{t(sortedProperties[2])}</span>
+        <span className="mr-2">{sortedProperties[1]}</span>
+        <span>{sortedProperties[2]}</span>
       </span>
     </div>
   );

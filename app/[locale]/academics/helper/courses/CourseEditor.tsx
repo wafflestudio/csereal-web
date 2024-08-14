@@ -5,6 +5,7 @@ import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 
 import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
+import { getKeys } from '@/types/object';
 
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -60,7 +61,7 @@ export default function CourseEditor({
           {content.code}
         </div>
         <CustomDropdown
-          contents={[...CLASSIFICATION]}
+          contents={getKeys(CLASSIFICATION)}
           selected={content.ko.classification}
           onChange={setClassification}
           width="w-[94px]"
@@ -178,12 +179,12 @@ function EnglishField({
 }) {
   return (
     <div>
-      <div className="mb-3 flex items-center gap-2.5">
+      <div className="mb-4 flex items-center gap-2.5">
         <span className="text-md text-neutral-400">영문</span>
         <BasicTextInput
           value={name}
           onChange={(value) => setContent('name', value)}
-          maxWidth="w-[180px]"
+          maxWidth="w-[308px]"
           placeholder="course name"
         />
       </div>

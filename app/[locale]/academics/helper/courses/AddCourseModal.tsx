@@ -6,6 +6,7 @@ import Fieldset from '@/components/editor/common/Fieldset';
 import ModalFrame from '@/components/modal/ModalFrame';
 
 import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
+import { getKeys } from '@/types/object';
 
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -19,7 +20,7 @@ const getInitCourse = (type: StudentType): Course => ({
   grade: type === 'graduate' ? 0 : 1,
   studentType: type,
   ko: { name: '', description: '', classification: '전공필수' },
-  en: { name: '', description: '', classification: '전공필수' },
+  en: { name: '', description: '', classification: 'RM' },
 });
 
 export default function AddCourseModal({
@@ -201,7 +202,7 @@ function ClassificationFieldset({
   return (
     <DropdownFieldset
       title="교과목 구분"
-      contents={[...CLASSIFICATION]} // 그냥 CLASSIFICATION은 as const로 되어 있어서 할당 불가
+      contents={getKeys(CLASSIFICATION)}
       selected={selected}
       onChange={onChange}
       width="w-[94px]"
@@ -235,7 +236,7 @@ function GradeField({
   return (
     <DropdownFieldset
       title="학년"
-      contents={studentType === 'undergraduate' ? GRADE.slice(1) : [GRADE[0]]} // 그냥 GRDAE는 as const로 되어 있어서 할당 불가
+      contents={studentType === 'undergraduate' ? GRADE.slice(1) : [GRADE[0]]}
       selected={GRADE[selected]}
       onChange={(value) => onChange(GRADE.indexOf(value))}
       width="w-[90px]"

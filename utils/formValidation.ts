@@ -63,12 +63,12 @@ export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => 
 export const validateCourseForm = (content: Course) => {
   const { code, ko, en } = content;
 
-  if (!code) {
-    throw new Error('코드를 입력해주세요');
-  }
-
   if (!ko.name || !ko.description) {
     throw new Error('교과목명과 설명을 입력해주세요');
+  }
+
+  if (!code) {
+    throw new Error('교과목 번호를 입력해주세요');
   }
 
   if (!en.name || !en.description) {
