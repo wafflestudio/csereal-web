@@ -73,6 +73,7 @@ export const putRequest2 = async <T = unknown>(
   url: string,
   init?: CredentialRequestInit,
 ): Promise<T | null> => {
+  console.log(init);
   const resp = await fetchWithRetry(`${BASE_URL2}${url}`, 'PUT', init);
   return resp.headers.get('content-type') ? await resp.json() : null;
 };

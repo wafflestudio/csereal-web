@@ -23,7 +23,7 @@ export default function CourseChangesEditPageContent({
       titleType="big"
     >
       <TimelineEditor
-        action={(data) => putCourseChangesAction(type, data)}
+        submitAction={(data) => putCourseChangesAction(type, data)}
         fallbackPathname={courseChangePath}
         initialContent={initContent}
       />

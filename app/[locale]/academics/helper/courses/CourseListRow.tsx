@@ -40,7 +40,7 @@ function NameCell({ name, course }: { name: string; course: Course }) {
     >
       <button
         className="text-left"
-        onClick={() => openModal(<CourseDetailModal course={course} onClose={closeModal} />)}
+        onClick={() => openModal(<CourseDetailModal initCourse={course} onClose={closeModal} />)}
       >
         {name}
       </button>

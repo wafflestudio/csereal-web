@@ -1,5 +1,5 @@
 import { useLocale } from 'next-intl';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
@@ -17,11 +17,12 @@ import { errorToast, successToast } from '@/utils/toast';
 import CourseEditor from './CourseEditor';
 
 interface CourseDetailModalProps {
-  course: Course;
+  initCourse: Course;
   onClose: () => void;
 }
 
-export default function CourseDetailModal({ course, onClose }: CourseDetailModalProps) {
+export default function CourseDetailModal({ initCourse, onClose }: CourseDetailModalProps) {
+  const [course, setCourse] = useState(initCourse); // 수정 이후 바로 업데이트하기 위함
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
 
   const handleDelete = async () => {
@@ -38,7 +39,7 @@ export default function CourseDetailModal({ course, onClose }: CourseDetailModal
     <ModalFrame onClose={onClose}>
       <div className="styled-scrollbar relative flex w-fit max-w-[768px] flex-col gap-4 overflow-auto overflow-x-hidden rounded-t-sm border-b border-t-2 border-main-orange bg-neutral-50 p-6">
         {isEditMode ? (
-          <CourseEditor initCourse={course} toggleEditMode={toggleEditMode} />
+          <CourseEditor initCourse={course} toggleEditMode={toggleEditMode} setCourse={setCourse} />
         ) : (
           <CourseViewer course={course} onClickDelete={handleDelete} onClickEdit={toggleEditMode} />
         )}

@@ -15,7 +15,7 @@ export default function CurriculumEditPageContent({ initContent }: { initContent
   return (
     <PageLayout title="전공 이수 표준 형태 편집" titleType="big">
       <TimelineEditor
-        action={putCurriculumAction}
+        submitAction={putCurriculumAction}
         fallbackPathname={curriculumPath}
         initialContent={initContent}
       />

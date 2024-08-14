@@ -14,7 +14,7 @@ const curriculumPath = getPath(curriculum);
 export default function CurriculumCreatePage() {
   return (
     <PageLayout title="필수 교양 과목 추가" titleType="big">
-      <TimelineEditor action={postCurriculumAction} fallbackPathname={curriculumPath} />
+      <TimelineEditor submitAction={postCurriculumAction} fallbackPathname={curriculumPath} />
     </PageLayout>
   );
 }

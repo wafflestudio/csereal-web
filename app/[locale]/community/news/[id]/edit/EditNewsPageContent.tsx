@@ -54,7 +54,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
 
   const handleDelete = async () => {
     await deleteNewsAction(id);
-    router.replace(newsPath);
+    router.push(newsPath);
   };
 
   return (
@@ -68,7 +68,7 @@ export default function EditNewsPageContent({ id, data }: { id: number; data: Ne
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
           onDelete: handleDelete,
         }}
         initialContent={initialContent}

@@ -38,7 +38,7 @@ export default function NewsCreatePage() {
         actions={{
           type: 'CREATE',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
       />
     </PageLayout>

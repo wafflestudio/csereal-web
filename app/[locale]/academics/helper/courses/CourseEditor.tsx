@@ -17,9 +17,11 @@ const CREDIT = [1, 2, 3, 4];
 export default function CourseEditor({
   initCourse,
   toggleEditMode,
+  setCourse,
 }: {
   initCourse: Course;
   toggleEditMode: () => void;
+  setCourse: (course: Course) => void;
 }) {
   const { content, setContentByKey, setLanguageContent, setClassification } =
     useCourseEditor(initCourse);
@@ -30,6 +32,7 @@ export default function CourseEditor({
       validateCourseForm(content);
       handleServerAction(await putCourseAction(content));
       successToast('교과목을 수정했습니다.');
+      setCourse(content);
       toggleEditMode();
     } catch (e) {
       if (e instanceof Error) {

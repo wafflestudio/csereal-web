@@ -30,7 +30,7 @@ export default function InternalContent({ description }: { description: string }
       initialContent={{ description: { ko: description, en: '' } }}
       actions={{
         type: 'EDIT',
-        onComplete: handleComplete,
+        onSubmit: handleComplete,
         onCancel: toggleEditMode,
       }}
     />
