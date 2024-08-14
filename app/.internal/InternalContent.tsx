@@ -15,7 +15,7 @@ import { handleServerAction } from '@/utils/serverActionError';
 export default function InternalContent({ description }: { description: string }) {
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     try {
       handleServerAction(await putInternalAction(content.description.ko));
       successToast('본문을 수정했습니다.');
@@ -30,7 +30,7 @@ export default function InternalContent({ description }: { description: string }
       initialContent={{ description: { ko: description, en: '' } }}
       actions={{
         type: 'EDIT',
-        onSubmit: handleComplete,
+        onSubmit: handleSubmit,
         onCancel: toggleEditMode,
       }}
     />

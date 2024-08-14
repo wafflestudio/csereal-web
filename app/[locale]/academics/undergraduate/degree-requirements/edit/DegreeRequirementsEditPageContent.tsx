@@ -21,7 +21,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
 
   const goToOriginalPage = () => router.push(degreeRequirementsPath);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
       throw new Error('내용을 입력해주세요');
     }
@@ -55,7 +55,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
         actions={{
           type: 'EDIT',
           onCancel: goToOriginalPage,
-          onSubmit: handleComplete,
+          onSubmit: handleSubmit,
         }}
         showAttachments
       />
