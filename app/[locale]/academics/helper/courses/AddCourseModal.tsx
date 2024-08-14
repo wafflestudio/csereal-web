@@ -61,7 +61,7 @@ export default function AddCourseModal({
             description={content.ko.description}
             onChange={(value) => setLanguageContent('description', value, 'ko')}
           />
-          <div className="mb-10 flex justify-between">
+          <div className="flex justify-between">
             <CodeFieldset code={content.code} onChange={setContentByKey('code')} />
             <ClassificationFieldset
               selected={content.ko.classification}
@@ -73,6 +73,9 @@ export default function AddCourseModal({
               onChange={setContentByKey('grade')}
               studentType={studentType}
             />
+          </div>
+          <div className="mb-10 mt-1.5 text-xs text-main-orange">
+            * 교과목 번호는 추후 수정할 수 없습니다.
           </div>
           <NameFieldset
             name={content.en.name}

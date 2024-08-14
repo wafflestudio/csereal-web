@@ -53,12 +53,12 @@ export default function CourseEditor({
           maxWidth="w-[180px]"
           placeholder="교과목명"
         />
-        <BasicTextInput
-          value={content.code}
-          onChange={setContentByKey('code')}
-          maxWidth="w-[120px]"
-          placeholder="교과목 번호"
-        />
+        <div
+          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-sm leading-[31px] text-neutral-400"
+          onClick={() => errorToast('교과목 코드는 수정할 수 없습니다')}
+        >
+          {content.code}
+        </div>
         <CustomDropdown
           contents={[...CLASSIFICATION]}
           selected={content.ko.classification}
