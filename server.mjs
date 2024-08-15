@@ -37,12 +37,13 @@ const startServer = async () => {
   server.all('*', (req, res) => {
     if (
       // 'Unix 파일 매개변수 변경' 취약점을 게으르게 대응
-      req.url.includes('..') ||
+      (!req.url.includes('next') && req.url.includes('..')) ||
       // '.NET이 설치된 Microsoft IIS 경로 노출' 취약점 대응
       // .NET 쓰지도 않는데 왜 뜨는지 모르겠는데
       // 괜히 404에 body 내용 넣어서 그런 것 같기도 함
       req.url.endsWith('someFile%5c.aspx')
     ) {
+      console.log('404 처리');
       res.sendStatus(404);
       return;
     }
