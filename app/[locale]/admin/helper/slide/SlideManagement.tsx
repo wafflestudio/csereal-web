@@ -1,19 +1,16 @@
 'use client';
 
 import { batchUnslideAction } from '@/actions/admin';
-
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
-
 import { SlidePreview } from '@/types/admin';
-
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
-import SlideList from './SlideList';
-import useSlideSelect from './useSlideSelect';
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
+import SlideList from './SlideList';
+import useSlideSelect from './useSlideSelect';
 
 const POST_LIMIT = 40;
 

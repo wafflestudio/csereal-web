@@ -1,9 +1,6 @@
 import { getEmeritusFaculty } from '@/apis/people';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
 import { Language } from '@/types/language';
-
 import { getMetadata } from '@/utils/metadata';
 
 import EmeritusFacultyMemberPageContent from './EmeritusFacultyMemberPageContent';

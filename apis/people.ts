@@ -1,5 +1,4 @@
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
-
 import { Language, WithLanguage } from '@/types/language';
 import {
   EmeritusFaculty,

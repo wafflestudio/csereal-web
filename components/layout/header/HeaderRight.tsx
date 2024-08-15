@@ -3,10 +3,8 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import { useSessionContext } from '@/contexts/SessionContext';
-
 import LoginVisible from '@/components/common/LoginVisible';
-
+import { useSessionContext } from '@/contexts/SessionContext';
 import useLanguage from '@/utils/hooks/useLanguage';
 
 import HeaderSearchBar from './HeaderSearchBar';

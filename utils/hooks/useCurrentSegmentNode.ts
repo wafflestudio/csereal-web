@@ -1,6 +1,5 @@
 import { usePathname } from '@/navigation';
-
-import { SegmentNode, admin, main, tentenProject } from '@/utils/segmentNode';
+import { admin, main, SegmentNode, tentenProject } from '@/utils/segmentNode';
 
 export default function useCurrentSegmentNode(): SegmentNode {
   const pathname = usePathname();

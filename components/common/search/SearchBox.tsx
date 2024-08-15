@@ -3,7 +3,6 @@
 import { useEffect, useState, useTransition } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
-
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 import KeywordInput from './KeywordInput';

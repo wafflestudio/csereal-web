@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
 import { ResearchGroup } from '@/types/research';
 
 import ResearchGroupLabs from './ResearchGroupLabs';

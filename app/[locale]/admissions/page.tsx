@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { admissions } from '@/utils/segmentNode';
 

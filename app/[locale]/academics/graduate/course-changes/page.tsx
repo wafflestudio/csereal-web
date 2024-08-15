@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { getCourseChanges } from '@/apis/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 

@@ -3,11 +3,8 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 
 import { getFacilities } from '@/apis/about';
-
 import FacilitesList from '@/app/[locale]/about/facilities/FacilitiesList';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { facilities } from '@/utils/segmentNode';
 

@@ -3,14 +3,11 @@
 import { useRouter } from 'next/navigation';
 
 import { deleteSeminarAction, patchSeminarAction } from '@/actions/seminar';
-
-import { isLocalFile, isUploadedFile, isLocalImage } from '@/components/editor/PostEditorTypes';
+import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Seminar } from '@/types/seminar';
-
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';

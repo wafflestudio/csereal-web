@@ -1,5 +1,4 @@
 import { SlidePreview } from '@/types/admin';
-
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 

@@ -1,14 +1,13 @@
 import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
-
 import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';
 
+import LoginVisible from '../common/LoginVisible';
 import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';
-import LoginVisible from '../common/LoginVisible';
 
 type PostFooterProps = {
   postType: PostType;

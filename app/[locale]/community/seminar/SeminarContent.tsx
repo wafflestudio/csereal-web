@@ -3,10 +3,8 @@ import { Fragment } from 'react';
 import SeminarRow from '@/app/[locale]/community/seminar/helper/SeminarRow';
 import SeminarSearchBar from '@/app/[locale]/community/seminar/helper/SeminarSearchBar';
 import SeminarYear from '@/app/[locale]/community/seminar/helper/SeminarYear';
-
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
-
 import { SeminarPreviewList } from '@/types/seminar';
 
 const POSTS_COUNT_PER_PAGE = 10;

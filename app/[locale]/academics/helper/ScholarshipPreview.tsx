@@ -2,9 +2,8 @@ import Link from 'next/link';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNode';
+import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
 type GradeType = 'GRADUATE' | 'UNDERGRADUATE';
 

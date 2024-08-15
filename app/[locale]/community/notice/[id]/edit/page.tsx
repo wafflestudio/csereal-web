@@ -1,5 +1,4 @@
 import { getNoticePostDetail } from '@/apis/notice';
-
 import EditNoticePageContent from '@/app/[locale]/community/notice/[id]/edit/EditNoticePageContent';
 
 interface EditNoticePageProps {

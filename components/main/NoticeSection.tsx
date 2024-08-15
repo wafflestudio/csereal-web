@@ -6,9 +6,7 @@ import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 
 import Plus from '@/public/image/main/plus.svg';
-
 import { AllMainNotice } from '@/types/main';
-
 import { formatMainNoticeDateStr } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';

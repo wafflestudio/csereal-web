@@ -1,5 +1,4 @@
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
 import { Direction } from '@/types/about';
 
 export default function DirectionsDetails({ direction }: { direction: Direction }) {

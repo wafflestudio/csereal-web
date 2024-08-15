@@ -1,10 +1,8 @@
 'use client';
 
-import { Link } from '@/navigation';
-
 import { StraightNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
-
+import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 

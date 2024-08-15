@@ -1,7 +1,8 @@
-import { LocalizationProvider, DateCalendar } from '@mui/x-date-pickers';
+import 'dayjs/locale/ko';
+
+import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
-import 'dayjs/locale/ko';
 import { useRef } from 'react';
 
 import { useClickOutside } from '@/utils/hooks/useClickOutside';

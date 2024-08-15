@@ -1,6 +1,5 @@
 import { CLASSIFICATION, Classification, Course } from '@/types/academics';
 import { Language } from '@/types/language';
-
 import useEditorContent from '@/utils/hooks/useEditorContent';
 
 export default function useCourseEditor(initCourse: Course) {

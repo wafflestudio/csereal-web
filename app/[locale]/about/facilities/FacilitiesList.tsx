@@ -1,8 +1,6 @@
-import Distance from '@/public/image/distance.svg';
-
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
+import Distance from '@/public/image/distance.svg';
 import { Facilities } from '@/types/about';
 
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {

@@ -1,5 +1,4 @@
 import { getAcademicsGuide } from '@/apis/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { graduateGuide } from '@/utils/segmentNode';

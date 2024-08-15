@@ -1,10 +1,8 @@
 export const dynamic = 'force-dynamic';
 
 import { getContact } from '@/apis/about';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { contact } from '@/utils/segmentNode';
 

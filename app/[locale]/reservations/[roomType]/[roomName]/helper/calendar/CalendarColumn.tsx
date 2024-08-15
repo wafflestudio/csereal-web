@@ -1,7 +1,7 @@
 import { ReservationPreview } from '@/types/reservation';
 
-import styles from './cellstyle.module.css';
 import ReservationModalButton from '../modals/ReservationDetailModal';
+import styles from './cellstyle.module.css';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
 const THIRTY_MIN_IN_MILLISEC = 1000 * 60 * 30;

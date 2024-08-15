@@ -1,22 +1,21 @@
 import {
   searchAbout,
-  searchNotice,
-  searchNews,
-  searchMember,
-  searchResearch,
-  searchAdmissions,
   searchAcademics,
+  searchAdmissions,
+  searchMember,
+  searchNews,
+  searchNotice,
+  searchResearch,
 } from '@/apis/search';
 import { getSeminarPosts } from '@/apis/seminar';
-
 import {
   AboutSearchResult,
-  NoticeSearchResult,
-  NewsSearchResult,
-  MemberSearchResult,
-  ResearchSearchResult,
-  AdmissionsSearchResult,
   AcademicsSearchResult,
+  AdmissionsSearchResult,
+  MemberSearchResult,
+  NewsSearchResult,
+  NoticeSearchResult,
+  ResearchSearchResult,
 } from '@/types/search';
 import { SeminarPreviewList } from '@/types/seminar';
 

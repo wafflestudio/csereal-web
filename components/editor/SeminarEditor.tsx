@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
+import Checkbox from '../common/form/Checkbox';
 import { CreateActionButtons, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import DateSelector from './common/DateSelector';
@@ -11,14 +12,13 @@ import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
 import {
+  getSeminarEditorDefaultValue,
   SeminarEditorContent,
   SeminarEditorProps,
   SeminarSchedule,
   SeminarSpeaker,
-  getSeminarEditorDefaultValue,
 } from './SeminarEditorTypes';
 import SunEditorFallback from './SunEditor/SunEditorFallback';
-import Checkbox from '../common/form/Checkbox';
 
 const SunEditorWrapper = dynamic(() => import('@/components/editor/SunEditor/SunEditorWrapper'), {
   ssr: false,

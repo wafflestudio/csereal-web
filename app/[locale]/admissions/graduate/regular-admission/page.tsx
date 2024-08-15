@@ -1,10 +1,8 @@
 import { Metadata } from 'next';
 
 import { getGraduateRegularAdmission } from '@/apis/admission';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateAdmission } from '@/utils/segmentNode';
 

@@ -2,9 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({
@@ -12,7 +10,6 @@ export async function generateMetadata({
 }: {
   params: { locale: string; roomName: string };
 }): Promise<Metadata> {
-
   return await getMetadata({
     locale,
     metadata: {

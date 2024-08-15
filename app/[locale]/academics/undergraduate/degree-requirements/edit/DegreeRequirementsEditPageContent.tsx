@@ -1,13 +1,10 @@
 'use client';
 
 import { putDegreeRequirementsAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { DegreeRequirements } from '@/types/academics';
-
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { degree } from '@/utils/segmentNode';

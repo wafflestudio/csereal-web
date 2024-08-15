@@ -1,9 +1,7 @@
 'use client';
 
 import { deleteCourseChangesAction } from '@/actions/academics';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { CourseChange, StudentType } from '@/types/academics';
 
 import TimelineViewer from '../timeline/TimelineViewer';

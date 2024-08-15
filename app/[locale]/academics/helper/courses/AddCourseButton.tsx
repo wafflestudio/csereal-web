@@ -1,5 +1,4 @@
 import { StudentType } from '@/types/academics';
-
 import useModal from '@/utils/hooks/useModal';
 
 import AddCourseModal from './AddCourseModal';

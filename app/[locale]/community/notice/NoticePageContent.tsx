@@ -1,13 +1,10 @@
 'use client';
 
 import NoticeList from '@/app/[locale]/community/notice/helper/NoticeList';
-
 import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
-
 import { NOTICE_TAGS } from '@/constants/tag';
-
 import { NoticePreviewList } from '@/types/notice';
 
 import AdminFeatures from './helper/AdminFeatures';

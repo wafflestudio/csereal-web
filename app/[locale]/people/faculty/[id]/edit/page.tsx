@@ -1,6 +1,5 @@
 import { getFaculty } from '@/apis/people';
 import { getResearchLabs } from '@/apis/research';
-
 import { Language } from '@/types/language';
 
 import FacultyEditPageContent from './FacultyEditPageContent';

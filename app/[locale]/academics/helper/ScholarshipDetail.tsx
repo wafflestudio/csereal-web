@@ -1,6 +1,5 @@
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Scholarship } from '@/types/academics';
 
 export default async function ScholarshipDetail({

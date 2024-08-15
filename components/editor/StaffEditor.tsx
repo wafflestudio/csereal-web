@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 
-import { Language, LANGUAGE, WithLanguage } from '@/types/language';
+import { LANGUAGE, Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';
 import { Staff } from '@/types/people';
-
 import useEditorContent from '@/utils/hooks/useEditorContent';
 
 import {

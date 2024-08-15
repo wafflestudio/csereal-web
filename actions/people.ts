@@ -2,8 +2,6 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { redirect } from '@/navigation';
-
 import {
   deleteFaculty,
   deleteStaff,
@@ -12,12 +10,10 @@ import {
   putFaculty,
   putStaff,
 } from '@/apis/people';
-
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
-
+import { redirect } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
-
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty, staff } from '@/utils/segmentNode';
 

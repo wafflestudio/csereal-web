@@ -1,5 +1,4 @@
 import { Academic, AcademicsSearchResult } from '@/types/search';
-
 import { getPath } from '@/utils/page';
 import {
   curriculum,

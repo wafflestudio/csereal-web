@@ -1,6 +1,6 @@
 'use client';
 
-import { LinearProgress, ThemeProvider, createTheme } from '@mui/material';
+import { createTheme, LinearProgress, ThemeProvider } from '@mui/material';
 
 export default function PostFallback() {
   return (

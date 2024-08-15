@@ -3,9 +3,7 @@ import React, { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';
-
 import { Language, WithLanguage } from '@/types/language';
-
 import { isContentEmpty } from '@/utils/post';
 
 import { EditAction, EditActionButtons } from './common/ActionButtons';

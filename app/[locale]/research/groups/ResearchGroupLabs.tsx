@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl';
 
 import { Link } from '@/navigation';
-
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 

@@ -1,15 +1,12 @@
 'use client';
 
 import { putFacultyAction } from '@/actions/people';
-import { useRouter } from '@/navigation';
-
 import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
-
 import { contentToFormData } from '@/utils/formData';
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';

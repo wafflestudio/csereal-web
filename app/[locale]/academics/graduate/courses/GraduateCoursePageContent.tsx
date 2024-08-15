@@ -3,9 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
-
 import { Course } from '@/types/academics';
-
 import useResponsive from '@/utils/hooks/useResponsive';
 
 import AddCourseButton from '../../helper/courses/AddCourseButton';
