@@ -51,7 +51,7 @@ const startServer = async () => {
       // '애플리케이션 테스트 스크립트 발견' 취약점 대응
       req.path.includes('test')
     ) {
-      console.log('404 처리');
+      console.log(`취약점 관련되어 404 처리: ${req.url}`);
       res.sendStatus(404);
       return;
     }
