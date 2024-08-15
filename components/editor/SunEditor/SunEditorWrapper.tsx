@@ -66,4 +66,9 @@ const options: SunEditorOptions = {
     ['table', 'link', 'image', 'preview'],
   ],
   imageMultipleFile: true,
+  linkRelDefault: {
+    // 안전하지 않은 써드파티 링크(target="_blank") 취약점 대응
+    // TODO: 복사 붙여넣기 한 경우 대응
+    check_new_window: 'noreferrer noopener',
+  },
 };

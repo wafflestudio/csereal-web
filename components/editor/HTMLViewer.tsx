@@ -24,8 +24,8 @@ export default function HTMLViewer({
   className = '',
   style,
 }: HTMLViewerProps) {
-  // TODO: 서버에서 link 처리
-  // 400.XXX를 막기 위해 tldMatches false처리
+  // TODO: 서버에서 link 처리?
+  // 400.XXX같은 값들이 링크 처리되는걸 막기 위해 tldMatches false처리
   const linkedHTML = Autolinker.link(htmlContent, { urls: { tldMatches: false } });
 
   return (
