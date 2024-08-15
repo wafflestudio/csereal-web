@@ -43,7 +43,13 @@ const startServer = async () => {
       // 괜히 404에 body 내용 넣어서 그런 것 같기도 함
       req.url.endsWith('someFile%5c.aspx') ||
       // 'Oracle 로그 파일 정보 노출' 취약점 대응
-      req.path.includes('sqlnet')
+      req.path.includes('sqlnet') ||
+      // '오류 페이지 경로 노출' 취약점 대응
+      req.path.includes('noSuchFile') ||
+      // '잠재적 순서 지정 정보 발견' 취약점 대응
+      req.path.includes('order') ||
+      // '애플리케이션 테스트 스크립트 발견' 취약점 대응
+      req.path.includes('test')
     ) {
       console.log('404 처리');
       res.sendStatus(404);
