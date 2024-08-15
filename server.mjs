@@ -41,7 +41,9 @@ const startServer = async () => {
       // '.NET이 설치된 Microsoft IIS 경로 노출' 취약점 대응
       // .NET 쓰지도 않는데 왜 뜨는지 모르겠는데
       // 괜히 404에 body 내용 넣어서 그런 것 같기도 함
-      req.url.endsWith('someFile%5c.aspx')
+      req.url.endsWith('someFile%5c.aspx') ||
+      // 'Oracle 로그 파일 정보 노출' 취약점 대응
+      req.path.includes('sqlnet')
     ) {
       console.log('404 처리');
       res.sendStatus(404);
