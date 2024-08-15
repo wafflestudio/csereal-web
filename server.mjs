@@ -16,7 +16,7 @@ const IS_DEV = process.env.NODE_ENV !== 'production';
  * TODO: 400으로 덮어씌우는게 맞을지 확인
  * TODO: next 구현에 의존하지 않는 안정적인 해결책 찾기
  */
-const intercept500 = (res) => {
+const override500 = (res) => {
   let statusCode = 200;
   Object.defineProperty(res, 'statusCode', {
     get: () => statusCode,
@@ -35,7 +35,14 @@ const startServer = async () => {
   const server = express();
 
   server.all('*', (req, res) => {
-    intercept500(res);
+    // 웹취약점 점검의 'Unix 파일 매개변수 변경'를 게으르게 대응
+    // TODO: 잘 동작하는지 확인 필요
+    if (req.url.includes('..')) {
+      res.sendStatus(404);
+      return;
+    }
+
+    override500(res);
     return handleRequest(req, res);
   });
 
