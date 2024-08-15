@@ -1,7 +1,7 @@
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'https://cse-dev-waffle.bacchus.io/api/v1'
-    : 'https://cse-dev-waffle.bacchus.io/api/v1';
+    : 'http://localhost:8080/api/v1';
 
 export const checkError = (response: Response) => {
   if (response.ok) return;
@@ -12,4 +12,4 @@ export const checkError = (response: Response) => {
 export const BASE_URL2 =
   process.env.NODE_ENV === 'development'
     ? 'https://cse-dev-waffle.bacchus.io/api/v2'
-    : 'https://cse-dev-waffle.bacchus.io/api/v2';
+    : 'http://localhost:8080/api/v2';
