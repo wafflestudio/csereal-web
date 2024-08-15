@@ -1,7 +1,6 @@
 import { MouseEventHandler } from 'react';
 
 import { Link } from '@/navigation';
-
 import useModal from '@/utils/hooks/useModal';
 import { CustomError } from '@/utils/serverActionError';
 

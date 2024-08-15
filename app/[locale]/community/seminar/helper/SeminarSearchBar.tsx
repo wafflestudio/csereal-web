@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState, ChangeEventHandler, FormEvent } from 'react';
+import { ChangeEventHandler, FormEvent, useState } from 'react';
 
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 

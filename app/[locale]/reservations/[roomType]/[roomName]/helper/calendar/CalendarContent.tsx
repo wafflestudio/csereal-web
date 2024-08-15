@@ -1,12 +1,11 @@
 'use client';
 
 import { ReservationPreview } from '@/types/reservation';
-
 import { isSameDay } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import CalendarColumn from './CalendarColumn';
 import useResponsiveRow from '../useResponsiveRow';
+import CalendarColumn from './CalendarColumn';
 
 export default function CalendarContent({
   desktopStartDate,

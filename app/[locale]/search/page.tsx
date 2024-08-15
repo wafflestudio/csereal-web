@@ -2,14 +2,11 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
-import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
-
 import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
-
 import { SEARCH_TAGS } from '@/constants/tag';
-
+import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 import { getMetadata } from '@/utils/metadata';
 import { main } from '@/utils/segmentNode';
 

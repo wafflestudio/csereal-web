@@ -1,12 +1,9 @@
 import { putCourseAction } from '@/actions/academics';
-import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-
 import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
-
+import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
 import { getKeys } from '@/types/object';
-
 import { errorToStr } from '@/utils/error';
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';

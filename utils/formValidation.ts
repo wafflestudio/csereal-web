@@ -2,7 +2,6 @@ import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
-
 import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 

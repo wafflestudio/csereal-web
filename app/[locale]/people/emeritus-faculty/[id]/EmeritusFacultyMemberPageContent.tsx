@@ -3,15 +3,12 @@
 import { useTranslations } from 'next-intl';
 
 import { deleteFacultyAction } from '@/actions/people';
-import { Link } from '@/navigation';
-
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { Link } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { EmeritusFaculty } from '@/types/people';
-
 import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';

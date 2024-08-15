@@ -1,9 +1,6 @@
 import { getCourses } from '@/apis/academics';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourses } from '@/utils/segmentNode';
 

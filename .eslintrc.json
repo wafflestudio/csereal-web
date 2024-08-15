@@ -1,71 +1,20 @@
 {
-  "plugins": ["import"],
+  "plugins": ["simple-import-sort"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "next/core-web-vitals",
-    "plugin:import/recommended",
     "prettier"
   ],
   "rules": {
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", ["sibling", "parent", "index"], "unknown"],
-        "pathGroups": [
-          { "pattern": "react*", "group": "external", "position": "before" },
-          { "pattern": "next*", "group": "external", "position": "before" },
-          { "pattern": "swr*", "group": "external", "position": "before" },
-          {
-            "pattern": "@/apis/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/app/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/components/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/constants/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/hooks/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/types/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/utils/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "@/styles/**",
-            "group": "internal",
-            "position": "after"
-          }
-        ],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
-        "newlines-between": "always"
-      }
-    ]
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
   },
   "env": {
     "es6": true

@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import Dropdown from '@/components/common/form/Dropdown';
-
 import { FutureCareers } from '@/types/about';
 
 export const careerStatRows = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];

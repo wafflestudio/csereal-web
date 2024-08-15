@@ -1,5 +1,4 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { academics } from '@/utils/segmentNode';
 

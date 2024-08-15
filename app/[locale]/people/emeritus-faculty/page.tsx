@@ -1,12 +1,9 @@
 import { getEmeritusFacultyList } from '@/apis/people';
-
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
 import { SimpleEmeritusFaculty } from '@/types/people';
-
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';

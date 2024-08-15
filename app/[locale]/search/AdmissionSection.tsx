@@ -1,5 +1,4 @@
 import { AdmissionsSearchResult } from '@/types/search';
-
 import { getPath } from '@/utils/page';
 import { admissions } from '@/utils/segmentNode';
 

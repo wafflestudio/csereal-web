@@ -1,5 +1,4 @@
 import { getGeneralStudies } from '@/apis/academics';
-
 import { getMetadata } from '@/utils/metadata';
 import { generalStudies } from '@/utils/segmentNode';
 

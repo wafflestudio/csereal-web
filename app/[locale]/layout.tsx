@@ -1,19 +1,18 @@
+import '@/styles/globals.css';
+
 import { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-import ModalContextProvider from '@/contexts/ModalContext';
-import { NavbarContextProvider } from '@/contexts/NavbarContext';
-import SessionContextProvider from '@/contexts/SessionContext';
-
 import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
-
-import '@/styles/globals.css';
+import ModalContextProvider from '@/contexts/ModalContext';
+import { NavbarContextProvider } from '@/contexts/NavbarContext';
+import SessionContextProvider from '@/contexts/SessionContext';
 
 import MarginedMain from './MarginedMain';
 

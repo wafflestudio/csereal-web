@@ -5,7 +5,6 @@ import { useTransition } from 'react';
 import { deleteNewsAction } from '@/actions/news';
 import { deleteNoticeAction } from '@/actions/notice';
 import { deleteSeminarAction } from '@/actions/seminar';
-
 import useModal from '@/utils/hooks/useModal';
 
 import { errorToast, successToast } from '../../utils/toast';

@@ -1,7 +1,8 @@
+import './SunEditor/suneditor-contents.css';
+
 import { Autolinker } from 'autolinker';
 import { CSSProperties, ReactNode } from 'react';
 
-import './SunEditor/suneditor-contents.css';
 import TopRightImageContent, { TopRightImage } from './TopRightImageContent';
 
 interface TopRightComponent {

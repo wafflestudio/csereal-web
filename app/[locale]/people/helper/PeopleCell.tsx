@@ -1,6 +1,5 @@
-import { Link } from '@/navigation';
-
 import ImageWithFallback from '@/components/common/ImageWithFallback';
+import { Link } from '@/navigation';
 
 export type PeopleType = 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
 

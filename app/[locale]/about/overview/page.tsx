@@ -4,15 +4,12 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import brochure1 from '@/public/image/about/brochure1.png';
-import brochure2 from '@/public/image/about/brochure2.png';
-
 import { getOverview } from '@/apis/about';
-
 import Attachments from '@/components/common/Attachments';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import brochure1 from '@/public/image/about/brochure1.png';
+import brochure2 from '@/public/image/about/brochure2.png';
 import { getMetadata } from '@/utils/metadata';
 import { overview } from '@/utils/segmentNode';
 

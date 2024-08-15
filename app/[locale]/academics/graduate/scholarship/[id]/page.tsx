@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
 
 import { getScholarship } from '@/apis/academics';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
 import { getMetadata } from '@/utils/metadata';
 import { graduateScholarship } from '@/utils/segmentNode';
 

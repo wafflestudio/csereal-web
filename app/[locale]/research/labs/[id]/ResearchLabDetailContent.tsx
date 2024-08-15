@@ -2,14 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 
+import HTMLViewer from '@/components/editor/HTMLViewer';
 import { Link } from '@/navigation';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
-
-import HTMLViewer from '@/components/editor/HTMLViewer';
-
 import { ResearchLab } from '@/types/research';
-
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';

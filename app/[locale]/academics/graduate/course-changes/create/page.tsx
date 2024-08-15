@@ -1,9 +1,7 @@
 'use client';
 
 import { postCourseChangesAction } from '@/actions/academics';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getPath } from '@/utils/page';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 

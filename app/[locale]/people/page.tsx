@@ -1,5 +1,4 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 import { people } from '@/utils/segmentNode';
 

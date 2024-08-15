@@ -1,13 +1,10 @@
 import { postCourseAction } from '@/actions/academics';
-
 import Dropdown from '@/components/common/form/Dropdown';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 import ModalFrame from '@/components/modal/ModalFrame';
-
-import { Classification, CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
+import { CLASSIFICATION, Classification, Course, GRADE, StudentType } from '@/types/academics';
 import { getKeys } from '@/types/object';
-
 import { errorToStr } from '@/utils/error';
 import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';

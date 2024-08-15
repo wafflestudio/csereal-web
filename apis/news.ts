@@ -1,7 +1,6 @@
 'use server';
 
 import { FETCH_TAG_NEWS } from '@/constants/network';
-
 import { News, NewsPreviewList } from '@/types/news';
 import { PostSearchQueryParams } from '@/types/post';
 

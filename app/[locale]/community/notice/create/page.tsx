@@ -1,14 +1,11 @@
 'use client';
 
 import { postNoticeAction } from '@/actions/notice';
-import { useRouter } from '@/navigation';
-
 import PostEditor from '@/components/editor/PostEditor';
-import { PostEditorContent, isLocalFile } from '@/components/editor/PostEditorTypes';
+import { isLocalFile, PostEditorContent } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { NOTICE_TAGS } from '@/constants/tag';
-
+import { useRouter } from '@/navigation';
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';

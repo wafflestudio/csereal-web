@@ -5,12 +5,9 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { getSeminarPosts } from '@/apis/seminar';
-
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { PostSearchQueryParams } from '@/types/post';
-
 import { getMetadata } from '@/utils/metadata';
 import { seminar } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validateSearchParams';
