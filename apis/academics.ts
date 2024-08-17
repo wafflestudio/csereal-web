@@ -19,7 +19,7 @@ import {
   ScholarshipList,
   StudentType,
 } from '@/types/academics';
-import { Language } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 
 import {
   deleteRequest,
@@ -164,25 +164,40 @@ export const getScholarshipList = (type: StudentType) =>
   });
 
 export const putScholarshipGuide = (type: StudentType, description: string) =>
-  putRequest(`/academics/${type}/scholarship`, {
+  putRequestV2(`/academics/${type}/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ description }),
     jsessionID: true,
   });
 
-export const getScholarship = (id: number) =>
-  getRequest<Scholarship>(`/academics/scholarship/${id}`);
+export const getScholarship = async (id: number): Promise<WithLanguage<Scholarship>> => {
+  const res = await getRequestV2<{ first: Scholarship; second: Scholarship }>(
+    `/academics/scholarship/${id}`,
+    undefined,
+    {
+      next: { tags: [FETCH_TAG_SCHOLARSHIP] },
+    },
+  );
+  const isFirstKo = res.first.language === 'ko';
+  return isFirstKo ? { ko: res.first, en: res.second } : { ko: res.second, en: res.first };
+};
 
-export const postScholarship = (type: StudentType, data: { name: string; description: string }) =>
-  postRequest(`/academics/${type}/scholarshipDetail`, {
+export const postScholarship = (
+  type: StudentType,
+  data: { koName: string; koDescription: string; enName: string; enDescription: string },
+) =>
+  postRequestV2(`/academics/${type}/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
-  }) as Promise<Scholarship>;
+  });
 
-export const putScholarship = async (id: number, data: { name: string; description: string }) =>
-  putRequest<Scholarship>(`/academics/scholarshipDetail`, {
+export const putScholarship = async (id: number, data: WithLanguage<Scholarship>) =>
+  putRequestV2(`/academics/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const deleteScholarship = async (id: number) =>
-  deleteRequest(`/academics/scholarship/${id}`, { jsessionID: true });
+  deleteRequestV2(`/academics/scholarship/${id}`, { jsessionID: true });

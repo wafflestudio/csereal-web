@@ -6,10 +6,11 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Scholarship, StudentType } from '@/types/academics';
+import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 const graduatePath = getPath(graduateScholarship);
 const undergraduatePath = getPath(undergraduateScholarship);
@@ -28,8 +29,9 @@ export default function ScholarshipDetail({
   const handleDelete = async () => {
     try {
       handleServerAction(await deleteScholarshipAction(type, id));
-    } catch {
-      errorToast('오류가 발생했습니다');
+      successToast('장학금을 삭제했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

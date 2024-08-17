@@ -5,10 +5,14 @@ import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { Scholarship, StudentType } from '@/types/academics';
+import { WithLanguage } from '@/types/language';
+import { errorToStr } from '@/utils/error';
+import { validateScholarshipForm } from '@/utils/formValidation';
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 const academicsPath = getPath(academics);
 
@@ -17,30 +21,27 @@ export default function ScholarshipDetailEdit({
   scholarship,
 }: {
   type: StudentType;
-  scholarship: Scholarship;
+  scholarship: WithLanguage<Scholarship>;
 }) {
+  const language = useTypedLocale();
   const router = useRouter();
 
   const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
-  // TODO: 아직 백엔드 장학 PUT api 안 나옴
   const handleSubmit = async (content: BasicEditorContent) => {
-    if (!content.name.ko) {
-      throw new Error('제목을 입력해주세요');
-    } else if (!content.description.ko) {
-      throw new Error('내용을 입력해주세요');
-    }
+    validateScholarshipForm(content);
 
-    // TODO: 영어 데이터
+    const { name, description } = content;
+    const newData = {
+      ko: { ...scholarship.ko, name: name.ko, description: description.ko },
+      en: { ...scholarship.en, name: name.en, description: description.en },
+    };
+
     try {
-      handleServerAction(
-        await putScholarshipAction(type, scholarship.id, {
-          name: content.name.ko,
-          description: content.description.ko,
-        }),
-      );
+      handleServerAction(await putScholarshipAction(type, scholarship[language].id, newData));
+      successToast('장학금을 수정했습니다.');
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 
@@ -51,8 +52,8 @@ export default function ScholarshipDetailEdit({
     >
       <BasicEditor
         initialContent={{
-          name: { ko: scholarship.name, en: scholarship.name },
-          description: { ko: scholarship.description, en: scholarship.description },
+          name: { ko: scholarship.ko.name, en: scholarship.en.name },
+          description: { ko: scholarship.ko.description, en: scholarship.en.description },
         }}
         actions={{
           type: 'EDIT',
@@ -60,6 +61,7 @@ export default function ScholarshipDetailEdit({
           onSubmit: handleSubmit,
         }}
         showName
+        showLanguage
       />
     </PageLayout>
   );

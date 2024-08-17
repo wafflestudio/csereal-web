@@ -5,10 +5,12 @@ import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { StudentType } from '@/types/academics';
+import { errorToStr } from '@/utils/error';
+import { validateScholarshipForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 const undergraduate = getPath(undergraduateScholarship);
 const graduate = getPath(graduateScholarship);
@@ -19,22 +21,20 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
   const handleCancel = () => router.replace(type === 'undergraduate' ? undergraduate : graduate);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    if (!content.name.ko) {
-      throw new Error('제목을 입력해주세요');
-    } else if (!content.description.ko) {
-      throw new Error('내용을 입력해주세요');
-    }
+    validateScholarshipForm(content);
 
-    // TODO: 영어 데이터
     try {
       handleServerAction(
         await postScholarshipAction(type, {
-          name: content.name.ko,
-          description: content.description.ko,
+          koName: content.name.ko,
+          koDescription: content.description.ko,
+          enName: content.name.en,
+          enDescription: content.description.en,
         }),
       );
+      successToast('장학금을 추가했습니다.');
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 
@@ -46,6 +46,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
       <BasicEditor
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
         showName
+        showLanguage
       />
     </PageLayout>
   );

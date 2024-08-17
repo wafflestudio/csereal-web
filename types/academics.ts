@@ -1,3 +1,5 @@
+import { Language } from './language';
+
 export type StudentType = 'undergraduate' | 'graduate';
 
 export interface Guide {
@@ -60,9 +62,11 @@ export interface ScholarshipList {
 
 export interface Scholarship {
   id: number;
+  language: Language;
   name: string;
   description: string;
 }
+
 export interface DegreeRequirements {
   description: string;
   attachments: {

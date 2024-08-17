@@ -88,10 +88,14 @@ export default function BasicEditor({
     <form className="flex flex-col">
       {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
       {showName && <NameFieldset name={content.name[language]} setName={setName} />}
-      <EditorFieldset
-        editorRef={editorRef[language]}
-        initialContent={content.description[language]}
-      />
+      {/* Editor 하나만 공통으로 사용하면 언어변경했을 때 에디터가 하나 더 생기는 등의 버그 발생 */}
+      {language === 'ko' && (
+        <EditorFieldset editorRef={editorRef.ko} initialContent={content.description.ko} />
+      )}
+      {language === 'en' && (
+        <EditorFieldset editorRef={editorRef.en} initialContent={content.description.en} />
+      )}
+
       {showMainImage && (
         <ImageFieldset
           file={content.mainImage}

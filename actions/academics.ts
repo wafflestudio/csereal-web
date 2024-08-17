@@ -37,8 +37,10 @@ import {
   CourseChange,
   Curriculum,
   GeneralStudiesRequirement,
+  Scholarship,
   StudentType,
 } from '@/types/academics';
+import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
@@ -52,6 +54,23 @@ export const putGuideAction = withErrorHandler(async (type: StudentType, formDat
 export const putDegreeRequirementsAction = withErrorHandler(async (formData: FormData) => {
   await putDegreeRequirements(formData);
   revalidateTag(FETCH_TAG_DEGREE);
+});
+
+/** 교과과정 */
+
+export const postCourseAction = withErrorHandler(async (data: Course) => {
+  await postCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const putCourseAction = withErrorHandler(async (data: Course) => {
+  await putCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const deleteCourseAction = withErrorHandler(async (code: string) => {
+  await deleteCourse(code);
+  revalidateTag(FETCH_TAG_COURSE);
 });
 
 /** 전공 이수 표준 형태 */
@@ -126,17 +145,18 @@ const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);
 
 export const postScholarshipAction = withErrorHandler(
-  async (type: StudentType, data: { name: string; description: string }) => {
-    const res = await postScholarship(type, data);
+  async (
+    type: StudentType,
+    data: { koName: string; koDescription: string; enName: string; enDescription: string },
+  ) => {
+    await postScholarship(type, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirect(
-      `${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}/${res.id}`,
-    );
+    redirect(`${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}`);
   },
 );
 
 export const putScholarshipAction = withErrorHandler(
-  async (type: string, id: number, data: { name: string; description: string }) => {
+  async (type: StudentType, id: number, data: WithLanguage<Scholarship>) => {
     await putScholarship(id, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
     redirect(
@@ -149,21 +169,4 @@ export const deleteScholarshipAction = withErrorHandler(async (type: StudentType
   await deleteScholarship(id);
   revalidateTag(FETCH_TAG_SCHOLARSHIP);
   redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
-});
-
-/** 교과과정 */
-
-export const postCourseAction = withErrorHandler(async (data: Course) => {
-  await postCourse(data);
-  revalidateTag(FETCH_TAG_COURSE);
-});
-
-export const putCourseAction = withErrorHandler(async (data: Course) => {
-  await putCourse(data);
-  revalidateTag(FETCH_TAG_COURSE);
-});
-
-export const deleteCourseAction = withErrorHandler(async (code: string) => {
-  await deleteCourse(code);
-  revalidateTag(FETCH_TAG_COURSE);
 });
