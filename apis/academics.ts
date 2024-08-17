@@ -141,6 +141,7 @@ export const putScholarshipGuide = (type: StudentType, description: string) =>
     body: JSON.stringify({ description }),
     jsessionID: true,
   });
+// test
 
 export const getScholarship = (id: number) =>
   getRequest<Scholarship>(`/academics/scholarship/${id}`);
