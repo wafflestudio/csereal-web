@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import { Course } from '@/types/academics';
+import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
 
 import AddCourseButton from '../../helper/courses/AddCourseButton';
@@ -14,9 +15,10 @@ import useCourseToolbar from '../../helper/courses/useCourseToolbar';
 
 interface CoursePageContentProps {
   courses: Course[];
+  language: Language;
 }
 
-export default function GraduateCoursePageContent({ courses }: CoursePageContentProps) {
+export default function GraduateCoursePageContent({ courses, language }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
   const t = useTranslations('Content');
@@ -38,12 +40,25 @@ export default function GraduateCoursePageContent({ courses }: CoursePageContent
         hideViewOption={isMobile}
         changeOptions={changeOptions}
       />
+      {language === 'en' && <ClassificationDescription />}
       {selectedOption.view === '카드형' ? (
         <CourseCards courses={chunkCourse(courses)} selectedOption="학년" />
       ) : (
         <CourseList courses={courses} />
       )}
     </>
+  );
+}
+
+function ClassificationDescription() {
+  return (
+    <div className="mb-3 ml-5 flex items-center gap-1.5 text-sm text-neutral-400">
+      <span className="material-symbols-outlined text-xl font-light">info</span>
+      <span className="pt-px">
+        RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective course for
+        Major&nbsp;&nbsp;/&nbsp;&nbsp;LE: Liberal Education course
+      </span>
+    </div>
   );
 }
 

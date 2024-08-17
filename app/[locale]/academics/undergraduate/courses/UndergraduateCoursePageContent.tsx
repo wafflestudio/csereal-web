@@ -58,8 +58,8 @@ function ClassificationDescription() {
     <div className="mb-3 ml-5 flex items-center gap-1.5 text-sm text-neutral-400">
       <span className="material-symbols-outlined text-xl font-light">info</span>
       <span className="pt-px">
-        RM: <b>R</b>equired course for <b>M</b>ajor / EM: <b>E</b>lective course for <b>M</b>
-        ajor / LE: <b>L</b>iberal <b>E</b>ducation course
+        RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective course for
+        Major&nbsp;&nbsp;/&nbsp;&nbsp;LE: Liberal Education course
       </span>
     </div>
   );

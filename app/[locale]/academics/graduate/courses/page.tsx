@@ -19,7 +19,7 @@ export default async function GraduateCoursePage({ params: { locale } }: CourseP
 
   return (
     <PageLayout titleType="big">
-      <GraduateCoursePageContent courses={courseList} />
+      <GraduateCoursePageContent courses={courseList} language={locale} />
     </PageLayout>
   );
 }
