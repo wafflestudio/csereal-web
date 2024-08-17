@@ -5,13 +5,9 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { getNoticePosts } from '@/apis/notice';
-
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { PostSearchQueryParams } from '@/types/post';
-
 import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/utils/segmentNode';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';

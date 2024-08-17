@@ -1,4 +1,5 @@
 import {
+  FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
@@ -6,7 +7,6 @@ import {
   FETCH_TAG_GUIDE,
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
-
 import {
   Course,
   CourseChange,
@@ -19,14 +19,22 @@ import {
   ScholarshipList,
   StudentType,
 } from '@/types/academics';
+import { Language } from '@/types/language';
 
-import { deleteRequest, getRequest, postRequest, putRequest } from '.';
-
-// TODO: language 쿼리 추가
+import {
+  deleteRequest,
+  deleteRequestV2,
+  getRequest,
+  getRequestV2,
+  postRequest,
+  postRequestV2,
+  putRequest,
+  putRequestV2,
+} from '.';
 
 /** 학부/대학원 안내 */
 
-export const getAcademicsGuide = (type: 'undergraduate' | 'graduate') =>
+export const getAcademicsGuide = (type: StudentType) =>
   getRequest<Guide>(`/academics/${type}/guide`, undefined, {
     next: { tags: [FETCH_TAG_GUIDE] },
   });
@@ -36,8 +44,27 @@ export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
 
 /** 교과과정 */
 
-export const getCourses = (type: 'undergraduate' | 'graduate') =>
-  getRequest<Course[]>(`/academics/${type}/courses`);
+export const getCourses = (type: StudentType, language: Language) =>
+  getRequestV2<Course[]>(`/academics/courses?studentType=${type}&sort=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_COURSE] },
+  });
+
+export const postCourse = (data: Course) =>
+  postRequestV2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCourse = (data: Course) =>
+  putRequestV2(`/academics/courses`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteCourse = async (code: string) =>
+  deleteRequestV2(`/academics/courses/${code}`, { jsessionID: true });
 
 /* 전공 이수 표준 형태 */
 
@@ -141,16 +168,15 @@ export const putScholarshipGuide = (type: StudentType, description: string) =>
     body: JSON.stringify({ description }),
     jsessionID: true,
   });
-// test
 
 export const getScholarship = (id: number) =>
   getRequest<Scholarship>(`/academics/scholarship/${id}`);
 
 export const postScholarship = (type: StudentType, data: { name: string; description: string }) =>
-  postRequest<Scholarship>(`/academics/${type}/scholarshipDetail`, {
+  postRequest(`/academics/${type}/scholarshipDetail`, {
     body: JSON.stringify(data),
     jsessionID: true,
-  });
+  }) as Promise<Scholarship>;
 
 export const putScholarship = async (id: number, data: { name: string; description: string }) =>
   putRequest<Scholarship>(`/academics/scholarshipDetail`, {

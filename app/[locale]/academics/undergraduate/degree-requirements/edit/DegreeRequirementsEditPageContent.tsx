@@ -1,13 +1,10 @@
 'use client';
 
 import { putDegreeRequirementsAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { DegreeRequirements } from '@/types/academics';
-
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { degree } from '@/utils/segmentNode';
@@ -19,14 +16,14 @@ const degreeRequirementsPath = getPath(degree);
 export default function DegreeRequirementsEditPageContent({ data }: { data: DegreeRequirements }) {
   const router = useRouter();
 
-  const goToOriginalPage = () => router.replace(degreeRequirementsPath);
+  const goToOriginalPage = () => router.push(degreeRequirementsPath);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
       throw new Error('내용을 입력해주세요');
     }
 
-    const formData = contentToFormData({
+    const formData = contentToFormData('EDIT', {
       requestObject: {
         description: content.description.ko,
         deleteIds: getAttachmentDeleteIds(
@@ -55,7 +52,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
         actions={{
           type: 'EDIT',
           onCancel: goToOriginalPage,
-          onComplete: handleComplete,
+          onSubmit: handleSubmit,
         }}
         showAttachments
       />

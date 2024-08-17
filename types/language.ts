@@ -5,4 +5,4 @@ export const LANGUAGE = {
 
 export type Language = keyof typeof LANGUAGE;
 
-export type WithLanguage<T = object> = { [language in Language]: T };
+export type WithLanguage<T> = { [language in Language]: T };

@@ -6,11 +6,9 @@ import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { StudentType } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship, graduateScholarship } from '@/utils/segmentNode';
+import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);

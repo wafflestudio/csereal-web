@@ -3,13 +3,10 @@ export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
-import greetingsImg from '@/public/image/about/greetings.jpg';
-
 import { getGreetings } from '@/apis/about';
-
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import greetingsImg from '@/public/image/about/greetings.jpg';
 import { getMetadata } from '@/utils/metadata';
 import { greetings } from '@/utils/segmentNode';
 

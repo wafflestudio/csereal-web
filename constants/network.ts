@@ -23,4 +23,5 @@ export const FETCH_TAG_DEGREE = 'degree';
 export const FETCH_TAG_CURRICULUM = 'curriculum';
 export const FETCH_TAG_GENERAL_STUDIES = 'generalStudies';
 export const FETCH_TAG_COURSE_CHANGES = 'courseChanges';
+export const FETCH_TAG_COURSE = 'course';
 export const FETCH_TAG_SCHOLARSHIP = 'scholarship';

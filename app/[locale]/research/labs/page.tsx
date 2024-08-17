@@ -1,9 +1,6 @@
 import { getResearchLabs } from '@/apis/research';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
-
 import { getMetadata } from '@/utils/metadata';
 import { researchLabs } from '@/utils/segmentNode';
 

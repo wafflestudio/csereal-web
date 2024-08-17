@@ -1,25 +1,27 @@
 import { getCourses } from '@/apis/academics';
-
-import CoursePageContent from '@/app/[locale]/academics/undergraduate/courses/CoursePageContent';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Course } from '@/types/academics';
-
+import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateGuide } from '@/utils/segmentNode';
+import { undergraduateCourses } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
-  return await getMetadata({ locale, node: undergraduateGuide });
+import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
+
+interface CoursePageProps {
+  params: { locale: Language };
 }
 
-export default async function UndergraduateCoursePage() {
-  const data: Course[] = await getCourses('undergraduate');
+export async function generateMetadata({ params: { locale } }: CoursePageProps) {
+  return await getMetadata({ locale, node: undergraduateCourses });
+}
+
+export default async function UndergraduateCoursePage({ params: { locale } }: CoursePageProps) {
+  const data: Course[] = await getCourses('undergraduate', locale);
 
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}
-      <CoursePageContent courses={data} />
+      <UndergraduateCoursePageContent courses={data} language={locale} />
     </PageLayout>
   );
 }

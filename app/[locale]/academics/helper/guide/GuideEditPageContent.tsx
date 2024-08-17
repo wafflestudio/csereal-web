@@ -1,13 +1,10 @@
 'use client';
 
 import { putGuideAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Guide, StudentType } from '@/types/academics';
-
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
@@ -19,14 +16,14 @@ const academicsPath = getPath(academics);
 export default function GuideEditPageContent({ data, type }: { data: Guide; type: StudentType }) {
   const router = useRouter();
 
-  const goToGuidePage = () => router.replace(`${academicsPath}/${type}/guide`);
+  const goToGuidePage = () => router.push(`${academicsPath}/${type}/guide`);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
       throw new Error('내용을 입력해주세요');
     }
 
-    const formData = contentToFormData({
+    const formData = contentToFormData('EDIT', {
       requestObject: {
         description: content.description.ko,
         deleteIds: getAttachmentDeleteIds(
@@ -55,7 +52,7 @@ export default function GuideEditPageContent({ data, type }: { data: Guide; type
         actions={{
           type: 'EDIT',
           onCancel: goToGuidePage,
-          onComplete: handleComplete,
+          onSubmit: handleSubmit,
         }}
         showAttachments
       />

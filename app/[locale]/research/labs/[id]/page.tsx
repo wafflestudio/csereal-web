@@ -1,10 +1,7 @@
 import { getResearchLab } from '@/apis/research';
-
 import ResearchLabDetailContent from '@/app/[locale]/research/labs/[id]/ResearchLabDetailContent';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({ params: { locale, id } }: LabDetailPageProps) {

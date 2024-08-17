@@ -1,5 +1,4 @@
 import { getScholarship } from '@/apis/academics';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
 import ScholarshipDetailEdit from '../../../../helper/ScholarshipDetailEdit';

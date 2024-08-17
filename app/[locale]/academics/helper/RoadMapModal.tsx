@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
+import ModalFrame from '@/components/modal/ModalFrame';
 import roadmap from '@/public/image/roadmap.png';
 import SignPostIcon from '@/public/image/signpost_icon.svg';
-
-import ModalFrame from '@/components/modal/ModalFrame';
 
 export default function RoadMapModal({ onClose }: { onClose: () => void }) {
   return (

@@ -1,22 +1,29 @@
 import { useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
-import { Tag } from '@/components/common/Tags';
-
-import { Course, SortOption } from '@/types/academics';
+import { Course, GRADE, SortOption } from '@/types/academics';
+import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 interface CourseCardProps {
   course: Course;
   selectedOption: SortOption;
 }
 
-const getSortedProperties = (course: Course, selectedOption: SortOption) => {
-  if (selectedOption === '교과목 구분') {
-    return [course.classification, course.grade, `${course.credit}학점`];
-  } else if (selectedOption === '학점') {
-    return [`${course.credit}학점`, course.grade, course.classification];
-  } else {
-    return [course.grade, course.classification, `${course.credit}학점`];
+const useSortedProperties = (course: Course, selectedOption: SortOption) => {
+  const lang = useTypedLocale();
+  const t = useTranslations('Tag');
+
+  const classification = course[lang].classification;
+  const grade = t(GRADE[course.grade]);
+  const credit = t(`${course.credit}학점`);
+
+  switch (selectedOption) {
+    case '교과목 구분':
+      return [classification, grade, credit];
+    case '학점':
+      return [credit, grade, classification];
+    case '학년':
+      return [grade, classification, credit];
   }
 };
 
@@ -25,10 +32,11 @@ const LINE_LIMIT = 6;
 const TEXT_SIZE = 11; // px
 
 export default function CourseCard({ course, selectedOption }: CourseCardProps) {
-  const sortedProperties = getSortedProperties(course, selectedOption);
+  const sortedProperties = useSortedProperties(course, selectedOption);
   const [isFlipped, flipCard] = useReducer((x) => !x, false);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
+  const language = useTypedLocale();
 
   // resize card width
   useEffect(() => {
@@ -78,26 +86,26 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     <div style={cardStyle} onClick={flipCard}>
       <div className={frontStyle} style={{ ...faceStyle }} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
-        <CardTitle name={course.name} code={course.code} />
-        <CardContentPreview description={course.description} />
+        <CardTitle name={course[language].name} code={course.code} />
+        <CardContentPreview description={course[language].description} />
       </div>
       <div className={backStyle} style={{ ...faceStyle }} ref={backRef}>
-        <CardTitle name={course.name} code={course.code} />
-        <CardContent description={course.description} />
+        <CardTitle name={course[language].name} code={course.code} />
+        <CardContent description={course[language].description} />
       </div>
     </div>
   );
 }
 
 function CardHeader({ sortedProperties }: { sortedProperties: string[] }) {
-  const t = useTranslations('Tag');
-
   return (
     <div className="mb-4 flex items-center justify-between">
-      <Tag tag={sortedProperties[0]} />
+      <div className="flex h-[26px] items-center whitespace-nowrap rounded-[1.875rem] border bg-white px-2.5 text-sm font-medium text-main-orange">
+        {sortedProperties[0]}
+      </div>
       <span className="ml-2 whitespace-nowrap text-xs text-neutral-500">
-        <span className="mr-2">{t(sortedProperties[1])}</span>
-        <span>{t(sortedProperties[2])}</span>
+        <span className="mr-2">{sortedProperties[1]}</span>
+        <span>{sortedProperties[2]}</span>
       </span>
     </div>
   );

@@ -1,13 +1,10 @@
 'use client';
 
 import { putScholarshipAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { Scholarship, StudentType } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -27,7 +24,7 @@ export default function ScholarshipDetailEdit({
   const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
   // TODO: 아직 백엔드 장학 PUT api 안 나옴
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.name.ko) {
       throw new Error('제목을 입력해주세요');
     } else if (!content.description.ko) {
@@ -60,7 +57,7 @@ export default function ScholarshipDetailEdit({
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleSubmit,
         }}
         showName
       />

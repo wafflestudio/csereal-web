@@ -1,17 +1,16 @@
 'use client';
 
 import {
+  createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
-  createContext,
   useContext,
   useEffect,
   useState,
 } from 'react';
 
 import { usePathname } from '@/navigation';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { SegmentNode } from '@/utils/segmentNode';

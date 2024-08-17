@@ -4,19 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { deleteNoticeAction, patchNoticeAction } from '@/actions/notice';
-
 import PostEditor from '@/components/editor/PostEditor';
 import {
-  PostEditorContent,
   isLocalFile,
   isUploadedFile,
+  PostEditorContent,
 } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { NOTICE_TAGS } from '@/constants/tag';
-
 import { Notice } from '@/types/notice';
-
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
@@ -70,7 +66,7 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
         actions={{
           type: 'EDIT',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
           onDelete: handleDelete,
         }}
         initialContent={initialContent}

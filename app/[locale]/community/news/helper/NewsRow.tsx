@@ -1,7 +1,6 @@
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
 import PaginatedLink from '@/components/post/PaginatedLink';
-
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 

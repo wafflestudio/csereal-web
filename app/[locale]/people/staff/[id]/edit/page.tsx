@@ -1,7 +1,5 @@
 import { getStaff } from '@/apis/people';
-
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
 import { Language } from '@/types/language';
 
 import StaffEditPageContent from './StaffEditPageContent';

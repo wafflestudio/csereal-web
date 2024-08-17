@@ -3,12 +3,10 @@
 import { useRouter } from 'next/navigation';
 
 import { postSeminarAction } from '@/actions/seminar';
-
 import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
@@ -33,7 +31,7 @@ export default function SeminarCreatePage() {
         actions={{
           type: 'CREATE',
           onCancel: handleCancel,
-          onComplete: handleComplete,
+          onSubmit: handleComplete,
         }}
       />
     </PageLayout>

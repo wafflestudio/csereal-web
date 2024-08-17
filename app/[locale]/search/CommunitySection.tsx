@@ -4,16 +4,15 @@ import { ReactNode } from 'react';
 
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
 import { SeminarPreviewList } from '@/types/seminar';
-
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
+import SeminarRow from '../community/seminar/helper/SeminarRow';
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
 import NewsRow from './helper/NewsRow';
 import NoticeRow from './helper/NoticeRow';
 import Section from './helper/Section';
-import SeminarRow from '../community/seminar/helper/SeminarRow';
 
 const newsPath = getPath(news);
 const noticePath = getPath(notice);

@@ -1,10 +1,8 @@
 import { useTranslations } from 'next-intl';
 
-import { Link } from '@/navigation';
-
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
-
+import { Link } from '@/navigation';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 

@@ -1,9 +1,7 @@
 import { useSearchParams } from 'next/navigation';
 
 import { usePathname, useRouter } from '@/navigation';
-
 import { PostSearchQueryParams } from '@/types/post';
-
 import { objToQueryString, urlSearchParamsToString } from '@/utils/convertParams';
 
 export type SearchInfo =

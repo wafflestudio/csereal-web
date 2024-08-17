@@ -2,42 +2,40 @@
 
 import { useState } from 'react';
 
-import { useRouter } from '@/navigation';
-
 import BasicEditor from '@/components/editor/BasicEditor';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
-
+import { useRouter } from '@/navigation';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface TimelineEditorProps {
   initialContent?: { year: number; description: string };
-  action: (data: TimelineContent) => Promise<CustomError | void>;
+  submitAction: (data: TimelineContent) => Promise<CustomError | void>;
   fallbackPathname: string;
 }
 
-const NEXT_YEAR = new Date().getFullYear() + 1;
+const getNextYear = () => new Date().getFullYear() + 1;
 
 type TimelineContent = { year: number; description: string };
 
 export default function TimelineEditor({
   initialContent,
-  action,
+  submitAction,
   fallbackPathname,
 }: TimelineEditorProps) {
-  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? NEXT_YEAR);
+  const [newYear, setNewYear] = useState<number>(initialContent?.year ?? getNextYear());
   const router = useRouter();
 
-  const goToOriginalPage = () => router.replace(fallbackPathname);
+  const goToOriginalPage = () => router.push(fallbackPathname);
 
-  const handleComplete = async (description: string) => {
+  const handleSubmit = async (description: string) => {
     if (!description) {
       throw new Error('내용을 입력해주세요');
     }
 
     try {
-      handleServerAction(await action({ description, year: newYear }));
+      handleServerAction(await submitAction({ description, year: newYear }));
       successToast('저장했습니다.');
       goToOriginalPage();
     } catch (e) {
@@ -55,7 +53,7 @@ export default function TimelineEditor({
         actions={{
           type: 'EDIT',
           onCancel: goToOriginalPage,
-          onComplete: (content) => handleComplete(content.description.ko),
+          onSubmit: (content) => handleSubmit(content.description.ko),
         }}
       />
     </div>

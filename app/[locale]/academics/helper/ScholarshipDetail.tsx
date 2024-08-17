@@ -1,14 +1,11 @@
 'use client';
 
 import { deleteScholarshipAction } from '@/actions/academics';
-
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Scholarship, StudentType } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';

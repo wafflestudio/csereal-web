@@ -3,9 +3,8 @@
 import { cookies } from 'next/headers';
 
 import { getRequest } from '@/apis';
-import { UserState } from '@/contexts/SessionContext';
-
 import { COOKIE_SESSION_ID } from '@/constants/network';
+import { UserState } from '@/contexts/SessionContext';
 
 export const getMockAuth = async () => {
   const resp = await fetch(`https://cse-dev-waffle.bacchus.io/api/v1/mock-login`, {
@@ -15,7 +14,6 @@ export const getMockAuth = async () => {
 
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
-
   cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
 };
 

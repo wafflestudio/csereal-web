@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';

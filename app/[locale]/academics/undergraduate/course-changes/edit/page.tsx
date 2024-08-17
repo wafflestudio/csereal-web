@@ -1,9 +1,8 @@
 import { getCourseChanges } from '@/apis/academics';
-
 import { getPath } from '@/utils/page';
 import { undergraduateCourseChanges } from '@/utils/segmentNode';
 
-import CourseChangesEditPageContent from '../../../helper/CourseChangeEidtPageContent';
+import CourseChangesEditPageContent from '../../../helper/course-changes/CourseChangeEditPageContent';
 
 const courseChangePath = getPath(undergraduateCourseChanges);
 

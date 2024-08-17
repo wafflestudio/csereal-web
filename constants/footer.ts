@@ -1,19 +1,19 @@
 import { getPath } from '@/utils/page';
 import {
-  SegmentNode,
-  overview,
-  faculty,
-  undergraduateGuide,
-  graduateGuide,
-  notice,
-  seminar,
-  facultyRecruitment,
-  researchLabs,
-  topConferenceList,
-  reservationIntroduction,
   contact,
   directions,
+  faculty,
+  facultyRecruitment,
+  graduateGuide,
+  notice,
+  overview,
+  researchLabs,
+  reservationIntroduction,
+  SegmentNode,
+  seminar,
   tentenProject,
+  topConferenceList,
+  undergraduateGuide,
 } from '@/utils/segmentNode';
 
 export interface FooterLink {

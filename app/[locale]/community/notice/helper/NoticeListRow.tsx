@@ -1,12 +1,9 @@
+import PaginatedLink from '@/components/post/PaginatedLink';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
-
-import PaginatedLink from '@/components/post/PaginatedLink';
-
 import { NoticePreview } from '@/types/notice';
-
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 

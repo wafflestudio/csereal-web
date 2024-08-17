@@ -1,7 +1,5 @@
-import { Link } from '@/navigation';
-
 import RangeBolded from '@/components/common/RangeBolded';
-
+import { Link } from '@/navigation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
 

@@ -2,18 +2,19 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { redirect } from '@/navigation';
-
 import {
+  deleteCourse,
   deleteCourseChanges,
   deleteCurriculum,
   deleteGeneralStudies,
   deleteScholarship,
+  postCourse,
   postCourseChanges,
   postCurriculum,
   postGeneralStudies,
   postScholarship,
   putAcademicsGuide,
+  putCourse,
   putCourseChanges,
   putCurriculum,
   putDegreeRequirements,
@@ -21,8 +22,8 @@ import {
   putScholarship,
   putScholarshipGuide,
 } from '@/apis/academics';
-
 import {
+  FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
   FETCH_TAG_CURRICULUM,
   FETCH_TAG_DEGREE,
@@ -30,14 +31,14 @@ import {
   FETCH_TAG_GUIDE,
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
-
+import { redirect } from '@/navigation';
 import {
+  Course,
   CourseChange,
   Curriculum,
   GeneralStudiesRequirement,
   StudentType,
 } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 
@@ -148,4 +149,21 @@ export const deleteScholarshipAction = withErrorHandler(async (type: StudentType
   await deleteScholarship(id);
   revalidateTag(FETCH_TAG_SCHOLARSHIP);
   redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
+});
+
+/** 교과과정 */
+
+export const postCourseAction = withErrorHandler(async (data: Course) => {
+  await postCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const putCourseAction = withErrorHandler(async (data: Course) => {
+  await putCourse(data);
+  revalidateTag(FETCH_TAG_COURSE);
+});
+
+export const deleteCourseAction = withErrorHandler(async (code: string) => {
+  await deleteCourse(code);
+  revalidateTag(FETCH_TAG_COURSE);
 });

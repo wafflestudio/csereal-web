@@ -1,16 +1,13 @@
 'use client';
 
-import { Link } from '@/navigation';
-
 import Attachments from '@/components/common/Attachments';
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { Link } from '@/navigation';
 import { DegreeRequirements } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
 import { degree } from '@/utils/segmentNode';
 

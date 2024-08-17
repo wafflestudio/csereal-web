@@ -1,16 +1,13 @@
 import { getEmeritusFacultyList } from '@/apis/people';
-
+import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
 import { Language } from '@/types/language';
-import { SimpleEmiritusFaculty } from '@/types/people';
-
+import { SimpleEmeritusFaculty } from '@/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 
-import { CreateButton } from '../helper/AdminButtons';
 import { PeopleCellProps } from '../helper/PeopleCell';
 import PeopleGrid from '../helper/PeopleGrid';
 
@@ -34,14 +31,14 @@ export default async function EmeritusFacultyPage({
   return (
     <PageLayout title="역대 교수진" titleType="big">
       <LoginVisible staff>
-        <CreateButton pathname={`${facultyPath}/create`} status="INACTIVE" />
+        <CreateButton href={`${facultyPath}/create?status=INACTIVE`} />
       </LoginVisible>
       <PeopleGrid contentList={props} />
     </PageLayout>
   );
 }
 
-const facultyToProp = (faculty: SimpleEmiritusFaculty): PeopleCellProps => {
+const facultyToProp = (faculty: SimpleEmeritusFaculty): PeopleCellProps => {
   const content = [];
   if (faculty.email) content.push({ text: faculty.email, href: `mailto:${faculty.email}` });
 

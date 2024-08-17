@@ -1,13 +1,10 @@
 'use client';
 
 import { postScholarshipAction } from '@/actions/academics';
-import { useRouter } from '@/navigation';
-
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { useRouter } from '@/navigation';
 import { StudentType } from '@/types/academics';
-
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -21,7 +18,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
 
   const handleCancel = () => router.replace(type === 'undergraduate' ? undergraduate : graduate);
 
-  const handleComplete = async (content: BasicEditorContent) => {
+  const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.name.ko) {
       throw new Error('제목을 입력해주세요');
     } else if (!content.description.ko) {
@@ -47,7 +44,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
       titleType="big"
     >
       <BasicEditor
-        actions={{ type: 'EDIT', onCancel: handleCancel, onComplete: handleComplete }}
+        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
         showName
       />
     </PageLayout>

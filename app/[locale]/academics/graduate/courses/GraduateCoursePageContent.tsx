@@ -2,10 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 
+import LoginVisible from '@/components/common/LoginVisible';
 import { Course } from '@/types/academics';
-
 import useResponsive from '@/utils/hooks/useResponsive';
 
+import AddCourseButton from '../../helper/courses/AddCourseButton';
 import CourseCards from '../../helper/courses/CourseCards';
 import CourseList from '../../helper/courses/CourseList';
 import CourseToolbar from '../../helper/courses/CourseToolbar';
@@ -15,7 +16,7 @@ interface CoursePageContentProps {
   courses: Course[];
 }
 
-export default function CoursePageContent({ courses }: CoursePageContentProps) {
+export default function GraduateCoursePageContent({ courses }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
   const t = useTranslations('Content');
@@ -26,6 +27,9 @@ export default function CoursePageContent({ courses }: CoursePageContentProps) {
 
   return (
     <>
+      <LoginVisible staff>
+        <AddCourseButton studentType="graduate" />
+      </LoginVisible>
       <h4 className="mb-2 text-[17px] font-bold sm:mb-8 sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar
         viewOption={selectedOption.view}

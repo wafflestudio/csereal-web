@@ -3,15 +3,12 @@
 import { useTranslations } from 'next-intl';
 
 import { deleteStaffAction } from '@/actions/people';
-import { Link } from '@/navigation';
-
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
+import { Link } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
-
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -37,7 +34,7 @@ export default function StaffMemberPageContent({
     try {
       handleServerAction(await deleteStaffAction(ids));
       successToast('행정직원을 삭제했습니다.');
-    } catch {
+    } catch (e) {
       errorToast('오류가 발생했습니다');
     }
   };

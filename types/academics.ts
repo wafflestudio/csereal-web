@@ -10,16 +10,23 @@ export interface Guide {
   }[];
 }
 
-export type Grade = '1학년' | '2학년' | '3학년' | '4학년' | '대학원';
-export type Classification = '전공필수' | '전공선택' | '교양';
+export const GRADE = ['대학원', '1학년', '2학년', '3학년', '4학년'] as const;
+
+export const CLASSIFICATION = {
+  전공필수: 'RM',
+  전공선택: 'EM',
+  교양: 'LE',
+} as const;
+export type Classification = keyof typeof CLASSIFICATION;
+export type ClassificationEn = (typeof CLASSIFICATION)[keyof typeof CLASSIFICATION];
 
 export interface Course {
-  name: string;
-  description: string;
-  grade: Grade;
-  classification: Classification;
-  credit: number;
   code: string;
+  credit: number;
+  grade: number;
+  studentType: StudentType;
+  ko: { name: string; description: string; classification: Classification };
+  en: { name: string; description: string; classification: ClassificationEn };
 }
 
 export type SortOption = '학년' | '교과목 구분' | '학점';

@@ -8,9 +8,18 @@ interface DropdownProps {
   selectedIndex: number;
   onClick: (index: number) => void;
   borderStyle?: string;
+  width?: string;
+  height?: string;
 }
 
-export default function Dropdown({ contents, selectedIndex, onClick, borderStyle }: DropdownProps) {
+export default function Dropdown({
+  contents,
+  selectedIndex,
+  onClick,
+  borderStyle,
+  width,
+  height,
+}: DropdownProps) {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,10 +43,12 @@ export default function Dropdown({ contents, selectedIndex, onClick, borderStyle
         contents={contents}
         selectedIndex={selectedIndex}
         borderStyle={borderStyle}
+        width={width}
+        height={height}
       />
       <div className="relative z-10">
         <DropdownListWithScroll
-          className={expanded ? 'scale-y-1' : 'scale-y-0'}
+          className={`${width} ${expanded ? 'scale-y-1' : 'scale-y-0'}`}
           contents={contents}
           handleClick={handleClick}
           selectedIndex={selectedIndex}
@@ -54,20 +65,26 @@ function DropdownButton({
   contents,
   selectedIndex,
   borderStyle = 'border-neutral-200',
+  width,
+  height,
 }: {
   expanded: boolean;
   toggleExpanded: () => void;
   contents: string[];
   selectedIndex: number;
   borderStyle?: string;
+  width?: string;
+  height?: string;
 }) {
   return (
     <button
       className={`
-            flex items-center gap-4 border bg-white py-[.3125rem] pl-[.625rem]
+            flex items-center border bg-white py-[.3125rem] pl-[.625rem]
             pr-[.3125rem]
             ${expanded ? 'rounded-t-sm' : 'rounded-sm'}
             ${borderStyle}
+            ${width ? `${width} justify-between` : 'gap-4'}
+            ${height}
         `}
       onClick={(e) => {
         e.preventDefault();

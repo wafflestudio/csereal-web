@@ -21,16 +21,10 @@ export const getRequest = async <T = unknown>(
 export const postRequest = async <T = unknown>(
   url: string,
   init?: CredentialRequestInit,
-): Promise<T> => {
+): Promise<T | null> => {
   const resp = await fetchWithRetry(`${BASE_URL}${url}`, 'POST', init);
   const isJsonResponse = resp.headers.get('content-type')?.includes('application/json');
-
-  if (isJsonResponse) {
-    return await resp.json();
-  } else {
-    // 응답 본문이 없을 경우, 빈 객체를 반환하거나 적절한 기본값을 설정
-    return {} as T;
-  }
+  return isJsonResponse ? await resp.json() : null;
 };
 
 export const patchRequest = async <T = unknown>(
@@ -56,7 +50,7 @@ export const deleteRequest = async (url: string, init?: CredentialRequestInit) =
 // BASE_URL v2 사용, 편집 기능 작업 끝나고 나면 어차피 사라질 부분이라 단순 복붙함
 // TODO: BASE_URL 통합
 
-export const getRequest2 = async <T = unknown>(
+export const getRequestV2 = async <T = unknown>(
   url: string,
   params: object = {},
   init?: CredentialRequestInit,
@@ -66,15 +60,16 @@ export const getRequest2 = async <T = unknown>(
   return await resp.json();
 };
 
-export const postRequest2 = async <T = unknown>(
+export const postRequestV2 = async <T = unknown>(
   url: string,
   init?: CredentialRequestInit,
 ): Promise<T> => {
   const resp = await fetchWithRetry(`${BASE_URL2}${url}`, 'POST', init);
-  return await resp.json();
+  const isJsonResponse = resp.headers.get('content-type')?.includes('application/json');
+  return isJsonResponse ? await resp.json() : null;
 };
 
-export const putRequest2 = async <T = unknown>(
+export const putRequestV2 = async <T = unknown>(
   url: string,
   init?: CredentialRequestInit,
 ): Promise<T | null> => {
@@ -82,7 +77,7 @@ export const putRequest2 = async <T = unknown>(
   return resp.headers.get('content-type') ? await resp.json() : null;
 };
 
-export const deleteRequest2 = async (url: string, init?: CredentialRequestInit) => {
+export const deleteRequestV2 = async (url: string, init?: CredentialRequestInit) => {
   await fetchWithRetry(`${BASE_URL2}${url}`, 'DELETE', init);
 };
 

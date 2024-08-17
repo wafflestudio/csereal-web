@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 
 import Pentagon200 from '@/public/image/pentagon_200.svg';
 import SignPostIcon from '@/public/image/signpost_icon.svg';
-
 import useModal from '@/utils/hooks/useModal';
 
 import RoadMapModal from './RoadMapModal';

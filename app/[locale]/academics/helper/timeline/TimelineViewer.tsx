@@ -2,29 +2,29 @@
 
 import { useReducer, useState } from 'react';
 
-import { Link, usePathname } from '@/navigation';
-
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
+import { Link, usePathname } from '@/navigation';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import Timeline from './Timeline';
 
+interface TimelineViewerProps<T> {
+  contents: T[];
+  title: { text: string; unit: string };
+  deleteAction: (year: number) => Promise<CustomError | void>;
+  yearLimitCount?: number;
+}
+
 export default function TimelineViewer<T extends { year: number; description: string }>({
   contents,
   title,
   deleteAction,
   yearLimitCount = 10,
-}: {
-  contents: T[];
-  title: { text: string; unit: string };
-  deleteAction: (year: number) => Promise<CustomError | void>;
-  yearLimitCount?: number;
-}) {
+}: TimelineViewerProps<T>) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
   const timeLineYears = contents.map((change) => change.year).slice(0, yearLimitCount);
   const yearLimit = timeLineYears.at(-1) ?? 0;
