@@ -9,7 +9,7 @@ import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 const academicsPath = getPath(academics);
 
@@ -22,7 +22,7 @@ export default function ScholarshipGuideEditPageContent({
 }) {
   const router = useRouter();
 
-  const goToScholarshipListPage = () => router.replace(`${academicsPath}/${type}/scholarship`);
+  const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
   const handleSubmit = async (content: BasicEditorContent) => {
     if (!content.description.ko) {
@@ -31,7 +31,7 @@ export default function ScholarshipGuideEditPageContent({
 
     try {
       handleServerAction(await putScholarshipGuideAction(type, content.description.ko));
-      goToScholarshipListPage();
+      successToast('장학 제도 안내를 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));
     }
@@ -48,7 +48,7 @@ export default function ScholarshipGuideEditPageContent({
         }}
         actions={{
           type: 'EDIT',
-          onCancel: goToScholarshipListPage,
+          onCancel: handleCancel,
           onSubmit: handleSubmit,
         }}
       />

@@ -134,15 +134,16 @@ export const deleteCourseChangesAction = withErrorHandler(
 
 /** 장학 제도 */
 
+const undergraduateScholarshipPath = getPath(undergraduateScholarship);
+const graduateScholarshipPath = getPath(graduateScholarship);
+
 export const putScholarshipGuideAction = withErrorHandler(
   async (type: StudentType, description: string) => {
     await putScholarshipGuide(type, description);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
+    redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
   },
 );
-
-const undergraduateScholarshipPath = getPath(undergraduateScholarship);
-const graduateScholarshipPath = getPath(graduateScholarship);
 
 export const postScholarshipAction = withErrorHandler(
   async (
@@ -151,7 +152,7 @@ export const postScholarshipAction = withErrorHandler(
   ) => {
     await postScholarship(type, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirect(`${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}`);
+    redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
   },
 );
 
