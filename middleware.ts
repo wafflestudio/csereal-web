@@ -24,8 +24,8 @@ const generateCSPHeader = (nonce: string) =>
     default-src 'self';
     script-src 'self' ${
       process.env.NODE_ENV === 'production'
-        ? `'nonce-${nonce}' 'strict-dynamic'`
-        : `'unsafe-inline' 'unsafe-eval'`
+        ? `'nonce-${nonce}' 'strict-dynamic' https://dapi.kakao.com`
+        : `'unsafe-inline' 'unsafe-eval' https://dapi.kakao.com`
     };
     style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
     img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net;
