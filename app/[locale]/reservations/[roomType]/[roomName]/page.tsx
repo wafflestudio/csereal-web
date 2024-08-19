@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
-import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
+import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
+
+import ReservationCalendar from './helper/ReservationCalendar';
 
 export async function generateMetadata({
   params: { locale, roomName },
@@ -39,10 +41,20 @@ export default async function RoomReservationPage({ params, searchParams }: Room
   return (
     <PageLayout titleType="big">
       <Suspense>
-        <ReservationCalendar roomId={roomId} selectedDate={date} />
+        {STAFF_ONLY_ROOM_ID.includes(roomId) ? (
+          <LoginVisible staff fallback={<NonStaffFallback />}>
+            <ReservationCalendar roomId={roomId} selectedDate={date} />
+          </LoginVisible>
+        ) : (
+          <ReservationCalendar roomId={roomId} selectedDate={date} />
+        )}
       </Suspense>
     </PageLayout>
   );
+}
+
+function NonStaffFallback() {
+  return <div className="h-[400px]">관리자만 열람 가능합니다.</div>;
 }
 
 const roomNameToId: { [roomName: string]: number } = {
@@ -66,3 +78,5 @@ const roomNameToId: { [roomName: string]: number } = {
   '302-208': 15,
   '302-209': 16,
 };
+
+const STAFF_ONLY_ROOM_ID = [15, 16];
