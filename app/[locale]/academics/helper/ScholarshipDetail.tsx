@@ -25,6 +25,7 @@ export default function ScholarshipDetail({
   // 타이틀이 긴 경우 정규표현식으로 괄호 내부 내용을 제거
   // ex) 교외장학금 (현송문화재단, 유한재단, ...) -> 교외장학금
   const shortTitle = name.length > 20 ? name.replace(/\([^)]*\)/g, '') : name;
+  const editHref = `${type === 'graduate' ? graduatePath : undergraduatePath}/${id}/edit`;
 
   const handleDelete = async () => {
     try {
@@ -40,9 +41,7 @@ export default function ScholarshipDetail({
       <LoginVisible staff>
         <div className="mb-2 flex justify-end gap-3">
           <DeleteButton onDelete={handleDelete} />
-          <EditButton
-            href={`${type === 'graduate' ? graduatePath : undergraduatePath}/${id}/edit`}
-          />
+          <EditButton href={editHref} />
         </div>
       </LoginVisible>
       <HTMLViewer htmlContent={description} />
