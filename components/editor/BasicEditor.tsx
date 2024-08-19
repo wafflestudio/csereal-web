@@ -7,6 +7,7 @@ import { Language, WithLanguage } from '@/types/language';
 import { isContentEmpty } from '@/utils/post';
 
 import { EditAction, EditActionButtons } from './common/ActionButtons';
+import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
@@ -20,6 +21,7 @@ const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
 
 interface OptionalBasicEditorContent {
   description: WithLanguage<string>;
+  name?: WithLanguage<string>;
   mainImage?: PostEditorImage;
   attachments?: PostEditorFile[];
 }
@@ -28,10 +30,11 @@ export type BasicEditorContent = Required<OptionalBasicEditorContent>;
 
 interface BasicPostEditorProps {
   actions: EditAction<BasicEditorContent>;
-  initialContent: OptionalBasicEditorContent;
+  initialContent?: OptionalBasicEditorContent;
   showMainImage?: boolean;
   showAttachments?: boolean;
   showLanguage?: boolean;
+  showName?: boolean;
 }
 
 export default function BasicEditor({
@@ -40,6 +43,7 @@ export default function BasicEditor({
   showMainImage = false,
   showAttachments = false,
   showLanguage = false,
+  showName = false,
 }: BasicPostEditorProps) {
   const [language, setLanguage] = useState<Language>('ko');
   const editorRef = { ko: useRef<SunEditorCore>(), en: useRef<SunEditorCore>() };
@@ -76,10 +80,16 @@ export default function BasicEditor({
     setLanguage(newLang);
   };
 
+  const setName = (name: string) => {
+    setContent((prev) => ({ ...prev, name: { ...prev.name, [language]: name } }));
+  };
+
   return (
     <form className="flex flex-col">
       {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
+      {showName && <NameFieldset name={content.name[language]} setName={setName} />}
       <EditorFieldset
+        key={language}
         editorRef={editorRef[language]}
         initialContent={content.description[language]}
       />
@@ -103,6 +113,14 @@ export default function BasicEditor({
         <EditActionButtons {...actions} getContent={getContent} />
       </div>
     </form>
+  );
+}
+
+function NameFieldset({ name, setName }: { name: string; setName: (value: string) => void }) {
+  return (
+    <Fieldset title="이름" mb="mb-6" titleMb="mb-2" required>
+      <BasicTextInput value={name} onChange={setName} maxWidth="w-[30rem]" />
+    </Fieldset>
   );
 }
 
@@ -139,10 +157,11 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
   );
 }
 
-const getEditorInitialContent = (initContent: OptionalBasicEditorContent) => {
+const getEditorInitialContent = (initContent?: OptionalBasicEditorContent) => {
   return {
-    description: initContent.description,
-    mainImage: initContent.mainImage ?? null,
-    attachments: initContent.attachments ?? [],
+    description: initContent?.description ?? { ko: '', en: '' },
+    name: initContent?.name ?? { ko: '', en: '' },
+    mainImage: initContent?.mainImage ?? null,
+    attachments: initContent?.attachments ?? [],
   };
 };

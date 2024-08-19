@@ -5,6 +5,7 @@ import {
   FETCH_TAG_DEGREE,
   FETCH_TAG_GENERAL_STUDIES,
   FETCH_TAG_GUIDE,
+  FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
 import {
   Course,
@@ -18,7 +19,7 @@ import {
   ScholarshipList,
   StudentType,
 } from '@/types/academics';
-import { Language } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 
 import {
   deleteRequest,
@@ -34,9 +35,9 @@ import {
 /** 학부/대학원 안내 */
 
 export const getAcademicsGuide = (type: StudentType) =>
-  getRequest(`/academics/${type}/guide`, undefined, {
+  getRequest<Guide>(`/academics/${type}/guide`, undefined, {
     next: { tags: [FETCH_TAG_GUIDE] },
-  }) as Promise<Guide>;
+  });
 
 export const putAcademicsGuide = (type: StudentType, formData: FormData) =>
   putRequest(`/academics/${type}/guide`, { body: formData, jsessionID: true });
@@ -70,9 +71,9 @@ export const deleteCourse = async (code: string) =>
 const curriculumUrl = '/academics/undergraduate/curriculum';
 
 export const getCurriculum = () =>
-  getRequest(curriculumUrl, undefined, {
+  getRequest<Curriculum[]>(curriculumUrl, undefined, {
     next: { tags: [FETCH_TAG_CURRICULUM] },
-  }) as Promise<Curriculum[]>;
+  });
 
 export const postCurriculum = (data: Curriculum) =>
   postRequest(curriculumUrl, {
@@ -92,6 +93,7 @@ export const deleteCurriculum = async (year: number) =>
   deleteRequest(`${curriculumUrl}/${year}`, { jsessionID: true });
 
 /* 필수 교양 과목 */
+
 const generalStudiesUrl = '/academics/undergraduate/general-studies-requirements';
 
 export const getGeneralStudies = () =>
@@ -119,6 +121,7 @@ export const deleteGeneralStudies = async (year: number) =>
   });
 
 /** 졸업 규정 */
+
 export const getDegreeRequirements = () =>
   getRequest<DegreeRequirements>(`/academics/undergraduate/degree-requirements`, undefined, {
     next: { tags: [FETCH_TAG_DEGREE] },
@@ -128,10 +131,11 @@ export const putDegreeRequirements = (formData: FormData) =>
   putRequest(`/academics/undergraduate/degree-requirements`, { body: formData, jsessionID: true });
 
 /** 교과목 변경 내역 */
+
 export const getCourseChanges = (type: StudentType) =>
-  getRequest(`/academics/${type}/course-changes`, undefined, {
+  getRequest<CourseChange[]>(`/academics/${type}/course-changes`, undefined, {
     next: { tags: [FETCH_TAG_COURSE_CHANGES] },
-  }) as Promise<CourseChange[]>;
+  });
 
 export const postCourseChanges = (type: StudentType, data: CourseChange) =>
   postRequest(`/academics/${type}/course-changes`, {
@@ -153,8 +157,47 @@ export const deleteCourseChanges = async (type: StudentType, year: number) =>
   });
 
 /** 장학 제도 */
-export const getScholarshipList = (type: string) =>
-  getRequest<ScholarshipList>(`/academics/${type}/scholarship`);
 
-export const getScholarship = (id: number) =>
-  getRequest<Scholarship>(`/academics/scholarship/${id}`);
+export const getScholarshipList = (type: StudentType) =>
+  getRequest<ScholarshipList>(`/academics/${type}/scholarship`, undefined, {
+    next: { tags: [FETCH_TAG_SCHOLARSHIP] },
+  });
+
+export const putScholarshipGuide = (type: StudentType, description: string) =>
+  putRequestV2(`/academics/${type}/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ description }),
+    jsessionID: true,
+  });
+
+export const getScholarship = async (id: number): Promise<WithLanguage<Scholarship>> => {
+  const res = await getRequestV2<{ first: Scholarship; second: Scholarship }>(
+    `/academics/scholarship/${id}`,
+    undefined,
+    {
+      next: { tags: [FETCH_TAG_SCHOLARSHIP] },
+    },
+  );
+  const isFirstKo = res.first.language === 'ko';
+  return isFirstKo ? { ko: res.first, en: res.second } : { ko: res.second, en: res.first };
+};
+
+export const postScholarship = (
+  type: StudentType,
+  data: { koName: string; koDescription: string; enName: string; enDescription: string },
+) =>
+  postRequestV2(`/academics/${type}/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putScholarship = async (id: number, data: WithLanguage<Scholarship>) =>
+  putRequestV2(`/academics/scholarship`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteScholarship = async (id: number) =>
+  deleteRequestV2(`/academics/scholarship/${id}`, { jsessionID: true });

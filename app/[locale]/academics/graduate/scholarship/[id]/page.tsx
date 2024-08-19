@@ -1,34 +1,33 @@
-import { Metadata } from 'next';
-
 import { getScholarship } from '@/apis/academics';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
+import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { graduateScholarship } from '@/utils/segmentNode';
 
 import ScholarshipDetail from '../../../helper/ScholarshipDetail';
 
-export async function generateMetadata({
-  params: { locale, id },
-}: {
-  params: { locale: string; id: string };
-}): Promise<Metadata> {
+interface ScholarshipDetailProps {
+  params: { locale: Language; id: string };
+}
+
+export async function generateMetadata({ params: { locale, id } }: ScholarshipDetailProps) {
   try {
     const scholarship = await getScholarship(parseInt(id));
 
     return await getMetadata({
       locale,
       node: graduateScholarship,
-      metadata: { title: scholarship.name },
+      metadata: { title: scholarship[locale].name },
     });
   } catch {
     return {};
   }
 }
 
-export default async function GraduateScholarshipPage({ params }: { params: { id: string } }) {
+export default async function GraduateScholarshipPage({ params }: ScholarshipDetailProps) {
   try {
     const scholarship = await getScholarship(parseInt(params.id));
-    return <ScholarshipDetail scholarship={scholarship} />;
+    return <ScholarshipDetail scholarship={scholarship[params.locale]} type="graduate" />;
   } catch {
     return <InvalidIDFallback rawID={params.id} />;
   }
