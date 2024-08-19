@@ -1,3 +1,4 @@
+import { FETCH_TAG_GROUP } from '@/constants/network';
 import { Language } from '@/types/language';
 import {
   ResearchCenter,
@@ -10,7 +11,11 @@ import {
 import { getRequest } from '.';
 
 export const getResearchGroups = (language: Language) =>
-  getRequest<ResearchGroupList>('/research/groups', { language });
+  getRequest<ResearchGroupList>(
+    '/research/groups',
+    { language },
+    { next: { tags: [FETCH_TAG_GROUP] } },
+  );
 
 export const getResearchCenters = (language: Language) =>
   getRequest<ResearchCenter[]>('/research/centers', { language });

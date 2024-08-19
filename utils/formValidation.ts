@@ -1,6 +1,7 @@
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
+import { ResearchGroupEditorContent } from '@/components/editor/ResearchGroupEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
@@ -77,6 +78,16 @@ export const validateCourseForm = (content: Course) => {
 };
 
 export const validateScholarshipForm = (content: BasicEditorContent) => {
+  if (!content.name.ko) {
+    throw new Error('제목을 입력해주세요');
+  } else if (!content.description.ko) {
+    throw new Error('내용을 입력해주세요');
+  } else if (!content.name.en || !content.description.en) {
+    throw new Error('영문 정보를 입력해주세요');
+  }
+};
+
+export const validateResearchGroupForm = (content: ResearchGroupEditorContent) => {
   if (!content.name.ko) {
     throw new Error('제목을 입력해주세요');
   } else if (!content.description.ko) {
