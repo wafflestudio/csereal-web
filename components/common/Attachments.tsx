@@ -26,7 +26,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
   return (
     <a
       className="flex text-sm font-normal hover:underline"
-      href={encodeURIComponent(url)}
+      href={encodeURI(url)}
       download={name}
       target="_blank"
       rel="noopener noreferrer"
