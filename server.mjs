@@ -55,7 +55,6 @@ const startServer = async () => {
       res.sendStatus(404);
       return;
     }
-
     override500(res);
     return handleRequest(req, res);
   });
