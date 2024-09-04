@@ -2,7 +2,7 @@ import { FETCH_TAG_CLUB } from '@/constants/network';
 import { AboutContent, Club, Direction, Facilities, FutureCareers } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 
-import { getRequest, getRequestV2, postRequestV2 } from '.';
+import { deleteRequestV2, getRequest, getRequestV2, postRequestV2, putRequestV2 } from '.';
 
 export const getOverview = () => getRequest<AboutContent>('/about/overview');
 
@@ -27,3 +27,9 @@ export const getClubs = () =>
 
 export const postClub = async (formData: FormData) =>
   postRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
+
+export const putClub = (formData: FormData) =>
+  putRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
+
+export const deleteClub = async (id: number) =>
+  deleteRequestV2(`/about/student-clubs/${id}`, { jsessionID: true });

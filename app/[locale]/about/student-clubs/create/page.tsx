@@ -40,7 +40,7 @@ export default function StudentClubCreatePage() {
   };
 
   return (
-    <PageLayout title="동아리 소개 추가" titleType="big">
+    <PageLayout title="동아리 소개 추가" titleType="big" hideNavbar>
       <BasicEditor
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
         showName

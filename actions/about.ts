@@ -3,7 +3,7 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { postClub } from '@/apis/about';
+import { deleteClub, postClub } from '@/apis/about';
 import { FETCH_TAG_CLUB } from '@/constants/network';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
@@ -29,11 +29,8 @@ export const postClubAction = withErrorHandler(async (formData: FormData) => {
 //   },
 // );
 
-// export const deleteClubAction = withErrorHandler(
-//   async (ids: WithLanguage<number>, status: ClubStatus) => {
-//     await deleteClub(ids);
-
-//     revalidateTag(FETCH_TAG_Club);
-//     redirect(getClubPath(status));
-//   },
-// );
+export const deleteClubAction = withErrorHandler(async (id: number) => {
+  await deleteClub(id);
+  revalidateTag(FETCH_TAG_CLUB);
+  redirect(clubPath);
+});
