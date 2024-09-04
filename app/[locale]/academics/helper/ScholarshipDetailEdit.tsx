@@ -29,7 +29,7 @@ export default function ScholarshipDetailEdit({
   const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content);
+    validateBasicForm(content, true);
 
     const { name, description } = content;
     const newData = {

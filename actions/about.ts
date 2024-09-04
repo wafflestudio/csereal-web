@@ -3,10 +3,10 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteClub, postClub, putClub } from '@/apis/about';
-import { FETCH_TAG_CLUB } from '@/constants/network';
+import { deleteClub, postClub, putClub, putContact } from '@/apis/about';
+import { FETCH_TAG_CLUB, FETCH_TAG_CONTACT } from '@/constants/network';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
+import { contact, studentClubs } from '@/utils/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -30,4 +30,14 @@ export const deleteClubAction = withErrorHandler(async (id: number) => {
   await deleteClub(id);
   revalidateTag(FETCH_TAG_CLUB);
   redirect(clubPath);
+});
+
+/** 연락처 */
+
+const contactPath = getPath(contact);
+
+export const putContactAction = withErrorHandler(async (formData: FormData) => {
+  await putContact(formData);
+  revalidateTag(FETCH_TAG_CONTACT);
+  redirect(contactPath);
 });

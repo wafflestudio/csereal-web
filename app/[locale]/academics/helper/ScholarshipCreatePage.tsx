@@ -21,7 +21,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
   const handleCancel = () => router.push(type === 'undergraduate' ? undergraduate : graduate);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content);
+    validateBasicForm(content, true);
 
     try {
       handleServerAction(

@@ -1,11 +1,9 @@
+import { Attachment } from '@/components/common/Attachments';
+
 export type AboutContent = {
   description: string;
   imageURL: string;
-  attachments: {
-    name: string;
-    url: string;
-    bytes: number;
-  }[];
+  attachments: Attachment[];
 };
 
 export interface FutureCareers {

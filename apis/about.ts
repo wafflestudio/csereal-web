@@ -1,6 +1,6 @@
-import { FETCH_TAG_CLUB } from '@/constants/network';
+import { FETCH_TAG_CLUB, FETCH_TAG_CONTACT } from '@/constants/network';
 import { AboutContent, Club, Direction, Facilities, FutureCareers } from '@/types/about';
-import { WithLanguage } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 
 import { deleteRequestV2, getRequest, getRequestV2, postRequestV2, putRequestV2 } from '.';
 
@@ -13,8 +13,6 @@ export const getHistory = () => getRequest<AboutContent>('/about/history');
 export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
 
 export const getFacilities = () => getRequest<Facilities>('/about/facilities');
-
-export const getContact = () => getRequest<AboutContent>('/about/contact');
 
 export const getDirections = () => getRequest<Direction[]>('/about/directions');
 
@@ -33,3 +31,13 @@ export const putClub = (formData: FormData) =>
 
 export const deleteClub = async (id: number) =>
   deleteRequestV2(`/about/student-clubs/${id}`, { jsessionID: true });
+
+/** 연락처 */
+
+export const getContact = (language: Language) =>
+  getRequest<AboutContent>(`/about/contact?language=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_CONTACT] },
+  });
+
+export const putContact = (formData: FormData) =>
+  putRequestV2('/about/contact', { body: formData, jsessionID: true });
