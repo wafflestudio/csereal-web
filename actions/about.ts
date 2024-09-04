@@ -3,12 +3,22 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteClub, postClub, putClub, putContact } from '@/apis/about';
-import { FETCH_TAG_CLUB, FETCH_TAG_CONTACT } from '@/constants/network';
+import { deleteClub, postClub, putClub, putContact, putHistory } from '@/apis/about';
+import { FETCH_TAG_CLUB, FETCH_TAG_CONTACT, FETCH_TAG_HISTORY } from '@/constants/network';
 import { getPath } from '@/utils/page';
-import { contact, studentClubs } from '@/utils/segmentNode';
+import { contact, history, studentClubs } from '@/utils/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
+
+/** 연혁 */
+
+const historyPath = getPath(history);
+
+export const puthistoryAction = withErrorHandler(async (formData: FormData) => {
+  await putHistory(formData);
+  revalidateTag(FETCH_TAG_HISTORY);
+  redirect(historyPath);
+});
 
 /** 동아리 */
 
