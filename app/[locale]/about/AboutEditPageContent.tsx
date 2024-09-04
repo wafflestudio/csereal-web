@@ -10,6 +10,7 @@ import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { validateBasicForm } from '@/utils/formValidation';
+import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -18,20 +19,14 @@ type PostType = 'overview' | 'greetings' | 'history' | 'contact';
 
 interface AboutEditPageContentProps {
   data: WithLanguage<AboutContent>;
-  fallbackPath: string;
   type: PostType;
   segNode: SegmentNode;
 }
 
-export default function AboutEditPageContent({
-  data,
-  fallbackPath,
-  type,
-  segNode,
-}: AboutEditPageContentProps) {
+export default function AboutEditPageContent({ data, type, segNode }: AboutEditPageContentProps) {
   const router = useRouter();
 
-  const handleCancel = () => router.push(fallbackPath);
+  const handleCancel = () => router.push(getPath(segNode));
 
   const handleSubmit = async (content: BasicEditorContent) => {
     validateBasicForm(content);
