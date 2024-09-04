@@ -3,14 +3,18 @@ export const dynamic = 'force-dynamic';
 import { ReactNode } from 'react';
 
 import { getClubs } from '@/apis/about';
-import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
+import { OrangeButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { Link } from '@/navigation';
 import { Language } from '@/types/language';
 import { findSelectedItemV2 } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
+
+import ClubDetails from './ClubDetails';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
   return await getMetadata({ locale, node: studentClubs });
@@ -29,6 +33,13 @@ export default async function StudentClubsPage({ searchParams, params }: Student
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
+      <LoginVisible staff>
+        <div className="mt-11 text-right">
+          <Link href={`${clubPath}/create`}>
+            <OrangeButton title="추가" />
+          </Link>
+        </div>
+      </LoginVisible>
       <SelectionList
         names={clubs.map((club) => ({ ko: club.ko.name, en: club.en.name }))}
         selectedItemNameKo={selectedClub?.ko.name ?? ''}

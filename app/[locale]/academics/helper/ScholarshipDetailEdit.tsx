@@ -7,7 +7,7 @@ import { useRouter } from '@/navigation';
 import { Scholarship, StudentType } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
-import { validateScholarshipForm } from '@/utils/formValidation';
+import { validateBasicForm } from '@/utils/formValidation';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
@@ -29,7 +29,7 @@ export default function ScholarshipDetailEdit({
   const handleCancel = () => router.replace(`${academicsPath}/${type}/scholarship`);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateScholarshipForm(content);
+    validateBasicForm(content);
 
     const { name, description } = content;
     const newData = {

@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { StudentType } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
-import { validateScholarshipForm } from '@/utils/formValidation';
+import { validateBasicForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -18,10 +18,10 @@ const graduate = getPath(graduateScholarship);
 export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
   const router = useRouter();
 
-  const handleCancel = () => router.replace(type === 'undergraduate' ? undergraduate : graduate);
+  const handleCancel = () => router.push(type === 'undergraduate' ? undergraduate : graduate);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateScholarshipForm(content);
+    validateBasicForm(content);
 
     try {
       handleServerAction(

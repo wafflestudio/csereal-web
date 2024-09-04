@@ -76,7 +76,7 @@ export const validateCourseForm = (content: Course) => {
   }
 };
 
-export const validateScholarshipForm = (content: BasicEditorContent) => {
+export const validateBasicForm = (content: BasicEditorContent) => {
   if (!content.name.ko) {
     throw new Error('제목을 입력해주세요');
   } else if (!content.description.ko) {
