@@ -24,8 +24,8 @@ export interface FutureCareers {
 }
 
 export interface Club {
+  id: number;
   name: string;
-  engName: string;
   description: string;
   imageURL?: string;
 }
