@@ -15,7 +15,7 @@ export const contentToFormData = (
     attachments?: PostEditorFile[];
     image?: PostEditorImage;
   },
-  mainImage?: boolean, // 같은 기능인데 이미지 속성명이 달라서 구분하기 위해 일단 변수 도입. 백엔드에 속성명 통일 요청함
+  mainImage?: boolean, // 같은 기능인데 이미지 속성명이 다른 경우를 구분하기 위해 일단 변수 도입. 백엔드에 속성명 통일 요청함
 ) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();

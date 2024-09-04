@@ -11,6 +11,7 @@ import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
+import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 const clubPath = getPath(studentClubs);
@@ -41,7 +42,7 @@ export default function ClubDetails({
         <LoginVisible staff>
           <div className="flex h-fit justify-end gap-3">
             <DeleteButton onDelete={handleDelete} />
-            <EditButton href={`${clubPath}/edit?id=${club.ko.id}`} />
+            <EditButton href={`${clubPath}/edit?selected=${replaceSpaceWithDash(club.en.name)}`} />
           </div>
         </LoginVisible>
       </div>

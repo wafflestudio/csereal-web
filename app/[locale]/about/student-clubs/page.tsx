@@ -29,7 +29,7 @@ const clubPath = getPath(studentClubs);
 
 export default async function StudentClubsPage({ searchParams, params }: StudentClubsPageProps) {
   const clubs = await getClubs();
-  const selectedClub = findSelectedItemV2(clubs, searchParams.selected);
+  const selectedClub = findSelectedItemV2(clubs, searchParams.selected, clubPath);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
