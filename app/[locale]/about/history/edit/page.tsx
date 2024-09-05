@@ -6,7 +6,5 @@ import AboutEditPageContent from '../../AboutEditPageContent';
 export default async function HistoryEditPage() {
   const [koData, enData] = await Promise.all([getHistory('ko'), getHistory('en')]);
 
-  return (
-    <AboutEditPageContent data={{ ko: koData, en: enData }} segNode={history} type="history" />
-  );
+  return <AboutEditPageContent data={{ ko: koData, en: enData }} node={history} />;
 }

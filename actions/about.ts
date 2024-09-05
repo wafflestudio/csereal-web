@@ -3,18 +3,52 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteClub, postClub, putClub, putContact, putHistory } from '@/apis/about';
-import { FETCH_TAG_CLUB, FETCH_TAG_CONTACT, FETCH_TAG_HISTORY } from '@/constants/network';
+import {
+  deleteClub,
+  postClub,
+  putClub,
+  putContact,
+  putGreetings,
+  putHistory,
+  putOverview,
+} from '@/apis/about';
+import {
+  FETCH_TAG_CLUB,
+  FETCH_TAG_CONTACT,
+  FETCH_TAG_GREETINGS,
+  FETCH_TAG_HISTORY,
+  FETCH_TAG_OVERVIEW,
+} from '@/constants/network';
 import { getPath } from '@/utils/page';
-import { contact, history, studentClubs } from '@/utils/segmentNode';
+import { contact, greetings, history, overview, studentClubs } from '@/utils/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
+
+/** 학부 소개 */
+
+const overviewPath = getPath(overview);
+
+export const putOverviewAction = withErrorHandler(async (formData: FormData) => {
+  await putOverview(formData);
+  revalidateTag(FETCH_TAG_OVERVIEW);
+  redirect(overviewPath);
+});
+
+/** 학부장 인사말 */
+
+const greetingsPath = getPath(greetings);
+
+export const putGreetingsAction = withErrorHandler(async (formData: FormData) => {
+  await putGreetings(formData);
+  revalidateTag(FETCH_TAG_GREETINGS);
+  redirect(greetingsPath);
+});
 
 /** 연혁 */
 
 const historyPath = getPath(history);
 
-export const puthistoryAction = withErrorHandler(async (formData: FormData) => {
+export const putHistoryAction = withErrorHandler(async (formData: FormData) => {
   await putHistory(formData);
   revalidateTag(FETCH_TAG_HISTORY);
   redirect(historyPath);

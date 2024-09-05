@@ -2,7 +2,7 @@ import { Attachment } from '@/components/common/Attachments';
 
 export type AboutContent = {
   description: string;
-  imageURL: string;
+  imageURL: string | null;
   attachments: Attachment[];
 };
 

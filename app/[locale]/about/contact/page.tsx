@@ -32,13 +32,17 @@ export default async function ContactPage({ params: { locale } }: ContactPagePro
       </LoginVisible>
       <HTMLViewer
         htmlContent={description}
-        topRightContent={{
-          type: 'image',
-          widthPX: 240,
-          heightPX: 360,
-          marginTopPx: 28,
-          url: imageURL,
-        }}
+        topRightContent={
+          imageURL
+            ? {
+                type: 'image',
+                widthPX: 240,
+                heightPX: 360,
+                marginTopPx: 28,
+                url: imageURL,
+              }
+            : undefined
+        }
         className="mt-[-1.5rem]"
       />
     </PageLayout>

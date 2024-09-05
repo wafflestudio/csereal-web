@@ -15,7 +15,7 @@ export const contentToFormData = (
     attachments?: PostEditorFile[];
     image?: PostEditorImage;
   },
-  mainImage?: boolean, // 같은 기능인데 이미지 속성명이 다른 경우를 구분하기 위해 일단 변수 도입. 백엔드에 속성명 통일 요청함
+  mainImage?: boolean, // TODO: 동일한 기능인데 이미지 속성명이 다른 경우를 같이 처리하기 위해 일단 변수 도입. 백엔드에 속성명 통일 요청함
 ) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
@@ -35,6 +35,7 @@ export const contentToFormData = (
     );
   }
 
+  // TODO: 동일한 기능인데 이미지 속성명이 다른 경우를 같이 처리하기 위해 일단 변수 도입. 백엔드에 속성명 통일 요청함
   if (image && isLocalImage(image)) {
     if (mainImage) {
       formData.append(type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
