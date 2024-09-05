@@ -5,9 +5,12 @@ import { redirect } from 'next/navigation';
 
 import {
   deleteClub,
+  deleteFacilities as deleteFacility,
   postClub,
+  postFacilities as postFacility,
   putClub,
   putContact,
+  putFacilities as putFacility,
   putGreetings,
   putHistory,
   putOverview,
@@ -15,12 +18,20 @@ import {
 import {
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
 import { getPath } from '@/utils/page';
-import { contact, greetings, history, overview, studentClubs } from '@/utils/segmentNode';
+import {
+  contact,
+  facilities,
+  greetings,
+  history,
+  overview,
+  studentClubs,
+} from '@/utils/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -74,6 +85,28 @@ export const deleteClubAction = withErrorHandler(async (id: number) => {
   await deleteClub(id);
   revalidateTag(FETCH_TAG_CLUB);
   redirect(clubPath);
+});
+
+/** 시설 안내 */
+
+const facilitiesPath = getPath(facilities);
+
+export const postFacilityAction = withErrorHandler(async (formData: FormData) => {
+  await postFacility(formData);
+  revalidateTag(FETCH_TAG_FACILITIES);
+  redirect(facilitiesPath);
+});
+
+export const putFacilityAction = withErrorHandler(async (id: number, formData: FormData) => {
+  await putFacility(id, formData);
+  revalidateTag(FETCH_TAG_FACILITIES);
+  redirect(facilitiesPath);
+});
+
+export const deleteFacilityAction = withErrorHandler(async (id: number) => {
+  await deleteFacility(id);
+  revalidateTag(FETCH_TAG_FACILITIES);
+  redirect(facilitiesPath);
 });
 
 /** 연락처 */

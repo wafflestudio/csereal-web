@@ -1,43 +1,57 @@
+'use client';
+
+import { deleteFacilityAction } from '@/actions/about';
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
+import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import Distance from '@/public/image/distance.svg';
-import { Facilities } from '@/types/about';
+import { Facilities, Facility } from '@/types/about';
+import { errorToStr } from '@/utils/error';
+import { getPath } from '@/utils/page';
+import { facilities } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
+
+const facilitiesPath = getPath(facilities);
 
 export default function FacilitesList({ facilities }: { facilities: Facilities }) {
   return (
-    <div className="flex flex-col divide-y divide-neutral-200 pt-2 sm:pt-6">
-      {facilities.map((post, index) => (
-        <FacilitiesRow
-          key={index}
-          name={post.name}
-          description={post.description}
-          location={post.locations.join(', ')}
-          imageURL={post.imageURL ?? ''} // TODO: imageURL이 non-null되면 수정
-        />
+    <div className="mt-[-20px] flex flex-col divide-y divide-neutral-200">
+      {facilities.map((facility) => (
+        <FacilitiesRow key={facility.id} facility={facility} />
       ))}
     </div>
   );
 }
 
-export interface FacilitiesRowProps {
-  name: string;
-  description: string;
-  location: string;
-  imageURL: string;
-}
+function FacilitiesRow({ facility }: { facility: Facility }) {
+  const handleDelete = async () => {
+    try {
+      handleServerAction(await deleteFacilityAction(facility.id));
+      successToast('시설 안내를 삭제했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
+    }
+  };
 
-function FacilitiesRow({ name, description, location, imageURL }: FacilitiesRowProps) {
   return (
     <article className={`flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row`}>
       <div className="flex flex-col sm:w-[35.5rem]">
-        <h3 className="mb-3 text-base font-bold leading-5">{name}</h3>
-        <HTMLViewer htmlContent={description} />
+        <h3 className="mb-3 text-base font-bold leading-5">{facility.name}</h3>
+        <HTMLViewer htmlContent={facility.description} />
         <div className="flex translate-x-[-4px] items-start gap-px">
           <Distance className="shrink-0" />
-          <p className="pt-0.5 text-md text-neutral-500">{location}</p>
+          <p className="pt-0.5 text-md text-neutral-500">{facility.locations.join(', ')}</p>
         </div>
+        <LoginVisible staff>
+          <div className="mt-5 flex gap-3">
+            <DeleteButton onDelete={handleDelete} />
+            <EditButton href={`${facilitiesPath}/${facility.id}`} />
+          </div>
+        </LoginVisible>
       </div>
-      <FacilitiesRowImage imageURL={imageURL} />
+      <FacilitiesRowImage imageURL={facility.imageURL ?? ''} />
     </article>
   );
 }

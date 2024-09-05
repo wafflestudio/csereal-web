@@ -36,6 +36,14 @@ export type Facilities = {
   imageURL: string | null;
 }[];
 
+export type Facility = {
+  id: number;
+  name: string;
+  description: string;
+  locations: string[];
+  imageURL: string | null;
+};
+
 export interface Contact {
   description: string;
   imageURL: string;

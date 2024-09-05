@@ -36,7 +36,7 @@ export default async function StudentClubsPage({ searchParams, params }: Student
       <LoginVisible staff>
         <div className="mt-11 text-right">
           <Link href={`${clubPath}/create`}>
-            <OrangeButton title="추가" />
+            <OrangeButton title="동아리 추가" />
           </Link>
         </div>
       </LoginVisible>

@@ -1,6 +1,7 @@
 import {
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
@@ -32,8 +33,6 @@ export const putGreetings = (formData: FormData) =>
 
 export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
 
-export const getFacilities = () => getRequest<Facilities>('/about/facilities');
-
 export const getDirections = () => getRequest<Direction[]>('/about/directions');
 
 /** 연혁 */
@@ -61,6 +60,22 @@ export const putClub = (formData: FormData) =>
 
 export const deleteClub = async (id: number) =>
   deleteRequestV2(`/about/student-clubs/${id}`, { jsessionID: true });
+
+/** 시설 안내 */
+
+export const getFacilities = () =>
+  getRequest<Facilities>('/about/facilities', undefined, {
+    next: { tags: [FETCH_TAG_FACILITIES] },
+  });
+
+export const postFacilities = async (formData: FormData) =>
+  postRequestV2('/about/facilities', { body: formData, jsessionID: true });
+
+export const putFacilities = (id: number, formData: FormData) =>
+  putRequestV2(`/about/facilities/${id}`, { body: formData, jsessionID: true });
+
+export const deleteFacilities = async (id: number) =>
+  deleteRequestV2(`/about/facilities/${id}`, { jsessionID: true });
 
 /** 연락처 */
 

@@ -30,4 +30,5 @@ export const FETCH_TAG_OVERVIEW = 'overview';
 export const FETCH_TAG_GREETINGS = 'greetings';
 export const FETCH_TAG_HISTORY = 'history';
 export const FETCH_TAG_CLUB = 'club';
+export const FETCH_TAG_FACILITIES = 'facilities';
 export const FETCH_TAG_CONTACT = 'contact';

@@ -1,6 +1,5 @@
 export const dynamic = 'force-dynamic';
 
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 import { getDirections } from '@/apis/about';
@@ -14,11 +13,7 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: directions });
 }
 

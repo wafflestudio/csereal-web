@@ -1,4 +1,5 @@
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
+import { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
@@ -86,4 +87,18 @@ export const validateBasicForm = (content: BasicEditorContent, titleRequired?: b
   }
 };
 
-// TODO: validateBasicForm
+export const validateFacilityForm = (content: WithLanguage<FacilityEditorContent>) => {
+  const isValueEmpty = (value: ValueOf<FacilityEditorContent>) =>
+    !value || (Array.isArray(value) && value.length === 0);
+
+  if (
+    Object.entries(content.ko).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
+  ) {
+    throw new Error('모든 정보를 입력해주세요');
+  }
+  if (
+    Object.entries(content.en).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
+  ) {
+    throw new Error('영문 정보도 입력해주세요');
+  }
+};
