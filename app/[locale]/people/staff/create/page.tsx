@@ -22,10 +22,14 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
   const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
     validateStaffForm(content);
 
-    const formData = contentToFormData('CREATE', {
-      requestObject: getRequestObject(content),
-      image: content.ko.image,
-    });
+    const formData = contentToFormData(
+      'CREATE',
+      {
+        requestObject: getRequestObject(content),
+        image: content.ko.image,
+      },
+      'image',
+    );
 
     try {
       handleServerAction(await postStaffAction(formData, locale));

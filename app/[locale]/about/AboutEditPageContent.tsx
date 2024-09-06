@@ -38,19 +38,15 @@ export default function AboutEditPageContent({
   const handleSubmit = async (content: BasicEditorContent) => {
     validateBasicForm(content);
 
-    const formData = contentToFormData(
-      'EDIT',
-      {
-        requestObject: getRequestObject(
-          content,
-          data.ko.imageURL !== null && content.mainImage === null,
-          { ko: data.ko.attachments, en: data.en.attachments },
-        ),
-        image: content.mainImage,
-        attachments: content.attachments,
-      },
-      true,
-    );
+    const formData = contentToFormData('EDIT', {
+      requestObject: getRequestObject(
+        content,
+        data.ko.imageURL !== null && content.mainImage === null,
+        { ko: data.ko.attachments, en: data.en.attachments },
+      ),
+      image: content.mainImage,
+      attachments: content.attachments,
+    });
 
     try {
       const submitAction = getSubmitAction(node.segment);

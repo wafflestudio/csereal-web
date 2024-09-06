@@ -22,14 +22,10 @@ export default function StudentClubCreatePage() {
   const handleSubmit = async (content: BasicEditorContent) => {
     validateBasicForm(content);
 
-    const formData = contentToFormData(
-      'CREATE',
-      {
-        requestObject: getRequestObject(content),
-        image: content.mainImage,
-      },
-      true,
-    );
+    const formData = contentToFormData('CREATE', {
+      requestObject: getRequestObject(content),
+      image: content.mainImage,
+    });
 
     try {
       handleServerAction(await postClubAction(formData));

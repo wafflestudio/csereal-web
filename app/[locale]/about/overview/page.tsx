@@ -64,12 +64,6 @@ export default async function OverviewPage({ params }: OverviewPageProps) {
       </div>
       <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[22.5rem]">
         <h2 className="mb-6 text-base font-semibold">{t('학부 소개 책자')}</h2>
-        {/**
-         * TODO: 안내 책자 이미지는 그냥 없애버리는 거 어떤가요
-         * 프론트에 박혀있는 거라 편집 기능을 넣을 수가 없는데 이제와서 백엔드 디비에 넣기도 힘들고 (데이터 구조가 달라질 거라)
-         * 없으면 없는 대로 적당히 넘어갈 수 있을 것 같음
-         */}
-
         <div className="mb-10 flex flex-col gap-6 sm:flex-row">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />

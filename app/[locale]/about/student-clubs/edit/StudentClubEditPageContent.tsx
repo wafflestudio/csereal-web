@@ -24,18 +24,14 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
   const handleSubmit = async (content: BasicEditorContent) => {
     validateBasicForm(content, true);
 
-    const formData = contentToFormData(
-      'EDIT',
-      {
-        requestObject: getRequestObject(
-          { ko: data.ko.id, en: data.en.id },
-          content,
-          data.ko.imageURL !== null && content.mainImage === null,
-        ),
-        image: content.mainImage,
-      },
-      true,
-    );
+    const formData = contentToFormData('EDIT', {
+      requestObject: getRequestObject(
+        { ko: data.ko.id, en: data.en.id },
+        content,
+        data.ko.imageURL !== null && content.mainImage === null,
+      ),
+      image: content.mainImage,
+    });
 
     try {
       handleServerAction(await putClubAction(formData));

@@ -37,10 +37,14 @@ export default function FacultyEditPageContent({
   const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
 
-    const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(content),
-      image: content.ko.image,
-    });
+    const formData = contentToFormData(
+      'EDIT',
+      {
+        requestObject: getRequestObject(content),
+        image: content.ko.image,
+      },
+      'image',
+    );
 
     try {
       handleServerAction(

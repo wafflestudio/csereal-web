@@ -33,10 +33,14 @@ export default function StaffEditPageContent({
       content,
       data.ko.imageURL !== null && content.ko.image === null,
     );
-    const formData = contentToFormData('EDIT', {
-      requestObject,
-      image: content.ko.image,
-    });
+    const formData = contentToFormData(
+      'EDIT',
+      {
+        requestObject,
+        image: content.ko.image,
+      },
+      'image',
+    );
 
     try {
       handleServerAction(

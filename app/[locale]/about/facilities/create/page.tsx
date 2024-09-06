@@ -22,14 +22,10 @@ export default function FacilitiesCreatePage() {
 
   const handleSubmit = async (content: WithLanguage<FacilityEditorContent>) => {
     validateFacilityForm(content);
-    const formData = contentToFormData(
-      'CREATE',
-      {
-        requestObject: getRequestObject(content),
-        image: content.ko.mainImage,
-      },
-      true,
-    );
+    const formData = contentToFormData('CREATE', {
+      requestObject: getRequestObject(content),
+      image: content.ko.mainImage,
+    });
 
     try {
       handleServerAction(await postFacilityAction(formData));
