@@ -3,15 +3,16 @@ export const dynamic = 'force-dynamic';
 import { ReactNode } from 'react';
 
 import { getDirections } from '@/apis/about';
-import DirectionsDetails from '@/app/[locale]/about/directions/DirectionsDetails';
-import LocationGuide from '@/app/[locale]/about/directions/LocationGuide';
-import LocationMap from '@/app/[locale]/about/directions/LocationMap';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { findSelectedItem } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
+
+import DirectionsDetails from './DirectionsDetails';
+import LocationGuide from './LocationGuide';
+import LocationMap from './LocationMap';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: directions });
