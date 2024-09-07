@@ -47,7 +47,7 @@ function FacilitiesRow({ facility }: { facility: Facility }) {
         <LoginVisible staff>
           <div className="mt-5 flex gap-3">
             <DeleteButton onDelete={handleDelete} />
-            <EditButton href={`${facilitiesPath}/${facility.id}`} />
+            <EditButton href={`${facilitiesPath}/edit?id=${facility.id}`} />
           </div>
         </LoginVisible>
       </div>
