@@ -32,9 +32,10 @@ const startServer = async () => {
   const handleRequest = nextServer.getRequestHandler();
   await nextServer.prepare();
 
-  const server = express();
+  const app = express();
+  app.disable('x-powered-by');
 
-  server.all('*', (req, res) => {
+  app.all('*', (req, res) => {
     if (
       // 'Unix 파일 매개변수 변경' 취약점을 게으르게 대응
       (!req.url.includes('next') && req.url.includes('..')) ||
@@ -49,18 +50,19 @@ const startServer = async () => {
       // '잠재적 순서 지정 정보 발견' 취약점 대응
       req.path.includes('order') ||
       // '애플리케이션 테스트 스크립트 발견' 취약점 대응
-      req.path.includes('test')
+      req.path.includes('test') ||
+      // 'ASP.NET 사용자 정의 오류 경로 노출' 취약점 대응
+      req.path.includes('AppScan')
     ) {
       console.log(`취약점 관련되어 404 처리: ${req.url}`);
       res.sendStatus(404);
       return;
     }
-
     override500(res);
     return handleRequest(req, res);
   });
 
-  server.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`PORT: ${PORT}`);
     console.log(`IS_DEV: ${IS_DEV}`);
   });
