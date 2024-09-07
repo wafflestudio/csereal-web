@@ -1,21 +1,37 @@
 import { FETCH_TAG_GROUP } from '@/constants/network';
-import { Language } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 import {
   ResearchCenter,
-  ResearchGroupList,
+  ResearchGroup,
   ResearchLab,
   SimpleResearchLab,
   TopConferenceList,
 } from '@/types/research';
 
-import { getRequest } from '.';
+import { getRequest, getRequestV2, postRequestV2 } from '.';
+
+/** 연구 그룹 (스트림) */
 
 export const getResearchGroups = (language: Language) =>
-  getRequest<ResearchGroupList>(
+  getRequestV2<ResearchGroup[]>(
     '/research/groups',
     { language },
     { next: { tags: [FETCH_TAG_GROUP] } },
   );
+
+export const getResearchGroup = (id: number) =>
+  getRequestV2<WithLanguage<ResearchGroup>>(`/research/${id}`, undefined, {
+    next: { tags: [FETCH_TAG_GROUP] },
+  });
+
+export const postResearchGroup = (formData: FormData) =>
+  postRequestV2<WithLanguage<ResearchGroup>>('/research', { body: formData, jsessionID: true });
+
+// export const putFaculty = (ids: WithLanguage<number>, formData: FormData) =>
+//   putRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
+
+// export const deleteFaculty = (ids: WithLanguage<number>) =>
+//   deleteRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 export const getResearchCenters = (language: Language) =>
   getRequest<ResearchCenter[]>('/research/centers', { language });
@@ -23,6 +39,6 @@ export const getResearchCenters = (language: Language) =>
 export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
 
 export const getResearchLabs = (language: Language) =>
-  getRequest<SimpleResearchLab[]>('/research/labs', { language });
+  getRequestV2<SimpleResearchLab[]>('/research/labs', { language });
 
 export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference/page');

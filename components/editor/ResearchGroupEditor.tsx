@@ -4,7 +4,6 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';
 import { Language, WithLanguage } from '@/types/language';
-import { SimpleResearchLab } from '@/types/research';
 import { isContentEmpty } from '@/utils/post';
 
 import { EditAction, EditActionButtons } from './common/ActionButtons';
@@ -23,27 +22,20 @@ export interface ResearchGroupEditorContent {
   description: WithLanguage<string>;
   name: WithLanguage<string>;
   mainImage: PostEditorImage;
-  labs: number[];
 }
 
 const DEFAULT_CONTENT: ResearchGroupEditorContent = {
   description: { ko: '', en: '' },
   name: { ko: '', en: '' },
   mainImage: null,
-  labs: [],
 };
 
 interface ResearchGroupEditorProps {
   actions: EditAction<ResearchGroupEditorContent>;
   initialContent?: ResearchGroupEditorContent;
-  labs: WithLanguage<SimpleResearchLab[]>;
 }
 
-export default function ResearchGroupEditor({
-  actions,
-  initialContent,
-  labs,
-}: ResearchGroupEditorProps) {
+export default function ResearchGroupEditor({ actions, initialContent }: ResearchGroupEditorProps) {
   const [language, setLanguage] = useState<Language>('ko');
   const editorRef = { ko: useRef<SunEditorCore>(), en: useRef<SunEditorCore>() };
   const [content, setContent] = useState<ResearchGroupEditorContent>(
@@ -98,7 +90,6 @@ export default function ResearchGroupEditor({
           setContent((prev) => ({ ...prev, mainImage: file }));
         }}
       />
-      <LabFieldset labs={labs[language]} />
       <div className="mb-6 flex justify-end gap-3">
         <EditActionButtons {...actions} getContent={getContent} />
       </div>
@@ -135,15 +126,6 @@ function ImageFieldset({ file, setFile }: ImagePickerProps) {
         연구 그룹 대표 이미지입니다.
       </label>
       <ImagePicker file={file} setFile={setFile} />
-    </Fieldset>
-  );
-}
-
-function LabFieldset({ labs }: { labs: SimpleResearchLab[] }) {
-  return (
-    <Fieldset title="연구실" mb="mb-5" titleMb="mb-2">
-      {labs.toString()}
-      다중 선택 가능한 무언가가 들어가야 함
     </Fieldset>
   );
 }
