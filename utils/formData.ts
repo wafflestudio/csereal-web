@@ -15,7 +15,6 @@ export const contentToFormData = (
     attachments?: PostEditorFile[];
     image?: PostEditorImage;
   },
-  imagePropertyName: string = 'mainImage', // TODO: 동일한 기능인데 이미지 속성명이 다른 경우를 같이 처리하기 위해 일단 변수 도입. 백엔드에 속성명 통일 가능한지 요청함
 ) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
@@ -35,11 +34,8 @@ export const contentToFormData = (
     );
   }
 
-  // TODO: 동일한 기능인데 이미지 속성명이 다른 경우를 같이 처리하기 위해 일단 변수 도입. 백엔드에 속성명 통일 가능한지 요청함
   if (image && isLocalImage(image)) {
-    const newImagePropertyName =
-      'new' + imagePropertyName.charAt(0).toUpperCase() + imagePropertyName.slice(1);
-    formData.append(type === 'CREATE' ? imagePropertyName : newImagePropertyName, image.file);
+    formData.append(type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
   }
 
   return formData;
