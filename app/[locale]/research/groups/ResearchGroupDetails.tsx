@@ -17,14 +17,14 @@ import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchGroupLabs from './ResearchGroupLabs';
 
-interface ResearchGroupDetailProps {
+interface ResearchGroupDetailsProps {
   group: ResearchGroup;
   ids: WithLanguage<number>;
 }
 
 const groupsPath = getPath(researchGroups);
 
-export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetailProps) {
+export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetailsProps) {
   const t = useTranslations('Content');
 
   const handleDelete = async () => {

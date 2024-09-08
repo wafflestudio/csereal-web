@@ -1,4 +1,4 @@
-import { getResearchCenters } from '@/apis/research';
+import { getResearchCenter, getResearchCenters } from '@/apis/research';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -31,6 +31,7 @@ export default async function ResearchCentersPage({
     searchParams.selected,
     getPath(researchCenters),
   );
+  const centerWithLanguage = await getResearchCenter(selectedCenter.id);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
@@ -50,7 +51,10 @@ export default async function ResearchCentersPage({
         listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_200px,_auto))]"
       />
       {selectedCenter ? (
-        <ResearchCenterDetails center={selectedCenter} />
+        <ResearchCenterDetails
+          center={selectedCenter}
+          ids={{ ko: centerWithLanguage.ko.id, en: centerWithLanguage.en.id }}
+        />
       ) : (
         <Fallback selected={selectedCenter} />
       )}
