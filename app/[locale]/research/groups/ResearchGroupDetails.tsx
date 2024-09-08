@@ -7,6 +7,7 @@ import { deleteResearchGroupAction } from '@/actions/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
+import { WithLanguage } from '@/types/language';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
@@ -18,17 +19,18 @@ import ResearchGroupLabs from './ResearchGroupLabs';
 
 interface ResearchGroupDetailProps {
   group: ResearchGroup;
+  ids: WithLanguage<number>;
 }
 
 const groupsPath = getPath(researchGroups);
 
-export default function ResearchGroupDetails({ group }: ResearchGroupDetailProps) {
+export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetailProps) {
   const t = useTranslations('Content');
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteResearchGroupAction());
-      successToast('동아리를 삭제했습니다.');
+      handleServerAction(await deleteResearchGroupAction(ids));
+      successToast('연구 스트림을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));
     }

@@ -8,7 +8,7 @@ import {
   TopConferenceList,
 } from '@/types/research';
 
-import { getRequest, getRequestV2, postRequestV2 } from '.';
+import { deleteRequestV2, getRequest, getRequestV2, postRequestV2 } from '.';
 
 /** 연구 그룹 (스트림) */
 
@@ -30,8 +30,8 @@ export const postResearchGroup = (formData: FormData) =>
 // export const putFaculty = (ids: WithLanguage<number>, formData: FormData) =>
 //   putRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
 
-// export const deleteFaculty = (ids: WithLanguage<number>) =>
-//   deleteRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { jsessionID: true });
+export const deleteResearchGroup = (ids: WithLanguage<number>) =>
+  deleteRequestV2(`/research/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 export const getResearchCenters = (language: Language) =>
   getRequest<ResearchCenter[]>('/research/centers', { language });

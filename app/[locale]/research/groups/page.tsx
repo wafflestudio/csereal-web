@@ -1,4 +1,4 @@
-import { getResearchGroups } from '@/apis/research';
+import { getResearchGroup, getResearchGroups } from '@/apis/research';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -26,6 +26,7 @@ export default async function ResearchGroupsPage({
 }) {
   const groups = await getResearchGroups(locale);
   const selectedGroup = findSelectedItem(groups, searchParams.selected, getPath(researchGroups));
+  const groupWithLanguage = await getResearchGroup(selectedGroup.id);
 
   return (
     <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
@@ -44,11 +45,14 @@ export default async function ResearchGroupsPage({
           names={groups.map((group) => ({ ko: group.name }))}
           selectedItemNameKo={selectedGroup?.name ?? ''}
           rootPath={researchGroupsPath}
-          listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(_236px,_auto))]"
+          listGridColumnClass="lg:grid-cols-[repeat(auto-fit,minmax(236px,_auto))]"
         />
       </div>
       {selectedGroup ? (
-        <ResearchGroupDetails group={selectedGroup} />
+        <ResearchGroupDetails
+          group={selectedGroup}
+          ids={{ ko: groupWithLanguage.ko.id, en: groupWithLanguage.en.id }}
+        />
       ) : (
         <Fallback selected={selectedGroup} />
       )}
