@@ -10,7 +10,7 @@ export interface ResearchCenter {
   id: number;
   name: string;
   description: string;
-  imageURL: string | null;
+  mainImageUrl: string | null;
   websiteURL: string;
 }
 

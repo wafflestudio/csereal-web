@@ -27,3 +27,4 @@ export const FETCH_TAG_COURSE = 'course';
 export const FETCH_TAG_SCHOLARSHIP = 'scholarship';
 
 export const FETCH_TAG_GROUP = 'group';
+export const FETCH_TAG_CENTER = 'center';

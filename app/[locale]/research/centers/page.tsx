@@ -1,6 +1,8 @@
 import { getResearchCenters } from '@/apis/research';
+import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { Link } from '@/navigation';
 import { Language } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { findSelectedItem } from '@/utils/findSelectedItem';
@@ -32,6 +34,15 @@ export default async function ResearchCentersPage({
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
+      <LoginVisible staff>
+        <div className="mt-11 text-right">
+          <Link href={`${researchCentersPath}/create`}>
+            연구 센터 추가 오렌지 버튼
+            {/* TODO: 오렌지 버튼 컴포넌트 사용 */}
+            {/* <OrangeButton title="연구 센터 추가" /> */}
+          </Link>
+        </div>
+      </LoginVisible>
       <SelectionList
         names={centers.map((center) => ({ ko: center.name }))}
         selectedItemNameKo={selectedCenter?.name ?? ''}

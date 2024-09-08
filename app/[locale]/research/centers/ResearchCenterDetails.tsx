@@ -8,7 +8,7 @@ interface ResearchCenterDetailProps {
 }
 
 export default function ResearchCenterDetails({
-  center: { name, description, imageURL, websiteURL },
+  center: { name, description, mainImageUrl, websiteURL },
 }: ResearchCenterDetailProps) {
   return (
     <>
@@ -16,12 +16,12 @@ export default function ResearchCenterDetails({
       <HTMLViewer
         htmlContent={description}
         topRightContent={
-          imageURL
+          mainImageUrl
             ? {
                 type: 'image',
                 widthPX: 320,
                 heightPX: 200,
-                url: imageURL,
+                url: mainImageUrl,
                 mobileFullWidth: true,
               }
             : undefined
