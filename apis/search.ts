@@ -9,7 +9,7 @@ import {
   ResearchSearchResult,
 } from '@/types/search';
 
-import { getRequest } from '.';
+import { getRequest, getRequestV2 } from '.';
 
 type SearchParam = { keyword: string; number: number; amount?: number };
 
@@ -30,7 +30,7 @@ export const searchMember = (params: SearchParam) =>
   getRequest('/member/search/top', params) as Promise<MemberSearchResult>;
 
 export const searchResearch = (params: SearchParam) =>
-  getRequest('/research/search/top', params) as Promise<ResearchSearchResult>;
+  getRequestV2('/research/search/top', params) as Promise<ResearchSearchResult>;
 
 export const searchAcademics = (params: SearchParam) =>
   getRequest('/academics/search/top', params) as Promise<AcademicsSearchResult>;
