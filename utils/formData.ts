@@ -35,7 +35,7 @@ export const contentToFormData = (
   }
 
   if (image && isLocalImage(image)) {
-    formData.append(type === 'CREATE' ? 'image' : 'newImage', image.file);
+    formData.append(type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
   }
 
   return formData;

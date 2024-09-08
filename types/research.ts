@@ -2,7 +2,7 @@ export interface ResearchGroup {
   id: number;
   name: string;
   description: string;
-  mainImageURL: string | null;
+  mainImageUrl: string | null;
   labs: { id: number; name: string }[];
 }
 

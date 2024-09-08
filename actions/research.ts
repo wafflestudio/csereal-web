@@ -3,8 +3,14 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteResearchGroup, getResearchGroup, postResearchGroup } from '@/apis/research';
+import {
+  deleteResearchGroup,
+  getResearchGroup,
+  postResearchGroup,
+  putResearchGroup,
+} from '@/apis/research';
 import { FETCH_TAG_GROUP } from '@/constants/network';
+import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
 
@@ -21,6 +27,14 @@ export const postResearchGroupAction = withErrorHandler(async (formData: FormDat
   revalidateTag(FETCH_TAG_GROUP);
   redirect(groupPath);
 });
+
+export const putResearchGroupAction = withErrorHandler(
+  async (ids: WithLanguage<number>, formData: FormData) => {
+    await putResearchGroup(ids, formData);
+    revalidateTag(FETCH_TAG_GROUP);
+    redirect(groupPath);
+  },
+);
 
 export const deleteResearchGroupAction = withErrorHandler(
   async (ids: { ko: number; en: number }) => {

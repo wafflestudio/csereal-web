@@ -53,12 +53,12 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
         htmlContent={group.description}
         className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
       />
-      {group.mainImageURL !== null && (
+      {group.mainImageUrl !== null && (
         // TODO: 반응형
         <div className="relative mt-10 aspect-[2/1] w-[80%] max-w-[720px] self-end">
           {/* TODO: 이미지 반응형 */}
           <Image
-            src={group.mainImageURL}
+            src={group.mainImageUrl}
             alt={`${group.name}_연구그룹_사진`}
             fill
             sizes="800px" // TODO: 이게 맞나?
