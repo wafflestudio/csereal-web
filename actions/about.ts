@@ -5,12 +5,12 @@ import { redirect } from 'next/navigation';
 
 import {
   deleteClub,
-  deleteFacilities as deleteFacility,
+  deleteFacility,
   postClub,
-  postFacilities as postFacility,
+  postFacility,
   putClub,
   putContact,
-  putFacilities as putFacility,
+  putFacility,
   putGreetings,
   putHistory,
   putOverview,

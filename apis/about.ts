@@ -52,13 +52,13 @@ export const getClubs = () =>
     next: { tags: [FETCH_TAG_CLUB] },
   });
 
-export const postClub = async (formData: FormData) =>
+export const postClub = (formData: FormData) =>
   postRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
 
 export const putClub = (formData: FormData) =>
   putRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
 
-export const deleteClub = async (id: number) =>
+export const deleteClub = (id: number) =>
   deleteRequestV2(`/about/student-clubs/${id}`, { jsessionID: true });
 
 /** 시설 안내 */
@@ -68,13 +68,13 @@ export const getFacilities = () =>
     next: { tags: [FETCH_TAG_FACILITIES] },
   });
 
-export const postFacilities = async (formData: FormData) =>
+export const postFacility = (formData: FormData) =>
   postRequestV2('/about/facilities', { body: formData, jsessionID: true });
 
-export const putFacilities = (id: number, formData: FormData) =>
+export const putFacility = (id: number, formData: FormData) =>
   putRequestV2(`/about/facilities/${id}`, { body: formData, jsessionID: true });
 
-export const deleteFacilities = async (id: number) =>
+export const deleteFacility = (id: number) =>
   deleteRequestV2(`/about/facilities/${id}`, { jsessionID: true });
 
 /** 연락처 */

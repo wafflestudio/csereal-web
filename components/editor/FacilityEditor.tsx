@@ -141,7 +141,7 @@ function ImageFieldset({ file, setFile }: ImagePickerProps) {
   );
 }
 
-const INIT_STAFF_EDITOR_CONTENT: FacilityEditorContent = {
+const DEFAULT_CONTENT: FacilityEditorContent = {
   name: '',
   description: '',
   locations: [],
@@ -158,7 +158,7 @@ const getDefaultContentDetail = (content?: Facility): FacilityEditorContent => {
     };
   }
 
-  return INIT_STAFF_EDITOR_CONTENT;
+  return DEFAULT_CONTENT;
 };
 
 const getInitialContent = (initContent?: WithLanguage<Facility>) => {
