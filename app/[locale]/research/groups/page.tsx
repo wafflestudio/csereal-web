@@ -35,9 +35,10 @@ export default async function ResearchGroupsPage({
         <LoginVisible staff>
           <div className="mt-11 text-right">
             <Link href={`${researchGroupsPath}/create`}>
-              연구 그룹 추가 오렌지 버튼
               {/* TODO: 오렌지 버튼 컴포넌트 사용 */}
-              {/* <OrangeButton title="연구 스트림 추가" /> */}
+              <button className="h-9 rounded-[.0625rem] bg-main-orange px-[.875rem] py-[.3125rem] text-md font-semibold text-white">
+                연구 스트림 추가
+              </button>
             </Link>
           </div>
         </LoginVisible>
