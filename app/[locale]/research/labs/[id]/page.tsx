@@ -30,7 +30,8 @@ export default async function ResearchLabDetail({ params }: LabDetailPageProps) 
 
     return (
       <PageLayout title={lab.name} titleType="small">
-        <ResearchLabDetailContent lab={lab} />
+        {/* TODO: id 제대로 넣기 */}
+        <ResearchLabDetailContent lab={lab} ids={{ ko: 0, en: 0 }} />
       </PageLayout>
     );
   } catch {

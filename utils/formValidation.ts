@@ -5,6 +5,7 @@ import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
+import { ResearchLab } from '@/types/research';
 
 import { ValueOf } from './type';
 
@@ -87,3 +88,14 @@ export const validateScholarshipForm = (content: BasicEditorContent) => {
 };
 
 // TODO: validateBasicForm
+
+// TODO: 보강
+export const validateResearchLabForm = (content: WithLanguage<ResearchLab>) => {
+  if (!content.ko.name) {
+    throw new Error('제목을 입력해주세요');
+  } else if (!content.ko.description) {
+    throw new Error('내용을 입력해주세요');
+  } else if (!content.en.name || !content.en.description) {
+    throw new Error('영문 정보를 입력해주세요');
+  }
+};
