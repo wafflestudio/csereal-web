@@ -80,9 +80,11 @@ export const validateCourseForm = (content: Course) => {
 export const validateScholarshipForm = (content: BasicEditorContent) => {
   if (!content.name.ko) {
     throw new Error('제목을 입력해주세요');
-  } else if (!content.description.ko) {
+  }
+  if (!content.description.ko) {
     throw new Error('내용을 입력해주세요');
-  } else if (!content.name.en || !content.description.en) {
+  }
+  if (!content.name.en || !content.description.en) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };
@@ -91,9 +93,11 @@ export const validateScholarshipForm = (content: BasicEditorContent) => {
 export const validateResearchGroupForm = (content: BasicEditorContent) => {
   if (!content.name.ko) {
     throw new Error('스트림명을 입력해주세요');
-  } else if (!content.description.ko) {
+  }
+  if (!content.description.ko) {
     throw new Error('내용을 입력해주세요');
-  } else if (!content.name.en || !content.description.en) {
+  }
+  if (!content.name.en || !content.description.en) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };
@@ -101,9 +105,11 @@ export const validateResearchGroupForm = (content: BasicEditorContent) => {
 export const validateResearchCenterForm = (content: WithLanguage<ResearchCenterEditorContent>) => {
   if (!content.ko.name) {
     throw new Error('센터명을 입력해주세요');
-  } else if (!content.ko.description) {
+  }
+  if (!content.ko.description) {
     throw new Error('내용을 입력해주세요');
-  } else if (!content.en.name || !content.en.description) {
+  }
+  if (!content.en.name || !content.en.description) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };

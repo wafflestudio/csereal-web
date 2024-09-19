@@ -22,6 +22,7 @@ const groupPath = getPath(researchGroups);
 const centerPath = getPath(researchCenters);
 
 /** 연구 그룹 (스트림) */
+
 export const postResearchGroupAction = withErrorHandler(async (formData: FormData) => {
   await postResearchGroup(formData);
   revalidateTag(FETCH_TAG_GROUP);
