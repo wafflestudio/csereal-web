@@ -1,10 +1,10 @@
 import { Attachment } from '@/components/common/Attachments';
 
-export type AboutContent = {
+export interface AboutContent {
   description: string;
   imageURL: string | null;
   attachments: Attachment[];
-};
+}
 
 export interface FutureCareers {
   description: string;
@@ -27,15 +27,6 @@ export interface Club {
   description: string;
   imageURL: string | null;
 }
-
-export interface Facilities {
-  id: number;
-  name: string;
-  description: string;
-  locations: string[];
-  imageURL: string | null;
-}
-[];
 
 export interface Facility {
   id: number;

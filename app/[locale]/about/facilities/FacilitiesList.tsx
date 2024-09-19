@@ -6,7 +6,7 @@ import ImageWithFallback from '@/components/common/ImageWithFallback';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import Distance from '@/public/image/distance.svg';
-import { Facilities, Facility } from '@/types/about';
+import { Facility } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { facilities } from '@/utils/segmentNode';
@@ -15,7 +15,7 @@ import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);
 
-export default function FacilitesList({ facilities }: { facilities: Facilities }) {
+export default function FacilitesList({ facilities }: { facilities: Facility[] }) {
   return (
     <div className="mt-[-20px] flex flex-col divide-y divide-neutral-200">
       {facilities.map((facility) => (

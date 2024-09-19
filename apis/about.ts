@@ -6,7 +6,7 @@ import {
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
-import { AboutContent, Club, Direction, Facilities, FutureCareers } from '@/types/about';
+import { AboutContent, Club, Direction, Facility, FutureCareers } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 
 import { deleteRequestV2, getRequest, getRequestV2, postRequestV2, putRequestV2 } from '.';
@@ -64,7 +64,7 @@ export const deleteClub = (id: number) =>
 /** 시설 안내 */
 
 export const getFacilities = () =>
-  getRequest<Facilities>('/about/facilities', undefined, {
+  getRequest<Facility[]>('/about/facilities', undefined, {
     next: { tags: [FETCH_TAG_FACILITIES] },
   });
 
