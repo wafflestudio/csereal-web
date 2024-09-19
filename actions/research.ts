@@ -15,7 +15,7 @@ const labsPath = getPath(researchLabs);
 
 /** 연구실 */
 
-export const postResearchGroupAction = withErrorHandler(async (formData: FormData) => {
+export const postResearchLabAction = withErrorHandler(async (formData: FormData) => {
   await postResearchLab(formData);
   revalidateTag(FETCH_TAG_LAB);
   redirect(labsPath);
