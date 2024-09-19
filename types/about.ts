@@ -28,21 +28,22 @@ export interface Club {
   imageURL: string | null;
 }
 
-export type Facilities = {
+export interface Facilities {
   id: number;
   name: string;
   description: string;
   locations: string[];
   imageURL: string | null;
-}[];
+}
+[];
 
-export type Facility = {
+export interface Facility {
   id: number;
   name: string;
   description: string;
   locations: string[];
   imageURL: string | null;
-};
+}
 
 export interface Contact {
   description: string;

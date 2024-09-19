@@ -1,5 +1,5 @@
 import { getClubs } from '@/apis/about';
-import { findSelectedItemV2 } from '@/utils/findSelectedItem';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
 import StudentClubEditPageContent from './StudentClubEditPageContent';
 
@@ -9,7 +9,11 @@ interface StudentClubEditPageProps {
 
 export default async function StudentClubEditPage({ searchParams }: StudentClubEditPageProps) {
   const clubs = await getClubs();
-  const selectedClub = findSelectedItemV2(clubs, searchParams.selected, '/not-found');
+  const selectedClub = findItemBySearchParam(
+    clubs,
+    (item) => [item.en.name, item.ko.name],
+    searchParams.selected,
+  );
 
   return <StudentClubEditPageContent data={selectedClub} />;
 }
