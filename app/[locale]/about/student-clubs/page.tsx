@@ -9,7 +9,7 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
 import { Language } from '@/types/language';
-import { findSelectedItemV2 } from '@/utils/findSelectedItem';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
@@ -29,7 +29,11 @@ const clubPath = getPath(studentClubs);
 
 export default async function StudentClubsPage({ searchParams, params }: StudentClubsPageProps) {
   const clubs = await getClubs();
-  const selectedClub = findSelectedItemV2(clubs, searchParams.selected, clubPath);
+  const selectedClub = findItemBySearchParam(
+    clubs,
+    (item) => [item.en.name, item.ko.name],
+    searchParams.selected,
+  );
 
   return (
     <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>

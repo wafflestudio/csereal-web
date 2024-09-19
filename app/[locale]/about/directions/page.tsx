@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 import { getDirections } from '@/apis/about';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { findSelectedItem } from '@/utils/findSelectedItem';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
@@ -28,7 +28,11 @@ const FIND_PATH_URL =
 
 export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const directionList = await getDirections();
-  const selectedDirection = findSelectedItem(directionList, searchParams.selected);
+  const selectedDirection = findItemBySearchParam(
+    directionList,
+    (item) => [item.name],
+    searchParams.selected,
+  );
 
   return (
     <PageLayout titleType="big">
