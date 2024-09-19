@@ -49,7 +49,7 @@ export default function AboutEditPageContent({
     });
 
     try {
-      const submitAction = getSubmitAction(node.segment);
+      const submitAction = ABOUT_SUBMIT_ACTION[node.segment];
       handleServerAction(await submitAction(formData));
       successToast(`${node.name}을(를) 수정했습니다.`);
     } catch (e) {
@@ -95,17 +95,9 @@ const getRequestObject = (
   };
 };
 
-const getSubmitAction = (segment: string) => {
-  switch (segment) {
-    case overview.segment:
-      return putOverviewAction;
-    case greetings.segment:
-      return putGreetingsAction;
-    case history.segment:
-      return putHistoryAction;
-    case contact.segment:
-      return putContactAction;
-    default:
-      throw new Error('편집할 수 없는 페이지입니다.');
-  }
+const ABOUT_SUBMIT_ACTION = {
+  [overview.segment]: putOverviewAction,
+  [greetings.segment]: putGreetingsAction,
+  [history.segment]: putHistoryAction,
+  [contact.segment]: putContactAction,
 };
