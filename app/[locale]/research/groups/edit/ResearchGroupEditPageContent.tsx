@@ -8,7 +8,7 @@ import { WithLanguage } from '@/types/language';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateResearchGroupForm } from '@/utils/formValidation';
+import { validateBasicForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -28,7 +28,7 @@ export default function ResearchGroupEditPageContent({
   const handleCancel = () => router.push(groupsPath);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateResearchGroupForm(content);
+    validateBasicForm(content);
     const formData = contentToFormData('EDIT', {
       requestObject: getRequestObject(
         content,
