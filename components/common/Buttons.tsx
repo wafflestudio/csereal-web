@@ -50,6 +50,28 @@ export function BlackButton({
   );
 }
 
+export function OrangeButton({
+  title,
+  disabled,
+  onClick,
+}: {
+  title: string;
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}) {
+  return (
+    <button
+      className={`h-9 rounded-[.0625rem] bg-main-orange px-[.875rem] py-[.3125rem] text-md font-semibold text-white ${
+        disabled && 'opacity-30'
+      }`}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {title}
+    </button>
+  );
+}
+
 export function CreateButton({ href }: { href: string }) {
   return (
     <div className="mb-9 max-w-[768px] text-right">

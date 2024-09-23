@@ -38,7 +38,10 @@ export default function FacultyEditPageContent({
     validateFacultyForm(content);
 
     const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(content),
+      requestObject: getRequestObject(
+        content,
+        data.ko.imageURL !== null && content.ko.image === null,
+      ),
       image: content.ko.image,
     });
 
@@ -72,14 +75,14 @@ export default function FacultyEditPageContent({
   );
 }
 
-const getRequestObject = (content: WithLanguage<FacultyEditorContent>) => {
+const getRequestObject = (content: WithLanguage<FacultyEditorContent>, removeImage: boolean) => {
   // startDate, endDate는 한영 동일
   const startDate = content.ko.startDate.toISOString();
   const endDate = content.ko.endDate.toISOString();
   const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
 
   return {
-    ko: { ...content.ko, image, startDate, endDate },
-    en: { ...content.en, image, startDate, endDate },
+    ko: { ...content.ko, image, startDate, endDate, removeImage },
+    en: { ...content.en, image, startDate, endDate, removeImage },
   };
 };

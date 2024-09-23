@@ -31,7 +31,7 @@ export default function StaffEditPageContent({
 
     const requestObject = getRequestObject(
       content,
-      data.ko.imageURL !== null && content.ko.image !== null,
+      data.ko.imageURL !== null && content.ko.image === null,
     );
     const formData = contentToFormData('EDIT', {
       requestObject,

@@ -43,15 +43,15 @@ export const getEmeritusFaculty = (id: number) =>
     next: { tags: [FETCH_TAG_FACULTY] },
   });
 
-export const postFaculty = async (formData: FormData) =>
+export const postFaculty = (formData: FormData) =>
   postRequestV2(facultyPath, { body: formData, jsessionID: true }) as Promise<
     WithLanguage<{ id: number; status: FacultyStatus }>
   >;
 
-export const putFaculty = async (ids: WithLanguage<number>, formData: FormData) =>
-  await putRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
+export const putFaculty = (ids: WithLanguage<number>, formData: FormData) =>
+  putRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
 
-export const deleteFaculty = async (ids: WithLanguage<number>) =>
+export const deleteFaculty = (ids: WithLanguage<number>) =>
   deleteRequestV2(`${facultyPath}/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /* 행정직원 */
@@ -64,13 +64,13 @@ export const getStaff = (id: number) =>
     next: { tags: [FETCH_TAG_STAFF] },
   });
 
-export const postStaff = async (formData: FormData) =>
+export const postStaff = (formData: FormData) =>
   postRequestV2(staffPath, { body: formData, jsessionID: true }) as Promise<
     WithLanguage<{ id: number }>
   >;
 
-export const putStaff = async (ids: WithLanguage<number>, formData: FormData) =>
-  await putRequestV2(`${staffPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
+export const putStaff = (ids: WithLanguage<number>, formData: FormData) =>
+  putRequestV2(`${staffPath}/${ids.ko}/${ids.en}`, { body: formData, jsessionID: true });
 
-export const deleteStaff = async (ids: WithLanguage<number>) =>
+export const deleteStaff = (ids: WithLanguage<number>) =>
   deleteRequestV2(`${staffPath}/${ids.ko}/${ids.en}`, { jsessionID: true });

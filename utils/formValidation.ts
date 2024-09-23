@@ -1,4 +1,5 @@
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
+import { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
@@ -76,14 +77,30 @@ export const validateCourseForm = (content: Course) => {
   }
 };
 
-export const validateScholarshipForm = (content: BasicEditorContent) => {
-  if (!content.name.ko) {
+export const validateBasicForm = (content: BasicEditorContent, titleRequired?: boolean) => {
+  if (titleRequired && !content.name.ko) {
     throw new Error('제목을 입력해주세요');
-  } else if (!content.description.ko) {
+  }
+  if (!content.description.ko) {
     throw new Error('내용을 입력해주세요');
-  } else if (!content.name.en || !content.description.en) {
+  }
+  if ((titleRequired && !content.name.en) || !content.description.en) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };
 
-// TODO: validateBasicForm
+export const validateFacilityForm = (content: WithLanguage<FacilityEditorContent>) => {
+  const isValueEmpty = (value: ValueOf<FacilityEditorContent>) =>
+    !value || (Array.isArray(value) && value.length === 0);
+
+  if (
+    Object.entries(content.ko).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
+  ) {
+    throw new Error('모든 정보를 입력해주세요');
+  }
+  if (
+    Object.entries(content.en).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
+  ) {
+    throw new Error('영문 정보도 입력해주세요');
+  }
+};

@@ -1,24 +1,20 @@
 export const dynamic = 'force-dynamic';
 
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 import { getDirections } from '@/apis/about';
-import DirectionsDetails from '@/app/[locale]/about/directions/DirectionsDetails';
-import LocationGuide from '@/app/[locale]/about/directions/LocationGuide';
-import LocationMap from '@/app/[locale]/about/directions/LocationMap';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { findSelectedItem } from '@/utils/findSelectedItem';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+import DirectionsDetails from './DirectionsDetails';
+import LocationGuide from './LocationGuide';
+import LocationMap from './LocationMap';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return await getMetadata({ locale, node: directions });
 }
 
@@ -32,7 +28,11 @@ const FIND_PATH_URL =
 
 export default async function DirectionsPage({ searchParams }: DirectionsPageProps) {
   const directionList = await getDirections();
-  const selectedDirection = findSelectedItem(directionList, searchParams.selected);
+  const selectedDirection = findItemBySearchParam(
+    directionList,
+    (item) => [item.name],
+    searchParams.selected,
+  );
 
   return (
     <PageLayout titleType="big">
