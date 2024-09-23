@@ -65,10 +65,11 @@ export const deleteResearchCenter = (ids: WithLanguage<number>) =>
 
 /** 연구실 */
 
-export const getResearchLab = (id: number) => getRequest<ResearchLab>(`/research/lab/${id}`);
+export const getResearchLab = (id: number) =>
+  getRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${id}`);
 
 export const getResearchLabs = (language: Language) =>
-  getRequestV2<SimpleResearchLab[]>('/research/labs', { language });
+  getRequestV2<SimpleResearchLab[]>('/research/lab', { language });
 
 /** TCL */
 
