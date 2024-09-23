@@ -32,3 +32,6 @@ export const FETCH_TAG_HISTORY = 'history';
 export const FETCH_TAG_CLUB = 'club';
 export const FETCH_TAG_FACILITIES = 'facilities';
 export const FETCH_TAG_CONTACT = 'contact';
+
+export const FETCH_TAG_GROUP = 'group';
+export const FETCH_TAG_CENTER = 'center';

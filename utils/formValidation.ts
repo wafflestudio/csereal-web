@@ -2,6 +2,7 @@ import { BasicEditorContent } from '@/components/editor/BasicEditor';
 import { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
+import { ResearchCenterEditorContent } from '@/components/editor/ResearchCenterEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
@@ -85,6 +86,18 @@ export const validateBasicForm = (content: BasicEditorContent, titleRequired?: b
     throw new Error('내용을 입력해주세요');
   }
   if ((titleRequired && !content.name.en) || !content.description.en) {
+    throw new Error('영문 정보를 입력해주세요');
+  }
+};
+
+export const validateResearchCenterForm = (content: WithLanguage<ResearchCenterEditorContent>) => {
+  if (!content.ko.name) {
+    throw new Error('센터명을 입력해주세요');
+  }
+  if (!content.ko.description) {
+    throw new Error('내용을 입력해주세요');
+  }
+  if (!content.en.name || !content.en.description) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };

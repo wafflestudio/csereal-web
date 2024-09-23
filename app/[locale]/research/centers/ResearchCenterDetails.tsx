@@ -1,27 +1,56 @@
+'use client';
+
+import { deleteResearchCenterAction } from '@/actions/research';
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import LinkIcon from '@/public/image/link_icon.svg';
+import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
+import { errorToStr } from '@/utils/error';
+import { getPath } from '@/utils/page';
+import { researchCenters } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
 
-interface ResearchCenterDetailProps {
+interface ResearchCenterDetailsProps {
   center: ResearchCenter;
+  ids: WithLanguage<number>;
 }
 
-export default function ResearchCenterDetails({
-  center: { name, description, imageURL, websiteURL },
-}: ResearchCenterDetailProps) {
+const centersPath = getPath(researchCenters);
+
+export default function ResearchCenterDetails({ center, ids }: ResearchCenterDetailsProps) {
+  const handleDelete = async () => {
+    try {
+      handleServerAction(await deleteResearchCenterAction(ids));
+      successToast('연구 센터를 삭제했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
+    }
+  };
+
   return (
     <>
-      <ResearchCenterTitle name={name} link={websiteURL} />
+      <div className="justify-between sm:flex">
+        <ResearchCenterTitle name={center.name} link={center.websiteURL} />
+        <LoginVisible staff>
+          <div className="flex h-fit justify-end gap-3">
+            <DeleteButton onDelete={handleDelete} />
+            <EditButton href={`${centersPath}/edit?id=${center.id}`} />
+          </div>
+        </LoginVisible>
+      </div>
       <HTMLViewer
-        htmlContent={description}
+        htmlContent={center.description}
         topRightContent={
-          imageURL
+          center.mainImageUrl
             ? {
                 type: 'image',
                 widthPX: 320,
                 heightPX: 200,
-                url: imageURL,
+                url: center.mainImageUrl,
                 mobileFullWidth: true,
               }
             : undefined
