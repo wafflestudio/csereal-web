@@ -7,12 +7,13 @@ import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { errorToast, successToast } from '@/utils/toast';
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
@@ -30,7 +31,7 @@ export default function FacultyCreatePageContent({
 
   const handleCancel = () => router.push(status === 'INACTIVE' ? emeritusFacultyPath : facultyPath);
 
-  const handleComplete = async (content: WithLanguage<FacultyEditorContent>) => {
+  const handleSubmit = async (content: WithLanguage<FacultyEditorContent>) => {
     validateFacultyForm(content);
     const formData = contentToFormData('CREATE', {
       requestObject: getRequestObject(content),
@@ -39,15 +40,16 @@ export default function FacultyCreatePageContent({
 
     try {
       handleServerAction(await postFacultyAction(formData, language));
-    } catch {
-      errorToast('오류가 발생했습니다');
+      successToast('교수진을 추가했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 
   return (
     <PageLayout title="교수진 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <FacultyEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onSubmit: handleComplete }}
+        actions={{ type: 'CREATE', onCancel: handleCancel, onSubmit: handleSubmit }}
         initialFacultyStatus={status}
         initialLangauge={language}
         labs={labs}

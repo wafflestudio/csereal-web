@@ -26,4 +26,13 @@ export const FETCH_TAG_COURSE_CHANGES = 'courseChanges';
 export const FETCH_TAG_COURSE = 'course';
 export const FETCH_TAG_SCHOLARSHIP = 'scholarship';
 
+export const FETCH_TAG_OVERVIEW = 'overview';
+export const FETCH_TAG_GREETINGS = 'greetings';
+export const FETCH_TAG_HISTORY = 'history';
+export const FETCH_TAG_CLUB = 'club';
+export const FETCH_TAG_FACILITIES = 'facilities';
+export const FETCH_TAG_CONTACT = 'contact';
+
+export const FETCH_TAG_GROUP = 'group';
+export const FETCH_TAG_CENTER = 'center';
 export const FETCH_TAG_LAB = 'lab';

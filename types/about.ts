@@ -1,12 +1,10 @@
-export type AboutContent = {
+import { Attachment } from '@/components/common/Attachments';
+
+export interface AboutContent {
   description: string;
-  imageURL: string;
-  attachments: {
-    name: string;
-    url: string;
-    bytes: number;
-  }[];
-};
+  imageURL: string | null;
+  attachments: Attachment[];
+}
 
 export interface FutureCareers {
   description: string;
@@ -24,19 +22,19 @@ export interface FutureCareers {
 }
 
 export interface Club {
+  id: number;
   name: string;
-  engName: string;
   description: string;
-  imageURL?: string;
+  imageURL: string | null;
 }
 
-export type Facilities = {
+export interface Facility {
   id: number;
   name: string;
   description: string;
   locations: string[];
   imageURL: string | null;
-}[];
+}
 
 export interface Contact {
   description: string;

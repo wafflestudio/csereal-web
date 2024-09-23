@@ -13,7 +13,7 @@ export default async function ResearchLabEditPage({
     const lab = await getResearchLab(id);
 
     // TODO: 영어 데이터 한번에 받아서 넣기
-    return <ResearchLabEditPageContent lab={{ ko: lab, en: lab }} />;
+    return <ResearchLabEditPageContent lab={lab} />;
   } catch {
     return <InvalidIDFallback rawID={searchParams.id} />;
   }

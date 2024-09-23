@@ -11,7 +11,7 @@ export default function useEditorContent<T>(initialState: T): {
   setContent: React.Dispatch<React.SetStateAction<T>>;
 };
 
-// content가 {ko: T, en: T} 구조일경우
+// 언어별로 편집해야 해서 content가 {ko: T, en: T} 구조인 경우
 export default function useEditorContent<T>(
   initialState: WithLanguage<T>,
   language: Language,

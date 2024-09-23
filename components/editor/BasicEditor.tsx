@@ -105,7 +105,7 @@ export default function BasicEditor({
         <FileFieldset
           files={content.attachments}
           setFiles={(dispatch) => {
-            setContent((content) => ({ ...content, attachments: dispatch(content.attachments) }));
+            setContent((prev) => ({ ...prev, attachments: dispatch(prev.attachments) }));
           }}
         />
       )}
