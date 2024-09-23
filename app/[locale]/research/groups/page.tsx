@@ -2,9 +2,9 @@ import { getResearchGroup, getResearchGroups } from '@/apis/research';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link } from '@/navigation';
+import { Link, redirect } from '@/navigation';
 import { Language } from '@/types/language';
-import { findSelectedItem } from '@/utils/findSelectedItem';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/utils/segmentNode';
@@ -25,7 +25,12 @@ export default async function ResearchGroupsPage({
   searchParams: { selected?: string };
 }) {
   const groups = await getResearchGroups(locale);
-  const selectedGroup = findSelectedItem(groups, searchParams.selected, getPath(researchGroups));
+  const selectedGroup = findItemBySearchParam(groups, (item) => [item.name], searchParams.selected);
+  // 존재하지 않는 그룹(영어 변환 포함)일 경우 초기화
+  if (!selectedGroup) {
+    redirect(researchGroupsPath);
+    return;
+  }
   const groupWithLanguage = await getResearchGroup(selectedGroup.id);
 
   return (
@@ -55,7 +60,7 @@ export default async function ResearchGroupsPage({
           ids={{ ko: groupWithLanguage.ko.id, en: groupWithLanguage.en.id }}
         />
       ) : (
-        <Fallback selected={selectedGroup} />
+        <Fallback selected={searchParams.selected ?? ''} />
       )}
     </PageLayout>
   );

@@ -9,11 +9,9 @@ interface StudentClubEditPageProps {
 
 export default async function StudentClubEditPage({ searchParams }: StudentClubEditPageProps) {
   const clubs = await getClubs();
-  const selectedClub = findItemBySearchParam(
-    clubs,
-    (item) => [item.en.name, item.ko.name],
-    searchParams.selected,
-  );
+  const selectedClub =
+    findItemBySearchParam(clubs, (item) => [item.en.name, item.ko.name], searchParams.selected) ||
+    clubs[0];
 
   return <StudentClubEditPageContent data={selectedClub} />;
 }
