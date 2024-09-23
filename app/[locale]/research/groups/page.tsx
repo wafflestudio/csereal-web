@@ -1,4 +1,5 @@
 import { getResearchGroup, getResearchGroups } from '@/apis/research';
+import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -40,10 +41,7 @@ export default async function ResearchGroupsPage({
         <LoginVisible staff>
           <div className="mt-11 text-right">
             <Link href={`${researchGroupsPath}/create`}>
-              {/* TODO: 오렌지 버튼 컴포넌트 사용 */}
-              <button className="h-9 rounded-[.0625rem] bg-main-orange px-[.875rem] py-[.3125rem] text-md font-semibold text-white">
-                연구 스트림 추가
-              </button>
+              <OrangeButton title="연구 스트림 추가" />
             </Link>
           </div>
         </LoginVisible>

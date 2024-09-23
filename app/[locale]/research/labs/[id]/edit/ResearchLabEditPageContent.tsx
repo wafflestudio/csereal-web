@@ -1,7 +1,7 @@
 'use client';
 
 import { putResearchLabAction } from '@/actions/research';
-import ResearchLabEditor from '@/components/editor/ResearchLabEditor';
+import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { WithLanguage } from '@/types/language';
@@ -21,7 +21,7 @@ export default function ResearchLabEditPageContent({ lab }: { lab: WithLanguage<
 
   const handleCancel = () => router.push(labsPath);
 
-  const handleSubmit = async (content: WithLanguage<ResearchLab>) => {
+  const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
     validateResearchLabForm(content);
     const formData = contentToFormData('EDIT', {
       requestObject: getRequestObject(content),
@@ -46,7 +46,7 @@ export default function ResearchLabEditPageContent({ lab }: { lab: WithLanguage<
 }
 
 // TODO: 내용 제대로 넣기
-const getRequestObject = (content: WithLanguage<ResearchLab>) => {
+const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>) => {
   return {
     ko: { name: content.ko.name, description: content.ko.description },
     en: { name: content.en.name, description: content.en.description },

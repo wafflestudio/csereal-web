@@ -1,4 +1,5 @@
 import { getResearchLabs } from '@/apis/research';
+import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
@@ -28,10 +29,7 @@ export default async function ResearchLabsPage({ params: { locale } }: ResearchL
       <LoginVisible staff>
         <div className="mb-7 text-right">
           <Link href={`${labsPath}/create`}>
-            {/* TODO: 오렌지 버튼 컴포넌트 사용 */}
-            <button className="h-9 rounded-[.0625rem] bg-main-orange px-[.875rem] py-[.3125rem] text-md font-semibold text-white">
-              연구실 추가
-            </button>
+            <OrangeButton title="연구실 추가" />
           </Link>
         </div>
       </LoginVisible>

@@ -13,27 +13,28 @@ import { EditAction, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import LangauageFieldset from './common/LanguageFieldset';
+import { PostEditorFile } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
   ssr: false,
   loading: () => <SunEditorFallback />,
 });
 
-// export interface ResearchLab {
-//   name: string;
-//   professors: { id: number; name: string }[];
-//   location: string;
-//   tel: string;
-//   acronym: string;
-//   pdf: { url: string };
-//   youtube: string;
-//   description: string;
-//   websiteURL: string;
-//   group: string;
-// }
+export interface ResearchLabEditorContent {
+  name: string;
+  description: string;
+  groupId: number | null;
+  professorIds: number[];
+  location: string;
+  tel: string;
+  acronym: string;
+  pdf: PostEditorFile | null;
+  youtube: string;
+  websiteURL: string;
+}
 
 interface ResearchLabEditorProps {
-  actions: EditAction<WithLanguage<ResearchLab>>;
+  actions: EditAction<WithLanguage<ResearchLabEditorContent>>;
   initialContent?: WithLanguage<ResearchLab>;
 }
 
@@ -190,22 +191,28 @@ function EditorFieldset({
   );
 }
 
-const DEFAULT_CONTENT: ResearchLab = {
-  id: 0, // TODO: 삭제
+const DEFAULT_CONTENT: ResearchLabEditorContent = {
   name: '',
-  professors: [],
+  description: '',
+  professorIds: [],
   location: '',
   tel: '',
   acronym: '',
-  pdf: { url: '' },
+  pdf: null,
   youtube: '',
-  description: '',
   websiteURL: '',
-  group: '',
+  groupId: null,
 };
 
-const getDefaultContentDetail = (content?: ResearchLab): ResearchLab => {
-  return content || DEFAULT_CONTENT;
+const getDefaultContentDetail = (content?: ResearchLab): ResearchLabEditorContent => {
+  return content
+    ? {
+        ...content,
+        professorIds: content.professors.map((prof) => prof.id),
+        groupId: 0,
+        pdf: content.pdf ? { type: 'UPLOADED_FILE', file: content.pdf } : null,
+      }
+    : DEFAULT_CONTENT;
 };
 
 const getInitialContent = (initContent?: WithLanguage<ResearchLab>) => {

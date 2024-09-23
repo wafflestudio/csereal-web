@@ -410,7 +410,7 @@ function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: 
   );
 }
 
-const INIT_FACULTY_EDITOR_CONTENT: FacultyEditorContent = {
+const DEFAULT_CONTENT: FacultyEditorContent = {
   status: 'ACTIVE',
   name: '',
   academicRank: '',
@@ -442,7 +442,7 @@ export const getDefaultContentDetail = (
         startDate,
         endDate,
       }
-    : { ...INIT_FACULTY_EDITOR_CONTENT, status: initStatus, startDate, endDate };
+    : { ...DEFAULT_CONTENT, status: initStatus, startDate, endDate };
 };
 
 const getInitialContent = (

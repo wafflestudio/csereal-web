@@ -78,16 +78,16 @@ export const getResearchLabs = (language: Language) =>
   );
 
 export const postResearchLab = (formData: FormData) =>
-  postRequestV2<WithLanguage<ResearchLab>>('/research', { body: formData, jsessionID: true });
+  postRequestV2<WithLanguage<ResearchLab>>('/research/lab', { body: formData, jsessionID: true });
 
 export const putResearchLab = (ids: WithLanguage<number>, formData: FormData) =>
-  putRequestV2<WithLanguage<ResearchLab>>(`/research/${ids.ko}/${ids.en}`, {
+  putRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${ids.ko}/${ids.en}`, {
     body: formData,
     jsessionID: true,
   });
 
 export const deleteResearchLab = (ids: WithLanguage<number>) =>
-  deleteRequestV2(`/research/${ids.ko}/${ids.en}`, { jsessionID: true });
+  deleteRequestV2(`/research/lab/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /** TCL */
 

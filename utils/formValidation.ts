@@ -3,11 +3,11 @@ import { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { PostEditorContent } from '@/components/editor/PostEditorTypes';
 import { ResearchCenterEditorContent } from '@/components/editor/ResearchCenterEditor';
+import { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
-import { ResearchLab } from '@/types/research';
 
 import { ValueOf } from './type';
 
@@ -120,7 +120,7 @@ export const validateResearchCenterForm = (content: WithLanguage<ResearchCenterE
 };
 
 // TODO: 보강
-export const validateResearchLabForm = (content: WithLanguage<ResearchLab>) => {
+export const validateResearchLabForm = (content: WithLanguage<ResearchLabEditorContent>) => {
   if (!content.ko.name) {
     throw new Error('제목을 입력해주세요');
   } else if (!content.ko.description) {

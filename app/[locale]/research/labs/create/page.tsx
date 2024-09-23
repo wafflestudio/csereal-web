@@ -1,11 +1,10 @@
 'use client';
 
 import { postResearchLabAction } from '@/actions/research';
-import ResearchLabEditor from '@/components/editor/ResearchLabEditor';
+import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { WithLanguage } from '@/types/language';
-import { ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { validateResearchLabForm } from '@/utils/formValidation';
@@ -21,7 +20,7 @@ export default function ResearchLabCreatePage() {
 
   const handleCancel = () => router.push(labsPath);
 
-  const handleSubmit = async (content: WithLanguage<ResearchLab>) => {
+  const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
     validateResearchLabForm(content);
     const formData = contentToFormData('CREATE', {
       requestObject: getRequestObject(content),
@@ -44,7 +43,7 @@ export default function ResearchLabCreatePage() {
   );
 }
 
-const getRequestObject = (content: WithLanguage<ResearchLab>) => {
+const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>) => {
   return {
     ko: { ...content.ko },
     en: { ...content.en },
