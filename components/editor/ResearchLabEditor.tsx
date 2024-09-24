@@ -12,6 +12,7 @@ import Dropdown from '../common/form/Dropdown';
 import { EditAction, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
+import FilePicker, { FilePickerProps } from './common/FilePicker';
 import LangauageFieldset from './common/LanguageFieldset';
 import { PostEditorFile } from './PostEditorTypes';
 
@@ -34,13 +35,18 @@ export interface ResearchLabEditorContent {
 }
 
 interface ResearchLabEditorProps {
+  groups: WithLanguage<ResearchGroup[]>;
   actions: EditAction<WithLanguage<ResearchLabEditorContent>>;
   initialContent?: WithLanguage<ResearchLab>;
 }
 
-export default function ResearchLabEditor({ actions, initialContent }: ResearchLabEditorProps) {
+export default function ResearchLabEditor({
+  groups,
+  actions,
+  initialContent,
+}: ResearchLabEditorProps) {
   const [language, setLanguage] = useState<Language>('ko');
-  const { content, setContentByKey } = useEditorContent(
+  const { content, setContentByKey, setContent } = useEditorContent(
     getInitialContent(initialContent),
     language,
   );
@@ -78,17 +84,43 @@ export default function ResearchLabEditor({ actions, initialContent }: ResearchL
     <form className="flex flex-col">
       <LangauageFieldset onChange={changeLanguage} selected={language} />
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
-      <AcronymFieldset value={currLangContent.acronym} onChange={setContentByKey('acronym')} />
-      <TelephoneFieldset
-        value={currLangContent.tel ?? ''}
-        onChange={setContentByKey('tel', true)}
-      />
-      <WebsiteFieldset
-        value={currLangContent.websiteURL ?? ''}
-        onChange={setContentByKey('websiteURL', true)}
-      />
+      <div className="flex w-[30rem] gap-6">
+        <ProfessorFieldset value={'임시'} onChange={() => {}} />
+        <AcronymFieldset
+          value={currLangContent.acronym}
+          onChange={setContentByKey('acronym', true)}
+        />
+      </div>
+      <div className="flex w-[45rem] gap-6">
+        <TelephoneFieldset
+          value={currLangContent.tel ?? ''}
+          onChange={setContentByKey('tel', true)}
+        />
+        <WebsiteFieldset
+          value={currLangContent.websiteURL ?? ''}
+          onChange={setContentByKey('websiteURL', true)}
+        />
+      </div>
+      <LocationFieldset value={currLangContent.location} onChange={setContentByKey('location')} />
       {/* TODO: researchGroup id 달라고 요청하기 */}
-      <ResearchGroupFieldset selected={0} onChange={() => {}} groups={[]} />
+      <ResearchGroupFieldset
+        groups={groups[language]}
+        selected={currLangContent.groupId}
+        onChange={setContentByKey('groupId')}
+      />
+      <Fieldset title="소개 자료" mb="mb-8" titleMb="mb-2">
+        {/* 다시 */}
+        <FileFieldset
+          files={currLangContent.pdf ? [currLangContent.pdf] : []}
+          setFiles={(dispatch) => {
+            setContent((prev) => ({ ...prev, attachments: dispatch([]) }));
+          }}
+        />
+        <YoutubeFieldset
+          value={currLangContent.youtube}
+          onChange={setContentByKey('youtube', true)}
+        />
+      </Fieldset>
       <EditorFieldset
         key={language}
         editorRef={editorRef[language]}
@@ -104,16 +136,30 @@ export default function ResearchLabEditor({ actions, initialContent }: ResearchL
 
 function NameFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="연구실명" mb="mb-8" titleMb="mb-2" required>
+    <Fieldset title="연구실명" mb="mb-6" titleMb="mb-2" required>
       <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[30rem]" />
+    </Fieldset>
+  );
+}
+
+function ProfessorFieldset({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="지도교수" mb="mb-11" titleMb="mb-2" required>
+      <BasicTextInput value={value} onChange={onChange} maxWidth="w-[14.25rem]" />
     </Fieldset>
   );
 }
 
 function AcronymFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="연구실 약자" mb="mb-8" titleMb="mb-2">
-      <BasicTextInput value={value} onChange={onChange} maxWidth="max-w-[30rem]" />
+    <Fieldset title="연구실 약자" mb="mb-11" titleMb="mb-2">
+      <BasicTextInput value={value} onChange={onChange} maxWidth="w-[14.25rem]" />
     </Fieldset>
   );
 }
@@ -126,11 +172,11 @@ function TelephoneFieldset({
   onChange: (text: string) => void;
 }) {
   return (
-    <Fieldset title="전화" mb="mb-5" titleMb="mb-2">
+    <Fieldset title="전화" mb="mb-6" titleMb="mb-2">
       <BasicTextInput
         value={value}
         onChange={onChange}
-        maxWidth="max-w-[20rem]"
+        maxWidth="w-[21.75rem]"
         placeholder="예: (02) 880-7302"
       />
     </Fieldset>
@@ -139,12 +185,31 @@ function TelephoneFieldset({
 
 function WebsiteFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
-    <Fieldset title="웹사이트 주소" mb="mb-8" titleMb="mb-2">
+    <Fieldset title="웹사이트 주소" mb="mb-6" titleMb="mb-2">
       <BasicTextInput
         value={value}
         onChange={onChange}
-        maxWidth="max-w-[30rem]"
+        maxWidth="w-[21.75rem]"
         placeholder="예: http://hcil.snu.ac.kr/"
+      />
+    </Fieldset>
+  );
+}
+
+function LocationFieldset({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) {
+  return (
+    <Fieldset title="연구실 위치" mb="mb-11" titleMb="mb-2">
+      <BasicTextInput
+        value={value}
+        onChange={onChange}
+        maxWidth="w-[45rem]"
+        placeholder="복수일 경우 “ / ”로 구분해주세요. 예: 301동 515호 / 518호 / 551-1호"
       />
     </Fieldset>
   );
@@ -165,15 +230,38 @@ function ResearchGroupFieldset({
   };
 
   return (
-    <Fieldset title="연구실" mb="mb-5" titleMb="mb-2">
+    <Fieldset title="연구·교육 스트림" mb="mb-11" titleMb="mb-2" required>
       <Dropdown
-        contents={['선택 안 함', ...groups.map((lab) => lab.name)]}
+        contents={['선택 안 함', ...groups.map((lab) => `${lab.name} 스트림`)]}
         selectedIndex={getSelectedIndex()}
         onClick={(i) => {
           onChange(i === 0 ? null : groups[i - 1].id);
         }}
       />
     </Fieldset>
+  );
+}
+
+function FileFieldset({ files, setFiles }: FilePickerProps) {
+  return (
+    <div className="flex w-[45rem] items-center">
+      <span className="w-[3.5rem] text-sm text-neutral-400">| 문서</span>
+      <FilePicker files={files} setFiles={setFiles} />
+    </div>
+  );
+}
+
+function YoutubeFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
+  return (
+    <div className="flex w-[45rem] items-center">
+      <span className="w-[3.5rem] text-sm text-neutral-400">| 유튜브</span>
+      <BasicTextInput
+        value={value}
+        onChange={onChange}
+        maxWidth="w-[41.5rem]"
+        placeholder="예: https://www.youtube.com/watch?v=bCLWYhurBuo"
+      />
+    </div>
   );
 }
 
@@ -185,7 +273,7 @@ function EditorFieldset({
   initialContent: string;
 }) {
   return (
-    <Fieldset title="내용" mb="mb-10" titleMb="mb-2" required>
+    <Fieldset title="연구실 설명 및 이미지" mb="mb-10" titleMb="mb-2" required>
       <SunEditorWrapper editorRef={editorRef} initialContent={initialContent} />
     </Fieldset>
   );
