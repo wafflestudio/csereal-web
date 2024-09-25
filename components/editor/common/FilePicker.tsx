@@ -6,9 +6,10 @@ import FilePickerRow from './FilePickerRow';
 export interface FilePickerProps {
   files: PostEditorFile[];
   setFiles: (f: (cur: PostEditorFile[]) => PostEditorFile[]) => void;
+  multiple?: boolean;
 }
 
-export default function FilePicker({ files, setFiles }: FilePickerProps) {
+export default function FilePicker({ files, setFiles, multiple = true }: FilePickerProps) {
   // 성능 확인 필요
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files === null) return;
@@ -17,7 +18,7 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
       type: 'LOCAL_FILE',
       file,
     }));
-    setFiles((files) => [...files, ...newFiles]);
+    setFiles((files) => (multiple ? [...files, ...newFiles] : newFiles));
 
     // 같은 파일에 대해서 선택이 가능하도록 처리
     // https://stackoverflow.com/a/12102992
@@ -34,11 +35,11 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
 
   return (
     <>
-      <SelectFileButton onChange={handleChange} />
+      <SelectFileButton onChange={handleChange} multiple={multiple} />
       <ol
         className={`
-          self-start
-        rounded-sm border-[1px] border-neutral-200 bg-neutral-50
+          
+        self-start rounded-sm border-[1px] border-neutral-200 bg-neutral-50
       `}
       >
         {files.map((item, idx) => (
@@ -57,11 +58,17 @@ export default function FilePicker({ files, setFiles }: FilePickerProps) {
   );
 }
 
-function SelectFileButton({ onChange }: { onChange: ChangeEventHandler<HTMLInputElement> }) {
+function SelectFileButton({
+  onChange,
+  multiple,
+}: {
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  multiple: boolean;
+}) {
   return (
-    <label className="mb-3 flex h-[1.875rem] cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
       파일 선택
-      <input type="file" className="hidden" onChange={onChange} multiple />
+      <input type="file" className="hidden" onChange={onChange} multiple={multiple} />
     </label>
   );
 }

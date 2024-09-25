@@ -29,7 +29,7 @@ export interface ResearchLabEditorContent {
   location: string;
   tel: string;
   acronym: string;
-  pdf: PostEditorFile | null;
+  pdf: PostEditorFile[];
   youtube: string;
   websiteURL: string;
 }
@@ -92,12 +92,9 @@ export default function ResearchLabEditor({
         />
       </div>
       <div className="flex w-[45rem] gap-6">
-        <TelephoneFieldset
-          value={currLangContent.tel ?? ''}
-          onChange={setContentByKey('tel', true)}
-        />
+        <TelephoneFieldset value={currLangContent.tel} onChange={setContentByKey('tel', true)} />
         <WebsiteFieldset
-          value={currLangContent.websiteURL ?? ''}
+          value={currLangContent.websiteURL}
           onChange={setContentByKey('websiteURL', true)}
         />
       </div>
@@ -109,11 +106,13 @@ export default function ResearchLabEditor({
         onChange={setContentByKey('groupId')}
       />
       <Fieldset title="소개 자료" mb="mb-8" titleMb="mb-2">
-        {/* 다시 */}
         <FileFieldset
-          files={currLangContent.pdf ? [currLangContent.pdf] : []}
+          files={currLangContent.pdf}
           setFiles={(dispatch) => {
-            setContent((prev) => ({ ...prev, attachments: dispatch([]) }));
+            setContent((prev) => ({
+              ko: { ...prev.ko, pdf: dispatch(prev.ko.pdf) },
+              en: { ...prev.en, pdf: dispatch(prev.en.pdf) },
+            }));
           }}
         />
         <YoutubeFieldset
@@ -244,9 +243,9 @@ function ResearchGroupFieldset({
 
 function FileFieldset({ files, setFiles }: FilePickerProps) {
   return (
-    <div className="flex w-[45rem] items-center">
+    <div className="mb-2.5 flex w-[45rem] items-center">
       <span className="w-[3.5rem] text-sm text-neutral-400">| 문서</span>
-      <FilePicker files={files} setFiles={setFiles} />
+      <FilePicker files={files} setFiles={setFiles} multiple={false} />
     </div>
   );
 }
@@ -286,7 +285,7 @@ const DEFAULT_CONTENT: ResearchLabEditorContent = {
   location: '',
   tel: '',
   acronym: '',
-  pdf: null,
+  pdf: [],
   youtube: '',
   websiteURL: '',
   groupId: null,
@@ -298,7 +297,7 @@ const getDefaultContentDetail = (content?: ResearchLab): ResearchLabEditorConten
         ...content,
         professorIds: content.professors.map((prof) => prof.id),
         groupId: 0,
-        pdf: content.pdf ? { type: 'UPLOADED_FILE', file: content.pdf } : null,
+        pdf: content.pdf ? [{ type: 'UPLOADED_FILE', file: content.pdf }] : [],
       }
     : DEFAULT_CONTENT;
 };

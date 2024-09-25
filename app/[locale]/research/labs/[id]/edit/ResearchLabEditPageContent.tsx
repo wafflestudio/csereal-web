@@ -1,17 +1,18 @@
 'use client';
 
 import { putResearchLabAction } from '@/actions/research';
+import { isLocalFile, PostEditorFile } from '@/components/editor/PostEditorTypes';
 import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { ResearchGroup, ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
-import { contentToFormData } from '@/utils/formData';
 import { validateResearchLabForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
+import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface ResearchLabEditPageContentProps {
@@ -31,9 +32,10 @@ export default function ResearchLabEditPageContent({
 
   const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
     validateResearchLabForm(content);
-    const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(content),
-    });
+    const formData = contentToFormData(
+      getRequestObject(content, lab.ko.pdf !== null && content.ko.pdf.length === 0),
+      content.ko.pdf,
+    );
 
     try {
       handleServerAction(await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData));
@@ -55,9 +57,28 @@ export default function ResearchLabEditPageContent({
 }
 
 // TODO: 내용 제대로 넣기
-const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>) => {
+const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>, removePdf: boolean) => {
   return {
-    ko: { name: content.ko.name, description: content.ko.description },
-    en: { name: content.en.name, description: content.en.description },
+    ko: { ...content.ko, removePdf },
+    en: { ...content.en, removePdf },
   };
+};
+
+const contentToFormData = (requestObject: object, pdf: PostEditorFile[]) => {
+  const formData = new FormData();
+
+  formData.append(
+    'request',
+    new Blob([JSON.stringify(requestObject)], {
+      type: 'application/json',
+    }),
+  );
+
+  encodeFormDataFileName(
+    formData,
+    'pdf',
+    pdf.filter(isLocalFile).map((x) => x.file),
+  );
+
+  return formData;
 };
