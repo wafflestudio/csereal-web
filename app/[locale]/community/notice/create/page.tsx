@@ -20,7 +20,6 @@ export default function NoticeCreatePage() {
 
   const handleComplete = async (content: PostEditorContent) => {
     console.log(content.description);
-    return;
     validateNoticeForm(content);
     const formData = contentToForm(content);
     await postNoticeAction(formData);
