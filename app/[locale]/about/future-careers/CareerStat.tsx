@@ -42,7 +42,7 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
             <Link href={`${careerPath}/stat/create`}>
               <OrangeButton title="연도 추가" />
             </Link>
-            <EditButton href={`${careerPath}/description/edit`} />
+            <EditButton href={`${careerPath}/stat/edit?year=${year}`} />
           </div>
         </LoginVisible>
       </div>
