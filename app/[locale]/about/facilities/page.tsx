@@ -6,17 +6,22 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
+import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { facilities } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
   return await getMetadata({ locale, node: facilities });
+}
+
+interface FacilitiesPageProps {
+  params: { locale: Language };
 }
 
 const facilitiesPath = getPath(facilities);
 
-export default async function FacilitiesPage() {
+export default async function FacilitiesPage({ params }: FacilitiesPageProps) {
   const facilities = await getFacilities();
 
   return (
@@ -28,7 +33,7 @@ export default async function FacilitiesPage() {
           </Link>
         </div>
       </LoginVisible>
-      <FacilitesList facilities={facilities} />
+      <FacilitesList facilities={facilities.map((facility) => facility[params.locale])} />
     </PageLayout>
   );
 }

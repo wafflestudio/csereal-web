@@ -64,7 +64,7 @@ export const deleteClub = (id: number) =>
 /** 시설 안내 */
 
 export const getFacilities = () =>
-  getRequest<Facility[]>('/about/facilities', undefined, {
+  getRequestV2<WithLanguage<Facility>[]>('/about/facilities', undefined, {
     next: { tags: [FETCH_TAG_FACILITIES] },
   });
 
