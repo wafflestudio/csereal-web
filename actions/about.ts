@@ -8,6 +8,7 @@ import {
   deleteFacility,
   postClub,
   postFacility,
+  putCareerDescription,
   putClub,
   putContact,
   putDirections,
@@ -17,6 +18,7 @@ import {
   putOverview,
 } from '@/apis/about';
 import {
+  FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
   FETCH_TAG_DIRECTIONS,
@@ -30,6 +32,7 @@ import {
   contact,
   directions,
   facilities,
+  futureCareers,
   greetings,
   history,
   overview,
@@ -67,6 +70,18 @@ export const putHistoryAction = withErrorHandler(async (formData: FormData) => {
   revalidateTag(FETCH_TAG_HISTORY);
   redirect(historyPath);
 });
+
+/** 졸업생 진로 */
+
+const careerPath = getPath(futureCareers);
+
+export const putCareerDescriptionAction = withErrorHandler(
+  async (data: { koDescription: string; enDescription: string }) => {
+    await putCareerDescription(data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
 
 /** 동아리 */
 

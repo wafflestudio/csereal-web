@@ -14,11 +14,9 @@ export default function DirectionsDetails({ direction }: { direction: Direction 
       <div className="justify-between sm:flex">
         <DirectionsTitle name={direction.name} />
         <LoginVisible staff>
-          <div className="flex h-fit justify-end gap-3">
-            <EditButton
-              href={`${directionsPath}/edit?selected=${replaceSpaceWithDash(direction.name)}`}
-            />
-          </div>
+          <EditButton
+            href={`${directionsPath}/edit?selected=${replaceSpaceWithDash(direction.name)}`}
+          />
         </LoginVisible>
       </div>
       <HTMLViewer htmlContent={direction.description} className="ml-2.5" />

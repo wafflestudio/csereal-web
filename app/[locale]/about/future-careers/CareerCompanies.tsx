@@ -6,7 +6,7 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
   const t = useTranslations('Content');
 
   return (
-    <div className="sm:max-w-[780px]">
+    <div className="mt-11 sm:max-w-[780px]">
       <h3 className="mb-3 text-base font-bold">{t('졸업생 창업 기업')}</h3>
       <div className="border-y border-neutral-200 text-sm font-normal">
         <CompanyTableHeader />

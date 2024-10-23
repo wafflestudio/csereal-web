@@ -1,4 +1,5 @@
 import {
+  FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
   FETCH_TAG_DIRECTIONS,
@@ -32,7 +33,10 @@ export const getGreetings = (language: Language) =>
 export const putGreetings = (formData: FormData) =>
   putRequestV2('/about/greetings', { body: formData, jsessionID: true });
 
-export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
+export const getFutureCareeres = (language: Language) =>
+  getRequest<FutureCareers>(`/about/future-careers?language=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_CAREER] },
+  });
 
 /** 연혁 */
 
@@ -43,6 +47,15 @@ export const getHistory = (language: Language) =>
 
 export const putHistory = (formData: FormData) =>
   putRequestV2('/about/history', { body: formData, jsessionID: true });
+
+/** 졸업생 진로  */
+
+export const putCareerDescription = (data: { koDescription: string; enDescription: string }) =>
+  putRequestV2('/about/future-careers', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
 
 /** 동아리 */
 

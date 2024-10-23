@@ -19,7 +19,7 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
   if (yearStat === undefined) return <p>선택된 연도의 자료가 없습니다.</p>;
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="mt-7 flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <h3 className="text-base font-bold">{t('졸업생 진로 현황')}</h3>
         <Dropdown
@@ -28,7 +28,7 @@ export default function CareerStat({ stat }: { stat: FutureCareers['stat'] }) {
           onClick={setIdx}
         />
       </div>
-      <div className="mb-9 flex h-[14rem] flex-col justify-stretch border-y-[1px] border-y-neutral-300 text-xs font-normal sm:w-[432px]">
+      <div className="flex h-[14rem] flex-col justify-stretch border-y-[1px] border-y-neutral-300 text-xs font-normal sm:w-[432px]">
         <TableHeader />
         {careerStatRows.map((company, index) => {
           return (
