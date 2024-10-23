@@ -99,7 +99,6 @@ export default function ResearchLabEditor({
         />
       </div>
       <LocationFieldset value={currLangContent.location} onChange={setContentByKey('location')} />
-      {/* TODO: researchGroup id 달라고 요청하기 */}
       <ResearchGroupFieldset
         groups={groups[language]}
         selected={currLangContent.groupId}
@@ -296,7 +295,7 @@ const getDefaultContentDetail = (content?: ResearchLab): ResearchLabEditorConten
     ? {
         ...content,
         professorIds: content.professors.map((prof) => prof.id),
-        groupId: 0,
+        groupId: content.group.id,
         pdf: content.pdf ? [{ type: 'UPLOADED_FILE', file: content.pdf }] : [],
       }
     : DEFAULT_CONTENT;

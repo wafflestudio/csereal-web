@@ -49,7 +49,7 @@ export default function ResearchLabDetailContent({
           <EditButton href={`${labsPath}/${lab.id}/edit`} />
         </div>
       </LoginVisible>
-      <AffiliatedGroup groupName={lab.group} />
+      <AffiliatedGroup groupName={lab.group.name} />
       <div className="mx-2 mb-1 mt-6 flex justify-end sm:hidden">
         <ResearchLabInfo lab={lab} />
       </div>

@@ -30,7 +30,7 @@ export interface SimpleResearchLab {
 export interface ResearchLab extends SimpleResearchLab {
   description: string;
   websiteURL: string;
-  group: string;
+  group: { id: number; name: string };
 }
 
 export interface TopConferenceList {
