@@ -10,6 +10,7 @@ import {
   postFacility,
   putClub,
   putContact,
+  putDirections,
   putFacility,
   putGreetings,
   putHistory,
@@ -18,6 +19,7 @@ import {
 import {
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_DIRECTIONS,
   FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
@@ -26,6 +28,7 @@ import {
 import { getPath } from '@/utils/page';
 import {
   contact,
+  directions,
   facilities,
   greetings,
   history,
@@ -118,3 +121,15 @@ export const putContactAction = withErrorHandler(async (formData: FormData) => {
   revalidateTag(FETCH_TAG_CONTACT);
   redirect(contactPath);
 });
+
+/** 찾아오는 길 */
+
+const directionsPath = getPath(directions);
+
+export const putDirectionsAction = withErrorHandler(
+  async (id: number, data: { koDescription: string; enDescription: string }) => {
+    await putDirections(id, data);
+    revalidateTag(FETCH_TAG_DIRECTIONS);
+    redirect(directionsPath);
+  },
+);

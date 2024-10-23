@@ -1,6 +1,7 @@
 import {
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_DIRECTIONS,
   FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
@@ -32,8 +33,6 @@ export const putGreetings = (formData: FormData) =>
   putRequestV2('/about/greetings', { body: formData, jsessionID: true });
 
 export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
-
-export const getDirections = () => getRequest<Direction[]>('/about/directions');
 
 /** 연혁 */
 
@@ -86,3 +85,17 @@ export const getContact = (language: Language) =>
 
 export const putContact = (formData: FormData) =>
   putRequestV2('/about/contact', { body: formData, jsessionID: true });
+
+/** 찾아오는 길 */
+
+export const getDirections = () =>
+  getRequestV2<WithLanguage<Direction>[]>('/about/directions', undefined, {
+    next: { tags: [FETCH_TAG_DIRECTIONS] },
+  });
+
+export const putDirections = (id: number, data: { koDescription: string; enDescription: string }) =>
+  putRequestV2(`/about/directions/${id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
