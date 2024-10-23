@@ -1,3 +1,4 @@
+import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
   FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
@@ -33,11 +34,6 @@ export const getGreetings = (language: Language) =>
 export const putGreetings = (formData: FormData) =>
   putRequestV2('/about/greetings', { body: formData, jsessionID: true });
 
-export const getFutureCareeres = (language: Language) =>
-  getRequest<FutureCareers>(`/about/future-careers?language=${language}`, undefined, {
-    next: { tags: [FETCH_TAG_CAREER] },
-  });
-
 /** 연혁 */
 
 export const getHistory = (language: Language) =>
@@ -50,8 +46,27 @@ export const putHistory = (formData: FormData) =>
 
 /** 졸업생 진로  */
 
+export const getFutureCareeres = (language: Language) =>
+  getRequest<FutureCareers>(`/about/future-careers?language=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_CAREER] },
+  });
+
 export const putCareerDescription = (data: { koDescription: string; enDescription: string }) =>
   putRequestV2('/about/future-careers', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const postCareerStat = (data: CareerStatEditorContent) =>
+  postRequestV2('/about/future-careers/stats', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCareerStat = (data: CareerStatEditorContent) =>
+  putRequestV2('/about/future-careers/stats', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,

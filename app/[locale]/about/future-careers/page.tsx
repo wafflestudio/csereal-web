@@ -24,14 +24,22 @@ export default async function FutureCareersPage({ params }: { params: { locale: 
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer htmlContent={description} />
-      <LoginVisible staff>
-        <div className="flex justify-end">
-          <EditButton href={`${careerPath}/description/edit`} />
-        </div>
-      </LoginVisible>
+      <CareerDescription description={description} />
       <CareerStat stat={stat} />
       <CareerCompanies companies={companies} />
     </PageLayout>
+  );
+}
+
+function CareerDescription({ description }: { description: string }) {
+  return (
+    <>
+      <HTMLViewer htmlContent={description} />
+      <LoginVisible staff>
+        <div className="flex justify-end pb-2">
+          <EditButton href={`${careerPath}/description/edit`} />
+        </div>
+      </LoginVisible>
+    </>
   );
 }

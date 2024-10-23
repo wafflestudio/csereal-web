@@ -6,9 +6,11 @@ import { redirect } from 'next/navigation';
 import {
   deleteClub,
   deleteFacility,
+  postCareerStat,
   postClub,
   postFacility,
   putCareerDescription,
+  putCareerStat,
   putClub,
   putContact,
   putDirections,
@@ -17,6 +19,7 @@ import {
   putHistory,
   putOverview,
 } from '@/apis/about';
+import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
   FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
@@ -82,6 +85,18 @@ export const putCareerDescriptionAction = withErrorHandler(
     redirect(careerPath);
   },
 );
+
+export const postCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+  await postCareerStat(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const putCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+  await putCareerStat(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
 
 /** 동아리 */
 
