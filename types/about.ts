@@ -15,6 +15,7 @@ export interface FutureCareers {
     doctor: { name: string; count: number }[];
   }[];
   companies: {
+    id: number;
     name: string;
     url?: string;
     year: number;

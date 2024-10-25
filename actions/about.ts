@@ -4,11 +4,14 @@ import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import {
+  deleteCareerCompany,
   deleteClub,
   deleteFacility,
+  postCareerCompany,
   postCareerStat,
   postClub,
   postFacility,
+  putCareerCompany,
   putCareerDescription,
   putCareerStat,
   putClub,
@@ -94,6 +97,24 @@ export const postCareerStatAction = withErrorHandler(async (data: CareerStatEdit
 
 export const putCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
   await putCareerStat(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const postCareerCompanyAction = withErrorHandler(async (data: object) => {
+  await postCareerCompany(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const putCareerCompanyAction = withErrorHandler(async (id: number, data: object) => {
+  await putCareerCompany(id, data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const deleteCareerCompanyAction = withErrorHandler(async (id: number) => {
+  await deleteCareerCompany(id);
   revalidateTag(FETCH_TAG_CAREER);
   redirect(careerPath);
 });
