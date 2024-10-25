@@ -3,13 +3,20 @@
 import { useTranslations } from 'next-intl';
 import { useReducer } from 'react';
 
-import { deleteCareerCompanyAction, putCareerCompanyAction } from '@/actions/about';
-import { BlackButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
+import {
+  deleteCareerCompanyAction,
+  postCareerCompanyAction,
+  putCareerCompanyAction,
+} from '@/actions/about';
+import { BlackButton, DeleteButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
+import { EditAction } from '@/components/editor/common/ActionButtons';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
+import AlertModal from '@/components/modal/AlertModal';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import useEditorContent from '@/utils/hooks/useEditorContent';
+import useModal from '@/utils/hooks/useModal';
 import { isNumber } from '@/utils/number';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -17,19 +24,36 @@ import { errorToast, successToast } from '@/utils/toast';
 export default function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
   const t = useTranslations('Content');
 
+  const [newcom, toggleNew] = useReducer((x) => !x, false);
+
+  const handleCreate = async (content: CompanyEditorContent) => {
+    try {
+      handleServerAction(await postCareerCompanyAction(content));
+      toggleNew();
+      successToast('졸업생 창업 기업을 추가했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
+    }
+  };
+
   return (
     <div className="mt-11 sm:max-w-fit">
       <div className="mb-3 flex items-center justify-between gap-2">
         <h3 className="text-base font-bold">{t('졸업생 창업 기업')}</h3>
         <LoginVisible staff>
-          <OrangeButton title="기업 추가" />
+          <OrangeButton title="기업 추가" onClick={toggleNew} />
         </LoginVisible>
       </div>
       <div className="border-y border-neutral-200 text-sm font-normal">
         <CompanyTableHeader />
+        {newcom && (
+          <CompanyTableRowEditor
+            actions={{ type: 'EDIT', onCancel: toggleNew, onSubmit: handleCreate }}
+          />
+        )}
         <ol>
           {companies.map((company, index) => (
-            <CompanyTableRow key={index} index={index + 1} company={company} />
+            <CompanyTableRow key={company.id} index={index + 1} company={company} />
           ))}
         </ol>
       </div>
@@ -48,7 +72,9 @@ function CompanyTableHeader() {
       <p className={`${TABLE_COLUMN_SIZE[1]} pl-2`}>{t('창업 기업명')}</p>
       <p className={`${TABLE_COLUMN_SIZE[2]} pl-2`}>{t('홈페이지')}</p>
       <p className={`${TABLE_COLUMN_SIZE[3]} pl-2`}>{t('창업연도')}</p>
-      <p className="w-32" />
+      <LoginVisible staff>
+        <p className="w-32" />
+      </LoginVisible>
     </div>
   );
 }
@@ -61,20 +87,32 @@ interface CompanyTableRowProps {
 function CompanyTableRow({ index, company }: CompanyTableRowProps) {
   const [edit, toggleEdit] = useReducer((x) => !x, false);
 
+  const handleSubmit = async (content: CompanyEditorContent) => {
+    try {
+      handleServerAction(await putCareerCompanyAction(company.id, { id: company.id, ...content }));
+      toggleEdit();
+      successToast('졸업생 창업 기업을 수정했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
+    }
+  };
+
   return edit ? (
-    <CompanyTableRowEditor index={index} company={company} toggleEdit={toggleEdit} />
+    <CompanyTableRowEditor
+      index={index}
+      company={company}
+      actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: toggleEdit }}
+    />
   ) : (
     <CompanyTableRowViewer index={index} company={company} toggleEdit={toggleEdit} />
   );
 }
 
-interface CompanyTableRowViewerProps {
-  index: number;
-  company: FutureCareers['companies'][number];
-  toggleEdit: () => void;
-}
-
-function CompanyTableRowViewer({ index, company, toggleEdit }: CompanyTableRowViewerProps) {
+function CompanyTableRowViewer({
+  index,
+  company,
+  toggleEdit,
+}: CompanyTableRowProps & { toggleEdit: () => void }) {
   const { id, name, url, year } = company;
 
   const handleDelete = async () => {
@@ -106,27 +144,35 @@ function CompanyTableRowViewer({ index, company, toggleEdit }: CompanyTableRowVi
         {url}
       </a>
       <p className={`pl-2 text-sm text-neutral-400 ${TABLE_COLUMN_SIZE[3]}`}>{year}</p>
-      <div className="flex w-32 gap-2">
-        <GrayButton title="편집" onClick={toggleEdit} />
-        {/* TODO: 삭제 확인 알림 띄우기 */}
-        <GrayButton title="삭제" onClick={handleDelete} />
-      </div>
+      <LoginVisible staff>
+        <div className="flex w-32 gap-2">
+          <GrayButton title="편집" onClick={toggleEdit} />
+          <DeleteButton onDelete={handleDelete} />
+        </div>
+      </LoginVisible>
     </li>
   );
 }
 
-function CompanyTableRowEditor({ index, company, toggleEdit }: CompanyTableRowViewerProps) {
-  const { content, setContentByKey } = useEditorContent(company);
+interface CompanyEditorContent {
+  name: string;
+  url?: string;
+  year: number;
+}
 
-  const handleSubmit = async () => {
-    try {
-      handleServerAction(await putCareerCompanyAction(content.id, content));
-      toggleEdit();
-      successToast('졸업생 창업 기업을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
-  };
+const DEFAULT_COMPANY = { name: '', url: '', year: 0 };
+
+function CompanyTableRowEditor({
+  index,
+  company,
+  actions,
+}: {
+  index?: number;
+  company?: FutureCareers['companies'][number];
+  actions: EditAction<CompanyEditorContent>;
+}) {
+  const { content, setContentByKey } = useEditorContent(company ?? DEFAULT_COMPANY);
+  const { openModal } = useModal();
 
   return (
     <li className="grid grid-cols-[22px,_auto,_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
@@ -148,9 +194,19 @@ function CompanyTableRowEditor({ index, company, toggleEdit }: CompanyTableRowVi
           maxWidth="w-full"
         />
       </div>
-      <div className="w-32">
-        <BlackButton title="완료" onClick={handleSubmit} />
-      </div>
+      <LoginVisible staff>
+        <div className="flex w-32 gap-2">
+          <GrayButton
+            title="취소"
+            onClick={() => {
+              openModal(
+                <AlertModal message="편집중인 내용이 사라집니다." onConfirm={actions.onCancel} />,
+              );
+            }}
+          />
+          <BlackButton title="저장" onClick={() => actions.onSubmit(content)} />
+        </div>
+      </LoginVisible>
     </li>
   );
 }

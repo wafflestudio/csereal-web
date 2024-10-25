@@ -72,14 +72,14 @@ export const putCareerStat = (data: CareerStatEditorContent) =>
     jsessionID: true,
   });
 
-export const postCareerCompany = (data: object) =>
+export const postCareerCompany = (data: { name: string; url?: string; year: number }) =>
   postRequestV2('/about/future-careers/company', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
-export const putCareerCompany = (id: number, data: object) =>
+export const putCareerCompany = (id: number, data: FutureCareers['companies'][number]) =>
   putRequestV2(`/about/future-careers/company/${id}`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

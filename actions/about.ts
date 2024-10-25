@@ -33,6 +33,7 @@ import {
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
+import { FutureCareers } from '@/types/about';
 import { getPath } from '@/utils/page';
 import {
   contact,
@@ -101,17 +102,21 @@ export const putCareerStatAction = withErrorHandler(async (data: CareerStatEdito
   redirect(careerPath);
 });
 
-export const postCareerCompanyAction = withErrorHandler(async (data: object) => {
-  await postCareerCompany(data);
-  revalidateTag(FETCH_TAG_CAREER);
-  redirect(careerPath);
-});
+export const postCareerCompanyAction = withErrorHandler(
+  async (data: { name: string; url?: string; year: number }) => {
+    await postCareerCompany(data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
 
-export const putCareerCompanyAction = withErrorHandler(async (id: number, data: object) => {
-  await putCareerCompany(id, data);
-  revalidateTag(FETCH_TAG_CAREER);
-  redirect(careerPath);
-});
+export const putCareerCompanyAction = withErrorHandler(
+  async (id: number, data: FutureCareers['companies'][number]) => {
+    await putCareerCompany(id, data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
 
 export const deleteCareerCompanyAction = withErrorHandler(async (id: number) => {
   await deleteCareerCompany(id);
