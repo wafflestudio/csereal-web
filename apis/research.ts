@@ -66,7 +66,7 @@ export const deleteResearchCenter = (ids: WithLanguage<number>) =>
 /** 연구실 */
 
 export const getResearchLab = (id: number) =>
-  getRequest<WithLanguage<ResearchLab>>(`/research/lab/${id}`, undefined, {
+  getRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${id}`, undefined, {
     next: { tags: [FETCH_TAG_LAB] },
   });
 
