@@ -1,3 +1,4 @@
+import { CareerCompanyEditorContent } from '@/app/[locale]/about/future-careers/CareerCompanies';
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
 import { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
@@ -115,5 +116,14 @@ export const validateFacilityForm = (content: WithLanguage<FacilityEditorContent
     Object.entries(content.en).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
   ) {
     throw new Error('영문 정보도 입력해주세요');
+  }
+};
+
+export const validateCareerCompanyForm = (content: CareerCompanyEditorContent) => {
+  if (!content.name) {
+    throw new Error('기업명을 입력해주세요');
+  }
+  if (!content.year) {
+    throw new Error('창업 연도를 입력해주세요');
   }
 };

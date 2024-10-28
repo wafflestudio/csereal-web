@@ -15,6 +15,7 @@ export interface FutureCareers {
     doctor: { name: string; count: number }[];
   }[];
   companies: {
+    id: number;
     name: string;
     url?: string;
     year: number;
@@ -36,12 +37,8 @@ export interface Facility {
   imageURL: string | null;
 }
 
-export interface Contact {
-  description: string;
-  imageURL: string;
-}
-
 export interface Direction {
+  id: number;
   name: string;
   description: string;
 }

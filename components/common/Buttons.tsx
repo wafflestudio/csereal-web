@@ -17,7 +17,7 @@ export function GrayButton({
 }) {
   return (
     <button
-      className={`rounded-[.0625rem] border-[1px] border-neutral-200 bg-neutral-100 px-[.875rem] py-[.3125rem] text-md font-medium leading-[1.5rem] text-neutral-500 enabled:hover:bg-neutral-200 ${
+      className={`whitespace-nowrap rounded-[.0625rem] border-[1px] border-neutral-200 bg-neutral-100 px-[.875rem] py-[.3125rem] text-md font-medium leading-[1.5rem] text-neutral-500 enabled:hover:bg-neutral-200 ${
         disabled && 'opacity-30'
       }`}
       disabled={disabled}
@@ -39,7 +39,7 @@ export function BlackButton({
 }) {
   return (
     <button
-      className={`rounded-[.0625rem] bg-neutral-700 px-[.875rem] py-[.34rem] text-xs font-bold leading-[1.5rem] text-white enabled:hover:bg-neutral-500 ${
+      className={`whitespace-nowrap rounded-[.0625rem] bg-neutral-700 px-[.875rem] py-[.3125rem] text-md font-semibold leading-[1.5rem] text-white enabled:hover:bg-neutral-500 ${
         disabled && 'opacity-30'
       }`}
       disabled={disabled}

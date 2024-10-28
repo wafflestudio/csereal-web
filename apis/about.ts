@@ -1,6 +1,9 @@
+import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
+  FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_DIRECTIONS,
   FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
@@ -31,10 +34,6 @@ export const getGreetings = (language: Language) =>
 export const putGreetings = (formData: FormData) =>
   putRequestV2('/about/greetings', { body: formData, jsessionID: true });
 
-export const getFutureCareeres = () => getRequest<FutureCareers>('/about/future-careers');
-
-export const getDirections = () => getRequest<Direction[]>('/about/directions');
-
 /** 연혁 */
 
 export const getHistory = (language: Language) =>
@@ -44,6 +43,51 @@ export const getHistory = (language: Language) =>
 
 export const putHistory = (formData: FormData) =>
   putRequestV2('/about/history', { body: formData, jsessionID: true });
+
+/** 졸업생 진로  */
+
+export const getFutureCareeres = (language: Language) =>
+  getRequest<FutureCareers>(`/about/future-careers?language=${language}`, undefined, {
+    next: { tags: [FETCH_TAG_CAREER] },
+  });
+
+export const putCareerDescription = (data: { koDescription: string; enDescription: string }) =>
+  putRequestV2('/about/future-careers', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const postCareerStat = (data: CareerStatEditorContent) =>
+  postRequestV2('/about/future-careers/stats', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCareerStat = (data: CareerStatEditorContent) =>
+  putRequestV2('/about/future-careers/stats', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const postCareerCompany = (data: { name: string; url?: string; year: number }) =>
+  postRequestV2('/about/future-careers/company', {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const putCareerCompany = (id: number, data: FutureCareers['companies'][number]) =>
+  putRequestV2(`/about/future-careers/company/${id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });
+
+export const deleteCareerCompany = (id: number) =>
+  deleteRequestV2(`/about/future-careers/company/${id}`, { jsessionID: true });
 
 /** 동아리 */
 
@@ -64,7 +108,7 @@ export const deleteClub = (id: number) =>
 /** 시설 안내 */
 
 export const getFacilities = () =>
-  getRequest<Facility[]>('/about/facilities', undefined, {
+  getRequestV2<WithLanguage<Facility>[]>('/about/facilities', undefined, {
     next: { tags: [FETCH_TAG_FACILITIES] },
   });
 
@@ -86,3 +130,17 @@ export const getContact = (language: Language) =>
 
 export const putContact = (formData: FormData) =>
   putRequestV2('/about/contact', { body: formData, jsessionID: true });
+
+/** 찾아오는 길 */
+
+export const getDirections = () =>
+  getRequestV2<WithLanguage<Direction>[]>('/about/directions', undefined, {
+    next: { tags: [FETCH_TAG_DIRECTIONS] },
+  });
+
+export const putDirections = (id: number, data: { koDescription: string; enDescription: string }) =>
+  putRequestV2(`/about/directions/${id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+    jsessionID: true,
+  });

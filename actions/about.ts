@@ -4,29 +4,42 @@ import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import {
+  deleteCareerCompany,
   deleteClub,
   deleteFacility,
+  postCareerCompany,
+  postCareerStat,
   postClub,
   postFacility,
+  putCareerCompany,
+  putCareerDescription,
+  putCareerStat,
   putClub,
   putContact,
+  putDirections,
   putFacility,
   putGreetings,
   putHistory,
   putOverview,
 } from '@/apis/about';
+import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
+  FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
   FETCH_TAG_CONTACT,
+  FETCH_TAG_DIRECTIONS,
   FETCH_TAG_FACILITIES,
   FETCH_TAG_GREETINGS,
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
+import { FutureCareers } from '@/types/about';
 import { getPath } from '@/utils/page';
 import {
   contact,
+  directions,
   facilities,
+  futureCareers,
   greetings,
   history,
   overview,
@@ -63,6 +76,52 @@ export const putHistoryAction = withErrorHandler(async (formData: FormData) => {
   await putHistory(formData);
   revalidateTag(FETCH_TAG_HISTORY);
   redirect(historyPath);
+});
+
+/** 졸업생 진로 */
+
+const careerPath = getPath(futureCareers);
+
+export const putCareerDescriptionAction = withErrorHandler(
+  async (data: { koDescription: string; enDescription: string }) => {
+    await putCareerDescription(data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
+
+export const postCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+  await postCareerStat(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const putCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+  await putCareerStat(data);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
+});
+
+export const postCareerCompanyAction = withErrorHandler(
+  async (data: { name: string; url?: string; year: number }) => {
+    await postCareerCompany(data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
+
+export const putCareerCompanyAction = withErrorHandler(
+  async (id: number, data: FutureCareers['companies'][number]) => {
+    await putCareerCompany(id, data);
+    revalidateTag(FETCH_TAG_CAREER);
+    redirect(careerPath);
+  },
+);
+
+export const deleteCareerCompanyAction = withErrorHandler(async (id: number) => {
+  await deleteCareerCompany(id);
+  revalidateTag(FETCH_TAG_CAREER);
+  redirect(careerPath);
 });
 
 /** 동아리 */
@@ -118,3 +177,15 @@ export const putContactAction = withErrorHandler(async (formData: FormData) => {
   revalidateTag(FETCH_TAG_CONTACT);
   redirect(contactPath);
 });
+
+/** 찾아오는 길 */
+
+const directionsPath = getPath(directions);
+
+export const putDirectionsAction = withErrorHandler(
+  async (id: number, data: { koDescription: string; enDescription: string }) => {
+    await putDirections(id, data);
+    revalidateTag(FETCH_TAG_DIRECTIONS);
+    redirect(directionsPath);
+  },
+);

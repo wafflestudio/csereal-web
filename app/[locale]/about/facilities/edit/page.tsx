@@ -1,9 +1,20 @@
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { getFacilities } from '@/apis/about';
+import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
-export default function FacilitiesEditPage() {
-  return (
-    <PageLayout title="시설 안내 편집" titleType="big" hideNavbar>
-      <div>개발중입니다. 조금만 기다려주세요...</div>
-    </PageLayout>
-  );
+import FacilitiesEditPageContent from './FacilitiesEditPageContent';
+
+interface FacilitiesEditPageProps {
+  searchParams: { id: string };
+}
+
+export default async function FacilitiesEditPage({ searchParams }: FacilitiesEditPageProps) {
+  const facilities = await getFacilities();
+  const selectedFacility =
+    findItemBySearchParam(
+      facilities,
+      (item) => [item.en.id.toString(), item.ko.id.toString()],
+      searchParams.id,
+    ) || facilities[0];
+
+  return <FacilitiesEditPageContent data={selectedFacility} />;
 }

@@ -91,7 +91,7 @@ export function CreateActionButtons<T>({
   );
 }
 
-const buildPostHandler = <T,>(
+export const buildPostHandler = <T,>(
   requesting: boolean,
   setRequesting: (val: boolean) => void,
   getContent: () => T,
