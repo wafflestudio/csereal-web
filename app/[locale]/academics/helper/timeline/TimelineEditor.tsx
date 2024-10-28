@@ -6,6 +6,7 @@ import BasicEditor from '@/components/editor/BasicEditor';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 import { useRouter } from '@/navigation';
+import { isNumber } from '@/utils/number';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -60,8 +61,6 @@ export default function TimelineEditor({
   );
 }
 
-const NUMBER_REGEX = /^\d*$/;
-
 function YearFieldset({
   year,
   onChange,
@@ -71,8 +70,6 @@ function YearFieldset({
   onChange: (value: number) => void;
   disabled?: boolean;
 }) {
-  const isNumber = (value: string) => NUMBER_REGEX.test(value);
-
   return (
     <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
       <BasicTextInput

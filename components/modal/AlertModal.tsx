@@ -4,6 +4,7 @@ import { useFormStatus } from 'react-dom';
 
 import useModal from '@/utils/hooks/useModal';
 
+import { GrayButton } from '../common/Buttons';
 import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
@@ -34,8 +35,8 @@ export default function AlertModal({
       >
         <AlertMessage message={message} />
         <div className="text-right">
-          <CancelButton
-            text={cancelText}
+          <GrayButton
+            title={cancelText}
             onClick={() => {
               onCancel?.();
               closeModal();
@@ -50,18 +51,6 @@ export default function AlertModal({
 
 function AlertMessage({ message }: { message: string }) {
   return <p className="mb-6 mt-1 text-neutral-800">{message}</p>;
-}
-
-function CancelButton({ text, onClick }: { text: string; onClick: () => void }) {
-  return (
-    <button
-      className={`h-[2.1875rem] rounded-[.0625rem] border border-neutral-200 bg-neutral-100 px-[17px] text-xs font-bold text-neutral-500 hover:bg-neutral-200 hover:text-neutral-700`}
-      onClick={onClick}
-      type="button"
-    >
-      {text}
-    </button>
-  );
 }
 
 function ConfirmButton({ text }: { text: string }) {
