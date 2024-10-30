@@ -8,6 +8,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { Course, GRADE } from '@/types/academics';
 import { Language } from '@/types/language';
+import { errorToStr } from '@/utils/error';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -29,8 +30,8 @@ export default function CourseDetailModal({ initCourse, onClose }: CourseDetailM
       handleServerAction(await deleteCourseAction(course.code));
       successToast('교과목을 삭제했습니다.');
       onClose();
-    } catch {
-      errorToast('교과목을 삭제하지 못했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

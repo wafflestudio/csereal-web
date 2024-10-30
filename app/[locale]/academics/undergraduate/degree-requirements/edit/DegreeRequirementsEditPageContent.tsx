@@ -5,6 +5,7 @@ import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { DegreeRequirements } from '@/types/academics';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { degree } from '@/utils/segmentNode';
@@ -38,7 +39,7 @@ export default function DegreeRequirementsEditPageContent({ data }: { data: Degr
       handleServerAction(await putDegreeRequirementsAction(formData));
       goToOriginalPage();
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 

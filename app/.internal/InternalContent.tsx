@@ -11,6 +11,7 @@ import HTMLViewer from '@/components/editor/HTMLViewer';
 
 import { errorToast, successToast } from '@/utils/toast';
 import { handleServerAction } from '@/utils/serverActionError';
+import { errorToStr } from '@/utils/error';
 
 export default function InternalContent({ description }: { description: string }) {
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
@@ -21,7 +22,7 @@ export default function InternalContent({ description }: { description: string }
       successToast('본문을 수정했습니다.');
       toggleEditMode();
     } catch (e) {
-      errorToast('본문을 수정하지 못했습니다.');
+      errorToast(errorToStr(e));
     }
   };
 

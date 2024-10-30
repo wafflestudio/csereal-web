@@ -9,6 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { EmeritusFaculty } from '@/types/people';
+import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -36,8 +37,8 @@ export default function EmeritusFacultyMemberPageContent({
     try {
       handleServerAction(await deleteFacultyAction(ids, 'INACTIVE'));
       successToast('교수를 삭제했습니다.');
-    } catch {
-      errorToast('오류가 발생했습니다');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

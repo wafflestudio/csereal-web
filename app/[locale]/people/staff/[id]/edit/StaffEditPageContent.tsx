@@ -6,6 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
@@ -42,8 +43,8 @@ export default function StaffEditPageContent({
       handleServerAction(
         await putStaffAction({ ko: data.ko.id, en: data.en.id }, formData, language),
       );
-    } catch {
-      errorToast('오류가 발생했습니다');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

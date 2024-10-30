@@ -6,6 +6,7 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import { Link, usePathname } from '@/navigation';
+import { errorToStr } from '@/utils/error';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -36,8 +37,8 @@ export default function TimelineViewer<T extends { year: number; description: st
       handleServerAction(await deleteAction(year));
       successToast('삭제했습니다.');
       refreshPage();
-    } catch (error) {
-      errorToast('삭제하지 못했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

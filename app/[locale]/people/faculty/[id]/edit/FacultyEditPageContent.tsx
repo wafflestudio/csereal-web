@@ -7,6 +7,7 @@ import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
@@ -54,8 +55,8 @@ export default function FacultyEditPageContent({
           data.ko.status,
         ),
       );
-    } catch {
-      errorToast('오류가 발생했습니다');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 
