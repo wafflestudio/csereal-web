@@ -19,7 +19,7 @@ export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) 
 
   return (
     <div>
-      <AffiliatedGroup groupName={lab.group} />
+      <AffiliatedGroup groupName={lab.group.name} />
       <div className="mx-2 mb-1 mt-6 flex justify-end sm:hidden">
         <ResearchLabInfo lab={lab} />
       </div>
@@ -39,6 +39,8 @@ const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   const t = useTranslations('Content');
+
+  console.log(groupName);
 
   const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
   const affiliatedGroupPath = `${researchGroupsPath}?selected=${replaceSpaceWithDash(groupName)}`;
