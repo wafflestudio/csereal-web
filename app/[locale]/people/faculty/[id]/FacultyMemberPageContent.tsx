@@ -10,6 +10,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
+import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -36,7 +37,7 @@ export default function FacultyMemberPageContent({
       handleServerAction(await deleteFacultyAction(ids, faculty.status));
       successToast('교수를 삭제했습니다.');
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 

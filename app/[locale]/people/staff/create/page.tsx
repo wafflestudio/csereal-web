@@ -5,6 +5,7 @@ import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
@@ -29,8 +30,8 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
 
     try {
       handleServerAction(await postStaffAction(formData, locale));
-    } catch {
-      errorToast('오류가 발생했습니다');
+    } catch (e) {
+      errorToast(errorToStr(e));
     }
   };
 

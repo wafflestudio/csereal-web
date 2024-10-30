@@ -9,6 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/navigation';
 import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
+import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -35,7 +36,7 @@ export default function StaffMemberPageContent({
       handleServerAction(await deleteStaffAction(ids));
       successToast('행정직원을 삭제했습니다.');
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 

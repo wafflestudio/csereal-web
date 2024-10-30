@@ -28,7 +28,7 @@ export interface SimpleResearchLab {
 export interface ResearchLab extends SimpleResearchLab {
   description: string;
   websiteURL: string | null;
-  group: string;
+  group: { id: number; name: string };
 }
 
 export interface TopConferenceList {

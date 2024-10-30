@@ -116,7 +116,7 @@ export const putGeneralStudies = (data: GeneralStudiesRequirement) =>
   });
 
 export const deleteGeneralStudies = async (year: number) =>
-  deleteRequest(`${generalStudiesUrl}${year}`, {
+  deleteRequest(`${generalStudiesUrl}/${year}`, {
     jsessionID: true,
   });
 
