@@ -43,15 +43,18 @@ import {
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
 export const putGuideAction = withErrorHandler(async (type: StudentType, formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await putAcademicsGuide(type, formData);
   revalidateTag(FETCH_TAG_GUIDE);
 });
 
 export const putDegreeRequirementsAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await putDegreeRequirements(formData);
   revalidateTag(FETCH_TAG_DEGREE);
 });

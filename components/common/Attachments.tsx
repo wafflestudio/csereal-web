@@ -32,7 +32,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{decodeURI(name)}</span>
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
       <span>({kilobyte / 10}KB)</span>
     </a>
   );
