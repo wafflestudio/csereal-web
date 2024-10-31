@@ -18,6 +18,7 @@ import { FETCH_TAG_CENTER, FETCH_TAG_GROUP, FETCH_TAG_LAB } from '@/constants/ne
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { researchCenters, researchGroups, researchLabs } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -76,6 +77,7 @@ export const deleteResearchCenterAction = withErrorHandler(
 /** 연구실 */
 
 export const postResearchLabAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'pdf');
   await postResearchLab(formData);
   revalidateTag(FETCH_TAG_LAB);
   redirect(labsPath);
@@ -83,6 +85,7 @@ export const postResearchLabAction = withErrorHandler(async (formData: FormData)
 
 export const putResearchLabAction = withErrorHandler(
   async (ids: WithLanguage<number>, formData: FormData) => {
+    decodeFormDataFileName(formData, 'pdf');
     await putResearchLab(ids, formData);
     revalidateTag(FETCH_TAG_LAB);
     redirect(labsPath);

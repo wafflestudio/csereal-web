@@ -5,6 +5,7 @@ import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { Guide, StudentType } from '@/types/academics';
+import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { academics } from '@/utils/segmentNode';
@@ -38,7 +39,7 @@ export default function GuideEditPageContent({ data, type }: { data: Guide; type
       handleServerAction(await putGuideAction(type, formData));
       goToGuidePage();
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 

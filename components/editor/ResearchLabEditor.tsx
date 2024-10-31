@@ -4,6 +4,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';
 import { Language, WithLanguage } from '@/types/language';
+import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup, ResearchLab } from '@/types/research';
 import useEditorContent from '@/utils/hooks/useEditorContent';
 import { isContentEmpty } from '@/utils/post';
@@ -35,12 +36,14 @@ export interface ResearchLabEditorContent {
 }
 
 interface ResearchLabEditorProps {
+  professors: WithLanguage<SimpleFaculty[]>;
   groups: WithLanguage<ResearchGroup[]>;
   actions: EditAction<WithLanguage<ResearchLabEditorContent>>;
   initialContent?: WithLanguage<ResearchLab>;
 }
 
 export default function ResearchLabEditor({
+  professors,
   groups,
   actions,
   initialContent,
@@ -85,7 +88,11 @@ export default function ResearchLabEditor({
       <LangauageFieldset onChange={changeLanguage} selected={language} />
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <div className="flex w-[30rem] gap-6">
-        <ProfessorFieldset value={'임시'} onChange={() => {}} />
+        <ProfessorFieldset
+          professors={professors[language]}
+          selected={currLangContent.professorIds[0] ?? null}
+          onChange={(id) => setContentByKey('professorIds')(id === null ? [] : [id])}
+        />
         <AcronymFieldset
           value={currLangContent.acronym}
           onChange={setContentByKey('acronym', true)}
@@ -140,16 +147,30 @@ function NameFieldset({ value, onChange }: { value: string; onChange: (text: str
   );
 }
 
+// TODO: 지도교수 복수 선택 가능하도록
 function ProfessorFieldset({
-  value,
+  professors,
+  selected,
   onChange,
 }: {
-  value: string;
-  onChange: (text: string) => void;
+  professors: SimpleFaculty[];
+  selected: number | null;
+  onChange: (id: number | null) => void;
 }) {
+  const getSelectedIndex = () => {
+    const idx = professors.findIndex((e) => e.id === selected);
+    return idx === -1 ? 0 : idx + 1;
+  };
+
   return (
     <Fieldset title="지도교수" mb="mb-11" titleMb="mb-2" required>
-      <BasicTextInput value={value} onChange={onChange} maxWidth="w-[14.25rem]" />
+      <Dropdown
+        contents={['선택 안 함', ...professors.map((prof) => prof.name)]}
+        selectedIndex={getSelectedIndex()}
+        onClick={(i) => {
+          onChange(i === 0 ? null : professors[i - 1].id);
+        }}
+      />
     </Fieldset>
   );
 }
@@ -157,7 +178,7 @@ function ProfessorFieldset({
 function AcronymFieldset({ value, onChange }: { value: string; onChange: (text: string) => void }) {
   return (
     <Fieldset title="연구실 약자" mb="mb-11" titleMb="mb-2">
-      <BasicTextInput value={value} onChange={onChange} maxWidth="w-[14.25rem]" />
+      <BasicTextInput value={value} onChange={onChange} maxWidth="w-[17rem]" />
     </Fieldset>
   );
 }
@@ -297,6 +318,7 @@ const getDefaultContentDetail = (content?: ResearchLab): ResearchLabEditorConten
         professorIds: content.professors.map((prof) => prof.id),
         groupId: content.group.id,
         pdf: content.pdf ? [{ type: 'UPLOADED_FILE', file: content.pdf }] : [],
+        websiteURL: content.websiteURL ?? '',
       }
     : DEFAULT_CONTENT;
 };

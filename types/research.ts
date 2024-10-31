@@ -29,7 +29,7 @@ export interface SimpleResearchLab {
 
 export interface ResearchLab extends SimpleResearchLab {
   description: string;
-  websiteURL: string;
+  websiteURL: string | null;
   group: { id: number; name: string };
 }
 

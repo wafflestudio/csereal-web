@@ -6,6 +6,7 @@ import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { WithLanguage } from '@/types/language';
+import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { validateResearchLabForm } from '@/utils/formValidation';
@@ -19,8 +20,10 @@ const labsPath = getPath(researchLabs);
 
 export default function ResearchLabCreatePageContent({
   groups,
+  professors,
 }: {
   groups: WithLanguage<ResearchGroup[]>;
+  professors: WithLanguage<SimpleFaculty[]>;
 }) {
   const router = useRouter();
 
@@ -28,7 +31,6 @@ export default function ResearchLabCreatePageContent({
 
   const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
     validateResearchLabForm(content);
-
     const formData = contentToFormData(getRequestObject(content), content.ko.pdf);
 
     try {
@@ -42,6 +44,7 @@ export default function ResearchLabCreatePageContent({
   return (
     <PageLayout title="연구실 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <ResearchLabEditor
+        professors={professors}
         groups={groups}
         actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: handleCancel }}
       />
@@ -52,8 +55,8 @@ export default function ResearchLabCreatePageContent({
 // TODO: 필요한가?
 const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>) => {
   return {
-    ko: { ...content.ko },
-    en: { ...content.en },
+    ko: { ...content.ko, pdf: undefined },
+    en: { ...content.en, pdf: undefined },
   };
 };
 

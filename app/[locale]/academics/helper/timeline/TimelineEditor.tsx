@@ -6,6 +6,7 @@ import BasicEditor from '@/components/editor/BasicEditor';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 import { useRouter } from '@/navigation';
+import { errorToStr } from '@/utils/error';
 import { isNumber } from '@/utils/number';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -40,7 +41,7 @@ export default function TimelineEditor({
       successToast('저장했습니다.');
       goToOriginalPage();
     } catch (e) {
-      errorToast('오류가 발생했습니다');
+      errorToast(errorToStr(e));
     }
   };
 

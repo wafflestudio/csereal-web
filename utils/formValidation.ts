@@ -50,7 +50,7 @@ export const validateFacultyForm = (content: WithLanguage<FacultyEditorContent>)
     throw new Error('필수 입력을 완료해주세요');
   }
   if (!(content.en.name && content.en.academicRank)) {
-    throw new Error('영문 정보도 입력해주세요');
+    throw new Error('영문 정보를 입력해주세요');
   }
 };
 
@@ -62,7 +62,7 @@ export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => 
     throw new Error('모든 정보를 입력해주세요');
   }
   if (Object.entries(content.en).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
-    throw new Error('영문 정보도 입력해주세요');
+    throw new Error('영문 정보를 입력해주세요');
   }
 };
 
@@ -76,7 +76,7 @@ export const validateCourseForm = (content: Course) => {
     throw new Error('교과목 번호를 입력해주세요');
   }
   if (!en.name || !en.description) {
-    throw new Error('영어 정보도 입력해주세요');
+    throw new Error('영어 정보를 입력해주세요');
   }
 };
 
@@ -92,7 +92,7 @@ export const validateFacilityForm = (content: WithLanguage<FacilityEditorContent
   if (
     Object.entries(content.en).some(([key, value]) => key !== 'mainImage' && isValueEmpty(value))
   ) {
-    throw new Error('영문 정보도 입력해주세요');
+    throw new Error('영문 정보를 입력해주세요');
   }
 };
 
@@ -120,13 +120,25 @@ export const validateResearchCenterForm = (content: WithLanguage<ResearchCenterE
   }
 };
 
-// TODO: 보강
 export const validateResearchLabForm = (content: WithLanguage<ResearchLabEditorContent>) => {
   if (!content.ko.name) {
     throw new Error('제목을 입력해주세요');
-  } else if (!content.ko.description) {
-    throw new Error('내용을 입력해주세요');
-  } else if (!content.en.name || !content.en.description) {
+  }
+  if (content.ko.professorIds.length === 0) {
+    throw new Error('지도교수를 선택해주세요');
+  }
+  if (content.ko.groupId === null) {
+    throw new Error('소속 연구·교육 스트림을 선택해주세요');
+  }
+  if (!content.ko.description) {
+    throw new Error('연구실 설명을 입력해주세요');
+  }
+  if (
+    !content.en.name ||
+    !content.en.description ||
+    content.en.professorIds.length === 0 ||
+    content.en.groupId === null
+  ) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };

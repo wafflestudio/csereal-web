@@ -29,7 +29,7 @@ export const contentToFormData = (
   if (attachments) {
     encodeFormDataFileName(
       formData,
-      'newAttachments',
+      type === 'CREATE' ? 'attachments' : 'newAttachments',
       attachments.filter(isLocalFile).map((x) => x.file),
     );
   }

@@ -6,6 +6,7 @@ import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/navigation';
 import { WithLanguage } from '@/types/language';
+import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup, ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { validateResearchLabForm } from '@/utils/formValidation';
@@ -18,6 +19,7 @@ import { errorToast, successToast } from '@/utils/toast';
 interface ResearchLabEditPageContentProps {
   lab: WithLanguage<ResearchLab>;
   groups: WithLanguage<ResearchGroup[]>;
+  professors: WithLanguage<SimpleFaculty[]>;
 }
 
 const labsPath = getPath(researchLabs);
@@ -25,6 +27,7 @@ const labsPath = getPath(researchLabs);
 export default function ResearchLabEditPageContent({
   lab,
   groups,
+  professors,
 }: ResearchLabEditPageContentProps) {
   const router = useRouter();
 
@@ -32,10 +35,8 @@ export default function ResearchLabEditPageContent({
 
   const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
     validateResearchLabForm(content);
-    const formData = contentToFormData(
-      getRequestObject(content, lab.ko.pdf !== null && content.ko.pdf.length === 0),
-      content.ko.pdf,
-    );
+    const removePdf = lab.ko.pdf !== null && content.ko.pdf.length === 0;
+    const formData = contentToFormData(getRequestObject(content, removePdf), content.ko.pdf);
 
     try {
       handleServerAction(await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData));
@@ -49,6 +50,7 @@ export default function ResearchLabEditPageContent({
     <PageLayout title="연구실 편집" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <ResearchLabEditor
         groups={groups}
+        professors={professors}
         actions={{ onCancel: handleCancel, onSubmit: handleSubmit, type: 'EDIT' }}
         initialContent={lab}
       />
@@ -56,11 +58,10 @@ export default function ResearchLabEditPageContent({
   );
 }
 
-// TODO: 내용 제대로 넣기
 const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>, removePdf: boolean) => {
   return {
-    ko: { ...content.ko, removePdf },
-    en: { ...content.en, removePdf },
+    ko: { ...content.ko, pdf: undefined, removePdf },
+    en: { ...content.en, pdf: undefined, removePdf },
   };
 };
 
