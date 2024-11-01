@@ -16,15 +16,17 @@ import { handleServerAction } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
+interface ResearchLabCreatePageContentProps {
+  groups: WithLanguage<ResearchGroup[]>;
+  professors: WithLanguage<SimpleFaculty[]>;
+}
+
 const labsPath = getPath(researchLabs);
 
 export default function ResearchLabCreatePageContent({
   groups,
   professors,
-}: {
-  groups: WithLanguage<ResearchGroup[]>;
-  professors: WithLanguage<SimpleFaculty[]>;
-}) {
+}: ResearchLabCreatePageContentProps) {
   const router = useRouter();
 
   const handleCancel = () => router.push(labsPath);
