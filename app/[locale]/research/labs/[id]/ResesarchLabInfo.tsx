@@ -24,7 +24,7 @@ export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
         <ProfessorsInfo professors={lab.professors} />
         <LocationInfo location={lab.location} />
         <TelephoneInfo tel={lab.tel} />
-        {lab.websiteURL !== null && <WebsiteInfo url={lab.websiteURL} />}
+        {lab.websiteURL && <WebsiteInfo url={lab.websiteURL} />}
       </ul>
     </CornerFoldedRectangle>
   );

@@ -34,7 +34,7 @@ export default function ResearchLabEditPageContent({
   const handleCancel = () => router.push(labsPath);
 
   const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
-    validateResearchLabForm(content);
+    validateResearchLabForm(content, professors, { ko: lab.ko.id, en: lab.en.id });
     const removePdf = lab.ko.pdf !== null && content.ko.pdf.length === 0;
     const formData = contentToFormData(getRequestObject(content, removePdf), content.ko.pdf);
 
@@ -60,8 +60,8 @@ export default function ResearchLabEditPageContent({
 
 const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>, removePdf: boolean) => {
   return {
-    ko: { ...content.ko, pdf: undefined, removePdf },
-    en: { ...content.en, pdf: undefined, removePdf },
+    ko: { ...content.ko, removePdf },
+    en: { ...content.en, removePdf },
   };
 };
 

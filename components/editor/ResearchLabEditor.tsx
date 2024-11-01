@@ -163,7 +163,7 @@ function ProfessorFieldset({
   };
 
   return (
-    <Fieldset title="지도교수" mb="mb-11" titleMb="mb-2" required>
+    <Fieldset title="지도교수" mb="mb-11" titleMb="mb-2">
       <Dropdown
         contents={['선택 안 함', ...professors.map((prof) => prof.name)]}
         selectedIndex={getSelectedIndex()}

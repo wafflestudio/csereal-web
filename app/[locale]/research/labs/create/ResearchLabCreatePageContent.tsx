@@ -30,8 +30,8 @@ export default function ResearchLabCreatePageContent({
   const handleCancel = () => router.push(labsPath);
 
   const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
-    validateResearchLabForm(content);
-    const formData = contentToFormData(getRequestObject(content), content.ko.pdf);
+    validateResearchLabForm(content, professors);
+    const formData = contentToFormData(content, content.ko.pdf);
 
     try {
       handleServerAction(await postResearchLabAction(formData));
@@ -51,14 +51,6 @@ export default function ResearchLabCreatePageContent({
     </PageLayout>
   );
 }
-
-// TODO: 필요한가?
-const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>) => {
-  return {
-    ko: { ...content.ko, pdf: undefined },
-    en: { ...content.en, pdf: undefined },
-  };
-};
 
 const contentToFormData = (requestObject: object, pdf: PostEditorFile[]) => {
   const formData = new FormData();
