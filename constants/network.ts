@@ -10,6 +10,7 @@ export const FETCH_TAG_SLIDE = 'slide';
 export const FETCH_TAG_NEWS = 'news';
 export const FETCH_TAG_NOTICE = 'notice';
 export const FETCH_TAG_SEMINAR = 'seminar';
+export const FETCH_TAG_RECRUITMENT = 'recruitment';
 
 export const FETCH_TAG_RESERVATION = 'reservation';
 
