@@ -1,3 +1,5 @@
+import { Attachment } from '@/components/common/Attachments';
+
 export interface ResearchGroup {
   id: number;
   name: string;
@@ -18,11 +20,11 @@ export interface SimpleResearchLab {
   id: number;
   name: string;
   professors: { id: number; name: string }[];
-  location: string | null;
-  tel: string | null;
+  location: string;
+  tel: string;
   acronym: string;
-  pdf: { url: string } | null;
-  youtube: string | null;
+  pdf: Attachment | null;
+  youtube: string;
 }
 
 export interface ResearchLab extends SimpleResearchLab {

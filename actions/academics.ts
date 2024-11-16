@@ -53,12 +53,6 @@ export const putGuideAction = withErrorHandler(async (type: StudentType, formDat
   revalidateTag(FETCH_TAG_GUIDE);
 });
 
-export const putDegreeRequirementsAction = withErrorHandler(async (formData: FormData) => {
-  decodeFormDataFileName(formData, 'newAttachments');
-  await putDegreeRequirements(formData);
-  revalidateTag(FETCH_TAG_DEGREE);
-});
-
 /** 교과과정 */
 
 export const postCourseAction = withErrorHandler(async (data: Course) => {
@@ -110,6 +104,14 @@ export const putGeneralStudiesAction = withErrorHandler(async (data: GeneralStud
 export const deleteGeneralStudiesAction = withErrorHandler(async (year: number) => {
   await deleteGeneralStudies(year);
   revalidateTag(FETCH_TAG_GENERAL_STUDIES);
+});
+
+/** 졸업 규정 */
+
+export const putDegreeRequirementsAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
+  await putDegreeRequirements(formData);
+  revalidateTag(FETCH_TAG_DEGREE);
 });
 
 /** 교과목 변경 내역 */

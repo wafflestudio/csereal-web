@@ -6,20 +6,25 @@ import { redirect } from 'next/navigation';
 import {
   deleteResearchCenter,
   deleteResearchGroup,
+  deleteResearchLab,
   postResearchCenter,
   postResearchGroup,
+  postResearchLab,
   putResearchCenter,
   putResearchGroup,
+  putResearchLab,
 } from '@/apis/research';
-import { FETCH_TAG_CENTER, FETCH_TAG_GROUP } from '@/constants/network';
+import { FETCH_TAG_CENTER, FETCH_TAG_GROUP, FETCH_TAG_LAB } from '@/constants/network';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { researchCenters, researchGroups } from '@/utils/segmentNode';
+import { researchCenters, researchGroups, researchLabs } from '@/utils/segmentNode';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
 const groupPath = getPath(researchGroups);
 const centerPath = getPath(researchCenters);
+const labsPath = getPath(researchLabs);
 
 /** 연구 그룹 (스트림) */
 
@@ -68,3 +73,27 @@ export const deleteResearchCenterAction = withErrorHandler(
     redirect(centerPath);
   },
 );
+
+/** 연구실 */
+
+export const postResearchLabAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'pdf');
+  await postResearchLab(formData);
+  revalidateTag(FETCH_TAG_LAB);
+  redirect(labsPath);
+});
+
+export const putResearchLabAction = withErrorHandler(
+  async (ids: WithLanguage<number>, formData: FormData) => {
+    decodeFormDataFileName(formData, 'pdf');
+    await putResearchLab(ids, formData);
+    revalidateTag(FETCH_TAG_LAB);
+    redirect(labsPath);
+  },
+);
+
+export const deleteResearchLabAction = withErrorHandler(async (ids: { ko: number; en: number }) => {
+  await deleteResearchLab(ids);
+  revalidateTag(FETCH_TAG_LAB);
+  redirect(labsPath);
+});

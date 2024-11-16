@@ -1,4 +1,4 @@
-import { FETCH_TAG_CENTER, FETCH_TAG_GROUP } from '@/constants/network';
+import { FETCH_TAG_CENTER, FETCH_TAG_GROUP, FETCH_TAG_LAB } from '@/constants/network';
 import { Language, WithLanguage } from '@/types/language';
 import {
   ResearchCenter,
@@ -66,10 +66,28 @@ export const deleteResearchCenter = (ids: WithLanguage<number>) =>
 /** 연구실 */
 
 export const getResearchLab = (id: number) =>
-  getRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${id}`);
+  getRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${id}`, undefined, {
+    next: { tags: [FETCH_TAG_LAB] },
+  });
 
 export const getResearchLabs = (language: Language) =>
-  getRequestV2<SimpleResearchLab[]>('/research/lab', { language });
+  getRequestV2<SimpleResearchLab[]>(
+    '/research/lab',
+    { language },
+    { next: { tags: [FETCH_TAG_LAB] } },
+  );
+
+export const postResearchLab = (formData: FormData) =>
+  postRequestV2<WithLanguage<ResearchLab>>('/research/lab', { body: formData, jsessionID: true });
+
+export const putResearchLab = (ids: WithLanguage<number>, formData: FormData) =>
+  putRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${ids.ko}/${ids.en}`, {
+    body: formData,
+    jsessionID: true,
+  });
+
+export const deleteResearchLab = (ids: WithLanguage<number>) =>
+  deleteRequestV2(`/research/lab/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /** TCL */
 

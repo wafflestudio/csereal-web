@@ -2,23 +2,53 @@
 
 import { useTranslations } from 'next-intl';
 
+import { deleteResearchLabAction } from '@/actions/research';
+import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import { Link } from '@/navigation';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
+import { WithLanguage } from '@/types/language';
 import { ResearchLab } from '@/types/research';
+import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/utils/segmentNode';
+import { researchGroups, researchLabs } from '@/utils/segmentNode';
+import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
+import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 
-export default function ResearchLabDetailContent({ lab }: { lab: ResearchLab }) {
+const labsPath = getPath(researchLabs);
+
+export default function ResearchLabDetailContent({
+  lab,
+  ids,
+}: {
+  lab: ResearchLab;
+  ids: WithLanguage<number>;
+}) {
   const { isMobile } = useResponsive();
+
+  const handleDelete = async () => {
+    try {
+      handleServerAction(await deleteResearchLabAction(ids));
+      successToast('연구실을 삭제했습니다.');
+    } catch (e) {
+      errorToast(errorToStr(e));
+    }
+  };
 
   return (
     <div>
+      <LoginVisible staff>
+        <div className="mb-8 flex h-fit justify-end gap-3">
+          <DeleteButton onDelete={handleDelete} />
+          <EditButton href={`${labsPath}/${lab.id}/edit`} />
+        </div>
+      </LoginVisible>
       <AffiliatedGroup groupName={lab.group.name} />
       <div className="mx-2 mb-1 mt-6 flex justify-end sm:hidden">
         <ResearchLabInfo lab={lab} />
@@ -39,8 +69,6 @@ const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
   const t = useTranslations('Content');
-
-  console.log(groupName);
 
   const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
   const affiliatedGroupPath = `${researchGroupsPath}?selected=${replaceSpaceWithDash(groupName)}`;

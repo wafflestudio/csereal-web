@@ -34,7 +34,7 @@ export default async function ResearchLabDetail({ params }: LabDetailPageProps) 
 
     return (
       <PageLayout title={lab.name} titleType="small">
-        <ResearchLabDetailContent lab={lab} />
+        <ResearchLabDetailContent lab={lab} ids={{ ko: data.ko.id, en: data.en.id }} />
       </PageLayout>
     );
   } catch {
