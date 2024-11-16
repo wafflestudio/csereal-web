@@ -1,42 +1,38 @@
-# csereal-web
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-https://cse.snu.ac.kr
+## Getting Started
 
-서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
+First, run the development server:
 
-## 주요 사용 기술
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-- Next.js 14 App router
-- tailwind
-- express
-- typescript
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 컨벤션
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-### 브랜치
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-- 현재 별도의 테스트용 브랜치를 관리하고 있지 않으므로 `main`에서 바로 브랜치를 만듭니다.
-- 이후 PR 리뷰 후 approve가 되면 `main`으로 **squash merge**합니다.
-- 브랜치명은 `{타입}/{브랜치명}` 으로 작성합니다.
-  - 타입: feat, fix, chore, style, refactor
-- PR 제목은 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-### 커밋
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- 커밋명은 `{타입}/{커밋명}` 으로 작성합니다.
-  - 타입: feat, fix, chore, style, refactor
+## Learn More
 
-### 코드
+To learn more about Next.js, take a look at the following resources:
 
-- 모든 코드는 커밋 이전 husky로 검사됩니다.
-- 타입 선언은 interface를 우선하고 interface를 쓸 수 없는 경우에 type을 사용합니다.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### 이슈 관리
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- 프론트엔드 단독 이슈는 깃허브 이슈로 관리합니다.
-- 프로젝트 단위 이슈는 시리얼 노션에서 관리합니다.
+## Deploy on Vercel
 
-## Maintainers
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- @yeolyi
-- @Limchansol
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
