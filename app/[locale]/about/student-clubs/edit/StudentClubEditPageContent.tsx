@@ -22,7 +22,7 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
   const handleCancel = () => router.push(clubPath);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content, true);
+    validateBasicForm(content, { titleRequired: true });
 
     const formData = contentToFormData('EDIT', {
       requestObject: getRequestObject(

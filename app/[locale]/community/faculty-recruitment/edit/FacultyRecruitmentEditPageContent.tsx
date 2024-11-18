@@ -27,7 +27,7 @@ export default function FacultyRecruitmentEditPageContent({
   const handleCancel = () => router.push(recruitPath);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content, true);
+    validateBasicForm(content, { titleRequired: true, engRequired: false });
 
     const formData = contentToFormData('EDIT', {
       requestObject: getRequestObject(
