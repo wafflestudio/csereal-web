@@ -50,11 +50,12 @@ export default function FacultyRecruitmentEditPageContent({
       <BasicEditor
         initialContent={{
           description: { ko: data.description, en: '' },
-          name: { ko: data.title, en: '' },
+          title: { ko: data.title, en: '' },
           mainImage: data.mainImageUrl ? { type: 'UPLOADED_IMAGE', url: data.mainImageUrl } : null,
         }}
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
         showMainImage
+        showTitle
       />
     </PageLayout>
   );
@@ -62,7 +63,7 @@ export default function FacultyRecruitmentEditPageContent({
 
 const getRequestObject = (content: BasicEditorContent, removeImage: boolean) => {
   return {
-    title: content.name,
+    title: content.title,
     description: content.description,
     removeImage,
   };

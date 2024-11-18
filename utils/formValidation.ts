@@ -98,13 +98,13 @@ export const validateFacilityForm = (content: WithLanguage<FacilityEditorContent
 };
 
 export const validateBasicForm = (content: BasicEditorContent, titleRequired?: boolean) => {
-  if (titleRequired && !content.name.ko) {
+  if (titleRequired && !content.title.ko) {
     throw new Error('제목을 입력해주세요');
   }
   if (!content.description.ko) {
     throw new Error('내용을 입력해주세요');
   }
-  if ((titleRequired && !content.name.en) || !content.description.en) {
+  if ((titleRequired && !content.title.en) || !content.description.en) {
     throw new Error('영문 정보를 입력해주세요');
   }
 };

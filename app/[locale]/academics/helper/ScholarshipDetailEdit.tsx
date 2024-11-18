@@ -31,7 +31,7 @@ export default function ScholarshipDetailEdit({
   const handleSubmit = async (content: BasicEditorContent) => {
     validateBasicForm(content, true);
 
-    const { name, description } = content;
+    const { title: name, description } = content;
     const newData = {
       ko: { ...scholarship.ko, name: name.ko, description: description.ko },
       en: { ...scholarship.en, name: name.en, description: description.en },
@@ -52,7 +52,7 @@ export default function ScholarshipDetailEdit({
     >
       <BasicEditor
         initialContent={{
-          name: { ko: scholarship.ko.name, en: scholarship.en.name },
+          title: { ko: scholarship.ko.name, en: scholarship.en.name },
           description: { ko: scholarship.ko.description, en: scholarship.en.description },
         }}
         actions={{
@@ -60,7 +60,7 @@ export default function ScholarshipDetailEdit({
           onCancel: handleCancel,
           onSubmit: handleSubmit,
         }}
-        showName
+        showTitle
         showLanguage
       />
     </PageLayout>

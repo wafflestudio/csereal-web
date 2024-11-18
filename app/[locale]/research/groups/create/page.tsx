@@ -42,7 +42,7 @@ export default function ResearchGroupCreatePage() {
       <BasicEditor
         actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: handleCancel }}
         showLanguage
-        showName
+        showTitle
         showMainImage
       />
     </PageLayout>
@@ -53,7 +53,7 @@ const getRequestObject = (content: BasicEditorContent) => {
   const type = 'groups';
 
   return {
-    ko: { name: content.name.ko, description: content.description.ko, type },
-    en: { name: content.name.en, description: content.description.en, type },
+    ko: { name: content.title.ko, description: content.description.ko, type },
+    en: { name: content.title.en, description: content.description.en, type },
   };
 };

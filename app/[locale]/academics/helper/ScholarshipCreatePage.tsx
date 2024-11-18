@@ -26,9 +26,9 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
     try {
       handleServerAction(
         await postScholarshipAction(type, {
-          koName: content.name.ko,
+          koName: content.title.ko,
           koDescription: content.description.ko,
-          enName: content.name.en,
+          enName: content.title.en,
           enDescription: content.description.en,
         }),
       );
@@ -45,7 +45,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
     >
       <BasicEditor
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showName
+        showTitle
         showLanguage
       />
     </PageLayout>

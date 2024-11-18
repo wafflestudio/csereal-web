@@ -40,7 +40,7 @@ export default function DirectionsEditPageContent({ data }: { data: WithLanguage
     <PageLayout title={`찾아오는 길(${data.ko.name}) 편집`} titleType="big" hideNavbar>
       <BasicEditor
         initialContent={{
-          name: { ko: data.ko.name, en: data.en.name },
+          title: { ko: data.ko.name, en: data.en.name },
           description: { ko: data.ko.description, en: data.en.description },
         }}
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}

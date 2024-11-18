@@ -1,13 +1,18 @@
+import { EditButton } from '@/components/common/Buttons';
+import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 import { facultyRecruitment } from '@/utils/segmentNode';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
   return await getMetadata({ locale, node: facultyRecruitment });
 }
+
+const recruitPath = getPath(facultyRecruitment);
 
 export default async function FacultyRecruitment() {
   const data = await mockNetwork();
@@ -15,6 +20,11 @@ export default async function FacultyRecruitment() {
 
   return (
     <PageLayout titleType="big">
+      <LoginVisible staff>
+        <div className="mb-8 text-right">
+          <EditButton href={`${recruitPath}/edit`} />
+        </div>
+      </LoginVisible>
       <HTMLViewer
         htmlContent={data.description}
         topRightContent={

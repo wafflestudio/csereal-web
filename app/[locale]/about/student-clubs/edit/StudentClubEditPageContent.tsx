@@ -45,12 +45,12 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
     <PageLayout title="동아리 소개 편집" titleType="big" hideNavbar>
       <BasicEditor
         initialContent={{
-          name: { ko: data.ko.name, en: data.en.name },
+          title: { ko: data.ko.name, en: data.en.name },
           description: { ko: data.ko.description, en: data.en.description },
           mainImage: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : null,
         }}
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showName
+        showTitle
         showLanguage
         showMainImage
       />
@@ -64,8 +64,8 @@ const getRequestObject = (
   removeImage: boolean,
 ) => {
   return {
-    ko: { id: ids.ko, name: content.name.ko, description: content.description.ko },
-    en: { id: ids.en, name: content.name.en, description: content.description.en },
+    ko: { id: ids.ko, name: content.title.ko, description: content.description.ko },
+    en: { id: ids.en, name: content.title.en, description: content.description.en },
     removeImage,
   };
 };

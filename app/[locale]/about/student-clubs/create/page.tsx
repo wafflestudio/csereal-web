@@ -39,7 +39,7 @@ export default function StudentClubCreatePage() {
     <PageLayout title="동아리 소개 추가" titleType="big" hideNavbar>
       <BasicEditor
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showName
+        showTitle
         showLanguage
         showMainImage
       />
@@ -49,7 +49,7 @@ export default function StudentClubCreatePage() {
 
 const getRequestObject = (content: BasicEditorContent) => {
   return {
-    ko: { name: content.name.ko, description: content.description.ko },
-    en: { name: content.name.en, description: content.description.en },
+    ko: { name: content.title.ko, description: content.description.ko },
+    en: { name: content.title.en, description: content.description.en },
   };
 };

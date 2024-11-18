@@ -52,7 +52,7 @@ export default function ResearchGroupEditPageContent({
       <ResearchGroupLabsEditGuide />
       <BasicEditor
         initialContent={{
-          name: { ko: group.ko.name, en: group.en.name },
+          title: { ko: group.ko.name, en: group.en.name },
           description: { ko: group.ko.description, en: group.en.description },
           mainImage: group.ko.mainImageUrl
             ? { type: 'UPLOADED_IMAGE', url: group.ko.mainImageUrl }
@@ -60,7 +60,7 @@ export default function ResearchGroupEditPageContent({
         }}
         actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: handleCancel }}
         showLanguage
-        showName
+        showTitle
         showMainImage
       />
     </PageLayout>
@@ -71,7 +71,7 @@ const getRequestObject = (content: BasicEditorContent, removeImage: boolean) => 
   const type = 'groups';
 
   return {
-    ko: { name: content.name.ko, description: content.description.ko, type, removeImage },
-    en: { name: content.name.en, description: content.description.en, type, removeImage },
+    ko: { name: content.title.ko, description: content.description.ko, type, removeImage },
+    en: { name: content.title.en, description: content.description.en, type, removeImage },
   };
 };
