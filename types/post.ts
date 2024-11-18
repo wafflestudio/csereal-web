@@ -43,7 +43,7 @@ export interface SimpleHTMLPageResponse {
 // 신임교수초빙 - - - - - - - - - - - - - - - - - - - -
 
 export interface GETFacultyRecruitmentResponse {
-  latestRecruitmentPostTitle: string;
-  latestRecruitmentPostHref: string;
+  title: string;
   description: string;
+  mainImageUrl: string | null;
 }
