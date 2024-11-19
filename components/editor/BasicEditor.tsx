@@ -80,14 +80,14 @@ export default function BasicEditor({
     setLanguage(newLang);
   };
 
-  const setName = (name: string) => {
-    setContent((prev) => ({ ...prev, title: { ...prev.title, [language]: name } }));
+  const setTitle = (title: string) => {
+    setContent((prev) => ({ ...prev, title: { ...prev.title, [language]: title } }));
   };
 
   return (
     <form className="flex flex-col">
       {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
-      {showTitle && <TitleFieldset title={content.title[language]} setTitle={setName} />}
+      {showTitle && <TitleFieldset title={content.title[language]} setTitle={setTitle} />}
       <EditorFieldset
         key={language}
         editorRef={editorRef[language]}

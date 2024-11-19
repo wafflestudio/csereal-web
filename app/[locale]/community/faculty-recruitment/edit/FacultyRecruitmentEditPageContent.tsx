@@ -63,8 +63,8 @@ export default function FacultyRecruitmentEditPageContent({
 
 const getRequestObject = (content: BasicEditorContent, removeImage: boolean) => {
   return {
-    title: content.title,
-    description: content.description,
+    title: content.title.ko,
+    description: content.description.ko,
     removeImage,
   };
 };
