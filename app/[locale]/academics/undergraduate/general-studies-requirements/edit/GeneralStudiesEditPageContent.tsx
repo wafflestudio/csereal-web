@@ -1,4 +1,4 @@
-import { putCurriculumAction } from '@/actions/academics';
+import { putGeneralStudiesAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { GeneralStudiesRequirement } from '@/types/academics';
 import { getPath } from '@/utils/page';
@@ -16,7 +16,7 @@ export default function GeneralStudiesEditPageContent({
   return (
     <PageLayout title="필수 교양 과목 편집" titleType="big">
       <TimelineEditor
-        submitAction={putCurriculumAction}
+        submitAction={putGeneralStudiesAction}
         fallbackPathname={curriculumPath}
         initialContent={initContent}
       />
