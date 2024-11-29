@@ -1,4 +1,4 @@
-import { getFutureCareeres } from '@/apis/about';
+import { getFutureCareeres } from '@/apis/v1/about/future-careers';
 import { Language } from '@/types/language';
 
 import CareerStatEditPageContent from './CareerStatEditPageContent';

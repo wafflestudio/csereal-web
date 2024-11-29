@@ -1,4 +1,4 @@
-import { getEmeritusFaculty } from '@/apis/people';
+import { getEmeritusFaculty } from '@/apis/v2/professor/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';

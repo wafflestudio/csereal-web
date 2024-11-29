@@ -1,4 +1,4 @@
-import { getScholarshipList } from '@/apis/academics';
+import { getScholarshipList } from '@/apis/v1/academics/scholarship';
 
 import ScholarshipGuideEditPageContent from '../../../helper/ScholarshipGuideEditPageContent';
 

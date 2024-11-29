@@ -3,13 +3,8 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix가 붙음
 
-import {
-  batchDeleteNotice,
-  batchUnpinNotice,
-  deleteNotice,
-  patchNotice,
-  postNotice,
-} from '@/apis/notice';
+import { batchDeleteNotice, batchUnpinNotice, postNotice } from '@/apis/v1/notice';
+import { deleteNotice, patchNotice } from '@/apis/v1/notice/[id]';
 import { FETCH_TAG_NOTICE } from '@/constants/network';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';

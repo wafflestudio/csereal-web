@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { ReactNode } from 'react';
 
-import { getDirections } from '@/apis/about';
+import { getDirections } from '@/apis/v2/about/directions';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';

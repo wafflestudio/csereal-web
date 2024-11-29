@@ -1,4 +1,4 @@
-import { getSeminarPost } from '@/apis/seminar';
+import { getSeminarPost } from '@/apis/v1/seminar/[id]';
 import EditSeminarPageContent from '@/app/[locale]/community/seminar/[id]/edit/EditSeminarPageContent';
 
 interface EditNoticePageProps {

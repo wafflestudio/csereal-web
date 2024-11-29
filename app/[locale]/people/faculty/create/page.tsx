@@ -1,4 +1,4 @@
-import { getResearchLabs } from '@/apis/research';
+import { getResearchLabs } from '@/apis/v2/research/lab';
 import { Language } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 

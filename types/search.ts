@@ -1,5 +1,7 @@
 // 소개 탭
 
+export type SearchParam = { keyword: string; number: number; amount?: number };
+
 export type AboutSearchResult = {
   total: number;
   results: AboutPreview[];

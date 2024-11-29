@@ -1,4 +1,4 @@
-import { getInternal } from '@/apis/internal';
+import { getInternal } from '@/apis/v1/internal';
 
 import InternalContent from './InternalContent';
 

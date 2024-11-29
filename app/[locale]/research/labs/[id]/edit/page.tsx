@@ -1,5 +1,6 @@
-import { getActiveFacultyList } from '@/apis/people';
-import { getResearchGroups, getResearchLab } from '@/apis/research';
+import { getActiveFacultyList } from '@/apis/v2/professor/active';
+import { getResearchGroups } from '@/apis/v2/research/groups';
+import { getResearchLab } from '@/apis/v2/research/lab/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
 import ResearchLabEditPageContent from './ResearchLabEditPageContent';

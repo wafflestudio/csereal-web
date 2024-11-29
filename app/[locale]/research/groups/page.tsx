@@ -1,4 +1,5 @@
-import { getResearchGroup, getResearchGroups } from '@/apis/research';
+import { getResearchGroup } from '@/apis/v2/research/[id]';
+import { getResearchGroups } from '@/apis/v2/research/groups';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';

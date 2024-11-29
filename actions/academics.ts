@@ -2,26 +2,28 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { postCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
 import {
-  deleteCourse,
   deleteCourseChanges,
-  deleteCurriculum,
-  deleteGeneralStudies,
-  deleteScholarship,
-  postCourse,
-  postCourseChanges,
-  postCurriculum,
-  postGeneralStudies,
-  postScholarship,
-  putAcademicsGuide,
-  putCourse,
   putCourseChanges,
+} from '@/apis/v1/academics/[type]/course-changes/[year]';
+import { putAcademicsGuide } from '@/apis/v1/academics/[type]/guide';
+import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import {
+  deleteCurriculum,
   putCurriculum,
-  putDegreeRequirements,
+} from '@/apis/v1/academics/undergraduate/curriculum/[year]';
+import { putDegreeRequirements } from '@/apis/v1/academics/undergraduate/degree-requirements';
+import { postGeneralStudies } from '@/apis/v1/academics/undergraduate/general-studies-requirements';
+import {
+  deleteGeneralStudies,
   putGeneralStudies,
-  putScholarship,
-  putScholarshipGuide,
-} from '@/apis/academics';
+} from '@/apis/v1/academics/undergraduate/general-studies-requirements/[year]';
+import { postScholarship, putScholarshipGuide } from '@/apis/v2/academics/[type]/scholarship';
+import { postCourse, putCourse } from '@/apis/v2/academics/courses';
+import { deleteCourse } from '@/apis/v2/academics/courses/[code]';
+import { putScholarship } from '@/apis/v2/academics/scholarship';
+import { deleteScholarship } from '@/apis/v2/academics/scholarship/[id]';
 import {
   FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,

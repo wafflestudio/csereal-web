@@ -4,6 +4,10 @@ https://cse.snu.ac.kr
 
 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
 
+## Getting started 
+
+작성 예정
+
 ## 주요 사용 기술
 
 - Next.js 14 App router
@@ -12,6 +16,21 @@ https://cse.snu.ac.kr
 - typescript
 
 ## 컨벤션
+
+### 폴더 구조
+
+- api
+  - api 요청 함수들을 정의합니다.
+  - api 구조와 동일하게 파일을 위치시킵니다.
+    - `/apis/v1/seminar/3` -> `/v1/seminar/[id].ts`
+- actions
+  - server action을 정의합니다.
+- app
+  - Next.js 페이지들을 정의합니다.
+  - 특정 페이지에서 사용되는 컴포넌트 파일들은 `page.tsx`와 동일한 폴더에 정의합니다.
+- components
+  - 여러 페이지들에서 사용되는 공용 컴포넌트를 정의합니다.  
+- constants
 
 ### 브랜치
 

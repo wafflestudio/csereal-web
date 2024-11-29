@@ -1,4 +1,4 @@
-import { getStaff } from '@/apis/people';
+import { getStaff } from '@/apis/v2/staff/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 

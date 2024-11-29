@@ -1,6 +1,6 @@
 import './style.css';
 
-import { getCurriculum } from '@/apis/academics';
+import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
 import { getMetadata } from '@/utils/metadata';
 import { curriculum } from '@/utils/segmentNode';
 
@@ -12,6 +12,5 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default async function UndergradutecurriculumPage() {
   const curriculumList = await getCurriculum();
-
   return <CurriculumPageContent data={curriculumList} />;
 }

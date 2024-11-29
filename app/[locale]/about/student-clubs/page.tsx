@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { ReactNode } from 'react';
 
-import { getClubs } from '@/apis/about';
+import { getClubs } from '@/apis/v2/about/student-clubs';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';

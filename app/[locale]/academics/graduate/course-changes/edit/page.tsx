@@ -1,4 +1,4 @@
-import { getCourseChanges } from '@/apis/academics';
+import { getCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
 import { getPath } from '@/utils/page';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 

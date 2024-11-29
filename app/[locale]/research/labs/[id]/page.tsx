@@ -1,4 +1,4 @@
-import { getResearchLab } from '@/apis/research';
+import { getResearchLab } from '@/apis/v2/research/lab/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';

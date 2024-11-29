@@ -2,7 +2,8 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { patchMultipleImportants, patchMultipleSlides } from '@/apis/admin';
+import { patchMultipleImportants } from '@/apis/v1/admin/important';
+import { patchMultipleSlides } from '@/apis/v1/admin/slide';
 import {
   FETCH_TAG_IMPORANT,
   FETCH_TAG_NEWS,

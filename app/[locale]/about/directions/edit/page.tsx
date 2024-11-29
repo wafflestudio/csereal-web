@@ -1,4 +1,4 @@
-import { getDirections } from '@/apis/about';
+import { getDirections } from '@/apis/v2/about/directions';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
 import DirectionsEditPageContent from './DirectionsEditPageContent';

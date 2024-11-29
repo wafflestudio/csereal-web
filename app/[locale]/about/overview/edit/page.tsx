@@ -1,4 +1,4 @@
-import { getOverview } from '@/apis/about';
+import { getOverview } from '@/apis/v1/about/overview';
 import { overview } from '@/utils/segmentNode';
 
 import AboutEditPageContent from '../../AboutEditPageContent';

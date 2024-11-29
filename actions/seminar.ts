@@ -3,7 +3,8 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteSeminar, patchSeminar, postSeminar } from '@/apis/seminar';
+import { postSeminar } from '@/apis/v1/seminar';
+import { deleteSeminar, patchSeminar } from '@/apis/v1/seminar/[id]';
 import { FETCH_TAG_SEMINAR } from '@/constants/network';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';

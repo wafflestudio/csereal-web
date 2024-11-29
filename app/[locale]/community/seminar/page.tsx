@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { getSeminarPosts } from '@/apis/seminar';
+import { getSeminarPosts } from '@/apis/v1/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';

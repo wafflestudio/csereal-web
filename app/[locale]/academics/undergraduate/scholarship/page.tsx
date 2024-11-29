@@ -1,4 +1,4 @@
-import { getScholarshipList } from '@/apis/academics';
+import { getScholarshipList } from '@/apis/v1/academics/scholarship';
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateScholarship } from '@/utils/segmentNode';
 

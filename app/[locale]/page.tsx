@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import { getMain } from '@/apis/main';
+import { getMain } from '@/apis/v1';
 import Header from '@/components/layout/header/Header';
 import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';

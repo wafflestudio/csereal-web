@@ -1,5 +1,5 @@
-import { getActiveFacultyList } from '@/apis/people';
-import { getResearchGroups } from '@/apis/research';
+import { getActiveFacultyList } from '@/apis/v2/professor/active';
+import { getResearchGroups } from '@/apis/v2/research/groups';
 
 import ResearchLabCreatePageContent from './ResearchLabCreatePageContent';
 

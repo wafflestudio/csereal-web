@@ -1,4 +1,4 @@
-import { getHistory } from '@/apis/about';
+import { getHistory } from '@/apis/v1/about/history';
 import { history } from '@/utils/segmentNode';
 
 import AboutEditPageContent from '../../AboutEditPageContent';

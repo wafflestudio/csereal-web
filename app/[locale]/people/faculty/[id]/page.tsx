@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { getFaculty } from '@/apis/people';
+import { getFaculty } from '@/apis/v2/professor/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';

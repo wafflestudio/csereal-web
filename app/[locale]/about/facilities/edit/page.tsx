@@ -1,4 +1,4 @@
-import { getFacilities } from '@/apis/about';
+import { getFacilities } from '@/apis/v2/about/facilities';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
 import FacilitiesEditPageContent from './FacilitiesEditPageContent';

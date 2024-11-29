@@ -1,4 +1,4 @@
-import { getDegreeRequirements } from '@/apis/academics';
+import { getDegreeRequirements } from '@/apis/v1/academics/undergraduate/degree-requirements';
 
 import DegreeRequirementsEditPageContent from './DegreeRequirementsEditPageContent';
 

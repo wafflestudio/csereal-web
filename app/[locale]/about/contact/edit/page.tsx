@@ -1,4 +1,4 @@
-import { getContact } from '@/apis/about';
+import { getContact } from '@/apis/v1/about/contact';
 import { contact } from '@/utils/segmentNode';
 
 import AboutEditPageContent from '../../AboutEditPageContent';

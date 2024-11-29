@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { putFacultyRecruitment } from '@/apis/recruitment';
+import { putFacultyRecruitment } from '@/apis/v1/recruit';
 import { FETCH_TAG_RECRUITMENT } from '@/constants/network';
 import { redirect } from '@/navigation';
 import { getPath } from '@/utils/page';
