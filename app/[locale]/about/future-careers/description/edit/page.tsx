@@ -1,4 +1,4 @@
-import { getFutureCareeres } from '@/apis/about';
+import { getFutureCareeres } from '@/apis/v1/about/future-careers';
 
 import CareerDescriptionEditPageContent from './CareerDescriptionEditContent';
 

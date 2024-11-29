@@ -1,4 +1,4 @@
-import { getGreetings } from '@/apis/about';
+import { getGreetings } from '@/apis/v1/about/greetings';
 import { greetings } from '@/utils/segmentNode';
 
 import AboutEditPageContent from '../../AboutEditPageContent';

@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 
-import { getFacilities } from '@/apis/about';
+import { getFacilities } from '@/apis/v2/about/facilities';
 import FacilitesList from '@/app/[locale]/about/facilities/FacilitiesList';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';

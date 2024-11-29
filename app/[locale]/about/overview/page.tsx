@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import { getOverview } from '@/apis/about';
+import { getOverview } from '@/apis/v1/about/overview';
 import Attachments from '@/components/common/Attachments';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';

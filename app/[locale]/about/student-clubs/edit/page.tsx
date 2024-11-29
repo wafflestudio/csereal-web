@@ -1,4 +1,4 @@
-import { getClubs } from '@/apis/about';
+import { getClubs } from '@/apis/v2/about/student-clubs';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
 import StudentClubEditPageContent from './StudentClubEditPageContent';

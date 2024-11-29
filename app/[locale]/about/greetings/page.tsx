@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import Image from 'next/image';
 
-import { getGreetings } from '@/apis/about';
+import { getGreetings } from '@/apis/v1/about/greetings';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
