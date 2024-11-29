@@ -14,7 +14,6 @@ export default async function UndergraduateCourseChangesEditPage({
   const data = await getCourseChanges('undergraduate');
   const year = Number(searchParams.year);
   const selected = data.find((x) => x.year === year);
-
   if (!selected) {
     return <div>해당 연도 내용이 존재하지 않습니다.</div>;
   }

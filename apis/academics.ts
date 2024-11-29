@@ -9,15 +9,13 @@ import {
 } from '@/constants/network';
 import {
   Course,
-  CourseChange,
-  Curriculum,
   DegreeRequirements,
-  GeneralStudiesRequirement,
   GeneralStudiesRequirements,
   Guide,
   Scholarship,
   ScholarshipList,
   StudentType,
+  TimelineContent,
 } from '@/types/academics';
 import { Language, WithLanguage } from '@/types/language';
 
@@ -71,23 +69,15 @@ export const deleteCourse = async (code: string) =>
 const curriculumUrl = '/academics/undergraduate/curriculum';
 
 export const getCurriculum = () =>
-  getRequest<Curriculum[]>(curriculumUrl, undefined, {
+  getRequest<TimelineContent[]>(curriculumUrl, undefined, {
     next: { tags: [FETCH_TAG_CURRICULUM] },
   });
 
-export const postCurriculum = (data: Curriculum) =>
-  postRequest(curriculumUrl, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...data, name: '전공 이수 표준 형태' }),
-    jsessionID: true,
-  });
+export const postCurriculum = (formData: FormData) =>
+  postRequest(curriculumUrl, { body: formData, jsessionID: true });
 
-export const putCurriculum = (data: Curriculum) =>
-  putRequest(`${curriculumUrl}/${data.year}`, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: data.description }),
-    jsessionID: true,
-  });
+export const putCurriculum = (year: number, formData: FormData) =>
+  putRequest(`${curriculumUrl}/${year}`, { body: formData, jsessionID: true });
 
 export const deleteCurriculum = async (year: number) =>
   deleteRequest(`${curriculumUrl}/${year}`, { jsessionID: true });
@@ -101,19 +91,11 @@ export const getGeneralStudies = () =>
     next: { tags: [FETCH_TAG_GENERAL_STUDIES] },
   });
 
-export const postGeneralStudies = (data: GeneralStudiesRequirement) =>
-  postRequest(generalStudiesUrl, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...data, name: '필수 교양 과목' }),
-    jsessionID: true,
-  });
+export const postGeneralStudies = (formData: FormData) =>
+  postRequest(generalStudiesUrl, { body: formData, jsessionID: true });
 
-export const putGeneralStudies = (data: GeneralStudiesRequirement) =>
-  putRequest(`${generalStudiesUrl}/${data.year}`, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: data.description }),
-    jsessionID: true,
-  });
+export const putGeneralStudies = (year: number, formData: FormData) =>
+  putRequest(`${generalStudiesUrl}/${year}`, { body: formData, jsessionID: true });
 
 export const deleteGeneralStudies = async (year: number) =>
   deleteRequest(`${generalStudiesUrl}/${year}`, {
@@ -133,23 +115,15 @@ export const putDegreeRequirements = (formData: FormData) =>
 /** 교과목 변경 내역 */
 
 export const getCourseChanges = (type: StudentType) =>
-  getRequest<CourseChange[]>(`/academics/${type}/course-changes`, undefined, {
+  getRequest<TimelineContent[]>(`/academics/${type}/course-changes`, undefined, {
     next: { tags: [FETCH_TAG_COURSE_CHANGES] },
   });
 
-export const postCourseChanges = (type: StudentType, data: CourseChange) =>
-  postRequest(`/academics/${type}/course-changes`, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...data, name: '교과목 변경 내역' }),
-    jsessionID: true,
-  });
+export const postCourseChanges = (type: StudentType, formData: FormData) =>
+  postRequest(`/academics/${type}/course-changes`, { body: formData, jsessionID: true });
 
-export const putCourseChanges = (type: StudentType, data: CourseChange) =>
-  putRequest(`/academics/${type}/course-changes/${data.year}`, {
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: data.description }),
-    jsessionID: true,
-  });
+export const putCourseChanges = (type: StudentType, year: number, formData: FormData) =>
+  putRequest(`/academics/${type}/course-changes/${year}`, { body: formData, jsessionID: true });
 
 export const deleteCourseChanges = async (type: StudentType, year: number) =>
   deleteRequest(`/academics/${type}/course-changes/${year}`, {

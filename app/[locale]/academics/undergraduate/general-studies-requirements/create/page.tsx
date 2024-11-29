@@ -12,7 +12,11 @@ const curriculumPath = getPath(curriculum);
 export default function GeneralStudiesCreatePage() {
   return (
     <PageLayout title="필수 교양 과목 추가" titleType="big">
-      <TimelineEditor submitAction={postGeneralStudiesAction} fallbackPathname={curriculumPath} />
+      <TimelineEditor
+        submitAction={(_, formData) => postGeneralStudiesAction(formData)}
+        fallbackPathname={curriculumPath}
+        pageName="필수 교양 과목"
+      />
     </PageLayout>
   );
 }

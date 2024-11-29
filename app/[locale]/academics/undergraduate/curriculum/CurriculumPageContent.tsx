@@ -2,11 +2,11 @@
 
 import { deleteCurriculumAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Curriculum } from '@/types/academics';
+import { TimelineContent } from '@/types/academics';
 
 import TimelineViewer from '../../helper/timeline/TimelineViewer';
 
-export default function CurriculumPageContent({ data }: { data: Curriculum[] }) {
+export default function CurriculumPageContent({ data }: { data: TimelineContent[] }) {
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}

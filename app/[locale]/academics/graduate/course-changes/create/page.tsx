@@ -13,8 +13,9 @@ export default function GraduateCourseChangesCreatePage() {
   return (
     <PageLayout title="대학원 교과목 변경 내역 추가" titleType="big">
       <TimelineEditor
-        submitAction={(data) => postCourseChangesAction('graduate', data)}
+        submitAction={(_, formData) => postCourseChangesAction('graduate', formData)}
         fallbackPathname={courseChangesPath}
+        pageName="교과목 변경 내역"
       />
     </PageLayout>
   );

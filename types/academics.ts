@@ -1,15 +1,12 @@
+import { Attachment } from '@/components/common/Attachments';
+
 import { Language } from './language';
 
 export type StudentType = 'undergraduate' | 'graduate';
 
 export interface Guide {
   description: string;
-  attachments: {
-    id: number;
-    name: string;
-    url: string;
-    bytes: number;
-  }[];
+  attachments: Attachment[];
 }
 
 export const GRADE = ['대학원', '1학년', '2학년', '3학년', '4학년'] as const;
@@ -35,24 +32,10 @@ export type SortOption = '학년' | '교과목 구분' | '학점';
 
 export type ViewOption = '카드형' | '목록형';
 
-export interface CourseChange {
-  year: number;
-  description: string;
-}
-
 // TODO: 삭제 (overview 없이 내용 리스트만 받도록 백엔드 api 수정될 예정)
 export interface GeneralStudiesRequirements {
   overview: string;
-  generalStudies: {
-    id: number;
-    year: number;
-    description: string;
-  }[];
-}
-
-export interface GeneralStudiesRequirement {
-  year: number;
-  description: string;
+  generalStudies: TimelineContent[];
 }
 
 export interface ScholarshipList {
@@ -69,15 +52,11 @@ export interface Scholarship {
 
 export interface DegreeRequirements {
   description: string;
-  attachments: {
-    id: number;
-    url: string;
-    name: string;
-    bytes: number;
-  }[];
+  attachments: Attachment[];
 }
 
-export interface Curriculum {
-  description: string;
+export interface TimelineContent {
   year: number;
+  description: string;
+  attachments: Attachment[];
 }

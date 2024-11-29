@@ -1,6 +1,6 @@
 import { putGeneralStudiesAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { GeneralStudiesRequirement } from '@/types/academics';
+import { TimelineContent } from '@/types/academics';
 import { getPath } from '@/utils/page';
 import { curriculum } from '@/utils/segmentNode';
 
@@ -11,7 +11,7 @@ const curriculumPath = getPath(curriculum);
 export default function GeneralStudiesEditPageContent({
   initContent,
 }: {
-  initContent: GeneralStudiesRequirement;
+  initContent: TimelineContent;
 }) {
   return (
     <PageLayout title="필수 교양 과목 편집" titleType="big">

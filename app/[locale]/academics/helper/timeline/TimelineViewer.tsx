@@ -2,6 +2,7 @@
 
 import { useReducer, useState } from 'react';
 
+import Attachments, { Attachment } from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
@@ -20,12 +21,9 @@ interface TimelineViewerProps<T> {
   yearLimitCount?: number;
 }
 
-export default function TimelineViewer<T extends { year: number; description: string }>({
-  contents,
-  title,
-  deleteAction,
-  yearLimitCount = 10,
-}: TimelineViewerProps<T>) {
+export default function TimelineViewer<
+  T extends { year: number; description: string; attachments: Attachment[] },
+>({ contents, title, deleteAction, yearLimitCount = 10 }: TimelineViewerProps<T>) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
   const timeLineYears = contents.map((change) => change.year).slice(0, yearLimitCount);
   const yearLimit = timeLineYears.at(-1) ?? 0;
@@ -59,6 +57,7 @@ export default function TimelineViewer<T extends { year: number; description: st
             title={`${selectedContents[0].year}${title.unit} ${title.text}`}
             onDelete={() => handleDelete(selectedYear)}
             editHref={getEditHref(selectedYear)}
+            attachments={selectedContents[0].attachments}
           />
         ) : (
           selectedContents.map((change, i) => {
@@ -70,6 +69,7 @@ export default function TimelineViewer<T extends { year: number; description: st
                 title={`${change.year}${title.unit}${isLast ? ' 이하' : ''} ${title.text}`}
                 onDelete={() => handleDelete(change.year)}
                 editHref={getEditHref(change.year)}
+                attachments={change.attachments}
                 key={change.year}
               />
             );
@@ -116,15 +116,18 @@ function ContentViewer({
   title,
   onDelete,
   editHref,
+  attachments,
 }: {
   description: string;
   title: string;
   onDelete: () => Promise<CustomError | void>;
   editHref: string;
+  attachments: Attachment[];
 }) {
   return (
     <div className="mb-5">
       <div className="mb-4 font-semibold">{title}</div>
+      <Attachments files={attachments} />
       <ContentHTMLViewer description={description} />
       <Buttons onDelete={onDelete} editHref={editHref} />
     </div>
@@ -137,12 +140,14 @@ function TogglableContentViewer({
   title,
   onDelete,
   editHref,
+  attachments,
 }: {
   description: string;
   expandDefault?: boolean;
   title: string;
   onDelete: () => Promise<CustomError | void>;
   editHref: string;
+  attachments: Attachment[];
 }) {
   const [isExpanded, toggleContent] = useReducer((x) => !x, expandDefault);
 
@@ -156,6 +161,7 @@ function TogglableContentViewer({
       </button>
       {isExpanded && (
         <>
+          <Attachments files={attachments} />
           <ContentHTMLViewer description={description} />
           <Buttons onDelete={onDelete} editHref={editHref} />
         </>
@@ -168,7 +174,9 @@ function ContentHTMLViewer({ description }: { description: string }) {
   return <HTMLViewer htmlContent={description} className="bg-neutral-75 p-5" />;
 }
 
-const getSelectedContents = <T extends { year: number; description: string }>(
+const getSelectedContents = <
+  T extends { year: number; description: string; attachments: Attachment[] },
+>(
   year: number,
   yearLimit: number,
   data: T[],
@@ -176,5 +184,7 @@ const getSelectedContents = <T extends { year: number; description: string }>(
   if (year <= yearLimit) return data.filter((d) => d.year <= yearLimit);
 
   const change = data.find((d) => d.year === year);
-  return change ? [change] : [{ year, description: `${year}학년도 내용은 없습니다.` }];
+  return change
+    ? [change]
+    : [{ year, description: `${year}학년도 내용은 없습니다.`, attachments: [] }];
 };

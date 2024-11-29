@@ -2,7 +2,7 @@
 
 import { putCourseChangesAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { CourseChange, StudentType } from '@/types/academics';
+import { StudentType, TimelineContent } from '@/types/academics';
 
 import TimelineEditor from '../timeline/TimelineEditor';
 
@@ -12,7 +12,7 @@ export default function CourseChangesEditPageContent({
   courseChangePath,
 }: {
   type: StudentType;
-  initContent: CourseChange;
+  initContent: TimelineContent;
   courseChangePath: string;
 }) {
   return (
@@ -21,7 +21,7 @@ export default function CourseChangesEditPageContent({
       titleType="big"
     >
       <TimelineEditor
-        submitAction={(data) => putCourseChangesAction(type, data)}
+        submitAction={(year, formData) => putCourseChangesAction(type, year, formData)}
         fallbackPathname={courseChangePath}
         initialContent={initContent}
       />

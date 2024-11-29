@@ -32,14 +32,7 @@ import {
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
 import { redirect } from '@/navigation';
-import {
-  Course,
-  CourseChange,
-  Curriculum,
-  GeneralStudiesRequirement,
-  Scholarship,
-  StudentType,
-} from '@/types/academics';
+import { Course, Scholarship, StudentType } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
@@ -72,13 +65,15 @@ export const deleteCourseAction = withErrorHandler(async (code: string) => {
 
 /** 전공 이수 표준 형태 */
 
-export const postCurriculumAction = withErrorHandler(async (data: Curriculum) => {
-  await postCurriculum(data);
+export const postCurriculumAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'attachments');
+  await postCurriculum(formData);
   revalidateTag(FETCH_TAG_CURRICULUM);
 });
 
-export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
-  await putCurriculum(data);
+export const putCurriculumAction = withErrorHandler(async (year: number, formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
+  await putCurriculum(year, formData);
   revalidateTag(FETCH_TAG_CURRICULUM);
 });
 
@@ -89,17 +84,19 @@ export const deleteCurriculumAction = withErrorHandler(async (year: number) => {
 
 /** 필수 교양 과목 */
 
-export const postGeneralStudiesAction = withErrorHandler(
-  async (data: GeneralStudiesRequirement) => {
-    await postGeneralStudies(data);
+export const postGeneralStudiesAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'attachments');
+  await postGeneralStudies(formData);
+  revalidateTag(FETCH_TAG_GENERAL_STUDIES);
+});
+
+export const putGeneralStudiesAction = withErrorHandler(
+  async (year: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'newAttachments');
+    await putGeneralStudies(year, formData);
     revalidateTag(FETCH_TAG_GENERAL_STUDIES);
   },
 );
-
-export const putGeneralStudiesAction = withErrorHandler(async (data: GeneralStudiesRequirement) => {
-  await putGeneralStudies(data);
-  revalidateTag(FETCH_TAG_GENERAL_STUDIES);
-});
 
 export const deleteGeneralStudiesAction = withErrorHandler(async (year: number) => {
   await deleteGeneralStudies(year);
@@ -117,15 +114,17 @@ export const putDegreeRequirementsAction = withErrorHandler(async (formData: For
 /** 교과목 변경 내역 */
 
 export const postCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await postCourseChanges(type, data);
+  async (type: StudentType, formData: FormData) => {
+    decodeFormDataFileName(formData, 'attachments');
+    await postCourseChanges(type, formData);
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
   },
 );
 
 export const putCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await putCourseChanges(type, data);
+  async (type: StudentType, year: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'newAttachments');
+    await putCourseChanges(type, year, formData);
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
   },
 );

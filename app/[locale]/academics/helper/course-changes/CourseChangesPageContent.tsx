@@ -2,7 +2,7 @@
 
 import { deleteCourseChangesAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { CourseChange, StudentType } from '@/types/academics';
+import { StudentType, TimelineContent } from '@/types/academics';
 
 import TimelineViewer from '../timeline/TimelineViewer';
 
@@ -11,7 +11,7 @@ export default function CourseChangesPageContent({
   changes,
 }: {
   type: StudentType;
-  changes: CourseChange[];
+  changes: TimelineContent[];
 }) {
   return (
     <PageLayout titleType="big">
