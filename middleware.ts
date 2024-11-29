@@ -25,10 +25,10 @@ const generateCSPHeader = (nonce: string) =>
     script-src 'self' ${
       process.env.NODE_ENV === 'production'
         ? `'nonce-${nonce}' 'strict-dynamic' https://dapi.kakao.com`
-        : `'unsafe-inline' 'unsafe-eval' https://dapi.kakao.com`
+        : `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
     };
     style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net;
+    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
     font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';

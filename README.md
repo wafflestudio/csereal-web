@@ -4,9 +4,13 @@ https://cse.snu.ac.kr
 
 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
 
-## Getting started 
+## Getting started
 
-작성 예정
+최상위에 `.env.local` 파일을 추가합니다. 시리얼 구글 계정으로 https://developers.kakao.com 에 로그인해 JavaScript 키를 env에 추가합니다.
+
+```
+NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
+```
 
 ## 주요 사용 기술
 
@@ -29,7 +33,7 @@ https://cse.snu.ac.kr
   - Next.js 페이지들을 정의합니다.
   - 특정 페이지에서 사용되는 컴포넌트 파일들은 `page.tsx`와 동일한 폴더에 정의합니다.
 - components
-  - 여러 페이지들에서 사용되는 공용 컴포넌트를 정의합니다.  
+  - 여러 페이지들에서 사용되는 공용 컴포넌트를 정의합니다.
 - constants
 
 ### 브랜치
