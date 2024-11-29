@@ -5,7 +5,7 @@ import { useState } from 'react';
 import BasicEditor from '@/components/editor/BasicEditor';
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { isNumber } from '@/utils/number';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';

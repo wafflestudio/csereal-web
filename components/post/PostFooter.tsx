@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';

@@ -1,10 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
+import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 import { SegmentNode } from '@/utils/segmentNode';

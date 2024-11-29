@@ -3,7 +3,7 @@
 import { putDirectionsAction } from '@/actions/about';
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { Direction } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';

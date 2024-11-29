@@ -6,7 +6,7 @@ import Header from '@/components/layout/header/Header';
 import GraphicSection from '@/components/main/GraphicSection';
 import NewsSection from '@/components/main/NewsSection';
 import NoticeSection from '@/components/main/NoticeSection';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { MainImportant } from '@/types/main';
 import { getPath } from '@/utils/page';
 import {

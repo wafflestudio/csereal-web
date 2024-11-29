@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
+import { Link } from '@/i18n/routing';
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
 import { SeminarPreviewList } from '@/types/seminar';
 import { getPath } from '@/utils/page';

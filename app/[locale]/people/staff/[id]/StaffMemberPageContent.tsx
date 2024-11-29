@@ -6,7 +6,7 @@ import { deleteStaffAction } from '@/actions/people';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';

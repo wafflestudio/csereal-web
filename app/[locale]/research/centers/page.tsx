@@ -4,7 +4,7 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link, redirect } from '@/navigation';
+import { Link, redirect } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
@@ -34,7 +34,7 @@ export default async function ResearchCentersPage({
   );
   // 존재하지 않는 센터(영어 변환 포함)일 경우 초기화
   if (!selectedCenter) {
-    redirect(researchCentersPath);
+    redirect({ href: researchCentersPath, locale });
     return;
   }
   const centerWithLanguage = await getResearchCenter(selectedCenter.id);

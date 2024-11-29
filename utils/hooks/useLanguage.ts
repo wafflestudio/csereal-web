@@ -1,20 +1,22 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { startTransition } from 'react';
+
+import { usePathname, useRouter } from '@/i18n/routing';
 
 export default function useLanguage() {
   const router = useRouter();
-  const path = usePathname();
-  const searchParams = useSearchParams();
-
-  const isEnglish = path.startsWith('/en');
+  const pathname = usePathname();
+  const params = useSearchParams();
+  const locale = useLocale();
+  const isEnglish = locale === 'en';
 
   const changeLanguage = () => {
-    if (isEnglish) {
-      router.push(`/ko${path.slice(3)}?${searchParams}`);
-    } else {
-      router.push(`/en${path}?${searchParams}`);
-    }
+    startTransition(() => {
+      router.push(pathname + params, { locale: isEnglish ? 'ko' : 'en' });
+    });
   };
 
   return { isEnglish, changeLanguage };

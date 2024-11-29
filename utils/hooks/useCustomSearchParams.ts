@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation';
 
-import { usePathname, useRouter } from '@/navigation';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { PostSearchQueryParams } from '@/types/post';
 import { objToQueryString, urlSearchParamsToString } from '@/utils/convertParams';
 

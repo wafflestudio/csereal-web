@@ -1,7 +1,7 @@
 'use client';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
-import { usePathname } from '@/navigation';
+import { usePathname } from '@/i18n/routing';
 
 import NavbarDetail from './NavbarDetail';
 import NavbarRoot from './NavbarRoot';

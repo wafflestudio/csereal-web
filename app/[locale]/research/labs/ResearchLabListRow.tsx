@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
 import { SimpleResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';

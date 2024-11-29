@@ -1,4 +1,4 @@
-import { usePathname } from '@/navigation';
+import { usePathname } from '@/i18n/routing';
 import { admin, main, SegmentNode, tentenProject } from '@/utils/segmentNode';
 
 export default function useCurrentSegmentNode(): SegmentNode {

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.mjs",
+    "dev": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 NODE_ENV=development node server.mjs",
     "build": "next build",
     "start": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 NODE_ENV=production node server.mjs",
     "lint": "next lint",
@@ -27,7 +27,7 @@
     "express": "^4.19.2",
     "file-loader": "^6.2.0",
     "next": "^14.2.3",
-    "next-intl": "^3.17.0",
+    "next-intl": "^3.25.3",
     "next-sitemap": "^4.2.3",
     "postcss": "8.4.24",
     "react": "^18.2.0",

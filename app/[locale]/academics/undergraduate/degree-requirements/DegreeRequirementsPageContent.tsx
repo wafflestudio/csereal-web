@@ -6,7 +6,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { DegreeRequirements } from '@/types/academics';
 import { getPath } from '@/utils/page';
 import { degree } from '@/utils/segmentNode';

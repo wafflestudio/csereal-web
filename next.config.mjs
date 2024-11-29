@@ -4,8 +4,6 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig = {
   reactStrictMode: true,
 
-  logging: { fetches: { fullUrl: true } },
-
   experimental: {
     serverActions: {
       // 게시물 작성시 첨부파일 지원 목적
@@ -20,12 +18,6 @@ const nextConfig = {
         'id.snucse.org',
       ],
     },
-  },
-
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
   },
 
   // react-svgr 설정

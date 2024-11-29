@@ -1,4 +1,4 @@
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 
 interface CheckboxCellProps {

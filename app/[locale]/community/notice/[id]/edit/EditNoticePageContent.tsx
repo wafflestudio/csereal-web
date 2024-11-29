@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { deleteNoticeAction, patchNoticeAction } from '@/actions/notice';
@@ -12,6 +11,7 @@ import {
 } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NOTICE_TAGS } from '@/constants/tag';
+import { useRouter } from '@/i18n/routing';
 import { Notice } from '@/types/notice';
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';

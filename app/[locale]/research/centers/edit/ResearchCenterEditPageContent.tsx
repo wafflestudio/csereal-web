@@ -5,7 +5,7 @@ import ResearchCenterEditor, {
   ResearchCenterEditorContent,
 } from '@/components/editor/ResearchCenterEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';

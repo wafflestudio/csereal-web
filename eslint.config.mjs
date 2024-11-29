@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 import { includeIgnoreFile } from '@eslint/compat';
 import pluginJs from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -40,5 +39,21 @@ export default [
       'simple-import-sort/exports': 'error',
     },
   },
-  eslintConfigPrettier,
+  {
+    rules: {
+      // Consistently import navigation APIs from `@/i18n/routing`
+      'no-restricted-imports': [
+        'error',
+        {
+          name: 'next/link',
+          message: 'Please import from `@/i18n/routing` instead.',
+        },
+        {
+          name: 'next/navigation',
+          importNames: ['redirect', 'permanentRedirect', 'useRouter', 'usePathname'],
+          message: 'Please import from `@/i18n/routing` instead.',
+        },
+      ],
+    },
+  },
 ];

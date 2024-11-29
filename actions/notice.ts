@@ -1,11 +1,11 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix가 붙음
 
 import { batchDeleteNotice, batchUnpinNotice, postNotice } from '@/apis/v1/notice';
 import { deleteNotice, patchNotice } from '@/apis/v1/notice/[id]';
 import { FETCH_TAG_NOTICE } from '@/constants/network';
+import { redirectKo } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';
@@ -18,7 +18,7 @@ export const postNoticeAction = async (formData: FormData) => {
   const resp = await postNotice(formData);
 
   revalidateTag(FETCH_TAG_NOTICE);
-  redirect(`${noticePath}/${resp.id}`);
+  redirectKo(`${noticePath}/${resp.id}`);
 };
 
 export const patchNoticeAction = async (id: number, formData: FormData) => {
@@ -26,7 +26,7 @@ export const patchNoticeAction = async (id: number, formData: FormData) => {
   await patchNotice(id, formData);
 
   revalidateTag(FETCH_TAG_NOTICE);
-  redirect(`${noticePath}/${id}`);
+  redirectKo(`${noticePath}/${id}`);
 };
 
 export const deleteNoticeAction = async (id: number) => {
@@ -36,7 +36,7 @@ export const deleteNoticeAction = async (id: number) => {
   } catch (error) {
     return { message: errorToStr(error) };
   }
-  redirect(noticePath);
+  redirectKo(noticePath);
 };
 
 export const batchDeleteNoticeAction = async (ids: Set<number>) => {

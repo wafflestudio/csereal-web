@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
 import { CustomError } from '@/utils/serverActionError';
 

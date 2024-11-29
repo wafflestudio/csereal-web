@@ -3,7 +3,7 @@
 import { putCareerDescriptionAction } from '@/actions/about';
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { validateBasicForm } from '@/utils/formValidation';

@@ -3,8 +3,9 @@ export const dynamic = 'force-dynamic';
 import '@/styles/globals.css';
 
 import { Metadata } from 'next';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -15,6 +16,7 @@ import ModalContainer from '@/components/modal/ModalContainer';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
+import { routing } from '@/i18n/routing';
 
 import MarginedMain from './MarginedMain';
 
@@ -40,12 +42,6 @@ export async function generateMetadata({
   };
 }
 
-// i18n의 Static rendering 관련 에러 제거 위해 추가
-export function generateStaticParams() {
-  const locales = ['en', 'ko'];
-  return locales.map((locale) => ({ locale }));
-}
-
 export default async function RootLayout({
   children,
   params,
@@ -53,10 +49,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // i18n의 Static rendering 관련 에러 제거 위해 추가
-  // unstable인데 왜 안쓰면 빌드 안시켜줌??????
-  unstable_setRequestLocale(params.locale);
-
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
       <body className="sm:min-w-[1200px]">
@@ -77,16 +69,19 @@ export default async function RootLayout({
   );
 }
 
-function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
-  const messages = useMessages();
+async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
 
   return (
     <SessionContextProvider>
       <ModalContextProvider>
         <NavbarContextProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-          </NextIntlClientProvider>
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         </NavbarContextProvider>
       </ModalContextProvider>
     </SessionContextProvider>

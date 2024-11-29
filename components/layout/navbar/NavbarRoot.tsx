@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';

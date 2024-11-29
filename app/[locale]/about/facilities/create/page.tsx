@@ -3,7 +3,7 @@
 import { postFacilityAction } from '@/actions/about';
 import FacilityEditor, { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
