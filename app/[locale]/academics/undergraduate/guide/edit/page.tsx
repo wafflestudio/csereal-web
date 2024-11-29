@@ -1,4 +1,4 @@
-import { getAcademicsGuide } from '@/apis/academics';
+import { getAcademicsGuide } from '@/apis/v1/academics/[type]/guide';
 
 import GuideEditPageContent from '../../../helper/guide/GuideEditPageContent';
 

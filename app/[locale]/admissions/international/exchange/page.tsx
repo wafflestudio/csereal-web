@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getInternationalExchangeVisiting } from '@/apis/admission';
+import { getInternationalExchangeVisiting } from '@/apis/v1/admissions/international/exchange-visiting';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getInternationalUndergraduate } from '@/apis/admission';
+import { getInternationalUndergraduate } from '@/apis/v1/admissions/international/undergraduate';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';

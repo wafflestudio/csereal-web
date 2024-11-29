@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getGraduateRegularAdmission } from '@/apis/admission';
+import { getGraduateRegularAdmission } from '@/apis/v1/admissions/graduate/regular-admission';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
