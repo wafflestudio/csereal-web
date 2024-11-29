@@ -1,4 +1,4 @@
-import { getFacultyRecruitment } from '@/apis/recruitment';
+import { getFacultyRecruitment } from '@/apis/v1/recruit';
 
 import FacultyRecruitmentEditPageContent from './FacultyRecruitmentEditPageContent';
 

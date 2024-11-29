@@ -1,6 +1,6 @@
 import { FETCH_TAG_INTERNAL } from '@/constants/network';
 
-import { getRequest, putRequest } from '../..';
+import { getRequest, putRequest } from '..';
 
 export const getInternal = () =>
   getRequest('/v1/internal', undefined, {
