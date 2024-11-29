@@ -2,14 +2,10 @@
 
 import { revalidateTag } from 'next/cache';
 
-import {
-  deleteFaculty,
-  deleteStaff,
-  postFaculty,
-  postStaff,
-  putFaculty,
-  putStaff,
-} from '@/apis/people';
+import { postFaculty } from '@/apis/v2/professor';
+import { deleteFaculty, putFaculty } from '@/apis/v2/professor/[id_ko]/[id_en]';
+import { postStaff } from '@/apis/v2/staff';
+import { deleteStaff, putStaff } from '@/apis/v2/staff/[id_ko]/id_en';
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
 import { redirect } from '@/navigation';
 import { Language, WithLanguage } from '@/types/language';

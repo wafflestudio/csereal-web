@@ -1,4 +1,4 @@
-import { getEmeritusFacultyList } from '@/apis/people';
+import { getEmeritusFacultyList } from '@/apis/v2/professor/inactive';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

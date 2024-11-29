@@ -1,5 +1,5 @@
-import { getFaculty } from '@/apis/people';
 import { getResearchLabs } from '@/apis/research';
+import { getFaculty } from '@/apis/v2/professor/[id]';
 import { Language } from '@/types/language';
 
 import FacultyEditPageContent from './FacultyEditPageContent';

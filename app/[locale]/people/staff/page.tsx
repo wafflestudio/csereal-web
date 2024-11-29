@@ -1,4 +1,4 @@
-import { getStaffList } from '@/apis/people';
+import { getStaffList } from '@/apis/v2/staff';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
