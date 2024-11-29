@@ -82,7 +82,7 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
         <MuiDateSelector
           date={date}
           setDate={(date) => {
-            date && setDate(date);
+            if (date) setDate(date);
             closeModal();
           }}
           className="bg-neutral-100"

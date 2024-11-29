@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';

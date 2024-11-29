@@ -44,7 +44,7 @@ export default function MuiDateSelector({
         views={['year', 'month', 'day']}
         onChange={(value) => {
           const date = value?.toDate();
-          date && setDate(date);
+          if (date) setDate(date);
         }}
         shouldDisableDate={shouldDisableDate}
         showDaysOutsideCurrentMonth

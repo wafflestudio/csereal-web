@@ -53,7 +53,11 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
   const handleDelete = async () => {
     startTransition(async () => {
       const result = await deleteNoticeAction(id);
-      result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
+      if (result) {
+        errorToast(result.message);
+      } else {
+        successToast('게시글을 삭제했습니다.');
+      }
     });
   };
 

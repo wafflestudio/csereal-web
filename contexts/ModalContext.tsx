@@ -1,13 +1,6 @@
 'use client';
 
-import React, {
-  createContext,
-  PropsWithChildren,
-  ReactNode,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, PropsWithChildren, ReactNode, useContext, useMemo, useState } from 'react';
 
 interface ModalSetterContextData {
   open: (Component: ReactNode) => void;

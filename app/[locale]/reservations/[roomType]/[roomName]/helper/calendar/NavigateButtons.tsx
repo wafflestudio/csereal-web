@@ -49,7 +49,7 @@ export function SelectDayButton({ date }: { date: Date }) {
             className="absolute top-2 z-10 border border-neutral-300 bg-white"
             date={date}
             setDate={(date) => {
-              date && querySetter(date);
+              if (date) querySetter(date);
               toggleCalendar();
             }}
             enablePast
