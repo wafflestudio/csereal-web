@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
 import { useReducer } from 'react';
 
+import { usePathname, useRouter } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
 
 import MuiDateSelector from '../../../../../../../components/common/MuiDateSelector';

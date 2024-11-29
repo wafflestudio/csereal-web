@@ -1,11 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
+import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';

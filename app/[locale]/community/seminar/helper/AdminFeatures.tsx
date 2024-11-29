@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 

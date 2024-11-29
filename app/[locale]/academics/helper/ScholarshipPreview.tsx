@@ -1,11 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { Link } from '@/i18n/routing';
 import { StudentType } from '@/types/academics';
 import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';

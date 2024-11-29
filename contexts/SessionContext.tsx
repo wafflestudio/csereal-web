@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import {
   createContext,
   PropsWithChildren,
@@ -12,6 +11,7 @@ import {
 
 import { getMockAuth, getUserState, removeAuth } from '@/actions/session';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
+import { useRouter } from '@/i18n/routing';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 

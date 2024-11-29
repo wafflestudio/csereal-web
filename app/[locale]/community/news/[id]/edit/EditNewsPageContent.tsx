@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { deleteNewsAction, patchNewsAction } from '@/actions/news';
 import PostEditor from '@/components/editor/PostEditor';
 import {
@@ -13,6 +11,7 @@ import {
 } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NEWS_TAGS } from '@/constants/tag';
+import { useRouter } from '@/i18n/routing';
 import { News } from '@/types/news';
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';

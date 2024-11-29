@@ -1,10 +1,10 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
+import { usePathname } from '@/i18n/routing';
 import { Link } from '@/i18n/routing';
 import { getLocationLog, getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';

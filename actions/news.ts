@@ -1,11 +1,11 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation'; // MEMO: next-intl을 쓰니 prefix가 붙음
 
 import { postNews } from '@/apis/v1/news';
 import { deleteNews, patchNews } from '@/apis/v1/news/[id]';
 import { FETCH_TAG_NEWS } from '@/constants/network';
+import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
@@ -17,7 +17,7 @@ export const postNewsAction = async (formData: FormData) => {
   const resp = await postNews(formData);
 
   revalidateTag(FETCH_TAG_NEWS);
-  redirect(`${newsPath}/${resp.id}`);
+  redirectKo(`${newsPath}/${resp.id}`);
 };
 
 export const patchNewsAction = async (id: number, formData: FormData) => {
@@ -25,7 +25,7 @@ export const patchNewsAction = async (id: number, formData: FormData) => {
   await patchNews(id, formData);
 
   revalidateTag(FETCH_TAG_NEWS);
-  redirect(`${newsPath}/${id}`);
+  redirectKo(`${newsPath}/${id}`);
 };
 
 export const deleteNewsAction = async (id: number) => {
@@ -35,5 +35,5 @@ export const deleteNewsAction = async (id: number) => {
   } catch (error) {
     return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
   }
-  redirect(newsPath);
+  redirectKo(newsPath);
 };

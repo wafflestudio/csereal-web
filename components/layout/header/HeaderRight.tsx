@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import { useSessionContext } from '@/contexts/SessionContext';
+import { Link } from '@/i18n/routing';
 import useLanguage from '@/utils/hooks/useLanguage';
 
 import HeaderSearchBar from './HeaderSearchBar';

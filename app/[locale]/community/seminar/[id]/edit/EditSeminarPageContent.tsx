@@ -1,12 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { deleteSeminarAction, patchSeminarAction } from '@/actions/seminar';
 import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/editor/PostEditorTypes';
 import SeminarEditor from '@/components/editor/SeminarEditor';
 import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { useRouter } from '@/i18n/routing';
 import { Seminar } from '@/types/seminar';
 import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';

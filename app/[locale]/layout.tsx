@@ -70,6 +70,7 @@ export default async function RootLayout({
 }
 
 async function ContextProviders({ locale, children }: { locale: string; children: ReactNode }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }

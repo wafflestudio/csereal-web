@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePathname } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 
 export default function HeaderSearchBar() {
   const { text, setText, search } = useSearch();
