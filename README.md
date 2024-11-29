@@ -12,6 +12,18 @@ https://cse.snu.ac.kr
 NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
 ```
 
+`npm install`로 패키지를 설치하고 husky를 초기화합니다.
+
+```
+npm install
+```
+
+마지막으로 원하는 `npm` 명령어를 실행합니다.
+
+```
+npm run dev
+```
+
 ## 주요 사용 기술
 
 - Next.js 14 App router
