@@ -8,87 +8,87 @@ import {
   TopConferenceList,
 } from '@/types/research';
 
-import { deleteRequestV2, getRequest, getRequestV2, postRequestV2, putRequestV2 } from '.';
+import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 
 /** 연구 그룹 (스트림) */
 
 export const getResearchGroups = (language: Language) =>
-  getRequestV2<ResearchGroup[]>(
-    '/research/groups',
+  getRequest<ResearchGroup[]>(
+    '/v2/research/groups',
     { language },
     { next: { tags: [FETCH_TAG_GROUP] } },
   );
 
 export const getResearchGroup = (id: number) =>
-  getRequestV2<WithLanguage<ResearchGroup>>(`/research/${id}`, undefined, {
+  getRequest<WithLanguage<ResearchGroup>>(`/v2/research/${id}`, undefined, {
     next: { tags: [FETCH_TAG_GROUP] },
   });
 
 export const postResearchGroup = (formData: FormData) =>
-  postRequestV2<WithLanguage<ResearchGroup>>('/research', { body: formData, jsessionID: true });
+  postRequest<WithLanguage<ResearchGroup>>('/v2/research', { body: formData, jsessionID: true });
 
 export const putResearchGroup = (ids: WithLanguage<number>, formData: FormData) =>
-  putRequestV2<WithLanguage<ResearchGroup>>(`/research/${ids.ko}/${ids.en}`, {
+  putRequest<WithLanguage<ResearchGroup>>(`/v2/research/${ids.ko}/${ids.en}`, {
     body: formData,
     jsessionID: true,
   });
 
 export const deleteResearchGroup = (ids: WithLanguage<number>) =>
-  deleteRequestV2(`/research/${ids.ko}/${ids.en}`, { jsessionID: true });
+  deleteRequest(`/v2/research/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /** 연구 센터 */
 
 export const getResearchCenters = (language: Language) =>
-  getRequestV2<ResearchCenter[]>(
-    '/research/centers',
+  getRequest<ResearchCenter[]>(
+    '/v2/research/centers',
     { language },
     { next: { tags: [FETCH_TAG_CENTER] } },
   );
 
 export const getResearchCenter = (id: number) =>
-  getRequestV2<WithLanguage<ResearchCenter>>(`/research/${id}`, undefined, {
+  getRequest<WithLanguage<ResearchCenter>>(`/v2/research/${id}`, undefined, {
     next: { tags: [FETCH_TAG_CENTER] },
   });
 
 // 연구 그룹과 동일하나 개발 시 가독성을 위해 분리해둠 (GET은 분리되고 나머지는 통일하면 더 헷갈릴 듯하여)
 export const postResearchCenter = (formData: FormData) =>
-  postRequestV2<WithLanguage<ResearchCenter>>('/research', { body: formData, jsessionID: true });
+  postRequest<WithLanguage<ResearchCenter>>('/v2/research', { body: formData, jsessionID: true });
 
 export const putResearchCenter = (ids: WithLanguage<number>, formData: FormData) =>
-  putRequestV2<WithLanguage<ResearchCenter>>(`/research/${ids.ko}/${ids.en}`, {
+  putRequest<WithLanguage<ResearchCenter>>(`/v2/research/${ids.ko}/${ids.en}`, {
     body: formData,
     jsessionID: true,
   });
 
 export const deleteResearchCenter = (ids: WithLanguage<number>) =>
-  deleteRequestV2(`/research/${ids.ko}/${ids.en}`, { jsessionID: true });
+  deleteRequest(`/v2/research/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /** 연구실 */
 
 export const getResearchLab = (id: number) =>
-  getRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${id}`, undefined, {
+  getRequest<WithLanguage<ResearchLab>>(`/v2/research/lab/${id}`, undefined, {
     next: { tags: [FETCH_TAG_LAB] },
   });
 
 export const getResearchLabs = (language: Language) =>
-  getRequestV2<SimpleResearchLab[]>(
-    '/research/lab',
+  getRequest<SimpleResearchLab[]>(
+    '/v2/research/lab',
     { language },
     { next: { tags: [FETCH_TAG_LAB] } },
   );
 
 export const postResearchLab = (formData: FormData) =>
-  postRequestV2<WithLanguage<ResearchLab>>('/research/lab', { body: formData, jsessionID: true });
+  postRequest<WithLanguage<ResearchLab>>('/v2/research/lab', { body: formData, jsessionID: true });
 
 export const putResearchLab = (ids: WithLanguage<number>, formData: FormData) =>
-  putRequestV2<WithLanguage<ResearchLab>>(`/research/lab/${ids.ko}/${ids.en}`, {
+  putRequest<WithLanguage<ResearchLab>>(`/v2/research/lab/${ids.ko}/${ids.en}`, {
     body: formData,
     jsessionID: true,
   });
 
 export const deleteResearchLab = (ids: WithLanguage<number>) =>
-  deleteRequestV2(`/research/lab/${ids.ko}/${ids.en}`, { jsessionID: true });
+  deleteRequest(`/v2/research/lab/${ids.ko}/${ids.en}`, { jsessionID: true });
 
 /** TCL */
 
-export const getTopConferenceList = () => getRequest<TopConferenceList>('/conference/page');
+export const getTopConferenceList = () => getRequest<TopConferenceList>('/v1/conference/page');

@@ -5,15 +5,11 @@ import { objToQueryString } from '@/utils/convertParams';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
 
+// TODO: BASE_URL 통합
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
-    : 'http://localhost:8080/api/v1';
-
-export const BASE_URL2 =
-  process.env.NODE_ENV === 'development'
-    ? 'https://cse-dev-waffle.bacchus.io/api/v2'
-    : 'http://localhost:8080/api/v2';
+    ? 'https://cse-dev-waffle.bacchus.io/api'
+    : 'http://localhost:8080/api';
 
 // REST request
 
@@ -54,40 +50,6 @@ export const putRequest = async <T = unknown>(
 
 export const deleteRequest = async (url: string, init?: CredentialRequestInit) => {
   await fetchWithRetry(`${BASE_URL}${url}`, 'DELETE', init);
-};
-
-// BASE_URL v2 사용, 편집 기능 작업 끝나고 나면 어차피 사라질 부분이라 단순 복붙함
-// TODO: BASE_URL 통합
-
-export const getRequestV2 = async <T = unknown>(
-  url: string,
-  params: object = {},
-  init?: CredentialRequestInit,
-): Promise<T> => {
-  const queryString = objToQueryString(params);
-  const resp = await fetchWithRetry(`${BASE_URL2}${url}${queryString}`, 'GET', init);
-  return await resp.json();
-};
-
-export const postRequestV2 = async <T = unknown>(
-  url: string,
-  init?: CredentialRequestInit,
-): Promise<T | null> => {
-  const resp = await fetchWithRetry(`${BASE_URL2}${url}`, 'POST', init);
-  const isJsonResponse = resp.headers.get('content-type')?.includes('application/json');
-  return isJsonResponse ? await resp.json() : null;
-};
-
-export const putRequestV2 = async <T = unknown>(
-  url: string,
-  init?: CredentialRequestInit,
-): Promise<T | null> => {
-  const resp = await fetchWithRetry(`${BASE_URL2}${url}`, 'PUT', init);
-  return resp.headers.get('content-type') ? await resp.json() : null;
-};
-
-export const deleteRequestV2 = async (url: string, init?: CredentialRequestInit) => {
-  await fetchWithRetry(`${BASE_URL2}${url}`, 'DELETE', init);
 };
 
 /**

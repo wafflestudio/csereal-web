@@ -12,7 +12,7 @@ import {
 import { AboutContent, Club, Direction, Facility, FutureCareers } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 
-import { deleteRequestV2, getRequest, getRequestV2, postRequestV2, putRequestV2 } from '.';
+import { deleteRequest, getRequest, postRequest, putRequest } from '.';
 
 /** 학부 소개 */
 
@@ -22,124 +22,124 @@ export const getOverview = (language: Language) =>
   });
 
 export const putOverview = (formData: FormData) =>
-  putRequestV2('/about/overview', { body: formData, jsessionID: true });
+  putRequest('/v2/about/overview', { body: formData, jsessionID: true });
 
 /** 학부장 인사말 */
 
 export const getGreetings = (language: Language) =>
-  getRequest<AboutContent>(`/about/greetings?language=${language}`, undefined, {
+  getRequest<AboutContent>(`/v1/about/greetings?language=${language}`, undefined, {
     next: { tags: [FETCH_TAG_GREETINGS] },
   });
 
 export const putGreetings = (formData: FormData) =>
-  putRequestV2('/about/greetings', { body: formData, jsessionID: true });
+  putRequest('/v2/about/greetings', { body: formData, jsessionID: true });
 
 /** 연혁 */
 
 export const getHistory = (language: Language) =>
-  getRequest<AboutContent>(`/about/history?language=${language}`, undefined, {
+  getRequest<AboutContent>(`/v1/about/history?language=${language}`, undefined, {
     next: { tags: [FETCH_TAG_HISTORY] },
   });
 
 export const putHistory = (formData: FormData) =>
-  putRequestV2('/about/history', { body: formData, jsessionID: true });
+  putRequest('/v2/about/history', { body: formData, jsessionID: true });
 
 /** 졸업생 진로  */
 
 export const getFutureCareeres = (language: Language) =>
-  getRequest<FutureCareers>(`/about/future-careers?language=${language}`, undefined, {
+  getRequest<FutureCareers>(`/v1/about/future-careers?language=${language}`, undefined, {
     next: { tags: [FETCH_TAG_CAREER] },
   });
 
 export const putCareerDescription = (data: { koDescription: string; enDescription: string }) =>
-  putRequestV2('/about/future-careers', {
+  putRequest('/v2/about/future-careers', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const postCareerStat = (data: CareerStatEditorContent) =>
-  postRequestV2('/about/future-careers/stats', {
+  postRequest('/v2/about/future-careers/stats', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const putCareerStat = (data: CareerStatEditorContent) =>
-  putRequestV2('/about/future-careers/stats', {
+  putRequest('/v2/about/future-careers/stats', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const postCareerCompany = (data: { name: string; url?: string; year: number }) =>
-  postRequestV2('/about/future-careers/company', {
+  postRequest('/v2/about/future-careers/company', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const putCareerCompany = (id: number, data: FutureCareers['companies'][number]) =>
-  putRequestV2(`/about/future-careers/company/${id}`, {
+  putRequest(`/v2/about/future-careers/company/${id}`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
   });
 
 export const deleteCareerCompany = (id: number) =>
-  deleteRequestV2(`/about/future-careers/company/${id}`, { jsessionID: true });
+  deleteRequest(`/v2/about/future-careers/company/${id}`, { jsessionID: true });
 
 /** 동아리 */
 
 export const getClubs = () =>
-  getRequestV2<WithLanguage<Club>[]>('/about/student-clubs', undefined, {
+  getRequest<WithLanguage<Club>[]>('/v2/about/student-clubs', undefined, {
     next: { tags: [FETCH_TAG_CLUB] },
   });
 
 export const postClub = (formData: FormData) =>
-  postRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
+  postRequest('/v2/about/student-clubs', { body: formData, jsessionID: true });
 
 export const putClub = (formData: FormData) =>
-  putRequestV2('/about/student-clubs', { body: formData, jsessionID: true });
+  putRequest('/v2/about/student-clubs', { body: formData, jsessionID: true });
 
 export const deleteClub = (id: number) =>
-  deleteRequestV2(`/about/student-clubs/${id}`, { jsessionID: true });
+  deleteRequest(`/v2/about/student-clubs/${id}`, { jsessionID: true });
 
 /** 시설 안내 */
 
 export const getFacilities = () =>
-  getRequestV2<WithLanguage<Facility>[]>('/about/facilities', undefined, {
+  getRequest<WithLanguage<Facility>[]>('/v2/about/facilities', undefined, {
     next: { tags: [FETCH_TAG_FACILITIES] },
   });
 
 export const postFacility = (formData: FormData) =>
-  postRequestV2('/about/facilities', { body: formData, jsessionID: true });
+  postRequest('/v2/about/facilities', { body: formData, jsessionID: true });
 
 export const putFacility = (id: number, formData: FormData) =>
-  putRequestV2(`/about/facilities/${id}`, { body: formData, jsessionID: true });
+  putRequest(`/v2/about/facilities/${id}`, { body: formData, jsessionID: true });
 
 export const deleteFacility = (id: number) =>
-  deleteRequestV2(`/about/facilities/${id}`, { jsessionID: true });
+  deleteRequest(`/v2/about/facilities/${id}`, { jsessionID: true });
 
 /** 연락처 */
 
 export const getContact = (language: Language) =>
-  getRequest<AboutContent>(`/about/contact?language=${language}`, undefined, {
+  getRequest<AboutContent>(`/v1/about/contact?language=${language}`, undefined, {
     next: { tags: [FETCH_TAG_CONTACT] },
   });
 
 export const putContact = (formData: FormData) =>
-  putRequestV2('/about/contact', { body: formData, jsessionID: true });
+  putRequest('/v2/about/contact', { body: formData, jsessionID: true });
 
 /** 찾아오는 길 */
 
 export const getDirections = () =>
-  getRequestV2<WithLanguage<Direction>[]>('/about/directions', undefined, {
+  getRequest<WithLanguage<Direction>[]>('/v2/about/directions', undefined, {
     next: { tags: [FETCH_TAG_DIRECTIONS] },
   });
 
 export const putDirections = (id: number, data: { koDescription: string; enDescription: string }) =>
-  putRequestV2(`/about/directions/${id}`, {
+  putRequest(`/v2/about/directions/${id}`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
     jsessionID: true,
