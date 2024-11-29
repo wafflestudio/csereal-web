@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { MutableRefObject, useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import SunEditorCore from 'suneditor/src/lib/core';
 
 import SunEditorFallback from '@/components/editor/SunEditor/SunEditorFallback';

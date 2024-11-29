@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 

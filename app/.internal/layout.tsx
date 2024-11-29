@@ -1,11 +1,10 @@
+import '@/styles/globals.css';
+
 import { Toaster } from 'react-hot-toast';
 
-import SessionContextProvider from '@/contexts/SessionContext';
-
-import ModalContextProvider from '@/contexts/ModalContext';
 import ModalContainer from '@/components/modal/ModalContainer';
-
-import '@/styles/globals.css';
+import ModalContextProvider from '@/contexts/ModalContext';
+import SessionContextProvider from '@/contexts/SessionContext';
 
 export default async function RootLayout({
   children,

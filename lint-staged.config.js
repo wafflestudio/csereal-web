@@ -1,5 +1,5 @@
 module.exports = {
-  '*.{js,ts,tsx}': 'eslint --cache --fix',
-  '*.{js,ts,tsx,css,md}': 'prettier --write',
-  '*.{ts,tsx}': () => 'tsc --noEmit',
+  'src/**/*.{js,ts,jsx,tsx}': ['eslint --fix', 'prettier --write'],
+  '!(src/**/*.{js,ts,jsx,tsx})': 'prettier --ignore-unknown --write',
+  '**/*.ts?(x)': () => 'tsc --noEmit',
 };

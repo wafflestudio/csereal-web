@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 interface ImageUploadProps {
   onImageSelect: (file: File | null) => void;

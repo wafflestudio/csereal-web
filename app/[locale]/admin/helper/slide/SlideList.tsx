@@ -17,7 +17,11 @@ export default function SlideList({ posts, selectedPostIds, changeSelectedIds }:
   const deselectPost = (id: number) => changeSelectedIds({ type: 'DELETE', id });
 
   const toggleSelected = (id: number) => {
-    selectedPostIds.has(id) ? deselectPost(id) : selectPost(id);
+    if (selectedPostIds.has(id)) {
+      deselectPost(id);
+    } else {
+      selectPost(id);
+    }
   };
 
   return (

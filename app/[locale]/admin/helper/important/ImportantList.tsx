@@ -31,7 +31,11 @@ export default function ImportantList({
     );
 
   const toggleSelected = (identifier: ImportantPostIdentifier) => {
-    getIsSelected(identifier) ? deselectPost(identifier) : selectPost(identifier);
+    if (getIsSelected(identifier)) {
+      deselectPost(identifier);
+    } else {
+      selectPost(identifier);
+    }
   };
 
   return (

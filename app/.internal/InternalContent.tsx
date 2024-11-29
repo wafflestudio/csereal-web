@@ -3,15 +3,13 @@
 import { useReducer } from 'react';
 
 import { putInternalAction } from '@/actions/internal';
-
 import { GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-
-import { errorToast, successToast } from '@/utils/toast';
-import { handleServerAction } from '@/utils/serverActionError';
 import { errorToStr } from '@/utils/error';
+import { handleServerAction } from '@/utils/serverActionError';
+import { errorToast, successToast } from '@/utils/toast';
 
 export default function InternalContent({ description }: { description: string }) {
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);

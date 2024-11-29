@@ -13,9 +13,11 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
   const t = useTranslations('Tag');
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
-    isChecked
-      ? searchTags([...selectedTags, tag])
-      : searchTags(selectedTags.filter((t) => t !== tag));
+    if (isChecked) {
+      searchTags([...selectedTags, tag]);
+    } else {
+      searchTags(selectedTags.filter((t) => t !== tag));
+    }
   };
 
   const locale = useLocale();

@@ -20,23 +20,26 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
     return;
   }
 
+  const postTypeToAction = (postType: string) => {
+    switch (postType) {
+      case 'notice':
+        return deleteNoticeAction;
+      case 'news':
+        return deleteNewsAction;
+      case 'seminar':
+        return deleteSeminarAction;
+    }
+  };
+
   const handleDelete = async () => {
     startTransition(async () => {
-      switch (postType) {
-        case 'notice': {
-          const result = await deleteNoticeAction(idInNumber);
-          result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
-          break;
-        }
-        case 'news': {
-          const result = await deleteNewsAction(idInNumber);
-          result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
-          break;
-        }
-        case 'seminar': {
-          const result = await deleteSeminarAction(idInNumber);
-          result ? errorToast(result.message) : successToast('게시글을 삭제했습니다.');
-          break;
+      const action = postTypeToAction(postType);
+      if (action) {
+        const result = await action(idInNumber);
+        if (result) {
+          errorToast(result.message);
+        } else {
+          successToast('게시글을 삭제했습니다.');
         }
       }
     });
