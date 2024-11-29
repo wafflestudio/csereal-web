@@ -53,8 +53,9 @@ npm run dev
 
 ### 브랜치
 
-- 현재 별도의 테스트용 브랜치를 관리하고 있지 않으므로 `main`에서 바로 브랜치를 만듭니다.
-- 이후 PR 리뷰 후 approve가 되면 `main`으로 **squash merge**합니다.
+- `develop`에서 브랜치를 파 작업합니다.
+- 이후 PR 리뷰 후 approve가 되면 `develop`으로 **squash merge**합니다. 머지 직후 github action에서 https://cse-dev-waffle.bacchus.io/ 로 자동 배포됩니다.
+- 테스트가 완료되면 main으로 머지합니다(어떻게?). 이후 배포는 수동으로 진행합니다.
 - 브랜치명은 `{타입}/{브랜치명}` 으로 작성합니다.
   - 타입: feat, fix, chore, style, refactor
 - PR 제목은 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
