@@ -1,0 +1,27 @@
+name: Deploy Dev
+
+on:
+  push:
+    branches:
+      - develop
+      - feat/deploy
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          key: ${{ secrets.DEV_SSH_KEY }}
+          port: ${{ secrets.DEV_SSH_PORT }}
+          script: |
+            cd ~/csereal-web
+            git checkout ${{ github.base_ref }}
+            nvm use
+            npm install
+            npm run build:develop
+            pm2 reload 0
