@@ -1,13 +1,11 @@
-import {
-  searchAbout,
-  searchAcademics,
-  searchAdmissions,
-  searchMember,
-  searchNews,
-  searchNotice,
-  searchResearch,
-} from '@/apis/search';
+import { searchAbout } from '@/apis/v1/about/search/top';
+import { searchAdmissions } from '@/apis/v1/admissions/search/top';
+import { searchMember } from '@/apis/v1/member/search/top';
+import { searchNews } from '@/apis/v1/news/totalSearch';
+import { searchNotice } from '@/apis/v1/notice/totalSearch';
 import { getSeminarPosts } from '@/apis/v1/seminar';
+import { searchAcademics } from '@/apis/v2/academics/search/top';
+import { searchResearch } from '@/apis/v2/research/search/top';
 import {
   AboutSearchResult,
   AcademicsSearchResult,
