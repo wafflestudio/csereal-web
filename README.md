@@ -12,9 +12,10 @@ https://cse.snu.ac.kr
 NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
 ```
 
-`npm install`로 패키지를 설치하고 husky를 초기화합니다.
+`nvm use`로 명시된 노드 버전을 사용합니다. 필요시 `nvm install`합니다. 이후 `npm install`로 패키지를 설치하고 husky를 초기화합니다.
 
 ```
+nvm use
 npm install
 ```
 
@@ -74,4 +75,6 @@ npm run dev
 ## Maintainers
 
 - @yeolyi
+  - https://yeolyi.com
+  - https://instagram.com/yeolyii
 - @Limchansol
