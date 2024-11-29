@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { putInternal } from '@/apis/internal';
+import { putInternal } from '@/apis/v1/internal';
 import { FETCH_TAG_INTERNAL } from '@/constants/network';
 
 import { withErrorHandler } from './errorHandler';
