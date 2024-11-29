@@ -2,9 +2,17 @@ import { cookies } from 'next/headers';
 
 import { objToQueryString } from '@/utils/convertParams';
 
-import { BASE_URL, BASE_URL2, checkError } from './common';
-
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
+
+export const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'https://cse-dev-waffle.bacchus.io/api/v1'
+    : 'http://localhost:8080/api/v1';
+
+export const BASE_URL2 =
+  process.env.NODE_ENV === 'development'
+    ? 'https://cse-dev-waffle.bacchus.io/api/v2'
+    : 'http://localhost:8080/api/v2';
 
 // REST request
 
@@ -63,7 +71,7 @@ export const getRequestV2 = async <T = unknown>(
 export const postRequestV2 = async <T = unknown>(
   url: string,
   init?: CredentialRequestInit,
-): Promise<T> => {
+): Promise<T | null> => {
   const resp = await fetchWithRetry(`${BASE_URL2}${url}`, 'POST', init);
   const isJsonResponse = resp.headers.get('content-type')?.includes('application/json');
   return isJsonResponse ? await resp.json() : null;
@@ -129,3 +137,9 @@ const _fetch = async (url: string, method: string, init?: CredentialRequestInit)
 };
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const checkError = (response: Response) => {
+  if (response.ok) return;
+  // server action 에러 처리를 위해 status code만 깔끔하게 담음
+  throw new Error(response.status.toString());
+};
