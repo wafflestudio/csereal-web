@@ -4,24 +4,34 @@ on:
   push:
     branches:
       - develop
-      - feat/deploy
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.3
+      - name: 'Prepare deplay key'
+        run: |
+          echo "${{ secrets.DEV_SSH_KEY }}" > key
+          chmod 600 ./key
+      - name: 'SSH command'
+        uses: 'nick-fields/retry@v2'
         with:
-          host: ${{ secrets.DEV_SSH_HOST }}
-          username: ${{ secrets.DEV_SSH_USER }}
-          key: ${{ secrets.DEV_SSH_KEY }}
-          port: ${{ secrets.DEV_SSH_PORT }}
-          script: |
+          timeout_minutes: 1
+          max_attempts: 3
+          retry_wait_seconds: 1
+          retry_on: 'error'
+          command: |
+            ssh -T -i ./key -o StrictHostKeyChecking=no -p ${{ secrets.DEV_SSH_PORT }} ${{ secrets.DEV_SSH_USER }}@${{ secrets.DEV_SSH_HOST }} "
+
             cd ~/csereal-web
-            git checkout ${{ github.base_ref }}
-            nvm use
+            git checkout develop
+
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+
             npm install
             npm run build:develop
-            pm2 reload 0
+            pm2 reload 0"
+
+# https://stackoverflow.com/a/63771750
