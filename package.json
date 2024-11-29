@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 NODE_ENV=production node server.mjs",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
