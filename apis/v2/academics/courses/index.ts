@@ -1,4 +1,4 @@
-import {  getRequest, postRequest, putRequest } from '@/apis';
+import { getRequest, postRequest, putRequest } from '@/apis';
 import { FETCH_TAG_COURSE } from '@/constants/network';
 import { Course, StudentType } from '@/types/academics';
 import { Language } from '@/types/language';
