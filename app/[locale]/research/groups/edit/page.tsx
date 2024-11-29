@@ -1,4 +1,4 @@
-import { getResearchGroup } from '@/apis/research';
+import { getResearchGroup } from '@/apis/v2/research/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
 import ResearchGroupEditPageContent from './ResearchGroupEditPageContent';

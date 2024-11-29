@@ -3,17 +3,15 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+import { postResearchCenter, postResearchGroup } from '@/apis/v2/research';
 import {
   deleteResearchCenter,
   deleteResearchGroup,
-  deleteResearchLab,
-  postResearchCenter,
-  postResearchGroup,
-  postResearchLab,
   putResearchCenter,
   putResearchGroup,
-  putResearchLab,
-} from '@/apis/research';
+} from '@/apis/v2/research/[id_ko]/[id_en]';
+import { postResearchLab } from '@/apis/v2/research/lab';
+import { deleteResearchLab, putResearchLab } from '@/apis/v2/research/lab/[id_ko]/[id_en]';
 import { FETCH_TAG_CENTER, FETCH_TAG_GROUP, FETCH_TAG_LAB } from '@/constants/network';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';

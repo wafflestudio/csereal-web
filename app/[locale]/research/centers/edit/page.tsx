@@ -1,4 +1,4 @@
-import { getResearchCenter } from '@/apis/research';
+import { getResearchCenter } from '@/apis/v2/research/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
 import ResearchCenterEditPageContent from './ResearchCenterEditPageContent';

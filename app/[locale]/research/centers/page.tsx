@@ -1,4 +1,5 @@
-import { getResearchCenter, getResearchCenters } from '@/apis/research';
+import { getResearchCenter } from '@/apis/v2/research/[id]';
+import { getResearchCenters } from '@/apis/v2/research/centers';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
