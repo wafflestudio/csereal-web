@@ -11,8 +11,6 @@ export const BASE_URL =
     ? 'https://cse-dev-waffle.bacchus.io/api'
     : 'http://localhost:8080/api';
 
-// REST request
-
 export const getRequest = async <T = unknown>(
   url: string,
   params: object = {},
@@ -52,16 +50,14 @@ export const deleteRequest = async (url: string, init?: CredentialRequestInit) =
   await fetchWithRetry(`${BASE_URL}${url}`, 'DELETE', init);
 };
 
-/**
- * 학교 서버가 간헐적으로 첫 요청에서 ECONNRESET이 뜨는 경우가 있어 한 번 더 요청.
- * 안전을 위해 멱등성이 있는 GET 요청에 대해서만 retry
- */
+// 학교 서버가 간헐적으로 첫 요청에서 ECONNRESET이 뜨는 경우가 있어 한 번 더 요청.
 const fetchWithRetry = async (
   url: string,
   method: string,
   init?: CredentialRequestInit,
   remain: number = 3,
 ): Promise<Response> => {
+  // 안전을 위해 멱등성이 있는 GET 요청에 대해서만 retry
   if (method !== 'GET') return _fetch(url, method, init);
 
   try {
@@ -71,7 +67,6 @@ const fetchWithRetry = async (
     if (e instanceof Error === false) throw e;
     if (e.message === '404') throw e;
 
-    console.error(`fetchWithRetry: ${e} ${url} ${method} ${init}`);
     await delay(100 * 1.5 ** (3 - remain));
     return await fetchWithRetry(url, method, init, remain - 1);
   }
