@@ -1,18 +1,12 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
+import { routing } from '@/i18n/routing';
+
 import { getUserState } from './actions/session';
-import { AUDIT_LOCALE_COOKIE_DISABLED } from './constants/audit';
 import { LOGIN_URL } from './constants/network';
 
-const handleI18nRouting = createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'ko'],
-  // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
-  defaultLocale: 'ko',
-  localePrefix: 'as-needed',
-  localeDetection: !AUDIT_LOCALE_COOKIE_DISABLED,
-});
+const handleI18nRouting = createMiddleware(routing);
 
 const isAuthRequired = (pathname: string) => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);

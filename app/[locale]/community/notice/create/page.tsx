@@ -5,7 +5,7 @@ import PostEditor from '@/components/editor/PostEditor';
 import { isLocalFile, PostEditorContent } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NOTICE_TAGS } from '@/constants/tag';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { validateNoticeForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { notice } from '@/utils/segmentNode';

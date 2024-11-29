@@ -3,7 +3,7 @@
 import { putCareerStatAction } from '@/actions/about';
 import CareerStatEditor, { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';

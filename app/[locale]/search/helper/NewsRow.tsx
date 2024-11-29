@@ -1,5 +1,5 @@
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 
 export interface NewsRowProps {
   href: string;

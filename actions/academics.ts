@@ -33,7 +33,7 @@ import {
   FETCH_TAG_GUIDE,
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
-import { redirect } from '@/navigation';
+import { redirect } from '@/i18n/routing';
 import {
   Course,
   CourseChange,
@@ -148,7 +148,11 @@ export const putScholarshipGuideAction = withErrorHandler(
   async (type: StudentType, description: string) => {
     await putScholarshipGuide(type, description);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
+    // TODO: 현재 locale로 redirect
+    redirect({
+      href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
+      locale: 'ko',
+    });
   },
 );
 
@@ -159,7 +163,11 @@ export const postScholarshipAction = withErrorHandler(
   ) => {
     await postScholarship(type, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
+    // TODO: 현재 locale로 redirect
+    redirect({
+      href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
+      locale: 'ko',
+    });
   },
 );
 
@@ -167,14 +175,20 @@ export const putScholarshipAction = withErrorHandler(
   async (type: StudentType, id: number, data: WithLanguage<Scholarship>) => {
     await putScholarship(id, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirect(
-      `${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}/${id}`,
-    );
+    // TODO: 현재 locale로 redirect
+    redirect({
+      href: `${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}/${id}`,
+      locale: 'ko',
+    });
   },
 );
 
 export const deleteScholarshipAction = withErrorHandler(async (type: StudentType, id: number) => {
   await deleteScholarship(id);
   revalidateTag(FETCH_TAG_SCHOLARSHIP);
-  redirect(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
+  // TODO: 현재 locale로 redirect
+  redirect({
+    href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
+    locale: 'ko',
+  });
 });

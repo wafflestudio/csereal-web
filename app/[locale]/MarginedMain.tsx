@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 
-import { usePathname } from '@/navigation';
+import { usePathname } from '@/i18n/routing';
 
 export default function MarginedMain({ children }: { children: ReactNode }) {
   const pathName = usePathname();

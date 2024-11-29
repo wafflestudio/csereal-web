@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import HeaderLogoSVG from '@/public/image/header/header_logo.svg';
 import HeaderSubTextSVG from '@/public/image/header/header_sub_text.svg';
 import HeaderTextSVG from '@/public/image/header/header_text.svg';

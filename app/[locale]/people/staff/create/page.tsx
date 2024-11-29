@@ -3,7 +3,7 @@
 import { postStaffAction } from '@/actions/people';
 import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';

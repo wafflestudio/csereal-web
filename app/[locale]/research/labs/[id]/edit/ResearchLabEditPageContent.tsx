@@ -4,7 +4,7 @@ import { putResearchLabAction } from '@/actions/research';
 import { isLocalFile, PostEditorFile } from '@/components/editor/PostEditorTypes';
 import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup, ResearchLab } from '@/types/research';

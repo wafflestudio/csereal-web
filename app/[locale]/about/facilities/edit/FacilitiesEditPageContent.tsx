@@ -3,7 +3,7 @@
 import { putFacilityAction } from '@/actions/about';
 import FacilityEditor, { FacilityEditorContent } from '@/components/editor/FacilityEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { Facility } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';

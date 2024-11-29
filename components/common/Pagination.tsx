@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 
-import { Link, usePathname, useRouter } from '@/navigation';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { urlSearchParamsToString } from '@/utils/convertParams';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 import useResponsive from '@/utils/hooks/useResponsive';

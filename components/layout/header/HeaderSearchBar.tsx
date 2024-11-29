@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePathname } from '@/navigation';
+import { usePathname } from '@/i18n/routing';
 
 export default function HeaderSearchBar() {
   const { text, setText, search } = useSearch();

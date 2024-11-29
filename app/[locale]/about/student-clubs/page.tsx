@@ -7,7 +7,7 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';

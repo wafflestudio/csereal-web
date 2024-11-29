@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 import { COLOR_THEME } from '@/constants/color';
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 import { ResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';
 import { faculty } from '@/utils/segmentNode';

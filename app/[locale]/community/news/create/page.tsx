@@ -5,7 +5,7 @@ import PostEditor from '@/components/editor/PostEditor';
 import { isLocalFile, isLocalImage, PostEditorContent } from '@/components/editor/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { NEWS_TAGS } from '@/constants/tag';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { validateNewsForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';

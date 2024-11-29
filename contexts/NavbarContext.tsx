@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 
-import { usePathname } from '@/navigation';
+import { usePathname } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { SegmentNode } from '@/utils/segmentNode';

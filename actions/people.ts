@@ -7,7 +7,7 @@ import { deleteFaculty, putFaculty } from '@/apis/v2/professor/[id_ko]/[id_en]';
 import { postStaff } from '@/apis/v2/staff';
 import { deleteStaff, putStaff } from '@/apis/v2/staff/[id_ko]/id_en';
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
-import { redirect } from '@/navigation';
+import { redirect } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { getPath } from '@/utils/page';
@@ -26,7 +26,8 @@ export const postFacultyAction = withErrorHandler(
   async (formData: FormData, language: Language) => {
     const res = await postFaculty(formData);
     revalidateTag(FETCH_TAG_FACULTY);
-    redirect(`${getFacultyPath(res.ko.status)}/${res[language].id}`);
+    // TODO: 현재 locale로 redirect
+    redirect({ href: `${getFacultyPath(res.ko.status)}/${res[language].id}`, locale: 'ko' });
   },
 );
 
@@ -40,7 +41,7 @@ export const putFacultyAction = withErrorHandler(
     await putFaculty(ids, formData);
 
     revalidateTag(FETCH_TAG_FACULTY);
-    redirect(`${getFacultyPath(status)}/${ids[language]}`);
+    redirect({ href: `${getFacultyPath(status)}/${ids[language]}`, locale: 'ko' });
   },
 );
 
@@ -49,7 +50,7 @@ export const deleteFacultyAction = withErrorHandler(
     await deleteFaculty(ids);
 
     revalidateTag(FETCH_TAG_FACULTY);
-    redirect(getFacultyPath(status));
+    redirect({ href: getFacultyPath(status), locale: 'ko' });
   },
 );
 
@@ -57,7 +58,7 @@ export const postStaffAction = withErrorHandler(async (formData: FormData, langu
   const res = await postStaff(formData);
 
   revalidateTag(FETCH_TAG_STAFF);
-  redirect(`${staffPath}/${res[language].id}`);
+  redirect({ href: `${staffPath}/${res[language].id}`, locale: 'ko' });
 });
 
 export const putStaffAction = withErrorHandler(
@@ -65,7 +66,7 @@ export const putStaffAction = withErrorHandler(
     await putStaff(ids, formData);
 
     revalidateTag(FETCH_TAG_STAFF);
-    redirect(`${staffPath}/${ids[language]}`);
+    redirect({ href: `${staffPath}/${ids[language]}`, locale: 'ko' });
   },
 );
 
@@ -73,5 +74,5 @@ export const deleteStaffAction = withErrorHandler(async (ids: WithLanguage<numbe
   await deleteStaff(ids);
 
   revalidateTag(FETCH_TAG_STAFF);
-  redirect(staffPath);
+  redirect({ href: staffPath, locale: 'ko' });
 });

@@ -3,7 +3,7 @@
 import { putGuideAction } from '@/actions/academics';
 import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/navigation';
+import { useRouter } from '@/i18n/routing';
 import { Guide, StudentType } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
