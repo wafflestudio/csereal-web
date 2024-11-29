@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { getNewsPosts } from '@/apis/news';
+import { getNewsPosts } from '@/apis/v1/news';
 import NewsPageContent from '@/app/[locale]/community/news/NewsPageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';

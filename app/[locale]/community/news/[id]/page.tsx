@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { getNewsDetail } from '@/apis/news';
+import { getNewsDetail } from '@/apis/v1/news/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

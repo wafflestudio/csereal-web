@@ -1,4 +1,4 @@
-import { getNewsDetail } from '@/apis/news';
+import { getNewsDetail } from '@/apis/v1/news/[id]';
 
 import EditNewsPageContent from './EditNewsPageContent';
 
