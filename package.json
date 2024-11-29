@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.mjs",
+    "dev": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 NODE_ENV=development node server.mjs",
     "build": "next build",
     "start": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 TIME=ko_KR.UTF-8 NODE_ENV=production node server.mjs",
     "lint": "next lint",
