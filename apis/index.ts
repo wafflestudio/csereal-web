@@ -4,11 +4,7 @@ import { objToQueryString } from '@/utils/convertParams';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
 
-// TODO: BASE_URL 통합
-export const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'https://cse-dev-waffle.bacchus.io/api'
-    : 'http://localhost:8080/api';
+export const BASE_URL = process.env.BASE_URL;
 
 export const getRequest = async <T = unknown>(
   url: string,
