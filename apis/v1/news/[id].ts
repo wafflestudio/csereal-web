@@ -1,4 +1,4 @@
-import { deleteRequest, getRequest } from '@/apis';
+import { deleteRequest, getRequest, patchRequest } from '@/apis';
 import { FETCH_TAG_NEWS } from '@/constants/network';
 import { News } from '@/types/news';
 import { PostSearchQueryParams } from '@/types/post';
@@ -10,3 +10,7 @@ export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
   }) as Promise<News>;
 
 export const deleteNews = (id: number) => deleteRequest(`/v1/news/${id}`, { jsessionID: true });
+
+export const patchNews = async (id: number, formData: FormData) => {
+  await patchRequest(`/v1/news/${id}`, { body: formData, jsessionID: true });
+};
