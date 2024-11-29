@@ -21,14 +21,14 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
   const handleCancel = () => router.push(type === 'undergraduate' ? undergraduate : graduate);
 
   const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content, true);
+    validateBasicForm(content, { titleRequired: true });
 
     try {
       handleServerAction(
         await postScholarshipAction(type, {
-          koName: content.name.ko,
+          koName: content.title.ko,
           koDescription: content.description.ko,
-          enName: content.name.en,
+          enName: content.title.en,
           enDescription: content.description.en,
         }),
       );
@@ -45,7 +45,7 @@ export default function ScholarshipCreatePage({ type }: { type: StudentType }) {
     >
       <BasicEditor
         actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showName
+        showTitle
         showLanguage
       />
     </PageLayout>

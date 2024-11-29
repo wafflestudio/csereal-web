@@ -103,7 +103,11 @@ const LinkSection = async () => {
         </h3>
         <div className="flex flex-col gap-5">
           <LinkWithArrow href={getPath(topConferenceList)} title="Top Conference List" />
-          <LinkWithArrow href={getPath(facultyRecruitment)} title="신임교수초빙" />
+          <LinkWithArrow
+            href={getPath(facultyRecruitment)}
+            title="신임교수초빙"
+            subtitle="Faculty Recruitment"
+          />
           <LinkWithArrow href={getPath(faculty)} title="구성원" subtitle="Faculty" />
         </div>
       </div>

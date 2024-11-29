@@ -21,7 +21,7 @@ const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
 
 interface OptionalBasicEditorContent {
   description: WithLanguage<string>;
-  name?: WithLanguage<string>;
+  title?: WithLanguage<string>;
   mainImage?: PostEditorImage;
   attachments?: PostEditorFile[];
 }
@@ -34,7 +34,7 @@ interface BasicPostEditorProps {
   showMainImage?: boolean;
   showAttachments?: boolean;
   showLanguage?: boolean;
-  showName?: boolean;
+  showTitle?: boolean;
 }
 
 export default function BasicEditor({
@@ -43,7 +43,7 @@ export default function BasicEditor({
   showMainImage = false,
   showAttachments = false,
   showLanguage = false,
-  showName = false,
+  showTitle = false,
 }: BasicPostEditorProps) {
   const [language, setLanguage] = useState<Language>('ko');
   const editorRef = { ko: useRef<SunEditorCore>(), en: useRef<SunEditorCore>() };
@@ -80,14 +80,14 @@ export default function BasicEditor({
     setLanguage(newLang);
   };
 
-  const setName = (name: string) => {
-    setContent((prev) => ({ ...prev, name: { ...prev.name, [language]: name } }));
+  const setTitle = (title: string) => {
+    setContent((prev) => ({ ...prev, title: { ...prev.title, [language]: title } }));
   };
 
   return (
     <form className="flex flex-col">
       {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
-      {showName && <NameFieldset name={content.name[language]} setName={setName} />}
+      {showTitle && <TitleFieldset title={content.title[language]} setTitle={setTitle} />}
       <EditorFieldset
         key={language}
         editorRef={editorRef[language]}
@@ -116,10 +116,10 @@ export default function BasicEditor({
   );
 }
 
-function NameFieldset({ name, setName }: { name: string; setName: (value: string) => void }) {
+function TitleFieldset({ title, setTitle }: { title: string; setTitle: (value: string) => void }) {
   return (
-    <Fieldset title="이름" mb="mb-6" titleMb="mb-2" required>
-      <BasicTextInput value={name} onChange={setName} maxWidth="w-[30rem]" />
+    <Fieldset title="제목" mb="mb-6" titleMb="mb-2" required>
+      <BasicTextInput value={title} onChange={setTitle} maxWidth="w-[30rem]" />
     </Fieldset>
   );
 }
@@ -160,7 +160,7 @@ function FileFieldset({ files, setFiles }: FilePickerProps) {
 const getEditorInitialContent = (initContent?: OptionalBasicEditorContent) => {
   return {
     description: initContent?.description ?? { ko: '', en: '' },
-    name: initContent?.name ?? { ko: '', en: '' },
+    title: initContent?.title ?? { ko: '', en: '' },
     mainImage: initContent?.mainImage ?? null,
     attachments: initContent?.attachments ?? [],
   };
