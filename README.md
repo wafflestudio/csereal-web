@@ -1,5 +1,7 @@
 # csereal-web
 
+![](https://github.com/user-attachments/assets/39a28dbf-8ce8-4c3c-9222-abdddd22b934)
+
 https://cse.snu.ac.kr
 
 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
@@ -12,9 +14,10 @@ https://cse.snu.ac.kr
 NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
 ```
 
-`npm install`로 패키지를 설치하고 husky를 초기화합니다.
+`nvm use`로 명시된 노드 버전을 사용합니다. 필요시 `nvm install`합니다. 이후 `npm install`로 패키지를 설치하고 husky를 초기화합니다.
 
 ```
+nvm use
 npm install
 ```
 
@@ -75,4 +78,6 @@ npm run dev
 ## Maintainers
 
 - @yeolyi
+  - https://yeolyi.com
+  - https://instagram.com/yeolyii
 - @Limchansol

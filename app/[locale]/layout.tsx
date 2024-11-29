@@ -13,10 +13,11 @@ import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
+import { isDev } from '@/constants/env';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
-import { routing } from '@/i18n/routing';
+import { Link, routing } from '@/i18n/routing';
 
 import MarginedMain from './MarginedMain';
 
@@ -39,6 +40,7 @@ export async function generateMetadata({
     openGraph: {
       images: ['/image/main/mainGraphic.png'],
     },
+    robots: isDev ? 'noindex' : undefined,
   };
 }
 
@@ -52,6 +54,7 @@ export default async function RootLayout({
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
       <body className="sm:min-w-[1200px]">
+        <BuildVersion />
         <ContextProviders locale={params.locale}>
           <Navbar />
           <MobileNav />
@@ -85,5 +88,19 @@ async function ContextProviders({ locale, children }: { locale: string; children
         </NavbarContextProvider>
       </ModalContextProvider>
     </SessionContextProvider>
+  );
+}
+
+function BuildVersion() {
+  const buildVersion = process.env.BUILD_VERSION;
+  if (!buildVersion) return;
+
+  return (
+    <div className="fixed right-0 top-0 z-50 bg-[royalblue] p-2 text-sm font-semibold text-white">
+      <p>Beta Version: {buildVersion}</p>
+      <Link className="text-white underline" href="https://cse.snu.ac.kr">
+        공식 홈페이지 가기
+      </Link>
+    </div>
   );
 }
