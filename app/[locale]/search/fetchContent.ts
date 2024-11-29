@@ -7,7 +7,7 @@ import {
   searchNotice,
   searchResearch,
 } from '@/apis/search';
-import { getSeminarPosts } from '@/apis/seminar';
+import { getSeminarPosts } from '@/apis/v1/seminar';
 import {
   AboutSearchResult,
   AcademicsSearchResult,
