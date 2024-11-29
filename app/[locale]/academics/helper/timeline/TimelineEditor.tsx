@@ -7,6 +7,7 @@ import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor
 import BasicTextInput from '@/components/editor/common/BasicTextInput';
 import Fieldset from '@/components/editor/common/Fieldset';
 import { useRouter } from '@/navigation';
+import { TimelineContent } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { isNumber } from '@/utils/number';
@@ -14,7 +15,7 @@ import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface TimelineEditorProps {
-  initialContent?: { year: number; description: string; attachments: Attachment[] };
+  initialContent?: TimelineContent;
   submitAction: (year: number, formData: FormData) => Promise<CustomError | void>;
   fallbackPathname: string;
   pageName?: string;

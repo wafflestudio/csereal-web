@@ -7,6 +7,7 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/editor/HTMLViewer';
 import { Link, usePathname } from '@/navigation';
+import { TimelineContent } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
@@ -21,9 +22,12 @@ interface TimelineViewerProps<T> {
   yearLimitCount?: number;
 }
 
-export default function TimelineViewer<
-  T extends { year: number; description: string; attachments: Attachment[] },
->({ contents, title, deleteAction, yearLimitCount = 10 }: TimelineViewerProps<T>) {
+export default function TimelineViewer<T extends TimelineContent>({
+  contents,
+  title,
+  deleteAction,
+  yearLimitCount = 10,
+}: TimelineViewerProps<T>) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
   const timeLineYears = contents.map((change) => change.year).slice(0, yearLimitCount);
   const yearLimit = timeLineYears.at(-1) ?? 0;
@@ -174,9 +178,7 @@ function ContentHTMLViewer({ description }: { description: string }) {
   return <HTMLViewer htmlContent={description} className="bg-neutral-75 p-5" />;
 }
 
-const getSelectedContents = <
-  T extends { year: number; description: string; attachments: Attachment[] },
->(
+const getSelectedContents = <T extends TimelineContent>(
   year: number,
   yearLimit: number,
   data: T[],
