@@ -1,3 +1,4 @@
+import { delay } from 'es-toolkit';
 import { cookies } from 'next/headers';
 
 import { objToQueryString } from '@/utils/convertParams';
@@ -135,8 +136,6 @@ const _fetch = async (url: string, method: string, init?: CredentialRequestInit)
     return resp;
   }
 };
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const checkError = (response: Response) => {
   if (response.ok) return;
