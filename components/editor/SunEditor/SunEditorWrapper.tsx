@@ -10,7 +10,7 @@ import SunEditorCore from 'suneditor/src/lib/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
 
-import { postImage } from '@/apis/image';
+import { postImage } from '@/apis/v1/file/upload';
 
 export default function SunEditorWrapper({
   editorRef,
