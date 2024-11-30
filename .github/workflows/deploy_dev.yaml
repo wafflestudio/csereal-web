@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - feat/phase
 
 jobs:
   build:
@@ -26,7 +25,7 @@ jobs:
             ssh -T -i ./key -o StrictHostKeyChecking=no -p ${{ secrets.DEV_SSH_PORT }} ${{ secrets.DEV_SSH_USER }}@${{ secrets.DEV_SSH_HOST }} "
 
             cd ~/csereal-web
-            git checkout feat/phase
+            git checkout develop
             git pull --rebase
 
             export NVM_DIR=~/.nvm
