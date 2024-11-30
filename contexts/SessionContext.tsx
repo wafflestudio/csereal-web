@@ -1,5 +1,8 @@
 'use client';
 
+// SessionContext는 next-intl에 의존적일 필요 없으므로 next의 useRouter를 사용한다.
+// eslint-disable-next-line no-restricted-imports
+import { usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
   PropsWithChildren,
@@ -9,9 +12,9 @@ import {
   useState,
 } from 'react';
 
-import { getMockAuth, getUserState, removeAuth } from '@/actions/session';
+import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
+import { isDev } from '@/constants/env';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
-import { useRouter } from '@/i18n/routing';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -32,35 +35,32 @@ export const useSessionContext = () => useContext(SessionContext);
 export default function SessionContextProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<UserState>('logout');
   const router = useRouter();
+  const pathname = usePathname();
 
   const refresh = useCallback(async () => {
-    const resp = await getUserState();
-    setState(resp);
+    setState(await getUserState());
   }, []);
 
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
-      await getMockAuth();
+    if (isDev) {
+      await setAuthCookie();
+      await refresh();
     } else {
       router.push(LOGIN_URL);
     }
-
-    await refresh();
   }, [refresh, router]);
 
   const logout = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
-      removeAuth();
-      router.push('/');
+    if (isDev) {
+      removeAuthCookie();
+      await refresh();
     } else {
       router.push(LOGOUT_URL);
     }
-
-    await refresh();
   }, [refresh, router]);
 
   return (

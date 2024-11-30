@@ -36,7 +36,7 @@ export default function InternalContent({ description }: { description: string }
   ) : (
     <>
       <LoginVisible staff>
-        <GrayButton title="편집" onClick={toggleEditMode} disabled={false} />
+        <GrayButton title="편집" onClick={toggleEditMode} />
       </LoginVisible>
       <HTMLViewer htmlContent={description} />
     </>

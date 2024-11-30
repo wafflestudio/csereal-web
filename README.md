@@ -2,6 +2,8 @@
 
 ![](https://github.com/user-attachments/assets/39a28dbf-8ce8-4c3c-9222-abdddd22b934)
 
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
 안녕하세요👋 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
 
 - 2023.07: 🎉 CSEREAL 프로젝트 시작
@@ -12,18 +14,16 @@
 
 ### 준비
 
-`nvm use`로 `.nvmrc`에 명시된 노드 버전을 사용합니다. 해당 노드 버전이 설치되어있지 않다면 `nvm install`로 설치합니다.
-
-이후 `npm install`로 패키지를 설치하고 husky를 초기화합니다.
-
 ```sh
+git clone https://github.com/wafflestudio/csereal-web
+cd csereal-web
 nvm use
 npm install
 ```
 
-### Phase
+### 빌드/실행
 
-3개의 phase로 관리합니다.
+csereal-web은 총 3개의 phase로 관리됩니다.
 
 - prod
   - https://cse.snu.ac.kr
@@ -35,6 +35,22 @@ npm install
   - PR 머지시 자동 배포
 - local
   - 로컬 개발/테스트 전용
+
+원하는 phase의 build/start npm 명령어를 실행합니다:
+
+```sh
+# local
+npm run build:local
+npm run start:local
+# beta
+npm run build:beta
+npm run start:beta
+# prod
+npm run build:prod
+npm run start:prod
+```
+
+⚠️ prod와 beta phase는 localhost에 서버가 있음을 전제로 빌드됩니다.
 
 ### 카카오 지도
 
