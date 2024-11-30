@@ -2,37 +2,50 @@
 
 ![](https://github.com/user-attachments/assets/39a28dbf-8ce8-4c3c-9222-abdddd22b934)
 
-https://cse.snu.ac.kr
+안녕하세요👋 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
 
-서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
+- 2023.07: 🎉 CSEREAL 프로젝트 시작
+- 2024.04: 🚀 [cse.snu.ac.kr](https://cse.snu.ac.kr) 도메인으로 배포
+- 2024.08: 🧇 동아리 행사 '굽기'에서 기술/디자인 발표
 
 ## Getting started
 
-최상위에 `.env.local` 파일을 추가합니다. 시리얼 구글 계정으로 https://developers.kakao.com 에 로그인해 JavaScript 키를 env에 추가합니다.
+### 준비
 
-```
-NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
-```
+`nvm use`로 `.nvmrc`에 명시된 노드 버전을 사용합니다. 해당 노드 버전이 설치되어있지 않다면 `nvm install`로 설치합니다.
 
-`nvm use`로 명시된 노드 버전을 사용합니다. 필요시 `nvm install`합니다. 이후 `npm install`로 패키지를 설치하고 husky를 초기화합니다.
+이후 `npm install`로 패키지를 설치하고 husky를 초기화합니다.
 
-```
+```sh
 nvm use
 npm install
 ```
 
-마지막으로 원하는 `npm` 명령어를 실행합니다.
+### Phase
 
+3개의 phase로 관리합니다.
+
+- prod
+  - https://cse.snu.ac.kr
+  - main branch
+  - 수동 배포
+- beta
+  - https://cse-dev-waffle.bacchus.io/
+  - develop branch
+  - PR 머지시 자동 배포
+- local
+  - 로컬 개발/테스트 전용
+
+### 카카오 지도
+
+[찾아오는 길](https://cse.snu.ac.kr/about/directions) 페이지에서 카카오 지도를 사용합니다. 카카오 지도가 올바르게 표시되려면 API Key를 추가해야합니다.
+
+최상위 경로에 `.env.local` 파일을 추가합니다. 시리얼 구글 계정으로 https://developers.kakao.com 에 로그인해 JavaScript 키를 env에 추가합니다.
+
+```sh
+# .env.local
+NEXT_PUBLIC_KAKAO_MAP_API_KEY=fc1e3ad82010475381daf9846e627fdd
 ```
-npm run dev
-```
-
-## 주요 사용 기술
-
-- Next.js 14 App router
-- tailwind
-- express
-- typescript
 
 ## 컨벤션
 
@@ -53,12 +66,13 @@ npm run dev
 
 ### 브랜치
 
-- `develop`에서 브랜치를 파 작업합니다.
+- `develop`에서 브랜치를 만들어 작업합니다.
 - 이후 PR 리뷰 후 approve가 되면 `develop`으로 **squash merge**합니다. 머지 직후 github action에서 https://cse-dev-waffle.bacchus.io/ 로 자동 배포됩니다.
-- 테스트가 완료되면 main으로 머지합니다(어떻게?). 이후 배포는 수동으로 진행합니다.
+- 테스트가 완료됐다고 판단되면 `develop`에서 `main`으로 머지합니다. prod 배포는 수동으로 진행합니다.
 - 브랜치명은 `{타입}/{브랜치명}` 으로 작성합니다.
   - 타입: feat, fix, chore, style, refactor
-- PR 제목은 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
+- PR 제목은 귀여운 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
+  - 이모지 찾기 귀찮다고요? [Raycast](https://www.raycast.com/)의 [깃모지 plugin](https://www.raycast.com/ricoberger/gitmoji)을 써보세요.
 
 ### 커밋
 
@@ -77,7 +91,6 @@ npm run dev
 
 ## Maintainers
 
-- @yeolyi
-  - https://yeolyi.com
-  - https://instagram.com/yeolyii
-- @Limchansol
+- [@yeolyi](https://github.com/yeolyi)
+  - [컴공 홈페이지 개발기](https://www.instagram.com/p/C6hJ8UlyVQS)
+- [@Limchansol](https://github.com/limchansol)

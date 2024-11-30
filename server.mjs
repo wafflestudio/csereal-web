@@ -14,7 +14,7 @@ switch (phase) {
     process.env.BASE_URL = 'http://localhost:8080/api';
     break;
   case 'beta':
-    process.env.BUILD_VERSION = dayjs().format('YYYYMMDD_hhmm');
+    process.env.BUILD_VERSION = dayjs().format('YYMMDD_hhmm');
     process.env.BASE_URL = 'http://localhost:8080/api';
     break;
   case 'local':

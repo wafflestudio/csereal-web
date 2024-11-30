@@ -6,10 +6,10 @@
     "dev": "PHASE=local node server.mjs",
     "build:local": "PHASE=local next build",
     "start:local": "PHASE=local NODE_ENV=production node server.mjs",
-    "build": "PHASE=prod next build",
-    "start": "PHASE=prod NODE_ENV=production node server.mjs",
     "build:beta": "PHASE=beta next build",
     "start:beta": "PHASE=beta NODE_ENV=production node server.mjs",
+    "build:prod": "PHASE=prod next build",
+    "start:prod": "PHASE=prod NODE_ENV=production node server.mjs",
     "prepare": "husky",
     "postbuild": "next-sitemap"
   },
