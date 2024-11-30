@@ -98,8 +98,13 @@ function BuildVersion() {
   return (
     <div className="fixed right-0 top-0 z-50 bg-[royalblue] p-2 text-sm font-semibold text-white">
       <p>Beta Version: {buildVersion}</p>
-      <Link className="text-white underline" href="https://cse.snu.ac.kr">
-        공식 홈페이지 가기
+      <Link
+        className="text-white underline"
+        href="https://cse.snu.ac.kr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        👉 공식 홈페이지 가기
       </Link>
     </div>
   );
