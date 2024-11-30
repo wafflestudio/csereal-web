@@ -1,42 +1,66 @@
 'use client';
 
-import { useReducer } from 'react';
+import { useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { putInternalAction } from '@/actions/internal';
 import { GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
+import Fieldset from '@/components/editor/common/Fieldset';
 import HTMLViewer from '@/components/editor/HTMLViewer';
+import { ActionButtons } from '@/components/editor/rhf/ActionButtons';
+import FormContainer from '@/components/editor/rhf/FormContainer';
+import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-export default function InternalContent({ description }: { description: string }) {
-  const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
+interface FormData {
+  description: string;
+}
 
-  const handleSubmit = async (content: BasicEditorContent) => {
+export default function InternalContent({ description }: { description: string }) {
+  const formMethods = useForm<FormData>({ defaultValues: { description } });
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitSuccessful },
+  } = formMethods;
+
+  const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    reset({ description });
+  }, [description, isSubmitSuccessful, reset]);
+
+  const onCancel = () => {
+    reset();
+    setIsEdit(false);
+  };
+
+  const onSubmit = handleSubmit(async (formData) => {
     try {
-      handleServerAction(await putInternalAction(content.description.ko));
+      handleServerAction(await putInternalAction(formData.description));
       successToast('본문을 수정했습니다.');
-      toggleEditMode();
+      setIsEdit(false);
     } catch (e) {
       errorToast(errorToStr(e));
     }
-  };
+  });
 
-  return isEditMode ? (
-    <BasicEditor
-      initialContent={{ description: { ko: description, en: '' } }}
-      actions={{
-        type: 'EDIT',
-        onSubmit: handleSubmit,
-        onCancel: toggleEditMode,
-      }}
-    />
+  return isEdit ? (
+    <FormProvider {...formMethods}>
+      <FormContainer>
+        <Fieldset.Editor>
+          <HTMLEditor name="description" />
+        </Fieldset.Editor>
+        <ActionButtons onCancel={onCancel} onSubmit={onSubmit} />
+      </FormContainer>
+    </FormProvider>
   ) : (
     <>
       <LoginVisible staff>
-        <GrayButton title="편집" onClick={toggleEditMode} />
+        <GrayButton title="편집" onClick={() => setIsEdit(true)} />
       </LoginVisible>
       <HTMLViewer htmlContent={description} />
     </>

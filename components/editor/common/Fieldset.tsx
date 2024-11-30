@@ -10,7 +10,7 @@ interface FieldsetProps {
   className?: string;
 }
 
-export default function Fieldset({
+function Fieldset({
   title,
   titleMb,
   children,
@@ -29,3 +29,13 @@ export default function Fieldset({
     </fieldset>
   );
 }
+
+function Editor({ children }: { children: ReactNode }) {
+  return (
+    <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
+      {children}
+    </Fieldset>
+  );
+}
+
+export default Object.assign(Fieldset, { Editor });
