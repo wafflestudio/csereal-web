@@ -81,13 +81,13 @@ async function ContextProviders({ locale, children }: { locale: string; children
   const messages = await getMessages();
 
   return (
-    <SessionContextProvider>
-      <ModalContextProvider>
-        <NavbarContextProvider>
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        </NavbarContextProvider>
-      </ModalContextProvider>
-    </SessionContextProvider>
+    <NextIntlClientProvider messages={messages}>
+      <SessionContextProvider>
+        <ModalContextProvider>
+          <NavbarContextProvider>{children}</NavbarContextProvider>
+        </ModalContextProvider>
+      </SessionContextProvider>
+    </NextIntlClientProvider>
   );
 }
 

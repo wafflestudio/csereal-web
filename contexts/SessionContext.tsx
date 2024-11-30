@@ -1,5 +1,8 @@
 'use client';
 
+// SessionContext는 next-intl에 의존적일 필요 없으므로 next의 useRouter를 사용한다.
+// eslint-disable-next-line no-restricted-imports
+import { usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
   PropsWithChildren,
@@ -10,9 +13,8 @@ import {
 } from 'react';
 
 import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
-import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
-import { usePathname, useRouter } from '@/i18n/routing';
 import { isDev } from '@/constants/env';
+import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -41,7 +43,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
 
   useEffect(() => {
     refresh();
-  }, [pathname]);
+  }, [pathname, refresh]);
 
   const login = useCallback(async () => {
     if (isDev) {
