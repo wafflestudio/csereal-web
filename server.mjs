@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import { execSync } from 'child_process';
 import express from 'express';
 import next from 'next';
 
@@ -14,7 +14,7 @@ switch (phase) {
     process.env.BASE_URL = 'http://localhost:8080/api';
     break;
   case 'beta':
-    process.env.BUILD_VERSION = dayjs().format('YYMMDD_hhmm');
+    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     process.env.BASE_URL = 'http://localhost:8080/api';
     break;
   case 'local':
