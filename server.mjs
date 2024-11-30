@@ -1,8 +1,28 @@
 import express from 'express';
 import next from 'next';
 
-const PORT = 3000;
-const IS_DEV = process.env.NODE_ENV !== 'production';
+const port = 3000;
+const isDev = process.env.NODE_ENV === 'development';
+const phase = process.env.PHASE;
+
+process.env.TZ = 'Asia/Seoul';
+process.env.LANG = process.env.TIME = 'ko_KR.UTF-8';
+
+switch (phase) {
+  case 'prod':
+    process.env.BASE_URL = 'http://localhost:8080/api';
+    break;
+  case 'beta':
+    process.env.BUILD_VERSION = new Date().toLocaleString();
+    process.env.BASE_URL = 'http://localhost:8080/api';
+    break;
+  case 'local':
+    process.env.BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';
+    break;
+  default:
+    console.error(`PHASE 환경변수는 prod, beta, local 중 하나여야합니다: ${phase}`);
+    process.exit(1);
+}
 
 /**
  * 리액트 내부적으로 사용하는 POST /reservations/seminar-room/301-417 등의 API를
@@ -28,7 +48,7 @@ const override500 = (res) => {
 };
 
 const startServer = async () => {
-  const nextServer = next({ dev: IS_DEV, port: PORT });
+  const nextServer = next({ dev: isDev, port: port });
   const handleRequest = nextServer.getRequestHandler();
   await nextServer.prepare();
 
@@ -62,9 +82,9 @@ const startServer = async () => {
     return handleRequest(req, res);
   });
 
-  app.listen(PORT, () => {
-    console.log(`PORT: ${PORT}`);
-    console.log(`IS_DEV: ${IS_DEV}`);
+  app.listen(port, () => {
+    console.log(`PORT: ${port}`);
+    console.log(`IS_DEV: ${isDev}`);
   });
 };
 
