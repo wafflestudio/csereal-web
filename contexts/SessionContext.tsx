@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 
-import { getMockAuth, getUserState, removeAuth } from '@/actions/session';
+import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 import { useRouter } from '@/i18n/routing';
 
@@ -44,7 +44,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
 
   const login = useCallback(async () => {
     if (process.env.NODE_ENV === 'development') {
-      await getMockAuth();
+      await setAuthCookie();
     } else {
       router.push(LOGIN_URL);
     }
@@ -54,7 +54,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
 
   const logout = useCallback(async () => {
     if (process.env.NODE_ENV === 'development') {
-      removeAuth();
+      removeAuthCookie();
       router.push('/');
     } else {
       router.push(LOGOUT_URL);

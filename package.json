@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PHASE=local node server.mjs",
+    "dev": "PHASE=local NODE_ENV=development node server.mjs",
     "build:local": "PHASE=local next build",
     "start:local": "PHASE=local NODE_ENV=production node server.mjs",
     "build:beta": "PHASE=beta next build",
