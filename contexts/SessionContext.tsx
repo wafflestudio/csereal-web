@@ -11,7 +11,8 @@ import {
 
 import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
-import { useRouter } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
+import { isDev } from '@/constants/env';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -32,35 +33,32 @@ export const useSessionContext = () => useContext(SessionContext);
 export default function SessionContextProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<UserState>('logout');
   const router = useRouter();
+  const pathname = usePathname();
 
   const refresh = useCallback(async () => {
-    const resp = await getUserState();
-    setState(resp);
+    setState(await getUserState());
   }, []);
 
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [pathname]);
 
   const login = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDev) {
       await setAuthCookie();
+      await refresh();
     } else {
       router.push(LOGIN_URL);
     }
-
-    await refresh();
   }, [refresh, router]);
 
   const logout = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDev) {
       removeAuthCookie();
-      router.push('/');
+      await refresh();
     } else {
       router.push(LOGOUT_URL);
     }
-
-    await refresh();
   }, [refresh, router]);
 
   return (
