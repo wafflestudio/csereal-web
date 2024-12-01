@@ -11,7 +11,7 @@ import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import LangauageFieldset from './common/LanguageFieldset';
+import LanguagePicker from './common/LanguagePicker';
 import { PostEditorFile, PostEditorImage } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -86,7 +86,7 @@ export default function BasicEditor({
 
   return (
     <form className="flex flex-col">
-      {showLanguage && <LangauageFieldset onChange={changeLanguage} selected={language} />}
+      {showLanguage && <LanguagePicker onChange={changeLanguage} selected={language} />}
       {showTitle && <TitleFieldset title={content.title[language]} setTitle={setTitle} />}
       <EditorFieldset
         key={language}

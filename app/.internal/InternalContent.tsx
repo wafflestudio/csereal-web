@@ -8,8 +8,7 @@ import { GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Fieldset from '@/components/editor/common/Fieldset';
 import HTMLViewer from '@/components/editor/HTMLViewer';
-import { ActionButtons } from '@/components/editor/rhf/ActionButtons';
-import FormContainer from '@/components/editor/rhf/FormContainer';
+import Form from '@/components/editor/rhf/Form';
 import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -50,12 +49,12 @@ export default function InternalContent({ description }: { description: string }
 
   return isEdit ? (
     <FormProvider {...formMethods}>
-      <FormContainer>
+      <Form>
         <Fieldset.Editor>
           <HTMLEditor name="description" />
         </Fieldset.Editor>
-        <ActionButtons onCancel={onCancel} onSubmit={onSubmit} />
-      </FormContainer>
+        <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
+      </Form>
     </FormProvider>
   ) : (
     <>

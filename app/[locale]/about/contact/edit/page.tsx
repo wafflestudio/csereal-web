@@ -1,7 +1,7 @@
 import { getContact } from '@/apis/v1/about/contact';
 import { contact } from '@/utils/segmentNode';
 
-import AboutEditPageContent from '../../AboutEditPageContent';
+import AboutEditPageContent from '../../components/AboutEditPageContent';
 
 export default async function ContactEditPage() {
   const [koData, enData] = await Promise.all([getContact('ko'), getContact('en')]);

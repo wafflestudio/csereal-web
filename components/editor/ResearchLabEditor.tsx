@@ -14,7 +14,7 @@ import { EditAction, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import FilePicker, { FilePickerProps } from './common/FilePicker';
-import LangauageFieldset from './common/LanguageFieldset';
+import LanguagePicker from './common/LanguagePicker';
 import { PostEditorFile } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -85,7 +85,7 @@ export default function ResearchLabEditor({
 
   return (
     <form className="flex flex-col">
-      <LangauageFieldset onChange={changeLanguage} selected={language} />
+      <LanguagePicker onChange={changeLanguage} selected={language} />
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <div className="flex w-[30rem] gap-6">
         <ProfessorFieldset

@@ -1,7 +1,7 @@
 import { getGreetings } from '@/apis/v1/about/greetings';
 import { greetings } from '@/utils/segmentNode';
 
-import AboutEditPageContent from '../../AboutEditPageContent';
+import AboutEditPageContent from '../../components/AboutEditPageContent';
 
 export default async function GreetingsEditPage() {
   const [koData, enData] = await Promise.all([getGreetings('ko'), getGreetings('en')]);

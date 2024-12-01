@@ -1,10 +1,11 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
+import { isDev } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
-import { LOGIN_URL } from './constants/network';
+import { BASE_URL, LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -40,7 +41,11 @@ export default async function middleware(request: NextRequest) {
   if (isAuthRequired(pathname)) {
     const isStaff = await getUserState();
     if (isStaff !== 'staff') {
-      return Response.redirect(new URL(LOGIN_URL));
+      if (isDev) {
+        return Response.redirect(new URL(BASE_URL));
+      } else {
+        return Response.redirect(new URL(LOGIN_URL));
+      }
     }
   }
 

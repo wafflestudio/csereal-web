@@ -13,7 +13,7 @@ import BasicTextInput from './common/BasicTextInput';
 import DynamicTextInputList from './common/DynamicTextInputList';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import LangauageFieldset from './common/LanguageFieldset';
+import LanguagePicker from './common/LanguagePicker';
 import { PostEditorImage } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -71,7 +71,7 @@ export default function FacilityEditor({ actions, initialContent }: FacilityEdit
 
   return (
     <form className="flex flex-col">
-      <LangauageFieldset onChange={changeLanguage} selected={language} />
+      <LanguagePicker onChange={changeLanguage} selected={language} />
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <EditorFieldset
         key={language}

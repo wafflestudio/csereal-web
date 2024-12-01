@@ -3,11 +3,10 @@
 import './suneditor.css';
 import './suneditor-contents.css';
 
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 import suneditor from 'suneditor';
 import { ko } from 'suneditor/src/lang/';
-import SunEditor from 'suneditor/src/lib/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
 
@@ -22,28 +21,30 @@ interface Props {
 // MEMO: defaultValues에 비동기 함수를 건네도 동작할지 모르겠음.
 export default function HTMLEditor({ name, options: registerOptions }: Props) {
   const { register, setValue, getValues } = useFormContext();
-  const editorRef = useRef<SunEditor>();
+  const [div, setDiv] = useState<HTMLDivElement | null>(null);
   const { onBlur } = register(name, registerOptions);
 
-  return (
-    <div
-      ref={(divRef) => {
-        if (divRef === null) {
-          editorRef.current?.destroy();
-          return;
-        }
+  useEffect(() => {
+    if (!div) return;
 
-        const editor = suneditor.create(divRef, suneditorOptions);
-        editorRef.current = editor;
-        editor.onImageUploadBefore = handleImageUploadBefore;
-        editor.onBlur = onBlur;
-        editor.onChange = (contents) => {
-          setValue(name, isContentEmpty(editor) ? '' : contents, { shouldDirty: true });
-        };
-        editor.setContents(getValues(name));
-      }}
-    />
-  );
+    const editor = suneditor.create(div, suneditorOptions);
+    editor.onImageUploadBefore = handleImageUploadBefore;
+    editor.onBlur = onBlur;
+    editor.onChange = (contents) => {
+      setValue(name, isContentEmpty(editor) ? '' : contents, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+    };
+    editor.setContents(getValues(name));
+
+    return () => {
+      editor.destroy();
+      return;
+    };
+  }, [div, getValues, name, onBlur, setValue]);
+
+  return <div ref={setDiv} />;
 }
 
 // @ts-expect-error suneditor 내부 타입

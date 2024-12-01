@@ -12,7 +12,7 @@ import { EditAction, EditActionButtons } from './common/ActionButtons';
 import BasicTextInput from './common/BasicTextInput';
 import Fieldset from './common/Fieldset';
 import ImagePicker, { ImagePickerProps } from './common/ImagePicker';
-import LangauageFieldset from './common/LanguageFieldset';
+import LanguagePicker from './common/LanguagePicker';
 import { PostEditorImage } from './PostEditorTypes';
 
 const SunEditorWrapper = dynamic(() => import('./SunEditor/SunEditorWrapper'), {
@@ -73,7 +73,7 @@ export default function ResearchCenterEditor({
 
   return (
     <form className="flex flex-col">
-      <LangauageFieldset onChange={changeLanguage} selected={language} />
+      <LanguagePicker onChange={changeLanguage} selected={language} />
       <NameFieldset value={currLangContent.name} onChange={setContentByKey('name')} />
       <WebsiteFieldset
         value={currLangContent.websiteURL}

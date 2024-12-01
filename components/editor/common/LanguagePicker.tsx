@@ -1,7 +1,7 @@
 import { LANGUAGE, Language } from '@/types/language';
 import { getKeys } from '@/types/object';
 
-export default function LangauageFieldset({
+export default function LanguagePicker({
   selected,
   onChange,
 }: {

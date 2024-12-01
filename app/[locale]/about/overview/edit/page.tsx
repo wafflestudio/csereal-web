@@ -1,7 +1,7 @@
 import { getOverview } from '@/apis/v1/about/overview';
 import { overview } from '@/utils/segmentNode';
 
-import AboutEditPageContent from '../../AboutEditPageContent';
+import AboutEditPageContent from '../../components/AboutEditPageContent';
 
 export default async function OverviewEditPage() {
   const [koData, enData] = await Promise.all([getOverview('ko'), getOverview('en')]);
