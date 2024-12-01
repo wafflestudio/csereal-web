@@ -1,13 +1,18 @@
 'use client';
 
+import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import { putDirectionsAction } from '@/actions/about';
-import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
+import Fieldset from '@/components/editor/common/Fieldset';
+import LanguagePicker from '@/components/editor/common/LanguagePicker';
+import Form from '@/components/editor/rhf/Form';
+import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Direction } from '@/types/about';
-import { WithLanguage } from '@/types/language';
+import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
-import { validateBasicForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -15,37 +20,49 @@ import { errorToast, successToast } from '@/utils/toast';
 
 const directionsPath = getPath(directions);
 
+interface FormData {
+  htmlKo: string;
+  htmlEn: string;
+}
+
 export default function DirectionsEditPageContent({ data }: { data: WithLanguage<Direction> }) {
   const router = useRouter();
+  const formMethods = useForm<FormData>({
+    defaultValues: { htmlKo: data.ko.description, htmlEn: data.en.description },
+  });
+  const [language, setLanguage] = useState<Language>('ko');
 
-  const handleCancel = () => router.push(directionsPath);
+  const { handleSubmit } = formMethods;
 
-  const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content);
+  const onCancel = () => router.push(directionsPath);
 
-    const newData = {
-      koDescription: content.description.ko,
-      enDescription: content.description.en,
-    };
-
+  const onSubmit = handleSubmit(async (formData) => {
     try {
-      handleServerAction(await putDirectionsAction(data.ko.id, newData));
+      handleServerAction(
+        await putDirectionsAction(data.ko.id, {
+          koDescription: formData.htmlKo,
+          enDescription: formData.htmlEn,
+        }),
+      );
       successToast('찾아오는 길을 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));
     }
-  };
+  });
 
   return (
     <PageLayout title={`찾아오는 길(${data.ko.name}) 편집`} titleType="big" hideNavbar>
-      <BasicEditor
-        initialContent={{
-          title: { ko: data.ko.name, en: data.en.name },
-          description: { ko: data.ko.description, en: data.en.description },
-        }}
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showLanguage
-      />
+      <FormProvider {...formMethods}>
+        <Form>
+          <LanguagePicker onChange={setLanguage} selected={language} />
+
+          <Fieldset.Editor>
+            {language === 'ko' && <HTMLEditor name="htmlKo" options={{ required: true }} />}
+            {language === 'en' && <HTMLEditor name="htmlEn" />}
+          </Fieldset.Editor>
+          <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
+        </Form>
+      </FormProvider>
     </PageLayout>
   );
 }
