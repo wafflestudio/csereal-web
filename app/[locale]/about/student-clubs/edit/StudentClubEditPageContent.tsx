@@ -13,24 +13,19 @@ import { getPath } from '@/utils/page';
 import { studentClubs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
 const clubPath = getPath(studentClubs);
 
 export default function StudentClubEditPageContent({ data }: { data: WithLanguage<Club> }) {
-  const router = useRouter();
-
-  const handleCancel = () => router.push(clubPath);
-
-  const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content, { titleRequired: true });
-
+  const onSubmit = async (_formData: ClubFormData) => {
     const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(
-        { ko: data.ko.id, en: data.en.id },
-        content,
-        data.ko.imageURL !== null && content.mainImage === null,
-      ),
-      image: content.mainImage,
+      requestObject: {
+        ko: _formData.ko,
+        en: _formData.en,
+        removeImage: data.ko.imageURL !== null && _formData.image === null,
+      },
+      image: _formData.image,
     });
 
     try {
@@ -43,29 +38,13 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
 
   return (
     <PageLayout title="동아리 소개 편집" titleType="big" hideNavbar>
-      <BasicEditor
-        initialContent={{
-          title: { ko: data.ko.name, en: data.en.name },
-          description: { ko: data.ko.description, en: data.en.description },
-          mainImage: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : null,
+      <ClubEditor
+        onSubmit={onSubmit}
+        defaultValues={{
+          ...data,
+          image: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : undefined,
         }}
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showTitle
-        showLanguage
-        showMainImage
       />
     </PageLayout>
   );
 }
-
-const getRequestObject = (
-  ids: WithLanguage<number>,
-  content: BasicEditorContent,
-  removeImage: boolean,
-) => {
-  return {
-    ko: { id: ids.ko, name: content.title.ko, description: content.description.ko },
-    en: { id: ids.en, name: content.title.en, description: content.description.en },
-    removeImage,
-  };
-};

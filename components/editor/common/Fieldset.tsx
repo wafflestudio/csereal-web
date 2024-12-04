@@ -54,4 +54,12 @@ function File({ children }: { children: ReactNode }) {
   );
 }
 
-export default Object.assign(Fieldset, { Editor, Image, File });
+function Title({ children }: { children: ReactNode }) {
+  return (
+    <Fieldset title="제목" mb="mb-6" titleMb="mb-2" required>
+      {children}
+    </Fieldset>
+  );
+}
+
+export default Object.assign(Fieldset, { Editor, Image, File, Title });
