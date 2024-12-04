@@ -9,13 +9,12 @@ import { deleteFacility, putFacility } from '@/apis/v2/about/facilities/[id]';
 import { putFutureCareers } from '@/apis/v2/about/future-careers';
 import { postCareerCompany } from '@/apis/v2/about/future-careers/company';
 import { deleteCareerCompany, putCareerCompany } from '@/apis/v2/about/future-careers/company/[id]';
-import { postCareerStat, putCareerStat } from '@/apis/v2/about/future-careers/stats';
+import { CareerStat, postCareerStat, putCareerStat } from '@/apis/v2/about/future-careers/stats';
 import { putGreetings } from '@/apis/v2/about/greetings';
 import { putHistory } from '@/apis/v2/about/history';
 import { putOverview } from '@/apis/v2/about/overview';
 import { postClub, putClub } from '@/apis/v2/about/student-clubs';
 import { deleteClub } from '@/apis/v2/about/student-clubs/[id]';
-import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
   FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
@@ -84,13 +83,13 @@ export const putCareerDescriptionAction = withErrorHandler(
   },
 );
 
-export const postCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+export const postCareerStatAction = withErrorHandler(async (data: CareerStat) => {
   await postCareerStat(data);
   revalidateTag(FETCH_TAG_CAREER);
   redirectKo(careerPath);
 });
 
-export const putCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+export const putCareerStatAction = withErrorHandler(async (data: CareerStat) => {
   await putCareerStat(data);
   revalidateTag(FETCH_TAG_CAREER);
   redirectKo(careerPath);

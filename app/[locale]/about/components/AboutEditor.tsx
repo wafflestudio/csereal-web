@@ -25,7 +25,7 @@ import { contact, greetings, history, overview, SegmentNode } from '@/utils/segm
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-interface AboutEditPageContentProps {
+interface Props {
   data: WithLanguage<AboutContent>;
   node: SegmentNode;
   showAttachments?: boolean;
@@ -38,11 +38,7 @@ interface FormData {
   files: PostEditorFile[];
 }
 
-export default function AboutEditPageContent({
-  data,
-  node,
-  showAttachments = false,
-}: AboutEditPageContentProps) {
+export default function AboutEditor({ data, node, showAttachments = false }: Props) {
   const router = useRouter();
   const formMethods = useForm<FormData>({
     defaultValues: {

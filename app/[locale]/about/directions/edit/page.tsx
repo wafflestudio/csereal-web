@@ -1,7 +1,7 @@
 import { getDirections } from '@/apis/v2/about/directions';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
-import DirectionsEditPageContent from './DirectionsEditPageContent';
+import DirectionEditor from './DirectionEditor';
 
 interface DirectionsEditPageProps {
   searchParams: { selected?: string };
@@ -16,5 +16,5 @@ export default async function DirectionsEditPage({ searchParams }: DirectionsEdi
       searchParams.selected,
     ) || directionList[0];
 
-  return <DirectionsEditPageContent data={selectedDirection} />;
+  return <DirectionEditor data={selectedDirection} />;
 }
