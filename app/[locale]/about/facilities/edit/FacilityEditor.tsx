@@ -1,9 +1,9 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { postFacilityAction, putFacilityAction } from '@/actions/about';
+import { putFacilityAction } from '@/actions/about';
 import Fieldset from '@/components/editor/common/Fieldset';
 import LanguagePicker from '@/components/editor/common/LanguagePicker';
 import { PostEditorImage } from '@/components/editor/PostEditorTypes';
@@ -26,12 +26,12 @@ interface FormData extends WithLanguage<Facility> {
   imageURL: PostEditorImage | null;
 }
 
-export default function FacilityCreator() {
+export default function FacilityEditor({ data }: { data: WithLanguage<Facility> }) {
   const router = useRouter();
   const formMethods = useForm<FormData>({
     defaultValues: {
-      ko: { name: '', description: '', locations: [] },
-      en: { name: '', description: '', locations: [] },
+      ...data,
+      imageURL: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : null,
     },
   });
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('ko');
@@ -40,28 +40,35 @@ export default function FacilityCreator() {
 
   const onCancel = () => router.push(facilitiesPath);
 
-  const onSubmit = handleSubmit(async (_formData) => {
+  const onSubmit = handleSubmit(async (formData) => {
     try {
-      const formData = contentToFormData('CREATE', {
-        requestObject: _formData,
-        image: _formData.imageURL,
-      });
-      handleServerAction(await postFacilityAction(formData));
-      successToast('시설 안내를 추가했습니다.');
+      handleServerAction(
+        await putFacilityAction(
+          data.ko.id,
+          contentToFormData('EDIT', {
+            requestObject: {
+              ...formData,
+              removeImage: data.ko.imageURL !== null && formData.imageURL === null,
+            },
+            image: formData.imageURL,
+          }),
+        ),
+      );
+      successToast('시설 안내를 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));
     }
   });
 
   return (
-    <PageLayout title="시설 안내 추가" titleType="big" hideNavbar>
+    <PageLayout title="시설 안내 편집" titleType="big" hideNavbar>
       <FormProvider {...formMethods}>
         <LanguagePicker onChange={setSelectedLanguage} selected={selectedLanguage} />
 
         {['ko', 'en'].map(
           (language) =>
             language === selectedLanguage && (
-              <Fragment key={language}>
+              <>
                 <Fieldset title="시설명" mb="mb-8" titleMb="mb-2" required>
                   <Form.Text name={`${language}.name`} maxWidth="max-w-[30rem]" />
                 </Fieldset>
@@ -71,7 +78,7 @@ export default function FacilityCreator() {
                 <Fieldset title="시설 위치" mb="mb-8" titleMb="mb-2" required>
                   <Form.TextList name={`${language}.locations`} placeholder="예: 301동 315호" />
                 </Fieldset>
-              </Fragment>
+              </>
             ),
         )}
 

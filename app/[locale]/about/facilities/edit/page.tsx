@@ -1,7 +1,6 @@
 import { getFacilities } from '@/apis/v2/about/facilities';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
-
-import FacilitiesEditPageContent from './FacilitiesEditPageContent';
+import FacilityEditor from './FacilityEditor';
 
 interface FacilitiesEditPageProps {
   searchParams: { id: string };
@@ -16,5 +15,5 @@ export default async function FacilitiesEditPage({ searchParams }: FacilitiesEdi
       searchParams.id,
     ) || facilities[0];
 
-  return <FacilitiesEditPageContent data={selectedFacility} />;
+  return <FacilityEditor data={selectedFacility} />;
 }
