@@ -8,9 +8,10 @@ interface Props {
   onCancel: () => void;
   onDelete?: () => Promise<void>;
   onSubmit: () => Promise<void>;
+  submitLabel?: string;
 }
 
-export default function Action({ onCancel, onDelete, onSubmit }: Props) {
+export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Props) {
   const {
     formState: { isSubmitting, isDirty, isValid },
   } = useFormContext();
@@ -40,7 +41,11 @@ export default function Action({ onCancel, onDelete, onSubmit }: Props) {
           }}
         />
       )}
-      <BlackButton title="저장하기" disabled={!isValid || isSubmitting} onClick={onSubmit} />
+      <BlackButton
+        title={submitLabel ?? '저장하기'}
+        disabled={!isValid || isSubmitting}
+        onClick={onSubmit}
+      />
     </div>
   );
 }

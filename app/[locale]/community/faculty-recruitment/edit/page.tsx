@@ -4,6 +4,5 @@ import FacultyRecruitmentEditPageContent from './FacultyRecruitmentEditPageConte
 
 export default async function FacultyRecruitmentEditPage() {
   const data = await getFacultyRecruitment();
-
   return <FacultyRecruitmentEditPageContent data={data} />;
 }

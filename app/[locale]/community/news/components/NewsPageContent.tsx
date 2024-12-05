@@ -1,14 +1,13 @@
-import NewsRow from '@/app/[locale]/community/news/helper/NewsRow';
+import NewsRow from '@/app/[locale]/community/news/components/NewsRow';
 import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import { NEWS_TAGS } from '@/constants/tag';
+import { Link } from '@/i18n/routing';
 import { NewsPreviewList } from '@/types/news';
 import { getPath } from '@/utils/page';
 import { news } from '@/utils/segmentNode';
-
-import AdminFeatures from './helper/AdminFeatures';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);
@@ -46,5 +45,20 @@ export default function NewsPageContent({
         <AdminFeatures />
       </LoginVisible>
     </>
+  );
+}
+
+function AdminFeatures() {
+  return (
+    <div className="mt-[40px] flex justify-end">
+      <Link href={`${newsPath}/create`}>
+        <button
+          type="button"
+          className="ml-4 h-[2.1875rem] rounded-[0.0625rem] bg-neutral-800 px-3 text-md font-semibold leading-loose tracking-wider text-white enabled:hover:bg-neutral-500 disabled:opacity-30"
+        >
+          새 게시글
+        </button>
+      </Link>
+    </div>
   );
 }
