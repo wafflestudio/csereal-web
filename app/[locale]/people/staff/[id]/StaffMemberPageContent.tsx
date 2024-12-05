@@ -15,10 +15,10 @@ import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import BulletRow from '../../helper/BulletRow';
-import HeaderAndList from '../../helper/HeaderAndList';
-import PageTitle from '../../helper/PageTitle';
-import ProfileImage from '../../helper/ProfileImage';
+import BulletRow from '../../components/BulletRow';
+import HeaderAndList from '../../components/HeaderAndList';
+import PageTitle from '../../components/PageTitle';
+import ProfileImage from '../../components/ProfileImage';
 
 const staffPath = getPath(staff);
 

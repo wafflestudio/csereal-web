@@ -7,8 +7,8 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 
-import { PeopleCellProps } from '../helper/PeopleCell';
-import PeopleGrid from '../helper/PeopleGrid';
+import { PeopleCellProps } from '../components/PeopleCell';
+import PeopleGrid from '../components/PeopleGrid';
 
 interface StaffPageProps {
   params: { locale: Language };

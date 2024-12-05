@@ -1,6 +1,5 @@
 import { CareerCompanyEditorContent } from '@/app/[locale]/about/future-careers/CareerCompanies';
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
-import { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import { ResearchCenterEditorContent } from '@/components/editor/ResearchCenterEditor';
 import { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
 import { StaffEditorContent } from '@/components/editor/StaffEditor';
@@ -9,15 +8,6 @@ import { Language, WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 
 import { ValueOf } from './type';
-
-export const validateFacultyForm = (content: WithLanguage<FacultyEditorContent>) => {
-  if (!(content.ko.name && content.ko.academicRank)) {
-    throw new Error('필수 입력을 완료해주세요');
-  }
-  if (!(content.en.name && content.en.academicRank)) {
-    throw new Error('영문 정보를 입력해주세요');
-  }
-};
 
 export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => {
   const isValueEmpty = (value: ValueOf<StaffEditorContent>) =>
