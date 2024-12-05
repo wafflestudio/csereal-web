@@ -31,6 +31,7 @@ export default async function StaffMemberPage({ params }: StaffMemberPageProps) 
   try {
     const id = parseInt(params.id);
     const data = await getStaff(id);
+    console.log(data);
 
     return (
       <StaffMemberPageContent

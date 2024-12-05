@@ -5,7 +5,6 @@ import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form
 
 import Fieldset from '@/components/editor/common/Fieldset';
 import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import Section from '@/components/editor/common/Section';
 import { PostEditorImage } from '@/components/editor/PostEditorTypes';
 import Form from '@/components/editor/rhf/Form';
 import { Language, WithLanguage } from '@/types/language';
@@ -166,7 +165,7 @@ const Editor = ({
         />
       </Fieldset>
 
-      <Section title="연락처 정보" titleMb="mb-3">
+      <Form.Section title="연락처 정보" titleMb="mb-3">
         <Fieldset title="위치" mb="mb-5" titleMb="mb-2">
           <Form.Text
             name={`${language}.office`}
@@ -192,7 +191,7 @@ const Editor = ({
         <Fieldset title="웹사이트 URL" mb="mb-5" titleMb="mb-2">
           <Form.Text name={`${language}.website`} maxWidth="max-w-[25rem]" />
         </Fieldset>
-      </Section>
+      </Form.Section>
     </>
   );
 };
@@ -203,7 +202,7 @@ const DateSection = ({ language }: { language: Language }) => {
   const isDisabled = status !== 'INACTIVE';
 
   return (
-    <Section title="재직 기간" mb="mb-10" titleMb="mb-2" disabled={isDisabled}>
+    <Form.Section title="재직 기간" mb="mb-10" titleMb="mb-2" disabled={isDisabled}>
       <div className="flex w-[400px]">
         <Fieldset title="시작 날짜" titleMb="mb-2">
           <Form.Date name={`${language}.startDate`} hideTime enablePast disabled={isDisabled} />
@@ -212,7 +211,7 @@ const DateSection = ({ language }: { language: Language }) => {
           <Form.Date name={`${language}.startDate`} hideTime enablePast disabled={isDisabled} />
         </Fieldset>
       </div>
-    </Section>
+    </Form.Section>
   );
 };
 

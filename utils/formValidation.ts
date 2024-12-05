@@ -2,24 +2,9 @@ import { CareerCompanyEditorContent } from '@/app/[locale]/about/future-careers/
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
 import { ResearchCenterEditorContent } from '@/components/editor/ResearchCenterEditor';
 import { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
-import { StaffEditorContent } from '@/components/editor/StaffEditor';
 import { Course } from '@/types/academics';
 import { Language, WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
-
-import { ValueOf } from './type';
-
-export const validateStaffForm = (content: WithLanguage<StaffEditorContent>) => {
-  const isValueEmpty = (value: ValueOf<StaffEditorContent>) =>
-    !value || (Array.isArray(value) && value.length === 0);
-
-  if (Object.entries(content.ko).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
-    throw new Error('모든 정보를 입력해주세요');
-  }
-  if (Object.entries(content.en).some(([key, value]) => key !== 'image' && isValueEmpty(value))) {
-    throw new Error('영문 정보를 입력해주세요');
-  }
-};
 
 export const validateCourseForm = (content: Course) => {
   const { code, ko, en } = content;

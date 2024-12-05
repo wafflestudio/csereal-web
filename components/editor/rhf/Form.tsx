@@ -8,6 +8,7 @@ import Dropdown from '@/components/editor/rhf/Dropdown';
 import FilePicker from '@/components/editor/rhf/File';
 import ImagePicker from '@/components/editor/rhf/Image';
 import Radio from '@/components/editor/rhf/Radio';
+import Section from '@/components/editor/rhf/Section';
 import Text from '@/components/editor/rhf/Text';
 import TextList from '@/components/editor/rhf/TextList';
 
@@ -26,4 +27,5 @@ export default Object.assign(Form, {
   Date: DateSelector,
   Radio,
   Dropdown,
+  Section,
 });
