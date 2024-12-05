@@ -1,47 +1,110 @@
 import { useController } from 'react-hook-form';
 
+import Dropdown from '@/components/common/form/Dropdown';
 import MuiDateSelector from '@/components/common/MuiDateSelector';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';
 
 interface Props {
   name: string;
+  hideTime?: boolean;
+  enablePast?: boolean;
+  disabled?: boolean;
 }
 
-export default function DatePicker({ name }: Props) {
-  const {
-    field: { value, onChange },
-  } = useController({ name });
-  const date = value as Date;
+export default function DateSelector({
+  name,
+  hideTime = false,
+  enablePast = false,
+  disabled = false,
+}: Props) {
   const { openModal, closeModal } = useModal();
+  const {
+    field: { value: date, onChange },
+  } = useController({ name });
 
-  const labelStr = `${(date.getFullYear() + '').slice(2)}.${(date.getMonth() + 1 + '').padStart(
-    2,
-    '0',
-  )}.${(date.getDate() + '').padStart(2, '0')}.`;
+  const openCalendar = () => {
+    openModal(
+      <ModalFrame onClose={closeModal}>
+        <MuiDateSelector
+          date={date}
+          setDate={(date) => {
+            if (date) onChange(date);
+            closeModal();
+          }}
+          className="bg-white"
+          enablePast={enablePast}
+        />
+      </ModalFrame>,
+    );
+  };
 
   return (
-    <button
-      className="flex items-center justify-between gap-2 self-start rounded-sm border border-neutral-300 py-[.3125rem] pl-[.625rem] pr-[.3125rem] text-sm font-normal"
-      onClick={(e) => {
-        e.preventDefault();
-        openModal(
-          <ModalFrame onClose={closeModal}>
-            <MuiDateSelector
-              enablePast
-              date={date}
-              setDate={(date) => {
-                if (date) onChange(date);
-                closeModal();
+    <div>
+      <div className="flex gap-[.62rem]">
+        <BorderButton text={formatDate(date)} onClick={openCalendar} disabled={disabled} />
+        {!hideTime && (
+          <div className="flex gap-1">
+            <Dropdown
+              contents={Array(24)
+                .fill(0)
+                .map((x, i) => (i + '').padStart(2, '0') + '시')}
+              selectedIndex={date.getHours()}
+              onClick={(idx) => {
+                const newDate = new Date(date);
+                newDate.setHours(idx);
+                onChange(newDate);
               }}
-              className="bg-white"
+              borderStyle="border-neutral-300"
             />
-          </ModalFrame>,
-        );
-      }}
-    >
-      {labelStr}
-      <span className="material-symbols-outlined text-base">calendar_month</span>
-    </button>
+            <Dropdown
+              contents={minuteDropdownContent}
+              selectedIndex={Math.floor(date.getMinutes() / 15)}
+              onClick={(idx) => {
+                const newDate = new Date(date);
+                newDate.setMinutes(idx * 15);
+                onChange(newDate);
+              }}
+              borderStyle="border-neutral-300"
+            />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
+
+const BorderButton = ({
+  text,
+  onClick,
+  disabled,
+}: {
+  text: string;
+  onClick: () => void;
+  disabled: boolean;
+}) => {
+  return (
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}
+      className={`h-[1.875rem] rounded-sm border border-neutral-300
+            px-4 text-md outline-none hover:bg-neutral-100 disabled:hover:bg-transparent`}
+      disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+};
+
+const formatDate = (date: Date) => {
+  const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${
+    DAYS[date.getDay()]
+  }요일`;
+};
+
+const minuteDropdownContent = Array(4)
+  .fill(0)
+  .map((x, i) => (i * 15 + '').padStart(2, '0') + '분');

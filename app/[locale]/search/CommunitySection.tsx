@@ -7,7 +7,7 @@ import { SeminarPreviewList } from '@/types/seminar';
 import { getPath } from '@/utils/page';
 import { news, notice, seminar } from '@/utils/segmentNode';
 
-import SeminarRow from '../community/seminar/helper/SeminarRow';
+import SeminarRow from '../community/seminar/components/SeminarRow';
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
 import NewsRow from './helper/NewsRow';

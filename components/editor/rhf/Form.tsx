@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
 import Action from '@/components/editor/rhf/Action';
+import Calendar from '@/components/editor/rhf/Calendar';
 import Checkbox from '@/components/editor/rhf/Checkbox';
-import DatePicker from '@/components/editor/rhf/Date';
+import DateSelector from '@/components/editor/rhf/Date';
 import FilePicker from '@/components/editor/rhf/File';
 import ImagePicker from '@/components/editor/rhf/Image';
 import Text from '@/components/editor/rhf/Text';
@@ -18,6 +19,7 @@ export default Object.assign(Form, {
   File: FilePicker,
   Text,
   TextList,
-  Date: DatePicker,
+  Calendar,
   Checkbox,
+  Date: DateSelector,
 });

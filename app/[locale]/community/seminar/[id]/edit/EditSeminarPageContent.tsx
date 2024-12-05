@@ -1,13 +1,13 @@
 'use client';
 
 import { deleteSeminarAction, patchSeminarAction } from '@/actions/seminar';
+import SeminarEditor, {
+  SeminarFormData,
+} from '@/app/[locale]/community/seminar/components/SeminarEditor';
 import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/editor/PostEditorTypes';
-import SeminarEditor from '@/components/editor/SeminarEditor';
-import { SeminarEditorContent } from '@/components/editor/SeminarEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Seminar } from '@/types/seminar';
-import { validateSeminarForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { seminar } from '@/utils/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
@@ -18,39 +18,71 @@ const seminarPath = getPath(seminar);
 export default function EditSeminarPageContent({ id, data }: { id: number; data: Seminar }) {
   const router = useRouter();
 
-  const initialContent: SeminarEditorContent = {
-    title: data.title,
-    titleForMain: data.titleForMain,
+  const defaultValues: SeminarFormData = {
+    ...data,
     description: data.description ?? '',
-    location: data.location,
-    schedule: {
-      startDate: new Date(data.startDate),
-      endDate: data.endDate !== null ? new Date(data.endDate) : null,
-    },
-    speaker: {
-      name: data.name ?? '',
-      nameURL: data.speakerURL,
-      title: data.speakerTitle,
-      organization: data.affiliation ?? '',
-      organizationURL: data.affiliationURL,
-      description: data.introduction ?? '',
-      image: data.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
-    },
+    host: data.host ?? '',
+    name: data.name ?? '',
+    speakerURL: data.speakerURL ?? '',
+    speakerTitle: data.speakerTitle ?? '',
+    affiliation: data.affiliation ?? '',
+    affiliationURL: data.affiliationURL ?? '',
+    introduction: data.introduction ?? '',
+    startDate: new Date(data.startDate),
+    endDate: data.endDate !== null ? new Date(data.endDate) : null,
+    image: data.imageURL ? { type: 'UPLOADED_IMAGE', url: data.imageURL } : null,
     attachments: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
-    isPrivate: data.isPrivate,
-    isImportant: data.isImportant,
-    host: data.host,
+    isEndDateVisible: true,
   };
 
-  const handleCancel = () => router.push(`${seminarPath}/${id}`);
+  const onCancel = () => router.push(`${seminarPath}/${id}`);
 
-  const handleComplete = async (content: SeminarEditorContent) => {
-    validateSeminarForm(content);
-    const formData = contentToFormData(data, content);
+  const onSubmit = async (content: SeminarFormData) => {
+    const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
+    const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
+
+    const deleteIds = data.attachments
+      .map((x) => x.id)
+      .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
+
+    const image = content.image && isLocalImage(content.image) ? content.image.file : null;
+
+    const formData = new FormData();
+
+    formData.append(
+      'request',
+      new Blob(
+        [
+          JSON.stringify({
+            title: content.title,
+            titleForMain: content.titleForMain || null,
+            description: content.description || null,
+            introduction: content.description || null,
+            name: content.name || null,
+            speakerURL: content.speakerURL || null,
+            speakerTitle: content.speakerTitle || null,
+            affiliation: content.affiliation || null,
+            affiliationURL: content.affiliationURL || null,
+            startDate: content.startDate.toISOString(),
+            endDate: content.endDate?.toISOString() || null,
+            location: content.location,
+            host: content.host || null,
+            isPrivate: content.isPrivate,
+            isImportant: content.isImportant,
+
+            deleteIds,
+          }),
+        ],
+        { type: 'application/json' },
+      ),
+    );
+
+    if (image) formData.append('newMainImage', image);
+    encodeFormDataFileName(formData, 'newAttachments', localAttachments);
     patchSeminarAction(id, formData);
   };
 
-  const handleDelete = async () => {
+  const onDelete = async () => {
     const result = await deleteSeminarAction(id);
     if (result) errorToast(result.message);
   };
@@ -58,70 +90,11 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
   return (
     <PageLayout title="세미나 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
       <SeminarEditor
-        actions={{
-          type: 'EDIT',
-          onCancel: handleCancel,
-          onSubmit: handleComplete,
-          onDelete: handleDelete,
-        }}
-        initialContent={initialContent}
+        onCancel={onCancel}
+        onSubmit={onSubmit}
+        onDelete={onDelete}
+        defaultValues={defaultValues}
       />
     </PageLayout>
   );
 }
-
-const emptyStringToNull = (str: string | null) => (str ? str : null);
-
-const contentToFormData = (prevSeminar: Seminar, content: SeminarEditorContent) => {
-  const localAttachments = content.attachments.filter(isLocalFile).map((x) => x.file);
-  const uploadedAttachments = content.attachments.filter(isUploadedFile).map((x) => x.file);
-
-  const deleteIds = prevSeminar.attachments
-    .map((x) => x.id)
-    .filter((id1) => uploadedAttachments.find((x) => x.id === id1) === undefined);
-
-  const image =
-    content.speaker.image && isLocalImage(content.speaker.image)
-      ? content.speaker.image.file
-      : null;
-
-  const formData = new FormData();
-
-  formData.append(
-    'request',
-    new Blob(
-      [
-        JSON.stringify({
-          title: content.title,
-          titleForMain: emptyStringToNull(content.titleForMain),
-          description: emptyStringToNull(content.description),
-          introduction: emptyStringToNull(content.speaker.description),
-          name: emptyStringToNull(content.speaker.name),
-          speakerURL: emptyStringToNull(content.speaker.nameURL),
-          speakerTitle: emptyStringToNull(content.speaker.title),
-          affiliation: emptyStringToNull(content.speaker.organization),
-          affiliationURL: emptyStringToNull(content.speaker.organizationURL),
-          startDate: content.schedule.startDate.toISOString(),
-          endDate: content.schedule.endDate?.toISOString() ?? null,
-          location: content.location,
-          host: emptyStringToNull(content.host),
-          isPrivate: content.isPrivate,
-          isImportant: content.isImportant,
-
-          deleteIds,
-        }),
-      ],
-      {
-        type: 'application/json',
-      },
-    ),
-  );
-
-  if (image) {
-    formData.append('newMainImage', image);
-  }
-
-  encodeFormDataFileName(formData, 'newAttachments', localAttachments);
-
-  return formData;
-};

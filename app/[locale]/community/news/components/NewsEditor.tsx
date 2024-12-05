@@ -61,7 +61,7 @@ export default function NewsEditor({ defaultValues, onCancel, onSubmit, onDelete
           />
         </Fieldset>
         <Fieldset title="시기" mb="mb-8" titleMb="mb-2" required>
-          <Form.Date name="date" />
+          <Form.Calendar name="date" />
         </Fieldset>
         <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
           <HTMLEditor name="description" options={{ required: true }} />

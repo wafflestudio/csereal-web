@@ -1,5 +1,3 @@
-import { CreateAction, EditAction } from './common/ActionButtons';
-
 // 첨부파일
 
 export type PostEditorFile = LocalFile | UploadedFile;
@@ -40,44 +38,3 @@ export interface UploadedImage {
 
 export const isLocalImage = (image: LocalImage | UploadedImage): image is LocalImage =>
   image.type === 'LOCAL_IMAGE';
-
-// Content
-
-export interface PostEditorContent {
-  title: string;
-  titleForMain: string;
-  description: string;
-  mainImage: PostEditorImage;
-  attachments: PostEditorFile[];
-  tags: string[];
-  isPrivate: boolean;
-  isPinned: boolean;
-  isImportant: boolean;
-  isSlide: boolean;
-  date: string;
-}
-
-export interface PostEditorProps {
-  tags: string[];
-  showMainImage?: boolean;
-  showIsPinned?: boolean;
-  showIsImportant?: boolean;
-  showIsSlide?: boolean;
-  showDate?: boolean;
-  actions: EditAction<PostEditorContent> | CreateAction<PostEditorContent>;
-  initialContent?: PostEditorContent;
-}
-
-export const defaultContent: PostEditorContent = {
-  title: '',
-  titleForMain: '',
-  description: '',
-  mainImage: null,
-  attachments: [],
-  tags: [],
-  isPrivate: false,
-  isPinned: false,
-  isImportant: false,
-  isSlide: false,
-  date: new Date().toISOString(),
-};
