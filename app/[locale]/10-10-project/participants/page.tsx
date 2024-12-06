@@ -1,4 +1,4 @@
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function TenTenParticipants() {

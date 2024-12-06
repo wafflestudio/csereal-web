@@ -1,4 +1,4 @@
-import './form/html/suneditor-contents.css';
+import './suneditor-contents.css';
 
 import { Autolinker } from 'autolinker';
 import { CSSProperties, ReactNode } from 'react';

@@ -10,9 +10,9 @@ import { ResearchGroup } from '@/types/research';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
-import Fieldset from '../../../../../components/form/Fieldset';
+import Fieldset from '../../../../../components/form/fieldset';
 import LanguagePicker from '../../../../../components/form/LanguagePicker';
-import { PostEditorFile } from '../../../../../components/form/PostEditorTypes';
+import { PostEditorFile } from '../../../../../components/form/types';
 import Form from '../../../../../components/form/Form';
 import HTMLEditor from '../../../../../components/form/html/HTMLEditor';
 

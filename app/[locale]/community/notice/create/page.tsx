@@ -4,7 +4,7 @@ import { postNoticeAction } from '@/actions/notice';
 import NoticeEditor, {
   NoticeFormData,
 } from '@/app/[locale]/community/notice/components/NoticeEditor';
-import { isLocalFile } from '@/components/form/PostEditorTypes';
+import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';

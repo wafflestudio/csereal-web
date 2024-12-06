@@ -9,9 +9,9 @@ import {
   putHistoryAction,
   putOverviewAction,
 } from '@/actions/about';
-import Fieldset from '@/components/form/Fieldset';
+import Fieldset from '@/components/form/fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorFile, PostEditorImage } from '@/components/form/PostEditorTypes';
+import { PostEditorFile, PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

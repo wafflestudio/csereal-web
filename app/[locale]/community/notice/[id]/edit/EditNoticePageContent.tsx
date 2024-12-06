@@ -6,7 +6,7 @@ import { deleteNoticeAction, patchNoticeAction } from '@/actions/notice';
 import NoticeEditor, {
   NoticeFormData,
 } from '@/app/[locale]/community/notice/components/NoticeEditor';
-import { isLocalFile, isUploadedFile } from '@/components/form/PostEditorTypes';
+import { isLocalFile, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Notice } from '@/types/notice';

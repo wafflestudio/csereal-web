@@ -3,7 +3,7 @@ import Attachments from '@/components/common/Attachments';
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { StraightNode } from '@/components/common/Nodes';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
 import { getMetadata } from '@/utils/metadata';

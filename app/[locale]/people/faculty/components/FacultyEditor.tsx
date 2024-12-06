@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
-import Fieldset from '@/components/form/Fieldset';
+import Fieldset from '@/components/form/fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import { PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import { Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/types/object';

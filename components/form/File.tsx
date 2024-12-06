@@ -3,7 +3,7 @@ import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
 import ClearIcon from '@/public/image/clear_icon.svg';
 
-import { LocalFile, PostEditorFile } from './PostEditorTypes';
+import { LocalFile, PostEditorFile } from './types';
 
 interface FilePickerProps {
   name: string;

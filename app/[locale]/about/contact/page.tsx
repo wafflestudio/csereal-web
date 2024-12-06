@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import { getContact } from '@/apis/v1/about/contact';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';

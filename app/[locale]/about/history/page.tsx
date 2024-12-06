@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import { getHistory } from '@/apis/v1/about/history';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import history_image from '@/public/image/about/history.png';
 import { Language } from '@/types/language';

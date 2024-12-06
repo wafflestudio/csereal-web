@@ -3,8 +3,8 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putFacultyRecruitmentAction } from '@/actions/recruitment';
-import Fieldset from '@/components/form/Fieldset';
-import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import Fieldset from '@/components/form/fieldset';
+import { PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

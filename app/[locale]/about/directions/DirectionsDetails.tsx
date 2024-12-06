@@ -1,6 +1,6 @@
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Direction } from '@/types/about';
 import { getPath } from '@/utils/page';
 import { directions } from '@/utils/segmentNode';

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import SelectionList from '@/components/common/selection/SelectionList';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';

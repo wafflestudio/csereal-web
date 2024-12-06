@@ -7,7 +7,7 @@ import { getOverview } from '@/apis/v1/about/overview';
 import Attachments from '@/components/common/Attachments';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/common/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import brochure1 from '@/public/image/about/brochure1.png';
 import brochure2 from '@/public/image/about/brochure2.png';

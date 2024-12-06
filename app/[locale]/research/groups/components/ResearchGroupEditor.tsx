@@ -9,10 +9,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { Language } from '@/types/language';
 import { useState } from 'react';
-import Fieldset from '@/components/form/Fieldset';
+import Fieldset from '@/components/form/fieldset';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
-import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import { PostEditorImage } from '@/components/form/types';
 
 const groupsPath = getPath(researchGroups);
 
