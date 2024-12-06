@@ -1,6 +1,6 @@
 import { useController } from 'react-hook-form';
 
-import Dropdown from '@/components/common/form/Dropdown';
+import Dropdown from '@/components/form/legacy/Dropdown';
 import MuiDateSelector from '@/components/common/MuiDateSelector';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';

@@ -3,10 +3,10 @@
 import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import { isUploadedFile, PostEditorFile } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import { isUploadedFile, PostEditorFile } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -73,7 +73,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
           />
         </Fieldset>
         <Fieldset.Editor>
-          <HTMLEditor name="description" options={{ required: true }} />
+          <Form.HTML name="description" options={{ required: true }} />
         </Fieldset.Editor>
         <Fieldset.File>
           <Form.File name="file" />

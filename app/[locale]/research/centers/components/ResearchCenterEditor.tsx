@@ -5,13 +5,13 @@ import { getPath } from '@/utils/page';
 import { researchCenters, researchGroups } from '@/utils/segmentNode';
 
 import { FormProvider, useForm } from 'react-hook-form';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
+import LanguagePicker from '@/components/form/LanguagePicker';
 import { Language } from '@/types/language';
 import { useState } from 'react';
-import Fieldset from '@/components/editor/common/Fieldset';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
-import { PostEditorImage } from '@/components/editor/PostEditorTypes';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
+import { PostEditorImage } from '@/components/form/PostEditorTypes';
 
 const groupsPath = getPath(researchGroups);
 
@@ -64,7 +64,7 @@ const Editor = ({ language }: { language: Language }) => {
         <Form.Text name={`${language}.websiteURL`} maxWidth="max-w-[30rem]" />
       </Fieldset>
       <Fieldset.Editor>
-        <HTMLEditor name={`${language}.description`} />
+        <Form.HTML name={`${language}.description`} />
       </Fieldset.Editor>
       <Fieldset.Image>
         <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">

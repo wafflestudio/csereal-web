@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import Form from '@/components/editor/rhf/Form';
+import Form from '@/components/form/Form';
 
 interface Props {
   name: string;

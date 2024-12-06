@@ -1,4 +1,4 @@
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { greetings } from '@/utils/segmentNode';

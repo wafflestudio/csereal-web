@@ -2,10 +2,10 @@
 
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import { PostEditorFile, PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import { PostEditorFile, PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 
 export interface SeminarFormData {
   title: string;
@@ -85,7 +85,7 @@ export default function SeminarEditor({ defaultValues, onCancel, onSubmit, onDel
         </Fieldset>
 
         <Fieldset title="요약" mb="mb-10" titleMb="mb-2">
-          <HTMLEditor name="description" />
+          <Form.HTML name="description" />
         </Fieldset>
 
         <Fieldset title="장소" mb="mb-4" titleMb="mb-2" required>
@@ -133,7 +133,7 @@ export default function SeminarEditor({ defaultValues, onCancel, onSubmit, onDel
         </div>
 
         <Fieldset title="연사 소개" mb="mb-10" titleMb="mb-2">
-          <HTMLEditor name="introduction" />
+          <Form.HTML name="introduction" />
         </Fieldset>
 
         <Fieldset title="연사 사진" mb="mb-6" titleMb="mb-2">

@@ -1,9 +1,10 @@
-import './SunEditor/suneditor-contents.css';
+import './form/html/suneditor-contents.css';
 
 import { Autolinker } from 'autolinker';
 import { CSSProperties, ReactNode } from 'react';
 
-import TopRightImageContent, { TopRightImage } from './TopRightImageContent';
+import ImageWithFallback from '@/components/common/ImageWithFallback';
+import useResponsive from '@/utils/hooks/useResponsive';
 
 interface TopRightComponent {
   type: 'component';
@@ -43,4 +44,37 @@ export default function HTMLViewer({
 
 function TopRightComponent({ content }: TopRightComponent) {
   return <div className="relative float-right">{content}</div>;
+}
+
+export type TopRightImage = {
+  type: 'image';
+  url: string;
+  widthPX: number;
+  heightPX: number;
+  marginTopPx?: number;
+  mobileFullWidth?: boolean;
+};
+
+function TopRightImageContent(props: TopRightImage) {
+  const { isMobile } = useResponsive();
+  const { url, widthPX: width, heightPX: height, marginTopPx: marginTop } = props;
+
+  return (
+    <div
+      className="relative mb-7 w-full sm:float-right sm:ml-7 sm:w-auto"
+      style={{
+        width: isMobile && props.mobileFullWidth ? undefined : width,
+        marginTop,
+      }}
+    >
+      <ImageWithFallback
+        src={url}
+        alt="대표 이미지"
+        width={width}
+        height={height}
+        className="w-full object-contain"
+        sizes={`${width}px`}
+      />
+    </div>
+  );
 }

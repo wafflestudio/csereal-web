@@ -1,15 +1,22 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
-import { LocalFile, PostEditorFile } from '../PostEditorTypes';
-import FilePickerRow from './FilePickerRow';
+import ClearIcon from '@/public/image/clear_icon.svg';
 
-export interface FilePickerProps {
-  files: PostEditorFile[];
-  setFiles: (f: (cur: PostEditorFile[]) => PostEditorFile[]) => void;
+import { LocalFile, PostEditorFile } from './PostEditorTypes';
+
+interface FilePickerProps {
+  name: string;
+  options?: RegisterOptions;
   multiple?: boolean;
 }
 
-export default function FilePicker({ files, setFiles, multiple = true }: FilePickerProps) {
+export default function FilePicker({ name, options, multiple = true }: FilePickerProps) {
+  const { register, setValue } = useFormContext();
+  const files = useWatch({ name }) as PostEditorFile[];
+
+  register(name, options);
+
   // 성능 확인 필요
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files === null) return;
@@ -18,7 +25,8 @@ export default function FilePicker({ files, setFiles, multiple = true }: FilePic
       type: 'LOCAL_FILE',
       file,
     }));
-    setFiles((files) => (multiple ? [...files, ...newFiles] : newFiles));
+
+    setValue(name, [...files, ...newFiles]);
 
     // 같은 파일에 대해서 선택이 가능하도록 처리
     // https://stackoverflow.com/a/12102992
@@ -26,11 +34,9 @@ export default function FilePicker({ files, setFiles, multiple = true }: FilePic
   };
 
   const deleteFileAtIndex = (index: number) => {
-    setFiles((prevFiles) => {
-      const nextFiles = [...prevFiles];
-      nextFiles.splice(index, 1);
-      return nextFiles;
-    });
+    const nextFiles = [...files];
+    nextFiles.splice(index, 1);
+    setValue(name, nextFiles);
   };
 
   return (
@@ -70,5 +76,21 @@ function SelectFileButton({
       파일 선택
       <input type="file" className="hidden" onChange={onChange} multiple={multiple} />
     </label>
+  );
+}
+
+interface FileRowProps {
+  file: PostEditorFile;
+  deleteFile: MouseEventHandler<HTMLButtonElement>;
+}
+
+function FilePickerRow({ file, deleteFile }: FileRowProps) {
+  return (
+    <li className="flex h-[1.875rem] items-center border-b-[1px] border-dashed border-neutral-200 px-3 last:border-none">
+      <p className="mr-4 text-sm">{file.file.name}</p>
+      <button className="ml-auto" onClick={deleteFile}>
+        <ClearIcon />
+      </button>
+    </li>
   );
 }

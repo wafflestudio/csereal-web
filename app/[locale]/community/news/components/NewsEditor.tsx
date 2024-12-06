@@ -1,9 +1,9 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import { PostEditorFile, PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import { PostEditorFile, PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { NEWS_TAGS } from '@/constants/tag';
 
 export interface NewsFormData {
@@ -64,7 +64,7 @@ export default function NewsEditor({ defaultValues, onCancel, onSubmit, onDelete
           <Form.Calendar name="date" />
         </Fieldset>
         <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
-          <HTMLEditor name="description" options={{ required: true }} />
+          <Form.HTML name="description" options={{ required: true }} />
         </Fieldset>
         <Fieldset title="대표 이미지" mb="mb-6" titleMb="mb-2">
           <label className="mb-3 text-sm font-normal tracking-wide">

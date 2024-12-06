@@ -4,7 +4,7 @@ import { deleteFacilityAction } from '@/actions/about';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import Distance from '@/public/image/distance.svg';
 import { Facility } from '@/types/about';
 import { errorToStr } from '@/utils/error';

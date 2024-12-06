@@ -1,10 +1,10 @@
 'use client';
 
 import { FutureCareers } from '@/types/about';
-import Fieldset from '@/components/editor/common/Fieldset';
+import Fieldset from '@/components/form/Fieldset';
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
-import Form from '@/components/editor/rhf/Form';
+import Form from '@/components/form/Form';
 import { getPath } from '@/utils/page';
 import { futureCareers } from '@/utils/segmentNode';
 import { useRouter } from '@/i18n/routing';

@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import { PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
 import { Language, WithLanguage } from '@/types/language';
 import useLanguage from '@/utils/hooks/useLanguage';
 

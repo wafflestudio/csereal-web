@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
@@ -73,7 +73,7 @@ const Editor = ({ language }: { language: Language }) => {
         <Form.Text name={`${language}Name`} options={{ required: true }} />
       </Fieldset.Title>
       <Fieldset.Editor>
-        <HTMLEditor name={`${language}Description`} options={{ required: true }} />
+        <Form.HTML name={`${language}Description`} options={{ required: true }} />
       </Fieldset.Editor>
     </>
   );

@@ -1,9 +1,9 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import { PostEditorFile } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import { PostEditorFile } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { NOTICE_TAGS } from '@/constants/tag';
 
 export interface NoticeFormData {
@@ -58,7 +58,7 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
           />
         </Fieldset>
         <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
-          <HTMLEditor name="description" options={{ required: true }} />
+          <Form.HTML name="description" options={{ required: true }} />
         </Fieldset>
         <Fieldset title="첨부파일" mb="mb-6" titleMb="mb-3">
           <Form.File name="attachments" />

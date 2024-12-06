@@ -4,7 +4,7 @@ import { postSeminarAction } from '@/actions/seminar';
 import SeminarEditor, {
   SeminarFormData,
 } from '@/app/[locale]/community/seminar/components/SeminarEditor';
-import { isLocalFile, isLocalImage } from '@/components/editor/PostEditorTypes';
+import { isLocalFile, isLocalImage } from '@/components/form/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';

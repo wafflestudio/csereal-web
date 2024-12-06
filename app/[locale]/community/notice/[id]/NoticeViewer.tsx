@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import PostFooter from '@/components/post/PostFooter';
 import { Notice } from '@/types/notice';

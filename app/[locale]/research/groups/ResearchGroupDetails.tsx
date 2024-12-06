@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { deleteResearchGroupAction } from '@/actions/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import { WithLanguage } from '@/types/language';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';

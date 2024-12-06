@@ -4,7 +4,7 @@ import { useReducer, useState } from 'react';
 
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { refreshPage } from '@/utils/refreshPage';

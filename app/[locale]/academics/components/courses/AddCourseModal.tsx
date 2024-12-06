@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { postCourseAction } from '@/actions/academics';
-import Fieldset from '@/components/editor/common/Fieldset';
-import Form from '@/components/editor/rhf/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
 import { getKeys } from '@/types/object';

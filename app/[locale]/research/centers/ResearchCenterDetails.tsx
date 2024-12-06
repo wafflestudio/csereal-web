@@ -4,7 +4,7 @@ import { deleteResearchCenterAction } from '@/actions/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import LinkIcon from '@/public/image/link_icon.svg';
 import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';

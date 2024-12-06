@@ -10,11 +10,11 @@ import { ResearchGroup } from '@/types/research';
 import { getPath } from '@/utils/page';
 import { researchLabs } from '@/utils/segmentNode';
 
-import Fieldset from '../../../../../components/editor/common/Fieldset';
-import LanguagePicker from '../../../../../components/editor/common/LanguagePicker';
-import { PostEditorFile } from '../../../../../components/editor/PostEditorTypes';
-import Form from '../../../../../components/editor/rhf/Form';
-import HTMLEditor from '../../../../../components/editor/SunEditor/HTMLEditor';
+import Fieldset from '../../../../../components/form/Fieldset';
+import LanguagePicker from '../../../../../components/form/LanguagePicker';
+import { PostEditorFile } from '../../../../../components/form/PostEditorTypes';
+import Form from '../../../../../components/form/Form';
+import HTMLEditor from '../../../../../components/form/html/HTMLEditor';
 
 export type ResearchLabFormData = WithLanguage<{
   name: string;
@@ -160,7 +160,7 @@ const Editor = ({
       </Fieldset>
 
       <Fieldset title="연구실 설명 및 이미지" mb="mb-10" titleMb="mb-2" required>
-        <HTMLEditor name={`${language}.description`} options={{ required: true }} />
+        <Form.HTML name={`${language}.description`} options={{ required: true }} />
       </Fieldset>
     </>
   );

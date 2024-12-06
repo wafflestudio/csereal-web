@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putFacilityAction } from '@/actions/about';
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import { PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Facility } from '@/types/about';
@@ -73,7 +73,7 @@ export default function FacilityEditor({ data }: { data: WithLanguage<Facility> 
                   <Form.Text name={`${language}.name`} maxWidth="max-w-[30rem]" />
                 </Fieldset>
                 <Fieldset title="시설 설명" mb="mb-10" titleMb="mb-2" required>
-                  <HTMLEditor name={`${language}.description`} options={{ required: true }} />
+                  <Form.HTML name={`${language}.description`} options={{ required: true }} />
                 </Fieldset>
                 <Fieldset title="시설 위치" mb="mb-8" titleMb="mb-2" required>
                   <Form.TextList name={`${language}.locations`} placeholder="예: 301동 315호" />

@@ -6,10 +6,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { putInternalAction } from '@/actions/internal';
 import { GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import Fieldset from '@/components/editor/common/Fieldset';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import HTMLViewer from '@/components/common/HTMLViewer';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -51,7 +51,7 @@ export default function InternalContent({ description }: { description: string }
     <FormProvider {...formMethods}>
       <Form>
         <Fieldset.Editor>
-          <HTMLEditor name="description" />
+          <Form.HTML name="description" />
         </Fieldset.Editor>
         <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
       </Form>

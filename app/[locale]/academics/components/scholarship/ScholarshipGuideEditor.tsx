@@ -2,9 +2,9 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -43,7 +43,7 @@ export default function ScholarshipGuideEditor({
     <FormProvider {...formMethods}>
       <Form>
         <Fieldset.Editor>
-          <HTMLEditor name="description" />
+          <Form.HTML name="description" />
         </Fieldset.Editor>
         <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
       </Form>

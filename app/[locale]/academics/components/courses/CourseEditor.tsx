@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putCourseAction } from '@/actions/academics';
-import Form from '@/components/editor/rhf/Form';
+import Form from '@/components/form/Form';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/types/academics';
 import { errorToStr } from '@/utils/error';

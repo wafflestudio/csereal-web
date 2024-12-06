@@ -5,7 +5,7 @@ import {
   isUploadedFile,
   PostEditorFile,
   PostEditorImage,
-} from '@/components/editor/PostEditorTypes';
+} from '@/components/form/PostEditorTypes';
 
 import { encodeFormDataFileName } from './string';
 

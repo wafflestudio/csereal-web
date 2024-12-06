@@ -1,10 +1,10 @@
 'use client';
 
 import { putCareerDescriptionAction } from '@/actions/about';
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
@@ -47,8 +47,8 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
           <Fieldset.Editor>
-            {language === 'ko' && <HTMLEditor name="ko" options={{ required: true }} />}
-            {language === 'en' && <HTMLEditor name="en" />}
+            {language === 'ko' && <Form.HTML name="ko" options={{ required: true }} />}
+            {language === 'en' && <Form.HTML name="en" />}
           </Fieldset.Editor>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>

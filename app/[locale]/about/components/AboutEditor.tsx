@@ -9,11 +9,11 @@ import {
   putHistoryAction,
   putOverviewAction,
 } from '@/actions/about';
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import { PostEditorFile, PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { PostEditorFile, PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { AboutContent } from '@/types/about';
@@ -86,8 +86,8 @@ export default function AboutEditor({ data, node, showAttachments = false }: Pro
           <LanguagePicker onChange={setLanguage} selected={language} />
 
           <Fieldset.Editor>
-            {language === 'ko' && <HTMLEditor name="htmlKo" options={{ required: true }} />}
-            {language === 'en' && <HTMLEditor name="htmlEn" />}
+            {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
+            {language === 'en' && <Form.HTML name="htmlEn" />}
           </Fieldset.Editor>
 
           <Fieldset.Image>

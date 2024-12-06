@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putDirectionsAction } from '@/actions/about';
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Direction } from '@/types/about';
@@ -57,8 +57,8 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
           <LanguagePicker onChange={setLanguage} selected={language} />
 
           <Fieldset.Editor>
-            {language === 'ko' && <HTMLEditor name="htmlKo" options={{ required: true }} />}
-            {language === 'en' && <HTMLEditor name="htmlEn" />}
+            {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
+            {language === 'en' && <Form.HTML name="htmlEn" />}
           </Fieldset.Editor>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>

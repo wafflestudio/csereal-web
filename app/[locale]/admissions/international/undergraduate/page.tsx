@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { getInternationalUndergraduate } from '@/apis/v1/admissions/international/undergraduate';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/common/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { internationalUndergraduateAdmission } from '@/utils/segmentNode';

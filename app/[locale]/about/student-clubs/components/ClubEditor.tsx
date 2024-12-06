@@ -1,10 +1,10 @@
 'use client';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import LanguagePicker from '@/components/editor/common/LanguagePicker';
-import { PostEditorImage } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { PostEditorImage } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
@@ -42,8 +42,8 @@ export default function ClubEditor({ defaultValues, onSubmit }: Props) {
         </Fieldset.Title>
 
         <Fieldset.Editor>
-          {language === 'ko' && <HTMLEditor name="ko.description" options={{ required: true }} />}
-          {language === 'en' && <HTMLEditor name="en.description" />}
+          {language === 'ko' && <Form.HTML name="ko.description" options={{ required: true }} />}
+          {language === 'en' && <Form.HTML name="en.description" />}
         </Fieldset.Editor>
 
         <Fieldset.Image>

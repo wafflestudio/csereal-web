@@ -2,10 +2,10 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Fieldset from '@/components/editor/common/Fieldset';
-import { PostEditorFile } from '@/components/editor/PostEditorTypes';
-import Form from '@/components/editor/rhf/Form';
-import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
+import Fieldset from '@/components/form/Fieldset';
+import { PostEditorFile } from '@/components/form/PostEditorTypes';
+import Form from '@/components/form/Form';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 
 export interface GuideFormData {
@@ -29,7 +29,7 @@ export default function GuideEditor({ defaultValues, onCancelPath, onSubmit }: P
     <FormProvider {...formMethods}>
       <Form>
         <Fieldset.Editor>
-          <HTMLEditor name="description" />
+          <Form.HTML name="description" />
         </Fieldset.Editor>
         <Fieldset.File>
           <Form.File name="file" />

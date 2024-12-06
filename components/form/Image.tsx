@@ -1,18 +1,23 @@
 import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
-import { LocalImage, PostEditorImage, UploadedImage } from '../PostEditorTypes';
+import { LocalImage, UploadedImage } from './PostEditorTypes';
 
-export interface ImagePickerProps {
-  file: PostEditorImage;
-  setFile: (file: PostEditorImage) => void;
+interface Props {
+  name: string;
+  options?: RegisterOptions;
 }
 
-export default function ImagePicker({ file, setFile }: ImagePickerProps) {
+export default function ImagePicker({ name, options }: Props) {
+  const { register, setValue } = useFormContext();
+  register(name, options);
+  const file = useWatch({ name });
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
     if (!e.target.files || e.target.files.length === 0) return;
-    setFile({ type: 'LOCAL_IMAGE', file: e.target.files[0] });
+    setValue(name, { type: 'LOCAL_IMAGE', file: e.target.files[0] });
   };
 
   return (
@@ -22,7 +27,7 @@ export default function ImagePicker({ file, setFile }: ImagePickerProps) {
         {/* SelectedImageViewer쪽 svg 처리가 애매해서(귀찮아서) accept=image/* 사용 안함 */}
         <input type="file" accept=".png, .jpg, .jpeg" className="hidden" onChange={handleChange} />
       </label>
-      {file && <SelectedImageViewer file={file} removeFile={() => setFile(null)} />}
+      {file && <SelectedImageViewer file={file} removeFile={() => setValue(name, null)} />}
     </>
   );
 }

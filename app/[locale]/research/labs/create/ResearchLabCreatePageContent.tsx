@@ -4,7 +4,7 @@ import { postResearchLabAction } from '@/actions/research';
 import ResearchLabEditor, {
   ResearchLabFormData,
 } from '@/app/[locale]/research/labs/components/ResearchLabEditor';
-import { isLocalFile } from '@/components/editor/PostEditorTypes';
+import { isLocalFile } from '@/components/form/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';

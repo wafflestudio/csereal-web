@@ -2,7 +2,7 @@
 
 import { deleteNewsAction, patchNewsAction } from '@/actions/news';
 import NewsEditor, { NewsFormData } from '@/app/[locale]/community/news/components/NewsEditor';
-import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/editor/PostEditorTypes';
+import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/PostEditorTypes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { News } from '@/types/news';

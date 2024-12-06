@@ -1,6 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
 
-import Dropdown from '@/components/common/form/Dropdown';
+import Dropdown from '@/components/form/legacy/Dropdown';
 import MuiDateSelector from '@/components/common/MuiDateSelector';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { ReservationPostBody } from '@/types/reservation';
