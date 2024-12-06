@@ -1,7 +1,18 @@
-import { getScholarship } from '@/apis/v2/academics/scholarship/[id]';
-import InvalidIDFallback from '@/components/common/InvalidIDFallback';
+import { revalidateTag } from 'next/cache';
 
-import ScholarshipDetailEdit from '../../../../components/ScholarshipDetailEdit';
+import { putScholarship } from '@/apis/v2/academics/scholarship';
+import { getScholarship } from '@/apis/v2/academics/scholarship/[id]';
+import ScholarshipEditor, {
+  ScholarshipFormData,
+} from '@/app/[locale]/academics/components/scholarship/ScholarshipEditor';
+import InvalidIDFallback from '@/components/common/InvalidIDFallback';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
+import { redirectKo } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
+import { undergraduateScholarship } from '@/utils/segmentNode';
+
+const path = getPath(undergraduateScholarship);
 
 export default async function UndergraduateScholarshipEditPage({
   params,
@@ -9,8 +20,34 @@ export default async function UndergraduateScholarshipEditPage({
   params: { id: string };
 }) {
   try {
-    const scholarship = await getScholarship(parseInt(params.id));
-    return <ScholarshipDetailEdit type="undergraduate" scholarship={scholarship} />;
+    const id = parseInt(params.id);
+
+    const scholarship = await getScholarship(id);
+
+    const onSubmit = async (content: ScholarshipFormData) => {
+      'use server';
+      await putScholarship(id, {
+        ko: { ...scholarship.ko, name: content.koName, description: content.koDescription },
+        en: { ...scholarship.en, name: content.enName, description: content.enDescription },
+      });
+      revalidateTag(FETCH_TAG_SCHOLARSHIP);
+      redirectKo(path);
+    };
+
+    return (
+      <PageLayout title="학부 장학금 수정" titleType="big">
+        <ScholarshipEditor
+          defaultValues={{
+            koName: scholarship.ko.name,
+            koDescription: scholarship.ko.description,
+            enName: scholarship.en.name,
+            enDescription: scholarship.en.description,
+          }}
+          cancelPath={path}
+          onSubmit={onSubmit}
+        />
+      </PageLayout>
+    );
   } catch {
     return <InvalidIDFallback rawID={params.id} />;
   }

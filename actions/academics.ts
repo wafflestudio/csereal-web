@@ -3,7 +3,6 @@
 import { revalidateTag } from 'next/cache';
 
 import { postAcademicsByPostType, PostType } from '@/apis/v1/academics/[studentType]/[postType]';
-import { postCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes';
 import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
 import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
 import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
