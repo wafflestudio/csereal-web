@@ -10,6 +10,7 @@ import ImagePicker from '@/components/editor/rhf/Image';
 import Radio from '@/components/editor/rhf/Radio';
 import Section from '@/components/editor/rhf/Section';
 import Text from '@/components/editor/rhf/Text';
+import TextArea from '@/components/editor/rhf/TextArea';
 import TextList from '@/components/editor/rhf/TextList';
 
 function Form({ children }: { children: ReactNode }) {
@@ -28,4 +29,5 @@ export default Object.assign(Form, {
   Radio,
   Dropdown,
   Section,
+  TextArea,
 });

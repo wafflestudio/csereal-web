@@ -77,7 +77,8 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
 
   if (sortOption === '학년') {
     sortedCourses.push([], [], [], []);
-    courses.forEach((course) => sortedCourses[course.grade - 1].push(course));
+    // TODO
+    courses.forEach((course) => sortedCourses[Math.max(0, course.grade - 1)].push(course));
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>

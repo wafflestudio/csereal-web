@@ -1,20 +1,5 @@
 import { CareerCompanyEditorContent } from '@/app/[locale]/about/future-careers/CareerCompanies';
 import { BasicEditorContent } from '@/components/editor/BasicEditor';
-import { Course } from '@/types/academics';
-
-export const validateCourseForm = (content: Course) => {
-  const { code, ko, en } = content;
-
-  if (!ko.name || !ko.description) {
-    throw new Error('교과목명과 설명을 입력해주세요');
-  }
-  if (!code) {
-    throw new Error('교과목 번호를 입력해주세요');
-  }
-  if (!en.name || !en.description) {
-    throw new Error('영어 정보를 입력해주세요');
-  }
-};
 
 export const validateBasicForm = (
   content: BasicEditorContent,

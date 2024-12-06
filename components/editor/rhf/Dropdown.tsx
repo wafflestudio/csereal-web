@@ -13,6 +13,7 @@ interface DropdownProps {
   height?: string;
   isDisabled?: boolean;
   rules?: Rules;
+  onChange?: (value: unknown) => void;
 }
 
 export default function Dropdown({
@@ -23,9 +24,10 @@ export default function Dropdown({
   height,
   isDisabled,
   rules,
+  onChange: onChangeFromProp,
 }: DropdownProps) {
   const {
-    field: { value, onChange },
+    field: { value, onChange: onChangeFromController },
   } = useController({ name, rules });
 
   const [expanded, setExpanded] = useState(false);
@@ -37,6 +39,11 @@ export default function Dropdown({
   );
 
   const toggleExpanded = () => setExpanded((x) => !x);
+
+  const onChange = (value: unknown) => {
+    onChangeFromController(value);
+    onChangeFromProp?.(value);
+  };
 
   const handleClick = (index: number) => {
     onChange(contents[index].value);

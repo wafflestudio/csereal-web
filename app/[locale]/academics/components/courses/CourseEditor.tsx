@@ -1,37 +1,34 @@
+import { ReactNode } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import { putCourseAction } from '@/actions/academics';
-import Dropdown from '@/components/common/form/Dropdown';
-import BasicTextInput from '@/components/editor/common/BasicTextInput';
+import Form from '@/components/editor/rhf/Form';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-import { CLASSIFICATION, Course, GRADE } from '@/types/academics';
-import { getKeys } from '@/types/object';
+import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
-import { validateCourseForm } from '@/utils/formValidation';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-import useCourseEditor from './useCourseEditor';
 
 const CREDIT = [1, 2, 3, 4];
 
 export default function CourseEditor({
-  initCourse,
+  defaultValues,
   toggleEditMode,
   setCourse,
 }: {
-  initCourse: Course;
+  defaultValues: Course;
   toggleEditMode: () => void;
   setCourse: (course: Course) => void;
 }) {
-  const { content, setContentByKey, setLanguageContent, setClassification } =
-    useCourseEditor(initCourse);
-  const gradeDropdownContents = initCourse.grade === 0 ? [GRADE[0]] : GRADE.slice(1);
+  const formMethods = useForm<Course>({ defaultValues });
+  const { setValue, handleSubmit } = formMethods;
+  const gradeDropdownContents = defaultValues.grade === 0 ? [GRADE[0]] : GRADE.slice(1);
 
-  const handleSubmit = async () => {
+  const onSubmit = async (course: Course) => {
     try {
-      validateCourseForm(content);
-      handleServerAction(await putCourseAction(content));
+      handleServerAction(await putCourseAction(course));
       successToast('교과목을 수정했습니다.');
-      setCourse(content);
+      setCourse(course);
       toggleEditMode();
     } catch (e) {
       errorToast(errorToStr(e));
@@ -39,64 +36,78 @@ export default function CourseEditor({
   };
 
   return (
-    <>
+    <FormProvider {...formMethods}>
       <h4 className="flex flex-wrap items-center gap-2">
         <BookmarkIcon />
-        <BasicTextInput
-          value={content.ko.name}
-          onChange={(value) => setLanguageContent('name', value, 'ko')}
+        <Form.Text
+          name="ko.name"
           maxWidth="w-[180px]"
           placeholder="교과목명"
+          options={{ required: true }}
         />
         <div
           className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-sm leading-[31px] text-neutral-400"
           onClick={() => errorToast('교과목 코드는 수정할 수 없습니다')}
         >
-          {content.code}
+          {defaultValues.code}
         </div>
-        <CustomDropdown
-          contents={getKeys(CLASSIFICATION)}
-          selected={content.ko.classification}
-          onChange={setClassification}
+        <Form.Dropdown
+          contents={Object.keys(CLASSIFICATION).map((value) => ({ label: value, value }))}
+          name="ko.classification"
+          borderStyle="border-neutral-300"
+          height="h-8"
           width="w-[94px]"
+          onChange={(value) => setValue('en.classification', value as ClassificationEn)}
         />
-        <CustomDropdown
-          contents={CREDIT}
-          selected={content.credit}
-          onChange={setContentByKey('credit')}
+        <Form.Dropdown
+          contents={CREDIT.map((value) => ({ label: value.toString(), value }))}
+          name="credit"
+          borderStyle="border-neutral-300"
+          height="h-8"
         />
-        <CustomDropdown
-          contents={gradeDropdownContents}
-          selected={GRADE[content.grade]}
-          onChange={(value) => setContentByKey('grade')(GRADE.indexOf(value))}
+        <Form.Dropdown
+          contents={gradeDropdownContents.map((label, idx) => ({ value: idx, label }))}
+          name="grade"
+          borderStyle="border-neutral-300"
+          height="h-8"
           width="w-[90px]"
         />
       </h4>
-      <TextArea
-        value={content.ko.description}
-        onChange={(value) => setLanguageContent('description', value, 'ko')}
-        placeholder="교과목 설명"
-      />
-      <EnglishField
-        name={content.en.name}
-        description={content.en.description}
-        setContent={(key, value) => setLanguageContent(key, value, 'en')}
-      />
-      <div className="flex justify-end gap-2">
-        <Button text="취소" onClick={toggleEditMode} />
-        <Button text="확인" onClick={handleSubmit} dark />
+      <Form.TextArea name="ko.description" placeholder="교과목 설명" options={{ required: true }} />
+      <div>
+        <div className="mb-4 flex items-center gap-2.5">
+          <span className="text-md text-neutral-400">영문</span>
+          <Form.Text
+            name="en.name"
+            maxWidth="w-[308px]"
+            placeholder="course name"
+            options={{ required: true }}
+          />
+        </div>
+        <Form.TextArea
+          name="en.description"
+          placeholder="course description"
+          options={{ required: true }}
+        />
       </div>
-    </>
+      <div className="flex justify-end gap-2">
+        {/* TODO: disabled 처리 */}
+        <Button onClick={toggleEditMode}>취소</Button>
+        <Button onClick={handleSubmit(onSubmit)} dark>
+          확인
+        </Button>
+      </div>
+    </FormProvider>
   );
 }
 
 function Button({
-  text,
   onClick,
+  children,
   dark = false,
 }: {
-  text: string;
   onClick: () => void;
+  children?: ReactNode;
   dark?: boolean;
 }) {
   return (
@@ -108,85 +119,7 @@ function Button({
       } `}
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
-  );
-}
-
-function CustomDropdown<T>({
-  contents,
-  selected,
-  onChange,
-  width,
-}: {
-  contents: T[];
-  selected: T;
-  onChange: (value: T) => void;
-  width?: string;
-}) {
-  const getSelectedIndex = () => {
-    const idx = contents.findIndex((x) => x === selected);
-    return idx === -1 ? 0 : idx;
-  };
-
-  return (
-    <Dropdown
-      contents={contents.map((x) => x + '')} // 문자열화
-      selectedIndex={getSelectedIndex()}
-      onClick={(i) => {
-        onChange(contents[i]);
-      }}
-      borderStyle="border-neutral-300"
-      width={width}
-      height="h-8"
-    />
-  );
-}
-
-function TextArea({
-  value,
-  placeholder,
-  onChange,
-}: {
-  value: string;
-  placeholder?: string;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <textarea
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="autofill-bg-white h-20 w-full resize-none rounded-sm border border-neutral-300 p-2 text-md outline-none placeholder:text-neutral-300"
-      placeholder={placeholder}
-    />
-  );
-}
-
-function EnglishField({
-  name,
-  description,
-  setContent,
-}: {
-  name: string;
-  description: string;
-  setContent: (key: 'name' | 'description', value: string) => void;
-}) {
-  return (
-    <div>
-      <div className="mb-4 flex items-center gap-2.5">
-        <span className="text-md text-neutral-400">영문</span>
-        <BasicTextInput
-          value={name}
-          onChange={(value) => setContent('name', value)}
-          maxWidth="w-[308px]"
-          placeholder="course name"
-        />
-      </div>
-      <TextArea
-        value={description}
-        onChange={(value) => setContent('description', value)}
-        placeholder="course description"
-      />
-    </div>
   );
 }
