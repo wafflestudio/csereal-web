@@ -2,10 +2,8 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { postAcademicsByPostType, PostType } from '@/apis/v1/academics/[studentType]/[postType]';
 import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
 import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
-import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
 import {
   deleteCurriculum,
   putCurriculum,
@@ -45,18 +43,6 @@ import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
-const postTypeToTag: { [key in PostType]: string } = {
-  'course-changes': FETCH_TAG_COURSE_CHANGES,
-};
-
-export const postAcademicsAction = withErrorHandler(
-  async (studentType: StudentType, postType: PostType, formData: FormData) => {
-    decodeFormDataFileName(formData, 'attachments');
-    await postAcademicsByPostType(studentType, postType, formData);
-    revalidateTag(postTypeToTag[postType]);
-  },
-);
-
 export const putGuideAction = withErrorHandler(async (type: StudentType, formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');
   await putAcademicsGuide(type, formData);
@@ -81,11 +67,6 @@ export const deleteCourseAction = withErrorHandler(async (code: string) => {
 });
 
 /** 전공 이수 표준 형태 */
-
-export const postCurriculumAction = withErrorHandler(async (data: Curriculum) => {
-  await postCurriculum(data);
-  revalidateTag(FETCH_TAG_CURRICULUM);
-});
 
 export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
   await putCurriculum(data);

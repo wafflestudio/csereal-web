@@ -10,7 +10,7 @@ export interface AcademicsByPostType {
   attachments: Attachment[];
 }
 
-export type PostType = 'course-changes';
+export type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
 
 export const getAcademicsByPostType = (studentType: StudentType, postType: PostType) =>
   getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);

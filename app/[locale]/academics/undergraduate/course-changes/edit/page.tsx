@@ -2,7 +2,9 @@ import { revalidateTag } from 'next/cache';
 
 import { getCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes';
 import { putCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
-import Bridge from '@/app/[locale]/academics/components/timeline/TimelineEditorBridge';
+import TimelineEditor, {
+  TimelineFormData,
+} from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
@@ -21,7 +23,7 @@ export default async function Page({ searchParams }: { searchParams: { year: str
     return <div>해당 연도 내용이 존재하지 않습니다.</div>;
   }
 
-  const action = async (formData: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     'use server';
     decodeFormDataFileName(formData, 'newAttachments');
     await putCourseChanges('undergraduate', year, formData);
@@ -29,9 +31,19 @@ export default async function Page({ searchParams }: { searchParams: { year: str
     redirectKo(courseChangePath);
   };
 
+  const defaultValues: TimelineFormData = {
+    year: selected.year,
+    description: selected.description,
+    file: selected.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
+  };
+
   return (
     <PageLayout title="학부 교과목 변경 내역 편집" titleType="big">
-      <Bridge data={selected} action={action} cancelPath={courseChangePath} />
+      <TimelineEditor
+        cancelPath={courseChangePath}
+        onSubmit={onSubmit}
+        defaultValues={defaultValues}
+      />
     </PageLayout>
   );
 }

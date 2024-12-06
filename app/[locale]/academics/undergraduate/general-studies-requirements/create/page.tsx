@@ -1,18 +1,22 @@
-'use client';
-
-import { postGeneralStudiesAction } from '@/actions/academics';
+import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { curriculum } from '@/utils/segmentNode';
-
-import TimelineEditor from '../../../components/timeline/TimelineEditor';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const curriculumPath = getPath(curriculum);
 
 export default function GeneralStudiesCreatePage() {
+  const onSubmit = async (formData: FormData) => {
+    'use server';
+    decodeFormDataFileName(formData, 'attachments');
+    await postAcademicsByPostType('undergraduate', 'general-studies-requirements', formData);
+  };
+
   return (
     <PageLayout title="필수 교양 과목 추가" titleType="big">
-      <TimelineEditor submitAction={postGeneralStudiesAction} fallbackPathname={curriculumPath} />
+      <TimelineEditor onSubmit={onSubmit} cancelPath={curriculumPath} />
     </PageLayout>
   );
 }
