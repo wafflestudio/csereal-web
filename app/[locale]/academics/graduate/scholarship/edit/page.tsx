@@ -1,6 +1,6 @@
 import { getScholarshipList } from '@/apis/v1/academics/scholarship';
 
-import ScholarshipGuideEditPageContent from '../../../helper/ScholarshipGuideEditPageContent';
+import ScholarshipGuideEditPageContent from '../../../components/ScholarshipGuideEditPageContent';
 
 export default async function GraduateScholarshipListEditPage() {
   const { description } = await getScholarshipList('graduate');

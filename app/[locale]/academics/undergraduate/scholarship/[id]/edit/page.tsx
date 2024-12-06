@@ -1,7 +1,7 @@
 import { getScholarship } from '@/apis/v2/academics/scholarship/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
-import ScholarshipDetailEdit from '../../../../helper/ScholarshipDetailEdit';
+import ScholarshipDetailEdit from '../../../../components/ScholarshipDetailEdit';
 
 export default async function UndergraduateScholarshipEditPage({
   params,

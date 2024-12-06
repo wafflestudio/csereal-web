@@ -7,11 +7,11 @@ import { Classification, Course, SortOption } from '@/types/academics';
 import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import AddCourseButton from '../../helper/courses/AddCourseButton';
-import CourseCards from '../../helper/courses/CourseCards';
-import CourseList from '../../helper/courses/CourseList';
-import CourseToolbar from '../../helper/courses/CourseToolbar';
-import useCourseToolbar from '../../helper/courses/useCourseToolbar';
+import AddCourseButton from '../../components/courses/AddCourseButton';
+import CourseCards from '../../components/courses/CourseCards';
+import CourseList from '../../components/courses/CourseList';
+import CourseToolbar from '../../components/courses/CourseToolbar';
+import useCourseToolbar from '../../components/courses/useCourseToolbar';
 
 interface CoursePageContentProps {
   courses: Course[];

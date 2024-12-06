@@ -4,7 +4,7 @@ import { getCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
 import { getMetadata } from '@/utils/metadata';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 
-import CourseChangesPageContent from '../../helper/course-changes/CourseChangesPageContent';
+import CourseChangesPageContent from '../../components/course-changes/CourseChangesPageContent';
 
 export async function generateMetadata({
   params: { locale },

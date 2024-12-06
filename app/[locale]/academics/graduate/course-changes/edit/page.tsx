@@ -2,7 +2,7 @@ import { getCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
 import { getPath } from '@/utils/page';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 
-import CourseChangesEditPageContent from '../../../helper/course-changes/CourseChangeEditPageContent';
+import CourseChangesEditPageContent from '../../../components/course-changes/CourseChangeEditPageContent';
 
 const courseChangePath = getPath(graduateCourseChanges);
 

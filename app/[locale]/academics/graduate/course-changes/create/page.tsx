@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
 import { graduateCourseChanges } from '@/utils/segmentNode';
 
-import TimelineEditor from '../../../helper/timeline/TimelineEditor';
+import TimelineEditor from '../../../components/timeline/TimelineEditor';
 
 const courseChangesPath = getPath(graduateCourseChanges);
 

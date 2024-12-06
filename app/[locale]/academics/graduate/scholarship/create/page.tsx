@@ -1,4 +1,4 @@
-import ScholarshipCreatePage from '../../../helper/ScholarshipCreatePage';
+import ScholarshipCreatePage from '../../../components/ScholarshipCreatePage';
 
 export default function GraduateScholarshipCreatePage() {
   return <ScholarshipCreatePage type="graduate" />;
