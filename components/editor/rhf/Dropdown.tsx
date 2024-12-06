@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 
+import { Rules } from '@/types/form';
 import { useClickOutside } from '@/utils/hooks/useClickOutside';
 
 // TODO: onClick을 인덱스 기반에서 값 기반으로 사용하는 옵션
@@ -11,6 +12,7 @@ interface DropdownProps {
   width?: string;
   height?: string;
   isDisabled?: boolean;
+  rules?: Rules;
 }
 
 export default function Dropdown({
@@ -20,10 +22,11 @@ export default function Dropdown({
   width,
   height,
   isDisabled,
+  rules,
 }: DropdownProps) {
   const {
     field: { value, onChange },
-  } = useController({ name });
+  } = useController({ name, rules });
 
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

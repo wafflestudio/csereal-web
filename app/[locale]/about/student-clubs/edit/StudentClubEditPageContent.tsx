@@ -1,21 +1,14 @@
 'use client';
 
 import { putClubAction } from '@/actions/about';
-import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
 import { Club } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateBasicForm } from '@/utils/formValidation';
-import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import ClubEditor, { ClubFormData } from '../components/ClubEditor';
-
-const clubPath = getPath(studentClubs);
 
 export default function StudentClubEditPageContent({ data }: { data: WithLanguage<Club> }) {
   const onSubmit = async (_formData: ClubFormData) => {
