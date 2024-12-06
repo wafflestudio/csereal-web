@@ -1,5 +1,5 @@
 import { LANGUAGE, Language } from '@/types/language';
-import { getKeys } from '@/types/object';
+import { getKeys } from '@/utils/object';
 
 export default function LanguagePicker({
   selected,

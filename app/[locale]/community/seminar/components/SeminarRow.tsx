@@ -1,7 +1,7 @@
 import { ElementType, PropsWithChildren } from 'react';
 
+import PaginatedLink from '@/app/[locale]/community/components/PaginatedLink';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-import PaginatedLink from '@/components/post/PaginatedLink';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';

@@ -1,7 +1,7 @@
 'use client';
 
 import { FutureCareers } from '@/types/about';
-import Fieldset from '@/components/form/fieldset';
+import Fieldset from '@/components/form/Fieldset';
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
 import Form from '@/components/form/Form';

@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { postFacilityAction, putFacilityAction } from '@/actions/about';
-import Fieldset from '@/components/form/fieldset';
+import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';

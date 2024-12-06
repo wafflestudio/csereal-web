@@ -1,6 +1,6 @@
 import useModal from '@/utils/hooks/useModal';
 
-import ModalFrame from './ModalFrame';
+import ModalFrame from '../../../../components/modal/ModalFrame';
 
 const MEMBERS = [
   { part: 'Designer', members: ['유채원', '최유진'] },

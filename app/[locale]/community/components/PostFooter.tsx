@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl';
 
+import LoginVisible from '@/components/common/LoginVisible';
 import { Link } from '@/i18n/routing';
 import { News } from '@/types/news';
 import { Notice } from '@/types/notice';
 import { Seminar } from '@/types/seminar';
 
-import LoginVisible from '../common/LoginVisible';
 import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';
 

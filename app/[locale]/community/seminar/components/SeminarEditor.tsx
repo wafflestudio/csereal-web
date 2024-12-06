@@ -2,7 +2,7 @@
 
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
-import Fieldset from '@/components/form/fieldset';
+import Fieldset from '@/components/form/Fieldset';
 import { PostEditorFile, PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';

@@ -1,6 +1,6 @@
 'use client';
 
-import Fieldset from '@/components/form/fieldset';
+import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
