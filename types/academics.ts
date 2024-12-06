@@ -1,15 +1,12 @@
+import { Attachment } from '@/components/common/Attachments';
+
 import { Language } from './language';
 
 export type StudentType = 'undergraduate' | 'graduate';
 
 export interface Guide {
   description: string;
-  attachments: {
-    id: number;
-    name: string;
-    url: string;
-    bytes: number;
-  }[];
+  attachments: Attachment[];
 }
 
 export const GRADE = ['대학원', '1학년', '2학년', '3학년', '4학년'] as const;

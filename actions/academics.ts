@@ -2,12 +2,12 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { postCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
+import { postCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes';
 import {
   deleteCourseChanges,
   putCourseChanges,
-} from '@/apis/v1/academics/[type]/course-changes/[year]';
-import { putAcademicsGuide } from '@/apis/v1/academics/[type]/guide';
+} from '@/apis/v1/academics/[studentType]/course-changes/[year]';
+import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
 import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
 import {
   deleteCurriculum,
