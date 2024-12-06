@@ -1,3 +1,5 @@
+'use server';
+
 import { getRequest, postRequest, putRequest } from '@/apis';
 import { Attachment } from '@/components/common/Attachments';
 import { StudentType } from '@/types/academics';
@@ -8,9 +10,8 @@ export interface AcademicsByPostType {
   attachments: Attachment[];
 }
 
-type PostType = '';
+export type PostType = 'course-changes';
 
-// TODO: PostType을 search에서 가져다쓰는게 맞나??
 export const getAcademicsByPostType = (studentType: StudentType, postType: PostType) =>
   getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);
 

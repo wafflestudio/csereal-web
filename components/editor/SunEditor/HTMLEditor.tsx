@@ -58,7 +58,9 @@ const handleImageUploadBefore = (files, info, core, uploadHandler) => {
   });
 
   postImage(formData)
-    .then((resp) => uploadHandler(resp))
+    .then((resp) => {
+      uploadHandler(resp);
+    })
     .catch((reason) => uploadHandler(reason + ''));
 
   return undefined;

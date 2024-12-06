@@ -3,39 +3,27 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/editor/common/Fieldset';
+import { PostEditorFile } from '@/components/editor/PostEditorTypes';
 import Form from '@/components/editor/rhf/Form';
 import HTMLEditor from '@/components/editor/SunEditor/HTMLEditor';
-import { useRouter } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
 
-export type TimelineFormData = { year: number; description: string };
+export type TimelineFormData = { year: number; description: string; file: PostEditorFile[] };
 
 interface Props {
   defaultValues?: TimelineFormData;
-  serverAction: (data: TimelineFormData) => Promise<unknown>;
-  onCancelPath: string;
+  onCancel: () => void;
+  onSubmit: (data: TimelineFormData) => Promise<unknown>;
 }
 
-export default function TimelineEditor({ defaultValues, serverAction, onCancelPath }: Props) {
+export default function TimelineEditor2({ defaultValues, onSubmit, onCancel }: Props) {
   const formMethods = useForm<TimelineFormData>({
-    defaultValues: defaultValues ?? { year: new Date().getFullYear() + 1, description: '' },
+    defaultValues: defaultValues ?? {
+      year: new Date().getFullYear() + 1,
+      description: '',
+      file: [],
+    },
   });
   const { handleSubmit } = formMethods;
-
-  const router = useRouter();
-  const onCancel = () => router.push(onCancelPath);
-
-  const onSubmit = async (formData: TimelineFormData) => {
-    try {
-      handleServerAction(serverAction(formData));
-      successToast('저장했습니다.');
-      router.push(onCancelPath);
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
-  };
 
   return (
     <FormProvider {...formMethods}>
@@ -48,7 +36,12 @@ export default function TimelineEditor({ defaultValues, serverAction, onCancelPa
             options={{ required: true, valueAsNumber: true }}
           />
         </Fieldset>
-        <HTMLEditor name="description" />
+        <Fieldset.Editor>
+          <HTMLEditor name="description" options={{ required: true }} />
+        </Fieldset.Editor>
+        <Fieldset.File>
+          <Form.File name="file" />
+        </Fieldset.File>
         <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
       </Form>
     </FormProvider>

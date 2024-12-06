@@ -2,11 +2,9 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { postAcademicsByPostType, PostType } from '@/apis/v1/academics/[studentType]/[postType]';
 import { postCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes';
-import {
-  deleteCourseChanges,
-  putCourseChanges,
-} from '@/apis/v1/academics/[studentType]/course-changes/[year]';
+import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
 import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
 import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
 import {
@@ -36,7 +34,6 @@ import {
 import { redirect } from '@/i18n/routing';
 import {
   Course,
-  CourseChange,
   Curriculum,
   GeneralStudiesRequirement,
   Scholarship,
@@ -48,6 +45,18 @@ import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNo
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
+
+const postTypeToTag: { [key in PostType]: string } = {
+  'course-changes': FETCH_TAG_COURSE_CHANGES,
+};
+
+export const postAcademicsAction = withErrorHandler(
+  async (studentType: StudentType, postType: PostType, formData: FormData) => {
+    decodeFormDataFileName(formData, 'attachments');
+    await postAcademicsByPostType(studentType, postType, formData);
+    revalidateTag(postTypeToTag[postType]);
+  },
+);
 
 export const putGuideAction = withErrorHandler(async (type: StudentType, formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');
@@ -117,20 +126,6 @@ export const putDegreeRequirementsAction = withErrorHandler(async (formData: For
 });
 
 /** 교과목 변경 내역 */
-
-export const postCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await postCourseChanges(type, data);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
-  },
-);
-
-export const putCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await putCourseChanges(type, data);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
-  },
-);
 
 export const deleteCourseChangesAction = withErrorHandler(
   async (type: StudentType, year: number) => {

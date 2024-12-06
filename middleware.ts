@@ -23,7 +23,7 @@ const generateCSPHeader = (nonce: string) =>
         : `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
     };
     style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
+    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net https://cse-dev-waffle.bacchus.io/;
     font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';
