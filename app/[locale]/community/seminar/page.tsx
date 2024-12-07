@@ -15,15 +15,20 @@ import { validatePageNum } from '@/utils/validateSearchParams';
 import AdminFeatures from './components/AdminFeatures';
 import SeminarContent from './SeminarContent';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: seminar });
 }
 
 interface SeminarPageParams {
-  searchParams: PostSearchQueryParams;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function SeminarPage({ searchParams }: SeminarPageParams) {
+export default async function SeminarPage(props: SeminarPageParams) {
+  const searchParams = await props.searchParams;
   if (!validatePageNum(searchParams.pageNum)) {
     notFound();
   }

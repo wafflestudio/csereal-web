@@ -10,13 +10,14 @@ import ModalContainer from '@/components/modal/ModalContainer';
 import ModalContextProvider from '@/contexts/ModalContext';
 import SessionContextProvider from '@/contexts/SessionContext';
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = await props.params;
+
+  const { children } = props;
+
   const messages = await getMessages();
 
   return (

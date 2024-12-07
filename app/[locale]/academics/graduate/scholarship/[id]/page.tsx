@@ -7,10 +7,14 @@ import { graduateScholarship } from '@/utils/segmentNode';
 import ScholarshipDetail from '../../../components/scholarship/ScholarshipDetail';
 
 interface ScholarshipDetailProps {
-  params: { locale: Language; id: string };
+  params: Promise<{ locale: Language; id: string }>;
 }
 
-export async function generateMetadata({ params: { locale, id } }: ScholarshipDetailProps) {
+export async function generateMetadata(props: ScholarshipDetailProps) {
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   try {
     const scholarship = await getScholarship(parseInt(id));
 
@@ -24,7 +28,8 @@ export async function generateMetadata({ params: { locale, id } }: ScholarshipDe
   }
 }
 
-export default async function GraduateScholarshipPage({ params }: ScholarshipDetailProps) {
+export default async function GraduateScholarshipPage(props: ScholarshipDetailProps) {
+  const params = await props.params;
   try {
     const scholarship = await getScholarship(parseInt(params.id));
     return <ScholarshipDetail scholarship={scholarship[params.locale]} type="graduate" />;

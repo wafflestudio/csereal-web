@@ -4,7 +4,11 @@ import { undergraduateScholarship } from '@/utils/segmentNode';
 
 import ScholarshipPreview from '../../components/scholarship/ScholarshipPreview';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: undergraduateScholarship });
 }
 

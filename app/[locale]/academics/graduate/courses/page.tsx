@@ -7,14 +7,22 @@ import { graduateCourses } from '@/utils/segmentNode';
 import GraduateCoursePageContent from './GraduateCoursePageContent';
 
 interface CoursePageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: CoursePageProps) {
+export async function generateMetadata(props: CoursePageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: graduateCourses });
 }
 
-export default async function GraduateCoursePage({ params: { locale } }: CoursePageProps) {
+export default async function GraduateCoursePage(props: CoursePageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const courseList = await getCourses('graduate', locale);
 
   return (

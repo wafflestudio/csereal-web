@@ -10,10 +10,12 @@ import { seminar } from '@/utils/segmentNode';
 
 import SeminarViewer from './SeminarViewer';
 
-export async function generateMetadata({
-  params: { locale, id },
-  searchParams,
-}: SeminarPostPageProps) {
+export async function generateMetadata(props: SeminarPostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   try {
     const seminarPost = await getSeminarPost(parseInt(id), searchParams);
 
@@ -30,11 +32,13 @@ export async function generateMetadata({
 }
 
 interface SeminarPostPageProps {
-  params: { id: string; locale: string };
-  searchParams: PostSearchQueryParams;
+  params: Promise<{ id: string; locale: string }>;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function SeminarPostPage({ params, searchParams }: SeminarPostPageProps) {
+export default async function SeminarPostPage(props: SeminarPostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const id = parseInt(params.id);
   if (Number.isNaN(id)) throw new Error('/seminar/[id]: id가 숫자가 아닙니다.');
 

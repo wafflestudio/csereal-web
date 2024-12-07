@@ -12,15 +12,20 @@ import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/utils/segmentNode';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: notice });
 }
 
 interface NoticePageParams {
-  searchParams: PostSearchQueryParams;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function NoticePage({ searchParams }: NoticePageParams) {
+export default async function NoticePage(props: NoticePageParams) {
+  const searchParams = await props.searchParams;
   if (!validatePageNum(searchParams.pageNum) || !validateTag('notice', searchParams.tag)) {
     notFound();
   }

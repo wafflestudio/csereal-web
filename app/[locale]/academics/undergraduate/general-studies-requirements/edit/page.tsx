@@ -2,11 +2,10 @@ import { getGeneralStudies } from '@/apis/v1/academics/undergraduate/general-stu
 
 import GeneralStudiesEditPageContent from './GeneralStudiesEditPageContent';
 
-export default async function GeneralStudiesEditPage({
-  searchParams,
-}: {
-  searchParams: { year: string };
+export default async function GeneralStudiesEditPage(props: {
+  searchParams: Promise<{ year: string }>;
 }) {
+  const searchParams = await props.searchParams;
   const { generalStudies } = await getGeneralStudies();
   const year = Number(searchParams.year);
   const selected = generalStudies.find((x) => x.year === year);

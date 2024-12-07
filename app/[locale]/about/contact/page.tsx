@@ -11,16 +11,24 @@ import { getPath } from '@/utils/page';
 import { contact } from '@/utils/segmentNode';
 
 interface ContactPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
 const contactPath = getPath(contact);
 
-export async function generateMetadata({ params: { locale } }: ContactPageProps) {
+export async function generateMetadata(props: ContactPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: contact });
 }
 
-export default async function ContactPage({ params: { locale } }: ContactPageProps) {
+export default async function ContactPage(props: ContactPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const { description, imageURL } = await getContact(locale);
 
   return (

@@ -48,7 +48,7 @@ const _fetch = async (url: string, method: string, init?: CredentialRequestInit)
   let headers: HeadersInit | undefined;
 
   if (init?.jsessionID) {
-    const jsessionId = cookies().get('JSESSIONID')?.value;
+    const jsessionId = (await cookies()).get('JSESSIONID')?.value;
     headers = { Cookie: `JSESSIONID=${jsessionId}`, ...init?.headers };
   }
 

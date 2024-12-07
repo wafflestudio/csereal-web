@@ -6,11 +6,13 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { internationalUndergraduateAdmission } from '@/utils/segmentNode';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({
     locale,
     node: internationalUndergraduateAdmission,

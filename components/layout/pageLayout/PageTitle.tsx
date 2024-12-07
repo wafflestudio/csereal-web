@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Fragment } from 'react';
+import { Fragment, type JSX } from 'react';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
 import { usePathname } from '@/i18n/routing';

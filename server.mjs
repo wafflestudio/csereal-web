@@ -49,7 +49,7 @@ const override500 = (res) => {
 };
 
 const startServer = async () => {
-  const nextServer = next({ dev: isDev, port: port });
+  const nextServer = next({ dev: isDev, port: port, turbo: true });
   const handleRequest = nextServer.getRequestHandler();
   await nextServer.prepare();
 

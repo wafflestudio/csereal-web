@@ -12,19 +12,25 @@ import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';
 
 interface EmeritusFacultyPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: EmeritusFacultyPageProps) {
+export async function generateMetadata(props: EmeritusFacultyPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: emeritusFaculty });
 }
 
 const emeritusFacultyPath = getPath(emeritusFaculty);
 const facultyPath = getPath(faculty);
 
-export default async function EmeritusFacultyPage({
-  params: { locale },
-}: EmeritusFacultyPageProps) {
+export default async function EmeritusFacultyPage(props0: EmeritusFacultyPageProps) {
+  const params = await props0.params;
+
+  const { locale } = params;
+
   const facultyList = await getEmeritusFacultyList(locale);
   const props = facultyList.map(facultyToProp);
 

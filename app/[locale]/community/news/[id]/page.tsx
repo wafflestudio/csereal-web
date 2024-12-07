@@ -10,10 +10,12 @@ import { news } from '@/utils/segmentNode';
 
 import NewsViewer from './NewsViewer';
 
-export async function generateMetadata({
-  params: { locale, id },
-  searchParams,
-}: NewsPostPageProps) {
+export async function generateMetadata(props: NewsPostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   try {
     const newsPost = await getNewsDetail(parseInt(id), searchParams);
 
@@ -30,11 +32,13 @@ export async function generateMetadata({
 }
 
 interface NewsPostPageProps {
-  params: { id: string; locale: string };
-  searchParams: PostSearchQueryParams;
+  params: Promise<{ id: string; locale: string }>;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function NewsPostPage({ params, searchParams }: NewsPostPageProps) {
+export default async function NewsPostPage(props: NewsPostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const id = parseInt(params.id);
   if (Number.isNaN(id)) throw new Error('/news/[id]: id가 숫자가 아닙니다.');
 

@@ -1,4 +1,5 @@
 'use client';
+import { use } from 'react';
 
 import { postStaffAction } from '@/actions/people';
 import StaffEditor, {
@@ -16,7 +17,11 @@ import { errorToast } from '@/utils/toast';
 
 const staffPath = getPath(staff);
 
-export default function StaffCreatePage({ params: { locale } }: { params: { locale: Language } }) {
+export default function StaffCreatePage(props: { params: Promise<{ locale: Language }> }) {
+  const params = use(props.params);
+
+  const { locale } = params;
+
   const router = useRouter();
 
   const onCancel = () => router.push(staffPath);

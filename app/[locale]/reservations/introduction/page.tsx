@@ -9,21 +9,22 @@ import { getPath } from '@/utils/page';
 import { reservationIntroduction } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: reservationIntroduction });
 }
 
 const path = getPath(reservationIntroduction);
 
-export default function ReservationIntroductionPage({
-  searchParams,
-}: {
-  searchParams: { selected?: string };
+export default async function ReservationIntroductionPage(props: {
+  searchParams: Promise<{ selected?: string }>;
 }) {
+  const searchParams = await props.searchParams;
   const selected = (searchParams.selected ||= names[0].ko);
   const temp = replaceDashWithSpace(selected);
   const itemName = isSearchParamValid(temp) ? temp : names[0].ko;

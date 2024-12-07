@@ -2,10 +2,14 @@ import { getNoticePostDetail } from '@/apis/v1/notice/[id]';
 import EditNoticePageContent from '@/app/[locale]/community/notice/[id]/edit/EditNoticePageContent';
 
 interface EditNoticePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default async function EditNoticePage({ params: { id: rawId } }: EditNoticePageProps) {
+export default async function EditNoticePage(props: EditNoticePageProps) {
+  const params = await props.params;
+
+  const { id: rawId } = params;
+
   const id = +rawId;
   if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 

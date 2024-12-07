@@ -15,20 +15,26 @@ import DirectionsDetails from './DirectionsDetails';
 import LocationGuide from './LocationGuide';
 import LocationMap from './LocationMap';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: directions });
 }
 
 interface DirectionsPageProps {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }
 
 const directionsPath = getPath(directions);
 const FIND_PATH_URL =
   'https://map.naver.com/v5/directions/-/14132304.586627584,4502018.066849938,%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90%EA%B4%80%EC%95%85%EC%BA%A0%ED%8D%BC%EC%8A%A4%EC%A0%9C1%EA%B3%B5%ED%95%99%EA%B4%80,18721800,PLACE_POI/-/transit?c=15,0,0,0,dh';
 
-export default async function DirectionsPage({ searchParams, params }: DirectionsPageProps) {
+export default async function DirectionsPage(props: DirectionsPageProps) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const directionList = await getDirections();
   const selectedDirection = findItemBySearchParam(
     directionList,

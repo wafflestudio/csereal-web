@@ -12,15 +12,20 @@ import { getMetadata } from '@/utils/metadata';
 import { news } from '@/utils/segmentNode';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: news });
 }
 
 interface NewsPageParams {
-  searchParams: PostSearchQueryParams;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function NewsPage({ searchParams }: NewsPageParams) {
+export default async function NewsPage(props: NewsPageParams) {
+  const searchParams = await props.searchParams;
   if (!validatePageNum(searchParams.pageNum) || !validateTag('news', searchParams.tag)) {
     notFound();
   }

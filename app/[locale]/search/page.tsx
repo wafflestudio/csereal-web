@@ -20,11 +20,13 @@ import SearchSubNavbar, { TreeNode } from './helper/SearchSubNavbar';
 import MemberSection from './MemberSection';
 import ResearchSection from './ResearchSection';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const t = await getTranslations('Nav');
 
   return await getMetadata({
@@ -36,11 +38,13 @@ export async function generateMetadata({
   });
 }
 
-export default async function SearchPage({
-  searchParams: { keyword, tag },
-}: {
-  searchParams: { keyword?: string; tag?: string[] };
+export default async function SearchPage(props: {
+  searchParams: Promise<{ keyword?: string; tag?: string[] }>;
 }) {
+  const searchParams = await props.searchParams;
+
+  const { keyword, tag } = searchParams;
+
   // 검색어 길이 예외 처리
   // 모바일에서는 네비바에서 검색창으로 이동하는데, 이 경우 keyword.length가 0이므로 0일 때는 아무것도 띄우지 않는다.
   if (keyword === undefined) return <SearchPageLayout />;

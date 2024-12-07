@@ -8,7 +8,11 @@ import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateCourseChanges } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: undergraduateCourseChanges });
 }
 
