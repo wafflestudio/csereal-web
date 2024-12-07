@@ -7,7 +7,7 @@ export interface LocalFile {
   file: File;
 }
 
-export interface UploadedFile {
+interface UploadedFile {
   type: 'UPLOADED_FILE';
   file: {
     id: number;

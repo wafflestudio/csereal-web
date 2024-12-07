@@ -15,7 +15,7 @@ import { usePathname } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-export type NavbarState =
+type NavbarState =
   | { type: 'closed' }
   | { type: 'expanded' }
   | { type: 'hovered'; segmentNode: SegmentNode };

@@ -1,7 +1,7 @@
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { Link } from '@/i18n/routing';
 
-export interface NewsRowProps {
+interface NewsRowProps {
   href: string;
   title: string;
   date: Date;

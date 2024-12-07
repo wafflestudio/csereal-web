@@ -36,30 +36,3 @@ export interface Notice {
     bytes: number;
   }[];
 }
-
-export interface POSTNoticeBody {
-  request: {
-    title: string;
-    titleForMain: string | null;
-    description: string;
-    isPrivate: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-  };
-  attachments: File[];
-}
-
-export interface PatchNoticeBody {
-  request: {
-    title: string;
-    titleForMain: string | null;
-    description: string;
-    isPrivate: boolean;
-    isPinned: boolean;
-    isImportant: boolean;
-    tags: string[];
-    deleteIds: number[];
-  };
-  newAttachments: File[];
-}

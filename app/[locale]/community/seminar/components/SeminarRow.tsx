@@ -10,7 +10,7 @@ import { SeminarPreview } from '@/types/seminar';
 import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 
-export interface SeminarRowProps {
+interface SeminarRowProps {
   seminar: SeminarPreview;
 }
 

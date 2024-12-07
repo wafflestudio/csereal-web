@@ -149,7 +149,7 @@ function CareerCompanyViewer({
   );
 }
 
-export interface CareerCompanyFormData {
+interface CareerCompanyFormData {
   name: string;
   url: string;
   year: number;

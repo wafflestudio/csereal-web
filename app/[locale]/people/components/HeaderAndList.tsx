@@ -1,6 +1,6 @@
 import BulletRow from './BulletRow';
 
-export interface PeopleInfoListProps {
+interface PeopleInfoListProps {
   header: string;
   list: string[];
 }

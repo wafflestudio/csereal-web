@@ -4,7 +4,7 @@ import { usePathname, useRouter } from '@/i18n/routing';
 import { PostSearchQueryParams } from '@/types/post';
 import { objToQueryString, urlSearchParamsToString } from '@/utils/convertParams';
 
-export type SearchInfo =
+type SearchInfo =
   | { purpose: 'search'; keyword: string; tag?: string[] }
   | { purpose: 'navigation'; pageNum: number };
 

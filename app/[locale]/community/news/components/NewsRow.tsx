@@ -4,7 +4,7 @@ import Tags from '@/components/common/Tags';
 import { news } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
 
-export interface NewsRowProps {
+interface NewsRowProps {
   href: string;
   title: string;
   description: string;

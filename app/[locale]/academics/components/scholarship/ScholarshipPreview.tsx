@@ -66,7 +66,7 @@ function CreateButton({ type }: { type: StudentType }) {
   );
 }
 
-export interface ScholarshipRowProps {
+interface ScholarshipRowProps {
   id: number;
   name: string;
   type: StudentType;

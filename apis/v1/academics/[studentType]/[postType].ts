@@ -4,13 +4,13 @@ import { getRequest, postRequest, putRequest } from '@/apis';
 import { Attachment } from '@/components/common/Attachments';
 import { StudentType } from '@/types/academics';
 
-export interface AcademicsByPostType {
+interface AcademicsByPostType {
   year: number;
   description: string;
   attachments: Attachment[];
 }
 
-export type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
+type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
 
 export const getAcademicsByPostType = async (studentType: StudentType, postType: PostType) =>
   await getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);

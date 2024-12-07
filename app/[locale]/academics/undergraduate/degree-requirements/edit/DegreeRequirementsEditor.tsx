@@ -16,7 +16,7 @@ import { errorToast } from '@/utils/toast';
 
 const degreeRequirementsPath = getPath(degree);
 
-export type DegreeRequirementsFormData = {
+type DegreeRequirementsFormData = {
   description: string;
   files: EditorFile[];
 };

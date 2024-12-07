@@ -19,7 +19,7 @@ export type AllMainNotice = {
   graduate: MainNotice[];
 };
 
-export type MainNotice = {
+type MainNotice = {
   id: number;
   title: string;
   createdAt: string;
