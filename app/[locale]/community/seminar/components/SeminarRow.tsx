@@ -8,7 +8,7 @@ import Person from '@/public/image/person.svg';
 import { SeminarPreview } from '@/types/seminar';
 import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
+import { seminar } from '@/constants/segmentNode';
 
 export interface SeminarRowProps {
   seminar: SeminarPreview;

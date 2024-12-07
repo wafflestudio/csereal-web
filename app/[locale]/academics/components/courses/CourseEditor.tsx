@@ -6,7 +6,7 @@ import Form from '@/components/form/Form';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const CREDIT = [1, 2, 3, 4];
@@ -26,7 +26,7 @@ export default function CourseEditor({
 
   const onSubmit = async (course: Course) => {
     try {
-      handleServerAction(await putCourseAction(course));
+      handleServerAction_legacy(await putCourseAction(course));
       successToast('교과목을 수정했습니다.');
       setCourse(course);
       toggleEditMode();

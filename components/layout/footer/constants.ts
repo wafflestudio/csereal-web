@@ -14,7 +14,7 @@ import {
   tentenProject,
   topConferenceList,
   undergraduateGuide,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
 
 export interface FooterLink {
   href: string;

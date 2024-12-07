@@ -2,7 +2,7 @@
 
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { researchCenters, researchGroups } from '@/utils/segmentNode';
+import { researchCenters, researchGroups } from '@/constants/segmentNode';
 
 import { FormProvider, useForm } from 'react-hook-form';
 import LanguagePicker from '@/components/form/LanguagePicker';
@@ -11,14 +11,14 @@ import { useState } from 'react';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 
 const groupsPath = getPath(researchGroups);
 
 export interface ResearchCenterFormData {
   ko: { name: string; description: string; websiteURL: string; type: 'centers' };
   en: { name: string; description: string; websiteURL: string; type: 'centers' };
-  image: PostEditorImage | null;
+  image: EditorImage | null;
 }
 
 interface Props {

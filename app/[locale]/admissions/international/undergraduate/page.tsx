@@ -4,7 +4,7 @@ import { getInternationalUndergraduate } from '@/apis/v1/admissions/internationa
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { internationalUndergraduateAdmission } from '@/utils/segmentNode';
+import { internationalUndergraduateAdmission } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

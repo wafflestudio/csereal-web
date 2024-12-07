@@ -5,7 +5,7 @@ import TimelineEditor from '@/app/[locale]/academics/components/timeline/Timelin
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { getPath } from '@/utils/page';
-import { curriculum } from '@/utils/segmentNode';
+import { curriculum } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const curriculumPath = getPath(curriculum);

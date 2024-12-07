@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
+import { staff } from '@/constants/segmentNode';
 
 import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';

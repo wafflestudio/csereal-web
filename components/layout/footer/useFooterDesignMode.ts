@@ -9,7 +9,7 @@ import {
   research,
   reservations,
   SegmentNode,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
 
 export type FooterMode = 'light' | 'dark';
 

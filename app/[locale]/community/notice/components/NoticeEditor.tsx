@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { PostEditorFile } from '@/components/form/types';
+import { EditorFile } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { NOTICE_TAGS } from '@/constants/tag';
@@ -10,7 +10,7 @@ export interface NoticeFormData {
   title: string;
   titleForMain: string;
   description: string;
-  attachments: PostEditorFile[];
+  attachments: EditorFile[];
   tags: string[];
   isPrivate: boolean;
   isPinned: boolean;

@@ -5,7 +5,7 @@ import {
   researchGroups,
   researchLabs,
   topConferenceList,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';

@@ -8,8 +8,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Scholarship, StudentType } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const graduatePath = getPath(graduateScholarship);
@@ -29,7 +29,7 @@ export default function ScholarshipDetail({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteScholarshipAction(type, id));
+      handleServerAction_legacy(await deleteScholarshipAction(type, id));
       successToast('장학금을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

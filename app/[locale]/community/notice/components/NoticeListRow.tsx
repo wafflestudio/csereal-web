@@ -5,7 +5,7 @@ import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
 import { NoticePreview } from '@/types/notice';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 interface NoticeListRowProps {
   post: NoticePreview;

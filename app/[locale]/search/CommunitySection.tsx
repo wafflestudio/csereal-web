@@ -5,7 +5,7 @@ import { Link } from '@/i18n/routing';
 import { NewsSearchResult, NoticeSearchResult } from '@/types/search';
 import { SeminarPreviewList } from '@/types/seminar';
 import { getPath } from '@/utils/page';
-import { news, notice, seminar } from '@/utils/segmentNode';
+import { news, notice, seminar } from '@/constants/segmentNode';
 
 import SeminarRow from '../community/seminar/components/SeminarRow';
 import CircleTitle from './helper/CircleTitle';

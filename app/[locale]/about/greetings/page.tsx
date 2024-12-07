@@ -7,10 +7,10 @@ import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { greetings } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { greetings } from '@/utils/segmentNode';
 
 interface GreetingsPageProps {
   params: Promise<{ locale: Language }>;
@@ -26,8 +26,6 @@ export async function generateMetadata(props: GreetingsPageProps) {
 
 const greetingsPath = getPath(greetings);
 
-// 학부 소개 페이지 - 학부장 인사말 페이지의 형식이 동일
-// 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function GreetingsPage(props: GreetingsPageProps) {
   const params = await props.params;
   const { description, imageURL } = await getGreetings(params.locale);

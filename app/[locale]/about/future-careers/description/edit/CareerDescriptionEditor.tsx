@@ -10,8 +10,8 @@ import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { studentClubs } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -29,7 +29,7 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      handleServerAction(
+      handleServerAction_legacy(
         await putCareerDescriptionAction({
           koDescription: formData.ko,
           enDescription: formData.en,

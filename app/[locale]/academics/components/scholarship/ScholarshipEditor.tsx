@@ -10,7 +10,7 @@ import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export type ScholarshipFormData = {
@@ -45,7 +45,7 @@ export default function ScholarshipEditor({
 
   const onSubmit = async (formData: ScholarshipFormData) => {
     try {
-      handleServerAction(_onSubmit(formData));
+      handleServerAction_legacy(_onSubmit(formData));
       successToast('장학금을 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

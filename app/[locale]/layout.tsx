@@ -99,7 +99,7 @@ function BuildVersion() {
   if (!buildVersion) return;
 
   return (
-    <div className="fixed right-0 top-0 z-50 bg-[royalblue] p-2 text-sm font-semibold text-white">
+    <div className="fixed bottom-0 right-0 z-50 bg-[royalblue] p-2 text-sm font-semibold text-white">
       <p>Beta Version: {buildVersion}</p>
       <Link
         className="text-white underline"

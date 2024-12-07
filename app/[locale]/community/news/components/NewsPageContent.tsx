@@ -7,7 +7,7 @@ import { NEWS_TAGS } from '@/constants/tag';
 import { Link } from '@/i18n/routing';
 import { NewsPreviewList } from '@/types/news';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 
 const POST_LIMIT = 10;
 const newsPath = getPath(news);

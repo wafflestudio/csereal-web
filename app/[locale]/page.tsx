@@ -15,7 +15,7 @@ import {
   facultyRecruitment,
   generalStudies,
   topConferenceList,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
 
 export default async function MainPage() {
   const data = await getMain();

@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { Curriculum } from '@/types/academics';
 import { getPath } from '@/utils/page';
-import { curriculum } from '@/utils/segmentNode';
+import { curriculum } from '@/constants/segmentNode';
 
 const curriculumPath = getPath(curriculum);
 

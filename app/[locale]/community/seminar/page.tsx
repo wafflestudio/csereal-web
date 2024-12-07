@@ -9,7 +9,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { seminar } from '@/utils/segmentNode';
+import { seminar } from '@/constants/segmentNode';
 import { validatePageNum } from '@/utils/validateSearchParams';
 
 import AdminFeatures from './components/AdminFeatures';

@@ -10,7 +10,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship } from '@/utils/segmentNode';
+import { undergraduateScholarship } from '@/constants/segmentNode';
 
 const path = getPath(undergraduateScholarship);
 

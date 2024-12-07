@@ -25,9 +25,6 @@ import {
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
-import { redirectKo } from '@/i18n/routing';
-import { FutureCareers } from '@/types/about';
-import { getPath } from '@/utils/page';
 import {
   contact,
   directions,
@@ -37,7 +34,11 @@ import {
   history,
   overview,
   studentClubs,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
+import { redirectKo } from '@/i18n/routing';
+import { FutureCareers } from '@/types/about';
+import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -46,6 +47,7 @@ import { withErrorHandler } from './errorHandler';
 const overviewPath = getPath(overview);
 
 export const putOverviewAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await putOverview(formData);
   revalidateTag(FETCH_TAG_OVERVIEW);
   redirectKo(overviewPath);

@@ -4,7 +4,7 @@ import GuideEditor, { GuideFormData } from '@/app/[locale]/academics/components/
 import { Guide } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 interface Props {
@@ -21,7 +21,7 @@ export default function GuideEditBridge({ data, serverAction, path }: Props) {
         requestObject: { description: _formData.description, deleteIds },
         attachments: _formData.file,
       });
-      handleServerAction(await serverAction(formData));
+      handleServerAction_legacy(await serverAction(formData));
     } catch (e) {
       errorToast(errorToStr(e));
     }

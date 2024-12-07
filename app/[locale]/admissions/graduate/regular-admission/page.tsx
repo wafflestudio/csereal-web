@@ -4,7 +4,7 @@ import { getGraduateRegularAdmission } from '@/apis/v1/admissions/graduate/regul
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { graduateAdmission } from '@/utils/segmentNode';
+import { graduateAdmission } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

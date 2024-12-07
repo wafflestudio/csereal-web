@@ -7,7 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { News } from '@/types/news';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

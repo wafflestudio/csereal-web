@@ -12,7 +12,7 @@ import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
+import { studentClubs } from '@/constants/segmentNode';
 
 import ClubDetails from './ClubDetails';
 

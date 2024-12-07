@@ -11,8 +11,8 @@ import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { staff } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const staffPath = getPath(staff);
@@ -39,7 +39,7 @@ export default function StaffEditPageContent({
     });
 
     try {
-      handleServerAction(
+      handleServerAction_legacy(
         await putStaffAction({ ko: data.ko.id, en: data.en.id }, formData, language),
       );
     } catch (e) {

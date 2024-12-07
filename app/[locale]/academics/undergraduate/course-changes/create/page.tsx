@@ -2,7 +2,7 @@ import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[post
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/utils/segmentNode';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 
 const courseChangesPath = getPath(undergraduateCourseChanges);
 

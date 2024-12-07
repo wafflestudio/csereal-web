@@ -8,7 +8,7 @@ import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { refreshPage } from '@/utils/refreshPage';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
+import { CustomError, handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import Timeline from './Timeline';
@@ -34,7 +34,7 @@ export default function TimelineViewer<T extends { year: number; description: st
 
   const handleDelete = async (year: number) => {
     try {
-      handleServerAction(await deleteAction(year));
+      handleServerAction_legacy(await deleteAction(year));
       successToast('삭제했습니다.');
       refreshPage();
     } catch (e) {

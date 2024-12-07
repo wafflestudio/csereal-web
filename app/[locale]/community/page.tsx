@@ -1,6 +1,6 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { community } from '@/utils/segmentNode';
+import { community } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

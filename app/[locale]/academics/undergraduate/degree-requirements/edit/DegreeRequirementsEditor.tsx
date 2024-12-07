@@ -3,7 +3,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { isUploadedFile, PostEditorFile } from '@/components/form/types';
+import { isUploadedFile, EditorFile } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -11,15 +11,15 @@ import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { degree } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { degree } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const degreeRequirementsPath = getPath(degree);
 
 export type DegreeRequirementsFormData = {
   description: string;
-  files: PostEditorFile[];
+  files: EditorFile[];
 };
 
 export default function DegreeRequirementsEditor({
@@ -49,7 +49,7 @@ export default function DegreeRequirementsEditor({
     });
 
     try {
-      handleServerAction(_onSubmit(formData));
+      handleServerAction_legacy(_onSubmit(formData));
     } catch (e) {
       errorToast(errorToStr(e));
     }

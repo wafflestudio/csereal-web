@@ -7,7 +7,7 @@ import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 export type ScholarshipGuideFormData = {
@@ -31,7 +31,7 @@ export default function ScholarshipGuideEditor({
 
   const onSubmit = async (formData: ScholarshipGuideFormData) => {
     try {
-      handleServerAction(await _onSubmit(formData));
+      handleServerAction_legacy(await _onSubmit(formData));
     } catch (e) {
       errorToast(errorToStr(e));
     }

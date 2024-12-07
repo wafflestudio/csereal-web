@@ -11,8 +11,8 @@ import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { staff } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BulletRow from '../../components/BulletRow';
@@ -33,7 +33,7 @@ export default function StaffMemberPageContent({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteStaffAction(ids));
+      handleServerAction_legacy(await deleteStaffAction(ids));
       successToast('행정직원을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

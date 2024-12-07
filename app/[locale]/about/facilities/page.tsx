@@ -9,7 +9,7 @@ import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/utils/segmentNode';
+import { facilities } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

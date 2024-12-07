@@ -7,7 +7,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
 import { getKeys } from '@/utils/object';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export default function AddCourseModal({
@@ -31,7 +31,7 @@ export default function AddCourseModal({
 
   const onSubmit = async (course: Course) => {
     try {
-      handleServerAction(await postCourseAction(course));
+      handleServerAction_legacy(await postCourseAction(course));
       successToast('새 교과목을 추가했습니다.');
       onClose();
     } catch (e) {

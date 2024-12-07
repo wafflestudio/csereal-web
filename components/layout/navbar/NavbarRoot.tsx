@@ -7,7 +7,7 @@ import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
-import { main as mainSegmentNode, SegmentNode } from '@/utils/segmentNode';
+import { main as mainSegmentNode, SegmentNode } from '@/constants/segmentNode';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
 export const NAVBAR_EXPANDED_WIDTH_REM = 11;

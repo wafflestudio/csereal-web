@@ -9,8 +9,8 @@ import Distance from '@/public/image/distance.svg';
 import { Facility } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { facilities } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);
@@ -28,7 +28,7 @@ export default function FacilitesList({ facilities }: { facilities: Facility[] }
 function FacilitiesRow({ facility }: { facility: Facility }) {
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteFacilityAction(facility.id));
+      handleServerAction_legacy(await deleteFacilityAction(facility.id));
       successToast('시설 안내를 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

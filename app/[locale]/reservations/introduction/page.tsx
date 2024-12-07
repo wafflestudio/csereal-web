@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { reservationIntroduction } from '@/utils/segmentNode';
+import { reservationIntroduction } from '@/constants/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
 export async function generateMetadata(props: {

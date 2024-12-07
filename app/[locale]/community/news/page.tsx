@@ -9,7 +9,7 @@ import NewsPageContent from '@/app/[locale]/community/news/components/NewsPageCo
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {

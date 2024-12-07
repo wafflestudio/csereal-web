@@ -2,7 +2,7 @@ import './style.css';
 
 import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
 import { getMetadata } from '@/utils/metadata';
-import { curriculum } from '@/utils/segmentNode';
+import { curriculum } from '@/constants/segmentNode';
 
 import CurriculumPageContent from './CurriculumPageContent';
 

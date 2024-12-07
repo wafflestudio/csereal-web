@@ -6,7 +6,7 @@ import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
+import { researchLabs } from '@/constants/segmentNode';
 
 import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';

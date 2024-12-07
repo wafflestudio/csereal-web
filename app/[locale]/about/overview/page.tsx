@@ -9,12 +9,12 @@ import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { overview } from '@/constants/segmentNode';
 import brochure1 from '@/public/image/about/brochure1.png';
 import brochure2 from '@/public/image/about/brochure2.png';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { overview } from '@/utils/segmentNode';
 
 interface OverviewPageProps {
   params: Promise<{ locale: Language }>;
@@ -36,8 +36,6 @@ export async function generateMetadata(props: OverviewPageProps) {
 
 const overviewPath = getPath(overview);
 
-// 학부 소개 페이지 - 학부장 인삿말 페이지의 형식이 동일
-// 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
 export default async function OverviewPage(props: OverviewPageProps) {
   const params = await props.params;
   const { description, attachments, imageURL } = await getOverview(params.locale);

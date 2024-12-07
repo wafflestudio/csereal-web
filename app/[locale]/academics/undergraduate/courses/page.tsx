@@ -3,7 +3,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Course } from '@/types/academics';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateCourses } from '@/utils/segmentNode';
+import { undergraduateCourses } from '@/constants/segmentNode';
 
 import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
 

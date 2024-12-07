@@ -11,8 +11,8 @@ import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { staff } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const staffPath = getPath(staff);
@@ -36,7 +36,7 @@ export default function StaffCreatePage(props: { params: Promise<{ locale: Langu
     });
 
     try {
-      handleServerAction(await postStaffAction(formData, locale));
+      handleServerAction_legacy(await postStaffAction(formData, locale));
     } catch (e) {
       errorToast(errorToStr(e));
     }

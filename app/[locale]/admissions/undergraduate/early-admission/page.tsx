@@ -4,7 +4,7 @@ import { getUndergraduateEarlyAdmission } from '@/apis/v1/admissions/undergradua
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateEarlyAdmission } from '@/utils/segmentNode';
+import { undergraduateEarlyAdmission } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

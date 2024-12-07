@@ -9,7 +9,7 @@ import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayou
 import { Notice } from '@/types/notice';
 import { formatPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 interface NoticePostPageProps {
   notice: Notice;

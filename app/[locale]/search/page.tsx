@@ -8,7 +8,7 @@ import PageTitle from '@/components/layout/pageLayout/PageTitle';
 import { SEARCH_TAGS } from '@/constants/tag';
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 import { getMetadata } from '@/utils/metadata';
-import { main } from '@/utils/segmentNode';
+import { main } from '@/constants/segmentNode';
 
 import AboutSection from './AboutSection';
 import AcademicSection from './AcademicSection';

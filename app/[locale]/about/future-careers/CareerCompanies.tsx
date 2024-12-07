@@ -14,7 +14,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import Form from '@/components/form/Form';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export default function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
@@ -24,7 +24,7 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
 
   const onCreate = async (content: CareerCompanyFormData) => {
     try {
-      handleServerAction(await postCareerCompanyAction(content));
+      handleServerAction_legacy(await postCareerCompanyAction(content));
       toggleCreateForm();
       successToast('졸업생 창업 기업을 추가했습니다.');
     } catch (e) {
@@ -85,7 +85,9 @@ function CompanyTableRow({ index, company }: CompanyTableRowProps) {
 
   const onSubmit = async (content: CareerCompanyFormData) => {
     try {
-      handleServerAction(await putCareerCompanyAction(company.id, { id: company.id, ...content }));
+      handleServerAction_legacy(
+        await putCareerCompanyAction(company.id, { id: company.id, ...content }),
+      );
       toggleEdit();
       successToast('졸업생 창업 기업을 수정했습니다.');
     } catch (e) {
@@ -114,7 +116,7 @@ function CareerCompanyViewer({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteCareerCompanyAction(id));
+      handleServerAction_legacy(await deleteCareerCompanyAction(id));
       successToast('졸업생 창업 기업을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

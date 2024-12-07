@@ -10,7 +10,7 @@ import { AllMainNotice } from '@/types/main';
 import { formatMainNoticeDateStr } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');

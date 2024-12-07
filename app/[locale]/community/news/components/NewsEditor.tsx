@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { PostEditorFile, PostEditorImage } from '@/components/form/types';
+import { EditorFile, EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { NEWS_TAGS } from '@/constants/tag';
@@ -11,8 +11,8 @@ export interface NewsFormData {
   titleForMain: string;
   description: string;
   date: Date;
-  image: PostEditorImage | null;
-  attachments: PostEditorFile[];
+  image: EditorImage | null;
+  attachments: EditorFile[];
   tags: string[];
   isPrivate: boolean;
   isImportant: boolean;

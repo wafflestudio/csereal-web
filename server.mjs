@@ -19,6 +19,7 @@ switch (phase) {
     break;
   case 'local':
     process.env.BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';
+    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     break;
   default:
     console.error(`PHASE 환경변수는 prod, beta, local 중 하나여야합니다: ${phase}`);

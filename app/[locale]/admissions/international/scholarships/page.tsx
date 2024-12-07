@@ -4,7 +4,7 @@ import { getInternationalScholarships } from '@/apis/v1/admissions/international
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { internationalScholarships } from '@/utils/segmentNode';
+import { internationalScholarships } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

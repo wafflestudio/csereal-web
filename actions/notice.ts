@@ -8,7 +8,7 @@ import { FETCH_TAG_NOTICE } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);

@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/utils/segmentNode';
+import { facultyRecruitment } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

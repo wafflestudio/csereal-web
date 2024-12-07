@@ -3,7 +3,7 @@ import TimelineEditor from '@/app/[locale]/academics/components/timeline/Timelin
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/utils/segmentNode';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 
 const courseChangesPath = getPath(undergraduateCourseChanges);
 

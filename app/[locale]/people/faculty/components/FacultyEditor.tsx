@@ -5,7 +5,7 @@ import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form
 
 import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import { Language, WithLanguage } from '@/types/language';
 import { getKeys } from '@/utils/object';
@@ -17,7 +17,7 @@ export type FacultyFormData = WithLanguage<{
   status: FacultyStatus;
   name: string;
   academicRank: string;
-  image: PostEditorImage | null;
+  image: EditorImage | null;
   phone: string;
   email: string;
   office: string;

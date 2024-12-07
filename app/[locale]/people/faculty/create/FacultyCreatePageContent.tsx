@@ -9,8 +9,8 @@ import { SimpleResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { emeritusFaculty, faculty } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import FacultyEditor, { FacultyFormData } from '../components/FacultyEditor';
@@ -45,7 +45,7 @@ export default function FacultyCreatePageContent({
     });
 
     try {
-      handleServerAction(await postFacultyAction(formData, language));
+      handleServerAction_legacy(await postFacultyAction(formData, language));
       successToast('교수진을 추가했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

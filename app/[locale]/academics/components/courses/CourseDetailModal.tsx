@@ -10,7 +10,7 @@ import { Course, GRADE } from '@/types/academics';
 import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
+import { CustomError, handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import CourseEditor from './CourseEditor';
@@ -27,7 +27,7 @@ export default function CourseDetailModal({ initCourse, onClose }: CourseDetailM
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteCourseAction(course.code));
+      handleServerAction_legacy(await deleteCourseAction(course.code));
       successToast('교과목을 삭제했습니다.');
       onClose();
     } catch (e) {

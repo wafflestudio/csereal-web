@@ -6,7 +6,7 @@ import { Language } from '@/types/language';
 import { SimpleEmeritusFaculty } from '@/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/utils/segmentNode';
+import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 
 import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';

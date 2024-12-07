@@ -6,7 +6,7 @@ import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
@@ -18,7 +18,7 @@ export default function ResearchCenterEditPageContent({
   const onSubmit = async ({ image, ...requestObject }: ResearchCenterFormData) => {
     const formData = contentToFormData('EDIT', { requestObject, image });
     try {
-      handleServerAction(
+      handleServerAction_legacy(
         await putResearchCenterAction({ ko: center.ko.id, en: center.en.id }, formData),
       );
       successToast('연구 센터를 수정했습니다.');

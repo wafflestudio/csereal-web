@@ -9,7 +9,7 @@ import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchCenters } from '@/utils/segmentNode';
+import { researchCenters } from '@/constants/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 

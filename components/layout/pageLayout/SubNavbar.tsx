@@ -4,7 +4,7 @@ import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
 import { Link } from '@/i18n/routing';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
-import { SegmentNode } from '@/utils/segmentNode';
+import { SegmentNode } from '@/constants/segmentNode';
 
 type TreeNode = {
   name: string;

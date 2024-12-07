@@ -7,8 +7,8 @@ import { useRouter } from '@/i18n/routing';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { futureCareers } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { futureCareers } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import CareerStatEditor from '../../components/CareerStatEditor';
 import { COMPANY_MAP, companyList } from '@/apis/v2/about/future-careers/types';
@@ -32,7 +32,7 @@ export default function CareerStatEditPageContent({
 
   const onSubmit = async (content: CareerStat) => {
     try {
-      handleServerAction(await putCareerStatAction(content));
+      handleServerAction_legacy(await putCareerStatAction(content));
       successToast('졸업생 진로 현황을 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

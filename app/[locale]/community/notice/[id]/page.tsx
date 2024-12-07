@@ -6,7 +6,7 @@ import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 import NoticeViewer from './NoticeViewer';
 

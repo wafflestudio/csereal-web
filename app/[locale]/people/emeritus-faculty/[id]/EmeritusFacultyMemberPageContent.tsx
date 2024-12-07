@@ -11,8 +11,8 @@ import { WithLanguage } from '@/types/language';
 import { EmeritusFaculty } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { faculty } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { faculty } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BulletRow from '../../components/BulletRow';
@@ -35,7 +35,7 @@ export default function EmeritusFacultyMemberPageContent({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteFacultyAction(ids, 'INACTIVE'));
+      handleServerAction_legacy(await deleteFacultyAction(ids, 'INACTIVE'));
       successToast('교수를 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

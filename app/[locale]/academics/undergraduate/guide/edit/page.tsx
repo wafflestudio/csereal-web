@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_GUIDE } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateGuide } from '@/utils/segmentNode';
+import { undergraduateGuide } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const path = getPath(undergraduateGuide);

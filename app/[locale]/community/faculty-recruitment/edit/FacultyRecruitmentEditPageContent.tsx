@@ -5,15 +5,15 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { putFacultyRecruitmentAction } from '@/actions/recruitment';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { facultyRecruitment } from '@/constants/segmentNode';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
 interface FormData {
   title: string;
   description: string;
-  image: PostEditorImage | null;
+  image: EditorImage | null;
 }
 
 const recruitPath = getPath(facultyRecruitment);
@@ -50,7 +50,7 @@ export default function FacultyRecruitmentEditPageContent({ data }: Props) {
     });
 
     try {
-      handleServerAction(await putFacultyRecruitmentAction(formData));
+      handleServerAction_legacy(await putFacultyRecruitmentAction(formData));
       successToast(`신임교수초빙을 수정했습니다.`);
     } catch (e) {
       errorToast(errorToStr(e));
