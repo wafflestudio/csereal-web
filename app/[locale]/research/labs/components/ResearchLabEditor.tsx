@@ -13,7 +13,7 @@ import { getPath } from '@/utils/page';
 import Fieldset from '../../../../../components/form/Fieldset';
 import Form from '../../../../../components/form/Form';
 import LanguagePicker from '../../../../../components/form/LanguagePicker';
-import { EditorFile } from '../../../../../components/form/types';
+import { EditorFile } from '../../../../../types/form';
 
 export type ResearchLabFormData = WithLanguage<{
   name: string;

@@ -6,9 +6,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { EditorImage } from '@/components/form/types';
 import { researchGroups } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
+import { EditorImage } from '@/types/form';
 import { Language } from '@/types/language';
 import { getPath } from '@/utils/page';
 

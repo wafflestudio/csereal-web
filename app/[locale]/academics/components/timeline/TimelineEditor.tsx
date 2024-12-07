@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { EditorFile, isUploadedFile } from '@/components/form/types';
+import { EditorFile, isUploadedFile } from '@/types/form';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';

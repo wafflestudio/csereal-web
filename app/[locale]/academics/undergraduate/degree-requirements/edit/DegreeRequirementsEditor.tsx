@@ -4,10 +4,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { EditorFile, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { degree } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
+import { EditorFile, isUploadedFile } from '@/types/form';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';

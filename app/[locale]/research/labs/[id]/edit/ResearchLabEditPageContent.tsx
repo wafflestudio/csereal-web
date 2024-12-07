@@ -6,8 +6,8 @@ import { ResearchGroup, ResearchLab } from '@/apis/types/research';
 import ResearchLabEditor, {
   ResearchLabFormData,
 } from '@/app/[locale]/research/labs/components/ResearchLabEditor';
-import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { isLocalFile } from '@/types/form';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';

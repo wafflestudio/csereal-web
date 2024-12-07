@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
-import { LocalImage, UploadedImage } from './types';
+import { LocalImage, UploadedImage } from '../../types/form';
 
 interface Props {
   name: string;
