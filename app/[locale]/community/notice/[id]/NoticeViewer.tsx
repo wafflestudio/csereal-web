@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl';
 
+import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import PostFooter from '@/components/post/PostFooter';
 import { Notice } from '@/types/notice';
 import { formatPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';

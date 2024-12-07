@@ -1,10 +1,11 @@
+import { Attachment } from '@/components/common/Attachments';
 import {
   isLocalFile,
   isLocalImage,
   isUploadedFile,
   PostEditorFile,
   PostEditorImage,
-} from '@/components/editor/PostEditorTypes';
+} from '@/components/form/types';
 
 import { encodeFormDataFileName } from './string';
 
@@ -43,9 +44,12 @@ export const contentToFormData = (
 
 export const getAttachmentDeleteIds = (
   attachments: PostEditorFile[],
-  prevAttachmentIds: number[],
+  prev: number[] | Attachment[],
 ) => {
   const uploadedAttachments = attachments.filter(isUploadedFile).map((x) => x.file);
+
+  const isNumberArr = (arr: number[] | Attachment[]): arr is number[] => typeof arr[0] == 'number';
+  const prevAttachmentIds = isNumberArr(prev) ? prev : prev.map((x) => x.id);
 
   const deleteIds = prevAttachmentIds.filter(
     (id) => uploadedAttachments.find((x) => x.id === id) === undefined,

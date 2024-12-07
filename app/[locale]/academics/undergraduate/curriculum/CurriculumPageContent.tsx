@@ -4,7 +4,7 @@ import { deleteCurriculumAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Curriculum } from '@/types/academics';
 
-import TimelineViewer from '../../helper/timeline/TimelineViewer';
+import TimelineViewer from '../../components/timeline/TimelineViewer';
 
 export default function CurriculumPageContent({ data }: { data: Curriculum[] }) {
   return (

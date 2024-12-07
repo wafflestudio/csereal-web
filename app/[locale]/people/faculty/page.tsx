@@ -8,8 +8,8 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/utils/segmentNode';
 
-import { PeopleCellProps } from '../helper/PeopleCell';
-import PeopleGrid from '../helper/PeopleGrid';
+import { PeopleCellProps } from '../components/PeopleCell';
+import PeopleGrid from '../components/PeopleGrid';
 
 export async function generateMetadata({ params: { locale } }: FacultyPageProps) {
   return await getMetadata({ locale, node: faculty });

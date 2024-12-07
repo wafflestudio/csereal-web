@@ -2,7 +2,7 @@
 
 import { useReducer } from 'react';
 
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 
 interface AccordionProps {
   title: string;

@@ -1,10 +1,9 @@
 import { cookies } from 'next/headers';
 
+import { BASE_URL } from '@/constants/network';
 import { objToQueryString } from '@/utils/convertParams';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
-
-export const BASE_URL = process.env.BASE_URL;
 
 export const getRequest = async <T = unknown>(
   url: string,

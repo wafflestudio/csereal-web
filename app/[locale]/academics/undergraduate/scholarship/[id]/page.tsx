@@ -4,7 +4,7 @@ import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { undergraduateScholarship } from '@/utils/segmentNode';
 
-import ScholarshipDetail from '../../../helper/ScholarshipDetail';
+import ScholarshipDetail from '../../../components/scholarship/ScholarshipDetail';
 
 interface ScholarshipDetailProps {
   params: { locale: Language; id: string };

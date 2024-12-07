@@ -1,13 +1,17 @@
 import { getInternal } from '@/apis/v1/internal';
-
-import InternalContent from './InternalContent';
+import EditButton from '@/app/.internal/components/EditButton';
+import LoginVisible from '@/components/common/LoginVisible';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 
 export default async function InternalPage() {
   const { description } = await getInternal();
 
   return (
     <div className="m-10 min-w-[720px]">
-      <InternalContent description={description} />
+      <LoginVisible staff>
+        <EditButton />
+      </LoginVisible>
+      <HTMLViewer htmlContent={description} />
     </div>
   );
 }

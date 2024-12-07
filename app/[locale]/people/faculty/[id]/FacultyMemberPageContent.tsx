@@ -16,9 +16,9 @@ import { faculty, researchLabs } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-import HeaderAndList from '../../helper/HeaderAndList';
-import PageTitle from '../../helper/PageTitle';
-import Profile from '../../helper/Profile';
+import HeaderAndList from '../../components/HeaderAndList';
+import PageTitle from '../../components/PageTitle';
+import Profile from '../../components/Profile';
 
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);

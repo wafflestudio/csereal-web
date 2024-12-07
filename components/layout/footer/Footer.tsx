@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import CserealModal from '@/components/modal/CserealModal';
+import CserealModal from '@/app/[locale]/community/components/CserealModal';
 import {
   aboutLinks,
   contactPath,
@@ -15,7 +15,7 @@ import {
   snucomLink,
   snuEngLink,
   snuLink,
-} from '@/constants/footer';
+} from '@/components/layout/footer/constants';
 import { Link } from '@/i18n/routing';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/footer/SNU_Logo_with_Text.svg';

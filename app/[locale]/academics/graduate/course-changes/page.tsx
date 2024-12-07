@@ -1,21 +1,33 @@
-import { Metadata } from 'next';
+import { revalidateTag } from 'next/cache';
 
-import { getCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
+import { getCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes';
+import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
+import TimelineViewer from '@/app/[locale]/academics/components/timeline/TimelineViewer';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { getMetadata } from '@/utils/metadata';
-import { graduateCourseChanges } from '@/utils/segmentNode';
+import { undergraduateCourseChanges } from '@/utils/segmentNode';
 
-import CourseChangesPageContent from '../../helper/course-changes/CourseChangesPageContent';
-
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  return await getMetadata({ locale, node: graduateCourseChanges });
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return await getMetadata({ locale, node: undergraduateCourseChanges });
 }
 
-export default async function GraduateCourseChangesPage() {
+export default async function UndergraduateCourseChangesPage() {
   const changes = await getCourseChanges('graduate');
 
-  return <CourseChangesPageContent changes={changes} type="graduate" />;
+  const onDelete = async (year: number) => {
+    'use server';
+    await deleteCourseChanges('undergraduate', year);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+  };
+
+  return (
+    <PageLayout titleType="big">
+      <TimelineViewer
+        contents={changes}
+        title={{ text: '교과목 변경 내역', unit: '학년도' }}
+        deleteAction={onDelete}
+      />
+    </PageLayout>
+  );
 }

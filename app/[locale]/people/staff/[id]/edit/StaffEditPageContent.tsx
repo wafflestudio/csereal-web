@@ -1,14 +1,15 @@
 'use client';
 
 import { putStaffAction } from '@/actions/people';
-import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
+import StaffEditor, {
+  StaffEditorFormData,
+} from '@/app/[locale]/people/staff/components/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
@@ -25,17 +26,15 @@ export default function StaffEditPageContent({
 }) {
   const router = useRouter();
 
-  const handleCancel = () => router.push(`${staffPath}/${data[language].id}`);
+  const onCancel = () => router.push(`${staffPath}/${data[language].id}`);
 
-  const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
-    validateStaffForm(content);
-
-    const requestObject = getRequestObject(
-      content,
-      data.ko.imageURL !== null && content.ko.image === null,
-    );
+  const onSubmit = async (content: StaffEditorFormData) => {
+    const image = content.ko.image;
     const formData = contentToFormData('EDIT', {
-      requestObject,
+      requestObject: {
+        ko: { ...content.ko, image, removeImage: undefined },
+        en: { ...content.en, image, removeImage: undefined },
+      },
       image: content.ko.image,
     });
 
@@ -48,22 +47,20 @@ export default function StaffEditPageContent({
     }
   };
 
+  const defaultValues: StaffEditorFormData = {
+    ko: {
+      ...data.ko,
+      image: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : null,
+    },
+    en: {
+      ...data.en,
+      image: data.en.imageURL ? { type: 'UPLOADED_IMAGE', url: data.en.imageURL } : null,
+    },
+  };
+
   return (
     <PageLayout title="행정직원 편집" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
-      <StaffEditor
-        initialContent={data}
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleComplete }}
-        initialLangauge={language}
-      />
+      <StaffEditor defaultValues={defaultValues} onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: WithLanguage<StaffEditorContent>, removeImage: boolean) => {
-  const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
-
-  return {
-    ko: { ...content.ko, image, removeImage },
-    en: { ...content.en, image, removeImage },
-  };
-};

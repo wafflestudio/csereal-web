@@ -1,7 +1,6 @@
 'use client';
 
 import { postFacultyAction } from '@/actions/people';
-import FacultyEditor, { FacultyEditorContent } from '@/components/editor/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
@@ -9,11 +8,12 @@ import { FacultyStatus } from '@/types/people';
 import { SimpleResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateFacultyForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
+import FacultyEditor, { FacultyFormData } from '../components/FacultyEditor';
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);
@@ -29,12 +29,18 @@ export default function FacultyCreatePageContent({
 }) {
   const router = useRouter();
 
-  const handleCancel = () => router.push(status === 'INACTIVE' ? emeritusFacultyPath : facultyPath);
+  const onCancel = () => router.push(status === 'INACTIVE' ? emeritusFacultyPath : facultyPath);
 
-  const handleSubmit = async (content: WithLanguage<FacultyEditorContent>) => {
-    validateFacultyForm(content);
+  const onSubmit = async (content: FacultyFormData) => {
+    const startDate = content.ko.startDate.toISOString();
+    const endDate = content.ko.endDate.toISOString();
+    const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
+
     const formData = contentToFormData('CREATE', {
-      requestObject: getRequestObject(content),
+      requestObject: {
+        ko: { ...content.ko, image, startDate, endDate },
+        en: { ...content.en, image, startDate, endDate },
+      },
       image: content.ko.image,
     });
 
@@ -48,24 +54,7 @@ export default function FacultyCreatePageContent({
 
   return (
     <PageLayout title="교수진 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
-      <FacultyEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onSubmit: handleSubmit }}
-        initialFacultyStatus={status}
-        initialLangauge={language}
-        labs={labs}
-      />
+      <FacultyEditor initialStatus={status} labs={labs} onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: WithLanguage<FacultyEditorContent>) => {
-  // startDate, endDate는 한영 동일
-  const startDate = content.ko.startDate.toISOString();
-  const endDate = content.ko.endDate.toISOString();
-  const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
-
-  return {
-    ko: { ...content.ko, image, startDate, endDate },
-    en: { ...content.en, image, startDate, endDate },
-  };
-};

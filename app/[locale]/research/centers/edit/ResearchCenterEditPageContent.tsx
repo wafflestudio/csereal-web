@@ -1,42 +1,22 @@
 'use client';
 
 import { putResearchCenterAction } from '@/actions/research';
-import ResearchCenterEditor, {
-  ResearchCenterEditorContent,
-} from '@/components/editor/ResearchCenterEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateResearchCenterForm } from '@/utils/formValidation';
-import { getPath } from '@/utils/page';
-import { researchCenters } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-const centersPath = getPath(researchCenters);
+import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
 export default function ResearchCenterEditPageContent({
   center,
 }: {
   center: WithLanguage<ResearchCenter>;
 }) {
-  const router = useRouter();
-
-  const handleCancel = () => router.push(centersPath);
-
-  const handleSubmit = async (content: WithLanguage<ResearchCenterEditorContent>) => {
-    validateResearchCenterForm(content);
-    const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(
-        content,
-        center.ko.mainImageUrl !== null && content.ko.mainImage === null,
-      ),
-      image: content.ko.mainImage,
-    });
-
+  const onSubmit = async ({ image, ...requestObject }: ResearchCenterFormData) => {
+    const formData = contentToFormData('EDIT', { requestObject, image });
     try {
       handleServerAction(
         await putResearchCenterAction({ ko: center.ko.id, en: center.en.id }, formData),
@@ -50,22 +30,15 @@ export default function ResearchCenterEditPageContent({
   return (
     <PageLayout title="연구 센터 편집" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
       <ResearchCenterEditor
-        initialContent={center}
-        actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: handleCancel }}
+        onSubmit={onSubmit}
+        defaultValues={{
+          ko: { ...center.ko, type: 'centers' },
+          en: { ...center.en, type: 'centers' },
+          image: center.ko.mainImageUrl
+            ? { type: 'UPLOADED_IMAGE', url: center.ko.mainImageUrl }
+            : null,
+        }}
       />
     </PageLayout>
   );
 }
-
-const getRequestObject = (
-  content: WithLanguage<ResearchCenterEditorContent>,
-  removeImage: boolean,
-) => {
-  const type = 'centers';
-  const mainImage = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
-
-  return {
-    ko: { ...content.ko, type, mainImage, removeImage },
-    en: { ...content.en, type, mainImage, removeImage },
-  };
-};

@@ -12,7 +12,7 @@ import { getMetadata } from '@/utils/metadata';
 import { seminar } from '@/utils/segmentNode';
 import { validatePageNum } from '@/utils/validateSearchParams';
 
-import AdminFeatures from './helper/AdminFeatures';
+import AdminFeatures from './components/AdminFeatures';
 import SeminarContent from './SeminarContent';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {

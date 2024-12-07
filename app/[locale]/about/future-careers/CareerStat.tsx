@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { EditButton, OrangeButton } from '@/components/common/Buttons';
-import Dropdown from '@/components/common/form/Dropdown';
 import LoginVisible from '@/components/common/LoginVisible';
+import Dropdown from '@/components/form/legacy/Dropdown';
 import { Link } from '@/i18n/routing';
 import { FutureCareers } from '@/types/about';
 import { getPath } from '@/utils/page';

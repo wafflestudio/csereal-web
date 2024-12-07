@@ -2,13 +2,8 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { postCourseChanges } from '@/apis/v1/academics/[type]/course-changes';
-import {
-  deleteCourseChanges,
-  putCourseChanges,
-} from '@/apis/v1/academics/[type]/course-changes/[year]';
-import { putAcademicsGuide } from '@/apis/v1/academics/[type]/guide';
-import { postCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
+import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
 import {
   deleteCurriculum,
   putCurriculum,
@@ -36,7 +31,6 @@ import {
 import { redirect } from '@/i18n/routing';
 import {
   Course,
-  CourseChange,
   Curriculum,
   GeneralStudiesRequirement,
   Scholarship,
@@ -73,11 +67,6 @@ export const deleteCourseAction = withErrorHandler(async (code: string) => {
 });
 
 /** 전공 이수 표준 형태 */
-
-export const postCurriculumAction = withErrorHandler(async (data: Curriculum) => {
-  await postCurriculum(data);
-  revalidateTag(FETCH_TAG_CURRICULUM);
-});
 
 export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
   await putCurriculum(data);
@@ -117,20 +106,6 @@ export const putDegreeRequirementsAction = withErrorHandler(async (formData: For
 });
 
 /** 교과목 변경 내역 */
-
-export const postCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await postCourseChanges(type, data);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
-  },
-);
-
-export const putCourseChangesAction = withErrorHandler(
-  async (type: StudentType, data: CourseChange) => {
-    await putCourseChanges(type, data);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
-  },
-);
 
 export const deleteCourseChangesAction = withErrorHandler(
   async (type: StudentType, year: number) => {

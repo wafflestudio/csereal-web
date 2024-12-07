@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import {
   deleteCareerCompanyAction,
@@ -10,15 +11,9 @@ import {
 } from '@/actions/about';
 import { BlackButton, DeleteButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import { buildPostHandler, EditAction } from '@/components/editor/common/ActionButtons';
-import BasicTextInput from '@/components/editor/common/BasicTextInput';
-import AlertModal from '@/components/modal/AlertModal';
+import Form from '@/components/form/Form';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
-import { validateCareerCompanyForm } from '@/utils/formValidation';
-import useEditorContent from '@/utils/hooks/useEditorContent';
-import useModal from '@/utils/hooks/useModal';
-import { isNumber } from '@/utils/number';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -27,9 +22,8 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
 
   const [showCreateForm, toggleCreateForm] = useReducer((x) => !x, false);
 
-  const handleCreate = async (content: CareerCompanyEditorContent) => {
+  const onCreate = async (content: CareerCompanyFormData) => {
     try {
-      validateCareerCompanyForm(content);
       handleServerAction(await postCareerCompanyAction(content));
       toggleCreateForm();
       successToast('졸업생 창업 기업을 추가했습니다.');
@@ -51,11 +45,7 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
       </div>
       <div className="border-y border-neutral-200 text-sm font-normal">
         <CompanyTableHeader />
-        {showCreateForm && (
-          <CareerCompanyEditor
-            actions={{ type: 'EDIT', onCancel: toggleCreateForm, onSubmit: handleCreate }}
-          />
-        )}
+        {showCreateForm && <CareerCompanyEditor onCancel={toggleCreateForm} onSubmit={onCreate} />}
         <ol>
           {companies.map((company, index) => (
             <CompanyTableRow key={company.id} index={index + 1} company={company} />
@@ -93,9 +83,8 @@ interface CompanyTableRowProps {
 function CompanyTableRow({ index, company }: CompanyTableRowProps) {
   const [edit, toggleEdit] = useReducer((x) => !x, false);
 
-  const handleSubmit = async (content: CareerCompanyEditorContent) => {
+  const onSubmit = async (content: CareerCompanyFormData) => {
     try {
-      validateCareerCompanyForm(content);
       handleServerAction(await putCareerCompanyAction(company.id, { id: company.id, ...content }));
       toggleEdit();
       successToast('졸업생 창업 기업을 수정했습니다.');
@@ -108,7 +97,8 @@ function CompanyTableRow({ index, company }: CompanyTableRowProps) {
     <CareerCompanyEditor
       index={index}
       company={company}
-      actions={{ type: 'EDIT', onSubmit: handleSubmit, onCancel: toggleEdit }}
+      onSubmit={onSubmit}
+      onCancel={toggleEdit}
     />
   ) : (
     <CareerCompanyViewer index={index} company={company} toggleEdit={toggleEdit} />
@@ -159,63 +149,51 @@ function CareerCompanyViewer({
   );
 }
 
-export interface CareerCompanyEditorContent {
+export interface CareerCompanyFormData {
   name: string;
-  url?: string;
+  url: string;
   year: number;
 }
-
-const DEFAULT_COMPANY = { name: '', url: '', year: 0 };
 
 function CareerCompanyEditor({
   index,
   company,
-  actions,
+  onSubmit,
+  onCancel,
 }: Partial<CompanyTableRowProps> & {
-  actions: EditAction<CareerCompanyEditorContent>;
+  onSubmit: (formData: CareerCompanyFormData) => Promise<void>;
+  onCancel: () => void;
 }) {
-  const { content, setContentByKey } = useEditorContent(company ?? DEFAULT_COMPANY);
-  const { openModal } = useModal();
-  const [requesting, setRequesting] = useState(false);
-
-  const handleCancel = () => {
-    if (content.name || content.url || content.year)
-      openModal(<AlertModal message="편집중인 내용이 사라집니다." onConfirm={actions.onCancel} />);
-    else {
-      actions.onCancel();
-    }
-  };
+  const formMethods = useForm<CareerCompanyFormData>({
+    defaultValues: { name: company?.name ?? '', url: company?.url ?? '', year: company?.year },
+  });
+  const { handleSubmit } = formMethods;
 
   return (
-    <li className="grid grid-cols-[22px,_auto,_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
-      <p className={`text-sm text-neutral-400 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}>{index}</p>
-      <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[1]}`}>
-        <BasicTextInput value={content.name} onChange={setContentByKey('name')} maxWidth="w-full" />
-      </div>
-      <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[2]}`}>
-        <BasicTextInput
-          value={content.url ?? ''}
-          onChange={setContentByKey('url')}
-          maxWidth="w-full"
-        />
-      </div>
-      <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[3]}`}>
-        <BasicTextInput
-          value={content.year.toString()}
-          onChange={(text) => isNumber(text) && setContentByKey('year')(Number(text))}
-          maxWidth="w-full"
-        />
-      </div>
-      <LoginVisible staff>
-        <div className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}>
-          <GrayButton title="취소" onClick={handleCancel} />
-          <BlackButton
-            title="저장"
-            disabled={requesting}
-            onClick={buildPostHandler(requesting, setRequesting, () => content, actions.onSubmit)}
+    <FormProvider {...formMethods}>
+      <li className="grid grid-cols-[22px,_auto,_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
+        <p className={`text-sm text-neutral-400 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}>{index}</p>
+        <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[1]}`}>
+          <Form.Text name="name" maxWidth="w-full" />
+        </div>
+        <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[2]}`}>
+          <Form.Text name="url" maxWidth="w-full" />
+        </div>
+        <div className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[3]}`}>
+          <Form.Text
+            name="year"
+            maxWidth="w-full"
+            type="number"
+            options={{ valueAsNumber: true }}
           />
         </div>
-      </LoginVisible>
-    </li>
+        <LoginVisible staff>
+          <div className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}>
+            <GrayButton title="취소" onClick={onCancel} />
+            <BlackButton title="저장" onClick={handleSubmit(onSubmit)} />
+          </div>
+        </LoginVisible>
+      </li>
+    </FormProvider>
   );
 }

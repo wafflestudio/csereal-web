@@ -15,7 +15,7 @@ export default function useLanguage() {
 
   const changeLanguage = () => {
     startTransition(() => {
-      router.push(pathname + params, { locale: isEnglish ? 'ko' : 'en' });
+      router.push(`${pathname}?${params.toString()}`, { locale: isEnglish ? 'ko' : 'en' });
     });
   };
 
