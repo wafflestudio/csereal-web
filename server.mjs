@@ -49,7 +49,8 @@ const override500 = (res) => {
 };
 
 const startServer = async () => {
-  const nextServer = next({ dev: isDev, port: port, turbo: true });
+  // TODO: turbopack 검토
+  const nextServer = next({ dev: isDev, port: port });
   const handleRequest = nextServer.getRequestHandler();
   await nextServer.prepare();
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useMediaQuery } from '@mui/material';
 
 import { CARD_GAP_REM, CARD_WIDTH_REM } from './constants';
