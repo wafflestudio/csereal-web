@@ -13,7 +13,7 @@ import { GETFacultyRecruitmentResponse } from '@/apis/types/post';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface Props {

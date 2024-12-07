@@ -10,7 +10,7 @@ import { Club } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 

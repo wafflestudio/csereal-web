@@ -13,7 +13,7 @@ import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const clubPath = getPath(studentClubs);

@@ -15,7 +15,7 @@ import { ResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 

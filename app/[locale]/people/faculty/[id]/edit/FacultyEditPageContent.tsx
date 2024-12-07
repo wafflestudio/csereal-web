@@ -13,7 +13,7 @@ import { SimpleResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const facultyPath = getPath(faculty);

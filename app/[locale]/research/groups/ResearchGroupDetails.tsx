@@ -12,7 +12,7 @@ import { WithLanguage } from '@/types/language';
 import { ResearchGroup } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchGroupLabs from './ResearchGroupLabs';

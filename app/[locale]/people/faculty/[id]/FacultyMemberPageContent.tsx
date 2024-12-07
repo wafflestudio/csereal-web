@@ -13,7 +13,7 @@ import { WithLanguage } from '@/types/language';
 import { Faculty } from '@/apis/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import HeaderAndList from '../../components/HeaderAndList';

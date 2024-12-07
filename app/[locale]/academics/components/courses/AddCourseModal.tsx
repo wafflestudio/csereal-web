@@ -7,7 +7,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { CLASSIFICATION, Course, GRADE, StudentType } from '@/apis/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getKeys } from '@/utils/object';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export default function AddCourseModal({

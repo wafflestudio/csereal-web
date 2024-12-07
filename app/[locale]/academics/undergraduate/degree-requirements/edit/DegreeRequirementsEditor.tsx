@@ -11,7 +11,7 @@ import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const degreeRequirementsPath = getPath(degree);

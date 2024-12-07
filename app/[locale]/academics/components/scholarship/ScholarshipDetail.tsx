@@ -9,7 +9,7 @@ import { graduateScholarship, undergraduateScholarship } from '@/constants/segme
 import { Scholarship, StudentType } from '@/apis/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const graduatePath = getPath(graduateScholarship);
