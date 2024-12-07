@@ -7,11 +7,11 @@ import { deleteFaculty, putFaculty } from '@/apis/v2/professor/[id_ko]/[id_en]';
 import { postStaff } from '@/apis/v2/staff';
 import { deleteStaff, putStaff } from '@/apis/v2/staff/[id_ko]/id_en';
 import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
+import { emeritusFaculty, faculty, staff } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty, staff } from '@/constants/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
 

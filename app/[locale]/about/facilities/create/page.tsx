@@ -3,21 +3,20 @@
 import { Fragment, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { postFacilityAction, putFacilityAction } from '@/actions/about';
+import { postFacilityAction } from '@/actions/about';
 import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { EditorImage } from '@/components/form/types';
-import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Facility } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);

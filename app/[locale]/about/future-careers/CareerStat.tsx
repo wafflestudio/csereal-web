@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { EditButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Dropdown from '@/components/form/legacy/Dropdown';
+import { futureCareers } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { FutureCareers } from '@/types/about';
 import { getPath } from '@/utils/page';
-import { futureCareers } from '@/constants/segmentNode';
 
 export const CAREER_STAT_ROWS = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const CAREER_STAT_COLS = ['학부', '석사', '박사'];

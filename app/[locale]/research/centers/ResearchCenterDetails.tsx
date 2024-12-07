@@ -5,13 +5,13 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchCenters } from '@/constants/segmentNode';
 import LinkIcon from '@/public/image/link_icon.svg';
 import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { researchCenters } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface ResearchCenterDetailsProps {

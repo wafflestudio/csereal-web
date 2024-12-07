@@ -6,6 +6,7 @@ import { deleteResearchLabAction } from '@/actions/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchGroups, researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
@@ -14,8 +15,7 @@ import { ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { researchGroups, researchLabs } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 

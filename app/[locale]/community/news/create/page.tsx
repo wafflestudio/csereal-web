@@ -4,9 +4,9 @@ import { postNewsAction } from '@/actions/news';
 import NewsEditor, { NewsFormData } from '@/app/[locale]/community/news/components/NewsEditor';
 import { isLocalFile, isLocalImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { news } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { news } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

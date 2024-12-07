@@ -6,9 +6,9 @@ import TimelineEditor, {
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
+import { curriculum } from '@/constants/segmentNode';
 import { Curriculum } from '@/types/academics';
 import { getPath } from '@/utils/page';
-import { curriculum } from '@/constants/segmentNode';
 
 const curriculumPath = getPath(curriculum);
 

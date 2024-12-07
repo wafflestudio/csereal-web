@@ -7,9 +7,9 @@ import { Suspense } from 'react';
 import { getSeminarPosts } from '@/apis/v1/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { seminar } from '@/constants/segmentNode';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { seminar } from '@/constants/segmentNode';
 import { validatePageNum } from '@/utils/validateSearchParams';
 
 import AdminFeatures from './components/AdminFeatures';

@@ -6,9 +6,9 @@ import ScholarshipEditor, {
 } from '@/app/[locale]/academics/components/scholarship/ScholarshipEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
+import { graduateScholarship } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { graduateScholarship } from '@/constants/segmentNode';
 
 const path = getPath(graduateScholarship);
 

@@ -5,11 +5,11 @@ import { ReactNode } from 'react';
 import { getDirections } from '@/apis/v2/about/directions';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { directions } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { directions } from '@/constants/segmentNode';
 
 import DirectionsDetails from './DirectionsDetails';
 import LocationGuide from './LocationGuide';

@@ -7,13 +7,13 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { EditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facultyRecruitment } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface Props {

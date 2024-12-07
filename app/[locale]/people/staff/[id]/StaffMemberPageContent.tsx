@@ -6,13 +6,13 @@ import { deleteStaffAction } from '@/actions/people';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { staff } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BulletRow from '../../components/BulletRow';

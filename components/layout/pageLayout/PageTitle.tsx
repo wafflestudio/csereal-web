@@ -4,11 +4,11 @@ import { useTranslations } from 'next-intl';
 import { Fragment, type JSX } from 'react';
 
 import { CurvedHorizontalNodeGray } from '@/components/common/Nodes';
+import { SegmentNode } from '@/constants/segmentNode';
 import { usePathname } from '@/i18n/routing';
 import { Link } from '@/i18n/routing';
 import { getLocationLog, getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
-import { SegmentNode } from '@/constants/segmentNode';
 
 interface PageTitleProps {
   title: string | JSX.Element;

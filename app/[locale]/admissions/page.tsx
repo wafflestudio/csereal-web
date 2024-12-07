@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
-import { getMetadata } from '@/utils/metadata';
 import { admissions } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

@@ -5,6 +5,7 @@ import FacultyEditor, {
   FacultyFormData,
 } from '@/app/[locale]/people/faculty/components/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
@@ -12,8 +13,7 @@ import { SimpleResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const facultyPath = getPath(faculty);

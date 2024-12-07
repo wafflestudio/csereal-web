@@ -2,10 +2,10 @@ import { getStaffList } from '@/apis/v2/staff';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { staff } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { staff } from '@/constants/segmentNode';
 
 import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';

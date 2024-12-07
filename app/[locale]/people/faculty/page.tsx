@@ -2,11 +2,11 @@ import { getActiveFacultyList } from '@/apis/v2/professor/active';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { faculty, researchLabs } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/constants/segmentNode';
 
 import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';

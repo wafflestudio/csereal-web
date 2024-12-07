@@ -2,10 +2,10 @@ import { Fragment } from 'react';
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 import { COLOR_THEME } from '@/constants/color';
+import { faculty } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { ResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';
-import { faculty } from '@/constants/segmentNode';
 
 export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {
   const dropShadow = 'drop-shadow(1px 2px 2px rgba(0,0,0,0.25))';

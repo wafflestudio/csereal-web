@@ -2,9 +2,9 @@
 
 import { StraightNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
+import { SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/constants/segmentNode';
 
 type NavTreeRowProps = {
   segmentNode: SegmentNode;

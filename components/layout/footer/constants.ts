@@ -1,4 +1,3 @@
-import { getPath } from '@/utils/page';
 import {
   contact,
   directions,
@@ -15,6 +14,7 @@ import {
   topConferenceList,
   undergraduateGuide,
 } from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 
 export interface FooterLink {
   href: string;

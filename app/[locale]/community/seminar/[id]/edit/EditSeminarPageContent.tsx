@@ -6,10 +6,10 @@ import SeminarEditor, {
 } from '@/app/[locale]/community/seminar/components/SeminarEditor';
 import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { seminar } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Seminar } from '@/types/seminar';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast } from '@/utils/toast';
 

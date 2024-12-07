@@ -2,12 +2,12 @@
 
 import { useTranslations } from 'next-intl';
 
+import { news } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
 import { MainNews } from '@/types/main';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { news } from '@/constants/segmentNode';
 
 import NewsCarousel from './NewsCarousel';
 import NewsCarouselMobile from './NewsCarouselMobile';

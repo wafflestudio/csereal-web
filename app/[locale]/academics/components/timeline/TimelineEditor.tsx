@@ -4,9 +4,8 @@ import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { isUploadedFile, EditorFile } from '@/components/form/types';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import { EditorFile, isUploadedFile } from '@/components/form/types';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';

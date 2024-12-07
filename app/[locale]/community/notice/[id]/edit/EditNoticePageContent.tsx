@@ -8,10 +8,10 @@ import NoticeEditor, {
 } from '@/app/[locale]/community/notice/components/NoticeEditor';
 import { isLocalFile, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { notice } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Notice } from '@/types/notice';
 import { getPath } from '@/utils/page';
-import { notice } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 

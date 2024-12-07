@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { SegmentNode } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/constants/segmentNode';
 
 import ENG_NAMES from '../../../messages/en.json';
 import Header from '../header/Header';

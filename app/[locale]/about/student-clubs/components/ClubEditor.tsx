@@ -1,16 +1,16 @@
 'use client';
 
+import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { EditorImage } from '@/components/form/types';
-import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import { studentClubs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/constants/segmentNode';
-import { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 
 const clubPath = getPath(studentClubs);
 

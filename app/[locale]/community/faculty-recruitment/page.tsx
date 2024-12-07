@@ -3,10 +3,10 @@ import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facultyRecruitment } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

@@ -8,9 +8,9 @@ import ScholarshipEditor, {
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
+import { undergraduateScholarship } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship } from '@/constants/segmentNode';
 
 const path = getPath(undergraduateScholarship);
 

@@ -5,9 +5,9 @@ import { revalidateTag } from 'next/cache';
 import { postSeminar } from '@/apis/v1/seminar';
 import { deleteSeminar, patchSeminar } from '@/apis/v1/seminar/[id]';
 import { FETCH_TAG_SEMINAR } from '@/constants/network';
+import { seminar } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);

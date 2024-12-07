@@ -1,9 +1,9 @@
 import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/constants/segmentNode';
 
 const courseChangesPath = getPath(undergraduateCourseChanges);
 

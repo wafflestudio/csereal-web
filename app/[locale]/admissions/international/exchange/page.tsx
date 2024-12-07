@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { getInternationalExchangeVisiting } from '@/apis/v1/admissions/international/exchange-visiting';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { getMetadata } from '@/utils/metadata';
 import { exchangeVisitingProgram } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

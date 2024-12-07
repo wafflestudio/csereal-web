@@ -6,9 +6,9 @@ import SeminarEditor, {
 } from '@/app/[locale]/community/seminar/components/SeminarEditor';
 import { isLocalFile, isLocalImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { seminar } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);

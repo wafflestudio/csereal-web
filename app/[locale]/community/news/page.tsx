@@ -7,9 +7,9 @@ import { Suspense } from 'react';
 import { getNewsPosts } from '@/apis/v1/news';
 import NewsPageContent from '@/app/[locale]/community/news/components/NewsPageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { news } from '@/constants/segmentNode';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { news } from '@/constants/segmentNode';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {

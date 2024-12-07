@@ -7,10 +7,10 @@ import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
+import { news } from '@/constants/segmentNode';
 import { News } from '@/types/news';
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
-import { news } from '@/constants/segmentNode';
 
 interface NewsPostPageProps {
   news: News;

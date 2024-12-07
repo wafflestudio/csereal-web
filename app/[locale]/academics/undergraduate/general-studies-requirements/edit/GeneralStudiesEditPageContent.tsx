@@ -3,9 +3,9 @@ import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { curriculum } from '@/constants/segmentNode';
 import { GeneralStudiesRequirement } from '@/types/academics';
 import { getPath } from '@/utils/page';
-import { curriculum } from '@/constants/segmentNode';
 
 const curriculumPath = getPath(curriculum);
 

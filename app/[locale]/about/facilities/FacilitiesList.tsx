@@ -5,12 +5,12 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { facilities } from '@/constants/segmentNode';
 import Distance from '@/public/image/distance.svg';
 import { Facility } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/constants/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);

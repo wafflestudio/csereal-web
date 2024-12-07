@@ -5,9 +5,9 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
-import { getKeys } from '@/utils/object';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { getKeys } from '@/utils/object';
+import { handleServerAction_legacy } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export default function AddCourseModal({

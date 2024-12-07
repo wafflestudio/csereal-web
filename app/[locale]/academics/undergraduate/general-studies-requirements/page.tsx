@@ -1,6 +1,6 @@
 import { getGeneralStudies } from '@/apis/v1/academics/undergraduate/general-studies-requirements';
-import { getMetadata } from '@/utils/metadata';
 import { generalStudies } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 import GeneralStudiesPageContent from './GeneralStudiesPageContent';
 
