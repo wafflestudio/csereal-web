@@ -46,10 +46,10 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
       <FormProvider {...formMethods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             {language === 'ko' && <Form.HTML name="ko" options={{ required: true }} />}
             {language === 'en' && <Form.HTML name="en" />}
-          </Fieldset.Editor>
+          </Fieldset.HTML>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>
       </FormProvider>

@@ -84,10 +84,10 @@ export default function AboutEditor({ data, node, showAttachments = false }: Pro
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
             {language === 'en' && <Form.HTML name="htmlEn" />}
-          </Fieldset.Editor>
+          </Fieldset.HTML>
 
           <Fieldset.Image>
             <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">

@@ -56,10 +56,10 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
             {language === 'en' && <Form.HTML name="htmlEn" />}
-          </Fieldset.Editor>
+          </Fieldset.HTML>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>
       </FormProvider>

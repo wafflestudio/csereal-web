@@ -38,9 +38,9 @@ export default function InternalEditor({
     <FormProvider {...formMethods}>
       <div className="m-10 min-w-[720px]">
         <Form>
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             <Form.HTML name="description" />
-          </Fieldset.Editor>
+          </Fieldset.HTML>
           <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
         </Form>
       </div>

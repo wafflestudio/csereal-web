@@ -4,9 +4,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { putFacultyRecruitmentAction } from '@/actions/recruitment';
 import Fieldset from '@/components/form/Fieldset';
-import { PostEditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import { PostEditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { GETFacultyRecruitmentResponse } from '@/types/post';
@@ -65,9 +64,9 @@ export default function FacultyRecruitmentEditPageContent({ data }: Props) {
           <Fieldset.Title>
             <Form.Text name="title" maxWidth="w-[30rem]" options={{ required: true }} />
           </Fieldset.Title>
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             <Form.HTML name="description" />
-          </Fieldset.Editor>
+          </Fieldset.HTML>
           <Fieldset.Image>
             <Form.Image name="image" />
           </Fieldset.Image>

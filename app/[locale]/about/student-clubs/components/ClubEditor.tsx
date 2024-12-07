@@ -41,10 +41,10 @@ export default function ClubEditor({ defaultValues, onSubmit }: Props) {
           {language === 'en' && <Form.Text name="en.name" />}
         </Fieldset.Title>
 
-        <Fieldset.Editor>
+        <Fieldset.HTML>
           {language === 'ko' && <Form.HTML name="ko.description" options={{ required: true }} />}
           {language === 'en' && <Form.HTML name="en.description" />}
-        </Fieldset.Editor>
+        </Fieldset.HTML>
 
         <Fieldset.Image>
           <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">

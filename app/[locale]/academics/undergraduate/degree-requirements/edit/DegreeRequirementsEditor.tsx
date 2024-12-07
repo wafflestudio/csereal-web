@@ -59,9 +59,9 @@ export default function DegreeRequirementsEditor({
     <PageLayout titleType="big">
       <FormProvider {...formMethods}>
         <Form>
-          <Fieldset.Editor>
+          <Fieldset.HTML>
             <Form.HTML name="description" />
-          </Fieldset.Editor>
+          </Fieldset.HTML>
           <Fieldset.File>
             <Form.File name="files" />
           </Fieldset.File>

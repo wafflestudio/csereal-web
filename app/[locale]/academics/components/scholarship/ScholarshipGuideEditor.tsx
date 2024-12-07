@@ -42,9 +42,9 @@ export default function ScholarshipGuideEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset.Editor>
+        <Fieldset.HTML>
           <Form.HTML name="description" />
-        </Fieldset.Editor>
+        </Fieldset.HTML>
         <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
       </Form>
     </FormProvider>

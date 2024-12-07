@@ -28,9 +28,9 @@ export default function GuideEditor({ defaultValues, onCancelPath, onSubmit }: P
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset.Editor>
+        <Fieldset.HTML>
           <Form.HTML name="description" />
-        </Fieldset.Editor>
+        </Fieldset.HTML>
         <Fieldset.File>
           <Form.File name="file" />
         </Fieldset.File>

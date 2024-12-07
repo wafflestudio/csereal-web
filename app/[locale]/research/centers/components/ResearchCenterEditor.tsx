@@ -63,9 +63,9 @@ const Editor = ({ language }: { language: Language }) => {
       <Fieldset title="웹사이트 주소" mb="mb-8" titleMb="mb-2">
         <Form.Text name={`${language}.websiteURL`} maxWidth="max-w-[30rem]" />
       </Fieldset>
-      <Fieldset.Editor>
+      <Fieldset.HTML>
         <Form.HTML name={`${language}.description`} />
-      </Fieldset.Editor>
+      </Fieldset.HTML>
       <Fieldset.Image>
         <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
           연구 센터 대표 이미지입니다.

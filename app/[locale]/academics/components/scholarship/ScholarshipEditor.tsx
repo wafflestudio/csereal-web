@@ -72,9 +72,9 @@ const Editor = ({ language }: { language: Language }) => {
       <Fieldset.Title>
         <Form.Text name={`${language}Name`} options={{ required: true }} />
       </Fieldset.Title>
-      <Fieldset.Editor>
+      <Fieldset.HTML>
         <Form.HTML name={`${language}Description`} options={{ required: true }} />
-      </Fieldset.Editor>
+      </Fieldset.HTML>
     </>
   );
 };

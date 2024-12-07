@@ -30,7 +30,7 @@ function Fieldset({
   );
 }
 
-function Editor({ children }: { children: ReactNode }) {
+function HTML({ children }: { children: ReactNode }) {
   return (
     <Fieldset title="내용" mb="mb-6" titleMb="mb-2" required>
       {children}
@@ -62,4 +62,4 @@ function Title({ children }: { children: ReactNode }) {
   );
 }
 
-export default Object.assign(Fieldset, { Editor, Image, File, Title });
+export default Object.assign(Fieldset, { HTML, Image, File, Title });

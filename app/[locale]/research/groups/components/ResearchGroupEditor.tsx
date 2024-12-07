@@ -60,9 +60,9 @@ const Editor = ({ language }: { language: Language }) => {
       <Fieldset.Title>
         <Form.Text name={`${language}.name`} maxWidth="w-[30rem]" />
       </Fieldset.Title>
-      <Fieldset.Editor>
+      <Fieldset.HTML>
         <Form.HTML name={`${language}.description`} />
-      </Fieldset.Editor>
+      </Fieldset.HTML>
       <Fieldset.Image>
         <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
           글 우측 상단에 들어가는 이미지입니다.

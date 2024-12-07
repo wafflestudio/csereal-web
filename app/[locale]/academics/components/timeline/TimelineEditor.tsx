@@ -72,9 +72,9 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
             options={{ required: true, valueAsNumber: true }}
           />
         </Fieldset>
-        <Fieldset.Editor>
+        <Fieldset.HTML>
           <Form.HTML name="description" options={{ required: true }} />
-        </Fieldset.Editor>
+        </Fieldset.HTML>
         <Fieldset.File>
           <Form.File name="file" />
         </Fieldset.File>
