@@ -1,4 +1,4 @@
-import { ReservationPostBody } from '@/types/reservation';
+import { ReservationPostBody } from '@/apis/types/reservation';
 
 import { SetReservationBody } from './useAddReservation';
 

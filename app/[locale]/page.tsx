@@ -14,7 +14,7 @@ import {
   topConferenceList,
 } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { MainImportant } from '@/types/main';
+import { MainImportant } from '@/apis/types/main';
 import { getPath } from '@/utils/page';
 
 export default async function MainPage() {

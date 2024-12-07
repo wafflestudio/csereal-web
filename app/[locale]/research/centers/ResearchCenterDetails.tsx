@@ -8,7 +8,7 @@ import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { researchCenters } from '@/constants/segmentNode';
 import LinkIcon from '@/public/image/link_icon.svg';
 import { WithLanguage } from '@/types/language';
-import { ResearchCenter } from '@/types/research';
+import { ResearchCenter } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

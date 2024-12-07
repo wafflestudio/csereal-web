@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { CSSProperties, useEffect, useReducer, useRef } from 'react';
 
-import { Course, GRADE, SortOption } from '@/types/academics';
+import { Course, GRADE, SortOption } from '@/apis/types/academics';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
 interface CourseCardProps {

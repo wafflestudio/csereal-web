@@ -2,7 +2,7 @@ import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { directions } from '@/constants/segmentNode';
-import { Direction } from '@/types/about';
+import { Direction } from '@/apis/types/about';
 import { getPath } from '@/utils/page';
 import { replaceSpaceWithDash } from '@/utils/string';
 

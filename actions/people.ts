@@ -10,7 +10,7 @@ import { FETCH_TAG_FACULTY, FETCH_TAG_STAFF } from '@/constants/network';
 import { emeritusFaculty, faculty, staff } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { FacultyStatus } from '@/types/people';
+import { FacultyStatus } from '@/apis/types/people';
 import { getPath } from '@/utils/page';
 
 import { withErrorHandler } from './errorHandler';

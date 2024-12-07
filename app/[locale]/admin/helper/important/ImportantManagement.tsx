@@ -3,7 +3,7 @@
 import { batchUnimportantAction } from '@/actions/admin';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
-import { ImportantPreview } from '@/types/admin';
+import { ImportantPreview } from '@/apis/types/admin';
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 

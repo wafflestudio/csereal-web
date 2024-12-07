@@ -7,8 +7,8 @@ import ResearchLabEditor, {
 import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/types/people';
-import { ResearchGroup, ResearchLab } from '@/types/research';
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup, ResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';

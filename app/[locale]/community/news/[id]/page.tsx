@@ -5,7 +5,7 @@ import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { news } from '@/constants/segmentNode';
-import { PostSearchQueryParams } from '@/types/post';
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getMetadata } from '@/utils/metadata';
 
 import NewsViewer from './NewsViewer';

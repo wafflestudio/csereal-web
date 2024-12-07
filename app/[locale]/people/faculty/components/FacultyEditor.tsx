@@ -8,8 +8,8 @@ import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { EditorImage } from '@/components/form/types';
 import { Language, WithLanguage } from '@/types/language';
-import { FACULTY_STATUS, FacultyStatus } from '@/types/people';
-import { SimpleResearchLab } from '@/types/research';
+import { FACULTY_STATUS, FacultyStatus } from '@/apis/types/people';
+import { SimpleResearchLab } from '@/apis/types/research';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { getKeys } from '@/utils/object';
 

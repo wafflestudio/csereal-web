@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { StudentType } from '@/types/academics';
+import { StudentType } from '@/apis/types/academics';
 import { getPath } from '@/utils/page';
 
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);

@@ -1,4 +1,4 @@
-import { Course, SortOption } from '@/types/academics';
+import { Course, SortOption } from '@/apis/types/academics';
 
 import CourseRow from './CourseRow';
 

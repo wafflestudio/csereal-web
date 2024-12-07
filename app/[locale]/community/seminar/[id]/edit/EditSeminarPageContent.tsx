@@ -8,7 +8,7 @@ import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/typ
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { seminar } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Seminar } from '@/types/seminar';
+import { Seminar } from '@/apis/types/seminar';
 import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast } from '@/utils/toast';

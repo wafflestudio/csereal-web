@@ -8,7 +8,7 @@ import { getNewsPosts } from '@/apis/v1/news';
 import NewsPageContent from '@/app/[locale]/community/news/components/NewsPageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { news } from '@/constants/segmentNode';
-import { PostSearchQueryParams } from '@/types/post';
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getMetadata } from '@/utils/metadata';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 

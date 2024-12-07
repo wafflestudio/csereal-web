@@ -1,5 +1,5 @@
 import { FETCH_TAG_RECRUITMENT } from '@/constants/network';
-import { GETFacultyRecruitmentResponse } from '@/types/post';
+import { GETFacultyRecruitmentResponse } from '@/apis/types/post';
 
 import { getRequest, putRequest } from '..';
 

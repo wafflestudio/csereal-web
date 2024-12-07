@@ -4,7 +4,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
-import { SimpleEmeritusFaculty } from '@/types/people';
+import { SimpleEmeritusFaculty } from '@/apis/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 

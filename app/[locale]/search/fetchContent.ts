@@ -14,8 +14,8 @@ import {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
-} from '@/types/search';
-import { SeminarPreviewList } from '@/types/seminar';
+} from '@/apis/types/search';
+import { SeminarPreviewList } from '@/apis/types/seminar';
 
 import { TreeNode } from './helper/SearchSubNavbar';
 

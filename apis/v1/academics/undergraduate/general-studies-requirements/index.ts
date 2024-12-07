@@ -1,6 +1,6 @@
 import { getRequest, postRequest } from '@/apis';
 import { FETCH_TAG_GENERAL_STUDIES } from '@/constants/network';
-import { GeneralStudiesRequirement, GeneralStudiesRequirements } from '@/types/academics';
+import { GeneralStudiesRequirement, GeneralStudiesRequirements } from '@/apis/types/academics';
 
 export const getGeneralStudies = () =>
   getRequest<GeneralStudiesRequirements>(

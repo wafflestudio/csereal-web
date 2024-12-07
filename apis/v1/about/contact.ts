@@ -1,6 +1,6 @@
 import { getRequest } from '@/apis';
 import { FETCH_TAG_CONTACT } from '@/constants/network';
-import { AboutContent } from '@/types/about';
+import { AboutContent } from '@/apis/types/about';
 import { Language } from '@/types/language';
 
 export const getContact = (language: Language) =>

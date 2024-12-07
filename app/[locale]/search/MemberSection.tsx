@@ -1,7 +1,7 @@
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { faculty, staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { Member, MemberSearchResult } from '@/types/search';
+import { Member, MemberSearchResult } from '@/apis/types/search';
 import { getPath } from '@/utils/page';
 
 import CircleTitle from './helper/CircleTitle';

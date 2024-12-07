@@ -4,7 +4,7 @@ import { postCourseAction } from '@/actions/academics';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { CLASSIFICATION, Course, GRADE, StudentType } from '@/types/academics';
+import { CLASSIFICATION, Course, GRADE, StudentType } from '@/apis/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getKeys } from '@/utils/object';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

@@ -5,7 +5,7 @@ import SeminarSearchBar from '@/app/[locale]/community/seminar/components/Semina
 import SeminarYear from '@/app/[locale]/community/seminar/components/SeminarYear';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
-import { SeminarPreviewList } from '@/types/seminar';
+import { SeminarPreviewList } from '@/apis/types/seminar';
 
 const POSTS_COUNT_PER_PAGE = 10;
 

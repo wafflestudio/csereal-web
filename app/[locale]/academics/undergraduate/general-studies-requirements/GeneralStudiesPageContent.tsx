@@ -2,7 +2,7 @@
 
 import { deleteGeneralStudiesAction } from '@/actions/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { GeneralStudiesRequirement } from '@/types/academics';
+import { GeneralStudiesRequirement } from '@/apis/types/academics';
 
 import TimelineViewer from '../../components/timeline/TimelineViewer';
 

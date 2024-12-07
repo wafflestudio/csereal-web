@@ -1,7 +1,7 @@
 import { getRequest } from '@/apis';
 import { FETCH_TAG_FACULTY } from '@/constants/network';
 import { Language } from '@/types/language';
-import { SimpleEmeritusFaculty } from '@/types/people';
+import { SimpleEmeritusFaculty } from '@/apis/types/people';
 
 export const getEmeritusFacultyList = (language: Language) =>
   getRequest<SimpleEmeritusFaculty[]>(

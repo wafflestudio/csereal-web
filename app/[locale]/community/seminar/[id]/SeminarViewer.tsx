@@ -8,7 +8,7 @@ import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
-import { Seminar } from '@/types/seminar';
+import { Seminar } from '@/apis/types/seminar';
 
 interface SeminarPostPageProps {
   seminar: Seminar;

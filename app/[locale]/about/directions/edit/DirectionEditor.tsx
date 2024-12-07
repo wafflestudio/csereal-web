@@ -10,7 +10,7 @@ import LanguagePicker from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { directions } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Direction } from '@/types/about';
+import { Direction } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';

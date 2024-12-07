@@ -2,9 +2,9 @@ import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import { Link } from '@/i18n/routing';
-import { News } from '@/types/news';
-import { Notice } from '@/types/notice';
-import { Seminar } from '@/types/seminar';
+import { News } from '@/apis/types/news';
+import { Notice } from '@/apis/types/notice';
+import { Seminar } from '@/apis/types/seminar';
 
 import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';

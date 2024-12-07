@@ -6,7 +6,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
-import { Scholarship, StudentType } from '@/types/academics';
+import { Scholarship, StudentType } from '@/apis/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

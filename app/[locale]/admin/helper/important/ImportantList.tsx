@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
+import { ImportantPostIdentifier, ImportantPreview } from '@/apis/types/admin';
 
 import ImportantListHeader from './ImportantListHeader';
 import ImportantListRow from './ImportantListRow';

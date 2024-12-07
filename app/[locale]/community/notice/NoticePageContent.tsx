@@ -5,7 +5,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import { NOTICE_TAGS } from '@/constants/tag';
-import { NoticePreviewList } from '@/types/notice';
+import { NoticePreviewList } from '@/apis/types/notice';
 
 import AdminFeatures from './components/AdminFeatures';
 import { usePostSelect } from './components/usePostSelect';

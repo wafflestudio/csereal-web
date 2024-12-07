@@ -1,7 +1,7 @@
 import { deleteRequest, getRequest, patchRequest } from '@/apis';
 import { FETCH_TAG_NEWS } from '@/constants/network';
-import { News } from '@/types/news';
-import { PostSearchQueryParams } from '@/types/post';
+import { News } from '@/apis/types/news';
+import { PostSearchQueryParams } from '@/apis/types/post';
 
 export const getNewsDetail = (id: number, params?: PostSearchQueryParams) =>
   getRequest(`/v1/news/${id}`, params, {

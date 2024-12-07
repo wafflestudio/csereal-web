@@ -1,5 +1,5 @@
 import { getRequest, patchRequest } from '@/apis';
-import { SlidePreview } from '@/types/admin';
+import { SlidePreview } from '@/apis/types/admin';
 
 export const getSlides = (pageNum: number) =>
   getRequest(

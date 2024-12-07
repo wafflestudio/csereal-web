@@ -1,5 +1,5 @@
 import { news } from '@/constants/segmentNode';
-import { SlidePreview } from '@/types/admin';
+import { SlidePreview } from '@/apis/types/admin';
 import { getPath } from '@/utils/page';
 
 import { CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';

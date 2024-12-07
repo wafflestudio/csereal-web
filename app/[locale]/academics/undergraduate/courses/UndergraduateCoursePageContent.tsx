@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
-import { Classification, Course, SortOption } from '@/types/academics';
+import { Classification, Course, SortOption } from '@/apis/types/academics';
 import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
 

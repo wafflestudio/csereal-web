@@ -1,7 +1,7 @@
 import { getRequest } from '@/apis';
 import { FETCH_TAG_GROUP } from '@/constants/network';
 import { Language } from '@/types/language';
-import { ResearchGroup } from '@/types/research';
+import { ResearchGroup } from '@/apis/types/research';
 
 export const getResearchGroups = (language: Language) =>
   getRequest<ResearchGroup[]>(

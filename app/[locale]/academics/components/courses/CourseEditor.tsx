@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { putCourseAction } from '@/actions/academics';
 import Form from '@/components/form/Form';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/types/academics';
+import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/apis/types/academics';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';

@@ -10,7 +10,7 @@ import { isLocalFile, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { notice } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Notice } from '@/types/notice';
+import { Notice } from '@/apis/types/notice';
 import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';

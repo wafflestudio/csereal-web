@@ -6,7 +6,7 @@ import SearchBox from '@/components/common/search/SearchBox';
 import { news } from '@/constants/segmentNode';
 import { NEWS_TAGS } from '@/constants/tag';
 import { Link } from '@/i18n/routing';
-import { NewsPreviewList } from '@/types/news';
+import { NewsPreviewList } from '@/apis/types/news';
 import { getPath } from '@/utils/page';
 
 const POST_LIMIT = 10;

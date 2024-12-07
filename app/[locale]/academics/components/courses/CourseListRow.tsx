@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Course, GRADE } from '@/types/academics';
+import { Course, GRADE } from '@/apis/types/academics';
 import useModal from '@/utils/hooks/useModal';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 

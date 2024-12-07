@@ -11,7 +11,7 @@ import {
   FETCH_TAG_SEMINAR,
   FETCH_TAG_SLIDE,
 } from '@/constants/network';
-import { ImportantPostIdentifier } from '@/types/admin';
+import { ImportantPostIdentifier } from '@/apis/types/admin';
 
 export const batchUnslideAction = async (ids: number[]) => {
   try {

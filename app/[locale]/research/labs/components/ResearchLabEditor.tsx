@@ -6,8 +6,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { researchLabs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/types/people';
-import { ResearchGroup } from '@/types/research';
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup } from '@/apis/types/research';
 import { getPath } from '@/utils/page';
 
 import Fieldset from '../../../../../components/form/Fieldset';

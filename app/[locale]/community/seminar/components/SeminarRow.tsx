@@ -6,7 +6,7 @@ import { seminar } from '@/constants/segmentNode';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
-import { SeminarPreview } from '@/types/seminar';
+import { SeminarPreview } from '@/apis/types/seminar';
 import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 

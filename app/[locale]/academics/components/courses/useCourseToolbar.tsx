@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { SortOption, ViewOption } from '@/types/academics';
+import { SortOption, ViewOption } from '@/apis/types/academics';
 
 export default function useCourseToolbar() {
   const [selectedOption, setSelectedOption] = useState<{ view: ViewOption; sort: SortOption }>({

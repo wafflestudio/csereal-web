@@ -11,7 +11,7 @@ import { EditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Facility } from '@/types/about';
+import { Facility } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';

@@ -9,7 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { faculty } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
-import { EmeritusFaculty } from '@/types/people';
+import { EmeritusFaculty } from '@/apis/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

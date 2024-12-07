@@ -11,7 +11,7 @@ import { Link } from '@/i18n/routing';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
 import { WithLanguage } from '@/types/language';
-import { ResearchLab } from '@/types/research';
+import { ResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';

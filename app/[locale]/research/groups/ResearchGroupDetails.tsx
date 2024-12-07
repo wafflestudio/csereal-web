@@ -9,7 +9,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { researchGroups } from '@/constants/segmentNode';
 import { WithLanguage } from '@/types/language';
-import { ResearchGroup } from '@/types/research';
+import { ResearchGroup } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

@@ -7,7 +7,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { facilities } from '@/constants/segmentNode';
 import Distance from '@/public/image/distance.svg';
-import { Facility } from '@/types/about';
+import { Facility } from '@/apis/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction_legacy } from '@/utils/serverActionError';

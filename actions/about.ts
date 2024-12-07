@@ -36,7 +36,7 @@ import {
   studentClubs,
 } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
-import { FutureCareers } from '@/types/about';
+import { FutureCareers } from '@/apis/types/about';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
 

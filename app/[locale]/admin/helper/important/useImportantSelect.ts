@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import { ImportantCategory, ImportantPostIdentifier } from '@/types/admin';
+import { ImportantCategory, ImportantPostIdentifier } from '@/apis/types/admin';
 
 export default function useImportantSelect() {
   const value = useReducer(reducer, []);

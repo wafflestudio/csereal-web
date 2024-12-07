@@ -6,7 +6,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { studentClubs } from '@/constants/segmentNode';
-import { Club } from '@/types/about';
+import { Club } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';

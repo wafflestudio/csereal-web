@@ -2,7 +2,7 @@
 
 import { getRequest, postRequest, putRequest } from '@/apis';
 import { Attachment } from '@/components/common/Attachments';
-import { StudentType } from '@/types/academics';
+import { StudentType } from '@/apis/types/academics';
 
 interface AcademicsByPostType {
   year: number;

@@ -8,7 +8,7 @@ import { getSeminarPosts } from '@/apis/v1/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { seminar } from '@/constants/segmentNode';
-import { PostSearchQueryParams } from '@/types/post';
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getMetadata } from '@/utils/metadata';
 import { validatePageNum } from '@/utils/validateSearchParams';
 

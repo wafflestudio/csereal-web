@@ -3,7 +3,7 @@
 import { revalidateTag } from 'next/cache';
 
 import { FETCH_TAG_RESERVATION } from '@/constants/network';
-import { Reservation, ReservationPostBody, ReservationPreview } from '@/types/reservation';
+import { Reservation, ReservationPostBody, ReservationPreview } from '@/apis/types/reservation';
 
 import { deleteRequest, getRequest, postRequest } from '../apis';
 import { withErrorHandler } from './errorHandler';

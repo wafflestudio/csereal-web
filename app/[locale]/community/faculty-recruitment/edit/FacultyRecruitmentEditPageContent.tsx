@@ -9,7 +9,7 @@ import { EditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { facultyRecruitment } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { GETFacultyRecruitmentResponse } from '@/types/post';
+import { GETFacultyRecruitmentResponse } from '@/apis/types/post';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';

@@ -7,7 +7,7 @@ import { ReactNode, useState } from 'react';
 import { notice } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import Plus from '@/public/image/main/plus.svg';
-import { AllMainNotice } from '@/types/main';
+import { AllMainNotice } from '@/apis/types/main';
 import { formatMainNoticeDateStr } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';

@@ -1,7 +1,7 @@
 import { getRequest } from '@/apis';
 import { FETCH_TAG_FACULTY } from '@/constants/network';
 import { Language } from '@/types/language';
-import { FacultyList } from '@/types/people';
+import { FacultyList } from '@/apis/types/people';
 
 export const getActiveFacultyList = (language: Language) =>
   getRequest<FacultyList>(

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { faculty, researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
-import { SimpleResearchLab } from '@/types/research';
+import { SimpleResearchLab } from '@/apis/types/research';
 import { getPath } from '@/utils/page';
 
 export const LAB_ROW_ITEM_WIDTH = {

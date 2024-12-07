@@ -6,7 +6,7 @@ import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/typ
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { news } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { News } from '@/types/news';
+import { News } from '@/apis/types/news';
 import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 

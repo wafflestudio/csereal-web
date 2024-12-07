@@ -1,5 +1,5 @@
 import { admissions } from '@/constants/segmentNode';
-import { AdmissionsSearchResult } from '@/types/search';
+import { AdmissionsSearchResult } from '@/apis/types/search';
 import { getPath } from '@/utils/page';
 
 import BasicRow from './helper/BasicRow';

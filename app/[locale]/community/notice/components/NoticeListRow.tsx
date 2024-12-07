@@ -4,7 +4,7 @@ import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
-import { NoticePreview } from '@/types/notice';
+import { NoticePreview } from '@/apis/types/notice';
 import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {

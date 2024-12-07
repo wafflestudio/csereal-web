@@ -36,7 +36,7 @@ import {
   GeneralStudiesRequirement,
   Scholarship,
   StudentType,
-} from '@/types/academics';
+} from '@/apis/types/academics';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';

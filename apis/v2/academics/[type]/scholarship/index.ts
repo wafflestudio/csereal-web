@@ -1,5 +1,5 @@
 import { postRequest, putRequest } from '@/apis';
-import { StudentType } from '@/types/academics';
+import { StudentType } from '@/apis/types/academics';
 
 export const putScholarshipGuide = (type: StudentType, description: string) =>
   putRequest(`/v2/academics/${type}/scholarship`, {
