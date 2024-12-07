@@ -13,13 +13,13 @@ import plugins from 'suneditor/src/plugins';
 import { postImage } from '@/apis/v1/file/upload';
 import { isContentEmpty } from '@/utils/post';
 
-interface Props {
+export interface HTMLEditorProps {
   name: string;
   options?: RegisterOptions;
 }
 
 // MEMO: defaultValues에 비동기 함수를 건네도 동작할지 모르겠음.
-export default function HTMLEditor({ name, options: registerOptions }: Props) {
+export default function HTMLEditor({ name, options: registerOptions }: HTMLEditorProps) {
   const { register, setValue, getValues } = useFormContext();
   const [div, setDiv] = useState<HTMLDivElement | null>(null);
   const { onBlur } = register(name, registerOptions);

@@ -1,4 +1,4 @@
-export default function SunEditorFallback() {
+export default function HTMLEditorFallback() {
   return (
     <div className="mx-[3.75rem] mt-3 flex h-[400px] animate-pulse flex-col">
       <div className="flex flex-col gap-2">

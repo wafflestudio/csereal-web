@@ -6,7 +6,7 @@ import Checkbox from '@/components/form/Checkbox';
 import DateSelector from '@/components/form/Date';
 import Dropdown from '@/components/form/Dropdown';
 import FilePicker from '@/components/form/File';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import LazyHTMLEditor from '@/components/form/html/LazyHTMLEditor';
 import ImagePicker from '@/components/form/Image';
 import Radio from '@/components/form/Radio';
 import Section from '@/components/form/Section';
@@ -31,5 +31,5 @@ export default Object.assign(Form, {
   Dropdown,
   Section,
   TextArea,
-  HTML: HTMLEditor,
+  HTML: LazyHTMLEditor,
 });
