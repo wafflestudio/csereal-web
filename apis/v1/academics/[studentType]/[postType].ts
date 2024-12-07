@@ -1,8 +1,8 @@
 'use server';
 
 import { getRequest, postRequest, putRequest } from '@/apis';
-import { Attachment } from '@/components/common/Attachments';
 import { StudentType } from '@/apis/types/academics';
+import { Attachment } from '@/components/common/Attachments';
 
 interface AcademicsByPostType {
   year: number;

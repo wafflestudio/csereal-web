@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putDirectionsAction } from '@/actions/about';
+import { Direction } from '@/apis/types/about';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { directions } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Direction } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';

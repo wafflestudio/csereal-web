@@ -1,8 +1,8 @@
 'use client';
 
 import { deleteGeneralStudiesAction } from '@/actions/academics';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { GeneralStudiesRequirement } from '@/apis/types/academics';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import TimelineViewer from '../../components/timeline/TimelineViewer';
 

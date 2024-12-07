@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 
-import LoginVisible from '@/components/common/LoginVisible';
 import { Course } from '@/apis/types/academics';
+import LoginVisible from '@/components/common/LoginVisible';
 import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
 

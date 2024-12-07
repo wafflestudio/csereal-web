@@ -4,11 +4,11 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getSeminarPosts } from '@/apis/v1/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { seminar } from '@/constants/segmentNode';
-import { PostSearchQueryParams } from '@/apis/types/post';
 import { getMetadata } from '@/utils/metadata';
 import { validatePageNum } from '@/utils/validateSearchParams';
 

@@ -1,9 +1,9 @@
 'use client';
 
 import { batchUnslideAction } from '@/actions/admin';
+import { SlidePreview } from '@/apis/types/admin';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
-import { SlidePreview } from '@/apis/types/admin';
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 

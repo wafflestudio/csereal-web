@@ -1,3 +1,4 @@
+import { Academic, AcademicsSearchResult } from '@/apis/types/search';
 import {
   curriculum,
   degree,
@@ -11,7 +12,6 @@ import {
   undergraduateGuide,
   undergraduateScholarship,
 } from '@/constants/segmentNode';
-import { Academic, AcademicsSearchResult } from '@/apis/types/search';
 import { getPath } from '@/utils/page';
 
 import BasicRow from './helper/BasicRow';

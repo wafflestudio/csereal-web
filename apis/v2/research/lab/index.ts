@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from '@/apis';
+import { ResearchLab, SimpleResearchLab } from '@/apis/types/research';
 import { FETCH_TAG_LAB } from '@/constants/network';
 import { Language, WithLanguage } from '@/types/language';
-import { ResearchLab, SimpleResearchLab } from '@/apis/types/research';
 
 export const getResearchLabs = (language: Language) =>
   getRequest<SimpleResearchLab[]>(

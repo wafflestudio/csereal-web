@@ -9,10 +9,10 @@ import {
   postCareerCompanyAction,
   putCareerCompanyAction,
 } from '@/actions/about';
+import { FutureCareers } from '@/apis/types/about';
 import { BlackButton, DeleteButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Form from '@/components/form/Form';
-import { FutureCareers } from '@/apis/types/about';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';

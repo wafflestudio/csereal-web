@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
+import { MainImportant } from '@/apis/types/main';
 import { getMain } from '@/apis/v1';
 import GraphicSection from '@/app/[locale]/components/GraphicSection';
 import NewsSection from '@/app/[locale]/components/NewsSection';
@@ -14,7 +15,6 @@ import {
   topConferenceList,
 } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { MainImportant } from '@/apis/types/main';
 import { getPath } from '@/utils/page';
 
 export default async function MainPage() {

@@ -1,12 +1,12 @@
 import { ElementType, PropsWithChildren } from 'react';
 
+import { SeminarPreview } from '@/apis/types/seminar';
 import PaginatedLink from '@/app/[locale]/community/components/PaginatedLink';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { seminar } from '@/constants/segmentNode';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
-import { SeminarPreview } from '@/apis/types/seminar';
 import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 

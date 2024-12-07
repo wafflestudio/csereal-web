@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 
+import { AllMainNotice } from '@/apis/types/main';
 import { notice } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import Plus from '@/public/image/main/plus.svg';
-import { AllMainNotice } from '@/apis/types/main';
 import { formatMainNoticeDateStr } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';

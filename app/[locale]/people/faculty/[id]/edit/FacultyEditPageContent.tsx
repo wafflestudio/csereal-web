@@ -1,6 +1,8 @@
 'use client';
 
 import { putFacultyAction } from '@/actions/people';
+import { Faculty } from '@/apis/types/people';
+import { SimpleResearchLab } from '@/apis/types/research';
 import FacultyEditor, {
   FacultyFormData,
 } from '@/app/[locale]/people/faculty/components/FacultyEditor';
@@ -8,8 +10,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { Faculty } from '@/apis/types/people';
-import { SimpleResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';

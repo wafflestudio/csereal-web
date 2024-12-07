@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { Link } from '@/i18n/routing';
 import { MainNews } from '@/apis/types/main';
+import { Link } from '@/i18n/routing';
 import { formatMainNewsDateStr } from '@/utils/date';
 
 import { CARD_WIDTH_REM } from './constants';

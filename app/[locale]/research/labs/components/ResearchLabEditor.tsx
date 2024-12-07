@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup } from '@/apis/types/research';
 import { researchLabs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/apis/types/people';
-import { ResearchGroup } from '@/apis/types/research';
 import { getPath } from '@/utils/page';
 
 import Fieldset from '../../../../../components/form/Fieldset';

@@ -1,6 +1,6 @@
 import { getRequest } from '@/apis';
-import { FETCH_TAG_DIRECTIONS } from '@/constants/network';
 import { Direction } from '@/apis/types/about';
+import { FETCH_TAG_DIRECTIONS } from '@/constants/network';
 import { WithLanguage } from '@/types/language';
 
 export const getDirections = () =>

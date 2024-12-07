@@ -1,6 +1,6 @@
 import { deleteRequest, putRequest } from '@/apis';
-import { WithLanguage } from '@/types/language';
 import { ResearchCenter, ResearchGroup } from '@/apis/types/research';
+import { WithLanguage } from '@/types/language';
 
 export const putResearchGroup = (ids: WithLanguage<number>, formData: FormData) =>
   putRequest<WithLanguage<ResearchGroup>>(`/v2/research/${ids.ko}/${ids.en}`, {

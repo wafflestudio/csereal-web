@@ -1,10 +1,10 @@
 import { Fragment } from 'react';
 
+import { ResearchLab } from '@/apis/types/research';
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle';
 import { COLOR_THEME } from '@/constants/color';
 import { faculty } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { ResearchLab } from '@/apis/types/research';
 import { getPath } from '@/utils/page';
 
 export default function ResearchLabInfo({ lab }: { lab: ResearchLab }) {

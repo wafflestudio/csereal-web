@@ -1,3 +1,4 @@
+import { NewsPreviewList } from '@/apis/types/news';
 import NewsRow from '@/app/[locale]/community/news/components/NewsRow';
 import LoginVisible from '@/components/common/LoginVisible';
 import NoSearchResult from '@/components/common/NoSearchResult';
@@ -6,7 +7,6 @@ import SearchBox from '@/components/common/search/SearchBox';
 import { news } from '@/constants/segmentNode';
 import { NEWS_TAGS } from '@/constants/tag';
 import { Link } from '@/i18n/routing';
-import { NewsPreviewList } from '@/apis/types/news';
 import { getPath } from '@/utils/page';
 
 const POST_LIMIT = 10;

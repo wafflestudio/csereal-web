@@ -4,11 +4,11 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getNoticePosts } from '@/apis/v1/notice';
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { notice } from '@/constants/segmentNode';
-import { PostSearchQueryParams } from '@/apis/types/post';
 import { getMetadata } from '@/utils/metadata';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 

@@ -1,6 +1,6 @@
+import { FacultyStatus } from '@/apis/types/people';
 import { getResearchLabs } from '@/apis/v2/research/lab';
 import { Language } from '@/types/language';
-import { FacultyStatus } from '@/apis/types/people';
 
 import FacultyCreatePageContent from './FacultyCreatePageContent';
 

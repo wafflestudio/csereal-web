@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from '@/apis';
-import { FETCH_TAG_SEMINAR } from '@/constants/network';
 import { PostSearchQueryParams } from '@/apis/types/post';
 import { SeminarPreviewList } from '@/apis/types/seminar';
+import { FETCH_TAG_SEMINAR } from '@/constants/network';
 
 export const getSeminarPosts = async (params: PostSearchQueryParams) => {
   return getRequest('/v1/seminar', params, {

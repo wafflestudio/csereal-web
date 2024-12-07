@@ -1,7 +1,7 @@
 import { deleteRequest, getRequest, patchRequest } from '@/apis';
-import { FETCH_TAG_SEMINAR } from '@/constants/network';
 import { PostSearchQueryParams } from '@/apis/types/post';
 import { Seminar } from '@/apis/types/seminar';
+import { FETCH_TAG_SEMINAR } from '@/constants/network';
 
 export const getSeminarPost = async (id: number, params: PostSearchQueryParams) => {
   return getRequest(`/v1/seminar/${id}`, params, {

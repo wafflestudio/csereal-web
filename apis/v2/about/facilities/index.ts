@@ -1,6 +1,6 @@
 import { getRequest, postRequest } from '@/apis';
-import { FETCH_TAG_FACILITIES } from '@/constants/network';
 import { Facility } from '@/apis/types/about';
+import { FETCH_TAG_FACILITIES } from '@/constants/network';
 import { WithLanguage } from '@/types/language';
 
 export const getFacilities = () =>

@@ -1,12 +1,12 @@
 'use client';
 
 import { postFacultyAction } from '@/actions/people';
+import { FacultyStatus } from '@/apis/types/people';
+import { SimpleResearchLab } from '@/apis/types/research';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { FacultyStatus } from '@/apis/types/people';
-import { SimpleResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';

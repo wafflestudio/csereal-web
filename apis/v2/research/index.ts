@@ -1,6 +1,6 @@
 import { postRequest } from '@/apis';
-import { WithLanguage } from '@/types/language';
 import { ResearchCenter, ResearchGroup } from '@/apis/types/research';
+import { WithLanguage } from '@/types/language';
 
 export const postResearchGroup = (formData: FormData) =>
   postRequest<WithLanguage<ResearchGroup>>('/v2/research', { body: formData, jsessionID: true });

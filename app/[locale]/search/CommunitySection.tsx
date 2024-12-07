@@ -1,10 +1,10 @@
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
-import { news, notice, seminar } from '@/constants/segmentNode';
-import { Link } from '@/i18n/routing';
 import { NewsSearchResult, NoticeSearchResult } from '@/apis/types/search';
 import { SeminarPreviewList } from '@/apis/types/seminar';
+import { news, notice, seminar } from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 
 import SeminarRow from '../community/seminar/components/SeminarRow';

@@ -1,7 +1,7 @@
 import { deleteRequest, getRequest, patchRequest, postRequest } from '@/apis';
-import { FETCH_TAG_NOTICE } from '@/constants/network';
 import { NoticePreviewList } from '@/apis/types/notice';
 import { PostSearchQueryParams } from '@/apis/types/post';
+import { FETCH_TAG_NOTICE } from '@/constants/network';
 
 export const getNoticePosts = (params: PostSearchQueryParams) =>
   getRequest('/v1/notice', params, {

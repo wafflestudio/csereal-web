@@ -1,5 +1,6 @@
 import { revalidateTag } from 'next/cache';
 
+import { Curriculum } from '@/apis/types/academics';
 import { putAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
 import TimelineEditor, {
   TimelineFormData,
@@ -7,7 +8,6 @@ import TimelineEditor, {
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { curriculum } from '@/constants/segmentNode';
-import { Curriculum } from '@/apis/types/academics';
 import { getPath } from '@/utils/page';
 
 const curriculumPath = getPath(curriculum);

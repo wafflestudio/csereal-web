@@ -1,6 +1,6 @@
 import { getRequest, postRequest, putRequest } from '@/apis';
-import { FETCH_TAG_CLUB } from '@/constants/network';
 import { Club } from '@/apis/types/about';
+import { FETCH_TAG_CLUB } from '@/constants/network';
 import { WithLanguage } from '@/types/language';
 
 export const getClubs = () =>

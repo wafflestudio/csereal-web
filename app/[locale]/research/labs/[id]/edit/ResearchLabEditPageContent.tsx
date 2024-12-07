@@ -1,14 +1,14 @@
 'use client';
 
 import { putResearchLabAction } from '@/actions/research';
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup, ResearchLab } from '@/apis/types/research';
 import ResearchLabEditor, {
   ResearchLabFormData,
 } from '@/app/[locale]/research/labs/components/ResearchLabEditor';
 import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/apis/types/people';
-import { ResearchGroup, ResearchLab } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';

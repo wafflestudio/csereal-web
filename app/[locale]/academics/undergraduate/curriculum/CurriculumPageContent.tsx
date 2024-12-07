@@ -1,8 +1,8 @@
 'use client';
 
 import { deleteCurriculumAction } from '@/actions/academics';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Curriculum } from '@/apis/types/academics';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import TimelineViewer from '../../components/timeline/TimelineViewer';
 

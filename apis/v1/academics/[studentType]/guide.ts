@@ -1,6 +1,6 @@
 import { getRequest, putRequest } from '@/apis';
-import { FETCH_TAG_GUIDE } from '@/constants/network';
 import { Guide, StudentType } from '@/apis/types/academics';
+import { FETCH_TAG_GUIDE } from '@/constants/network';
 
 export const getAcademicsGuide = (type: StudentType) =>
   getRequest<Guide>(`/v1/academics/${type}/guide`, undefined, {

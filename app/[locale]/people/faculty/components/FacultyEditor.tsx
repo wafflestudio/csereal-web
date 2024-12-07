@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
+import { FACULTY_STATUS, FacultyStatus } from '@/apis/types/people';
+import { SimpleResearchLab } from '@/apis/types/research';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { EditorImage } from '@/components/form/types';
 import { Language, WithLanguage } from '@/types/language';
-import { FACULTY_STATUS, FacultyStatus } from '@/apis/types/people';
-import { SimpleResearchLab } from '@/apis/types/research';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { getKeys } from '@/utils/object';
 

@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { postFacilityAction } from '@/actions/about';
+import { Facility } from '@/apis/types/about';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
@@ -11,7 +12,6 @@ import { EditorImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Facility } from '@/apis/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';

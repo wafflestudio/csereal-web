@@ -1,10 +1,10 @@
+import { ResearchSearchResult, ResearchType } from '@/apis/types/search';
 import {
   researchCenters,
   researchGroups,
   researchLabs,
   topConferenceList,
 } from '@/constants/segmentNode';
-import { ResearchSearchResult, ResearchType } from '@/apis/types/search';
 import { getPath } from '@/utils/page';
 
 import BasicRow from './helper/BasicRow';

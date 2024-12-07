@@ -1,9 +1,9 @@
 'use client';
 
 import { putResearchGroupAction } from '@/actions/research';
+import { ResearchGroup } from '@/apis/types/research';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { ResearchGroup } from '@/apis/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';

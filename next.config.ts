@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
   // https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports
-    // @ts-ignore
+    // @ts-expect-error webpack 관련 설정인데 타입을 모르겠음
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
 
     config.module.rules.push(

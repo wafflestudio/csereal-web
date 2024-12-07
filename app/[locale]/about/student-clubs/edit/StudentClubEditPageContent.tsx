@@ -1,8 +1,8 @@
 'use client';
 
 import { putClubAction } from '@/actions/about';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Club } from '@/apis/types/about';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';

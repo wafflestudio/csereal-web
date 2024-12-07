@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { FutureCareers } from '@/apis/types/about';
 import { putContact } from '@/apis/v2/about/contact';
 import { putDirections } from '@/apis/v2/about/directions/[id]';
 import { postFacility } from '@/apis/v2/about/facilities';
@@ -36,7 +37,6 @@ import {
   studentClubs,
 } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
-import { FutureCareers } from '@/apis/types/about';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
 
