@@ -11,12 +11,16 @@ import { admin } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
 interface AdminPageProps {
-  searchParams: { selected?: string; page?: string };
+  searchParams: Promise<{ selected?: string; page?: string }>;
 }
 
 const adminPath = getPath(admin);
 
-export default async function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
+export default async function AdminPage(props: AdminPageProps) {
+  const searchParams = await props.searchParams;
+
+  const { selected, page } = searchParams;
+
   const selectedMenu = selected ? replaceDashWithSpace(selected) : ADMIN_MENU_SLIDE;
   const pageNum = (page && parseInt(page)) || 1;
 

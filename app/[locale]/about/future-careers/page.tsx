@@ -13,13 +13,18 @@ import { futureCareers } from '@/utils/segmentNode';
 import CareerCompanies from './CareerCompanies';
 import CareerStat from './CareerStat';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: futureCareers });
 }
 
 const careerPath = getPath(futureCareers);
 
-export default async function FutureCareersPage({ params }: { params: { locale: Language } }) {
+export default async function FutureCareersPage(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
   const { description, stat, companies } = await getFutureCareeres(params.locale);
 
   return (

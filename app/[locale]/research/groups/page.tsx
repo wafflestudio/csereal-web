@@ -13,19 +13,25 @@ import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: researchGroups });
 }
 
 const researchGroupsPath = getPath(researchGroups);
 
-export default async function ResearchGroupsPage({
-  params: { locale },
-  searchParams,
-}: {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+export default async function ResearchGroupsPage(props: {
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale } = params;
+
   const groups = await getResearchGroups(locale);
   const selectedGroup = findItemBySearchParam(groups, (item) => [item.name], searchParams.selected);
   // 존재하지 않는 그룹(영어 변환 포함)일 경우 초기화

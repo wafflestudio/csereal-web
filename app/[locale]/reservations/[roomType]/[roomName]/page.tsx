@@ -7,11 +7,13 @@ import { getMetadata } from '@/utils/metadata';
 
 import ReservationCalendar from './helper/ReservationCalendar';
 
-export async function generateMetadata({
-  params: { locale, roomName },
-}: {
-  params: { locale: string; roomName: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string; roomName: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale, roomName } = params;
+
   return await getMetadata({
     locale,
     metadata: {
@@ -22,12 +24,14 @@ export async function generateMetadata({
 }
 
 interface RoomReservationProps {
-  params: { roomType: string; roomName: string };
-  searchParams: { selectedDate?: string };
+  params: Promise<{ roomType: string; roomName: string }>;
+  searchParams: Promise<{ selectedDate?: string }>;
 }
 
 // TODO: 에러 처리 페이지 디자인
-export default async function RoomReservationPage({ params, searchParams }: RoomReservationProps) {
+export default async function RoomReservationPage(props: RoomReservationProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const roomId = roomNameToId[params.roomName];
   if (roomId === undefined) {
     return <PageLayout titleType="big">존재하지 않는 시설 아이디입니다.</PageLayout>;

@@ -11,17 +11,22 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { facilities } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: facilities });
 }
 
 interface FacilitiesPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
 const facilitiesPath = getPath(facilities);
 
-export default async function FacilitiesPage({ params }: FacilitiesPageProps) {
+export default async function FacilitiesPage(props: FacilitiesPageProps) {
+  const params = await props.params;
   const facilities = await getFacilities();
 
   return (

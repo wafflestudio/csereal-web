@@ -16,24 +16,24 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.5",
-    "@mui/x-date-pickers": "^6.11.2",
+    "@mui/material": "^6.1.10",
+    "@mui/x-date-pickers": "^7.23.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "20.4.0",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
     "autolinker": "^4.0.0",
     "autoprefixer": "10.4.14",
     "bezier-easing": "^2.1.0",
     "es-toolkit": "^1.27.0",
     "express": "^4.19.2",
     "file-loader": "^6.2.0",
-    "next": "^14.2.3",
-    "next-intl": "^3.25.3",
+    "next": "15.0.4",
+    "next-intl": "^3.26.0",
     "next-sitemap": "^4.2.3",
     "postcss": "8.4.24",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1",
     "sharp": "^0.32.5",
@@ -60,6 +60,8 @@
   "overrides": {
     "eslint-plugin-react-hooks": {
       "eslint": "^9.0.0"
-    }
+    },
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1"
   }
 }

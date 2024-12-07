@@ -13,19 +13,25 @@ import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: researchCenters });
 }
 
 const researchCentersPath = getPath(researchCenters);
 
-export default async function ResearchCentersPage({
-  params: { locale },
-  searchParams,
-}: {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+export default async function ResearchCentersPage(props: {
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale } = params;
+
   const centers = await getResearchCenters(locale);
   const selectedCenter = findItemBySearchParam(
     centers,

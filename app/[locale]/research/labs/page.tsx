@@ -12,16 +12,24 @@ import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';
 
 interface ResearchLabPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
 const labsPath = getPath(researchLabs);
 
-export async function generateMetadata({ params: { locale } }: ResearchLabPageProps) {
+export async function generateMetadata(props: ResearchLabPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: researchLabs });
 }
 
-export default async function ResearchLabsPage({ params: { locale } }: ResearchLabPageProps) {
+export default async function ResearchLabsPage(props: ResearchLabPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const labInformations = await getResearchLabs(locale);
 
   return (

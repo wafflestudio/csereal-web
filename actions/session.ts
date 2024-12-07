@@ -11,15 +11,15 @@ export const setAuthCookie = async () => {
   const resp = await getMockLogin();
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
-  cookies().set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
+  (await cookies()).set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
 };
 
 export const removeAuthCookie = async () => {
-  cookies().delete(COOKIE_SESSION_ID);
+  (await cookies()).delete(COOKIE_SESSION_ID);
 };
 
 export const getUserState = async (): Promise<UserState> => {
-  const id = cookies().get(COOKIE_SESSION_ID);
+  const id = (await cookies()).get(COOKIE_SESSION_ID);
   if (id === undefined) return 'logout';
 
   try {

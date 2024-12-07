@@ -23,11 +23,13 @@ import MarginedMain from './MarginedMain';
 
 const PROD_URL = 'https://cse.snu.ac.kr';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const t = await getTranslations({ locale, namespace: 'Title' });
 
   return {
@@ -44,13 +46,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = await props.params;
+
+  const { children } = props;
+
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
       <body className="sm:min-w-[1200px]">

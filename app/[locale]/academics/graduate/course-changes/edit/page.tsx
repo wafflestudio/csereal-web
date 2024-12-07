@@ -14,7 +14,8 @@ import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangePath = getPath(graduateCourseChanges);
 
-export default async function Page({ searchParams }: { searchParams: { year: string } }) {
+export default async function Page(props: { searchParams: Promise<{ year: string }> }) {
+  const searchParams = await props.searchParams;
   const data = await getCourseChanges('graduate');
   const year = Number(searchParams.year);
   const selected = data.find((x) => x.year === year);

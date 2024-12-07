@@ -8,7 +8,11 @@ import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
 import { facultyRecruitment } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: facultyRecruitment });
 }
 

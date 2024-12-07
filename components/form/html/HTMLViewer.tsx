@@ -1,3 +1,7 @@
+// useMediaQuery가 nextjs15부터 서버단에서 사용하면 에러가 발생해 use client 처리
+// TODO: use client 제거
+'use client';
+
 import './suneditor-contents.css';
 
 import { Autolinker } from 'autolinker';

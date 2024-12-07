@@ -16,18 +16,24 @@ import { studentClubs } from '@/utils/segmentNode';
 
 import ClubDetails from './ClubDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: studentClubs });
 }
 
 interface StudentClubsPageProps {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }
 
 const clubPath = getPath(studentClubs);
 
-export default async function StudentClubsPage({ searchParams, params }: StudentClubsPageProps) {
+export default async function StudentClubsPage(props: StudentClubsPageProps) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const clubs = await getClubs();
   const selectedClub = findItemBySearchParam(
     clubs,

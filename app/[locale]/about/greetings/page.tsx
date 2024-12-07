@@ -13,10 +13,14 @@ import { getPath } from '@/utils/page';
 import { greetings } from '@/utils/segmentNode';
 
 interface GreetingsPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: GreetingsPageProps) {
+export async function generateMetadata(props: GreetingsPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: greetings });
 }
 
@@ -24,7 +28,8 @@ const greetingsPath = getPath(greetings);
 
 // 학부 소개 페이지 - 학부장 인사말 페이지의 형식이 동일
 // 두 곳에서만 겹쳐서 따로 컴포넌트화하지 않음
-export default async function GreetingsPage({ params }: GreetingsPageProps) {
+export default async function GreetingsPage(props: GreetingsPageProps) {
+  const params = await props.params;
   const { description, imageURL } = await getGreetings(params.locale);
 
   return (

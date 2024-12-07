@@ -14,11 +14,10 @@ import { undergraduateScholarship } from '@/utils/segmentNode';
 
 const path = getPath(undergraduateScholarship);
 
-export default async function UndergraduateScholarshipEditPage({
-  params,
-}: {
-  params: { id: string };
+export default async function UndergraduateScholarshipEditPage(props: {
+  params: Promise<{ id: string }>;
 }) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
 

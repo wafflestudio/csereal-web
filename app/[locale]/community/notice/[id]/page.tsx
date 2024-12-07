@@ -10,10 +10,12 @@ import { notice } from '@/utils/segmentNode';
 
 import NoticeViewer from './NoticeViewer';
 
-export async function generateMetadata({
-  params: { locale, id },
-  searchParams,
-}: NoticePostPageProps) {
+export async function generateMetadata(props: NoticePostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   try {
     const noticePost = await getNoticePostDetail(parseInt(id), searchParams);
     return await getMetadata({
@@ -29,14 +31,16 @@ export async function generateMetadata({
 }
 
 interface NoticePostPageProps {
-  params: { id: string; locale: string };
-  searchParams: PostSearchQueryParams;
+  params: Promise<{ id: string; locale: string }>;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function NoticePostPage({
-  params: { id: rawID },
-  searchParams,
-}: NoticePostPageProps) {
+export default async function NoticePostPage(props: NoticePostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { id: rawID } = params;
+
   const id = +rawID;
 
   // ID가 잘못된 경우 예외 처리
