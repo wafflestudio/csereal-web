@@ -17,6 +17,7 @@ export default function HeaderSearchBar() {
       }}
     >
       <input
+        aria-label="통합검색"
         type="text"
         id="search"
         className="autofill-bg-neutral-200 w-full bg-transparent px-2 text-xs outline-none"
