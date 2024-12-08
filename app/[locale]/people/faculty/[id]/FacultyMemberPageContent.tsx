@@ -3,16 +3,16 @@
 import { useTranslations } from 'next-intl';
 
 import { deleteFacultyAction } from '@/actions/people';
+import { Faculty } from '@/apis/types/people';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { faculty, researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
-import { Faculty } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

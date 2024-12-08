@@ -54,7 +54,7 @@ export type NewsSearchResult = {
 
 // 구성원 탭
 
-export type MemberType = 'PROFESSOR' | 'STAFF';
+type MemberType = 'PROFESSOR' | 'STAFF';
 
 export type Member = {
   id: 0;
@@ -87,7 +87,7 @@ export type ResearchSearchResult = {
 
 // 입학 탭
 
-export type AcademicType =
+type AcademicType =
   | 'GUIDE' // 안내
   | 'GENERAL_STUDIES_REQUIREMENTS'
   | 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
@@ -97,12 +97,12 @@ export type AcademicType =
   | 'COURSE_CHANGES' // 교과목변경내역
   | 'SCHOLARSHIP'; // 사용 안함. PostType을 대신 사용
 
-export type PostType =
+type PostType =
   | 'ACADEMICS'
   | 'COURSE' // 교과과정
   | 'SCHOLARSHIP';
 
-export type StudentType = 'UNDERGRADUATE' | 'GRADUATE';
+type StudentType = 'UNDERGRADUATE' | 'GRADUATE';
 
 export type Academic = {
   id: 0;

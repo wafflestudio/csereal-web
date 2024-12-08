@@ -1,6 +1,6 @@
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
-import { getMetadata } from '@/utils/metadata';
 import { about } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 export const dynamic = 'force-dynamic';
 

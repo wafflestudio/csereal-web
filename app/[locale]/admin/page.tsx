@@ -1,3 +1,4 @@
+import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/apis/types/admin';
 import { getImportants } from '@/apis/v1/admin/important';
 import { getSlides } from '@/apis/v1/admin/slide';
 import ImportantManagement from '@/app/[locale]/admin/helper/important/ImportantManagement';
@@ -5,9 +6,8 @@ import SlideManagement from '@/app/[locale]/admin/helper/slide/SlideManagement';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/types/admin';
-import { getPath } from '@/utils/page';
 import { admin } from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 import { replaceDashWithSpace } from '@/utils/string';
 
 interface AdminPageProps {

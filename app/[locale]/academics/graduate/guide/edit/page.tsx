@@ -4,9 +4,9 @@ import { getAcademicsGuide, putAcademicsGuide } from '@/apis/v1/academics/[stude
 import GuideEditBridge from '@/app/[locale]/academics/components/guide/GuideEditorBridge';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_GUIDE } from '@/constants/network';
+import { graduateGuide } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { graduateGuide } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const path = getPath(graduateGuide);

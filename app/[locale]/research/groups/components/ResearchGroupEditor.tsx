@@ -1,18 +1,18 @@
 'use client';
 
-import { useRouter } from '@/i18n/routing';
-import { getPath } from '@/utils/page';
-import { researchGroups } from '@/constants/segmentNode';
-
-import ResearchGroupLabsEditGuide from '../ResearchGroupLabsEditGuide';
-import { FormProvider, useForm } from 'react-hook-form';
-import LanguagePicker from '@/components/form/LanguagePicker';
-import { Language } from '@/types/language';
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
-import { EditorImage } from '@/components/form/types';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { researchGroups } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { EditorImage } from '@/types/form';
+import { Language } from '@/types/language';
+import { getPath } from '@/utils/page';
+
+import ResearchGroupLabsEditGuide from '../ResearchGroupLabsEditGuide';
 
 const groupsPath = getPath(researchGroups);
 

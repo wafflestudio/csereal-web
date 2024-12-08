@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 
+import { SeminarPreviewList } from '@/apis/types/seminar';
 import SeminarRow from '@/app/[locale]/community/seminar/components/SeminarRow';
 import SeminarSearchBar from '@/app/[locale]/community/seminar/components/SeminarSearchBar';
 import SeminarYear from '@/app/[locale]/community/seminar/components/SeminarYear';
 import NoSearchResult from '@/components/common/NoSearchResult';
 import Pagination from '@/components/common/Pagination';
-import { SeminarPreviewList } from '@/types/seminar';
 
 const POSTS_COUNT_PER_PAGE = 10;
 

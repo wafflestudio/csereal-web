@@ -1,15 +1,15 @@
 'use client';
 
 import { deleteSeminarAction, patchSeminarAction } from '@/actions/seminar';
+import { Seminar } from '@/apis/types/seminar';
 import SeminarEditor, {
   SeminarFormData,
 } from '@/app/[locale]/community/seminar/components/SeminarEditor';
-import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { Seminar } from '@/types/seminar';
-import { getPath } from '@/utils/page';
 import { seminar } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
+import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast } from '@/utils/toast';
 

@@ -1,13 +1,13 @@
 'use client';
 
+import { StudentType } from '@/apis/types/academics';
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Link } from '@/i18n/routing';
-import { StudentType } from '@/types/academics';
-import { getPath } from '@/utils/page';
 import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);
@@ -66,7 +66,7 @@ function CreateButton({ type }: { type: StudentType }) {
   );
 }
 
-export interface ScholarshipRowProps {
+interface ScholarshipRowProps {
   id: number;
   name: string;
   type: StudentType;

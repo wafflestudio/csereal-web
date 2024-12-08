@@ -1,19 +1,16 @@
 'use client';
 
-import { useRouter } from '@/i18n/routing';
-import { getPath } from '@/utils/page';
-import { researchCenters, researchGroups } from '@/constants/segmentNode';
-
-import { FormProvider, useForm } from 'react-hook-form';
-import LanguagePicker from '@/components/form/LanguagePicker';
-import { Language } from '@/types/language';
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
-import { EditorImage } from '@/components/form/types';
-
-const groupsPath = getPath(researchGroups);
+import LanguagePicker from '@/components/form/LanguagePicker';
+import { researchCenters } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { EditorImage } from '@/types/form';
+import { Language } from '@/types/language';
+import { getPath } from '@/utils/page';
 
 export interface ResearchCenterFormData {
   ko: { name: string; description: string; websiteURL: string; type: 'centers' };

@@ -4,8 +4,8 @@ import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[post
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
-import { getPath } from '@/utils/page';
 import { curriculum } from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const curriculumPath = getPath(curriculum);

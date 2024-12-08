@@ -1,11 +1,12 @@
 'use client';
 
 import { postCareerStatAction } from '@/actions/about';
+import { CareerStat } from '@/apis/v2/about/future-careers/stats';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { errorToStr } from '@/utils/error';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-import { CareerStat } from '@/apis/v2/about/future-careers/stats';
+
 import CareerStatEditor from '../../components/CareerStatEditor';
 
 export default function CareerStatCreatePage() {

@@ -4,11 +4,11 @@ import { postSeminarAction } from '@/actions/seminar';
 import SeminarEditor, {
   SeminarFormData,
 } from '@/app/[locale]/community/seminar/components/SeminarEditor';
-import { isLocalFile, isLocalImage } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { getPath } from '@/utils/page';
 import { seminar } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { isLocalFile, isLocalImage } from '@/types/form';
+import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);

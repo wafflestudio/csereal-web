@@ -1,6 +1,6 @@
 import { getScholarshipList } from '@/apis/v1/academics/scholarship';
-import { getMetadata } from '@/utils/metadata';
 import { graduateScholarship } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 import ScholarshipPreview from '../../components/scholarship/ScholarshipPreview';
 

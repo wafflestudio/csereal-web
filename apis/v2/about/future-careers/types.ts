@@ -1,7 +1,7 @@
 export const companyList = ['SAMSUNG', 'LG', 'LARGE', 'SMALL', 'GRADUATE', 'OTHER'] as const;
-export type Company = (typeof companyList)[number];
+type Company = (typeof companyList)[number];
 export const degreeList = ['bachelor', 'master', 'doctor'] as const;
-export type Degree = (typeof degreeList)[number];
+type Degree = (typeof degreeList)[number];
 
 export type Stat = { career: Company } & { [key in Degree]: number };
 

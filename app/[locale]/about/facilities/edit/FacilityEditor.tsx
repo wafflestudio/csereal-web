@@ -4,19 +4,18 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putFacilityAction } from '@/actions/about';
+import { Facility } from '@/apis/types/about';
 import Fieldset from '@/components/form/Fieldset';
-import LanguagePicker from '@/components/form/LanguagePicker';
-import { EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import LanguagePicker from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Facility } from '@/types/about';
+import { EditorImage } from '@/types/form';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

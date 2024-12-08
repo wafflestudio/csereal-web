@@ -1,28 +1,28 @@
 'use server';
 
 import { getRequest, postRequest, putRequest } from '@/apis';
+import { StudentType } from '@/apis/types/academics';
 import { Attachment } from '@/components/common/Attachments';
-import { StudentType } from '@/types/academics';
 
-export interface AcademicsByPostType {
+interface AcademicsByPostType {
   year: number;
   description: string;
   attachments: Attachment[];
 }
 
-export type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
+type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
 
-export const getAcademicsByPostType = (studentType: StudentType, postType: PostType) =>
-  getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);
+export const getAcademicsByPostType = async (studentType: StudentType, postType: PostType) =>
+  await getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);
 
-export const postAcademicsByPostType = (
+export const postAcademicsByPostType = async (
   studentType: StudentType,
   postType: PostType,
   body: FormData,
-) => postRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });
+) => await postRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });
 
-export const putAcademicsByPostType = (
+export const putAcademicsByPostType = async (
   studentType: StudentType,
   postType: PostType,
   body: FormData,
-) => putRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });
+) => await putRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { MainNews } from '@/types/main';
+import { MainNews } from '@/apis/types/main';
 
 import { animateScrollLeft } from './animateScrollTo';
 import { CARD_GAP_REM } from './constants';

@@ -1,6 +1,6 @@
+import { seminar } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/constants/segmentNode';
 
 const seminarPath = getPath(seminar);
 

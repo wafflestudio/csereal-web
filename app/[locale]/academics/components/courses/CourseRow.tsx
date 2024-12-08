@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-import { Course, SortOption } from '@/types/academics';
+import { Course, SortOption } from '@/apis/types/academics';
 
 import CourseCard from './CourseCard';
 

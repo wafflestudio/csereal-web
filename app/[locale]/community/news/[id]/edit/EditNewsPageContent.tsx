@@ -1,13 +1,13 @@
 'use client';
 
 import { deleteNewsAction, patchNewsAction } from '@/actions/news';
+import { News } from '@/apis/types/news';
 import NewsEditor, { NewsFormData } from '@/app/[locale]/community/news/components/NewsEditor';
-import { isLocalFile, isLocalImage, isUploadedFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { News } from '@/types/news';
-import { getPath } from '@/utils/page';
 import { news } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
+import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

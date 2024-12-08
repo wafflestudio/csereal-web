@@ -5,11 +5,11 @@ import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { history } from '@/constants/segmentNode';
 import history_image from '@/public/image/about/history.png';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { history } from '@/constants/segmentNode';
 
 interface HistoryPageProps {
   params: Promise<{ locale: Language }>;

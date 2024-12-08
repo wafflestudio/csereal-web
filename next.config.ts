@@ -1,7 +1,7 @@
+import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
@@ -24,6 +24,7 @@ const nextConfig = {
   // https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports
+    // @ts-expect-error webpack 관련 설정인데 타입을 모르겠음
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
 
     config.module.rules.push(
@@ -96,7 +97,7 @@ const nextConfig = {
     ],
   },
 
-  redirects() {
+  async redirects() {
     return [
       {
         source: '/login/success',

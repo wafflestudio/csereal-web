@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 
+import { NoticePreview } from '@/apis/types/notice';
 import NoSearchResult from '@/components/common/NoSearchResult';
-import { NoticePreview } from '@/types/notice';
 
 import NoticeListHeader from './NoticeListHeader';
 import NoticeListRow from './NoticeListRow';

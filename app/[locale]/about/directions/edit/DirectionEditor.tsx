@@ -4,17 +4,16 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { putDirectionsAction } from '@/actions/about';
+import { Direction } from '@/apis/types/about';
 import Fieldset from '@/components/form/Fieldset';
-import LanguagePicker from '@/components/form/LanguagePicker';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import LanguagePicker from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { directions } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Direction } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { directions } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

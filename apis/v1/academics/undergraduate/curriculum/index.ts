@@ -1,6 +1,6 @@
 import { getRequest, postRequest } from '@/apis';
+import { Curriculum } from '@/apis/types/academics';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
-import { Curriculum } from '@/types/academics';
 
 export const getCurriculum = () =>
   getRequest<Curriculum[]>('/v1/academics/undergraduate/curriculum', undefined, {

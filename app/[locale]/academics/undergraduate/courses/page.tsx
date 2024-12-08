@@ -1,9 +1,9 @@
+import { Course } from '@/apis/types/academics';
 import { getCourses } from '@/apis/v2/academics/courses';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Course } from '@/types/academics';
+import { undergraduateCourses } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateCourses } from '@/constants/segmentNode';
 
 import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
 

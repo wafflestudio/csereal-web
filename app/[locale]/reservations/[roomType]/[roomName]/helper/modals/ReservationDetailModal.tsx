@@ -7,10 +7,10 @@ import {
   deleteSingleReservation,
   getReservation,
 } from '@/actions/reservation';
+import { Reservation } from '@/apis/types/reservation';
 import LoginVisible from '@/components/common/LoginVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { Reservation } from '@/types/reservation';
 import useModal from '@/utils/hooks/useModal';
 import { refreshPage } from '@/utils/refreshPage';
 import { handleServerAction } from '@/utils/serverActionError';

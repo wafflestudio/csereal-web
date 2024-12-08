@@ -1,13 +1,14 @@
 'use client';
 
 import { putClubAction } from '@/actions/about';
+import { Club } from '@/apis/types/about';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Club } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
 import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
 export default function StudentClubEditPageContent({ data }: { data: WithLanguage<Club> }) {

@@ -4,9 +4,9 @@ import { getScholarshipList } from '@/apis/v1/academics/scholarship';
 import { putScholarshipGuide } from '@/apis/v2/academics/[type]/scholarship';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
+import { undergraduateScholarship } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateScholarship } from '@/constants/segmentNode';
 import { successToast } from '@/utils/toast';
 
 import ScholarshipGuideEditor, {

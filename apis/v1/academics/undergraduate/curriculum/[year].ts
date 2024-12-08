@@ -1,5 +1,5 @@
 import { deleteRequest, putRequest } from '@/apis';
-import { Curriculum } from '@/types/academics';
+import { Curriculum } from '@/apis/types/academics';
 
 export const putCurriculum = (data: Curriculum) =>
   putRequest(`/v1/academics/undergraduate/curriculum/${data.year}`, {

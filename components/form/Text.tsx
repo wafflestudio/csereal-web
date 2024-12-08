@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 
-export interface BasicTextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface BasicTextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   options?: RegisterOptions;
   maxWidth?: string;

@@ -1,7 +1,7 @@
 'use client';
 
+import { Guide } from '@/apis/types/academics';
 import GuideEditor, { GuideFormData } from '@/app/[locale]/academics/components/guide/GuideEditor';
-import { Guide } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';

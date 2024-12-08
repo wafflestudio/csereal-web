@@ -1,8 +1,8 @@
 import { getCourses } from '@/apis/v2/academics/courses';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { graduateCourses } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { graduateCourses } from '@/constants/segmentNode';
 
 import GraduateCoursePageContent from './GraduateCoursePageContent';
 

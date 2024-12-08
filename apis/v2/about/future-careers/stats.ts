@@ -1,4 +1,5 @@
 import { postRequest, putRequest } from '@/apis';
+
 import { Stat } from './types';
 
 export interface CareerStat {

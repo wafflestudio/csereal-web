@@ -1,6 +1,6 @@
 import { getRequest } from '@/apis';
+import { AboutContent } from '@/apis/types/about';
 import { FETCH_TAG_GREETINGS } from '@/constants/network';
-import { AboutContent } from '@/types/about';
 import { Language } from '@/types/language';
 
 export const getGreetings = (language: Language) =>

@@ -1,4 +1,4 @@
-import { ReservationPreview } from '@/types/reservation';
+import { ReservationPreview } from '@/apis/types/reservation';
 
 import ReservationModalButton from '../modals/ReservationDetailModal';
 import styles from './cellstyle.module.css';

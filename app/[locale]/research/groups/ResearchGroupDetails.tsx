@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import { deleteResearchGroupAction } from '@/actions/research';
+import { ResearchGroup } from '@/apis/types/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchGroups } from '@/constants/segmentNode';
 import { WithLanguage } from '@/types/language';
-import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

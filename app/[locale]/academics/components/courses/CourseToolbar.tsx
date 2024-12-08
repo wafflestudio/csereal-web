@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
+import { SortOption, ViewOption } from '@/apis/types/academics';
 import { Tag } from '@/components/common/Tags';
-import { SortOption, ViewOption } from '@/types/academics';
 
 interface CourseToolbarProps {
   viewOption: ViewOption;

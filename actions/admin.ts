@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { ImportantPostIdentifier } from '@/apis/types/admin';
 import { patchMultipleImportants } from '@/apis/v1/admin/important';
 import { patchMultipleSlides } from '@/apis/v1/admin/slide';
 import {
@@ -11,7 +12,6 @@ import {
   FETCH_TAG_SEMINAR,
   FETCH_TAG_SLIDE,
 } from '@/constants/network';
-import { ImportantPostIdentifier } from '@/types/admin';
 
 export const batchUnslideAction = async (ids: number[]) => {
   try {

@@ -4,12 +4,12 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getNoticePosts } from '@/apis/v1/notice';
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { PostSearchQueryParams } from '@/types/post';
-import { getMetadata } from '@/utils/metadata';
 import { notice } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 import { validatePageNum, validateTag } from '@/utils/validateSearchParams';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {

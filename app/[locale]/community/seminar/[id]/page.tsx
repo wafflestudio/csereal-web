@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { getSeminarPost } from '@/apis/v1/seminar/[id]';
-import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PostFallback from '@/app/[locale]/community/components/PostFallback';
+import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { PostSearchQueryParams } from '@/types/post';
-import { getMetadata } from '@/utils/metadata';
 import { seminar } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 import SeminarViewer from './SeminarViewer';
 

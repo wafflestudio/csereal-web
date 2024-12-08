@@ -1,8 +1,6 @@
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { Link } from '@/i18n/routing';
 
-export type PeopleType = 'FACULTY' | 'EMIRITUS_FACULTY' | 'STAFF';
-
 export interface PeopleCellProps {
   imageURL: string | null;
 

@@ -1,7 +1,7 @@
 import { getAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
+import { graduateGuide } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { graduateGuide } from '@/constants/segmentNode';
 
 import GuidePageContent from '../../components/guide/GuidePageContent';
 

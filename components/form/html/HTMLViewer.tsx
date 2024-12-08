@@ -50,7 +50,7 @@ function TopRightComponent({ content }: TopRightComponent) {
   return <div className="relative float-right">{content}</div>;
 }
 
-export type TopRightImage = {
+type TopRightImage = {
   type: 'image';
   url: string;
   widthPX: number;

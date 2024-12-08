@@ -1,14 +1,12 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
+import { MainImportant } from '@/apis/types/main';
 import { getMain } from '@/apis/v1';
-import Header from '@/components/layout/header/Header';
 import GraphicSection from '@/app/[locale]/components/GraphicSection';
 import NewsSection from '@/app/[locale]/components/NewsSection';
 import NoticeSection from '@/app/[locale]/components/NoticeSection';
-import { Link } from '@/i18n/routing';
-import { MainImportant } from '@/types/main';
-import { getPath } from '@/utils/page';
+import Header from '@/components/layout/header/Header';
 import {
   degree,
   faculty,
@@ -16,6 +14,8 @@ import {
   generalStudies,
   topConferenceList,
 } from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 export default async function MainPage() {
   const data = await getMain();

@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { getTopConferenceList } from '@/apis/v1/conference/page';
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { getMetadata } from '@/utils/metadata';
 import { topConferenceList } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

@@ -2,11 +2,11 @@ import { useTranslations } from 'next-intl';
 import { useReducer, useState } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
+import { Course, GRADE } from '@/apis/types/academics';
 import { DeleteButton, GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-import { Course, GRADE } from '@/types/academics';
 import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';

@@ -4,9 +4,9 @@ import { revalidateTag } from 'next/cache';
 
 import { putFacultyRecruitment } from '@/apis/v1/recruit';
 import { FETCH_TAG_RECRUITMENT } from '@/constants/network';
+import { facultyRecruitment } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/constants/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
 

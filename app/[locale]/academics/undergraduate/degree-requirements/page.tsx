@@ -5,10 +5,10 @@ import LoginVisible from '@/components/common/LoginVisible';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { degree } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { degree } from '@/constants/segmentNode';
 
 const degreeRequirementsPath = getPath(degree);
 

@@ -3,13 +3,13 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
+import { FutureCareers } from '@/apis/types/about';
 import { EditButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Dropdown from '@/components/form/legacy/Dropdown';
-import { Link } from '@/i18n/routing';
-import { FutureCareers } from '@/types/about';
-import { getPath } from '@/utils/page';
 import { futureCareers } from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 export const CAREER_STAT_ROWS = ['삼성', 'LG', '기타 대기업', '중소기업', '진학', '기타'];
 export const CAREER_STAT_COLS = ['학부', '석사', '박사'];

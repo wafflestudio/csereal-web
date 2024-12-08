@@ -5,11 +5,11 @@ import FacilitesList from '@/app/[locale]/about/facilities/FacilitiesList';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facilities } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

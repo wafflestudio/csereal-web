@@ -1,15 +1,14 @@
 'use client';
 
-import { FutureCareers } from '@/types/about';
-import Fieldset from '@/components/form/Fieldset';
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
+import { CareerStat } from '@/apis/v2/about/future-careers/stats';
+import { COMPANY_MAP, companyList, degreeList } from '@/apis/v2/about/future-careers/types';
+import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { getPath } from '@/utils/page';
 import { futureCareers } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { CareerStat } from '@/apis/v2/about/future-careers/stats';
-import { degreeList, companyList, COMPANY_MAP } from '@/apis/v2/about/future-careers/types';
+import { getPath } from '@/utils/page';
 
 interface Props {
   defaultValues?: CareerStat;
@@ -68,7 +67,7 @@ function TableBody() {
 
   return statList.map((stat, idx) => {
     return (
-      <div className={`flex flex-1 flex-row border-b border-neutral-200 last:border-0`}>
+      <div key={idx} className={`flex flex-1 flex-row border-b border-neutral-200 last:border-0`}>
         <div className="flex w-[6.25rem] items-center justify-center bg-neutral-100 text-sm">
           {COMPANY_MAP[stat.career]}
         </div>

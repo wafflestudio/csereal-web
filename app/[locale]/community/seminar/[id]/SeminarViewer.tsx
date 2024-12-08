@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
+import { Seminar } from '@/apis/types/seminar';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
@@ -8,7 +9,6 @@ import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
-import { Seminar } from '@/types/seminar';
 
 interface SeminarPostPageProps {
   seminar: Seminar;

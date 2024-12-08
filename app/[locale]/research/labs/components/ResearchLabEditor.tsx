@@ -3,18 +3,17 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup } from '@/apis/types/research';
+import { researchLabs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/types/people';
-import { ResearchGroup } from '@/types/research';
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/constants/segmentNode';
 
 import Fieldset from '../../../../../components/form/Fieldset';
-import LanguagePicker from '../../../../../components/form/LanguagePicker';
-import { EditorFile } from '../../../../../components/form/types';
 import Form from '../../../../../components/form/Form';
-import HTMLEditor from '../../../../../components/form/html/HTMLEditor';
+import LanguagePicker from '../../../../../components/form/LanguagePicker';
+import { EditorFile } from '../../../../../types/form';
 
 export type ResearchLabFormData = WithLanguage<{
   name: string;

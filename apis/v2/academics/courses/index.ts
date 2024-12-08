@@ -1,6 +1,6 @@
 import { getRequest, postRequest, putRequest } from '@/apis';
+import { Course, StudentType } from '@/apis/types/academics';
 import { FETCH_TAG_COURSE } from '@/constants/network';
-import { Course, StudentType } from '@/types/academics';
 import { Language } from '@/types/language';
 
 export const getCourses = (type: StudentType, language: Language) =>

@@ -1,6 +1,6 @@
 import { Attachment } from '@/components/common/Attachments';
 
-import { Language } from './language';
+import { Language } from '../../types/language';
 
 export type StudentType = 'undergraduate' | 'graduate';
 

@@ -2,11 +2,11 @@ import { getResearchLabs } from '@/apis/v2/research/lab';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/constants/segmentNode';
 
 import ResearchLabListHeader from './ResearchLabListHeader';
 import ResearchLabListRow from './ResearchLabListRow';

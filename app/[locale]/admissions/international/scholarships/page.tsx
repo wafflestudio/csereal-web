@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { getInternationalScholarships } from '@/apis/v1/admissions/international/scholarships';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { getMetadata } from '@/utils/metadata';
 import { internationalScholarships } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

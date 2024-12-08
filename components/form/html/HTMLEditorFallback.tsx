@@ -1,6 +1,6 @@
-export default function LoadingFallback() {
+export default function HTMLEditorFallback() {
   return (
-    <div className="mx-[3.75rem] mt-3 flex animate-pulse flex-col">
+    <div className="mx-[3.75rem] mt-3 flex h-[400px] animate-pulse flex-col">
       <div className="flex flex-col gap-2">
         <div className="h-4 w-2/5 rounded bg-[#ffffff] opacity-30"></div>
         <div className="h-4 w-2/5 rounded bg-[#ffffff] opacity-30"></div>

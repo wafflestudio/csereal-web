@@ -1,6 +1,6 @@
 import { getRequest } from '@/apis';
+import { NewsSearchResult, SearchParam } from '@/apis/types/search';
 import { FETCH_TAG_NEWS } from '@/constants/network';
-import { NewsSearchResult, SearchParam } from '@/types/search';
 
 export const searchNews = (params: SearchParam) =>
   getRequest('/v1/news/totalSearch', params, {

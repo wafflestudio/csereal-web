@@ -3,9 +3,8 @@
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { EditorFile, EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
+import { EditorFile, EditorImage } from '@/types/form';
 
 export interface SeminarFormData {
   title: string;

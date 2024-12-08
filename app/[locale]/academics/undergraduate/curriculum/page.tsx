@@ -1,8 +1,8 @@
 import './style.css';
 
 import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
-import { getMetadata } from '@/utils/metadata';
 import { curriculum } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
 import CurriculumPageContent from './CurriculumPageContent';
 

@@ -1,9 +1,9 @@
 import { MouseEventHandler, ReactNode } from 'react';
 
+import { ReservationPostBody } from '@/apis/types/reservation';
 import MuiDateSelector from '@/components/common/MuiDateSelector';
 import Dropdown from '@/components/form/legacy/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { ReservationPostBody } from '@/types/reservation';
 import { isSameDay } from '@/utils/date';
 import useModal from '@/utils/hooks/useModal';
 

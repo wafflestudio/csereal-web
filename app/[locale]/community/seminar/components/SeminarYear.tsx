@@ -1,4 +1,4 @@
-export interface SeminarYearProps {
+interface SeminarYearProps {
   index: number;
   startDate: string;
 }

@@ -1,6 +1,6 @@
 import { deleteRequest, getRequest } from '@/apis';
+import { Scholarship } from '@/apis/types/academics';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
-import { Scholarship } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 
 export const getScholarship = async (id: number): Promise<WithLanguage<Scholarship>> => {

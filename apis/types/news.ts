@@ -1,4 +1,4 @@
-export interface NewsPreview {
+interface NewsPreview {
   id: number;
   title: string;
   description: string;
@@ -39,35 +39,4 @@ export interface News {
   }[];
 
   date: string;
-}
-
-export interface POSTNewsBody {
-  request: {
-    title: string;
-    titleForMain: string | null;
-    description: string;
-    isPrivate: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-    date: string;
-  };
-  mainImage: File | null;
-  attachments: File[];
-}
-
-export interface PATCHNewsBody {
-  request: {
-    title: string;
-    titleForMain: string | null;
-    description: string;
-    isPrivate: boolean;
-    isSlide: boolean;
-    isImportant: boolean;
-    tags: string[];
-    deleteIds: number[];
-    date: string;
-  };
-  mainImage: File | null;
-  newAttachments: File[];
 }

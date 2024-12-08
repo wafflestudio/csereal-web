@@ -1,6 +1,6 @@
 import { getRequest, putRequest } from '@/apis';
+import { DegreeRequirements } from '@/apis/types/academics';
 import { FETCH_TAG_DEGREE } from '@/constants/network';
-import { DegreeRequirements } from '@/types/academics';
 
 export const getDegreeRequirements = () =>
   getRequest<DegreeRequirements>(`/v1/academics/undergraduate/degree-requirements`, undefined, {

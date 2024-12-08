@@ -1,12 +1,12 @@
 'use client';
 
 import { postResearchCenterAction } from '@/actions/research';
-
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
 import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
 export default function ResearchCenterCreatePage() {

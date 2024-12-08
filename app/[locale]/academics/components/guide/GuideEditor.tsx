@@ -3,10 +3,9 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
-import { EditorFile } from '@/components/form/types';
 import Form from '@/components/form/Form';
-import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
+import { EditorFile } from '@/types/form';
 
 export interface GuideFormData {
   description: string;

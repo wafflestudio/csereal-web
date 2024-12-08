@@ -1,4 +1,4 @@
-import { MainNews } from '@/types/main';
+import { MainNews } from '@/apis/types/main';
 
 import NewsCard from './NewsCard';
 

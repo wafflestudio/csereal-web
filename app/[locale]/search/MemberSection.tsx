@@ -1,8 +1,8 @@
+import { Member, MemberSearchResult } from '@/apis/types/search';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-import { Link } from '@/i18n/routing';
-import { Member, MemberSearchResult } from '@/types/search';
-import { getPath } from '@/utils/page';
 import { faculty, staff } from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';

@@ -1,5 +1,5 @@
 import { getRequest, patchRequest } from '@/apis';
-import { ImportantPreview } from '@/types/admin';
+import { ImportantPreview } from '@/apis/types/admin';
 
 export const getImportants = (pageNum: number) =>
   getRequest(

@@ -5,9 +5,9 @@ import {
   putDegreeRequirements,
 } from '@/apis/v1/academics/undergraduate/degree-requirements';
 import { FETCH_TAG_DEGREE } from '@/constants/network';
+import { degree } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { degree } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import DegreeRequirementsEditor from './DegreeRequirementsEditor';

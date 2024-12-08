@@ -1,5 +1,5 @@
 import { deleteRequest, putRequest } from '@/apis';
-import { GeneralStudiesRequirement } from '@/types/academics';
+import { GeneralStudiesRequirement } from '@/apis/types/academics';
 
 export const putGeneralStudies = (data: GeneralStudiesRequirement) =>
   putRequest(`/v1/academics/undergraduate/general-studies-requirements/${data.year}`, {

@@ -4,11 +4,11 @@ import { postNoticeAction } from '@/actions/notice';
 import NoticeEditor, {
   NoticeFormData,
 } from '@/app/[locale]/community/notice/components/NoticeEditor';
-import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { getPath } from '@/utils/page';
 import { notice } from '@/constants/segmentNode';
+import { useRouter } from '@/i18n/routing';
+import { isLocalFile } from '@/types/form';
+import { getPath } from '@/utils/page';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);

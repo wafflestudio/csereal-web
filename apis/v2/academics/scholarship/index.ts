@@ -1,5 +1,5 @@
 import { putRequest } from '@/apis';
-import { Scholarship } from '@/types/academics';
+import { Scholarship } from '@/apis/types/academics';
 import { WithLanguage } from '@/types/language';
 
 export const putScholarship = async (id: number, data: WithLanguage<Scholarship>) =>

@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from 'react';
 
 import { postReservation } from '@/actions/reservation';
-import { ReservationPostBody } from '@/types/reservation';
+import { ReservationPostBody } from '@/apis/types/reservation';
 import { isSameDay } from '@/utils/date';
 import { refreshPage } from '@/utils/refreshPage';
 import { handleServerAction } from '@/utils/serverActionError';

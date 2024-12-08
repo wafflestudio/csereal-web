@@ -12,10 +12,10 @@ import {
 import { postResearchLab } from '@/apis/v2/research/lab';
 import { deleteResearchLab, putResearchLab } from '@/apis/v2/research/lab/[id_ko]/[id_en]';
 import { FETCH_TAG_CENTER, FETCH_TAG_GROUP, FETCH_TAG_LAB } from '@/constants/network';
+import { researchCenters, researchGroups, researchLabs } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { researchCenters, researchGroups, researchLabs } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';

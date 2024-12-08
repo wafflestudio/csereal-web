@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from '@/apis';
+import { NewsPreviewList } from '@/apis/types/news';
+import { PostSearchQueryParams } from '@/apis/types/post';
 import { FETCH_TAG_NEWS } from '@/constants/network';
-import { NewsPreviewList } from '@/types/news';
-import { PostSearchQueryParams } from '@/types/post';
 
 export const getNewsPosts = (params: PostSearchQueryParams) =>
   getRequest('/v1/news', params, {

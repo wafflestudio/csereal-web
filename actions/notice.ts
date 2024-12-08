@@ -5,10 +5,10 @@ import { revalidateTag } from 'next/cache';
 import { batchDeleteNotice, batchUnpinNotice, postNotice } from '@/apis/v1/notice';
 import { deleteNotice, patchNotice } from '@/apis/v1/notice/[id]';
 import { FETCH_TAG_NOTICE } from '@/constants/network';
+import { notice } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { notice } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);

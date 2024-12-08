@@ -2,6 +2,13 @@
 
 import { revalidateTag } from 'next/cache';
 
+import {
+  Course,
+  Curriculum,
+  GeneralStudiesRequirement,
+  Scholarship,
+  StudentType,
+} from '@/apis/types/academics';
 import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
 import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
 import {
@@ -28,17 +35,10 @@ import {
   FETCH_TAG_GUIDE,
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
+import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
-import {
-  Course,
-  Curriculum,
-  GeneralStudiesRequirement,
-  Scholarship,
-  StudentType,
-} from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';

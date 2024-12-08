@@ -7,9 +7,9 @@ import TimelineEditor, {
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangePath = getPath(undergraduateCourseChanges);

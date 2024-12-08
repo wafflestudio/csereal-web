@@ -1,4 +1,4 @@
-import { Course } from '@/types/academics';
+import { Course } from '@/apis/types/academics';
 
 import CourseListHeader from './CourseListHeader';
 import CourseListRow from './CourseListRow';

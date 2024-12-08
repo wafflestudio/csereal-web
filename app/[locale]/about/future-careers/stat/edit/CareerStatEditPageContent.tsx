@@ -1,17 +1,15 @@
 'use client';
 
 import { putCareerStatAction } from '@/actions/about';
+import { FutureCareers } from '@/apis/types/about';
 import { CareerStat } from '@/apis/v2/about/future-careers/stats';
+import { COMPANY_MAP, companyList } from '@/apis/v2/about/future-careers/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
-import { getPath } from '@/utils/page';
-import { futureCareers } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
 import CareerStatEditor from '../../components/CareerStatEditor';
-import { COMPANY_MAP, companyList } from '@/apis/v2/about/future-careers/types';
 
 export default function CareerStatEditPageContent({
   data,

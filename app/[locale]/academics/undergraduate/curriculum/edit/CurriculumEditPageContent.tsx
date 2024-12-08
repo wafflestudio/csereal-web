@@ -1,14 +1,14 @@
 import { revalidateTag } from 'next/cache';
 
+import { Curriculum } from '@/apis/types/academics';
 import { putAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
-import { Curriculum } from '@/types/academics';
-import { getPath } from '@/utils/page';
 import { curriculum } from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 
 const curriculumPath = getPath(curriculum);
 

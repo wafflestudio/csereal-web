@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { CSSProperties, ReactNode, type JSX } from 'react';
+import { CSSProperties, type JSX, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';

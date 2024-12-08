@@ -1,8 +1,8 @@
 import { getScholarship } from '@/apis/v2/academics/scholarship/[id]';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
+import { undergraduateScholarship } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateScholarship } from '@/constants/segmentNode';
 
 import ScholarshipDetail from '../../../components/scholarship/ScholarshipDetail';
 

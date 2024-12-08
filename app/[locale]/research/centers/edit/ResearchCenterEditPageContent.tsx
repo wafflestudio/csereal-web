@@ -1,13 +1,14 @@
 'use client';
 
 import { putResearchCenterAction } from '@/actions/research';
+import { ResearchCenter } from '@/apis/types/research';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
+
 import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
 export default function ResearchCenterEditPageContent({

@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from '@/apis';
+import { StudentType } from '@/apis/types/academics';
 import { AcademicsCommon } from '@/apis/v1/academics/types';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
-import { StudentType } from '@/types/academics';
 
 export const getCourseChanges = (type: StudentType) =>
   getRequest<AcademicsCommon[]>(`/v1/academics/${type}/course-changes`, undefined, {
