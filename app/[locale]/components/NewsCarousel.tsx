@@ -61,11 +61,14 @@ const PageIndicator = ({
   return (
     <div className="relative flex gap-[0.63rem]">
       {[...Array(pageCnt).keys()].map((idx) => (
-        <button key={idx} onClick={() => setPage(idx)}>
+        <button key={idx} onClick={() => setPage(idx)} aria-label={`${idx + 1}번째 페이지로 이동`}>
           <CapsuleIcon current={page === idx} />
         </button>
       ))}
-      <button onClick={isScroll ? stopScroll : startScroll}>
+      <button
+        onClick={isScroll ? stopScroll : startScroll}
+        aria-label={isScroll ? '자동 스크롤 중지' : '자동 스크롤 시작'}
+      >
         {isScroll ? <PauseIcon /> : <PlayIcon />}
       </button>
     </div>
