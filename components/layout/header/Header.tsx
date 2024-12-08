@@ -29,7 +29,7 @@ export default function Header() {
 
 function HeaderLeft() {
   return (
-    <Link href="/" className="cursor-pointer">
+    <Link href="/" className="cursor-pointer" aria-label="메인으로 이동">
       {/* mobile */}
       <HeaderLogoSVG className="hidden sm:block" />
 
