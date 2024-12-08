@@ -24,7 +24,7 @@ export default function HeaderSearchBar() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button className="material-symbols-rounded text-[1.25rem] text-neutral-800 hover:text-neutral-500">
+      <button className="material-symbols-rounded w-8 text-[1.25rem] text-neutral-800 hover:text-neutral-500">
         search
       </button>
     </form>

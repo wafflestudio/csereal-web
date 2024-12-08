@@ -61,7 +61,12 @@ const PageIndicator = ({
   return (
     <div className="relative flex gap-[0.63rem]">
       {[...Array(pageCnt).keys()].map((idx) => (
-        <button key={idx} onClick={() => setPage(idx)} aria-label={`${idx + 1}번째 페이지로 이동`}>
+        <button
+          key={idx}
+          onClick={() => setPage(idx)}
+          aria-label={`${idx + 1}번째 페이지로 이동`}
+          className="h-[24px] min-w-[24px]"
+        >
           <CapsuleIcon current={page === idx} />
         </button>
       ))}
@@ -77,7 +82,7 @@ const PageIndicator = ({
 
 const CapsuleIcon = ({ current }: { current: boolean }) => (
   <div
-    className="h-2 rounded-full transition-all duration-700"
+    className="h-2 rounded-full duration-700 ease-linear"
     style={{
       width: current ? '2.5rem' : '0.5rem',
       backgroundColor: current ? '#E65615' : '#D4D4D4',
