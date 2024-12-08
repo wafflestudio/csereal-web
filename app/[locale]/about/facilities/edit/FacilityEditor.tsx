@@ -17,7 +17,7 @@ import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { facilities } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);
@@ -42,7 +42,7 @@ export default function FacilityEditor({ data }: { data: WithLanguage<Facility> 
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      handleServerAction_legacy(
+      handleServerAction(
         await putFacilityAction(
           data.ko.id,
           contentToFormData('EDIT', {

@@ -13,7 +13,7 @@ import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { facultyRecruitment } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface Props {
@@ -50,7 +50,7 @@ export default function FacultyRecruitmentEditPageContent({ data }: Props) {
     });
 
     try {
-      handleServerAction_legacy(await putFacultyRecruitmentAction(formData));
+      handleServerAction(await putFacultyRecruitmentAction(formData));
       successToast(`신임교수초빙을 수정했습니다.`);
     } catch (e) {
       errorToast(errorToStr(e));

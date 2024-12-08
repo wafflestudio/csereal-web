@@ -13,7 +13,7 @@ import { Faculty } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { faculty, researchLabs } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import HeaderAndList from '../../components/HeaderAndList';
@@ -34,7 +34,7 @@ export default function FacultyMemberPageContent({
 
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteFacultyAction(ids, faculty.status));
+      handleServerAction(await deleteFacultyAction(ids, faculty.status));
       successToast('교수를 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

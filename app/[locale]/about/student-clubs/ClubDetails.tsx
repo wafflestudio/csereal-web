@@ -10,7 +10,7 @@ import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { studentClubs } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -25,7 +25,7 @@ export default function ClubDetails({
 }) {
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteClubAction(club.ko.id));
+      handleServerAction(await deleteClubAction(club.ko.id));
       successToast('동아리를 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

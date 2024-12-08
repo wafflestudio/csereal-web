@@ -4,7 +4,7 @@ import { postReservation } from '@/actions/reservation';
 import { ReservationPostBody } from '@/types/reservation';
 import { isSameDay } from '@/utils/date';
 import { refreshPage } from '@/utils/refreshPage';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, infoToast } from '@/utils/toast';
 
 import getOptimalEndTime from './getOptimalEndTime';
@@ -27,7 +27,7 @@ export default function useAddReservation(roomId: number) {
     }
 
     try {
-      handleServerAction_legacy(await postReservation(body));
+      handleServerAction(await postReservation(body));
       // TODO: revalidate같은거 써서 좀 더 예쁘게
       refreshPage();
     } catch (e) {

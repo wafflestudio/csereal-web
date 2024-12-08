@@ -10,7 +10,7 @@ import { WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -45,7 +45,7 @@ export default function ResearchLabCreatePageContent({
     );
 
     try {
-      handleServerAction_legacy(await postResearchLabAction(formData));
+      handleServerAction(await postResearchLabAction(formData));
       successToast('연구실을 추가했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

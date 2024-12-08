@@ -13,7 +13,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { Reservation } from '@/types/reservation';
 import useModal from '@/utils/hooks/useModal';
 import { refreshPage } from '@/utils/refreshPage';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BasicButton from '../BasicButton';
@@ -124,7 +124,7 @@ const DeleteButtons = ({
 
   const handleDeleteAll = async () => {
     try {
-      handleServerAction_legacy(await deleteAllRecurringReservation(recurrenceId));
+      handleServerAction(await deleteAllRecurringReservation(recurrenceId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
@@ -134,7 +134,7 @@ const DeleteButtons = ({
 
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteSingleReservation(reservationId));
+      handleServerAction(await deleteSingleReservation(reservationId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {

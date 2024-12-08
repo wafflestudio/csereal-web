@@ -10,7 +10,7 @@ import { WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup, ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -59,9 +59,7 @@ export default function ResearchLabEditPageContent({
     );
 
     try {
-      handleServerAction_legacy(
-        await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData),
-      );
+      handleServerAction(await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData));
       successToast('연구실을 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

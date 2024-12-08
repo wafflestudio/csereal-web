@@ -15,7 +15,7 @@ import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { directions } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const directionsPath = getPath(directions);
@@ -38,7 +38,7 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      handleServerAction_legacy(
+      handleServerAction(
         await putDirectionsAction(data.ko.id, {
           koDescription: formData.htmlKo,
           enDescription: formData.htmlEn,

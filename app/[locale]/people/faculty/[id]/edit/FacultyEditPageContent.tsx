@@ -13,7 +13,7 @@ import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { emeritusFaculty, faculty } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const facultyPath = getPath(faculty);
@@ -51,7 +51,7 @@ export default function FacultyEditPageContent({
     const formData = contentToFormData('EDIT', { requestObject, image: content.ko.image });
 
     try {
-      handleServerAction_legacy(
+      handleServerAction(
         await putFacultyAction(
           { ko: data.ko.id, en: data.en.id },
           formData,

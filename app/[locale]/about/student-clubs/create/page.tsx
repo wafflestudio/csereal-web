@@ -4,7 +4,7 @@ import { postClubAction } from '@/actions/about';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
@@ -12,7 +12,7 @@ export default function StudentClubCreatePage() {
   const onSubmit = async ({ image, ...requestObject }: ClubFormData) => {
     try {
       const formData = contentToFormData('CREATE', { requestObject, image });
-      handleServerAction_legacy(await postClubAction(formData));
+      handleServerAction(await postClubAction(formData));
       successToast('동아리 소개를 추가했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

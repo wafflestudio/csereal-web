@@ -8,7 +8,7 @@ import { useCarouselLayout } from './useCarouselLayout';
 export default function useCarousel(news: MainNews[]) {
   const [page, _setPage] = useState(0);
   // TODO: 타입 이게 맞나?
-  const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
+  const [intervalID, setIntervalID] = useState<number | null>(null);
   const { cardCnt, widthREM } = useCarouselLayout();
   const pageCnt = Math.ceil(news.length / cardCnt);
   const offsetREM = widthREM * page;
@@ -24,7 +24,7 @@ export default function useCarousel(news: MainNews[]) {
 
   const startScroll = useCallback(() => {
     setIntervalID(
-      setInterval(() => {
+      window.setInterval(() => {
         _setPage((x) => (x + 1) % pageCnt);
       }, AUTO_SCROLL_MS),
     );

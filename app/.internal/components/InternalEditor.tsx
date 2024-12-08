@@ -6,7 +6,7 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { useRouter } from '@/i18n/routing';
 import { errorToStr } from '@/utils/error';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 interface FormData {
@@ -28,7 +28,7 @@ export default function InternalEditor({
 
   const onSubmit = async ({ description }: FormData) => {
     try {
-      handleServerAction_legacy(await _onSubmit(description));
+      handleServerAction(await _onSubmit(description));
     } catch (e) {
       errorToast(errorToStr(e));
     }

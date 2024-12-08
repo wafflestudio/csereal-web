@@ -15,7 +15,7 @@ import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { researchGroups, researchLabs } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';
 
@@ -34,7 +34,7 @@ export default function ResearchLabDetailContent({
 
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteResearchLabAction(ids));
+      handleServerAction(await deleteResearchLabAction(ids));
       successToast('연구실을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

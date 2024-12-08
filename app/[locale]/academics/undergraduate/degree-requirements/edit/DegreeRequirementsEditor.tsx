@@ -12,7 +12,7 @@ import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { degree } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const degreeRequirementsPath = getPath(degree);
@@ -49,7 +49,7 @@ export default function DegreeRequirementsEditor({
     });
 
     try {
-      handleServerAction_legacy(_onSubmit(formData));
+      handleServerAction(_onSubmit(formData));
     } catch (e) {
       errorToast(errorToStr(e));
     }

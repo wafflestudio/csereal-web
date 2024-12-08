@@ -6,7 +6,7 @@ import { Club } from '@/types/about';
 import { WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
@@ -22,7 +22,7 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
     });
 
     try {
-      handleServerAction_legacy(await putClubAction(formData));
+      handleServerAction(await putClubAction(formData));
       successToast('동아리 소개를 수정했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

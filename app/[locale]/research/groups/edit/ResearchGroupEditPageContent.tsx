@@ -6,7 +6,7 @@ import { WithLanguage } from '@/types/language';
 import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchGroupEditor, { ResearchGroupFormData } from '../components/ResearchGroupEditor';
@@ -24,7 +24,7 @@ export default function ResearchGroupEditPageContent({
     });
 
     try {
-      handleServerAction_legacy(
+      handleServerAction(
         await putResearchGroupAction({ ko: group.ko.id, en: group.en.id }, formData),
       );
       successToast('연구 스트림을 수정했습니다.');

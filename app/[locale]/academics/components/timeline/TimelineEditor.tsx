@@ -9,7 +9,7 @@ import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 export type TimelineFormData = { year: number; description: string; file: EditorFile[] };
@@ -54,7 +54,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
         });
 
     try {
-      handleServerAction_legacy(await _onSubmit(formData));
+      handleServerAction(await _onSubmit(formData));
       successToast('저장되었습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

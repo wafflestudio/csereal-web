@@ -11,7 +11,7 @@ import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { researchCenters } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 interface ResearchCenterDetailsProps {
@@ -24,7 +24,7 @@ const centersPath = getPath(researchCenters);
 export default function ResearchCenterDetails({ center, ids }: ResearchCenterDetailsProps) {
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteResearchCenterAction(ids));
+      handleServerAction(await deleteResearchCenterAction(ids));
       successToast('연구 센터를 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

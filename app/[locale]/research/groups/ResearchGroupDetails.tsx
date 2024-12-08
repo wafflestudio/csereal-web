@@ -12,7 +12,7 @@ import { ResearchGroup } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { researchGroups } from '@/constants/segmentNode';
-import { handleServerAction_legacy } from '@/utils/serverActionError';
+import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchGroupLabs from './ResearchGroupLabs';
@@ -29,7 +29,7 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
 
   const handleDelete = async () => {
     try {
-      handleServerAction_legacy(await deleteResearchGroupAction(ids));
+      handleServerAction(await deleteResearchGroupAction(ids));
       successToast('연구 스트림을 삭제했습니다.');
     } catch (e) {
       errorToast(errorToStr(e));

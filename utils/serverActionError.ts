@@ -16,7 +16,7 @@ export function throwIfError<T>(response: T): asserts response is Exclude<T, Cus
 /**
  * @deprecated handleServerResponse를 사용하세요.
  */
-export function handleServerAction_legacy<T>(response: T): Exclude<T, CustomError> {
+export function handleServerAction<T>(response: T): Exclude<T, CustomError> {
   throwIfError(response);
   return response;
 }
