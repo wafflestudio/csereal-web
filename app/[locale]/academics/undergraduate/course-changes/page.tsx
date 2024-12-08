@@ -6,7 +6,7 @@ import TimelineViewer from '@/app/[locale]/academics/components/timeline/Timelin
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateCourseChanges } from '@/utils/segmentNode';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

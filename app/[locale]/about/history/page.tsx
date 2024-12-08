@@ -9,7 +9,7 @@ import history_image from '@/public/image/about/history.png';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { history } from '@/utils/segmentNode';
+import { history } from '@/constants/segmentNode';
 
 interface HistoryPageProps {
   params: Promise<{ locale: Language }>;

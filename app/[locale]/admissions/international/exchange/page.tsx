@@ -4,7 +4,7 @@ import { getInternationalExchangeVisiting } from '@/apis/v1/admissions/internati
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { exchangeVisitingProgram } from '@/utils/segmentNode';
+import { exchangeVisitingProgram } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

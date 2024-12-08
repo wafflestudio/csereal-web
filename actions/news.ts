@@ -7,7 +7,7 @@ import { deleteNews, patchNews } from '@/apis/v1/news/[id]';
 import { FETCH_TAG_NEWS } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

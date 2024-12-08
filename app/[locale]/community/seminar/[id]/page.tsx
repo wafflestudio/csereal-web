@@ -6,7 +6,7 @@ import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { seminar } from '@/utils/segmentNode';
+import { seminar } from '@/constants/segmentNode';
 
 import SeminarViewer from './SeminarViewer';
 

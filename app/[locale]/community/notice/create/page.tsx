@@ -8,7 +8,7 @@ import { isLocalFile } from '@/components/form/types';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 
 const noticePath = getPath(notice);

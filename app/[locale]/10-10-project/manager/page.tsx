@@ -1,7 +1,7 @@
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getPath } from '@/utils/page';
-import { greetings } from '@/utils/segmentNode';
+import { greetings } from '@/constants/segmentNode';
 
 export default async function TenTenManager() {
   return (

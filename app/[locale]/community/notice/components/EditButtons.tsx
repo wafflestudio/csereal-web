@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 const noticePath = getPath(notice);
 

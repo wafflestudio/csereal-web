@@ -10,7 +10,7 @@ import { WithLanguage } from '@/types/language';
 import { ResearchCenter } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { researchCenters } from '@/utils/segmentNode';
+import { researchCenters } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

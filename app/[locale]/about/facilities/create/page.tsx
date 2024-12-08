@@ -6,7 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { postFacilityAction, putFacilityAction } from '@/actions/about';
 import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -16,14 +16,14 @@ import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/utils/segmentNode';
+import { facilities } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
 const facilitiesPath = getPath(facilities);
 
 interface FormData extends WithLanguage<Facility> {
-  imageURL: PostEditorImage | null;
+  imageURL: EditorImage | null;
 }
 
 export default function FacilityCreator() {

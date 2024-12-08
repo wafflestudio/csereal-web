@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import MajorCategoryPageLayout from '@/components/layout/pageLayout/MajorCategoryPageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { reservations } from '@/utils/segmentNode';
+import { reservations } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

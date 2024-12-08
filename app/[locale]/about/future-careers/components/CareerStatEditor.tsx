@@ -6,7 +6,7 @@ import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form
 
 import Form from '@/components/form/Form';
 import { getPath } from '@/utils/page';
-import { futureCareers } from '@/utils/segmentNode';
+import { futureCareers } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { CareerStat } from '@/apis/v2/about/future-careers/stats';
 import { degreeList, companyList, COMPANY_MAP } from '@/apis/v2/about/future-careers/types';

@@ -11,7 +11,7 @@ import { redirect } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { FacultyStatus } from '@/types/people';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty, staff } from '@/utils/segmentNode';
+import { emeritusFaculty, faculty, staff } from '@/constants/segmentNode';
 
 import { withErrorHandler } from './errorHandler';
 

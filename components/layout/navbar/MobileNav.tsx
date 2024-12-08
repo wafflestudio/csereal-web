@@ -9,7 +9,7 @@ import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
-import { main, SegmentNode } from '@/utils/segmentNode';
+import { main, SegmentNode } from '@/constants/segmentNode';
 
 import MobileNavDetail from './MobileNavDetail';
 

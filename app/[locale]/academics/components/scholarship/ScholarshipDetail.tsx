@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Scholarship, StudentType } from '@/types/academics';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
+import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

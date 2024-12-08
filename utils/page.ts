@@ -1,4 +1,4 @@
-import { main, SegmentNode } from '@/utils/segmentNode';
+import { main, SegmentNode } from '@/constants/segmentNode';
 
 export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
   if (location === null) return [];

@@ -7,7 +7,7 @@ import {
 import { FETCH_TAG_DEGREE } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { degree } from '@/utils/segmentNode';
+import { degree } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import DegreeRequirementsEditor from './DegreeRequirementsEditor';

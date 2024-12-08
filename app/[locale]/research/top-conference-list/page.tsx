@@ -4,7 +4,7 @@ import { getTopConferenceList } from '@/apis/v1/conference/page';
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-import { topConferenceList } from '@/utils/segmentNode';
+import { topConferenceList } from '@/constants/segmentNode';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

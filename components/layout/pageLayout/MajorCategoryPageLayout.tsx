@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/utils/segmentNode';
+import { SegmentNode } from '@/constants/segmentNode';
 
 import ENG_NAMES from '../../../messages/en.json';
 import Header from '../header/Header';

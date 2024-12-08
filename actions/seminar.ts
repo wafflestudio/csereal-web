@@ -7,7 +7,7 @@ import { deleteSeminar, patchSeminar } from '@/apis/v1/seminar/[id]';
 import { FETCH_TAG_SEMINAR } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
+import { seminar } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const seminarPath = getPath(seminar);

@@ -14,7 +14,7 @@ import { Direction } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { directions } from '@/utils/segmentNode';
+import { directions } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

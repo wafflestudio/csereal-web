@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { futureCareers } from '@/utils/segmentNode';
+import { futureCareers } from '@/constants/segmentNode';
 
 import CareerCompanies from './CareerCompanies';
 import CareerStat from './CareerStat';

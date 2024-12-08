@@ -6,7 +6,7 @@ import { Language } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/utils/segmentNode';
+import { faculty, researchLabs } from '@/constants/segmentNode';
 
 import { PeopleCellProps } from '../components/PeopleCell';
 import PeopleGrid from '../components/PeopleGrid';

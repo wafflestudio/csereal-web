@@ -12,7 +12,7 @@ import { WithLanguage } from '@/types/language';
 import { Faculty } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/utils/segmentNode';
+import { faculty, researchLabs } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

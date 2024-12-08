@@ -38,7 +38,7 @@ import {
 } from '@/types/academics';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
+import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';

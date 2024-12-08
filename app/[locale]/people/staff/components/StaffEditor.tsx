@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import { Language, WithLanguage } from '@/types/language';
 import useLanguage from '@/utils/hooks/useLanguage';
@@ -17,7 +17,7 @@ export type StaffEditorFormData = WithLanguage<{
   phone: string;
   email: string;
   tasks: string[];
-  image: PostEditorImage | null;
+  image: EditorImage | null;
 }>;
 
 interface StaffEditorProps {

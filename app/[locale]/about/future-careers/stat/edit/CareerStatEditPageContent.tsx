@@ -7,7 +7,7 @@ import { useRouter } from '@/i18n/routing';
 import { FutureCareers } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { futureCareers } from '@/utils/segmentNode';
+import { futureCareers } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import CareerStatEditor from '../../components/CareerStatEditor';

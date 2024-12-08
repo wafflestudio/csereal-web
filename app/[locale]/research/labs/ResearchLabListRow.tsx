@@ -4,7 +4,7 @@ import { Link } from '@/i18n/routing';
 import YoutubeIcon from '@/public/image/youtube_icon.svg';
 import { SimpleResearchLab } from '@/types/research';
 import { getPath } from '@/utils/page';
-import { faculty, researchLabs } from '@/utils/segmentNode';
+import { faculty, researchLabs } from '@/constants/segmentNode';
 
 export const LAB_ROW_ITEM_WIDTH = {
   name: 'sm:w-[14.5rem]',

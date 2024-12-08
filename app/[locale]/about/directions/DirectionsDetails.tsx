@@ -3,7 +3,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Direction } from '@/types/about';
 import { getPath } from '@/utils/page';
-import { directions } from '@/utils/segmentNode';
+import { directions } from '@/constants/segmentNode';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 const directionsPath = getPath(directions);

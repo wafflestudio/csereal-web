@@ -10,7 +10,7 @@ import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayou
 import { News } from '@/types/news';
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 
 interface NewsPostPageProps {
   news: News;

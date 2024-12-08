@@ -9,7 +9,7 @@ import { SimpleResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/utils/segmentNode';
+import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

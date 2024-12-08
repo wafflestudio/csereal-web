@@ -9,7 +9,7 @@ import { Club } from '@/types/about';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
+import { studentClubs } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';

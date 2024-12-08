@@ -10,7 +10,7 @@ import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
+import { studentClubs } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 import { useState } from 'react';

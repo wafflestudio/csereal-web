@@ -9,7 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/utils/segmentNode';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangePath = getPath(undergraduateCourseChanges);

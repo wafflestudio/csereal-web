@@ -3,115 +3,80 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import {
-  putContactAction,
-  putGreetingsAction,
-  putHistoryAction,
-  putOverviewAction,
-} from '@/actions/about';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorFile, PostEditorImage } from '@/components/form/types';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { EditorFile, EditorImage } from '@/components/form/types';
 import { useRouter } from '@/i18n/routing';
-import { AboutContent } from '@/types/about';
-import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
+import { Language } from '@/types/language';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
-import { getPath } from '@/utils/page';
-import { contact, greetings, history, overview, SegmentNode } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
+
+export interface AboutFormData {
+  htmlKo: string;
+  htmlEn: string;
+  image: EditorImage;
+  files: EditorFile[];
+}
 
 interface Props {
-  data: WithLanguage<AboutContent>;
-  node: SegmentNode;
+  cancelPath: string;
+  defaultValues: AboutFormData;
+  onSubmit: (formData: FormData) => Promise<unknown>;
   showAttachments?: boolean;
 }
 
-interface FormData {
-  htmlKo: string;
-  htmlEn: string;
-  image: PostEditorImage;
-  files: PostEditorFile[];
-}
-
-export default function AboutEditor({ data, node, showAttachments = false }: Props) {
+export default function AboutEditor({
+  cancelPath,
+  defaultValues,
+  onSubmit: _onSubmit,
+  showAttachments = false,
+}: Props) {
   const router = useRouter();
-  const formMethods = useForm<FormData>({
-    defaultValues: {
-      htmlKo: data.ko.description,
-      htmlEn: data.en.description,
-      image: data.ko.imageURL ? { type: 'UPLOADED_IMAGE', url: data.ko.imageURL } : null,
-      files: data.ko.attachments.map((attachment) => ({ file: attachment, type: 'UPLOADED_FILE' })),
-    },
-  });
+  const formMethods = useForm<AboutFormData>({ defaultValues });
   const { handleSubmit } = formMethods;
-
   const [language, setLanguage] = useState<Language>('ko');
 
-  const onCancel = () => router.push(getPath(node));
+  const onCancel = () => router.push(cancelPath);
 
   const onSubmit = handleSubmit(async ({ htmlKo, htmlEn, image, files }) => {
-    try {
-      const submitAction = ABOUT_SUBMIT_ACTION[node.segment];
+    console.log(files, defaultValues);
+    const requestObject = {
+      ko: { description: htmlKo, deleteIds: getAttachmentDeleteIds(files, defaultValues.files) },
+      en: { description: htmlEn, deleteIds: [] },
+      removeImage: defaultValues.image !== null && image === null,
+    };
 
-      const requestObject = {
-        ko: {
-          description: htmlKo,
-          deleteIds: getAttachmentDeleteIds(files, data.ko.attachments),
-        },
-        en: {
-          description: htmlEn,
-          deleteIds: getAttachmentDeleteIds(files, data.en.attachments),
-        },
-        removeImage: data.ko.imageURL !== null && image === null,
-      };
-
-      const formData = contentToFormData('EDIT', { requestObject, image, attachments: files });
-
-      handleServerAction(submitAction(formData));
-      successToast(`${node.name}을(를) 수정했습니다.`);
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const formData = contentToFormData('EDIT', { requestObject, image, attachments: files });
+    const resp = await _onSubmit(formData);
+    handleServerResponse(resp, { successMessage: '수정 완료되었습니다.' });
   });
 
   return (
-    <PageLayout title={`${node.name} 편집`} titleType="big" hideNavbar>
-      <FormProvider {...formMethods}>
-        <Form>
-          <LanguagePicker onChange={setLanguage} selected={language} />
+    <FormProvider {...formMethods}>
+      <Form>
+        <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.HTML>
-            {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
-            {language === 'en' && <Form.HTML name="htmlEn" />}
-          </Fieldset.HTML>
+        <Fieldset.HTML>
+          {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
+          {language === 'en' && <Form.HTML name="htmlEn" />}
+        </Fieldset.HTML>
 
-          <Fieldset.Image>
-            <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
-              글 우측 상단에 들어가는 이미지입니다.
-            </label>
-            <Form.Image name="image" />
-          </Fieldset.Image>
+        <Fieldset.Image>
+          <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
+            글 우측 상단에 들어가는 이미지입니다.
+          </label>
+          <Form.Image name="image" />
+        </Fieldset.Image>
 
-          {showAttachments && (
-            <Fieldset.File>
-              <Form.File name="files" />
-            </Fieldset.File>
-          )}
+        {showAttachments && (
+          <Fieldset.File>
+            <Form.File name="files" />
+          </Fieldset.File>
+        )}
 
-          <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
-        </Form>
-      </FormProvider>
-    </PageLayout>
+        <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
+      </Form>
+    </FormProvider>
   );
 }
-
-const ABOUT_SUBMIT_ACTION = {
-  [overview.segment]: putOverviewAction,
-  [greetings.segment]: putGreetingsAction,
-  [history.segment]: putHistoryAction,
-  [contact.segment]: putContactAction,
-};

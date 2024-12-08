@@ -11,7 +11,7 @@ import { WithLanguage } from '@/types/language';
 import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
+import { staff } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

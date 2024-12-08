@@ -9,7 +9,7 @@ import Distance from '@/public/image/distance.svg';
 import { Facility } from '@/types/about';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { facilities } from '@/utils/segmentNode';
+import { facilities } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

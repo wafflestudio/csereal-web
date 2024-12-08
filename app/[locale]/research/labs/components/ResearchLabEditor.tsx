@@ -8,11 +8,11 @@ import { Language, WithLanguage } from '@/types/language';
 import { SimpleFaculty } from '@/types/people';
 import { ResearchGroup } from '@/types/research';
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
+import { researchLabs } from '@/constants/segmentNode';
 
 import Fieldset from '../../../../../components/form/Fieldset';
 import LanguagePicker from '../../../../../components/form/LanguagePicker';
-import { PostEditorFile } from '../../../../../components/form/types';
+import { EditorFile } from '../../../../../components/form/types';
 import Form from '../../../../../components/form/Form';
 import HTMLEditor from '../../../../../components/form/html/HTMLEditor';
 
@@ -27,7 +27,7 @@ export type ResearchLabFormData = WithLanguage<{
   tel: string;
   websiteURL: string;
   youtube: string;
-  pdf: PostEditorFile[];
+  pdf: EditorFile[];
 };
 
 interface ResearchLabEditorProps {

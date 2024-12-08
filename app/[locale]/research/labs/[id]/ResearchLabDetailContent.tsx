@@ -14,7 +14,7 @@ import { ResearchLab } from '@/types/research';
 import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { researchGroups, researchLabs } from '@/utils/segmentNode';
+import { researchGroups, researchLabs } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
 import { errorToast, successToast } from '@/utils/toast';

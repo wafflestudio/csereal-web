@@ -9,7 +9,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { useRouter } from '@/i18n/routing';
 import { Seminar } from '@/types/seminar';
 import { getPath } from '@/utils/page';
-import { seminar } from '@/utils/segmentNode';
+import { seminar } from '@/constants/segmentNode';
 import { encodeFormDataFileName } from '@/utils/string';
 import { errorToast } from '@/utils/toast';
 

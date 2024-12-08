@@ -3,7 +3,7 @@
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import MenuSVG from '@/public/image/header/menu.svg';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import { about, main as mainNode, SegmentNode } from '@/utils/segmentNode';
+import { about, main as mainNode, SegmentNode } from '@/constants/segmentNode';
 
 export default function MobileNavButton() {
   const { navbarState, toggle } = useMobileNav();

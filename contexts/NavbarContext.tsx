@@ -13,7 +13,7 @@ import {
 import { usePathname } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useResponsive from '@/utils/hooks/useResponsive';
-import { SegmentNode } from '@/utils/segmentNode';
+import { SegmentNode } from '@/constants/segmentNode';
 
 export type NavbarState =
   | { type: 'closed' }

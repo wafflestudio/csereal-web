@@ -7,7 +7,7 @@ import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/types/admin';
 import { getPath } from '@/utils/page';
-import { admin } from '@/utils/segmentNode';
+import { admin } from '@/constants/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
 interface AdminPageProps {

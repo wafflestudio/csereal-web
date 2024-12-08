@@ -7,7 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
 import { StudentType } from '@/types/academics';
 import { getPath } from '@/utils/page';
-import { graduateScholarship, undergraduateScholarship } from '@/utils/segmentNode';
+import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
 
 const undergraduateScholarshipPath = getPath(undergraduateScholarship);
 const graduateScholarshipPath = getPath(graduateScholarship);

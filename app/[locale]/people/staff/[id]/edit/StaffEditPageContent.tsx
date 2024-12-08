@@ -11,7 +11,7 @@ import { Staff } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
+import { staff } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 

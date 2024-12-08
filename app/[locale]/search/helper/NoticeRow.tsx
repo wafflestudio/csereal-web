@@ -1,7 +1,7 @@
 import RangeBolded from '@/components/common/RangeBolded';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
+import { notice } from '@/constants/segmentNode';
 
 interface NoticeRowProps {
   id: number;

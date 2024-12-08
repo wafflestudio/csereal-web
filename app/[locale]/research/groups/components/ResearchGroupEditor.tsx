@@ -2,7 +2,7 @@
 
 import { useRouter } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/utils/segmentNode';
+import { researchGroups } from '@/constants/segmentNode';
 
 import ResearchGroupLabsEditGuide from '../ResearchGroupLabsEditGuide';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -12,14 +12,14 @@ import { useState } from 'react';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 
 const groupsPath = getPath(researchGroups);
 
 export interface ResearchGroupFormData {
   ko: { name: string; description: string; type: 'groups' };
   en: { name: string; description: string; type: 'groups' };
-  image: PostEditorImage | null;
+  image: EditorImage | null;
 }
 
 interface Props {

@@ -2,20 +2,20 @@
 
 import Fieldset from '@/components/form/Fieldset';
 import LanguagePicker from '@/components/form/LanguagePicker';
-import { PostEditorImage } from '@/components/form/types';
+import { EditorImage } from '@/components/form/types';
 import Form from '@/components/form/Form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
+import { studentClubs } from '@/constants/segmentNode';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const clubPath = getPath(studentClubs);
 
 export interface ClubFormData extends WithLanguage<{ name: string; description: string }> {
-  image?: PostEditorImage;
+  image?: EditorImage;
 }
 
 interface Props {

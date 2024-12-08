@@ -3,7 +3,7 @@ import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
 import ClearIcon from '@/public/image/clear_icon.svg';
 
-import { LocalFile, PostEditorFile } from './types';
+import { LocalFile, EditorFile } from './types';
 
 interface FilePickerProps {
   name: string;
@@ -13,7 +13,7 @@ interface FilePickerProps {
 
 export default function FilePicker({ name, options, multiple = true }: FilePickerProps) {
   const { register, setValue } = useFormContext();
-  const files = useWatch({ name }) as PostEditorFile[];
+  const files = useWatch({ name }) as EditorFile[];
 
   register(name, options);
 
@@ -80,7 +80,7 @@ function SelectFileButton({
 }
 
 interface FileRowProps {
-  file: PostEditorFile;
+  file: EditorFile;
   deleteFile: MouseEventHandler<HTMLButtonElement>;
 }
 

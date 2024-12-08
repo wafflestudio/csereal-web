@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { degree } from '@/utils/segmentNode';
+import { degree } from '@/constants/segmentNode';
 
 const degreeRequirementsPath = getPath(degree);
 

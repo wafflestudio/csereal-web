@@ -6,7 +6,7 @@ import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { PostSearchQueryParams } from '@/types/post';
 import { getMetadata } from '@/utils/metadata';
-import { news } from '@/utils/segmentNode';
+import { news } from '@/constants/segmentNode';
 
 import NewsViewer from './NewsViewer';
 

@@ -11,7 +11,7 @@ import { WithLanguage } from '@/types/language';
 import { EmeritusFaculty } from '@/types/people';
 import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { faculty } from '@/utils/segmentNode';
+import { faculty } from '@/constants/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
