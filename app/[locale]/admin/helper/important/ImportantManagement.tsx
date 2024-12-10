@@ -4,7 +4,7 @@ import { batchUnimportantAction } from '@/actions/admin';
 import { ImportantPreview } from '@/apis/types/admin';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
 import BatchAction from '../BatchAction';

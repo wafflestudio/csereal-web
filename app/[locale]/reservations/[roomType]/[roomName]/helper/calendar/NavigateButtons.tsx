@@ -2,8 +2,8 @@
 
 import { useReducer } from 'react';
 
+import useModal from '@/hooks/useModal';
 import { usePathname, useRouter } from '@/i18n/routing';
-import useModal from '@/utils/hooks/useModal';
 
 import MuiDateSelector from '../../../../../../../components/common/MuiDateSelector';
 import BasicButton from '../BasicButton';

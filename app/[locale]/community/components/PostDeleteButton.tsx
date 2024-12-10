@@ -6,7 +6,7 @@ import { deleteNewsAction } from '@/actions/news';
 import { deleteNoticeAction } from '@/actions/notice';
 import { deleteSeminarAction } from '@/actions/seminar';
 import AlertModal from '@/components/modal/AlertModal';
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
 export default function PostDeleteButton({ postType, id }: { postType: string; id: string }) {

@@ -9,7 +9,7 @@ import {
   reservations,
   SegmentNode,
 } from '@/constants/segmentNode';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 export type FooterMode = 'light' | 'dark';
 

@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { CSSProperties, type JSX, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import Header from '../header/Header';
 import PageTitle from './PageTitle';

@@ -6,10 +6,10 @@ import { Course, GRADE } from '@/apis/types/academics';
 import { DeleteButton, GrayButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import ModalFrame from '@/components/modal/ModalFrame';
+import { useTypedLocale } from '@/hooks/useTypedLocale';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
-import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { CustomError, handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 

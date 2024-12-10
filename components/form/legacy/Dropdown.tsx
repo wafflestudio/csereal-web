@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { useClickOutside } from '@/utils/hooks/useClickOutside';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 // TODO: onClick을 인덱스 기반에서 값 기반으로 사용하는 옵션
 interface DropdownProps {

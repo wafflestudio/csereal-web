@@ -2,7 +2,7 @@ import { Dispatch } from 'react';
 
 import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/notice';
 import AlertModal from '@/components/modal/AlertModal';
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
 import { BatchButton, CreateButton, EditButton } from './EditButtons';

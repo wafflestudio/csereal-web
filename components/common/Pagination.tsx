@@ -2,10 +2,10 @@
 
 import { useSearchParams } from 'next/navigation';
 
+import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
+import useResponsive from '@/hooks/useResponsive';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { urlSearchParamsToString } from '@/utils/convertParams';
-import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
-import useResponsive from '@/utils/hooks/useResponsive';
 
 interface PaginationProps {
   totalPostsCount: number;

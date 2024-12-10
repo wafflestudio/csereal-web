@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { BlackButton, GrayButton } from '@/components/common/Buttons';
 import AlertModal from '@/components/modal/AlertModal';
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 
 interface Props {
   onCancel: () => void;
@@ -13,7 +13,7 @@ interface Props {
 
 export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Props) {
   const {
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isSubmitting, isDirty },
   } = useFormContext();
   const { openModal } = useModal();
 
@@ -41,11 +41,7 @@ export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Pr
           }}
         />
       )}
-      <BlackButton
-        title={submitLabel ?? '저장하기'}
-        disabled={!isValid || isSubmitting}
-        onClick={onSubmit}
-      />
+      <BlackButton title={submitLabel ?? '저장하기'} disabled={isSubmitting} onClick={onSubmit} />
     </div>
   );
 }

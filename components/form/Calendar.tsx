@@ -2,7 +2,7 @@ import { useController } from 'react-hook-form';
 
 import MuiDateSelector from '@/components/common/MuiDateSelector';
 import ModalFrame from '@/components/modal/ModalFrame';
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 
 interface Props {
   name: string;

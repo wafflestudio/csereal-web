@@ -1,6 +1,6 @@
 import { SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 
 import NavTreeLabel from './NavtreeRow';
 

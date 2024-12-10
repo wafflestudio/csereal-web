@@ -8,9 +8,9 @@ import { SimpleResearchLab } from '@/apis/types/research';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
+import useLanguage from '@/hooks/useLanguage';
 import { EditorImage } from '@/types/form';
 import { Language, WithLanguage } from '@/types/language';
-import useLanguage from '@/utils/hooks/useLanguage';
 import { getKeys } from '@/utils/object';
 
 export type FacultyFormData = WithLanguage<{

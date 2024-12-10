@@ -2,8 +2,8 @@
 
 import { about, main as mainNode, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 import MenuSVG from '@/public/image/header/menu.svg';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
 export default function MobileNavButton() {
   const { navbarState, toggle } = useMobileNav();

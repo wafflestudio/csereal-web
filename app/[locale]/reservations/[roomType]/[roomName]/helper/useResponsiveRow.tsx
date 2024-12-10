@@ -1,4 +1,4 @@
-import useResponsive from '@/utils/hooks/useResponsive';
+import useResponsive from '@/hooks/useResponsive';
 
 export default function useResponsiveRow() {
   const { isMobile } = useResponsive();

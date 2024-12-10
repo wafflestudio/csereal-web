@@ -1,8 +1,8 @@
 'use client';
 
 import { ReservationPreview } from '@/apis/types/reservation';
+import useResponsive from '@/hooks/useResponsive';
 import { isSameDay } from '@/utils/date';
-import useResponsive from '@/utils/hooks/useResponsive';
 
 import useResponsiveRow from '../useResponsiveRow';
 import CalendarColumn from './CalendarColumn';

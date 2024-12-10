@@ -8,7 +8,7 @@ import { Autolinker } from 'autolinker';
 import { CSSProperties, ReactNode } from 'react';
 
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-import useResponsive from '@/utils/hooks/useResponsive';
+import useResponsive from '@/hooks/useResponsive';
 
 interface TopRightComponent {
   type: 'component';

@@ -2,8 +2,8 @@
 
 import CornerFoldedRectangle from '@/components/common/CornerFoldedRectangle/index';
 import { COLOR_THEME } from '@/constants/color';
+import { useTypedLocale } from '@/hooks/useTypedLocale';
 import { Link } from '@/i18n/routing';
-import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 interface SelectionListProps {

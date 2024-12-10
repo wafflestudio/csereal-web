@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { SegmentNode } from '@/constants/segmentNode';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 import { useRouter } from '@/i18n/routing';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath } from '@/utils/page';
 
 import ENG_NAMES from '../../../messages/en.json';

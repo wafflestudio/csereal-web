@@ -1,4 +1,4 @@
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 
 import ModalFrame from '../../../../components/modal/ModalFrame';
 

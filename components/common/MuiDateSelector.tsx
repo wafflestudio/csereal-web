@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { useRef } from 'react';
 
-import { useClickOutside } from '@/utils/hooks/useClickOutside';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 export default function MuiDateSelector({
   date,

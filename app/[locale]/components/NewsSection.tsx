@@ -4,9 +4,9 @@ import { useTranslations } from 'next-intl';
 
 import { MainNews } from '@/apis/types/main';
 import { news } from '@/constants/segmentNode';
+import useResponsive from '@/hooks/useResponsive';
 import { Link } from '@/i18n/routing';
 import SmallRightArrow from '@/public/image/main/small_right_arrow.svg';
-import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 
 import NewsCarousel from './NewsCarousel';

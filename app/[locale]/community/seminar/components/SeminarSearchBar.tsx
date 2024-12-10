@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { ChangeEventHandler, FormEvent, useState } from 'react';
 
-import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
+import { useCustomSearchParams } from '@/hooks/useCustomSearchParams';
 
 export default function SeminarSearchBar() {
   const t = useTranslations('Content');

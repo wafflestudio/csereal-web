@@ -11,9 +11,9 @@ import {
 } from 'react';
 
 import { SegmentNode } from '@/constants/segmentNode';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
+import useResponsive from '@/hooks/useResponsive';
 import { usePathname } from '@/i18n/routing';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import useResponsive from '@/utils/hooks/useResponsive';
 
 type NavbarState =
   | { type: 'closed' }

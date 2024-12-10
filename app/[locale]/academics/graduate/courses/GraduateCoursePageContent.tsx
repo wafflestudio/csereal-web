@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 
 import { Course } from '@/apis/types/academics';
 import LoginVisible from '@/components/common/LoginVisible';
+import useResponsive from '@/hooks/useResponsive';
 import { Language } from '@/types/language';
-import useResponsive from '@/utils/hooks/useResponsive';
 
 import AddCourseButton from '../../components/courses/AddCourseButton';
 import CourseCards from '../../components/courses/CourseCards';

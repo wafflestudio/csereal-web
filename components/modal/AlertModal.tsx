@@ -2,7 +2,7 @@
 
 import { useFormStatus } from 'react-dom';
 
-import useModal from '@/utils/hooks/useModal';
+import useModal from '@/hooks/useModal';
 
 import { GrayButton } from '../common/Buttons';
 import ModalFrame from './ModalFrame';

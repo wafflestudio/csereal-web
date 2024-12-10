@@ -2,8 +2,8 @@
 
 import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
 import ModalFrame from '@/components/modal/ModalFrame';
+import useModal from '@/hooks/useModal';
 import { Link } from '@/i18n/routing';
-import useModal from '@/utils/hooks/useModal';
 
 import BottomForm from './MiddleForm';
 import TopForm from './TopForm';

@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
 import { useSessionContext } from '@/contexts/SessionContext';
+import useLanguage from '@/hooks/useLanguage';
 import { Link } from '@/i18n/routing';
-import useLanguage from '@/utils/hooks/useLanguage';
 
 import HeaderSearchBar from './HeaderSearchBar';
 

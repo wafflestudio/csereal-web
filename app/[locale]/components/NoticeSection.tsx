@@ -6,10 +6,10 @@ import { ReactNode, useState } from 'react';
 
 import { AllMainNotice } from '@/apis/types/main';
 import { notice } from '@/constants/segmentNode';
+import useResponsive from '@/hooks/useResponsive';
 import { Link } from '@/i18n/routing';
 import Plus from '@/public/image/main/plus.svg';
 import { formatMainNoticeDateStr } from '@/utils/date';
-import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 
 export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {

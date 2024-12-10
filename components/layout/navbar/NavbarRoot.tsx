@@ -2,11 +2,11 @@ import { useTranslations } from 'next-intl';
 
 import { main as mainSegmentNode, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
+import useCurrentSegmentNode from '@/hooks/useCurrentSegmentNode';
 import { Link } from '@/i18n/routing';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
-import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;

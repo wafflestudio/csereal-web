@@ -3,8 +3,8 @@
 import { useTranslations } from 'next-intl';
 
 import { Course, GRADE } from '@/apis/types/academics';
-import useModal from '@/utils/hooks/useModal';
-import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
+import useModal from '@/hooks/useModal';
+import { useTypedLocale } from '@/hooks/useTypedLocale';
 
 import CourseDetailModal from './CourseDetailModal';
 
