@@ -23,7 +23,7 @@ export default function NavbarRoot() {
       onMouseEnter={() => setNavbarState({ type: 'expanded' })}
       style={{ width: `${width}rem` }}
     >
-      <Link href="/">
+      <Link href="/" aria-label="메인으로 이동">
         <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
       </Link>
 

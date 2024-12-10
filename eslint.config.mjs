@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { includeIgnoreFile } from '@eslint/compat';
 import pluginJs from '@eslint/js';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -63,6 +64,15 @@ export default [
     },
     rules: {
       'unused-imports/no-unused-imports': 'error',
+    },
+  },
+  jsxA11y.flatConfigs.recommended,
+  {
+    rules: {
+      'jsx-a11y/label-has-associated-control': 'warn',
+      'jsx-a11y/click-events-have-key-events': 'warn',
+      'jsx-a11y/no-static-element-interactions': 'warn',
+      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
     },
   },
 ];
