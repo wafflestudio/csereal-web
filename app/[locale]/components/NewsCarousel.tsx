@@ -59,15 +59,19 @@ const PageIndicator = ({
   stopScroll: () => void;
 }) => {
   return (
-    <div className="relative flex gap-[0.63rem]">
+    <div className="relative flex">
       {[...Array(pageCnt).keys()].map((idx) => (
         <button
           key={idx}
           onClick={() => setPage(idx)}
           aria-label={`${idx + 1}번째 페이지로 이동`}
-          className="h-[24px] min-w-[24px]"
+          className="flex h-[1.5rem] items-center justify-center duration-700 "
+          style={{ width: page === idx ? '3.5rem' : '1.5rem' }}
         >
-          <CapsuleIcon current={page === idx} />
+          <div
+            className="mx-2 h-2 w-full rounded-full"
+            style={{ backgroundColor: page === idx ? '#E65615' : '#D4D4D4' }}
+          />
         </button>
       ))}
       <button
@@ -79,16 +83,6 @@ const PageIndicator = ({
     </div>
   );
 };
-
-const CapsuleIcon = ({ current }: { current: boolean }) => (
-  <div
-    className="h-2 rounded-full duration-700 ease-linear"
-    style={{
-      width: current ? '2.5rem' : '0.5rem',
-      backgroundColor: current ? '#E65615' : '#D4D4D4',
-    }}
-  />
-);
 
 const PauseIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none">
