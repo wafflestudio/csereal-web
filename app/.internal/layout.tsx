@@ -1,10 +1,11 @@
 export const dynamic = 'force-dynamic';
 
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 import ModalContainer from '@/components/modal/ModalContainer';
 import ModalContextProvider from '@/contexts/ModalContext';
@@ -28,7 +29,7 @@ export default async function RootLayout(props: {
             <ModalContextProvider>
               {children}
               <ModalContainer />
-              <Toaster />
+              <ToastContainer />
             </ModalContextProvider>
           </SessionContextProvider>
         </NextIntlClientProvider>
