@@ -32,6 +32,22 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    rules: {
+      'react/forbid-component-props': [
+        'warn',
+        {
+          forbid: [
+            {
+              propName: 'style',
+              message:
+                'CSP 문제로 style prop은 직접 사용할 수 없습니다. tailwind className 혹은 useStyle을 사용하세요.',
+            },
+          ],
+        },
+      ],
+    },
+  },
   pluginReact.configs.flat['jsx-runtime'],
   {
     plugins: { 'react-hooks': pluginReactHooks, 'simple-import-sort': simpleImportSort },
@@ -43,7 +59,6 @@ export default [
   },
   {
     rules: {
-      // Consistently import navigation APIs from `@/i18n/routing`
       'no-restricted-imports': [
         'error',
         {
@@ -54,6 +69,10 @@ export default [
           name: 'next/navigation',
           importNames: ['redirect', 'permanentRedirect', 'useRouter', 'usePathname'],
           message: 'Please import from `@/i18n/routing` instead.',
+        },
+        {
+          name: 'next/image',
+          message: 'CSP 문제로 @/components/common/image를 사용해주세요.',
         },
       ],
     },
