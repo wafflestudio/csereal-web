@@ -7,7 +7,6 @@ import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import useStyle from '@/utils/hooks/useStyle';
 import { getPath, isAncestorNode } from '@/utils/page';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
@@ -19,12 +18,8 @@ export default function NavbarRoot() {
   return (
     // 상하로 화면이 좁은 경우를 대비해 overflow-scroll
     <div
-      className={`no-scrollbar z-50 flex w-[6.25rem] flex-col items-center overflow-scroll bg-[#323235] py-[2.88rem] transition-all duration-300 ease-in-out`}
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-[#323235] py-[2.88rem] transition-all duration-300 ease-in-out ${navbarState.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]'}`}
       onMouseEnter={() => setNavbarState({ type: 'expanded' })}
-      {...useStyle(
-        (style) => (style.width = navbarState.type === 'closed' ? '6.25rem' : '11rem'),
-        [navbarState.type],
-      )}
     >
       <Link href="/" aria-label="메인으로 이동">
         <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />

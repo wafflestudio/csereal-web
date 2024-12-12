@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 
 import { AllMainNotice } from '@/apis/types/main';
+import Image from '@/components/common/Image';
 import { notice } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import Plus from '@/public/image/main/plus.svg';

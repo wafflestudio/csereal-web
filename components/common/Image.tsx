@@ -1,11 +1,22 @@
+'use client';
+
 import NextImage, { getImageProps } from 'next/image';
 import { ComponentProps } from 'react';
+
+import useStyle from '@/utils/hooks/useStyle';
 
 export default function Image(props: ComponentProps<typeof NextImage>) {
   const { props: nextProps } = getImageProps({ ...props });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { style: _omit, alt, ...delegated } = nextProps;
+  const { style, alt, ...delegated } = nextProps;
 
-  return <img {...delegated} alt={alt} />;
+  return (
+    <img
+      {...delegated}
+      alt={alt}
+      {...useStyle((_style) => {
+        Object.assign(_style, style);
+      }, [])}
+    />
+  );
 }
