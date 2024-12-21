@@ -1,6 +1,7 @@
-import Image from 'next/image';
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
+
+import Image from '@/components/common/Image';
 
 import { LocalImage, UploadedImage } from '../../types/form';
 
@@ -77,15 +78,7 @@ const SelectedImageViewer = ({
     rounded-sm border border-neutral-200 bg-neutral-50 
     pb-2 pl-2 pr-4 pt-2`}
     >
-      <Image
-        src={imageURL}
-        alt="선택된 이미지"
-        width={IMAGE_WIDTH}
-        height={imageHeight}
-        // 경고 제거용 style prop
-        // 참고: https://github.com/vercel/next.js/issues/40762
-        style={{ width: IMAGE_WIDTH, height: imageHeight }}
-      />
+      <Image src={imageURL} alt="선택된 이미지" width={IMAGE_WIDTH} height={imageHeight} />
       <div className="flex flex-col items-start justify-between">
         <p className="text-xs">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
         <button className="text-xs underline" onClick={handleDeleteBlob}>

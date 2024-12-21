@@ -1,0 +1,19 @@
+.card {
+  position: relative;
+  padding-right: 0.1875rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.face {
+  top: 0;
+  left: 0;
+  height: 11rem;
+  border-radius: 0.25rem;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition:
+    transform ease-in-out 0.5s,
+    width ease-in-out 0.5s;
+}

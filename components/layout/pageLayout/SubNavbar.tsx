@@ -4,6 +4,7 @@ import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
 import { SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
+import useStyle from '@/utils/hooks/useStyle';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 
 type TreeNode = {
@@ -26,7 +27,7 @@ export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
     <div className="absolute right-[80px] top-0 hidden h-full sm:block">
       <div
         className="sticky top-[52px] col-start-2 row-span-full mb-8 mt-[3.25rem] flex"
-        style={{ height }}
+        {...useStyle((style) => (style.height = height), [height])}
       >
         <CurvedVerticalNode grow={false} />
         <div className="pl-1.5 pt-[0.6875rem]">
@@ -57,7 +58,7 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
       className={`mb-3.5 w-fit text-sm ${
         isCurrent ? 'font-bold tracking-wider text-main-orange' : 'text-neutral-700'
       }`}
-      style={{ marginLeft }}
+      {...useStyle((style) => (style.marginLeft = marginLeft), [marginLeft])}
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">

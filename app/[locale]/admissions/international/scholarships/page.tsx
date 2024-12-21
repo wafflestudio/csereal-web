@@ -26,8 +26,8 @@ export default async function InternationalScholarshipPage() {
   const { description } = await getInternationalScholarships();
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingBottom: 0 }}>
-      <HTMLViewer htmlContent={description} className="pb-16 sm:pb-[220px]" />
+    <PageLayout titleType="big" bodyClassName="pb-0">
+      <HTMLViewer htmlContent={description} wrapperClassName="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );
 }

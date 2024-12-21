@@ -46,7 +46,7 @@ export default async function ResearchCentersPage(props: {
   const centerWithLanguage = await getResearchCenter(selectedCenter.id);
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
+    <PageLayout titleType="big" bodyClassName="pt-0">
       <LoginVisible staff>
         <div className="mt-11 text-right">
           <Link href={`${researchCentersPath}/create`}>

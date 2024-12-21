@@ -7,7 +7,7 @@ import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/PageLayout';
 import { news } from '@/constants/segmentNode';
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
@@ -23,8 +23,7 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
     <>
       <Header title={news.title} date={news.date} />
       <div
-        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
+        className={`bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px] ${PAGE_PADDING_BOTTOM_TAILWIND}`}
       >
         <Attachments files={news.attachments} />
         <HTMLViewer
@@ -34,7 +33,7 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
               ? { type: 'image', url: news.imageURL, widthPX: 320, heightPX: 240 }
               : undefined
           }
-          className="mb-10"
+          wrapperClassName="mb-10"
         />
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />

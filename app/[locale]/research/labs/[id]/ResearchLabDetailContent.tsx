@@ -58,7 +58,7 @@ export default function ResearchLabDetailContent({
         topRightContent={
           isMobile ? undefined : { type: 'component', content: <ResearchLabInfo lab={lab} /> }
         }
-        className="mt-6"
+        wrapperClassName="mt-6"
       />
     </div>
   );

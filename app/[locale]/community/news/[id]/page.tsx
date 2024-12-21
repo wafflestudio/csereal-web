@@ -46,7 +46,7 @@ export default async function NewsPostPage(props: NewsPostPageProps) {
     const news = await getNewsDetail(id, searchParams);
 
     return (
-      <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <PageLayout titleType="big" bodyClassName="p-0">
         <Suspense fallback={<PostFallback />}>
           <NewsViewer news={news} />
         </Suspense>

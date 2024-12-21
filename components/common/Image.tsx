@@ -1,5 +1,6 @@
 'use client';
 
+// eslint-disable-next-line no-restricted-imports
 import NextImage, { getImageProps } from 'next/image';
 import { ComponentProps } from 'react';
 

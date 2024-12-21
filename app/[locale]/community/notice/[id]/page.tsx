@@ -49,7 +49,7 @@ export default async function NoticePostPage(props: NoticePostPageProps) {
   try {
     const notice = await getNoticePostDetail(id, searchParams);
     return (
-      <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <PageLayout titleType="big" bodyClassName="p-0">
         <Suspense fallback={<PostFallback />}>
           <NoticeViewer notice={notice} />
         </Suspense>

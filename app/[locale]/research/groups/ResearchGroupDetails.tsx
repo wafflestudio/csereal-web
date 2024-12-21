@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import { deleteResearchGroupAction } from '@/actions/research';
 import { ResearchGroup } from '@/apis/types/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { researchGroups } from '@/constants/segmentNode';
@@ -51,7 +51,7 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
       </div>
       <HTMLViewer
         htmlContent={group.description}
-        className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
+        wrapperClassName="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
       />
       {group.mainImageUrl !== null && (
         // TODO: 반응형

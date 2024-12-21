@@ -113,6 +113,7 @@ const PauseIcon = () => (
       x={0}
       y={0}
       maskUnits="userSpaceOnUse"
+      // eslint-disable-next-line react/forbid-dom-props
       style={{ maskType: 'alpha' }}
     >
       <path fill="#D9D9D9" d="M0 0h24v24H0z" />
@@ -132,6 +133,7 @@ const PlayIcon = () => (
       x={0}
       y={0}
       maskUnits="userSpaceOnUse"
+      // eslint-disable-next-line react/forbid-dom-props
       style={{ maskType: 'alpha' }}
     >
       <path fill="#D9D9D9" d="M0 0h24v24H0z" />

@@ -1,13 +1,21 @@
 'use client';
 
-import Image from 'next/image';
 import { CSSProperties, useState } from 'react';
 
+import Image from '@/components/common/Image';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
+import useStyle from '@/utils/hooks/useStyle';
 
 export default function ImageWithFallback(props: ImageWithFallbackProps) {
   const { ...rest } = props;
   const [error, setError] = useState(false);
+  const { ref } = useStyle<HTMLDivElement>(
+    (style) => {
+      style.width = `${props.width}px`;
+      style.height = `${props.height}px`;
+    },
+    [props.width, props.height],
+  );
 
   if (error || !props.src) {
     return (
@@ -15,7 +23,7 @@ export default function ImageWithFallback(props: ImageWithFallbackProps) {
         className={`flex items-center justify-center bg-neutral-100 ${
           props.fill && 'h-full w-full'
         }`}
-        style={{ width: props.width, height: props.height }}
+        ref={ref}
       >
         <SnuLogo className="fill-neutral-200" width="60" height="60" />
       </div>

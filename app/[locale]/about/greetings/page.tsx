@@ -1,9 +1,8 @@
 export const dynamic = 'force-dynamic';
 
-import Image from 'next/image';
-
 import { getGreetings } from '@/apis/v1/about/greetings';
 import { EditButton } from '@/components/common/Buttons';
+import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -31,7 +30,7 @@ export default async function GreetingsPage(props: GreetingsPageProps) {
   const { description, imageURL } = await getGreetings(params.locale);
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+    <PageLayout titleType="big" bodyClassName="p-0">
       <div className="px-5 pb-12 pt-7 sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
         <LoginVisible staff>
           <div className="mb-8 text-right">
@@ -39,7 +38,7 @@ export default async function GreetingsPage(props: GreetingsPageProps) {
           </div>
         </LoginVisible>
         <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">
-          <HTMLViewer htmlContent={description} className="sm:w-[25rem] sm:grow" />
+          <HTMLViewer htmlContent={description} wrapperClassName="sm:w-[25rem] sm:grow" />
           {/* image 크기를 반응형으로 줄이기 위해 필요한 wrapper div */}
           {imageURL && (
             <div>

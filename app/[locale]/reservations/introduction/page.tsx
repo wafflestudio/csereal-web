@@ -30,7 +30,7 @@ export default async function ReservationIntroductionPage(props: {
   const itemName = isSearchParamValid(temp) ? temp : names[0].ko;
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0, paddingBottom: 300 }}>
+    <PageLayout titleType="big" bodyClassName="pt-0 pb-[300px]">
       <SelectionList
         names={names}
         selectedItemNameKo={itemName}

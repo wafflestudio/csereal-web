@@ -13,18 +13,13 @@ import { isAncestorNode } from '@/utils/page';
 
 import MobileNavDetail from './MobileNavDetail';
 
-const HEADER_HEIGHT_PX = 68;
-
 // TODO: 모바일에서 MajorCategoryPageLayout 처리
 export default function MobileNav() {
   const { navbarState } = useNavbarContext();
   if (navbarState.type !== 'hovered') return <></>;
 
   return (
-    <div
-      className="absolute bottom-0 left-0 right-0 z-50 flex sm:hidden"
-      style={{ top: HEADER_HEIGHT_PX }}
-    >
+    <div className="absolute bottom-0 left-0 right-0 z-50 flex h-[68px] sm:hidden">
       <MobileNavList />
       <MobileNavDetail />
     </div>

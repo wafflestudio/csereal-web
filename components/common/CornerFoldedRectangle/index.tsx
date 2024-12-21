@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 
 import { ColorTheme } from '@/constants/color';
+import useStyle from '@/utils/hooks/useStyle';
 
 import styles from './style.module.css';
 
@@ -41,29 +42,45 @@ export default function CornerFoldedRectangle({
     filter: triangleDropShadow,
   };
 
+  const { ref: rectangleRef } = useStyle<HTMLDivElement>(
+    (style) => {
+      Object.assign(style, rectangleStyle);
+    },
+    [rectangleStyle],
+  );
+
+  const { ref: triangleRef } = useStyle<HTMLDivElement>(
+    (style) => {
+      Object.assign(style, triangleStyle);
+    },
+    [triangleStyle],
+  );
+
+  const { ref } = useStyle<HTMLDivElement>(
+    (style) => {
+      style.borderWidth = `${triangleLength}rem 0 0 ${triangleLength}rem`;
+      style.borderColor = `#ffffff #ffffff ${colorTheme.triangleColor} ${colorTheme.triangleColor}`;
+      style.borderBottomLeftRadius = `${radius}rem`;
+    },
+    [triangleLength, colorTheme.triangleColor, radius],
+  );
+
   if (animationType) {
     return (
       <div
         className={`relative ${width} ${margin} ${styles.animated} ${styles[animationType]}`}
-        style={rectangleStyle}
+        ref={rectangleRef}
       >
         {children}
       </div>
     );
   } else {
     return (
-      <div className={`relative ${width} ${margin}`} style={rectangleStyle}>
+      <div className={`relative ${width} ${margin}`} ref={rectangleRef}>
+        <div className={`absolute right-[-1px] top-[-1px] h-0 w-0 border-solid`} ref={ref} />
         <div
           className={`absolute right-[-1px] top-[-1px] h-0 w-0 border-solid`}
-          style={{
-            borderWidth: `${triangleLength}rem 0 0 ${triangleLength}rem`,
-            borderColor: `#ffffff #ffffff ${colorTheme.triangleColor} ${colorTheme.triangleColor}`,
-            borderBottomLeftRadius: `${radius}rem`,
-          }}
-        />
-        <div
-          className={`absolute right-[-1px] top-[-1px] h-0 w-0 border-solid`}
-          style={triangleStyle}
+          ref={triangleRef}
         />
         {children}
       </div>

@@ -1,8 +1,10 @@
 import { useTranslations } from 'next-intl';
-import { CSSProperties, useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
 import { Course, GRADE, SortOption } from '@/apis/types/academics';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
+
+import styles from './style.module.css';
 
 interface CourseCardProps {
   course: Course;
@@ -56,24 +58,6 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
     }
   }, [isFlipped]);
 
-  const cardStyle: CSSProperties = {
-    position: 'relative',
-    paddingRight: '0.1875rem', // 3px
-    transformStyle: 'preserve-3d',
-    perspective: '1000px',
-    cursor: 'pointer',
-  };
-
-  const faceStyle: CSSProperties = {
-    top: 0,
-    left: 0,
-    height: '11rem', // 176px
-    borderRadius: '0.25rem', // 4px
-    WebkitBackfaceVisibility: 'hidden',
-    backfaceVisibility: 'hidden',
-    transition: 'transform ease-in-out 0.5s, width ease-in-out 0.5s',
-  };
-
   const frontStyle = `absolute p-[1.125rem] bg-neutral-50 hover:bg-neutral-100 active:bg-neutral-50 ${
     isFlipped ? '[transform:rotateY(-180deg)]' : '[transform:rotateY(0deg)]'
   } shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,_-2px_-2px_6px_0_rgba(0,0,0,0.05)_inset]`;
@@ -83,13 +67,13 @@ export default function CourseCard({ course, selectedOption }: CourseCardProps) 
   } shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,_-2px_-2px_4px_0_rgba(0,_0,_0,_0.05)_inset]`;
 
   return (
-    <div style={cardStyle} onClick={flipCard}>
-      <div className={frontStyle} style={{ ...faceStyle }} ref={frontRef}>
+    <div className={styles.card} onClick={flipCard}>
+      <div className={`${frontStyle} ${styles.face}`} ref={frontRef}>
         <CardHeader sortedProperties={sortedProperties} />
         <CardTitle name={course[language].name} code={course.code} />
         <CardContentPreview description={course[language].description} />
       </div>
-      <div className={backStyle} style={{ ...faceStyle }} ref={backRef}>
+      <div className={`${backStyle} ${styles.face}`} ref={backRef}>
         <CardTitle name={course[language].name} code={course.code} />
         <CardContent description={course[language].description} />
       </div>
