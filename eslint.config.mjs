@@ -85,13 +85,13 @@ export default [
       'unused-imports/no-unused-imports': 'error',
     },
   },
-  // jsxA11y.flatConfigs.recommended,
-  // {
-  //   rules: {
-  //     'jsx-a11y/label-has-associated-control': 'warn',
-  //     'jsx-a11y/click-events-have-key-events': 'warn',
-  //     'jsx-a11y/no-static-element-interactions': 'warn',
-  //     'jsx-a11y/no-noninteractive-element-interactions': 'warn',
-  //   },
-  // },
+  jsxA11y.flatConfigs.recommended,
+  {
+    rules: {
+      'jsx-a11y/label-has-associated-control': 'warn',
+      'jsx-a11y/click-events-have-key-events': 'warn',
+      'jsx-a11y/no-static-element-interactions': 'warn',
+      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+    },
+  },
 ];
