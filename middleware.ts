@@ -37,7 +37,7 @@ export default async function middleware(request: NextRequest) {
         ? `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
         : `'nonce-${nonce}' 'strict-dynamic' https://t1.daumcdn.net https://dapi.kakao.com`
     };
-    style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com ${isDev ? `'unsafe-inline'` : `'nonce-${nonce}'`};
+    style-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://fonts.googleapis.com;
     img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
     font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
     object-src 'none';

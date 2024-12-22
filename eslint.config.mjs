@@ -97,4 +97,22 @@ export default [
       'unused-imports/no-unused-imports': 'error',
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        // _으로 시작하는 변수는 허용
+        // https://typescript-eslint.io/rules/no-unused-vars/
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
 ];
