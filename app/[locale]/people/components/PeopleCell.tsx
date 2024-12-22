@@ -24,8 +24,7 @@ export default function PeopleCell({
     <article className="group flex w-fit flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
       <Link
         href={href}
-        className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden "
-        style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))' }}
+        className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]"
         aria-label={`${title} 교수 상세 페이지로 이동`}
       >
         <ImageWithFallback

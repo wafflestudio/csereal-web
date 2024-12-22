@@ -45,6 +45,18 @@ export default [
           ],
         },
       ],
+      'react/forbid-component-props': [
+        'warn',
+        {
+          forbid: [
+            {
+              propName: 'style',
+              message:
+                'CSP 문제로 style prop은 직접 사용할 수 없습니다. tailwind className 혹은 useStyle을 사용하세요.',
+            },
+          ],
+        },
+      ],
     },
   },
   pluginReact.configs.flat['jsx-runtime'],
@@ -83,15 +95,6 @@ export default [
     },
     rules: {
       'unused-imports/no-unused-imports': 'error',
-    },
-  },
-  jsxA11y.flatConfigs.recommended,
-  {
-    rules: {
-      'jsx-a11y/label-has-associated-control': 'warn',
-      'jsx-a11y/click-events-have-key-events': 'warn',
-      'jsx-a11y/no-static-element-interactions': 'warn',
-      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
     },
   },
 ];

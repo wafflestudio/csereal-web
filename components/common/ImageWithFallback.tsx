@@ -1,6 +1,6 @@
 'use client';
 
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 
 import Image from '@/components/common/Image';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
@@ -55,5 +55,4 @@ interface ImageWithFallbackProps {
   fill?: boolean | undefined;
   priority?: boolean | undefined;
   quality?: number;
-  style?: CSSProperties;
 }
