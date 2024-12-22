@@ -1,13 +1,14 @@
 export const dynamic = 'force-dynamic';
 
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
@@ -68,7 +69,7 @@ export default async function RootLayout(props: {
           </MarginedMain>
 
           <ModalContainer />
-          <Toaster />
+          <ToastContainer />
         </ContextProviders>
       </body>
     </html>

@@ -55,7 +55,7 @@ export default function ResearchCenterDetails({ center, ids }: ResearchCenterDet
               }
             : undefined
         }
-        className="px-2.5"
+        wrapperClassName="px-2.5"
       />
     </>
   );

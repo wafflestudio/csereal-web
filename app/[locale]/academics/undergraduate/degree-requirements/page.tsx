@@ -38,7 +38,7 @@ export default async function UndergraduteDegreeRequirementsPage() {
         <h3 className=" mb-2 pl-3 text-lg font-bold">공통: 졸업사정 유의사항</h3>
         <StraightNode />
       </div>
-      <HTMLViewer htmlContent={data.description} className="mt-7" />
+      <HTMLViewer htmlContent={data.description} wrapperClassName="mt-7" />
     </PageLayout>
   );
 }

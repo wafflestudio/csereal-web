@@ -14,26 +14,6 @@ const isAuthRequired = (pathname: string) => {
   return pathname.startsWith('/admin') || pathname.endsWith('create') || pathname.endsWith('edit');
 };
 
-const generateCSPHeader = (nonce: string) =>
-  `
-    default-src 'self';
-    script-src 'self' ${
-      process.env.NODE_ENV === 'production'
-        ? `'nonce-${nonce}' 'strict-dynamic' https://dapi.kakao.com`
-        : `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
-    };
-    style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net https://cse-dev-waffle.bacchus.io/;
-    font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    upgrade-insecure-requests;
-`
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
@@ -50,7 +30,25 @@ export default async function middleware(request: NextRequest) {
   }
 
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  const cspHeader = generateCSPHeader(nonce);
+  const cspHeader = `
+    default-src 'self';
+    script-src 'self' ${
+      isDev
+        ? `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
+        : `'nonce-${nonce}' 'strict-dynamic' https://t1.daumcdn.net https://dapi.kakao.com`
+    };
+    style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com ${isDev ? `'unsafe-inline'` : `'nonce-${nonce}'`};
+    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
+    font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);

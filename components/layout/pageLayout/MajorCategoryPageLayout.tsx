@@ -45,8 +45,9 @@ export default function MajorCategoryPageLayout({
         {description && (
           <HTMLViewer
             htmlContent={description}
-            style={{ color: '#f5f5f5', maxWidth: 960 }}
-            className="mb-6 mt-8 hidden sm:block"
+            wrapperClassName="mb-6 mt-8 hidden sm:block"
+            // contentClassName={{ color: '#f5f5f5', maxWidth: 960 }}
+            contentClassName="!text-[#f5f5f5] max-w-[960px]"
           />
         )}
       </div>
@@ -85,7 +86,7 @@ export default function MajorCategoryPageLayout({
         <div className="px-5 pb-24 pt-6 sm:hidden">
           <HTMLViewer
             htmlContent={description}
-            style={{ color: '#a3a3a3', fontWeight: 300, fontSize: 13 }}
+            contentClassName="!text-[#a3a3a3] font-light text-[13px]"
           />
         </div>
       )}

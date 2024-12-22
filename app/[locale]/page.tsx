@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
 import { MainImportant } from '@/apis/types/main';
@@ -6,6 +5,7 @@ import { getMain } from '@/apis/v1';
 import GraphicSection from '@/app/[locale]/components/GraphicSection';
 import NewsSection from '@/app/[locale]/components/NewsSection';
 import NoticeSection from '@/app/[locale]/components/NoticeSection';
+import Image from '@/components/common/Image';
 import Header from '@/components/layout/header/Header';
 import {
   degree,

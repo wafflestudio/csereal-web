@@ -12,6 +12,7 @@ import LoginVisible from '@/components/common/LoginVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';
+import useStyle from '@/utils/hooks/useStyle';
 import { refreshPage } from '@/utils/refreshPage';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
@@ -41,8 +42,14 @@ export default function ReservationModalButton({
   return (
     <button
       className={`absolute flex w-full flex-col items-center bg-[#ff6914cc]`}
-      style={{ height, top }}
       onClick={handleClick}
+      {...useStyle(
+        (style) => {
+          style.height = height;
+          style.top = top;
+        },
+        [height, top],
+      )}
     >
       {children}
     </button>

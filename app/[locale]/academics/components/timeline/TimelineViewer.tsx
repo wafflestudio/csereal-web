@@ -165,7 +165,7 @@ function TogglableContentViewer({
 }
 
 function ContentHTMLViewer({ description }: { description: string }) {
-  return <HTMLViewer htmlContent={description} className="bg-neutral-75 p-5" />;
+  return <HTMLViewer htmlContent={description} wrapperClassName="bg-neutral-75 p-5" />;
 }
 
 const getSelectedContents = <T extends { year: number; description: string }>(

@@ -1,7 +1,7 @@
 import localFont from 'next/font/local';
-import Image from 'next/image';
 import { ReactNode } from 'react';
 
+import Image from '@/components/common/Image';
 import DownArrow from '@/public/image/main/down_arrow.svg';
 
 const gowunBatang = localFont({ src: './GowunBatang-Regular.woff2' });

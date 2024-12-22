@@ -26,16 +26,14 @@ interface NavTreeProps {
 }
 
 const NavTree = ({ node, curNode, depth = 0 }: NavTreeProps) => {
-  const marginBottom = depth === 0 ? '1.75rem' : '1.5rem';
-
   return (
     <>
       {depth !== 0 && (
         <NavTreeLabel
           segmentNode={node}
           highlight={curNode === node}
-          marginBottom={marginBottom}
-          fontSize={depth === 1 ? 'text-md' : 'text-sm'}
+          containerClassName={depth === 0 ? 'mbn-[1.75rem]' : 'mb-[1.5rem]'}
+          anchorClassName={depth === 1 ? 'text-md' : 'text-sm'}
         />
       )}
       {0 < node.children.length && (

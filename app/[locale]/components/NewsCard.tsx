@@ -1,17 +1,15 @@
-import Image from 'next/image';
-
 import { MainNews } from '@/apis/types/main';
+import Image from '@/components/common/Image';
 import { Link } from '@/i18n/routing';
 import { formatMainNewsDateStr } from '@/utils/date';
 
-import { CARD_WIDTH_REM } from './constants';
+import { CARD_WIDTH_TAILWIND } from './constants';
 
 export default function NewsCard({ news }: { news: MainNews }) {
   return (
     <Link
       href={`/community/news/${news.id}`}
-      style={{ width: `${CARD_WIDTH_REM}rem` }}
-      className="flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]"
+      className={`flex h-[19rem] shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] ${CARD_WIDTH_TAILWIND}`}
     >
       <div className="relative h-[6.25rem] w-full">
         <Image src={encodeURI(news.imageURL)} fill alt="" className="object-cover" sizes="220w" />

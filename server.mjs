@@ -14,8 +14,8 @@ switch (phase) {
     process.env.BASE_URL = 'http://localhost:8080/api';
     break;
   case 'beta':
-    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     process.env.BASE_URL = 'http://localhost:8080/api';
+    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     break;
   case 'local':
     process.env.BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';

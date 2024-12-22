@@ -19,7 +19,7 @@ export default function DirectionsDetails({ direction }: { direction: Direction 
           />
         </LoginVisible>
       </div>
-      <HTMLViewer htmlContent={direction.description} className="ml-2.5" />
+      <HTMLViewer htmlContent={direction.description} wrapperClassName="ml-2.5" />
     </div>
   );
 }

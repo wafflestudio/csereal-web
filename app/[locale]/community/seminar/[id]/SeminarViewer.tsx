@@ -7,7 +7,7 @@ import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/PageLayout';
 import { Link } from '@/i18n/routing';
 
 interface SeminarPostPageProps {
@@ -23,8 +23,7 @@ export default async function SeminarViewer({ seminar }: SeminarPostPageProps) {
         {seminar.title}
       </h2>
       <div
-        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
+        className={`bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px] ${PAGE_PADDING_BOTTOM_TAILWIND}`}
       >
         {seminar.attachments.length !== 0 && <Attachments files={seminar.attachments} />}
         <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">

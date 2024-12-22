@@ -51,7 +51,7 @@ export default async function ContactPage(props: ContactPageProps) {
               }
             : undefined
         }
-        className="mt-[-1.5rem]"
+        wrapperClassName="mt-[-1.5rem]"
       />
     </PageLayout>
   );
