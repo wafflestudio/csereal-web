@@ -45,6 +45,18 @@ export default [
           ],
         },
       ],
+      'react/forbid-component-props': [
+        'warn',
+        {
+          forbid: [
+            {
+              propName: 'style',
+              message:
+                'CSP 문제로 style prop은 직접 사용할 수 없습니다. tailwind className 혹은 useStyle을 사용하세요.',
+            },
+          ],
+        },
+      ],
     },
   },
   pluginReact.configs.flat['jsx-runtime'],
@@ -85,13 +97,22 @@ export default [
       'unused-imports/no-unused-imports': 'error',
     },
   },
-  jsxA11y.flatConfigs.recommended,
   {
     rules: {
-      'jsx-a11y/label-has-associated-control': 'warn',
-      'jsx-a11y/click-events-have-key-events': 'warn',
-      'jsx-a11y/no-static-element-interactions': 'warn',
-      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        // _으로 시작하는 변수는 허용
+        // https://typescript-eslint.io/rules/no-unused-vars/
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
 ];

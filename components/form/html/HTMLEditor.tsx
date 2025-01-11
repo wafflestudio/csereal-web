@@ -48,7 +48,7 @@ export default function HTMLEditor({ name, options: registerOptions }: HTMLEdito
 }
 
 // @ts-expect-error suneditor 내부 타입
-const handleImageUploadBefore = (files, info, core, uploadHandler) => {
+const handleImageUploadBefore = (files, _info, _core, uploadHandler) => {
   const formData = new FormData();
   // @ts-expect-error suneditor 내부 타입
   files.forEach((file, idx) => {

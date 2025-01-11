@@ -27,6 +27,7 @@
     "bezier-easing": "^2.1.0",
     "express": "^4.19.2",
     "file-loader": "^6.2.0",
+    "html-react-parser": "^5.2.1",
     "next": "15.0.4",
     "next-intl": "^3.26.0",
     "next-sitemap": "^4.2.3",

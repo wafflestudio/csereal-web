@@ -48,7 +48,7 @@ export default function DateSelector({
             <Dropdown
               contents={Array(24)
                 .fill(0)
-                .map((x, i) => (i + '').padStart(2, '0') + '시')}
+                .map((_x, i) => (i + '').padStart(2, '0') + '시')}
               selectedIndex={date.getHours()}
               onClick={(idx) => {
                 const newDate = new Date(date);
@@ -107,4 +107,4 @@ const formatDate = (date: Date) => {
 
 const minuteDropdownContent = Array(4)
   .fill(0)
-  .map((x, i) => (i * 15 + '').padStart(2, '0') + '분');
+  .map((_x, i) => (i * 15 + '').padStart(2, '0') + '분');
