@@ -3,8 +3,8 @@
 import { ReactNode } from 'react';
 
 import {
-  deleteAllRecurringReservation,
-  deleteSingleReservation,
+  deleteAllRecurringReservationAction,
+  deleteSingleReservationAction,
   getReservationAction,
 } from '@/actions/reservation';
 import { Reservation } from '@/apis/types/reservation';
@@ -131,7 +131,7 @@ const DeleteButtons = ({
 
   const handleDeleteAll = async () => {
     try {
-      handleServerAction(await deleteAllRecurringReservation(recurrenceId));
+      handleServerAction(await deleteAllRecurringReservationAction(recurrenceId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
@@ -141,7 +141,7 @@ const DeleteButtons = ({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteSingleReservation(reservationId));
+      handleServerAction(await deleteSingleReservationAction(reservationId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {

@@ -1,6 +1,6 @@
 import { useController } from 'react-hook-form';
 
-import MuiDateSelector from '@/components/common/MuiDateSelector';
+import ReactCalendar from '@/components/common/MuiDateSelector';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';
 
@@ -27,14 +27,13 @@ export default function Calendar({ name }: Props) {
         e.preventDefault();
         openModal(
           <ModalFrame onClose={closeModal}>
-            <MuiDateSelector
+            <ReactCalendar
               enablePast
               date={date}
               setDate={(date) => {
                 if (date) onChange(date);
                 closeModal();
               }}
-              className="bg-white"
             />
           </ModalFrame>,
         );

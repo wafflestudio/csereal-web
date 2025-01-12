@@ -16,7 +16,9 @@ export default function ModalFrame({ onClose, children }: ModalFrameProps) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] "
-      onClick={onClose}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       <div className="max-h-[85vh] max-w-full" onClick={(e) => e.stopPropagation()}>
         {children}
