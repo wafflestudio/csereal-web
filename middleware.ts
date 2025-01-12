@@ -32,10 +32,8 @@ export default async function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const cspHeader = `
     default-src 'self';
-    script-src 'self' ${
-      isProd
-        ? `'nonce-${nonce}' 'strict-dynamic' https://t1.daumcdn.net https://dapi.kakao.com`
-        : `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
+    script-src 'self' https://t1.daumcdn.net https://dapi.kakao.com ${
+      isProd ? `'nonce-${nonce}' 'strict-dynamic'` : `'unsafe-inline' 'unsafe-eval'`
     };
     style-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://fonts.googleapis.com;
     img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
