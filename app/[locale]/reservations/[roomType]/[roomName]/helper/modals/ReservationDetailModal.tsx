@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 import {
   deleteAllRecurringReservation,
   deleteSingleReservation,
-  getReservation,
+  getReservationAction,
 } from '@/actions/reservation';
 import { Reservation } from '@/apis/types/reservation';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -35,7 +35,7 @@ export default function ReservationModalButton({
   const { openModal } = useModal();
 
   const handleClick = async () => {
-    const reservation = await getReservation(id);
+    const reservation = await getReservationAction(id);
     openModal(<ReservationDetailModal reservation={reservation} />);
   };
 
