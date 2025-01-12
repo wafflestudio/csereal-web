@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { isDev } from '@/constants/env';
+import { isProd } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
@@ -21,10 +21,10 @@ export default async function middleware(request: NextRequest) {
   if (isAuthRequired(pathname)) {
     const isStaff = await getUserState();
     if (isStaff !== 'staff') {
-      if (isDev) {
-        return Response.redirect(new URL(BASE_URL));
-      } else {
+      if (isProd) {
         return Response.redirect(new URL(LOGIN_URL));
+      } else {
+        return Response.redirect(new URL(BASE_URL));
       }
     }
   }
@@ -33,9 +33,9 @@ export default async function middleware(request: NextRequest) {
   const cspHeader = `
     default-src 'self';
     script-src 'self' ${
-      isDev
-        ? `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
-        : `'nonce-${nonce}' 'strict-dynamic' https://t1.daumcdn.net https://dapi.kakao.com`
+      isProd
+        ? `'nonce-${nonce}' 'strict-dynamic' https://t1.daumcdn.net https://dapi.kakao.com`
+        : `'unsafe-inline' 'unsafe-eval' https://t1.daumcdn.net https://dapi.kakao.com`
     };
     style-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://fonts.googleapis.com;
     img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;

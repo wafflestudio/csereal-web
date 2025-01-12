@@ -13,8 +13,9 @@ import {
 } from 'react';
 
 import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
-import { isDev } from '@/constants/env';
+
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
+import { isProd } from '@/constants/env';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
 
@@ -46,7 +47,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    if (isDev) {
+    if (isProd) {
       await setAuthCookie();
       await refresh();
     } else {
@@ -55,7 +56,7 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [refresh, router]);
 
   const logout = useCallback(async () => {
-    if (isDev) {
+    if (isProd) {
       removeAuthCookie();
       await refresh();
     } else {
