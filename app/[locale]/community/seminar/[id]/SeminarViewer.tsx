@@ -7,7 +7,7 @@ import Attachments from '@/components/common/Attachments';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/PageLayout';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import { Link } from '@/i18n/routing';
 
 interface SeminarPostPageProps {

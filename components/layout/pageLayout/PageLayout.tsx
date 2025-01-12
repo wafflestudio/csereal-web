@@ -23,11 +23,6 @@ interface PageLayoutProps {
   children: ReactNode;
 }
 
-export const PAGE_PADDING_LEFT_PX = 100;
-export const PAGE_PADDING_RIGHT_PX = 360;
-export const PAGE_PADDING_TOP_PX = 44;
-export const PAGE_PADDING_BOTTOM_TAILWIND = '150px';
-
 /**
  * 본문 기본 스타일
  * padding-left: 100px
@@ -61,11 +56,11 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className={clsx('relative grow bg-white sm:p-[2.75rem_360px_150px_100px]', {
+        className={clsx('relative grow bg-white', {
           'p-0': removePadding,
           'pt-0': removeTopPadding,
           'pb-0': removeBottomPadding,
-          'p-[1.75rem_1.25rem_4rem_1.25rem]':
+          'p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]':
             !removePadding && !removeTopPadding && !removeBottomPadding,
         })}
       >
