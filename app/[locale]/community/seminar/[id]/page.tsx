@@ -46,7 +46,7 @@ export default async function SeminarPostPage(props: SeminarPostPageProps) {
     const seminar = await getSeminarPost(id, searchParams);
 
     return (
-      <PageLayout titleType="big" bodyClassName="p-0">
+      <PageLayout titleType="big" removePadding>
         <Suspense fallback={<PostFallback />}>
           <SeminarViewer seminar={seminar} />
         </Suspense>
