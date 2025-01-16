@@ -30,7 +30,7 @@ export default async function GreetingsPage(props: GreetingsPageProps) {
   const { description, imageURL } = await getGreetings(params.locale);
 
   return (
-    <PageLayout titleType="big" bodyClassName="p-0">
+    <PageLayout titleType="big" removePadding>
       <div className="px-5 pb-12 pt-7 sm:py-11 sm:pl-[6.25rem] sm:pr-[360px]">
         <LoginVisible staff>
           <div className="mb-8 text-right">

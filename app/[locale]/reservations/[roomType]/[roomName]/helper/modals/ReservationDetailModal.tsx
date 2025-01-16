@@ -3,9 +3,9 @@
 import { ReactNode } from 'react';
 
 import {
-  deleteAllRecurringReservation,
-  deleteSingleReservation,
-  getReservation,
+  deleteAllRecurringReservationAction,
+  deleteSingleReservationAction,
+  getReservationAction,
 } from '@/actions/reservation';
 import { Reservation } from '@/apis/types/reservation';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -35,7 +35,7 @@ export default function ReservationModalButton({
   const { openModal } = useModal();
 
   const handleClick = async () => {
-    const reservation = await getReservation(id);
+    const reservation = await getReservationAction(id);
     openModal(<ReservationDetailModal reservation={reservation} />);
   };
 
@@ -131,7 +131,7 @@ const DeleteButtons = ({
 
   const handleDeleteAll = async () => {
     try {
-      handleServerAction(await deleteAllRecurringReservation(recurrenceId));
+      handleServerAction(await deleteAllRecurringReservationAction(recurrenceId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {
@@ -141,7 +141,7 @@ const DeleteButtons = ({
 
   const handleDelete = async () => {
     try {
-      handleServerAction(await deleteSingleReservation(reservationId));
+      handleServerAction(await deleteSingleReservationAction(reservationId));
       successToast('예약을 삭제했습니다.');
       refreshPage();
     } catch (error) {

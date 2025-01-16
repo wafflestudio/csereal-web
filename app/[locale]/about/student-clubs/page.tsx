@@ -42,7 +42,7 @@ export default async function StudentClubsPage(props: StudentClubsPageProps) {
   );
 
   return (
-    <PageLayout titleType="big" bodyClassName="pt-0">
+    <PageLayout titleType="big" removeTopPadding>
       <LoginVisible staff>
         <div className="mt-11 text-right">
           <Link href={`${clubPath}/create`}>

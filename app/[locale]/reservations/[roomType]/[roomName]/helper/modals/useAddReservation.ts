@@ -1,6 +1,6 @@
 import { FormEventHandler, useState } from 'react';
 
-import { postReservation } from '@/actions/reservation';
+import { postReservationAction } from '@/actions/reservation';
 import { ReservationPostBody } from '@/apis/types/reservation';
 import { isSameDay } from '@/utils/date';
 import { refreshPage } from '@/utils/refreshPage';
@@ -27,7 +27,7 @@ export default function useAddReservation(roomId: number) {
     }
 
     try {
-      handleServerAction(await postReservation(body));
+      handleServerAction(await postReservationAction(body));
       // TODO: revalidate같은거 써서 좀 더 예쁘게
       refreshPage();
     } catch (e) {

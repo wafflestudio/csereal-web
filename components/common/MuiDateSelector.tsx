@@ -1,13 +1,9 @@
-import 'dayjs/locale/ko';
+import './calendar.css';
 
-import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
-import { useRef } from 'react';
+import Calendar from 'react-calendar';
 
-import { useClickOutside } from '@/utils/hooks/useClickOutside';
-
-export default function MuiDateSelector({
+export default function ReactCalendar({
   date,
   setDate,
   className,
@@ -18,9 +14,6 @@ export default function MuiDateSelector({
   className?: string;
   enablePast?: boolean;
 }) {
-  const ref = useRef(null);
-  useClickOutside(ref, () => setDate());
-
   const shouldDisableDate = (day: Dayjs) => {
     if (enablePast) return false;
 
@@ -36,19 +29,14 @@ export default function MuiDateSelector({
   };
 
   return (
-    <LocalizationProvider adapterLocale="ko" dateAdapter={AdapterDayjs}>
-      <DateCalendar
-        ref={ref}
-        className={className}
-        value={dayjs(date)}
-        views={['year', 'month', 'day']}
-        onChange={(value) => {
-          const date = value?.toDate();
-          if (date) setDate(date);
-        }}
-        shouldDisableDate={shouldDisableDate}
-        showDaysOutsideCurrentMonth
-      />
-    </LocalizationProvider>
+    <Calendar
+      className={className}
+      onChange={(value) => {
+        const date = value as Date;
+        if (date) setDate(date);
+      }}
+      value={date}
+      tileDisabled={({ date }) => shouldDisableDate(dayjs(date))}
+    />
   );
 }

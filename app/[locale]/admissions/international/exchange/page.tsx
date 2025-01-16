@@ -26,7 +26,7 @@ export default async function InternationalExchangePage() {
   const { description } = await getInternationalExchangeVisiting();
 
   return (
-    <PageLayout titleType="big" bodyClassName="pb-0">
+    <PageLayout titleType="big" removeBottomPadding>
       <HTMLViewer htmlContent={description} wrapperClassName="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );

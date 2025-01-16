@@ -42,7 +42,7 @@ export default async function ResearchGroupsPage(props: {
   const groupWithLanguage = await getResearchGroup(selectedGroup.id);
 
   return (
-    <PageLayout titleType="big" bodyClassName="p-0">
+    <PageLayout titleType="big" removePadding>
       {/* TODO: 외부 div 스타일링 SelectionList에서 표현 */}
       <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <LoginVisible staff>

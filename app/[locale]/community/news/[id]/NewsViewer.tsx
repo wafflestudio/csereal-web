@@ -7,7 +7,7 @@ import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/PageLayout';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import { news } from '@/constants/segmentNode';
 import { formatNewsPostDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';

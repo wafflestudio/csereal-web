@@ -42,7 +42,7 @@ export default async function OverviewPage(props: OverviewPageProps) {
   const t = await getTranslations('Content');
 
   return (
-    <PageLayout titleType="big" bodyClassName="p-0">
+    <PageLayout titleType="big" removePadding>
       <div className="bg-neutral-100 px-5 pb-12 pt-7 sm:py-11 sm:pl-[6.25rem] sm:pr-[22.5rem]">
         <LoginVisible staff>
           <div className="mb-8 text-right">
