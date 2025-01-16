@@ -11,7 +11,12 @@ import HeaderSearchBar from './HeaderSearchBar';
 
 export default function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();
+  const { state, login, logout } = useSessionContext();
+  const t = useTranslations('Header');
+
   const langButtonText = isEnglish ? '한국어' : 'ENG';
+  const authText = t(state === 'logout' ? '로그인' : '로그아웃');
+  const onClickAuth = state === 'logout' ? login : logout;
 
   return (
     <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
@@ -23,7 +28,9 @@ export default function HeaderRight() {
           <Divider />
         </LoginVisible>
 
-        <AuthButton />
+        <button onClick={onClickAuth} className="hover:text-main-orange">
+          {authText}
+        </button>
 
         <Divider />
 
@@ -38,15 +45,4 @@ export default function HeaderRight() {
 
 const Divider = () => {
   return <div className="h-3 w-[0.03125rem] bg-white" />;
-};
-
-const AuthButton = () => {
-  const { state, login, logout } = useSessionContext();
-  const t = useTranslations('Header');
-
-  return (
-    <button onClick={state === 'logout' ? login : logout} className="hover:text-main-orange">
-      {t(state === 'logout' ? '로그인' : '로그아웃')}
-    </button>
-  );
 };

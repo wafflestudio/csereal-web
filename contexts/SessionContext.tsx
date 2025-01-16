@@ -13,7 +13,7 @@ import {
 } from 'react';
 
 import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
-import { isDev } from '@/constants/env';
+import { isProd } from '@/constants/env';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | 'non-staff' | 'staff';
@@ -46,20 +46,20 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    if (isDev) {
+    if (isProd) {
+      router.push(LOGIN_URL);
+    } else {
       await setAuthCookie();
       await refresh();
-    } else {
-      router.push(LOGIN_URL);
     }
   }, [refresh, router]);
 
   const logout = useCallback(async () => {
-    if (isDev) {
+    if (isProd) {
+      router.push(LOGOUT_URL);
+    } else {
       removeAuthCookie();
       await refresh();
-    } else {
-      router.push(LOGOUT_URL);
     }
   }, [refresh, router]);
 

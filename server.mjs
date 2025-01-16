@@ -11,14 +11,14 @@ process.env.LANG = process.env.TIME = 'ko_KR.UTF-8';
 
 switch (phase) {
   case 'prod':
-    process.env.BASE_URL = 'http://localhost:8080/api';
+    process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:8080/api';
     break;
   case 'beta':
-    process.env.BASE_URL = 'http://localhost:8080/api';
+    process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:8080/api';
     process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     break;
   case 'local':
-    process.env.BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';
+    process.env.NEXT_PUBLIC_BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';
     process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
     break;
   default:

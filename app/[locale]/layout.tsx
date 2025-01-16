@@ -14,7 +14,7 @@ import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
-import { isDev } from '@/constants/env';
+import { isProd } from '@/constants/env';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
@@ -43,7 +43,7 @@ export async function generateMetadata(props: {
     openGraph: {
       images: ['/image/main/mainGraphic.png'],
     },
-    robots: isDev ? 'noindex' : undefined,
+    robots: !isProd ? 'noindex' : undefined,
   };
 }
 
