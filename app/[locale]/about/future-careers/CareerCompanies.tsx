@@ -13,9 +13,7 @@ import { FutureCareers } from '@/apis/types/about';
 import { BlackButton, DeleteButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Form from '@/components/form/Form';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export default function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
   const t = useTranslations('Content');
@@ -23,13 +21,11 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
   const [showCreateForm, toggleCreateForm] = useReducer((x) => !x, false);
 
   const onCreate = async (content: CareerCompanyFormData) => {
-    try {
-      handleServerAction(await postCareerCompanyAction(content));
-      toggleCreateForm();
-      successToast('졸업생 창업 기업을 추가했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await postCareerCompanyAction(content);
+    handleServerResponse(resp, {
+      successMessage: '졸업생 창업 기업을 추가했습니다.',
+      onSuccess: toggleCreateForm,
+    });
   };
 
   return (
@@ -84,13 +80,11 @@ function CompanyTableRow({ index, company }: CompanyTableRowProps) {
   const [edit, toggleEdit] = useReducer((x) => !x, false);
 
   const onSubmit = async (content: CareerCompanyFormData) => {
-    try {
-      handleServerAction(await putCareerCompanyAction(company.id, { id: company.id, ...content }));
-      toggleEdit();
-      successToast('졸업생 창업 기업을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putCareerCompanyAction(company.id, { id: company.id, ...content });
+    handleServerResponse(resp, {
+      successMessage: '졸업생 창업 기업을 수정했습니다.',
+      onSuccess: toggleEdit,
+    });
   };
 
   return edit ? (
@@ -113,12 +107,8 @@ function CareerCompanyViewer({
   const { id, name, url, year } = company;
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteCareerCompanyAction(id));
-      successToast('졸업생 창업 기업을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteCareerCompanyAction(id);
+    handleServerResponse(resp, { successMessage: '졸업생 창업 기업을 삭제했습니다.' });
   };
 
   return (
