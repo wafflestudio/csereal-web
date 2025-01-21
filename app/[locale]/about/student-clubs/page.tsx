@@ -43,18 +43,21 @@ export default async function StudentClubsPage(props: StudentClubsPageProps) {
 
   return (
     <PageLayout titleType="big" removeTopPadding>
-      <LoginVisible staff>
-        <div className="mt-11 text-right">
-          <Link href={`${clubPath}/create`}>
-            <OrangeButton title="동아리 추가" />
-          </Link>
-        </div>
-      </LoginVisible>
-      <SelectionList
-        names={clubs.map((club) => ({ ko: club.ko.name, en: club.en.name }))}
-        selectedItemNameKo={selectedClub?.ko.name ?? ''}
-        rootPath={clubPath}
-      />
+      <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
+        <LoginVisible staff>
+          <div className="mt-11 text-right">
+            <Link href={`${clubPath}/create`}>
+              <OrangeButton title="동아리 추가" />
+            </Link>
+          </div>
+        </LoginVisible>
+        <SelectionList
+          names={clubs.map((club) => ({ ko: club.ko.name, en: club.en.name }))}
+          selectedItemNameKo={selectedClub?.ko.name ?? ''}
+          rootPath={clubPath}
+        />
+      </div>
+
       {selectedClub ? (
         <ClubDetails club={selectedClub} language={params.locale} />
       ) : (
