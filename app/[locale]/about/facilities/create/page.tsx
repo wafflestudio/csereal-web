@@ -13,11 +13,9 @@ import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { EditorImage } from '@/types/form';
 import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const facilitiesPath = getPath(facilities);
 
@@ -40,16 +38,12 @@ export default function FacilityCreator() {
   const onCancel = () => router.push(facilitiesPath);
 
   const onSubmit = handleSubmit(async (_formData) => {
-    try {
-      const formData = contentToFormData('CREATE', {
-        requestObject: _formData,
-        image: _formData.imageURL,
-      });
-      handleServerAction(await postFacilityAction(formData));
-      successToast('시설 안내를 추가했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const formData = contentToFormData('CREATE', {
+      requestObject: _formData,
+      image: _formData.imageURL,
+    });
+    const resp = await postFacilityAction(formData);
+    handleServerResponse(resp, { successMessage: '시설 안내를 추가했습니다.' });
   });
 
   return (

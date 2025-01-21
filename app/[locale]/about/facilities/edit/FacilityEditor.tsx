@@ -13,11 +13,9 @@ import { facilities } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { EditorImage } from '@/types/form';
 import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const facilitiesPath = getPath(facilities);
 
@@ -40,23 +38,18 @@ export default function FacilityEditor({ data }: { data: WithLanguage<Facility> 
   const onCancel = () => router.push(facilitiesPath);
 
   const onSubmit = handleSubmit(async (formData) => {
-    try {
-      handleServerAction(
-        await putFacilityAction(
-          data.ko.id,
-          contentToFormData('EDIT', {
-            requestObject: {
-              ...formData,
-              removeImage: data.ko.imageURL !== null && formData.imageURL === null,
-            },
-            image: formData.imageURL,
-          }),
-        ),
-      );
-      successToast('시설 안내를 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const requestObject = {
+      ...formData,
+      removeImage: data.ko.imageURL !== null && formData.imageURL === null,
+    };
+    const resp = await putFacilityAction(
+      data.ko.id,
+      contentToFormData('EDIT', {
+        requestObject,
+        image: formData.imageURL,
+      }),
+    );
+    handleServerResponse(resp, { successMessage: '시설 안내를 수정했습니다.' });
   });
 
   return (
