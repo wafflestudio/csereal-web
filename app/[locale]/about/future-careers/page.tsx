@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 
-import { getFutureCareeres } from '@/apis/v1/about/future-careers';
+import { getFutureCareeres } from '@/apis/v2/about/future-careers';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';

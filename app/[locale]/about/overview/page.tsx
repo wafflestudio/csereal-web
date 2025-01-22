@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { getTranslations } from 'next-intl/server';
 
-import { getOverview } from '@/apis/v1/about/overview';
+import { getOverview } from '@/apis/v2/about/overview';
 import Attachments from '@/components/common/Attachments';
 import { EditButton } from '@/components/common/Buttons';
 import Image from '@/components/common/Image';
