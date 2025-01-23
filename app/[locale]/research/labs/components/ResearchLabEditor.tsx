@@ -108,6 +108,8 @@ const Editor = ({
               { label: '선택 안 함', value: null },
               ...professors[language].map((prof) => ({ label: prof.name, value: prof.id })),
             ]}
+            borderStyle="border-neutral-300"
+            height="h-8"
           />
         </Fieldset>
         <Fieldset title="연구실 약자" mb="mb-11" titleMb="mb-2">
@@ -139,6 +141,8 @@ const Editor = ({
             ...groups[language].map((lab) => ({ label: `${lab.name} 스트림`, value: lab.id })),
           ]}
           rules={{ required: true }}
+          borderStyle="border-neutral-300"
+          height="h-8"
         />
       </Fieldset>
 
