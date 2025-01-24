@@ -8,9 +8,7 @@ import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { useRouter } from '@/i18n/routing';
 import { Language } from '@/types/language';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export type ScholarshipFormData = {
   koName: string;
@@ -43,12 +41,8 @@ export default function ScholarshipEditor({
   const [language, setLanguage] = useState<Language>('ko');
 
   const onSubmit = async (formData: ScholarshipFormData) => {
-    try {
-      handleServerAction(_onSubmit(formData));
-      successToast('장학금을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = _onSubmit(formData);
+    handleServerResponse(resp, { successMessage: '장학금을 수정했습니다.' });
   };
 
   const onCancel = () => router.push(cancelPath);

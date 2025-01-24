@@ -13,7 +13,6 @@ const path = getPath(graduateGuide);
 
 export default async function Page() {
   const data = await getAcademicsGuide('graduate');
-  console.log(data);
 
   const serverAction = async (formData: FormData) => {
     'use server';

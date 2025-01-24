@@ -6,10 +6,8 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
-import { refreshPage } from '@/utils/refreshPage';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+// import { refreshPage } from '@/utils/refreshPage';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 import Timeline from './Timeline';
 
@@ -33,13 +31,11 @@ export default function TimelineViewer<T extends { year: number; description: st
   const pathname = usePathname();
 
   const handleDelete = async (year: number) => {
-    try {
-      handleServerAction(await deleteAction(year));
-      successToast('삭제했습니다.');
-      refreshPage();
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteAction(year);
+    handleServerResponse(resp, {
+      successMessage: '삭제했습니다.',
+      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: refreshPage
+    });
   };
 
   const getEditHref = (year: number) => `${pathname}/edit?year=${year}`;

@@ -5,9 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { useRouter } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export type ScholarshipGuideFormData = {
   description: string;
@@ -29,11 +27,8 @@ export default function ScholarshipGuideEditor({
   const router = useRouter();
 
   const onSubmit = async (formData: ScholarshipGuideFormData) => {
-    try {
-      handleServerAction(await _onSubmit(formData));
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await _onSubmit(formData);
+    handleServerResponse(resp, { successMessage: '장학 제도를 수정했습니다.' });
   };
 
   const onCancel = () => router.replace(cancelPath);

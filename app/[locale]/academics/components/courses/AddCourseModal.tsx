@@ -5,10 +5,8 @@ import { CLASSIFICATION, Course, GRADE, StudentType } from '@/apis/types/academi
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { errorToStr } from '@/utils/error';
 import { getKeys } from '@/utils/object';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export default function AddCourseModal({
   onClose,
@@ -30,13 +28,11 @@ export default function AddCourseModal({
   const { handleSubmit } = formMethods;
 
   const onSubmit = async (course: Course) => {
-    try {
-      handleServerAction(await postCourseAction(course));
-      successToast('새 교과목을 추가했습니다.');
-      onClose();
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await postCourseAction(course);
+    handleServerResponse(resp, {
+      successMessage: '새 교과목을 추가했습니다.',
+      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: onClose
+    });
   };
 
   return (

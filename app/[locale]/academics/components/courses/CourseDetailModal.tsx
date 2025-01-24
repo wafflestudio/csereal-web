@@ -8,10 +8,8 @@ import LoginVisible from '@/components/common/LoginVisible';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { Language } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 import CourseEditor from './CourseEditor';
 
@@ -26,13 +24,11 @@ export default function CourseDetailModal({ initCourse, onClose }: CourseDetailM
   const [isEditMode, toggleEditMode] = useReducer((x) => !x, false);
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteCourseAction(course.code));
-      successToast('교과목을 삭제했습니다.');
-      onClose();
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteCourseAction(course.code);
+    handleServerResponse(resp, {
+      successMessage: '교과목을 삭제했습니다.',
+      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: onClose
+    });
   };
 
   return (
