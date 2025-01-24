@@ -1,5 +1,5 @@
 import { putGreetingsAction } from '@/actions/about';
-import { getGreetings } from '@/apis/v2/about/greetings';
+import { getGreetings } from '@/apis/v1/about/greetings';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { greetings } from '@/constants/segmentNode';
 import { getEditorFile, getEditorImage } from '@/utils/formData';

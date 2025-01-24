@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 
-import { getContact } from '@/apis/v2/about/contact';
+import { getContact } from '@/apis/v1/about/contact';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';

@@ -1,5 +1,5 @@
 import { putContactAction } from '@/actions/about';
-import { getContact } from '@/apis/v2/about/contact';
+import { getContact } from '@/apis/v1/about/contact';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { contact } from '@/constants/segmentNode';
 import { getEditorFile, getEditorImage } from '@/utils/formData';
