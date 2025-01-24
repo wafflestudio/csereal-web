@@ -31,7 +31,7 @@ export default async function AdminPage(props: AdminPageProps) {
     <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
       <LoginVisible staff fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
         <SelectionList
-          names={[{ ko: '슬라이드쇼 관리' }, { ko: '중요 안내 관리' }]}
+          names={[{ ko: ADMIN_MENU_SLIDE }, { ko: ADMIN_MENU_IMPORTANT }]}
           selectedItemNameKo={selectedMenu}
           rootPath={adminPath}
           listGridColumnClass="grid-cols-[200px_220px]"
@@ -43,7 +43,7 @@ export default async function AdminPage(props: AdminPageProps) {
 }
 
 const PageContent = async ({ selected, pageNum }: { selected: string; pageNum: number }) => {
-  if (selected === '슬라이드쇼 관리') {
+  if (selected === ADMIN_MENU_SLIDE) {
     const { slides, total } = await getSlides(pageNum);
     return <SlideManagement posts={slides} total={total} />;
   } else {

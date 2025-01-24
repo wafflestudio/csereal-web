@@ -13,28 +13,22 @@ import {
   FETCH_TAG_SLIDE,
 } from '@/constants/network';
 
-export const batchUnslideAction = async (ids: number[]) => {
-  try {
-    await patchMultipleSlides(Array.from(ids));
-  } catch (e) {
-    return e;
-  }
+import { withErrorHandler } from './errorHandler';
+
+export const batchUnslideAction = withErrorHandler(async (ids: number[]) => {
+  await patchMultipleSlides(Array.from(ids));
 
   revalidateTag(FETCH_TAG_SLIDE);
   revalidateTag(FETCH_TAG_NEWS);
   revalidateTag(FETCH_TAG_NOTICE);
   revalidateTag(FETCH_TAG_SEMINAR);
-};
+});
 
-export const batchUnimportantAction = async (infos: ImportantPostIdentifier[]) => {
-  try {
-    await patchMultipleImportants(infos);
-  } catch (e) {
-    return e;
-  }
+export const batchUnimportantAction = withErrorHandler(async (infos: ImportantPostIdentifier[]) => {
+  await patchMultipleImportants(infos);
 
   revalidateTag(FETCH_TAG_IMPORANT);
   revalidateTag(FETCH_TAG_NEWS);
   revalidateTag(FETCH_TAG_NOTICE);
   revalidateTag(FETCH_TAG_SEMINAR);
-};
+});
