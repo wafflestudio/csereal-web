@@ -5,7 +5,7 @@ import { SlidePreview } from '@/apis/types/admin';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
@@ -23,16 +23,14 @@ export default function SlideManagement({ posts, total }: SlideManagementProps) 
   const [ids, dispatchIds] = useSlideSelect();
   const { openModal } = useModal();
 
-  const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
+  // const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
 
   const handleBatchUnslide = async () => {
-    const result = await batchUnslideAction([...ids]);
-    if (result) {
-      errorToast('슬라이드를 해제하지 못했습니다.');
-    } else {
-      successToast('슬라이드를 해제했습니다.');
-      resetSelectedPosts();
-    }
+    const resp = await batchUnslideAction([...ids]);
+    handleServerResponse(resp, {
+      successMessage: '슬라이드를 해제했습니다.',
+      // TODO: 이전 소개 검수 PR 머지되면 추가 onSuccess: resetSelectedPosts,
+    });
   };
 
   return (

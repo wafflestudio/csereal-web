@@ -5,7 +5,7 @@ import { ImportantPreview } from '@/apis/types/admin';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import BatchAction from '../BatchAction';
 import TotalPostsCount from '../TotalPostsCount';
@@ -24,13 +24,11 @@ export default function ImportantManagement({ posts, total }: ImportantManagemen
   const { openModal } = useModal();
 
   const handleBatchUnimportant = async () => {
-    const result = await batchUnimportantAction(ids);
-    if (result) {
-      errorToast('중요 안내를 해제하지 못했습니다.');
-    } else {
-      successToast('중요 안내를 해제했습니다.');
-      dispatchIds({ type: 'RESET' });
-    }
+    const resp = await batchUnimportantAction(ids);
+    handleServerResponse(resp, {
+      successMessage: '중요 안내를 해제했습니다.',
+      // TODO: 이전 소개 검수 PR 머지되면 추가 onSuccess: () => dispatchIds({ type: 'RESET' }),
+    });
   };
 
   return (
