@@ -12,12 +12,10 @@ import { Link } from '@/i18n/routing';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
 import { WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
-import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 
@@ -33,12 +31,8 @@ export default function ResearchLabDetailContent({
   const { isMobile } = useResponsive();
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteResearchLabAction(ids));
-      successToast('연구실을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteResearchLabAction(ids);
+    handleServerResponse(resp, { successMessage: '연구실을 삭제했습니다.' });
   };
 
   return (

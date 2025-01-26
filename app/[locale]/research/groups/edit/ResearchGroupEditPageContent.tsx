@@ -4,10 +4,8 @@ import { putResearchGroupAction } from '@/actions/research';
 import { ResearchGroup } from '@/apis/types/research';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import ResearchGroupEditor, { ResearchGroupFormData } from '../components/ResearchGroupEditor';
 
@@ -23,14 +21,8 @@ export default function ResearchGroupEditPageContent({
       image: content.image,
     });
 
-    try {
-      handleServerAction(
-        await putResearchGroupAction({ ko: group.ko.id, en: group.en.id }, formData),
-      );
-      successToast('연구 스트림을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putResearchGroupAction({ ko: group.ko.id, en: group.en.id }, formData);
+    handleServerResponse(resp, { successMessage: '연구 스트림을 수정했습니다.' });
   };
 
   const defaultValues: ResearchGroupFormData = {

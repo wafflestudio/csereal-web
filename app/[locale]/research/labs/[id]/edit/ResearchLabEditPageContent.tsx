@@ -9,10 +9,8 @@ import ResearchLabEditor, {
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { isLocalFile } from '@/types/form';
 import { WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';
-import { errorToast, successToast } from '@/utils/toast';
 
 interface ResearchLabEditPageContentProps {
   lab: WithLanguage<ResearchLab>;
@@ -52,18 +50,15 @@ export default function ResearchLabEditPageContent({
       ),
     );
 
+    // attachment가 아닌 특수한 key('pdf')라서 conentToFormData 사용하지 않고 직접 별도 처리
     encodeFormDataFileName(
       formData,
       'pdf',
       common.pdf.filter(isLocalFile).map((x) => x.file),
     );
 
-    try {
-      handleServerAction(await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData));
-      successToast('연구실을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData);
+    handleServerResponse(resp, { successMessage: '연구실을 수정했습니다.' });
   };
 
   const defaultValues: ResearchLabFormData = {
