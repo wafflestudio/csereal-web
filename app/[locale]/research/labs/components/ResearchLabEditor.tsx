@@ -5,15 +5,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { SimpleFaculty } from '@/apis/types/people';
 import { ResearchGroup } from '@/apis/types/research';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import LanguagePicker from '@/components/form/LanguagePicker';
 import { researchLabs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
+import { EditorFile } from '@/types/form';
 import { Language, WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-
-import Fieldset from '../../../../../components/form/Fieldset';
-import Form from '../../../../../components/form/Form';
-import LanguagePicker from '../../../../../components/form/LanguagePicker';
-import { EditorFile } from '../../../../../types/form';
 
 export type ResearchLabFormData = WithLanguage<{
   name: string;
@@ -109,6 +108,8 @@ const Editor = ({
               { label: '선택 안 함', value: null },
               ...professors[language].map((prof) => ({ label: prof.name, value: prof.id })),
             ]}
+            borderStyle="border-neutral-300"
+            height="h-8"
           />
         </Fieldset>
         <Fieldset title="연구실 약자" mb="mb-11" titleMb="mb-2">
@@ -140,6 +141,8 @@ const Editor = ({
             ...groups[language].map((lab) => ({ label: `${lab.name} 스트림`, value: lab.id })),
           ]}
           rules={{ required: true }}
+          borderStyle="border-neutral-300"
+          height="h-8"
         />
       </Fieldset>
 

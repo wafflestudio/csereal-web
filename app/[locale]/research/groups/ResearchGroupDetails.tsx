@@ -10,10 +10,8 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { researchGroups } from '@/constants/segmentNode';
 import { WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import ResearchGroupLabs from './ResearchGroupLabs';
 
@@ -28,12 +26,8 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
   const t = useTranslations('Content');
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteResearchGroupAction(ids));
-      successToast('연구 스트림을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteResearchGroupAction(ids);
+    handleServerResponse(resp, { successMessage: '연구 스트림을 삭제했습니다.' });
   };
 
   return (

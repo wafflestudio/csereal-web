@@ -12,10 +12,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { directions } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const directionsPath = getPath(directions);
 
@@ -36,17 +34,11 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
   const onCancel = () => router.push(directionsPath);
 
   const onSubmit = handleSubmit(async (formData) => {
-    try {
-      handleServerAction(
-        await putDirectionsAction(data.ko.id, {
-          koDescription: formData.htmlKo,
-          enDescription: formData.htmlEn,
-        }),
-      );
-      successToast('찾아오는 길을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putDirectionsAction(data.ko.id, {
+      koDescription: formData.htmlKo,
+      enDescription: formData.htmlEn,
+    });
+    handleServerResponse(resp, { successMessage: '찾아오는 길을 수정했습니다.' });
   });
 
   return (

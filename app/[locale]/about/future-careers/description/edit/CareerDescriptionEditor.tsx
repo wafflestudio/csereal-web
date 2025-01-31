@@ -11,10 +11,8 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { studentClubs } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const clubPath = getPath(studentClubs);
 
@@ -28,17 +26,11 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
   const onCancel = () => router.push(clubPath);
 
   const onSubmit = handleSubmit(async (formData) => {
-    try {
-      handleServerAction(
-        await putCareerDescriptionAction({
-          koDescription: formData.ko,
-          enDescription: formData.en,
-        }),
-      );
-      successToast('졸업생 진로 본문을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putCareerDescriptionAction({
+      koDescription: formData.ko,
+      enDescription: formData.en,
+    });
+    handleServerResponse(resp, { successMessage: '졸업생 진로 본문을 수정했습니다.' });
   });
 
   return (

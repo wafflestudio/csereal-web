@@ -55,6 +55,7 @@ export default async function StudentClubsPage(props: StudentClubsPageProps) {
         selectedItemNameKo={selectedClub?.ko.name ?? ''}
         rootPath={clubPath}
       />
+
       {selectedClub ? (
         <ClubDetails club={selectedClub} language={params.locale} />
       ) : (
