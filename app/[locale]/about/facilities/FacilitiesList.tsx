@@ -8,10 +8,8 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { facilities } from '@/constants/segmentNode';
 import Distance from '@/public/image/distance.svg';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const facilitiesPath = getPath(facilities);
 
@@ -27,12 +25,8 @@ export default function FacilitesList({ facilities }: { facilities: Facility[] }
 
 function FacilitiesRow({ facility }: { facility: Facility }) {
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteFacilityAction(facility.id));
-      successToast('시설 안내를 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteFacilityAction(facility.id);
+    handleServerResponse(resp, { successMessage: '시설 안내를 삭제했습니다.' });
   };
 
   return (

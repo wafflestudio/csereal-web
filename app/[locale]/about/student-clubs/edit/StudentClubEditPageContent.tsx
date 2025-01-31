@@ -4,10 +4,8 @@ import { putClubAction } from '@/actions/about';
 import { Club } from '@/apis/types/about';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
@@ -21,13 +19,8 @@ export default function StudentClubEditPageContent({ data }: { data: WithLanguag
       },
       image: _formData.image,
     });
-
-    try {
-      handleServerAction(await putClubAction(formData));
-      successToast('동아리 소개를 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putClubAction(formData);
+    handleServerResponse(resp, { successMessage: '동아리 소개를 수정했습니다.' });
   };
 
   return (

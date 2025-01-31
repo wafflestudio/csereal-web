@@ -40,11 +40,10 @@ export default function FilePicker({ name, options, multiple = true }: FilePicke
   };
 
   return (
-    <>
+    <div className={`flex gap-3 ${multiple && 'flex-col'}`}>
       <SelectFileButton onChange={handleChange} multiple={multiple} />
       <ol
         className={`
-          
         self-start rounded-sm border-[1px] border-neutral-200 bg-neutral-50
       `}
       >
@@ -60,7 +59,7 @@ export default function FilePicker({ name, options, multiple = true }: FilePicke
           />
         ))}
       </ol>
-    </>
+    </div>
   );
 }
 

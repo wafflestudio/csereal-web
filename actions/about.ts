@@ -101,7 +101,6 @@ export const postCareerCompanyAction = withErrorHandler(
   async (data: { name: string; url?: string; year: number }) => {
     await postCareerCompany(data);
     revalidateTag(FETCH_TAG_CAREER);
-    redirectKo(careerPath);
   },
 );
 
@@ -109,7 +108,6 @@ export const putCareerCompanyAction = withErrorHandler(
   async (id: number, data: FutureCareers['companies'][number]) => {
     await putCareerCompany(id, data);
     revalidateTag(FETCH_TAG_CAREER);
-    redirectKo(careerPath);
   },
 );
 
