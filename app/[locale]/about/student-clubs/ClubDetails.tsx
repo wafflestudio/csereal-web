@@ -27,7 +27,7 @@ export default function ClubDetails({
   };
 
   return (
-    <div className="px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
+    <div>
       <div className="justify-between sm:flex">
         <ClubTitle
           title={club[language].name}
