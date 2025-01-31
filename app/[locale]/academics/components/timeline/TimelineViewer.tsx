@@ -6,7 +6,7 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
-// import { refreshPage } from '@/utils/refreshPage';
+import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 import Timeline from './Timeline';
@@ -34,7 +34,7 @@ export default function TimelineViewer<T extends { year: number; description: st
     const resp = await deleteAction(year);
     handleServerResponse(resp, {
       successMessage: '삭제했습니다.',
-      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: refreshPage
+      onSuccess: refreshPage,
     });
   };
 

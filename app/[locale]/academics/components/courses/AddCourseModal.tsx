@@ -31,7 +31,7 @@ export default function AddCourseModal({
     const resp = await postCourseAction(course);
     handleServerResponse(resp, {
       successMessage: '새 교과목을 추가했습니다.',
-      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: onClose
+      onSuccess: onClose,
     });
   };
 

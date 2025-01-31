@@ -27,7 +27,7 @@ export default function CourseDetailModal({ initCourse, onClose }: CourseDetailM
     const resp = await deleteCourseAction(course.code);
     handleServerResponse(resp, {
       successMessage: '교과목을 삭제했습니다.',
-      // TODO: 이전 소개 PR 머지되면 추가 onSuccess: onClose
+      onSuccess: onClose,
     });
   };
 

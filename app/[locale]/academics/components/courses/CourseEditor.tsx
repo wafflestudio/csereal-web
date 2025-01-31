@@ -27,13 +27,11 @@ export default function CourseEditor({
     const resp = await putCourseAction(course);
     handleServerResponse(resp, {
       successMessage: '교과목을 수정했습니다.',
-      // TODO: 이전 소개 PR 머지되면 추가
-      // onSuccess: () => {
-      //   setCourse(course);
-      //   toggleEditMode();
-      // },
+      onSuccess: () => {
+        setCourse(course);
+        toggleEditMode();
+      },
     });
-    setCourse(course); // 위 코드 주석 해지되면 삭제
   };
 
   return (
