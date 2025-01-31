@@ -36,7 +36,7 @@ export default async function middleware(request: NextRequest) {
       isProd ? `'nonce-${nonce}' 'strict-dynamic'` : `'unsafe-inline' 'unsafe-eval'`
     };
     style-src 'self' 'nonce-${nonce}' https://cdn.jsdelivr.net https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net;
+    img-src 'self' blob: data: https://t1.daumcdn.net https://map.daumcdn.net https://mts.daumcdn.net https://cse-dev-waffle.bacchus.io https://cse.snu.ac.kr;
     font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';

@@ -58,8 +58,8 @@ export default function PageLayout({
       <div
         className={clsx('relative grow bg-white', {
           'p-0': removePadding,
-          'pt-0': removeTopPadding,
-          'pb-0': removeBottomPadding,
+          'p-[0_1.25rem_4rem_1.25rem] sm:p-[0_360px_150px_100px]': removeTopPadding,
+          'p-[1.75rem_1.25rem_0_1.25rem] sm:p-[2.75rem_360px_0_100px]': removeBottomPadding,
           'p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]':
             !removePadding && !removeTopPadding && !removeBottomPadding,
         })}
