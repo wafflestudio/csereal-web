@@ -1,5 +1,5 @@
 import { putHistoryAction } from '@/actions/about';
-import { getHistory } from '@/apis/v1/about/history';
+import { getHistory } from '@/apis/v2/about/history';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { history } from '@/constants/segmentNode';
 import { getEditorFile, getEditorImage } from '@/utils/formData';

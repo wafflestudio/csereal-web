@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 
-import { getGreetings } from '@/apis/v1/about/greetings';
+import { getGreetings } from '@/apis/v2/about/greetings';
 import { EditButton } from '@/components/common/Buttons';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
