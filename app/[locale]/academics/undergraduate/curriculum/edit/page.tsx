@@ -1,4 +1,4 @@
-import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import { getCurriculum } from '@/apis/v2/academics/undergraduate/curriculum';
 
 import CurriculumEditPageContent from './CurriculumEditPageContent';
 

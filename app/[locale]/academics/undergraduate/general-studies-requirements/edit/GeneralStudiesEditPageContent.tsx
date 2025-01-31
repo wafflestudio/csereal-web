@@ -1,5 +1,5 @@
 import { GeneralStudiesRequirement } from '@/apis/types/academics';
-import { putAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import { putAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';

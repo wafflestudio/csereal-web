@@ -1,6 +1,6 @@
 import { revalidateTag } from 'next/cache';
 
-import { postScholarship } from '@/apis/v2/academics/[type]/scholarship';
+import { postScholarship } from '@/apis/v2/academics/[studentType]/scholarship';
 import ScholarshipEditor, {
   ScholarshipFormData,
 } from '@/app/[locale]/academics/components/scholarship/ScholarshipEditor';

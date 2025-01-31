@@ -13,16 +13,16 @@ interface AcademicsByPostType {
 type PostType = 'course-changes' | 'curriculum' | 'general-studies-requirements';
 
 export const getAcademicsByPostType = async (studentType: StudentType, postType: PostType) =>
-  await getRequest<AcademicsByPostType>(`/v1/academics/${studentType}/${postType}`);
+  await getRequest<AcademicsByPostType>(`/v2/academics/${studentType}/${postType}`);
 
 export const postAcademicsByPostType = async (
   studentType: StudentType,
   postType: PostType,
   body: FormData,
-) => await postRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });
+) => await postRequest(`/v2/academics/${studentType}/${postType}`, { body, jsessionID: true });
 
 export const putAcademicsByPostType = async (
   studentType: StudentType,
   postType: PostType,
   body: FormData,
-) => await putRequest(`/v1/academics/${studentType}/${postType}`, { body, jsessionID: true });
+) => await putRequest(`/v2/academics/${studentType}/${postType}`, { body, jsessionID: true });

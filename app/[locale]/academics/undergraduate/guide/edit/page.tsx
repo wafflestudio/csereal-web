@@ -1,6 +1,6 @@
 import { revalidateTag } from 'next/cache';
 
-import { getAcademicsGuide, putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
+import { getAcademicsGuide, putAcademicsGuide } from '@/apis/v2/academics/[studentType]/guide';
 import GuideEditBridge from '@/app/[locale]/academics/components/guide/GuideEditorBridge';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_GUIDE } from '@/constants/network';

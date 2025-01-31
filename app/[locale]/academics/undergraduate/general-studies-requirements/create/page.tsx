@@ -1,4 +1,4 @@
-import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import { postAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { curriculum } from '@/constants/segmentNode';

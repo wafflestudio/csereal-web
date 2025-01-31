@@ -42,7 +42,9 @@ export default function ScholarshipEditor({
 
   const onSubmit = async (formData: ScholarshipFormData) => {
     const resp = _onSubmit(formData);
-    handleServerResponse(resp, { successMessage: '장학금을 수정했습니다.' });
+    handleServerResponse(resp, {
+      successMessage: `장학금을 ${defaultValues ? '수정' : '추가'}했습니다.`,
+    });
   };
 
   const onCancel = () => router.push(cancelPath);

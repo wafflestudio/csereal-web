@@ -9,23 +9,16 @@ import {
   Scholarship,
   StudentType,
 } from '@/apis/types/academics';
-import { deleteCourseChanges } from '@/apis/v1/academics/[studentType]/course-changes/[year]';
-import { putAcademicsGuide } from '@/apis/v1/academics/[studentType]/guide';
+import { putAcademicsGuide } from '@/apis/v2/academics/[studentType]/guide';
 import {
-  deleteCurriculum,
-  putCurriculum,
-} from '@/apis/v1/academics/undergraduate/curriculum/[year]';
-import { putDegreeRequirements } from '@/apis/v1/academics/undergraduate/degree-requirements';
-import { postGeneralStudies } from '@/apis/v1/academics/undergraduate/general-studies-requirements';
-import {
-  deleteGeneralStudies,
-  putGeneralStudies,
-} from '@/apis/v1/academics/undergraduate/general-studies-requirements/[year]';
-import { postScholarship, putScholarshipGuide } from '@/apis/v2/academics/[type]/scholarship';
+  postScholarship,
+  putScholarshipGuide,
+} from '@/apis/v2/academics/[studentType]/scholarship';
 import { postCourse, putCourse } from '@/apis/v2/academics/courses';
 import { deleteCourse } from '@/apis/v2/academics/courses/[code]';
 import { putScholarship } from '@/apis/v2/academics/scholarship';
 import { deleteScholarship } from '@/apis/v2/academics/scholarship/[id]';
+import { putDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
 import {
   FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
@@ -42,6 +35,16 @@ import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
+import {
+  deleteCurriculum,
+  putCurriculum,
+} from '@/apis/v2/academics/undergraduate/curriculum/[year]';
+import { postGeneralStudies } from '@/apis/v2/academics/undergraduate/general-studies-requirements';
+import {
+  deleteGeneralStudies,
+  putGeneralStudies,
+} from '@/apis/v2/academics/undergraduate/general-studies-requirements/[year]';
+import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
 
 export const putGuideAction = withErrorHandler(async (type: StudentType, formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');

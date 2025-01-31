@@ -1,6 +1,6 @@
 import './style.css';
 
-import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import { getCurriculum } from '@/apis/v2/academics/undergraduate/curriculum';
 import { curriculum } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 

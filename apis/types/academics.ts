@@ -73,3 +73,9 @@ export interface Curriculum {
   description: string;
   year: number;
 }
+
+export interface AcademicsCommon {
+  year: number;
+  description: string;
+  attachments: Attachment[];
+}

@@ -1,7 +1,9 @@
 import { revalidateTag } from 'next/cache';
 
-import { getScholarshipList } from '@/apis/v1/academics/scholarship';
-import { putScholarshipGuide } from '@/apis/v2/academics/[type]/scholarship';
+import {
+  getScholarshipList,
+  putScholarshipGuide,
+} from '@/apis/v2/academics/[studentType]/scholarship';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
 import { undergraduateScholarship } from '@/constants/segmentNode';
