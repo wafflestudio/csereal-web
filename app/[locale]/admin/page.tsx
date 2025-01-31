@@ -1,6 +1,6 @@
 import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/apis/types/admin';
-import { getImportants } from '@/apis/v1/admin/important';
-import { getSlides } from '@/apis/v1/admin/slide';
+import { getImportants } from '@/apis/v2/admin/important';
+import { getSlides } from '@/apis/v2/admin/slide';
 import ImportantManagement from '@/app/[locale]/admin/helper/important/ImportantManagement';
 import SlideManagement from '@/app/[locale]/admin/helper/slide/SlideManagement';
 import LoginVisible from '@/components/common/LoginVisible';
