@@ -23,13 +23,13 @@ export default function SlideManagement({ posts, total }: SlideManagementProps) 
   const [ids, dispatchIds] = useSlideSelect();
   const { openModal } = useModal();
 
-  // const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
+  const resetSelectedPosts = () => dispatchIds({ type: 'RESET' });
 
   const handleBatchUnslide = async () => {
     const resp = await batchUnslideAction([...ids]);
     handleServerResponse(resp, {
       successMessage: '슬라이드를 해제했습니다.',
-      // TODO: 이전 소개 검수 PR 머지되면 추가 onSuccess: resetSelectedPosts,
+      onSuccess: resetSelectedPosts,
     });
   };
 

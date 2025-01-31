@@ -27,7 +27,7 @@ export default function ImportantManagement({ posts, total }: ImportantManagemen
     const resp = await batchUnimportantAction(ids);
     handleServerResponse(resp, {
       successMessage: '중요 안내를 해제했습니다.',
-      // TODO: 이전 소개 검수 PR 머지되면 추가 onSuccess: () => dispatchIds({ type: 'RESET' }),
+      onSuccess: () => dispatchIds({ type: 'RESET' }),
     });
   };
 
