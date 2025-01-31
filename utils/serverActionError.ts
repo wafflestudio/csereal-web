@@ -23,11 +23,11 @@ export function handleServerAction<T>(response: T): Exclude<T, CustomError> {
 
 export const handleServerResponse = <T>(
   response: T,
-  { successMessage }: { successMessage: string },
+  { successMessage, onSuccess }: { successMessage: string; onSuccess?: () => void },
 ) => {
   try {
-    console.log(response);
     throwIfError(response);
+    onSuccess?.();
     successToast(successMessage);
     return response;
   } catch (e) {

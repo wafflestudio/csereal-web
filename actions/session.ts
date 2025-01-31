@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 
 import { getMockLogin } from '@/apis/v1/mock-login';
-import { getIsStaff } from '@/apis/v1/user/is-staff';
+import { getIsStaff } from '@/apis/v2/user/is-staff';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 import { UserState } from '@/contexts/SessionContext';
 
