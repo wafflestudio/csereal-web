@@ -3,7 +3,7 @@ import { ImportantPreview } from '@/apis/types/admin';
 
 export const getImportants = (pageNum: number) =>
   getRequest(
-    '/v1/admin/important',
+    '/v2/admin/important',
     { pageNum },
     { next: { tags: ['important'] }, jsessionID: true },
   ) as Promise<{
@@ -12,7 +12,7 @@ export const getImportants = (pageNum: number) =>
   }>;
 
 export const patchMultipleImportants = (targetInfos: { id: number; category: string }[]) =>
-  patchRequest('/v1/admin/important', {
+  patchRequest('/v2/admin/important', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ targetInfos }),
     jsessionID: true,
