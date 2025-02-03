@@ -93,8 +93,20 @@ export default function NewsEditor({ defaultValues, onCancel, onSubmit, onDelete
                 }
               }}
             />
-            <Form.Checkbox label="메인-중요 안내에 표시" name="isImportant" />
-            <Form.Checkbox label="메인-슬라이드쇼에 표시" name="isSlide" />
+            <Form.Checkbox
+              label="메인-중요 안내에 표시"
+              name="isImportant"
+              onChange={(isImportant) => {
+                if (isImportant) setValue('isPrivate', false);
+              }}
+            />
+            <Form.Checkbox
+              label="메인-슬라이드쇼에 표시"
+              name="isSlide"
+              onChange={(isImportant) => {
+                if (isImportant) setValue('isPrivate', false);
+              }}
+            />
             <p className="text-xs font-light tracking-wide text-neutral-700">
               * ‘슬라이드쇼에 표시’ 글은 대표이미지가 첨부되어있는지 확인 바랍니다.
             </p>
