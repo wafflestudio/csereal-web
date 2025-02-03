@@ -81,8 +81,20 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
                 }
               }}
             />
-            <Form.Checkbox label="목록 상단에 고정" name="isFixed" />
-            <Form.Checkbox label="메인-중요 안내에 표시" name="isImportant" />
+            <Form.Checkbox
+              label="목록 상단에 고정"
+              name="isPinned"
+              onChange={(isImportant) => {
+                if (isImportant) setValue('isPrivate', false);
+              }}
+            />
+            <Form.Checkbox
+              label="메인-중요 안내에 표시"
+              name="isImportant"
+              onChange={(isImportant) => {
+                if (isImportant) setValue('isPrivate', false);
+              }}
+            />
           </div>
         </Fieldset>
         <Form.Action

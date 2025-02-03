@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 import { PostSearchQueryParams } from '@/apis/types/post';
-import { getNoticePostDetail } from '@/apis/v1/notice/[id]';
+import { getNoticePostDetail } from '@/apis/v2/notice/[id]';
 import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
