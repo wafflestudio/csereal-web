@@ -1,11 +1,9 @@
-import { revalidateTag } from 'next/cache';
-
-import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
-import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
+import { deleteCourseChangesAction } from '@/actions/academics';
+import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import TimelineViewer from '@/app/[locale]/academics/components/timeline/TimelineViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
-import { undergraduateCourseChanges } from '@/constants/segmentNode';
+import { graduateCourseChanges } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
@@ -13,16 +11,19 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 
   const { locale } = params;
 
-  return await getMetadata({ locale, node: undergraduateCourseChanges });
+  return await getMetadata({ locale, node: graduateCourseChanges });
 }
 
-export default async function UndergraduateCourseChangesPage() {
-  const changes = await getCourseChanges('graduate');
+export default async function GraduateCourseChangesPage() {
+  const changes = await getAcademicsByPostType(
+    'graduate',
+    'course-changes',
+    FETCH_TAG_COURSE_CHANGES,
+  );
 
   const onDelete = async (year: number) => {
     'use server';
-    await deleteCourseChanges('undergraduate', year);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+    await deleteCourseChangesAction('graduate', year);
   };
 
   return (

@@ -1,5 +1,6 @@
 import { getRequest, postRequest, putRequest } from '@/apis';
 import { ScholarshipList, StudentType } from '@/apis/types/academics';
+import { ScholarshipFormData } from '@/app/[locale]/academics/components/scholarship/ScholarshipEditor';
 import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
 
 export const getScholarshipList = (studentType: StudentType) =>
@@ -14,10 +15,7 @@ export const putScholarshipGuide = (studentType: StudentType, description: strin
     jsessionID: true,
   });
 
-export const postScholarship = (
-  studentType: StudentType,
-  data: { koName: string; koDescription: string; enName: string; enDescription: string },
-) =>
+export const postScholarship = (studentType: StudentType, data: ScholarshipFormData) =>
   postRequest(`/v2/academics/${studentType}/scholarship`, {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

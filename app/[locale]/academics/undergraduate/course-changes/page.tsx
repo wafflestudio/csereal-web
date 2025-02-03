@@ -1,7 +1,5 @@
-import { revalidateTag } from 'next/cache';
-
-import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
-import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
+import { deleteCourseChangesAction } from '@/actions/academics';
+import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import TimelineViewer from '@/app/[locale]/academics/components/timeline/TimelineViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
@@ -17,12 +15,15 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 }
 
 export default async function UndergraduateCourseChangesPage() {
-  const changes = await getCourseChanges('undergraduate');
+  const changes = await getAcademicsByPostType(
+    'undergraduate',
+    'course-changes',
+    FETCH_TAG_COURSE_CHANGES,
+  );
 
   const onDelete = async (year: number) => {
     'use server';
-    await deleteCourseChanges('undergraduate', year);
-    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+    await deleteCourseChangesAction('undergraduate', year);
   };
 
   return (

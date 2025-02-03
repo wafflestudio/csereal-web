@@ -10,7 +10,7 @@ import { useRouter } from '@/i18n/routing';
 import { EditorFile, isUploadedFile } from '@/types/form';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerResponse } from '@/utils/serverActionError';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 const degreeRequirementsPath = getPath(degree);
 
@@ -24,7 +24,7 @@ export default function DegreeRequirementsEditor({
   onSubmit: _onSubmit,
 }: {
   defaultValues: DegreeRequirementsFormData;
-  onSubmit: (formData: FormData) => Promise<void>;
+  onSubmit: (formData: FormData) => Promise<void | CustomError>;
 }) {
   const formMethods = useForm<DegreeRequirementsFormData>({ defaultValues });
   const { handleSubmit } = formMethods;

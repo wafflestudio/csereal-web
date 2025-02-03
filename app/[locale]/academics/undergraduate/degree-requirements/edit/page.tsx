@@ -1,29 +1,10 @@
-import { revalidateTag } from 'next/cache';
-
-import {
-  getDegreeRequirements,
-  putDegreeRequirements,
-} from '@/apis/v2/academics/undergraduate/degree-requirements';
-import { FETCH_TAG_DEGREE } from '@/constants/network';
-import { degree } from '@/constants/segmentNode';
-import { redirectKo } from '@/i18n/routing';
-import { getPath } from '@/utils/page';
-import { decodeFormDataFileName } from '@/utils/string';
+import { putDegreeRequirementsAction } from '@/actions/academics';
+import { getDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
 
 import DegreeRequirementsEditor from './DegreeRequirementsEditor';
 
-const path = getPath(degree);
-
 export default async function DegreeRequirementsEditPage() {
   const data = await getDegreeRequirements();
-
-  const onSubmit = async (formData: FormData) => {
-    'use server';
-    decodeFormDataFileName(formData, 'newAttachments');
-    await putDegreeRequirements(formData);
-    revalidateTag(FETCH_TAG_DEGREE);
-    redirectKo(path);
-  };
 
   return (
     <DegreeRequirementsEditor
@@ -31,7 +12,7 @@ export default async function DegreeRequirementsEditPage() {
         description: data.description,
         files: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
       }}
-      onSubmit={onSubmit}
+      onSubmit={putDegreeRequirementsAction}
     />
   );
 }

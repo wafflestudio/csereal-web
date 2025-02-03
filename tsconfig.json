@@ -31,7 +31,8 @@
     "data/objects.ts",
     "custom.d.ts",
     "app/.internal/**/*.ts",
-    "app/.internal/**/*.tsx"
+    "app/.internal/**/*.tsx",
+    "apis/v2/academics/[studentType]/[postType]"
   ],
   "exclude": ["node_modules"]
 }

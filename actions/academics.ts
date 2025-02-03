@@ -2,14 +2,12 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { Course, Scholarship, StudentType } from '@/apis/types/academics';
+import { postAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import {
-  Course,
-  Curriculum,
-  GeneralStudiesRequirement,
-  Scholarship,
-  StudentType,
-} from '@/apis/types/academics';
-import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
+  deleteAcademicsByPostType,
+  putAcademicsByPostType,
+} from '@/apis/v2/academics/[studentType]/[postType]/[year]';
 import { putAcademicsGuide } from '@/apis/v2/academics/[studentType]/guide';
 import {
   postScholarship,
@@ -19,16 +17,8 @@ import { postCourse, putCourse } from '@/apis/v2/academics/courses';
 import { deleteCourse } from '@/apis/v2/academics/courses/[code]';
 import { putScholarship } from '@/apis/v2/academics/scholarship';
 import { deleteScholarship } from '@/apis/v2/academics/scholarship/[id]';
-import {
-  deleteCurriculum,
-  putCurriculum,
-} from '@/apis/v2/academics/undergraduate/curriculum/[year]';
 import { putDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
-import { postGeneralStudies } from '@/apis/v2/academics/undergraduate/general-studies-requirements';
-import {
-  deleteGeneralStudies,
-  putGeneralStudies,
-} from '@/apis/v2/academics/undergraduate/general-studies-requirements/[year]';
+import { ScholarshipFormData } from '@/app/[locale]/academics/components/scholarship/ScholarshipEditor';
 import {
   FETCH_TAG_COURSE,
   FETCH_TAG_COURSE_CHANGES,
@@ -38,18 +28,34 @@ import {
   FETCH_TAG_GUIDE,
   FETCH_TAG_SCHOLARSHIP,
 } from '@/constants/network';
-import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
-import { redirect } from '@/i18n/routing';
+import {
+  curriculum,
+  degree,
+  generalStudies,
+  graduateCourseChanges,
+  graduateGuide,
+  graduateScholarship,
+  undergraduateCourseChanges,
+  undergraduateGuide,
+  undergraduateScholarship,
+} from '@/constants/segmentNode';
+import { redirectKo } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
+/** 안내 */
+
+const graduateGuidePath = getPath(graduateGuide);
+const undergraduateGuidePath = getPath(undergraduateGuide);
+
 export const putGuideAction = withErrorHandler(async (type: StudentType, formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');
   await putAcademicsGuide(type, formData);
   revalidateTag(FETCH_TAG_GUIDE);
+  redirectKo(type === 'graduate' ? graduateGuidePath : undergraduateGuidePath);
 });
 
 /** 교과과정 */
@@ -71,48 +77,95 @@ export const deleteCourseAction = withErrorHandler(async (code: string) => {
 
 /** 전공 이수 표준 형태 */
 
-export const putCurriculumAction = withErrorHandler(async (data: Curriculum) => {
-  await putCurriculum(data);
+const curriculumPath = getPath(curriculum);
+
+export const postCurriculumAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'attachments');
+  await postAcademicsByPostType('undergraduate', 'curriculum', formData);
   revalidateTag(FETCH_TAG_CURRICULUM);
+  redirectKo(curriculumPath);
+});
+
+export const putCurriculumAction = withErrorHandler(async (year: number, formData: FormData) => {
+  decodeFormDataFileName(formData, 'attachments');
+  await putAcademicsByPostType('undergraduate', 'curriculum', year, formData);
+  revalidateTag(FETCH_TAG_CURRICULUM);
+  redirectKo(curriculumPath);
 });
 
 export const deleteCurriculumAction = withErrorHandler(async (year: number) => {
-  await deleteCurriculum(year);
+  await deleteAcademicsByPostType('undergraduate', 'curriculum', year);
   revalidateTag(FETCH_TAG_CURRICULUM);
+  redirectKo(curriculumPath);
 });
 
 /** 필수 교양 과목 */
 
-export const postGeneralStudiesAction = withErrorHandler(
-  async (data: GeneralStudiesRequirement) => {
-    await postGeneralStudies(data);
+const generalStudiesPath = getPath(generalStudies);
+
+export const postGeneralStudiesAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'attachments');
+  await postAcademicsByPostType('undergraduate', 'general-studies-requirements', formData);
+  revalidateTag(FETCH_TAG_GENERAL_STUDIES);
+  redirectKo(generalStudiesPath);
+});
+
+export const putGeneralStudiesAction = withErrorHandler(
+  async (year: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'attachments');
+    await putAcademicsByPostType('undergraduate', 'general-studies-requirements', year, formData);
     revalidateTag(FETCH_TAG_GENERAL_STUDIES);
+    redirectKo(generalStudiesPath);
   },
 );
 
-export const putGeneralStudiesAction = withErrorHandler(async (data: GeneralStudiesRequirement) => {
-  await putGeneralStudies(data);
-  revalidateTag(FETCH_TAG_GENERAL_STUDIES);
-});
-
 export const deleteGeneralStudiesAction = withErrorHandler(async (year: number) => {
-  await deleteGeneralStudies(year);
+  await deleteAcademicsByPostType('undergraduate', 'general-studies-requirements', year);
   revalidateTag(FETCH_TAG_GENERAL_STUDIES);
+  redirectKo(generalStudiesPath);
 });
 
 /** 졸업 규정 */
+
+const degreePath = getPath(degree);
 
 export const putDegreeRequirementsAction = withErrorHandler(async (formData: FormData) => {
   decodeFormDataFileName(formData, 'newAttachments');
   await putDegreeRequirements(formData);
   revalidateTag(FETCH_TAG_DEGREE);
+  redirectKo(degreePath);
 });
 
 /** 교과목 변경 내역 */
 
+const graduateCourseChangesPath = getPath(graduateCourseChanges);
+const undergraduateCourseChangesPath = getPath(undergraduateCourseChanges);
+
+export const postCourseChangesAction = withErrorHandler(
+  async (studentType: StudentType, formData: FormData) => {
+    decodeFormDataFileName(formData, 'newAttachments');
+    await postAcademicsByPostType(studentType, 'course-changes', formData);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+    redirectKo(
+      studentType === 'graduate' ? graduateCourseChangesPath : undergraduateCourseChangesPath,
+    );
+  },
+);
+
+export const putCourseChangesAction = withErrorHandler(
+  async (studentType: StudentType, year: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'newAttachments');
+    await putAcademicsByPostType(studentType, 'course-changes', year, formData);
+    revalidateTag(FETCH_TAG_COURSE_CHANGES);
+    redirectKo(
+      studentType === 'graduate' ? graduateCourseChangesPath : undergraduateCourseChangesPath,
+    );
+  },
+);
+
 export const deleteCourseChangesAction = withErrorHandler(
-  async (type: StudentType, year: number) => {
-    await deleteCourseChanges(type, year);
+  async (studentType: StudentType, year: number) => {
+    await deleteAcademicsByPostType(studentType, 'course-changes', year);
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
   },
 );
@@ -126,47 +179,30 @@ export const putScholarshipGuideAction = withErrorHandler(
   async (type: StudentType, description: string) => {
     await putScholarshipGuide(type, description);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    // TODO: 현재 locale로 redirect
-    redirect({
-      href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
-      locale: 'ko',
-    });
+    redirectKo(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
   },
 );
 
 export const postScholarshipAction = withErrorHandler(
-  async (
-    type: StudentType,
-    data: { koName: string; koDescription: string; enName: string; enDescription: string },
-  ) => {
+  async (type: StudentType, data: ScholarshipFormData) => {
     await postScholarship(type, data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    // TODO: 현재 locale로 redirect
-    redirect({
-      href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
-      locale: 'ko',
-    });
+    redirectKo(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
   },
 );
 
 export const putScholarshipAction = withErrorHandler(
   async (type: StudentType, id: number, data: WithLanguage<Scholarship>) => {
-    await putScholarship(id, data);
+    await putScholarship(data);
     revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    // TODO: 현재 locale로 redirect
-    redirect({
-      href: `${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}/${id}`,
-      locale: 'ko',
-    });
+    redirectKo(
+      `${type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath}/${id}`,
+    );
   },
 );
 
 export const deleteScholarshipAction = withErrorHandler(async (type: StudentType, id: number) => {
   await deleteScholarship(id);
   revalidateTag(FETCH_TAG_SCHOLARSHIP);
-  // TODO: 현재 locale로 redirect
-  redirect({
-    href: type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath,
-    locale: 'ko',
-  });
+  redirectKo(type === 'graduate' ? graduateScholarshipPath : undergraduateScholarshipPath);
 });

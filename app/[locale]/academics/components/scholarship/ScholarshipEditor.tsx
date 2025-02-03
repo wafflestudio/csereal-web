@@ -8,7 +8,7 @@ import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
 import { useRouter } from '@/i18n/routing';
 import { Language } from '@/types/language';
-import { handleServerResponse } from '@/utils/serverActionError';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 export type ScholarshipFormData = {
   koName: string;
@@ -20,7 +20,7 @@ export type ScholarshipFormData = {
 type Props = {
   defaultValues?: ScholarshipFormData;
   cancelPath: string;
-  onSubmit: (data: ScholarshipFormData) => Promise<void>;
+  onSubmit: (data: ScholarshipFormData) => Promise<void | CustomError>;
 };
 
 export default function ScholarshipEditor({

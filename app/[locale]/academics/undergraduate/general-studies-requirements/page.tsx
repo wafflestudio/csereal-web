@@ -1,4 +1,5 @@
-import { getGeneralStudies } from '@/apis/v2/academics/undergraduate/general-studies-requirements';
+import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { FETCH_TAG_GENERAL_STUDIES } from '@/constants/network';
 import { generalStudies } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 
@@ -13,7 +14,11 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 }
 
 export default async function GeneralStudiesRequirementsPage() {
-  const { generalStudies } = await getGeneralStudies();
+  const data = await getAcademicsByPostType(
+    'undergraduate',
+    'general-studies-requirements',
+    FETCH_TAG_GENERAL_STUDIES,
+  );
 
-  return <GeneralStudiesPageContent data={generalStudies} />;
+  return <GeneralStudiesPageContent data={data} />;
 }

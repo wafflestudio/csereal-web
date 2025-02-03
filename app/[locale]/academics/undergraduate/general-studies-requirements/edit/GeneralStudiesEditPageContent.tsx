@@ -1,5 +1,5 @@
-import { GeneralStudiesRequirement } from '@/apis/types/academics';
-import { putAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { putGeneralStudiesAction } from '@/actions/academics';
+import { AcademicsCommon } from '@/apis/v2/academics/types';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
@@ -12,16 +12,11 @@ const curriculumPath = getPath(curriculum);
 export default function GeneralStudiesEditPageContent({
   initContent,
 }: {
-  initContent: GeneralStudiesRequirement;
+  initContent: AcademicsCommon;
 }) {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    putAcademicsByPostType(
-      'undergraduate',
-      'general-studies-requirements',
-      initContent.year,
-      formData,
-    );
+    await putGeneralStudiesAction(initContent.year, formData);
   };
 
   const defaultValues: TimelineFormData = {

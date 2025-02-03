@@ -1,36 +1,18 @@
-import { revalidateTag } from 'next/cache';
-
-import {
-  getScholarshipList,
-  putScholarshipGuide,
-} from '@/apis/v2/academics/[studentType]/scholarship';
+import { getScholarshipList } from '@/apis/v2/academics/[studentType]/scholarship';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { FETCH_TAG_SCHOLARSHIP } from '@/constants/network';
 import { graduateScholarship } from '@/constants/segmentNode';
-import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { successToast } from '@/utils/toast';
 
-import ScholarshipGuideEditor, {
-  ScholarshipGuideFormData,
-} from '../../../components/scholarship/ScholarshipGuideEditor';
+import ScholarshipGuideEditor from '../../../components/scholarship/ScholarshipGuideEditor';
 
 const path = getPath(graduateScholarship);
 
-export default async function UndergraduateScholarshipListEditPage() {
+export default async function GraduateScholarshipListEditPage() {
   const { description } = await getScholarshipList('graduate');
-
-  const onSubmit = async ({ description }: ScholarshipGuideFormData) => {
-    'use server';
-    await putScholarshipGuide('graduate', description);
-    revalidateTag(FETCH_TAG_SCHOLARSHIP);
-    redirectKo(path);
-    successToast('장학 제도 안내를 수정했습니다.');
-  };
 
   return (
     <PageLayout title="대학원 장학 제도 안내 편집" titleType="big">
-      <ScholarshipGuideEditor description={description} onSubmit={onSubmit} cancelPath={path} />
+      <ScholarshipGuideEditor description={description} studentType="graduate" cancelPath={path} />
     </PageLayout>
   );
 }

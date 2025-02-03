@@ -1,28 +1,28 @@
-import { revalidateTag } from 'next/cache';
-
-import { Curriculum } from '@/apis/types/academics';
-import { putAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { putCurriculumAction } from '@/actions/academics';
+import { AcademicsCommon } from '@/apis/v2/academics/types';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { curriculum } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
 
 const curriculumPath = getPath(curriculum);
 
-export default function CurriculumEditPageContent({ initContent }: { initContent: Curriculum }) {
+export default function CurriculumEditPageContent({
+  initContent,
+}: {
+  initContent: AcademicsCommon;
+}) {
   const defaultValues: TimelineFormData = {
     year: initContent.year,
     description: initContent.description,
-    file: [],
+    file: [], // TODO: 채우기
   };
 
   const onSubmit = async (formData: FormData) => {
     'use server';
-    await putAcademicsByPostType('undergraduate', 'curriculum', initContent.year, formData);
-    revalidateTag(FETCH_TAG_CURRICULUM);
+    await putCurriculumAction(initContent.year, formData);
   };
 
   return (

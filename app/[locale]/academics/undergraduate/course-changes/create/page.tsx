@@ -1,4 +1,4 @@
-import { postAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { postCourseChangesAction } from '@/actions/academics';
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateCourseChanges } from '@/constants/segmentNode';
@@ -9,7 +9,7 @@ const courseChangesPath = getPath(undergraduateCourseChanges);
 export default function UndergraduateCourseChangesCreatePage() {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    await postAcademicsByPostType('undergraduate', 'course-changes', formData);
+    await postCourseChangesAction('undergraduate', formData);
   };
 
   return (
