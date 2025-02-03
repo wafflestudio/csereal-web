@@ -96,7 +96,6 @@ export const putCurriculumAction = withErrorHandler(async (year: number, formDat
 export const deleteCurriculumAction = withErrorHandler(async (year: number) => {
   await deleteAcademicsByPostType('undergraduate', 'curriculum', year);
   revalidateTag(FETCH_TAG_CURRICULUM);
-  redirectKo(curriculumPath);
 });
 
 /** 필수 교양 과목 */
@@ -122,7 +121,6 @@ export const putGeneralStudiesAction = withErrorHandler(
 export const deleteGeneralStudiesAction = withErrorHandler(async (year: number) => {
   await deleteAcademicsByPostType('undergraduate', 'general-studies-requirements', year);
   revalidateTag(FETCH_TAG_GENERAL_STUDIES);
-  redirectKo(generalStudiesPath);
 });
 
 /** 졸업 규정 */
