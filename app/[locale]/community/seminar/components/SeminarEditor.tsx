@@ -1,5 +1,3 @@
-'use client';
-
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
@@ -33,12 +31,17 @@ export interface SeminarFormData {
 
 interface Props {
   defaultValues?: SeminarFormData;
-  onCancel: () => void;
-  onSubmit: (formData: SeminarFormData) => Promise<void>;
+  onCancelAction: () => void;
+  onSubmitAction: (formData: SeminarFormData) => Promise<void>;
   onDelete?: () => Promise<void>;
 }
 
-export default function SeminarEditor({ defaultValues, onCancel, onSubmit, onDelete }: Props) {
+export default function SeminarEditor({
+  defaultValues,
+  onCancelAction,
+  onSubmitAction,
+  onDelete,
+}: Props) {
   const formMethods = useForm<SeminarFormData>({
     defaultValues: defaultValues ?? {
       title: '',
@@ -154,7 +157,11 @@ export default function SeminarEditor({ defaultValues, onCancel, onSubmit, onDel
           </div>
         </Fieldset>
 
-        <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} onDelete={onDelete} />
+        <Form.Action
+          onCancel={onCancelAction}
+          onSubmit={handleSubmit(onSubmitAction)}
+          onDelete={onDelete}
+        />
       </Form>
     </FormProvider>
   );
