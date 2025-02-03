@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { PostSearchQueryParams } from '@/apis/types/post';
-import { getNewsPosts } from '@/apis/v1/news';
+import { getNewsPosts } from '@/apis/v2/news';
 import NewsPageContent from '@/app/[locale]/community/news/components/NewsPageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { news } from '@/constants/segmentNode';
