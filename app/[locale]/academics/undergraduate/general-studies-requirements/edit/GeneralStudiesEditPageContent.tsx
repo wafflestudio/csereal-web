@@ -16,7 +16,12 @@ export default function GeneralStudiesEditPageContent({
 }) {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    putAcademicsByPostType('undergraduate', 'general-studies-requirements', formData);
+    putAcademicsByPostType(
+      'undergraduate',
+      'general-studies-requirements',
+      initContent.year,
+      formData,
+    );
   };
 
   const defaultValues: TimelineFormData = {

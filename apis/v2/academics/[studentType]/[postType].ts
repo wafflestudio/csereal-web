@@ -24,5 +24,7 @@ export const postAcademicsByPostType = async (
 export const putAcademicsByPostType = async (
   studentType: StudentType,
   postType: PostType,
+  year: number,
   body: FormData,
-) => await putRequest(`/v2/academics/${studentType}/${postType}`, { body, jsessionID: true });
+) =>
+  await putRequest(`/v2/academics/${studentType}/${postType}/${year}`, { body, jsessionID: true });

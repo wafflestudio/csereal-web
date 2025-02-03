@@ -21,7 +21,7 @@ export default function CurriculumEditPageContent({ initContent }: { initContent
 
   const onSubmit = async (formData: FormData) => {
     'use server';
-    await putAcademicsByPostType('undergraduate', 'curriculum', formData);
+    await putAcademicsByPostType('undergraduate', 'curriculum', initContent.year, formData);
     revalidateTag(FETCH_TAG_CURRICULUM);
   };
 

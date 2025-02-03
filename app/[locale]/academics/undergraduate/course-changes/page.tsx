@@ -1,12 +1,12 @@
 import { revalidateTag } from 'next/cache';
 
+import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
+import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
 import TimelineViewer from '@/app/[locale]/academics/components/timeline/TimelineViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
-import { deleteCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

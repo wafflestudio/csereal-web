@@ -1,10 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import { useRouter } from '@/i18n/routing';
 import { EditorFile, isUploadedFile } from '@/types/form';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';

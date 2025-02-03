@@ -1,5 +1,7 @@
 import { revalidateTag } from 'next/cache';
 
+import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
+import { putCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
@@ -9,8 +11,6 @@ import { graduateCourseChanges } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
-import { putCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes/[year]';
-import { getCourseChanges } from '@/apis/v2/academics/[studentType]/course-changes';
 
 const courseChangePath = getPath(graduateCourseChanges);
 
