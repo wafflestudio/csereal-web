@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getUndergraduateRegularAdmission } from '@/apis/v1/admissions/undergraduate/regular-admission';
+import { getUndergraduateRegularAdmission } from '@/apis/v2/admissions/undergraduate/regular-admission';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateRegularAdmission } from '@/constants/segmentNode';

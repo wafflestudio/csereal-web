@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getInternationalExchangeVisiting } from '@/apis/v1/admissions/international/exchange-visiting';
+import { getInternationalExchangeVisiting } from '@/apis/v2/admissions/international/exchange-visiting';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { exchangeVisitingProgram } from '@/constants/segmentNode';

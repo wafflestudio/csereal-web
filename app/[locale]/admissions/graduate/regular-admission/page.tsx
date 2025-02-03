@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getGraduateRegularAdmission } from '@/apis/v1/admissions/graduate/regular-admission';
+import { getGraduateRegularAdmission } from '@/apis/v2/admissions/graduate/regular-admission';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateAdmission } from '@/constants/segmentNode';
