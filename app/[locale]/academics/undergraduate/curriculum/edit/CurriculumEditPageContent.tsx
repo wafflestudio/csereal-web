@@ -1,5 +1,5 @@
 import { putCurriculumAction } from '@/actions/academics';
-import { AcademicsCommon } from '@/apis/v2/academics/types';
+import { TimelineContent } from '@/apis/types/academics';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
@@ -13,7 +13,7 @@ const curriculumPath = getPath(curriculum);
 export default function CurriculumEditPageContent({
   initContent,
 }: {
-  initContent: AcademicsCommon;
+  initContent: TimelineContent;
 }) {
   const defaultValues: TimelineFormData = {
     year: initContent.year,

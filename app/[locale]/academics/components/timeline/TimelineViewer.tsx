@@ -2,7 +2,7 @@
 
 import { useReducer, useState } from 'react';
 
-import { AcademicsCommon } from '@/apis/v2/academics/types';
+import { TimelineContent } from '@/apis/types/academics';
 import Attachments, { Attachment } from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -20,7 +20,7 @@ interface TimelineViewerProps<T> {
   yearLimitCount?: number;
 }
 
-export default function TimelineViewer<T extends AcademicsCommon>({
+export default function TimelineViewer<T extends TimelineContent>({
   contents,
   title,
   deleteAction,
@@ -174,11 +174,11 @@ function ContentHTMLViewer({ description }: { description: string }) {
   return <HTMLViewer htmlContent={description} wrapperClassName="bg-neutral-75 p-5" />;
 }
 
-const getSelectedContents = <T extends AcademicsCommon>(
+const getSelectedContents = <T extends TimelineContent>(
   year: number,
   yearLimit: number,
   data: T[],
-): T[] | AcademicsCommon[] => {
+): T[] | TimelineContent[] => {
   if (year <= yearLimit) return data.filter((d) => d.year <= yearLimit);
 
   const change = data.find((d) => d.year === year);

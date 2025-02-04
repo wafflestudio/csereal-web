@@ -1,5 +1,5 @@
 import { putGeneralStudiesAction } from '@/actions/academics';
-import { AcademicsCommon } from '@/apis/v2/academics/types';
+import { TimelineContent } from '@/apis/types/academics';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
@@ -13,7 +13,7 @@ const generalStudiesPath = getPath(generalStudies);
 export default function GeneralStudiesEditPageContent({
   initContent,
 }: {
-  initContent: AcademicsCommon;
+  initContent: TimelineContent;
 }) {
   const onSubmit = async (formData: FormData) => {
     'use server';

@@ -1,12 +1,12 @@
 'use client';
 
 import { deleteCurriculumAction } from '@/actions/academics';
-import { AcademicsCommon } from '@/apis/v2/academics/types';
+import { TimelineContent } from '@/apis/types/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 import TimelineViewer from '../../components/timeline/TimelineViewer';
 
-export default function CurriculumPageContent({ data }: { data: AcademicsCommon[] }) {
+export default function CurriculumPageContent({ data }: { data: TimelineContent[] }) {
   return (
     <PageLayout titleType="big">
       {/* 추후 RoadMapButton 복구 */}
