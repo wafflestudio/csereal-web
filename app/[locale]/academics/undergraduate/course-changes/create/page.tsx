@@ -3,12 +3,14 @@ import TimelineEditor from '@/app/[locale]/academics/components/timeline/Timelin
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangesPath = getPath(undergraduateCourseChanges);
 
 export default function UndergraduateCourseChangesCreatePage() {
   const onSubmit = async (formData: FormData) => {
     'use server';
+    decodeFormDataFileName(formData, 'attachments');
     await postCourseChangesAction('undergraduate', formData);
   };
 

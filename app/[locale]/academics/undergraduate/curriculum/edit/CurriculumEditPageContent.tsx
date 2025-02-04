@@ -6,6 +6,7 @@ import TimelineEditor, {
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { curriculum } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const curriculumPath = getPath(curriculum);
 
@@ -17,11 +18,12 @@ export default function CurriculumEditPageContent({
   const defaultValues: TimelineFormData = {
     year: initContent.year,
     description: initContent.description,
-    file: [], // TODO: 채우기
+    file: initContent.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
   };
 
   const onSubmit = async (formData: FormData) => {
     'use server';
+    decodeFormDataFileName(formData, 'attachments');
     await putCurriculumAction(initContent.year, formData);
   };
 

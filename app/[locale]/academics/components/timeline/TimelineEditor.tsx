@@ -36,7 +36,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
     const formData = isEdit
       ? contentToFormData('EDIT', {
           requestObject: {
-            ...requestObject,
+            description: requestObject.description,
             deleteIds: getAttachmentDeleteIds(
               requestObject.file,
               defaultValues.file.filter(isUploadedFile).map(({ file: { id } }) => id),
@@ -46,7 +46,11 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
         })
       : contentToFormData('CREATE', {
           // TODO: name 제거
-          requestObject: { ...requestObject, name: '' },
+          requestObject: {
+            year: requestObject.year,
+            description: requestObject.description,
+            name: '',
+          },
           attachments: requestObject.file,
         });
 

@@ -7,6 +7,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_COURSE_CHANGES } from '@/constants/network';
 import { graduateCourseChanges } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangePath = getPath(graduateCourseChanges);
 
@@ -22,6 +23,7 @@ export default async function Page(props: { searchParams: Promise<{ year: string
 
   const onSubmit = async (formData: FormData) => {
     'use server';
+    decodeFormDataFileName(formData, 'newAttachments');
     await putCourseChangesAction('graduate', year, formData);
   };
 

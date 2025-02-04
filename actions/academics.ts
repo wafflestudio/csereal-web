@@ -87,7 +87,6 @@ export const postCurriculumAction = withErrorHandler(async (formData: FormData) 
 });
 
 export const putCurriculumAction = withErrorHandler(async (year: number, formData: FormData) => {
-  decodeFormDataFileName(formData, 'attachments');
   await putAcademicsByPostType('undergraduate', 'curriculum', year, formData);
   revalidateTag(FETCH_TAG_CURRICULUM);
   redirectKo(curriculumPath);
@@ -111,7 +110,6 @@ export const postGeneralStudiesAction = withErrorHandler(async (formData: FormDa
 
 export const putGeneralStudiesAction = withErrorHandler(
   async (year: number, formData: FormData) => {
-    decodeFormDataFileName(formData, 'attachments');
     await putAcademicsByPostType('undergraduate', 'general-studies-requirements', year, formData);
     revalidateTag(FETCH_TAG_GENERAL_STUDIES);
     redirectKo(generalStudiesPath);
@@ -141,7 +139,6 @@ const undergraduateCourseChangesPath = getPath(undergraduateCourseChanges);
 
 export const postCourseChangesAction = withErrorHandler(
   async (studentType: StudentType, formData: FormData) => {
-    decodeFormDataFileName(formData, 'newAttachments');
     await postAcademicsByPostType(studentType, 'course-changes', formData);
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
     redirectKo(
@@ -152,7 +149,6 @@ export const postCourseChangesAction = withErrorHandler(
 
 export const putCourseChangesAction = withErrorHandler(
   async (studentType: StudentType, year: number, formData: FormData) => {
-    decodeFormDataFileName(formData, 'newAttachments');
     await putAcademicsByPostType(studentType, 'course-changes', year, formData);
     revalidateTag(FETCH_TAG_COURSE_CHANGES);
     redirectKo(
