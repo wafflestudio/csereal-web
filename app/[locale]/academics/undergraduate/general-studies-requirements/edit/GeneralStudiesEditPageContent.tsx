@@ -17,7 +17,7 @@ export default function GeneralStudiesEditPageContent({
 }) {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    decodeFormDataFileName(formData, 'attachments');
+    decodeFormDataFileName(formData, 'newAttachments');
     await putGeneralStudiesAction(initContent.year, formData);
   };
 

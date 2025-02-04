@@ -23,7 +23,7 @@ export default function CurriculumEditPageContent({
 
   const onSubmit = async (formData: FormData) => {
     'use server';
-    decodeFormDataFileName(formData, 'attachments');
+    decodeFormDataFileName(formData, 'newAttachments');
     await putCurriculumAction(initContent.year, formData);
   };
 
