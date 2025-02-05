@@ -40,7 +40,6 @@ export default function AboutEditor({
   const onCancel = () => router.push(cancelPath);
 
   const onSubmit = handleSubmit(async ({ htmlKo, htmlEn, image, files }) => {
-    console.log(files, defaultValues);
     const requestObject = {
       ko: { description: htmlKo, deleteIds: getAttachmentDeleteIds(files, defaultValues.files) },
       en: { description: htmlEn, deleteIds: [] },

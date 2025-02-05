@@ -7,10 +7,8 @@ import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateScholarship, undergraduateScholarship } from '@/constants/segmentNode';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 const graduatePath = getPath(graduateScholarship);
 const undergraduatePath = getPath(undergraduateScholarship);
@@ -28,12 +26,8 @@ export default function ScholarshipDetail({
   const editHref = `${type === 'graduate' ? graduatePath : undergraduatePath}/${id}/edit`;
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteScholarshipAction(type, id));
-      successToast('장학금을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteScholarshipAction(type, id);
+    handleServerResponse(resp, { successMessage: '장학금을 삭제했습니다.' });
   };
 
   return (

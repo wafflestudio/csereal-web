@@ -1,15 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import { useRouter } from '@/i18n/routing';
 import { EditorFile, isUploadedFile } from '@/types/form';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export type TimelineFormData = { year: number; description: string; file: EditorFile[] };
 
@@ -38,7 +36,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
     const formData = isEdit
       ? contentToFormData('EDIT', {
           requestObject: {
-            ...requestObject,
+            description: requestObject.description,
             deleteIds: getAttachmentDeleteIds(
               requestObject.file,
               defaultValues.file.filter(isUploadedFile).map(({ file: { id } }) => id),
@@ -48,16 +46,16 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
         })
       : contentToFormData('CREATE', {
           // TODO: name 제거
-          requestObject: { ...requestObject, name: '' },
+          requestObject: {
+            year: requestObject.year,
+            description: requestObject.description,
+            name: '',
+          },
           attachments: requestObject.file,
         });
 
-    try {
-      handleServerAction(await _onSubmit(formData));
-      successToast('저장되었습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await _onSubmit(formData);
+    handleServerResponse(resp, { successMessage: '저장되었습니다.' });
   };
 
   return (

@@ -1,6 +1,7 @@
 import './style.css';
 
-import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { curriculum } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 
@@ -15,6 +16,10 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 }
 
 export default async function UndergradutecurriculumPage() {
-  const curriculumList = await getCurriculum();
+  const curriculumList = await getAcademicsByPostType(
+    'undergraduate',
+    'curriculum',
+    FETCH_TAG_CURRICULUM,
+  );
   return <CurriculumPageContent data={curriculumList} />;
 }

@@ -5,9 +5,8 @@ import { putCourseAction } from '@/actions/academics';
 import { CLASSIFICATION, ClassificationEn, Course, GRADE } from '@/apis/types/academics';
 import Form from '@/components/form/Form';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
+import { errorToast } from '@/utils/toast';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -25,14 +24,14 @@ export default function CourseEditor({
   const gradeDropdownContents = defaultValues.grade === 0 ? [GRADE[0]] : GRADE.slice(1);
 
   const onSubmit = async (course: Course) => {
-    try {
-      handleServerAction(await putCourseAction(course));
-      successToast('교과목을 수정했습니다.');
-      setCourse(course);
-      toggleEditMode();
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putCourseAction(course);
+    handleServerResponse(resp, {
+      successMessage: '교과목을 수정했습니다.',
+      onSuccess: () => {
+        setCourse(course);
+        toggleEditMode();
+      },
+    });
   };
 
   return (

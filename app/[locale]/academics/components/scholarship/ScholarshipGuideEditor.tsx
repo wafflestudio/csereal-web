@@ -2,12 +2,12 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { putScholarshipGuideAction } from '@/actions/academics';
+import { StudentType } from '@/apis/types/academics';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { useRouter } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 export type ScholarshipGuideFormData = {
   description: string;
@@ -16,25 +16,18 @@ export type ScholarshipGuideFormData = {
 type Props = {
   description: string;
   cancelPath: string;
-  onSubmit: (data: ScholarshipGuideFormData) => Promise<void>;
+  studentType: StudentType;
 };
 
-export default function ScholarshipGuideEditor({
-  description,
-  cancelPath,
-  onSubmit: _onSubmit,
-}: Props) {
+export default function ScholarshipGuideEditor({ description, studentType, cancelPath }: Props) {
   const formMethods = useForm<ScholarshipGuideFormData>({ defaultValues: { description } });
   const { handleSubmit } = formMethods;
   const router = useRouter();
 
-  const onSubmit = async (formData: ScholarshipGuideFormData) => {
-    try {
-      handleServerAction(await _onSubmit(formData));
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
-  };
+  const onSubmit = handleSubmit(async ({ description }: ScholarshipGuideFormData) => {
+    const resp = await putScholarshipGuideAction(studentType, description);
+    handleServerResponse(resp, { successMessage: '장학 제도를 수정했습니다.' });
+  });
 
   const onCancel = () => router.replace(cancelPath);
 
@@ -44,7 +37,7 @@ export default function ScholarshipGuideEditor({
         <Fieldset.HTML>
           <Form.HTML name="description" />
         </Fieldset.HTML>
-        <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
+        <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
       </Form>
     </FormProvider>
   );

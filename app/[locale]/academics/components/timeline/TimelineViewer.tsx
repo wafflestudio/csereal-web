@@ -2,14 +2,14 @@
 
 import { useReducer, useState } from 'react';
 
+import { TimelineContent } from '@/apis/types/academics';
+import Attachments, { Attachment } from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
 import { refreshPage } from '@/utils/refreshPage';
-import { CustomError, handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 import Timeline from './Timeline';
 
@@ -20,7 +20,7 @@ interface TimelineViewerProps<T> {
   yearLimitCount?: number;
 }
 
-export default function TimelineViewer<T extends { year: number; description: string }>({
+export default function TimelineViewer<T extends TimelineContent>({
   contents,
   title,
   deleteAction,
@@ -33,13 +33,11 @@ export default function TimelineViewer<T extends { year: number; description: st
   const pathname = usePathname();
 
   const handleDelete = async (year: number) => {
-    try {
-      handleServerAction(await deleteAction(year));
-      successToast('삭제했습니다.');
-      refreshPage();
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteAction(year);
+    handleServerResponse(resp, {
+      successMessage: '삭제했습니다.',
+      onSuccess: refreshPage,
+    });
   };
 
   const getEditHref = (year: number) => `${pathname}/edit?year=${year}`;
@@ -57,6 +55,7 @@ export default function TimelineViewer<T extends { year: number; description: st
           <ContentViewer
             description={selectedContents[0].description}
             title={`${selectedContents[0].year}${title.unit} ${title.text}`}
+            attachments={selectedContents[0].attachments}
             onDelete={() => handleDelete(selectedYear)}
             editHref={getEditHref(selectedYear)}
           />
@@ -68,6 +67,7 @@ export default function TimelineViewer<T extends { year: number; description: st
                 description={change.description}
                 expandDefault={i === 0}
                 title={`${change.year}${title.unit}${isLast ? ' 이하' : ''} ${title.text}`}
+                attachments={change.attachments}
                 onDelete={() => handleDelete(change.year)}
                 editHref={getEditHref(change.year)}
                 key={change.year}
@@ -114,17 +114,20 @@ function Buttons({
 function ContentViewer({
   description,
   title,
+  attachments,
   onDelete,
   editHref,
 }: {
   description: string;
   title: string;
+  attachments: Attachment[];
   onDelete: () => Promise<CustomError | void>;
   editHref: string;
 }) {
   return (
     <div className="mb-5">
       <div className="mb-4 font-semibold">{title}</div>
+      <Attachments files={attachments} />
       <ContentHTMLViewer description={description} />
       <Buttons onDelete={onDelete} editHref={editHref} />
     </div>
@@ -135,12 +138,14 @@ function TogglableContentViewer({
   description,
   expandDefault = false,
   title,
+  attachments,
   onDelete,
   editHref,
 }: {
   description: string;
   expandDefault?: boolean;
   title: string;
+  attachments: Attachment[];
   onDelete: () => Promise<CustomError | void>;
   editHref: string;
 }) {
@@ -156,6 +161,7 @@ function TogglableContentViewer({
       </button>
       {isExpanded && (
         <>
+          <Attachments files={attachments} />
           <ContentHTMLViewer description={description} />
           <Buttons onDelete={onDelete} editHref={editHref} />
         </>
@@ -168,13 +174,15 @@ function ContentHTMLViewer({ description }: { description: string }) {
   return <HTMLViewer htmlContent={description} wrapperClassName="bg-neutral-75 p-5" />;
 }
 
-const getSelectedContents = <T extends { year: number; description: string }>(
+const getSelectedContents = <T extends TimelineContent>(
   year: number,
   yearLimit: number,
   data: T[],
-) => {
+): T[] | TimelineContent[] => {
   if (year <= yearLimit) return data.filter((d) => d.year <= yearLimit);
 
   const change = data.find((d) => d.year === year);
-  return change ? [change] : [{ year, description: `${year}학년도 내용은 없습니다.` }];
+  return change
+    ? [change]
+    : [{ year, description: `${year}학년도 내용은 없습니다.`, attachments: [] }];
 };

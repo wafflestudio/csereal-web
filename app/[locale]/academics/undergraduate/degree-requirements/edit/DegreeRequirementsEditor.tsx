@@ -8,11 +8,9 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { degree } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { EditorFile, isUploadedFile } from '@/types/form';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast } from '@/utils/toast';
+import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 const degreeRequirementsPath = getPath(degree);
 
@@ -26,7 +24,7 @@ export default function DegreeRequirementsEditor({
   onSubmit: _onSubmit,
 }: {
   defaultValues: DegreeRequirementsFormData;
-  onSubmit: (formData: FormData) => Promise<void>;
+  onSubmit: (formData: FormData) => Promise<void | CustomError>;
 }) {
   const formMethods = useForm<DegreeRequirementsFormData>({ defaultValues });
   const { handleSubmit } = formMethods;
@@ -47,11 +45,8 @@ export default function DegreeRequirementsEditor({
       attachments: content.files,
     });
 
-    try {
-      handleServerAction(_onSubmit(formData));
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = _onSubmit(formData);
+    handleServerResponse(resp, { successMessage: '학부 졸업규정을 수정했습니다.' });
   };
 
   return (

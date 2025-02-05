@@ -1,17 +1,17 @@
-import { postAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import { postCourseChangesAction } from '@/actions/academics';
 import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { undergraduateCourseChanges } from '@/constants/segmentNode';
-import { redirectKo } from '@/i18n/routing';
+import { graduateCourseChanges } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
-const courseChangesPath = getPath(undergraduateCourseChanges);
+const courseChangesPath = getPath(graduateCourseChanges);
 
 export default function Page() {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    await postAcademicsByPostType('graduate', 'course-changes', formData);
-    redirectKo(courseChangesPath);
+    decodeFormDataFileName(formData, 'attachments');
+    await postCourseChangesAction('graduate', formData);
   };
 
   return (

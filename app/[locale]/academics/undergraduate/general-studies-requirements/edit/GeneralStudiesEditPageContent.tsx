@@ -1,35 +1,37 @@
-import { GeneralStudiesRequirement } from '@/apis/types/academics';
-import { putAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import { putGeneralStudiesAction } from '@/actions/academics';
+import { TimelineContent } from '@/apis/types/academics';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { curriculum } from '@/constants/segmentNode';
+import { generalStudies } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
-const curriculumPath = getPath(curriculum);
+const generalStudiesPath = getPath(generalStudies);
 
 export default function GeneralStudiesEditPageContent({
   initContent,
 }: {
-  initContent: GeneralStudiesRequirement;
+  initContent: TimelineContent;
 }) {
   const onSubmit = async (formData: FormData) => {
     'use server';
-    putAcademicsByPostType('undergraduate', 'general-studies-requirements', formData);
+    decodeFormDataFileName(formData, 'newAttachments');
+    await putGeneralStudiesAction(initContent.year, formData);
   };
 
   const defaultValues: TimelineFormData = {
     year: initContent.year,
     description: initContent.description,
-    file: [],
+    file: initContent.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
   };
 
   return (
     <PageLayout title="필수 교양 과목 편집" titleType="big">
       <TimelineEditor
         onSubmit={onSubmit}
-        cancelPath={curriculumPath}
+        cancelPath={generalStudiesPath}
         defaultValues={defaultValues}
       />
     </PageLayout>

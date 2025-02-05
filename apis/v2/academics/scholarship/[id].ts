@@ -7,9 +7,7 @@ export const getScholarship = async (id: number): Promise<WithLanguage<Scholarsh
   const res = await getRequest<{ first: Scholarship; second: Scholarship }>(
     `/v2/academics/scholarship/${id}`,
     undefined,
-    {
-      next: { tags: [FETCH_TAG_SCHOLARSHIP] },
-    },
+    { next: { tags: [FETCH_TAG_SCHOLARSHIP] } },
   );
   const isFirstKo = res.first.language === 'ko';
   return isFirstKo ? { ko: res.first, en: res.second } : { ko: res.second, en: res.first };

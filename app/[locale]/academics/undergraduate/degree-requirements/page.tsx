@@ -1,4 +1,4 @@
-import { getDegreeRequirements } from '@/apis/v1/academics/undergraduate/degree-requirements';
+import { getDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
 import Attachments from '@/components/common/Attachments';
 import { BlackButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';

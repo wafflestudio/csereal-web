@@ -1,28 +1,30 @@
-import { revalidateTag } from 'next/cache';
-
-import { Curriculum } from '@/apis/types/academics';
-import { putAcademicsByPostType } from '@/apis/v1/academics/[studentType]/[postType]';
+import { putCurriculumAction } from '@/actions/academics';
+import { TimelineContent } from '@/apis/types/academics';
 import TimelineEditor, {
   TimelineFormData,
 } from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 import { curriculum } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const curriculumPath = getPath(curriculum);
 
-export default function CurriculumEditPageContent({ initContent }: { initContent: Curriculum }) {
+export default function CurriculumEditPageContent({
+  initContent,
+}: {
+  initContent: TimelineContent;
+}) {
   const defaultValues: TimelineFormData = {
     year: initContent.year,
     description: initContent.description,
-    file: [],
+    file: initContent.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
   };
 
   const onSubmit = async (formData: FormData) => {
     'use server';
-    await putAcademicsByPostType('undergraduate', 'curriculum', formData);
-    revalidateTag(FETCH_TAG_CURRICULUM);
+    decodeFormDataFileName(formData, 'newAttachments');
+    await putCurriculumAction(initContent.year, formData);
   };
 
   return (
