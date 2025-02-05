@@ -14,8 +14,8 @@ import { searchAdmissions } from '@/apis/v1/admissions/search/top';
 import { searchMember } from '@/apis/v1/member/search/top';
 import { searchNews } from '@/apis/v2/news/totalSearch';
 import { searchNotice } from '@/apis/v2/notice/totalSearch';
-import { getSeminarPosts } from '@/apis/v2/seminar';
 import { searchResearch } from '@/apis/v2/research/search/top';
+import { getSeminarPosts } from '@/apis/v2/seminar';
 
 import { TreeNode } from './helper/SearchSubNavbar';
 
