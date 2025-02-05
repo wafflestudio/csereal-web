@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-import { getInternationalUndergraduate } from '@/apis/v1/admissions/international/undergraduate';
+import { getInternationalUndergraduate } from '@/apis/v2/admissions/international/undergraduate';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { internationalUndergraduateAdmission } from '@/constants/segmentNode';
@@ -22,12 +23,15 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function InternationalUndergraduateAdmissionPage() {
-  const { description } = await getInternationalUndergraduate();
+export default async function InternationalUndergraduateAdmissionPage({
+  params,
+}: AdmissionPageProps) {
+  const locale = (await params).locale;
+  const data = await getInternationalUndergraduate();
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer htmlContent={description} />
+      <HTMLViewer htmlContent={data[locale].description} />
     </PageLayout>
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-import { getInternationalScholarships } from '@/apis/v1/admissions/international/scholarships';
+import { getInternationalScholarships } from '@/apis/v2/admissions/international/scholarships';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { internationalScholarships } from '@/constants/segmentNode';
@@ -22,12 +23,13 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function InternationalScholarshipPage() {
-  const { description } = await getInternationalScholarships();
+export default async function InternationalScholarshipPage({ params }: AdmissionPageProps) {
+  const locale = (await params).locale;
+  const data = await getInternationalScholarships();
 
   return (
     <PageLayout titleType="big" removeBottomPadding>
-      <HTMLViewer htmlContent={description} wrapperClassName="pb-16 sm:pb-[220px]" />
+      <HTMLViewer htmlContent={data[locale].description} wrapperClassName="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );
 }

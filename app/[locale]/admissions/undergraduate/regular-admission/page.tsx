@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-import { getUndergraduateRegularAdmission } from '@/apis/v1/admissions/undergraduate/regular-admission';
+import { getUndergraduateRegularAdmission } from '@/apis/v2/admissions/undergraduate/regular-admission';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateRegularAdmission } from '@/constants/segmentNode';
@@ -16,12 +17,13 @@ export async function generateMetadata(props: {
   return await getMetadata({ locale, node: undergraduateRegularAdmission });
 }
 
-export default async function UndergraduateRegularAdmission() {
+export default async function UndergraduateRegularAdmission({ params }: AdmissionPageProps) {
+  const locale = (await params).locale;
   const data = await getUndergraduateRegularAdmission();
 
   return (
     <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data.description} />
+      <HTMLViewer htmlContent={data[locale].description} />
     </PageLayout>
   );
 }
