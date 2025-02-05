@@ -34,7 +34,7 @@ export default function SeminarCreatePage() {
 
   return (
     <PageLayout title="세미나 작성" titleType="big" titleMargin="mb-[2.25rem]" hideNavbar>
-      <SeminarEditor onCancel={onCancel} onSubmit={onSubmit} />
+      <SeminarEditor onCancelAction={onCancel} onSubmitAction={onSubmit} />
     </PageLayout>
   );
 }

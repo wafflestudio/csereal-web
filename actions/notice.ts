@@ -2,8 +2,8 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { batchDeleteNotice, batchUnpinNotice, postNotice } from '@/apis/v1/notice';
-import { deleteNotice, patchNotice } from '@/apis/v1/notice/[id]';
+import { batchDeleteNotice, batchUnpinNotice, postNotice } from '@/apis/v2/notice';
+import { deleteNotice, patchNotice } from '@/apis/v2/notice/[id]';
 import { FETCH_TAG_NOTICE } from '@/constants/network';
 import { notice } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { PostSearchQueryParams } from '@/apis/types/post';
-import { getNoticePosts } from '@/apis/v1/notice';
+import { getNoticePosts } from '@/apis/v2/notice';
 import NoticePageContent from '@/app/[locale]/community/notice/NoticePageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { notice } from '@/constants/segmentNode';

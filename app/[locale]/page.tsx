@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { MainImportant } from '@/apis/types/main';
-import { getMain } from '@/apis/v1';
+import { getMain } from '@/apis/v2';
 import GraphicSection from '@/app/[locale]/components/GraphicSection';
 import NewsSection from '@/app/[locale]/components/NewsSection';
 import NoticeSection from '@/app/[locale]/components/NoticeSection';
