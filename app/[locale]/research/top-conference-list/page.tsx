@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getTopConferenceList } from '@/apis/v1/conference/page';
+import { getTopConferenceList } from '@/apis/v2/conference/page';
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { topConferenceList } from '@/constants/segmentNode';
