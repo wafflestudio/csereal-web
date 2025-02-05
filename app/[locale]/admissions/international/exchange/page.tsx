@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import { getInternationalExchangeVisiting } from '@/apis/v2/admissions/international/exchange-visiting';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { exchangeVisitingProgram } from '@/constants/segmentNode';
@@ -22,12 +23,13 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function InternationalExchangePage() {
-  const { description } = await getInternationalExchangeVisiting();
+export default async function InternationalExchangePage({ params }: AdmissionPageProps) {
+  const locale = (await params).locale;
+  const data = await getInternationalExchangeVisiting();
 
   return (
     <PageLayout titleType="big" removeBottomPadding>
-      <HTMLViewer htmlContent={description} wrapperClassName="pb-16 sm:pb-[220px]" />
+      <HTMLViewer htmlContent={data[locale].description} wrapperClassName="pb-16 sm:pb-[220px]" />
     </PageLayout>
   );
 }
