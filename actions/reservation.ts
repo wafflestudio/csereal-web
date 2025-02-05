@@ -3,9 +3,9 @@
 import { revalidateTag } from 'next/cache';
 
 import { ReservationPostBody } from '@/apis/types/reservation';
-import { postReservation } from '@/apis/v1/reservation';
-import { deleteSingleReservation, getReservation } from '@/apis/v1/reservation/[id]';
-import { deleteAllRecurringReservation } from '@/apis/v1/reservation/recurring/[id]';
+import { postReservation } from '@/apis/v2/reservation';
+import { deleteSingleReservation, getReservation } from '@/apis/v2/reservation/[id]';
+import { deleteAllRecurringReservation } from '@/apis/v2/reservation/recurring/[id]';
 import { FETCH_TAG_RESERVATION } from '@/constants/network';
 
 import { withErrorHandler } from './errorHandler';

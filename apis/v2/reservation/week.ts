@@ -7,7 +7,7 @@ export const getWeeklyReservation = async (params: {
   month: number;
   day: number;
 }) => {
-  return await getRequest<ReservationPreview[]>(`/v1/reservation/week`, params, {
+  return await getRequest<ReservationPreview[]>(`/v2/reservation/week`, params, {
     jsessionID: true,
   });
 };
