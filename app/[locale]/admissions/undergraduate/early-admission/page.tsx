@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getUndergraduateEarlyAdmission } from '@/apis/v1/admissions/undergraduate/early-admission';
+import { getUndergraduateEarlyAdmission } from '@/apis/v2/admissions/undergraduate/early-admission';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateEarlyAdmission } from '@/constants/segmentNode';

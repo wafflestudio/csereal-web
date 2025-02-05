@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getInternationalgraduate } from '@/apis/v1/admissions/international/graduate';
+import { getInternationalgraduate } from '@/apis/v2/admissions/international/graduate';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { internationalGraduateAdmission } from '@/constants/segmentNode';
