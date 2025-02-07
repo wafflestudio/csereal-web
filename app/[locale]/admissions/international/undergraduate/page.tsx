@@ -1,15 +1,13 @@
-import { Metadata } from 'next';
-
-import { getInternationalUndergraduate } from '@/apis/v2/admissions/international/undergraduate';
+import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
 import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
-import HTMLViewer from '@/components/form/html/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { FETCH_TAG_INTERNATIONAL_UNDERGRADUATE } from '@/constants/network';
 import { internationalUndergraduateAdmission } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
 
   const { locale } = params;
@@ -23,15 +21,17 @@ export async function generateMetadata(props: {
   });
 }
 
+const path = getPath(internationalUndergraduateAdmission);
+
 export default async function InternationalUndergraduateAdmissionPage({
   params,
 }: AdmissionPageProps) {
   const locale = (await params).locale;
-  const data = await getInternationalUndergraduate();
-
-  return (
-    <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data[locale].description} />
-    </PageLayout>
+  const data = await getAdmissions(
+    'international',
+    'undergraduate',
+    FETCH_TAG_INTERNATIONAL_UNDERGRADUATE,
   );
+
+  return <AdmissionsPageContent pathname={path} description={data[locale].description} />;
 }

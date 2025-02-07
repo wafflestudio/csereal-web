@@ -1,6 +1,6 @@
 import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
 import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
-import { FETCH_TAG_REGULAR_ADMISSON } from '@/constants/network';
+import { FETCH_TAG_REGULAR_ADMISSION } from '@/constants/network';
 import { undergraduateRegularAdmission } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
@@ -22,7 +22,7 @@ export default async function UndergraduateRegularAdmission({ params }: Admissio
   const data = await getAdmissions(
     'undergraduate',
     'regular-admission',
-    FETCH_TAG_REGULAR_ADMISSON,
+    FETCH_TAG_REGULAR_ADMISSION,
   );
 
   return <AdmissionsPageContent pathname={path} description={data[locale].description} />;

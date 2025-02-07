@@ -1,15 +1,13 @@
-import { Metadata } from 'next';
-
-import { getInternationalExchangeVisiting } from '@/apis/v2/admissions/international/exchange-visiting';
+import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
 import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
-import HTMLViewer from '@/components/form/html/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { FETCH_TAG_EXCHANGE } from '@/constants/network';
 import { exchangeVisitingProgram } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
 
   const { locale } = params;
@@ -23,13 +21,18 @@ export async function generateMetadata(props: {
   });
 }
 
+const path = getPath(exchangeVisitingProgram);
+
 export default async function InternationalExchangePage({ params }: AdmissionPageProps) {
   const locale = (await params).locale;
-  const data = await getInternationalExchangeVisiting();
+  const data = await getAdmissions('international', 'exchange-visiting', FETCH_TAG_EXCHANGE);
 
   return (
-    <PageLayout titleType="big" removeBottomPadding>
-      <HTMLViewer htmlContent={data[locale].description} wrapperClassName="pb-16 sm:pb-[220px]" />
-    </PageLayout>
+    <AdmissionsPageContent
+      pathname={path}
+      description={data[locale].description}
+      removeBottomPadding
+      htmlWrapperClassName="pb-16 sm:pb-[220px]"
+    />
   );
 }
