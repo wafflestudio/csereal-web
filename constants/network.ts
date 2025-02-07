@@ -41,3 +41,5 @@ export const FETCH_TAG_CAREER = 'career';
 export const FETCH_TAG_GROUP = 'group';
 export const FETCH_TAG_CENTER = 'center';
 export const FETCH_TAG_LAB = 'lab';
+
+export const FETCH_TAG_REGULAR_ADMISSON = 'regular-admission';
