@@ -40,7 +40,7 @@ export default async function CouncilIntroPage() {
         </LoginVisible>
         <HTMLViewer htmlContent={description} />
       </div>
-      <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[22.5rem]">
+      <div className="px-5 pb-16 pt-10 sm:pl-[6.25rem] sm:pr-[22.5rem]">
         <h2 className="mb-6 text-base font-semibold">구성도</h2>
         <Image
           src={imageURL}
