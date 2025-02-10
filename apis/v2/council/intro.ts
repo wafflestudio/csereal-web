@@ -9,7 +9,7 @@ import { putRequest } from '@/apis';
 
 export const getCouncilIntro = async () => mockData;
 
-export const putOverview = (formData: FormData) =>
+export const putCouncilIntro = (formData: FormData) =>
   putRequest('/v2/council/intro', { body: formData, jsessionID: true });
 
 const mockData = {
