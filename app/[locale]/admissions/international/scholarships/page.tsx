@@ -1,15 +1,13 @@
-import { Metadata } from 'next';
-
-import { getInternationalScholarships } from '@/apis/v2/admissions/international/scholarships';
+import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
 import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
-import HTMLViewer from '@/components/form/html/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { FETCH_TAG_INTERNATIONAL_SCHOLARSHIPS } from '@/constants/network';
 import { internationalScholarships } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
 
   const { locale } = params;
@@ -23,13 +21,22 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function InternationalScholarshipPage({ params }: AdmissionPageProps) {
+const path = getPath(internationalScholarships);
+
+export default async function InternationalScholarshipsPage({ params }: AdmissionPageProps) {
   const locale = (await params).locale;
-  const data = await getInternationalScholarships();
+  const data = await getAdmissions(
+    'international',
+    'scholarships',
+    FETCH_TAG_INTERNATIONAL_SCHOLARSHIPS,
+  );
 
   return (
-    <PageLayout titleType="big" removeBottomPadding>
-      <HTMLViewer htmlContent={data[locale].description} wrapperClassName="pb-16 sm:pb-[220px]" />
-    </PageLayout>
+    <AdmissionsPageContent
+      pathname={path}
+      description={data[locale].description}
+      removeBottomPadding
+      htmlWrapperClassName="pb-16 sm:pb-[220px]"
+    />
   );
 }
