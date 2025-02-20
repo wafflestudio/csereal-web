@@ -41,13 +41,13 @@ export default async function CouncilIntroPage() {
         <HTMLViewer htmlContent={description} />
       </div>
       <div className="px-5 pb-16 pt-10 sm:pl-[6.25rem] sm:pr-[22.5rem]">
-        <h2 className="mb-6 text-base font-semibold">구성도</h2>
+        <h2 className="mb-6 text-base font-semibold">조직도</h2>
         <Image
           src={imageURL}
           alt="학생회_구성도"
-          width={320}
-          height={216}
-          className="w-full object-contain sm:w-80"
+          width={580}
+          height={435}
+          className="w-full object-contain sm:w-[580px]"
         />
       </div>
     </PageLayout>

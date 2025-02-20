@@ -30,6 +30,8 @@ export default function IntroEditor({ cancelPath, defaultValues, onSubmit: _onSu
   const onSubmit = handleSubmit(async ({ description, image }) => {
     const requestObject = {
       description,
+      sequence: 0,
+      name: 'name',
       removeImage: defaultValues.image !== null && image === null,
     };
 
@@ -47,7 +49,7 @@ export default function IntroEditor({ cancelPath, defaultValues, onSubmit: _onSu
 
         <Fieldset.Image>
           <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
-            학생회 구성도
+            학생회 조직도
           </label>
           <Form.Image name="image" />
         </Fieldset.Image>
