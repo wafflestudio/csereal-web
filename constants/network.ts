@@ -51,3 +51,4 @@ export const FETCH_TAG_INTERNATIONAL_GRADUATE = 'international-graduate';
 export const FETCH_TAG_INTERNATIONAL_UNDERGRADUATE = 'international-undergraduate';
 
 export const FETCH_TAG_INTRO = 'intro';
+export const FETCH_TAG_MINUTE = 'minute';

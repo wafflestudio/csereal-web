@@ -142,6 +142,14 @@ export const councilIntro: SegmentNode = {
   children: [],
 };
 
+export const councilMinute: SegmentNode = {
+  name: '학생회 회의록',
+  segment: 'meeting-minute',
+  isPage: true,
+  parent: council,
+  children: [],
+};
+
 export const people: SegmentNode = {
   name: '구성원',
   segment: 'people',
@@ -594,7 +602,7 @@ about.children = [
   directions,
 ];
 community.children = [notice, news, seminar, facultyRecruitment, council];
-council.children = [councilIntro];
+council.children = [councilIntro, councilMinute];
 people.children = [faculty, emeritusFaculty, staff];
 research.children = [researchGroups, researchCenters, researchLabs, topConferenceList];
 admissions.children = [undergraduateAdmission, graduateAdmission, internationalAdmission];
