@@ -8,9 +8,8 @@ export const getCouncilMinutesByYear = (year: number) =>
     next: { tags: [FETCH_TAG_MINUTE] },
   });
 
-export const postCouncilMinutesByYear = (year: number, formData: FormData) => {
+export const postCouncilMinutesByYear = (year: number, formData: FormData) =>
   postRequest(`/v2/council/meeting-minute/${year}`, { body: formData, jsessionID: true });
-};
 
 export const getCouncilMinute = (year: number, index: number) =>
   getRequest<Minute>(`/v2/council/meeting-minute/${year}/${index}`, undefined, {
