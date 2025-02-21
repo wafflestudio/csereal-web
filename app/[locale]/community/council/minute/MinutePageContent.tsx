@@ -31,7 +31,7 @@ export default function MinutePageContent({ contents }: { contents: MinuteConten
 
     const resp = await deleteMinuteAction(year, index);
     handleServerResponse(resp, {
-      successMessage: `${year}대 학생회 ${index}차 회의록을 삭제했습니다.`,
+      successMessage: `${year}년 ${index}차 회의록을 삭제했습니다.`,
       onSuccess: refreshPage,
     });
   };
