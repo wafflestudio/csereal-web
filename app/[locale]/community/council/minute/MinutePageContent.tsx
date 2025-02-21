@@ -93,24 +93,28 @@ function Buttons({
   );
 }
 
+function Minutes({ minute }: { minute: MinuteContent }) {
+  return (
+    <div className="mb-7 border-b border-neutral-200">
+      <div className="flex items-center justify-between gap-2.5">
+        <div className="font-semibold">{minute.index}차 회의 회의록</div>
+        <Buttons
+          onDelete={() => deleteMinuteAction(minute.year, minute.index)}
+          editHref={`${minutePath}/edit/${minute.year}/${minute.index}`}
+        />
+      </div>
+      {minute.attachments.map((file) => (
+        <Attachments files={[file]} margin="mt-3 sm:mt-6 mb-3 sm:mb-6" />
+      ))}
+    </div>
+  );
+}
+
 function ContentViewer({ contents }: { contents: MinuteContent[] }) {
   return (
     <div className="mb-5">
       {contents.map((minute) => {
-        return (
-          <div className="mb-7 border-b border-neutral-200">
-            <div className="flex items-center justify-between gap-2.5">
-              <div className="font-semibold">{minute.index}차 회의 회의록</div>
-              <Buttons
-                onDelete={() => deleteMinuteAction(minute.year, minute.index)}
-                editHref={`${minutePath}/edit/${minute.year}/${minute.index}`}
-              />
-            </div>
-            {minute.attachments.map((file) => (
-              <Attachments files={[file]} margin="mt-3 sm:mt-6 mb-3 sm:mb-6" />
-            ))}
-          </div>
-        );
+        return <Minutes minute={minute} />;
       })}
     </div>
   );
@@ -118,14 +122,10 @@ function ContentViewer({ contents }: { contents: MinuteContent[] }) {
 
 function TogglableContentViewer({
   expandDefault = false,
-  attachments,
-  onDelete,
-  editHref,
+  contents,
 }: {
   expandDefault?: boolean;
-  attachments: Attachment[];
-  onDelete: () => Promise<CustomError | void>;
-  editHref: string;
+  contents: MinuteContent[];
 }) {
   const [isExpanded, toggleContent] = useReducer((x) => !x, expandDefault);
 
@@ -135,13 +135,12 @@ function TogglableContentViewer({
         <span className="material-symbols-outlined text-2xl font-light">
           {isExpanded ? 'expand_less' : 'expand_more'}
         </span>
+        <span className="font-semibold">{contents[0].year}년 회의록</span>
       </button>
-      {isExpanded && (
-        <>
-          <Attachments files={attachments} />
-          <Buttons onDelete={onDelete} editHref={editHref} />
-        </>
-      )}
+      {isExpanded &&
+        contents.map((minute) => {
+          return <Minutes minute={minute} />;
+        })}
     </div>
   );
 }
