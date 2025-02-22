@@ -8,7 +8,7 @@ export interface CouncilReportEditorContent {
   title: string;
   description: string;
   mainImage: EditorImage;
-  term: number;
+  sequence: number;
   name: string;
 }
 
@@ -45,7 +45,7 @@ export default function CouncilReportEditor({ onCancel, onSubmit }: Props) {
           <div className="flex items-center gap-[8px]">
             제{' '}
             <Form.Text
-              name="term"
+              name="sequence"
               maxWidth="w-[39px]"
               placeholder="39"
               options={{ required: true }}
