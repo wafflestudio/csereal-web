@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
 import { CouncilReport } from '@/apis/types/council';
-import { getCouncilReport } from '@/apis/v2/council/report/[id]';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
@@ -13,13 +12,27 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilReportList } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 
+const council: CouncilReport = {
+  id: 2,
+  title: 'title',
+  description: 'description',
+  sequence: 1,
+  name: 'name',
+  createdAt: '2022-01-01T00:00:00.000Z',
+  prevId: 1,
+  prevTitle: 'prevTitle',
+  nextId: 3,
+  nextTitle: 'nextTitle',
+};
+
 interface Props {
   params: Promise<{ id: number; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { locale, id } = await params;
-  const { title } = await getCouncilReport(id);
+  const { locale } = await params;
+  // const { title } = await getCouncilReport(id);
+  const { title } = council;
 
   return await getMetadata({
     locale,
@@ -33,18 +46,6 @@ export default async function CouncilReportPage({ params }: Props) {
   const t = await getTranslations({ locale });
 
   // const council = await getCouncilReport(id);
-  const council: CouncilReport = {
-    id: 2,
-    title: 'title',
-    description: 'description',
-    sequence: 1,
-    name: 'name',
-    createdAt: '2022-01-01T00:00:00.000Z',
-    prevId: 1,
-    prevTitle: 'prevTitle',
-    nextId: 3,
-    nextTitle: 'nextTitle',
-  };
 
   const { title, description, sequence, name, createdAt } = council;
   const author = `제${sequence}대 학생회 ${name}`;
