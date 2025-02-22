@@ -3,6 +3,16 @@ export const dynamic = 'force-dynamic';
 import { getCouncilRule } from '@/apis/v2/council/rule';
 import CouncilAttachment from '@/app/[locale]/community/council/components/CouncilAttachments';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { councilBylaws } from '@/constants/segmentNode';
+import { Language } from '@/types/language';
+import { getMetadata } from '@/utils/metadata';
+
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+  const { locale } = params;
+
+  return await getMetadata({ locale, node: councilBylaws });
+}
 
 export default async function CouncilIntroPage() {
   const resp = await getCouncilRule();
