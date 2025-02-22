@@ -1,11 +1,13 @@
 'use client';
 
+import { postCouncilReportAction } from '@/actions/council';
 import CouncilReportEditor, {
   CouncilReportEditorContent,
 } from '@/app/[locale]/community/council/report/components/CouncilReportEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilReport } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
+import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 
 const councilReportListPath = getPath(councilReport);
@@ -17,8 +19,9 @@ export default function CouncilReportCreatePage() {
     router.push(councilReportListPath);
   };
 
-  const onSubmit = async (content: CouncilReportEditorContent) => {
-    console.log(content);
+  const onSubmit = async ({ mainImage: image, ...requestObject }: CouncilReportEditorContent) => {
+    const formData = contentToFormData('CREATE', { requestObject, image });
+    await postCouncilReportAction(formData);
   };
 
   return (
