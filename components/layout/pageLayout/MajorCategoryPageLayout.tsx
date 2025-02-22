@@ -16,6 +16,7 @@ interface GuidePageLayoutProps {
   title?: string;
   subtitle?: string;
   description?: string;
+  theme?: 'light' | 'dark';
 }
 
 // TODO: RootItem을 클릭했을 때 LeafItem이 보이도록 자동 스크롤
@@ -23,6 +24,7 @@ export default function MajorCategoryPageLayout({
   title,
   subtitle = '',
   description = '',
+  theme = 'dark',
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
@@ -52,7 +54,7 @@ export default function MajorCategoryPageLayout({
         )}
       </div>
       <div
-        className={`bg-neutral-900 px-5 pt-7 ${
+        className={`${theme === 'light' ? 'bg-white' : 'bg-neutral-900'} px-5 pt-7 ${
           !description && 'pb-16'
         } sm:px-[6.25rem] sm:pb-[11.25rem] sm:pt-20`}
       >
@@ -65,6 +67,7 @@ export default function MajorCategoryPageLayout({
                 subpage.isPage ? router.push(getPath(subpage)) : setSelectedCategory(subpage)
               }
               isSelected={selectedCategory == subpage}
+              isLight={theme === 'light'}
               isPage={subpage.isPage}
             />
           ))}
@@ -99,15 +102,20 @@ interface RootItemProps {
   isPage: boolean;
   isSelected?: boolean;
   onClick: () => void;
+  isLight?: boolean;
 }
 
-function RootItem({ title, isPage, isSelected, onClick }: RootItemProps) {
+function RootItem({ title, isPage, isSelected, isLight, onClick }: RootItemProps) {
+  const bgColor = isSelected ? 'bg-main-orange-dark' : isLight ? 'bg-neutral-50' : 'bg-neutral-100';
+
   return (
     <DetailItem
       title={title}
       onClick={onClick}
       hasArrow={isPage}
-      bgColor={isSelected ? 'bg-main-orange-dark' : 'bg-neutral-100'}
+      bgColor={bgColor}
+      hoverColor={isLight ? 'bg-neutral-200' : 'bg-main-orange-dark'}
+      borderColor={isLight ? 'border-neutral-200' : undefined}
     />
   );
 }
@@ -133,15 +141,23 @@ interface DetailItemProps {
   hasArrow: boolean;
   bgColor: string;
   hoverColor?: string;
+  borderColor?: string;
   onClick: () => void;
 }
 
-function DetailItem({ title, hasArrow, bgColor, hoverColor, onClick }: DetailItemProps) {
+function DetailItem({
+  title,
+  hasArrow,
+  bgColor,
+  hoverColor,
+  borderColor,
+  onClick,
+}: DetailItemProps) {
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
 
   return (
     <div
-      className={`group h-[96px] sm:h-[160px] ${bgColor} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex cursor-pointer flex-col justify-between duration-300`}
+      className={`group h-[96px] sm:h-[160px] ${bgColor} ${borderColor && `border ${borderColor}`} px-[14px] py-[13px] sm:px-7 sm:py-6 ${hoverBgColor} flex cursor-pointer flex-col justify-between duration-300`}
       onClick={onClick}
     >
       <div>
