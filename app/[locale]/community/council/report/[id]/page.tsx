@@ -4,17 +4,31 @@ import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
 import { CouncilReport } from '@/apis/types/council';
+import { getCouncilReport } from '@/apis/v2/council/report/[id]';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { councilReportList } from '@/constants/segmentNode';
+import { getMetadata } from '@/utils/metadata';
 
-export default async function CouncilReportPage({
-  params,
-}: {
+interface Props {
   params: Promise<{ id: number; locale: string }>;
-}) {
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { locale, id } = await params;
+  const { title } = await getCouncilReport(id);
+
+  return await getMetadata({
+    locale,
+    node: councilReportList,
+    metadata: { title },
+  });
+}
+
+export default async function CouncilReportPage({ params }: Props) {
   const { id, locale } = await params;
   const t = await getTranslations({ locale });
 
