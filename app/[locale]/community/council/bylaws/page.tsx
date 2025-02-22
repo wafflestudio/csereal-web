@@ -1,9 +1,8 @@
 export const dynamic = 'force-dynamic';
 
-import { Attachment } from '@/apis/types/attachment';
 import { getCouncilRule } from '@/apis/v2/council/rule';
+import CouncilAttachment from '@/app/[locale]/community/council/components/CouncilAttachments';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import Clip from '@/public/image/clip.svg';
 
 export default async function CouncilIntroPage() {
   const resp = await getCouncilRule();
@@ -44,33 +43,14 @@ export default async function CouncilIntroPage() {
       <h3 className="mb-[20px] text-[20px] font-semibold text-neutral-950">학생회칙</h3>
 
       {resp.constitution.attachments.map((attachment) => (
-        <AttachmentRow key={attachment.id} {...attachment} />
+        <CouncilAttachment key={attachment.id} {...attachment} />
       ))}
 
       <h3 className="mb-[20px] mt-[40px] text-[20px] font-semibold text-neutral-950">세칙</h3>
 
       {resp.bylaw.attachments.map((attachment) => (
-        <AttachmentRow key={attachment.id} {...attachment} />
+        <CouncilAttachment key={attachment.id} {...attachment} />
       ))}
     </PageLayout>
   );
 }
-
-const AttachmentRow = ({ name, bytes, url }: Attachment) => {
-  return (
-    <div className="relative mt-[25px] w-[720px] rounded-[2px] border border-neutral-200 bg-neutral-50 p-[16px]">
-      <a
-        className="flex text-base font-medium text-neutral-700 hover:underline"
-        href={encodeURI(url)}
-        download={name}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
-        &nbsp;
-        <span>({bytes / 10}KB)</span>
-      </a>
-      <Clip className="absolute right-2 top-[-1.5rem]" />
-    </div>
-  );
-};
