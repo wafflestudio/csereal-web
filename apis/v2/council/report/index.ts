@@ -3,14 +3,16 @@ import { FETCH_TAG_COUNCIL_REPORT } from '@/constants/network';
 
 interface GETReportResponse {
   total: number;
-  reports: {
-    id: number;
-    title: string;
-    sequence: number;
-    name: string;
-    createdAt: string;
-    imageURL: string;
-  }[];
+  reports: CouncilReport[];
+}
+
+export interface CouncilReport {
+  id: number;
+  title: string;
+  sequence: number;
+  name: string;
+  createdAt: string;
+  imageURL: string;
 }
 
 export const getCouncilReportList = () =>
