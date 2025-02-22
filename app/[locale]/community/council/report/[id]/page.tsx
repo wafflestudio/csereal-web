@@ -3,14 +3,14 @@ import 'dayjs/locale/ko';
 import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
-import { Council } from '@/apis/types/council';
+import { CouncilReport } from '@/apis/types/council';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
-export default async function CouncilReport({
+export default async function CouncilReportPage({
   params,
 }: {
   params: Promise<{ id: number; locale: string }>;
@@ -19,7 +19,7 @@ export default async function CouncilReport({
   const t = await getTranslations({ locale });
 
   // const council = await getCouncilReport(id);
-  const council: Council = {
+  const council: CouncilReport = {
     id: 2,
     title: 'title',
     description: 'description',

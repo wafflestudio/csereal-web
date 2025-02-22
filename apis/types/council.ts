@@ -1,4 +1,4 @@
-export interface Council {
+export interface CouncilReport {
   id: number;
   title: string;
   description: string;
