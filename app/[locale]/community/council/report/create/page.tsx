@@ -5,12 +5,12 @@ import CouncilReportEditor, {
   CouncilReportEditorContent,
 } from '@/app/[locale]/community/council/report/components/CouncilReportEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { councilReport } from '@/constants/segmentNode';
+import { councilReportList } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 
-const councilReportListPath = getPath(councilReport);
+const councilReportListPath = getPath(councilReportList);
 
 export default function CouncilReportCreatePage() {
   const router = useRouter();

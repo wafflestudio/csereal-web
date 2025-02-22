@@ -3,13 +3,15 @@ import dayjs from 'dayjs';
 import { CouncilReport, getCouncilReportList } from '@/apis/v2/council/report';
 import Image from '@/components/common/Image';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { councilReportList } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 import NaviBarClose from './assets/NaviBar_Close.svg';
 
 export const dynamic = 'force-dynamic';
 
-export default async function CouncilIntroPage() {
+export default async function CouncilReportList() {
   const { reports } = await getCouncilReportList();
 
   return (
@@ -23,10 +25,14 @@ export default async function CouncilIntroPage() {
   );
 }
 
-const Tile = ({ title, sequence, name, createdAt, imageURL }: CouncilReport) => {
+const path = getPath(councilReportList);
+
+const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport) => {
+  const href = `${path}/${id}`;
   const dateStr = dayjs(createdAt).format('YYYY/MM/DD');
+
   return (
-    <Link className="group relative block h-[232px] w-[232px]" href="#">
+    <Link className="group relative block h-[232px] w-[232px]" href={href}>
       <Image
         src={imageURL}
         alt=""
