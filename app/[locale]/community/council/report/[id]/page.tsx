@@ -3,7 +3,7 @@ import 'dayjs/locale/ko';
 import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
-import { getCouncilReport } from '@/apis/v2/council/report/[id]';
+import { Council } from '@/apis/types/council';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
@@ -17,7 +17,20 @@ export default async function CouncilReport({
 }) {
   const { id, locale } = await params;
   const t = await getTranslations({ locale });
-  const council = await getCouncilReport(id);
+
+  // const council = await getCouncilReport(id);
+  const council: Council = {
+    id: 2,
+    title: 'title',
+    description: 'description',
+    sequence: 1,
+    name: 'name',
+    createdAt: '2022-01-01T00:00:00.000Z',
+    prevId: 1,
+    prevTitle: 'prevTitle',
+    nextId: 3,
+    nextTitle: 'nextTitle',
+  };
 
   const { title, description, sequence, name, createdAt } = council;
   const author = `제${sequence}대 학생회 ${name}`;
