@@ -1,11 +1,5 @@
+import { Attachment } from '@/apis/types/attachment';
 import Clip from '@/public/image/clip.svg';
-
-export interface Attachment {
-  id: number;
-  name: string;
-  bytes: number;
-  url: string;
-}
 
 // TODO: 여러 맥락에서 사용되므로 마진 prop으로 건네주기
 export default function Attachments({ files }: { files: Attachment[] }) {

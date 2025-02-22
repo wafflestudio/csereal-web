@@ -1,4 +1,4 @@
-import { Attachment } from '@/components/common/Attachments';
+import { Attachment } from '@/apis/types/attachment';
 import { EditorFile, EditorImage, isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
 
 import { encodeFormDataFileName } from './string';

@@ -3,7 +3,8 @@
 import { useReducer, useState } from 'react';
 
 import { TimelineContent } from '@/apis/types/academics';
-import Attachments, { Attachment } from '@/components/common/Attachments';
+import { Attachment } from '@/apis/types/attachment';
+import Attachments from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
