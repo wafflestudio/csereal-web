@@ -50,4 +50,5 @@ export const FETCH_TAG_INTERNATIONAL_SCHOLARSHIPS = 'international-scholarships'
 export const FETCH_TAG_INTERNATIONAL_GRADUATE = 'international-graduate';
 export const FETCH_TAG_INTERNATIONAL_UNDERGRADUATE = 'international-undergraduate';
 
-export const FETCH_TAG_INTRO = 'intro';
+export const FETCH_TAG_COUNCIL_INTRO = 'council-intro';
+export const FETCH_TAG_COUNCIL_REPORT = 'council-report';
