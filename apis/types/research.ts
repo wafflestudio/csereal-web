@@ -1,4 +1,4 @@
-import { Attachment } from '@/components/common/Attachments';
+import { Attachment } from './attachment';
 
 export interface ResearchGroup {
   id: number;
