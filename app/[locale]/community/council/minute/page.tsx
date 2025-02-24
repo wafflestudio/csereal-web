@@ -14,7 +14,6 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 
 export default async function CouncilMinutePage() {
   const data = await getCouncilMinutes();
-  console.log(data);
 
   return <MinutePageContent contents={data} />;
 }

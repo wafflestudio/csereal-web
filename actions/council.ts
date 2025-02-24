@@ -17,6 +17,7 @@ import {
 import { councilIntro, councilMinute, councilReportList } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -36,6 +37,7 @@ const minutePath = getPath(councilMinute);
 
 export const postMinutesByYearAction = withErrorHandler(
   async (year: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'attachments');
     await postCouncilMinutesByYear(year, formData);
     revalidateTag(FETCH_TAG_COUNCIL_MINUTE);
     redirectKo(minutePath);
@@ -44,6 +46,7 @@ export const postMinutesByYearAction = withErrorHandler(
 
 export const putMinuteAction = withErrorHandler(
   async (year: number, index: number, formData: FormData) => {
+    decodeFormDataFileName(formData, 'addFiles');
     await putCouncilMinute(year, index, formData);
     revalidateTag(FETCH_TAG_COUNCIL_MINUTE);
     redirectKo(minutePath);

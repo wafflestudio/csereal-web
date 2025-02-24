@@ -9,7 +9,7 @@ import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
-import { Link, usePathname } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
@@ -17,24 +17,22 @@ import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 import CouncilAttachment from '../components/CouncilAttachments';
 
 const minutePath = getPath(councilMinute);
+const THIS_YEAR = new Date().getFullYear();
 
 export default function MinutePageContent({
   contents,
 }: {
   contents: { [year: string]: Minute[] };
 }) {
-  const [selectedYear, setSelectedYear] = useState(2025);
+  const [selectedYear, setSelectedYear] = useState(THIS_YEAR);
   const timeLineYears = Object.keys(contents)
     .map(Number)
     .sort((a, b) => b - a);
   const selectedContents = contents[selectedYear.toString()] ?? [];
-  const pathname = usePathname();
-
-  // const getEditHref = (year: number) => `${pathname}/edit?year=${year}`;
 
   return (
     <PageLayout titleType="big">
-      <AddButton pathname={pathname} />
+      <AddButton />
       <Timeline
         times={timeLineYears}
         selectedTime={selectedYear}
@@ -49,11 +47,11 @@ export default function MinutePageContent({
   );
 }
 
-function AddButton({ pathname }: { pathname: string }) {
+function AddButton() {
   return (
     <LoginVisible staff>
       <Link
-        href={`${pathname}/create`}
+        href={`${minutePath}/create`}
         className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
       >
         <span className="material-symbols-outlined text-xl font-light">add</span>
@@ -95,7 +93,7 @@ function Minutes({ minute }: { minute: Minute }) {
         <div className="font-semibold">{minute.index}차 회의 회의록</div>
         <Buttons
           onDelete={handleDelete}
-          editHref={`${minutePath}/edit/${minute.year}/${minute.index}`}
+          editHref={`${minutePath}/edit?year=${minute.year}&index=${minute.index}`}
         />
       </div>
       {minute.attachments.map((file) => (
