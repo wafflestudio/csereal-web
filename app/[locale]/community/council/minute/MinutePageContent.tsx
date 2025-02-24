@@ -11,7 +11,6 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
 import CouncilAttachment from '../components/CouncilAttachments';
@@ -32,7 +31,7 @@ export default function MinutePageContent({
 
   return (
     <PageLayout titleType="big">
-      <AddButton />
+      <YearAddButton />
       <Timeline
         times={timeLineYears}
         selectedTime={selectedYear}
@@ -43,11 +42,26 @@ export default function MinutePageContent({
           return <Minutes minute={minute} key={`${minute.year}_${minute.index}`} />;
         })}
       </div>
+      <MinuteAddButton year={selectedYear} />
     </PageLayout>
   );
 }
 
-function AddButton() {
+function MinuteAddButton({ year }: { year: number }) {
+  return (
+    <LoginVisible staff>
+      <Link
+        href={`${minutePath}/create?year=${year}`}
+        className="mt-3 flex w-[220px] items-center gap-1.5 rounded-sm border border-main-orange px-2 py-2.5 text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+      >
+        <span className="material-symbols-outlined font-light">add</span>
+        <span className="text-base font-medium">회의록 추가</span>
+      </Link>
+    </LoginVisible>
+  );
+}
+
+function YearAddButton() {
   return (
     <LoginVisible staff>
       <Link
@@ -83,7 +97,6 @@ function Minutes({ minute }: { minute: Minute }) {
     const resp = await deleteMinuteAction(minute.year, minute.index);
     handleServerResponse(resp, {
       successMessage: `${minute.year}년 ${minute.index}차 회의록을 삭제했습니다.`,
-      onSuccess: refreshPage,
     });
   };
 

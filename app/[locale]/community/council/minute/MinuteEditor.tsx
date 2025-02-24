@@ -28,10 +28,13 @@ interface Props {
 
 export default function MinuteEditor({ option, cancelPath }: Props) {
   const formMethods = useForm<MinuteFormData>({
-    defaultValues: option.defaultValues ?? {
-      year: new Date().getFullYear() + 1,
-      file: [],
-    },
+    defaultValues:
+      option.type === 'EDIT'
+        ? option.defaultValues
+        : {
+            year: option.defaultValues?.year ?? new Date().getFullYear() + 1,
+            file: [],
+          },
   });
   const { handleSubmit } = formMethods;
 
