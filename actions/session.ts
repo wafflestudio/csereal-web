@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-import { getMockLogin } from '@/apis/v1/mock-login';
+import { getMockLogin } from '@/apis/v2/mock-login';
 import { getMyRole } from '@/apis/v2/user/my-role';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 import { UserState } from '@/contexts/SessionContext';
