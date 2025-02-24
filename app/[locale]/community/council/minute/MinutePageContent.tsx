@@ -3,8 +3,9 @@
 import { useReducer, useState } from 'react';
 
 import { deleteMinuteAction } from '@/actions/council';
+import { Attachment } from '@/apis/types/attachment';
 import Timeline from '@/app/[locale]/academics/components/timeline/Timeline';
-import Attachments, { Attachment } from '@/components/common/Attachments';
+import Attachments from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

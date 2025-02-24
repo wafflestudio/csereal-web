@@ -1,11 +1,11 @@
 import { deleteRequest, postRequest, putRequest } from '@/apis';
 import { getRequest } from '@/apis';
 import { Minute } from '@/apis/types/council';
-import { FETCH_TAG_MINUTE } from '@/constants/network';
+import { FETCH_TAG_COUNCIL_MINUTE } from '@/constants/network';
 
 export const getCouncilMinutesByYear = (year: number) =>
   getRequest<Minute[]>(`/v2/council/meeting-minute/${year}`, undefined, {
-    next: { tags: [FETCH_TAG_MINUTE] },
+    next: { tags: [FETCH_TAG_COUNCIL_MINUTE] },
   });
 
 export const postCouncilMinutesByYear = (year: number, formData: FormData) =>
@@ -13,7 +13,7 @@ export const postCouncilMinutesByYear = (year: number, formData: FormData) =>
 
 export const getCouncilMinute = (year: number, index: number) =>
   getRequest<Minute>(`/v2/council/meeting-minute/${year}/${index}`, undefined, {
-    next: { tags: [FETCH_TAG_MINUTE] },
+    next: { tags: [FETCH_TAG_COUNCIL_MINUTE] },
   });
 
 export const putCouncilMinute = (year: number, index: number, formData: FormData) =>
