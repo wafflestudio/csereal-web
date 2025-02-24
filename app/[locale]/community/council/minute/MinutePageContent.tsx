@@ -12,19 +12,28 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Link, usePathname } from '@/i18n/routing';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
+import { councilMinute } from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 
 const YEAR_LIMIT_COUNT = 10;
 
 interface MinuteContent {
   year: number;
+  index: number;
   attachments: Attachment[];
 }
 
+const TIME_LINE_YEARS = [2025, 2024, 2023]; // temp
+
+const minutePath = getPath(councilMinute);
+
 export default function MinutePageContent({ contents }: { contents: MinuteContent[] }) {
   const [selectedYear, setSelectedYear] = useState(contents[0].year);
-  const timeLineYears = contents.map((change) => change.year).slice(0, YEAR_LIMIT_COUNT);
+  // const timeLineYears = contents.map((change) => change.year).slice(0, YEAR_LIMIT_COUNT);
+  const timeLineYears = TIME_LINE_YEARS;
   const yearLimit = timeLineYears.at(-1) ?? 0;
-  const selectedContents = getSelectedContents(selectedYear, yearLimit, contents);
+  // const selectedContents = getSelectedContents(selectedYear, yearLimit, contents);
+  const selectedContents = contents;
   const pathname = usePathname();
 
   const handleDelete = async (year: number) => {
@@ -32,7 +41,7 @@ export default function MinutePageContent({ contents }: { contents: MinuteConten
 
     const resp = await deleteMinuteAction(year, index);
     handleServerResponse(resp, {
-      successMessage: `${year}대 학생회 ${index}차 회의록을 삭제했습니다.`,
+      successMessage: `${year}년 ${index}차 회의록을 삭제했습니다.`,
       onSuccess: refreshPage,
     });
   };
@@ -48,23 +57,7 @@ export default function MinutePageContent({ contents }: { contents: MinuteConten
         setSelectedTime={setSelectedYear}
       />
       <div className="mt-7">
-        {selectedContents.length === 1 ? (
-          <ContentViewer
-            attachments={selectedContents[0].attachments}
-            onDelete={() => handleDelete(selectedYear)}
-            editHref={getEditHref(selectedYear)}
-          />
-        ) : (
-          selectedContents.map((change, i) => (
-            <TogglableContentViewer
-              expandDefault={i === 0}
-              attachments={change.attachments}
-              onDelete={() => handleDelete(change.year)}
-              editHref={getEditHref(change.year)}
-              key={change.year}
-            />
-          ))
-        )}
+        <ContentViewer contents={selectedContents} />
       </div>
     </PageLayout>
   );
@@ -78,7 +71,7 @@ function AddButton({ pathname }: { pathname: string }) {
         className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
       >
         <span className="material-symbols-outlined text-xl font-light">add</span>
-        <span className="font-semibold">학생회 추가</span>
+        <span className="font-semibold">연도 추가</span>
       </Link>
     </LoginVisible>
   );
@@ -93,7 +86,7 @@ function Buttons({
 }) {
   return (
     <LoginVisible staff>
-      <div className="mt-7 flex justify-end gap-3">
+      <div className="flex justify-end gap-3">
         <DeleteButton onDelete={onDelete} />
         <EditButton href={editHref} />
       </div>
@@ -101,33 +94,39 @@ function Buttons({
   );
 }
 
-function ContentViewer({
-  attachments,
-  onDelete,
-  editHref,
-}: {
-  attachments: Attachment[];
-  onDelete: () => Promise<CustomError | void>;
-  editHref: string;
-}) {
+function Minutes({ minute }: { minute: MinuteContent }) {
+  return (
+    <div className="mb-7 border-b border-neutral-200">
+      <div className="flex items-center justify-between gap-2.5">
+        <div className="font-semibold">{minute.index}차 회의 회의록</div>
+        <Buttons
+          onDelete={() => deleteMinuteAction(minute.year, minute.index)}
+          editHref={`${minutePath}/edit/${minute.year}/${minute.index}`}
+        />
+      </div>
+      {minute.attachments.map((file) => (
+        <Attachments files={[file]} margin="mt-3 sm:mt-6 mb-3 sm:mb-6" />
+      ))}
+    </div>
+  );
+}
+
+function ContentViewer({ contents }: { contents: MinuteContent[] }) {
   return (
     <div className="mb-5">
-      <Attachments files={attachments} />
-      <Buttons onDelete={onDelete} editHref={editHref} />
+      {contents.map((minute) => {
+        return <Minutes minute={minute} />;
+      })}
     </div>
   );
 }
 
 function TogglableContentViewer({
   expandDefault = false,
-  attachments,
-  onDelete,
-  editHref,
+  contents,
 }: {
   expandDefault?: boolean;
-  attachments: Attachment[];
-  onDelete: () => Promise<CustomError | void>;
-  editHref: string;
+  contents: MinuteContent[];
 }) {
   const [isExpanded, toggleContent] = useReducer((x) => !x, expandDefault);
 
@@ -137,13 +136,12 @@ function TogglableContentViewer({
         <span className="material-symbols-outlined text-2xl font-light">
           {isExpanded ? 'expand_less' : 'expand_more'}
         </span>
+        <span className="font-semibold">{contents[0].year}년 회의록</span>
       </button>
-      {isExpanded && (
-        <>
-          <Attachments files={attachments} />
-          <Buttons onDelete={onDelete} editHref={editHref} />
-        </>
-      )}
+      {isExpanded &&
+        contents.map((minute) => {
+          return <Minutes minute={minute} />;
+        })}
     </div>
   );
 }
