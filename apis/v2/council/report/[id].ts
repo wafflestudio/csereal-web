@@ -1,26 +1,14 @@
 import { deleteRequest, getRequest, putRequest } from '@/apis';
+import { CouncilReport } from '@/apis/types/council';
 import { FETCH_TAG_COUNCIL_REPORT } from '@/constants/network';
 
-interface GETReportByIDResponse {
-  id: number;
-  title: string;
-  description: string;
-  sequence: number;
-  name: string;
-  createdAt: string;
-  prevId: number;
-  prevTitle: string;
-  nextId: number;
-  nextTitle: string;
-}
-
 export const getCouncilReport = (id: number) =>
-  getRequest<GETReportByIDResponse>(`/v2/council/report/${id}`, undefined, {
+  getRequest<CouncilReport>(`/v2/council/report/${id}`, undefined, {
     next: { tags: [FETCH_TAG_COUNCIL_REPORT] },
   });
 
 export const putCouncilReport = (id: number, formData: FormData) =>
-  putRequest<GETReportByIDResponse>(`/v2/council/report/${id}`, {
+  putRequest<CouncilReport>(`/v2/council/report/${id}`, {
     body: formData,
     jsessionID: true,
   });

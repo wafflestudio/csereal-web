@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { CouncilReport } from '@/apis/types/council';
 import { News } from '@/apis/types/news';
 import { Notice } from '@/apis/types/notice';
 import { Seminar } from '@/apis/types/seminar';
@@ -11,7 +12,7 @@ import PostDeleteButton from './PostDeleteButton';
 
 type PostFooterProps = {
   postType: PostType;
-  post: Notice | News | Seminar;
+  post: Notice | News | Seminar | CouncilReport;
   id?: string;
   margin?: string;
 };
@@ -21,7 +22,7 @@ type AdjPost = {
   title: string;
 };
 
-type PostType = 'notice' | 'seminar' | 'news';
+type PostType = 'notice' | 'seminar' | 'news' | 'council/report';
 type RowType = 'next' | 'prev';
 
 export default function PostFooter({ post, margin = '', postType, id }: PostFooterProps) {
