@@ -12,22 +12,26 @@ import {
   useState,
 } from 'react';
 
-import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
-import { isProd } from '@/constants/env';
+import { getUserState, removeAuthCookie, setMockAuthCookie } from '@/actions/session';
+import { Role } from '@/apis/types/role';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
-export type UserState = 'logout' | 'non-staff' | 'staff';
+export type UserState = 'logout' | Role;
 
 type SessionContextData = {
   state: UserState;
   logout: () => Promise<void>;
   login: () => Promise<void>;
+  mockLogin: (role: Role) => Promise<void>;
+  mockLogout: () => Promise<void>;
 };
 
 export const SessionContext = createContext<SessionContextData>({
   state: 'logout',
   logout: async () => {},
   login: async () => {},
+  mockLogin: async () => {},
+  mockLogout: async () => {},
 });
 
 export const useSessionContext = () => useContext(SessionContext);
@@ -46,24 +50,29 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    if (isProd) {
-      router.push(LOGIN_URL);
-    } else {
-      await setAuthCookie();
-      await refresh();
-    }
-  }, [refresh, router]);
+    router.push(LOGIN_URL);
+  }, [router]);
 
   const logout = useCallback(async () => {
-    if (isProd) {
-      router.push(LOGOUT_URL);
-    } else {
-      removeAuthCookie();
+    router.push(LOGOUT_URL);
+  }, [router]);
+
+  const mockLogin = useCallback(
+    async (role: Role) => {
+      await setMockAuthCookie(role);
       await refresh();
-    }
-  }, [refresh, router]);
+    },
+    [refresh],
+  );
+
+  const mockLogout = useCallback(async () => {
+    await removeAuthCookie();
+    await refresh();
+  }, [refresh]);
 
   return (
-    <SessionContext.Provider value={{ state, login, logout }}>{children}</SessionContext.Provider>
+    <SessionContext.Provider value={{ state, login, logout, mockLogin, mockLogout }}>
+      {children}
+    </SessionContext.Provider>
   );
 }
