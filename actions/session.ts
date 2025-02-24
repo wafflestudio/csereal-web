@@ -2,13 +2,14 @@
 
 import { cookies } from 'next/headers';
 
-import { getMockLogin } from '@/apis/v1/mock-login';
-import { getIsStaff } from '@/apis/v2/user/is-staff';
+import { Role } from '@/apis/types/role';
+import { getMockLogin } from '@/apis/v2/mock-login';
+import { getMyRole } from '@/apis/v2/user/my-role';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 import { UserState } from '@/contexts/SessionContext';
 
-export const setAuthCookie = async () => {
-  const resp = await getMockLogin();
+export const setMockAuthCookie = async (role: Role) => {
+  const resp = await getMockLogin(role);
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
   (await cookies()).set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
@@ -23,8 +24,8 @@ export const getUserState = async (): Promise<UserState> => {
   if (id === undefined) return 'logout';
 
   try {
-    const resp = await getIsStaff();
-    return resp.isStaff ? 'staff' : 'non-staff';
+    const resp = await getMyRole();
+    return resp.roles[0];
   } catch {
     removeAuthCookie();
     return 'logout';

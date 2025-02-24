@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
+import { isProd } from '@/constants/env';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/i18n/routing';
 import useLanguage from '@/utils/hooks/useLanguage';
@@ -11,12 +12,7 @@ import HeaderSearchBar from './HeaderSearchBar';
 
 export default function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();
-  const { state, login, logout } = useSessionContext();
-  const t = useTranslations('Header');
-
   const langButtonText = isEnglish ? '한국어' : 'ENG';
-  const authText = t(state === 'logout' ? '로그인' : '로그아웃');
-  const onClickAuth = state === 'logout' ? login : logout;
 
   return (
     <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
@@ -28,9 +24,7 @@ export default function HeaderRight() {
           <Divider />
         </LoginVisible>
 
-        <button onClick={onClickAuth} className="hover:text-main-orange">
-          {authText}
-        </button>
+        {isProd ? <ProdLogin /> : <DevLogin />}
 
         <Divider />
 
@@ -45,4 +39,48 @@ export default function HeaderRight() {
 
 const Divider = () => {
   return <div className="h-3 w-[0.03125rem] bg-white" />;
+};
+
+const ProdLogin = () => {
+  const { state, login, logout } = useSessionContext();
+  const t = useTranslations('Header');
+
+  const authText = t(state === 'logout' ? '로그인' : '로그아웃');
+  const onClickAuth = state === 'logout' ? login : logout;
+
+  return (
+    <button onClick={onClickAuth} className="hover:text-main-orange">
+      {authText}
+    </button>
+  );
+};
+
+const DevLogin = () => {
+  const { state, mockLogin, mockLogout } = useSessionContext();
+
+  const isLogout = state === 'logout';
+
+  if (isLogout)
+    return (
+      <>
+        <button onClick={() => mockLogin('ROLE_STAFF')} className="hover:text-main-orange">
+          STAFF
+        </button>
+        <Divider />
+        <button onClick={() => mockLogin('ROLE_RESERVATION')} className="hover:text-main-orange">
+          RESERV
+        </button>
+        <Divider />
+        <button onClick={() => mockLogin('ROLE_COUNCIL')} className="hover:text-main-orange">
+          COUNCIL
+        </button>
+      </>
+    );
+  else {
+    return (
+      <button onClick={mockLogout} className="hover:text-main-orange">
+        로그아웃
+      </button>
+    );
+  }
 };

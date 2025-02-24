@@ -20,7 +20,7 @@ export default async function middleware(request: NextRequest) {
   // 관리자 페이지는 스태프 계정으로 로그인되어있어야한다.
   if (isAuthRequired(pathname)) {
     const isStaff = await getUserState();
-    if (isStaff !== 'staff') {
+    if (isStaff !== 'ROLE_STAFF') {
       if (isProd) {
         return Response.redirect(new URL(LOGIN_URL));
       } else {
