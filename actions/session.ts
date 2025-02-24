@@ -2,13 +2,14 @@
 
 import { cookies } from 'next/headers';
 
+import { Role } from '@/apis/types/role';
 import { getMockLogin } from '@/apis/v2/mock-login';
 import { getMyRole } from '@/apis/v2/user/my-role';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 import { UserState } from '@/contexts/SessionContext';
 
-export const setAuthCookie = async () => {
-  const resp = await getMockLogin();
+export const setMockAuthCookie = async (role: Role) => {
+  const resp = await getMockLogin(role);
   const cookie = resp.headers.getSetCookie()[0];
   const value = cookie.split(/=|;/)[1];
   (await cookies()).set(COOKIE_SESSION_ID, value, { httpOnly: true, sameSite: 'strict' });
