@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 
 import { getMockLogin } from '@/apis/v1/mock-login';
-import { getIsStaff } from '@/apis/v2/user/is-staff';
+import { getMyRole } from '@/apis/v2/user/my-role';
 import { COOKIE_SESSION_ID } from '@/constants/network';
 import { UserState } from '@/contexts/SessionContext';
 
@@ -23,8 +23,8 @@ export const getUserState = async (): Promise<UserState> => {
   if (id === undefined) return 'logout';
 
   try {
-    const resp = await getIsStaff();
-    return resp.isStaff ? 'staff' : 'non-staff';
+    const resp = await getMyRole();
+    return resp.roles[0];
   } catch {
     removeAuthCookie();
     return 'logout';

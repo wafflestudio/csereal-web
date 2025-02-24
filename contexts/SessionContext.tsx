@@ -13,10 +13,11 @@ import {
 } from 'react';
 
 import { getUserState, removeAuthCookie, setAuthCookie } from '@/actions/session';
+import { Role } from '@/apis/types/role';
 import { isProd } from '@/constants/env';
 import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
 
-export type UserState = 'logout' | 'non-staff' | 'staff';
+export type UserState = 'logout' | Role;
 
 type SessionContextData = {
   state: UserState;
