@@ -1,52 +1,36 @@
 'use client';
 
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 
 import { deleteMinuteAction } from '@/actions/council';
-import { Attachment } from '@/apis/types/attachment';
+import { Minute } from '@/apis/types/council';
 import Timeline from '@/app/[locale]/academics/components/timeline/Timeline';
-import Attachments from '@/components/common/Attachments';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { councilMinute } from '@/constants/segmentNode';
 import { Link, usePathname } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
-import { councilMinute } from '@/constants/segmentNode';
-import { getPath } from '@/utils/page';
 
-const YEAR_LIMIT_COUNT = 10;
-
-interface MinuteContent {
-  year: number;
-  index: number;
-  attachments: Attachment[];
-}
-
-const TIME_LINE_YEARS = [2025, 2024, 2023]; // temp
+import CouncilAttachment from '../components/CouncilAttachments';
 
 const minutePath = getPath(councilMinute);
 
-export default function MinutePageContent({ contents }: { contents: MinuteContent[] }) {
-  const [selectedYear, setSelectedYear] = useState(contents[0].year);
-  // const timeLineYears = contents.map((change) => change.year).slice(0, YEAR_LIMIT_COUNT);
-  const timeLineYears = TIME_LINE_YEARS;
-  const yearLimit = timeLineYears.at(-1) ?? 0;
-  // const selectedContents = getSelectedContents(selectedYear, yearLimit, contents);
-  const selectedContents = contents;
+export default function MinutePageContent({
+  contents,
+}: {
+  contents: { [year: string]: Minute[] };
+}) {
+  const [selectedYear, setSelectedYear] = useState(2025);
+  const timeLineYears = Object.keys(contents)
+    .map(Number)
+    .sort((a, b) => b - a);
+  const selectedContents = contents[selectedYear.toString()] ?? [];
   const pathname = usePathname();
 
-  const handleDelete = async (year: number) => {
-    const index = 1;
-
-    const resp = await deleteMinuteAction(year, index);
-    handleServerResponse(resp, {
-      successMessage: `${year}년 ${index}차 회의록을 삭제했습니다.`,
-      onSuccess: refreshPage,
-    });
-  };
-
-  const getEditHref = (year: number) => `${pathname}/edit?year=${year}`;
+  // const getEditHref = (year: number) => `${pathname}/edit?year=${year}`;
 
   return (
     <PageLayout titleType="big">
@@ -57,7 +41,9 @@ export default function MinutePageContent({ contents }: { contents: MinuteConten
         setSelectedTime={setSelectedYear}
       />
       <div className="mt-7">
-        <ContentViewer contents={selectedContents} />
+        {selectedContents.map((minute) => {
+          return <Minutes minute={minute} key={`${minute.year}_${minute.index}`} />;
+        })}
       </div>
     </PageLayout>
   );
@@ -94,61 +80,27 @@ function Buttons({
   );
 }
 
-function Minutes({ minute }: { minute: MinuteContent }) {
+function Minutes({ minute }: { minute: Minute }) {
+  const handleDelete = async () => {
+    const resp = await deleteMinuteAction(minute.year, minute.index);
+    handleServerResponse(resp, {
+      successMessage: `${minute.year}년 ${minute.index}차 회의록을 삭제했습니다.`,
+      onSuccess: refreshPage,
+    });
+  };
+
   return (
-    <div className="mb-7 border-b border-neutral-200">
-      <div className="flex items-center justify-between gap-2.5">
+    <div className="mb-10 w-fit border-b border-neutral-200 pb-10">
+      <div className="flex items-center justify-between gap-2.5 ">
         <div className="font-semibold">{minute.index}차 회의 회의록</div>
         <Buttons
-          onDelete={() => deleteMinuteAction(minute.year, minute.index)}
+          onDelete={handleDelete}
           editHref={`${minutePath}/edit/${minute.year}/${minute.index}`}
         />
       </div>
       {minute.attachments.map((file) => (
-        <Attachments files={[file]} margin="mt-3 sm:mt-6 mb-3 sm:mb-6" />
+        <CouncilAttachment {...file} key={file.id} />
       ))}
     </div>
   );
 }
-
-function ContentViewer({ contents }: { contents: MinuteContent[] }) {
-  return (
-    <div className="mb-5">
-      {contents.map((minute) => {
-        return <Minutes minute={minute} />;
-      })}
-    </div>
-  );
-}
-
-function TogglableContentViewer({
-  expandDefault = false,
-  contents,
-}: {
-  expandDefault?: boolean;
-  contents: MinuteContent[];
-}) {
-  const [isExpanded, toggleContent] = useReducer((x) => !x, expandDefault);
-
-  return (
-    <div className="mb-5">
-      <button onClick={toggleContent} className="mb-4 flex items-center hover:text-main-orange">
-        <span className="material-symbols-outlined text-2xl font-light">
-          {isExpanded ? 'expand_less' : 'expand_more'}
-        </span>
-        <span className="font-semibold">{contents[0].year}년 회의록</span>
-      </button>
-      {isExpanded &&
-        contents.map((minute) => {
-          return <Minutes minute={minute} />;
-        })}
-    </div>
-  );
-}
-
-const getSelectedContents = (year: number, yearLimit: number, data: MinuteContent[]) => {
-  if (year <= yearLimit) return data.filter((d) => d.year <= yearLimit);
-
-  const change = data.find((d) => d.year === year);
-  return change ? [change] : [{ year, attachments: [] }];
-};

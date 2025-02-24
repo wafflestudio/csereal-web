@@ -3,6 +3,15 @@ import { getRequest } from '@/apis';
 import { Minute } from '@/apis/types/council';
 import { FETCH_TAG_COUNCIL_MINUTE } from '@/constants/network';
 
+interface GETMinutesResponse {
+  [year: string]: Minute[];
+}
+
+export const getCouncilMinutes = () =>
+  getRequest<GETMinutesResponse>(`/v2/council/meeting-minute`, undefined, {
+    next: { tags: [FETCH_TAG_COUNCIL_MINUTE] },
+  });
+
 export const getCouncilMinutesByYear = (year: number) =>
   getRequest<Minute[]>(`/v2/council/meeting-minute/${year}`, undefined, {
     next: { tags: [FETCH_TAG_COUNCIL_MINUTE] },
