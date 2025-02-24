@@ -12,7 +12,8 @@
     "start:prod": "cross-env PHASE=prod NODE_ENV=production node server.mjs",
     "prepare": "husky",
     "postbuild": "next-sitemap",
-    "knip": "knip"
+    "knip": "knip",
+    "test": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.2.3",
     "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.50.1",
     "@types/eslint": "^9.6.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.10.1",
