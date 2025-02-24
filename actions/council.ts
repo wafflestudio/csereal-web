@@ -5,7 +5,7 @@ import { revalidateTag } from 'next/cache';
 import { putCouncilIntro } from '@/apis/v2/council/intro';
 import { postCouncilReport } from '@/apis/v2/council/report';
 import { FETCH_TAG_COUNCIL_INTRO, FETCH_TAG_COUNCIL_REPORT } from '@/constants/network';
-import { councilIntro, councilReport } from '@/constants/segmentNode';
+import { councilIntro, councilReportList } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 
@@ -19,7 +19,7 @@ export const putIntroAction = withErrorHandler(async (formData: FormData) => {
   redirectKo(introPath);
 });
 
-const councilReportPath = getPath(councilReport);
+const councilReportPath = getPath(councilReportList);
 
 export const postCouncilReportAction = withErrorHandler(async (formData: FormData) => {
   await postCouncilReport(formData);
