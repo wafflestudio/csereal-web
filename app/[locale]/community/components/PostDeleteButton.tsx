@@ -2,6 +2,7 @@
 
 import { useTransition } from 'react';
 
+import { deleteCouncilReportAction } from '@/actions/council';
 import { deleteNewsAction } from '@/actions/news';
 import { deleteNoticeAction } from '@/actions/notice';
 import { deleteSeminarAction } from '@/actions/seminar';
@@ -27,6 +28,8 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
         return deleteNewsAction;
       case 'seminar':
         return deleteSeminarAction;
+      case 'council/report':
+        return deleteCouncilReportAction;
     }
   };
 

@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { CouncilReport } from '@/apis/types/council';
 import { News } from '@/apis/types/news';
 import { Notice } from '@/apis/types/notice';
+import { Role } from '@/apis/types/role';
 import { Seminar } from '@/apis/types/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import { Link } from '@/i18n/routing';
@@ -15,6 +16,7 @@ type PostFooterProps = {
   post: Notice | News | Seminar | CouncilReport;
   id?: string;
   margin?: string;
+  role?: Role[] | Role;
 };
 
 type AdjPost = {
@@ -25,7 +27,13 @@ type AdjPost = {
 type PostType = 'notice' | 'seminar' | 'news' | 'council/report';
 type RowType = 'next' | 'prev';
 
-export default function PostFooter({ post, margin = '', postType, id }: PostFooterProps) {
+export default function PostFooter({
+  post,
+  margin = '',
+  postType,
+  id,
+  role = 'ROLE_STAFF',
+}: PostFooterProps) {
   const nextPost =
     post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
   const prevPost =
@@ -36,7 +44,7 @@ export default function PostFooter({ post, margin = '', postType, id }: PostFoot
       {nextPost && <Row post={nextPost} type="next" postType={postType} />}
       {prevPost && <Row post={prevPost} type="prev" postType={postType} />}
       <div className="mt-16 flex justify-end">
-        <LoginVisible staff>
+        <LoginVisible role={role}>
           {id && (
             <>
               <PostDeleteButton postType={postType} id={id} />

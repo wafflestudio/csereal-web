@@ -13,6 +13,5 @@ export const putCouncilReport = (id: number, formData: FormData) =>
     jsessionID: true,
   });
 
-export const deleteCouncilReport = (id: number) => {
-  return deleteRequest(`/v2/council/report/${id}`, { jsessionID: true });
-};
+export const deleteCouncilReport = (id: number) =>
+  deleteRequest(`/v2/council/report/${id}`, { jsessionID: true });

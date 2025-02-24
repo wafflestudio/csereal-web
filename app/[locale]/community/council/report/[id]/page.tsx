@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function CouncilReportPage({ params }: Props) {
-  const { id, locale } = await params;
-  const t = await getTranslations({ locale });
+  const { id } = await params;
+  const t = await getTranslations('Content');
   const council = await getCouncilReport(id);
 
   const { title, description, sequence, name, createdAt } = council;
@@ -55,7 +55,13 @@ export default async function CouncilReportPage({ params }: Props) {
       >
         <HTMLViewer htmlContent={description} wrapperClassName="mb-10" />
         <StraightNode />
-        <PostFooter post={council} postType="council/report" id={id.toString()} margin="mt-12" />
+        <PostFooter
+          post={council}
+          postType="council/report"
+          id={id.toString()}
+          margin="mt-12"
+          role="ROLE_COUNCIL"
+        />
       </div>
     </PageLayout>
   );
