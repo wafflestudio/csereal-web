@@ -49,7 +49,7 @@ export default function MinutePageContent({
 
 function MinuteAddButton({ year }: { year: number }) {
   return (
-    <LoginVisible staff>
+    <LoginVisible role="ROLE_COUNCIL">
       <Link
         href={`${minutePath}/create?year=${year}`}
         className="mt-3 flex w-[220px] items-center gap-1.5 rounded-sm border border-main-orange px-2 py-2.5 text-main-orange duration-200 hover:bg-main-orange hover:text-white"
@@ -63,7 +63,7 @@ function MinuteAddButton({ year }: { year: number }) {
 
 function YearAddButton() {
   return (
-    <LoginVisible staff>
+    <LoginVisible role="ROLE_COUNCIL">
       <Link
         href={`${minutePath}/create`}
         className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
@@ -83,7 +83,7 @@ function Buttons({
   editHref: string;
 }) {
   return (
-    <LoginVisible staff>
+    <LoginVisible role="ROLE_COUNCIL">
       <div className="flex justify-end gap-3">
         <DeleteButton onDelete={onDelete} />
         <EditButton href={editHref} />
