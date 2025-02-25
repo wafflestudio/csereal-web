@@ -4,7 +4,7 @@ import { councilMinute } from '@/constants/segmentNode';
 import { getEditorFile } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 
-import CouncilMeetingMinuteEditor from '../MinuteEditor';
+import CouncilMeetingMinuteEditor from '../CouncilMeetingMinuteEditor';
 
 interface MinuteEditPageProps {
   searchParams: Promise<{ year: string; index: string }>;

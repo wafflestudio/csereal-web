@@ -6,31 +6,38 @@ import { encodeFormDataFileName } from './string';
 export const contentToFormData = (
   type: 'CREATE' | 'EDIT',
   content: {
-    requestObject: object;
+    requestObject?: object;
     attachments?: EditorFile[];
     image?: EditorImage;
+  },
+  keys?: {
+    request?: string;
+    attachments?: string;
+    image?: string;
   },
 ) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(requestObject)], {
-      type: 'application/json',
-    }),
-  );
+  if (requestObject) {
+    formData.append(
+      keys?.request || 'request',
+      new Blob([JSON.stringify(requestObject)], {
+        type: 'application/json',
+      }),
+    );
+  }
 
   if (attachments) {
     encodeFormDataFileName(
       formData,
-      type === 'CREATE' ? 'attachments' : 'newAttachments',
+      keys?.attachments || type === 'CREATE' ? 'attachments' : 'newAttachments',
       attachments.filter(isLocalFile).map((x) => x.file),
     );
   }
 
   if (image && isLocalImage(image)) {
-    formData.append(type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
+    formData.append(keys?.image || type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
   }
 
   return formData;

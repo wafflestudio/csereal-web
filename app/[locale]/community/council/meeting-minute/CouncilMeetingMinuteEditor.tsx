@@ -6,12 +6,11 @@ import { postMinutesByYearAction, putMinuteAction } from '@/actions/council';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { useRouter } from '@/i18n/routing';
-import { EditorFile, isLocalFile } from '@/types/form';
-import { getAttachmentDeleteIds } from '@/utils/formData';
+import { EditorFile } from '@/types/form';
+import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-import { encodeFormDataFileName } from '@/utils/string';
 
-export type MinuteFormData = { year: number; index: number; file: EditorFile[] };
+type MinuteFormData = { year: number; index: number; file: EditorFile[] };
 
 interface Props {
   option:
@@ -43,13 +42,17 @@ export default function CouncilMeetingMinuteEditor({ option, cancelPath }: Props
 
   const onSubmit = async (requestObject: MinuteFormData) => {
     if (option.type === 'CREATE') {
-      const formData = contentToCreateFormData(requestObject.file);
+      const formData = contentToFormData(option.type, { attachments: requestObject.file });
 
       const resp = await postMinutesByYearAction(requestObject.year, formData);
       handleServerResponse(resp, { successMessage: '저장되었습니다.' });
     } else {
       const removeFileIds = getAttachmentDeleteIds(requestObject.file, option.defaultValues.file);
-      const formData = contentToEditFormData(removeFileIds, requestObject.file);
+      const formData = contentToFormData(
+        'EDIT',
+        { requestObject: removeFileIds, attachments: requestObject.file },
+        { request: 'removeFileIdds', attachments: 'addFiles' },
+      );
 
       const resp = await putMinuteAction(
         option.defaultValues.year,
@@ -79,38 +82,3 @@ export default function CouncilMeetingMinuteEditor({ option, cancelPath }: Props
     </FormProvider>
   );
 }
-
-const contentToCreateFormData = (attachments: EditorFile[]) => {
-  const formData = new FormData();
-
-  if (attachments) {
-    encodeFormDataFileName(
-      formData,
-      'attachments',
-      attachments.filter(isLocalFile).map((x) => x.file),
-    );
-  }
-
-  return formData;
-};
-
-const contentToEditFormData = (removeFileIds: number[], addFiles: EditorFile[]) => {
-  const formData = new FormData();
-
-  formData.append(
-    'removeFileIds',
-    new Blob([JSON.stringify(removeFileIds)], {
-      type: 'application/json',
-    }),
-  );
-
-  if (addFiles) {
-    encodeFormDataFileName(
-      formData,
-      'addFiles',
-      addFiles.filter(isLocalFile).map((x) => x.file),
-    );
-  }
-
-  return formData;
-};

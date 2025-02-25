@@ -2,7 +2,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
 
-import CouncilMeetingMinuteEditor from '../MinuteEditor';
+import CouncilMeetingMinuteEditor from '../CouncilMeetingMinuteEditor';
 
 interface MinuteCreatePageProps {
   searchParams: Promise<{ year?: string }>;
