@@ -15,10 +15,11 @@ export interface CouncilReportEditorContent {
 interface Props {
   onCancel: () => void;
   onSubmit: (content: CouncilReportEditorContent) => Promise<void>;
+  defaultValues?: CouncilReportEditorContent;
 }
 
-export default function CouncilReportEditor({ onCancel, onSubmit }: Props) {
-  const methods = useForm<CouncilReportEditorContent>();
+export default function CouncilReportEditor({ onCancel, onSubmit, defaultValues }: Props) {
+  const methods = useForm<CouncilReportEditorContent>({ defaultValues });
   const { handleSubmit } = methods;
 
   return (
