@@ -26,7 +26,7 @@ interface Props {
   cancelPath: string;
 }
 
-export default function MinuteEditor({ option, cancelPath }: Props) {
+export default function CouncilMeetingMinuteEditor({ option, cancelPath }: Props) {
   const formMethods = useForm<MinuteFormData>({
     defaultValues:
       option.type === 'EDIT'

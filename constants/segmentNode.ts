@@ -144,7 +144,7 @@ export const councilIntro: SegmentNode = {
 
 export const councilMinute: SegmentNode = {
   name: '학생회 회의록',
-  segment: 'minute',
+  segment: 'meeting-minute',
   isPage: true,
   parent: council,
   children: [],

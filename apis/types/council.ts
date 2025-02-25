@@ -1,6 +1,6 @@
 import { Attachment } from './attachment';
 
-export interface Minute {
+export interface CouncilMeetingMinute {
   year: number;
   index: number;
   attachments: Attachment[];

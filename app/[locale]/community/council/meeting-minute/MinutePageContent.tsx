@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { deleteMinuteAction } from '@/actions/council';
-import { Minute } from '@/apis/types/council';
+import { CouncilMeetingMinute } from '@/apis/types/council';
 import Timeline from '@/app/[locale]/academics/components/timeline/Timeline';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -21,7 +21,7 @@ const THIS_YEAR = new Date().getFullYear();
 export default function MinutePageContent({
   contents,
 }: {
-  contents: { [year: string]: Minute[] };
+  contents: { [year: string]: CouncilMeetingMinute[] };
 }) {
   const [selectedYear, setSelectedYear] = useState(THIS_YEAR);
   const timeLineYears = Object.keys(contents)
@@ -92,7 +92,7 @@ function Buttons({
   );
 }
 
-function Minutes({ minute }: { minute: Minute }) {
+function Minutes({ minute }: { minute: CouncilMeetingMinute }) {
   const handleDelete = async () => {
     const resp = await deleteMinuteAction(minute.year, minute.index);
     handleServerResponse(resp, {

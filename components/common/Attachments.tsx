@@ -1,7 +1,6 @@
 import { Attachment } from '@/apis/types/attachment';
 import Clip from '@/public/image/clip.svg';
 
-// TODO: 여러 맥락에서 사용되므로 마진 prop으로 건네주기
 export default function Attachments({
   files,
   margin = 'mb-9 mt-3 sm:mb-11 sm:mt-5',

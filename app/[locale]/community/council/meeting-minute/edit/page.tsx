@@ -4,7 +4,7 @@ import { councilMinute } from '@/constants/segmentNode';
 import { getEditorFile } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 
-import MinuteEditor from '../MinuteEditor';
+import CouncilMeetingMinuteEditor from '../MinuteEditor';
 
 interface MinuteEditPageProps {
   searchParams: Promise<{ year: string; index: string }>;
@@ -18,11 +18,9 @@ export default async function CouncilMinuteEditPage({ searchParams }: MinuteEdit
 
   const data = await getCouncilMinute(year, index);
 
-  console.log(data);
-
   return (
     <PageLayout title={`${year}년 학생회 ${index}차 회의록 편집`} titleType="big">
-      <MinuteEditor
+      <CouncilMeetingMinuteEditor
         option={{
           type: 'EDIT',
           defaultValues: { year, index, file: getEditorFile(data.attachments) },
