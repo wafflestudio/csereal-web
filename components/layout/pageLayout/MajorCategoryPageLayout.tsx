@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { SegmentNode } from '@/constants/segmentNode';
@@ -17,6 +17,7 @@ interface GuidePageLayoutProps {
   subtitle?: string;
   description?: string;
   theme?: 'light' | 'dark';
+  titleComponent?: ReactNode;
 }
 
 // TODO: RootItem을 클릭했을 때 LeafItem이 보이도록 자동 스크롤
@@ -25,6 +26,7 @@ export default function MajorCategoryPageLayout({
   subtitle = '',
   description = '',
   theme = 'dark',
+  titleComponent,
 }: GuidePageLayoutProps) {
   const t = useTranslations('Nav');
   const currentPage = useCurrentSegmentNode();
@@ -39,20 +41,22 @@ export default function MajorCategoryPageLayout({
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-[80rem] px-5 py-8 sm:px-[6.25rem] sm:pb-[4.5rem] sm:pt-12">
-        <div className="text:sm mb-2 font-light text-neutral-500 sm:text-[20px]">{subtitle}</div>
-        <div className="text-[32px] font-semibold tracking-wide text-white sm:text-[64px]">
-          {title}
+      {titleComponent || (
+        <div className="max-w-[80rem] px-5 py-8 sm:px-[6.25rem] sm:pb-[4.5rem] sm:pt-12">
+          <div className="text:sm mb-2 font-light text-neutral-500 sm:text-[20px]">{subtitle}</div>
+          <div className="text-[32px] font-semibold tracking-wide text-white sm:text-[64px]">
+            {title}
+          </div>
+          {description && (
+            <HTMLViewer
+              htmlContent={description}
+              wrapperClassName="mb-6 mt-8 hidden sm:block"
+              // contentClassName={{ color: '#f5f5f5', maxWidth: 960 }}
+              contentClassName="!text-[#f5f5f5] max-w-[960px]"
+            />
+          )}
         </div>
-        {description && (
-          <HTMLViewer
-            htmlContent={description}
-            wrapperClassName="mb-6 mt-8 hidden sm:block"
-            // contentClassName={{ color: '#f5f5f5', maxWidth: 960 }}
-            contentClassName="!text-[#f5f5f5] max-w-[960px]"
-          />
-        )}
-      </div>
+      )}
       <div
         className={`${theme === 'light' ? 'bg-white' : 'bg-neutral-900'} px-5 pt-7 ${
           !description && 'pb-16'
