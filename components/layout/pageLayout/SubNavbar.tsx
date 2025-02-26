@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
-import { SegmentNode } from '@/constants/segmentNode';
+import { community, council, SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import useStyle from '@/utils/hooks/useStyle';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
@@ -20,7 +20,12 @@ const INDENTATION = 16;
 export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
   const t = useTranslations('Nav');
   const rootTab = getRootTab(currentTab as SegmentNode);
-  const subTabs = getAllSubTabs(rootTab);
+  const subTabs =
+    // 학생회 하위 탭은 서브내비 노출 X
+    rootTab === community
+      ? getAllSubTabs(rootTab).filter((tab) => tab.parent !== council)
+      : getAllSubTabs(rootTab);
+
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
   return (
