@@ -31,7 +31,7 @@ export default function CouncilMinuteCreatePage({
 
   return (
     // TODO: 영문 번역
-    <PageLayout title={`${year ? `${year}년 ` : ''}학생회 회의록 추가`} titleType="big">
+    <PageLayout title={`${year ? `${year}년 ` : ''}학생회 회의록 추가`} titleType="big" hideNavbar>
       <CouncilMeetingMinuteEditor
         defaultValues={year ? { year, file: [] } : undefined}
         onSubmit={onSubmit}
