@@ -11,10 +11,11 @@ export default async function CouncilReportEditPage({
   if (isNaN(parsedId)) throw new Error(`잘못된 아이디: ${id}`);
 
   const report = await getCouncilReport(parsedId);
-  console.log(report);
+
   return (
     <CouncilReportEditPageContent
-      defaultValues={{ ...report, mainImage: { type: 'UPLOADED_IMAGE', url: '' } }}
+      id={parsedId}
+      defaultValues={{ ...report, mainImage: { type: 'UPLOADED_IMAGE', url: report.imageURL } }}
     />
   );
 }

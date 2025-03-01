@@ -9,7 +9,7 @@ import {
   putCouncilMinute,
 } from '@/apis/v2/council/meeting-minute';
 import { postCouncilReport } from '@/apis/v2/council/report';
-import { deleteCouncilReport } from '@/apis/v2/council/report/[id]';
+import { deleteCouncilReport, putCouncilReport } from '@/apis/v2/council/report/[id]';
 import {
   FETCH_TAG_COUNCIL_INTRO,
   FETCH_TAG_COUNCIL_MINUTE,
@@ -67,6 +67,12 @@ export const postCouncilReportAction = withErrorHandler(async (formData: FormDat
   await postCouncilReport(formData);
   revalidateTag(FETCH_TAG_COUNCIL_REPORT);
   redirectKo(councilReportPath);
+});
+
+export const putCouncilReportAction = withErrorHandler(async (id: number, formData: FormData) => {
+  await putCouncilReport(id, formData);
+  revalidateTag(FETCH_TAG_COUNCIL_REPORT);
+  redirectKo(`${councilReportPath}/${id}`);
 });
 
 export const deleteCouncilReportAction = async (id: number) => {

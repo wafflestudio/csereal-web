@@ -17,4 +17,5 @@ export interface CouncilReport {
   prevTitle: string;
   nextId: number;
   nextTitle: string;
+  imageURL: string;
 }
