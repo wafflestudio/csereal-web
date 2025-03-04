@@ -51,7 +51,6 @@ export default function MajorCategoryPageLayout({
             <HTMLViewer
               htmlContent={description}
               wrapperClassName="mb-6 mt-8 hidden sm:block"
-              // contentClassName={{ color: '#f5f5f5', maxWidth: 960 }}
               contentClassName="!text-[#f5f5f5] max-w-[960px]"
             />
           )}
