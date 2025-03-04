@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { CustomError, handleServerResponse } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import CouncilAttachment from '../components/CouncilAttachments';
 
@@ -38,8 +38,14 @@ export default function MinutePageContent({
         setSelectedTime={setSelectedYear}
       />
       <div className="mt-7">
-        {selectedContents.map((minute) => {
-          return <Minutes minute={minute} key={`${minute.year}_${minute.index}`} />;
+        {selectedContents.map((minute, i) => {
+          return (
+            <Minutes
+              minute={minute}
+              key={`${minute.year}_${minute.index}`}
+              isLast={i === selectedContents.length - 1}
+            />
+          );
         })}
       </div>
       <MinuteAddButton year={selectedYear} />
@@ -75,24 +81,7 @@ function YearAddButton() {
   );
 }
 
-function Buttons({
-  onDelete,
-  editHref,
-}: {
-  onDelete: () => Promise<CustomError | void>;
-  editHref: string;
-}) {
-  return (
-    <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
-      <div className="flex justify-end gap-3">
-        <DeleteButton onDelete={onDelete} />
-        <EditButton href={editHref} />
-      </div>
-    </LoginVisible>
-  );
-}
-
-function Minutes({ minute }: { minute: CouncilMeetingMinute }) {
+function Minutes({ minute, isLast }: { minute: CouncilMeetingMinute; isLast: boolean }) {
   const handleDelete = async () => {
     const resp = await deleteMinuteAction(minute.year, minute.index);
     handleServerResponse(resp, {
@@ -104,10 +93,12 @@ function Minutes({ minute }: { minute: CouncilMeetingMinute }) {
     <div className="mb-10 w-fit border-b border-neutral-200 pb-10">
       <div className="flex items-center justify-between gap-2.5 ">
         <div className="font-semibold">{minute.index}차 회의 회의록</div>
-        <Buttons
-          onDelete={handleDelete}
-          editHref={`${minutePath}/edit?year=${minute.year}&index=${minute.index}`}
-        />
+        <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
+          <div className="flex justify-end gap-3">
+            {isLast && <DeleteButton onDelete={handleDelete} />}
+            <EditButton href={`${minutePath}/edit?year=${minute.year}&index=${minute.index}`} />
+          </div>
+        </LoginVisible>
       </div>
       {minute.attachments.map((file) => (
         <CouncilAttachment {...file} key={file.id} />

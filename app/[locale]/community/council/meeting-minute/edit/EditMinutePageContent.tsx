@@ -26,12 +26,13 @@ export default function EditMinutePageContent({
   const onCancel = () => router.push(minutePath);
 
   const onSubmit = async (requestObject: MinuteFormData) => {
-    const removeFileIds = getAttachmentDeleteIds(requestObject.file, data.attachments);
+    const deleteIds = getAttachmentDeleteIds(requestObject.file, data.attachments);
     const formData = contentToFormData(
       'EDIT',
-      { requestObject: removeFileIds, attachments: requestObject.file },
-      { request: 'removeFileIds', attachments: 'addFiles' },
+      { requestObject: deleteIds, attachments: requestObject.file },
+      { request: 'deleteIds', attachments: 'addFiles' },
     );
+
     await putMinuteAction(year, index, formData);
   };
 
