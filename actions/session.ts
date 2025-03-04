@@ -32,7 +32,8 @@ export const getUserState = async (): Promise<UserState> => {
     });
 
     return resp.isStaff ? 'staff' : 'non-staff';
-  } catch {
+  } catch (e) {
+    console.error(`getUserState Error: ${e}`);
     removeAuth();
     return 'logout';
   }
