@@ -26,7 +26,7 @@ export const getUserState = async (): Promise<UserState> => {
   if (id === undefined) return 'logout';
 
   try {
-    const resp = await getRequest<{ isStaff: boolean }>('/user/is-staff', undefined, {
+    const resp = await getRequest<{ isStaff: boolean }>('/v1/user/is-staff', undefined, {
       cache: 'no-store',
       jsessionID: true,
     });
