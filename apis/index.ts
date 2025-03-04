@@ -8,7 +8,7 @@ type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'https://cse-dev-waffle.bacchus.io/api'
-    : 'http://localhost:8080/api';
+    : 'https://cse.snu.ac.kr/api';
 
 export const getRequest = async <T = unknown>(
   url: string,

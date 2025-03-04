@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getInternal } from '@/apis/v1/internal';
 
 import InternalContent from './InternalContent';
