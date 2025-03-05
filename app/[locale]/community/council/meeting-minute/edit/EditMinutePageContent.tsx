@@ -27,11 +27,10 @@ export default function EditMinutePageContent({
 
   const onSubmit = async (requestObject: MinuteFormData) => {
     const deleteIds = getAttachmentDeleteIds(requestObject.file, data.attachments);
-    const formData = contentToFormData(
-      'EDIT',
-      { requestObject: deleteIds, attachments: requestObject.file },
-      { request: 'deleteIds', attachments: 'addFiles' },
-    );
+    const formData = contentToFormData('EDIT', {
+      requestObject: { deleteIds },
+      attachments: requestObject.file,
+    });
 
     await putMinuteAction(year, index, formData);
   };

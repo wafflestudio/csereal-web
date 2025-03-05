@@ -1,7 +1,7 @@
 import { Attachment } from '@/apis/types/attachment';
 import { EditorFile, EditorImage, isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
 
-import { encodeFormDataFileName, FormDataFileName } from './string';
+import { encodeFormDataFileName } from './string';
 
 export const contentToFormData = (
   type: 'CREATE' | 'EDIT',
@@ -10,18 +10,13 @@ export const contentToFormData = (
     attachments?: EditorFile[];
     image?: EditorImage;
   },
-  keys?: {
-    request?: string;
-    attachments?: string;
-    image?: string;
-  },
 ) => {
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
 
   if (requestObject) {
     formData.append(
-      keys?.request || 'request',
+      'request',
       new Blob([JSON.stringify(requestObject)], {
         type: 'application/json',
       }),
@@ -31,14 +26,13 @@ export const contentToFormData = (
   if (attachments) {
     encodeFormDataFileName(
       formData,
-      (keys?.attachments as FormDataFileName) ||
-        (type === 'CREATE' ? 'attachments' : 'newAttachments'),
+      type === 'CREATE' ? 'attachments' : 'newAttachments',
       attachments.filter(isLocalFile).map((x) => x.file),
     );
   }
 
   if (image && isLocalImage(image)) {
-    formData.append(keys?.image || (type === 'CREATE' ? 'mainImage' : 'newMainImage'), image.file);
+    formData.append(type === 'CREATE' ? 'mainImage' : 'newMainImage', image.file);
   }
 
   return formData;
