@@ -20,6 +20,6 @@ export const encodeFormDataFileName = (
   fileList.forEach((file) => formData.append(key, file, encodeURI(file.name)));
 };
 
-export type FormDataFileName = 'attachments' | 'newAttachments' | 'pdf' | 'addFiles';
+export type FormDataFileName = 'attachments' | 'newAttachments' | 'pdf';
 
 const isFile = (x: unknown): x is File => x instanceof File;

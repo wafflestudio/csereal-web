@@ -46,7 +46,7 @@ export const postMinutesByYearAction = withErrorHandler(
 
 export const putMinuteAction = withErrorHandler(
   async (year: number, index: number, formData: FormData) => {
-    decodeFormDataFileName(formData, 'addFiles');
+    decodeFormDataFileName(formData, 'newAttachments');
     await putCouncilMinute(year, index, formData);
     revalidateTag(FETCH_TAG_COUNCIL_MINUTE);
     redirectKo(minutePath);
