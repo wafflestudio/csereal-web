@@ -6,7 +6,7 @@ import { encodeFormDataFileName } from './string';
 export const contentToFormData = (
   type: 'CREATE' | 'EDIT',
   content: {
-    requestObject: object;
+    requestObject?: object;
     attachments?: EditorFile[];
     image?: EditorImage;
   },
@@ -14,12 +14,14 @@ export const contentToFormData = (
   const { requestObject, attachments, image } = content;
   const formData = new FormData();
 
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(requestObject)], {
-      type: 'application/json',
-    }),
-  );
+  if (requestObject) {
+    formData.append(
+      'request',
+      new Blob([JSON.stringify(requestObject)], {
+        type: 'application/json',
+      }),
+    );
+  }
 
   if (attachments) {
     encodeFormDataFileName(

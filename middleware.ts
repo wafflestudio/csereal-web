@@ -14,18 +14,28 @@ const isAuthRequired = (pathname: string) => {
   return pathname.startsWith('/admin') || pathname.endsWith('create') || pathname.endsWith('edit');
 };
 
+const isCouncilRequired = (pathname: string) => {
+  if (pathname.startsWith('/en')) pathname = pathname.slice(3);
+  return (
+    pathname.includes('/council') && (pathname.endsWith('create') || pathname.endsWith('edit'))
+  );
+};
+
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-
+  const userState = await getUserState();
   // 관리자 페이지는 스태프 계정으로 로그인되어있어야한다.
-  if (isAuthRequired(pathname)) {
-    const isStaff = await getUserState();
-    if (isStaff !== 'ROLE_STAFF') {
-      if (isProd) {
-        return Response.redirect(new URL(LOGIN_URL));
-      } else {
-        return Response.redirect(new URL(BASE_URL));
-      }
+  // 학생회 편집 페이지는 학생회 혹은 스태프 계정으로 로그인되어 있어야 한다.
+  const isValidState =
+    userState === 'ROLE_STAFF' ||
+    (isCouncilRequired(pathname) && userState === 'ROLE_COUNCIL') ||
+    !isAuthRequired(pathname);
+
+  if (!isValidState) {
+    if (isProd) {
+      return Response.redirect(new URL(LOGIN_URL));
+    } else {
+      return Response.redirect(new URL(BASE_URL));
     }
   }
 
