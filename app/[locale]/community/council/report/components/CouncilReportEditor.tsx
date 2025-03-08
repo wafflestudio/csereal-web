@@ -50,6 +50,8 @@ export default function CouncilReportEditor({ onCancel, onSubmit, defaultValues 
               maxWidth="w-[39px]"
               placeholder="39"
               options={{ required: true }}
+              type="number"
+              className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             />{' '}
             대 학생회{' '}
             <Form.Text

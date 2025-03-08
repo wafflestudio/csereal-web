@@ -72,3 +72,11 @@ export function getEditorFile(attachment: Attachment | Attachment[]): EditorFile
     ? attachment.map((file) => ({ type: 'UPLOADED_FILE', file }))
     : { type: 'UPLOADED_FILE', file: attachment };
 }
+
+export const attachmentToEditorFile = (attachment: Attachment): EditorFile => ({
+  type: 'UPLOADED_FILE',
+  file: attachment,
+});
+
+export const attachmentsToEditorFiles = (attachments: Attachment[]): EditorFile[] =>
+  attachments.map(attachmentToEditorFile);
