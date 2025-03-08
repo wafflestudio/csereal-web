@@ -15,7 +15,7 @@ import {
   FETCH_TAG_COUNCIL_INTRO,
   FETCH_TAG_COUNCIL_MINUTE,
   FETCH_TAG_COUNCIL_REPORT,
-  FETCH_TAG_COUNCIL_RULES as FETCH_TAG_COUNCIL_Rules,
+  FETCH_TAG_COUNCIL_RULES,
 } from '@/constants/network';
 import {
   councilBylaws as councilRules,
@@ -96,8 +96,20 @@ export const deleteCouncilReportAction = async (id: number) => {
 
 const councilRulesPath = getPath(councilRules);
 
-export const putCouncilRulesAction = withErrorHandler(async (formData: FormData) => {
-  await putCouncilRules(formData);
-  revalidateTag(FETCH_TAG_COUNCIL_Rules);
-  redirectKo(councilRulesPath);
-});
+export const putCouncilRulesAction = withErrorHandler(
+  async (bylawFormData: FormData, constitutionFormData: FormData) => {
+    console.log(bylawFormData);
+    console.log(constitutionFormData);
+
+    decodeFormDataFileName(bylawFormData, 'newAttachments');
+    decodeFormDataFileName(constitutionFormData, 'newAttachments');
+
+    await Promise.all([
+      putCouncilRules('bylaw', bylawFormData),
+      putCouncilRules('constitution', constitutionFormData),
+    ]);
+
+    revalidateTag(FETCH_TAG_COUNCIL_RULES);
+    redirectKo(councilRulesPath);
+  },
+);

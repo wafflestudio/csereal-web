@@ -2,11 +2,16 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { putCouncilRulesAction } from '@/actions/council';
 import { CouncilRules } from '@/apis/v2/council/rule';
 import Form from '@/components/form/Form';
 import { useRouter } from '@/i18n/routing';
 import { EditorFile } from '@/types/form';
-import { attachmentsToEditorFiles } from '@/utils/formData';
+import {
+  attachmentsToEditorFiles,
+  contentToFormData,
+  getAttachmentDeleteIds,
+} from '@/utils/formData';
 
 interface FormData {
   constitutionAttachments: EditorFile[];
@@ -18,10 +23,13 @@ interface Props {
 }
 
 export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
+  const constitutionAttachments = councilRules.constitution.attachments;
+  const bylawAttachments = councilRules.bylaw.attachments;
+
   const methods = useForm<FormData>({
     defaultValues: {
-      constitutionAttachments: attachmentsToEditorFiles(councilRules.constitution.attachments),
-      bylawAttachments: attachmentsToEditorFiles(councilRules.bylaw.attachments),
+      constitutionAttachments: attachmentsToEditorFiles(constitutionAttachments),
+      bylawAttachments: attachmentsToEditorFiles(bylawAttachments),
     },
   });
   const router = useRouter();
@@ -33,7 +41,22 @@ export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
   };
 
   const onSubmit = handleSubmit(async (formData: FormData) => {
-    console.log(formData);
+    const bylawsDeleteIds = getAttachmentDeleteIds(formData.bylawAttachments, bylawAttachments);
+    const bylawsFormData = contentToFormData('EDIT', {
+      requestObject: { deleteIds: bylawsDeleteIds },
+      attachments: formData.bylawAttachments,
+    });
+
+    const constitutionDeleteIds = getAttachmentDeleteIds(
+      formData.constitutionAttachments,
+      constitutionAttachments,
+    );
+    const constitutionFormData = contentToFormData('EDIT', {
+      requestObject: { deleteIds: constitutionDeleteIds },
+      attachments: formData.constitutionAttachments,
+    });
+
+    await putCouncilRulesAction(bylawsFormData, constitutionFormData);
   });
 
   return (

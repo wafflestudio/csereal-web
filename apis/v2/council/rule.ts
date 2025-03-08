@@ -8,5 +8,5 @@ export type CouncilRules = {
 
 export const getCouncilRules = () => getRequest<CouncilRules>('/v2/council/rule', undefined);
 
-export const putCouncilRules = (body: FormData) =>
-  putRequest<CouncilRules>('/v2/council/rule', { body, jsessionID: true });
+export const putCouncilRules = (type: keyof CouncilRules, body: FormData) =>
+  putRequest<CouncilRules>(`/v2/council/rule/${type}`, { body, jsessionID: true });
