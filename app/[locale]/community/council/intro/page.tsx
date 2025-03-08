@@ -33,7 +33,7 @@ export default async function CouncilIntroPage() {
   return (
     <PageLayout titleType="big" removePadding>
       <div className="bg-neutral-100 px-5 pb-12 pt-7 sm:py-11 sm:pl-[6.25rem] sm:pr-[22.5rem]">
-        <LoginVisible staff>
+        <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
           <div className="mb-8 text-right">
             <EditButton href={`${councilPath}/edit`} />
           </div>
