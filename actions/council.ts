@@ -9,6 +9,7 @@ import {
   putCouncilMinute,
 } from '@/apis/v2/council/meeting-minute';
 import { postCouncilReport } from '@/apis/v2/council/report';
+import { deleteCouncilReport, putCouncilReport } from '@/apis/v2/council/report/[id]';
 import {
   FETCH_TAG_COUNCIL_INTRO,
   FETCH_TAG_COUNCIL_MINUTE,
@@ -67,3 +68,19 @@ export const postCouncilReportAction = withErrorHandler(async (formData: FormDat
   revalidateTag(FETCH_TAG_COUNCIL_REPORT);
   redirectKo(councilReportPath);
 });
+
+export const putCouncilReportAction = withErrorHandler(async (id: number, formData: FormData) => {
+  await putCouncilReport(id, formData);
+  revalidateTag(FETCH_TAG_COUNCIL_REPORT);
+  redirectKo(`${councilReportPath}/${id}`);
+});
+
+export const deleteCouncilReportAction = async (id: number) => {
+  try {
+    await deleteCouncilReport(id);
+    revalidateTag(FETCH_TAG_COUNCIL_REPORT);
+  } catch (error) {
+    return { message: error instanceof Error ? error.message : '알 수 없는 에러: ' + error };
+  }
+  redirectKo(councilReportPath);
+};

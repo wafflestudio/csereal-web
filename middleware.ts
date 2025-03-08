@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
+import { Role } from '@/apis/types/role';
 import { isProd } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
@@ -9,9 +10,15 @@ import { BASE_URL, LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 
-const isAuthRequired = (pathname: string) => {
+// TODO: 페이지별 권한관리가 개판이라서 정리 한 번 해줘야 함
+const isAuthRequired = (pathname: string): Role | undefined => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);
-  return pathname.startsWith('/admin') || pathname.endsWith('create') || pathname.endsWith('edit');
+  if (pathname.startsWith('/admin') || pathname.endsWith('create')) return 'ROLE_STAFF';
+
+  if (pathname.endsWith('edit')) {
+    if (pathname.includes('council')) return 'ROLE_COUNCIL';
+    else return 'ROLE_STAFF';
+  }
 };
 
 const isCouncilRequired = (pathname: string) => {
