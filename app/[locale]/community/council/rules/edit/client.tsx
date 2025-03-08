@@ -34,27 +34,41 @@ export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
   });
   const router = useRouter();
 
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { dirtyFields },
+  } = methods;
 
   const onCancel = () => {
     router.back();
   };
 
   const onSubmit = handleSubmit(async (formData: FormData) => {
-    const bylawsDeleteIds = getAttachmentDeleteIds(formData.bylawAttachments, bylawAttachments);
-    const bylawsFormData = contentToFormData('EDIT', {
-      requestObject: { deleteIds: bylawsDeleteIds },
-      attachments: formData.bylawAttachments,
-    });
+    const bylawsFormData = dirtyFields.bylawAttachments
+      ? (() => {
+          const bylawsDeleteIds = getAttachmentDeleteIds(
+            formData.bylawAttachments,
+            bylawAttachments,
+          );
+          return contentToFormData('EDIT', {
+            requestObject: { deleteIds: bylawsDeleteIds },
+            attachments: formData.bylawAttachments,
+          });
+        })()
+      : undefined;
 
-    const constitutionDeleteIds = getAttachmentDeleteIds(
-      formData.constitutionAttachments,
-      constitutionAttachments,
-    );
-    const constitutionFormData = contentToFormData('EDIT', {
-      requestObject: { deleteIds: constitutionDeleteIds },
-      attachments: formData.constitutionAttachments,
-    });
+    const constitutionFormData = dirtyFields.constitutionAttachments
+      ? (() => {
+          const constitutionDeleteIds = getAttachmentDeleteIds(
+            formData.constitutionAttachments,
+            constitutionAttachments,
+          );
+          return contentToFormData('EDIT', {
+            requestObject: { deleteIds: constitutionDeleteIds },
+            attachments: formData.constitutionAttachments,
+          });
+        })()
+      : undefined;
 
     await putCouncilRulesAction(bylawsFormData, constitutionFormData);
   });
@@ -63,11 +77,11 @@ export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
     <FormProvider {...methods}>
       <Form>
         <Form.Section title="학생회칙" mb="mb-10" titleMb="mb-2">
-          <Form.File name="constitutionAttachments" multiple />
+          <Form.File name="constitutionAttachments" multiple rules={{ required: true }} />
         </Form.Section>
 
         <Form.Section title="세칙" titleMb="mb-2">
-          <Form.File name="bylawAttachments" multiple />
+          <Form.File name="bylawAttachments" multiple rules={{ required: true }} />
         </Form.Section>
 
         <Form.Action onCancel={onCancel} onSubmit={onSubmit} />

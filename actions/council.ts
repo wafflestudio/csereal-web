@@ -97,16 +97,13 @@ export const deleteCouncilReportAction = async (id: number) => {
 const councilRulesPath = getPath(councilRules);
 
 export const putCouncilRulesAction = withErrorHandler(
-  async (bylawFormData: FormData, constitutionFormData: FormData) => {
-    console.log(bylawFormData);
-    console.log(constitutionFormData);
-
-    decodeFormDataFileName(bylawFormData, 'newAttachments');
-    decodeFormDataFileName(constitutionFormData, 'newAttachments');
+  async (bylawFormData?: FormData, constitutionFormData?: FormData) => {
+    if (bylawFormData) decodeFormDataFileName(bylawFormData, 'newAttachments');
+    if (constitutionFormData) decodeFormDataFileName(constitutionFormData, 'newAttachments');
 
     await Promise.all([
-      putCouncilRules('bylaw', bylawFormData),
-      putCouncilRules('constitution', constitutionFormData),
+      bylawFormData && putCouncilRules('bylaw', bylawFormData),
+      constitutionFormData && putCouncilRules('constitution', constitutionFormData),
     ]);
 
     revalidateTag(FETCH_TAG_COUNCIL_RULES);
