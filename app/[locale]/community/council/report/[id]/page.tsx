@@ -60,7 +60,7 @@ export default async function CouncilReportPage({ params }: Props) {
           postType="council/report"
           id={id.toString()}
           margin="mt-12"
-          role="ROLE_COUNCIL"
+          role={['ROLE_COUNCIL', 'ROLE_STAFF']}
         />
       </div>
     </PageLayout>

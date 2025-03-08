@@ -24,7 +24,7 @@ export default async function CouncilReportList() {
           <Tile key={report.id} {...report} />
         ))}
       </div>
-      <LoginVisible role="ROLE_COUNCIL">
+      <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
         <div className="mt-[40px] flex justify-end">
           <Link href={`${path}/create`}>
             <button
