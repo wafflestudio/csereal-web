@@ -152,7 +152,7 @@ export const councilMinute: SegmentNode = {
 
 export const councilBylaws: SegmentNode = {
   name: '학생회칙 및 세칙',
-  segment: 'bylaws',
+  segment: 'rules',
   isPage: true,
   parent: council,
   children: [],

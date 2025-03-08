@@ -1,5 +1,5 @@
 import { getCouncilRules } from '@/apis/v2/council/rule';
-import CouncilByLawsEditClientPage from '@/app/[locale]/community/council/bylaws/edit/client';
+import CouncilByLawsEditClientPage from '@/app/[locale]/community/council/rules/edit/client';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default async function CouncilBylawsEditPage() {

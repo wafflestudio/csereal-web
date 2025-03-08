@@ -53,3 +53,4 @@ export const FETCH_TAG_INTERNATIONAL_UNDERGRADUATE = 'international-undergraduat
 export const FETCH_TAG_COUNCIL_INTRO = 'council-intro';
 export const FETCH_TAG_COUNCIL_MINUTE = 'council-minute';
 export const FETCH_TAG_COUNCIL_REPORT = 'council-report';
+export const FETCH_TAG_COUNCIL_RULES = 'council-rules';
