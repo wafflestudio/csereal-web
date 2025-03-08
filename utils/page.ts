@@ -25,8 +25,6 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
 };
 
 export const getAllSubTabs = (rootTab: SegmentNode): SegmentNode[] => {
-  if (!rootTab.children) return [];
-
   const subtabs: SegmentNode[] = [];
   for (const subtab of rootTab.children) {
     subtabs.push(subtab);
