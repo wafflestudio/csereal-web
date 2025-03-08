@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 
-import { getCouncilRule } from '@/apis/v2/council/rule';
+import { getCouncilRules } from '@/apis/v2/council/rule';
 import CouncilAttachment from '@/app/[locale]/community/council/components/CouncilAttachments';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -20,7 +20,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: Langua
 const editPath = `${getPath(councilBylaws)}/edit`;
 
 export default async function CouncilIntroPage() {
-  const resp = await getCouncilRule();
+  const resp = await getCouncilRules();
 
   return (
     <PageLayout titleType="big">

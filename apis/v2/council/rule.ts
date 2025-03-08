@@ -1,9 +1,9 @@
 import { getRequest } from '@/apis';
 import { Attachment } from '@/apis/types/attachment';
 
-type Response = {
+export type CouncilRules = {
   constitution: { type: string; attachments: Attachment[] };
   bylaw: { type: string; attachments: Attachment[] };
 };
 
-export const getCouncilRule = () => getRequest<Response>('/v2/council/rule', undefined);
+export const getCouncilRules = () => getRequest<CouncilRules>('/v2/council/rule', undefined);
