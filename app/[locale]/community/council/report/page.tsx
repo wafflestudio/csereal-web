@@ -44,18 +44,21 @@ const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport)
   const href = `${path}/${id}`;
   const dateStr = dayjs(createdAt).format('YYYY/MM/DD');
 
+  const tileSize = 212;
+  const tileSizeTailwind = 'h-[212px] w-[212px]';
+
   return (
-    <Link className="group relative block h-[232px] w-[232px]" href={href}>
+    <Link className={`group relative block ${tileSizeTailwind}`} href={href}>
       <Image
         src={imageURL}
         alt=""
-        className="h-[232px] w-[232px] object-cover"
-        width={232}
-        height={232}
+        className={`${tileSizeTailwind} object-cover`}
+        width={tileSize}
+        height={tileSize}
       />
       <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col justify-between border border-neutral-200 bg-neutral-100 px-[12px] py-[16px] opacity-0 transition-opacity group-hover:opacity-100">
-        <h3 className="text-[20px] font-semibold text-neutral-950">{title}</h3>
-        <div className="text-xs font-normal text-neutral-500">
+        <h3 className="text-lg font-semibold text-neutral-950">{title}</h3>
+        <div className="text-sm font-normal text-neutral-500">
           <p>
             제 {sequence}대 학생회 {name}
           </p>
