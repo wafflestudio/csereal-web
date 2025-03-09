@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8080/api';
+export const BASE_URL = 'https://cse.snu.ac.kr/api';
 
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 
