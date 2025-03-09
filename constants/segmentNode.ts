@@ -4,6 +4,7 @@ export interface SegmentNode {
   isPage: boolean;
   children: SegmentNode[];
   parent: SegmentNode | null;
+  hideInNavbar?: boolean;
 }
 
 export const main: SegmentNode = {
@@ -140,6 +141,7 @@ export const councilIntro: SegmentNode = {
   isPage: true,
   parent: council,
   children: [],
+  hideInNavbar: true,
 };
 
 export const councilMinute: SegmentNode = {
@@ -148,6 +150,7 @@ export const councilMinute: SegmentNode = {
   isPage: true,
   parent: council,
   children: [],
+  hideInNavbar: true,
 };
 
 export const councilBylaws: SegmentNode = {
@@ -156,6 +159,7 @@ export const councilBylaws: SegmentNode = {
   isPage: true,
   parent: council,
   children: [],
+  hideInNavbar: true,
 };
 
 export const councilReportList: SegmentNode = {
@@ -164,6 +168,7 @@ export const councilReportList: SegmentNode = {
   isPage: true,
   parent: council,
   children: [],
+  hideInNavbar: true,
 };
 
 export const people: SegmentNode = {

@@ -1,5 +1,6 @@
 import { Attachment } from '@/apis/types/attachment';
 import Clip from '@/public/image/clip.svg';
+import { formatBytes } from '@/utils/format';
 
 export default function Attachments({
   files,
@@ -26,7 +27,8 @@ export default function Attachments({
 }
 
 const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
-  const kilobyte = Math.round(bytes / 100);
+  const byteStr = formatBytes(bytes);
+
   return (
     <a
       className="flex text-sm font-normal hover:underline"
@@ -36,7 +38,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
       rel="noopener noreferrer"
     >
       <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
-      <span>({kilobyte / 10}KB)</span>
+      <span>{byteStr}</span>
     </a>
   );
 };
