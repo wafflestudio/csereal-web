@@ -25,6 +25,7 @@ interface NavTreeProps {
 }
 
 function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
+  const childNodes = node.children.filter((child) => !child.hideInNavbar);
   return (
     <>
       {depth !== 0 && (
@@ -35,9 +36,9 @@ function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
           anchorClassName="text-md"
         />
       )}
-      {node.children !== null && 0 < node.children.length && (
+      {childNodes.length > 0 && (
         <div className="mb-11 ml-5">
-          {node.children.map((child, i) => (
+          {childNodes.map((child, i) => (
             <NavTree key={i} node={child} curNode={curNode} depth={depth + 1} />
           ))}
         </div>
