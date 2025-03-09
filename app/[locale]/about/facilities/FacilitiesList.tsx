@@ -14,6 +14,8 @@ import { handleServerResponse } from '@/utils/serverActionError';
 const facilitiesPath = getPath(facilities);
 
 export default function FacilitesList({ facilities }: { facilities: Facility[] }) {
+  console.log(facilities);
+
   return (
     <div className="mt-[-20px] flex flex-col divide-y divide-neutral-200">
       {facilities.map((facility) => (
