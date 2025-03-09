@@ -38,7 +38,7 @@ const AttachmentAnchor = ({ name, bytes, url }: Attachment) => {
       rel="noopener noreferrer"
     >
       <span className="overflow-hidden text-ellipsis whitespace-nowrap">{name}</span>
-      <span>{byteStr}</span>
+      <span className="ml-2">({byteStr})</span>
     </a>
   );
 };

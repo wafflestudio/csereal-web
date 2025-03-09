@@ -4,6 +4,7 @@ export interface SegmentNode {
   isPage: boolean;
   children: SegmentNode[];
   parent: SegmentNode | null;
+
   hideInNavbar?: boolean;
 }
 
