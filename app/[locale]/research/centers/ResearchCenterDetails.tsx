@@ -1,18 +1,16 @@
 'use client';
 
 import { deleteResearchCenterAction } from '@/actions/research';
+import { ResearchCenter } from '@/apis/types/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchCenters } from '@/constants/segmentNode';
 import LinkIcon from '@/public/image/link_icon.svg';
 import { WithLanguage } from '@/types/language';
-import { ResearchCenter } from '@/types/research';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { researchCenters } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 interface ResearchCenterDetailsProps {
   center: ResearchCenter;
@@ -23,12 +21,8 @@ const centersPath = getPath(researchCenters);
 
 export default function ResearchCenterDetails({ center, ids }: ResearchCenterDetailsProps) {
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteResearchCenterAction(ids));
-      successToast('연구 센터를 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteResearchCenterAction(ids);
+    handleServerResponse(resp, { successMessage: '연구 센터를 삭제했습니다.' });
   };
 
   return (
@@ -55,7 +49,7 @@ export default function ResearchCenterDetails({ center, ids }: ResearchCenterDet
               }
             : undefined
         }
-        className="px-2.5"
+        wrapperClassName="px-2.5"
       />
     </>
   );

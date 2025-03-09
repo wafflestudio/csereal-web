@@ -1,12 +1,16 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getTopConferenceList } from '@/apis/v1/conference/page';
+import { getTopConferenceList } from '@/apis/v2/conference/page';
 import ConferenceListTable from '@/app/[locale]/research/top-conference-list/ConferenceListTable';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { topConferenceList } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-import { topConferenceList } from '@/utils/segmentNode';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: topConferenceList });
 }
 

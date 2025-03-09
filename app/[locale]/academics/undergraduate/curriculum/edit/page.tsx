@@ -1,13 +1,13 @@
-import { getCurriculum } from '@/apis/v1/academics/undergraduate/curriculum';
+import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import { FETCH_TAG_CURRICULUM } from '@/constants/network';
 
 import CurriculumEditPageContent from './CurriculumEditPageContent';
 
-export default async function CurriculumEditPage({
-  searchParams,
-}: {
-  searchParams: { year: string };
+export default async function CurriculumEditPage(props: {
+  searchParams: Promise<{ year: string }>;
 }) {
-  const data = await getCurriculum();
+  const searchParams = await props.searchParams;
+  const data = await getAcademicsByPostType('undergraduate', 'curriculum', FETCH_TAG_CURRICULUM);
   const year = Number(searchParams.year);
   const selected = data.find((x) => x.year === year);
 

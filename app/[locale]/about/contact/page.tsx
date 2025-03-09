@@ -1,26 +1,34 @@
 export const dynamic = 'force-dynamic';
 
-import { getContact } from '@/apis/v1/about/contact';
+import { getContact } from '@/apis/v2/about/contact';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { contact } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { contact } from '@/utils/segmentNode';
 
 interface ContactPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
 const contactPath = getPath(contact);
 
-export async function generateMetadata({ params: { locale } }: ContactPageProps) {
+export async function generateMetadata(props: ContactPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: contact });
 }
 
-export default async function ContactPage({ params: { locale } }: ContactPageProps) {
+export default async function ContactPage(props: ContactPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const { description, imageURL } = await getContact(locale);
 
   return (
@@ -43,7 +51,7 @@ export default async function ContactPage({ params: { locale } }: ContactPagePro
               }
             : undefined
         }
-        className="mt-[-1.5rem]"
+        wrapperClassName="mt-[-1.5rem]"
       />
     </PageLayout>
   );

@@ -1,40 +1,52 @@
 'use client';
 
+import { FormProvider, useForm } from 'react-hook-form';
+
 import { putFacultyRecruitmentAction } from '@/actions/recruitment';
-import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
+import { GETFacultyRecruitmentResponse } from '@/apis/types/post';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { facultyRecruitment } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { GETFacultyRecruitmentResponse } from '@/types/post';
+import { EditorImage } from '@/types/form';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateBasicForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
-import { facultyRecruitment } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
 
-interface FacultyRecruitmentEditPageContentProps {
+interface Props {
   data: GETFacultyRecruitmentResponse;
+}
+
+interface FormData {
+  title: string;
+  description: string;
+  image: EditorImage | null;
 }
 
 const recruitPath = getPath(facultyRecruitment);
 
-export default function FacultyRecruitmentEditPageContent({
-  data,
-}: FacultyRecruitmentEditPageContentProps) {
+export default function FacultyRecruitmentEditPageContent({ data }: Props) {
+  const formMethods = useForm<FormData>({
+    defaultValues: {
+      ...data,
+      image: data.mainImageUrl ? { type: 'UPLOADED_IMAGE', url: data.mainImageUrl } : null,
+    },
+  });
+  const { handleSubmit } = formMethods;
   const router = useRouter();
 
-  const handleCancel = () => router.push(recruitPath);
-
-  const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content, { titleRequired: true, engRequired: false });
-
+  const onCancel = () => router.push(recruitPath);
+  const onSubmit = async (_formData: FormData) => {
     const formData = contentToFormData('EDIT', {
-      requestObject: getRequestObject(
-        content,
-        data.mainImageUrl !== null && content.mainImage === null,
-      ),
-      image: content.mainImage,
+      requestObject: {
+        title: _formData.title,
+        description: _formData.description,
+        removeImage: data.mainImageUrl !== null && _formData.image === null,
+      },
+      image: _formData.image,
     });
 
     try {
@@ -47,24 +59,20 @@ export default function FacultyRecruitmentEditPageContent({
 
   return (
     <PageLayout title="신임교수초빙 편집" titleType="big" hideNavbar>
-      <BasicEditor
-        initialContent={{
-          description: { ko: data.description, en: '' },
-          title: { ko: data.title, en: '' },
-          mainImage: data.mainImageUrl ? { type: 'UPLOADED_IMAGE', url: data.mainImageUrl } : null,
-        }}
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showMainImage
-        showTitle
-      />
+      <FormProvider {...formMethods}>
+        <Form>
+          <Fieldset.Title>
+            <Form.Text name="title" maxWidth="w-[30rem]" options={{ required: true }} />
+          </Fieldset.Title>
+          <Fieldset.HTML>
+            <Form.HTML name="description" />
+          </Fieldset.HTML>
+          <Fieldset.Image>
+            <Form.Image name="image" />
+          </Fieldset.Image>
+          <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
+        </Form>
+      </FormProvider>
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: BasicEditorContent, removeImage: boolean) => {
-  return {
-    title: content.title.ko,
-    description: content.description.ko,
-    removeImage,
-  };
-};

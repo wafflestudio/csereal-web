@@ -1,25 +1,25 @@
-import { Metadata } from 'next';
-
-import { getUndergraduateEarlyAdmission } from '@/apis/v1/admissions/undergraduate/early-admission';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
+import { FETCH_TAG_EARLY_ADMISSION } from '@/constants/network';
+import { undergraduateEarlyAdmission } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateEarlyAdmission } from '@/utils/segmentNode';
+import { getPath } from '@/utils/page';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: undergraduateEarlyAdmission });
 }
 
-export default async function UndergraduateEarlyAdmission() {
-  const data = await getUndergraduateEarlyAdmission();
+const path = getPath(undergraduateEarlyAdmission);
 
-  return (
-    <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data.description} />
-    </PageLayout>
-  );
+export default async function UndergraduateEarlyAdmission({ params }: AdmissionPageProps) {
+  const locale = (await params).locale;
+  const data = await getAdmissions('undergraduate', 'early-admission', FETCH_TAG_EARLY_ADMISSION);
+
+  return <AdmissionsPageContent pathname={path} description={data[locale].description} />;
 }

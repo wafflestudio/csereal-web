@@ -2,109 +2,53 @@
 
 import { StraightNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
+import { SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/utils/segmentNode';
 
 type NavTreeRowProps = {
   segmentNode: SegmentNode;
   highlight: boolean;
-  marginBottom: string;
-  fontSize?: string;
+  containerClassName: string;
+  anchorClassName: string;
 };
 
 export default function NavTreeLabel({
   segmentNode,
   highlight,
-  marginBottom,
-  fontSize,
+  containerClassName,
+  anchorClassName,
 }: NavTreeRowProps) {
   const href = getPath(segmentNode);
 
   if (highlight) {
     return (
-      <HighlightedLabel
-        href={href}
-        text={segmentNode.name}
-        marginBottom={marginBottom}
-        fontSize={fontSize}
-      />
+      <div className={`flex items-center ${containerClassName}`}>
+        <Link
+          href={href}
+          className={`mr-4 h-[1.0625rem] shrink-0 font-medium text-main-orange ${anchorClassName}`}
+        >
+          <NavLabel text={segmentNode.name} />
+        </Link>
+        <StraightNode />
+      </div>
     );
   } else if (segmentNode.isPage) {
     return (
-      <LinkLabel
-        href={href}
-        text={segmentNode.name}
-        marginBottom={marginBottom}
-        fontSize={fontSize}
-      />
-    );
-  } else {
-    return <TextLabel text={segmentNode.name} marginBottom={marginBottom} fontSize={fontSize} />;
-  }
-}
-
-function HighlightedLabel({
-  href,
-  text,
-  marginBottom,
-  fontSize = 'text-md',
-}: {
-  href: string;
-  text: string;
-  marginBottom: string;
-  fontSize?: string;
-}) {
-  return (
-    <div className="flex items-center" style={{ marginBottom }}>
       <Link
         href={href}
-        className={`mr-4 h-[1.0625rem] shrink-0  font-medium text-main-orange ${fontSize}`}
+        className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white hover:text-main-orange ${anchorClassName} ${containerClassName}`}
       >
-        <NavLabel text={text} />
+        <NavLabel text={segmentNode.name} />
       </Link>
-      <StraightNode />
-    </div>
-  );
-}
-
-function LinkLabel({
-  href,
-  text,
-  marginBottom,
-  fontSize = 'text-md',
-}: {
-  href: string;
-  text: string;
-  marginBottom: string;
-  fontSize?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white hover:text-main-orange ${fontSize}`}
-      style={{ marginBottom }}
-    >
-      <NavLabel text={text} />
-    </Link>
-  );
-}
-
-function TextLabel({
-  text,
-  marginBottom,
-  fontSize = 'text-md',
-}: {
-  text: string;
-  marginBottom: string;
-  fontSize?: string;
-}) {
-  return (
-    <p
-      className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white ${fontSize}`}
-      style={{ marginBottom }}
-    >
-      <NavLabel text={text} />
-    </p>
-  );
+    );
+  } else {
+    return (
+      <p
+        className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white ${containerClassName} ${anchorClassName}`}
+      >
+        <NavLabel text={segmentNode.name} />
+      </p>
+    );
+  }
 }

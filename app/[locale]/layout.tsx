@@ -1,32 +1,36 @@
 export const dynamic = 'force-dynamic';
 
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
+import { isProd } from '@/constants/env';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
-import { routing } from '@/i18n/routing';
+import { Link, routing } from '@/i18n/routing';
 
 import MarginedMain from './MarginedMain';
 
 const PROD_URL = 'https://cse.snu.ac.kr';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const t = await getTranslations({ locale, namespace: 'Title' });
 
   return {
@@ -39,19 +43,22 @@ export async function generateMetadata({
     openGraph: {
       images: ['/image/main/mainGraphic.png'],
     },
+    robots: !isProd ? 'noindex' : undefined,
   };
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = await props.params;
+
+  const { children } = props;
+
   return (
     <html lang={params.locale} className="bg-neutral-900 font-normal text-neutral-950">
       <body className="sm:min-w-[1200px]">
+        <BuildVersion />
         <ContextProviders locale={params.locale}>
           <Navbar />
           <MobileNav />
@@ -62,7 +69,7 @@ export default async function RootLayout({
           </MarginedMain>
 
           <ModalContainer />
-          <Toaster />
+          <ToastContainer />
         </ContextProviders>
       </body>
     </html>
@@ -78,12 +85,31 @@ async function ContextProviders({ locale, children }: { locale: string; children
   const messages = await getMessages();
 
   return (
-    <SessionContextProvider>
-      <ModalContextProvider>
-        <NavbarContextProvider>
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        </NavbarContextProvider>
-      </ModalContextProvider>
-    </SessionContextProvider>
+    <NextIntlClientProvider messages={messages}>
+      <SessionContextProvider>
+        <ModalContextProvider>
+          <NavbarContextProvider>{children}</NavbarContextProvider>
+        </ModalContextProvider>
+      </SessionContextProvider>
+    </NextIntlClientProvider>
+  );
+}
+
+function BuildVersion() {
+  const buildVersion = process.env.BUILD_VERSION;
+  if (!buildVersion) return;
+
+  return (
+    <div className="fixed bottom-0 right-0 z-50 bg-[royalblue] p-2 text-sm font-semibold text-white">
+      <p>Beta Version: {buildVersion}</p>
+      <Link
+        className="text-white underline"
+        href="https://cse.snu.ac.kr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        👉 공식 홈페이지 가기
+      </Link>
+    </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import CserealModal from '@/components/modal/CserealModal';
+import CserealModal from '@/app/[locale]/community/components/CserealModal';
 import {
   aboutLinks,
   contactPath,
@@ -15,7 +15,7 @@ import {
   snucomLink,
   snuEngLink,
   snuLink,
-} from '@/constants/footer';
+} from '@/components/layout/footer/constants';
 import { Link } from '@/i18n/routing';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/footer/SNU_Logo_with_Text.svg';
@@ -124,13 +124,13 @@ function FooterBottomLeft() {
 function FooterBottomRight() {
   return (
     <div className="mt-7 flex flex-wrap gap-7 sm:mt-0 sm:flex-nowrap sm:items-center">
-      <Link href={snucomLink}>
+      <Link href={snucomLink} aria-label="서울대 컴퓨터공학 동문회 홈페이지로 이동">
         <SnucomIcon />
       </Link>
-      <Link href={snuEngLink}>
+      <Link href={snuEngLink} aria-label="서울대 공과대학 홈페이지로 이동">
         <SnuEngineeringIcon />
       </Link>
-      <Link href={snuLink}>
+      <Link href={snuLink} aria-label="서울대 홈페이지로 이동">
         <SnuLogoWithText />
       </Link>
     </div>

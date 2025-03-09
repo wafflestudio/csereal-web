@@ -5,7 +5,8 @@ import { getMetadata } from '@/utils/metadata';
 
 import StaffMemberPageContent from './StaffMemberPageContent';
 
-export async function generateMetadata({ params }: StaffMemberPageProps) {
+export async function generateMetadata(props: StaffMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const { ko: staff } = await getStaff(id);
@@ -24,10 +25,11 @@ export async function generateMetadata({ params }: StaffMemberPageProps) {
 }
 
 interface StaffMemberPageProps {
-  params: { id: string; locale: Language };
+  params: Promise<{ id: string; locale: Language }>;
 }
 
-export default async function StaffMemberPage({ params }: StaffMemberPageProps) {
+export default async function StaffMemberPage(props: StaffMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const data = await getStaff(id);

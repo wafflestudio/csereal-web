@@ -1,21 +1,22 @@
-'use client';
-
 import { postCourseChangesAction } from '@/actions/academics';
+import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { undergraduateCourseChanges } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { undergraduateCourseChanges } from '@/utils/segmentNode';
-
-import TimelineEditor from '../../../helper/timeline/TimelineEditor';
+import { decodeFormDataFileName } from '@/utils/string';
 
 const courseChangesPath = getPath(undergraduateCourseChanges);
 
 export default function UndergraduateCourseChangesCreatePage() {
+  const onSubmit = async (formData: FormData) => {
+    'use server';
+    decodeFormDataFileName(formData, 'attachments');
+    await postCourseChangesAction('undergraduate', formData);
+  };
+
   return (
     <PageLayout title="학부 교과목 변경 내역 추가" titleType="big">
-      <TimelineEditor
-        submitAction={(data) => postCourseChangesAction('undergraduate', data)}
-        fallbackPathname={courseChangesPath}
-      />
+      <TimelineEditor cancelPath={courseChangesPath} onSubmit={onSubmit} />
     </PageLayout>
   );
 }

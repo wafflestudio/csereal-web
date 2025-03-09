@@ -1,9 +1,9 @@
 import { MouseEventHandler, ReactNode } from 'react';
 
-import Dropdown from '@/components/common/form/Dropdown';
-import MuiDateSelector from '@/components/common/MuiDateSelector';
+import { ReservationPostBody } from '@/apis/types/reservation';
+import ReactCalendar from '@/components/common/MuiDateSelector';
+import Dropdown from '@/components/form/legacy/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { ReservationPostBody } from '@/types/reservation';
 import { isSameDay } from '@/utils/date';
 import useModal from '@/utils/hooks/useModal';
 
@@ -79,13 +79,12 @@ const DateInput = ({ date, setDate }: { date: Date; setDate: (date: Date) => voi
     e.preventDefault();
     openModal(
       <ModalFrame onClose={closeModal}>
-        <MuiDateSelector
+        <ReactCalendar
           date={date}
           setDate={(date) => {
             if (date) setDate(date);
             closeModal();
           }}
-          className="bg-neutral-100"
         />
       </ModalFrame>,
     );

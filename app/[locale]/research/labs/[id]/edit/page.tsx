@@ -5,7 +5,8 @@ import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 
 import ResearchLabEditPageContent from './ResearchLabEditPageContent';
 
-export default async function ResearchLabEditPage({ params }: { params: { id: string } }) {
+export default async function ResearchLabEditPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const [lab, koGroups, enGroups, koFacultyList, enFacultyList] = await Promise.all([

@@ -2,9 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 
+import { researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
 
 export default function ResearchGroupLabs({ labs }: { labs: { id: number; name: string }[] }) {
   const t = useTranslations('Content');

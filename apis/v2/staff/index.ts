@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from '@/apis';
+import { SimpleStaff } from '@/apis/types/people';
 import { FETCH_TAG_STAFF } from '@/constants/network';
 import { Language, WithLanguage } from '@/types/language';
-import { SimpleStaff } from '@/types/people';
 
 export const getStaffList = (language: Language) =>
   getRequest<SimpleStaff[]>('/v2/staff', { language }, { next: { tags: [FETCH_TAG_STAFF] } });

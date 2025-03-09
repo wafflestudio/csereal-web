@@ -1,6 +1,6 @@
-import { ImportantPostIdentifier, ImportantPreview } from '@/types/admin';
+import { ImportantPostIdentifier, ImportantPreview } from '@/apis/types/admin';
+import { news, notice, seminar } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { news, notice, seminar } from '@/utils/segmentNode';
 
 import { CategoryCell, CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';
 

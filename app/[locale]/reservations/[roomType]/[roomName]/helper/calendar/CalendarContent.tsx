@@ -1,6 +1,6 @@
 'use client';
 
-import { ReservationPreview } from '@/types/reservation';
+import { ReservationPreview } from '@/apis/types/reservation';
 import { isSameDay } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 

@@ -1,21 +1,21 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import { getMain } from '@/apis/v1';
+import { MainImportant } from '@/apis/types/main';
+import { getMain } from '@/apis/v2';
+import GraphicSection from '@/app/[locale]/components/GraphicSection';
+import NewsSection from '@/app/[locale]/components/NewsSection';
+import NoticeSection from '@/app/[locale]/components/NoticeSection';
+import Image from '@/components/common/Image';
 import Header from '@/components/layout/header/Header';
-import GraphicSection from '@/components/main/GraphicSection';
-import NewsSection from '@/components/main/NewsSection';
-import NoticeSection from '@/components/main/NoticeSection';
-import { Link } from '@/i18n/routing';
-import { MainImportant } from '@/types/main';
-import { getPath } from '@/utils/page';
 import {
   degree,
   faculty,
   facultyRecruitment,
   generalStudies,
   topConferenceList,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
+import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 export default async function MainPage() {
   const data = await getMain();

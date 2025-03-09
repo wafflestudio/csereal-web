@@ -2,12 +2,12 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { postNews } from '@/apis/v1/news';
-import { deleteNews, patchNews } from '@/apis/v1/news/[id]';
+import { postNews } from '@/apis/v2/news';
+import { deleteNews, patchNews } from '@/apis/v2/news/[id]';
 import { FETCH_TAG_NEWS } from '@/constants/network';
+import { news } from '@/constants/segmentNode';
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
 import { decodeFormDataFileName } from '@/utils/string';
 
 const newsPath = getPath(news);

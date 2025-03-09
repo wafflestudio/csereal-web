@@ -5,12 +5,14 @@ import { Language } from '@/types/language';
 import FacultyEditPageContent from './FacultyEditPageContent';
 
 interface FacultyEditPageProps {
-  params: { id: string; locale: Language };
+  params: Promise<{ id: string; locale: Language }>;
 }
 
-export default async function FacultyEditPage({
-  params: { id: rawId, locale },
-}: FacultyEditPageProps) {
+export default async function FacultyEditPage(props: FacultyEditPageProps) {
+  const params = await props.params;
+
+  const { id: rawId, locale } = params;
+
   const id = +rawId;
   if (Number.isNaN(id)) throw new Error('유효한 id가 아닙니다: ' + rawId);
 

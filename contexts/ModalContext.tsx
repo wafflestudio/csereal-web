@@ -28,10 +28,7 @@ export default function ModalContextProvider({ children }: PropsWithChildren) {
   };
 
   const close = () => {
-    setOpenedModals((modals) => {
-      modals.pop();
-      return [...modals];
-    });
+    setOpenedModals((modals) => modals.slice(0, -1));
   };
 
   const setter = useMemo(() => ({ open, close }), []);

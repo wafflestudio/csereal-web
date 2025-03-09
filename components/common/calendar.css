@@ -1,0 +1,100 @@
+/* Light mode modern CSS for react-calendar */
+
+.react-calendar {
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  color: #333;
+  width: 420px;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background: #f0f0f0;
+}
+
+.react-calendar__navigation button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.react-calendar__month-view__weekdays {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-calendar__tile {
+  background: none;
+  border: none;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.react-calendar__tile:hover {
+  background: #f0f8ff;
+}
+
+.react-calendar__tile--active {
+  background: #0078d4;
+  color: #fff;
+}
+
+.react-calendar__tile--active:hover {
+  background: #005bb5;
+}
+
+.react-calendar__tile--now {
+  background: #f5f5f5;
+  border: 1px solid #0078d4;
+  color: #0078d4;
+}
+
+.react-calendar__tile--now:hover {
+  background: #e0f7ff;
+}
+
+.react-calendar__tile:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.react-calendar__tile--weekend {
+  color: #d9534f;
+}

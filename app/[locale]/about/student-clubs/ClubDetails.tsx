@@ -1,18 +1,16 @@
 'use client';
 
 import { deleteClubAction } from '@/actions/about';
+import { Club } from '@/apis/types/about';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import { Club } from '@/types/about';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { studentClubs } from '@/constants/segmentNode';
 import { Language, WithLanguage } from '@/types/language';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
-import { errorToast, successToast } from '@/utils/toast';
 
 const clubPath = getPath(studentClubs);
 
@@ -24,12 +22,8 @@ export default function ClubDetails({
   language: Language;
 }) {
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteClubAction(club.ko.id));
-      successToast('동아리를 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteClubAction(club.ko.id);
+    handleServerResponse(resp, { successMessage: '동아리를 삭제했습니다.' });
   };
 
   return (

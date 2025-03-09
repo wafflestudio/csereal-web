@@ -7,27 +7,33 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { studentClubs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
 
 import ClubDetails from './ClubDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: studentClubs });
 }
 
 interface StudentClubsPageProps {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }
 
 const clubPath = getPath(studentClubs);
 
-export default async function StudentClubsPage({ searchParams, params }: StudentClubsPageProps) {
+export default async function StudentClubsPage(props: StudentClubsPageProps) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const clubs = await getClubs();
   const selectedClub = findItemBySearchParam(
     clubs,
@@ -36,7 +42,7 @@ export default async function StudentClubsPage({ searchParams, params }: Student
   );
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
+    <PageLayout titleType="big" removeTopPadding>
       <LoginVisible staff>
         <div className="mt-11 text-right">
           <Link href={`${clubPath}/create`}>
@@ -49,6 +55,7 @@ export default async function StudentClubsPage({ searchParams, params }: Student
         selectedItemNameKo={selectedClub?.ko.name ?? ''}
         rootPath={clubPath}
       />
+
       {selectedClub ? (
         <ClubDetails club={selectedClub} language={params.locale} />
       ) : (

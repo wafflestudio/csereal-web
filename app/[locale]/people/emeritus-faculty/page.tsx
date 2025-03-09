@@ -1,30 +1,36 @@
+import { SimpleEmeritusFaculty } from '@/apis/types/people';
 import { getEmeritusFacultyList } from '@/apis/v2/professor/inactive';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
-import { SimpleEmeritusFaculty } from '@/types/people';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { emeritusFaculty, faculty } from '@/utils/segmentNode';
 
-import { PeopleCellProps } from '../helper/PeopleCell';
-import PeopleGrid from '../helper/PeopleGrid';
+import { PeopleCellProps } from '../components/PeopleCell';
+import PeopleGrid from '../components/PeopleGrid';
 
 interface EmeritusFacultyPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: EmeritusFacultyPageProps) {
+export async function generateMetadata(props: EmeritusFacultyPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: emeritusFaculty });
 }
 
 const emeritusFacultyPath = getPath(emeritusFaculty);
 const facultyPath = getPath(faculty);
 
-export default async function EmeritusFacultyPage({
-  params: { locale },
-}: EmeritusFacultyPageProps) {
+export default async function EmeritusFacultyPage(props0: EmeritusFacultyPageProps) {
+  const params = await props0.params;
+
+  const { locale } = params;
+
   const facultyList = await getEmeritusFacultyList(locale);
   const props = facultyList.map(facultyToProp);
 

@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 top-0 z-50 hidden sm:flex`}
+      className="fixed bottom-0 left-0 top-0 z-50 hidden sm:flex"
       onMouseLeave={handleMouseLeave}
     >
       <NavbarRoot />

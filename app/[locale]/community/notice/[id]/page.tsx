@@ -1,19 +1,21 @@
 import { Suspense } from 'react';
 
-import { getNoticePostDetail } from '@/apis/v1/notice/[id]';
+import { PostSearchQueryParams } from '@/apis/types/post';
+import { getNoticePostDetail } from '@/apis/v2/notice/[id]';
+import PostFallback from '@/app/[locale]/community/components/PostFallback';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-import PostFallback from '@/components/layout/fallback/PostFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { PostSearchQueryParams } from '@/types/post';
+import { notice } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-import { notice } from '@/utils/segmentNode';
 
 import NoticeViewer from './NoticeViewer';
 
-export async function generateMetadata({
-  params: { locale, id },
-  searchParams,
-}: NoticePostPageProps) {
+export async function generateMetadata(props: NoticePostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale, id } = params;
+
   try {
     const noticePost = await getNoticePostDetail(parseInt(id), searchParams);
     return await getMetadata({
@@ -29,14 +31,16 @@ export async function generateMetadata({
 }
 
 interface NoticePostPageProps {
-  params: { id: string; locale: string };
-  searchParams: PostSearchQueryParams;
+  params: Promise<{ id: string; locale: string }>;
+  searchParams: Promise<PostSearchQueryParams>;
 }
 
-export default async function NoticePostPage({
-  params: { id: rawID },
-  searchParams,
-}: NoticePostPageProps) {
+export default async function NoticePostPage(props: NoticePostPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { id: rawID } = params;
+
   const id = +rawID;
 
   // ID가 잘못된 경우 예외 처리
@@ -45,7 +49,7 @@ export default async function NoticePostPage({
   try {
     const notice = await getNoticePostDetail(id, searchParams);
     return (
-      <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+      <PageLayout titleType="big" removePadding>
         <Suspense fallback={<PostFallback />}>
           <NoticeViewer notice={notice} />
         </Suspense>

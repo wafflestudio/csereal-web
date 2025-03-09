@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { FutureCareers } from '@/apis/types/about';
 import { putContact } from '@/apis/v2/about/contact';
 import { putDirections } from '@/apis/v2/about/directions/[id]';
 import { postFacility } from '@/apis/v2/about/facilities';
@@ -9,13 +10,12 @@ import { deleteFacility, putFacility } from '@/apis/v2/about/facilities/[id]';
 import { putFutureCareers } from '@/apis/v2/about/future-careers';
 import { postCareerCompany } from '@/apis/v2/about/future-careers/company';
 import { deleteCareerCompany, putCareerCompany } from '@/apis/v2/about/future-careers/company/[id]';
-import { postCareerStat, putCareerStat } from '@/apis/v2/about/future-careers/stats';
+import { CareerStat, postCareerStat, putCareerStat } from '@/apis/v2/about/future-careers/stats';
 import { putGreetings } from '@/apis/v2/about/greetings';
 import { putHistory } from '@/apis/v2/about/history';
 import { putOverview } from '@/apis/v2/about/overview';
 import { postClub, putClub } from '@/apis/v2/about/student-clubs';
 import { deleteClub } from '@/apis/v2/about/student-clubs/[id]';
-import { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
 import {
   FETCH_TAG_CAREER,
   FETCH_TAG_CLUB,
@@ -26,9 +26,6 @@ import {
   FETCH_TAG_HISTORY,
   FETCH_TAG_OVERVIEW,
 } from '@/constants/network';
-import { redirectKo } from '@/i18n/routing';
-import { FutureCareers } from '@/types/about';
-import { getPath } from '@/utils/page';
 import {
   contact,
   directions,
@@ -38,7 +35,10 @@ import {
   history,
   overview,
   studentClubs,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
+import { redirectKo } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
+import { decodeFormDataFileName } from '@/utils/string';
 
 import { withErrorHandler } from './errorHandler';
 
@@ -47,6 +47,7 @@ import { withErrorHandler } from './errorHandler';
 const overviewPath = getPath(overview);
 
 export const putOverviewAction = withErrorHandler(async (formData: FormData) => {
+  decodeFormDataFileName(formData, 'newAttachments');
   await putOverview(formData);
   revalidateTag(FETCH_TAG_OVERVIEW);
   redirectKo(overviewPath);
@@ -84,13 +85,13 @@ export const putCareerDescriptionAction = withErrorHandler(
   },
 );
 
-export const postCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+export const postCareerStatAction = withErrorHandler(async (data: CareerStat) => {
   await postCareerStat(data);
   revalidateTag(FETCH_TAG_CAREER);
   redirectKo(careerPath);
 });
 
-export const putCareerStatAction = withErrorHandler(async (data: CareerStatEditorContent) => {
+export const putCareerStatAction = withErrorHandler(async (data: CareerStat) => {
   await putCareerStat(data);
   revalidateTag(FETCH_TAG_CAREER);
   redirectKo(careerPath);
@@ -100,7 +101,6 @@ export const postCareerCompanyAction = withErrorHandler(
   async (data: { name: string; url?: string; year: number }) => {
     await postCareerCompany(data);
     revalidateTag(FETCH_TAG_CAREER);
-    redirectKo(careerPath);
   },
 );
 
@@ -108,7 +108,6 @@ export const putCareerCompanyAction = withErrorHandler(
   async (id: number, data: FutureCareers['companies'][number]) => {
     await putCareerCompany(id, data);
     revalidateTag(FETCH_TAG_CAREER);
-    redirectKo(careerPath);
   },
 );
 

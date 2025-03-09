@@ -1,19 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import { deleteResearchGroupAction } from '@/actions/research';
+import { ResearchGroup } from '@/apis/types/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchGroups } from '@/constants/segmentNode';
 import { WithLanguage } from '@/types/language';
-import { ResearchGroup } from '@/types/research';
-import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
 import ResearchGroupLabs from './ResearchGroupLabs';
 
@@ -28,12 +26,8 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
   const t = useTranslations('Content');
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteResearchGroupAction(ids));
-      successToast('연구 스트림을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteResearchGroupAction(ids);
+    handleServerResponse(resp, { successMessage: '연구 스트림을 삭제했습니다.' });
   };
 
   return (
@@ -51,7 +45,7 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
       </div>
       <HTMLViewer
         htmlContent={group.description}
-        className="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
+        wrapperClassName="max-w-[780px] bg-white p-[18px] sm:mx-0 sm:p-[40px]"
       />
       {group.mainImageUrl !== null && (
         // TODO: 반응형

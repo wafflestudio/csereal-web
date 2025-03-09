@@ -1,22 +1,26 @@
-import { getImportants } from '@/apis/v1/admin/important';
-import { getSlides } from '@/apis/v1/admin/slide';
+import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/apis/types/admin';
+import { getImportants } from '@/apis/v2/admin/important';
+import { getSlides } from '@/apis/v2/admin/slide';
 import ImportantManagement from '@/app/[locale]/admin/helper/important/ImportantManagement';
 import SlideManagement from '@/app/[locale]/admin/helper/slide/SlideManagement';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { ADMIN_MENU_IMPORTANT, ADMIN_MENU_SLIDE } from '@/types/admin';
+import { admin } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { admin } from '@/utils/segmentNode';
 import { replaceDashWithSpace } from '@/utils/string';
 
 interface AdminPageProps {
-  searchParams: { selected?: string; page?: string };
+  searchParams: Promise<{ selected?: string; page?: string }>;
 }
 
 const adminPath = getPath(admin);
 
-export default async function AdminPage({ searchParams: { selected, page } }: AdminPageProps) {
+export default async function AdminPage(props: AdminPageProps) {
+  const searchParams = await props.searchParams;
+
+  const { selected, page } = searchParams;
+
   const selectedMenu = selected ? replaceDashWithSpace(selected) : ADMIN_MENU_SLIDE;
   const pageNum = (page && parseInt(page)) || 1;
 
@@ -27,7 +31,7 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
     <PageLayout title="관리자 메뉴" titleType="big" titleMargin="mb-9">
       <LoginVisible staff fallback={<p>관리자만 사용할 수 있는 페이지입니다.</p>}>
         <SelectionList
-          names={[{ ko: '슬라이드쇼 관리' }, { ko: '중요 안내 관리' }]}
+          names={[{ ko: ADMIN_MENU_SLIDE }, { ko: ADMIN_MENU_IMPORTANT }]}
           selectedItemNameKo={selectedMenu}
           rootPath={adminPath}
           listGridColumnClass="grid-cols-[200px_220px]"
@@ -39,7 +43,7 @@ export default async function AdminPage({ searchParams: { selected, page } }: Ad
 }
 
 const PageContent = async ({ selected, pageNum }: { selected: string; pageNum: number }) => {
-  if (selected === '슬라이드쇼 관리') {
+  if (selected === ADMIN_MENU_SLIDE) {
     const { slides, total } = await getSlides(pageNum);
     return <SlideManagement posts={slides} total={total} />;
   } else {

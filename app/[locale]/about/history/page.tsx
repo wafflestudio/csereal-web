@@ -1,27 +1,35 @@
 export const dynamic = 'force-dynamic';
 
-import { getHistory } from '@/apis/v1/about/history';
+import { getHistory } from '@/apis/v2/about/history';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { history } from '@/constants/segmentNode';
 import history_image from '@/public/image/about/history.png';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { history } from '@/utils/segmentNode';
 
 interface HistoryPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
 const historyPath = getPath(history);
 
-export async function generateMetadata({ params: { locale } }: HistoryPageProps) {
+export async function generateMetadata(props: HistoryPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: history });
 }
 
-export default async function History({ params: { locale } }: HistoryPageProps) {
+export default async function History(props: HistoryPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const resp = await getHistory(locale);
 
   return (

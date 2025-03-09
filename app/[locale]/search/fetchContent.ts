@@ -1,11 +1,3 @@
-import { searchAbout } from '@/apis/v1/about/search/top';
-import { searchAcademics } from '@/apis/v1/academics/search/top';
-import { searchAdmissions } from '@/apis/v1/admissions/search/top';
-import { searchMember } from '@/apis/v1/member/search/top';
-import { searchNews } from '@/apis/v1/news/totalSearch';
-import { searchNotice } from '@/apis/v1/notice/totalSearch';
-import { getSeminarPosts } from '@/apis/v1/seminar';
-import { searchResearch } from '@/apis/v2/research/search/top';
 import {
   AboutSearchResult,
   AcademicsSearchResult,
@@ -14,8 +6,16 @@ import {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
-} from '@/types/search';
-import { SeminarPreviewList } from '@/types/seminar';
+} from '@/apis/types/search';
+import { SeminarPreviewList } from '@/apis/types/seminar';
+import { searchAbout } from '@/apis/v2/about/search/top';
+import { searchAcademics } from '@/apis/v2/academics/search/top';
+import { searchAdmissions } from '@/apis/v2/admissions/search/top';
+import { searchMember } from '@/apis/v2/member/search/top';
+import { searchNews } from '@/apis/v2/news/totalSearch';
+import { searchNotice } from '@/apis/v2/notice/totalSearch';
+import { searchResearch } from '@/apis/v2/research/search/top';
+import { getSeminarPosts } from '@/apis/v2/seminar';
 
 import { TreeNode } from './helper/SearchSubNavbar';
 

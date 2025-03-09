@@ -1,13 +1,14 @@
 import { getDirections } from '@/apis/v2/about/directions';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 
-import DirectionsEditPageContent from './DirectionsEditPageContent';
+import DirectionEditor from './DirectionEditor';
 
 interface DirectionsEditPageProps {
-  searchParams: { selected?: string };
+  searchParams: Promise<{ selected?: string }>;
 }
 
-export default async function DirectionsEditPage({ searchParams }: DirectionsEditPageProps) {
+export default async function DirectionsEditPage(props: DirectionsEditPageProps) {
+  const searchParams = await props.searchParams;
   const directionList = await getDirections();
   const selectedDirection =
     findItemBySearchParam(
@@ -16,5 +17,5 @@ export default async function DirectionsEditPage({ searchParams }: DirectionsEdi
       searchParams.selected,
     ) || directionList[0];
 
-  return <DirectionsEditPageContent data={selectedDirection} />;
+  return <DirectionEditor data={selectedDirection} />;
 }

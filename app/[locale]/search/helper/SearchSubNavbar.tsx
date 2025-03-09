@@ -9,8 +9,6 @@ export type TreeNode = {
   bold?: boolean;
 };
 
-export const INDENTATION = 16;
-
 // TODO: 번역
 export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
   return (
@@ -36,9 +34,9 @@ export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
 const SubTab = ({ node }: { node: TreeNode }) => {
   return (
     <>
-      <NavbarButton node={node} style={{ marginLeft: INDENTATION }} />
+      <NavbarButton node={node} className="ml-[16px]" />
       {node.children?.map((childNode, idx) => (
-        <NavbarButton node={childNode} key={idx} style={{ marginLeft: INDENTATION * 2 }} />
+        <NavbarButton node={childNode} key={idx} className="ml-[32px]" />
       ))}
     </>
   );

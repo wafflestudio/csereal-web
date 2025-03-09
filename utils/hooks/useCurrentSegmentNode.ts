@@ -1,5 +1,5 @@
+import { admin, main, SegmentNode, tentenProject } from '@/constants/segmentNode';
 import { usePathname } from '@/i18n/routing';
-import { admin, main, SegmentNode, tentenProject } from '@/utils/segmentNode';
 
 export default function useCurrentSegmentNode(): SegmentNode {
   const pathname = usePathname();

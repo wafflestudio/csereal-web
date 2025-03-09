@@ -5,7 +5,8 @@ import { getMetadata } from '@/utils/metadata';
 
 import EmeritusFacultyMemberPageContent from './EmeritusFacultyMemberPageContent';
 
-export async function generateMetadata({ params }: EmeritusFacultyMemberPageProps) {
+export async function generateMetadata(props: EmeritusFacultyMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const { [params.locale]: faculty } = await getEmeritusFaculty(id);
@@ -23,12 +24,11 @@ export async function generateMetadata({ params }: EmeritusFacultyMemberPageProp
 }
 
 interface EmeritusFacultyMemberPageProps {
-  params: { id: string; locale: Language };
+  params: Promise<{ id: string; locale: Language }>;
 }
 
-export default async function EmeritusFacultyMemberPage({
-  params,
-}: EmeritusFacultyMemberPageProps) {
+export default async function EmeritusFacultyMemberPage(props: EmeritusFacultyMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const data = await getEmeritusFaculty(id);

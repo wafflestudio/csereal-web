@@ -4,10 +4,11 @@ import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import StudentClubEditPageContent from './StudentClubEditPageContent';
 
 interface StudentClubEditPageProps {
-  searchParams: { selected?: string };
+  searchParams: Promise<{ selected?: string }>;
 }
 
-export default async function StudentClubEditPage({ searchParams }: StudentClubEditPageProps) {
+export default async function StudentClubEditPage(props: StudentClubEditPageProps) {
+  const searchParams = await props.searchParams;
   const clubs = await getClubs();
   const selectedClub =
     findItemBySearchParam(clubs, (item) => [item.en.name, item.ko.name], searchParams.selected) ||
