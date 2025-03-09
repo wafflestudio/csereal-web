@@ -48,7 +48,6 @@ export default function CouncilReportEditor({ onCancel, onSubmit, defaultValues 
             <Form.Text
               name="sequence"
               maxWidth="w-[39px]"
-              placeholder="39"
               options={{ required: true }}
               type="number"
               className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
