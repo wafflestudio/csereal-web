@@ -90,7 +90,7 @@ function Minutes({ minute, isLast }: { minute: CouncilMeetingMinute; isLast: boo
   };
 
   return (
-    <div className="mb-10 w-fit border-b border-neutral-200 pb-10">
+    <div className="mb-10 w-full border-b border-neutral-200 pb-10">
       <div className="flex items-center justify-between gap-2.5 ">
         <div className="font-semibold">{minute.index}차 회의 회의록</div>
         <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
