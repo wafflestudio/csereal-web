@@ -51,11 +51,14 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
 
   const login = useCallback(async () => {
     router.push(PROD_LOGIN_URL);
-  }, [router]);
+    // TODO: 되긴하는데 이게 맞나 확인...
+    await refresh();
+  }, [router, refresh]);
 
   const logout = useCallback(async () => {
     router.push(PROD_LOGOUT_URL);
-  }, [router]);
+    await refresh();
+  }, [router, refresh]);
 
   const mockLogin = useCallback(
     async (role: Role) => {
