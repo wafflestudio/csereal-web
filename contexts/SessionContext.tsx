@@ -14,7 +14,7 @@ import {
 
 import { getUserState, removeAuthCookie, setMockAuthCookie } from '@/actions/session';
 import { Role } from '@/apis/types/role';
-import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
+import { PROD_LOGIN_URL, PROD_LOGOUT_URL } from '@/constants/network';
 
 export type UserState = 'logout' | Role;
 
@@ -50,11 +50,11 @@ export default function SessionContextProvider({ children }: PropsWithChildren) 
   }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    router.push(LOGIN_URL);
+    router.push(PROD_LOGIN_URL);
   }, [router]);
 
   const logout = useCallback(async () => {
-    router.push(LOGOUT_URL);
+    router.push(PROD_LOGOUT_URL);
   }, [router]);
 
   const mockLogin = useCallback(

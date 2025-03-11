@@ -6,7 +6,7 @@ import { BASE_URL, isProd } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
-import { LOGIN_URL } from './constants/network';
+import { PROD_LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -40,7 +40,7 @@ export default async function middleware(request: NextRequest) {
 
   if (!isValidState) {
     if (isProd) {
-      return Response.redirect(new URL(LOGIN_URL));
+      return Response.redirect(new URL(PROD_LOGIN_URL));
     } else {
       return Response.redirect(new URL(BASE_URL));
     }
