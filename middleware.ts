@@ -2,11 +2,11 @@ import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { Role } from '@/apis/types/role';
-import { isProd } from '@/constants/env';
+import { BASE_URL, isProd } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
-import { BASE_URL, LOGIN_URL } from './constants/network';
+import { LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 

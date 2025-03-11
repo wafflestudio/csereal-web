@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
+import { BASE_URL } from '@/constants/env';
 
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 

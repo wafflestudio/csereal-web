@@ -1,29 +1,16 @@
-import { execSync } from 'child_process';
 import express from 'express';
 import next from 'next';
 
 const port = 3000;
 const isDev = process.env.NODE_ENV === 'development';
-const phase = process.env.PHASE;
+const phase = process.env.NEXT_PUBLIC_PHASE;
 
 process.env.TZ = 'Asia/Seoul';
 process.env.LANG = process.env.TIME = 'ko_KR.UTF-8';
 
-switch (phase) {
-  case 'prod':
-    process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:8080/api';
-    break;
-  case 'beta':
-    process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:8080/api';
-    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
-    break;
-  case 'local':
-    process.env.NEXT_PUBLIC_BASE_URL = 'https://cse-dev-waffle.bacchus.io/api';
-    process.env.BUILD_VERSION = execSync('git rev-parse --short HEAD').toString();
-    break;
-  default:
-    console.error(`PHASE 환경변수는 prod, beta, local 중 하나여야합니다: ${phase}`);
-    process.exit(1);
+if (!['prod', 'beta', 'local'].includes(phase)) {
+  console.error(`PHASE 환경변수는 prod, beta, local 중 하나여야합니다: ${phase}`);
+  process.exit(1);
 }
 
 /**

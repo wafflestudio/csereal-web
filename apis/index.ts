@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-import { BASE_URL } from '@/constants/network';
+import { BASE_URL } from '@/constants/env';
 import { objToQueryString } from '@/utils/convertParams';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
