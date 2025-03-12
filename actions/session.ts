@@ -24,8 +24,11 @@ export const getUserState = async (): Promise<UserState> => {
   if (id === undefined) return 'logout';
 
   try {
-    const resp = await getMyRole();
-    return resp.roles[0];
+    const { roles } = await getMyRole();
+    if (roles.includes('ROLE_STAFF')) return 'ROLE_STAFF';
+    if (roles.includes('ROLE_RESERVATION')) return 'ROLE_RESERVATION';
+    if (roles.includes('ROLE_COUNCIL')) return 'ROLE_COUNCIL';
+    return 'logout';
   } catch {
     removeAuthCookie();
     return 'logout';
