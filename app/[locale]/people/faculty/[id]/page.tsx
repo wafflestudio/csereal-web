@@ -36,7 +36,7 @@ export default async function FacultyMemberPage(props: FacultyMemberPageProps) {
     const data = await getFaculty(id);
     const faculty = data[params.locale];
 
-    if (faculty.status !== 'ACTIVE') notFound();
+    if (faculty.status !== 'ACTIVE' && faculty.status !== 'VISITING') notFound();
 
     return <FacultyMemberPageContent faculty={faculty} ids={{ ko: data.ko.id, en: data.en.id }} />;
   } catch {
