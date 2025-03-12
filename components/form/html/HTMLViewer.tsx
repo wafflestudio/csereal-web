@@ -33,7 +33,7 @@ export default function HTMLViewer({
   const replace = (domNode: DOMNode) => {
     if (domNode instanceof Element && domNode.attribs) {
       if (domNode.name === 'img') {
-        const imgStyle = 'max-width:100%; height:auto;';
+        const imgStyle = 'height:auto;';
         const { style, ...rest } = domNode.attribs;
         const combinedStyle = style ? `${style}; ${imgStyle}` : imgStyle;
         domNode.attribs = rest;
