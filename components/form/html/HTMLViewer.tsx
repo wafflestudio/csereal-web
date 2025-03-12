@@ -32,9 +32,17 @@ export default function HTMLViewer({
 
   const replace = (domNode: DOMNode) => {
     if (domNode instanceof Element && domNode.attribs) {
-      const { style, ...rest } = domNode.attribs;
-      domNode.attribs = rest;
-      domNode.attribs['data-style'] = style;
+      if (domNode.name === 'img') {
+        const imgStyle = 'max-width:100%; height:auto;';
+        const { style, ...rest } = domNode.attribs;
+        const combinedStyle = style ? `${style}; ${imgStyle}` : imgStyle;
+        domNode.attribs = rest;
+        domNode.attribs['data-style'] = combinedStyle;
+      } else {
+        const { style, ...rest } = domNode.attribs;
+        domNode.attribs = rest;
+        domNode.attribs['data-style'] = style;
+      }
     }
     return domNode;
   };
@@ -45,7 +53,7 @@ export default function HTMLViewer({
       {topRightContent?.type === 'component' && (
         <div className="relative float-right">{topRightContent.content}</div>
       )}
-      <div className={`sun-editor-editable ${contentClassName}`}>
+      <div className={`sun-editor-editable ${contentClassName} `}>
         {parse(linkedHTML, { replace })}
         <HTMLHydrator />
       </div>
