@@ -53,7 +53,7 @@ export default function HTMLViewer({
       {topRightContent?.type === 'component' && (
         <div className="relative float-right">{topRightContent.content}</div>
       )}
-      <div className={`sun-editor-editable ${contentClassName} `}>
+      <div className={`sun-editor-editable ${contentClassName}`}>
         {parse(linkedHTML, { replace })}
         <HTMLHydrator />
       </div>
