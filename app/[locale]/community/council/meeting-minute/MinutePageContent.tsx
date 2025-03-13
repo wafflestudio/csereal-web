@@ -26,7 +26,7 @@ export default function MinutePageContent({
   const timeLineYears = Object.keys(contents)
     .map(Number)
     .sort((a, b) => b - a);
-  const selectedContents = contents[selectedYear] ?? [];
+  const selectedContents = contents[selectedYear].sort((a, b) => b.index - a.index) ?? [];
 
   return (
     <PageLayout titleType="big">
@@ -36,18 +36,14 @@ export default function MinutePageContent({
         selectedTime={selectedYear}
         setSelectedTime={setSelectedYear}
       />
-      <div className="mt-7">
+      <MinuteAddButton year={selectedYear} />
+      <div className="divide-y divide-neutral-200">
         {selectedContents.map((minute, i) => {
           return (
-            <Minutes
-              minute={minute}
-              key={`${minute.year}_${minute.index}`}
-              isLast={i === selectedContents.length - 1}
-            />
+            <Minutes minute={minute} key={`${minute.year}_${minute.index}`} isLatest={i === 0} />
           );
         })}
       </div>
-      <MinuteAddButton year={selectedYear} />
     </PageLayout>
   );
 }
@@ -80,7 +76,7 @@ function YearAddButton() {
   );
 }
 
-function Minutes({ minute, isLast }: { minute: CouncilMeetingMinute; isLast: boolean }) {
+function Minutes({ minute, isLatest }: { minute: CouncilMeetingMinute; isLatest: boolean }) {
   const handleDelete = async () => {
     const resp = await deleteMinuteAction(minute.year, minute.index);
     handleServerResponse(resp, {
@@ -89,12 +85,12 @@ function Minutes({ minute, isLast }: { minute: CouncilMeetingMinute; isLast: boo
   };
 
   return (
-    <div className="mb-10 w-full border-b border-neutral-200 pb-10">
-      <div className="flex items-center justify-between gap-2.5 ">
+    <div className="mb-10 w-full pt-10">
+      <div className="flex items-center justify-between gap-2.5">
         <div className="font-semibold">{minute.index}차 회의 회의록</div>
         <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
           <div className="flex justify-end gap-3">
-            {isLast && <DeleteButton onDelete={handleDelete} />}
+            {isLatest && <DeleteButton onDelete={handleDelete} />}
             <EditButton href={`${minutePath}/edit?year=${minute.year}&index=${minute.index}`} />
           </div>
         </LoginVisible>
