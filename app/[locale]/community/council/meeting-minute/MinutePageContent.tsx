@@ -16,18 +16,17 @@ import { handleServerResponse } from '@/utils/serverActionError';
 import CouncilAttachment from '../components/CouncilAttachments';
 
 const minutePath = getPath(councilMinute);
-const THIS_YEAR = new Date().getFullYear();
 
 export default function MinutePageContent({
   contents,
 }: {
   contents: { [year: string]: CouncilMeetingMinute[] };
 }) {
-  const [selectedYear, setSelectedYear] = useState(THIS_YEAR);
+  const [selectedYear, setSelectedYear] = useState(Number(Object.keys(contents)[0]));
   const timeLineYears = Object.keys(contents)
     .map(Number)
     .sort((a, b) => b - a);
-  const selectedContents = contents[selectedYear.toString()] ?? [];
+  const selectedContents = contents[selectedYear] ?? [];
 
   return (
     <PageLayout titleType="big">
