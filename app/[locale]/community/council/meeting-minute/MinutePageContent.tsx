@@ -22,7 +22,8 @@ export default function MinutePageContent({
 }: {
   contents: { [year: string]: CouncilMeetingMinute[] };
 }) {
-  const [selectedYear, setSelectedYear] = useState(Number(Object.keys(contents)[0]));
+  const latestYear = Math.max(...Object.keys(contents).map(Number));
+  const [selectedYear, setSelectedYear] = useState(latestYear);
   const timeLineYears = Object.keys(contents)
     .map(Number)
     .sort((a, b) => b - a);
@@ -35,8 +36,9 @@ export default function MinutePageContent({
         times={timeLineYears}
         selectedTime={selectedYear}
         setSelectedTime={setSelectedYear}
+        hideDownArrow
       />
-      <MinuteAddButton year={selectedYear} />
+      <MinuteAddButton year={selectedYear} newIndex={selectedContents[0].index + 1} />
       <div className="divide-y divide-neutral-200">
         {selectedContents.map((minute, i) => {
           return (
@@ -48,11 +50,11 @@ export default function MinutePageContent({
   );
 }
 
-function MinuteAddButton({ year }: { year: number }) {
+function MinuteAddButton({ year, newIndex }: { year: number; newIndex: number }) {
   return (
     <LoginVisible role={['ROLE_COUNCIL', 'ROLE_STAFF']}>
       <Link
-        href={`${minutePath}/create?year=${year}`}
+        href={`${minutePath}/create?year=${year}&index=${newIndex}`}
         className="mt-3 flex w-[220px] items-center gap-1.5 rounded-sm border border-main-orange px-2 py-2.5 text-main-orange duration-200 hover:bg-main-orange hover:text-white"
       >
         <span className="material-symbols-outlined font-light">add</span>

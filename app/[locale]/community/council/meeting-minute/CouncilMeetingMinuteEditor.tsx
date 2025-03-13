@@ -8,7 +8,7 @@ import { EditorFile } from '@/types/form';
 import { handleServerResponse } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
-export type MinuteFormData = { year: number; file: EditorFile[] };
+export type MinuteFormData = { year: number; index: number; file: EditorFile[] };
 
 interface Props {
   defaultValues?: MinuteFormData;
@@ -24,6 +24,7 @@ export default function CouncilMeetingMinuteEditor({
   const formMethods = useForm<MinuteFormData>({
     defaultValues: defaultValues ?? {
       year: new Date().getFullYear() + 1,
+      index: 1,
       file: [],
     },
   });
@@ -41,14 +42,16 @@ export default function CouncilMeetingMinuteEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
-          <Form.Text
-            name="year"
-            maxWidth="w-[55px]"
-            disabled={defaultValues !== undefined}
-            options={{ required: true, valueAsNumber: true }}
-          />
-        </Fieldset>
+        {!defaultValues && (
+          <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
+            <Form.Text
+              name="year"
+              maxWidth="w-[55px]"
+              disabled={defaultValues !== undefined}
+              options={{ required: true, valueAsNumber: true }}
+            />
+          </Fieldset>
+        )}
         <Fieldset.File>
           <Form.File name="file" />
         </Fieldset.File>

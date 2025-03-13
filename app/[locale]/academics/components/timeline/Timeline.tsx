@@ -2,9 +2,15 @@ interface TimelineProps {
   times: number[];
   selectedTime: number;
   setSelectedTime: (year: number) => void;
+  hideDownArrow?: boolean;
 }
 
-export default function Timeline({ times, selectedTime, setSelectedTime }: TimelineProps) {
+export default function Timeline({
+  times,
+  selectedTime,
+  setSelectedTime,
+  hideDownArrow,
+}: TimelineProps) {
   return (
     <div className="relative flex w-full max-w-4xl flex-wrap">
       {times.map((time, i) => (
@@ -12,7 +18,7 @@ export default function Timeline({ times, selectedTime, setSelectedTime }: Timel
           time={time}
           isSelected={time === selectedTime}
           onChange={() => setSelectedTime(time)}
-          isLast={i === times.length - 1}
+          isLast={!hideDownArrow && i === times.length - 1}
           key={time}
         />
       ))}
