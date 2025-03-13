@@ -32,16 +32,11 @@ export default function HTMLViewer({
 
   const replace = (domNode: DOMNode) => {
     if (domNode instanceof Element && domNode.attribs) {
+      const { style, ...rest } = domNode.attribs;
+      domNode.attribs = rest;
+      domNode.attribs['data-style'] = style;
       if (domNode.name === 'img') {
-        const imgStyle = 'height:auto;';
-        const { style, ...rest } = domNode.attribs;
-        const combinedStyle = style ? `${style}; ${imgStyle}` : imgStyle;
-        domNode.attribs = rest;
-        domNode.attribs['data-style'] = combinedStyle;
-      } else {
-        const { style, ...rest } = domNode.attribs;
-        domNode.attribs = rest;
-        domNode.attribs['data-style'] = style;
+        domNode.attribs['data-style'] += ' height:auto;';
       }
     }
     return domNode;
