@@ -10,7 +10,7 @@ export default async function CouncilMinuteCreatePage({
   const { year } = await searchParams;
   const yearInNumber = Number(year);
 
-  if (yearInNumber !== undefined && Number.isNaN(yearInNumber))
+  if (year !== undefined && yearInNumber !== undefined && Number.isNaN(yearInNumber))
     throw new Error('/meeting-minute?year=[year]: year가 숫자가 아닙니다.');
 
   return <CouncilMinuteCreateClientPage year={yearInNumber} />;
