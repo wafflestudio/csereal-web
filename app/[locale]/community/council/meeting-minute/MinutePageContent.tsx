@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import { deleteMinuteAction } from '@/actions/council';
 import { CouncilMeetingMinute } from '@/apis/types/council';
-import Timeline from '@/app/[locale]/academics/components/timeline/Timeline';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
+import Timeline from '@/components/common/Timeline';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
@@ -36,7 +36,7 @@ export default function MinutePageContent({
         times={timeLineYears}
         selectedTime={selectedYear}
         setSelectedTime={setSelectedYear}
-        hideDownArrow
+        showDownArrow={false}
       />
       <MinuteAddButton year={selectedYear} newIndex={selectedContents[0].index + 1} />
       <div className="divide-y divide-neutral-200">

@@ -12,7 +12,7 @@ import { Link, usePathname } from '@/i18n/routing';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
 
-import Timeline from './Timeline';
+import Timeline from '../../../../../components/common/Timeline';
 
 interface TimelineViewerProps<T> {
   contents: T[];
