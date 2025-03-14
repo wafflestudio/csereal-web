@@ -28,7 +28,13 @@ export default function HTMLViewer({
 }: HTMLViewerProps) {
   // TODO: 서버에서 link 처리?
   // 400.XXX같은 값들이 링크 처리되는걸 막기 위해 tldMatches false처리
-  const linkedHTML = Autolinker.link(htmlContent, { urls: { tldMatches: false } });
+  const linkedHTML = Autolinker.link(htmlContent, { urls: { tldMatches: false } }).trim();
+  const trimmedHTML = linkedHTML.startsWith('<html>')
+    ? linkedHTML.slice(
+        linkedHTML.indexOf('<body>') + '<body>'.length,
+        linkedHTML.lastIndexOf('</body>') - '</body>'.length,
+      )
+    : linkedHTML;
 
   const replace = (domNode: DOMNode) => {
     if (domNode instanceof Element && domNode.attribs) {
@@ -46,7 +52,7 @@ export default function HTMLViewer({
         <div className="relative float-right">{topRightContent.content}</div>
       )}
       <div className={`sun-editor-editable ${contentClassName}`}>
-        {parse(linkedHTML, { replace })}
+        {parse(trimmedHTML, { replace })}
         <HTMLHydrator />
       </div>
     </div>
