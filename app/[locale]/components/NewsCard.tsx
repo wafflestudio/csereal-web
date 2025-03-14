@@ -1,7 +1,8 @@
+import dayjs from 'dayjs';
+
 import { MainNews } from '@/apis/types/main';
 import Image from '@/components/common/Image';
 import { Link } from '@/i18n/routing';
-import { formatMainNewsDateStr } from '@/utils/date';
 
 import { CARD_WIDTH_TAILWIND } from './constants';
 
@@ -20,7 +21,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
           {news.title}
         </h3>
         <time className="mt-3 block text-sm font-normal text-neutral-500">
-          {formatMainNewsDateStr(news.createdAt)}
+          {dayjs(news.createdAt).format('YYYY.MM.DD')}
         </time>
         <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
           {news.description}

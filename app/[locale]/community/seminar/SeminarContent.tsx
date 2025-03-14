@@ -1,3 +1,6 @@
+import 'dayjs/locale/ko';
+
+import dayjs from 'dayjs';
 import { Fragment } from 'react';
 
 import { SeminarPreviewList } from '@/apis/types/seminar';

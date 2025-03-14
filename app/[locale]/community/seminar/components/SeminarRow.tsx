@@ -1,3 +1,7 @@
+import 'dayjs/locale/ko';
+
+import dayjs from 'dayjs';
+import { useLocale } from 'next-intl';
 import { ElementType, PropsWithChildren } from 'react';
 
 import { SeminarPreview } from '@/apis/types/seminar';
@@ -7,7 +11,6 @@ import { seminar } from '@/constants/segmentNode';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
-import { formatSeminarDateStr } from '@/utils/date';
 import { getPath } from '@/utils/page';
 
 interface SeminarRowProps {
@@ -68,11 +71,12 @@ function HostInformationCell({ host, company }: { host: string; company: string 
 }
 
 function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
+  const locale = useLocale();
   return (
     <div className="flex flex-wrap gap-0.5 hover:cursor-pointer">
       <IconTextWrapper>
         <IconWrapper IconComponent={Calendar} />
-        <Text text={formatSeminarDateStr(date)} />
+        <Text text={dayjs(date).locale(locale).format('M/DD (ddd) HH:mm')} />
       </IconTextWrapper>
       <VerticalDivider />
       <IconTextWrapper>
