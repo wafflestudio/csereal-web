@@ -31,9 +31,11 @@ const isCouncilRequired = (pathname: string) => {
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const userState = await getUserState();
+
   // 관리자 페이지는 스태프 계정으로 로그인되어있어야한다.
   // 학생회 편집 페이지는 학생회 혹은 스태프 계정으로 로그인되어 있어야 한다.
   const requiredAuth = getRequiredAuth(pathname);
+
   const isValidState =
     userState === 'ROLE_STAFF' ||
     (isCouncilRequired(pathname) && userState === 'ROLE_COUNCIL') ||
@@ -48,7 +50,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const cspHeader = `
     default-src 'self';
     script-src 'self' https://t1.daumcdn.net https://dapi.kakao.com ${
@@ -67,16 +69,16 @@ export default async function middleware(request: NextRequest) {
     .trim();
 
   const requestHeaders = new Headers(request.headers);
-
-  // TODO: 선에디터 이슈로 임시 제거
-  // 관리자 영역에서 제거한다고 해도 다른 페이지에서 라우팅한 경우 헤더가 남아있다
-  // requestHeaders.set('x-nonce', nonce);
-  // requestHeaders.set('Content-Security-Policy', cspHeader);
-
+  if (userState !== 'logout') {
+    requestHeaders.set('x-nonce', nonce);
+    requestHeaders.set('Content-Security-Policy', cspHeader);
+  }
   const req = new NextRequest(request, { headers: requestHeaders });
+
   const res = handleI18nRouting(req);
-  // TODO: 선에디터 이슈로 임시 제거
-  // res.headers.set('Content-Security-Policy', cspHeader);
+  if (userState === 'logout') {
+    res.headers.set('Content-Security-Policy', cspHeader);
+  }
 
   return res;
 }
