@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function CouncilReportPage({ params }: Props) {
-  const { id } = await params;
+  const { id, locale } = await params;
   const t = await getTranslations('Content');
   const council = await getCouncilReport(id);
 
   const { title, description, sequence, name, createdAt } = council;
   const author = `제${sequence}대 학생회 ${name}`;
-  const dateStr = dayjs(createdAt).locale('ko').format('YYYY/MM/DD (ddd) A h:mm');
+  const dateStr = dayjs(createdAt).locale(locale).format('YYYY/MM/DD (ddd) A h:mm');
 
   return (
     <PageLayout titleType="big" removePadding>

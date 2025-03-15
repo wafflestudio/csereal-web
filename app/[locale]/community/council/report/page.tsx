@@ -1,11 +1,10 @@
-import dayjs from 'dayjs';
-
 import { CouncilReport, getCouncilReportList } from '@/apis/v2/council/report';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilReportList } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
 import NaviBarClose from './assets/NaviBar_Close.svg';
@@ -42,7 +41,7 @@ export default async function CouncilReportList() {
 
 const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport) => {
   const href = `${path}/${id}`;
-  const dateStr = dayjs(createdAt).format('YYYY/MM/DD');
+  const dayjsWithLocale = useDayjs({ date: createdAt });
 
   const tileSize = 212;
   const tileSizeTailwind = 'h-[212px] w-[212px]';
@@ -62,7 +61,7 @@ const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport)
           <p>
             제 {sequence}대 학생회 {name}
           </p>
-          <p>{dateStr}</p>
+          <p>{dayjsWithLocale.format('YYYY/MM/DD')}</p>
           <NaviBarClose className="absolute bottom-[16px] right-[12.5px]" />
         </div>
       </div>
