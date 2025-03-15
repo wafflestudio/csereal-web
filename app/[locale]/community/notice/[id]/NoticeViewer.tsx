@@ -1,7 +1,6 @@
 import 'dayjs/locale/ko';
 
-import dayjs from 'dayjs';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import { Notice } from '@/apis/types/notice';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
@@ -11,6 +10,7 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import { notice } from '@/constants/segmentNode';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
 interface NoticePostPageProps {
@@ -46,7 +46,7 @@ const Header = ({
   createdAt: string;
 }) => {
   const t = useTranslations('Content');
-  const locale = useLocale();
+  const dayjsWithLocale = useDayjs({ date: createdAt });
 
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
@@ -56,7 +56,7 @@ const Header = ({
           {t('작성자')}: {author}
         </p>
         <p>
-          {t('작성 날짜')}: {dayjs(createdAt).locale(locale).format('YYYY/MM/DD (ddd) A h:mm')}
+          {t('작성 날짜')}: {dayjsWithLocale.format('YYYY/MM/DD (ddd) A h:mm')}
         </p>
       </div>
     </div>
