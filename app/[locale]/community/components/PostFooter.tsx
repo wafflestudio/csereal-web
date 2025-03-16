@@ -12,11 +12,12 @@ import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostFooterProps = {
-  postType: PostType;
   post: Notice | News | Seminar | CouncilReport;
+  path: string;
   id?: string;
   margin?: string;
   role?: Role[] | Role;
+  deleteAction: (id: number) => Promise<{ message: string } | undefined>;
 };
 
 type AdjPost = {
@@ -24,15 +25,15 @@ type AdjPost = {
   title: string;
 };
 
-type PostType = 'notice' | 'seminar' | 'news' | 'council/report';
 type RowType = 'next' | 'prev';
 
 export default function PostFooter({
   post,
+  path,
   margin = '',
-  postType,
   id,
   role = 'ROLE_STAFF',
+  deleteAction,
 }: PostFooterProps) {
   const nextPost =
     post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
@@ -41,29 +42,26 @@ export default function PostFooter({
 
   return (
     <div className={`flex flex-col ${margin}`}>
-      {nextPost && <Row post={nextPost} type="next" postType={postType} />}
-      {prevPost && <Row post={prevPost} type="prev" postType={postType} />}
+      {nextPost && <Row post={nextPost} type="next" path={path} />}
+      {prevPost && <Row post={prevPost} type="prev" path={path} />}
       <div className="mt-16 flex justify-end">
         <LoginVisible role={role}>
           {id && (
             <>
-              <PostDeleteButton postType={postType} id={id} />
-              <PostEditLink href={`/community/${postType}/${id}/edit`} />
+              <PostDeleteButton deleteAction={deleteAction} id={id} />
+              <PostEditLink href={`${path}/${id}/edit`} />
             </>
           )}
         </LoginVisible>
-        <PostListLink href={`/community/${postType}`} />
+        <PostListLink href={`${path}`} />
       </div>
     </div>
   );
 }
 
-function Row({ post, type, postType }: { post: AdjPost; type: RowType; postType: PostType }) {
+function Row({ post, type, path }: { post: AdjPost; type: RowType; path: string }) {
   return (
-    <Link
-      className="group mb-[2px] flex w-fit items-center"
-      href={`/community/${postType}/${post.id}`}
-    >
+    <Link className="group mb-[2px] flex w-fit items-center" href={`${path}/${post.id}`}>
       <RowIcon type={type} />
       <RowDescription type={type} />
       <RowPostTitle title={post.title} />
@@ -93,7 +91,7 @@ function RowPostTitle({ title }: { title?: string }) {
   return (
     <p
       className={`
-      ${title ? 'group-hover:underline' : ''} 
+      ${title ? 'group-hover:underline' : ''}
       line-clamp-1 text-md font-normal
       `}
     >

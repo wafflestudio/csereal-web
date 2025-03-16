@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
+import { deleteSeminarAction } from '@/actions/seminar';
 import { Seminar } from '@/apis/types/seminar';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
@@ -71,7 +72,13 @@ export default async function SeminarViewer({ seminar }: SeminarPostPageProps) {
         )}
 
         <StraightNode margin="mt-10" />
-        <PostFooter post={seminar} postType="seminar" id={seminar.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={seminar}
+          path="/community/seminar"
+          id={seminar.id.toString()}
+          margin="mt-12"
+          deleteAction={deleteSeminarAction}
+        />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import 'dayjs/locale/ko';
 import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
+import { deleteCouncilReportAction } from '@/actions/council';
 import { getCouncilReport } from '@/apis/v2/council/report/[id]';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import { StraightNode } from '@/components/common/Nodes';
@@ -57,10 +58,11 @@ export default async function CouncilReportPage({ params }: Props) {
         <StraightNode />
         <PostFooter
           post={council}
-          postType="council/report"
+          path="/community/council/report"
           id={id.toString()}
           margin="mt-12"
           role={['ROLE_COUNCIL', 'ROLE_STAFF']}
+          deleteAction={deleteCouncilReportAction}
         />
       </div>
     </PageLayout>

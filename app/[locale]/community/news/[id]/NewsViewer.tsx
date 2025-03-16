@@ -1,6 +1,7 @@
 // TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
 export const dynamic = 'force-dynamic';
 
+import { deleteNewsAction } from '@/actions/news';
 import { News } from '@/apis/types/news';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
@@ -37,7 +38,13 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
         />
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
-        <PostFooter post={news} postType="news" id={news.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={news}
+          id={news.id.toString()}
+          deleteAction={deleteNewsAction}
+          margin="mt-12"
+          path={newsPath}
+        />
       </div>
     </>
   );
