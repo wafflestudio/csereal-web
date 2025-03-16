@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { useFormStatus } from 'react-dom';
 
 import useModal from '@/utils/hooks/useModal';
@@ -23,6 +24,11 @@ export default function AlertModal({
   onConfirm,
 }: AlertModalProps) {
   const { closeModal } = useModal();
+  const confirmButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    confirmButtonRef.current?.focus();
+  }, []);
 
   return (
     <ModalFrame onClose={closeModal}>
@@ -42,7 +48,7 @@ export default function AlertModal({
               closeModal();
             }}
           />
-          <ConfirmButton text={confirmText} />
+          <ConfirmButton text={confirmText} buttonRef={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>
@@ -53,7 +59,13 @@ function AlertMessage({ message }: { message: string }) {
   return <p className="mb-6 mt-1 text-neutral-800">{message}</p>;
 }
 
-function ConfirmButton({ text }: { text: string }) {
+function ConfirmButton({
+  text,
+  buttonRef,
+}: {
+  text: string;
+  buttonRef?: React.RefObject<HTMLButtonElement | null>;
+}) {
   const { pending } = useFormStatus();
 
   return (
@@ -61,6 +73,7 @@ function ConfirmButton({ text }: { text: string }) {
       className={`ml-2.5 h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 px-[17px] text-xs font-bold text-white hover:bg-neutral-500`}
       disabled={pending}
       type="submit"
+      ref={buttonRef}
     >
       {text}
     </button>
