@@ -24,7 +24,6 @@ export default function AlertModal({
   onConfirm,
 }: AlertModalProps) {
   const { closeModal } = useModal();
-  const { pending } = useFormStatus();
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export default function AlertModal({
               closeModal();
             }}
           />
-          <ConfirmButton title={confirmText} disabled={pending} buttonRef={confirmButtonRef} />
+          <ConfirmButton title={confirmText} buttonRef={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>
