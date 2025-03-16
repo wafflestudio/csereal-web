@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom';
 
 import useModal from '@/utils/hooks/useModal';
 
-import { GrayButton } from '../common/Buttons';
+import { ConfirmButton, GrayButton } from '../common/Buttons';
 import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
@@ -24,6 +24,7 @@ export default function AlertModal({
   onConfirm,
 }: AlertModalProps) {
   const { closeModal } = useModal();
+  const { pending } = useFormStatus();
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function AlertModal({
               closeModal();
             }}
           />
-          <ConfirmButton text={confirmText} buttonRef={confirmButtonRef} />
+          <ConfirmButton title={confirmText} disabled={pending} buttonRef={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>
@@ -57,25 +58,4 @@ export default function AlertModal({
 
 function AlertMessage({ message }: { message: string }) {
   return <p className="mb-6 mt-1 text-neutral-800">{message}</p>;
-}
-
-function ConfirmButton({
-  text,
-  buttonRef,
-}: {
-  text: string;
-  buttonRef?: React.RefObject<HTMLButtonElement | null>;
-}) {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      className={`ml-2.5 h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 px-[17px] text-xs font-bold text-white hover:bg-neutral-500`}
-      disabled={pending}
-      type="submit"
-      ref={buttonRef}
-    >
-      {text}
-    </button>
-  );
 }
