@@ -35,6 +35,9 @@ export default function HTMLViewer({
       const { style, ...rest } = domNode.attribs;
       domNode.attribs = rest;
       domNode.attribs['data-style'] = style;
+      if (domNode.name === 'img') {
+        domNode.attribs['data-style'] += ' height:auto;';
+      }
     }
     return domNode;
   };
