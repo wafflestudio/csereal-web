@@ -11,7 +11,13 @@ import CouncilMeetingMinuteEditor, { MinuteFormData } from '../CouncilMeetingMin
 
 const minutePath = getPath(councilMinute);
 
-export default function CouncilMinuteCreateClientPage({ year }: { year: number }) {
+export default function CouncilMinuteCreateClientPage({
+  year,
+  index,
+}: {
+  year: number;
+  index: number;
+}) {
   const router = useRouter();
 
   const onCancel = () => router.push(minutePath);
@@ -23,9 +29,13 @@ export default function CouncilMinuteCreateClientPage({ year }: { year: number }
 
   return (
     // TODO: 영문 번역
-    <PageLayout title={`${year ? `${year}년 ` : ''}학생회 회의록 추가`} titleType="big" hideNavbar>
+    <PageLayout
+      title={`${year ? `${year}년 ` : ''}학생회${index ? ` ${index}차` : ''} 회의록 추가`}
+      titleType="big"
+      hideNavbar
+    >
       <CouncilMeetingMinuteEditor
-        defaultValues={year ? { year, file: [] } : undefined}
+        defaultValues={year ? { year, index, file: [] } : undefined}
         onSubmit={onSubmit}
         onCancel={onCancel}
       />

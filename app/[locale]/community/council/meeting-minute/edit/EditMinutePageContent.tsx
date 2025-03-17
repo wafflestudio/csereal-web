@@ -39,7 +39,7 @@ export default function EditMinutePageContent({
     // TODO: 영문 번역
     <PageLayout title={`${year}년 학생회 ${index}차 회의록 편집`} titleType="big" hideNavbar>
       <CouncilMeetingMinuteEditor
-        defaultValues={{ year, file: getEditorFile(data.attachments) }}
+        defaultValues={{ year, index, file: getEditorFile(data.attachments) }}
         onSubmit={onSubmit}
         onCancel={onCancel}
       />

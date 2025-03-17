@@ -2,9 +2,15 @@ interface TimelineProps {
   times: number[];
   selectedTime: number;
   setSelectedTime: (year: number) => void;
+  showDownArrow?: boolean;
 }
 
-export default function Timeline({ times, selectedTime, setSelectedTime }: TimelineProps) {
+export default function Timeline({
+  times,
+  selectedTime,
+  setSelectedTime,
+  showDownArrow = true,
+}: TimelineProps) {
   return (
     <div className="relative flex w-full max-w-4xl flex-wrap">
       {times.map((time, i) => (
@@ -12,7 +18,7 @@ export default function Timeline({ times, selectedTime, setSelectedTime }: Timel
           time={time}
           isSelected={time === selectedTime}
           onChange={() => setSelectedTime(time)}
-          isLast={i === times.length - 1}
+          showDownArrow={showDownArrow && i === times.length - 1}
           key={time}
         />
       ))}
@@ -24,10 +30,10 @@ interface TimeSpotProps {
   time: number;
   isSelected: boolean;
   onChange: () => void;
-  isLast?: boolean;
+  showDownArrow?: boolean;
 }
 
-function TimeSpot({ time, isSelected, onChange, isLast }: TimeSpotProps) {
+function TimeSpot({ time, isSelected, onChange, showDownArrow }: TimeSpotProps) {
   return (
     <label
       className={`group relative mb-7 mr-11 flex h-[38px] items-center ${
@@ -38,7 +44,7 @@ function TimeSpot({ time, isSelected, onChange, isLast }: TimeSpotProps) {
         <Circle highlight={isSelected} />
         <span className="flex items-center text-sm tracking-[0.02em] text-main-orange">
           {time}
-          {isLast && (
+          {showDownArrow && (
             <span className="material-symbols-rounded text-base font-light">arrow_downward</span>
           )}
         </span>
