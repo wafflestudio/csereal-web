@@ -1,4 +1,4 @@
-import { SegmentNode } from '@/constants/segmentNode';
+import { council, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
@@ -31,7 +31,7 @@ function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
       {depth !== 0 && (
         <NavTreeLabel
           segmentNode={node}
-          highlight={curNode === node}
+          highlight={curNode === node || (curNode.parent === council && curNode.parent === node)}
           containerClassName={depth === 0 ? 'mb-[1.75rem]' : 'mb-[1.5rem]'}
           anchorClassName="text-md"
         />
