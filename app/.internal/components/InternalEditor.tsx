@@ -24,7 +24,7 @@ export default function InternalEditor({
   const { handleSubmit } = formMethods;
 
   const router = useRouter();
-  const onCancel = () => router.push('.internal');
+  const onCancel = () => router.push('/.internal');
 
   const onSubmit = async ({ description }: FormData) => {
     try {
