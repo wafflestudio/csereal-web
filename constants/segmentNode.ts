@@ -722,5 +722,3 @@ export const tentenProposal: SegmentNode = {
 
 // 기존 홈페이지 푸터 링크가 propsal로 이동시는 등 proposal 내용이 우선순위라 판단되어 기존과 다르게 0번째로 배치
 tentenProject.children = [tentenProposal, tentenManager, tentenParticipants];
-console.log('Council children:', council.children);
-console.log('Community children:', community.children);
