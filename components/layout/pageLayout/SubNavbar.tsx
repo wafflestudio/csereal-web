@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { CurvedVerticalNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
-import { council, SegmentNode } from '@/constants/segmentNode';
+import { SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import useStyle from '@/utils/hooks/useStyle';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
@@ -14,10 +14,7 @@ export default function SubNavbar({ currentTab }: { currentTab: SegmentNode }) {
   const t = useTranslations('Nav');
   const rootTab = getRootTab(currentTab);
   // 학생회 페이지에 있을 경우에만 학생회 하위 탭들 표시, 다른 페이지에서는 숨김
-  const subTabs =
-    currentTab.parent === council
-      ? getAllSubTabs(rootTab)
-      : getAllSubTabs(rootTab).filter((tab) => tab.parent !== council);
+  const subTabs = getAllSubTabs(rootTab).filter((tab) => !tab.hideInSubNav?.(currentTab));
 
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 

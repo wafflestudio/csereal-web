@@ -4,8 +4,8 @@ export interface SegmentNode {
   isPage: boolean;
   children: SegmentNode[];
   parent: SegmentNode | null;
-
   hideInNavbar?: boolean;
+  hideInSubNav?: (currentPage: SegmentNode) => boolean;
 }
 
 export const main: SegmentNode = {
@@ -143,6 +143,7 @@ export const councilIntro: SegmentNode = {
   parent: council,
   children: [],
   hideInNavbar: true,
+  hideInSubNav: (currentPage) => currentPage.parent !== council,
 };
 
 export const councilMinute: SegmentNode = {
@@ -152,6 +153,7 @@ export const councilMinute: SegmentNode = {
   parent: council,
   children: [],
   hideInNavbar: true,
+  hideInSubNav: (currentPage) => currentPage.parent !== council,
 };
 
 export const councilBylaws: SegmentNode = {
@@ -161,6 +163,7 @@ export const councilBylaws: SegmentNode = {
   parent: council,
   children: [],
   hideInNavbar: true,
+  hideInSubNav: (currentTab) => currentTab.parent !== council,
 };
 
 export const councilReportList: SegmentNode = {
@@ -170,6 +173,7 @@ export const councilReportList: SegmentNode = {
   parent: council,
   children: [],
   hideInNavbar: true,
+  hideInSubNav: (currentPage) => currentPage.parent !== council,
 };
 
 export const people: SegmentNode = {
