@@ -36,6 +36,7 @@ export default function HTMLEditor({ name, options: registerOptions }: HTMLEdito
         shouldValidate: true,
       });
     };
+
     editor.setContents(getValues(name));
 
     return () => {

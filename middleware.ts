@@ -2,16 +2,16 @@ import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { Role } from '@/apis/types/role';
-import { isProd } from '@/constants/env';
+import { BASE_URL, isProd } from '@/constants/env';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
-import { BASE_URL, LOGIN_URL } from './constants/network';
+import { PROD_LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 
 // TODO: 페이지별 권한관리가 개판이라서 정리 한 번 해줘야 함
-const isAuthRequired = (pathname: string): Role | undefined => {
+const getRequiredAuth = (pathname: string): Role | undefined => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);
   if (pathname.startsWith('/admin') || pathname.endsWith('create')) return 'ROLE_STAFF';
 
@@ -31,22 +31,26 @@ const isCouncilRequired = (pathname: string) => {
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const userState = await getUserState();
+
   // 관리자 페이지는 스태프 계정으로 로그인되어있어야한다.
   // 학생회 편집 페이지는 학생회 혹은 스태프 계정으로 로그인되어 있어야 한다.
+  const requiredAuth = getRequiredAuth(pathname);
+
   const isValidState =
     userState === 'ROLE_STAFF' ||
     (isCouncilRequired(pathname) && userState === 'ROLE_COUNCIL') ||
-    !isAuthRequired(pathname);
+    requiredAuth === undefined;
 
   if (!isValidState) {
     if (isProd) {
-      return Response.redirect(new URL(LOGIN_URL));
+      return Response.redirect(new URL(PROD_LOGIN_URL));
     } else {
       return Response.redirect(new URL(BASE_URL));
     }
   }
 
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+
   const cspHeader = `
     default-src 'self';
     script-src 'self' https://t1.daumcdn.net https://dapi.kakao.com ${
@@ -65,12 +69,16 @@ export default async function middleware(request: NextRequest) {
     .trim();
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-nonce', nonce);
-  requestHeaders.set('Content-Security-Policy', cspHeader);
-
+  if (userState !== 'logout') {
+    requestHeaders.set('x-nonce', nonce);
+    requestHeaders.set('Content-Security-Policy', cspHeader);
+  }
   const req = new NextRequest(request, { headers: requestHeaders });
+
   const res = handleI18nRouting(req);
-  res.headers.set('Content-Security-Policy', cspHeader);
+  if (userState === 'logout') {
+    res.headers.set('Content-Security-Policy', cspHeader);
+  }
 
   return res;
 }

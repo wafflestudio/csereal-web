@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import '@/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { execSync } from 'child_process';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
@@ -14,7 +15,7 @@ import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
-import { isProd } from '@/constants/env';
+import { isBeta, isProd } from '@/constants/env';
 import ModalContextProvider from '@/contexts/ModalContext';
 import { NavbarContextProvider } from '@/contexts/NavbarContext';
 import SessionContextProvider from '@/contexts/SessionContext';
@@ -96,7 +97,9 @@ async function ContextProviders({ locale, children }: { locale: string; children
 }
 
 function BuildVersion() {
-  const buildVersion = process.env.BUILD_VERSION;
+  if (!isBeta) return;
+
+  const buildVersion = execSync('git rev-parse --short HEAD').toString();
   if (!buildVersion) return;
 
   return (

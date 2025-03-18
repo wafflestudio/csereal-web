@@ -1,9 +1,7 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
-
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 
-export const LOGIN_URL = `${BASE_URL}/v1/login`;
-export const LOGOUT_URL = `${BASE_URL}/v1/logout`;
+export const PROD_LOGIN_URL = `/api/v1/login`;
+export const PROD_LOGOUT_URL = `/api/v1/logout`;
 
 // TODO: fine-grained cache로 바꾸기
 export const FETCH_TAG_IMPORANT = 'important';
