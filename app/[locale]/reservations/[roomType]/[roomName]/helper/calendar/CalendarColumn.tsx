@@ -56,7 +56,7 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     ));
 };
 
-const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }) => {
+const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
   const startTime = new Date(reservation.startTime);
   const endTime = new Date(reservation.endTime);
 
