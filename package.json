@@ -72,5 +72,10 @@
     },
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.1"
+  },
+  "engines": {
+    "node": "20.11.1",
+    "yarn": "please-use-npm",
+    "pnpm": "please-use-npm"
   }
 }
