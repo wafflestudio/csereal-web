@@ -1,8 +1,7 @@
 'use client';
 import 'dayjs/locale/ko';
 
-import dayjs from 'dayjs';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 
 import { AllMainNotice } from '@/apis/types/main';
@@ -10,6 +9,7 @@ import Image from '@/components/common/Image';
 import { notice } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import Plus from '@/public/image/main/plus.svg';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 
@@ -19,7 +19,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
   const t = useTranslations('Nav');
   const tTag = useTranslations('Tag');
 
-  const locale = useLocale();
+  const formatDate = useDayjs();
 
   return (
     <div className="relative mt-16 bg-[#212121] sm:mx-[7.75rem] sm:mt-[5.5rem] sm:h-[28rem]">
@@ -65,7 +65,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
             >
               <h3 className="truncate sm:w-[27rem]">{notice.title}</h3>
               <p className="whitespace-nowrap">
-                {dayjs(notice.createdAt).locale(locale).format('MM/DD (ddd)')}
+                {formatDate(notice.createdAt).format('MM/DD (ddd)')}
               </p>
             </Link>
           ))}

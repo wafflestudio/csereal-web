@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import { useLocale } from 'next-intl';
 
-export const useDayjs = ({ date }: { date: string | Date }) => {
+export const useDayjs = () => {
   const locale = useLocale();
 
-  return dayjs(date).locale(locale);
+  return (date: string | Date) => dayjs(date).locale(locale);
 };

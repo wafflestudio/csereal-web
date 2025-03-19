@@ -41,7 +41,7 @@ export default async function CouncilReportList() {
 
 const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport) => {
   const href = `${path}/${id}`;
-  const dayjsWithLocale = useDayjs({ date: createdAt });
+  const formatDate = useDayjs();
 
   const tileSize = 212;
   const tileSizeTailwind = 'h-[212px] w-[212px]';
@@ -61,7 +61,7 @@ const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport)
           <p>
             제 {sequence}대 학생회 {name}
           </p>
-          <p>{dayjsWithLocale.format('YYYY/MM/DD')}</p>
+          <p>{formatDate(createdAt).format('YYYY/MM/DD')}</p>
           <NaviBarClose className="absolute bottom-[16px] right-[12.5px]" />
         </div>
       </div>

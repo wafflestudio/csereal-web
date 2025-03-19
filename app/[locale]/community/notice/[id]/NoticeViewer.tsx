@@ -46,7 +46,7 @@ const Header = ({
   createdAt: string;
 }) => {
   const t = useTranslations('Content');
-  const dayjsWithLocale = useDayjs({ date: createdAt });
+  const formatDate = useDayjs();
 
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
@@ -56,7 +56,7 @@ const Header = ({
           {t('작성자')}: {author}
         </p>
         <p>
-          {t('작성 날짜')}: {dayjsWithLocale.format('YYYY/MM/DD (ddd) A h:mm')}
+          {t('작성 날짜')}: {formatDate(createdAt).format('YYYY/MM/DD (ddd) A h:mm')}
         </p>
       </div>
     </div>

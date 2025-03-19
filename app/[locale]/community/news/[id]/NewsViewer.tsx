@@ -45,12 +45,12 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
 }
 
 function Header({ title, date }: { title: string; date: string }) {
-  const dayjsWithLocale = useDayjs({ date: date });
+  const formatDate = useDayjs();
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
       <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <time className="text-sm font-normal tracking-wide text-neutral-500">
-        {dayjsWithLocale.format('YYYY년 MM월 DD일 ddd요일')}
+        {formatDate(date).format('YYYY년 MM월 DD일 ddd요일')}
       </time>
     </div>
   );

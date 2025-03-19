@@ -70,12 +70,12 @@ function HostInformationCell({ host, company }: { host: string; company: string 
 }
 
 function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
-  const dayjsWithLocale = useDayjs({ date: date });
+  const formatDate = useDayjs();
   return (
     <div className="flex flex-wrap gap-0.5 hover:cursor-pointer">
       <IconTextWrapper>
         <IconWrapper IconComponent={Calendar} />
-        <Text text={dayjsWithLocale.format('M/DD (ddd) HH:mm')} />
+        <Text text={formatDate(date).format('M/DD (ddd) HH:mm')} />
       </IconTextWrapper>
       <VerticalDivider />
       <IconTextWrapper>
