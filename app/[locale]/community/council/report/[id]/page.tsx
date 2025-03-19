@@ -12,6 +12,7 @@ import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/pad
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilReportList } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
+import { getPath } from '@/utils/page';
 
 interface Props {
   params: Promise<{ id: number; locale: string }>;
@@ -58,7 +59,7 @@ export default async function CouncilReportPage({ params }: Props) {
         <StraightNode />
         <PostFooter
           post={council}
-          path="/community/council/report"
+          path={getPath(councilReportList)}
           id={id.toString()}
           margin="mt-12"
           role={['ROLE_COUNCIL', 'ROLE_STAFF']}

@@ -2,10 +2,6 @@
 
 import { useTransition } from 'react';
 
-import { deleteCouncilReportAction } from '@/actions/council';
-import { deleteNewsAction } from '@/actions/news';
-import { deleteNoticeAction } from '@/actions/notice';
-import { deleteSeminarAction } from '@/actions/seminar';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
@@ -34,17 +30,6 @@ export default function PostDeleteButton({
       } else {
         successToast('게시글을 삭제했습니다.');
       }
-
-      // 만약 deleteAction 자체를 Props로 받게 되면 굳이 action 검증 단계를 넣지 않아도 될 것 같은데... 맞을까요?
-      // const action = deleteAction;
-      // if (action) {
-      //   const result = await action(idInNumber);
-      //   if (result) {
-      //     errorToast(result.message);
-      //   } else {
-      //     successToast('게시글을 삭제했습니다.');
-      //   }
-      // }
     });
   };
 

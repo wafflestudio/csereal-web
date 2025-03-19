@@ -43,12 +43,12 @@ export default async function SeminarPostPage(props: SeminarPostPageProps) {
   if (Number.isNaN(id)) throw new Error('/seminar/[id]: id가 숫자가 아닙니다.');
 
   try {
-    const seminar = await getSeminarPost(id, searchParams);
+    const seminarData = await getSeminarPost(id, searchParams);
 
     return (
       <PageLayout titleType="big" removePadding>
         <Suspense fallback={<PostFallback />}>
-          <SeminarViewer seminar={seminar} />
+          <SeminarViewer seminarData={seminarData} />
         </Suspense>
       </PageLayout>
     );
