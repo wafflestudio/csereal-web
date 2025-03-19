@@ -1,11 +1,13 @@
+'use client';
+
 import { MouseEventHandler } from 'react';
+import { useFormStatus } from 'react-dom';
 
 import { Link } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
 import { CustomError } from '@/utils/serverActionError';
 
 import AlertModal from '../modal/AlertModal';
-import { useFormStatus } from 'react-dom';
 
 export function GrayButton({
   title,
