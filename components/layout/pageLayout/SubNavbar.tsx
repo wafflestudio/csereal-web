@@ -7,20 +7,13 @@ import { Link } from '@/i18n/routing';
 import useStyle from '@/utils/hooks/useStyle';
 import { getAllSubTabs, getDepth, getPath, getRootTab } from '@/utils/page';
 
-type TreeNode = {
-  name: string;
-  segment: string;
-  isPage: boolean;
-  children: TreeNode[];
-};
-
 const ITEM_HEIGHT = 33;
 const INDENTATION = 16;
 
-export default function SubNavbar({ currentTab }: { currentTab: TreeNode }) {
+export default function SubNavbar({ currentTab }: { currentTab: SegmentNode }) {
   const t = useTranslations('Nav');
-  const rootTab = getRootTab(currentTab as SegmentNode);
-  const subTabs = getAllSubTabs(rootTab);
+  const rootTab = getRootTab(currentTab);
+  const subTabs = getAllSubTabs(rootTab).filter((tab) => !tab.hideInSubNav?.(currentTab));
 
   const height = `${(subTabs.length + 1) * ITEM_HEIGHT}px`;
 
