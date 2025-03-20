@@ -75,7 +75,10 @@ export default async function SeminarViewer({ seminarData }: SeminarPostPageProp
 
         <StraightNode margin="mt-10" />
         <PostFooter
-          post={seminarData}
+          nextId={seminarData.nextId ?? undefined}
+          nextTitle={seminarData.nextTitle ?? undefined}
+          prevId={seminarData.prevId ?? undefined}
+          prevTitle={seminarData.prevTitle ?? undefined}
           path={getPath(seminar)}
           id={seminarData.id.toString()}
           margin="mt-12"

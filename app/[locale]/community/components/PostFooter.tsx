@@ -1,10 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { CouncilReport } from '@/apis/types/council';
-import { News } from '@/apis/types/news';
-import { Notice } from '@/apis/types/notice';
 import { Role } from '@/apis/types/role';
-import { Seminar } from '@/apis/types/seminar';
 import LoginVisible from '@/components/common/LoginVisible';
 import { Link } from '@/i18n/routing';
 
@@ -12,9 +8,12 @@ import PaginatedLink from './PaginatedLink';
 import PostDeleteButton from './PostDeleteButton';
 
 type PostFooterProps = {
-  post: Notice | News | Seminar | CouncilReport;
   path: string;
   id?: string;
+  nextId?: number;
+  nextTitle?: string;
+  prevId?: number;
+  prevTitle?: string;
   margin?: string;
   role?: Role[] | Role;
   deleteAction: (id: number) => Promise<{ message: string } | undefined>;
@@ -28,17 +27,18 @@ type AdjPost = {
 type RowType = 'next' | 'prev';
 
 export default function PostFooter({
-  post,
   path,
   margin = '',
   id,
+  nextId,
+  nextTitle,
+  prevId,
+  prevTitle,
   role = 'ROLE_STAFF',
   deleteAction,
 }: PostFooterProps) {
-  const nextPost =
-    post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
-  const prevPost =
-    post.prevId && post.prevTitle ? { id: post.prevId, title: post.prevTitle } : null;
+  const nextPost = nextId && nextTitle ? { id: nextId, title: nextTitle } : null;
+  const prevPost = prevId && prevTitle ? { id: prevId, title: prevTitle } : null;
 
   return (
     <div className={`flex flex-col ${margin}`}>
