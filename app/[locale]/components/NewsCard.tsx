@@ -1,5 +1,3 @@
-import 'dayjs/locale/ko';
-
 import { MainNews } from '@/apis/types/main';
 import Image from '@/components/common/Image';
 import { Link } from '@/i18n/routing';

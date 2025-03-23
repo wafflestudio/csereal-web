@@ -1,5 +1,4 @@
 'use client';
-import 'dayjs/locale/ko';
 
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';

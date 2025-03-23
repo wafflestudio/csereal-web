@@ -1,3 +1,5 @@
+import 'dayjs/locale/ko';
+
 import dayjs from 'dayjs';
 import { useLocale } from 'next-intl';
 

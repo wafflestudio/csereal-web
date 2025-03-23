@@ -1,5 +1,3 @@
-import 'dayjs/locale/ko';
-
 import { ElementType, PropsWithChildren } from 'react';
 
 import { SeminarPreview } from '@/apis/types/seminar';

@@ -1,5 +1,3 @@
-import 'dayjs/locale/ko';
-
 import { useTranslations } from 'next-intl';
 
 import { Notice } from '@/apis/types/notice';
