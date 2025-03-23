@@ -92,9 +92,7 @@ export function DeleteButton({ onDelete }: { onDelete: () => Promise<CustomError
     <GrayButton
       title="삭제"
       onClick={() =>
-        openModal(
-          <AlertModal message="삭제하시겠습니까?" confirmText="삭제" onConfirm={onDelete} />,
-        )
+        openModal(<AlertModal message="삭제하시겠습니까?" yesText="삭제" yesCallback={onDelete} />)
       }
     />
   );

@@ -25,7 +25,7 @@ export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Pr
         onClick={(e) => {
           e.preventDefault();
           if (isDirty) {
-            openModal(<AlertModal message="편집중인 내용이 사라집니다." onConfirm={onCancel} />);
+            openModal(<AlertModal message="편집중인 내용이 사라집니다." yesCallback={onCancel} />);
           } else {
             onCancel();
           }
@@ -37,7 +37,7 @@ export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Pr
           disabled={isSubmitting}
           onClick={(e) => {
             e.preventDefault();
-            openModal(<AlertModal message="게시물을 삭제하시겠습니까?" onConfirm={onDelete} />);
+            openModal(<AlertModal message="게시물을 삭제하시겠습니까?" yesCallback={onDelete} />);
           }}
         />
       )}

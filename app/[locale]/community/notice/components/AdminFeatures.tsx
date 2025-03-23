@@ -54,8 +54,8 @@ export default function AdminFeatures({
               openModal(
                 <AlertModal
                   message="선택한 게시글을 모두 삭제하시겠습니까?"
-                  confirmText="삭제"
-                  onConfirm={handleBatchDelete}
+                  yesText="삭제"
+                  yesCallback={handleBatchDelete}
                 />,
               )
             }
@@ -68,8 +68,8 @@ export default function AdminFeatures({
               openModal(
                 <AlertModal
                   message="선택한 게시글을 모두 고정 해제하시겠습니까?"
-                  confirmText="고정 해제"
-                  onConfirm={handleBatchUnpin}
+                  yesText="고정 해제"
+                  yesCallback={handleBatchUnpin}
                 />,
               )
             }

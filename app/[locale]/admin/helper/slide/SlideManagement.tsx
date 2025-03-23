@@ -46,8 +46,8 @@ export default function SlideManagement({ posts, total }: SlideManagementProps) 
           openModal(
             <AlertModal
               message="정말 선택된 슬라이드를 모두 해제하시겠습니까?"
-              confirmText="해제"
-              onConfirm={handleBatchUnslide}
+              yesText="해제"
+              yesCallback={handleBatchUnslide}
             />,
           )
         }

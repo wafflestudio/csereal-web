@@ -157,8 +157,8 @@ const DeleteButtons = ({
           openModal(
             <AlertModal
               message="반복 예약을 모두 삭제하시겠습니까?"
-              confirmText="삭제"
-              onConfirm={handleDeleteAll}
+              yesText="삭제"
+              yesCallback={handleDeleteAll}
             />,
           )
         }
@@ -171,8 +171,8 @@ const DeleteButtons = ({
           openModal(
             <AlertModal
               message="해당 예약을 삭제하시겠습니까?"
-              confirmText="삭제"
-              onConfirm={handleDelete}
+              yesText="삭제"
+              yesCallback={handleDelete}
             />,
           )
         }

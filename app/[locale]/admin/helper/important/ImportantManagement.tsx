@@ -48,8 +48,8 @@ export default function ImportantManagement({ posts, total }: ImportantManagemen
           openModal(
             <AlertModal
               message="정말 선택된 중요 안내를 모두 해제하시겠습니까?"
-              confirmText="해제"
-              onConfirm={handleBatchUnimportant}
+              yesText="해제"
+              yesCallback={handleBatchUnimportant}
             />,
           )
         }

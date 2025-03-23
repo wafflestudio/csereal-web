@@ -9,18 +9,18 @@ import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
   message: string;
-  cancelText?: string;
-  confirmText?: string;
-  onConfirm: () => void;
-  onCancel?: () => void;
+  noText?: string;
+  yesText?: string;
+  yesCallback: () => void;
+  noCallback?: () => void;
 }
 
 export default function AlertModal({
   message,
-  cancelText = '취소',
-  confirmText = '확인',
-  onCancel,
-  onConfirm,
+  noText = '취소',
+  yesText = '확인',
+  yesCallback,
+  noCallback,
 }: AlertModalProps) {
   const { closeModal } = useModal();
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
@@ -34,20 +34,20 @@ export default function AlertModal({
       <form
         className="bg-white px-10 py-6"
         action={() => {
-          onConfirm();
+          yesCallback();
           closeModal();
         }}
       >
         <AlertMessage message={message} />
         <div className="text-right">
           <GrayButton
-            title={cancelText}
+            title={noText}
             onClick={() => {
-              onCancel?.();
+              noCallback?.();
               closeModal();
             }}
           />
-          <ConfirmButton title={confirmText} buttonRef={confirmButtonRef} />
+          <ConfirmButton title={yesText} buttonRef={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>

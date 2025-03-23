@@ -53,8 +53,8 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
         openModal(
           <AlertModal
             message="선택한 게시글을 삭제하시겠습니까?"
-            confirmText="삭제"
-            onConfirm={handleDelete}
+            yesText="삭제"
+            yesCallback={handleDelete}
           />,
         )
       }
