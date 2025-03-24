@@ -24,8 +24,7 @@ jobs:
             const randomReviewer = candidate[idx];
 
             const deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-            deadline.setHours(24, 0, 0, 0);
-            const comment = `@${randomReviewer}님 ${deadline.toLocaleDateString()}까지 리뷰 부탁드립니다🎉`
+            const comment = `@${randomReviewer}님 ${deadline.toLocaleDateString('ko-KR')}까지 리뷰 부탁드립니다 🎉`
 
             core.setOutput('comment', comment)
             core.setOutput('reviewer', randomReviewer)
