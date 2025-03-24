@@ -1,0 +1,44 @@
+name: 'Random reviwer'
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - '**'
+
+jobs:
+  random-reviwer:
+    runs-on: ubuntu-latest
+    steps:
+      - id: random_reviwer
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const myId  = '${{ github.event.pull_request.user.login }}';
+            const idList = ['yeolyi', 'Limchansol', 'goranikin', 'onemeee'];
+            const candidate = idList.filter(id => id !== myId);
+
+            const idx = Math.floor(Math.random() * candidate.length);
+            const randomReviewer = candidate[idx];
+
+            const deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+            deadline.setHours(24, 0, 0, 0);
+            const comment = `@${randomReviewer}님 ${deadline.toLocaleDateString()}까지 리뷰 부탁드립니다🎉`
+
+            core.setOutput('comment', comment)
+            core.setOutput('reviewer', randomReviewer)
+      - name: comment PR
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            ${{ steps.random_reviwer.outputs.comment }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]'
+
+      - name: Add Pull Request Reviewer
+        uses: madrapps/add-reviewers@v1
+        with:
+          reviewers: ${{ steps.random_reviwer.outputs.reviewer }}
+          token: ${{ secrets.GITHUB_TOKEN }}
