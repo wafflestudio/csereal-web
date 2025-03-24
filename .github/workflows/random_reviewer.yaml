@@ -1,4 +1,4 @@
-name: 'Random reviwer'
+name: 'Random reviewer'
 
 on:
   pull_request:
