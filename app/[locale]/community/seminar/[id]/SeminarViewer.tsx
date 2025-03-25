@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
+import { deleteSeminarAction } from '@/actions/seminar';
 import { Seminar } from '@/apis/types/seminar';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
@@ -8,70 +9,78 @@ import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { StraightNode } from '@/components/common/Nodes';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
+import { seminar } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
+import { getPath } from '@/utils/page';
 
 interface SeminarPostPageProps {
-  seminar: Seminar;
+  seminarData: Seminar;
 }
 
-export default async function SeminarViewer({ seminar }: SeminarPostPageProps) {
+export default async function SeminarViewer({ seminarData }: SeminarPostPageProps) {
   const t = await getTranslations('Content');
 
   return (
     <>
       <h2 className="px-5 py-9 text-[1.25rem] font-semibold leading-[1.4] sm:pl-[100px] sm:pr-[340px]">
-        {seminar.title}
+        {seminarData.title}
       </h2>
       <div
         className={`bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px] ${PAGE_PADDING_BOTTOM_TAILWIND}`}
       >
-        {seminar.attachments.length !== 0 && <Attachments files={seminar.attachments} />}
+        {seminarData.attachments.length !== 0 && <Attachments files={seminarData.attachments} />}
         <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
           <div className="flex flex-col gap-3">
             <div>
-              {t('이름')}: <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
+              {t('이름')}: <LinkOrText href={seminarData.speakerURL}>{seminarData.name}</LinkOrText>
             </div>
-            <div>{seminar.speakerTitle && <p>직함: {seminar.speakerTitle}</p>}</div>
+            <div>{seminarData.speakerTitle && <p>직함: {seminarData.speakerTitle}</p>}</div>
             <div>
               {t('소속')}:{' '}
-              <LinkOrText href={seminar.affiliationURL}>{seminar.affiliation}</LinkOrText>
+              <LinkOrText href={seminarData.affiliationURL}>{seminarData.affiliation}</LinkOrText>
             </div>
             <div className="mt-10">
-              {t('주최')}: {seminar.host}
+              {t('주최')}: {seminarData.host}
             </div>
             <div>
-              {t('날짜')}: {formatStartEndDate(seminar.startDate, seminar.endDate)}
+              {t('날짜')}: {formatStartEndDate(seminarData.startDate, seminarData.endDate)}
             </div>
             <div>
-              {t('위치')}: {seminar.location}
+              {t('위치')}: {seminarData.location}
             </div>
           </div>
           <div className="relative mx-7 aspect-square sm:h-60 sm:w-60">
             <ImageWithFallback
               alt={`대표_이미지`}
-              src={seminar.imageURL}
+              src={seminarData.imageURL}
               className="object-contain"
               fill
             />
           </div>
         </div>
 
-        {seminar.description && (
+        {seminarData.description && (
           <>
             <div className="mt-10 font-bold">{t('요약')}</div>
-            <HTMLViewer htmlContent={seminar.description} />
+            <HTMLViewer htmlContent={seminarData.description} />
           </>
         )}
 
-        {seminar.introduction && (
+        {seminarData.introduction && (
           <>
             <div className="mt-10 font-bold">{t('연사 소개')}</div>
-            <HTMLViewer htmlContent={seminar.introduction} />
+            <HTMLViewer htmlContent={seminarData.introduction} />
           </>
         )}
 
         <StraightNode margin="mt-10" />
-        <PostFooter post={seminar} postType="seminar" id={seminar.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={seminarData}
+          path={getPath(seminar)}
+          id={seminarData.id.toString()}
+          margin="mt-12"
+          deleteAction={deleteSeminarAction}
+        />
       </div>
     </>
   );

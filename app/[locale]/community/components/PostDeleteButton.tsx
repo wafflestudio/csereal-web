@@ -2,15 +2,17 @@
 
 import { useTransition } from 'react';
 
-import { deleteCouncilReportAction } from '@/actions/council';
-import { deleteNewsAction } from '@/actions/news';
-import { deleteNoticeAction } from '@/actions/notice';
-import { deleteSeminarAction } from '@/actions/seminar';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
 
-export default function PostDeleteButton({ postType, id }: { postType: string; id: string }) {
+export default function PostDeleteButton({
+  id,
+  deleteAction,
+}: {
+  id: string;
+  deleteAction: (id: number) => Promise<{ message: string } | undefined>;
+}) {
   const { openModal } = useModal();
   const [, startTransition] = useTransition();
 
@@ -20,29 +22,13 @@ export default function PostDeleteButton({ postType, id }: { postType: string; i
     return;
   }
 
-  const postTypeToAction = (postType: string) => {
-    switch (postType) {
-      case 'notice':
-        return deleteNoticeAction;
-      case 'news':
-        return deleteNewsAction;
-      case 'seminar':
-        return deleteSeminarAction;
-      case 'council/report':
-        return deleteCouncilReportAction;
-    }
-  };
-
   const handleDelete = async () => {
     startTransition(async () => {
-      const action = postTypeToAction(postType);
-      if (action) {
-        const result = await action(idInNumber);
-        if (result) {
-          errorToast(result.message);
-        } else {
-          successToast('게시글을 삭제했습니다.');
-        }
+      const result = await deleteAction(idInNumber);
+      if (result) {
+        errorToast(result.message);
+      } else {
+        successToast('게시글을 삭제했습니다.');
       }
     });
   };

@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { deleteNoticeAction } from '@/actions/notice';
 import { Notice } from '@/apis/types/notice';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
@@ -28,7 +29,13 @@ export default async function NoticeViewer({ notice }: NoticePostPageProps) {
         <HTMLViewer htmlContent={notice.description} wrapperClassName="mb-10" />
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
-        <PostFooter post={notice} postType="notice" id={notice.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={notice}
+          path={noticePath}
+          id={notice.id.toString()}
+          margin="mt-12"
+          deleteAction={deleteNoticeAction}
+        />
       </div>
     </>
   );

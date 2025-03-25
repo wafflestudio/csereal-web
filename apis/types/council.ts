@@ -13,9 +13,9 @@ export interface CouncilReport {
   sequence: number;
   name: string;
   createdAt: string;
-  prevId: number;
-  prevTitle: string;
-  nextId: number;
-  nextTitle: string;
+  prevId: number | null;
+  prevTitle: string | null;
+  nextId: number | null;
+  nextTitle: string | null;
   imageURL: string;
 }
