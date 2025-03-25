@@ -10,6 +10,7 @@ import { useRouter } from '@/i18n/routing';
 import { EditorFile, EditorImage } from '@/types/form';
 import { Language } from '@/types/language';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
+import useConfirmTabClose from '@/utils/hooks/confirmTapClose';
 import { handleServerResponse } from '@/utils/serverActionError';
 
 export interface AboutFormData {
@@ -34,10 +35,12 @@ export default function AboutEditor({
 }: Props) {
   const router = useRouter();
   const formMethods = useForm<AboutFormData>({ defaultValues });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const [language, setLanguage] = useState<Language>('ko');
 
   const onCancel = () => router.push(cancelPath);
+
+  useConfirmTabClose(formState.isDirty);
 
   const onSubmit = handleSubmit(async ({ htmlKo, htmlEn, image, files }) => {
     const requestObject = {
