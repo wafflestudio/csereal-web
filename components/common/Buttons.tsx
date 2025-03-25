@@ -1,4 +1,7 @@
+'use client';
+
 import { MouseEventHandler } from 'react';
+import { useFormStatus } from 'react-dom';
 
 import { Link } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
@@ -104,3 +107,29 @@ export function EditButton({ href }: { href: string }) {
     </Link>
   );
 }
+
+export const ConfirmButton = ({
+  title,
+  buttonRef,
+  onClick,
+}: {
+  title: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  buttonRef?: React.RefObject<HTMLButtonElement | null>;
+}) => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className={`ml-2.5 h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 px-[.875rem] py-[.3125rem] text-md font-medium leading-[1.5rem] text-white hover:bg-neutral-500 ${
+        pending && 'opacity-30'
+      }`}
+      disabled={pending}
+      type="submit"
+      onClick={onClick}
+      ref={buttonRef}
+    >
+      {title}
+    </button>
+  );
+};
