@@ -7,7 +7,7 @@ import { seminar } from '@/constants/segmentNode';
 import Calendar from '@/public/image/calendar.svg';
 import Distance from '@/public/image/distance.svg';
 import Person from '@/public/image/person.svg';
-import { formatSeminarDateStr } from '@/utils/date';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
 interface SeminarRowProps {
@@ -68,11 +68,12 @@ function HostInformationCell({ host, company }: { host: string; company: string 
 }
 
 function DateAndLocationCell({ date, location }: { date: Date; location: string }) {
+  const formatDate = useDayjs();
   return (
     <div className="flex flex-wrap gap-0.5 hover:cursor-pointer">
       <IconTextWrapper>
         <IconWrapper IconComponent={Calendar} />
-        <Text text={formatSeminarDateStr(date)} />
+        <Text text={formatDate(date).format('M/DD (ddd) HH:mm')} />
       </IconTextWrapper>
       <VerticalDivider />
       <IconTextWrapper>

@@ -1,11 +1,12 @@
 import { MainNews } from '@/apis/types/main';
 import Image from '@/components/common/Image';
 import { Link } from '@/i18n/routing';
-import { formatMainNewsDateStr } from '@/utils/date';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 
 import { CARD_WIDTH_TAILWIND } from './constants';
 
 export default function NewsCard({ news }: { news: MainNews }) {
+  const formatDate = useDayjs();
   return (
     <Link
       href={`/community/news/${news.id}`}
@@ -20,7 +21,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
           {news.title}
         </h3>
         <time className="mt-3 block text-sm font-normal text-neutral-500">
-          {formatMainNewsDateStr(news.createdAt)}
+          {formatDate(news.createdAt).format('YYYY.MM.DD')}
         </time>
         <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
           {news.description}
