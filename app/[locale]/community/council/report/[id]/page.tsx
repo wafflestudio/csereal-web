@@ -58,10 +58,7 @@ export default async function CouncilReportPage({ params }: Props) {
         <HTMLViewer htmlContent={description} wrapperClassName="mb-10" />
         <StraightNode />
         <PostFooter
-          nextId={council.nextId ?? undefined}
-          nextTitle={council.nextTitle ?? undefined}
-          prevId={council.prevId ?? undefined}
-          prevTitle={council.prevTitle ?? undefined}
+          post={council}
           path={getPath(councilReportList)}
           id={id.toString()}
           margin="mt-12"

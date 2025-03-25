@@ -10,10 +10,12 @@ import PostDeleteButton from './PostDeleteButton';
 type PostFooterProps = {
   path: string;
   id?: string;
-  nextId?: number;
-  nextTitle?: string;
-  prevId?: number;
-  prevTitle?: string;
+  post: {
+    nextId: number | null;
+    nextTitle: string | null;
+    prevId: number | null;
+    prevTitle: string | null;
+  };
   margin?: string;
   role?: Role[] | Role;
   deleteAction: (id: number) => Promise<{ message: string } | undefined>;
@@ -30,15 +32,14 @@ export default function PostFooter({
   path,
   margin = '',
   id,
-  nextId,
-  nextTitle,
-  prevId,
-  prevTitle,
+  post,
   role = 'ROLE_STAFF',
   deleteAction,
 }: PostFooterProps) {
-  const nextPost = nextId && nextTitle ? { id: nextId, title: nextTitle } : null;
-  const prevPost = prevId && prevTitle ? { id: prevId, title: prevTitle } : null;
+  const nextPost =
+    post.nextId && post.nextTitle ? { id: post.nextId, title: post.nextTitle } : null;
+  const prevPost =
+    post.prevId && post.prevTitle ? { id: post.prevId, title: post.prevTitle } : null;
 
   return (
     <div className={`flex flex-col ${margin}`}>

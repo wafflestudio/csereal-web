@@ -39,10 +39,7 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
         <PostFooter
-          nextId={news.nextId ?? undefined}
-          nextTitle={news.nextTitle ?? undefined}
-          prevId={news.prevId ?? undefined}
-          prevTitle={news.prevTitle ?? undefined}
+          post={news}
           id={news.id.toString()}
           deleteAction={deleteNewsAction}
           margin="mt-12"

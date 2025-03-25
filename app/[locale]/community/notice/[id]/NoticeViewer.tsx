@@ -30,10 +30,7 @@ export default async function NoticeViewer({ notice }: NoticePostPageProps) {
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
         <PostFooter
-          nextId={notice.nextId ?? undefined}
-          nextTitle={notice.nextTitle ?? undefined}
-          prevId={notice.prevId ?? undefined}
-          prevTitle={notice.prevTitle ?? undefined}
+          post={notice}
           path={noticePath}
           id={notice.id.toString()}
           margin="mt-12"
