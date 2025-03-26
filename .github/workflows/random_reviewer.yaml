@@ -17,7 +17,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const myId  = '${{ github.event.pull_request.user.login }}';
-            const idList = ['yeolyi', 'Limchansol', 'goranikin', 'onemeee'];
+            const { default: idList } = await import('${{ github.workspace }}/reviewer.json');
             const candidate = idList.filter(id => id !== myId);
 
             const idx = Math.floor(Math.random() * candidate.length);
