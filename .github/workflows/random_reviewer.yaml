@@ -16,13 +16,23 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // reviewer.json 파일 읽기
+            const reviewerPath = path.join(process.env.GITHUB_WORKSPACE, 'reviewer.json');
+            const reviewerContent = fs.readFileSync(reviewerPath, 'utf8');
+            const idList = JSON.parse(reviewerContent);
+
+            // 자신의 아이디 제외
             const myId  = '${{ github.event.pull_request.user.login }}';
-            const { default: idList } = await import('${{ github.workspace }}/reviewer.json');
             const candidate = idList.filter(id => id !== myId);
 
+            // 랜덤 리뷰어 선택
             const idx = Math.floor(Math.random() * candidate.length);
             const randomReviewer = candidate[idx];
 
+            // 코멘트 작성
             const deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
             const comment = `@${randomReviewer}님 ${deadline.toLocaleDateString('ko-KR')}까지 리뷰 부탁드립니다 🎉`
 
