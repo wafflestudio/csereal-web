@@ -14,10 +14,11 @@
 
 ### 준비
 
+node 버전 관리를 위해 [fnm](https://github.com/Schniz/fnm)등의 도구 사용을 권장합니다. [shell-setup](https://github.com/Schniz/fnm?tab=readme-ov-file#shell-setup)까지 마쳤다면 아래 작업을 수행합니다.
+
 ```sh
 git clone https://github.com/wafflestudio/csereal-web
 cd csereal-web
-nvm use
 npm install
 ```
 
