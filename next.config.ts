@@ -4,6 +4,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // 도커 빌드용 standalone 설정
+  output: 'standalone',
+
   experimental: {
     serverActions: {
       // 게시물 작성시 첨부파일 지원 목적

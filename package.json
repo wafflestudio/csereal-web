@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_PHASE=local NODE_ENV=development node server.mjs",
+    "build": "yarn build:local",
     "build:local": "cross-env NEXT_PUBLIC_PHASE=local next build",
     "start:local": "cross-env NEXT_PUBLIC_PHASE=local NODE_ENV=production node server.mjs",
     "build:beta": "cross-env NEXT_PUBLIC_PHASE=beta next build",
