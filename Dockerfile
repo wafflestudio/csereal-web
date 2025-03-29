@@ -32,7 +32,7 @@ COPY . .
 
 RUN \
     if [ -f yarn.lock ]; then yarn run build; \
-    elif [ -f package-lock.json ]; then npm run build; \
+    elif [ -f package-lock.json ]; then npm run build:local; \
     elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
     else echo "Lockfile not found." && exit 1; \
     fi
@@ -44,7 +44,7 @@ WORKDIR /app
 # 상황에 맞게 번경
 # ARG NODE_ENV=production 
 # ARG NODE_ENV=development 
-ARG NODE_ENV=local 
+# ARG NODE_ENV=local 
 
 ENV NODE_ENV $NODE_ENV
 # Uncomment the following line in case you want to disable telemetry during runtime.

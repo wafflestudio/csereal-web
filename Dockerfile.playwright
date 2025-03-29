@@ -7,6 +7,10 @@ COPY package.json package-lock.json* ./
 # 로컬용
 RUN npm config set registry https://registry.npmmirror.com
 RUN npm install
+
+# Playwright 설치
+RUN npx playwright install --with-deps
+
 # RUN npm ci
 
 COPY . .

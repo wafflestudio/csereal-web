@@ -1,25 +1,12 @@
 version: '3.9'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-    networks:
-      - testnet
-
   test:
     build:
       context: .
       dockerfile: Dockerfile.playwright
-    depends_on:
-      - app
     environment:
-      - BASE_URL=http://app:3000
+      - BASE_URL=https://cse-dev-waffle.bacchus.io/
     networks:
       - testnet
 
