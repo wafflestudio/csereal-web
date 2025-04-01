@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 const useConfirmTabClose = (isDirty: boolean) => {
   useEffect(() => {
+    if (!isDirty) return;
+
     const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string }) => {
-      if (isDirty) {
-        event.preventDefault();
-      }
+      event.preventDefault();
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
