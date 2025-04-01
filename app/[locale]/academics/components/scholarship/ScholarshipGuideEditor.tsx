@@ -21,7 +21,7 @@ type Props = {
 
 export default function ScholarshipGuideEditor({ description, studentType, cancelPath }: Props) {
   const formMethods = useForm<ScholarshipGuideFormData>({ defaultValues: { description } });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const router = useRouter();
 
   const onSubmit = handleSubmit(async ({ description }: ScholarshipGuideFormData) => {
@@ -33,7 +33,7 @@ export default function ScholarshipGuideEditor({ description, studentType, cance
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <Fieldset.HTML>
           <Form.HTML name="description" />
         </Fieldset.HTML>

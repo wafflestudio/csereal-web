@@ -36,7 +36,7 @@ export default function ScholarshipEditor({
       enDescription: '',
     },
   });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const router = useRouter();
   const [language, setLanguage] = useState<Language>('ko');
 
@@ -51,7 +51,7 @@ export default function ScholarshipEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}

@@ -1,3 +1,4 @@
+'use client';
 import { ReactNode } from 'react';
 
 import Action from '@/components/form/Action';
@@ -13,8 +14,10 @@ import Section from '@/components/form/Section';
 import Text from '@/components/form/Text';
 import TextArea from '@/components/form/TextArea';
 import TextList from '@/components/form/TextList';
+import useConfirmTabClose from '@/utils/hooks/confirmTabClose';
 
-function Form({ children }: { children: ReactNode }) {
+function Form({ children, isDirty = false }: { children: ReactNode; isDirty: boolean }) {
+  useConfirmTabClose(isDirty);
   return <form className="flex flex-col">{children}</form>;
 }
 

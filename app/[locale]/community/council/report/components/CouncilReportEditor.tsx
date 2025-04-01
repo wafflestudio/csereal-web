@@ -20,11 +20,11 @@ interface Props {
 
 export default function CouncilReportEditor({ onCancel, onSubmit, defaultValues }: Props) {
   const methods = useForm<CouncilReportEditorContent>({ defaultValues });
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState } = methods;
 
   return (
     <FormProvider {...methods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <Fieldset.Title>
           <Form.Text
             name="title"

@@ -10,7 +10,6 @@ import { useRouter } from '@/i18n/routing';
 import { EditorFile, EditorImage } from '@/types/form';
 import { Language } from '@/types/language';
 import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
-import useConfirmTabClose from '@/utils/hooks/confirmTapClose';
 import { handleServerResponse } from '@/utils/serverActionError';
 
 export interface AboutFormData {
@@ -40,8 +39,6 @@ export default function AboutEditor({
 
   const onCancel = () => router.push(cancelPath);
 
-  useConfirmTabClose(formState.isDirty);
-
   const onSubmit = handleSubmit(async ({ htmlKo, htmlEn, image, files }) => {
     const requestObject = {
       ko: { description: htmlKo, deleteIds: getAttachmentDeleteIds(files, defaultValues.files) },
@@ -56,7 +53,7 @@ export default function AboutEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker onChange={setLanguage} selected={language} />
 
         <Fieldset.HTML>

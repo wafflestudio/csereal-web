@@ -33,7 +33,7 @@ export default function ResearchCenterEditor({ onSubmit, defaultValues }: Props)
       image: null,
     },
   });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const router = useRouter();
   const [language, setLanguage] = useState<Language>('ko');
 
@@ -41,7 +41,7 @@ export default function ResearchCenterEditor({ onSubmit, defaultValues }: Props)
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}

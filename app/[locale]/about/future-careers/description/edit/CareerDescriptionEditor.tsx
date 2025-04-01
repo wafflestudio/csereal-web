@@ -21,7 +21,7 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
   const formMethods = useForm<WithLanguage<string>>({ defaultValues: data });
   const [language, setLanguage] = useState<Language>('ko');
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
 
   const onCancel = () => router.push(clubPath);
 
@@ -36,7 +36,7 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
   return (
     <PageLayout title="졸업생 진로 본문 편집" titleType="big" hideNavbar>
       <FormProvider {...formMethods}>
-        <Form>
+        <Form isDirty={formState.isDirty}>
           <LanguagePicker onChange={setLanguage} selected={language} />
           <Fieldset.HTML>
             {language === 'ko' && <Form.HTML name="ko" options={{ required: true }} />}

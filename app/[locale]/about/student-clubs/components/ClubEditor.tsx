@@ -26,14 +26,14 @@ interface Props {
 export default function ClubEditor({ defaultValues, onSubmit }: Props) {
   const router = useRouter();
   const formMethods = useForm<ClubFormData>({ defaultValues });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const [language, setLanguage] = useState<Language>('ko');
 
   const onCancel = () => router.push(clubPath);
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker onChange={setLanguage} selected={language} />
 
         <Fieldset.Title>

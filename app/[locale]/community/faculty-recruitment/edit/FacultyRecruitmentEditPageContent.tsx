@@ -35,7 +35,7 @@ export default function FacultyRecruitmentEditPageContent({ data }: Props) {
       image: data.mainImageUrl ? { type: 'UPLOADED_IMAGE', url: data.mainImageUrl } : null,
     },
   });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const router = useRouter();
 
   const onCancel = () => router.push(recruitPath);
@@ -60,7 +60,7 @@ export default function FacultyRecruitmentEditPageContent({ data }: Props) {
   return (
     <PageLayout title="신임교수초빙 편집" titleType="big" hideNavbar>
       <FormProvider {...formMethods}>
-        <Form>
+        <Form isDirty={formState.isDirty}>
           <Fieldset.Title>
             <Form.Text name="title" maxWidth="w-[30rem]" options={{ required: true }} />
           </Fieldset.Title>

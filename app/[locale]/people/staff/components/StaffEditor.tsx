@@ -33,12 +33,12 @@ export default function StaffEditor({ defaultValues, onCancel, onSubmit }: Staff
       en: { name: '', email: '', office: '', phone: '', role: '', tasks: [], image: null },
     },
   });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const [language, setLanguage] = useState<Language>(useLanguage().isEnglish ? 'en' : 'ko');
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}

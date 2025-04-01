@@ -29,7 +29,7 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
   });
   const [language, setLanguage] = useState<Language>('ko');
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
 
   const onCancel = () => router.push(directionsPath);
 
@@ -44,7 +44,7 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
   return (
     <PageLayout title={`찾아오는 길(${data.ko.name}) 편집`} titleType="big" hideNavbar>
       <FormProvider {...formMethods}>
-        <Form>
+        <Form isDirty={formState.isDirty}>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
           <Fieldset.HTML>

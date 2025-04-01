@@ -27,7 +27,7 @@ export default function AdmissionsEditor({
   onSubmit: _onSubmit,
 }: Props) {
   const formMethods = useForm<AdmissionsFormData>({ defaultValues });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
   const router = useRouter();
   const [language, setLanguage] = useState<Language>('ko');
 
@@ -40,7 +40,7 @@ export default function AdmissionsEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}

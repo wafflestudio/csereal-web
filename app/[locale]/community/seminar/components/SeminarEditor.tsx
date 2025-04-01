@@ -64,11 +64,11 @@ export default function SeminarEditor({
       isEndDateVisible: true,
     },
   });
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, formState } = formMethods;
 
   return (
     <FormProvider {...formMethods}>
-      <Form>
+      <Form isDirty={formState.isDirty}>
         <Fieldset title="제목" mb="mb-8" titleMb="mb-2" required>
           <Form.Text
             name="title"
