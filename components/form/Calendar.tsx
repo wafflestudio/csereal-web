@@ -1,9 +1,8 @@
 import { useController } from 'react-hook-form';
 
 import ReactCalendar from '@/components/common/MuiDateSelector';
+import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';
-
-import ModalFrame from '../modal/ModalFrame';
 
 interface Props {
   name: string;
