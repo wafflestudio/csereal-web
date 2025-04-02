@@ -47,7 +47,7 @@ export default function AlertModal({
               closeModal();
             }}
           />
-          <ConfirmButton title={confirmText} buttonRef={confirmButtonRef} />
+          <ConfirmButton title={confirmText} ref={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>

@@ -110,7 +110,7 @@ export function EditButton({ href }: { href: string }) {
 
 export const ConfirmButton = ({
   title,
-  buttonRef,
+  ref,
   onClick,
 }: {
   title: string;
@@ -127,7 +127,7 @@ export const ConfirmButton = ({
       disabled={pending}
       type="submit"
       onClick={onClick}
-      ref={buttonRef}
+      ref={ref}
     >
       {title}
     </button>
