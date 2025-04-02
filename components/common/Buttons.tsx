@@ -115,7 +115,7 @@ export const ConfirmButton = ({
 }: {
   title: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  buttonRef?: React.RefObject<HTMLButtonElement | null>;
+  ref?: React.RefObject<HTMLButtonElement | null>;
 }) => {
   const { pending } = useFormStatus();
 
