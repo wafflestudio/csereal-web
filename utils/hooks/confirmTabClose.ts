@@ -4,7 +4,7 @@ const useConfirmTabClose = (isDirty: boolean) => {
   useEffect(() => {
     if (!isDirty) return;
 
-    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string }) => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
