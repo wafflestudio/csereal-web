@@ -120,14 +120,12 @@ const useDateQuery = () => {
 
 const useClickOutside = <T extends HTMLElement>(handler: () => void) => {
   const ref = useRef<T | null>(null);
-  const isNode = (target: EventTarget | null): target is Node => {
-    return !!target && 'nodeType' in target;
-  };
 
   useEffect(() => {
     const handleClickOutside = (ev: MouseEvent | TouchEvent) => {
       const target = ev.target;
-      if (ref.current && isNode(target) && !ref.current.contains(target)) {
+      if (!(target instanceof Node)) return;
+      if (ref.current && !ref.current.contains(target)) {
         handler();
       }
     };
