@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    environment:
+      - BASE_URL=https://cse-dev-waffle.bacchus.io/
+    networks:
+      - testnet
+
+networks:
+  testnet:
