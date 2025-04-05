@@ -2,12 +2,11 @@
 
 import { useEffect, useReducer, useRef } from 'react';
 
+import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
+import AddReservationModal from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/AddReservationModal';
+import MuiDateSelector from '@/components/common/MuiDateSelector';
 import { usePathname, useRouter } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
-
-import MuiDateSelector from '../../../../../../../components/common/MuiDateSelector';
-import BasicButton from '../BasicButton';
-import AddReservationModal from '../modals/AddReservationModal';
 
 // TODO: button -> Link 수정
 export function SelectDayButton({ date }: { date: Date }) {
