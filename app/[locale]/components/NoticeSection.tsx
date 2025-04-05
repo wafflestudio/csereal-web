@@ -64,7 +64,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
             >
               <h3 className="truncate sm:w-[27rem]">{notice.title}</h3>
               <p className="whitespace-nowrap">
-                {formatDate(notice.createdAt).format('MM/DD (ddd)')}
+                {formatDate ? formatDate({ date: notice.createdAt, format: 'day' }) : ''}
               </p>
             </Link>
           ))}

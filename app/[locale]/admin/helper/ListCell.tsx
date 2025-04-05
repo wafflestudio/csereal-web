@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/routing';
 import CheckboxOrange from '@/public/image/checkbox_orange.svg';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 
 interface CheckboxCellProps {
   isChecked: boolean;
@@ -44,7 +45,12 @@ export function TitleCell({ title, href, width }: { title: string; href: string;
 }
 
 export function DateCell({ date, width }: { date: string; width: string }) {
-  return <span className={`${width} pl-8`}>{formatDate(new Date(date))}</span>;
+  const formatDate = useDayjs();
+  return (
+    <span className={`${width} pl-8`}>
+      {formatDate ? formatDate({ date: date, format: 'simple' }) : ''}
+    </span>
+  );
 }
 
 export function EditCell({ href, width }: { href: string; width: string }) {
@@ -59,11 +65,3 @@ export function EditCell({ href, width }: { href: string; width: string }) {
     </span>
   );
 }
-
-const formatDate = (date: Date) => {
-  const yyyy = String(date.getFullYear()).padStart(4, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-
-  return `${yyyy}/${mm}/${dd}`; // e.g. 2023/08/01
-};

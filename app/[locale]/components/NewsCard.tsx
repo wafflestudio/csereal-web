@@ -21,7 +21,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
           {news.title}
         </h3>
         <time className="mt-3 block text-sm font-normal text-neutral-500">
-          {formatDate(news.createdAt).format('YYYY.MM.DD')}
+          {formatDate ? formatDate({ date: news.createdAt, format: 'simple' }) : ''}
         </time>
         <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
           {news.description}

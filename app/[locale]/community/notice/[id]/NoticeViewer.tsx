@@ -61,7 +61,7 @@ const Header = ({
           {t('작성자')}: {author}
         </p>
         <p>
-          {t('작성 날짜')}: {formatDate(createdAt).format('YYYY/MM/DD (ddd) A h:mm')}
+          {t('작성 날짜')}: {formatDate ? formatDate({ date: createdAt, format: 'time' }) : ''}
         </p>
       </div>
     </div>

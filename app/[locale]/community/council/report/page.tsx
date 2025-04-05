@@ -61,7 +61,7 @@ const Tile = ({ id, title, sequence, name, createdAt, imageURL }: CouncilReport)
           <p>
             제 {sequence}대 학생회 {name}
           </p>
-          <p>{formatDate(createdAt).format('YYYY/MM/DD')}</p>
+          <p>{formatDate ? formatDate({ date: createdAt, format: 'simple' }) : ''}</p>
           <NaviBarClose className="absolute bottom-[16px] right-[12.5px]" />
         </div>
       </div>

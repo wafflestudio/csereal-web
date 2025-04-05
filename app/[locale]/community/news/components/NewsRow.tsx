@@ -1,7 +1,10 @@
+'use client';
+
 import PaginatedLink from '@/app/[locale]/community/components/PaginatedLink';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
 import { news } from '@/constants/segmentNode';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
 interface NewsRowProps {
@@ -33,12 +36,7 @@ export default function NewsRow({
 }: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
 
-  const dateStr = date.toLocaleDateString('ko', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  });
+  const formatDate = useDayjs();
 
   return (
     <article
@@ -47,7 +45,9 @@ export default function NewsRow({
       }`}
     >
       <div className="mr-8 flex flex-1 flex-col justify-between break-keep">
-        <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">{dateStr}</time>
+        <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">
+          {formatDate ? formatDate({ date: date, format: 'day' }) : ''}
+        </time>
 
         <div className="flex flex-col items-start">
           <PaginatedLink href={href} className="hover:underline">
@@ -75,7 +75,7 @@ export default function NewsRow({
         <div className="flex items-center justify-between sm:gap-2.5">
           <Tags tags={tags} searchPath={newsPath} />
           <time className="hidden self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:inline">
-            {dateStr}
+            {formatDate ? formatDate({ date: date, format: 'day' }) : ''}
           </time>
         </div>
       </div>
