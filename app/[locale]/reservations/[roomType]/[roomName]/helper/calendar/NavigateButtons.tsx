@@ -1,13 +1,12 @@
 'use client';
 
-import { useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
+import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
+import AddReservationModal from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/AddReservationModal';
+import MuiDateSelector from '@/components/common/MuiDateSelector';
 import { usePathname, useRouter } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
-
-import MuiDateSelector from '../../../../../../../components/common/MuiDateSelector';
-import BasicButton from '../BasicButton';
-import AddReservationModal from '../modals/AddReservationModal';
 
 // TODO: button -> Link 수정
 export function SelectDayButton({ date }: { date: Date }) {
@@ -28,6 +27,10 @@ export function SelectDayButton({ date }: { date: Date }) {
     );
   };
 
+  const calendarRef = useClickOutside<HTMLDivElement>(() => {
+    if (showCalendar) toggleCalendar();
+  });
+
   return (
     <div>
       <BasicButton
@@ -45,15 +48,17 @@ export function SelectDayButton({ date }: { date: Date }) {
       </BasicButton>
       <div className="relative">
         {showCalendar && (
-          <MuiDateSelector
-            className="absolute top-2 z-10 border border-neutral-300 bg-white"
-            date={date}
-            setDate={(date) => {
-              if (date) querySetter(date);
-              toggleCalendar();
-            }}
-            enablePast
-          />
+          <div ref={calendarRef}>
+            <MuiDateSelector
+              className="absolute top-2 z-10 border border-neutral-300 bg-white"
+              date={date}
+              setDate={(date) => {
+                if (date) querySetter(date);
+                toggleCalendar();
+              }}
+              enablePast
+            />
+          </div>
         )}
       </div>
     </div>
@@ -110,4 +115,28 @@ const useDateQuery = () => {
       .join('-');
     router.push(`${pathname}?selectedDate=${str}`, { scroll: false });
   };
+};
+
+const useClickOutside = <T extends HTMLElement>(handler: () => void) => {
+  const ref = useRef<T | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (ev: MouseEvent | TouchEvent) => {
+      const target = ev.target;
+      if (!(target instanceof Node)) return;
+      if (ref.current && !ref.current.contains(target)) {
+        handler();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [handler]);
+
+  return ref;
 };
