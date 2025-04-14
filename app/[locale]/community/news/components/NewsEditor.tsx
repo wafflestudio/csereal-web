@@ -39,11 +39,11 @@ export default function NewsEditor({ defaultValues, onCancel, onSubmit, onDelete
       isSlide: false,
     },
   });
-  const { handleSubmit, setValue, formState } = formMethods;
+  const { handleSubmit, setValue } = formMethods;
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset title="제목" mb="mb-8" titleMb="mb-2" required>
           <Form.Text
             name="title"

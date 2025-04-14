@@ -28,7 +28,7 @@ export default function CouncilMeetingMinuteEditor({
       file: [],
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const onSubmit = async (requestObject: MinuteFormData) => {
     if (requestObject.file.length === 0) {
@@ -41,7 +41,7 @@ export default function CouncilMeetingMinuteEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         {!defaultValues && (
           <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
             <Form.Text

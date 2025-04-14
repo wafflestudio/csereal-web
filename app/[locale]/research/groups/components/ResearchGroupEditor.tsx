@@ -35,7 +35,7 @@ export default function ResearchGroupEditor({ onSubmit, defaultValues }: Props) 
       image: null,
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
   const router = useRouter();
   const [language, setLanguage] = useState<Language>('ko');
 
@@ -43,7 +43,7 @@ export default function ResearchGroupEditor({ onSubmit, defaultValues }: Props) 
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <ResearchGroupLabsEditGuide />
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}

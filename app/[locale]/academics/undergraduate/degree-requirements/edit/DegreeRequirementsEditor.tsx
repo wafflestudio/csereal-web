@@ -27,7 +27,7 @@ export default function DegreeRequirementsEditor({
   onSubmit: (formData: FormData) => Promise<void | CustomError>;
 }) {
   const formMethods = useForm<DegreeRequirementsFormData>({ defaultValues });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const router = useRouter();
 
@@ -52,7 +52,7 @@ export default function DegreeRequirementsEditor({
   return (
     <PageLayout titleType="big">
       <FormProvider {...formMethods}>
-        <Form isDirty={formState.isDirty}>
+        <Form>
           <Fieldset.HTML>
             <Form.HTML name="description" />
           </Fieldset.HTML>

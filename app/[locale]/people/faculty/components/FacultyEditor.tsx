@@ -74,11 +74,11 @@ export default function FacultyEditor({
       en: defaultValue(initialStatus),
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset title="구분" mb="mb-11" titleMb="mb-2" required>
           <div className="flex gap-3">
             {getKeys(FACULTY_STATUS).map((status) => (

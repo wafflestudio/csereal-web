@@ -51,7 +51,7 @@ export default function ScholarshipEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}

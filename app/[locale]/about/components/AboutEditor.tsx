@@ -34,7 +34,7 @@ export default function AboutEditor({
 }: Props) {
   const router = useRouter();
   const formMethods = useForm<AboutFormData>({ defaultValues });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
   const [language, setLanguage] = useState<Language>('ko');
 
   const onCancel = () => router.push(cancelPath);
@@ -53,7 +53,7 @@ export default function AboutEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <LanguagePicker onChange={setLanguage} selected={language} />
 
         <Fieldset.HTML>

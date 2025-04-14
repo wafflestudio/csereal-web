@@ -26,14 +26,14 @@ const DEFAULT_STATS: CareerStat = {
 
 export default function CareerStatEditor({ onSubmit, defaultValues }: Props) {
   const formMethods = useForm<CareerStat>({ defaultValues: defaultValues ?? DEFAULT_STATS });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const router = useRouter();
   const onCancel = () => router.push(careerPath);
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
           <Form.Text name="year" maxWidth="w-[55px]" />
         </Fieldset>

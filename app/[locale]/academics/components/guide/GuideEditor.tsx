@@ -20,13 +20,13 @@ interface Props {
 
 export default function GuideEditor({ defaultValues, onCancelPath, onSubmit }: Props) {
   const formMethods = useForm<GuideFormData>({ defaultValues });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
   const router = useRouter();
   const onCancel = () => router.push(onCancelPath);
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset.HTML>
           <Form.HTML name="description" />
         </Fieldset.HTML>

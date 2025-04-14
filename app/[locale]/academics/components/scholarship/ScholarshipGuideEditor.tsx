@@ -33,7 +33,7 @@ export default function ScholarshipGuideEditor({ description, studentType, cance
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset.HTML>
           <Form.HTML name="description" />
         </Fieldset.HTML>

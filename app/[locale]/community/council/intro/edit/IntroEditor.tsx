@@ -23,7 +23,7 @@ interface Props {
 export default function IntroEditor({ cancelPath, defaultValues, onSubmit: _onSubmit }: Props) {
   const router = useRouter();
   const formMethods = useForm<IntroFormData>({ defaultValues });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const onCancel = () => router.push(cancelPath);
 
@@ -42,7 +42,7 @@ export default function IntroEditor({ cancelPath, defaultValues, onSubmit: _onSu
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset.HTML>
           <Form.HTML name="description" options={{ required: true }} />
         </Fieldset.HTML>

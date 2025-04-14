@@ -36,7 +36,7 @@ export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
 
   const {
     handleSubmit,
-    formState: { dirtyFields, isDirty },
+    formState: { dirtyFields },
   } = methods;
 
   const onCancel = () => {
@@ -75,7 +75,7 @@ export default function CouncilByLawsEditClientPage({ councilRules }: Props) {
 
   return (
     <FormProvider {...methods}>
-      <Form isDirty={isDirty}>
+      <Form>
         <Form.Section title="학생회칙" mb="mb-10" titleMb="mb-2">
           <Form.File name="constitutionAttachments" multiple rules={{ required: true }} />
         </Form.Section>

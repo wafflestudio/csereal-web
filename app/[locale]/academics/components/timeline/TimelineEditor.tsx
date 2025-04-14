@@ -25,7 +25,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
       file: [],
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const router = useRouter();
   const onCancel = () => router.push(cancelPath);
@@ -60,7 +60,7 @@ export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, can
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <Fieldset title="연도" mb="mb-6" titleMb="mb-2">
           <Form.Text
             name="year"

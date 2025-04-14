@@ -63,7 +63,7 @@ export default function ResearchLabEditor({
       pdf: [],
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
   const [language, setLanguage] = useState<Language>('ko');
   const router = useRouter();
 
@@ -71,7 +71,7 @@ export default function ResearchLabEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <Form isDirty={formState.isDirty}>
+      <Form>
         <LanguagePicker onChange={setLanguage} selected={language} />
         {language === 'ko' && <Editor language="ko" professors={professors} groups={groups} />}
         {language === 'en' && <Editor language="en" professors={professors} groups={groups} />}
