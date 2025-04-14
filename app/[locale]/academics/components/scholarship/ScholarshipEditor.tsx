@@ -36,7 +36,7 @@ export default function ScholarshipEditor({
       enDescription: '',
     },
   });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
   const router = useRouter();
   const [language, setLanguage] = useState<Language>('ko');
 

@@ -21,7 +21,7 @@ export default function InternalEditor({
   onSubmit: (description: string) => Promise<void>;
 }) {
   const formMethods = useForm<FormData>({ defaultValues: { description } });
-  const { handleSubmit, formState } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const router = useRouter();
   const onCancel = () => router.push('/.internal');
@@ -37,7 +37,7 @@ export default function InternalEditor({
   return (
     <FormProvider {...formMethods}>
       <div className="m-10 min-w-[720px]">
-        <Form isDirty={formState.isDirty}>
+        <Form>
           <Fieldset.HTML>
             <Form.HTML name="description" />
           </Fieldset.HTML>
