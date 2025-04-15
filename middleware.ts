@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { Role } from '@/apis/types/role';
 import { BASE_URL, isProd } from '@/constants/env';
+import { UserState } from '@/contexts/SessionContext';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
@@ -10,43 +10,36 @@ import { PROD_LOGIN_URL } from './constants/network';
 
 const handleI18nRouting = createMiddleware(routing);
 
-// TODO: 페이지별 권한관리가 개판이라서 정리 한 번 해줘야 함
-const getRequiredAuth = (pathname: string): Role | undefined => {
+/** 페이지별 권한 검사 */
+/** 권한간의 계층관계가 명확하지 않으므로(요구사항이 바뀔 수도 있으므로) 배열로 반환 */
+const getRequiredAuth = (pathname: string): UserState[] => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);
-  if (pathname.startsWith('/admin') || pathname.endsWith('create')) return 'ROLE_STAFF';
 
-  if (pathname.endsWith('edit')) {
-    if (pathname.includes('council')) return 'ROLE_COUNCIL';
-    else return 'ROLE_STAFF';
+  const isCouncilPage = pathname.includes('/council');
+  const isCreateOrEditPage = pathname.endsWith('create') || pathname.endsWith('edit');
+  const isAdminPage = pathname.startsWith('/admin');
+
+  if (isCouncilPage && isCreateOrEditPage) {
+    return ['ROLE_COUNCIL', 'ROLE_STAFF'];
   }
-};
 
-const isCouncilRequired = (pathname: string) => {
-  if (pathname.startsWith('/en')) pathname = pathname.slice(3);
-  return (
-    pathname.includes('/council') && (pathname.endsWith('create') || pathname.endsWith('edit'))
-  );
+  if (isAdminPage || isCreateOrEditPage) {
+    return ['ROLE_STAFF'];
+  }
+
+  return ['ROLE_STAFF', 'ROLE_RESERVATION', 'ROLE_COUNCIL', 'logout'];
 };
 
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const userState = await getUserState();
 
-  // 관리자 페이지는 스태프 계정으로 로그인되어있어야한다.
-  // 학생회 편집 페이지는 학생회 혹은 스태프 계정으로 로그인되어 있어야 한다.
   const requiredAuth = getRequiredAuth(pathname);
-
-  const isValidState =
-    userState === 'ROLE_STAFF' ||
-    (isCouncilRequired(pathname) && userState === 'ROLE_COUNCIL') ||
-    requiredAuth === undefined;
+  const isValidState = requiredAuth.includes(userState);
 
   if (!isValidState) {
-    if (isProd) {
-      return Response.redirect(new URL(PROD_LOGIN_URL));
-    } else {
-      return Response.redirect(new URL(BASE_URL));
-    }
+    const redirectUrl = isProd ? PROD_LOGIN_URL : BASE_URL;
+    return Response.redirect(new URL(redirectUrl));
   }
 
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
