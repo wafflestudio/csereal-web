@@ -74,7 +74,7 @@
   },
   "engines": {
     "node": "20.11.1",
-    "yarn": "please-use-npm",
-    "pnpm": "please-use-npm"
+    "npm": "please-use-npm",
+    "yarn": "please-use-npm"
   }
 }
