@@ -1,11 +1,12 @@
 'use client';
 
 import { postResearchGroupAction } from '@/actions/research';
+import ResearchGroupEditor, {
+  ResearchGroupFormData,
+} from '@/app/[locale]/research/groups/components/ResearchGroupEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ResearchGroupEditor, { ResearchGroupFormData } from '../components/ResearchGroupEditor';
 
 export default function ResearchGroupCreatePage() {
   const onSubmit = async ({ image, ...requestObject }: ResearchGroupFormData) => {

@@ -1,10 +1,10 @@
 'use client';
 
 import { ReservationPreview } from '@/apis/types/reservation';
+import useResponsiveRow from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/useResponsiveRow';
 import { isSameDay } from '@/utils/date';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import useResponsiveRow from '../useResponsiveRow';
 import CalendarColumn from './CalendarColumn';
 
 export default function CalendarContent({

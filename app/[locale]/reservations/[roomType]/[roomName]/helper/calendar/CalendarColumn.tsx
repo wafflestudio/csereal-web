@@ -1,6 +1,6 @@
 import { ReservationPreview } from '@/apis/types/reservation';
+import ReservationModalButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/ReservationDetailModal';
 
-import ReservationModalButton from '../modals/ReservationDetailModal';
 import styles from './cellstyle.module.css';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
@@ -35,7 +35,7 @@ const ColumnIndex = ({ selected, date }: { selected: boolean; date: Date }) => {
       className={`
         flex h-[4.0625rem] flex-col
         justify-between border-b border-r
-        border-t border-neutral-200 px-3 py-[0.62rem] 
+        border-t border-neutral-200 px-3 py-[0.62rem]
         ${selected ? 'bg-neutral-200' : 'bg-neutral-100'}
         `}
     >

@@ -2,12 +2,13 @@
 
 import { putResearchGroupAction } from '@/actions/research';
 import { ResearchGroup } from '@/apis/types/research';
+import ResearchGroupEditor, {
+  ResearchGroupFormData,
+} from '@/app/[locale]/research/groups/components/ResearchGroupEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ResearchGroupEditor, { ResearchGroupFormData } from '../components/ResearchGroupEditor';
 
 export default function ResearchGroupEditPageContent({
   group,

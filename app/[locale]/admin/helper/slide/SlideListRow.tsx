@@ -1,8 +1,13 @@
 import { SlidePreview } from '@/apis/types/admin';
+import {
+  CheckboxCell,
+  DateCell,
+  EditCell,
+  IndexCell,
+  TitleCell,
+} from '@/app/[locale]/admin/helper/ListCell';
 import { news } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import { CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';
 
 interface SlideListRowProps {
   index: number;

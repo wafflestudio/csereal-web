@@ -1,8 +1,8 @@
 'use client';
 
+import useResponsiveRow from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/useResponsiveRow';
 import LoginVisible from '@/components/common/LoginVisible';
 
-import useResponsiveRow from '../useResponsiveRow';
 import {
   ChangeDateButton,
   MakeReservationButton,

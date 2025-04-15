@@ -2,15 +2,14 @@
 
 import { batchUnslideAction } from '@/actions/admin';
 import { SlidePreview } from '@/apis/types/admin';
+import BatchAction from '@/app/[locale]/admin/helper/BatchAction';
+import SlideList from '@/app/[locale]/admin/helper/slide/SlideList';
+import useSlideSelect from '@/app/[locale]/admin/helper/slide/useSlideSelect';
+import TotalPostsCount from '@/app/[locale]/admin/helper/TotalPostsCount';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import BatchAction from '../BatchAction';
-import TotalPostsCount from '../TotalPostsCount';
-import SlideList from './SlideList';
-import useSlideSelect from './useSlideSelect';
 
 const POST_LIMIT = 40;
 

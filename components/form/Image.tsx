@@ -2,8 +2,7 @@ import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'reac
 import { RegisterOptions, useFormContext, useWatch } from 'react-hook-form';
 
 import Image from '@/components/common/Image';
-
-import { LocalImage, UploadedImage } from '../../types/form';
+import { LocalImage, UploadedImage } from '@/types/form';
 
 interface Props {
   name: string;
@@ -75,7 +74,7 @@ const SelectedImageViewer = ({
     <div
       className={`
     relative flex gap-3 self-start
-    rounded-sm border border-neutral-200 bg-neutral-50 
+    rounded-sm border border-neutral-200 bg-neutral-50
     pb-2 pl-2 pr-4 pt-2`}
     >
       <Image src={imageURL} alt="선택된 이미지" width={IMAGE_WIDTH} height={imageHeight} />

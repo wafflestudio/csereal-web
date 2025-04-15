@@ -1,4 +1,4 @@
-import PageLayout from '../layout/pageLayout/PageLayout';
+import PageLayout from '@/components/layout/pageLayout/PageLayout';
 
 export default function InvalidIDFallback({ rawID }: { rawID: string }) {
   return (

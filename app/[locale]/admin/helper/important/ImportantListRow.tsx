@@ -1,8 +1,14 @@
 import { ImportantPostIdentifier, ImportantPreview } from '@/apis/types/admin';
+import {
+  CategoryCell,
+  CheckboxCell,
+  DateCell,
+  EditCell,
+  IndexCell,
+  TitleCell,
+} from '@/app/[locale]/admin/helper/ListCell';
 import { news, notice, seminar } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import { CategoryCell, CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';
 
 interface ImportantListRowProps {
   index: number;

@@ -2,13 +2,13 @@
 
 import { batchUnimportantAction } from '@/actions/admin';
 import { ImportantPreview } from '@/apis/types/admin';
+import BatchAction from '@/app/[locale]/admin/helper/BatchAction';
+import TotalPostsCount from '@/app/[locale]/admin/helper/TotalPostsCount';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { handleServerResponse } from '@/utils/serverActionError';
 
-import BatchAction from '../BatchAction';
-import TotalPostsCount from '../TotalPostsCount';
 import ImportantList from './ImportantList';
 import useImportantSelect from './useImportantSelect';
 

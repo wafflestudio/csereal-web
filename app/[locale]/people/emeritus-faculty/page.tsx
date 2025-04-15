@@ -1,5 +1,7 @@
 import { SimpleEmeritusFaculty } from '@/apis/types/people';
 import { getEmeritusFacultyList } from '@/apis/v2/professor/inactive';
+import { PeopleCellProps } from '@/app/[locale]/people/components/PeopleCell';
+import PeopleGrid from '@/app/[locale]/people/components/PeopleGrid';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -7,9 +9,6 @@ import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import { PeopleCellProps } from '../components/PeopleCell';
-import PeopleGrid from '../components/PeopleGrid';
 
 interface EmeritusFacultyPageProps {
   params: Promise<{ locale: Language }>;

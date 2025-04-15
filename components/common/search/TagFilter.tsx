@@ -1,8 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 
+import Checkbox from '@/components/form/legacy/Checkbox';
 import useStyle from '@/utils/hooks/useStyle';
-
-import Checkbox from '../../form/legacy/Checkbox';
 
 interface TagFilterProps {
   tags: string[];

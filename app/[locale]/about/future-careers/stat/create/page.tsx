@@ -2,10 +2,9 @@
 
 import { postCareerStatAction } from '@/actions/about';
 import { CareerStat } from '@/apis/v2/about/future-careers/stats';
+import CareerStatEditor from '@/app/[locale]/about/future-careers/components/CareerStatEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import CareerStatEditor from '../../components/CareerStatEditor';
 
 export default function CareerStatCreatePage() {
   const onSubmit = async (formData: CareerStat) => {

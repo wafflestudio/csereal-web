@@ -3,11 +3,11 @@ import { ReactNode } from 'react';
 
 import { NewsSearchResult, NoticeSearchResult } from '@/apis/types/search';
 import { SeminarPreviewList } from '@/apis/types/seminar';
+import SeminarRow from '@/app/[locale]/community/seminar/components/SeminarRow';
 import { news, notice, seminar } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 
-import SeminarRow from '../community/seminar/components/SeminarRow';
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
 import NewsRow from './helper/NewsRow';

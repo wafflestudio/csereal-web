@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-import { SegmentNode } from '../constants/segmentNode';
+import { SegmentNode } from '@/constants/segmentNode';
 
 /**
  * @param locale (required) current page locale (get from page params)

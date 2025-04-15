@@ -4,10 +4,9 @@ import { putCareerStatAction } from '@/actions/about';
 import { FutureCareers } from '@/apis/types/about';
 import { CareerStat } from '@/apis/v2/about/future-careers/stats';
 import { COMPANY_MAP, companyList } from '@/apis/v2/about/future-careers/types';
+import CareerStatEditor from '@/app/[locale]/about/future-careers/components/CareerStatEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import CareerStatEditor from '../../components/CareerStatEditor';
 
 export default function CareerStatEditPageContent({
   data,
