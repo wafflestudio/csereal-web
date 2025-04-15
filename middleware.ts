@@ -2,33 +2,13 @@ import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { BASE_URL, isProd } from '@/constants/env';
-import { UserState } from '@/contexts/SessionContext';
 import { routing } from '@/i18n/routing';
 
 import { getUserState } from './actions/session';
 import { PROD_LOGIN_URL } from './constants/network';
+import { getRequiredAuth } from './utils/auth';
 
 const handleI18nRouting = createMiddleware(routing);
-
-/** 페이지별 권한 검사 */
-/** 권한간의 계층관계가 명확하지 않으므로(요구사항이 바뀔 수도 있으므로) 배열로 반환 */
-const getRequiredAuth = (pathname: string): UserState[] => {
-  if (pathname.startsWith('/en')) pathname = pathname.slice(3);
-
-  const isCouncilPage = pathname.includes('/council');
-  const isCreateOrEditPage = pathname.endsWith('create') || pathname.endsWith('edit');
-  const isAdminPage = pathname.startsWith('/admin');
-
-  if (isCouncilPage && isCreateOrEditPage) {
-    return ['ROLE_COUNCIL', 'ROLE_STAFF'];
-  }
-
-  if (isAdminPage || isCreateOrEditPage) {
-    return ['ROLE_STAFF'];
-  }
-
-  return ['ROLE_STAFF', 'ROLE_RESERVATION', 'ROLE_COUNCIL', 'logout'];
-};
 
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
