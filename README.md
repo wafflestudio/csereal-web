@@ -16,10 +16,12 @@
 
 node 버전 관리를 위해 [fnm](https://github.com/Schniz/fnm)등의 도구 사용을 권장합니다. [shell-setup](https://github.com/Schniz/fnm?tab=readme-ov-file#shell-setup)까지 마쳤다면 아래 작업을 수행합니다.
 
+패키지 매니저로는 pnpm을 사용합니다.
+
 ```sh
 git clone https://github.com/wafflestudio/csereal-web
 cd csereal-web
-npm install
+pnpm install
 ```
 
 ### 빌드/실행
@@ -37,18 +39,18 @@ csereal-web은 총 3개의 phase로 관리됩니다.
 - local
   - 로컬 개발/테스트 전용
 
-원하는 phase의 build/start npm 명령어를 실행합니다:
+원하는 phase의 build/start pnpm 명령어를 실행합니다:
 
 ```sh
 # local
-npm run build:local
-npm run start:local
+pnpm run build:local
+pnpm run start:local
 # beta
-npm run build:beta
-npm run start:beta
+pnpm run build:beta
+pnpm run start:beta
 # prod
-npm run build:prod
-npm run start:prod
+pnpm run build:prod
+pnpm run start:prod
 ```
 
 ⚠️ prod와 beta phase는 localhost에 서버가 있음을 전제로 빌드됩니다.

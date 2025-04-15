@@ -31,8 +31,8 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
 
-            npm install
-            npm run build:beta
+            pnpm install
+            pnpm run build:beta
             pm2 reload 0"
 
 # https://stackoverflow.com/a/63771750
