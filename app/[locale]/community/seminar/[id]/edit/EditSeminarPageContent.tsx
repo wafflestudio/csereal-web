@@ -57,7 +57,7 @@ export default function EditSeminarPageContent({ id, data }: { id: number; data:
             title: content.title,
             titleForMain: content.titleForMain || null,
             description: content.description || null,
-            introduction: content.description || null,
+            introduction: content.introduction || null,
             name: content.name || null,
             speakerURL: content.speakerURL || null,
             speakerTitle: content.speakerTitle || null,
