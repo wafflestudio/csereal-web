@@ -91,7 +91,7 @@ export default [
           ],
           patterns: [
             {
-              group: ['../*'],
+              group: ['../*', './*', './'],
               message: '상대 경로 대신 절대 경로를 사용해주세요.',
             },
           ],
