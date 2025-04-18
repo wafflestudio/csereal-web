@@ -73,7 +73,7 @@ function DateAndLocationCell({ date, location }: { date: Date; location: string 
     <div className="flex flex-wrap gap-0.5 hover:cursor-pointer">
       <IconTextWrapper>
         <IconWrapper IconComponent={Calendar} />
-        <Text text={formatDate(date).format('M/DD (ddd) HH:mm')} />
+        <Text text={formatDate ? formatDate({ date: date, format: 'time' }) : ''} />
       </IconTextWrapper>
       <VerticalDivider />
       <IconTextWrapper>

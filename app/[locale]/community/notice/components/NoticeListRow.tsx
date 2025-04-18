@@ -5,6 +5,7 @@ import CheckboxOrange from '@/public/image/checkbox_orange.svg';
 import ClipIcon from '@/public/image/clip_icon.svg';
 import LockIcon from '@/public/image/lock_icon.svg';
 import PinIcon from '@/public/image/pin_icon.svg';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
 interface NoticeListRowProps {
@@ -130,17 +131,10 @@ function TitleCell({ title, hasAttachment, id, isEditMode, isPinned }: TitleCell
 }
 
 function DateCell({ date }: { date: string }) {
+  const formatDate = useDayjs();
   return (
     <span className={`${NOTICE_ROW_CELL_WIDTH.date} tracking-wide sm:pl-8 sm:pr-10`}>
-      {formatDate(new Date(date))}
+      {formatDate ? formatDate({ date: date, format: 'simple' }) : ''}
     </span>
   );
 }
-
-const formatDate = (date: Date) => {
-  const yyyy = String(date.getFullYear()).padStart(4, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-
-  return `${yyyy}/${mm}/${dd}`; // e.g. 2023/08/01
-};
