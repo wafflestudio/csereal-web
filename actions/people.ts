@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { FacultyStatus } from '@/apis/types/people';
 import { postFaculty } from '@/apis/v2/professor';
 import { deleteFaculty, putFaculty } from '@/apis/v2/professor/[id_ko]/[id_en]';
@@ -12,8 +13,6 @@ import { emeritusFaculty, faculty, staff } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
 import { Language, WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-
-import { withErrorHandler } from './errorHandler';
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);

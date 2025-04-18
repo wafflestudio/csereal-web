@@ -1,14 +1,13 @@
 import { MouseEventHandler, ReactNode } from 'react';
 
 import { ReservationPostBody } from '@/apis/types/reservation';
+import getOptimalEndTime from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/getOptimalEndTime';
+import { SetReservationBody } from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/useAddReservation';
 import ReactCalendar from '@/components/common/MuiDateSelector';
 import Dropdown from '@/components/form/legacy/Dropdown';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { isSameDay } from '@/utils/date';
 import useModal from '@/utils/hooks/useModal';
-
-import getOptimalEndTime from './getOptimalEndTime';
-import { SetReservationBody } from './useAddReservation';
 
 // TODO: 로직들 함수화
 export default function TopForm({

@@ -1,6 +1,5 @@
 import { ReservationPostBody } from '@/apis/types/reservation';
-
-import { SetReservationBody } from './useAddReservation';
+import { SetReservationBody } from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/useAddReservation';
 
 export default function BottomForm({
   body,

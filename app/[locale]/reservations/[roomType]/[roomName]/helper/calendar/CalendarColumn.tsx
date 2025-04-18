@@ -1,7 +1,6 @@
 import { ReservationPreview } from '@/apis/types/reservation';
+import styles from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/calendar/cellstyle.module.css';
 import ReservationModalButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/ReservationDetailModal';
-
-import styles from './cellstyle.module.css';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
 const UNIT_HEIGHT_TAILWIND = 'h-[1.5rem]';

@@ -1,10 +1,9 @@
 import { getResearchLab } from '@/apis/v2/research/lab/[id]';
+import ResearchLabDetailContent from '@/app/[locale]/research/labs/[id]/ResearchLabDetailContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import ResearchLabDetailContent from './ResearchLabDetailContent';
 
 export async function generateMetadata(props: LabDetailPageProps) {
   const params = await props.params;

@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { ImportantPostIdentifier } from '@/apis/types/admin';
 import { patchMultipleImportants } from '@/apis/v2/admin/important';
 import { patchMultipleSlides } from '@/apis/v2/admin/slide';
@@ -12,8 +13,6 @@ import {
   FETCH_TAG_SEMINAR,
   FETCH_TAG_SLIDE,
 } from '@/constants/network';
-
-import { withErrorHandler } from './errorHandler';
 
 export const batchUnslideAction = withErrorHandler(async (ids: number[]) => {
   await patchMultipleSlides(Array.from(ids));

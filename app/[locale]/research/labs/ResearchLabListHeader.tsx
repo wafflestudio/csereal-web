@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { LAB_ROW_ITEM_WIDTH } from './ResearchLabListRow';
+import { LAB_ROW_ITEM_WIDTH } from '@/app/[locale]/research/labs/ResearchLabListRow';
 
 export default function ResearchLabListHeader() {
   const t = useTranslations('Content');

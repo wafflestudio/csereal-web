@@ -16,14 +16,13 @@ import {
   snuEngLink,
   snuLink,
 } from '@/components/layout/footer/constants';
+import useFooterDesignMode, { FooterMode } from '@/components/layout/footer/useFooterDesignMode';
 import { Link } from '@/i18n/routing';
 import SnuEngineeringIcon from '@/public/image/footer/SNU_Engineering.svg';
 import SnuLogoWithText from '@/public/image/footer/SNU_Logo_with_Text.svg';
 import SnucomIcon from '@/public/image/footer/SNUCOM.svg';
 import useModal from '@/utils/hooks/useModal';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
-
-import useFooterDesignMode, { FooterMode } from './useFooterDesignMode';
 
 export default function Footer() {
   const mode = useFooterDesignMode();

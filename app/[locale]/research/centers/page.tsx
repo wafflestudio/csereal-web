@@ -1,5 +1,6 @@
 import { getResearchCenter } from '@/apis/v2/research/[id]';
 import { getResearchCenters } from '@/apis/v2/research/centers';
+import ResearchCenterDetails from '@/app/[locale]/research/centers/ResearchCenterDetails';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -10,8 +11,6 @@ import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import ResearchCenterDetails from './ResearchCenterDetails';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

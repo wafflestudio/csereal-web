@@ -1,4 +1,6 @@
 import { Academic, AcademicsSearchResult } from '@/apis/types/search';
+import BasicRow from '@/app/[locale]/search/helper/BasicRow';
+import Section from '@/app/[locale]/search/helper/Section';
 import {
   curriculum,
   degree,
@@ -13,9 +15,6 @@ import {
   undergraduateScholarship,
 } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import BasicRow from './helper/BasicRow';
-import Section from './helper/Section';
 
 // TODO: 장학 제도 등 상세 페이지로 연결
 export default async function AcademicSection({ academic }: { academic: AcademicsSearchResult }) {

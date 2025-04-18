@@ -1,7 +1,6 @@
 import { getFutureCareeres } from '@/apis/v2/about/future-careers';
+import CareerStatEditPageContent from '@/app/[locale]/about/future-careers/stat/edit/CareerStatEditPageContent';
 import { Language } from '@/types/language';
-
-import CareerStatEditPageContent from './CareerStatEditPageContent';
 
 interface CareerStatEditPageProps {
   params: Promise<{ locale: Language }>;

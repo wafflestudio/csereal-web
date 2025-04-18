@@ -3,14 +3,13 @@
 import { batchUnimportantAction } from '@/actions/admin';
 import { ImportantPreview } from '@/apis/types/admin';
 import BatchAction from '@/app/[locale]/admin/helper/BatchAction';
+import ImportantList from '@/app/[locale]/admin/helper/important/ImportantList';
+import useImportantSelect from '@/app/[locale]/admin/helper/important/useImportantSelect';
 import TotalPostsCount from '@/app/[locale]/admin/helper/TotalPostsCount';
 import Pagination from '@/components/common/Pagination';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ImportantList from './ImportantList';
-import useImportantSelect from './useImportantSelect';
 
 const POST_LIMIT = 40;
 

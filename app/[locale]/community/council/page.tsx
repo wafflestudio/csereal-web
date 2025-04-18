@@ -1,7 +1,6 @@
+import CouncilClientPage from '@/app/[locale]/community/council/client';
 import { council } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-
-import CouncilClientPage from './client';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

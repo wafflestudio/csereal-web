@@ -1,7 +1,6 @@
 import { getResearchGroup } from '@/apis/v2/research/[id]';
+import ResearchGroupEditPageContent from '@/app/[locale]/research/groups/edit/ResearchGroupEditPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
-import ResearchGroupEditPageContent from './ResearchGroupEditPageContent';
 
 export default async function ResearchGroupEditPage(props: {
   searchParams: Promise<{ id: string }>;

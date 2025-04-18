@@ -1,4 +1,4 @@
-import { replaceDashWithSpace } from './string';
+import { replaceDashWithSpace } from '@/utils/string';
 
 export const findItemBySearchParam = <T>(
   items: T[],

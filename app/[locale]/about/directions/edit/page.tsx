@@ -1,7 +1,6 @@
 import { getDirections } from '@/apis/v2/about/directions';
+import DirectionEditor from '@/app/[locale]/about/directions/edit/DirectionEditor';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
-
-import DirectionEditor from './DirectionEditor';
 
 interface DirectionsEditPageProps {
   searchParams: Promise<{ selected?: string }>;

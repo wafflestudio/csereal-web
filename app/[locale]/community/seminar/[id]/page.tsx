@@ -3,12 +3,11 @@ import { Suspense } from 'react';
 import { PostSearchQueryParams } from '@/apis/types/post';
 import { getSeminarPost } from '@/apis/v2/seminar/[id]';
 import PostFallback from '@/app/[locale]/community/components/PostFallback';
+import SeminarViewer from '@/app/[locale]/community/seminar/[id]/SeminarViewer';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { seminar } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-
-import SeminarViewer from './SeminarViewer';
 
 export async function generateMetadata(props: SeminarPostPageProps) {
   const searchParams = await props.searchParams;

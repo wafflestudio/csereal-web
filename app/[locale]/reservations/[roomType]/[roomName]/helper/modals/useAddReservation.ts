@@ -2,12 +2,11 @@ import { FormEventHandler, useState } from 'react';
 
 import { postReservationAction } from '@/actions/reservation';
 import { ReservationPostBody } from '@/apis/types/reservation';
+import getOptimalEndTime from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/getOptimalEndTime';
 import { isSameDay } from '@/utils/date';
 import { refreshPage } from '@/utils/refreshPage';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, infoToast } from '@/utils/toast';
-
-import getOptimalEndTime from './getOptimalEndTime';
 
 export type SetReservationBody = <T extends keyof ReservationPostBody>(
   key: T,

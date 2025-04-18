@@ -1,4 +1,4 @@
-import { SLIDE_ROW_CELL_WIDTH } from './SlideListRow';
+import { SLIDE_ROW_CELL_WIDTH } from '@/app/[locale]/admin/helper/slide/SlideListRow';
 
 export default function SlideListHeader() {
   return (

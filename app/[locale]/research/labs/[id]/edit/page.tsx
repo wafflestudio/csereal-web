@@ -1,9 +1,8 @@
 import { getActiveFacultyList } from '@/apis/v2/professor/active';
 import { getResearchGroups } from '@/apis/v2/research/groups';
 import { getResearchLab } from '@/apis/v2/research/lab/[id]';
+import ResearchLabEditPageContent from '@/app/[locale]/research/labs/[id]/edit/ResearchLabEditPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
-import ResearchLabEditPageContent from './ResearchLabEditPageContent';
 
 export default async function ResearchLabEditPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
