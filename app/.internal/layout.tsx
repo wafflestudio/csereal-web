@@ -8,8 +8,6 @@ import { getMessages } from 'next-intl/server';
 import { ToastContainer } from 'react-toastify';
 
 import ModalContainer from '@/components/modal/ModalContainer';
-import ModalContextProvider from '@/contexts/ModalContext';
-import SessionContextProvider from '@/contexts/SessionContext';
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -25,13 +23,9 @@ export default async function RootLayout(props: {
     <html lang={params.locale} className="font-normal sm:min-w-[1000px]">
       <body>
         <NextIntlClientProvider messages={messages}>
-          <SessionContextProvider>
-            <ModalContextProvider>
               {children}
               <ModalContainer />
               <ToastContainer />
-            </ModalContextProvider>
-          </SessionContextProvider>
         </NextIntlClientProvider>
       </body>
     </html>

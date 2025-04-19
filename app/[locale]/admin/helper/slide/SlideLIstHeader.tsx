@@ -1,6 +1,6 @@
 import { SLIDE_ROW_CELL_WIDTH } from './SlideListRow';
 
-export default function SlideListHeader() {
+export default function SlideLIstHeader() {
   return (
     <h5 className="flex h-10 items-center border-b border-t border-neutral-200 pr-[4.375rem] text-md tracking-wide text-neutral-700">
       {/* 아래 본문 리스트와 간격 맞추기 위해 빈 탭 하나 필요 */}

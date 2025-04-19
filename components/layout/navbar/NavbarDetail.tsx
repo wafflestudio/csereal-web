@@ -1,11 +1,11 @@
 import { council, SegmentNode } from '@/constants/segmentNode';
-import { useNavbarContext } from '@/contexts/NavbarContext';
+import { useNavbarStore } from '@/stores/NavbarStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
 import NavTreeLabel from './NavtreeRow';
 
 export default function NavbarDetail() {
-  const { navbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState);
   const curNode = useCurrentSegmentNode();
 
   if (navbarState.type !== 'hovered') return <></>;

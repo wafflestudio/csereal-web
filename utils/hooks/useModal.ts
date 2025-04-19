@@ -1,17 +1,13 @@
 import { ReactNode } from 'react';
 
-import { useModalSetterContext } from '@/contexts/ModalContext';
+import { useModalStore } from '@/stores/ModalStore';
 
 export default function useModal() {
-  const { open, close } = useModalSetterContext();
+  const open = useModalStore((state) => state.open);
+  const close = useModalStore((state) => state.close);
 
-  const openModal = (Component: ReactNode) => {
-    open(Component);
-  };
-
-  const closeModal = () => {
-    close();
-  };
+  const openModal = (component: ReactNode) => open(component);
+  const closeModal = () => close();
 
   return { openModal, closeModal };
 }

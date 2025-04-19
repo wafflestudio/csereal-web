@@ -6,7 +6,7 @@ import { Role } from '@/apis/types/role';
 import { getMockLogin } from '@/apis/v2/mock-login';
 import { getMyRole } from '@/apis/v2/user/my-role';
 import { COOKIE_SESSION_ID } from '@/constants/network';
-import { UserState } from '@/contexts/SessionContext';
+import { UserState } from '@/stores/SessionStore';
 
 export const setMockAuthCookie = async (role: Role) => {
   const resp = await getMockLogin(role);

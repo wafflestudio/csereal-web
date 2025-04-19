@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl';
 
 import { main as mainSegmentNode, SegmentNode } from '@/constants/segmentNode';
-import { useNavbarContext } from '@/contexts/NavbarContext';
 import { Link } from '@/i18n/routing';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
 import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
+import { useNavbarStore } from '@/stores/NavbarStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
 
@@ -13,7 +13,8 @@ export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
 export const NAVBAR_EXPANDED_WIDTH_REM = 11;
 
 export default function NavbarRoot() {
-  const { navbarState, setNavbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState);
+  const setNavbarState = useNavbarStore((s) => s.setNavbarState); 
 
   return (
     // 상하로 화면이 좁은 경우를 대비해 overflow-scroll
@@ -54,7 +55,8 @@ function DotList() {
 }
 
 function NavList() {
-  const { navbarState, setNavbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState); 
+  const setNavbarState = useNavbarStore((s) => s.setNavbarState);
 
   const cur = useCurrentSegmentNode();
   const t = useTranslations('Nav');
