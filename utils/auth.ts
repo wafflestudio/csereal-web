@@ -7,9 +7,13 @@ import { UserState } from '@/contexts/SessionContext';
 export const getRequiredAuth = (pathname: string): UserState[] => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);
 
-  const isCouncilPage = pathname.includes('/council');
-  const isCreateOrEditPage = pathname.endsWith('create') || pathname.endsWith('edit');
-  const isAdminPage = pathname.startsWith('/admin');
+  const segments = pathname.split('/').filter(Boolean);
+  const firstSegment = segments[0];
+  const lastSegment = segments.at(-1);
+
+  const isCouncilPage = segments.includes('council');
+  const isCreateOrEditPage = lastSegment === 'create' || lastSegment === 'edit';
+  const isAdminPage = firstSegment === 'admin';
 
   if (isCouncilPage && isCreateOrEditPage) {
     return ['ROLE_COUNCIL', 'ROLE_STAFF'];
