@@ -19,7 +19,11 @@ export default async function IntroEditPage() {
 
   return (
     <PageLayout title="학생회 소개 편집" titleType="big" hideNavbar>
-      <IntroEditor cancelPath={path} defaultValues={defaultValues} onSubmit={putIntroAction} />
+      <IntroEditor
+        cancelPath={path}
+        defaultValues={defaultValues}
+        onSubmitAction={putIntroAction}
+      />
     </PageLayout>
   );
 }

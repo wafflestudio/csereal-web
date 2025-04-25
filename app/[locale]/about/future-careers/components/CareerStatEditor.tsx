@@ -1,5 +1,3 @@
-'use client';
-
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form';
 
 import { CareerStat } from '@/apis/v2/about/future-careers/stats';

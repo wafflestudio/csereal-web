@@ -9,7 +9,7 @@ const curriculumPath = getPath(curriculum);
 export default function CurriculumCreatePage() {
   return (
     <PageLayout title="전공 이수 표준 형태 추가" titleType="big">
-      <TimelineEditor onSubmit={postCurriculumAction} cancelPath={curriculumPath} />
+      <TimelineEditor onSubmitAction={postCurriculumAction} cancelPath={curriculumPath} />
     </PageLayout>
   );
 }

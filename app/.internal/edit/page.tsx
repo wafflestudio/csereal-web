@@ -15,5 +15,5 @@ export default async function InternalPage() {
     redirectKo('/.internal');
   };
 
-  return <InternalEditor description={description} onSubmit={onSubmit} />;
+  return <InternalEditor description={description} onSubmitAction={onSubmit} />;
 }

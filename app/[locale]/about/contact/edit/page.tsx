@@ -24,7 +24,7 @@ export default async function ContactEditPage() {
       <AboutEditor
         cancelPath={path}
         defaultValues={defaultValues}
-        onSubmit={putContactAction}
+        onSubmitAction={putContactAction}
         showAttachments
       />
     </PageLayout>

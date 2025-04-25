@@ -22,14 +22,14 @@ export interface AboutFormData {
 interface Props {
   cancelPath: string;
   defaultValues: AboutFormData;
-  onSubmit: (formData: FormData) => Promise<unknown>;
+  onSubmitAction: (formData: FormData) => Promise<unknown>;
   showAttachments?: boolean;
 }
 
 export default function AboutEditor({
   cancelPath,
   defaultValues,
-  onSubmit: _onSubmit,
+  onSubmitAction: _onSubmit,
   showAttachments = false,
 }: Props) {
   const router = useRouter();

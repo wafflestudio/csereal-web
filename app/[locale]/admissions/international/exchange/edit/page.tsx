@@ -17,7 +17,7 @@ export default async function InternationalExchangeEditPage() {
       <AdmissionsEditor
         defaultValues={{ ko: data.ko.description, en: data.en.description }}
         cancelPath={path}
-        onSubmit={putInternationalExchangeAction}
+        onSubmitAction={putInternationalExchangeAction}
       />
     </PageLayout>
   );

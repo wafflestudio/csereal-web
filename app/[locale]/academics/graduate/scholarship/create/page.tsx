@@ -16,7 +16,7 @@ export default function GraduateScholarshipCreatePage() {
 
   return (
     <PageLayout title="대학원 장학금 추가" titleType="big">
-      <ScholarshipEditor cancelPath={path} onSubmit={onSubmit} />
+      <ScholarshipEditor cancelPath={path} onSubmitAction={onSubmit} />
     </PageLayout>
   );
 }

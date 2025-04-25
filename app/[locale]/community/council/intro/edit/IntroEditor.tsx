@@ -17,10 +17,14 @@ export interface IntroFormData {
 interface Props {
   cancelPath: string;
   defaultValues: IntroFormData;
-  onSubmit: (formData: FormData) => Promise<unknown>;
+  onSubmitAction: (formData: FormData) => Promise<unknown>;
 }
 
-export default function IntroEditor({ cancelPath, defaultValues, onSubmit: _onSubmit }: Props) {
+export default function IntroEditor({
+  cancelPath,
+  defaultValues,
+  onSubmitAction: _onSubmit,
+}: Props) {
   const router = useRouter();
   const formMethods = useForm<IntroFormData>({ defaultValues });
   const { handleSubmit } = formMethods;

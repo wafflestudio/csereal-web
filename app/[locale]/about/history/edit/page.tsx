@@ -24,7 +24,7 @@ export default async function HistoryEditPage() {
       <AboutEditor
         cancelPath={path}
         defaultValues={defaultValues}
-        onSubmit={putHistoryAction}
+        onSubmitAction={putHistoryAction}
         showAttachments
       />
     </PageLayout>
