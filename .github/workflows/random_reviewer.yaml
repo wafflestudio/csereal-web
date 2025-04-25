@@ -11,14 +11,14 @@ jobs:
   random-reviwer:
     runs-on: ubuntu-latest
     steps:
-      - id: random_reviwer
+      - id: random_reviewer
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const myId  = '${{ github.event.pull_request.user.login }}';
             const idList = ['yeolyi', 'Limchansol', 'goranikin', 'onemeee'];
-            const candidate = idList.filter(id => id !== myId);
+            const candidateList = idList.filter(id => id !== myId);
 
             const recentPRs = await github.rest.pulls.list({
               owner: context.repo.owner,
@@ -30,7 +30,7 @@ jobs:
             });
 
             const reviewCounts = {};
-            candidates.forEach(reviewer => {
+            candidateList.forEach(reviewer => {
               reviewCounts[reviewer] = 0;
             });
 
@@ -46,6 +46,8 @@ jobs:
                 }
               }
             }
+
+            console.log('(디버깅용) Reviewer counts:', reviewCounts);
 
             const minCount = Math.min(...Object.values(reviewCounts));
             const leastAssignedReviewers = Object.keys(reviewCounts).filter(
