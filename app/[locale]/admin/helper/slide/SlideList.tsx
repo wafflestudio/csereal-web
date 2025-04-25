@@ -2,7 +2,7 @@ import { Dispatch } from 'react';
 
 import { SlidePreview } from '@/apis/types/admin';
 
-import SlideListHeader from './SlideListHeader';
+import SlideListHeader from './SlideLIstHeader';
 import SlideListRow from './SlideListRow';
 
 interface SlideListProps {
