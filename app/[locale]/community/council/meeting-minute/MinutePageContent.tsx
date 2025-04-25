@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { deleteMinuteAction } from '@/actions/council';
 import { CouncilMeetingMinute } from '@/apis/types/council';
 import { EditButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Timeline from '@/components/common/Timeline';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -14,7 +15,6 @@ import { getPath } from '@/utils/page';
 import { handleServerResponse } from '@/utils/serverActionError';
 
 import CouncilAttachment from '../components/CouncilAttachments';
-import { DeleteButton } from '@/components/common/ClientButtons';
 
 const minutePath = getPath(councilMinute);
 
