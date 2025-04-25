@@ -20,8 +20,40 @@ jobs:
             const idList = ['yeolyi', 'Limchansol', 'goranikin', 'onemeee'];
             const candidate = idList.filter(id => id !== myId);
 
-            const idx = Math.floor(Math.random() * candidate.length);
-            const randomReviewer = candidate[idx];
+            const recentPRs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all',
+              sort: 'updated',
+              direction: 'desc',
+              per_page: 10
+            });
+
+            const reviewCounts = {};
+            candidates.forEach(reviewer => {
+              reviewCounts[reviewer] = 0;
+            });
+
+            for (const pr of recentPRs.data) {
+              const reviewers = await github.rest.pulls.listRequestedReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number
+              });
+              for (const reviewer of reviewers.data.users) {
+                if (reviewCounts[reviewer.login] !== undefined) {
+                  reviewCounts[reviewer.login]++;
+                }
+              }
+            }
+
+            const minCount = Math.min(...Object.values(reviewCounts));
+            const leastAssignedReviewers = Object.keys(reviewCounts).filter(
+              reviewer => reviewCounts[reviewer] === minCount
+            );
+            const randomReviewer = leastAssignedReviewers[
+              Math.floor(Math.random() * leastAssignedReviewers.length)
+            ];
 
             const deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
             const comment = `@${randomReviewer}님 ${deadline.toLocaleDateString('ko-KR')}까지 리뷰 부탁드립니다 🎉`
