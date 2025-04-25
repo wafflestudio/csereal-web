@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl';
 
 import { deleteStaffAction } from '@/actions/people';
 import { Staff } from '@/apis/types/people';
-import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import { EditButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { staff } from '@/constants/segmentNode';

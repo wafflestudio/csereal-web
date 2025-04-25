@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl';
 
 import { deleteResearchGroupAction } from '@/actions/research';
 import { ResearchGroup } from '@/apis/types/research';
-import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import { EditButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';

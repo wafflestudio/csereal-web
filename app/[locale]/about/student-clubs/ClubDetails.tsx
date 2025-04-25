@@ -2,7 +2,8 @@
 
 import { deleteClubAction } from '@/actions/about';
 import { Club } from '@/apis/types/about';
-import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import { EditButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionTitle from '@/components/common/selection/SelectionTitle';
 import HTMLViewer from '@/components/form/html/HTMLViewer';

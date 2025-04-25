@@ -3,7 +3,8 @@ import { useReducer, useState } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
 import { Course, GRADE } from '@/apis/types/academics';
-import { DeleteButton, GrayButton } from '@/components/common/Buttons';
+import { GrayButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
 import ModalFrame from '@/components/modal/ModalFrame';
 import BookmarkIcon from '@/public/image/bookmark_icon.svg';

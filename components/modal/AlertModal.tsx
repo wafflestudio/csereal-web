@@ -1,10 +1,11 @@
-'use client';
+// 'use client';
 
 import { useEffect, useRef } from 'react';
 
-import { ConfirmButton, GrayButton } from '@/components/common/Buttons';
+import { GrayButton } from '@/components/common/Buttons';
 import useModal from '@/utils/hooks/useModal';
 
+import { ConfirmButton } from '../common/ClientButtons';
 import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
