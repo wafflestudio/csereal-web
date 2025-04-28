@@ -15,11 +15,12 @@ import { isContentEmpty } from '@/utils/post';
 
 export interface HTMLEditorProps {
   name: string;
+  isHidden?: boolean;
   options?: RegisterOptions;
 }
 
 // MEMO: defaultValues에 비동기 함수를 건네도 동작할지 모르겠음.
-export default function HTMLEditor({ name, options: registerOptions }: HTMLEditorProps) {
+export default function HTMLEditor({ name, isHidden, options: registerOptions }: HTMLEditorProps) {
   const { register, setValue, getValues } = useFormContext();
   const [div, setDiv] = useState<HTMLDivElement | null>(null);
   const { onBlur } = register(name, registerOptions);
@@ -33,7 +34,6 @@ export default function HTMLEditor({ name, options: registerOptions }: HTMLEdito
     editor.onChange = (contents) => {
       setValue(name, isContentEmpty(editor) ? '' : contents, {
         shouldDirty: true,
-        shouldValidate: true,
       });
     };
 
@@ -44,6 +44,8 @@ export default function HTMLEditor({ name, options: registerOptions }: HTMLEdito
       return;
     };
   }, [div, getValues, name, onBlur, setValue]);
+
+  if (isHidden) return null;
 
   return <div ref={setDiv} />;
 }
