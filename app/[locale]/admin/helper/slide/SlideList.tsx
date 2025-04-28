@@ -2,8 +2,8 @@ import { Dispatch } from 'react';
 
 import { SlidePreview } from '@/apis/types/admin';
 
-import SlideListHeader from './SlideLIstHeader';
 import SlideListRow from './SlideListRow';
+import SlideListHeader from './SlideLIstHeader';
 
 interface SlideListProps {
   posts: SlidePreview[];
