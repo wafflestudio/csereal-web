@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/playwright:v1.41.1-jammy
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+
+# 로컬용
+RUN npm config set registry https://registry.npmmirror.com
+RUN pnpm install
+
+# Playwright 설치
+RUN npx playwright install --with-deps
+
+# RUN npm ci
+
+COPY . .
+
+CMD ["npx", "playwright", "test"]

@@ -1,0 +1,38 @@
+name: Deploy Dev
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare deploy key'
+        run: |
+          echo "${{ secrets.DEV_SSH_KEY }}" > key
+          chmod 600 ./key
+      - name: 'SSH command'
+        uses: 'nick-fields/retry@v2'
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          retry_wait_seconds: 1
+          retry_on: 'error'
+          command: |
+            ssh -T -i ./key -o StrictHostKeyChecking=no -p ${{ secrets.DEV_SSH_PORT }} ${{ secrets.DEV_SSH_USER }}@${{ secrets.DEV_SSH_HOST }} "
+
+            cd ~/csereal-web
+            git checkout develop
+            git pull --rebase
+
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+
+            pnpm install
+            pnpm run build:beta
+            pm2 reload 0"
+
+# https://stackoverflow.com/a/63771750

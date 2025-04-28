@@ -7,7 +7,8 @@ import { getMetadata } from '@/utils/metadata';
 
 import FacultyMemberPageContent from './FacultyMemberPageContent';
 
-export async function generateMetadata({ params }: FacultyMemberPageProps) {
+export async function generateMetadata(props: FacultyMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const { [params.locale]: faculty } = await getFaculty(id);
@@ -25,16 +26,17 @@ export async function generateMetadata({ params }: FacultyMemberPageProps) {
 }
 
 interface FacultyMemberPageProps {
-  params: { id: string; locale: Language };
+  params: Promise<{ id: string; locale: Language }>;
 }
 
-export default async function FacultyMemberPage({ params }: FacultyMemberPageProps) {
+export default async function FacultyMemberPage(props: FacultyMemberPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const data = await getFaculty(id);
     const faculty = data[params.locale];
 
-    if (faculty.status !== 'ACTIVE') notFound();
+    if (faculty.status !== 'ACTIVE' && faculty.status !== 'VISITING') notFound();
 
     return <FacultyMemberPageContent faculty={faculty} ids={{ ko: data.ko.id, en: data.en.id }} />;
   } catch {

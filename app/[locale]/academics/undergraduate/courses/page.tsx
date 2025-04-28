@@ -1,21 +1,29 @@
+import { Course } from '@/apis/types/academics';
 import { getCourses } from '@/apis/v2/academics/courses';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { Course } from '@/types/academics';
+import { undergraduateCourses } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-import { undergraduateCourses } from '@/utils/segmentNode';
 
 import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
 
 interface CoursePageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: CoursePageProps) {
+export async function generateMetadata(props: CoursePageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: undergraduateCourses });
 }
 
-export default async function UndergraduateCoursePage({ params: { locale } }: CoursePageProps) {
+export default async function UndergraduateCoursePage(props: CoursePageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const data: Course[] = await getCourses('undergraduate', locale);
 
   return (

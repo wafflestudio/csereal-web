@@ -1,14 +1,9 @@
 import { cookies } from 'next/headers';
 
+import { BASE_URL } from '@/constants/env';
 import { objToQueryString } from '@/utils/convertParams';
 
 type CredentialRequestInit = RequestInit & { jsessionID?: boolean };
-
-// TODO: BASE_URL 통합
-export const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'https://cse-dev-waffle.bacchus.io/api'
-    : 'http://localhost:8080/api';
 
 export const getRequest = async <T = unknown>(
   url: string,
@@ -53,14 +48,17 @@ const _fetch = async (url: string, method: string, init?: CredentialRequestInit)
   let headers: HeadersInit | undefined;
 
   if (init?.jsessionID) {
-    const jsessionId = cookies().get('JSESSIONID')?.value;
+    const jsessionId = (await cookies()).get('JSESSIONID')?.value;
     headers = { Cookie: `JSESSIONID=${jsessionId}`, ...init?.headers };
   }
 
   const resp = await fetch(url, { ...init, method, headers });
 
-  // server action 에러 처리를 위해 status code만 깔끔하게 담음
-  if (!resp.ok) throw new Error(resp.status.toString());
+  if (!resp.ok) {
+    console.error(`${method} ${url} failed: ${resp.status}`);
+    // server action 에러 처리를 위해 status code만 깔끔하게 담음
+    throw new Error(resp.status.toString());
+  }
 
   return resp;
 };

@@ -6,7 +6,8 @@ import { getMetadata } from '@/utils/metadata';
 
 import ResearchLabDetailContent from './ResearchLabDetailContent';
 
-export async function generateMetadata({ params }: LabDetailPageProps) {
+export async function generateMetadata(props: LabDetailPageProps) {
+  const params = await props.params;
   try {
     const id = parseInt(params.id);
     const { [params.locale]: lab } = await getResearchLab(id);
@@ -24,10 +25,11 @@ export async function generateMetadata({ params }: LabDetailPageProps) {
 }
 
 interface LabDetailPageProps {
-  params: { id: string; locale: Language };
+  params: Promise<{ id: string; locale: Language }>;
 }
 
-export default async function ResearchLabDetail({ params }: LabDetailPageProps) {
+export default async function ResearchLabDetail(props: LabDetailPageProps) {
+  const params = await props.params;
   try {
     const data = await getResearchLab(parseInt(params.id));
     const lab = data[params.locale];

@@ -1,20 +1,16 @@
 'use client';
 
 import { putResearchLabAction } from '@/actions/research';
-import { isLocalFile, PostEditorFile } from '@/components/editor/PostEditorTypes';
-import ResearchLabEditor, { ResearchLabEditorContent } from '@/components/editor/ResearchLabEditor';
+import { SimpleFaculty } from '@/apis/types/people';
+import { ResearchGroup, ResearchLab } from '@/apis/types/research';
+import ResearchLabEditor, {
+  ResearchLabFormData,
+} from '@/app/[locale]/research/labs/components/ResearchLabEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
+import { isLocalFile } from '@/types/form';
 import { WithLanguage } from '@/types/language';
-import { SimpleFaculty } from '@/types/people';
-import { ResearchGroup, ResearchLab } from '@/types/research';
-import { errorToStr } from '@/utils/error';
-import { validateResearchLabForm } from '@/utils/formValidation';
-import { getPath } from '@/utils/page';
-import { researchLabs } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 import { encodeFormDataFileName } from '@/utils/string';
-import { errorToast, successToast } from '@/utils/toast';
 
 interface ResearchLabEditPageContentProps {
   lab: WithLanguage<ResearchLab>;
@@ -22,28 +18,69 @@ interface ResearchLabEditPageContentProps {
   professors: WithLanguage<SimpleFaculty[]>;
 }
 
-const labsPath = getPath(researchLabs);
-
 export default function ResearchLabEditPageContent({
   lab,
   groups,
   professors,
 }: ResearchLabEditPageContentProps) {
-  const router = useRouter();
+  const onSubmit = async ({ ko, en, ...common }: ResearchLabFormData) => {
+    const removePdf = lab.ko.pdf !== null && common.pdf.length === 0;
 
-  const handleCancel = () => router.push(labsPath);
+    const formData = new FormData();
+    formData.append(
+      'request',
+      new Blob(
+        [
+          JSON.stringify({
+            ko: {
+              ...ko,
+              ...common,
+              professorIds: ko.professorId ? [ko.professorId] : [],
+              removePdf,
+            },
+            en: {
+              ...en,
+              ...common,
+              professorIds: en.professorId ? [en.professorId] : [],
+              removePdf,
+            },
+          }),
+        ],
+        { type: 'application/json' },
+      ),
+    );
 
-  const handleSubmit = async (content: WithLanguage<ResearchLabEditorContent>) => {
-    validateResearchLabForm(content, professors, { ko: lab.ko.id, en: lab.en.id });
-    const removePdf = lab.ko.pdf !== null && content.ko.pdf.length === 0;
-    const formData = contentToFormData(getRequestObject(content, removePdf), content.ko.pdf);
+    // attachment가 아닌 특수한 key('pdf')라서 conentToFormData 사용하지 않고 직접 별도 처리
+    encodeFormDataFileName(
+      formData,
+      'pdf',
+      common.pdf.filter(isLocalFile).map((x) => x.file),
+    );
 
-    try {
-      handleServerAction(await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData));
-      successToast('연구실을 수정했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await putResearchLabAction({ ko: lab.ko.id, en: lab.en.id }, formData);
+    handleServerResponse(resp, { successMessage: '연구실을 수정했습니다.' });
+  };
+
+  const defaultValues: ResearchLabFormData = {
+    ko: {
+      name: lab.ko.name,
+      description: lab.ko.description,
+      groupId: lab.ko.group.id,
+      professorId: lab.ko.professors[0]?.id,
+      location: lab.ko.location,
+    },
+    en: {
+      name: lab.en.name,
+      description: lab.en.description,
+      groupId: lab.en.group.id,
+      professorId: lab.en.professors[0]?.id,
+      location: lab.en.location,
+    },
+    acronym: lab.ko.acronym,
+    tel: lab.ko.tel,
+    websiteURL: lab.ko.websiteURL || '',
+    youtube: lab.ko.youtube,
+    pdf: lab.ko.pdf ? [{ type: 'UPLOADED_FILE', file: lab.ko.pdf }] : [],
   };
 
   return (
@@ -51,35 +88,9 @@ export default function ResearchLabEditPageContent({
       <ResearchLabEditor
         groups={groups}
         professors={professors}
-        actions={{ onCancel: handleCancel, onSubmit: handleSubmit, type: 'EDIT' }}
-        initialContent={lab}
+        defaultValues={defaultValues}
+        onSubmit={onSubmit}
       />
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: WithLanguage<ResearchLabEditorContent>, removePdf: boolean) => {
-  return {
-    ko: { ...content.ko, removePdf },
-    en: { ...content.en, removePdf },
-  };
-};
-
-const contentToFormData = (requestObject: object, pdf: PostEditorFile[]) => {
-  const formData = new FormData();
-
-  formData.append(
-    'request',
-    new Blob([JSON.stringify(requestObject)], {
-      type: 'application/json',
-    }),
-  );
-
-  encodeFormDataFileName(
-    formData,
-    'pdf',
-    pdf.filter(isLocalFile).map((x) => x.file),
-  );
-
-  return formData;
-};

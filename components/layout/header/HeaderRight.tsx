@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
+import { isProd } from '@/constants/env';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/i18n/routing';
 import useLanguage from '@/utils/hooks/useLanguage';
@@ -23,7 +24,7 @@ export default function HeaderRight() {
           <Divider />
         </LoginVisible>
 
-        <AuthButton />
+        {isProd ? <ProdLogin /> : <DevLogin />}
 
         <Divider />
 
@@ -40,13 +41,46 @@ const Divider = () => {
   return <div className="h-3 w-[0.03125rem] bg-white" />;
 };
 
-const AuthButton = () => {
+const ProdLogin = () => {
   const { state, login, logout } = useSessionContext();
   const t = useTranslations('Header');
 
+  const authText = t(state === 'logout' ? '로그인' : '로그아웃');
+  const onClickAuth = state === 'logout' ? login : logout;
+
   return (
-    <button onClick={state === 'logout' ? login : logout} className="hover:text-main-orange">
-      {t(state === 'logout' ? '로그인' : '로그아웃')}
+    <button onClick={onClickAuth} className="hover:text-main-orange">
+      {authText}
     </button>
   );
+};
+
+const DevLogin = () => {
+  const { state, mockLogin, mockLogout } = useSessionContext();
+
+  const isLogout = state === 'logout';
+
+  if (isLogout)
+    return (
+      <>
+        <button onClick={() => mockLogin('ROLE_STAFF')} className="hover:text-main-orange">
+          STAFF
+        </button>
+        <Divider />
+        <button onClick={() => mockLogin('ROLE_RESERVATION')} className="hover:text-main-orange">
+          RESERV
+        </button>
+        <Divider />
+        <button onClick={() => mockLogin('ROLE_COUNCIL')} className="hover:text-main-orange">
+          COUNCIL
+        </button>
+      </>
+    );
+  else {
+    return (
+      <button onClick={mockLogout} className="hover:text-main-orange">
+        로그아웃
+      </button>
+    );
+  }
 };

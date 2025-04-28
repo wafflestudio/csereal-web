@@ -1,7 +1,7 @@
 import RangeBolded from '@/components/common/RangeBolded';
+import { SegmentNode } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { SegmentNode } from '@/utils/segmentNode';
 
 type BasicRowProps = {
   href: string;

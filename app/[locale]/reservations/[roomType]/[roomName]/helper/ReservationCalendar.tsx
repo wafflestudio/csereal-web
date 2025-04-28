@@ -1,4 +1,4 @@
-import { getWeeklyReservation } from '@/actions/reservation';
+import { getWeeklyReservation } from '@/apis/v2/reservation/week';
 
 import CalendarContent from './calendar/CalendarContent';
 import Toolbar from './calendar/CalendarToolbar';

@@ -1,15 +1,16 @@
 import { useTranslations } from 'next-intl';
 
+import { deleteNoticeAction } from '@/actions/notice';
+import { Notice } from '@/apis/types/notice';
+import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import PostFooter from '@/components/post/PostFooter';
-import { Notice } from '@/types/notice';
-import { formatPostDateStr } from '@/utils/date';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
+import { notice } from '@/constants/segmentNode';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
-import { notice } from '@/utils/segmentNode';
 
 interface NoticePostPageProps {
   notice: Notice;
@@ -22,16 +23,19 @@ export default async function NoticeViewer({ notice }: NoticePostPageProps) {
     <>
       <Header {...notice} />
       <div
-        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{
-          paddingBottom: PAGE_PADDING_BOTTOM_PX,
-        }}
+        className={`bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px] ${PAGE_PADDING_BOTTOM_TAILWIND}`}
       >
         <Attachments files={notice.attachments} />
-        <HTMLViewer htmlContent={notice.description} className="mb-10" />
+        <HTMLViewer htmlContent={notice.description} wrapperClassName="mb-10" />
         <StraightNode />
         <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
-        <PostFooter post={notice} postType="notice" id={notice.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={notice}
+          path={noticePath}
+          id={notice.id.toString()}
+          margin="mt-12"
+          deleteAction={deleteNoticeAction}
+        />
       </div>
     </>
   );
@@ -47,6 +51,7 @@ const Header = ({
   createdAt: string;
 }) => {
   const t = useTranslations('Content');
+  const formatDate = useDayjs();
 
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
@@ -56,7 +61,7 @@ const Header = ({
           {t('작성자')}: {author}
         </p>
         <p>
-          {t('작성 날짜')}: {formatPostDateStr(createdAt)}
+          {t('작성 날짜')}: {formatDate ? formatDate({ date: createdAt, format: 'time' }) : ''}
         </p>
       </div>
     </div>

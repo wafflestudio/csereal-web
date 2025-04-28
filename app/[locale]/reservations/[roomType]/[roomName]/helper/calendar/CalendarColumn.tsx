@@ -1,9 +1,10 @@
-import { ReservationPreview } from '@/types/reservation';
+import { ReservationPreview } from '@/apis/types/reservation';
 
 import ReservationModalButton from '../modals/ReservationDetailModal';
 import styles from './cellstyle.module.css';
 
 const UNIT_HEIGHT_IN_REM = 1.5;
+const UNIT_HEIGHT_TAILWIND = 'h-[1.5rem]';
 const THIRTY_MIN_IN_MILLISEC = 1000 * 60 * 30;
 
 export default function CalendarColumn({
@@ -50,13 +51,12 @@ const ColumnBackground = ({ selected }: { selected: boolean }) => {
     .map((_, i) => (
       <div
         key={i}
-        className={`box-border ${styles.cell} ${selected && 'bg-neutral-100'}`}
-        style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
+        className={`box-border ${styles.cell} ${selected && 'bg-neutral-100'} ${UNIT_HEIGHT_TAILWIND}`}
       />
     ));
 };
 
-const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }) => {
+const CalendarCell = ({ reservation }: { reservation: ReservationPreview }) => {
   const startTime = new Date(reservation.startTime);
   const endTime = new Date(reservation.endTime);
 
@@ -69,10 +69,7 @@ const CalendarCell = async ({ reservation }: { reservation: ReservationPreview }
       top={topOffset + 'rem'}
     >
       {unitCnt !== 1 && <CalendarCellTitle startTime={startTime} endTime={endTime} />}
-      <p
-        className="item-center flex text-xs font-medium"
-        style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
-      >
+      <p className={`item-center flex text-xs font-medium ${UNIT_HEIGHT_TAILWIND}`}>
         {reservation.title}
       </p>
     </ReservationModalButton>
@@ -86,8 +83,7 @@ const CalendarCellTitle = ({ startTime, endTime }: { startTime: Date; endTime: D
 
   return (
     <p
-      className="mt-[2px] flex items-center text-xs font-bold text-neutral-800"
-      style={{ height: UNIT_HEIGHT_IN_REM + 'rem' }}
+      className={`mt-[2px] flex items-center text-xs font-bold text-neutral-800 ${UNIT_HEIGHT_TAILWIND}`}
     >
       {timeText}
     </p>

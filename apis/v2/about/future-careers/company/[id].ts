@@ -1,5 +1,5 @@
 import { deleteRequest, putRequest } from '@/apis';
-import { FutureCareers } from '@/types/about';
+import { FutureCareers } from '@/apis/types/about';
 
 export const putCareerCompany = (id: number, data: FutureCareers['companies'][number]) =>
   putRequest(`/v2/about/future-careers/company/${id}`, {

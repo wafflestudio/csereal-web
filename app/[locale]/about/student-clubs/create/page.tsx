@@ -1,55 +1,22 @@
 'use client';
 
 import { postClubAction } from '@/actions/about';
-import BasicEditor, { BasicEditorContent } from '@/components/editor/BasicEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateBasicForm } from '@/utils/formValidation';
-import { getPath } from '@/utils/page';
-import { studentClubs } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
-const clubPath = getPath(studentClubs);
+import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
 export default function StudentClubCreatePage() {
-  const router = useRouter();
-
-  const handleCancel = () => router.push(clubPath);
-
-  const handleSubmit = async (content: BasicEditorContent) => {
-    validateBasicForm(content);
-
-    const formData = contentToFormData('CREATE', {
-      requestObject: getRequestObject(content),
-      image: content.mainImage,
-    });
-
-    try {
-      handleServerAction(await postClubAction(formData));
-      successToast('동아리 소개를 추가했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+  const onSubmit = async ({ image, ...requestObject }: ClubFormData) => {
+    const formData = contentToFormData('CREATE', { requestObject, image });
+    const resp = await postClubAction(formData);
+    handleServerResponse(resp, { successMessage: '동아리 소개를 추가했습니다.' });
   };
 
   return (
     <PageLayout title="동아리 소개 추가" titleType="big" hideNavbar>
-      <BasicEditor
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-        showTitle
-        showLanguage
-        showMainImage
-      />
+      <ClubEditor onSubmit={onSubmit} />
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: BasicEditorContent) => {
-  return {
-    ko: { name: content.title.ko, description: content.description.ko },
-    en: { name: content.title.en, description: content.description.en },
-  };
-};

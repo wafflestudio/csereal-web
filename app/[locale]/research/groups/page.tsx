@@ -4,28 +4,34 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { researchGroups } from '@/constants/segmentNode';
 import { Link, redirect } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchGroups } from '@/utils/segmentNode';
 
 import ResearchGroupDetails from './ResearchGroupDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: researchGroups });
 }
 
 const researchGroupsPath = getPath(researchGroups);
 
-export default async function ResearchGroupsPage({
-  params: { locale },
-  searchParams,
-}: {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+export default async function ResearchGroupsPage(props: {
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale } = params;
+
   const groups = await getResearchGroups(locale);
   const selectedGroup = findItemBySearchParam(groups, (item) => [item.name], searchParams.selected);
   // 존재하지 않는 그룹(영어 변환 포함)일 경우 초기화
@@ -36,7 +42,7 @@ export default async function ResearchGroupsPage({
   const groupWithLanguage = await getResearchGroup(selectedGroup.id);
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ padding: 0 }}>
+    <PageLayout titleType="big" removePadding>
       {/* TODO: 외부 div 스타일링 SelectionList에서 표현 */}
       <div className="px-7 sm:pl-[100px] sm:pr-[320px]">
         <LoginVisible staff>

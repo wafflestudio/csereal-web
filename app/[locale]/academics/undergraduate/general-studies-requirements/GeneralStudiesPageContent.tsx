@@ -1,12 +1,12 @@
 'use client';
 
 import { deleteGeneralStudiesAction } from '@/actions/academics';
+import { TimelineContent } from '@/apis/types/academics';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { GeneralStudiesRequirement } from '@/types/academics';
 
-import TimelineViewer from '../../helper/timeline/TimelineViewer';
+import TimelineViewer from '../../components/timeline/TimelineViewer';
 
-export default function GeneralStudiesPageContent({ data }: { data: GeneralStudiesRequirement[] }) {
+export default function GeneralStudiesPageContent({ data }: { data: TimelineContent[] }) {
   return (
     <PageLayout titleType="big">
       <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">{OVERVIEW}</p>

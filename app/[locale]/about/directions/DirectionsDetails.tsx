@@ -1,9 +1,9 @@
+import { Direction } from '@/apis/types/about';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import { Direction } from '@/types/about';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { directions } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { directions } from '@/utils/segmentNode';
 import { replaceSpaceWithDash } from '@/utils/string';
 
 const directionsPath = getPath(directions);
@@ -19,7 +19,7 @@ export default function DirectionsDetails({ direction }: { direction: Direction 
           />
         </LoginVisible>
       </div>
-      <HTMLViewer htmlContent={direction.description} className="ml-2.5" />
+      <HTMLViewer htmlContent={direction.description} wrapperClassName="ml-2.5" />
     </div>
   );
 }

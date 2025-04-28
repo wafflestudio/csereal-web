@@ -1,7 +1,8 @@
 'use client';
 
+import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { CSSProperties, ReactNode } from 'react';
+import { type JSX, ReactNode } from 'react';
 
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
@@ -13,15 +14,14 @@ interface PageLayoutProps {
   title?: string | JSX.Element;
   titleType: 'big' | 'small';
   titleMargin?: string; // tailwind class
-  bodyStyle?: CSSProperties;
+
+  removeTopPadding?: boolean;
+  removeBottomPadding?: boolean;
+  removePadding?: boolean;
+
   hideNavbar?: boolean;
   children: ReactNode;
 }
-
-export const PAGE_PADDING_LEFT_PX = 100;
-export const PAGE_PADDING_RIGHT_PX = 360;
-export const PAGE_PADDING_TOP_PX = 44;
-export const PAGE_PADDING_BOTTOM_PX = 150;
 
 /**
  * 본문 기본 스타일
@@ -36,7 +36,9 @@ export default function PageLayout({
   title,
   titleType,
   titleMargin = 'mb-6 sm:mb-11',
-  bodyStyle,
+  removePadding,
+  removeTopPadding,
+  removeBottomPadding,
   hideNavbar = false,
   children,
 }: PageLayoutProps) {
@@ -54,8 +56,13 @@ export default function PageLayout({
         margin={titleMargin}
       />
       <div
-        className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]"
-        style={bodyStyle}
+        className={clsx('relative grow bg-white', {
+          'p-0': removePadding,
+          'p-[0_1.25rem_4rem_1.25rem] sm:p-[0_360px_150px_100px]': removeTopPadding,
+          'p-[1.75rem_1.25rem_0_1.25rem] sm:p-[2.75rem_360px_0_100px]': removeBottomPadding,
+          'p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]':
+            !removePadding && !removeTopPadding && !removeBottomPadding,
+        })}
       >
         {children}
         {!hideNavbar && <SubNavbar currentTab={currentPage} />}

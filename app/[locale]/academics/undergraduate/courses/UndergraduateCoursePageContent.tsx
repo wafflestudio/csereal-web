@@ -2,16 +2,16 @@
 
 import { useTranslations } from 'next-intl';
 
+import { Classification, Course, SortOption } from '@/apis/types/academics';
 import LoginVisible from '@/components/common/LoginVisible';
-import { Classification, Course, SortOption } from '@/types/academics';
 import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
 
-import AddCourseButton from '../../helper/courses/AddCourseButton';
-import CourseCards from '../../helper/courses/CourseCards';
-import CourseList from '../../helper/courses/CourseList';
-import CourseToolbar from '../../helper/courses/CourseToolbar';
-import useCourseToolbar from '../../helper/courses/useCourseToolbar';
+import AddCourseButton from '../../components/courses/AddCourseButton';
+import CourseCards from '../../components/courses/CourseCards';
+import CourseList from '../../components/courses/CourseList';
+import CourseToolbar from '../../components/courses/CourseToolbar';
+import useCourseToolbar from '../../components/courses/useCourseToolbar';
 
 interface CoursePageContentProps {
   courses: Course[];
@@ -77,7 +77,8 @@ const getSortedCourses = (courses: Course[], sortOption: SortOption) => {
 
   if (sortOption === '학년') {
     sortedCourses.push([], [], [], []);
-    courses.forEach((course) => sortedCourses[course.grade - 1].push(course));
+    // TODO
+    courses.forEach((course) => sortedCourses[Math.max(0, course.grade - 1)].push(course));
   } else if (sortOption === '교과목 구분') {
     sortedCourses.push([], [], []);
     courses.forEach((course) =>

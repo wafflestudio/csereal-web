@@ -1,6 +1,6 @@
+import { council, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-import { SegmentNode } from '@/utils/segmentNode';
 
 import NavTreeLabel from './NavtreeRow';
 
@@ -25,16 +25,20 @@ interface NavTreeProps {
 }
 
 function NavTree({ node, curNode, depth = 0 }: NavTreeProps) {
-  const marginBottom = depth === 0 ? '1.75rem' : '1.5rem';
-
+  const childNodes = node.children.filter((child) => !child.hideInNavbar);
   return (
     <>
       {depth !== 0 && (
-        <NavTreeLabel segmentNode={node} highlight={curNode === node} marginBottom={marginBottom} />
+        <NavTreeLabel
+          segmentNode={node}
+          highlight={curNode === node || (curNode.parent === council && curNode.parent === node)}
+          containerClassName={depth === 0 ? 'mb-[1.75rem]' : 'mb-[1.5rem]'}
+          anchorClassName="text-md"
+        />
       )}
-      {node.children !== null && 0 < node.children.length && (
+      {childNodes.length > 0 && (
         <div className="mb-11 ml-5">
-          {node.children.map((child, i) => (
+          {childNodes.map((child, i) => (
             <NavTree key={i} node={child} curNode={curNode} depth={depth + 1} />
           ))}
         </div>

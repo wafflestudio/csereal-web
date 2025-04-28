@@ -4,28 +4,34 @@ import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { researchCenters } from '@/constants/segmentNode';
 import { Link, redirect } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { researchCenters } from '@/utils/segmentNode';
 
 import ResearchCenterDetails from './ResearchCenterDetails';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: Language } }) {
+export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({ locale, node: researchCenters });
 }
 
 const researchCentersPath = getPath(researchCenters);
 
-export default async function ResearchCentersPage({
-  params: { locale },
-  searchParams,
-}: {
-  params: { locale: Language };
-  searchParams: { selected?: string };
+export default async function ResearchCentersPage(props: {
+  params: Promise<{ locale: Language }>;
+  searchParams: Promise<{ selected?: string }>;
 }) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const { locale } = params;
+
   const centers = await getResearchCenters(locale);
   const selectedCenter = findItemBySearchParam(
     centers,
@@ -40,7 +46,7 @@ export default async function ResearchCentersPage({
   const centerWithLanguage = await getResearchCenter(selectedCenter.id);
 
   return (
-    <PageLayout titleType="big" bodyStyle={{ paddingTop: 0 }}>
+    <PageLayout titleType="big" removeTopPadding>
       <LoginVisible staff>
         <div className="mt-11 text-right">
           <Link href={`${researchCentersPath}/create`}>

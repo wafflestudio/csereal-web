@@ -1,12 +1,12 @@
 import { useTranslations } from 'next-intl';
 
-export interface ConferenceListTableProps {
+interface ConferenceListTableProps {
   id: number;
   abbreviation: string;
   name: string;
 }
 
-export interface ConferenceRowProps {
+interface ConferenceRowProps {
   index: number;
   conference: ConferenceListTableProps;
 }

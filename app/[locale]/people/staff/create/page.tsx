@@ -1,30 +1,37 @@
 'use client';
+import { use } from 'react';
 
 import { postStaffAction } from '@/actions/people';
-import StaffEditor, { StaffEditorContent } from '@/components/editor/StaffEditor';
+import StaffEditor, {
+  StaffEditorFormData,
+} from '@/app/[locale]/people/staff/components/StaffEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { staff } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
-import { Language, WithLanguage } from '@/types/language';
+import { Language } from '@/types/language';
 import { errorToStr } from '@/utils/error';
 import { contentToFormData } from '@/utils/formData';
-import { validateStaffForm } from '@/utils/formValidation';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast } from '@/utils/toast';
 
 const staffPath = getPath(staff);
 
-export default function StaffCreatePage({ params: { locale } }: { params: { locale: Language } }) {
+export default function StaffCreatePage(props: { params: Promise<{ locale: Language }> }) {
+  const params = use(props.params);
+
+  const { locale } = params;
+
   const router = useRouter();
 
-  const handleCancel = () => router.push(staffPath);
+  const onCancel = () => router.push(staffPath);
 
-  const handleComplete = async (content: WithLanguage<StaffEditorContent>) => {
-    validateStaffForm(content);
-
+  const onSubmit = async (content: StaffEditorFormData) => {
     const formData = contentToFormData('CREATE', {
-      requestObject: getRequestObject(content),
+      requestObject: {
+        ko: { ...content.ko, image: undefined },
+        en: { ...content.en, image: undefined },
+      },
       image: content.ko.image,
     });
 
@@ -37,19 +44,7 @@ export default function StaffCreatePage({ params: { locale } }: { params: { loca
 
   return (
     <PageLayout title="행정직원 추가" titleType="big" titleMargin="mb-[2.75rem]" hideNavbar>
-      <StaffEditor
-        actions={{ type: 'CREATE', onCancel: handleCancel, onSubmit: handleComplete }}
-        initialLangauge={locale}
-      />
+      <StaffEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );
 }
-
-const getRequestObject = (content: WithLanguage<StaffEditorContent>) => {
-  const image = undefined; // 이미지는 따로 보내야 하므로 requestObj에서 제외
-
-  return {
-    ko: { ...content.ko, image },
-    en: { ...content.en, image },
-  };
-};

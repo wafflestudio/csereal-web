@@ -1,5 +1,4 @@
-import { AboutPreview, AboutSearchResult } from '@/types/search';
-import { getPath } from '@/utils/page';
+import { AboutPreview, AboutSearchResult } from '@/apis/types/search';
 import {
   contact,
   directions,
@@ -9,7 +8,8 @@ import {
   history,
   overview,
   studentClubs,
-} from '@/utils/segmentNode';
+} from '@/constants/segmentNode';
+import { getPath } from '@/utils/page';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';

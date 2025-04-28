@@ -1,4 +1,4 @@
-import { main, SegmentNode } from '@/utils/segmentNode';
+import { main, SegmentNode } from '@/constants/segmentNode';
 
 export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
   if (location === null) return [];
@@ -8,8 +8,12 @@ export const getLocationLog = (location: SegmentNode | null): SegmentNode[] => {
 };
 
 export const getPath = (location: SegmentNode | null): string => {
-  if (!(location && location !== main)) return '';
-  return `${getPath(location.parent)}/${location.segment}`;
+  // MEMO: 서버에서 prop으로 건네준 객체와 클라단에서 직접 쓰는 객체가 다를 수 있어서
+  // 객체끼리 직접 비교는 지양한다.
+  // location === main 등등...
+  return location?.parent && location.segment
+    ? `${getPath(location.parent)}/${location.segment}`
+    : '';
 };
 
 export const getRootTab = (currTab: SegmentNode): SegmentNode => {
@@ -21,8 +25,6 @@ export const getRootTab = (currTab: SegmentNode): SegmentNode => {
 };
 
 export const getAllSubTabs = (rootTab: SegmentNode): SegmentNode[] => {
-  if (!rootTab.children) return [];
-
   const subtabs: SegmentNode[] = [];
   for (const subtab of rootTab.children) {
     subtabs.push(subtab);

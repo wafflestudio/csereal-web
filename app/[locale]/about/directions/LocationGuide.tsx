@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
 
+import { staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
 
 const staffPath = getPath(staff);
 

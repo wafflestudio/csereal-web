@@ -1,6 +1,6 @@
-import { SlidePreview } from '@/types/admin';
+import { SlidePreview } from '@/apis/types/admin';
+import { news } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
 
 import { CheckboxCell, DateCell, EditCell, IndexCell, TitleCell } from '../ListCell';
 

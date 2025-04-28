@@ -1,35 +1,70 @@
 # csereal-web
 
-https://cse.snu.ac.kr
+![](https://github.com/user-attachments/assets/39a28dbf-8ce8-4c3c-9222-abdddd22b934)
 
-서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
+안녕하세요👋 서울대학교 컴퓨터공학부 홈페이지의 프론트엔드 레포입니다.
+
+- 2023.07: 🎉 CSEREAL 프로젝트 시작
+- 2024.04: 🚀 [cse.snu.ac.kr](https://cse.snu.ac.kr) 도메인으로 배포
+- 2024.08: 🧇 동아리 행사 '굽기'에서 기술/디자인 발표
 
 ## Getting started
 
-최상위에 `.env.local` 파일을 추가합니다. 시리얼 구글 계정으로 https://developers.kakao.com 에 로그인해 JavaScript 키를 env에 추가합니다.
+### 준비
 
-```
-NEXT_PUBLIC_KAKAO_MAP_API_KEY=...
-```
+node 버전 관리를 위해 [fnm](https://github.com/Schniz/fnm)등의 도구 사용을 권장합니다. [shell-setup](https://github.com/Schniz/fnm?tab=readme-ov-file#shell-setup)까지 마쳤다면 아래 작업을 수행합니다.
 
-`npm install`로 패키지를 설치하고 husky를 초기화합니다.
+패키지 매니저로는 pnpm을 사용합니다.
 
-```
-npm install
-```
-
-마지막으로 원하는 `npm` 명령어를 실행합니다.
-
-```
-npm run dev
+```sh
+git clone https://github.com/wafflestudio/csereal-web
+cd csereal-web
+pnpm install
 ```
 
-## 주요 사용 기술
+### 빌드/실행
 
-- Next.js 14 App router
-- tailwind
-- express
-- typescript
+csereal-web은 총 3개의 phase로 관리됩니다.
+
+- prod
+  - https://cse.snu.ac.kr
+  - main branch
+  - 수동 배포
+- beta
+  - https://cse-dev-waffle.bacchus.io/
+  - develop branch
+  - PR 머지시 자동 배포
+- local
+  - 로컬 개발/테스트 전용
+
+원하는 phase의 build/start pnpm 명령어를 실행합니다:
+
+```sh
+# local
+pnpm run build:local
+pnpm run start:local
+# beta
+pnpm run build:beta
+pnpm run start:beta
+# prod
+pnpm run build:prod
+pnpm run start:prod
+```
+
+⚠️ prod와 beta phase는 localhost에 서버가 있음을 전제로 빌드됩니다.
+
+### 카카오 지도
+
+[찾아오는 길](https://cse.snu.ac.kr/about/directions) 페이지에서 카카오 지도를 사용합니다. 카카오 지도가 올바르게 표시되려면 API Key를 추가해야합니다.
+
+최상위 경로에 `.env.local` 파일을 추가합니다. 시리얼 구글 계정으로 https://developers.kakao.com 에 로그인해 JavaScript 키를 env에 추가합니다.
+
+```sh
+# .env.local
+NEXT_PUBLIC_KAKAO_MAP_API_KEY=fc1e3ad82010475381daf9846e627fdd
+```
 
 ## 컨벤션
 
@@ -50,11 +85,13 @@ npm run dev
 
 ### 브랜치
 
-- 현재 별도의 테스트용 브랜치를 관리하고 있지 않으므로 `main`에서 바로 브랜치를 만듭니다.
-- 이후 PR 리뷰 후 approve가 되면 `main`으로 **squash merge**합니다.
+- `develop`에서 브랜치를 만들어 작업합니다.
+- 이후 PR 리뷰 후 approve가 되면 `develop`으로 **squash merge**합니다. 머지 직후 github action에서 https://cse-dev-waffle.bacchus.io/ 로 자동 배포됩니다.
+- 테스트가 완료됐다고 판단되면 `develop`에서 `main`으로 머지합니다. prod 배포는 수동으로 진행합니다.
 - 브랜치명은 `{타입}/{브랜치명}` 으로 작성합니다.
   - 타입: feat, fix, chore, style, refactor
-- PR 제목은 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
+- PR 제목은 귀여운 [gitmoji](https://gitmoji.dev/)를 활용해 작성합니다.
+  - 이모지 찾기 귀찮다고요? [Raycast](https://www.raycast.com/)의 [깃모지 plugin](https://www.raycast.com/ricoberger/gitmoji)을 써보세요.
 
 ### 커밋
 
@@ -73,5 +110,6 @@ npm run dev
 
 ## Maintainers
 
-- @yeolyi
-- @Limchansol
+- [@yeolyi](https://github.com/yeolyi)
+  - [컴공 홈페이지 개발기](https://www.instagram.com/p/C6hJ8UlyVQS)
+- [@Limchansol](https://github.com/limchansol)

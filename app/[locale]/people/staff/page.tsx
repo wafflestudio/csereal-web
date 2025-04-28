@@ -2,19 +2,23 @@ import { getStaffList } from '@/apis/v2/staff';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { staff } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-import { staff } from '@/utils/segmentNode';
 
-import { PeopleCellProps } from '../helper/PeopleCell';
-import PeopleGrid from '../helper/PeopleGrid';
+import { PeopleCellProps } from '../components/PeopleCell';
+import PeopleGrid from '../components/PeopleGrid';
 
 interface StaffPageProps {
-  params: { locale: Language };
+  params: Promise<{ locale: Language }>;
 }
 
-export async function generateMetadata({ params: { locale } }: StaffPageProps) {
+export async function generateMetadata(props: StaffPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   return await getMetadata({
     locale,
     node: staff,
@@ -24,7 +28,11 @@ export async function generateMetadata({ params: { locale } }: StaffPageProps) {
 
 const staffPath = getPath(staff);
 
-export default async function StaffPage({ params: { locale } }: StaffPageProps) {
+export default async function StaffPage(props: StaffPageProps) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const staffList = await getStaffList(locale);
 
   const contentList: PeopleCellProps[] = staffList.map((staff) => ({

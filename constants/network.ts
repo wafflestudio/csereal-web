@@ -1,7 +1,7 @@
 export const COOKIE_SESSION_ID = 'JSESSIONID';
 
-export const LOGIN_URL = 'https://cse.snu.ac.kr/api/v1/login';
-export const LOGOUT_URL = 'https://cse.snu.ac.kr/api/v1/logout';
+export const PROD_LOGIN_URL = `/api/v1/login`;
+export const PROD_LOGOUT_URL = `/api/v1/logout`;
 
 // TODO: fine-grained cache로 바꾸기
 export const FETCH_TAG_IMPORANT = 'important';
@@ -39,3 +39,16 @@ export const FETCH_TAG_CAREER = 'career';
 export const FETCH_TAG_GROUP = 'group';
 export const FETCH_TAG_CENTER = 'center';
 export const FETCH_TAG_LAB = 'lab';
+
+export const FETCH_TAG_REGULAR_ADMISSION = 'regular-admission';
+export const FETCH_TAG_EARLY_ADMISSION = 'early-admission';
+export const FETCH_TAG_GRADUATE_ADMISSION = 'graduate-admission';
+export const FETCH_TAG_EXCHANGE = 'exchange-visiting';
+export const FETCH_TAG_INTERNATIONAL_SCHOLARSHIPS = 'international-scholarships';
+export const FETCH_TAG_INTERNATIONAL_GRADUATE = 'international-graduate';
+export const FETCH_TAG_INTERNATIONAL_UNDERGRADUATE = 'international-undergraduate';
+
+export const FETCH_TAG_COUNCIL_INTRO = 'council-intro';
+export const FETCH_TAG_COUNCIL_MINUTE = 'council-minute';
+export const FETCH_TAG_COUNCIL_REPORT = 'council-report';
+export const FETCH_TAG_COUNCIL_RULES = 'council-rules';

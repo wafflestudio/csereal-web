@@ -1,4 +1,4 @@
-import Dialog from '@mui/material/Dialog';
+import { useEffect } from 'react';
 
 interface ModalFrameProps {
   onClose: () => void;
@@ -6,23 +6,23 @@ interface ModalFrameProps {
 }
 
 export default function ModalFrame({ onClose, children }: ModalFrameProps) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
-    <Dialog
-      open
-      onClose={onClose}
-      PaperProps={{
-        sx: {
-          maxWidth: '100%',
-          maxHeight: '85vh',
-          borderRadius: 0,
-          backgroundColor: 'transparent',
-          color: '#262626', // text-neutral-800
-          overflowX: 'hidden',
-        },
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] "
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
       }}
-      sx={{ backdropFilter: 'blur(2px)' }}
     >
-      {children}
-    </Dialog>
+      <div className="max-h-[85vh] max-w-full" onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
   );
 }

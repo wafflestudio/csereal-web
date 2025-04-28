@@ -1,5 +1,8 @@
 'use client';
 
+// SessionContext는 next-intl에 의존적일 필요 없으므로 next의 useRouter를 사용한다.
+// eslint-disable-next-line no-restricted-imports
+import { usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
   PropsWithChildren,
@@ -9,22 +12,26 @@ import {
   useState,
 } from 'react';
 
-import { getMockAuth, getUserState, removeAuth } from '@/actions/session';
-import { LOGIN_URL, LOGOUT_URL } from '@/constants/network';
-import { useRouter } from '@/i18n/routing';
+import { getUserState, removeAuthCookie, setMockAuthCookie } from '@/actions/session';
+import { Role } from '@/apis/types/role';
+import { PROD_LOGIN_URL, PROD_LOGOUT_URL } from '@/constants/network';
 
-export type UserState = 'logout' | 'non-staff' | 'staff';
+export type UserState = 'logout' | Role;
 
 type SessionContextData = {
   state: UserState;
   logout: () => Promise<void>;
   login: () => Promise<void>;
+  mockLogin: (role: Role) => Promise<void>;
+  mockLogout: () => Promise<void>;
 };
 
 export const SessionContext = createContext<SessionContextData>({
   state: 'logout',
   logout: async () => {},
   login: async () => {},
+  mockLogin: async () => {},
+  mockLogout: async () => {},
 });
 
 export const useSessionContext = () => useContext(SessionContext);
@@ -32,38 +39,43 @@ export const useSessionContext = () => useContext(SessionContext);
 export default function SessionContextProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<UserState>('logout');
   const router = useRouter();
+  const pathname = usePathname();
 
   const refresh = useCallback(async () => {
-    const resp = await getUserState();
-    setState(resp);
+    setState(await getUserState());
   }, []);
 
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [pathname, refresh]);
 
   const login = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
-      await getMockAuth();
-    } else {
-      router.push(LOGIN_URL);
-    }
-
+    router.push(PROD_LOGIN_URL);
+    // TODO: 되긴하는데 이게 맞나 확인...
     await refresh();
-  }, [refresh, router]);
+  }, [router, refresh]);
 
   const logout = useCallback(async () => {
-    if (process.env.NODE_ENV === 'development') {
-      removeAuth();
-      router.push('/');
-    } else {
-      router.push(LOGOUT_URL);
-    }
-
+    router.push(PROD_LOGOUT_URL);
     await refresh();
-  }, [refresh, router]);
+  }, [router, refresh]);
+
+  const mockLogin = useCallback(
+    async (role: Role) => {
+      await setMockAuthCookie(role);
+      await refresh();
+    },
+    [refresh],
+  );
+
+  const mockLogout = useCallback(async () => {
+    await removeAuthCookie();
+    await refresh();
+  }, [refresh]);
 
   return (
-    <SessionContext.Provider value={{ state, login, logout }}>{children}</SessionContext.Provider>
+    <SessionContext.Provider value={{ state, login, logout, mockLogin, mockLogout }}>
+      {children}
+    </SessionContext.Provider>
   );
 }

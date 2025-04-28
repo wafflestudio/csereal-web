@@ -1,10 +1,10 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
+import { useEffect, useRef } from 'react';
 
+import { ConfirmButton, GrayButton } from '@/components/common/Buttons';
 import useModal from '@/utils/hooks/useModal';
 
-import { GrayButton } from '../common/Buttons';
 import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
@@ -23,6 +23,11 @@ export default function AlertModal({
   onConfirm,
 }: AlertModalProps) {
   const { closeModal } = useModal();
+  const confirmButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    confirmButtonRef.current?.focus();
+  }, []);
 
   return (
     <ModalFrame onClose={closeModal}>
@@ -42,7 +47,7 @@ export default function AlertModal({
               closeModal();
             }}
           />
-          <ConfirmButton text={confirmText} />
+          <ConfirmButton title={confirmText} ref={confirmButtonRef} />
         </div>
       </form>
     </ModalFrame>
@@ -51,18 +56,4 @@ export default function AlertModal({
 
 function AlertMessage({ message }: { message: string }) {
   return <p className="mb-6 mt-1 text-neutral-800">{message}</p>;
-}
-
-function ConfirmButton({ text }: { text: string }) {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      className={`ml-2.5 h-[2.1875rem] rounded-[.0625rem] bg-neutral-700 px-[17px] text-xs font-bold text-white hover:bg-neutral-500`}
-      disabled={pending}
-      type="submit"
-    >
-      {text}
-    </button>
-  );
 }

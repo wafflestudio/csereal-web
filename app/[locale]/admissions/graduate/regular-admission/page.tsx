@@ -1,25 +1,27 @@
 import { Metadata } from 'next';
 
-import { getGraduateRegularAdmission } from '@/apis/v1/admissions/graduate/regular-admission';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
+import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
+import { FETCH_TAG_GRADUATE_ADMISSION } from '@/constants/network';
+import { graduateRegularAdmission } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-import { graduateAdmission } from '@/utils/segmentNode';
+import { getPath } from '@/utils/page';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  return await getMetadata({ locale, node: graduateAdmission });
+import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+
+export async function generateMetadata(props: AdmissionPageProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  return await getMetadata({ locale, node: graduateRegularAdmission });
 }
 
-export default async function GraduateRegularAdmission() {
-  const data = await getGraduateRegularAdmission();
+const path = getPath(graduateRegularAdmission);
 
-  return (
-    <PageLayout titleType="big">
-      <HTMLViewer htmlContent={data.description} />
-    </PageLayout>
-  );
+export default async function GraduateRegularAdmission({ params }: AdmissionPageProps) {
+  const locale = (await params).locale;
+  const data = await getAdmissions('graduate', 'regular-admission', FETCH_TAG_GRADUATE_ADMISSION);
+
+  return <AdmissionsPageContent pathname={path} description={data[locale].description} />;
 }

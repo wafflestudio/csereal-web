@@ -1,18 +1,15 @@
-'use client';
-
 import { postGeneralStudiesAction } from '@/actions/academics';
+import TimelineEditor from '@/app/[locale]/academics/components/timeline/TimelineEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
+import { generalStudies } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { curriculum } from '@/utils/segmentNode';
 
-import TimelineEditor from '../../../helper/timeline/TimelineEditor';
-
-const curriculumPath = getPath(curriculum);
+const generalStudiesPath = getPath(generalStudies);
 
 export default function GeneralStudiesCreatePage() {
   return (
     <PageLayout title="필수 교양 과목 추가" titleType="big">
-      <TimelineEditor submitAction={postGeneralStudiesAction} fallbackPathname={curriculumPath} />
+      <TimelineEditor onSubmit={postGeneralStudiesAction} cancelPath={generalStudiesPath} />
     </PageLayout>
   );
 }

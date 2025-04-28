@@ -3,21 +3,19 @@
 import { useTranslations } from 'next-intl';
 
 import { deleteResearchLabAction } from '@/actions/research';
+import { ResearchLab } from '@/apis/types/research';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
-import HTMLViewer from '@/components/editor/HTMLViewer';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { researchGroups, researchLabs } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import PentagonLong from '@/public/image/pentagon_long.svg';
 import PentagonShort from '@/public/image/pentagon_short.svg';
 import { WithLanguage } from '@/types/language';
-import { ResearchLab } from '@/types/research';
-import { errorToStr } from '@/utils/error';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
-import { researchGroups, researchLabs } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
+import { handleServerResponse } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
-import { errorToast, successToast } from '@/utils/toast';
 
 import ResearchLabInfo from './ResesarchLabInfo';
 
@@ -33,12 +31,8 @@ export default function ResearchLabDetailContent({
   const { isMobile } = useResponsive();
 
   const handleDelete = async () => {
-    try {
-      handleServerAction(await deleteResearchLabAction(ids));
-      successToast('연구실을 삭제했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+    const resp = await deleteResearchLabAction(ids);
+    handleServerResponse(resp, { successMessage: '연구실을 삭제했습니다.' });
   };
 
   return (
@@ -58,7 +52,7 @@ export default function ResearchLabDetailContent({
         topRightContent={
           isMobile ? undefined : { type: 'component', content: <ResearchLabInfo lab={lab} /> }
         }
-        className="mt-6"
+        wrapperClassName="mt-6"
       />
     </div>
   );

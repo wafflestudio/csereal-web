@@ -1,36 +1,21 @@
 'use client';
 
 import { postCareerStatAction } from '@/actions/about';
-import CareerStatEditor, { CareerStatEditorContent } from '@/components/editor/CareerStatEditor';
+import { CareerStat } from '@/apis/v2/about/future-careers/stats';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-import { useRouter } from '@/i18n/routing';
-import { errorToStr } from '@/utils/error';
-import { getPath } from '@/utils/page';
-import { futureCareers } from '@/utils/segmentNode';
-import { handleServerAction } from '@/utils/serverActionError';
-import { errorToast, successToast } from '@/utils/toast';
+import { handleServerResponse } from '@/utils/serverActionError';
 
-const careerPath = getPath(futureCareers);
+import CareerStatEditor from '../../components/CareerStatEditor';
 
 export default function CareerStatCreatePage() {
-  const router = useRouter();
-
-  const handleCancel = () => router.push(careerPath);
-
-  const handleSubmit = async (content: CareerStatEditorContent) => {
-    try {
-      handleServerAction(await postCareerStatAction(content));
-      successToast('졸업생 진로 현황을 추가했습니다.');
-    } catch (e) {
-      errorToast(errorToStr(e));
-    }
+  const onSubmit = async (formData: CareerStat) => {
+    const resp = await postCareerStatAction(formData);
+    handleServerResponse(resp, { successMessage: '졸업생 진로 현황을 추가했습니다.' });
   };
 
   return (
     <PageLayout title="졸업생 진로 현황 추가" titleType="big" hideNavbar>
-      <CareerStatEditor
-        actions={{ type: 'EDIT', onCancel: handleCancel, onSubmit: handleSubmit }}
-      />
+      <CareerStatEditor onSubmit={onSubmit} />
     </PageLayout>
   );
 }

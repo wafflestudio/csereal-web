@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { main as mainSegmentNode, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { Link } from '@/i18n/routing';
 import DotEmpty from '@/public/image/navbar/dot_empty.svg';
@@ -7,23 +8,20 @@ import DotFill from '@/public/image/navbar/dot_fill.svg';
 import SnuLogo from '@/public/image/SNU_Logo.svg';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import { getPath, isAncestorNode } from '@/utils/page';
-import { main as mainSegmentNode, SegmentNode } from '@/utils/segmentNode';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
 export const NAVBAR_EXPANDED_WIDTH_REM = 11;
 
 export default function NavbarRoot() {
   const { navbarState, setNavbarState } = useNavbarContext();
-  const width = navbarState.type === 'closed' ? NAVBAR_CLOSED_WIDTH_REM : NAVBAR_EXPANDED_WIDTH_REM;
 
   return (
     // 상하로 화면이 좁은 경우를 대비해 overflow-scroll
     <div
-      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-[#323235] py-[2.88rem] transition-all duration-300 ease-in-out`}
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-[#323235] py-[2.88rem] transition-all duration-300 ease-in-out ${navbarState.type === 'closed' ? 'w-[6.25rem]' : 'w-[11rem]'}`}
       onMouseEnter={() => setNavbarState({ type: 'expanded' })}
-      style={{ width: `${width}rem` }}
     >
-      <Link href="/">
+      <Link href="/" aria-label="메인으로 이동">
         <SnuLogo className="fill-white" width="56" height="58" viewBox="0 0 45 47" />
       </Link>
 

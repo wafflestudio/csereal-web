@@ -3,17 +3,15 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
+import { main, SegmentNode } from '@/constants/segmentNode';
 import { useNavbarContext } from '@/contexts/NavbarContext';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { useRouter } from '@/i18n/routing';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
-import { main, SegmentNode } from '@/utils/segmentNode';
 
 import MobileNavDetail from './MobileNavDetail';
-
-const HEADER_HEIGHT_PX = 68;
 
 // TODO: 모바일에서 MajorCategoryPageLayout 처리
 export default function MobileNav() {
@@ -21,10 +19,7 @@ export default function MobileNav() {
   if (navbarState.type !== 'hovered') return <></>;
 
   return (
-    <div
-      className="absolute bottom-0 left-0 right-0 z-50 flex sm:hidden"
-      style={{ top: HEADER_HEIGHT_PX }}
-    >
+    <div className="absolute bottom-0 left-0 right-0 top-[68px] z-50 flex sm:hidden">
       <MobileNavList />
       <MobileNavDetail />
     </div>

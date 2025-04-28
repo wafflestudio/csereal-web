@@ -1,16 +1,17 @@
 // TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
 export const dynamic = 'force-dynamic';
 
+import { deleteNewsAction } from '@/actions/news';
+import { News } from '@/apis/types/news';
+import PostFooter from '@/app/[locale]/community/components/PostFooter';
 import Attachments from '@/components/common/Attachments';
 import { StraightNode } from '@/components/common/Nodes';
 import Tags from '@/components/common/Tags';
-import HTMLViewer from '@/components/editor/HTMLViewer';
-import { PAGE_PADDING_BOTTOM_PX } from '@/components/layout/pageLayout/PageLayout';
-import PostFooter from '@/components/post/PostFooter';
-import { News } from '@/types/news';
-import { formatNewsPostDateStr } from '@/utils/date';
+import HTMLViewer from '@/components/form/html/HTMLViewer';
+import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
+import { news } from '@/constants/segmentNode';
+import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
-import { news } from '@/utils/segmentNode';
 
 interface NewsPostPageProps {
   news: News;
@@ -23,8 +24,7 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
     <>
       <Header title={news.title} date={news.date} />
       <div
-        className="bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px]"
-        style={{ paddingBottom: PAGE_PADDING_BOTTOM_PX }}
+        className={`bg-neutral-50 px-5 pt-9 sm:pl-[100px] sm:pr-[340px] ${PAGE_PADDING_BOTTOM_TAILWIND}`}
       >
         <Attachments files={news.attachments} />
         <HTMLViewer
@@ -34,22 +34,29 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
               ? { type: 'image', url: news.imageURL, widthPX: 320, heightPX: 240 }
               : undefined
           }
-          className="mb-10"
+          wrapperClassName="mb-10"
         />
         <StraightNode />
         <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
-        <PostFooter post={news} postType="news" id={news.id.toString()} margin="mt-12" />
+        <PostFooter
+          post={news}
+          id={news.id.toString()}
+          deleteAction={deleteNewsAction}
+          margin="mt-12"
+          path={newsPath}
+        />
       </div>
     </>
   );
 }
 
 function Header({ title, date }: { title: string; date: string }) {
+  const formatDate = useDayjs();
   return (
     <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
       <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <time className="text-sm font-normal tracking-wide text-neutral-500">
-        {formatNewsPostDateStr(date)}
+        {formatDate ? formatDate({ date: date, format: 'day' }) : ''}
       </time>
     </div>
   );

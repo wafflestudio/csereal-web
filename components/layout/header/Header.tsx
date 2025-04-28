@@ -11,9 +11,7 @@ import MobileNavButton from './MobileNavButton';
 
 export default function Header() {
   return (
-    <header
-      className={`flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-[3.75rem] sm:pb-[2.44rem] sm:pt-12`}
-    >
+    <header className="flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-[3.75rem] sm:pb-[2.44rem] sm:pt-12">
       <HeaderLeft />
 
       {/* 에러 없애기 위해 Suspense 추가 */}
@@ -29,7 +27,7 @@ export default function Header() {
 
 function HeaderLeft() {
   return (
-    <Link href="/" className="cursor-pointer">
+    <Link href="/" className="cursor-pointer" aria-label="메인으로 이동">
       {/* mobile */}
       <HeaderLogoSVG className="hidden sm:block" />
 

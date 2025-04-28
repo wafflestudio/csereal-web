@@ -1,6 +1,8 @@
 import { useLocale, useTranslations } from 'next-intl';
 
-import Checkbox from '../form/Checkbox';
+import useStyle from '@/utils/hooks/useStyle';
+
+import Checkbox from '../../form/legacy/Checkbox';
 
 interface TagFilterProps {
   tags: string[];
@@ -26,14 +28,16 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
     <div>
       <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">{t('태그')}</h5>
       <div
-        className={`gap-x-7 gap-y-2.5 pl-2.5`}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(auto-fill, minmax(${calculateWidth(
-            tags.map((tag) => t(tag)),
-            locale,
-          )}px, auto))`,
-        }}
+        className={`grid gap-x-7 gap-y-2.5 pl-2.5`}
+        {...useStyle(
+          (style) => {
+            style.gridTemplateColumns = `repeat(auto-fill, minmax(${calculateWidth(
+              tags.map((tag) => t(tag)),
+              locale,
+            )}px, auto))`;
+          },
+          [tags],
+        )}
       >
         {tags.map((tag) => (
           <Checkbox

@@ -17,13 +17,14 @@ export default function HeaderSearchBar() {
       }}
     >
       <input
+        aria-label="통합검색"
         type="text"
         id="search"
         className="autofill-bg-neutral-200 w-full bg-transparent px-2 text-xs outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button className="material-symbols-rounded text-[1.25rem] text-neutral-800 hover:text-neutral-500">
+      <button className="material-symbols-rounded w-8 text-[1.25rem] text-neutral-800 hover:text-neutral-500">
         search
       </button>
     </form>

@@ -1,12 +1,13 @@
+import { Member, MemberSearchResult } from '@/apis/types/search';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
+import { faculty, staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
-import { Member, MemberSearchResult } from '@/types/search';
 import { getPath } from '@/utils/page';
-import { faculty, staff } from '@/utils/segmentNode';
 
 import CircleTitle from './helper/CircleTitle';
 import Divider from './helper/Divider';
 import Section from './helper/Section';
+import styles from './style.module.css';
 
 export default async function MemberSection({ member }: { member: MemberSearchResult }) {
   const professorList = member.results.filter((x) => x.memberType === 'PROFESSOR');
@@ -50,15 +51,11 @@ const MemberCell = ({ name, academicRankOrRole, imageURL, memberType, id }: Memb
       <ImageWithFallback
         src={imageURL}
         alt={`${name} 프로필`}
-        className="h-[192px] w-[144px] object-cover"
+        className={`h-[192px] w-[144px] object-cover ${styles.memberImage}`}
         width={144}
         height={192}
         quality={50}
         priority
-        style={{
-          clipPath: 'polygon(84.375% 0%, 100% 11.71875%, 100% 100%, 0% 100%, 0% 0%)',
-          filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.15))',
-        }}
       />
       <div className="flex items-end gap-1">
         <h3 className="text-[1.04169rem] font-bold text-neutral-950 group-hover:underline">

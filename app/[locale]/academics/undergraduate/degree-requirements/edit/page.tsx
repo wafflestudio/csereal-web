@@ -1,9 +1,18 @@
-import { getDegreeRequirements } from '@/apis/v1/academics/undergraduate/degree-requirements';
+import { putDegreeRequirementsAction } from '@/actions/academics';
+import { getDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
 
-import DegreeRequirementsEditPageContent from './DegreeRequirementsEditPageContent';
+import DegreeRequirementsEditor from './DegreeRequirementsEditor';
 
 export default async function DegreeRequirementsEditPage() {
   const data = await getDegreeRequirements();
 
-  return <DegreeRequirementsEditPageContent data={data} />;
+  return (
+    <DegreeRequirementsEditor
+      defaultValues={{
+        description: data.description,
+        files: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
+      }}
+      onSubmit={putDegreeRequirementsAction}
+    />
+  );
 }

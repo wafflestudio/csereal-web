@@ -1,6 +1,6 @@
-import { AdmissionsSearchResult } from '@/types/search';
+import { AdmissionsSearchResult } from '@/apis/types/search';
+import { admissions } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-import { admissions } from '@/utils/segmentNode';
 
 import BasicRow from './helper/BasicRow';
 import Section from './helper/Section';
