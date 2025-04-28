@@ -13,12 +13,13 @@ interface Props {
 
 export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Props) {
   const {
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isSubmitting, isDirty },
   } = useFormContext();
   const { openModal } = useModal();
 
   return (
-    <div className="mb-6 flex justify-end gap-3">
+    <div className="relative mb-6 flex items-center justify-end gap-3">
+      <ErrorMessages />
       <GrayButton
         title="취소"
         disabled={isSubmitting}
@@ -41,11 +42,21 @@ export default function Action({ onCancel, onDelete, onSubmit, submitLabel }: Pr
           }}
         />
       )}
-      <BlackButton
-        title={submitLabel ?? '저장하기'}
-        disabled={!isValid || isSubmitting}
-        onClick={onSubmit}
-      />
+      <BlackButton title={submitLabel ?? '저장하기'} disabled={isSubmitting} onClick={onSubmit} />
     </div>
   );
 }
+
+const ErrorMessages = () => {
+  const {
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <ul className="text-md text-[#FF0000]">
+      {Object.values(errors).map((error, idx) => (
+        <li key={idx}>{error?.message?.toString()}</li>
+      ))}
+    </ul>
+  );
+};
