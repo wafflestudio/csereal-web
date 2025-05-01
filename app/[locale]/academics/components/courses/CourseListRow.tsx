@@ -3,10 +3,9 @@
 import { useTranslations } from 'next-intl';
 
 import { Course, GRADE } from '@/apis/types/academics';
+import CourseDetailModal from '@/app/[locale]/academics/components/courses/CourseDetailModal';
 import useModal from '@/utils/hooks/useModal';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
-
-import CourseDetailModal from './CourseDetailModal';
 
 export const COURSE_ROW_ITEM_WIDTH = {
   name: 'sm:w-[16rem]',

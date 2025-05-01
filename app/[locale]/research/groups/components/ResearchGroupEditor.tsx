@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import ResearchGroupLabsEditGuide from '@/app/[locale]/research/groups/ResearchGroupLabsEditGuide';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import LanguagePicker from '@/components/form/LanguagePicker';
@@ -11,8 +12,6 @@ import { useRouter } from '@/i18n/routing';
 import { EditorImage } from '@/types/form';
 import { Language } from '@/types/language';
 import { getPath } from '@/utils/page';
-
-import ResearchGroupLabsEditGuide from '../ResearchGroupLabsEditGuide';
 
 const groupsPath = getPath(researchGroups);
 

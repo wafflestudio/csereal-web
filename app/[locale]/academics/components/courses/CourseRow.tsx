@@ -3,8 +3,7 @@
 import { useRef } from 'react';
 
 import { Course, SortOption } from '@/apis/types/academics';
-
-import CourseCard from './CourseCard';
+import CourseCard from '@/app/[locale]/academics/components/courses/CourseCard';
 
 interface CourseRowProps {
   courses: Course[];

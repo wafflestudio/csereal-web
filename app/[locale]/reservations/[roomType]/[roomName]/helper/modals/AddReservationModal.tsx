@@ -1,13 +1,12 @@
 'use client';
 
 import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
+import BottomForm from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/MiddleForm';
+import TopForm from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/TopForm';
+import useAddReservation from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/modals/useAddReservation';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { Link } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
-
-import BottomForm from './MiddleForm';
-import TopForm from './TopForm';
-import useAddReservation from './useAddReservation';
 
 export default function AddReservationModal({ roomId }: { roomId: number }) {
   const { handleSubmit, body, setBody, setDate, canSubmit } = useAddReservation(roomId);

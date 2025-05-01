@@ -1,6 +1,5 @@
 import { MainNews } from '@/apis/types/main';
-
-import NewsCard from './NewsCard';
+import NewsCard from '@/app/[locale]/components/NewsCard';
 
 export default function NewsCarouselMobile({ news }: { news: MainNews[] }) {
   return (

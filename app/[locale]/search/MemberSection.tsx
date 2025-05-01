@@ -1,13 +1,12 @@
 import { Member, MemberSearchResult } from '@/apis/types/search';
+import CircleTitle from '@/app/[locale]/search/helper/CircleTitle';
+import Divider from '@/app/[locale]/search/helper/Divider';
+import Section from '@/app/[locale]/search/helper/Section';
+import styles from '@/app/[locale]/search/style.module.css';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { faculty, staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-
-import CircleTitle from './helper/CircleTitle';
-import Divider from './helper/Divider';
-import Section from './helper/Section';
-import styles from './style.module.css';
 
 export default async function MemberSection({ member }: { member: MemberSearchResult }) {
   const professorList = member.results.filter((x) => x.memberType === 'PROFESSOR');

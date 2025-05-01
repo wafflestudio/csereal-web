@@ -1,9 +1,8 @@
 import { Dispatch } from 'react';
 
 import { ImportantPostIdentifier, ImportantPreview } from '@/apis/types/admin';
-
-import ImportantListHeader from './ImportantListHeader';
-import ImportantListRow from './ImportantListRow';
+import ImportantListHeader from '@/app/[locale]/admin/helper/important/ImportantListHeader';
+import ImportantListRow from '@/app/[locale]/admin/helper/important/ImportantListRow';
 
 interface ImportantListProps {
   posts: ImportantPreview[];

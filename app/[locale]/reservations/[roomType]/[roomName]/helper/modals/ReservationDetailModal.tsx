@@ -8,6 +8,7 @@ import {
   getReservationAction,
 } from '@/actions/reservation';
 import { Reservation } from '@/apis/types/reservation';
+import BasicButton from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/BasicButton';
 import LoginVisible from '@/components/common/LoginVisible';
 import AlertModal from '@/components/modal/AlertModal';
 import ModalFrame from '@/components/modal/ModalFrame';
@@ -16,8 +17,6 @@ import useStyle from '@/utils/hooks/useStyle';
 import { refreshPage } from '@/utils/refreshPage';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-import BasicButton from '../BasicButton';
 
 type ReservationModalButtonProps = {
   id: number;

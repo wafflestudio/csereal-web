@@ -1,7 +1,6 @@
 import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import CurriculumEditPageContent from '@/app/[locale]/academics/undergraduate/curriculum/edit/CurriculumEditPageContent';
 import { FETCH_TAG_CURRICULUM } from '@/constants/network';
-
-import CurriculumEditPageContent from './CurriculumEditPageContent';
 
 export default async function CurriculumEditPage(props: {
   searchParams: Promise<{ year: string }>;

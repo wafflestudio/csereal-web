@@ -1,4 +1,4 @@
-import PeopleCell, { PeopleCellProps } from './PeopleCell';
+import PeopleCell, { PeopleCellProps } from '@/app/[locale]/people/components/PeopleCell';
 
 export default function PeopleGrid({ contentList }: { contentList: PeopleCellProps[] }) {
   return (

@@ -1,6 +1,6 @@
 'use server';
 
-import { postRequest } from '../..';
+import { postRequest } from '@/apis';
 
 type ImageUploadResponse = {
   errorMessage: string;

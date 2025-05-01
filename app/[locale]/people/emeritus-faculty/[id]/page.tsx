@@ -1,9 +1,8 @@
 import { getEmeritusFaculty } from '@/apis/v2/professor/[id]';
+import EmeritusFacultyMemberPageContent from '@/app/[locale]/people/emeritus-faculty/[id]/EmeritusFacultyMemberPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import EmeritusFacultyMemberPageContent from './EmeritusFacultyMemberPageContent';
 
 export async function generateMetadata(props: EmeritusFacultyMemberPageProps) {
   const params = await props.params;

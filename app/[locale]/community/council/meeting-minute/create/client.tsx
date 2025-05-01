@@ -1,13 +1,14 @@
 'use client';
 
 import { postMinutesByYearAction } from '@/actions/council';
+import CouncilMeetingMinuteEditor, {
+  MinuteFormData,
+} from '@/app/[locale]/community/council/meeting-minute/CouncilMeetingMinuteEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilMinute } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-
-import CouncilMeetingMinuteEditor, { MinuteFormData } from '../CouncilMeetingMinuteEditor';
 
 const minutePath = getPath(councilMinute);
 

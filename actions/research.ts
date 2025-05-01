@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { postResearchCenter, postResearchGroup } from '@/apis/v2/research';
 import {
   deleteResearchCenter,
@@ -17,8 +18,6 @@ import { redirectKo } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
-
-import { withErrorHandler } from './errorHandler';
 
 const groupPath = getPath(researchGroups);
 const centerPath = getPath(researchCenters);

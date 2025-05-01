@@ -4,11 +4,10 @@ import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import { type JSX, ReactNode } from 'react';
 
+import Header from '@/components/layout/header/Header';
+import PageTitle from '@/components/layout/pageLayout/PageTitle';
 import SubNavbar from '@/components/layout/pageLayout/SubNavbar';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-
-import Header from '../header/Header';
-import PageTitle from './PageTitle';
 
 interface PageLayoutProps {
   title?: string | JSX.Element;

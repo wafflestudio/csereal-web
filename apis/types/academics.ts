@@ -1,6 +1,5 @@
-import { Attachment } from './attachment';
-
-import { Language } from '../../types/language';
+import { Attachment } from '@/apis/types/attachment';
+import { Language } from '@/types/language';
 
 export type StudentType = 'undergraduate' | 'graduate';
 

@@ -1,11 +1,10 @@
 import { putOverviewAction } from '@/actions/about';
 import { getOverview } from '@/apis/v2/about/overview';
+import AboutEditor, { AboutFormData } from '@/app/[locale]/about/components/AboutEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { overview } from '@/constants/segmentNode';
 import { getEditorFile, getEditorImage } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-
-import AboutEditor, { AboutFormData } from '../../components/AboutEditor';
 
 const path = getPath(overview);
 

@@ -1,9 +1,8 @@
 import { getStaff } from '@/apis/v2/staff/[id]';
+import StaffMemberPageContent from '@/app/[locale]/people/staff/[id]/StaffMemberPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import StaffMemberPageContent from './StaffMemberPageContent';
 
 export async function generateMetadata(props: StaffMemberPageProps) {
   const params = await props.params;

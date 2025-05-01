@@ -1,11 +1,10 @@
 'use client';
 
 import { postClubAction } from '@/actions/about';
+import ClubEditor, { ClubFormData } from '@/app/[locale]/about/student-clubs/components/ClubEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
 export default function StudentClubCreatePage() {
   const onSubmit = async ({ image, ...requestObject }: ClubFormData) => {

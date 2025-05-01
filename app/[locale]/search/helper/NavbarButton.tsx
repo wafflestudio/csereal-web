@@ -1,6 +1,6 @@
 'use client';
 
-import { TreeNode } from './SearchSubNavbar';
+import { TreeNode } from '@/app/[locale]/search/helper/SearchSubNavbar';
 
 export default function NavbarButton({ node, className }: { node: TreeNode; className: string }) {
   return (

@@ -1,7 +1,6 @@
 import { Course } from '@/apis/types/academics';
-
-import CourseListHeader from './CourseListHeader';
-import CourseListRow from './CourseListRow';
+import CourseListHeader from '@/app/[locale]/academics/components/courses/CourseListHeader';
+import CourseListRow from '@/app/[locale]/academics/components/courses/CourseListRow';
 
 export default function CourseList({ courses }: { courses: Course[] }) {
   return (

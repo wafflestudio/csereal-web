@@ -1,14 +1,13 @@
 'use client';
 
 import { NoticePreviewList } from '@/apis/types/notice';
+import AdminFeatures from '@/app/[locale]/community/notice/components/AdminFeatures';
 import NoticeList from '@/app/[locale]/community/notice/components/NoticeList';
+import { usePostSelect } from '@/app/[locale]/community/notice/components/usePostSelect';
 import LoginVisible from '@/components/common/LoginVisible';
 import Pagination from '@/components/common/Pagination';
 import SearchBox from '@/components/common/search/SearchBox';
 import { NOTICE_TAGS } from '@/constants/tag';
-
-import AdminFeatures from './components/AdminFeatures';
-import { usePostSelect } from './components/usePostSelect';
 
 const POST_LIMIT = 20;
 

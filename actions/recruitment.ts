@@ -2,13 +2,12 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { putFacultyRecruitment } from '@/apis/v2/recruit';
 import { FETCH_TAG_RECRUITMENT } from '@/constants/network';
 import { facultyRecruitment } from '@/constants/segmentNode';
 import { redirect } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
-
-import { withErrorHandler } from './errorHandler';
 
 const recruitPath = getPath(facultyRecruitment);
 

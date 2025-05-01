@@ -1,9 +1,8 @@
 import { getScholarshipList } from '@/apis/v2/academics/[studentType]/scholarship';
+import ScholarshipGuideEditor from '@/app/[locale]/academics/components/scholarship/ScholarshipGuideEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateScholarship } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import ScholarshipGuideEditor from '../../../components/scholarship/ScholarshipGuideEditor';
 
 const path = getPath(graduateScholarship);
 

@@ -3,10 +3,9 @@
 import { useTranslations } from 'next-intl';
 
 import HTMLViewer from '@/components/form/html/HTMLViewer';
+import Header from '@/components/layout/header/Header';
+import CategoryGrid from '@/components/layout/pageLayout/CategoryGrid';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-
-import Header from '../header/Header';
-import CategoryGrid from './CategoryGrid';
 
 interface GuidePageLayoutProps {
   title?: string;

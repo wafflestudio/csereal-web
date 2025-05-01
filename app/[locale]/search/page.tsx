@@ -2,6 +2,15 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
+import AboutSection from '@/app/[locale]/search/AboutSection';
+import AcademicSection from '@/app/[locale]/search/AcademicSection';
+import AdmissionSection from '@/app/[locale]/search/AdmissionSection';
+import CommunitySection from '@/app/[locale]/search/CommunitySection';
+import fetchContent from '@/app/[locale]/search/fetchContent';
+import NoSearchResultError from '@/app/[locale]/search/helper/NoSearchResultError';
+import SearchSubNavbar, { TreeNode } from '@/app/[locale]/search/helper/SearchSubNavbar';
+import MemberSection from '@/app/[locale]/search/MemberSection';
+import ResearchSection from '@/app/[locale]/search/ResearchSection';
 import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
 import PageTitle from '@/components/layout/pageLayout/PageTitle';
@@ -9,16 +18,6 @@ import { main } from '@/constants/segmentNode';
 import { SEARCH_TAGS } from '@/constants/tag';
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 import { getMetadata } from '@/utils/metadata';
-
-import AboutSection from './AboutSection';
-import AcademicSection from './AcademicSection';
-import AdmissionSection from './AdmissionSection';
-import CommunitySection from './CommunitySection';
-import fetchContent from './fetchContent';
-import NoSearchResultError from './helper/NoSearchResultError';
-import SearchSubNavbar, { TreeNode } from './helper/SearchSubNavbar';
-import MemberSection from './MemberSection';
-import ResearchSection from './ResearchSection';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { deleteResearchLabAction } from '@/actions/research';
 import { ResearchLab } from '@/apis/types/research';
+import ResearchLabInfo from '@/app/[locale]/research/labs/[id]/ResesarchLabInfo';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
@@ -16,8 +17,6 @@ import useResponsive from '@/utils/hooks/useResponsive';
 import { getPath } from '@/utils/page';
 import { handleServerResponse } from '@/utils/serverActionError';
 import { replaceSpaceWithDash } from '@/utils/string';
-
-import ResearchLabInfo from './ResesarchLabInfo';
 
 const labsPath = getPath(researchLabs);
 

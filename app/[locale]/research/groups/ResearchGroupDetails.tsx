@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { deleteResearchGroupAction } from '@/actions/research';
 import { ResearchGroup } from '@/apis/types/research';
+import ResearchGroupLabs from '@/app/[locale]/research/groups/ResearchGroupLabs';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -12,8 +13,6 @@ import { researchGroups } from '@/constants/segmentNode';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ResearchGroupLabs from './ResearchGroupLabs';
 
 interface ResearchGroupDetailsProps {
   group: ResearchGroup;

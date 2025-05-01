@@ -3,11 +3,10 @@
 import { useEffect, useState, useTransition } from 'react';
 
 import { StraightNode } from '@/components/common/Nodes';
+import KeywordInput from '@/components/common/search/KeywordInput';
+import SelectedTags from '@/components/common/search/SelectedTags';
+import TagFilter from '@/components/common/search/TagFilter';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
-
-import KeywordInput from './KeywordInput';
-import SelectedTags from './SelectedTags';
-import TagFilter from './TagFilter';
 
 interface SearchBoxProps {
   tags: string[]; // 전체 태그(선택지) 목록

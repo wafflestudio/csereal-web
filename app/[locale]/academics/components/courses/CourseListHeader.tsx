@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { COURSE_ROW_ITEM_WIDTH } from './CourseListRow';
+import { COURSE_ROW_ITEM_WIDTH } from '@/app/[locale]/academics/components/courses/CourseListRow';
 
 export default function CourseListHeader() {
   const t = useTranslations('Content');

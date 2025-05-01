@@ -2,7 +2,7 @@
 
 import { useMediaQuery } from '@mui/material';
 
-import { CARD_GAP_REM, CARD_WIDTH_REM } from './constants';
+import { CARD_GAP_REM, CARD_WIDTH_REM } from '@/app/[locale]/components/constants';
 
 export const useCarouselLayout = () => {
   const wide = useMediaQuery(`(max-width: 1380px)`);

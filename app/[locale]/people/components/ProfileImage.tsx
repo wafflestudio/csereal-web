@@ -1,6 +1,5 @@
+import styles from '@/app/[locale]/people/components/style.module.css';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-
-import styles from './style.module.css';
 
 export default function ProfileImage({ imageURL }: { imageURL: string | null }) {
   return (

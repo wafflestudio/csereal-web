@@ -2,9 +2,8 @@
 
 import { deleteGeneralStudiesAction } from '@/actions/academics';
 import { TimelineContent } from '@/apis/types/academics';
+import TimelineViewer from '@/app/[locale]/academics/components/timeline/TimelineViewer';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
-
-import TimelineViewer from '../../components/timeline/TimelineViewer';
 
 export default function GeneralStudiesPageContent({ data }: { data: TimelineContent[] }) {
   return (

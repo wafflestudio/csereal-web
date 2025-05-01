@@ -1,9 +1,8 @@
 import { CSSProperties, ReactNode } from 'react';
 
+import styles from '@/components/common/style.module.css';
 import { ColorTheme } from '@/constants/color';
 import useStyle from '@/utils/hooks/useStyle';
-
-import styles from './style.module.css';
 
 interface CornerFoldedRectangleProps {
   colorTheme: ColorTheme;

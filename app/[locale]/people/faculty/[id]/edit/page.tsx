@@ -1,8 +1,7 @@
 import { getFaculty } from '@/apis/v2/professor/[id]';
 import { getResearchLabs } from '@/apis/v2/research/lab';
+import FacultyEditPageContent from '@/app/[locale]/people/faculty/[id]/edit/FacultyEditPageContent';
 import { Language } from '@/types/language';
-
-import FacultyEditPageContent from './FacultyEditPageContent';
 
 interface FacultyEditPageProps {
   params: Promise<{ id: string; locale: Language }>;

@@ -1,4 +1,4 @@
-import { Attachment } from './attachment';
+import { Attachment } from '@/apis/types/attachment';
 
 export interface AboutContent {
   description: string;

@@ -16,8 +16,7 @@ import { searchNews } from '@/apis/v2/news/totalSearch';
 import { searchNotice } from '@/apis/v2/notice/totalSearch';
 import { searchResearch } from '@/apis/v2/research/search/top';
 import { getSeminarPosts } from '@/apis/v2/seminar';
-
-import { TreeNode } from './helper/SearchSubNavbar';
+import { TreeNode } from '@/app/[locale]/search/helper/SearchSubNavbar';
 
 type SectionContent = [
   about?: AboutSearchResult,

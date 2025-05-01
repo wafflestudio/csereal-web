@@ -1,13 +1,12 @@
 import { Suspense } from 'react';
 
+import HeaderRight from '@/components/layout/header/HeaderRight';
+import MobileNavButton from '@/components/layout/header/MobileNavButton';
 import { Link } from '@/i18n/routing';
 import HeaderLogoSVG from '@/public/image/header/header_logo.svg';
 import HeaderSubTextSVG from '@/public/image/header/header_sub_text.svg';
 import HeaderTextSVG from '@/public/image/header/header_text.svg';
 import SNULogoSVG from '@/public/image/SNU_Logo.svg';
-
-import HeaderRight from './HeaderRight';
-import MobileNavButton from './MobileNavButton';
 
 export default function Header() {
   return (
