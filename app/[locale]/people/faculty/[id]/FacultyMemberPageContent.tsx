@@ -4,6 +4,9 @@ import { useTranslations } from 'next-intl';
 
 import { deleteFacultyAction } from '@/actions/people';
 import { Faculty } from '@/apis/types/people';
+import HeaderAndList from '@/app/[locale]/people/components/HeaderAndList';
+import PageTitle from '@/app/[locale]/people/components/PageTitle';
+import Profile from '@/app/[locale]/people/components/Profile';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import { CurvedHorizontalSmallNode } from '@/components/common/Nodes';
@@ -15,10 +18,6 @@ import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-import HeaderAndList from '../../components/HeaderAndList';
-import PageTitle from '../../components/PageTitle';
-import Profile from '../../components/Profile';
 
 const facultyPath = getPath(faculty);
 const labPath = getPath(researchLabs);

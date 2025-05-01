@@ -1,4 +1,4 @@
-import ProfileImage from './ProfileImage';
+import ProfileImage from '@/app/[locale]/people/components/ProfileImage';
 
 interface ProfileProps {
   office?: string;

@@ -1,8 +1,7 @@
 import { getCouncilMinutes } from '@/apis/v2/council/meeting-minute';
+import MinutePageContent from '@/app/[locale]/community/council/meeting-minute/MinutePageContent';
 import { councilMinute } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-
-import MinutePageContent from './MinutePageContent';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

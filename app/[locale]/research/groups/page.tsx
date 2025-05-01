@@ -1,5 +1,6 @@
 import { getResearchGroup } from '@/apis/v2/research/[id]';
 import { getResearchGroups } from '@/apis/v2/research/groups';
+import ResearchGroupDetails from '@/app/[locale]/research/groups/ResearchGroupDetails';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -10,8 +11,6 @@ import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import ResearchGroupDetails from './ResearchGroupDetails';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

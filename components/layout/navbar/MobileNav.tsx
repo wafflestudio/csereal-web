@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
+import MobileNavDetail from '@/components/layout/navbar/MobileNavDetail';
 import { main, SegmentNode } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
 import { useNavbarStore } from '@/stores/NavbarStore';
@@ -10,8 +11,6 @@ import { useSessionStore } from '@/stores/SessionStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
-
-import MobileNavDetail from './MobileNavDetail';
 
 // TODO: 모바일에서 MajorCategoryPageLayout 처리
 export default function MobileNav() {

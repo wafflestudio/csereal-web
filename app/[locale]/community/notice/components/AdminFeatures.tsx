@@ -1,12 +1,15 @@
 import { Dispatch } from 'react';
 
 import { batchDeleteNoticeAction, unpinNoticeAction } from '@/actions/notice';
+import {
+  BatchButton,
+  CreateButton,
+  EditButton,
+} from '@/app/[locale]/community/notice/components/EditButtons';
+import { PostSelectAction } from '@/app/[locale]/community/notice/components/usePostSelect';
 import AlertModal from '@/components/modal/AlertModal';
 import useModal from '@/utils/hooks/useModal';
 import { errorToast, successToast } from '@/utils/toast';
-
-import { BatchButton, CreateButton, EditButton } from './EditButtons';
-import { PostSelectAction } from './usePostSelect';
 
 interface AdminFeaturesProps {
   isEditMode: boolean;

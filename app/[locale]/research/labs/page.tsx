@@ -1,4 +1,6 @@
 import { getResearchLabs } from '@/apis/v2/research/lab';
+import ResearchLabListHeader from '@/app/[locale]/research/labs/ResearchLabListHeader';
+import ResearchLabListRow from '@/app/[locale]/research/labs/ResearchLabListRow';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -7,9 +9,6 @@ import { Link } from '@/i18n/routing';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import ResearchLabListHeader from './ResearchLabListHeader';
-import ResearchLabListRow from './ResearchLabListRow';
 
 interface ResearchLabPageProps {
   params: Promise<{ locale: Language }>;

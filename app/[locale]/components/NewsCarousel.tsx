@@ -1,13 +1,12 @@
 import { ButtonHTMLAttributes, useEffect } from 'react';
 
 import { MainNews } from '@/apis/types/main';
+import { animateScrollLeft } from '@/app/[locale]/components/animateScrollTo';
+import { CARD_GAP_REM, CARD_GAP_TAILWIND } from '@/app/[locale]/components/constants';
+import NewsCard from '@/app/[locale]/components/NewsCard';
+import useCarousel from '@/app/[locale]/components/useCarousel';
+import { useCarouselLayout } from '@/app/[locale]/components/useCarouselLayout';
 import useStyle from '@/utils/hooks/useStyle';
-
-import { animateScrollLeft } from './animateScrollTo';
-import { CARD_GAP_REM, CARD_GAP_TAILWIND } from './constants';
-import NewsCard from './NewsCard';
-import useCarousel from './useCarousel';
-import { useCarouselLayout } from './useCarouselLayout';
 
 export default function NewsCarousel({ news }: { news: MainNews[] }) {
   const { offsetREM, pageCnt, setPage, page, isScroll, startScroll, stopScroll } =

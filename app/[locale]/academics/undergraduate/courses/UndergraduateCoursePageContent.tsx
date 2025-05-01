@@ -3,15 +3,14 @@
 import { useTranslations } from 'next-intl';
 
 import { Classification, Course, SortOption } from '@/apis/types/academics';
+import AddCourseButton from '@/app/[locale]/academics/components/courses/AddCourseButton';
+import CourseCards from '@/app/[locale]/academics/components/courses/CourseCards';
+import CourseList from '@/app/[locale]/academics/components/courses/CourseList';
+import CourseToolbar from '@/app/[locale]/academics/components/courses/CourseToolbar';
+import useCourseToolbar from '@/app/[locale]/academics/components/courses/useCourseToolbar';
 import LoginVisible from '@/components/common/LoginVisible';
 import { Language } from '@/types/language';
 import useResponsive from '@/utils/hooks/useResponsive';
-
-import AddCourseButton from '../../components/courses/AddCourseButton';
-import CourseCards from '../../components/courses/CourseCards';
-import CourseList from '../../components/courses/CourseList';
-import CourseToolbar from '../../components/courses/CourseToolbar';
-import useCourseToolbar from '../../components/courses/useCourseToolbar';
 
 interface CoursePageContentProps {
   courses: Course[];

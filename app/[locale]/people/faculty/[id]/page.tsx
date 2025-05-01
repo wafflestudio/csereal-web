@@ -1,11 +1,10 @@
 import { notFound } from 'next/navigation';
 
 import { getFaculty } from '@/apis/v2/professor/[id]';
+import FacultyMemberPageContent from '@/app/[locale]/people/faculty/[id]/FacultyMemberPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import FacultyMemberPageContent from './FacultyMemberPageContent';
 
 export async function generateMetadata(props: FacultyMemberPageProps) {
   const params = await props.params;

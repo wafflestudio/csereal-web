@@ -1,4 +1,6 @@
 import { ResearchSearchResult, ResearchType } from '@/apis/types/search';
+import BasicRow from '@/app/[locale]/search/helper/BasicRow';
+import Section from '@/app/[locale]/search/helper/Section';
 import {
   researchCenters,
   researchGroups,
@@ -6,9 +8,6 @@ import {
   topConferenceList,
 } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import BasicRow from './helper/BasicRow';
-import Section from './helper/Section';
 
 export default async function ResearchSection({ research }: { research: ResearchSearchResult }) {
   return (

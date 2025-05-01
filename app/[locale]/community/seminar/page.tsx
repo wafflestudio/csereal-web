@@ -6,14 +6,13 @@ import { Suspense } from 'react';
 
 import { PostSearchQueryParams } from '@/apis/types/post';
 import { getSeminarPosts } from '@/apis/v2/seminar';
+import AdminFeatures from '@/app/[locale]/community/seminar/components/AdminFeatures';
+import SeminarContent from '@/app/[locale]/community/seminar/SeminarContent';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { seminar } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 import { validatePageNum } from '@/utils/validateSearchParams';
-
-import AdminFeatures from './components/AdminFeatures';
-import SeminarContent from './SeminarContent';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

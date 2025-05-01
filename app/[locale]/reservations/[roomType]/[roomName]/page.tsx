@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
+import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { getMetadata } from '@/utils/metadata';
-
-import ReservationCalendar from './helper/ReservationCalendar';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string; roomName: string }>;

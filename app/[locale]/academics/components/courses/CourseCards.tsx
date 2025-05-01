@@ -1,6 +1,5 @@
 import { Course, SortOption } from '@/apis/types/academics';
-
-import CourseRow from './CourseRow';
+import CourseRow from '@/app/[locale]/academics/components/courses/CourseRow';
 
 interface CourseCardProps {
   courses: Course[][];

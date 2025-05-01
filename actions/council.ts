@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { putCouncilIntro } from '@/apis/v2/council/intro';
 import {
   deleteCouncilMinute,
@@ -26,8 +27,6 @@ import {
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
-
-import { withErrorHandler } from './errorHandler';
 
 /** 소개 */
 

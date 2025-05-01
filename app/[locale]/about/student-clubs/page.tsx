@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { ReactNode } from 'react';
 
 import { getClubs } from '@/apis/v2/about/student-clubs';
+import ClubDetails from '@/app/[locale]/about/student-clubs/ClubDetails';
 import { OrangeButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import SelectionList from '@/components/common/selection/SelectionList';
@@ -13,8 +14,6 @@ import { Language } from '@/types/language';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import ClubDetails from './ClubDetails';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

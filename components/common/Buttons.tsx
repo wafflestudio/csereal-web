@@ -3,11 +3,10 @@
 import { MouseEventHandler } from 'react';
 import { useFormStatus } from 'react-dom';
 
+import AlertModal from '@/components/modal/AlertModal';
 import { Link } from '@/i18n/routing';
 import useModal from '@/utils/hooks/useModal';
 import { CustomError } from '@/utils/serverActionError';
-
-import AlertModal from '../modal/AlertModal';
 
 export function GrayButton({
   title,

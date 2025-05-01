@@ -3,12 +3,11 @@
 import { useTranslations } from 'next-intl';
 
 import LoginVisible from '@/components/common/LoginVisible';
+import HeaderSearchBar from '@/components/layout/header/HeaderSearchBar';
 import { isProd } from '@/constants/env';
 import { Link } from '@/i18n/routing';
 import { useSessionStore } from '@/stores/SessionStore';
 import useLanguage from '@/utils/hooks/useLanguage';
-
-import HeaderSearchBar from './HeaderSearchBar';
 
 export default function HeaderRight() {
   const { isEnglish, changeLanguage } = useLanguage();

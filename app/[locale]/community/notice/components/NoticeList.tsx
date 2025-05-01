@@ -1,11 +1,10 @@
 import { Dispatch } from 'react';
 
 import { NoticePreview } from '@/apis/types/notice';
+import NoticeListHeader from '@/app/[locale]/community/notice/components/NoticeListHeader';
+import NoticeListRow from '@/app/[locale]/community/notice/components/NoticeListRow';
+import { PostSelectAction } from '@/app/[locale]/community/notice/components/usePostSelect';
 import NoSearchResult from '@/components/common/NoSearchResult';
-
-import NoticeListHeader from './NoticeListHeader';
-import NoticeListRow from './NoticeListRow';
-import { PostSelectAction } from './usePostSelect';
 
 interface NoticeListProps {
   posts: NoticePreview[];

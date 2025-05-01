@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { FutureCareers } from '@/apis/types/about';
 import { putContact } from '@/apis/v2/about/contact';
 import { putDirections } from '@/apis/v2/about/directions/[id]';
@@ -39,8 +40,6 @@ import {
 import { redirectKo } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
-
-import { withErrorHandler } from './errorHandler';
 
 /** 학부 소개 */
 

@@ -2,12 +2,11 @@
 
 import { putClubAction } from '@/actions/about';
 import { Club } from '@/apis/types/about';
+import ClubEditor, { ClubFormData } from '@/app/[locale]/about/student-clubs/components/ClubEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ClubEditor, { ClubFormData } from '../components/ClubEditor';
 
 export default function StudentClubEditPageContent({ data }: { data: WithLanguage<Club> }) {
   const onSubmit = async (_formData: ClubFormData) => {

@@ -1,7 +1,6 @@
 import { getFacilities } from '@/apis/v2/about/facilities';
+import FacilityEditor from '@/app/[locale]/about/facilities/edit/FacilityEditor';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
-
-import FacilityEditor from './FacilityEditor';
 
 interface FacilitiesEditPageProps {
   searchParams: Promise<{ id: string }>;

@@ -11,14 +11,13 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 
+import MarginedMain from '@/app/[locale]/MarginedMain';
 import Footer from '@/components/layout/footer/Footer';
 import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 import { isBeta, isProd } from '@/constants/env';
 import { Link, routing } from '@/i18n/routing';
-
-import MarginedMain from './MarginedMain';
 
 const PROD_URL = 'https://cse.snu.ac.kr';
 

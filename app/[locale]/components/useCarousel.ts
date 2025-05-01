@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { MainNews } from '@/apis/types/main';
-
-import { AUTO_SCROLL_MS } from './constants';
-import { useCarouselLayout } from './useCarouselLayout';
+import { AUTO_SCROLL_MS } from '@/app/[locale]/components/constants';
+import { useCarouselLayout } from '@/app/[locale]/components/useCarouselLayout';
 
 export default function useCarousel(news: MainNews[]) {
   const [page, _setPage] = useState(0);

@@ -1,4 +1,4 @@
-import { IMPORTANT_ROW_CELL_WIDTH } from './ImportantListRow';
+import { IMPORTANT_ROW_CELL_WIDTH } from '@/app/[locale]/admin/helper/important/ImportantListRow';
 
 export default function ImportantListHeader() {
   return (

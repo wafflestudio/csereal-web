@@ -1,6 +1,8 @@
 export const dynamic = 'force-dynamic';
 
 import { getFutureCareeres } from '@/apis/v2/about/future-careers';
+import CareerCompanies from '@/app/[locale]/about/future-careers/CareerCompanies';
+import CareerStat from '@/app/[locale]/about/future-careers/CareerStat';
 import { EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
@@ -9,9 +11,6 @@ import { futureCareers } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import CareerCompanies from './CareerCompanies';
-import CareerStat from './CareerStat';
 
 export async function generateMetadata(props: { params: Promise<{ locale: Language }> }) {
   const params = await props.params;

@@ -1,7 +1,6 @@
 import { getResearchCenter } from '@/apis/v2/research/[id]';
+import ResearchCenterEditPageContent from '@/app/[locale]/research/centers/edit/ResearchCenterEditPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
-
-import ResearchCenterEditPageContent from './ResearchCenterEditPageContent';
 
 export default async function ResearchCenterEditPage(props: {
   searchParams: Promise<{ id: string }>;

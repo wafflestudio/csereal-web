@@ -3,6 +3,9 @@
 import { postFacultyAction } from '@/actions/people';
 import { FacultyStatus } from '@/apis/types/people';
 import { SimpleResearchLab } from '@/apis/types/research';
+import FacultyEditor, {
+  FacultyFormData,
+} from '@/app/[locale]/people/faculty/components/FacultyEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { emeritusFaculty, faculty } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
@@ -12,8 +15,6 @@ import { contentToFormData } from '@/utils/formData';
 import { getPath } from '@/utils/page';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-import FacultyEditor, { FacultyFormData } from '../components/FacultyEditor';
 
 const facultyPath = getPath(faculty);
 const emeritusFacultyPath = getPath(emeritusFaculty);

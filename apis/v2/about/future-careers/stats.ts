@@ -1,6 +1,5 @@
 import { postRequest, putRequest } from '@/apis';
-
-import { Stat } from './types';
+import { Stat } from '@/apis/v2/about/future-careers/types';
 
 export interface CareerStat {
   year: number;

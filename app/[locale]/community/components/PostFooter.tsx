@@ -1,11 +1,10 @@
 import { useTranslations } from 'next-intl';
 
 import { Role } from '@/apis/types/role';
+import PaginatedLink from '@/app/[locale]/community/components/PaginatedLink';
+import PostDeleteButton from '@/app/[locale]/community/components/PostDeleteButton';
 import LoginVisible from '@/components/common/LoginVisible';
 import { Link } from '@/i18n/routing';
-
-import PaginatedLink from './PaginatedLink';
-import PostDeleteButton from './PostDeleteButton';
 
 type PostFooterProps = {
   path: string;

@@ -1,8 +1,7 @@
 import { getScholarshipList } from '@/apis/v2/academics/[studentType]/scholarship';
+import ScholarshipPreview from '@/app/[locale]/academics/components/scholarship/ScholarshipPreview';
 import { graduateScholarship } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-
-import ScholarshipPreview from '../../components/scholarship/ScholarshipPreview';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

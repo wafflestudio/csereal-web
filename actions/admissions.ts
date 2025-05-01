@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { putAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
 import {
   FETCH_TAG_EARLY_ADMISSION,
@@ -24,8 +25,6 @@ import {
 import { redirectKo } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
-
-import { withErrorHandler } from './errorHandler';
 
 /** 학부 입학 */
 

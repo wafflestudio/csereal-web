@@ -1,8 +1,7 @@
+import NavTreeLabel from '@/components/layout/navbar/NavtreeRow';
 import { SegmentNode } from '@/constants/segmentNode';
 import { useNavbarStore } from '@/stores/NavbarStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
-
-import NavTreeLabel from './NavtreeRow';
 
 export default function MobileNavDetail() {
   const navbarState = useNavbarStore((s) => s.navbarState);

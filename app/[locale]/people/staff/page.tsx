@@ -1,4 +1,6 @@
 import { getStaffList } from '@/apis/v2/staff';
+import { PeopleCellProps } from '@/app/[locale]/people/components/PeopleCell';
+import PeopleGrid from '@/app/[locale]/people/components/PeopleGrid';
 import { CreateButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -6,9 +8,6 @@ import { staff } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import { PeopleCellProps } from '../components/PeopleCell';
-import PeopleGrid from '../components/PeopleGrid';
 
 interface StaffPageProps {
   params: Promise<{ locale: Language }>;

@@ -1,11 +1,10 @@
 import { putInternationalGraduateAction } from '@/actions/admissions';
 import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
+import AdmissionsEditor from '@/app/[locale]/admissions/components/AdmissionsEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_INTERNATIONAL_GRADUATE } from '@/constants/network';
 import { internationalGraduateAdmission } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import AdmissionsEditor from '../../../components/AdmissionsEditor';
 
 const path = getPath(internationalGraduateAdmission);
 

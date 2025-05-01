@@ -4,6 +4,10 @@ import { useTranslations } from 'next-intl';
 
 import { deleteFacultyAction } from '@/actions/people';
 import { EmeritusFaculty } from '@/apis/types/people';
+import BulletRow from '@/app/[locale]/people/components/BulletRow';
+import HeaderAndList from '@/app/[locale]/people/components/HeaderAndList';
+import PageTitle from '@/app/[locale]/people/components/PageTitle';
+import ProfileImage from '@/app/[locale]/people/components/ProfileImage';
 import { DeleteButton, EditButton } from '@/components/common/Buttons';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -14,11 +18,6 @@ import { errorToStr } from '@/utils/error';
 import { getPath } from '@/utils/page';
 import { handleServerAction } from '@/utils/serverActionError';
 import { errorToast, successToast } from '@/utils/toast';
-
-import BulletRow from '../../components/BulletRow';
-import HeaderAndList from '../../components/HeaderAndList';
-import PageTitle from '../../components/PageTitle';
-import ProfileImage from '../../components/ProfileImage';
 
 const facultyPath = getPath(faculty);
 

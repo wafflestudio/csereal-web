@@ -3,9 +3,8 @@
 import { useEffect, useRef } from 'react';
 
 import { ConfirmButton, GrayButton } from '@/components/common/Buttons';
+import ModalFrame from '@/components/modal/ModalFrame';
 import useModal from '@/utils/hooks/useModal';
-
-import ModalFrame from './ModalFrame';
 
 interface AlertModalProps {
   message: string;

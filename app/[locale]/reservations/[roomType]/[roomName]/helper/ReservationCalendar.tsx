@@ -1,7 +1,6 @@
 import { getWeeklyReservation } from '@/apis/v2/reservation/week';
-
-import CalendarContent from './calendar/CalendarContent';
-import Toolbar from './calendar/CalendarToolbar';
+import CalendarContent from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/calendar/CalendarContent';
+import Toolbar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/calendar/CalendarToolbar';
 
 type ReservationCalendarProps = {
   roomId: number;
