@@ -49,8 +49,6 @@ jobs:
               }
             }
 
-            console.log('(디버깅용) Reviewer counts:', reviewCounts);
-
             const minCount = Math.min(...Object.values(reviewCounts));
             const leastAssignedReviewers = Object.keys(reviewCounts).filter(
               reviewer => reviewCounts[reviewer] === minCount
