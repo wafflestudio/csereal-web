@@ -68,12 +68,12 @@ jobs:
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            ${{ steps.random_reviwer.outputs.comment }}
+            ${{ steps.random_reviewer.outputs.comment }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
 
       - name: Add Pull Request Reviewer
         uses: madrapps/add-reviewers@v1
         with:
-          reviewers: ${{ steps.random_reviwer.outputs.reviewer }}
+          reviewers: ${{ steps.random_reviewer.outputs.reviewer }}
           token: ${{ secrets.GITHUB_TOKEN }}
