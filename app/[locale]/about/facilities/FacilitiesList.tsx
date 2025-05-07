@@ -2,7 +2,8 @@
 
 import { deleteFacilityAction } from '@/actions/about';
 import { Facility } from '@/apis/types/about';
-import { DeleteButton, EditButton } from '@/components/common/Buttons';
+import { EditButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import LoginVisible from '@/components/common/LoginVisible';
 import HTMLViewer from '@/components/form/html/HTMLViewer';

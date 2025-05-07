@@ -16,7 +16,7 @@ export default function UndergraduateCourseChangesCreatePage() {
 
   return (
     <PageLayout title="학부 교과목 변경 내역 추가" titleType="big">
-      <TimelineEditor cancelPath={courseChangesPath} onSubmit={onSubmit} />
+      <TimelineEditor cancelPath={courseChangesPath} onSubmitAction={onSubmit} />
     </PageLayout>
   );
 }

@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <PageLayout title="대학원 교과목 변경 내역 추가" titleType="big">
-      <TimelineEditor cancelPath={courseChangesPath} onSubmit={onSubmit} />
+      <TimelineEditor cancelPath={courseChangesPath} onSubmitAction={onSubmit} />
     </PageLayout>
   );
 }

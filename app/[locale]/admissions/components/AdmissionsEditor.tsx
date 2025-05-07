@@ -18,13 +18,13 @@ export type AdmissionsFormData = {
 type Props = {
   defaultValues: AdmissionsFormData;
   cancelPath: string;
-  onSubmit: (data: AdmissionsFormData) => Promise<void | CustomError>;
+  onSubmitAction: (data: AdmissionsFormData) => Promise<void | CustomError>;
 };
 
 export default function AdmissionsEditor({
   defaultValues,
   cancelPath,
-  onSubmit: _onSubmit,
+  onSubmitAction: _onSubmit,
 }: Props) {
   const formMethods = useForm<AdmissionsFormData>({ defaultValues });
   const { handleSubmit } = formMethods;

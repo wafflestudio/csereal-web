@@ -15,10 +15,10 @@ interface FormData {
 
 export default function InternalEditor({
   description,
-  onSubmit: _onSubmit,
+  onSubmitAction: _onSubmit,
 }: {
   description: string;
-  onSubmit: (description: string) => Promise<void>;
+  onSubmitAction: (description: string) => Promise<void>;
 }) {
   const formMethods = useForm<FormData>({ defaultValues: { description } });
   const { handleSubmit } = formMethods;

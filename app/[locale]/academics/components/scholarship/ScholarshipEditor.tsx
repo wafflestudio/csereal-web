@@ -20,13 +20,13 @@ export type ScholarshipFormData = {
 type Props = {
   defaultValues?: ScholarshipFormData;
   cancelPath: string;
-  onSubmit: (data: ScholarshipFormData) => Promise<void | CustomError>;
+  onSubmitAction: (data: ScholarshipFormData) => Promise<void | CustomError>;
 };
 
 export default function ScholarshipEditor({
   defaultValues,
   cancelPath,
-  onSubmit: _onSubmit,
+  onSubmitAction: _onSubmit,
 }: Props) {
   const formMethods = useForm<ScholarshipFormData>({
     defaultValues: defaultValues ?? {

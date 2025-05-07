@@ -30,7 +30,7 @@ export default function GeneralStudiesEditPageContent({
   return (
     <PageLayout title="필수 교양 과목 편집" titleType="big">
       <TimelineEditor
-        onSubmit={onSubmit}
+        onSubmitAction={onSubmit}
         cancelPath={generalStudiesPath}
         defaultValues={defaultValues}
       />

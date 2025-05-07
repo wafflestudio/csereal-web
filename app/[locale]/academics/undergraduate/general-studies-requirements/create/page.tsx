@@ -9,7 +9,7 @@ const generalStudiesPath = getPath(generalStudies);
 export default function GeneralStudiesCreatePage() {
   return (
     <PageLayout title="필수 교양 과목 추가" titleType="big">
-      <TimelineEditor onSubmit={postGeneralStudiesAction} cancelPath={generalStudiesPath} />
+      <TimelineEditor onSubmitAction={postGeneralStudiesAction} cancelPath={generalStudiesPath} />
     </PageLayout>
   );
 }
