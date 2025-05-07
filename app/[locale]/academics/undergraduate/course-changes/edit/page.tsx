@@ -41,7 +41,7 @@ export default async function Page(props: { searchParams: Promise<{ year: string
     <PageLayout title="학부 교과목 변경 내역 편집" titleType="big">
       <TimelineEditor
         cancelPath={courseChangePath}
-        onSubmit={onSubmit}
+        onSubmitAction={onSubmit}
         defaultValues={defaultValues}
       />
     </PageLayout>

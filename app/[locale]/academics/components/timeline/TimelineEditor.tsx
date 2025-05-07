@@ -13,11 +13,15 @@ export type TimelineFormData = { year: number; description: string; file: Editor
 
 interface Props {
   defaultValues?: TimelineFormData;
-  onSubmit: (data: FormData) => Promise<unknown>;
+  onSubmitAction: (data: FormData) => Promise<unknown>;
   cancelPath: string;
 }
 
-export default function TimelineEditor({ defaultValues, onSubmit: _onSubmit, cancelPath }: Props) {
+export default function TimelineEditor({
+  defaultValues,
+  onSubmitAction: _onSubmit,
+  cancelPath,
+}: Props) {
   const formMethods = useForm<TimelineFormData>({
     defaultValues: defaultValues ?? {
       year: new Date().getFullYear() + 1,

@@ -20,7 +20,7 @@ export default async function UndergraduateRegularAdmissionEditPage() {
       <AdmissionsEditor
         defaultValues={{ ko: data.ko.description, en: data.en.description }}
         cancelPath={path}
-        onSubmit={putUndergraduateRegularAdmissionsAction}
+        onSubmitAction={putUndergraduateRegularAdmissionsAction}
       />
     </PageLayout>
   );

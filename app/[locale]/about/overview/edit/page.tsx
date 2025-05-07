@@ -23,7 +23,7 @@ export default async function OverviewEditPage() {
       <AboutEditor
         cancelPath={path}
         defaultValues={defaultValues}
-        onSubmit={putOverviewAction}
+        onSubmitAction={putOverviewAction}
         showAttachments
       />
     </PageLayout>

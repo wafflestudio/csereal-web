@@ -23,7 +23,7 @@ export default async function GreetingsEditPage() {
       <AboutEditor
         cancelPath={path}
         defaultValues={defaultValues}
-        onSubmit={putGreetingsAction}
+        onSubmitAction={putGreetingsAction}
         showAttachments
       />
     </PageLayout>

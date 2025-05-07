@@ -37,7 +37,7 @@ export default async function UndergraduateScholarshipEditPage(props: {
             enDescription: scholarship.en.description,
           }}
           cancelPath={path}
-          onSubmit={onSubmit}
+          onSubmitAction={onSubmit}
         />
       </PageLayout>
     );

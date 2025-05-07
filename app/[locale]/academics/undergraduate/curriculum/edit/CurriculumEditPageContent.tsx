@@ -30,7 +30,7 @@ export default function CurriculumEditPageContent({
   return (
     <PageLayout title="전공 이수 표준 형태 편집" titleType="big">
       <TimelineEditor
-        onSubmit={onSubmit}
+        onSubmitAction={onSubmit}
         cancelPath={curriculumPath}
         defaultValues={defaultValues}
       />

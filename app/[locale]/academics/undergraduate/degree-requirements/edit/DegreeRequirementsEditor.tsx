@@ -21,10 +21,10 @@ type DegreeRequirementsFormData = {
 
 export default function DegreeRequirementsEditor({
   defaultValues,
-  onSubmit: _onSubmit,
+  onSubmitAction: _onSubmit,
 }: {
   defaultValues: DegreeRequirementsFormData;
-  onSubmit: (formData: FormData) => Promise<void | CustomError>;
+  onSubmitAction: (formData: FormData) => Promise<void | CustomError>;
 }) {
   const formMethods = useForm<DegreeRequirementsFormData>({ defaultValues });
   const { handleSubmit } = formMethods;

@@ -10,7 +10,8 @@ import {
   putCareerCompanyAction,
 } from '@/actions/about';
 import { FutureCareers } from '@/apis/types/about';
-import { BlackButton, DeleteButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
+import { BlackButton, GrayButton, OrangeButton } from '@/components/common/Buttons';
+import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
 import Form from '@/components/form/Form';
 import { handleServerResponse } from '@/utils/serverActionError';

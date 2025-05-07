@@ -11,7 +11,7 @@ export default async function DegreeRequirementsEditPage() {
         description: data.description,
         files: data.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
       }}
-      onSubmit={putDegreeRequirementsAction}
+      onSubmitAction={putDegreeRequirementsAction}
     />
   );
 }
