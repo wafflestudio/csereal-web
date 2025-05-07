@@ -1,4 +1,6 @@
 import { AboutPreview, AboutSearchResult } from '@/apis/types/search';
+import BasicRow from '@/app/[locale]/search/helper/BasicRow';
+import Section from '@/app/[locale]/search/helper/Section';
 import {
   contact,
   directions,
@@ -10,9 +12,6 @@ import {
   studentClubs,
 } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import BasicRow from './helper/BasicRow';
-import Section from './helper/Section';
 
 export default async function AboutSection({ about }: { about: AboutSearchResult }) {
   return (

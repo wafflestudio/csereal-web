@@ -1,11 +1,10 @@
 import { putContactAction } from '@/actions/about';
 import { getContact } from '@/apis/v2/about/contact';
+import AboutEditor, { AboutFormData } from '@/app/[locale]/about/components/AboutEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { contact } from '@/constants/segmentNode';
 import { getEditorFile, getEditorImage } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-
-import AboutEditor, { AboutFormData } from '../../components/AboutEditor';
 
 const path = getPath(contact);
 

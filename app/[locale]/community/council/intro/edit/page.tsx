@@ -1,11 +1,12 @@
 import { putIntroAction } from '@/actions/council';
 import { getCouncilIntro } from '@/apis/v2/council/intro';
+import IntroEditor, {
+  IntroFormData,
+} from '@/app/[locale]/community/council/intro/edit/IntroEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { councilIntro } from '@/constants/segmentNode';
 import { getEditorImage } from '@/utils/formData';
 import { getPath } from '@/utils/page';
-
-import IntroEditor, { IntroFormData } from './IntroEditor';
 
 const path = getPath(councilIntro);
 

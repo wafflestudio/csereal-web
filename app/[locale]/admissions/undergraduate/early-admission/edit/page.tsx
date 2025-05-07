@@ -1,11 +1,10 @@
 import { putUndergraduateEarlyAdmissionsAction } from '@/actions/admissions';
 import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
+import AdmissionsEditor from '@/app/[locale]/admissions/components/AdmissionsEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { FETCH_TAG_EARLY_ADMISSION } from '@/constants/network';
 import { undergraduateEarlyAdmission } from '@/constants/segmentNode';
 import { getPath } from '@/utils/page';
-
-import AdmissionsEditor from '../../../components/AdmissionsEditor';
 
 const path = getPath(undergraduateEarlyAdmission);
 

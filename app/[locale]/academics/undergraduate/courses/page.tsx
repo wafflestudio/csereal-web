@@ -1,11 +1,10 @@
 import { Course } from '@/apis/types/academics';
 import { getCourses } from '@/apis/v2/academics/courses';
+import UndergraduateCoursePageContent from '@/app/[locale]/academics/undergraduate/courses/UndergraduateCoursePageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { undergraduateCourses } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import UndergraduateCoursePageContent from './UndergraduateCoursePageContent';
 
 interface CoursePageProps {
   params: Promise<{ locale: Language }>;

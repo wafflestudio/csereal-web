@@ -1,6 +1,5 @@
 import { getNewsDetail } from '@/apis/v2/news/[id]';
-
-import EditNewsPageContent from './EditNewsPageContent';
+import EditNewsPageContent from '@/app/[locale]/community/news/[id]/edit/EditNewsPageContent';
 
 interface EditNewsPageProps {
   params: Promise<{ id: string }>;

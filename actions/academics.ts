@@ -2,6 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { withErrorHandler } from '@/actions/errorHandler';
 import { Course, Scholarship, StudentType } from '@/apis/types/academics';
 import { postAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import {
@@ -43,8 +44,6 @@ import { redirectKo } from '@/i18n/routing';
 import { WithLanguage } from '@/types/language';
 import { getPath } from '@/utils/page';
 import { decodeFormDataFileName } from '@/utils/string';
-
-import { withErrorHandler } from './errorHandler';
 
 /** 안내 */
 

@@ -2,8 +2,7 @@ import { ChangeEventHandler, MouseEventHandler } from 'react';
 import { FieldValues, RegisterOptions, useController, useFormContext } from 'react-hook-form';
 
 import ClearIcon from '@/public/image/clear_icon.svg';
-
-import { EditorFile, LocalFile } from '../../types/form';
+import { EditorFile, LocalFile } from '@/types/form';
 
 interface FilePickerProps {
   name: string;

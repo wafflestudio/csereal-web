@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { deleteMinuteAction } from '@/actions/council';
 import { CouncilMeetingMinute } from '@/apis/types/council';
+import CouncilAttachment from '@/app/[locale]/community/council/components/CouncilAttachments';
 import { EditButton } from '@/components/common/Buttons';
 import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -13,8 +14,6 @@ import { councilMinute } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import CouncilAttachment from '../components/CouncilAttachments';
 
 const minutePath = getPath(councilMinute);
 

@@ -3,6 +3,7 @@ import { useReducer, useState } from 'react';
 
 import { deleteCourseAction } from '@/actions/academics';
 import { Course, GRADE } from '@/apis/types/academics';
+import CourseEditor from '@/app/[locale]/academics/components/courses/CourseEditor';
 import { GrayButton } from '@/components/common/Buttons';
 import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -11,8 +12,6 @@ import BookmarkIcon from '@/public/image/bookmark_icon.svg';
 import { Language } from '@/types/language';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
-
-import CourseEditor from './CourseEditor';
 
 interface CourseDetailModalProps {
   initCourse: Course;

@@ -8,12 +8,11 @@ import Attachments from '@/components/common/Attachments';
 import { EditButton } from '@/components/common/Buttons';
 import { DeleteButton } from '@/components/common/ClientButtons';
 import LoginVisible from '@/components/common/LoginVisible';
+import Timeline from '@/components/common/Timeline';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { Link, usePathname } from '@/i18n/routing';
 import { refreshPage } from '@/utils/refreshPage';
 import { CustomError, handleServerResponse } from '@/utils/serverActionError';
-
-import Timeline from '../../../../../components/common/Timeline';
 
 interface TimelineViewerProps<T> {
   contents: T[];

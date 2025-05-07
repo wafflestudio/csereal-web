@@ -1,11 +1,10 @@
 import { getAdmissions } from '@/apis/v2/admissions/[mainType]/[postType]';
+import AdmissionsPageContent from '@/app/[locale]/admissions/components/AdmissionsPageContent';
 import { AdmissionPageProps } from '@/app/[locale]/admissions/type';
 import { FETCH_TAG_INTERNATIONAL_GRADUATE } from '@/constants/network';
 import { internationalGraduateAdmission } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import AdmissionsPageContent from '../../components/AdmissionsPageContent';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

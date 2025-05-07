@@ -1,9 +1,8 @@
 import { getAcademicsGuide } from '@/apis/v2/academics/[studentType]/guide';
+import GuidePageContent from '@/app/[locale]/academics/components/guide/GuidePageContent';
 import { undergraduateGuide } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
 import { getPath } from '@/utils/page';
-
-import GuidePageContent from '../../components/guide/GuidePageContent';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;

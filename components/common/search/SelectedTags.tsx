@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import Tags from '../Tags';
+import Tags from '@/components/common/Tags';
 
 interface SelectedTagsProps {
   tags: string[];

@@ -1,8 +1,7 @@
 import { FacultyStatus } from '@/apis/types/people';
 import { getResearchLabs } from '@/apis/v2/research/lab';
+import FacultyCreatePageContent from '@/app/[locale]/people/faculty/create/FacultyCreatePageContent';
 import { Language } from '@/types/language';
-
-import FacultyCreatePageContent from './FacultyCreatePageContent';
 
 export default async function FacultyCreatePage(props: {
   params: Promise<{ locale: Language }>;

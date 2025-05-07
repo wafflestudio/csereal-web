@@ -1,8 +1,7 @@
 import { getStaff } from '@/apis/v2/staff/[id]';
+import StaffEditPageContent from '@/app/[locale]/people/staff/[id]/edit/StaffEditPageContent';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { Language } from '@/types/language';
-
-import StaffEditPageContent from './StaffEditPageContent';
 
 interface FacultyEditPageProps {
   params: Promise<{ id: string; locale: Language }>;

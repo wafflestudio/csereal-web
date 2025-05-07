@@ -1,4 +1,5 @@
 import { CouncilReport, getCouncilReportList } from '@/apis/v2/council/report';
+import NaviBarClose from '@/assets/NaviBar_Close.svg';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
@@ -6,8 +7,6 @@ import { councilReportList } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
-
-import NaviBarClose from './assets/NaviBar_Close.svg';
 
 export const dynamic = 'force-dynamic';
 

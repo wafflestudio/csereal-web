@@ -1,7 +1,6 @@
 import { getActiveFacultyList } from '@/apis/v2/professor/active';
 import { getResearchGroups } from '@/apis/v2/research/groups';
-
-import ResearchLabCreatePageContent from './ResearchLabCreatePageContent';
+import ResearchLabCreatePageContent from '@/app/[locale]/research/labs/create/ResearchLabCreatePageContent';
 
 export default async function ResearchLabCreatePage() {
   const [koLabs, enLabs, koFacultyList, enFacultyList] = await Promise.all([

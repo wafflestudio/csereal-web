@@ -1,10 +1,9 @@
 import { getCourses } from '@/apis/v2/academics/courses';
+import GraduateCoursePageContent from '@/app/[locale]/academics/graduate/courses/GraduateCoursePageContent';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { graduateCourses } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import GraduateCoursePageContent from './GraduateCoursePageContent';
 
 interface CoursePageProps {
   params: Promise<{ locale: Language }>;

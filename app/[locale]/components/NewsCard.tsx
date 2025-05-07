@@ -1,9 +1,8 @@
 import { MainNews } from '@/apis/types/main';
+import { CARD_WIDTH_TAILWIND } from '@/app/[locale]/components/constants';
 import Image from '@/components/common/Image';
 import { Link } from '@/i18n/routing';
 import { useDayjs } from '@/utils/hooks/useDayjs';
-
-import { CARD_WIDTH_TAILWIND } from './constants';
 
 export default function NewsCard({ news }: { news: MainNews }) {
   const formatDate = useDayjs();

@@ -1,6 +1,5 @@
+import NavbarButton from '@/app/[locale]/search/helper/NavbarButton';
 import { CurvedVerticalNode } from '@/components/common/Nodes';
-
-import NavbarButton from './NavbarButton';
 
 export type TreeNode = {
   name: string;

@@ -2,12 +2,13 @@
 
 import { putResearchCenterAction } from '@/actions/research';
 import { ResearchCenter } from '@/apis/types/research';
+import ResearchCenterEditor, {
+  ResearchCenterFormData,
+} from '@/app/[locale]/research/centers/components/ResearchCenterEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { WithLanguage } from '@/types/language';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
 export default function ResearchCenterEditPageContent({
   center,

@@ -1,7 +1,6 @@
 import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
+import GeneralStudiesEditPageContent from '@/app/[locale]/academics/undergraduate/general-studies-requirements/edit/GeneralStudiesEditPageContent';
 import { FETCH_TAG_GENERAL_STUDIES } from '@/constants/network';
-
-import GeneralStudiesEditPageContent from './GeneralStudiesEditPageContent';
 
 export default async function GeneralStudiesEditPage(props: {
   searchParams: Promise<{ year: string }>;

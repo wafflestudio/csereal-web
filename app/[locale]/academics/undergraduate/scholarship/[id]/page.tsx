@@ -1,10 +1,9 @@
 import { getScholarship } from '@/apis/v2/academics/scholarship/[id]';
+import ScholarshipDetail from '@/app/[locale]/academics/components/scholarship/ScholarshipDetail';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import { undergraduateScholarship } from '@/constants/segmentNode';
 import { Language } from '@/types/language';
 import { getMetadata } from '@/utils/metadata';
-
-import ScholarshipDetail from '../../../components/scholarship/ScholarshipDetail';
 
 interface ScholarshipDetailProps {
   params: Promise<{ locale: Language; id: string }>;

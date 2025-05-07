@@ -1,6 +1,5 @@
 import { getCouncilMinute } from '@/apis/v2/council/meeting-minute';
-
-import EditMinutePageContent from './EditMinutePageContent';
+import EditMinutePageContent from '@/app/[locale]/community/council/meeting-minute/edit/EditMinutePageContent';
 
 interface MinuteEditPageProps {
   searchParams: Promise<{ year: string; index: string }>;

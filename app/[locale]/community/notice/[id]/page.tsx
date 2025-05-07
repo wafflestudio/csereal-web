@@ -3,12 +3,11 @@ import { Suspense } from 'react';
 import { PostSearchQueryParams } from '@/apis/types/post';
 import { getNoticePostDetail } from '@/apis/v2/notice/[id]';
 import PostFallback from '@/app/[locale]/community/components/PostFallback';
+import NoticeViewer from '@/app/[locale]/community/notice/[id]/NoticeViewer';
 import InvalidIDFallback from '@/components/common/InvalidIDFallback';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { notice } from '@/constants/segmentNode';
 import { getMetadata } from '@/utils/metadata';
-
-import NoticeViewer from './NoticeViewer';
 
 export async function generateMetadata(props: NoticePostPageProps) {
   const searchParams = await props.searchParams;

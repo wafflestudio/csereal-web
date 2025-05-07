@@ -1,7 +1,6 @@
 import { getClubs } from '@/apis/v2/about/student-clubs';
+import StudentClubEditPageContent from '@/app/[locale]/about/student-clubs/edit/StudentClubEditPageContent';
 import { findItemBySearchParam } from '@/utils/findSelectedItem';
-
-import StudentClubEditPageContent from './StudentClubEditPageContent';
 
 interface StudentClubEditPageProps {
   searchParams: Promise<{ selected?: string }>;

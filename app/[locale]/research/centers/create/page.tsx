@@ -1,11 +1,12 @@
 'use client';
 
 import { postResearchCenterAction } from '@/actions/research';
+import ResearchCenterEditor, {
+  ResearchCenterFormData,
+} from '@/app/[locale]/research/centers/components/ResearchCenterEditor';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';
 import { contentToFormData } from '@/utils/formData';
 import { handleServerResponse } from '@/utils/serverActionError';
-
-import ResearchCenterEditor, { ResearchCenterFormData } from '../components/ResearchCenterEditor';
 
 export default function ResearchCenterCreatePage() {
   const onSubmit = async ({ image, ...requestObject }: ResearchCenterFormData) => {

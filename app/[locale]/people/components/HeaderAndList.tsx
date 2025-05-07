@@ -1,4 +1,4 @@
-import BulletRow from './BulletRow';
+import BulletRow from '@/app/[locale]/people/components/BulletRow';
 
 interface PeopleInfoListProps {
   header: string;

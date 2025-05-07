@@ -5,9 +5,8 @@ import { useState } from 'react';
 
 import { SegmentNode } from '@/constants/segmentNode';
 import { useRouter } from '@/i18n/routing';
+import ENG_NAMES from '@/messages/en.json';
 import { getPath } from '@/utils/page';
-
-import ENG_NAMES from '../../../messages/en.json';
 
 // TODO: RootItem을 클릭했을 때 LeafItem이 보이도록 자동 스크롤
 export default function CategoryGrid({

@@ -1,7 +1,6 @@
 import { putDegreeRequirementsAction } from '@/actions/academics';
 import { getDegreeRequirements } from '@/apis/v2/academics/undergraduate/degree-requirements';
-
-import DegreeRequirementsEditor from './DegreeRequirementsEditor';
+import DegreeRequirementsEditor from '@/app/[locale]/academics/undergraduate/degree-requirements/edit/DegreeRequirementsEditor';
 
 export default async function DegreeRequirementsEditPage() {
   const data = await getDegreeRequirements();

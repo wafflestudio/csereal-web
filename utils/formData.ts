@@ -1,7 +1,6 @@
 import { Attachment } from '@/apis/types/attachment';
 import { EditorFile, EditorImage, isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
-
-import { encodeFormDataFileName } from './string';
+import { encodeFormDataFileName } from '@/utils/string';
 
 export const contentToFormData = (
   type: 'CREATE' | 'EDIT',

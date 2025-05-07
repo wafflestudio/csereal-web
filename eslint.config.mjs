@@ -73,18 +73,28 @@ export default [
       'no-restricted-imports': [
         'error',
         {
-          name: 'next/link',
-          message: 'Please import from `@/i18n/routing` instead.',
-        },
-        {
-          name: 'next/navigation',
-          importNames: ['redirect', 'permanentRedirect', 'useRouter', 'usePathname'],
-          message: 'Please import from `@/i18n/routing` instead.',
-        },
-        {
-          name: 'next/image',
-          importNames: ['default'],
-          message: 'CSP 문제로 @/components/common/image를 사용해주세요.',
+          paths: [
+            {
+              name: 'next/link',
+              message: 'Please import from `@/i18n/routing` instead.',
+            },
+            {
+              name: 'next/navigation',
+              importNames: ['redirect', 'permanentRedirect', 'useRouter', 'usePathname'],
+              message: 'Please import from `@/i18n/routing` instead.',
+            },
+            {
+              name: 'next/image',
+              importNames: ['default'],
+              message: 'CSP 문제로 @/components/common/image를 사용해주세요.',
+            },
+          ],
+          patterns: [
+            {
+              group: ['../*', './*', './'],
+              message: '상대 경로 대신 절대 경로를 사용해주세요.',
+            },
+          ],
         },
       ],
     },
