@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import LoginVisible from '@/components/common/LoginVisible';
 import HeaderSearchBar from '@/components/layout/header/HeaderSearchBar';
 import { isProd } from '@/constants/env';
-import { useSessionContext } from '@/contexts/SessionContext';
 import { Link } from '@/i18n/routing';
+import { useSessionStore } from '@/stores/SessionStore';
 import useLanguage from '@/utils/hooks/useLanguage';
 
 export default function HeaderRight() {
@@ -41,7 +41,9 @@ const Divider = () => {
 };
 
 const ProdLogin = () => {
-  const { state, login, logout } = useSessionContext();
+  const state = useSessionStore((s) => s.state);
+  const login = useSessionStore((s) => s.login);
+  const logout = useSessionStore((s) => s.logout);
   const t = useTranslations('Header');
 
   const authText = t(state === 'logout' ? '로그인' : '로그아웃');
@@ -55,7 +57,9 @@ const ProdLogin = () => {
 };
 
 const DevLogin = () => {
-  const { state, mockLogin, mockLogout } = useSessionContext();
+  const state = useSessionStore((s) => s.state);
+  const mockLogin = useSessionStore((s) => s.mockLogin);
+  const mockLogout = useSessionStore((s) => s.mockLogout);
 
   const isLogout = state === 'logout';
 

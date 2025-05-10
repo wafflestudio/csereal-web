@@ -1,10 +1,10 @@
 import NavTreeLabel from '@/components/layout/navbar/NavtreeRow';
 import { SegmentNode } from '@/constants/segmentNode';
-import { useNavbarContext } from '@/contexts/NavbarContext';
+import { useNavbarStore } from '@/stores/NavbarStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 
 export default function MobileNavDetail() {
-  const { navbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState);
   const curNode = useCurrentSegmentNode();
 
   if (navbarState.type !== 'hovered') return <></>;

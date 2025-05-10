@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 
 import { Role } from '@/apis/types/role';
-import { useSessionContext } from '@/contexts/SessionContext';
+import { useSessionStore } from '@/stores/SessionStore';
 
 type Props = {
   fallback?: ReactNode;
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function LoginVisible({ staff, children, fallback, role }: Props) {
-  const { state } = useSessionContext();
+  const state = useSessionStore((s) => s.state);
 
   if (state === 'logout') return fallback;
   if (staff && state !== 'ROLE_STAFF') return fallback;

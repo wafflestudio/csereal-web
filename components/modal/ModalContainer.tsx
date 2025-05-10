@@ -1,10 +1,10 @@
 'use client';
 
+import { useModalStore } from '@/stores/ModalStore';
 import { Fragment } from 'react';
 
-import { useModalStateContext } from '@/contexts/ModalContext';
-
 export default function ModalContainer() {
-  const openedModals = useModalStateContext();
-  return openedModals.map((modal, idx) => <Fragment key={idx}>{modal}</Fragment>);
+  const modals = useModalStore((state) => state.modals);
+  return modals.map((Modal, index) => <Fragment key={index}>{Modal}</Fragment>);
+
 }

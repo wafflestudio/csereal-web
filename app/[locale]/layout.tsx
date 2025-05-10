@@ -17,9 +17,6 @@ import MobileNav from '@/components/layout/navbar/MobileNav';
 import Navbar from '@/components/layout/navbar/Navbar';
 import ModalContainer from '@/components/modal/ModalContainer';
 import { isBeta, isProd } from '@/constants/env';
-import ModalContextProvider from '@/contexts/ModalContext';
-import { NavbarContextProvider } from '@/contexts/NavbarContext';
-import SessionContextProvider from '@/contexts/SessionContext';
 import { Link, routing } from '@/i18n/routing';
 
 const PROD_URL = 'https://cse.snu.ac.kr';
@@ -86,11 +83,7 @@ async function ContextProviders({ locale, children }: { locale: string; children
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <SessionContextProvider>
-        <ModalContextProvider>
-          <NavbarContextProvider>{children}</NavbarContextProvider>
-        </ModalContextProvider>
-      </SessionContextProvider>
+          {children}
     </NextIntlClientProvider>
   );
 }

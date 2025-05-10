@@ -5,16 +5,16 @@ import { useState } from 'react';
 
 import MobileNavDetail from '@/components/layout/navbar/MobileNavDetail';
 import { main, SegmentNode } from '@/constants/segmentNode';
-import { useNavbarContext } from '@/contexts/NavbarContext';
-import { useSessionContext } from '@/contexts/SessionContext';
 import { useRouter } from '@/i18n/routing';
+import { useNavbarStore } from '@/stores/NavbarStore';
+import { useSessionStore } from '@/stores/SessionStore';
 import useCurrentSegmentNode from '@/utils/hooks/useCurrentSegmentNode';
 import useLanguage from '@/utils/hooks/useLanguage';
 import { isAncestorNode } from '@/utils/page';
 
 // TODO: 모바일에서 MajorCategoryPageLayout 처리
 export default function MobileNav() {
-  const { navbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState);
   if (navbarState.type !== 'hovered') return <></>;
 
   return (
@@ -26,7 +26,8 @@ export default function MobileNav() {
 }
 
 function MobileNavList() {
-  const { navbarState, setNavbarState } = useNavbarContext();
+  const navbarState = useNavbarStore((s) => s.navbarState); 
+  const setNavbarState = useNavbarStore((s) => s.setNavbarState);
   const [search, setSearch] = useState(false);
 
   const cur = useCurrentSegmentNode();
@@ -93,7 +94,9 @@ const SearchPage = () => {
 };
 
 const AuthButton = () => {
-  const { state, login, logout } = useSessionContext();
+  const state = useSessionStore((s) => s.state);
+  const login = useSessionStore((s) => s.login);
+  const logout = useSessionStore((s) => s.logout);
 
   return (
     <button onClick={state === 'logout' ? login : logout} className="mt-6">
