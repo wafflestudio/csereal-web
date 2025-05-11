@@ -8,7 +8,7 @@ on:
       - '**'
 
 jobs:
-  random-reviwer:
+  random-reviewer:
     runs-on: ubuntu-latest
     steps:
       - id: random_reviewer
@@ -29,14 +29,6 @@ jobs:
               per_page: 10
             });
 
-            const reviewCounts = candidateList.reduce(
-              (acc, reviewer) => {
-                acc[reviewer] = 0;
-                return acc;
-              },
-              {}
-            );
-
             const reviewerPromises = recentPRs.data.map(pr =>
               github.rest.pulls.listRequestedReviewers({
                 owner: context.repo.owner,
@@ -46,6 +38,14 @@ jobs:
             );
 
             const reviewersResults = await Promise.all(reviewerPromises);
+
+            const reviewCounts = candidateList.reduce(
+              (acc, reviewer) => {
+                acc[reviewer] = 0;
+                return acc;
+              },
+              {}
+            );
 
             reviewersResults.map(
               reviewers => reviewers.data.users.map(
