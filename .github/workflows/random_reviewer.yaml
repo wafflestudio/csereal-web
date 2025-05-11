@@ -29,10 +29,13 @@ jobs:
               per_page: 10
             });
 
-            const reviewCounts = {};
-            candidateList.map(reviewer => {
-              reviewCounts[reviewer] = 0;
-            });
+            const reviewCounts = candidateList.reduce(
+              (acc, reviewer) => {
+                acc[reviewer] = 0;
+                return acc;
+              },
+              {}
+            );
 
             const reviewerPromises = recentPRs.data.map(pr =>
               github.rest.pulls.listRequestedReviewers({
