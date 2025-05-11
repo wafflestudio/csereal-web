@@ -53,23 +53,32 @@ export default function ScholarshipEditor({
     <FormProvider {...formMethods}>
       <Form>
         <LanguagePicker selected={language} onChange={setLanguage} />
-        {language === 'ko' && <Editor language="ko" />}
-        {language === 'en' && <Editor language="en" />}
+        <Fieldset.Title>
+          <Form.Text
+            name="koName"
+            options={{ required: '한국어 장학금 이름을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.Text
+            name="enName"
+            options={{ required: '영어 장학금 이름을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
+        </Fieldset.Title>
+        <Fieldset.HTML>
+          <Form.HTML
+            name="koDescription"
+            options={{ required: '한국어 장학금 설명을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.HTML
+            name="enDescription"
+            options={{ required: '영어 장학금 설명을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
+        </Fieldset.HTML>
         <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
       </Form>
     </FormProvider>
   );
 }
-
-const Editor = ({ language }: { language: Language }) => {
-  return (
-    <>
-      <Fieldset.Title>
-        <Form.Text name={`${language}Name`} options={{ required: true }} />
-      </Fieldset.Title>
-      <Fieldset.HTML>
-        <Form.HTML name={`${language}Description`} options={{ required: true }} />
-      </Fieldset.HTML>
-    </>
-  );
-};
