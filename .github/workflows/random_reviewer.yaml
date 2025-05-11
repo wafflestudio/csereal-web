@@ -30,22 +30,29 @@ jobs:
             });
 
             const reviewCounts = {};
-            candidateList.forEach(reviewer => {
+            candidateList.map(reviewer => {
               reviewCounts[reviewer] = 0;
             });
 
-            for (const pr of recentPRs.data) {
-              const reviewers = await github.rest.pulls.listRequestedReviewers({
+            const reviewerPromises = recentPRs.data.map(pr =>
+              github.rest.pulls.listRequestedReviewers({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr.number
-              });
-              for (const reviewer of reviewers.data.users) {
-                if (reviewCounts[reviewer.login] !== undefined) {
-                  reviewCounts[reviewer.login]++;
+              })
+            );
+
+            const reviewersResults = await Promise.all(reviewerPromises);
+
+            reviewersResults.map(
+              reviewers => reviewers.data.users.map(
+                reviewer => {
+                  if (reviewCounts[reviewer.login] !== undefined) {
+                        reviewCounts[reviewer.login]++;
+                      }
                 }
-              }
-            }
+              )
+            )
 
             const minCount = Math.min(...Object.values(reviewCounts));
             const leastAssignedReviewers = Object.keys(reviewCounts).filter(
