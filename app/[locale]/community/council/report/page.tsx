@@ -1,5 +1,5 @@
 import { CouncilReport, getCouncilReportList } from '@/apis/v2/council/report';
-import NaviBarClose from '@/assets/NaviBar_Close.svg';
+import NaviBarClose from '@/app/[locale]/community/council/report/assets/NaviBar_Close.svg';
 import Image from '@/components/common/Image';
 import LoginVisible from '@/components/common/LoginVisible';
 import PageLayout from '@/components/layout/pageLayout/PageLayout';

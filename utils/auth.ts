@@ -1,10 +1,8 @@
-import { UserState } from '@/contexts/SessionContext';
-
 /**
  * 페이지별 권한 검사
  * 권한간의 계층관계가 명확하지 않으므로(요구사항이 바뀔 수도 있으므로) 배열로 반환
  */
-export const getRequiredAuth = (pathname: string): UserState[] => {
+export const getRequiredAuth = (pathname: string) => {
   if (pathname.startsWith('/en')) pathname = pathname.slice(3);
 
   const segments = pathname.split('/').filter(Boolean);

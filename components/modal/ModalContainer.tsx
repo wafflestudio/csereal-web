@@ -1,7 +1,8 @@
 'use client';
 
-import { useModalStore } from '@/stores/ModalStore';
 import { Fragment } from 'react';
+
+import { useModalStore } from '@/stores/ModalStore';
 
 export default function ModalContainer() {
   const modals = useModalStore((state) => state.modals);

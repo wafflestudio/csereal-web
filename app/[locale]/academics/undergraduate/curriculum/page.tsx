@@ -1,4 +1,4 @@
-import './style.css';
+import '@/app/[locale]/academics/undergraduate/curriculum/style.css';
 
 import { getAcademicsByPostType } from '@/apis/v2/academics/[studentType]/[postType]';
 import CurriculumPageContent from '@/app/[locale]/academics/undergraduate/curriculum/CurriculumPageContent';
