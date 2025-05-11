@@ -8,6 +8,7 @@ interface BasicTextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   maxWidth?: string;
   bgColor?: string;
   textCenter?: boolean;
+  isHidden?: boolean;
 }
 
 export default function Text({
@@ -17,9 +18,13 @@ export default function Text({
   name,
   options,
   className,
+  isHidden,
   ...props
 }: BasicTextInputProps) {
   const { register } = useFormContext();
+  const registerReturn = register(name, options);
+
+  if (isHidden) return null;
 
   return (
     <input
@@ -33,7 +38,7 @@ export default function Text({
         className,
       )}
       {...props}
-      {...register(name, options)}
+      {...registerReturn}
     />
   );
 }
