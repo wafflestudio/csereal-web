@@ -12,7 +12,8 @@
     "start:prod": "cross-env NEXT_PUBLIC_PHASE=prod NODE_ENV=production node server.mjs",
     "postbuild": "next-sitemap",
     "knip": "knip",
-    "test": "playwright test"
+    "test": "playwright test",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
