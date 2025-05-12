@@ -39,23 +39,18 @@ jobs:
 
             const reviewersResults = await Promise.all(reviewerPromises);
 
-            const reviewCounts = candidateList.reduce(
-              (acc, reviewer) => {
-                acc[reviewer] = 0;
-                return acc;
-              },
-              {}
-            );
+            const reviewCounts = {};
+            for (const reviewer of candidateList) {
+              reviewCounts[reviewer] = 0;
+            }
 
-            reviewersResults.map(
-              reviewers => reviewers.data.users.map(
-                reviewer => {
-                  if (reviewCounts[reviewer.login] !== undefined) {
-                        reviewCounts[reviewer.login]++;
-                      }
+            for (const reviewers of reviewersResults) {
+              for (const reviewer of reviewers.data.users) {
+                if (reviewCounts[reviewer.login] !== undefined) {
+                  reviewCounts[reviewer.login]++;
                 }
-              )
-            )
+              }
+            }
 
             const minCount = Math.min(...Object.values(reviewCounts));
             const leastAssignedReviewers = Object.keys(reviewCounts).filter(
