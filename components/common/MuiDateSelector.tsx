@@ -1,4 +1,4 @@
-import './calendar.css';
+import '@/components/common/calendar.css';
 
 import dayjs, { Dayjs } from 'dayjs';
 import Calendar from 'react-calendar';

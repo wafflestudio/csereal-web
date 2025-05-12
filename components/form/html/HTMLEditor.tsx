@@ -1,7 +1,7 @@
 'use client';
 
-import './suneditor.css';
-import './suneditor-contents.css';
+import '@/components/form/html/suneditor.css';
+import '@/components/form/html/suneditor-contents.css';
 
 import { useEffect, useState } from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
