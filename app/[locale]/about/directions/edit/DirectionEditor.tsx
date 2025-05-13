@@ -48,8 +48,16 @@ export default function DirectionEditor({ data }: { data: WithLanguage<Direction
           <LanguagePicker onChange={setLanguage} selected={language} />
 
           <Fieldset.HTML>
-            {language === 'ko' && <Form.HTML name="htmlKo" options={{ required: true }} />}
-            {language === 'en' && <Form.HTML name="htmlEn" />}
+            <Form.HTML
+              name="htmlKo"
+              options={{ required: '한국어 찾아오는 길을 입력해주세요.' }}
+              isHidden={language === 'en'}
+            />
+            <Form.HTML
+              name="htmlEn"
+              options={{ required: '영어 찾아오는 길을 입력해주세요.' }}
+              isHidden={language === 'ko'}
+            />
           </Fieldset.HTML>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>

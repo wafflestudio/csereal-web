@@ -1,4 +1,5 @@
-import type { UserState } from '@/stores/SessionStore';
+import { UserState } from '@/stores/SessionStore';
+
 /**
  * 페이지별 권한 검사
  * 권한간의 계층관계가 명확하지 않으므로(요구사항이 바뀔 수도 있으므로) 배열로 반환

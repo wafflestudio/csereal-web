@@ -42,18 +42,20 @@ export default function AdmissionsEditor({
     <FormProvider {...formMethods}>
       <Form>
         <LanguagePicker selected={language} onChange={setLanguage} />
-        {language === 'ko' && <Editor language="ko" />}
-        {language === 'en' && <Editor language="en" />}
+        <Fieldset.HTML>
+          <Form.HTML
+            name="ko"
+            options={{ required: '한국어 입학 본문을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.HTML
+            name="en"
+            options={{ required: '영어 입학 본문을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
+        </Fieldset.HTML>
         <Form.Action onCancel={onCancel} onSubmit={handleSubmit(onSubmit)} />
       </Form>
     </FormProvider>
   );
 }
-
-const Editor = ({ language }: { language: Language }) => {
-  return (
-    <Fieldset.HTML>
-      <Form.HTML name={language} options={{ required: true }} />
-    </Fieldset.HTML>
-  );
-};

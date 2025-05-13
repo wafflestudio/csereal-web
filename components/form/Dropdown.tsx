@@ -14,6 +14,7 @@ interface DropdownProps {
   isDisabled?: boolean;
   rules?: Rules;
   onChange?: (value: unknown) => void;
+  isHidden?: boolean;
 }
 
 export default function Dropdown({
@@ -25,6 +26,7 @@ export default function Dropdown({
   isDisabled,
   rules,
   onChange: onChangeFromProp,
+  isHidden,
 }: DropdownProps) {
   const {
     field: { value, onChange: onChangeFromController },
@@ -49,6 +51,8 @@ export default function Dropdown({
     onChange(contents[index].value);
     toggleExpanded();
   };
+
+  if (isHidden) return null;
 
   return (
     <div className="relative select-none" ref={ref}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { postFacilityAction } from '@/actions/about';
@@ -33,11 +33,20 @@ export default function FacilityCreator() {
   });
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('ko');
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, setError } = formMethods;
 
   const onCancel = () => router.push(facilitiesPath);
 
   const onSubmit = handleSubmit(async (_formData) => {
+    if (_formData.ko.locations.length === 0) {
+      setError('ko.locations', { message: '한국어 시설 위치를 입력해주세요.' });
+      return;
+    }
+    if (_formData.en.locations.length === 0) {
+      setError('en.locations', { message: '영어 시설 위치를 입력해주세요.' });
+      return;
+    }
+
     const formData = contentToFormData('CREATE', {
       requestObject: _formData,
       image: _formData.imageURL,
@@ -51,22 +60,40 @@ export default function FacilityCreator() {
       <FormProvider {...formMethods}>
         <LanguagePicker onChange={setSelectedLanguage} selected={selectedLanguage} />
 
-        {['ko', 'en'].map(
-          (language) =>
-            language === selectedLanguage && (
-              <Fragment key={language}>
-                <Fieldset title="시설명" mb="mb-8" titleMb="mb-2" required>
-                  <Form.Text name={`${language}.name`} maxWidth="max-w-[30rem]" />
-                </Fieldset>
-                <Fieldset title="시설 설명" mb="mb-10" titleMb="mb-2" required>
-                  <Form.HTML name={`${language}.description`} options={{ required: true }} />
-                </Fieldset>
-                <Fieldset title="시설 위치" mb="mb-8" titleMb="mb-2" required>
-                  <Form.TextList name={`${language}.locations`} placeholder="예: 301동 315호" />
-                </Fieldset>
-              </Fragment>
-            ),
-        )}
+        <Fieldset title="시설명" mb="mb-8" titleMb="mb-2" required>
+          <Form.Text
+            name="ko.name"
+            maxWidth="max-w-[30rem]"
+            options={{ required: '한국어 시설명을 입력해주세요.' }}
+            isHidden={selectedLanguage === 'en'}
+          />
+          <Form.Text
+            name="en.name"
+            maxWidth="max-w-[30rem]"
+            options={{ required: '영어 시설명을 입력해주세요.' }}
+            isHidden={selectedLanguage === 'ko'}
+          />
+        </Fieldset>
+        <Fieldset title="시설 설명" mb="mb-10" titleMb="mb-2" required>
+          <Form.HTML
+            name="ko.description"
+            options={{ required: '한국어 시설 설명을 입력해주세요.' }}
+            isHidden={selectedLanguage === 'en'}
+          />
+          <Form.HTML
+            name="en.description"
+            options={{ required: '영어 시설 설명을 입력해주세요.' }}
+            isHidden={selectedLanguage === 'ko'}
+          />
+        </Fieldset>
+        <Fieldset title="시설 위치" mb="mb-8" titleMb="mb-2" required>
+          {selectedLanguage === 'ko' && (
+            <Form.TextList name="ko.locations" placeholder="예: 301동 315호" />
+          )}
+          {selectedLanguage === 'en' && (
+            <Form.TextList name="en.locations" placeholder="예: 301동 315호" />
+          )}
+        </Fieldset>
 
         <Fieldset title="시설 사진" mb="mb-12" titleMb="mb-2">
           <label className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">

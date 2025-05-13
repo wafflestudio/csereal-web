@@ -53,10 +53,27 @@ const ErrorMessages = () => {
   } = useFormContext();
 
   return (
-    <ul className="text-md text-[#FF0000]">
-      {Object.values(errors).map((error, idx) => (
-        <li key={idx}>{error?.message?.toString()}</li>
-      ))}
+    <ul className="absolute -top-2 -translate-y-full text-sm text-[#FF0000]">
+      {Object.entries(errors).map(([fieldName, error], idx) => {
+        if (error === undefined) {
+          return null;
+        }
+
+        if (error.message) {
+          return (
+            <li key={idx}>
+              {fieldName}: {error.message.toString()}
+            </li>
+          );
+        }
+
+        // 3 뎁스는 없겠지...
+        return Object.entries(error).map(([fieldName2, error], idx) => (
+          <li key={idx} className="ml-2">
+            {fieldName}.{fieldName2}: {error?.message?.toString()}
+          </li>
+        ));
+      })}
     </ul>
   );
 };

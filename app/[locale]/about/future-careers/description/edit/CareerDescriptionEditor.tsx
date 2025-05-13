@@ -39,8 +39,16 @@ export default function CareerDescriptionEditor({ data }: { data: WithLanguage<s
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
           <Fieldset.HTML>
-            {language === 'ko' && <Form.HTML name="ko" options={{ required: true }} />}
-            {language === 'en' && <Form.HTML name="en" />}
+            <Form.HTML
+              name="ko"
+              options={{ required: '한국어 내용을 입력해주세요.' }}
+              isHidden={language === 'en'}
+            />
+            <Form.HTML
+              name="en"
+              options={{ required: '영어 내용을 입력해주세요.' }}
+              isHidden={language === 'ko'}
+            />
           </Fieldset.HTML>
           <Form.Action onCancel={onCancel} onSubmit={onSubmit} />
         </Form>
