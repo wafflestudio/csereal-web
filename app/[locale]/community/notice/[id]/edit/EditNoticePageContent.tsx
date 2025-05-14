@@ -30,6 +30,8 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
     isPrivate: data.isPrivate,
     isImportant: data.isImportant,
     isPinned: data.isPinned,
+    pinnedUntil: data.pinnedUntil ? new Date(data.pinnedUntil) : new Date(),
+    importantUntil: data.importantUntil ? new Date(data.importantUntil) : new Date(), 
   };
 
   const onCancel = () => router.push(`${noticePath}/${id}`);
@@ -55,13 +57,15 @@ export default function EditNoticePageContent({ id, data }: { id: number; data: 
             isPrivate: content.isPrivate,
             isPinned: content.isPinned,
             isImportant: content.isImportant,
+            pinnedUntil: content.pinnedUntil.toISOString().slice(0, 10), 
+            importantUntil: content.importantUntil.toISOString().slice(0, 10),
             tags: content.tags,
             deleteIds,
           }),
         ],
         {
           type: 'application/json',
-        },
+        }
       ),
     );
 
