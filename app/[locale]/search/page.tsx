@@ -2,10 +2,9 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
+import SearchPageTitle from '@/app/[locale]/search/SearchPageTitle';
 import SearchBox from '@/components/common/search/SearchBox';
 import Header from '@/components/layout/header/Header';
-import PageTitle from '@/components/layout/pageLayout/PageTitle';
-import { main } from '@/constants/segmentNode';
 import { SEARCH_TAGS } from '@/constants/tag';
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 import { getMetadata } from '@/utils/metadata';
@@ -52,7 +51,12 @@ export default async function SearchPage(props: {
   if (keyword.length < 2)
     return (
       <SearchPageLayout>
-        <KeywordShortError />
+        <div className="flex flex-col items-center">
+          <p className="text-base font-medium text-neutral-300">
+            검색어를 두글자 이상 입력해주세요
+          </p>
+          <MagnificentGlass />
+        </div>
       </SearchPageLayout>
     );
 
@@ -96,21 +100,12 @@ const SearchPageLayout = ({ node, children }: { node?: TreeNode[]; children?: Re
     <div className="flex grow flex-col bg-neutral-900">
       <Header />
       {/* TODO: 임시로 넣은 main 교체 */}
-      <PageTitle title={'통합 검색'} currentPage={main} titleType={'big'} margin={'mb-11'} />
+      <SearchPageTitle />
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
         <SearchBox tags={SEARCH_TAGS} formOnly />
         {children}
         {node !== undefined && <SearchSubNavbar node={node} />}
       </div>
-    </div>
-  );
-};
-
-const KeywordShortError = () => {
-  return (
-    <div className="flex flex-col items-center">
-      <p className="text-base font-medium text-neutral-300">검색어를 두글자 이상 입력해주세요</p>
-      <MagnificentGlass />
     </div>
   );
 };
