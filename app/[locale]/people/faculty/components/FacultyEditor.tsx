@@ -91,6 +91,40 @@ export default function FacultyEditor({
         </Fieldset>
 
         <LanguagePicker selected={language} onChange={setLanguage} />
+
+        {/* 필수값 처리를 위해 이름과 직함만 분리 */}
+        <Fieldset title="이름" mb="mb-5" titleMb="mb-2" required>
+          <Form.Text
+            name={`ko.name`}
+            maxWidth="max-w-[30rem]"
+            options={{ required: '한국어 이름을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.Text
+            name={`en.name`}
+            maxWidth="max-w-[30rem]"
+            options={{ required: '영어 이름을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
+        </Fieldset>
+
+        <Fieldset title="직함" mb="mb-10" titleMb="mb-2" required>
+          <Form.Text
+            name="ko.academicRank"
+            maxWidth="max-w-[30rem]"
+            placeholder="예: 교수, 조교수, 명예교수 등"
+            options={{ required: '한국어 직함을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.Text
+            name="en.academicRank"
+            maxWidth="max-w-[30rem]"
+            placeholder="예: 교수, 조교수, 명예교수 등"
+            options={{ required: '영어 직함을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
+        </Fieldset>
+
         {language === 'ko' && <Editor language="ko" labs={labs} />}
         {language === 'en' && <Editor language="en" labs={labs} />}
 
@@ -114,23 +148,6 @@ const Editor = ({
 }) => {
   return (
     <>
-      <Fieldset title="이름" mb="mb-5" titleMb="mb-2" required>
-        <Form.Text
-          name={`${language}.name`}
-          maxWidth="max-w-[30rem]"
-          options={{ required: true }}
-        />
-      </Fieldset>
-
-      <Fieldset title="직함" mb="mb-10" titleMb="mb-2" required>
-        <Form.Text
-          name={`${language}.academicRank`}
-          maxWidth="max-w-[30rem]"
-          placeholder="예: 교수, 조교수, 명예교수 등"
-          options={{ required: true }}
-        />
-      </Fieldset>
-
       <DateSection language={language} />
 
       <Fieldset title="사진" mb="mb-12" titleMb="mb-2">

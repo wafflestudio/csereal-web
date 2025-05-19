@@ -7,9 +7,10 @@ import { LocalImage, UploadedImage } from '@/types/form';
 interface Props {
   name: string;
   options?: RegisterOptions;
+  isHidden?: boolean;
 }
 
-export default function ImagePicker({ name, options }: Props) {
+export default function ImagePicker({ name, options, isHidden }: Props) {
   const { register, setValue } = useFormContext();
   register(name, options);
   const file = useWatch({ name });
@@ -19,6 +20,8 @@ export default function ImagePicker({ name, options }: Props) {
     if (!e.target.files || e.target.files.length === 0) return;
     setValue(name, { type: 'LOCAL_IMAGE', file: e.target.files[0] });
   };
+
+  if (isHidden) return null;
 
   return (
     <>

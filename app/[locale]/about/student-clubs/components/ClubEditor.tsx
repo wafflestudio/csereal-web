@@ -35,13 +35,29 @@ export default function ClubEditor({ defaultValues, onSubmit }: Props) {
         <LanguagePicker onChange={setLanguage} selected={language} />
 
         <Fieldset.Title>
-          {language === 'ko' && <Form.Text name="ko.name" options={{ required: true }} />}
-          {language === 'en' && <Form.Text name="en.name" />}
+          <Form.Text
+            name="ko.name"
+            options={{ required: '한국어 동아리 이름을 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.Text
+            name="en.name"
+            options={{ required: '영어 동아리 이름을 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
         </Fieldset.Title>
 
         <Fieldset.HTML>
-          {language === 'ko' && <Form.HTML name="ko.description" options={{ required: true }} />}
-          {language === 'en' && <Form.HTML name="en.description" />}
+          <Form.HTML
+            name="ko.description"
+            options={{ required: '한국어 동아리 소개를 입력해주세요.' }}
+            isHidden={language === 'en'}
+          />
+          <Form.HTML
+            name="en.description"
+            options={{ required: '영어 동아리 소개를 입력해주세요.' }}
+            isHidden={language === 'ko'}
+          />
         </Fieldset.HTML>
 
         <Fieldset.Image>
