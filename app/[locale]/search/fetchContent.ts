@@ -72,7 +72,7 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
   const noticeTotal = sectionContent[1]?.total;
   const newsTotal = sectionContent[2]?.total;
   const seminarTotal = sectionContent[3]?.total;
-  const sectionTotal = noticeTotal && (noticeTotal ?? 0) + (newsTotal ?? 0) + (seminarTotal ?? 0);
+  const sectionTotal = (noticeTotal ?? 0) + (newsTotal ?? 0) + (seminarTotal ?? 0);
   node.push({
     name: `소식`,
     size: sectionTotal,
