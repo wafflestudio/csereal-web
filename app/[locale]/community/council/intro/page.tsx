@@ -39,7 +39,7 @@ export default async function CouncilIntroPage() {
           alt="학생회_구성도"
           width={580}
           height={435}
-          className="w-full object-contain sm:w-[580px]"
+          className="w-full object-contain"
         />
       </div>
       <div className="px-5 pb-16 pt-10 sm:pl-[6.25rem] sm:pr-[22.5rem]">
