@@ -17,6 +17,7 @@ import { searchNotice } from '@/apis/v2/notice/totalSearch';
 import { searchResearch } from '@/apis/v2/research/search/top';
 import { getSeminarPosts } from '@/apis/v2/seminar';
 import { TreeNode } from '@/app/[locale]/search/helper/SearchSubNavbar';
+import { SEARCH_SECTION_LABELS, SearchTag } from '@/constants/tag';
 
 type SectionContent = [
   about?: AboutSearchResult,
@@ -35,20 +36,28 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
 
   // fetch
   const sectionContent: SectionContent = await Promise.all([
-    isSectionVisible('소개', tag) ? searchAbout({ keyword, number: 3, amount: 200 }) : undefined,
-    isSectionVisible('소식', tag) ? searchNotice({ keyword, number: 3, amount: 200 }) : undefined,
-    isSectionVisible('소식', tag) ? searchNews({ keyword, number: 3, amount: 200 }) : undefined,
-    isSectionVisible('소식', tag) ? getSeminarPosts({ keyword, pageNum: '1' }) : undefined,
-    isSectionVisible('구성원', tag)
+    isSectionVisible(SEARCH_SECTION_LABELS.ABOUT, tag)
+      ? searchAbout({ keyword, number: 3, amount: 200 })
+      : undefined,
+    isSectionVisible(SEARCH_SECTION_LABELS.NOTICE, tag)
+      ? searchNotice({ keyword, number: 3, amount: 200 })
+      : undefined,
+    isSectionVisible(SEARCH_SECTION_LABELS.NOTICE, tag)
+      ? searchNews({ keyword, number: 3, amount: 200 })
+      : undefined,
+    isSectionVisible(SEARCH_SECTION_LABELS.NOTICE, tag)
+      ? getSeminarPosts({ keyword, pageNum: '1' })
+      : undefined,
+    isSectionVisible(SEARCH_SECTION_LABELS.MEMBER, tag)
       ? searchMember({ keyword, number: 10, amount: 200 })
       : undefined,
-    isSectionVisible('연구·교육', tag)
+    isSectionVisible(SEARCH_SECTION_LABELS.RESEARCH, tag)
       ? searchResearch({ keyword, number: 3, amount: 200 })
       : undefined,
-    isSectionVisible('입학', tag)
+    isSectionVisible(SEARCH_SECTION_LABELS.ADMISSION, tag)
       ? searchAdmissions({ keyword, number: 3, amount: 200 })
       : undefined,
-    isSectionVisible('학사 및 교과', tag)
+    isSectionVisible(SEARCH_SECTION_LABELS.ACADEMICS, tag)
       ? searchAcademics({ keyword, number: 3, amount: 200 })
       : undefined,
   ]);
@@ -59,12 +68,12 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
   // 서브네비 구성
   const node: TreeNode[] = [];
   node.push({
-    name: `전체`,
+    name: '전체',
     size: tag === undefined || tag.length === 0 ? total : undefined,
     bold: noTag,
   });
   node.push({
-    name: `소개`,
+    name: SEARCH_SECTION_LABELS.ABOUT,
     size: sectionContent[0]?.total,
     bold: !noTag && sectionContent[0] !== undefined,
   });
@@ -74,33 +83,33 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
   const seminarTotal = sectionContent[3]?.total;
   const sectionTotal = (noticeTotal ?? 0) + (newsTotal ?? 0) + (seminarTotal ?? 0);
   node.push({
-    name: `소식`,
+    name: SEARCH_SECTION_LABELS.NOTICE,
     size: sectionTotal,
     children: [
-      { name: `공지사항`, size: noticeTotal },
-      { name: `새 소식`, size: newsTotal },
-      { name: `세미나`, size: seminarTotal },
+      { name: SEARCH_SECTION_LABELS.NOTICE_CHILDREN.NOTICE, size: noticeTotal },
+      { name: SEARCH_SECTION_LABELS.NOTICE_CHILDREN.NEWS, size: newsTotal },
+      { name: SEARCH_SECTION_LABELS.NOTICE_CHILDREN.SEMINAR, size: seminarTotal },
     ],
     bold: !noTag && sectionContent[1] !== undefined,
   });
 
   node.push({
-    name: `구성원`,
+    name: SEARCH_SECTION_LABELS.MEMBER,
     size: sectionContent[4]?.total,
     bold: !noTag && sectionContent[4] !== undefined,
   });
   node.push({
-    name: `연구·교육`,
+    name: SEARCH_SECTION_LABELS.RESEARCH,
     size: sectionContent[5]?.total,
     bold: !noTag && sectionContent[5] !== undefined,
   });
   node.push({
-    name: `입학`,
+    name: SEARCH_SECTION_LABELS.ADMISSION,
     size: sectionContent[6]?.total,
     bold: !noTag && sectionContent[6] !== undefined,
   });
   node.push({
-    name: `학사 및 교과`,
+    name: SEARCH_SECTION_LABELS.ACADEMICS,
     size: sectionContent[7]?.total,
     bold: !noTag && sectionContent[7] !== undefined,
   });
@@ -108,7 +117,5 @@ export default async function fetchContent(keyword: string, tag?: string[]) {
   return { sectionContent, node, total };
 }
 
-const isSectionVisible = (
-  sectionName: '소개' | '소식' | '구성원' | '연구·교육' | '입학' | '학사 및 교과',
-  tagList?: string[],
-) => tagList === undefined || tagList.length === 0 || tagList.includes(sectionName);
+const isSectionVisible = (sectionName: SearchTag, tagList?: string[]) =>
+  tagList === undefined || tagList.length === 0 || tagList.includes(sectionName);

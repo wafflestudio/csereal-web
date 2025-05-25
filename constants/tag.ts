@@ -27,4 +27,20 @@ export const NEWS_TAGS = [
   '과거 미분류',
 ];
 
+export const SEARCH_SECTION_LABELS = {
+  ABOUT: '소개',
+  NOTICE: '소식',
+  MEMBER: '구성원',
+  RESEARCH: '연구·교육',
+  ADMISSION: '입학',
+  ACADEMICS: '학사 및 교과',
+  NOTICE_CHILDREN: {
+    NOTICE: '공지사항',
+    NEWS: '새 소식',
+    SEMINAR: '세미나',
+  },
+} as const;
+
 export const SEARCH_TAGS = ['소개', '소식', '구성원', '연구·교육', '입학', '학사 및 교과'];
+
+export type SearchTag = (typeof SEARCH_TAGS)[number];
