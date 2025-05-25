@@ -27,4 +27,4 @@ export const NEWS_TAGS = [
   '과거 미분류',
 ];
 
-export const SEARCH_TAGS = ['소개', '소식', '구성원', '연구', '입학', '학사 및 교과'];
+export const SEARCH_TAGS = ['소개', '소식', '구성원', '연구·교육', '입학', '학사 및 교과'];
