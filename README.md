@@ -108,6 +108,26 @@ NEXT_PUBLIC_KAKAO_MAP_API_KEY=fc1e3ad82010475381daf9846e627fdd
 - 프론트엔드 단독 이슈는 깃허브 이슈로 관리합니다.
 - 프로젝트 단위 이슈는 시리얼 노션에서 관리합니다.
 
+### 로컬 서버 동작
+
+[Csereal-server 레포지토리](https://github.com/wafflestudio/csereal-server.git)를 클론합니다.
+
+다음 명령어들을 서버 프로젝트에서 실행해주세요. (Linux 환경이 아닐 경우 Docker Desktop을 설치한 뒤 Docker deamon을 실행시켜주세요.)
+
+```bash
+./gradlew clean bootJar
+docker build --build-arg PROFILE=local -t my_server_image:1.0 .
+docker-compose -f docker-compose-local-full.yml up -d
+```
+
+이후 백엔드 팀에게 DB 스냅샷을 요청해서 받아준 뒤, 다음 명령어를 실행해주세요.
+
+```bash
+docker exec -i <db-container-name> mysql -uroot -ppassword csereal < <dump-file-path>
+```
+
+이후 beta, prod build가 localhost 백엔드와 연결됩니다.
+
 ## Maintainers
 
 - [@yeolyi](https://github.com/yeolyi)
