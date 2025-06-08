@@ -44,12 +44,16 @@ export default async function middleware(request: NextRequest) {
   if (userState !== 'logout') {
     requestHeaders.set('x-nonce', nonce);
     requestHeaders.set('Content-Security-Policy', cspHeader);
+    requestHeaders.set('X-Frame-Options', 'SAMEORIGIN');
+    requestHeaders.set('X-XSS-Protection', '1; mode=block');
   }
   const req = new NextRequest(request, { headers: requestHeaders });
 
   const res = handleI18nRouting(req);
   if (userState === 'logout') {
     res.headers.set('Content-Security-Policy', cspHeader);
+    res.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    res.headers.set('X-XSS-Protection', '1; mode=block');
   }
 
   return res;
