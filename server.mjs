@@ -8,8 +8,8 @@ const phase = process.env.NEXT_PUBLIC_PHASE;
 process.env.TZ = 'Asia/Seoul';
 process.env.LANG = process.env.TIME = 'ko_KR.UTF-8';
 
-if (!['prod', 'beta', 'local'].includes(phase)) {
-  console.error(`PHASE 환경변수는 prod, beta, local 중 하나여야합니다: ${phase}`);
+if (!['prod', 'beta', 'local', 'devlocal'].includes(phase)) {
+  console.error(`PHASE 환경변수는 prod, beta, local, devlocal 중 하나여야합니다: ${phase}`);
   process.exit(1);
 }
 

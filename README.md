@@ -108,7 +108,7 @@ NEXT_PUBLIC_KAKAO_MAP_API_KEY=fc1e3ad82010475381daf9846e627fdd
 - 프론트엔드 단독 이슈는 깃허브 이슈로 관리합니다.
 - 프로젝트 단위 이슈는 시리얼 노션에서 관리합니다.
 
-### 로컬 서버 동작
+### 로컬 백엔드 서버 작동 방법
 
 [Csereal-server 레포지토리](https://github.com/wafflestudio/csereal-server.git)를 클론합니다.
 
@@ -120,13 +120,19 @@ docker build --build-arg PROFILE=local -t my_server_image:1.0 .
 docker-compose -f docker-compose-local-full.yml up -d
 ```
 
-이후 백엔드 팀에게 DB 스냅샷을 요청해서 받아준 뒤, 다음 명령어를 실행해주세요.
+다음으로 백엔드 팀에게 DB 스냅샷을 요청해서 받아준 뒤, 다음 명령어를 실행해 데이터를 넣어주세요.
 
 ```bash
 docker exec -i <db-container-name> mysql -uroot -ppassword csereal < <dump-file-path>
 ```
 
-이후 beta, prod build가 localhost 백엔드와 연결됩니다.
+마지막으로 `pnpm run dev:local`를 실행하면 BASE_URL이 localhost:8080을 가리키는 Next.js dev 서버가 작동합니다.
+
+로컬 서버를 종료시키려면 서버 프로젝트에서 다음 명령어를 실행해주세요.
+
+```bash
+docker-compose -f docker-compose-local-full.yml down
+```
 
 ## Maintainers
 
