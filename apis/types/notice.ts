@@ -20,6 +20,8 @@ export interface Notice {
   tags: string[];
   isPinned: boolean;
   isImportant: boolean;
+  pinnedUntil: Date;
+  importantUntil: Date;
   author: string;
 
   id: number;

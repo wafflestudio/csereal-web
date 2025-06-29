@@ -14,6 +14,8 @@ export interface NoticeFormData {
   isPrivate: boolean;
   isPinned: boolean;
   isImportant: boolean;
+  pinnedUntil: Date;
+  importantUntil: Date;
 }
 
 interface Props {
@@ -34,6 +36,8 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
       isPrivate: false,
       isPinned: false,
       isImportant: false,
+      pinnedUntil: new Date(),
+      importantUntil: new Date(),
     },
   });
   const { handleSubmit, setValue } = formMethods;
@@ -88,12 +92,22 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
                 if (isImportant) setValue('isPrivate', false);
               }}
             />
+            <Form.Date
+              name="pinnedUntil"
+              enablePast
+              hideTime
+            />
             <Form.Checkbox
               label="메인-중요 안내에 표시"
               name="isImportant"
               onChange={(isImportant) => {
                 if (isImportant) setValue('isPrivate', false);
               }}
+            />
+            <Form.Date
+              name="importantUntil"
+              enablePast
+              hideTime
             />
           </div>
         </Fieldset>
