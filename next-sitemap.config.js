@@ -8,6 +8,7 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/admin/', '/.internal/', '/.next/', '/reservations/', '/search'],
       },
     ],
   },
