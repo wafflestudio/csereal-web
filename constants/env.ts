@@ -1,5 +1,6 @@
 export const isBeta = process.env.NEXT_PUBLIC_PHASE === 'beta';
 export const isProd = process.env.NEXT_PUBLIC_PHASE === 'prod';
+export const isDevlocal = process.env.NEXT_PUBLIC_PHASE === 'devlocal';
 
 export const BASE_URL = {
   local: 'https://cse-dev-waffle.bacchus.io/api',
