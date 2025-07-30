@@ -2,7 +2,7 @@ import { deleteRequest, getRequest } from '@/apis';
 import { Reservation } from '@/apis/types/reservation';
 
 export const getReservation = async (id: number) => {
-  return await getRequest<Reservation>(`/v2/reservation/${id}`);
+  return await getRequest<Reservation>(`/v2/reservation/${id}`, {}, { jsessionID: true });
 };
 
 export const deleteSingleReservation = async (id: number) => {
