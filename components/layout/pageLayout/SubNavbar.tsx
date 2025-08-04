@@ -11,7 +11,7 @@ const ITEM_HEIGHT = 33;
 const INDENTATION = 16;
 
 export default function SubNavbar({ currentTab }: { currentTab: SegmentNode }) {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
   const rootTab = getRootTab(currentTab);
   const subTabs = getAllSubTabs(rootTab).filter((tab) => !tab.hideInSubNav?.(currentTab));
 
@@ -26,7 +26,9 @@ export default function SubNavbar({ currentTab }: { currentTab: SegmentNode }) {
         <CurvedVerticalNode grow={false} />
         <div className="pl-1.5 pt-[0.6875rem]">
           <Link href={getPath(rootTab)} className="text-neutral-800 hover:text-main-orange">
-            <h3 className="inline whitespace-nowrap text-base font-semibold">{t(rootTab.name)}</h3>
+            <h3 className="inline whitespace-nowrap text-base font-semibold">
+              {t(`${rootTab.engName}.title`)}
+            </h3>
           </Link>
           <ul className="mt-4">
             {subTabs.map((tab) => (
@@ -56,10 +58,10 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">
-          <NavLabel text={t(`${tab.name}.title`)} />
+          <NavLabel text={t(`${tab.engName}.title`)} />
         </Link>
       ) : (
-        <span className="whitespace-nowrap">{t(`${tab.name}.title`)}</span>
+        <span className="whitespace-nowrap">{t(`${tab.engName}.title`)}</span>
       )}
     </li>
   );
