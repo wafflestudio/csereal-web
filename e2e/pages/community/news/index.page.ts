@@ -16,10 +16,14 @@ export const TAGS = [
 export class NewsPage {
   readonly page: Page;
   readonly newPostButton: Locator;
+  readonly tagFilterBox: Locator;
+  readonly selectedTags: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.newPostButton = page.getByRole('button', { name: '새 게시글' });
+    this.tagFilterBox = page.locator('#tag-filter');
+    this.selectedTags = page.locator('#selected-tags');
   }
 
   async goto() {
@@ -31,15 +35,15 @@ export class NewsPage {
   }
 
   async clickTag(tagName: string) {
-    await this.page.click(`label[for="${tagName}"]`);
+    await this.tagFilterBox.locator(`label[for="${tagName}"]`).click();
   }
 
   // To click the close button of the selected tag. (It shows as 'X' in the UI)
   async removeTag(tagName: string) {
-    await this.page.click(`span:has-text("${tagName}") button`);
+    await this.selectedTags.locator(`span:has-text("${tagName}") button`).click();
   }
 
   async resetTags() {
-    await this.page.click('button:has-text("태그 초기화")');
+    await this.selectedTags.locator('button:has-text("태그 초기화")').click();
   }
 }
