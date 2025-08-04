@@ -21,7 +21,7 @@ export default function SelectedTags({ tags, search, disabled }: SelectedTagsPro
   };
 
   return (
-    <div className="flex items-start justify-between gap-3 px-2.5">
+    <div id="selected-tags" className="flex items-start justify-between gap-3 px-2.5">
       <Tags
         tags={isTagExist ? tags : ['전체']}
         onDelete={isTagExist ? deleteTag : undefined}

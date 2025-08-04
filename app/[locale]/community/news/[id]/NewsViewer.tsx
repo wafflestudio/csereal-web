@@ -37,7 +37,9 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
           wrapperClassName="mb-10"
         />
         <StraightNode />
-        <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
+        <div id="news-post-tags">
+          <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
+        </div>
         <PostFooter
           post={news}
           id={news.id.toString()}
