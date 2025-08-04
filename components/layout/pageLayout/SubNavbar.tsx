@@ -44,7 +44,7 @@ export default function SubNavbar({ currentTab }: { currentTab: SegmentNode }) {
 }
 
 function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
   const marginLeft = `${(getDepth(tab) - 1) * INDENTATION}px`;
 
   return (
@@ -56,10 +56,10 @@ function SubTab({ tab, isCurrent }: { tab: SegmentNode; isCurrent: boolean }) {
     >
       {tab.isPage ? (
         <Link href={getPath(tab)} className="whitespace-nowrap hover:text-main-orange">
-          <NavLabel text={tab.name} />
+          <NavLabel text={t(`${tab.name}.title`)} />
         </Link>
       ) : (
-        <span className="whitespace-nowrap">{t(tab.name)}</span>
+        <span className="whitespace-nowrap">{t(`${tab.name}.title`)}</span>
       )}
     </li>
   );

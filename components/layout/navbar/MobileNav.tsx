@@ -26,12 +26,12 @@ export default function MobileNav() {
 }
 
 function MobileNavList() {
-  const navbarState = useNavbarStore((s) => s.navbarState); 
+  const navbarState = useNavbarStore((s) => s.navbarState);
   const setNavbarState = useNavbarStore((s) => s.setNavbarState);
   const [search, setSearch] = useState(false);
 
   const cur = useCurrentSegmentNode();
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
 
   const shouldHighlight = (child: SegmentNode) => {
     return navbarState.type === 'hovered'
@@ -50,7 +50,7 @@ function MobileNavList() {
             } cursor-pointer whitespace-nowrap leading-5`}
             onClick={() => setNavbarState({ type: 'hovered', segmentNode: child })}
           >
-            {t(child.name)}
+            {t(`${child.engName}.title`)}
           </li>
         ))}
       </ul>
