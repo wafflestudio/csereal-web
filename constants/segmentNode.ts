@@ -513,7 +513,7 @@ export const reservations: SegmentNode = {
 
 export const reservationIntroduction: SegmentNode = {
   name: '시설 예약 안내',
-  engName: 'intro',
+  engName: 'reservationIntro',
   segment: 'introduction',
   isPage: true,
   parent: reservations,

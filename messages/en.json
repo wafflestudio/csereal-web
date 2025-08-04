@@ -188,10 +188,10 @@
     "graduateGuide": { "title": "Guide" },
 
     "reservations": { "title": "Reservations" },
+    "reservationIntro": { "title": "Introduction" },
     "seminarRooms": { "title": "Seminar Rooms" },
     "labs": { "title": "Laboratories" },
     "lectureRooms": { "title": "Lecture Rooms" },
-    "intro": { "title": "Introduction" },
     "301_417": { "title": "301-417 (20 seats)" },
     "301_maldives": { "title": "301-MALDIVES (301-521, 11seats)" },
     "301_hawaii": { "title": "301-HAWAII (301-551-4, 20seats)" },
@@ -218,12 +218,12 @@
 
     "notice": "Notice",
     "seminars": "Seminars",
-    "reservation": "Reservation",
+    "reservationIntro": "Reservation",
 
     "facultyRecruitment": "Faculty Recruitment",
     "laboratories": "Laboratories",
     "topConferenceList": "Top Conference List",
-    "tenTenProject": "10-10 Project",
+    "proposal": "10-10 Project",
 
     "imai": "Interdisciplinary Major in Artificial Intelligence",
     "bkcse": "BK21 FOUR Intelligence Computing",

@@ -72,14 +72,14 @@ function LinkGroup({ groupName, links, width, mode }: LinkGroupProps) {
       <h3
         className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
       >
-        {t(groupName)}
+        {groupName}
       </h3>
 
       <ul className={`${itemColor} flex flex-col gap-[0.625rem] text-sm font-light sm:font-normal`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link href={link.href} className="whitespace-nowrap">
-              {t(link.title)}
+              {t(link.engTitle)}
             </Link>
           </li>
         ))}
@@ -95,11 +95,11 @@ function FooterBottomLeft() {
   return (
     <div className="text-xs text-neutral-500 sm:text-sm">
       <div className="mb-1 flex gap-[1ch] [&>a]:font-bold ">
-        <Link href={privacyPath}>{t('개인정보처리방침')}</Link>
+        <Link href={privacyPath}>{t('privacyPolicy')}</Link>
         <span>|</span>
-        <Link href={contactPath}>{t('학부 연락처')}</Link>
+        <Link href={contactPath}>{t('contactUs')}</Link>
         <span>|</span>
-        <Link href={directionsPath}>{t('찾아오시는 길')}</Link>
+        <Link href={directionsPath}>{t('directions')}</Link>
       </div>
 
       <address className="mb-[1.37rem] not-italic">{t('address')}</address>

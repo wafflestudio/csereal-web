@@ -188,10 +188,10 @@
     "graduateGuide": { "title": "대학원 안내" },
 
     "reservations": { "title": "시설 예약" },
+    "reservationIntro": { "title": "시설 예약 안내" },
     "seminarRooms": { "title": "세미나실 예약" },
     "labs": { "title": "실습실 예약" },
     "lectureRooms": { "title": "공과대학 강의실 예약" },
-    "intro": { "title": "시설 예약 안내" },
     "301_417": { "title": "301-417 (20석)" },
     "301_maldives": { "title": "301-MALDIVES (301-521, 11석)" },
     "301_hawaii": { "title": "301-HAWAII (301-551-4, 20석)" },
@@ -218,12 +218,12 @@
 
     "notice": "공지사항",
     "seminars": "세미나",
-    "reservation": "시설 예약 안내",
+    "reservationIntro": "시설 예약 안내",
 
     "facultyRecruitment": "신임교수초빙",
     "laboratories": "연구실 목록",
     "topConferenceList": "Top Conference List",
-    "tenTenProject": "10-10 Project",
+    "proposal": "10-10 Project",
 
     "imai": "연합전공 인공지능(학사)",
     "bkcse": "지능형컴퓨팅사업단",
