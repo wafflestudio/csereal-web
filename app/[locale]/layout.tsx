@@ -81,11 +81,7 @@ async function ContextProviders({ locale, children }: { locale: string; children
 
   const messages = await getMessages();
 
-  return (
-    <NextIntlClientProvider messages={messages}>
-          {children}
-    </NextIntlClientProvider>
-  );
+  return <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>;
 }
 
 function BuildVersion() {
