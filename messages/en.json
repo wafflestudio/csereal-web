@@ -23,203 +23,191 @@
       "undergraduate": "Undergraduate"
     },
 
-    "about": {
-      "title": "About",
-      "departmentOverview": {
-        "title": "Department Overview",
-        "brochure": "CSE Brochure"
-      },
-      "greetingsFromTheHead": { "title": "Greetings from the Head" },
-      "history": { "title": "History" },
-      "futureCareers": {
-        "title": "Future Careers",
-        "bachelor": "Bachelor",
-        "master": "Master",
-        "doctor": "Doctor",
-        "graduateCareerStatus": "Career Status",
-        "graduateStartups": "Startups",
-        "startupName": "Name",
-        "startupWebsite": "Website",
-        "startupYear": "Year Founded"
-      },
-      "studentClubs": { "title": "Student Clubs" },
-      "facilities": { "title": "Facilities" },
-      "contactUs": { "title": "Contact Us" },
-      "directions": {
-        "title": "Directions",
-        "description": "The Department is located in Building 301, SNU Gwanak Campus.",
-        "address": "Address: (08826) Seoul National University, College of Engineering, Dept. of Computer Science and Engineering, Building 301, Room 316",
-        "contact": "Telephone"
+    "about": { "title": "About" },
+    "departmentOverview": {
+      "title": "Department Overview",
+      "brochure": "CSE Brochure"
+    },
+    "greetingsFromTheHead": { "title": "Greetings from the Head" },
+    "history": { "title": "History" },
+    "futureCareers": {
+      "title": "Future Careers",
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "doctor": "Doctor",
+      "graduateCareerStatus": "Career Status",
+      "graduateStartups": "Startups",
+      "startupName": "Name",
+      "startupWebsite": "Website",
+      "startupYear": "Year Founded"
+    },
+    "studentClubs": { "title": "Student Clubs" },
+    "facilities": { "title": "Facilities" },
+    "contactUs": { "title": "Contact Us" },
+    "directions": {
+      "title": "Directions",
+      "description": "The Department is located in Building 301, SNU Gwanak Campus.",
+      "address": "Address: (08826) Seoul National University, College of Engineering, Dept. of Computer Science and Engineering, Building 301, Room 316",
+      "contact": "Telephone"
+    },
+
+    "community": { "title": "Community" },
+    "notice": {
+      "title": "Notice",
+      "tag": {
+        "lecture": "lecture",
+        "scholarship": "scholarship",
+        "undergraduate": "bachelor(undergraduate)",
+        "graduate": "bachelor(graduate)",
+        "curriculumChange": "double major/transfer",
+        "enrollmentStatus": "registration/reinstatement/leave of absence/re-enrollment",
+        "admission": "admission",
+        "graduation": "graduation",
+        "recruitment": "recruitment",
+        "exchange": "exchange students/study abroad",
+        "externalPrograms": "external events/programs",
+        "internalPrograms": "internal events/programs",
+        "international": "international"
       }
     },
-
-    "community": {
-      "title": "Community",
-      "notice": {
-        "title": "Notice",
-        "tag": {
-          "lecture": "lecture",
-          "scholarship": "scholarship",
-          "undergraduate": "bachelor(undergraduate)",
-          "graduate": "bachelor(graduate)",
-          "curriculumChange": "double major/transfer",
-          "enrollmentStatus": "registration/reinstatement/leave of absence/re-enrollment",
-          "admission": "admission",
-          "graduation": "graduation",
-          "recruitment": "recruitment",
-          "exchange": "exchange students/study abroad",
-          "externalPrograms": "external events/programs",
-          "internalPrograms": "internal events/programs",
-          "international": "international"
-        }
-      },
-      "news": {
-        "title": "News",
-        "tag": {
-          "event": "event",
-          "research": "research",
-          "award": "award",
-          "recruitment": "recruitment",
-          "column": "column",
-          "lecture": "lecture",
-          "education": "education",
-          "interview": "interview",
-          "career": "career",
-          "archive": "archive"
-        }
-      },
-      "seminars": {
-        "title": "Seminars",
-        "name": "Name",
-        "affiliation": "Affiliation",
-        "host": "Host",
-        "location": "Location",
-        "summary": "Summary",
-        "speakerInformation": "Speaker Introduction"
-      },
-      "facultyRecruitment": { "title": "Faculty Recruitment" },
-      "studentCouncil": {
-        "title": "Student Council",
-        "introduction": { "title": "Introduction" },
-        "minutes": { "title": "Minutes" },
-        "constitutionAndBylaws": { "title": "Constitution & Bylaws" },
-        "report": { "title": "Report" }
+    "news": {
+      "title": "News",
+      "tag": {
+        "event": "event",
+        "research": "research",
+        "award": "award",
+        "recruitment": "recruitment",
+        "column": "column",
+        "lecture": "lecture",
+        "education": "education",
+        "interview": "interview",
+        "career": "career",
+        "archive": "archive"
       }
     },
-
-    "people": {
-      "title": "People",
-      "faculty": {
-        "title": "Faculty",
-        "education": "Education",
-        "researchAreas": "Research Areas",
-        "career": "Career"
-      },
-      "emeritusFaculty": {
-        "title": "Emeritus Faculty",
-        "contact": "Contact",
-        "office": "Office",
-        "email": "Email",
-        "website": "Website",
-        "education": "Education",
-        "researchAreas": "Research Areas",
-        "employmentPeriod": "Employment Period"
-      },
-      "staff": {
-        "title": "Staff",
-        "contact": "Contact",
-        "mainTasks": "Main Tasks"
-      }
+    "seminars": {
+      "title": "Seminars",
+      "name": "Name",
+      "affiliation": "Affiliation",
+      "host": "Host",
+      "location": "Location",
+      "summary": "Summary",
+      "speakerInformation": "Speaker Introduction"
+    },
+    "facultyRecruitment": { "title": "Faculty Recruitment" },
+    "studentCouncil": {
+      "title": "Student Council",
+      "introduction": { "title": "Introduction" },
+      "minutes": { "title": "Minutes" },
+      "constitutionAndBylaws": { "title": "Constitution & Bylaws" },
+      "report": { "title": "Report" }
     },
 
-    "research": {
-      "title": "Research & Edu",
-      "streams": {
-        "title": "Research & Education Streams",
-        "stream": "Stream"
-      },
-      "centers": { "title": "Research Centers" },
-      "laboratories": {
-        "title": "Laboratories",
-        "name": "Name",
-        "supervisor": "Supervisor",
-        "location": "Location",
-        "phone": "Telephone",
-        "acronym": "Acronym",
-        "information": "Information"
-      },
-      "topConferenceList": {
-        "title": "Top Conference List",
-        "subtitle": "Dept. of Computer Science and Engineering, SNU",
-        "number": "No.",
-        "abbreviation": "Abbreviation",
-        "conferenceName": "Title",
-        "disclaimerNotice": "This list is subject to change over time and depending on circumstances.",
-        "lastUpdated": "Last Updated",
-        "createdDate": "Created",
-        "author": "Author"
-      }
+    "people": { "title": "People" },
+    "faculty": {
+      "title": "Faculty",
+      "education": "Education",
+      "researchAreas": "Research Areas",
+      "career": "Career"
+    },
+    "emeritusFaculty": {
+      "title": "Emeritus Faculty",
+      "contact": "Contact",
+      "office": "Office",
+      "email": "Email",
+      "website": "Website",
+      "education": "Education",
+      "researchAreas": "Research Areas",
+      "employmentPeriod": "Employment Period"
+    },
+    "staff": {
+      "title": "Staff",
+      "contact": "Contact",
+      "mainTasks": "Main Tasks"
     },
 
-    "admissions": {
-      "title": "Admissions",
-      "undergraduate": { "title": "Undergraduate" },
-      "earlyAdmission": { "title": "Early Admission" },
-      "regularAdmission": { "title": "Regular Admission" },
-      "graduate": { "title": "Graduate" },
-      "gradRegularAdmission": { "title": "Regular Admission" },
-      "international": { "title": "International" },
-      "exchangeVisitingProgram": { "title": "Exchange/Visiting Program" },
-      "scholarships": { "title": "Scholarships" }
+    "research": { "title": "Research & Edu" },
+    "streams": {
+      "title": "Research & Education Streams",
+      "stream": "Stream"
+    },
+    "centers": { "title": "Research Centers" },
+    "laboratories": {
+      "title": "Laboratories",
+      "name": "Name",
+      "supervisor": "Supervisor",
+      "location": "Location",
+      "phone": "Telephone",
+      "acronym": "Acronym",
+      "information": "Information"
+    },
+    "topConferenceList": {
+      "title": "Top Conference List",
+      "subtitle": "Dept. of Computer Science and Engineering, SNU",
+      "number": "No.",
+      "abbreviation": "Abbreviation",
+      "conferenceName": "Title",
+      "disclaimerNotice": "This list is subject to change over time and depending on circumstances.",
+      "lastUpdated": "Last Updated",
+      "createdDate": "Created",
+      "author": "Author"
     },
 
-    "academics": {
-      "title": "Academics",
-      "undergraduateGuide": { "title": "Guide" },
-      "courses": {
-        "title": "Courses",
-        "courseInformation": "Course Information",
-        "cardView": "cards",
-        "listView": "list",
-        "name": "Title",
-        "classification": "Classification",
-        "code": "Code",
-        "credit": "{count, plural, =0 {} =1 {1 credit} other {# credits}}",
-        "grade": "{grade, plural, =0 {} =1 {freshman} =2 {sophomore} =3 {junior} =4 {senior} other {#th year}}",
-        "graduate": "Graduate",
-        "undergraduate": "Undergraduate"
-      },
-      "curriculum": { "title": "Curriculum" },
-      "generalStudiesRequirements": { "title": "General Studies Requirements" },
-      "degreeRequirements": { "title": "Degree Requirements" },
-      "courseChanges": { "title": "Course Changes" },
-      "scholarship": { "title": "Scholarship" },
-      "graduateGuide": { "title": "Guide" }
-    },
+    "admissions": { "title": "Admissions" },
+    "undergraduate": { "title": "Undergraduate" },
+    "earlyAdmission": { "title": "Early Admission" },
+    "regularAdmission": { "title": "Regular Admission" },
+    "graduate": { "title": "Graduate" },
+    "gradRegularAdmission": { "title": "Regular Admission" },
+    "international": { "title": "International" },
+    "internationalUndergraduate": { "title": "Undergraduate" },
+    "internationalGraduate": { "title": "Graduate" },
+    "exchangeVisitingProgram": { "title": "Exchange/Visiting Program" },
+    "scholarships": { "title": "Scholarships" },
 
-    "reservations": {
-      "title": "Reservations",
-      "seminarRooms": { "title": "Seminar Rooms" },
-      "labs": { "title": "Laboratories" },
-      "lectureRooms": { "title": "Lecture Rooms" },
-      "intro": { "title": "Introduction" },
-      "301_417": { "title": "301-417 (20 seats)" },
-      "301_maldives": { "title": "301-MALDIVES (301-521, 11seats)" },
-      "301_hawaii": { "title": "301-HAWAII (301-551-4, 20seats)" },
-      "301_baekdu": { "title": "301-BAEKDU (301-552-1, 4seats)" },
-      "301_alps": { "title": "301-ALPS (301-552-2, 5seats)" },
-      "301_santorini": { "title": "301-SANTORINI (301-552-3, 4seats)" },
-      "301_jeju": { "title": "301-JEJU (301-553-6, 6seats)" },
-      "301_facultyRoom": { "title": "301-faculty conference room (301-317, 20seats)" },
-      "302_308": { "title": "302-308 (46seats)" },
-      "302_309_1": { "title": "302-309-1 (48seats)" },
-      "302_309_2": { "title": "302-309-2 (8seats)" },
-      "302_309_3": { "title": "302-309-3 (8seats)" },
-      "softwareLab": { "title": "Software lab (302-311-1, 102seats)" },
-      "hardwareLab": { "title": "Hardware lab (302-310-2, 30seats)" },
-      "302_208": { "title": "302-208 (116seats)" },
-      "302_209": { "title": "302-209 (90seats)" }
-    }
+    "academics": { "title": "Academics" },
+    "undergraduateGuide": { "title": "Guide" },
+    "courses": {
+      "title": "Courses",
+      "courseInformation": "Course Information",
+      "cardView": "cards",
+      "listView": "list",
+      "name": "Title",
+      "classification": "Classification",
+      "code": "Code",
+      "credit": "{count, plural, =0 {} =1 {1 credit} other {# credits}}",
+      "grade": "{grade, plural, =0 {} =1 {freshman} =2 {sophomore} =3 {junior} =4 {senior} other {#th year}}",
+      "graduate": "Graduate",
+      "undergraduate": "Undergraduate"
+    },
+    "curriculum": { "title": "Curriculum" },
+    "generalStudiesRequirements": { "title": "General Studies Requirements" },
+    "degreeRequirements": { "title": "Degree Requirements" },
+    "courseChanges": { "title": "Course Changes" },
+    "scholarship": { "title": "Scholarship" },
+    "graduateGuide": { "title": "Guide" },
+
+    "reservations": { "title": "Reservations" },
+    "seminarRooms": { "title": "Seminar Rooms" },
+    "labs": { "title": "Laboratories" },
+    "lectureRooms": { "title": "Lecture Rooms" },
+    "intro": { "title": "Introduction" },
+    "301_417": { "title": "301-417 (20 seats)" },
+    "301_maldives": { "title": "301-MALDIVES (301-521, 11seats)" },
+    "301_hawaii": { "title": "301-HAWAII (301-551-4, 20seats)" },
+    "301_baekdu": { "title": "301-BAEKDU (301-552-1, 4seats)" },
+    "301_alps": { "title": "301-ALPS (301-552-2, 5seats)" },
+    "301_santorini": { "title": "301-SANTORINI (301-552-3, 4seats)" },
+    "301_jeju": { "title": "301-JEJU (301-553-6, 6seats)" },
+    "301_facultyRoom": { "title": "301-faculty conference room (301-317, 20seats)" },
+    "302_308": { "title": "302-308 (46seats)" },
+    "302_309_1": { "title": "302-309-1 (48seats)" },
+    "302_309_2": { "title": "302-309-2 (8seats)" },
+    "302_309_3": { "title": "302-309-3 (8seats)" },
+    "softwareLab": { "title": "Software lab (302-311-1, 102seats)" },
+    "hardwareLab": { "title": "Hardware lab (302-310-2, 30seats)" },
+    "302_208": { "title": "302-208 (116seats)" },
+    "302_209": { "title": "302-209 (90seats)" }
   },
 
   "Footer": {

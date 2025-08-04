@@ -23,203 +23,191 @@
       "undergraduate": "학부"
     },
 
-    "about": {
-      "title": "소개",
-      "departmentOverview": {
-        "title": "학부 소개",
-        "brochure": "학부 소개 책자"
-      },
-      "greetingsFromTheHead": { "title": "학부장 인사말" },
-      "history": { "title": "연혁" },
-      "futureCareers": {
-        "title": "졸업생 진로",
-        "bachelor": "학사",
-        "master": "석사",
-        "doctor": "박사",
-        "graduateCareerStatus": "졸업생 진로 현황",
-        "graduateStartups": "졸업생 창업 기업",
-        "startupName": "창업 기업명",
-        "startupWebsite": "홈페이지",
-        "startupYear": "창업 연도"
-      },
-      "studentClubs": { "title": "동아리 소개" },
-      "facilities": { "title": "시설 안내" },
-      "contactUs": { "title": "연락처" },
-      "directions": {
-        "title": "찾아오는 길",
-        "description": "컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.",
-        "address": "주소: (08826) 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)",
-        "contact": "전화"
+    "about": { "title": "소개" },
+    "departmentOverview": {
+      "title": "학부 소개",
+      "brochure": "학부 소개 책자"
+    },
+    "greetingsFromTheHead": { "title": "학부장 인사말" },
+    "history": { "title": "연혁" },
+    "futureCareers": {
+      "title": "졸업생 진로",
+      "bachelor": "학사",
+      "master": "석사",
+      "doctor": "박사",
+      "graduateCareerStatus": "졸업생 진로 현황",
+      "graduateStartups": "졸업생 창업 기업",
+      "startupName": "창업 기업명",
+      "startupWebsite": "홈페이지",
+      "startupYear": "창업 연도"
+    },
+    "studentClubs": { "title": "동아리 소개" },
+    "facilities": { "title": "시설 안내" },
+    "contactUs": { "title": "연락처" },
+    "directions": {
+      "title": "찾아오는 길",
+      "description": "컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.",
+      "address": "주소: (08826) 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)",
+      "contact": "전화"
+    },
+
+    "community": { "title": "소식" },
+    "notice": {
+      "title": "공지사항",
+      "tag": {
+        "lecture": "수업",
+        "scholarship": "장학",
+        "undergraduate": "학사(학부)",
+        "graduate": "학사(대학원)",
+        "curriculumChange": "다전공/전과",
+        "enrollmentStatus": "등록/복학/휴학/재입학",
+        "admission": "입학",
+        "graduation": "졸업",
+        "recruitment": "채용정보",
+        "exchange": "교환학생/유학",
+        "externalPrograms": "외부행사/프로그램",
+        "internalPrograms": "내부행사/프로그램",
+        "international": "international"
       }
     },
-
-    "community": {
-      "title": "소식",
-      "notice": {
-        "title": "공지사항",
-        "tag": {
-          "lecture": "수업",
-          "scholarship": "장학",
-          "undergraduate": "학사(학부)",
-          "graduate": "학사(대학원)",
-          "curriculumChange": "다전공/전과",
-          "enrollmentStatus": "등록/복학/휴학/재입학",
-          "admission": "입학",
-          "graduation": "졸업",
-          "recruitment": "채용정보",
-          "exchange": "교환학생/유학",
-          "externalPrograms": "외부행사/프로그램",
-          "internalPrograms": "내부행사/프로그램",
-          "international": "international"
-        }
-      },
-      "news": {
-        "title": "새소식",
-        "tag": {
-          "event": "행사",
-          "research": "연구",
-          "award": "수상",
-          "recruitment": "채용",
-          "column": "칼럼",
-          "lecture": "강연",
-          "education": "교육",
-          "interview": "인터뷰",
-          "career": "진로",
-          "archive": "과거 미분류"
-        }
-      },
-      "seminars": {
-        "title": "세미나",
-        "name": "이름",
-        "affiliation": "소속",
-        "host": "주최",
-        "location": "위치",
-        "summary": "요약",
-        "speakerInformation": "연사 소개"
-      },
-      "facultyRecruitment": { "title": "신임교수초빙" },
-      "studentCouncil": {
-        "title": "학생회",
-        "introduction": { "title": "학생회 소개" },
-        "minutes": { "title": "학생회 회의록" },
-        "constitutionAndBylaws": { "title": "학생회칙 및 세칙" },
-        "report": { "title": "활동 보고" }
+    "news": {
+      "title": "새소식",
+      "tag": {
+        "event": "행사",
+        "research": "연구",
+        "award": "수상",
+        "recruitment": "채용",
+        "column": "칼럼",
+        "lecture": "강연",
+        "education": "교육",
+        "interview": "인터뷰",
+        "career": "진로",
+        "archive": "과거 미분류"
       }
     },
-
-    "people": {
-      "title": "구성원",
-      "faculty": {
-        "title": "교수진",
-        "education": "학력",
-        "researchAreas": "연구 분야",
-        "career": "경력"
-      },
-      "emeritusFaculty": {
-        "title": "역대 교수진",
-        "contact": "연락처",
-        "office": "교수실",
-        "email": "이메일",
-        "website": "웹사이트",
-        "education": "학력",
-        "researchAreas": "연구 분야",
-        "employmentPeriod": "재직 기간"
-      },
-      "staff": {
-        "title": "행정직원",
-        "contact": "연락처",
-        "mainTasks": "주요 업무"
-      }
+    "seminars": {
+      "title": "세미나",
+      "name": "이름",
+      "affiliation": "소속",
+      "host": "주최",
+      "location": "위치",
+      "summary": "요약",
+      "speakerInformation": "연사 소개"
+    },
+    "facultyRecruitment": { "title": "신임교수초빙" },
+    "studentCouncil": {
+      "title": "학생회",
+      "introduction": { "title": "학생회 소개" },
+      "minutes": { "title": "학생회 회의록" },
+      "constitutionAndBylaws": { "title": "학생회칙 및 세칙" },
+      "report": { "title": "활동 보고" }
     },
 
-    "research": {
-      "title": "연구·교육",
-      "streams": {
-        "title": "연구·교육 스트림",
-        "stream": "스트림"
-      },
-      "centers": { "title": "연구 센터" },
-      "laboratories": {
-        "title": "연구실 목록",
-        "name": "연구실",
-        "supervisor": "지도교수",
-        "location": "연구실 위치",
-        "phone": "전화",
-        "acronym": "약자",
-        "information": "소개 자료"
-      },
-      "topConferenceList": {
-        "title": "Top Conference List",
-        "subtitle": "서울대학교 공과대학 컴퓨터공학부",
-        "number": "연번",
-        "abbreviation": "약칭",
-        "conferenceName": "학술대회 명칭",
-        "disclaimerNotice": "본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다.",
-        "lastUpdated": "수정 날짜",
-        "createdDate": "작성 날짜",
-        "author": "작성자"
-      }
+    "people": { "title": "구성원" },
+    "faculty": {
+      "title": "교수진",
+      "education": "학력",
+      "researchAreas": "연구 분야",
+      "career": "경력"
+    },
+    "emeritusFaculty": {
+      "title": "역대 교수진",
+      "contact": "연락처",
+      "office": "교수실",
+      "email": "이메일",
+      "website": "웹사이트",
+      "education": "학력",
+      "researchAreas": "연구 분야",
+      "employmentPeriod": "재직 기간"
+    },
+    "staff": {
+      "title": "행정직원",
+      "contact": "연락처",
+      "mainTasks": "주요 업무"
     },
 
-    "admissions": {
-      "title": "입학",
-      "undergraduate": { "title": "학부" },
-      "earlyAdmission": { "title": "수시 모집" },
-      "regularAdmission": { "title": "정시 모집" },
-      "graduate": { "title": "대학원" },
-      "gradRegularAdmission": { "title": "전기/후기 모집" },
-      "international": { "title": "International" },
-      "exchangeVisitingProgram": { "title": "Exchange/Visiting Program" },
-      "scholarships": { "title": "Scholarships" }
+    "research": { "title": "연구·교육" },
+    "streams": {
+      "title": "연구·교육 스트림",
+      "stream": "스트림"
+    },
+    "centers": { "title": "연구 센터" },
+    "laboratories": {
+      "title": "연구실 목록",
+      "name": "연구실",
+      "supervisor": "지도교수",
+      "location": "연구실 위치",
+      "phone": "전화",
+      "acronym": "약자",
+      "information": "소개 자료"
+    },
+    "topConferenceList": {
+      "title": "Top Conference List",
+      "subtitle": "서울대학교 공과대학 컴퓨터공학부",
+      "number": "연번",
+      "abbreviation": "약칭",
+      "conferenceName": "학술대회 명칭",
+      "disclaimerNotice": "본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다.",
+      "lastUpdated": "수정 날짜",
+      "createdDate": "작성 날짜",
+      "author": "작성자"
     },
 
-    "academics": {
-      "title": "학사 및 교과",
-      "undergraduateGuide": { "title": "학부 안내" },
-      "courses": {
-        "title": "교과과정",
-        "courseInformation": "교과목 정보",
-        "cardView": "카드형",
-        "listView": "목록형",
-        "name": "교과목명",
-        "classification": "교과목 구분",
-        "code": "교과목 번호",
-        "credit": "{count}학점",
-        "grade": "{count}학년",
-        "graduate": "대학원",
-        "undergraduate": "학부"
-      },
-      "curriculum": { "title": "전공 이수 표준 형태" },
-      "generalStudiesRequirements": { "title": "필수 교양 과목" },
-      "degreeRequirements": { "title": "졸업 규정" },
-      "courseChanges": { "title": "교과목 변경 내역" },
-      "scholarship": { "title": "장학 제도" },
-      "graduateGuide": { "title": "대학원 안내" }
-    },
+    "admissions": { "title": "입학" },
+    "undergraduate": { "title": "학부" },
+    "earlyAdmission": { "title": "수시 모집" },
+    "regularAdmission": { "title": "정시 모집" },
+    "graduate": { "title": "대학원" },
+    "gradRegularAdmission": { "title": "전기/후기 모집" },
+    "international": { "title": "International" },
+    "internationalUndergraduate": { "title": "Undergraduate" },
+    "internationalGraduate": { "title": "Graduate" },
+    "exchangeVisitingProgram": { "title": "Exchange/Visiting Program" },
+    "scholarships": { "title": "Scholarships" },
 
-    "reservations": {
-      "title": "시설 예약",
-      "seminarRooms": { "title": "세미나실 예약" },
-      "labs": { "title": "실습실 예약" },
-      "lectureRooms": { "title": "공과대학 강의실 예약" },
-      "intro": { "title": "시설 예약 안내" },
-      "301_417": { "title": "301-417 (20석)" },
-      "301_maldives": { "title": "301-MALDIVES (301-521, 11석)" },
-      "301_hawaii": { "title": "301-HAWAII (301-551-4, 20석)" },
-      "301_baekdu": { "title": "301-BAEKDU (301-552-1, 4석)" },
-      "301_alps": { "title": "301-ALPS (301-552-2, 5석)" },
-      "301_santorini": { "title": "301-SANTORINI (301-552-3, 4석)" },
-      "301_jeju": { "title": "301-JEJU (301-553-6, 6석)" },
-      "301_facultyRoom": { "title": "301-교수회의실 (301-317, 20석)" },
-      "302_308": { "title": "302-308 (46석)" },
-      "302_309_1": { "title": "302-309-1 (48석)" },
-      "302_309_2": { "title": "302-309-2 (8석)" },
-      "302_309_3": { "title": "302-309-3 (8석)" },
-      "softwareLab": { "title": "소프트웨어 실습실 (302-311-1, 102석)" },
-      "hardwareLab": { "title": "하드웨어 실습실 (302-310-2, 30석)" },
-      "302_208": { "title": "302-208 (116석)" },
-      "302_209": { "title": "302-209 (90석)" }
-    }
+    "academics": { "title": "학사 및 교과" },
+    "undergraduateGuide": { "title": "학부 안내" },
+    "courses": {
+      "title": "교과과정",
+      "courseInformation": "교과목 정보",
+      "cardView": "카드형",
+      "listView": "목록형",
+      "name": "교과목명",
+      "classification": "교과목 구분",
+      "code": "교과목 번호",
+      "credit": "{count}학점",
+      "grade": "{count}학년",
+      "graduate": "대학원",
+      "undergraduate": "학부"
+    },
+    "curriculum": { "title": "전공 이수 표준 형태" },
+    "generalStudiesRequirements": { "title": "필수 교양 과목" },
+    "degreeRequirements": { "title": "졸업 규정" },
+    "courseChanges": { "title": "교과목 변경 내역" },
+    "scholarship": { "title": "장학 제도" },
+    "graduateGuide": { "title": "대학원 안내" },
+
+    "reservations": { "title": "시설 예약" },
+    "seminarRooms": { "title": "세미나실 예약" },
+    "labs": { "title": "실습실 예약" },
+    "lectureRooms": { "title": "공과대학 강의실 예약" },
+    "intro": { "title": "시설 예약 안내" },
+    "301_417": { "title": "301-417 (20석)" },
+    "301_maldives": { "title": "301-MALDIVES (301-521, 11석)" },
+    "301_hawaii": { "title": "301-HAWAII (301-551-4, 20석)" },
+    "301_baekdu": { "title": "301-BAEKDU (301-552-1, 4석)" },
+    "301_alps": { "title": "301-ALPS (301-552-2, 5석)" },
+    "301_santorini": { "title": "301-SANTORINI (301-552-3, 4석)" },
+    "301_jeju": { "title": "301-JEJU (301-553-6, 6석)" },
+    "301_facultyRoom": { "title": "301-교수회의실 (301-317, 20석)" },
+    "302_308": { "title": "302-308 (46석)" },
+    "302_309_1": { "title": "302-309-1 (48석)" },
+    "302_309_2": { "title": "302-309-2 (8석)" },
+    "302_309_3": { "title": "302-309-3 (8석)" },
+    "softwareLab": { "title": "소프트웨어 실습실 (302-311-1, 102석)" },
+    "hardwareLab": { "title": "하드웨어 실습실 (302-310-2, 30석)" },
+    "302_208": { "title": "302-208 (116석)" },
+    "302_209": { "title": "302-209 (90석)" }
   },
 
   "Footer": {
