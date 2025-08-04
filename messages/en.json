@@ -11,8 +11,8 @@
   },
 
   "Header": {
-    "login": "login",
-    "logout": "logout"
+    "login": "Login",
+    "logout": "Logout"
   },
 
   "Page": {
