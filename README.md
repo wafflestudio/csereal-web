@@ -126,7 +126,7 @@ docker-compose -f docker-compose-local-full.yml up -d
 docker exec -i <db-container-name> mysql -uroot -ppassword csereal < <dump-file-path>
 ```
 
-마지막으로 `pnpm run dev:local`를 실행하면 BASE_URL이 localhost:8080을 가리키는 Next.js dev 서버가 작동합니다.
+마지막으로 `pnpm run dev:devlocal`를 실행하면 BASE_URL이 localhost:8080을 가리키는 Next.js dev 서버가 작동합니다.
 
 로컬 서버를 종료시키려면 서버 프로젝트에서 다음 명령어를 실행해주세요.
 
