@@ -49,7 +49,7 @@ test.describe('News', () => {
   }) => {
     await newsPage.goto();
 
-    const selectedTagsBox = page.locator('.flex.flex-wrap.items-center.gap-2\\.5');
+    const selectedTagsBox = page.locator('#selected-tags');
 
     for (const tag of TAGS.slice(0, 3)) {
       await newsPage.clickTag(tag);
