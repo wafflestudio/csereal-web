@@ -13,7 +13,7 @@ export const TAGS = [
   '과거 미분류',
 ];
 
-export class NeswPage {
+export class NewsPage {
   readonly page: Page;
   readonly newPostButton: Locator;
 

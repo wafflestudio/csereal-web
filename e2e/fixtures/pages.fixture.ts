@@ -3,6 +3,8 @@
 
 import { Page } from '@playwright/test';
 
+import { NewsCreatePage } from '../pages/community/news/create.page';
+import { NewsPage } from '../pages/community/news/index.page';
 import { NoticeCreatePage } from '../pages/community/notice/create.page';
 import { NoticePage } from '../pages/community/notice/index.page';
 import { test as base } from './role.fixture';
@@ -10,6 +12,8 @@ import { test as base } from './role.fixture';
 type PagesFixtures = {
   noticePage: NoticePage;
   noticeCreatePage: NoticeCreatePage;
+  newsPage: NewsPage;
+  newsCreatePage: NewsCreatePage;
 };
 
 export const test = base.extend<PagesFixtures>({
@@ -21,5 +25,14 @@ export const test = base.extend<PagesFixtures>({
     use: (page: NoticeCreatePage) => Promise<void>,
   ) => {
     await use(new NoticeCreatePage(page));
+  },
+  newsPage: async ({ page }: { page: Page }, use: (page: NewsPage) => Promise<void>) => {
+    await use(new NewsPage(page));
+  },
+  newsCreatePage: async (
+    { page }: { page: Page },
+    use: (page: NewsCreatePage) => Promise<void>,
+  ) => {
+    await use(new NewsCreatePage(page));
   },
 });
