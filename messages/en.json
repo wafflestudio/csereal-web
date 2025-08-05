@@ -52,7 +52,8 @@
     "directions": {
       "title": "Directions",
       "description": "The Department is located in Building 301, SNU Gwanak Campus.",
-      "address": "Address: (08826) Seoul National University, College of Engineering, Dept. of Computer Science and Engineering, Building 301, Room 316",
+      "address": "Address",
+      "addressValue": "(08826) Seoul National University, College of Engineering, Dept. of Computer Science and Engineering, Building 301, Room 316",
       "contact": "Telephone"
     },
 

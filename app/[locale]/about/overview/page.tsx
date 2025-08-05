@@ -39,7 +39,7 @@ const overviewPath = getPath(overview);
 export default async function OverviewPage(props: OverviewPageProps) {
   const params = await props.params;
   const { description, attachments, imageURL } = await getOverview(params.locale);
-  const t = await getTranslations('Content');
+  const t = await getTranslations('Page.about.overview');
 
   return (
     <PageLayout titleType="big" removePadding>
