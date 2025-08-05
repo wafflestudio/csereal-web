@@ -96,6 +96,7 @@
       "name": "이름",
       "affiliation": "소속",
       "host": "주최",
+      "date": "날짜",
       "location": "위치",
       "summary": "요약",
       "speakerInformation": "연사 소개"

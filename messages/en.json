@@ -96,6 +96,7 @@
       "name": "Name",
       "affiliation": "Affiliation",
       "host": "Host",
+      "date": "Date",
       "location": "Location",
       "summary": "Summary",
       "speakerInformation": "Speaker Introduction"

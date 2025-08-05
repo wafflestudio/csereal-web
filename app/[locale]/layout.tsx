@@ -28,13 +28,13 @@ export async function generateMetadata(props: {
 
   const { locale } = params;
 
-  const t = await getTranslations({ locale, namespace: 'Title' });
+  const t = await getTranslations({ locale, namespace: 'common' });
 
   return {
     metadataBase: new URL(PROD_URL),
     title: {
-      default: t('서울대학교 컴퓨터공학부'),
-      template: `%s | ${t('서울대학교 컴퓨터공학부')}`,
+      default: t('title'),
+      template: `%s | ${t('title')}`,
     },
     description: '서울대학교 컴퓨터공학부 홈페이지입니다.',
     openGraph: {
