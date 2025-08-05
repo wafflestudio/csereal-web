@@ -130,6 +130,9 @@
     "staff": {
       "title": "Staff",
       "contact": "Contact",
+      "location": "Location",
+      "phone": "Telephone",
+      "email": "Email",
       "mainTasks": "Main Tasks"
     },
 

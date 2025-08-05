@@ -30,7 +30,7 @@ export default function FacultyMemberPageContent({
   faculty: Faculty;
   ids: WithLanguage<number>;
 }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.faculty');
 
   const handleDelete = async () => {
     try {
@@ -64,9 +64,9 @@ export default function FacultyMemberPageContent({
           </div>
         </div>
         <div className="mt-8 break-all">
-          <HeaderAndList header={t('학력')} list={faculty.educations} />
-          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
-          <HeaderAndList header={t('경력')} list={faculty.careers} />
+          <HeaderAndList header={t('education')} list={faculty.educations} />
+          <HeaderAndList header={t('researchAreas')} list={faculty.researchAreas} />
+          <HeaderAndList header={t('career')} list={faculty.careers} />
         </div>
       </div>
       <LoginVisible staff>

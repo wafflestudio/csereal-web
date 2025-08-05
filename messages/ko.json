@@ -130,6 +130,9 @@
     "staff": {
       "title": "행정직원",
       "contact": "연락처",
+      "location": "위치",
+      "phone": "전화",
+      "email": "이메일",
       "mainTasks": "주요 업무"
     },
 

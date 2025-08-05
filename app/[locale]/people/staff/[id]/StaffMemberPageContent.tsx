@@ -29,7 +29,7 @@ export default function StaffMemberPageContent({
   staff: Staff;
   ids: WithLanguage<number>;
 }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.staff');
 
   const handleDelete = async () => {
     try {
@@ -50,7 +50,7 @@ export default function StaffMemberPageContent({
         <ProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">
           <article className="mb-6 flex flex-col text-neutral-700">
-            <h3 className=" text-base font-bold leading-8">{t('연락처')}</h3>
+            <h3 className=" text-base font-bold leading-8">{t('contact')}</h3>
             <ul className="list-inside list-disc">
               <BulletRow>
                 {t('위치')}: {staff.office}
