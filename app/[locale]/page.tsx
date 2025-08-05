@@ -93,13 +93,13 @@ const ImportantSectionArrow = () => (
 );
 
 const LinkSection = async () => {
-  const t = await getTranslations('Nav');
+  const t = await getTranslations('Page.home');
 
   return (
     <div className="mx-6 mb-[7rem] mt-[60px] flex flex-col gap-[4rem] sm:mx-[7.81rem] sm:mb-[12rem] sm:mt-[90px] sm:flex-row sm:gap-[8rem]">
       <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
         <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">
-          {t('바로가기')}
+          {t('shortcuts')}
         </h3>
         <div className="flex flex-col gap-5">
           <LinkWithArrow href={getPath(topConferenceList)} title="Top Conference List" />
@@ -113,7 +113,9 @@ const LinkSection = async () => {
       </div>
 
       <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
-        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">{t('학부')}</h3>
+        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">
+          {t('undergraduate.cap')}
+        </h3>
         <div className="flex flex-col gap-5">
           <LinkWithArrow
             href={getPath(generalStudies)}

@@ -2,7 +2,6 @@
   "common": {
     "title": "서울대학교 컴퓨터공학부",
     "tag": "태그",
-    "all": "전체",
     "search": "검색",
     "resetTags": "태그 초기화",
     "list": "목록",
@@ -20,7 +19,13 @@
       "title": "홈",
       "viewMore": "더보기",
       "shortcuts": "바로가기",
-      "undergraduate": "학부"
+      "all": "전체",
+      "undergraduate": {
+        "cap": "학부",
+        "lower": "학부"
+      },
+      "graduate": "대학원",
+      "scholarship": "장학"
     },
 
     "about": { "title": "소개" },

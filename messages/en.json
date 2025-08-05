@@ -2,7 +2,6 @@
   "common": {
     "title": "Dept. of Computer Science and Engineering, SNU",
     "tag": "Tags",
-    "all": "all",
     "search": "Search",
     "resetTags": "reset tags",
     "list": "List",
@@ -20,7 +19,13 @@
       "title": "Home",
       "viewMore": "More",
       "shortcuts": "Shortcuts",
-      "undergraduate": "Undergraduate"
+      "all": "all",
+      "undergraduate": {
+        "cap": "undergraduate",
+        "lower": "undergraduate"
+      },
+      "graduate": "graduate",
+      "scholarship": "scholarship"
     },
 
     "about": { "title": "About" },
