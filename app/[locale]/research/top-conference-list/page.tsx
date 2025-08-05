@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 
 export default async function TopConferenceListPage() {
   const { modifiedAt, author, conferenceList } = await getTopConferenceList();
-  const t = await getTranslations('Content');
+  const t = await getTranslations('Page.topConferenceList');
 
   // TODO: 왜 기본값이 한국이 아닌지 알아내기
   const dateStr = new Date(modifiedAt).toLocaleDateString('ko-KR');
@@ -24,16 +24,12 @@ export default async function TopConferenceListPage() {
   return (
     <PageLayout titleType="big">
       <div className="flex flex-col text-neutral-950">
-        <h3 className=" mb-5 text-base font-bold leading-8">
-          {t('서울대학교 공과대학 컴퓨터공학부')} Top Conference List
-        </h3>
+        <h3 className=" mb-5 text-base font-bold leading-8">{t('subtitle')} Top Conference List</h3>
+        <p className="text-md leading-[26px]">{t('disclaimerNotice')}.</p>
         <p className="text-md leading-[26px]">
-          {t('본 리스트는 시간과 상황의 변동에 따라 바뀔 수 있습니다')}.
-        </p>
-        <p className="text-md leading-[26px]">
-          {t('수정 날짜')}: {dateStr}
+          {t('lastUpdated')}: {dateStr}
           <br />
-          {t('작성자')}: {author}
+          {t('author')}: {author}
         </p>
         <ConferenceListTable conferenceList={conferenceList} />
       </div>

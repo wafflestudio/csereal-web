@@ -139,7 +139,8 @@
     "research": { "title": "Research & Edu" },
     "streams": {
       "title": "Research & Education Streams",
-      "stream": "Stream"
+      "stream": "Stream",
+      "labs": "Laboratories"
     },
     "centers": { "title": "Research Centers" },
     "laboratories": {

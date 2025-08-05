@@ -139,7 +139,8 @@
     "research": { "title": "연구·교육" },
     "streams": {
       "title": "연구·교육 스트림",
-      "stream": "스트림"
+      "stream": "스트림",
+      "labs": "연구실"
     },
     "centers": { "title": "연구 센터" },
     "laboratories": {

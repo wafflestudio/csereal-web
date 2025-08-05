@@ -23,7 +23,7 @@ interface ResearchGroupDetailsProps {
 const groupsPath = getPath(researchGroups);
 
 export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetailsProps) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.streams');
 
   const handleDelete = async () => {
     const resp = await deleteResearchGroupAction(ids);
@@ -34,7 +34,7 @@ export default function ResearchGroupDetails({ group, ids }: ResearchGroupDetail
     <div className="flex flex-col bg-neutral-100 px-7 pb-9 pt-8 sm:pb-[100px] sm:pl-[100px] sm:pr-[320px] sm:pt-[50px]">
       <div className="justify-between sm:flex">
         <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
-          {group.name} {t('스트림')}
+          {group.name} {t('stream')}
         </h2>
         <LoginVisible staff>
           <div className="flex h-fit justify-end gap-3">
