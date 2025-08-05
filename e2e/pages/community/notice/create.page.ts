@@ -34,7 +34,9 @@ export class NoticeCreatePage {
   }
 
   async fillContent(content: string) {
+    await this.page.waitForTimeout(1000); // suneditor 대기
     await this.contentEditor.fill(content);
+    await this.page.waitForTimeout(1000); // suneditor 대기
   }
 
   async addTag(tag: string) {

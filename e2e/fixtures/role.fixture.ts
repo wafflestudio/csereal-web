@@ -12,8 +12,8 @@ type RoleFixtures = {
 export const test = base.extend<RoleFixtures>({
   loginAs: async ({ page }, use) => {
     const login = async (role: Role) => {
-      await page.waitForLoadState('networkidle');
       await page.getByRole('button', { name: role, exact: true }).click();
+      await page.waitForLoadState('networkidle');
     };
     await use(login);
   },

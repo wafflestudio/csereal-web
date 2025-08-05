@@ -2,12 +2,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Page } from '@playwright/test';
+import { test as base } from '@playwright/test';
 
 import { NoticeCreatePage } from '../pages/community/notice/create.page';
 import { NoticeDetailPage } from '../pages/community/notice/detail.page';
 import { NoticeEditPage } from '../pages/community/notice/edit.page';
 import { NoticeListPage } from '../pages/community/notice/index.page';
-import { test as base } from './role.fixture';
 
 type PagesFixtures = {
   noticeListPage: NoticeListPage;
