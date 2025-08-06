@@ -9,7 +9,7 @@ import TagFilter from '@/components/common/search/TagFilter';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 interface SearchBoxProps {
-  tags: string[]; // 전체 태그(선택지) 목록
+  tags: { id: string; text: string }[]; // 전체 태그(선택지) 목록
   disabled?: boolean;
   formOnly?: boolean;
 }

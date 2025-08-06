@@ -218,7 +218,22 @@
     "softwareLab": { "title": "Software lab (302-311-1, 102seats)" },
     "hardwareLab": { "title": "Hardware lab (302-310-2, 30seats)" },
     "302_208": { "title": "302-208 (116seats)" },
-    "302_209": { "title": "302-209 (90seats)" }
+    "302_209": { "title": "302-209 (90seats)" },
+
+    "search": {
+      "title": "Search",
+      "noResults": "No search results found",
+      "searchResults": "{count} search results",
+      "viewMore": "more results",
+      "tag": {
+        "about": "about",
+        "community": "community",
+        "people": "people",
+        "research": "research",
+        "admission": "admission",
+        "academics": "academics"
+      }
+    }
   },
 
   "Footer": {

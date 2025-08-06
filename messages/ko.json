@@ -219,7 +219,22 @@
     "softwareLab": { "title": "소프트웨어 실습실 (302-311-1, 102석)" },
     "hardwareLab": { "title": "하드웨어 실습실 (302-310-2, 30석)" },
     "302_208": { "title": "302-208 (116석)" },
-    "302_209": { "title": "302-209 (90석)" }
+    "302_209": { "title": "302-209 (90석)" },
+
+    "search": {
+      "title": "검색",
+      "noResults": "검색 결과가 존재하지 않습니다",
+      "searchResults": "{count}개의 검색 결과",
+      "viewMore": "결과 더보기",
+      "tag": {
+        "about": "소개",
+        "community": "소식",
+        "people": "구성원",
+        "research": "연구",
+        "admission": "입학",
+        "academics": "학사 및 교과"
+      }
+    }
   },
 
   "Footer": {

@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { NoticePreviewList } from '@/apis/types/notice';
 import AdminFeatures from '@/app/[locale]/community/notice/components/AdminFeatures';
 import NoticeList from '@/app/[locale]/community/notice/components/NoticeList';
@@ -18,10 +20,15 @@ export default function NoticePageContent({
   data: NoticePreviewList;
 }) {
   const { selectedIds, dispatchIds, editMode, toggleEditMode } = usePostSelect();
+  const t = useTranslations('Page.notice.tag');
+  const tags = NOTICE_TAGS.map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
 
   return (
     <>
-      <SearchBox tags={NOTICE_TAGS} disabled={editMode} />
+      <SearchBox tags={tags} disabled={editMode} />
       <NoticeList
         posts={posts}
         isEditMode={editMode}

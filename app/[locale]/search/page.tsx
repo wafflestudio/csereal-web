@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
@@ -18,19 +17,17 @@ import { SEARCH_TAGS } from '@/constants/tag';
 import MagnificentGlass from '@/public/image/search/magnificent_glass.svg';
 import { getMetadata } from '@/utils/metadata';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
 
   const { locale } = params;
 
-  const t = await getTranslations('Nav');
+  const t = await getTranslations('Page');
 
   return await getMetadata({
     locale,
     metadata: {
-      title: t('통합 검색'),
+      title: t('search.title'),
       description: '서울대학교 컴퓨터공학부 통합 검색 페이지입니다.',
     },
   });
@@ -94,14 +91,26 @@ export default async function SearchPage(props: {
 
 // TODO: page layout 사용한 방식으로 변경
 // 현재는 SubNav의 차이 때문에 코드 복붙
-const SearchPageLayout = ({ node, children }: { node?: TreeNode[]; children?: ReactNode }) => {
+const SearchPageLayout = async ({
+  node,
+  children,
+}: {
+  node?: TreeNode[];
+  children?: ReactNode;
+}) => {
+  const t = await getTranslations('Page.search.tag');
+  const tags = SEARCH_TAGS.map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
+
   return (
     <div className="flex grow flex-col bg-neutral-900">
       <Header />
       {/* TODO: 임시로 넣은 main 교체 */}
       <SearchPageTitle />
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
-        <SearchBox tags={SEARCH_TAGS} formOnly />
+        <SearchBox tags={tags} formOnly />
         {children}
         {node !== undefined && <SearchSubNavbar node={node} />}
       </div>

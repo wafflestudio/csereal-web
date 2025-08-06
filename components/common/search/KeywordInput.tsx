@@ -8,11 +8,11 @@ interface KeywordInputProps {
 }
 
 export default function KeywordInput({ keyword, setKeyword, disabled = false }: KeywordInputProps) {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
 
   return (
     <div className="flex items-center">
-      <h5 className="mr-7 whitespace-nowrap text-md font-bold tracking-wide">{t('검색')}</h5>
+      <h5 className="mr-7 whitespace-nowrap text-md font-bold tracking-wide">{t('search')}</h5>
       <Input keyword={keyword} disabled={disabled} onChange={setKeyword} />
     </div>
   );
