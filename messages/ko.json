@@ -186,8 +186,9 @@
       "name": "교과목명",
       "classification": "교과목 구분",
       "code": "교과목 번호",
-      "credit": "{count}학점",
-      "grade": "{count}학년",
+      "credit": "{credit, plural, =0 {학점} other {#학점}}",
+      "grade": "{grade, plural, =0 {대학원} =5 {학년} other {#학년}}",
+
       "graduate": "대학원",
       "undergraduate": "학부"
     },

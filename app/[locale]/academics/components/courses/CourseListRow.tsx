@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Course, GRADE } from '@/apis/types/academics';
+import { Course } from '@/apis/types/academics';
 import CourseDetailModal from '@/app/[locale]/academics/components/courses/CourseDetailModal';
 import useModal from '@/utils/hooks/useModal';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
@@ -67,24 +67,24 @@ function CodeCell({ code }: { code: string }) {
 }
 
 function CreditCell({ credit }: { credit: number }) {
-  const t = useTranslations('Tag');
+  const t = useTranslations('Page.courses');
 
   return (
     <span className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-400 sm:order-4 sm:pl-2`}>
       {credit}
-      <span className="sm:hidden">{t('학점')}</span>
+      <span className="sm:hidden">{t('credit', { count: 0 })}</span>
     </span>
   );
 }
 
 function GradeCell({ grade }: { grade: number }) {
-  const t = useTranslations('Tag');
+  const t = useTranslations('Page.courses');
 
   return (
     <span
       className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
     >
-      {t(GRADE[grade])}
+      {t('grade', { count: grade })}
     </span>
   );
 }

@@ -186,8 +186,8 @@
       "name": "Title",
       "classification": "Classification",
       "code": "Code",
-      "credit": "{count, plural, =0 {} =1 {1 credit} other {# credits}}",
-      "grade": "{grade, plural, =0 {} =1 {freshman} =2 {sophomore} =3 {junior} =4 {senior} other {#th year}}",
+      "credit": "{credit, plural, =0 {Credit} =1 {1 credit} other {# credits}}",
+      "grade": "{grade, plural, =0 {graduate} =1 {freshman} =2 {sophomore} =3 {junior} =4 {senior} =5 {Grade} other {#th year}}",
       "graduate": "Graduate",
       "undergraduate": "Undergraduate"
     },

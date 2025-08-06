@@ -23,7 +23,7 @@ export default function UndergraduateCoursePageContent({
 }: CoursePageContentProps) {
   const { selectedOption, changeOptions } = useCourseToolbar();
   const { isMobile } = useResponsive();
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.courses');
   const sortedCourses = getSortedCourses(courses, selectedOption.sort);
 
   if (isMobile && selectedOption.view !== '목록형') {
@@ -35,7 +35,7 @@ export default function UndergraduateCoursePageContent({
       <LoginVisible staff>
         <AddCourseButton studentType="undergraduate" />
       </LoginVisible>
-      <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('courseInformation')}</h4>
       <CourseToolbar
         viewOption={selectedOption.view}
         sortOption={selectedOption.sort}
