@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import { AdmissionsSearchResult } from '@/apis/types/search';
 import BasicRow from '@/app/[locale]/search/helper/BasicRow';
 import Section from '@/app/[locale]/search/helper/Section';
@@ -9,8 +11,10 @@ export default async function AdmissionSection({
 }: {
   admission: AdmissionsSearchResult;
 }) {
+  const t = await getTranslations(`Page.${admissions.engName}`);
+
   return (
-    <Section title="입학" size={admission.total}>
+    <Section title={t('title')} size={admission.total}>
       <div className="flex flex-col gap-7">
         {admission.admissions.map((result) => {
           const node = toNode(result.mainType, result.postType);

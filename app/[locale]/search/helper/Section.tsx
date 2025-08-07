@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
 export default function Section({
@@ -10,14 +9,13 @@ export default function Section({
   size: number;
   children: ReactNode;
 }) {
-  const t = useTranslations('Nav');
   if (size === 0) return <></>;
 
   return (
     <div className="flex flex-col" id={`nav_${title.replace(' ', '_')}`}>
       <div className="mb-8 flex">
         <h3 className="inline border-b-2 border-neutral-200 px-2.5 pb-2 text-[1.25rem] font-semibold leading-loose text-neutral-950">
-          {t(title)}({size})
+          {title}({size})
         </h3>
         <div className="flex h-5 self-end">
           <div className="w-[1.7rem] origin-bottom-left rotate-[-45deg] self-end border-b-2 border-neutral-200" />

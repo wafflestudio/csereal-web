@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { ReactNode } from 'react';
 
 import { NewsSearchResult, NoticeSearchResult } from '@/apis/types/search';
@@ -9,7 +10,7 @@ import Divider from '@/app/[locale]/search/helper/Divider';
 import NewsRow from '@/app/[locale]/search/helper/NewsRow';
 import NoticeRow from '@/app/[locale]/search/helper/NoticeRow';
 import Section from '@/app/[locale]/search/helper/Section';
-import { news, notice, seminar } from '@/constants/segmentNode';
+import { community, news, notice, seminar } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 
@@ -28,8 +29,10 @@ export default async function CommunitySection({
   news: NewsSearchResult;
   seminar: SeminarPreviewList;
 }) {
+  const t = await getTranslations(`Page.${community.engName}`);
+
   return (
-    <Section title="소식" size={notice.total + news.total + seminar.total}>
+    <Section title={t('title')} size={notice.total + news.total + seminar.total}>
       <CommunitySubSection
         title="공지사항"
         size={notice.total}
@@ -109,13 +112,13 @@ const CommunitySubSection = ({
 };
 
 const MoreResultLink = ({ href }: { href: string }) => {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page.search');
   return (
     <Link
       href={href}
       className="text-middle mr-4 mt-10 flex items-center self-end text-md font-medium text-main-orange"
     >
-      {t('결과 더보기')}
+      {t('viewMore')}
       <span className="material-symbols-outlined text-sm">chevron_right</span>
     </Link>
   );

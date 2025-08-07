@@ -22,12 +22,12 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
 
   const { locale } = params;
 
-  const t = await getTranslations('Page');
+  const t = await getTranslations('Page.search');
 
   return await getMetadata({
     locale,
     metadata: {
-      title: t('search.title'),
+      title: t('title'),
       description: '서울대학교 컴퓨터공학부 통합 검색 페이지입니다.',
     },
   });
