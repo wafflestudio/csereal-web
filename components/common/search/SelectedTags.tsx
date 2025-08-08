@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl';
 
-import Tags, { TagI } from '@/components/common/Tags';
+import Tags, { Tag } from '@/components/common/Tags';
 
 interface SelectedTagsProps {
-  tags: TagI[];
+  tags: Tag[];
   search: (tags: string[]) => void;
   disabled: boolean;
 }

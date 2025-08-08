@@ -39,7 +39,7 @@ export default function NewsPageContent({
               href={`${newsPath}/${post.id}`}
               title={post.title}
               description={post.description}
-              tags={post.tags}
+              tagIds={post.tags}
               date={new Date(post.date)}
               imageURL={post.imageURL}
             />

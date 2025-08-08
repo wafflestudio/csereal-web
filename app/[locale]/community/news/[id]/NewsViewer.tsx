@@ -23,7 +23,7 @@ interface NewsPostPageProps {
 const newsPath = getPath(news);
 
 export default async function NewsViewer({ news }: NewsPostPageProps) {
-  const t = await getTranslations('Page.notice.tag');
+  const t = await getTranslations('Page.news.tag');
   const tags = NEWS_TAGS.filter((tag) => news.tags.includes(tag.id)).map((tag) => ({
     id: tag.id,
     text: t(tag.transKey),

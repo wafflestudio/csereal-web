@@ -77,7 +77,7 @@ export default function NewsEditor({ defaultValues, onCancel, onSubmit, onDelete
         <Fieldset title="태그" mb="mb-8" titleMb="mb-3">
           <div className="flex grow flex-wrap  gap-x-6 gap-y-2.5">
             {NEWS_TAGS.map((tag) => (
-              <Form.Checkbox key={tag} value={tag} name="tags" />
+              <Form.Checkbox key={tag.id} value={tag.id} name="tags" />
             ))}
           </div>
         </Fieldset>

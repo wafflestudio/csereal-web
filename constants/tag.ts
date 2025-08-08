@@ -1,10 +1,10 @@
-interface Tag {
+interface TagIdTransKeyPair {
   id: string; // 태그 식별자
   transKey: string; // 태그 표시 텍스트
 }
 
 // messages/ko.json, messages/en.json에 있는 번역키와 일치해야 함
-export const NOTICE_TAGS: Tag[] = [
+export const NOTICE_TAGS: TagIdTransKeyPair[] = [
   { id: '수업', transKey: 'lecture' },
   { id: '장학', transKey: 'scholarship' },
   { id: '학사(학부)', transKey: 'undergraduate' },
@@ -20,7 +20,7 @@ export const NOTICE_TAGS: Tag[] = [
   { id: 'international', transKey: 'international' },
 ];
 
-export const NEWS_TAGS: Tag[] = [
+export const NEWS_TAGS: TagIdTransKeyPair[] = [
   { id: '행사', transKey: 'event' },
   { id: '연구', transKey: 'research' },
   { id: '수상', transKey: 'award' },
@@ -33,7 +33,7 @@ export const NEWS_TAGS: Tag[] = [
   { id: '과거 미분류', transKey: 'archive' },
 ];
 
-export const SEARCH_TAGS: Tag[] = [
+export const SEARCH_TAGS: TagIdTransKeyPair[] = [
   { id: '소개', transKey: 'about' },
   { id: '소식', transKey: 'community' },
   { id: '구성원', transKey: 'people' },

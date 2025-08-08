@@ -3,7 +3,7 @@
 import { Link } from '@/i18n/routing';
 
 interface TagsProps {
-  tags: TagI[];
+  tags: Tag[];
   margin?: string;
   searchPath?: string;
   disabled?: boolean;
@@ -48,13 +48,13 @@ const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
   fill: 'bg-main-orange border-main-orange text-white',
 };
 
-export interface TagI {
+export interface Tag {
   id: string;
   text: string;
 }
 
 interface TagProps {
-  tag: TagI;
+  tag: Tag;
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
   disabled?: boolean;

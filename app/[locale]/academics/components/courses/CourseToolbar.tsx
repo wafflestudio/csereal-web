@@ -74,18 +74,18 @@ interface SortOptionsProps {
   changeOption: (option: SortOption) => void;
 }
 
-export const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
+const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
 
 function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   return (
     <div className="flex flex-wrap items-center gap-2.5">
       {SORT_OPTIONS.map((option) =>
         option === selectedOption ? (
-          <Tag key={option} tag={option} defaultStyle="fill" />
+          <Tag key={option} tag={{ id: option, text: option }} defaultStyle="fill" />
         ) : (
           <Tag
             key={option}
-            tag={option}
+            tag={{ id: option, text: option }}
             hoverStyle="fill"
             defaultStyle="orange"
             onClick={() => changeOption(option)}

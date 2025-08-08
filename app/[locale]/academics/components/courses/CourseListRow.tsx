@@ -72,7 +72,7 @@ function CreditCell({ credit }: { credit: number }) {
   return (
     <span className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-400 sm:order-4 sm:pl-2`}>
       {credit}
-      <span className="sm:hidden">{t('credit', { count: 0 })}</span>
+      <span className="sm:hidden">{t('credit', { credit })}</span>
     </span>
   );
 }
@@ -84,7 +84,7 @@ function GradeCell({ grade }: { grade: number }) {
     <span
       className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
     >
-      {t('grade', { count: grade })}
+      {t('grade', { grade })}
     </span>
   );
 }

@@ -15,8 +15,8 @@ const useSortedProperties = (course: Course, selectedOption: SortOption) => {
   const t = useTranslations('Page.courses');
 
   const classification = course[lang].classification;
-  const grade = t('grade', { count: course.grade });
-  const credit = t('credit', { count: course.credit });
+  const grade = t('grade', { grade: course.grade });
+  const credit = t('credit', { credit: course.credit });
 
   switch (selectedOption) {
     case '교과목 구분':
