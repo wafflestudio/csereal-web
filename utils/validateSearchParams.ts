@@ -14,7 +14,7 @@ export const validateTag = (category: 'notice' | 'news', tag?: string | string[]
   if (!tag) return true;
 
   const availableTags = category === 'notice' ? NOTICE_TAGS : NEWS_TAGS;
-  const isTagValid = (singleTag: string) => availableTags.includes(singleTag);
+  const isTagValid = (singleTag: string) => availableTags.some((tag) => tag.id === singleTag);
 
   return Array.isArray(tag) ? tag.every(isTagValid) : isTagValid(tag);
 };
