@@ -7,7 +7,9 @@
     "list": "목록",
     "next": "다음글",
     "previous": "이전글",
-    "all": "전체"
+    "all": "전체",
+    "createdDate": "작성 날짜",
+    "author": "작성자"
   },
 
   "Header": {

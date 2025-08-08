@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function CouncilReportPage({ params }: Props) {
   const { id, locale } = await params;
-  const t = await getTranslations('Content');
+  const t = await getTranslations('Page.report');
   const council = await getCouncilReport(id);
 
   const { title, description, sequence, name, createdAt } = council;
@@ -44,10 +44,10 @@ export default async function CouncilReportPage({ params }: Props) {
         <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
         <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
           <p>
-            {t('작성자')}: {author}
+            {t('author')}: {author}
           </p>
           <p>
-            {t('작성 날짜')}: {dateStr}
+            {t('createdDate')}: {dateStr}
           </p>
         </div>
       </div>

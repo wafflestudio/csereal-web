@@ -7,7 +7,9 @@
     "list": "List",
     "next": "Next",
     "previous": "Prev",
-    "all": "all"
+    "all": "all",
+    "createdDate": "Created",
+    "author": "Author"
   },
 
   "Header": {
