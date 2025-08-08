@@ -107,13 +107,11 @@
       "speakerInformation": "연사 소개"
     },
     "facultyRecruitment": { "title": "신임교수초빙" },
-    "studentCouncil": {
-      "title": "학생회",
-      "introduction": { "title": "학생회 소개" },
-      "minutes": { "title": "학생회 회의록" },
-      "constitutionAndBylaws": { "title": "학생회칙 및 세칙" },
-      "report": { "title": "활동 보고" }
-    },
+    "studentCouncil": { "title": "학생회" },
+    "introduction": { "title": "학생회 소개" },
+    "minutes": { "title": "학생회 회의록" },
+    "constitutionAndBylaws": { "title": "학생회칙 및 세칙" },
+    "report": { "title": "활동 보고" },
 
     "people": { "title": "구성원" },
     "faculty": {

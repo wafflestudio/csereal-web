@@ -107,13 +107,11 @@
       "speakerInformation": "Speaker Introduction"
     },
     "facultyRecruitment": { "title": "Faculty Recruitment" },
-    "studentCouncil": {
-      "title": "Student Council",
-      "introduction": { "title": "Introduction" },
-      "minutes": { "title": "Minutes" },
-      "constitutionAndBylaws": { "title": "Constitution & Bylaws" },
-      "report": { "title": "Report" }
-    },
+    "studentCouncil": { "title": "Student Council" },
+    "introduction": { "title": "Introduction" },
+    "minutes": { "title": "Minutes" },
+    "constitutionAndBylaws": { "title": "Constitution & Bylaws" },
+    "report": { "title": "Report" },
 
     "people": { "title": "People" },
     "faculty": {
