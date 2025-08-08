@@ -1,8 +1,9 @@
-export interface Tag {
+interface Tag {
   id: string; // 태그 식별자
   transKey: string; // 태그 표시 텍스트
 }
 
+// messages/ko.json, messages/en.json에 있는 번역키와 일치해야 함
 export const NOTICE_TAGS: Tag[] = [
   { id: '수업', transKey: 'lecture' },
   { id: '장학', transKey: 'scholarship' },

@@ -32,7 +32,7 @@ export default function NoticeCreatePage() {
             isPrivate: content.isPrivate,
             isPinned: content.isPinned,
             isImportant: content.isImportant,
-            pinnedUntil: content.pinnedUntil.toISOString().slice(0, 10), 
+            pinnedUntil: content.pinnedUntil.toISOString().slice(0, 10),
             importantUntil: content.importantUntil.toISOString().slice(0, 10),
             tags: content.tags,
           }),

@@ -110,7 +110,7 @@ const SearchPageLayout = async ({
       {/* TODO: 임시로 넣은 main 교체 */}
       <SearchPageTitle />
       <div className="relative grow bg-white p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]">
-        <SearchBox tags={tags} formOnly />
+        <SearchBox allTags={tags} formOnly />
         {children}
         {node !== undefined && <SearchSubNavbar node={node} />}
       </div>

@@ -9,24 +9,25 @@ import TagFilter from '@/components/common/search/TagFilter';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 interface SearchBoxProps {
-  tags: { id: string; text: string }[]; // 전체 태그(선택지) 목록
+  allTags: { id: string; text: string }[]; // 전체 태그(선택지) 목록
   disabled?: boolean;
   formOnly?: boolean;
 }
 
-export default function SearchBox({ tags, disabled = false, formOnly = false }: SearchBoxProps) {
-  const { tags: initTags, keyword: initKeyword, setSearchParams } = useCustomSearchParams();
+export default function SearchBox({ allTags, disabled = false, formOnly = false }: SearchBoxProps) {
+  const { tags: initTagIds, keyword: initKeyword, setSearchParams } = useCustomSearchParams();
   const [keyword, setKeyword] = useState(initKeyword ?? '');
   const [, startTransition] = useTransition();
+  const selectedTags = allTags.filter((tag) => initTagIds.includes(tag.id));
 
   useEffect(() => {
     setKeyword(initKeyword ?? '');
   }, [initKeyword]);
 
-  const search = (tags?: string[]) => {
+  const search = (tagIds?: string[]) => {
     // TODO: startTrnaisition이 의미있는지 확인
     startTransition(() => {
-      setSearchParams({ purpose: 'search', keyword, tag: tags ?? initTags });
+      setSearchParams({ purpose: 'search', keyword, tag: tagIds ?? initTagIds });
     });
   };
 
@@ -39,14 +40,19 @@ export default function SearchBox({ tags, disabled = false, formOnly = false }: 
           search();
         }}
       >
-        <TagFilter tags={tags} selectedTags={initTags} disabled={disabled} searchTags={search} />
+        <TagFilter
+          tags={allTags}
+          selectedTags={initTagIds}
+          disabled={disabled}
+          searchTags={search}
+        />
         <KeywordInput keyword={keyword} setKeyword={setKeyword} disabled={disabled} />
       </form>
 
       {!formOnly && (
         <>
           <StraightNode double={true} margin="mt-9 mb-3" />
-          <SelectedTags tags={initTags} search={search} disabled={disabled} />
+          <SelectedTags tags={selectedTags} search={search} disabled={disabled} />
         </>
       )}
     </div>

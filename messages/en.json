@@ -6,7 +6,8 @@
     "resetTags": "reset tags",
     "list": "List",
     "next": "Next",
-    "previous": "Prev"
+    "previous": "Prev",
+    "all": "all"
   },
 
   "Header": {
@@ -60,6 +61,10 @@
     "community": { "title": "Community" },
     "notice": {
       "title": "Notice",
+      "list": {
+        "title": "Title",
+        "date": "Date"
+      },
       "tag": {
         "lecture": "lecture",
         "scholarship": "scholarship",

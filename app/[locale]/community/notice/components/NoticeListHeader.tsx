@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import * as NoticeListRow from '@/app/[locale]/community/notice/components/NoticeListRow';
 
 export default function NoticeListHeader({ isEditMode }: { isEditMode: boolean }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.notice.list');
 
   const paddingLeft = isEditMode ? 'pl-[6.25rem]' : 'pl-[3.125rem]';
 
@@ -14,13 +14,13 @@ export default function NoticeListHeader({ isEditMode }: { isEditMode: boolean }
       <span
         className={`${NoticeListRow.NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
       >
-        {t('제목')}
+        {t('title')}
       </span>
       <span
         className={`${NoticeListRow.NOTICE_ROW_CELL_WIDTH.date} whitespace-nowrap text-left tracking-wide sm:pl-8 sm:pr-10`}
       >
         {/* 아래 날짜들과 정렬하려면 너비를 직접 똑같이 맞춰줘야 함 */}
-        <span className="inline-block w-20">{t('날짜')}</span>
+        <span className="inline-block w-20">{t('date')}</span>
       </span>
     </h5>
   );

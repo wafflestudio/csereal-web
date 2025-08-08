@@ -28,7 +28,7 @@ export default function NoticePageContent({
 
   return (
     <>
-      <SearchBox tags={tags} disabled={editMode} />
+      <SearchBox allTags={tags} disabled={editMode} />
       <NoticeList
         posts={posts}
         isEditMode={editMode}

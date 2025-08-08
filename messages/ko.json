@@ -6,7 +6,8 @@
     "resetTags": "태그 초기화",
     "list": "목록",
     "next": "다음글",
-    "previous": "이전글"
+    "previous": "이전글",
+    "all": "전체"
   },
 
   "Header": {
@@ -60,6 +61,10 @@
     "community": { "title": "소식" },
     "notice": {
       "title": "공지사항",
+      "list": {
+        "title": "제목",
+        "date": "날짜"
+      },
       "tag": {
         "lecture": "수업",
         "scholarship": "장학",

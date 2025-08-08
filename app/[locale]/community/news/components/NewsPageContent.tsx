@@ -29,7 +29,7 @@ export default function NewsPageContent({
 
   return (
     <>
-      <SearchBox tags={tags} />
+      <SearchBox allTags={tags} />
 
       {searchList.length > 0 ? (
         <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
