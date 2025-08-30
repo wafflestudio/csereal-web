@@ -107,7 +107,11 @@ export default function ResearchLabEditor({
             <Form.Text name="tel" maxWidth="w-[21.75rem]" placeholder="예: (02) 880-7302" />
           </Fieldset>
           <Fieldset title="웹사이트 주소" mb="mb-6" titleMb="mb-2">
-            <Form.Text name="webtie" maxWidth="w-[21.75rem]" placeholder="예: (02) 880-7302" />
+            <Form.Text
+              name="website"
+              maxWidth="w-[21.75rem]"
+              placeholder="예: https://www.example.com"
+            />
           </Fieldset>
         </div>
 
