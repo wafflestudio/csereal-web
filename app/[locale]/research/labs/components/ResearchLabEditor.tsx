@@ -108,7 +108,7 @@ export default function ResearchLabEditor({
           </Fieldset>
           <Fieldset title="웹사이트 주소" mb="mb-6" titleMb="mb-2">
             <Form.Text
-              name="website"
+              name="websiteURL"
               maxWidth="w-[21.75rem]"
               placeholder="예: https://www.example.com"
             />
