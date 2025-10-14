@@ -208,7 +208,7 @@ const DateSection = ({ language }: { language: Language }) => {
           <Form.Date name={`${language}.startDate`} hideTime enablePast disabled={isDisabled} />
         </Fieldset>
         <Fieldset title="종료 날짜" titleMb="mb-2">
-          <Form.Date name={`${language}.startDate`} hideTime enablePast disabled={isDisabled} />
+          <Form.Date name={`${language}.endDate`} hideTime enablePast disabled={isDisabled} />
         </Fieldset>
       </div>
     </Form.Section>
