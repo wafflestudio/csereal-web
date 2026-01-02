@@ -1,3 +1,7 @@
+# ⚠️ Deprecated - [wafflestudio/cse.snu.ac.kr](https://github.com/wafflestudio/cse.snu.ac.kr)로 이전했습니다.
+
+---
+
 # csereal-web
 
 ![](https://github.com/user-attachments/assets/39a28dbf-8ce8-4c3c-9222-abdddd22b934)
