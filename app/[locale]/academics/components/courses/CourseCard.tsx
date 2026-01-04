@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useReducer, useRef } from 'react';
 
-import { Course, GRADE, SortOption } from '@/apis/types/academics';
+import { Course, SortOption } from '@/apis/types/academics';
 import styles from '@/app/[locale]/academics/components/courses/style.module.css';
 import { useTypedLocale } from '@/utils/hooks/useTypedLocale';
 
@@ -12,11 +12,11 @@ interface CourseCardProps {
 
 const useSortedProperties = (course: Course, selectedOption: SortOption) => {
   const lang = useTypedLocale();
-  const t = useTranslations('Tag');
+  const t = useTranslations('Page.courses');
 
   const classification = course[lang].classification;
-  const grade = t(GRADE[course.grade]);
-  const credit = t(`${course.credit}학점`);
+  const grade = t('grade', { grade: course.grade });
+  const credit = t('credit', { credit: course.credit });
 
   switch (selectedOption) {
     case '교과목 구분':

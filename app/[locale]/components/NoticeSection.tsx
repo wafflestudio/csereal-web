@@ -15,8 +15,7 @@ import { getPath } from '@/utils/page';
 export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMainNotice }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');
   const { isMobile } = useResponsive();
-  const t = useTranslations('Nav');
-  const tTag = useTranslations('Tag');
+  const t = useTranslations('Page');
 
   const formatDate = useDayjs();
 
@@ -26,31 +25,31 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
         <Image src="/image/main/noticeGraphic.png" alt="" fill sizes="827px" />
       </div>
       <div className="flex flex-col px-7 pb-[1.625rem] pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-[33rem] sm:p-0">
-        <h3 className="text-[1.75rem] font-semibold text-white">{t('공지사항')}</h3>
+        <h3 className="text-[1.75rem] font-semibold text-white">{t(`${notice.engName}.title`)}</h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
           <div className="flex gap-[0.875rem]">
             <NoticeSectionButton selected={tag === 'all'} onClick={() => setTag('all')}>
-              {tTag('전체')}
+              {t('home.all')}
             </NoticeSectionButton>
             <NoticeSectionButton
               selected={tag === 'scholarship'}
               onClick={() => setTag('scholarship')}
             >
-              {tTag('장학')}
+              {t('home.scholarship')}
             </NoticeSectionButton>
             <NoticeSectionButton
               selected={tag === 'undergraduate'}
               onClick={() => setTag('undergraduate')}
             >
-              {tTag('학부')}
+              {t('home.undergraduate.lower')}
             </NoticeSectionButton>
             <NoticeSectionButton selected={tag === 'graduate'} onClick={() => setTag('graduate')}>
-              {tTag('대학원')}
+              {t('home.graduate')}
             </NoticeSectionButton>
           </div>
           {!isMobile && (
             <Link className="flex text-base font-normal text-[#E65817]" href={getPath(notice)}>
-              <Plus /> {t('더보기')}
+              <Plus /> {t('home.viewMore')}
             </Link>
           )}
         </div>
@@ -74,7 +73,7 @@ export default function NoticeSection({ allMainNotice }: { allMainNotice: AllMai
             className="ml-auto mt-6 flex text-base font-normal text-[#E65817]"
             href={getPath(notice)}
           >
-            <Plus /> {t('더보기')}
+            <Plus /> {t('viewMore')}
           </Link>
         )}
       </div>

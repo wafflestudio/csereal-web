@@ -14,7 +14,7 @@ export const NAVBAR_EXPANDED_WIDTH_REM = 11;
 
 export default function NavbarRoot() {
   const navbarState = useNavbarStore((s) => s.navbarState);
-  const setNavbarState = useNavbarStore((s) => s.setNavbarState); 
+  const setNavbarState = useNavbarStore((s) => s.setNavbarState);
 
   return (
     // 상하로 화면이 좁은 경우를 대비해 overflow-scroll
@@ -55,11 +55,11 @@ function DotList() {
 }
 
 function NavList() {
-  const navbarState = useNavbarStore((s) => s.navbarState); 
+  const navbarState = useNavbarStore((s) => s.navbarState);
   const setNavbarState = useNavbarStore((s) => s.setNavbarState);
 
   const cur = useCurrentSegmentNode();
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
 
   const shouldHighlight = (child: SegmentNode) => {
     return navbarState.type === 'hovered'
@@ -74,7 +74,7 @@ function NavList() {
           <NavListRow
             key={i}
             highlight={shouldHighlight(child)}
-            name={t(child.name)}
+            name={t(`${child.engName}.title`)}
             href={getPath(child)}
             onMouseEnter={() => setNavbarState({ type: 'hovered', segmentNode: child })}
           />

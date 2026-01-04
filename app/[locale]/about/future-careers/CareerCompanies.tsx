@@ -17,7 +17,7 @@ import Form from '@/components/form/Form';
 import { handleServerResponse } from '@/utils/serverActionError';
 
 export default function CareerCompanies({ companies }: { companies: FutureCareers['companies'] }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.about.futureCareers');
 
   const [showCreateForm, toggleCreateForm] = useReducer((x) => !x, false);
 
@@ -32,7 +32,7 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
   return (
     <div className="mt-11 sm:max-w-fit">
       <div className="mb-3 flex items-center justify-between gap-2">
-        <h3 className="text-base font-bold">{t('졸업생 창업 기업')}</h3>
+        <h3 className="text-base font-bold">{t('graduateStartups')}</h3>
         {/* UI가 과하게 깨지는 관계로 모바일 버전에서는 편집 X */}
         <div className="hidden sm:block">
           <LoginVisible staff>
@@ -56,14 +56,14 @@ export default function CareerCompanies({ companies }: { companies: FutureCareer
 const TABLE_COLUMN_SIZE = ['sm:w-[3rem]', 'sm:w-[12.5rem]', 'sm:w-80', 'sm:w-20', 'sm:w-32'];
 
 function CompanyTableHeader() {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.about.futureCareers');
 
   return (
     <div className="hidden h-10 items-center gap-3 whitespace-nowrap border-b border-neutral-200 sm:flex sm:px-3">
       <p className={TABLE_COLUMN_SIZE[0]}>{t('연번')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[1]} pl-2`}>{t('창업 기업명')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[2]} pl-2`}>{t('홈페이지')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[3]} pl-2`}>{t('창업연도')}</p>
+      <p className={`${TABLE_COLUMN_SIZE[1]} pl-2`}>{t('startupName')}</p>
+      <p className={`${TABLE_COLUMN_SIZE[2]} pl-2`}>{t('startupWebsite')}</p>
+      <p className={`${TABLE_COLUMN_SIZE[3]} pl-2`}>{t('startupYear')}</p>
       {/* 표 본문과 UI 정렬을 맞추기 위함 */}
       <LoginVisible staff>
         <p className={`hidden shrink-0 sm:block ${TABLE_COLUMN_SIZE[4]}`} />

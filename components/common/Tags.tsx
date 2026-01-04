@@ -1,16 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
 import { Link } from '@/i18n/routing';
 
 interface TagsProps {
-  tags: string[];
+  tags: Tag[];
   margin?: string;
   searchPath?: string;
   disabled?: boolean;
-  onClick?: (tag: string) => void;
-  onDelete?: (tag: string) => void;
+  onClick?: (tagId: string) => void;
+  onDelete?: (tagId: string) => void;
 }
 
 export default function Tags({
@@ -25,12 +23,12 @@ export default function Tags({
     <div className={`flex flex-wrap items-center gap-2.5 ${margin}`}>
       {searchPath
         ? tags.map((tag) => (
-            <Link key={tag} href={`${searchPath}?tag=${tag}`} className="rounded-[1.875rem]">
+            <Link key={tag.id} href={`${searchPath}?tag=${tag.id}`} className="rounded-[1.875rem]">
               <Tag tag={tag} hoverStyle="fill" />
             </Link>
           ))
         : tags.map((tag) => (
-            <Tag key={tag} tag={tag} disabled={disabled} onClick={onClick} onDelete={onDelete} />
+            <Tag key={tag.id} tag={tag} disabled={disabled} onClick={onClick} onDelete={onDelete} />
           ))}
     </div>
   );
@@ -47,16 +45,21 @@ const HOVER_STYLE: { [key in HoverStyle]: string } = {
 const DEFAULT_STYLE: { [key in DefaultStyle]: string } = {
   orange: 'bg-white border-main-orange text-main-orange ',
   gray: 'bg-white border-neutral-400 text-neutral-400',
-  fill: ' bg-main-orange border-main-orange text-white',
+  fill: 'bg-main-orange border-main-orange text-white',
 };
 
+export interface Tag {
+  id: string;
+  text: string;
+}
+
 interface TagProps {
-  tag: string;
+  tag: Tag;
   hoverStyle?: HoverStyle;
   defaultStyle?: DefaultStyle;
   disabled?: boolean;
-  onClick?: (tag: string) => void;
-  onDelete?: (tag: string) => void;
+  onClick?: (tagId: string) => void;
+  onDelete?: (tagId: string) => void;
 }
 
 export function Tag({
@@ -72,16 +75,14 @@ export function Tag({
   const defaultClass = DEFAULT_STYLE[defaultStyle];
   const hoverClass = hoverStyle ? `${HOVER_STYLE[hoverStyle]} cursor-pointer` : '';
 
-  const t = useTranslations('Tag');
-
   return (
-    <span className={`${tagClass} ${defaultClass} ${hoverClass}`} onClick={() => onClick?.(tag)}>
-      <span className={onDelete ? '' : 'pr-2.5'}>{t(tag)}</span>
+    <span className={`${tagClass} ${defaultClass} ${hoverClass}`} onClick={() => onClick?.(tag.id)}>
+      <span className={onDelete ? '' : 'pr-2.5'}>{tag.text}</span>
       {onDelete && (
         <button
           className={`flex h-full items-center pl-1 pr-2.5 text-main-orange enabled:hover:text-neutral-400 enabled:active:text-main-orange`}
           disabled={disabled}
-          onClick={() => !disabled && onDelete(tag)}
+          onClick={() => !disabled && onDelete(tag.id)}
         >
           <span className="material-symbols-outlined text-sm">close</span>
         </button>

@@ -41,9 +41,9 @@ export default function PageLayout({
   hideNavbar = false,
   children,
 }: PageLayoutProps) {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
   const currentPage = useCurrentSegmentNode();
-  title ||= t(currentPage.name);
+  title ||= t(`${currentPage.engName}.title`);
 
   return (
     <div className="flex grow flex-col bg-neutral-900">

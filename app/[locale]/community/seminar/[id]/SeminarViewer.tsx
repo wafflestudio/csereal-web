@@ -18,7 +18,7 @@ interface SeminarPostPageProps {
 }
 
 export default async function SeminarViewer({ seminarData }: SeminarPostPageProps) {
-  const t = await getTranslations('Content');
+  const t = await getTranslations('Page.seminars');
 
   return (
     <>
@@ -32,21 +32,21 @@ export default async function SeminarViewer({ seminarData }: SeminarPostPageProp
         <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
           <div className="flex flex-col gap-3">
             <div>
-              {t('이름')}: <LinkOrText href={seminarData.speakerURL}>{seminarData.name}</LinkOrText>
+              {t('name')}: <LinkOrText href={seminarData.speakerURL}>{seminarData.name}</LinkOrText>
             </div>
             <div>{seminarData.speakerTitle && <p>직함: {seminarData.speakerTitle}</p>}</div>
             <div>
-              {t('소속')}:{' '}
+              {t('affiliation')}:{' '}
               <LinkOrText href={seminarData.affiliationURL}>{seminarData.affiliation}</LinkOrText>
             </div>
             <div className="mt-10">
-              {t('주최')}: {seminarData.host}
+              {t('host')}: {seminarData.host}
             </div>
             <div>
-              {t('날짜')}: {formatStartEndDate(seminarData.startDate, seminarData.endDate)}
+              {t('date')}: {formatStartEndDate(seminarData.startDate, seminarData.endDate)}
             </div>
             <div>
-              {t('위치')}: {seminarData.location}
+              {t('location')}: {seminarData.location}
             </div>
           </div>
           <div className="relative mx-7 aspect-square sm:h-60 sm:w-60">
@@ -61,14 +61,14 @@ export default async function SeminarViewer({ seminarData }: SeminarPostPageProp
 
         {seminarData.description && (
           <>
-            <div className="mt-10 font-bold">{t('요약')}</div>
+            <div className="mt-10 font-bold">{t('summary')}</div>
             <HTMLViewer htmlContent={seminarData.description} />
           </>
         )}
 
         {seminarData.introduction && (
           <>
-            <div className="mt-10 font-bold">{t('연사 소개')}</div>
+            <div className="mt-10 font-bold">{t('speakerInformation')}</div>
             <HTMLViewer htmlContent={seminarData.introduction} />
           </>
         )}

@@ -4,14 +4,14 @@ import Checkbox from '@/components/form/legacy/Checkbox';
 import useStyle from '@/utils/hooks/useStyle';
 
 interface TagFilterProps {
-  tags: string[];
+  tags: { id: string; text: string }[];
   selectedTags: string[];
   disabled: boolean;
   searchTags: (tags: string[]) => void;
 }
 
 export default function TagFilter({ tags, selectedTags, disabled, searchTags }: TagFilterProps) {
-  const t = useTranslations('Tag');
+  const t = useTranslations('common');
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
     if (isChecked) {
@@ -24,14 +24,14 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
   const locale = useLocale();
 
   return (
-    <div>
-      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">{t('태그')}</h5>
+    <div id="tagfilter">
+      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">{t('tag')}</h5>
       <div
         className={`grid gap-x-7 gap-y-2.5 pl-2.5`}
         {...useStyle(
           (style) => {
             style.gridTemplateColumns = `repeat(auto-fill, minmax(${calculateWidth(
-              tags.map((tag) => t(tag)),
+              tags.map((tag) => tag.text),
               locale,
             )}px, auto))`;
           },
@@ -40,10 +40,10 @@ export default function TagFilter({ tags, selectedTags, disabled, searchTags }: 
       >
         {tags.map((tag) => (
           <Checkbox
-            key={tag}
-            label={t(tag)}
-            isChecked={selectedTags.includes(tag)}
-            toggleCheck={() => toggleCheck(tag, !selectedTags.includes(tag))}
+            key={tag.id}
+            label={tag.text}
+            isChecked={selectedTags.includes(tag.id)}
+            toggleCheck={() => toggleCheck(tag.id, !selectedTags.includes(tag.text))}
             disabled={disabled}
           />
         ))}

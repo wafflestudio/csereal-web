@@ -29,9 +29,9 @@ export default function EmeritusFacultyMemberPageContent({
   faculty: EmeritusFaculty;
   ids: WithLanguage<number>;
 }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.emeritusFaculty');
 
-  const careerTimeStr = `${t('재직 기간')}: ${faculty.startDate} - ${faculty.endDate}`;
+  const careerTimeStr = `${t('employmentPeriod')}: ${faculty.startDate} - ${faculty.endDate}`;
 
   const handleDelete = async () => {
     try {
@@ -53,12 +53,12 @@ export default function EmeritusFacultyMemberPageContent({
               <ul className="list-inside list-disc">
                 {faculty.office && (
                   <BulletRow>
-                    {t('교수실')}: {faculty.office}
+                    {t('office')}: {faculty.office}
                   </BulletRow>
                 )}
                 {faculty.email && (
                   <BulletRow>
-                    {t('이메일')}:
+                    {t('email')}:
                     <Link
                       className="ml-1 text-link hover:underline"
                       href={`mailto:${faculty.email}`}
@@ -69,7 +69,7 @@ export default function EmeritusFacultyMemberPageContent({
                 )}
                 {faculty.website && (
                   <BulletRow>
-                    {t('웹사이트')}:
+                    {t('website')}:
                     <Link className="ml-1 text-link hover:underline" href={`${faculty.website}`}>
                       {faculty.website}
                     </Link>
@@ -78,8 +78,8 @@ export default function EmeritusFacultyMemberPageContent({
               </ul>
             </article>
           )}
-          <HeaderAndList header={t('학력')} list={faculty.educations} />
-          <HeaderAndList header={t('연구 분야')} list={faculty.researchAreas} />
+          <HeaderAndList header={t('education')} list={faculty.educations} />
+          <HeaderAndList header={t('researchAreas')} list={faculty.researchAreas} />
           <div className=" mb-7 text-sm font-medium text-neutral-700">{careerTimeStr}</div>
         </div>
       </div>

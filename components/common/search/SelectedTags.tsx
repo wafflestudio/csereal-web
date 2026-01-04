@@ -1,19 +1,20 @@
 import { useTranslations } from 'next-intl';
 
-import Tags from '@/components/common/Tags';
+import Tags, { Tag } from '@/components/common/Tags';
 
 interface SelectedTagsProps {
-  tags: string[];
+  tags: Tag[];
   search: (tags: string[]) => void;
   disabled: boolean;
 }
 
 export default function SelectedTags({ tags, search, disabled }: SelectedTagsProps) {
+  const t = useTranslations('common');
   const isTagExist = tags.length > 0;
 
-  const deleteTag = (targetTag: string) => {
-    const filteredTags = tags.filter((tag) => tag !== targetTag);
-    search(filteredTags);
+  const deleteTag = (targetTagId: string) => {
+    const filteredTagIds = tags.filter((tag) => tag.id !== targetTagId).map((tag) => tag.id);
+    search(filteredTagIds);
   };
 
   const resetTags = () => {
@@ -23,7 +24,7 @@ export default function SelectedTags({ tags, search, disabled }: SelectedTagsPro
   return (
     <div className="flex items-start justify-between gap-3 px-2.5">
       <Tags
-        tags={isTagExist ? tags : ['전체']}
+        tags={isTagExist ? tags : [{ id: '전체', text: t('all') }]}
         onDelete={isTagExist ? deleteTag : undefined}
         disabled={disabled}
       />
@@ -38,7 +39,7 @@ interface TagResetButtonProps {
 }
 
 function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
 
   return (
     <button
@@ -47,7 +48,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
       disabled={disabled}
     >
       <span className="material-symbols-outlined scale-x-[-1] text-base font-light">refresh</span>
-      <span className="whitespace-nowrap text-md">{t('태그 초기화')}</span>
+      <span className="whitespace-nowrap text-md">{t('resetTags')}</span>
     </button>
   );
 }

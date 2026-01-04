@@ -46,7 +46,7 @@ const ProdLogin = () => {
   const logout = useSessionStore((s) => s.logout);
   const t = useTranslations('Header');
 
-  const authText = t(state === 'logout' ? '로그인' : '로그아웃');
+  const authText = t(state === 'logout' ? 'login' : 'logout');
   const onClickAuth = state === 'logout' ? login : logout;
 
   return (

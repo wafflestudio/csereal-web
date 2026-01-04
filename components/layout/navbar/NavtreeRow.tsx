@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { StraightNode } from '@/components/common/Nodes';
 import NavLabel from '@/components/layout/navbar/NavLabel';
 import { SegmentNode } from '@/constants/segmentNode';
@@ -20,6 +22,7 @@ export default function NavTreeLabel({
   anchorClassName,
 }: NavTreeRowProps) {
   const href = getPath(segmentNode);
+  const t = useTranslations('Page');
 
   if (highlight) {
     return (
@@ -28,7 +31,7 @@ export default function NavTreeLabel({
           href={href}
           className={`mr-4 h-[1.0625rem] shrink-0 font-medium text-main-orange ${anchorClassName}`}
         >
-          <NavLabel text={segmentNode.name} />
+          <NavLabel text={t(`${segmentNode.engName}.title`)} />
         </Link>
         <StraightNode />
       </div>
@@ -39,7 +42,7 @@ export default function NavTreeLabel({
         href={href}
         className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white hover:text-main-orange ${anchorClassName} ${containerClassName}`}
       >
-        <NavLabel text={segmentNode.name} />
+        <NavLabel text={t(`${segmentNode.engName}.title`)} />
       </Link>
     );
   } else {
@@ -47,7 +50,7 @@ export default function NavTreeLabel({
       <p
         className={`mb-6 block h-[1.0625rem] font-medium leading-5 text-white ${containerClassName} ${anchorClassName}`}
       >
-        <NavLabel text={segmentNode.name} />
+        <NavLabel text={t(`${segmentNode.engName}.title`)} />
       </p>
     );
   }

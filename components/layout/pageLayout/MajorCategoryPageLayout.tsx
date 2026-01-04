@@ -18,11 +18,11 @@ export default function MajorCategoryPageLayout({
   subtitle = '',
   description = '',
 }: GuidePageLayoutProps) {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
   const currentPage = useCurrentSegmentNode();
 
   // TODO: messages.json에 번역 파일 추가
-  title ||= t(currentPage.name);
+  title ||= t(`${currentPage.engName}.title`);
 
   return (
     <div className="bg-neutral-850">

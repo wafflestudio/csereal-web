@@ -47,6 +47,7 @@ export default async function NoticePostPage(props: NoticePostPageProps) {
 
   try {
     const notice = await getNoticePostDetail(id, searchParams);
+
     return (
       <PageLayout titleType="big" removePadding>
         <Suspense fallback={<PostFallback />}>

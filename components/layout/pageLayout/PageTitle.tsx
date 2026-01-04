@@ -42,7 +42,7 @@ export default function PageTitle({ title, currentPage, titleType, margin }: Pag
 }
 
 function Breadcrumb({ currentPage }: { currentPage: SegmentNode }) {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Page');
   const log: SegmentNode[] = getLocationLog(currentPage);
   const exactCurrentPagePathname = usePathname(); // 정확한 현재 페이지 주소 (e.g. 공지목록에서 하위 페이지로 들어간 경우 currentPage가 목록 페이지로 되어있음)
 
@@ -54,7 +54,7 @@ function Breadcrumb({ currentPage }: { currentPage: SegmentNode }) {
             <li className="flex">
               <LocationText
                 path={location.isPage ? getPath(location) : null}
-                name={t(location.name)}
+                name={t(`${location.engName}.title`)}
                 isCurrent={exactCurrentPagePathname === getPath(location)}
               />
             </li>

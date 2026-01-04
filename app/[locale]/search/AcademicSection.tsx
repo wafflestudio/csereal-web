@@ -1,7 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Academic, AcademicsSearchResult } from '@/apis/types/search';
 import BasicRow from '@/app/[locale]/search/helper/BasicRow';
 import Section from '@/app/[locale]/search/helper/Section';
 import {
+  academics,
   curriculum,
   degree,
   generalStudies,
@@ -18,8 +21,10 @@ import { getPath } from '@/utils/page';
 
 // TODO: 장학 제도 등 상세 페이지로 연결
 export default async function AcademicSection({ academic }: { academic: AcademicsSearchResult }) {
+  const t = await getTranslations(`Page.${academics.engName}`);
+
   return (
-    <Section title="학사 및 교과" size={academic.total}>
+    <Section title={t('title')} size={academic.total}>
       <div className="flex flex-col gap-7">
         {academic.results.map((result) => {
           const node = toNode(result);

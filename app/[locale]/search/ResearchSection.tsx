@@ -1,7 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import { ResearchSearchResult, ResearchType } from '@/apis/types/search';
 import BasicRow from '@/app/[locale]/search/helper/BasicRow';
 import Section from '@/app/[locale]/search/helper/Section';
 import {
+  research as researchNode,
   researchCenters,
   researchGroups,
   researchLabs,
@@ -10,8 +13,10 @@ import {
 import { getPath } from '@/utils/page';
 
 export default async function ResearchSection({ research }: { research: ResearchSearchResult }) {
+  const t = await getTranslations(`Page.${researchNode.engName}`);
+
   return (
-    <Section title="연구·교육" size={research.total}>
+    <Section title={t('title')} size={research.total}>
       <div className="flex flex-col gap-7">
         {research.results.map((result) => {
           const node = toNode(result.researchType);

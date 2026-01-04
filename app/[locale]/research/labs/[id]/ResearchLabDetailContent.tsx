@@ -62,7 +62,7 @@ const researchGroupsPath = getPath(researchGroups);
 const LENGTH_BOUNDARY = 10;
 
 function AffiliatedGroup({ groupName }: { groupName: string }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.streams');
 
   const width = groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
   const affiliatedGroupPath = `${researchGroupsPath}?selected=${replaceSpaceWithDash(groupName)}`;
@@ -74,7 +74,7 @@ function AffiliatedGroup({ groupName }: { groupName: string }) {
         className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center text-sm duration-300 hover:text-white`}
       >
         <span className="tracking-[-0.019em]">
-          {groupName} {t('스트림')}
+          {groupName} {t('stream')}
         </span>
       </Link>
       <div className="text-white peer-hover:text-main-orange">

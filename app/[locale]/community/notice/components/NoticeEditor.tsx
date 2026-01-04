@@ -69,7 +69,7 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
         <Fieldset title="태그" mb="mb-8" titleMb="mb-3">
           <div className="flex grow flex-wrap  gap-x-6 gap-y-2.5">
             {NOTICE_TAGS.map((tag) => (
-              <Form.Checkbox key={tag} value={tag} name="tags" />
+              <Form.Checkbox key={tag.id} value={tag.id} name="tags" />
             ))}
           </div>
         </Fieldset>
@@ -92,11 +92,7 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
                 if (isImportant) setValue('isPrivate', false);
               }}
             />
-            <Form.Date
-              name="pinnedUntil"
-              enablePast
-              hideTime
-            />
+            <Form.Date name="pinnedUntil" enablePast hideTime />
             <Form.Checkbox
               label="메인-중요 안내에 표시"
               name="isImportant"
@@ -104,11 +100,7 @@ export default function NoticeEditor({ defaultValues, onCancel, onSubmit, onDele
                 if (isImportant) setValue('isPrivate', false);
               }}
             />
-            <Form.Date
-              name="importantUntil"
-              enablePast
-              hideTime
-            />
+            <Form.Date name="importantUntil" enablePast hideTime />
           </div>
         </Fieldset>
         <Form.Action

@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import ReservationCalendar from '@/app/[locale]/reservations/[roomType]/[roomName]/helper/ReservationCalendar';
@@ -8,7 +7,7 @@ import { getMetadata } from '@/utils/metadata';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string; roomName: string }>;
-}): Promise<Metadata> {
+}) {
   const params = await props.params;
 
   const { locale, roomName } = params;

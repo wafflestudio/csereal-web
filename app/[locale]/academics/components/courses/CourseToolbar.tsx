@@ -48,7 +48,7 @@ interface ViewOptionsProps {
 }
 
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
-  const t = useTranslations('Content');
+  const t = useTranslations('Page.courses');
 
   return (
     <div className="flex gap-3 text-md text-neutral-400">
@@ -56,14 +56,14 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
         className={selectedOption === '목록형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('목록형')}
       >
-        {t('목록형')}
+        {t('listView')}
       </span>
       <span>|</span>
       <span
         className={selectedOption === '카드형' ? 'text-neutral-800' : 'cursor-pointer'}
         onClick={() => changeOption('카드형')}
       >
-        {t('카드형')}
+        {t('cardView')}
       </span>
     </div>
   );
@@ -74,18 +74,18 @@ interface SortOptionsProps {
   changeOption: (option: SortOption) => void;
 }
 
-export const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
+const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
 
 function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   return (
     <div className="flex flex-wrap items-center gap-2.5">
       {SORT_OPTIONS.map((option) =>
         option === selectedOption ? (
-          <Tag key={option} tag={option} defaultStyle="fill" />
+          <Tag key={option} tag={{ id: option, text: option }} defaultStyle="fill" />
         ) : (
           <Tag
             key={option}
-            tag={option}
+            tag={{ id: option, text: option }}
             hoverStyle="fill"
             defaultStyle="orange"
             onClick={() => changeOption(option)}

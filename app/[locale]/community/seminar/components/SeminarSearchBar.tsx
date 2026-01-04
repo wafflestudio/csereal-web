@@ -6,7 +6,7 @@ import { ChangeEventHandler, FormEvent, useState } from 'react';
 import { useCustomSearchParams } from '@/utils/hooks/useCustomSearchParams';
 
 export default function SeminarSearchBar() {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
   const { keyword: initKeyword, setSearchParams } = useCustomSearchParams();
   const [text, setText] = useState(initKeyword ?? '');
 
@@ -23,7 +23,7 @@ export default function SeminarSearchBar() {
   return (
     <form className="flex w-fit items-center gap-5" onSubmit={searchText}>
       <label htmlFor="search" className="font-bold">
-        {t('검색')}
+        {t('search')}
       </label>
       <div className="flex h-[1.875rem] w-60 items-center rounded-sm bg-neutral-100 pr-3">
         <input

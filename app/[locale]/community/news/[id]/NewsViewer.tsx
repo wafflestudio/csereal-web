@@ -1,6 +1,8 @@
 // TODO: searchParams를 사용했음에도 static rendering이 되는 것 같아 추가
 export const dynamic = 'force-dynamic';
 
+import { getTranslations } from 'next-intl/server';
+
 import { deleteNewsAction } from '@/actions/news';
 import { News } from '@/apis/types/news';
 import PostFooter from '@/app/[locale]/community/components/PostFooter';
@@ -10,6 +12,7 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import { news } from '@/constants/segmentNode';
+import { NEWS_TAGS } from '@/constants/tag';
 import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
@@ -20,6 +23,12 @@ interface NewsPostPageProps {
 const newsPath = getPath(news);
 
 export default async function NewsViewer({ news }: NewsPostPageProps) {
+  const t = await getTranslations('Page.news.tag');
+  const tags = NEWS_TAGS.filter((tag) => news.tags.includes(tag.id)).map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
+
   return (
     <>
       <Header title={news.title} date={news.date} />
@@ -37,7 +46,7 @@ export default async function NewsViewer({ news }: NewsPostPageProps) {
           wrapperClassName="mb-10"
         />
         <StraightNode />
-        <Tags tags={news.tags} margin="mt-3 ml-6" searchPath={newsPath} />
+        <Tags tags={tags} margin="mt-3 ml-6" searchPath={newsPath} />
         <PostFooter
           post={news}
           id={news.id.toString()}

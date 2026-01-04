@@ -39,7 +39,7 @@ const overviewPath = getPath(overview);
 export default async function OverviewPage(props: OverviewPageProps) {
   const params = await props.params;
   const { description, attachments, imageURL } = await getOverview(params.locale);
-  const t = await getTranslations('Content');
+  const t = await getTranslations('Page.about.overview');
 
   return (
     <PageLayout titleType="big" removePadding>
@@ -66,7 +66,7 @@ export default async function OverviewPage(props: OverviewPageProps) {
         </div>
       </div>
       <div className="px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-[6.25rem] sm:pr-[22.5rem]">
-        <h2 className="mb-6 text-base font-semibold">{t('학부 소개 책자')}</h2>
+        <h2 className="mb-6 text-base font-semibold">{t('brochure')}</h2>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row">
           <Image src={brochure1.src} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2.src} width={227} height={320} alt="소개 책자" />

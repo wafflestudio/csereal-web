@@ -16,8 +16,6 @@ export default function CategoryGrid({
   currentPage: SegmentNode;
   theme: 'light' | 'dark';
 }) {
-  const t = useTranslations('Nav');
-
   // 학사 및 교과 등에서 소분류 선택 처리용 state
   const [selectedCategory, setSelectedCategory] = useState<SegmentNode | null>(null);
   const router = useRouter();
@@ -30,7 +28,7 @@ export default function CategoryGrid({
         {currentPage.children!.map((subpage, index) => (
           <RootItem
             key={index}
-            title={t(subpage.name)}
+            title={subpage.engName}
             onClick={() =>
               subpage.isPage ? router.push(getPath(subpage)) : setSelectedCategory(subpage)
             }
@@ -46,7 +44,7 @@ export default function CategoryGrid({
           {selectedCategory.children!.map((subpage, index) => (
             <LeafItem
               key={index}
-              title={subpage.name}
+              title={subpage.engName}
               onClick={() => router.push(getPath(subpage))}
             />
           ))}
@@ -112,6 +110,7 @@ function DetailItem({
   borderColor,
   onClick,
 }: DetailItemProps) {
+  const t = useTranslations('Page');
   const hoverBgColor = hoverColor ? `hover:${hoverColor}` : 'hover:bg-main-orange-dark';
 
   return (
@@ -121,10 +120,10 @@ function DetailItem({
     >
       <div>
         <h3 className="mb-[0.625rem] text-md font-medium text-neutral-800 sm:mb-2.5 sm:text-[20px]">
-          {title}
+          {t(`${title}.title`)}
         </h3>
         <p className="text-[11px] text-neutral-800 sm:text-base">
-          {ENG_NAMES.Nav[title as keyof typeof ENG_NAMES.Nav] ?? ''}
+          {ENG_NAMES.Page[title as keyof typeof ENG_NAMES.Page].title ?? ''}
         </p>
       </div>
       {hasArrow && (

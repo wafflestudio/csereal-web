@@ -18,11 +18,11 @@ export const getMetadata = async ({
   node?: SegmentNode;
   metadata?: Metadata;
 }): Promise<Metadata> => {
-  const t = await getTranslations({ locale, namespace: 'Nav' });
+  const t = await getTranslations({ locale, namespace: 'Page' });
 
   return {
     ...metadata,
-    title: metadata?.title || (node ? t(node.name) : undefined),
+    title: metadata?.title || (node ? t(`${node.engName}.title`) : undefined),
     description:
       metadata?.description ||
       (node ? `서울대학교 컴퓨터공학부 ${node.name} 페이지입니다.` : undefined),

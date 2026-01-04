@@ -10,7 +10,7 @@ import {
   reservationIntroduction,
   SegmentNode,
   seminar,
-  tentenProject,
+  tentenProposal,
   topConferenceList,
   undergraduateGuide,
 } from '@/constants/segmentNode';
@@ -19,11 +19,13 @@ import { getPath } from '@/utils/page';
 export interface FooterLink {
   href: string;
   title: string;
+  engTitle: string;
 }
 
 const segmentNodeToLink = (node: SegmentNode): FooterLink => ({
   href: getPath(node),
   title: node.name,
+  engTitle: node.engName,
 });
 
 export const aboutLinks = [overview, faculty, undergraduateGuide, graduateGuide].map(
@@ -34,32 +36,30 @@ export const resourcesLinks = [notice, seminar, reservationIntroduction].map(seg
 
 export const researchLinks = [
   segmentNodeToLink(facultyRecruitment),
-  {
-    href: getPath(researchLabs),
-    title: '연구실 목록',
-  },
+  segmentNodeToLink(researchLabs),
   segmentNodeToLink(topConferenceList),
-  {
-    href: getPath(tentenProject),
-    title: '10-10 Project',
-  },
+  segmentNodeToLink(tentenProposal),
 ];
 
 export const moreLinks: FooterLink[] = [
   {
     title: '연합전공 인공지능(학사)',
+    engTitle: 'imai',
     href: 'https://imai.snu.ac.kr',
   },
   {
     title: '지능형컴퓨팅사업단',
+    engTitle: 'bkcse',
     href: 'http://bkcse.snu.ac.kr',
   },
   {
     title: '컴퓨터 연구소',
+    engTitle: 'ict',
     href: 'http://ict.snu.ac.kr',
   },
   {
     title: '해동학술정보실',
+    engTitle: 'haedong',
     href: 'http://haedong.snu.ac.kr/',
   },
 ];

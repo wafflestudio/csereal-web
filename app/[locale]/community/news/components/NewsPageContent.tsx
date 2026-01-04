@@ -1,3 +1,7 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 import { NewsPreviewList } from '@/apis/types/news';
 import NewsRow from '@/app/[locale]/community/news/components/NewsRow';
 import LoginVisible from '@/components/common/LoginVisible';
@@ -17,9 +21,15 @@ export default function NewsPageContent({
 }: {
   data: NewsPreviewList;
 }) {
+  const t = useTranslations('Page.news.tag');
+  const tags = NEWS_TAGS.map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
+
   return (
     <>
-      <SearchBox tags={NEWS_TAGS} />
+      <SearchBox allTags={tags} />
 
       {searchList.length > 0 ? (
         <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
@@ -29,7 +39,7 @@ export default function NewsPageContent({
               href={`${newsPath}/${post.id}`}
               title={post.title}
               description={post.description}
-              tags={post.tags}
+              tagIds={post.tags}
               date={new Date(post.date)}
               imageURL={post.imageURL}
             />

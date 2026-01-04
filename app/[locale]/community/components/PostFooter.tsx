@@ -25,7 +25,7 @@ type AdjPost = {
   title: string;
 };
 
-type RowType = 'next' | 'prev';
+type RowType = 'next' | 'previous';
 
 export default function PostFooter({
   path,
@@ -43,7 +43,7 @@ export default function PostFooter({
   return (
     <div className={`flex flex-col ${margin}`}>
       {nextPost && <Row post={nextPost} type="next" path={path} />}
-      {prevPost && <Row post={prevPost} type="prev" path={path} />}
+      {prevPost && <Row post={prevPost} type="previous" path={path} />}
       <div className="mt-16 flex justify-end">
         <LoginVisible role={role}>
           {id && (
@@ -79,12 +79,9 @@ function RowIcon({ type }: { type: RowType }) {
 }
 
 function RowDescription({ type }: { type: RowType }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
 
-  const description = type == 'next' ? '다음글' : '이전글';
-  return (
-    <p className="mr-3 flex-shrink-0 text-md font-medium text-main-orange">{t(description)}</p>
-  );
+  return <p className="mr-3 flex-shrink-0 text-md font-medium text-main-orange">{t(type)}</p>;
 }
 
 function RowPostTitle({ title }: { title?: string }) {
@@ -101,14 +98,14 @@ function RowPostTitle({ title }: { title?: string }) {
 }
 
 function PostListLink({ href }: { href: string }) {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
 
   return (
     <PaginatedLink
       href={href}
       className="flex h-[35px] items-center rounded-[0.0625rem] border border-neutral-700 bg-neutral-800 px-[15px] text-md font-semibold tracking-[0.1rem] text-white hover:border-neutral-500 hover:bg-neutral-500"
     >
-      {t('목록')}
+      {t('list')}
     </PaginatedLink>
   );
 }

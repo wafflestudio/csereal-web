@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import { deleteNoticeAction } from '@/actions/notice';
 import { Notice } from '@/apis/types/notice';
@@ -9,6 +10,7 @@ import Tags from '@/components/common/Tags';
 import HTMLViewer from '@/components/form/html/HTMLViewer';
 import { PAGE_PADDING_BOTTOM_TAILWIND } from '@/components/layout/pageLayout/paddings';
 import { notice } from '@/constants/segmentNode';
+import { NOTICE_TAGS } from '@/constants/tag';
 import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
@@ -19,6 +21,12 @@ interface NoticePostPageProps {
 const noticePath = getPath(notice);
 
 export default async function NoticeViewer({ notice }: NoticePostPageProps) {
+  const t = await getTranslations('Page.notice.tag');
+  const tags = NOTICE_TAGS.filter((tag) => notice.tags.includes(tag.id)).map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
+
   return (
     <>
       <Header {...notice} />
@@ -28,7 +36,7 @@ export default async function NoticeViewer({ notice }: NoticePostPageProps) {
         <Attachments files={notice.attachments} />
         <HTMLViewer htmlContent={notice.description} wrapperClassName="mb-10" />
         <StraightNode />
-        <Tags tags={notice.tags} margin="mt-3 ml-6" searchPath={noticePath} />
+        <Tags tags={tags} margin="mt-3 ml-6" searchPath={noticePath} />
         <PostFooter
           post={notice}
           path={noticePath}
@@ -50,7 +58,7 @@ const Header = ({
   author: string;
   createdAt: string;
 }) => {
-  const t = useTranslations('Content');
+  const t = useTranslations('common');
   const formatDate = useDayjs();
 
   return (
@@ -58,10 +66,10 @@ const Header = ({
       <h2 className="text-[1.25rem] font-semibold leading-[1.4]">{title}</h2>
       <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
         <p>
-          {t('작성자')}: {author}
+          {t('author')}: {author}
         </p>
         <p>
-          {t('작성 날짜')}: {formatDate ? formatDate({ date: createdAt, format: 'time' }) : ''}
+          {t('createdDate')}: {formatDate ? formatDate({ date: createdAt, format: 'time' }) : ''}
         </p>
       </div>
     </div>

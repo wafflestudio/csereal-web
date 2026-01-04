@@ -1,19 +1,22 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Member, MemberSearchResult } from '@/apis/types/search';
 import CircleTitle from '@/app/[locale]/search/helper/CircleTitle';
 import Divider from '@/app/[locale]/search/helper/Divider';
 import Section from '@/app/[locale]/search/helper/Section';
 import styles from '@/app/[locale]/search/style.module.css';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
-import { faculty, staff } from '@/constants/segmentNode';
+import { faculty, people, staff } from '@/constants/segmentNode';
 import { Link } from '@/i18n/routing';
 import { getPath } from '@/utils/page';
 
 export default async function MemberSection({ member }: { member: MemberSearchResult }) {
   const professorList = member.results.filter((x) => x.memberType === 'PROFESSOR');
   const staffList = member.results.filter((x) => x.memberType === 'STAFF');
+  const t = await getTranslations(`Page.${people.engName}`);
 
   return (
-    <Section title="구성원" size={member.total}>
+    <Section title={t('title')} size={member.total}>
       {professorList.length !== 0 && (
         <>
           <CircleTitle title="교수진" />

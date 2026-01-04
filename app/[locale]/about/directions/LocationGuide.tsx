@@ -7,16 +7,15 @@ import { getPath } from '@/utils/page';
 const staffPath = getPath(staff);
 
 export default function LocationGuide() {
-  const t = useTranslations('Footer');
-  const tContent = useTranslations('Content');
+  const t = useTranslations('Page.about.directions');
 
   return (
     <p className="mb-8 text-md leading-[200%]">
-      컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.
+      {t('description')}
       <br />
-      {tContent('주소')}: {t('address')}
+      {t('address')}: {t('addressValue')}
       <br />
-      {tContent('전화')}:{' '}
+      {t('contact')}:{' '}
       <Link href={staffPath} className="text-link hover:underline">
         학부 연락처
       </Link>

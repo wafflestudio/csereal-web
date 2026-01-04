@@ -1,9 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import PaginatedLink from '@/app/[locale]/community/components/PaginatedLink';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import Tags from '@/components/common/Tags';
 import { news } from '@/constants/segmentNode';
+import { NEWS_TAGS } from '@/constants/tag';
 import { useDayjs } from '@/utils/hooks/useDayjs';
 import { getPath } from '@/utils/page';
 
@@ -11,7 +14,7 @@ interface NewsRowProps {
   href: string;
   title: string;
   description: string;
-  tags: string[];
+  tagIds: string[];
   date: Date;
   imageURL: string | null;
 
@@ -28,13 +31,18 @@ export default function NewsRow({
   href,
   title,
   description,
-  tags,
+  tagIds,
   date,
   imageURL,
   descriptionBold,
   hideDivider,
 }: NewsRowProps) {
   description += '...'; // clip이 안될정도로 화면이 좌우로 긴 경우 대비
+  const t = useTranslations('Page.news.tag');
+  const tags = NEWS_TAGS.filter((tag) => tagIds.includes(tag.id)).map((tag) => ({
+    id: tag.id,
+    text: t(tag.transKey),
+  }));
 
   const formatDate = useDayjs();
 
