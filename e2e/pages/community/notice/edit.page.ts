@@ -1,6 +1,6 @@
 import { type Locator, type Page } from '@playwright/test';
 
-export class NoticeCreatePage {
+export class NoticeEditPage {
   readonly page: Page;
   readonly titleInput: Locator;
   readonly contentEditor: Locator;
@@ -22,11 +22,11 @@ export class NoticeCreatePage {
     this.privateToggle = page.locator('TODO_PRIVATE_TOGGLE_SELECTOR'); // TODO: 비공개 토글 selector 확인 필요
     this.pinnedToggle = page.locator('TODO_PINNED_TOGGLE_SELECTOR'); // TODO: 상단고정 토글 selector 확인 필요
     this.mainDisplayToggle = page.locator('TODO_MAIN_DISPLAY_TOGGLE_SELECTOR'); // TODO: 메인표시 토글 selector 확인 필요
-    this.submitButton = page.getByRole('button', { name: /게시/ });
+    this.submitButton = page.getByRole('button', { name: /수정/ });
   }
 
-  async goto() {
-    await this.page.goto('/community/notice/create');
+  async goto(id: string) {
+    await this.page.goto(`/community/notice/${id}/edit`);
   }
 
   async fillTitle(title: string) {
@@ -34,9 +34,7 @@ export class NoticeCreatePage {
   }
 
   async fillContent(content: string) {
-    await this.page.waitForTimeout(1000); // suneditor 대기
     await this.contentEditor.fill(content);
-    await this.page.waitForTimeout(1000); // suneditor 대기
   }
 
   async addTag(tag: string) {

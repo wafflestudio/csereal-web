@@ -2,24 +2,43 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Page } from '@playwright/test';
+import { test as base } from '@playwright/test';
 
 import { NoticeCreatePage } from '../pages/community/notice/create.page';
-import { NoticePage } from '../pages/community/notice/index.page';
-import { test as base } from './role.fixture';
+import { NoticeDetailPage } from '../pages/community/notice/detail.page';
+import { NoticeEditPage } from '../pages/community/notice/edit.page';
+import { NoticeListPage } from '../pages/community/notice/index.page';
 
 type PagesFixtures = {
-  noticePage: NoticePage;
+  noticeListPage: NoticeListPage;
   noticeCreatePage: NoticeCreatePage;
+  noticeEditPage: NoticeEditPage;
+  noticeDetailPage: NoticeDetailPage;
 };
 
 export const test = base.extend<PagesFixtures>({
-  noticePage: async ({ page }: { page: Page }, use: (page: NoticePage) => Promise<void>) => {
-    await use(new NoticePage(page));
+  noticeListPage: async (
+    { page }: { page: Page },
+    use: (page: NoticeListPage) => Promise<void>,
+  ) => {
+    await use(new NoticeListPage(page));
   },
   noticeCreatePage: async (
     { page }: { page: Page },
     use: (page: NoticeCreatePage) => Promise<void>,
   ) => {
     await use(new NoticeCreatePage(page));
+  },
+  noticeEditPage: async (
+    { page }: { page: Page },
+    use: (page: NoticeEditPage) => Promise<void>,
+  ) => {
+    await use(new NoticeEditPage(page));
+  },
+  noticeDetailPage: async (
+    { page }: { page: Page },
+    use: (page: NoticeDetailPage) => Promise<void>,
+  ) => {
+    await use(new NoticeDetailPage(page));
   },
 });
